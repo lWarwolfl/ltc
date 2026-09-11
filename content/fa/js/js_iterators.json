@@ -1,0 +1,440 @@
+{
+ "slug": "js_iterators",
+ "course": "js",
+ "order": 77,
+ "url": "/js/js_iterators.asp",
+ "title": "Iteratorها در JavaScript",
+ "summary": "Iterator شیئی با متد next() است که دسترسی ترتیبی به عنصرها را استاندارد می‌کند. در این درس شیء iterator، خصوصیت‌های value و done، حلقهٔ for...of و متدهای کمکی تازهٔ Iterator در ECMAScript 2025 مثل map()، filter()، take() و reduce() را می‌بینید.",
+ "objectives": [
+  "پروتکل iterator و متد next() را توضیح دهید",
+  "با for...of روی یک iterable پیمایش کنید",
+  "کار متدهای کمکی مثل map()، filter() و take() را بگویید",
+  "تفاوت drop() و take() را تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Iteratorها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء Iterator"
+  },
+  {
+   "type": "p",
+   "text": "Iterator شیئی است که راهی استاندارد برای دسترسی ترتیبی به عنصرها فراهم می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "Iterator باید از پروتکل Iterator پیروی کند: باید متد next() داشته باشد."
+  },
+  {
+   "type": "h2",
+   "text": "متد next()"
+  },
+  {
+   "type": "p",
+   "text": "متد next() شیئی با دو خصوصیت برمی‌گرداند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خصوصیت value مقدار بعدی در دنبالهٔ پیمایش را نگه می‌دارد.",
+    "خصوصیت done اگر عنصر بیشتری برای پیمایش باشد false و در غیر این صورت true برمی‌گرداند."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "حلقهٔ for...of"
+  },
+  {
+   "type": "p",
+   "text": "دستور for..of در JavaScript روی عنصرهای یک شیء قابل پیمایش می‌چرخد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "for (variable of iterable) {\n\n  // code block to be executed\n\n}",
+   "caption": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "از نظر فنی، Iterableها باید متد Symbol.iterator را پیاده‌سازی کنند."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript این‌ها Iterable هستند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "رشته‌ها",
+    "آرایه‌ها",
+    "آرایه‌های نوع‌دار (Typed Array)",
+    "Setها",
+    "Mapها"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "چون شیءهای prototype آن‌ها متد Symbol.iterator دارند:"
+  },
+  {
+   "type": "p",
+   "text": "Iteratorها راهی کنترل‌شده برای کار با دنباله‌های داده می‌دهند و امکان منطق پیمایش سفارشی برای ساختمان‌های داده گوناگون را فراهم می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "این‌ها بخصوص برای کار با جریان‌های داده، محاسبهٔ تنبل (lazy) مقدارها و ساختن ساختمان‌های دادهٔ سفارشی با رفتار پیمایش مشخص به کار می‌آیند."
+  },
+  {
+   "type": "h2",
+   "text": "توابع کمکی"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2025 (همان ECMAScript 2025) مجموعهٔ تازه‌ای از متدهای کمکی Iterator را رسماً تصویب کرد که توانایی Iteratorها در JavaScript را به‌طور چشمگیری بالا می‌برد."
+  },
+  {
+   "type": "p",
+   "text": "این متدها راهی تابعی‌تر و کارآمدتر برای کار با شیءهای قابل پیمایش (از جمله generatorها) می‌دهند، چون اجازه می‌دهند بدون تبدیل اولیه به آرایه، مستقیم آن‌ها را دستکاری و تبدیل کنید:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "تابع",
+     "توضیح"
+    ],
+    [
+     "drop()",
+     "یک iterator برمی‌گرداند که تعداد مشخصی عنصر را رد می‌کند و بعد بقیه را می‌دهد"
+    ],
+    [
+     "every()",
+     "اگر همهٔ عنصرها تابع آزمون را قبول کنند true برمی‌گرداند"
+    ],
+    [
+     "filter()",
+     "یک iterator با عنصرهایی که تابع فیلتر را قبول کنند برمی‌گرداند"
+    ],
+    [
+     "find()",
+     "نخستین عنصری که تابع آزمون را قبول کند برمی‌گرداند"
+    ],
+    [
+     "flatMap()",
+     "هر عنصر را نگاشت می‌کند و بعد نتیجه‌ها را تخت می‌کند و یک iterator برمی‌گرداند"
+    ],
+    [
+     "forEach()",
+     "برای هر عنصر iterator یک بار یک تابع را اجرا می‌کند."
+    ],
+    [
+     "from()",
+     "از یک iterable یک شیء iterator می‌سازد"
+    ],
+    [
+     "map()",
+     "یک iterator با همهٔ عنصرهای تبدیل‌شده توسط تابع نگاشت برمی‌گرداند"
+    ],
+    [
+     "reduce()",
+     "تابع کاهنده را روی عنصرها اعمال می‌کند تا همه به یک مقدار واحد برسند"
+    ],
+    [
+     "some()",
+     "اگر دست‌کم یک عنصر تابع آزمون را قبول کند true برمی‌گرداند"
+    ],
+    [
+     "take()",
+     "یک iterator برمی‌گرداند که تعداد مشخصی عنصر می‌دهد"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Iterator.from()"
+  },
+  {
+   "type": "p",
+   "text": "متد Iterator.from() از یک iterable یا iterator موجود یک شیء iterator می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3]);\n\n// Iterate over the elements\n\nlet text = \"\";\n\nfor (const x of myIterator) {\n\n  text += x;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_from"
+  },
+  {
+   "type": "h2",
+   "text": "متد drop()"
+  },
+  {
+   "type": "p",
+   "text": "متد drop() یک iterator تازه برمی‌گرداند که تعداد مشخصی عنصر را رد می‌کند و بعد بقیه را می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Remove the first five\n\nconst firstFive = myIterator.drop(5);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_drop"
+  },
+  {
+   "type": "h2",
+   "text": "متد every()"
+  },
+  {
+   "type": "p",
+   "text": "متد every(fn) اگر همهٔ عنصرهای iterator تابع آزمون داده‌شده را قبول کنند true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Is every Element greater than 7?\n\nlet result = myIterator.every(x => x > 7);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_every"
+  },
+  {
+   "type": "h2",
+   "text": "متد filter()"
+  },
+  {
+   "type": "p",
+   "text": "متد filter() یک iterator تازه با عنصرهایی که تابع فیلتر را قبول کنند برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([32, 33, 16, 40]);\n\n// Filter the iterator\n\nconst filteredIterator = myIterator.filter(x => x > 18);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_filter"
+  },
+  {
+   "type": "h2",
+   "text": "متد find()"
+  },
+  {
+   "type": "p",
+   "text": "متد find(fn) نخستین عنصری را که تابع آزمون را قبول کند برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([3, 10, 18, 30, 20]);\n\n// Find first greater than 18\n\nlet result = myIterator.find(x => x > 18);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_find"
+  },
+  {
+   "type": "h2",
+   "text": "متد flatMap()"
+  },
+  {
+   "type": "p",
+   "text": "متد flatMap() هر عنصر را نگاشت می‌کند، نتیجه‌ها را در یک iterator تخت می‌کند و آن را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Map the Iterator\n\nconst mappedIterator = myIterator.flatMap(x => [x, x * 10]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_flatmap"
+  },
+  {
+   "type": "h2",
+   "text": "متد forEach()"
+  },
+  {
+   "type": "p",
+   "text": "متد forEach() تابع داده‌شده را برای هر عنصر iterator یک بار اجرا می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Iterate over all elements\n\nlet text = \"\";\n\nmyIterator.forEach (x => text += x);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_foreach"
+  },
+  {
+   "type": "h2",
+   "text": "متد map()"
+  },
+  {
+   "type": "p",
+   "text": "متد map() یک iterator تازه با همهٔ عنصرهایی که تابع نگاشت تبدیلشان کرده برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Now you can use the map method\n\nconst mappedIterator = myIterator.map(x => x * 2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_map"
+  },
+  {
+   "type": "h2",
+   "text": "متد reduce()"
+  },
+  {
+   "type": "p",
+   "text": "متد reduce() تابع کاهنده را روی یک انباره (accumulator) و هر عنصر اعمال می‌کند تا همه به یک مقدار واحد برسند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from([175, 50, 25]);\n\n// Reduce the Iterator\n\nlet result = myIterator.reduce(myFunc);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_reduce"
+  },
+  {
+   "type": "h2",
+   "text": "متد some()"
+  },
+  {
+   "type": "p",
+   "text": "متد some() اگر دست‌کم یک عنصر iterator تابع آزمون داده‌شده را قبول کند true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Is some Element greater than 7?\n\nlet result = myIterator.some(x => x > 7);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_some"
+  },
+  {
+   "type": "h2",
+   "text": "متد take()"
+  },
+  {
+   "type": "p",
+   "text": "متد take() یک iterator تازه برمی‌گرداند که حداکثر تعداد مشخصی عنصر می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Take the first five elements\n\nconst firstFive = myIterator.take(5);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_take"
+  },
+  {
+   "type": "p",
+   "text": "Iteratorها مفهوم پیمایش را مستقیم به هستهٔ زبان JavaScript می‌آورند و سازوکاری برای سفارشی کردن رفتار for...of فراهم می‌کنند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل iterators.html بسازید و با Iterator.from([1,2,3]) یک iterator بسازید و با for...of روی آن بچرخید.",
+   "hint": "خروجی Iterator.from یک iterator است، پس مستقیم برای for...of مناسب است."
+  },
+  {
+   "prompt": "متد next() را دستی روی همان iterator صدا بزنید و شیء بازگشتی را در کنسول ببینید.",
+   "hint": "هر بار next() چیزی مثل {value: 1, done: false} می‌دهد."
+  },
+  {
+   "prompt": "با filter() عنصرهای بزرگ‌تر از ۱۸ را از یک iterator جدا کنید و نتیجه را چاپ کنید.",
+   "hint": "myIterator.filter(x => x > 18) خودش iterator است، پس باید رویش پیمایش کنید."
+  },
+  {
+   "prompt": "با take(5) پنج عنصر اول یک iterator را بردارید و در مثال دیگری با drop(5) پنج عنصر اول را رد کنید.",
+   "hint": "take تعداد عنصرهای خروجی را محدود می‌کند و drop از ابتدای دنباله رد می‌کند."
+  },
+  {
+   "prompt": "با map() همهٔ عنصرهای یک iterator را دو برابر کنید و بعد با reduce() جمعشان را حساب کنید.",
+   "hint": "myIterator.map(x => x * 2) یک iterator تازه می‌دهد و reduce(myFunc) مجموع را می‌سازد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "یک Iterator حتماً چه چیزی باید داشته باشد؟",
+   "options": [
+    "متد next()",
+    "خصوصیت size",
+    "متد forEach()",
+    "خصوصیت length"
+   ],
+   "answer": 0,
+   "explanation": "پروتکل Iterator می‌گوید شیء باید متد next() داشته باشد و این متد شیئی با value و done برگرداند."
+  },
+  {
+   "question": "خصوصیت value در نتیجهٔ next() چه چیزی را نگه می‌دارد؟",
+   "options": [
+    "مقدار بعدی در دنبالهٔ پیمایش",
+    "شمارندهٔ تکرارها",
+    "طول دنباله",
+    "آخرین عنصر آرایه"
+   ],
+   "answer": 0,
+   "explanation": "value مقدار بعدی دنبالهٔ پیمایش را نگه می‌دارد و done می‌گوید پیمایش تمام شده یا نه."
+  },
+  {
+   "question": "متد drop(5) روی یک iterator چه می‌کند؟",
+   "options": [
+    "پنج عنصر اول را برمی‌گرداند",
+    "پنج عنصر اول را رد می‌کند و بقیه را می‌دهد",
+    "عنصرها را دو برابر می‌کند",
+    "iterator را به آرایه تبدیل می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "drop(5) یک iterator تازه برمی‌گرداند که پنج عنصر اول را رد می‌کند؛ برای بردن پنج عنصر اول باید از take(5) استفاده کنید."
+  },
+  {
+   "question": "کدام متد اگر همهٔ عنصرها تابع آزمون را قبول کنند true برمی‌گرداند؟",
+   "options": [
+    "some()",
+    "every()",
+    "find()",
+    "filter()"
+   ],
+   "answer": 1,
+   "explanation": "every() وقتی true می‌دهد که همهٔ عنصرها شرط را قبول کنند؛ some() با قبول شدن دست‌کم یک عنصر true می‌دهد و find() خودِ عنصر را برمی‌گرداند."
+  },
+  {
+   "question": "این متدهای کمکی Iterator در کدام نسخه تصویب شدند؟",
+   "options": [
+    "ECMAScript 2025",
+    "ES6",
+    "ECMAScript 2020",
+    "ECMAScript 2015"
+   ],
+   "answer": 0,
+   "explanation": "مجموعهٔ متدهای کمکی Iterator در ECMAScript 2025 رسماً تصویب شد و امکان کار تابعی با iteratorها را بدون تبدیل اولیه به آرایه می‌دهد."
+  }
+ ]
+}

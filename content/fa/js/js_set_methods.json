@@ -1,0 +1,363 @@
+{
+ "slug": "js_set_methods",
+ "course": "js",
+ "order": 69,
+ "url": "/js/js_set_methods.asp",
+ "title": "متدهای Set در JavaScript",
+ "summary": "در این درس متدها و خصوصیت‌های Set را می‌شناسید: ساختن Set با new Set()، افزودن با add()، بررسی با has()، شمارش با size و پیمایش با forEach()، values()، keys() و entries().",
+ "objectives": [
+  "Set بسازید و با add() عضو اضافه کنید",
+  "با has() وجود یک مقدار و با size تعداد اعضا را بررسی کنید",
+  "همهٔ عضوها را با حلقه و با forEach() فهرست کنید",
+  "تفاوت values()، keys() و entries() را روی Set توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متدهای Set در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متدها و خصوصیت‌های Set"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "new Set(): ساختن Set\nadd(): افزودن عضو\nclear(): پاک کردن همهٔ عضوها\ndelete(): حذف یک عضو\nentries(): پیمایش‌گر جفت‌های [مقدار,مقدار]",
+     "forEach(): اجرای تابع روی هر عضو\nhas(): بررسی وجود یک مقدار\nkeys(): مثل values()\nvalues(): پیمایش‌گر مقدارها\nsize: تعداد عضوها"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد new Set()"
+  },
+  {
+   "type": "p",
+   "text": "یک آرایه به سازندهٔ new Set() بدهید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_create_array"
+  },
+  {
+   "type": "h2",
+   "text": "متد add()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "letters.add(\"d\");\n\nletters.add(\"e\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_add"
+  },
+  {
+   "type": "p",
+   "text": "اگر عضوهای یکسان اضافه کنید، فقط اولی ذخیره می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "letters.add(\"a\");\n\nletters.add(\"b\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_add_equals"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی اصلی شیءهای Set این است که فقط مقدارهای یکتا نگه می‌دارند."
+  },
+  {
+   "type": "p",
+   "text": "اگر بخواهید عضوی را اضافه کنید که از قبل در Set هست، متد add() هیچ اثری ندارد و Set بدون تغییر می‌ماند."
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت size"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new Set\n\nconst mySet = new Set([\"a\",\"b\",\"c\"]);\n\n// The number of elements are\n\nmySet.size;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_size"
+  },
+  {
+   "type": "h2",
+   "text": "فهرست کردن عضوهای Set"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ عضوهای (مقدارهای) Set را با حلقهٔ for..of می‌توانید فهرست کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// List all Elements\n\nlet text = \"\";\n\nfor (const x of letters) {\n\n  text += x;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_list"
+  },
+  {
+   "type": "h2",
+   "text": "متد has()"
+  },
+  {
+   "type": "p",
+   "text": "متد has() اگر مقدار مشخصی در Set وجود داشته باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// Does the Set contain \"d\"?\n\nanswer = letters.has(\"d\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_has"
+  },
+  {
+   "type": "h2",
+   "text": "متد forEach()"
+  },
+  {
+   "type": "p",
+   "text": "متد forEach() برای هر عضو Set یک تابع را فراخوانی می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// List all entries\n\nlet text = \"\";\n\nletters.forEach (function(value) {\n\n  text += value;\n\n})",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_foreach"
+  },
+  {
+   "type": "h2",
+   "text": "متد values()"
+  },
+  {
+   "type": "p",
+   "text": "متد values() یک شیء Iterator با مقدارهای Set برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// Get all Values\n\nconst myIterator = letters.values();\n\n// List all Values\n\nlet text = \"\";\n\nfor (const entry of myIterator) {\n\n  text += entry;\n\n}",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_values2"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// List all Values\n\nlet text = \"\";\n\nfor (const entry of letters.values()) {\n\n  text += entry;\n\n}",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_values"
+  },
+  {
+   "type": "h2",
+   "text": "متد keys()"
+  },
+  {
+   "type": "p",
+   "text": "متد keys() یک شیء Iterator با مقدارهای Set برمی‌گرداند:"
+  },
+  {
+   "type": "p",
+   "text": "Set کلید ندارد، پس keys() همان چیزی را برمی‌گرداند که values()."
+  },
+  {
+   "type": "p",
+   "text": "همین باعث می‌شود Setها با Mapها سازگار باشند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// Create an Iterator\n\nconst myIterator = letters.keys();\n\n// List all Elements\n\nlet text = \"\";\n\nfor (const x of myIterator) {\n\n  text += x;\n\n}",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_keys"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// List all Elements\n\nlet text = \"\";\n\nfor (const x of letters.keys()) {\n\n  text += x;\n\n}",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_keys2"
+  },
+  {
+   "type": "h2",
+   "text": "متد entries()"
+  },
+  {
+   "type": "p",
+   "text": "متد entries() یک Iterator با جفت‌های [value,value] از Set برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "قرار است متد entries() از یک شیء جفت [key,value] برگرداند."
+  },
+  {
+   "type": "p",
+   "text": "Set کلید ندارد، پس متد entries() جفت [value,value] را برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "همین باعث می‌شود Setها با Mapها سازگار باشند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// Get all Entries\n\nconst myIterator = letters.entries();\n\n// List all Entries\n\nlet text = \"\";\n\nfor (const entry of myIterator) {\n\n  text += entry;\n\n}",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_entries"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// List all Entries\n\nlet text = \"\";\n\nfor (const entry of letters.entries()) {\n\n  text += entry;\n\n}",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_entries2"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید:"
+  },
+  {
+   "type": "p",
+   "text": "مجموعه‌ها (Set) در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "منطق Set در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "WeakSet در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع Set در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Map در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل setmethods.html بسازید و Setی از رنگ‌ها بسازید؛ بعد با size تعداد اعضا و با has() بررسی کنید رنگ \"blue\" در Set هست یا نه.",
+   "hint": "has() مقدار بولی (true یا false) برمی‌گرداند و size تعداد عضوهای Set را می‌دهد."
+  },
+  {
+   "prompt": "عضوی را با delete() از Set حذف کنید و بعد با has() بررسی کنید که واقعاً حذف شده است.",
+   "hint": "delete() اگر عضو وجود داشته باشد آن را حذف می‌کند و true برمی‌گرداند."
+  },
+  {
+   "prompt": "با متد forEach() همهٔ عضوهای Set را همراه پیام دلخواه چاپ کنید.",
+   "hint": "تابع کالبک forEach() برای Set دو آرگومان می‌گیرد و هر دو مقدار عضو هستند."
+  },
+  {
+   "prompt": "خروجی values()، keys() و entries() را در کنسول ببینید و تفاوت آن‌ها را توضیح دهید.",
+   "hint": "Set کلید ندارد؛ پس keys() و values() یک چیز را می‌دهند و entries() جفت [value,value] برمی‌گرداند."
+  },
+  {
+   "prompt": "با clear() همهٔ عضوهای Set را پاک کنید و طول آن را قبل و بعد از پاک شدن چاپ کنید.",
+   "hint": "clear() همهٔ عضوها را حذف می‌کند و size را به صفر می‌رساند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام متد بررسی می‌کند آیا مقداری در Set وجود دارد؟",
+   "options": [
+    "size",
+    "has()",
+    "includes()",
+    "find()"
+   ],
+   "answer": 1,
+   "explanation": "برای Set از has() استفاده می‌شود که مقدار بولی می‌دهد. includes() و find() متدهای آرایه‌اند و برای Set به کار نمی‌روند."
+  },
+  {
+   "question": "تعداد عضوهای یک Set را با چه چیزی می‌گیریم؟",
+   "options": [
+    "length",
+    "count()",
+    "size",
+    "values().length"
+   ],
+   "answer": 2,
+   "explanation": "Set خصوصیت length ندارد و به‌جای آن خصوصیت size دارد."
+  },
+  {
+   "question": "خروجی keys() روی یک Set چیست؟",
+   "options": [
+    "همان مقدارهای Set",
+    "اندیس‌های عددی",
+    "کلیدهایی که هنگام ساخت Set دادیم",
+    "خطا می‌دهد چون Set کلید ندارد"
+   ],
+   "answer": 0,
+   "explanation": "Set کلید ندارد، پس keys() همان چیزی را برمی‌گرداند که values()؛ همین Setها را با Mapها سازگار می‌کند."
+  },
+  {
+   "question": "متد entries() روی Set چه چیزی برمی‌گرداند؟",
+   "options": [
+    "فقط مقدارها",
+    "جفت‌های [مقدار,مقدار]",
+    "جفت‌های [اندیس,مقدار]",
+    "جفت‌های [کلید,مقدار] که کلید رشته است"
+   ],
+   "answer": 1,
+   "explanation": "چون Set کلید ندارد، entries() جفت‌های [value,value] می‌دهد؛ همین رفتار آن را با Map سازگار می‌کند."
+  },
+  {
+   "question": "اگر عضوی که از قبل در Set هست را دوباره با add() اضافه کنید چه می‌شود؟",
+   "options": [
+    "Set خطا می‌دهد",
+    "عضو دوباره اضافه می‌شود و size یکی زیاد می‌شود",
+    "هیچ اتفاقی نمی‌افتد و Set بدون تغییر می‌ماند",
+    "عضو قبلی جای خود را به جدید می‌دهد"
+   ],
+   "answer": 2,
+   "explanation": "Set فقط مقدار یکتا نگه می‌دارد؛ پس add() برای مقدار تکراری اثری ندارد و Set دست‌نخورده می‌ماند."
+  }
+ ]
+}

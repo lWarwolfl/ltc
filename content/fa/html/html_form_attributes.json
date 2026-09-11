@@ -1,0 +1,497 @@
+{
+ "slug": "html_form_attributes",
+ "course": "html",
+ "order": 61,
+ "url": "/html/html_form_attributes.asp",
+ "title": "ویژگی‌های ورودی در HTML",
+ "summary": "ویژگی‌های ورودی رفتار کادرهای فرم را تعیین می‌کنند. در این درس با ویژگی‌های پرکاربرد مثل value، readonly، disabled، size، maxlength، min، max، pattern، placeholder، required و autocomplete آشنا می‌شوید.",
+ "objectives": [
+  "فرق ورودی readonly و disabled را توضیح دهید",
+  "با ویژگی‌های min ، max و step مقدارهای مجاز را محدود کنید",
+  "با placeholder یک راهنمای کوتاه داخل کادر ورودی بگذارید",
+  "بگویید چرا تعیین height و width برای تصویر مهم است"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ویژگی‌های ورودی در HTML"
+  },
+  {
+   "type": "p",
+   "text": "این فصل ویژگی‌های مختلف عنصر <input> در HTML را توضیح می‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی value"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی value یک مقدار اولیه برای کادر ورودی تعیین می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n\n  <label for=\"fname\">First name:</label><br>\n  <input type=\"text\"\n  id=\"fname\" name=\"fname\" value=\"John\"><br>\n  <label for=\"lname\">Last\n  name:</label><br>\n  <input type=\"text\" id=\"lname\" name=\"lname\"\n  value=\"Doe\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_input_attributes_value"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی readonly"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی readonly مشخص می‌کند کادر ورودی فقط‌خواندنی است."
+  },
+  {
+   "type": "p",
+   "text": "کادر ورودی فقط‌خواندنی قابل تغییر نیست (البته کاربر می‌تواند با کلید Tab به آن برود، متنش را انتخاب کند و از آن کپی بگیرد)."
+  },
+  {
+   "type": "p",
+   "text": "مقدار کادر ورودی فقط‌خواندنی هنگام ارسال فرم فرستاده می‌شود!"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n\n  <label for=\"fname\">First name:</label><br>\n  <input type=\"text\"\n  id=\"fname\" name=\"fname\" value=\"John\" readonly><br>\n  <label for=\"lname\">Last\n  name:</label><br>\n  <input type=\"text\" id=\"lname\" name=\"lname\"\n  value=\"Doe\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_input_attributes_readonly"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی disabled"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی disabled مشخص می‌کند کادر ورودی باید غیرفعال باشد."
+  },
+  {
+   "type": "p",
+   "text": "کادر ورودی غیرفعال نه به کار می‌آید و نه می‌توان رویش کلیک کرد."
+  },
+  {
+   "type": "p",
+   "text": "مقدار کادر ورودی غیرفعال هنگام ارسال فرم فرستاده نمی‌شود!"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n\n  <label for=\"fname\">First name:</label><br>\n  <input type=\"text\"\n  id=\"fname\" name=\"fname\" value=\"John\" disabled><br>\n  <label for=\"lname\">Last\n  name:</label><br>\n  <input type=\"text\" id=\"lname\" name=\"lname\"\n  value=\"Doe\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_input_attributes_disabled"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی size"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی size پهنای دیدنی کادر ورودی را بر حسب نویسه تعیین می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "مقدار پیش‌فرض size برابر ۲۰ است."
+  },
+  {
+   "type": "p",
+   "text": "نکته: ویژگی size با این نوع‌های ورودی کار می‌کند: text، search، tel، url، email و password."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"fname\">First name:</label><br>\n  <input\n  type=\"text\" id=\"fname\" name=\"fname\" size=\"50\"><br>\n  <label\n  for=\"pin\">PIN:</label><br>\n  <input type=\"text\" id=\"pin\" name=\"pin\"\n  size=\"4\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_input_attributes_size"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی maxlength"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی maxlength بیشترین تعداد نویسهٔ مجاز در کادر ورودی را تعیین می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "نکته: وقتی maxlength تعیین شده باشد، کادر ورودی بیشتر از تعداد نویسهٔ گفته‌شده را نمی‌پذیرد. اما این ویژگی هیچ بازخوردی نمی‌دهد؛ پس اگر می‌خواهید به کاربر هشدار بدهید، باید کد JavaScript بنویسید."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"fname\">First name:</label><br>\n  <input\n  type=\"text\" id=\"fname\" name=\"fname\" size=\"50\"><br>\n  <label\n  for=\"pin\">PIN:</label><br>\n  <input type=\"text\" id=\"pin\" name=\"pin\"\n  maxlength=\"4\" size=\"4\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_input_attributes_maxlength"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های min و max"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های min و max کمترین و بیشترین مقدار یک کادر ورودی را تعیین می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های min و max با این نوع‌های ورودی کار می‌کنند: number، range، date، datetime-local، month، time و week."
+  },
+  {
+   "type": "p",
+   "text": "نکته: ویژگی‌های max و min را با هم به کار ببرید تا بازه‌ای از مقدارهای مجاز بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"datemax\">Enter a date before\n  1980-01-01:</label>\n  <input type=\"date\" id=\"datemax\" name=\"datemax\"\n  max=\"1979-12-31\"><br><br>\n\n  <label for=\"datemin\">Enter a date\n  after 2000-01-01:</label>\n  <input type=\"date\" id=\"datemin\" name=\"datemin\"\n  min=\"2000-01-02\"><br><br>\n\n  <label for=\"quantity\">Quantity\n  (between 1 and 5):</label>\n  <input type=\"number\" id=\"quantity\"\n  name=\"quantity\" min=\"1\" max=\"5\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_max_min"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی multiple"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی multiple مشخص می‌کند کاربر می‌تواند بیش از یک مقدار در کادر ورودی وارد کند."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی multiple با این نوع‌های ورودی کار می‌کند: email و file."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"files\">Select files:</label>\n  <input\n  type=\"file\" id=\"files\" name=\"files\" multiple>\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_multiple"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی pattern"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی pattern یک عبارت باقاعده تعیین می‌کند که هنگام ارسال فرم، مقدار کادر ورودی با آن بررسی می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی pattern با این نوع‌های ورودی کار می‌کند: text، date، search، url، tel، email و password."
+  },
+  {
+   "type": "p",
+   "text": "نکته: از ویژگی سراسری title استفاده کنید تا الگو را برای کمک به کاربر توضیح دهید."
+  },
+  {
+   "type": "p",
+   "text": "نکته: دربارهٔ عبارت‌های باقاعده در آموزش JavaScript ما بیشتر یاد بگیرید."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"country_code\">Country code:</label>\n\n  <input type=\"text\" id=\"country_code\" name=\"country_code\"\n\n  pattern=\"[A-Za-z]{3}\" title=\"Three letter country code\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_pattern"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی placeholder"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی placeholder یک راهنمای کوتاه تعیین می‌کند که مقدار مورد انتظار کادر ورودی را توصیف می‌کند (یک مقدار نمونه یا توضیح کوتاهی از قالب مورد انتظار)."
+  },
+  {
+   "type": "p",
+   "text": "این راهنمای کوتاه پیش از آنکه کاربر مقداری وارد کند، داخل کادر ورودی نشان داده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی placeholder با این نوع‌های ورودی کار می‌کند: text، search، url، number، tel، email و password."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"phone\">Enter a phone number:</label>\n\n  <input type=\"tel\" id=\"phone\" name=\"phone\"\n\n  placeholder=\"123-45-678\"\n  pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{3}\">\n\n  </form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_placeholder"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی required"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی required مشخص می‌کند کادر ورودی باید پیش از ارسال فرم پر شده باشد."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی required با این نوع‌های ورودی کار می‌کند: text، search، url، tel، email، password، انتخابگرهای تاریخ، number، checkbox، radio و file."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"username\">Username:</label>\n  <input\n  type=\"text\" id=\"username\" name=\"username\" required>\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_required"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی step"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی step فاصله‌های عددی مجاز یک کادر ورودی را تعیین می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "مثال: اگر step=\"3\" باشد، عددهای مجاز می‌توانند -۳، ۰، ۳، ۶ و مانند این‌ها باشند."
+  },
+  {
+   "type": "p",
+   "text": "نکته: این ویژگی را می‌توان همراه با ویژگی‌های max و min به کار برد تا بازه‌ای از مقدارهای مجاز ساخت."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی step با این نوع‌های ورودی کار می‌کند: number، range، date، datetime-local، month، time و week."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"points\">Points:</label>\n  <input\n  type=\"number\" id=\"points\" name=\"points\" step=\"3\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_step"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "محدودیت‌های ورودی خطاناپذیر نیستند و JavaScript راه‌های زیادی برای افزودن ورودی نامجاز در اختیار می‌گذارد. برای محدود کردن ایمن ورودی، گیرنده (سرور) هم باید آن را بررسی کند!"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی autofocus"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی autofocus مشخص می‌کند کادر ورودی هنگام بارگذاری صفحه به‌طور خودکار تمرکز بگیرد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"fname\">First name:</label><br>\n  <input\n  type=\"text\" id=\"fname\" name=\"fname\" autofocus><br>\n  <label for=\"lname\">Last\n  name:</label><br>\n  <input type=\"text\" id=\"lname\" name=\"lname\">\n\n  </form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_autofocus"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های height و width"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های height و width ارتفاع و عرض یک عنصر <input type=\"image\"> را تعیین می‌کنند."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "همیشه هر دو ویژگی height و width را برای تصویرها تعیین کنید. اگر height و width تنظیم شده باشند، فضای لازم برای تصویر هنگام بارگذاری صفحه رزرو می‌شود. بدون این ویژگی‌ها مرورگر اندازهٔ تصویر را نمی‌داند و نمی‌تواند فضای مناسب را برایش نگه دارد. نتیجه این است که چیدمان صفحه در حین بارگذاری (وقتی تصویرها می‌آیند) تغییر می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n  <label for=\"fname\">First name:</label>\n  <input\n  type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n  <label for=\"lname\">Last\n  name:</label>\n  <input type=\"text\" id=\"lname\" name=\"lname\"><br><br>\n\n  <input type=\"image\" src=\"img_submit.gif\" alt=\"Submit\" width=\"48\" height=\"48\">\n\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_height_width"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی list"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی list به یک عنصر <datalist> اشاره می‌کند که گزینه‌های از پیش تعریف‌شده را برای عنصر <input> در خود دارد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form>\n\n<input list=\"browsers\">\n\n <datalist id=\"browsers\">\n\n     <option value=\"Edge\">\n\n  <option value=\"Firefox\">\n\n  <option value=\"Chrome\">\n\n  <option value=\"Opera\">\n\n  <option value=\"Safari\">\n\n </datalist>\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_datalist"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی autocomplete"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی autocomplete تعیین می‌کند تکمیل خودکار برای یک فرم یا کادر ورودی روشن باشد یا خاموش."
+  },
+  {
+   "type": "p",
+   "text": "تکمیل خودکار به مرورگر اجازه می‌دهد مقدار را پیش‌بینی کند. وقتی کاربر شروع به تایپ در کادری می‌کند، مرورگر باید بر پایهٔ مقدارهایی که قبلاً تایپ شده‌اند گزینه‌هایی برای پر کردن آن کادر نشان دهد."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی autocomplete با <form> و این نوع‌های <input> کار می‌کند: text، search، url، tel، email، password، انتخابگرهای تاریخ، range و color."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<form action=\"/action_page.php\" autocomplete=\"on\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <label for=\"lname\">Last name:</label>\n  <input type=\"text\" id=\"lname\"\n    name=\"lname\"><br><br>\n  <label for=\"email\">Email:</label>\n\n    <input type=\"email\" id=\"email\" name=\"email\" autocomplete=\"off\"><br><br>\n\n    <input type=\"submit\" value=\"Submit\">\n</form>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_autocomplete"
+  },
+  {
+   "type": "p",
+   "text": "نکته: در بعضی مرورگرها شاید لازم باشد برای کار کردن این ویژگی، خود قابلیت تکمیل خودکار را فعال کنید (در منوی مرورگر دنبال «Preferences» بگردید)."
+  },
+  {
+   "type": "h2",
+   "text": "عنصرهای فرم و ورودی HTML"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "تگ",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "<form>",
+     "یک فرم HTML برای ورود داده توسط کاربر تعریف می‌کند"
+    ],
+    [
+     "<input>",
+     "یک کنترل ورودی تعریف می‌کند"
+    ]
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "برای فهرست کامل همهٔ تگ‌های موجود HTML، به مرجع تگ‌های HTML ما سر بزنید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل input-attributes.html بسازید، یک ورودی text با value=\"John\" و ویژگی readonly بسازید؛ بعد رویش کلیک کنید و توضیح دهید چرا نمی‌توان ویرایشش کرد.",
+   "hint": "مقدار ورودی readonly هنگام ارسال فرم فرستاده می‌شود، پس فقط ظاهر آن قفل نیست."
+  },
+  {
+   "prompt": "یک ورودی دیگر بسازید که ویژگی disabled داشته باشد و فرقش را با readonly در هنگام ارسال فرم توضیح دهید.",
+   "hint": "مقدار کادر disabled اصلاً فرستاده نمی‌شود."
+  },
+  {
+   "prompt": "به یک ورودی text ویژگی maxlength=\"4\" و به یک ورودی tel ویژگی pattern=\"[0-9]{3}-[0-9]{2}-[0-9]{3}\" بدهید و با وارد کردن مقدار نامعتبر پیام مرورگر را ببینید.",
+   "hint": "ویژگی pattern یک عبارت باقاعده است؛ ویژگی title را هم بگذارید تا راهنما به کاربر نشان داده شود."
+  },
+  {
+   "prompt": "روی یک ورودی placeholder=\"123-45-678\" بگذارید و ببینید با شروع تایپ، متن راهنما محو می‌شود.",
+   "hint": "placeholder فقط یک راهنمای کوتاه است و به‌جای مقدار واقعی کادر حساب نمی‌شود."
+  },
+  {
+   "prompt": "ویژگی required را به یک ورودی اضافه کنید و فرم را بدون پر کردن آن ارسال کنید تا ببینید مرورگر جلوی ارسال را می‌گیرد.",
+   "hint": "محدودیت‌های ورودی خطاناپذیر نیستند؛ سرور هم باید ورودی را بررسی کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "فرق ورودی readonly و disabled چیست؟",
+   "options": [
+    "هر دو دقیقاً یکسان‌اند",
+    "disabled مقدارش هنگام ارسال فرم فرستاده می‌شود ولی readonly نه",
+    "readonly مقدارش هنگام ارسال فرم فرستاده می‌شود، ولی disabled نه",
+    "readonly فقط برای checkbox است"
+   ],
+   "answer": 2,
+   "explanation": "در readonly مقدار کادر با فرم فرستاده می‌شود و فقط قابل ویرایش نیست؛ در disabled کادر غیرفعال است و مقدارش اصلاً فرستاده نمی‌شود."
+  },
+  {
+   "question": "مقدار پیش‌فرض ویژگی size چقدر است؟",
+   "options": [
+    "۲۰",
+    "۱۰",
+    "۵۰",
+    "۱۰۰"
+   ],
+   "answer": 0,
+   "explanation": "اگر size را تعیین نکنید، پهنای کادر ورودی حدود ۲۰ نویسه است. این ویژگی با نوع‌هایی مثل text، search، tel، url، email و password کار می‌کند."
+  },
+  {
+   "question": "کدام ویژگی یک راهنمای کوتاه داخل کادر ورودی نشان می‌دهد که با شروع تایپ محو می‌شود؟",
+   "options": [
+    "value",
+    "placeholder",
+    "title",
+    "pattern"
+   ],
+   "answer": 1,
+   "explanation": "placeholder متن راهنمای قالب مورد انتظار است. value مقدار واقعی کادر، title راهنمای ابزار (tooltip) و pattern الگوی اعتبارسنجی است."
+  },
+  {
+   "question": "ویژگی multiple با کدام نوع‌های ورودی کار می‌کند؟",
+   "options": [
+    "text و password",
+    "date و time",
+    "number و range",
+    "email و file"
+   ],
+   "answer": 3,
+   "explanation": "multiple اجازهٔ وارد کردن بیش از یک مقدار را می‌دهد و برای type=\"email\" و type=\"file\" معنا دارد، چون بقیه یک مقدار می‌گیرند."
+  },
+  {
+   "question": "چرا تعیین height و width برای تصویر مهم است؟",
+   "options": [
+    "چون حجم فایل تصویر کم می‌شود",
+    "چون بدون آن‌ها تصویر نمایش داده نمی‌شود",
+    "چون مرورگر فضای تصویر را از پیش رزرو می‌کند و چیدمان صفحه حین بارگذاری نمی‌پرد",
+    "چون سرعت اینترنت را بالا می‌برد"
+   ],
+   "answer": 2,
+   "explanation": "وقتی اندازه مشخص باشد، مرورگر جا را از قبل نگه می‌دارد؛ وگرنه چیدمان صفحه هنگام آمدن تصویرها تکان می‌خورد."
+  }
+ ]
+}

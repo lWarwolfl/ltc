@@ -1,0 +1,86 @@
+{
+ "slug": "css_rwd_grid",
+ "course": "css",
+ "order": 190,
+ "url": "/css/css_rwd_grid.asp",
+ "title": "Responsive Web Design - Building a Grid View",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Responsive Web Design - Building a Grid View"
+  },
+  {
+   "type": "h2",
+   "text": "What is a Grid-View?"
+  },
+  {
+   "type": "p",
+   "text": "Many web pages are based on a grid-view, which means that the page is divided into rows and columns."
+  },
+  {
+   "type": "p",
+   "text": "A responsive grid-view often has 6 or 12 columns, and will shrink and expand as you resize the browser window."
+  },
+  {
+   "type": "h2",
+   "text": "Building a Grid View"
+  },
+  {
+   "type": "p",
+   "text": "Lets start building a grid-view."
+  },
+  {
+   "type": "p",
+   "text": "First ensure that all HTML elements have the box-sizing property set to\nborder-box.\nThis makes sure that the padding and border are included in the total width and height of\nthe elements."
+  },
+  {
+   "type": "p",
+   "text": "Add the following at the top of your CSS:"
+  },
+  {
+   "type": "p",
+   "text": "* {  box-sizing: border-box;}"
+  },
+  {
+   "type": "p",
+   "text": "Read more about the box-sizing property in our CSS Box Sizing chapter."
+  },
+  {
+   "type": "h2",
+   "text": "The HTML"
+  },
+  {
+   "type": "p",
+   "text": "We create a grid container with five grid items (header, menu, content, facts,\nfooter):"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<div class=\"grid-container\">\n\n<div class=\"header\"><h1>Chania</h1></div>\n\n<div class=\"menu\">\n  <ul>\n    <li>The\n  Flight</li>\n    <li>The City</li>\n\n  <li>The Island</li>\n    <li>The Food</li>\n  </ul>\n\n  </div>\n\n<div class=\"content\">\n  <h1>The City</h1>\n\n  <p>Chania is the capital of the Chania region on the island of Crete.</p>\n\n  <p>The city can be divided in two parts, the old town and the modern city. The\n  old town is situated next to the old harbour and is the matrix around which\n  the whole urban area was developed.</p>\n  <p>Chania lies along the\n  north west coast of the island Crete.</p>\n</div>\n\n<div\n  class=\"facts\">\n  <h2>Facts:</h2>\n  <ul>\n\n  <li>Chania is a city on the island of Crete</li>\n\n  <li>Crete is a Greek island in the Mediterranean Sea</li>\n  </ul>\n\n  </div>\n\n<div class=\"footer\"><p>A footer.</p></div>\n\n</div>",
+   "caption": "HTML"
+  },
+  {
+   "type": "h2",
+   "text": "The CSS"
+  },
+  {
+   "type": "p",
+   "text": "Add some styles and colors to make it look better:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Look at the next chapter to add mediaqueries and\nbreakpoints for different screen sizes!"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "* {\n  box-sizing: border-box;\n}\n\nbody {\n\n  font-family: \"Lucida Sans\", sans-serif;\n  font-size: 17px;\n}\n\n.grid-container {\n  display: grid;\n  grid-template-areas:\n\n  'header'\n  'menu'\n  'main'\n  'facts'\n\n  'footer';\n  background-color: white;\n  gap: 10px;\n}\n\n.header {\n  grid-area: header;\n  background-color: purple;\n\n  text-align: center;\n  color: #ffffff;\n}\n\n.header > h1 {\n\n  font-size: 40px;\n}\n\n.menu {\n  grid-area: menu;\n}\n\n  .menu ul {\n  list-style-type: none;\n  margin: 0;\n\n  padding: 0;\n}\n\n.menu li {\n  padding: 8px;\n\n  margin-bottom: 7px;\n  background-color: #33b5e5;\n  color:\n  #ffffff;\n}\n\n.menu li:hover {\n  background-color: #0099cc;\n\n  }\n\n.content {\n  grid-area: main;\n}\n\n.content > h1 {\n\n  font-size: 30px;\n  margin-bottom: 7px;\n}\n\n.content > p {\n\n  margin-bottom: 7px;\n}\n\n.facts {\n  grid-area: facts;\n\n  border: 1px solid #0099cc;\n  background-color: beige;\n\n  padding: 10px;\n}\n\n.facts > h2 {\n  font-size: 20px;\n}\n\n.facts li {\n  margin-bottom: 5px;\n}\n\n.footer {\n\n  grid-area: footer;\n  background-color: #0099cc;\n  color:\n  #ffffff;\n  text-align: center;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryresponsive_styles"
+  }
+ ]
+}

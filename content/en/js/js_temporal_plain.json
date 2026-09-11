@@ -1,0 +1,766 @@
+{
+ "slug": "js_temporal_plain",
+ "course": "js",
+ "order": 187,
+ "url": "/js/js_temporal_plain.asp",
+ "title": "JavaScript Temporal PlainDate",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Temporal PlainDate"
+  },
+  {
+   "type": "h2",
+   "text": "The Temporal.PlainDate Object"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.PlainDate object represents a calendar date without a time."
+  },
+  {
+   "type": "p",
+   "text": "A Temporal.PlainDate is typically in ISO 8601 format (2026-05-01)."
+  },
+  {
+   "type": "p",
+   "text": "It is easier to use and safer to compare than DateTime objects for dates that are the same\nregardless of time zone, such as birthdays and holidays."
+  },
+  {
+   "type": "h2",
+   "text": "How to Create a PlainDate Object"
+  },
+  {
+   "type": "p",
+   "text": "An PlainDateTime object can be created in several different ways:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "From",
+     "Code"
+    ],
+    [
+     "Constructor (new)",
+     "new Temporal.PlainDate()"
+    ],
+    [
+     "ISO String",
+     "Temporal.PlainDate.from()"
+    ],
+    [
+     "Now (current time)",
+     "Temporal.Now.plainDateISO()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Create a PlainDate with new"
+  },
+  {
+   "type": "p",
+   "text": "You can create a PlainDate object using the new constructor."
+  },
+  {
+   "type": "p",
+   "text": "The constructor takes year, month, and day parameters."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = new Temporal.PlainDate(2026, 5, 17);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.PlainDate() method above:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Uses a constructor call",
+    "Expects numeric arguments (year, month, day).",
+    "Returns a calendar date without a time like 2026-05-17."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Unlike JavaScript Date, Temporal months start at 1."
+  },
+  {
+   "type": "h2",
+   "text": "Create a PlainDate from a String"
+  },
+  {
+   "type": "p",
+   "text": "You can create a PlainDate object from an\nISO 8601 / RFC 9557 string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_from"
+  },
+  {
+   "type": "p",
+   "text": "In the example above:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The input is parsed using ISO 8601 parsing rules",
+    "ISO 8601 accepts strings like \"2026-05-01\""
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Parsing means validation pluss automatic conversion."
+  },
+  {
+   "type": "h2",
+   "text": "Create a PlainDate from an Object"
+  },
+  {
+   "type": "p",
+   "text": "You can create a PlainDate object from an object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from({year:2026, month:5, day:1});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_object"
+  },
+  {
+   "type": "p",
+   "text": "From the example above, you can reason that the from() method can accept\nboth object literals and PlainDate objects."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst d1 = Temporal.PlainDate.from({year:2026, month:5, day:1});\n\n// Create another PlainDate object\n\nconst d2 = Temporal.PlainDate.from(d1);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_object_2"
+  },
+  {
+   "type": "h2",
+   "text": "Create a PlainDate Object from Now"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Now object has a method for getting the current date:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let today = Temporal.Now.plainDateISO();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_plaindate"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Now.plainDateISO() method is used to get the current date."
+  },
+  {
+   "type": "p",
+   "text": "It returns a PlainDate object with the (year, month, day)\nin the ISO 8601 calendar, specifically ignoring time zones and times."
+  },
+  {
+   "type": "h2",
+   "text": "When to Use Which?"
+  },
+  {
+   "type": "h2",
+   "text": "Use new Temporal.PlainDate() when:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "You have trusted numeric values",
+    "You want speed",
+    "You want predictable construction",
+    "You are doing date math"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Use Temporal.PlainDate.from() when:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "You are handling user input (strings)",
+    "You are handling external data (JSON)",
+    "You want maximum flexibility"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Use Temporal.Now.plainDateISO() when:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "You you need the current date"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Add and Subtract Days"
+  },
+  {
+   "type": "p",
+   "text": "Use the add() method to add time."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet nextWeek = date.add({ days: 7 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_add"
+  },
+  {
+   "type": "p",
+   "text": "Use the subtract() method to subtract time."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet previousWeek = date.subtract({ days: 7 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_subtract"
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own add() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.add(duration)",
+    "instant.add(duration)",
+    "plaindate.add(duration)",
+    "plaintime.add(duration)",
+    "plainyearmonth.add(duration)",
+    "plainmonthday.add(duration)",
+    "plaindatetime.add(duration)",
+    "zoneddatetime.add(duration)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own subtract() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.subtract(duration)",
+    "instant.subtract(duration)",
+    "plaindate.subtract(duration)",
+    "plaintime.subtract(duration)",
+    "plainyearmonth.subtract(duration)",
+    "plainmonthday.subtract(duration)",
+    "plaindatetime.subtract(duration)",
+    "zoneddatetime.subtract(duration)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Temporal Arithmetic"
+  },
+  {
+   "type": "h2",
+   "text": "Duration vs Date Math"
+  },
+  {
+   "type": "p",
+   "text": "With JavaScript Date, you must often calculate time differences\nmanually using milliseconds."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = new Date(\"2026-05-01\");\n\nconst end = new Date(\"2026-05-17\");\n\nlet diff = end - start;",
+   "caption": "Date Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_2"
+  },
+  {
+   "type": "p",
+   "text": "Temporal provides methods that are clearer and safer than using JavaScript Date methods."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Temporal since()"
+  },
+  {
+   "type": "p",
+   "text": "The since() method calculates the duration between two temporal dates."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "t1.since(t2, options)",
+   "caption": "Syntax"
+  },
+  {
+   "type": "h2",
+   "text": "Meaning:"
+  },
+  {
+   "type": "p",
+   "text": "At time t1, how much time has passed since time t2?"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = end.since(start);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since"
+  },
+  {
+   "type": "p",
+   "text": "The since() method returns a Temporal.Duration Object\nrepresenting the elapsed time."
+  },
+  {
+   "type": "p",
+   "text": "The duration is positive if the \"other\" date is in the past."
+  },
+  {
+   "type": "p",
+   "text": "The duration is negative if the \"other\" date is in the future."
+  },
+  {
+   "type": "h2",
+   "text": "The with() Method"
+  },
+  {
+   "type": "p",
+   "text": "The with() method creates a new PlainDate object\nwith specific field replaced."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Replace month and day\n\nconst customDate = date.with({ month:12, day:25 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_with"
+  },
+  {
+   "type": "h2",
+   "text": "Compare Dates"
+  },
+  {
+   "type": "p",
+   "text": "The compare(date1, date2) method returns -1, 0 or 1:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "-1 if date1 is before date2",
+    "0 they are if equal",
+    "1 if date 1 is after date2"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst date2 = Temporal.PlainDate.from(\"2026-03-01\");\n\n// Compare the dates\n\nlet result = Temporal.PlainDate.compare(date1, date2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare_1"
+  },
+  {
+   "type": "p",
+   "text": "You can also use equals() to check if two dates are the same."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Temporal objects\n\nconst a = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst b = Temporal.PlainDate.from(\"2026-02-17\");\n\n// Compare the dates\n\nlet result = (a.equals(b));",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_equals"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.PlainDate Properties"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.PlainDate object has 16 properties of calendar date information."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = new Temporal.PlainDate(2026, 5, 17);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_prop"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal Calendars"
+  },
+  {
+   "type": "p",
+   "text": "Temporal.PlainDate defaults to the ISO 8601 calendar."
+  },
+  {
+   "type": "p",
+   "text": "If you want a specific calendar, you can add a calender parameter:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "new Temporal.PlainDate(2026, 5, 17, \"gregory\")",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_gregory"
+  },
+  {
+   "type": "p",
+   "text": "The from() method supports calendars using the [u-ca=calendar] syntax or a calendar\nproperty in objects."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.PlainDate.from(\"2026-05-17[u-ca=chinese]\")",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.PlainDate.from({year:2026, month:5, day:17, calendar:\"hebrew\"})",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_japanese"
+  },
+  {
+   "type": "p",
+   "text": "Valid calendar identifiers (calendar_id) for Temporal objects:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "iso8601 - Default ISO calendar",
+    "gregory - Gregorian calendar",
+    "buddhist - Buddhist calendar",
+    "chinese - Chinese calendar",
+    "coptic - Coptic calendar",
+    "dangi - Korean Dangi calendar",
+    "ethioaa - Ethiopic Amete Alem",
+    "ethiopic - Ethiopic calendar",
+    "hebrew - Hebrew calendar",
+    "indian - Indian (Saka) calendar",
+    "islamic - Islamic calendar",
+    "islamic-civil - Islamic civil calendar",
+    "islamic-rgsa - Islamic (Saudi Arabia)",
+    "islamic-tbla - Islamic tabular calendar",
+    "islamic-umalqura - Umm al-Qura calendar",
+    "japanese - Japanese imperial calendar",
+    "persian - Persian (Solar Hijri) calendar",
+    "roc - Republic of China calendar"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "You can list supported values in your environment with:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Intl.supportedValuesOf(\"calendar\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_calendars"
+  },
+  {
+   "type": "h2",
+   "text": "When to Use PlainDate"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Any date without time",
+    "Birthdays",
+    "Deadlines",
+    "Holidays",
+    "Booking dates"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Replace Date for Date-Only Values"
+  },
+  {
+   "type": "p",
+   "text": "With Date, you always get a time and time zone."
+  },
+  {
+   "type": "p",
+   "text": "This can create confusion when you only need a calendar date."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let d = new Date(\"2026-05-17\");",
+   "caption": "Date Example"
+  },
+  {
+   "type": "p",
+   "text": "PlainDate avoids this by storing only year, month, and day."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.PlainDate Methods"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Constructing",
+     "Description"
+    ],
+    [
+     "from()",
+     "Creates a new PlainDate object from an object or a string"
+    ],
+    [
+     "new",
+     "Creates a new PlainDate object from (year, month, day)"
+    ],
+    [
+     "Arithmetic",
+     ""
+    ],
+    [
+     "add()",
+     "Returns a new PlainDate with a duration added"
+    ],
+    [
+     "subtract()",
+     "Returns a new PlainDate with a duration subtracted"
+    ],
+    [
+     "Comparing",
+     ""
+    ],
+    [
+     "compare()",
+     "Returns -1, 0, or 1 from comparing two dates"
+    ],
+    [
+     "equals()",
+     "Returns true if two PlainDate objects are identical"
+    ],
+    [
+     "since()",
+     "Returns the difference since another date"
+    ],
+    [
+     "until()",
+     "Returns the difference until another date"
+    ],
+    [
+     "Converting",
+     ""
+    ],
+    [
+     "toPlainDateTime()",
+     "Returns a new PlainDateTime object"
+    ],
+    [
+     "toPlainMonthDay()",
+     "Returns a new PlainMonthDay object"
+    ],
+    [
+     "toPlainYearMonth()",
+     "Returns a new PlainYearMonth object"
+    ],
+    [
+     "toZonedDateTime()",
+     "Returns a new ZonedDatetime object"
+    ],
+    [
+     "with()",
+     "Returns a new PlainDate with specified fields modified"
+    ],
+    [
+     "withCalendar()",
+     "Returns a new PlainDate with a different calendar system"
+    ],
+    [
+     "Formatting",
+     ""
+    ],
+    [
+     "toJSON()",
+     "Returns an RFC 9557 format string for JSON serialization"
+    ],
+    [
+     "toLocaleString()",
+     "Returns a language-sensitive representation of the date"
+    ],
+    [
+     "toString()",
+     "Returns an RFC 9557 format string representation"
+    ],
+    [
+     "valueOf()",
+     "Throws a TypeError (should not be converted to primitives)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.PlainDate Properties"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Property",
+     "Description"
+    ],
+    [
+     "calendarID",
+     "Calendar system identifier (\"iso8601\")"
+    ],
+    [
+     "day",
+     "The day as an integer (1-31)"
+    ],
+    [
+     "dayOfWeek",
+     "The day of the week as an integer (1 = Monday)"
+    ],
+    [
+     "dayOfYear",
+     "The ordinal day of the year"
+    ],
+    [
+     "daysInMonth",
+     "The total number of days in that month"
+    ],
+    [
+     "daysInWeek",
+     "The total number of days in that week"
+    ],
+    [
+     "daysInYear",
+     "The total number of days in that year"
+    ],
+    [
+     "era",
+     "The era name of the calendar, if applicable"
+    ],
+    [
+     "eraYear",
+     "The year within the era, if applicable"
+    ],
+    [
+     "inLeapYear",
+     "A boolean indicating if the year is a leap year"
+    ],
+    [
+     "month",
+     "The month as an integer (1-12)"
+    ],
+    [
+     "monthCode",
+     "A string code for the month (\"M01\")"
+    ],
+    [
+     "monthsInYear",
+     "The total number of months in that year"
+    ],
+    [
+     "weekOfYear",
+     "The week number within the year"
+    ],
+    [
+     "year",
+     "The year as an integer"
+    ],
+    [
+     "yearOfWeek",
+     "The year that the week belongs to"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Temporal.PlainDate(2026, 5, 17);",
+   "caption": "Display All Properties"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_prop"
+  },
+  {
+   "type": "p",
+   "text": "A PlainDate object is essentially the date part of a Temporal.PlainDateTime object,\nwith the time information removed."
+  }
+ ]
+}

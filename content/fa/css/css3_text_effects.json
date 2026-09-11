@@ -1,0 +1,350 @@
+{
+ "slug": "css3_text_effects",
+ "course": "css",
+ "order": 126,
+ "url": "/css/css3_text_effects.asp",
+ "title": "افکت‌های متنی در CSS",
+ "summary": "این درس چهار خصوصیت برای کنترل متن را نشان می‌دهد: text-overflow برای سرریز، word-wrap برای شکستن کلمهٔ بلند، word-break برای قواعد شکستن خط و writing-mode برای نوشتن عمودی و افقی.",
+ "objectives": [
+  "با text-overflow سرریز را بریده یا با سه‌نقطه نشان دهید",
+  "با word-wrap کلمهٔ بلند را مجبور به شکستن کنید",
+  "سه مقدار word-break را روی یک متن مقایسه کنید",
+  "با writing-mode متن را عمودی کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "افکت‌های متنی در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "افکت‌های متنی در CSS"
+  },
+  {
+   "type": "p",
+   "text": "CSS چند خصوصیت برای مدیریت سرریز متن، شکستن کلمه، قواعد شکستن خط و جهت نوشتن دارد."
+  },
+  {
+   "type": "p",
+   "text": "در این فصل با خصوصیت‌های زیر آشنا می‌شوید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "text-overflow - تعیین می‌کند محتوای سرریزشده چطور مدیریت شود",
+    "word-wrap - اجازه می‌دهد کلمه‌های بلند شکسته شوند و به خط بعد بروند",
+    "word-break - قواعد شکستن خط را تعیین می‌کند",
+    "writing-mode - تعیین می‌کند خطوط متن افقی چیده شوند یا عمودی"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت text-overflow در CSS"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت text-overflow در CSS تعیین می‌کند محتوای سرریزشده‌ای که نمایش داده نمی‌شود چطور به کاربر نشان داده شود. این محتوا می‌تواند بریده شود یا با سه‌نقطه (...) نمایش داده شود."
+  },
+  {
+   "type": "p",
+   "text": "برای اینکه text-overflow اثر کند، هر دو خصوصیت زیر لازم است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "white-space: nowrap;",
+    "overflow: hidden;"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "اینجا محتوای سرریزشده بریده می‌شود:"
+  },
+  {
+   "type": "p",
+   "text": "این یک متن بلند است که در جعبه جا نمی‌شود"
+  },
+  {
+   "type": "p",
+   "text": "اینجا محتوای سرریزشده با سه‌نقطه (...) نمایش داده می‌شود:"
+  },
+  {
+   "type": "p",
+   "text": "این یک متن بلند است که در جعبه جا نمی‌شود"
+  },
+  {
+   "type": "p",
+   "text": "کد CSS این‌طور است:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "p.test1 {\n  width: 200px;\n  border: 1px solid #000000;\n\nwhite-space: nowrap;\n\noverflow: hidden;\n\ntext-overflow: clip;\n}\n\np.test2 {\n  width: 200px;\n  border: 1px solid #000000;\n\n    white-space: nowrap;\n\noverflow: hidden;\n\ntext-overflow: ellipsis;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_text-overflow"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر نشان می‌دهد چطور می‌توانید محتوای سرریزشده را وقتی نشانگر روی عنصر است نمایش دهید:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "p:hover {\n  overflow: visible;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_text-overflow_hover"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت word-wrap در CSS"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت word-wrap در CSS اجازه می‌دهد کلمه‌های بلند شکسته شوند و به خط بعد بروند."
+  },
+  {
+   "type": "p",
+   "text": "اگر کلمه‌ای برای جا شدن در یک ناحیه خیلی بلند باشد، از آن بیرون می‌زند:"
+  },
+  {
+   "type": "p",
+   "text": "این پاراگراف یک کلمهٔ خیلی بلند دارد: thisisaveryveryveryveryveryverylongword. کلمهٔ بلند شکسته می‌شود و به خط بعد می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت word-wrap به شما اجازه می‌دهد متن را به شکستن وادار کنید، حتی اگر به معنی تکه کردن کلمه از وسط باشد:"
+  },
+  {
+   "type": "p",
+   "text": "این پاراگراف یک کلمهٔ خیلی بلند دارد: thisisaveryveryveryveryveryverylongword. کلمهٔ بلند شکسته می‌شود و به خط بعد می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "کد CSS این‌طور است:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "p {\n  word-wrap: break-word;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_word-wrap"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت word-break در CSS"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت word-break در CSS تعیین می‌کند کلمه‌ها هنگام رسیدن به پایان خط چطور شکسته شوند."
+  },
+  {
+   "type": "p",
+   "text": "این خصوصیت می‌تواند یکی از مقدارهای زیر را بگیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "normal - پیش‌فرض است. از قواعد پیش‌فرض شکستن خط همان زبان استفاده می‌کند",
+    "break-all - اجازه می‌دهد کلمه‌ها از هر نویسه شکسته شوند تا سرریز پیش نیاید",
+    "keep-all - جلوی شکستن کلمه‌ها را می‌گیرد"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "اینجا از normal استفاده می‌کنیم:"
+  },
+  {
+   "type": "p",
+   "text": "این پاراگراف کمی متن دارد. این خط از محل خط تیره شکسته می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "اینجا از break-all استفاده می‌کنیم:"
+  },
+  {
+   "type": "p",
+   "text": "این پاراگراف کمی متن دارد. خطوط از محل هر نویسه‌ای شکسته می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "کد CSS این‌طور است:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "p.test1 {\n  word-break:\n   normal;\n}\n\np.test2 {\n  word-break:\nbreak-all;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_word-break"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت writing-mode در CSS"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت writing-mode در CSS تعیین می‌کند خطوط متن افقی چیده شوند یا عمودی."
+  },
+  {
+   "type": "p",
+   "text": "این خصوصیت می‌تواند یکی از مقدارهای زیر را بگیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "horizontal-tb - پیش‌فرض. متن افقی از چپ به راست جریان می‌یابد و از بالا به پایین چیده می‌شود",
+    "vertical-rl - متن عمودی از بالا به پایین و افقی از راست به چپ جریان می‌یابد",
+    "vertical-lr - متن عمودی از بالا به پایین و افقی از چپ به راست جریان می‌یابد"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "این هم متنی است که داخل یک عنصر span با writing-mode برابر vertical-rl قرار دارد."
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر چند writing mode مختلف را نشان می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "p.test1 {\n  writing-mode: horizontal-tb;\n}\n\nspan {\n  writing-mode: vertical-rl;\n}\n\np.test2 {\n  writing-mode:\n   vertical-rl;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_writing-mode"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های افکت متنی در CSS"
+  },
+  {
+   "type": "p",
+   "text": "جدول زیر خصوصیت‌های افکت متنی در CSS را فهرست می‌کند:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خصوصیت",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "text-justify",
+     "تعیین می‌کند متن هم‌تراز (justify) چطور تراز و فاصله‌گذاری شود"
+    ],
+    [
+     "text-overflow",
+     "تعیین می‌کند محتوای سرریزشده‌ای که نمایش داده نمی‌شود چطور به کاربر نشان داده شود"
+    ],
+    [
+     "word-break",
+     "قواعد شکستن خط را برای زبان‌های غیر CJK تعیین می‌کند"
+    ],
+    [
+     "word-wrap",
+     "اجازه می‌دهد کلمه‌های بلند شکسته شوند و به خط بعد بروند"
+    ],
+    [
+     "writing-mode",
+     "تعیین می‌کند خطوط متن افقی چیده شوند یا عمودی"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل textfx.html بسازید و یک p با width: 200px;، white-space: nowrap; و overflow: hidden; بسازید و text-overflow را یک بار clip و یک بار ellipsis کنید.",
+   "hint": "بدون white-space: nowrap و overflow: hidden خصوصیت text-overflow هیچ اثری ندارد."
+  },
+  {
+   "prompt": "متن سرریزشده را وقتی نشانگر روی عنصر است نمایش دهید: p:hover { overflow: visible; }",
+   "hint": "با hover می‌توانید سرریز را دیدنی کنید."
+  },
+  {
+   "prompt": "یک کلمهٔ خیلی بلند داخل یک div کم‌عرض بگذارید و با word-wrap: break-word; وادار به شکستن کنید.",
+   "hint": "بدون این خصوصیت کلمه از کادر بیرون می‌زند."
+  },
+  {
+   "prompt": "سه مقدار word-break یعنی normal، break-all و keep-all را روی یک متن امتحان کنید و تفاوت را بگویید.",
+   "hint": "break-all از هر نویسه می‌شکند و keep-all کلمه را نمی‌شکند."
+  },
+  {
+   "prompt": "روی یک span مقدار writing-mode: vertical-rl; بگذارید و ببینید متن عمودی می‌شود.",
+   "hint": "سه مقدار افقی و عمودی در همین درس آمده است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای اینکه text-overflow اثر کند، متن باید کدام دو تنظیم را داشته باشد؟",
+   "options": [
+    "white-space: nowrap و overflow: hidden",
+    "display: flex و width: 100%",
+    "position: absolute و z-index",
+    "margin: 0 و padding: 0"
+   ],
+   "answer": 0,
+   "explanation": "طبق همین درس هر دو خصوصیت white-space: nowrap و overflow: hidden لازم‌اند تا سرریز بریده شود یا با سه‌نقطه نمایش داده شود."
+  },
+  {
+   "question": "text-overflow: ellipsis محتوای سرریز را چطور نشان می‌دهد؟",
+   "options": [
+    "برش می‌دهد",
+    "با سه‌نقطه (...)",
+    "با نوار پیمایش افقی",
+    "با شکستن کلمه"
+   ],
+   "answer": 1,
+   "explanation": "ellipsis انتهای متن را با سه‌نقطه نشان می‌دهد؛ برش دادن کار مقدار clip است."
+  },
+  {
+   "question": "خصوصیت word-wrap چه می‌کند؟",
+   "options": [
+    "کلمه‌های بلند را می‌شکند تا به خط بعد بروند",
+    "اندازهٔ قلم را عوض می‌کند",
+    "رنگ کلمه‌ها را عوض می‌کند",
+    "فاصلهٔ خطوط را تعیین می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "word-wrap اجازه می‌دهد کلمهٔ بلند حتی از وسط شکسته شود تا از کادر بیرون نزند."
+  },
+  {
+   "question": "کدام مقدار word-break اجازهٔ شکستن از هر نویسه را می‌دهد؟",
+   "options": [
+    "normal",
+    "break-all",
+    "keep-all",
+    "inherit"
+   ],
+   "answer": 1,
+   "explanation": "break-all از هر نویسه می‌شکند تا سرریز پیش نیاید؛ normal از قواعد زبان استفاده می‌کند و keep-all کلمه را نمی‌شکند."
+  },
+  {
+   "question": "روی یک span مقدار writing-mode: vertical-rl; چه می‌کند؟",
+   "options": [
+    "متن را افقی از راست به چپ می‌نویسد",
+    "متن را عمودی از بالا به پایین و افقی از راست به چپ می‌چیند",
+    "فقط اندازهٔ متن را عوض می‌کند",
+    "متن را پنهان می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "در vertical-rl خطوط عمودی از بالا به پایین می‌روند و ترتیب خواندن افقی از راست به چپ است."
+  }
+ ]
+}

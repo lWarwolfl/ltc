@@ -1,0 +1,301 @@
+{
+ "slug": "js_sets",
+ "course": "js",
+ "order": 68,
+ "url": "/js/js_sets.asp",
+ "title": "مجموعه‌ها (Set) در JavaScript",
+ "summary": "در این درس با Set آشنا می‌شوید، مجموعه‌ای از مقدارهای یکتا. می‌بینید چطور Set بسازید، با add() مقدار اضافه کنید، عضوهایش را با حلقهٔ for..of فهرست کنید و چرا Set در واقع یک شیء است.",
+ "objectives": [
+  "با new Set() از یک آرایه Set بسازید",
+  "با add() مقدار اضافه کنید و رفتار مقدارهای تکراری را توضیح دهید",
+  "عضوهای Set را با حلقهٔ for..of فهرست کنید",
+  "توضیح دهید چرا Set یک شیء است و پشتیبانی مرورگرها را بشناسید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مجموعه‌ها (Set) در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مجموعه (Set) در JavaScript، مجموعه‌ای (collection) از مقدارهای یکتا است."
+  },
+  {
+   "type": "p",
+   "text": "هر مقدار فقط یک‌بار می‌تواند در یک Set بیاید."
+  },
+  {
+   "type": "p",
+   "text": "مقدارها می‌توانند هر نوعی داشته باشند، مقدار اولیه (primitive) یا شیء."
+  },
+  {
+   "type": "h2",
+   "text": "ساختن Set"
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن یک Set در JavaScript دو راه دارید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "دادن یک آرایه به new Set()",
+    "ساختن یک Set خالی و افزودن مقدار با add()"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد new Set()"
+  },
+  {
+   "type": "p",
+   "text": "یک آرایه به سازندهٔ new Set() بدهید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_create_array"
+  },
+  {
+   "type": "p",
+   "text": "یک Set بسازید و مقدار اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set();\n\n// Add Values to the Set\n\nletters.add(\"a\");\n\nletters.add(\"b\");\n\nletters.add(\"c\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_create_values"
+  },
+  {
+   "type": "p",
+   "text": "یک Set بسازید و متغیر اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set();\n\n// Create Variables\n\nconst a = \"a\";\n\nconst b = \"b\";\n\nconst c = \"c\";\n\n// Add Variables to the Set\n\nletters.add(a);\n\nletters.add(b);\n\nletters.add(c);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_create"
+  },
+  {
+   "type": "h2",
+   "text": "متد add()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "letters.add(\"d\");\n\nletters.add(\"e\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_add"
+  },
+  {
+   "type": "p",
+   "text": "اگر عضوهای یکسان اضافه کنید، فقط اولی ذخیره می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "letters.add(\"a\");\n\nletters.add(\"b\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");\n\nletters.add(\"c\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_add_equals"
+  },
+  {
+   "type": "h2",
+   "text": "فهرست کردن عضوها"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ عضوهای (مقدارهای) Set را با حلقهٔ for..of می‌توانید فهرست کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst letters = new Set([\"a\",\"b\",\"c\"]);\n\n// List all Elements\n\nlet text = \"\";\n\nfor (const x of letters) {\n\n  text += x;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_list"
+  },
+  {
+   "type": "h2",
+   "text": "Set یک شیء است"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof letters;      // Returns object",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "letters instanceof Set;  // Returns true",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_typeof"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید:"
+  },
+  {
+   "type": "p",
+   "text": "متدهای Set در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "منطق Set در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "WeakSet در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع Set در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Map در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "Set از ویژگی‌های ES6 است."
+  },
+  {
+   "type": "p",
+   "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن کاملاً پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome51",
+     "Edge15",
+     "Firefox54",
+     "Safari10",
+     "Opera38"
+    ],
+    [
+     "مهٔ ۲۰۱۶",
+     "آوریل ۲۰۱۷",
+     "ژوئن ۲۰۱۷",
+     "سپتامبر ۲۰۱۶",
+     "ژوئن ۲۰۱۶"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل sets.html بسازید و با new Set([1, 2, 3, 3, 4]) یک Set بسازید؛ بعد size آن را چاپ کنید و بگویید چه اتفاقی افتاده است.",
+   "hint": "Set مقدار تکراری را نگه نمی‌دارد، پس آرایهٔ ۵ عضوی به Setی با ۴ عضو تبدیل می‌شود."
+  },
+  {
+   "prompt": "یک Set خالی بسازید و با add() چند مقدار و یک متغیر به آن اضافه کنید؛ بعد با حلقهٔ for..of همهٔ عضوها را چاپ کنید.",
+   "hint": "add() مقدار را اضافه می‌کند و خود Set را برمی‌گرداند؛ Set را می‌توان با for..of پیمایش کرد."
+  },
+  {
+   "prompt": "در یک Set مقدار \"A\" را دو بار اضافه کنید و ببینید اعضای نهایی چند تا هستند.",
+   "hint": "مقدار یکسان فقط یک‌بار ذخیره می‌شود؛ افزودن دوبارهٔ آن اثری ندارد."
+  },
+  {
+   "prompt": "با console.log نوع یک Set را چاپ کنید (typeof) و بعد به آن یک خصوصیت دلخواه نسبت دهید و مقدارش را بخوانید.",
+   "hint": "typeof برای Set مقدار object می‌دهد؛ یعنی Setها شیء هستند و می‌توان خصوصیت هم به آن‌ها اضافه کرد."
+  },
+  {
+   "prompt": "با new Set(\"hello\") یک Set از نویسه‌های یک رشته بسازید و اعضایش را چاپ کنید.",
+   "hint": "رشته هم پیمایش‌پذیر است، پس نویسه‌های یکتا در Set قرار می‌گیرند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "ویژگی اصلی یک Set در JavaScript چیست؟",
+   "options": [
+    "مقدارها را به ترتیب نگه می‌دارد",
+    "فقط مقدارهای یکتا نگه می‌دارد",
+    "همیشه مقدارهای عددی را نگه می‌دارد",
+    "به هر اشیایی WeakSet می‌گویند"
+   ],
+   "answer": 1,
+   "explanation": "هر مقدار در Set فقط یک‌بار می‌تواند بیاید؛ افزودن مقدار تکراری چیزی را تغییر نمی‌دهد."
+  },
+  {
+   "question": "نتیجهٔ new Set([1, 2, 2, 3, 3, 3]).size چیست؟",
+   "options": [
+    "۶",
+    "۳",
+    "۱",
+    "خطا می‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "Set مقدارهای تکراری را حذف می‌کند، پس فقط ۱، ۲ و ۳ می‌مانند و اندازهٔ Set برابر ۳ می‌شود."
+  },
+  {
+   "question": "کدام گزینه برای فهرست کردن مقدارهای یک Set مناسب است؟",
+   "options": [
+    "حلقهٔ for..of",
+    "متد toString()",
+    "متد length",
+    "خصوصیت size با اندیس"
+   ],
+   "answer": 0,
+   "explanation": "Set را می‌توان با حلقهٔ for..of پیمایش کرد. Set خصوصیت length ندارد و به‌جای آن size دارد."
+  },
+  {
+   "question": "یک Set چگونه مقدارها را می‌پذیرد؟",
+   "options": [
+    "فقط رشته‌ها را",
+    "فقط عددها را",
+    "هر نوعی، چه مقدار اولیه و چه شیء",
+    "فقط شیءها را"
+   ],
+   "answer": 2,
+   "explanation": "مقدارهای Set می‌توانند هر نوعی داشته باشند، هم مقدار اولیه (primitive) و هم شیء."
+  },
+  {
+   "question": "چرا می‌توان گفت Set یک شیء است؟",
+   "options": [
+    "چون با typeof مقدار object می‌دهد و خصوصیت می‌پذیرد",
+    "چون فقط شیءها را ذخیره می‌کند",
+    "چون به‌جای add() از کلید استفاده می‌کند",
+    "چون در ES6 اضافه نشده است"
+   ],
+   "answer": 0,
+   "explanation": "typeof برای Set مقدار object می‌دهد، پس Set یک شیء است و می‌توان به آن خصوصیت دلخواه اضافه کرد یا خصوصیتش را خواند."
+  }
+ ]
+}

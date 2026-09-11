@@ -1,0 +1,662 @@
+{
+ "slug": "js_timers",
+ "course": "js",
+ "order": 44,
+ "url": "/js/js_timers.asp",
+ "title": "JavaScript Timers",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Timers"
+  },
+  {
+   "type": "h2",
+   "text": "Run a Function After a Delay"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript timers let you run a function after a delay or repeatedly at fixed intervals."
+  },
+  {
+   "type": "p",
+   "text": "The two main timer functions are setTimeout() and setInterval()."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Function",
+     "Description"
+    ],
+    [
+     "setTimeout()",
+     "Runs a function once after a delay."
+    ],
+    [
+     "setInterval()",
+     "Runs a function repeatedly."
+    ],
+    [
+     "clearTimeout()",
+     "Cancels a timeout."
+    ],
+    [
+     "clearInterval()",
+     "Stops an interval."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The setTimeout() Function"
+  },
+  {
+   "type": "p",
+   "text": "The setTimeout() function schedules a function to run once after a delay."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(function, milliseconds);",
+   "caption": "Syntax"
+  },
+  {
+   "type": "p",
+   "text": "The first argument is the function to run."
+  },
+  {
+   "type": "p",
+   "text": "The second argument is the delay in milliseconds."
+  },
+  {
+   "type": "p",
+   "text": "One second is 1000 milliseconds."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Call a Timeout\n\nsetTimeout(myFunction, 3000);\n\n// The callback function\n\nfunction myFunction() {\n\n  myDisplayer(\"Hello!\");\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_timeout"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "When a function name is passed to a function, it is called a callback function."
+  },
+  {
+   "type": "h2",
+   "text": "Passing a Function"
+  },
+  {
+   "type": "p",
+   "text": "Pass only the function name to setTimeout()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(myFunction, 3000);",
+   "caption": "Correct:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(myFunction(), 3000);",
+   "caption": "Correct:"
+  },
+  {
+   "type": "p",
+   "text": "The incorrect example calls myFunction() immediately."
+  },
+  {
+   "type": "p",
+   "text": "Its return value is then passed to setTimeout()."
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "The setTimeout() function times the callback function to run later."
+  },
+  {
+   "type": "h2",
+   "text": "Using an Anonymous Function"
+  },
+  {
+   "type": "p",
+   "text": "You can pass an anonymous function to setTimeout()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(function() {\n\n  myDisplayer(\"Hello!\");\n\n}, 3000);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_anonymous"
+  },
+  {
+   "type": "h2",
+   "text": "Timers Do Not Pause JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Calling setTimeout() does not pause JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript immediately continues with the next statement."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Start\");\n\nsetTimeout(function() {myDisplayer(\"Timer\")}, 3000);\n\nmyDisplayer(\"End\");",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "Start\n\nEnd\n\nTimer",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_continue"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "Timer functions schedule the callback to run later."
+  },
+  {
+   "type": "p",
+   "text": "setTimeout() do not stop JavaScript from running other code."
+  },
+  {
+   "type": "h2",
+   "text": "A Zero Delay"
+  },
+  {
+   "type": "p",
+   "text": "A delay of zero milliseconds does not mean that the callback function will run immediately."
+  },
+  {
+   "type": "p",
+   "text": "It means that the callback will run as soon as the current JavaScript task has finished."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Start\");\n\nsetTimeout(function() {myDisplayer(\"Timer\")}, 0);\n\nmyDisplayer(\"End\");",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "Start\n\nEnd\n\nTimer",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_zero"
+  },
+  {
+   "type": "h2",
+   "text": "The Delay Is a Minimum"
+  },
+  {
+   "type": "p",
+   "text": "The specified delay is the earliest time the callback can run."
+  },
+  {
+   "type": "p",
+   "text": "The callback may run later if JavaScript is busy."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(function() {\n\n  myDisplayer(\"Timer finished\");\n\n}, 1000);\n\nlet i = 4e9;\n\nwhile (--i > 0);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_minimum"
+  },
+  {
+   "type": "p",
+   "text": "The timer delay is one second."
+  },
+  {
+   "type": "p",
+   "text": "However, the callback cannot run until the loop has finished."
+  },
+  {
+   "type": "p",
+   "text": "Timers do not interrupt running JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "A long-running function can delay timer callbacks and make the page unresponsive."
+  },
+  {
+   "type": "h2",
+   "text": "Canceling a Timeout"
+  },
+  {
+   "type": "p",
+   "text": "The setTimeout() function returns a timer identifier."
+  },
+  {
+   "type": "p",
+   "text": "Pass the identifier to clearTimeout() to cancel the timer."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "clearTimeout(timerId);",
+   "caption": "Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"startTimer()\">Start Timer</button>\n\n<button onclick=\"stopTimer()\">Stop Timer</button>\n\n<p id=\"demo\"></p>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let timer;\n\nfunction startTimer() {\n\n  timer = setTimeout(function() {\n\n    document.getElementById(\"demo\").innerHTML = \"Finished\";\n\n  }, 5000);\n\n}\n\nfunction stopTimer() {\n\n  clearTimeout(timer);\n\n  document.getElementById(\"demo\").innerHTML = \"Timer stopped\";\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_clear_timeout"
+  },
+  {
+   "type": "h2",
+   "text": "The setInterval() Function"
+  },
+  {
+   "type": "p",
+   "text": "The setInterval() function runs a callback function repeatedly."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setInterval(function, milliseconds);",
+   "caption": "Syntax"
+  },
+  {
+   "type": "p",
+   "text": "The callback function is called repeatedly with (at least) the specified delay in between."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setInterval(showTime, 1000);\n\nfunction showTime() {\n\n  const date = new Date();\n\n  myDisplayer(date.toLocaleTimeString());\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_interval"
+  },
+  {
+   "type": "h2",
+   "text": "Canceling an Interval"
+  },
+  {
+   "type": "p",
+   "text": "The setInterval() function returns an interval identifier."
+  },
+  {
+   "type": "p",
+   "text": "Pass the identifier to clearInterval() to stop the interval."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "clearInterval(intervalId);",
+   "caption": "Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"startClock()\">Start Clock</button>\n\n<button onclick=\"stopClock()\">Stop Clock</button>\n\n<p id=\"demo\"></p>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let timer;\n\nfunction startClock() {\n\n  if (!timer) {\n\n    timer = setInterval(showTime, 1000);\n\n  }\n\n}\n\nfunction showTime() {\n\n  const date = new Date();\n\n  document.getElementById(\"demo\").innerHTML = date.toLocaleTimeString();\n\n}\n\nfunction stopClock() {\n\n  clearInterval(timer);\n\n  timer = undefined;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_clear_interval"
+  },
+  {
+   "type": "h2",
+   "text": "Timeout or Interval?"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Use",
+     "Function"
+    ],
+    [
+     "Run a function once after a delay",
+     "setTimeout()"
+    ],
+    [
+     "Run a function repeatedly",
+     "setInterval()"
+    ],
+    [
+     "Cancel a delayed function",
+     "clearTimeout()"
+    ],
+    [
+     "Stop a repeating function",
+     "clearInterval()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Passing Arguments"
+  },
+  {
+   "type": "p",
+   "text": "Arguments passed to setTimeout() or setInterval() are passed to the callback function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(showMessage, 2000, \"Hello\", \"John\");\n\nfunction showMessage(greeting, name) {\n\n  document.getElementById(\"demo\").innerHTML = greeting + \" \" + name;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_arguments"
+  },
+  {
+   "type": "h2",
+   "text": "Repeated setTimeout()"
+  },
+  {
+   "type": "p",
+   "text": "You can create a repeating timer by calling setTimeout() again after each task finishes."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function repeat() {\n\n  myDisplayer(\"Hello\");\n\n  setTimeout(repeat, 1000);\n\n}\n\nrepeat();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_repeat"
+  },
+  {
+   "type": "p",
+   "text": "With repeated setTimeout(), the next delay begins after the current callback has finished."
+  },
+  {
+   "type": "p",
+   "text": "With setInterval(), the interval continues to schedule callbacks at regular intervals."
+  },
+  {
+   "type": "p",
+   "text": "Repeated setTimeout() is useful when one task must finish before the next delay begins."
+  },
+  {
+   "type": "h2",
+   "text": "A Countdown Example"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"startCountdown()\">Start Countdown</button>\n\n<p id=\"demo\"></p>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let timer;\n\nfunction startCountdown() {\n\n  clearInterval(timer);\n\n  let count = 10;\n\n  myDisplayer(count);\n\n  timer = setInterval(function() {\n\n    count--;\n\n    myDisplayer(count);\n\n    if (count === 0) {\n\n      clearInterval(timer);\n\n      myDisplayer(\"Finished!\");\n\n    }\n\n  }, 1000);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_countdown"
+  },
+  {
+   "type": "h2",
+   "text": "Avoid Strings as Timer Code"
+  },
+  {
+   "type": "p",
+   "text": "Timer functions can accept strings, but strings should not be used as JavaScript code."
+  },
+  {
+   "type": "h3",
+   "text": "Not Recommended"
+  },
+  {
+   "type": "p",
+   "text": "setTimeout(\"myFunction()\", 1000);"
+  },
+  {
+   "type": "h3",
+   "text": "Recommended"
+  },
+  {
+   "type": "p",
+   "text": "setTimeout(myFunction, 1000);"
+  },
+  {
+   "type": "p",
+   "text": "Passing a function is safer, clearer, and easier to debug."
+  },
+  {
+   "type": "h2",
+   "text": "Timers Run on the Main Thread"
+  },
+  {
+   "type": "p",
+   "text": "The browser manages the waiting period outside the current JavaScript task."
+  },
+  {
+   "type": "p",
+   "text": "However, the timer callback still runs on the main JavaScript thread."
+  },
+  {
+   "type": "p",
+   "text": "A long-running timer callback can therefore freeze the page."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(function() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n  document.getElementById(\"demo\").innerHTML = \"Finished\";\n\n}, 1000);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_blocking"
+  },
+  {
+   "type": "p",
+   "text": "The timer delays when the callback starts."
+  },
+  {
+   "type": "p",
+   "text": "It does not prevent the callback from blocking the page after it starts."
+  },
+  {
+   "type": "h2",
+   "text": "Common Timer Mistakes"
+  },
+  {
+   "type": "h3",
+   "text": "Calling the Function Immediately"
+  },
+  {
+   "type": "p",
+   "text": "setTimeout(myFunction(), 1000);"
+  },
+  {
+   "type": "p",
+   "text": "Remove the parentheses when passing the function:"
+  },
+  {
+   "type": "p",
+   "text": "setTimeout(myFunction, 1000);"
+  },
+  {
+   "type": "h3",
+   "text": "Forgetting the Timer Identifier"
+  },
+  {
+   "type": "p",
+   "text": "Save the returned identifier if the timer must be canceled later."
+  },
+  {
+   "type": "p",
+   "text": "const timer = setTimeout(myFunction, 1000);\nclearTimeout(timer);"
+  },
+  {
+   "type": "h3",
+   "text": "Starting Multiple Intervals"
+  },
+  {
+   "type": "p",
+   "text": "Starting an interval more than once creates multiple repeating timers."
+  },
+  {
+   "type": "p",
+   "text": "if (!timer) {\n  timer = setInterval(myFunction, 1000);\n}"
+  },
+  {
+   "type": "h3",
+   "text": "Expecting Exact Timing"
+  },
+  {
+   "type": "p",
+   "text": "Timer delays are not exact schedules."
+  },
+  {
+   "type": "p",
+   "text": "Callbacks run only when JavaScript is ready."
+  },
+  {
+   "type": "h3",
+   "text": "Forgetting to Stop an Interval"
+  },
+  {
+   "type": "p",
+   "text": "An interval continues until it is stopped or the page is closed."
+  },
+  {
+   "type": "p",
+   "text": "clearInterval(timer);"
+  },
+  {
+   "type": "h2",
+   "text": "A Slide Show Example"
+  },
+  {
+   "type": "p",
+   "text": "Timers can be used to change images automatically."
+  },
+  {
+   "type": "p",
+   "text": "This example displays a new image every three seconds."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<img id=\"slide\" src=\"img_nature.jpg\" style=\"width:100%;max-width:600px\">\n\n<button onclick=\"startSlides()\">Start</button>\n\n<button onclick=\"stopSlides()\">Stop</button>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const images = [\n\n  \"img_nature.jpg\",\n\n  \"img_snowtops.jpg\",\n\n  \"img_mountains.jpg\"\n\n];\n\nlet index = 0;\n\nlet timer;\n\nfunction showNextSlide() {\n\n  index = (index + 1) % images.length;\n\n  document.getElementById(\"slide\").src = images[index];\n\n}\n\nfunction startSlides() {\n\n  if (!timer) {\n\n    timer = setInterval(showNextSlide, 3000);\n\n  }\n\n}\n\nfunction stopSlides() {\n\n  clearInterval(timer);\n\n  timer = undefined;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_slideshow"
+  },
+  {
+   "type": "p",
+   "text": "The remainder operator % returns the index to zero after the last image."
+  },
+  {
+   "type": "p",
+   "text": "The test in startSlides() prevents several intervals from running at the same time."
+  },
+  {
+   "type": "h2",
+   "text": "Timers and Asynchronous JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Timers are browser APIs that schedule callback functions to run later."
+  },
+  {
+   "type": "p",
+   "text": "They are often used as simple examples of asynchronous JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "The callback itself is not asynchronous."
+  },
+  {
+   "type": "p",
+   "text": "The browser timer only causes the callback to be scheduled for later execution."
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous programming includes:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Callbacks",
+    "Promises",
+    "async / await",
+    "Event Loop",
+    "Web Workers"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "To learn how timers fit into asynchronous programming,:"
+  },
+  {
+   "type": "p",
+   "text": "Read the JavaScript Async Programming Tutorial."
+  }
+ ]
+}

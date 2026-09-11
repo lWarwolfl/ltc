@@ -1,0 +1,283 @@
+{
+ "slug": "js_atomics",
+ "course": "js",
+ "order": 245,
+ "url": "/js/js_atomics.asp",
+ "title": "JavaScript Atomics",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Atomics"
+  },
+  {
+   "type": "h2",
+   "text": "The Atomics Object"
+  },
+  {
+   "type": "p",
+   "text": "The Atomics Object provides low-level atomic operations\non shared memory."
+  },
+  {
+   "type": "p",
+   "text": "It is used with SharedArrayBuffer and\nTyped Arrays to share data between workers."
+  },
+  {
+   "type": "h2",
+   "text": "What Are Atomics?"
+  },
+  {
+   "type": "p",
+   "text": "When multiple threads (for example, the main thread and one or more workers)\naccess the same data, you can get race conditions. Atomics helps avoid\nthese race conditions by providing operations that:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Work on shared typed arrays",
+    "Are performed atomically (cannot be interrupted halfway)",
+    "Return the previous value of the element"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The Atomics object is a global object (like Math)\nwith static methods such as Atomics.load(), Atomics.store(),\nAtomics.add(), and more."
+  },
+  {
+   "type": "p",
+   "text": "Atomics are an advanced feature."
+  },
+  {
+   "type": "p",
+   "text": "You typically use Atomics when you work with:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Web Workers",
+    "Worker Threads",
+    "Shared memory"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Requirements"
+  },
+  {
+   "type": "p",
+   "text": "To use Atomics you need:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "A SharedArrayBuffer",
+    "A typed array that uses the shared buffer (e.g. Int32Array)",
+    "One or more workers (or threads) that share the same buffer"
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "Security: Browsers may require special headers (like COOP/COEP) for\nSharedArrayBuffer to be enabled on the web."
+  },
+  {
+   "type": "h2",
+   "text": "Basic Atomics Usage"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\n// Shared integer array with 4 elements\n\nconst sharedArray = new Int32Array(buffer);\n\n// Initialize the array\n\nsharedArray[0] = 10;\n\nsharedArray[1] = 20;\n\nsharedArray[2] = 30;\n\nsharedArray[3] = 40;",
+   "caption": "Example: Creating a Shared Typed Array"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_atomics_basic"
+  },
+  {
+   "type": "h2",
+   "text": "Atomic Read and Write"
+  },
+  {
+   "type": "p",
+   "text": "Use Atomics.load() to read and Atomics.store()\nto write an element in a shared typed array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\n// Store a value atomically\n\nAtomics.store(sharedArray, 0, 123);\n\n// Load the value atomically\n\nvar value = Atomics.load(sharedArray, 0);\n\nconsole.log(\"Value:\", value); // Value: 123",
+   "caption": "Example: Atomics.load() and Atomics.store()"
+  },
+  {
+   "type": "p",
+   "text": "Atomics.store() returns the value you stored."
+  },
+  {
+   "type": "p",
+   "text": "Atomics.load() returns the current value of the element."
+  },
+  {
+   "type": "h2",
+   "text": "Atomic Add and Subtract"
+  },
+  {
+   "type": "p",
+   "text": "Atomics.add() and Atomics.sub() change a value and\n  return the old value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 5;\n\nvar oldValue = Atomics.add(sharedArray, 0, 3);\n\nconsole.log(\"Old:\", oldValue);  // Old: 5\n\nconsole.log(\"New:\", sharedArray[0]);// New: 8",
+   "caption": "Example: Atomics.add()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 10;\n\nvar oldValue = Atomics.sub(sharedArray, 0, 4);\n\nconsole.log(\"Old:\", oldValue);  // Old: 10\n\nconsole.log(\"New:\", sharedArray[0]);// New: 6",
+   "caption": "Example: Atomics.sub()"
+  },
+  {
+   "type": "h2",
+   "text": "Atomic Exchange and CompareExchange"
+  },
+  {
+   "type": "p",
+   "text": "Atomics.exchange() sets a new value and returns the old one.\nAtomics.compareExchange() only sets a new value if the current\nvalue is equal to a given expected value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 1;\n\nvar oldValue = Atomics.exchange(sharedArray, 0, 99);\n\nconsole.log(\"Old:\", oldValue);   // Old: 1\n\nconsole.log(\"New:\", sharedArray[0]); // New: 99",
+   "caption": "Example: Atomics.exchange()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 10;\n\n// Only replace 10 with 20 if the current value is 10\n\nvar oldValue = Atomics.compareExchange(sharedArray, 0, 10, 20);\n\nconsole.log(\"Old:\", oldValue);   // Old: 10\n\nconsole.log(\"New:\", sharedArray[0]); // New: 20\n\n// Now it will NOT change because the expected value does not match\n\noldValue = Atomics.compareExchange(sharedArray, 0, 10, 30);\n\nconsole.log(\"Old:\", oldValue);   // Old: 20\n\nconsole.log(\"New:\", sharedArray[0]); // New: 20",
+   "caption": "Example: Atomics.compareExchange()"
+  },
+  {
+   "type": "h2",
+   "text": "Atomics.wait() and Atomics.notify()"
+  },
+  {
+   "type": "p",
+   "text": "Atomics.wait() (in workers) can put a thread to sleep until the\nvalue at a position changes, and Atomics.notify() wakes up one\nor more sleeping threads."
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "Important: Atomics.wait() can only be used in\nworker contexts (not on the main thread) in browsers."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// main.js\n\nvar buffer = new SharedArrayBuffer(4);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 0;\n\nvar worker = new Worker(\"worker.js\");\n\n// Send the shared buffer to the worker\n\nworker.postMessage(buffer);\n\n// Simulate some work, then set the value and notify the worker\n\nsetTimeout(function() {\n\n  Atomics.store(sharedArray, 0, 1);\n\n  Atomics.notify(sharedArray, 0, 1); // wake 1 worker\n\n}, 1000);",
+   "caption": "Example: Worker Waiting for a Value"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// worker.js\n\nonmessage = function(e) {\n\n  var buffer = e.data;\n\n  var sharedArray = new Int32Array(buffer);\n\n  console.log(\"Worker waiting...\");\n\n  var result = Atomics.wait(sharedArray, 0, 0); // wait while value is 0\n\n  console.log(\"Worker woken, result =\", result);\n\n  console.log(\"New value:\", Atomics.load(sharedArray, 0));\n\n};",
+   "caption": "Example: Worker Waiting for a Value"
+  },
+  {
+   "type": "h2",
+   "text": "Complete Atomics Reference"
+  },
+  {
+   "type": "h2",
+   "text": "Revised December 2025"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Method",
+     "Description"
+    ],
+    [
+     "load(typedArray, index)",
+     "Reads and returns the value at index."
+    ],
+    [
+     "store(typedArray, index, value)",
+     "Stores value at index and returns it."
+    ],
+    [
+     "add(typedArray, index, value)",
+     "Adds value to the element and returns the old value."
+    ],
+    [
+     "sub(typedArray, index, value)",
+     "Subtracts value and returns the old value."
+    ],
+    [
+     "and(typedArray, index, value)",
+     "Performs bitwise AND with value and returns the old value."
+    ],
+    [
+     "or(typedArray, index, value)",
+     "Performs bitwise OR with value and returns the old value."
+    ],
+    [
+     "xor(typedArray, index, value)",
+     "Performs bitwise XOR with value and returns the old value."
+    ],
+    [
+     "exchange(typedArray, index, value)",
+     "Replaces the value at index and returns the old value."
+    ],
+    [
+     "compareExchange(typedArray, index, expected, value)",
+     "Replaces the value at index with value if the\ncurrent value is expected. Returns the old value."
+    ],
+    [
+     "wait(typedArray, index, value, timeout?)",
+     "(Worker only) Blocks the calling thread until the element changes or timeout."
+    ],
+    [
+     "notify(typedArray, index, count)",
+     "Wakes up sleeping threads that are waiting on index."
+    ]
+   ]
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Atomics are for communication between threads using shared memory",
+    "You use them with SharedArrayBuffer and Typed Arrays",
+    "Atomics operations can not be interrupted by other threads",
+    "Use Atomics only when you need low-level synchronization",
+    "Most JavaScript code does not need Atomics"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "Typed Array Tutorial"
+  },
+  {
+   "type": "p",
+   "text": "Typed Array Methods"
+  },
+  {
+   "type": "p",
+   "text": "Typed Array Reference"
+  },
+  {
+   "type": "p",
+   "text": "Array Buffers"
+  },
+  {
+   "type": "p",
+   "text": "DataViews"
+  }
+ ]
+}

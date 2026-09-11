@@ -1,0 +1,820 @@
+{
+ "slug": "js_array_iteration",
+ "course": "js",
+ "order": 66,
+ "url": "/js/js_array_iteration.asp",
+ "title": "پیمایش آرایه‌ها در JavaScript",
+ "summary": "در این درس با متدهایی کار می‌کنید که روی همهٔ عضوهای آرایه عمل می‌کنند: حلقه‌های for...of و for...in، متدهای forEach()، map()، filter()، reduce()، every()، some()، Array.from() و عملگرهای spread و rest.",
+ "objectives": [
+  "با حلقهٔ for...of روی مقدارها و با for...in روی اندیس‌ها حرکت کنید",
+  "برای هر عضو آرایه با forEach() و map() تابع اجرا کنید",
+  "با filter() عضوهای منطبق با یک شرط را جدا کنید",
+  "با reduce() از آرایه به یک مقدار تنها برسید",
+  "تفاوت every() و some() را در بررسی شرط‌ها تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پیمایش آرایه‌ها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای پیمایش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای پیمایش آرایه روی هر عضو آرایه عمل می‌کنند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "for...of: حلقه روی خود مقدارها\nfor...in: حلقه روی اندیس‌ها\nforEach(): اجرای تابع روی هر عضو\nmap(): ساخت آرایهٔ جدید با تبدیل هر عضو\nflatMap(): map و تخت کردن با هم\nfilter(): نگه داشتن عضوهای منطبق\nreduce(): رسیدن به یک مقدار، از چپ به راست\nreduceRight(): رسیدن به یک مقدار، از راست به چپ\nevery(): بررسی شرط برای همهٔ عضوها",
+     "some(): بررسی شرط برای بعضی از عضوها\nfrom(): ساختن آرایه از هر چیز پیمایش‌پذیر\nkeys(): اندیس‌ها به‌صورت Iterator\nentries(): جفت‌های اندیس و مقدار\nwith(): تغییر یک عضو بدون دست زدن به آرایهٔ اصلی\nSpread (...): پهن کردن آرایه\nRest (...): جمع کردن عضوهای باقی‌مانده"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل آرایه‌های JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "حلقه زدن روی مقدارهای آرایه"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript سه دستور ساده برای حلقه زدن روی عضوهای آرایه دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "for ... of (روی مقدارها حلقه می‌زند)",
+    "for ... in (روی اندیس‌ها حلقه می‌زند)",
+    "forEach (تابع)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "حلقهٔ for...of (توصیه‌شده)"
+  },
+  {
+   "type": "p",
+   "text": "دستور for...of مقدارهای آرایه را در اختیارتان می‌گذارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst cars = ['BMW', 'Volvo', 'Mini'];\n\n// Iterate over the Array values\n\nlet text = \"\";\n\nfor (let x of cars) {\n\n  text += x + \",\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_loop_array_for_of"
+  },
+  {
+   "type": "h2",
+   "text": "حلقهٔ for...in (توصیه نمی‌شود)"
+  },
+  {
+   "type": "p",
+   "text": "دستور for...in اندیس‌های آرایه را در اختیارتان می‌گذارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst cars = ['BMW', 'Volvo', 'Mini'];\n\n// Iterate over the Array values\n\nlet text = \"\";\n\nfor (let x in cars) {\n\n  text += x + \",\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_loop_array_for_in"
+  },
+  {
+   "type": "p",
+   "text": "برای گرفتن خود عضوها باید از [x] استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst cars = ['BMW', 'Volvo', 'Mini'];\n\n// Iterate over the Array values\n\nlet text = \"\";\n\nfor (let x in cars) {\n\n  text += cars[x] + \"\n\";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_loop_array_for_in_2"
+  },
+  {
+   "type": "p",
+   "text": "با اینکه کار می‌کند، استفاده از for...in برای آرایه‌ها در حالت کلی ایدهٔ بدی است."
+  },
+  {
+   "type": "p",
+   "text": "for...in ساخته شد تا خصوصیت‌های شیء (مثل name، age، height) را بررسی کند، نه آرایه‌ها."
+  },
+  {
+   "type": "h2",
+   "text": "متد forEach() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد forEach() برای هر عضو آرایه یک تابع (تابع کالبک) صدا می‌زند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet txt = \"\";\n\nnumbers.forEach(myFunction);\n\nfunction myFunction(value, index, array) {\n\ntxt += value + \"<br>\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۳ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مثال بالا فقط از پارامتر مقدار استفاده می‌کند. همان مثال را می‌توان این‌طور بازنویسی کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet txt = \"\";\n\nnumbers.forEach(myFunction);\n\nfunction myFunction(value) {\n\ntxt += value + \"<br>\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach_2"
+  },
+  {
+   "type": "h2",
+   "text": "متد map() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد map() با اجرای یک تابع روی هر عضو آرایه، آرایهٔ جدیدی می‌سازد."
+  },
+  {
+   "type": "p",
+   "text": "متد map() تابع را برای عضوهایی که مقدار ندارند اجرا نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متد map() آرایهٔ اصلی را تغییر نمی‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "این مثال هر مقدار آرایه را در ۲ ضرب می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return value * 2;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۳ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "وقتی تابع کالبک فقط از پارامتر مقدار استفاده می‌کند، می‌توانید پارامترهای اندیس و آرایه را حذف کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value) {\n\n    return value * 2;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map_2"
+  },
+  {
+   "type": "h2",
+   "text": "متد flatMap() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد flatMap() را به JavaScript اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد flatMap() اول روی همهٔ عضوهای آرایه یک تابع اجرا می‌کند و بعد با تخت کردن نتیجه، آرایهٔ جدیدی می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [1, 2, 3, 4, 5, 6];\n\nconst newArr = myArr.flatMap(x => [x, x * 10]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_flatmap"
+  },
+  {
+   "type": "h2",
+   "text": "متد filter() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد filter() آرایهٔ جدیدی می‌سازد که فقط عضوهای پاس‌کنندهٔ آزمون را دارد."
+  },
+  {
+   "type": "p",
+   "text": "این مثال از عضوهایی که مقدارشان بزرگ‌تر از ۱۸ است آرایهٔ جدیدی می‌سازد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nconst over18 = numbers.filter(myFunction);\n\nfunction myFunction(value, index, array) {\n  return value > 18;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_filter"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۳ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا تابع کالبک از پارامترهای اندیس و آرایه استفاده نمی‌کند، پس می‌توان آن‌ها را حذف کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nconst over18 =\n  numbers.filter(myFunction);\n\nfunction myFunction(value) {\n  return value > 18;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_filter_2"
+  },
+  {
+   "type": "h2",
+   "text": "متد reduce() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد reduce() یک تابع را روی عضوهای آرایه اجرا می‌کند تا به یک مقدار تنها برسد."
+  },
+  {
+   "type": "p",
+   "text": "متد reduce() از چپ به راست روی آرایه کار می‌کند. متد reduceRight() را هم ببینید."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "متد reduce() آرایهٔ اصلی را کوچک نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این مثال جمع همهٔ عددهای آرایه را پیدا می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduce(myFunction);\n\nfunction myFunction(total, value, index, array) {\n\n  return total + value;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۴ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مجموع (مقدار اولیه یا مقداری که بار قبل برگردانده شده)",
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "چون مثال بالا از پارامترهای اندیس و آرایه استفاده نمی‌کند، می‌توان آن را این‌طور بازنویسی کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduce(myFunction);\n\nfunction myFunction(total, value) {\n\n  return total + value;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_2"
+  },
+  {
+   "type": "p",
+   "text": "متد reduce() می‌تواند یک مقدار اولیه هم بگیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduce(myFunction,\n  100);\n\nfunction myFunction(total, value) {\n  return total + value;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_initial"
+  },
+  {
+   "type": "h2",
+   "text": "متد reduceRight() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد reduceRight() یک تابع را روی عضوهای آرایه اجرا می‌کند تا به یک مقدار تنها برسد."
+  },
+  {
+   "type": "p",
+   "text": "متد reduceRight() از راست به چپ روی آرایه کار می‌کند. متد reduce() را هم ببینید."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "متد reduceRight() آرایهٔ اصلی را کوچک نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این مثال جمع همهٔ عددهای آرایه را پیدا می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduceRight(myFunction);\n\nfunction myFunction(total, value, index, array) {\n\n  return total + value;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_right"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۴ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مجموع (مقدار اولیه یا مقداری که بار قبل برگردانده شده)",
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مثال بالا از پارامترهای اندیس و آرایه استفاده نمی‌کند و می‌توان آن را این‌طور بازنویسی کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduceRight(myFunction);\n\nfunction myFunction(total, value) {\n  return total + value;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_right_2"
+  },
+  {
+   "type": "h2",
+   "text": "متد every() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد every() بررسی می‌کند آیا همهٔ مقدارهای آرایه آزمون را پاس می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "این مثال بررسی می‌کند آیا همهٔ مقدارهای آرایه بزرگ‌تر از ۱۸ هستند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet allOver18 =\n  numbers.every(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_every"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۳ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "وقتی تابع کالبک فقط از پارامتر اول (مقدار) استفاده می‌کند، بقیهٔ پارامترها را می‌توان حذف کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet allOver18 =\n  numbers.every(myFunction);\n\nfunction myFunction(value) {\n  return\n  value > 18;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_every_2"
+  },
+  {
+   "type": "h2",
+   "text": "متد some() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد some() بررسی می‌کند آیا بعضی از مقدارهای آرایه آزمون را پاس می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "این مثال بررسی می‌کند آیا بعضی از مقدارهای آرایه بزرگ‌تر از ۱۸ هستند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet someOver18 = numbers.some(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_some"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۳ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Array.from()"
+  },
+  {
+   "type": "p",
+   "text": "متد Array.from() یک شیء آرایه می‌سازد از:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "هر شیء پیمایش‌پذیر (iterable)",
+    "هر شیئی که خصوصیت length دارد"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"ABCDEFG\";\n\nArray.from(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_from"
+  },
+  {
+   "type": "p",
+   "text": "Array.from() یک پارامتر اختیاری دارد که با آن می‌توانید روی هر عضو آرایهٔ جدید یک تابع اجرا کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myNumbers = [1,2,3,4];\n\nconst myArr = Array.from(myNumbers, (x) => x * 2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_from_array"
+  },
+  {
+   "type": "h2",
+   "text": "متد keys() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد Array.keys() یک شیء Array Iterator شامل اندیس‌های آرایه برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nconst keys = fruits.keys();\n\nfor (let x of keys) {\n\n  text += x + \"<br>\";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_keys"
+  },
+  {
+   "type": "h2",
+   "text": "متد entries() آرایه"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nconst f = fruits.entries();\n\nfor (let x of f) {\n\n  document.getElementById(\"demo\").innerHTML += x;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_entries"
+  },
+  {
+   "type": "p",
+   "text": "متد entries() یک شیء Array Iterator با جفت‌های اندیس و مقدار برمی‌گرداند:"
+  },
+  {
+   "type": "p",
+   "text": "جفت‌های اندیس و مقدار: [0, \"Banana\"] و [1, \"Orange\"] و [2, \"Apple\"] و [3, \"Mango\"]"
+  },
+  {
+   "type": "p",
+   "text": "متد entries() آرایهٔ اصلی را تغییر نمی‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "متد with() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2023 متد with() را اضافه کرد تا بتوان عضوی از آرایه را بدون تغییر آرایهٔ اصلی به‌روز کرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"Januar\", \"Februar\", \"Mar\", \"April\"];\n\nconst myMonths = months.with(2, \"March\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_with"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر Spread در آرایه (...)"
+  },
+  {
+   "type": "p",
+   "text": "عملگر ... آرایه را به عضوهای جداگانه باز می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "با آن می‌توان آرایه‌ها را به هم چسباند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const arr1 = [1, 2, 3];\n\nconst arr2 = [4, 5, 6];\n\nconst arr3 = [...arr1, ...arr2];",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، ...arr1 آرایهٔ arr1 را به عضوهای جدا باز می‌کند، ...arr2 همین کار را با arr2 می‌کند و arr3 از روی ...arr1 و ...arr2 ساخته می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const q1 = [\"Jan\", \"Feb\", \"Mar\"];\n\nconst q2 = [\"Apr\", \"May\", \"Jun\"];\n\nconst q3 = [\"Jul\", \"Aug\", \"Sep\"];\n\nconst q4 = [\"Oct\", \"Nov\", \"Des\"];\n\nconst year = [...q1, ...q2, ...q3, ...q4];",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_year"
+  },
+  {
+   "type": "p",
+   "text": "از عملگر spread (...) می‌توان برای کپی گرفتن از آرایه استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const arr1 = [1, 2, 3];\n\nconst arr2 = [...arr1];",
+   "caption": "مثال ۳"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_copy_array"
+  },
+  {
+   "type": "p",
+   "text": "از عملگر spread (...) می‌توان برای فرستادن آرگومان به تابع استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [23,55,21,87,56];\n\nlet minValue = Math.min(...numbers);\n\nlet maxValue = Math.max(...numbers);",
+   "caption": "مثال ۴"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_arguments"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر Rest در آرایه (...)"
+  },
+  {
+   "type": "p",
+   "text": "عملگر rest (...) اجازه می‌دهد آرایه را باز کنید و عضوهای باقی‌مانده را جمع کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let a, rest;\n\nconst arr1 = [1,2,3,4,5,6,7,8];\n\n[a, ...rest] = arr1;",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let a, b, rest;\n\nconst arr1 = [1,2,3,4,5,6,7,8];\n\n[a, b, ...rest] = arr1;",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_rest1"
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای پایهٔ آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای جست‌وجو در آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای مرتب‌سازی آرایه"
+  },
+  {
+   "type": "p",
+   "text": "مرجع آرایه"
+  },
+  {
+   "type": "h2",
+   "text": "مرجع کامل JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، همراه با توضیح کامل و مثال‌های فراوان، به این بخش بروید:"
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل JavaScript در W3Schools."
+  },
+  {
+   "type": "p",
+   "text": "این مرجع همهٔ به‌روزرسانی‌های JavaScript از ۱۹۹۹ تا ۲۰۲۵ را در بر می‌گیرد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل iterate.html بسازید و آرایه‌ای از نام شهرها بنویسید؛ با حلقهٔ for...of آن‌ها را چاپ کنید و بعد همان کار را با for...in انجام دهید و تفاوت خروجی را ببینید.",
+   "hint": "for...of خود مقدارها را می‌دهد، اما for...in اندیس‌ها را؛ برای گرفتن مقدار باید بنویسید cities[x]."
+  },
+  {
+   "prompt": "با forEach() اعضای آرایه را چاپ کنید و هر عضو را همراه اندیسش نمایش دهید.",
+   "hint": "تابع کالبک سه آرگومان دارد: مقدار عضو، اندیس عضو و خود آرایه؛ می‌توانید فقط از دوتای اول استفاده کنید."
+  },
+  {
+   "prompt": "با map() آرایه‌ای از عددها را به آرایه‌ای از دوبرابرشان تبدیل کنید و آرایهٔ اصلی را هم چاپ کنید.",
+   "hint": "map() آرایهٔ جدید می‌سازد و آرایهٔ اصلی را تغییر نمی‌دهد."
+  },
+  {
+   "prompt": "با filter() فقط عددهای بزرگ‌تر از ۱۸ را نگه دارید و بعد با every() و some() بررسی کنید آیا همه یا بعضی از عضوها بزرگ‌تر از ۱۸ هستند.",
+   "hint": "filter() آرایهٔ جدید می‌دهد اما every() و some() مقدار بولی (true یا false) برمی‌گردانند."
+  },
+  {
+   "prompt": "با reduce() جمع همهٔ عددهای یک آرایه را حساب کنید و بعد reduce() را با مقدار اولیه ۱۰۰ دوباره اجرا کنید.",
+   "hint": "آرگومان دوم reduce() مقدار اولیهٔ مجموع است؛ بدون آن، اولین عضو آرایه به‌عنوان مقدار اولیه گرفته می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام حلقه در هر دور خود مقدار عضو آرایه را می‌دهد، نه اندیس آن؟",
+   "options": [
+    "for...in",
+    "for...of",
+    "for (let i = 0; ...)",
+    "while"
+   ],
+   "answer": 1,
+   "explanation": "for...of مقدارها را در اختیارتان می‌گذارد و به همین دلیل برای آرایه‌ها توصیه می‌شود؛ for...in اندیس‌ها را می‌دهد."
+  },
+  {
+   "question": "متد map() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "آرایهٔ اصلی تغییر یافته",
+    "یک مقدار تنها",
+    "آرایهٔ جدیدی که از تبدیل هر عضو ساخته شده",
+    "مقدار بولی"
+   ],
+   "answer": 2,
+   "explanation": "map() روی هر عضو یک تابع اجرا می‌کند و آرایهٔ جدید می‌سازد؛ آرایهٔ اصلی دست‌نخورده می‌ماند."
+  },
+  {
+   "question": "متد filter() چه عضوهایی را در آرایهٔ نتیجه نگه می‌دارد؟",
+   "options": [
+    "همهٔ عضوها را",
+    "فقط عضوهایی که تابع آزمون برایشان true برگرداند",
+    "فقط عضوهای اول و آخر",
+    "فقط عضوهای تکراری"
+   ],
+   "answer": 1,
+   "explanation": "filter() آرایه‌ای می‌سازد از عضوهایی که تابع آزمون برایشان مقدار درست (true) برگردانده باشد."
+  },
+  {
+   "question": "کدام متد برای رسیدن از عضوهای آرایه به یک مقدار تنها (مثلاً جمع کل) به کار می‌رود؟",
+   "options": [
+    "map()",
+    "forEach()",
+    "reduce()",
+    "every()"
+   ],
+   "answer": 2,
+   "explanation": "reduce() یک تابع را روی عضوها اجرا می‌کند و یک مقدار تنها برمی‌گرداند. map() آرایهٔ جدید می‌دهد و every() مقدار بولی."
+  },
+  {
+   "question": "تفاوت every() و some() چیست؟",
+   "options": [
+    "every() وقتی true می‌دهد که همهٔ عضوها شرط را پاس کنند، some() وقتی که دست‌کم یکی پاس کند",
+    "some() روی همهٔ عضوها کار می‌کند و every() روی یکی",
+    "هر دو همیشه true برمی‌گردانند",
+    "every() آرایهٔ جدید می‌سازد و some() مقدار تنها"
+   ],
+   "answer": 0,
+   "explanation": "every() شرط را برای همهٔ عضوها می‌سنجد و فقط با پاس شدن همه true می‌دهد؛ some() با پاس شدن حتی یک عضو true می‌دهد."
+  }
+ ]
+}

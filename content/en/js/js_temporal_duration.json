@@ -1,0 +1,683 @@
+{
+ "slug": "js_temporal_duration",
+ "course": "js",
+ "order": 184,
+ "url": "/js/js_temporal_duration.asp",
+ "title": "JavaScript Temporal Duration",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Temporal Duration"
+  },
+  {
+   "type": "h2",
+   "text": "The Temporal.Duration Object"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Duration object represents a length of time."
+  },
+  {
+   "type": "p",
+   "text": "Example: 7 days and 1 hour."
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Duration object includes these properties:"
+  },
+  {
+   "type": "p",
+   "text": "years, months, weeks, days, hours, minutes, seconds, milliseconds,\nmicroseconds and nanoseconds."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration object\n\nconst duration = Temporal.Duration.from({days:7, hours:2});",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "P7DT2H",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_2"
+  },
+  {
+   "type": "h2",
+   "text": "ISO 8601 Duration Codes"
+  },
+  {
+   "type": "p",
+   "text": "An ISO 8601 duration represent lengths of time."
+  },
+  {
+   "type": "p",
+   "text": "It uses a standard format starting with ±P (Period),\nfollowed by the structure nYnMnDTnHnMnS."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "+P nY nM nW nD T nH nM nS",
+   "caption": "Syntax"
+  },
+  {
+   "type": "p",
+   "text": "It covers years nY, months nM, weeks nW, days nD, and a T\nbefore hours nH, minutes nM, and seconds nS."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "P3Y6M4DT12H30M5S",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "More Examples"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Duration",
+     "Code"
+    ],
+    [
+     "1 Day",
+     "P1D"
+    ],
+    [
+     "45 Minutes",
+     "PT45M"
+    ],
+    [
+     "1 Year, 2 Months, 3 Days",
+     "P1Y2M3D"
+    ],
+    [
+     "4 Hours, 5 Minutes, 6 Seconds",
+     "PT4H5M6S"
+    ],
+    [
+     "2.5 Hours",
+     "PT2H30M"
+    ],
+    [
+     "5 Weeks",
+     "P5W"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Temporal Standards"
+  },
+  {
+   "type": "h2",
+   "text": "How to Create a Temporal.Duration"
+  },
+  {
+   "type": "p",
+   "text": "A Duration can be created in several different ways:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "From",
+     "Code"
+    ],
+    [
+     "With Constructor",
+     "new Temporal.Duration()"
+    ],
+    [
+     "From Object",
+     "Temporal.Duration.from()"
+    ],
+    [
+     "From ISO String",
+     "Temporal.Duration.from()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Create a Duration Using new"
+  },
+  {
+   "type": "p",
+   "text": "You can create a Temporal.Duration object using the new constructor\nwith integer parameters."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration object\n\nconst duration = new Temporal.Duration(0, 0, 0, 7, 2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_1"
+  },
+  {
+   "type": "p",
+   "text": "The parameters must be in this orde:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Years",
+    "Months",
+    "Weeks",
+    "Days",
+    "Hours",
+    "Minutes",
+    "Seconds",
+    "Milliseconds",
+    "Microseconds",
+    "Nanoseconds"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Create a Duration Using an Object"
+  },
+  {
+   "type": "p",
+   "text": "You can create a duration object using the from() method with an\nobject literal parameter like {days:7, hours: 2}:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration object\n\nconst duration = Temporal.Duration.from({days:7, hours:2});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_2"
+  },
+  {
+   "type": "p",
+   "text": "An object literal is the most common method for creating JavaScript objects."
+  },
+  {
+   "type": "p",
+   "text": "You create an object by literally writing its contents as\nkey:value pairs enclosed in curly braces { }."
+  },
+  {
+   "type": "h2",
+   "text": "Create a Duration Using an ISO string"
+  },
+  {
+   "type": "p",
+   "text": "You can create a Duration object using the from() method\nwith an ISO duration string as parameter."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration\n\nconst duration = Temporal.Duration.from(\"P7DT2H\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_3"
+  },
+  {
+   "type": "h3",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "ISO Duration Strings"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Duration Properties"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Duration object has 12 properties of time information."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//Create a Duration\n\nconst duration = new Temporal.Duration(0, 0, 0, 7, 2, 0);\n\n// List the Properties\n\nlet text =\n\n\"blank: \" + duration.blank + \" \" +\n\n\"sign: \" + duration.sign + \" \" +\n\n\"years: \" + duration.years + \" \" +\n\n\"months: \" + duration.months + \" \" +\n\n\"weeks: \" + duration.weeks + \" \" +\n\n\"days: \" + duration.days + \" \" +\n\n\"hour: \" + duration.hours  + \" \" +\n\n\"minutes: \" + duration.minutes  + \" \" +\n\n\"seconds: \" + duration.seconds  + \" \" +\n\n\"milliseconds: \" + duration.milliseconds  + \" \" +\n\n\"microseconds: \" + duration.microseconds  + \" \" +\n\n\"nanoseconds: \" + duration.nanoseconds;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_prop"
+  },
+  {
+   "type": "h2",
+   "text": "The with() Method"
+  },
+  {
+   "type": "p",
+   "text": "The with() method returns a new duration\nwith specific properties (time units) replaced:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration\n\nconst duration = Temporal.Duration.from({hours:10, minutes:30});\n\n// Create a new duration with the minutes changed to 45\n\nconst newDuration = duration.with({minutes:45});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_with"
+  },
+  {
+   "type": "h2",
+   "text": "Safe Date Arithmetic"
+  },
+  {
+   "type": "p",
+   "text": "The Duration object facilitates safe and clear date and time arithmetic,\npreventing issues related to DST (daylight saving time) and time zone changes."
+  },
+  {
+   "type": "p",
+   "text": "The Duration object can handle time in various units, including years, months,\nweeks, days, hours, minutes, seconds, milliseconds, microseconds, and nanoseconds."
+  },
+  {
+   "type": "p",
+   "text": "The Duration object makes date arithmetic clear, readable, and safer than using manual millisecond calculations."
+  },
+  {
+   "type": "h2",
+   "text": "The Duration add() Method"
+  },
+  {
+   "type": "p",
+   "text": "The add() method returns a new duration with a duration added."
+  },
+  {
+   "type": "p",
+   "text": "The add() method does not change the original duration."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration\n\nconst d1 = Temporal.Duration.from({ hours:2, minutes:30 });\n\n// Add a Duration\n\nconst d2 = d1.add({ hours:1, minutes:30 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_add"
+  },
+  {
+   "type": "h2",
+   "text": "The Duration subtract() Method"
+  },
+  {
+   "type": "p",
+   "text": "The subtract() method returns a new duration with a duration subtracted."
+  },
+  {
+   "type": "p",
+   "text": "The subtract() method does not change the original duration."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration\n\nconst d1 = Temporal.Duration.from({ hours:2, minutes:30 });\n\n// Subtract a Duration\n\nconst d2 = d1.subtract({ hours:1, minutes:30 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_subtract"
+  },
+  {
+   "type": "h2",
+   "text": "Immutability"
+  },
+  {
+   "type": "p",
+   "text": "Temporal objects are immutable, meaning operations like add() or subtract() return\na new Temporal.Duration instance, leaving the original unchanged."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal add() and subtract()"
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own add() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.add(duration)",
+    "instant.add(duration)",
+    "plaindate.add(duration)",
+    "plaintime.add(duration)",
+    "plainyearmonth.add(duration)",
+    "plainmonthday.add(duration)",
+    "plaindatetime.add(duration)",
+    "zoneddatetime.add(duration)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own subtract() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.subtract(duration)",
+    "instant.subtract(duration)",
+    "plaindate.subtract(duration)",
+    "plaintime.subtract(duration)",
+    "plainyearmonth.subtract(duration)",
+    "plainmonthday.subtract(duration)",
+    "plaindatetime.subtract(duration)",
+    "zoneddatetime.subtract(duration)"
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "Temporal Arithmetic"
+  },
+  {
+   "type": "h2",
+   "text": "The Compare() Method"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Duration object does not have an equals() method due to the\ncomplexity of handling different representations of the same duration."
+  },
+  {
+   "type": "p",
+   "text": "Instead, equality is checked using the static Temporal.Duration.compare() method."
+  },
+  {
+   "type": "p",
+   "text": "This method returns -1 if the first duration is shorter, 0 if it is the same,\nand 1 if it is longer."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ minutes:90 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ hours:1, minutes:30 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_compare"
+  },
+  {
+   "type": "p",
+   "text": "Note that both examples return 0 for equal."
+  },
+  {
+   "type": "p",
+   "text": "90 minutes is the same duration as 1 hour and 30 minutes."
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own compare() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal.Instant.compare(instant1, instant2)",
+    "Temporal.PlainDate.compare(plaindate1, plaindate2)",
+    "Temporal.PlainTime.compare(plaintime1, plaintime2)",
+    "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
+    "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
+    "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
+    "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
+    "Temporal.Duration.compare(duration1, duration2)"
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "Temporal Compare"
+  },
+  {
+   "type": "h2",
+   "text": "Range Errors"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ days:30 });\n\nconst d2 = Temporal.Duration.from({ months: 1 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The code above fails and throws a RangeError because d2 contains a calendar unit (months),\nwhich has an uneven and variable length."
+  },
+  {
+   "type": "p",
+   "text": "Without a specific starting point on the calendar, the JavaScript runtime cannot determine\nexactly how many days are in \"1 month\" to perform the comparison."
+  },
+  {
+   "type": "p",
+   "text": "For example, 1 month starting in February could be 28 or 29 days, while 1 month starting in\nJanuary is 31 days."
+  },
+  {
+   "type": "h2",
+   "text": "No equals() Method"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Duration object does not have an equals() method because durations can be represented\nin multiple \"unbalanced\" ways that are mathematically equivalent but structurally different."
+  },
+  {
+   "type": "p",
+   "text": "For example, a duration of 90 seconds is logically equal to 1 minute and 30 seconds,\nbut they are stored as distinct property sets within the Temporal.Duration object."
+  },
+  {
+   "type": "p",
+   "text": "Unbalanced Units: By default, Temporal.Duration preserves the units exactly as they were defined.\nBecause \"60 minutes\" and \"1 hour\" are different internal representations, a standard equals() method would\nbe ambiguous (should it check for identical properties or identical time length?)"
+  },
+  {
+   "type": "p",
+   "text": "Variable Unit Lengths: Units like days, months, and years do not have a fixed length.\nA \"month\" can be 28, 30, or 31 days depending on the calendar and reference date."
+  },
+  {
+   "type": "p",
+   "text": "Need for Context: To accurately compare two durations containing calendar units\n(years, months, weeks), you must provide a relativeTo option (a specific starting point).\nWithout this reference, the API cannot determine if two calendar-based durations are truly \"equal\"."
+  },
+  {
+   "type": "p",
+   "text": "Instead of a simple equals() method, the TC39 Temporal proposal requires developers to use the\nstatic Temporal.Duration.compare() method instead."
+  },
+  {
+   "type": "h2",
+   "text": "When to Use Duration"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Adding or subtracting time",
+    "Calculating age",
+    "Calculating differences between dates",
+    "Calculating time spans (hours, days, months)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Duration Methods"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Constructing",
+     "Description"
+    ],
+    [
+     "from()",
+     "Returns a new duration object from an object or an ISO string"
+    ],
+    [
+     "new()",
+     "Returns a new duration object from integer parameters"
+    ],
+    [
+     "Arithmetic",
+     ""
+    ],
+    [
+     "abs()",
+     "Returns a new duration with the absolute value of this duration"
+    ],
+    [
+     "add()",
+     "Returns a new duration with a duration added to this duration"
+    ],
+    [
+     "negated()",
+     "Returns a new duration with this duration negated"
+    ],
+    [
+     "round()",
+     "Returns a new duration with this duration rounded"
+    ],
+    [
+     "subtract()",
+     "Returns a new duration with a duration subtracted from this duration"
+    ],
+    [
+     "Comparing",
+     ""
+    ],
+    [
+     "compare()",
+     "Compares two durations (returning -1, 0, or 1)"
+    ],
+    [
+     "Converting",
+     ""
+    ],
+    [
+     "with()",
+     "Returns a new duration with specified field(s) modified"
+    ],
+    [
+     "Formatting",
+     ""
+    ],
+    [
+     "total()",
+     "Returns a number representing the duration in a given unit"
+    ],
+    [
+     "toJSON()",
+     "Returns an RFC 9557 format string for JSON serialization"
+    ],
+    [
+     "toLocaleString()",
+     "Returns a language-sensitive representation of the time"
+    ],
+    [
+     "toString()",
+     "Returns an RFC 9557 format string representation"
+    ],
+    [
+     "valueOf()",
+     "Throws a TypeError (prevents temporals from being converted to primitives)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Duration Properties"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Property",
+     "Description"
+    ],
+    [
+     "blank",
+     "Boolean true if the duration represents a zero duration"
+    ],
+    [
+     "days",
+     "Days as an integer (1-31)"
+    ],
+    [
+     "hours",
+     "Hours as an integer (0-23)"
+    ],
+    [
+     "microseconds",
+     "Microseconds as an integer (0-999)"
+    ],
+    [
+     "milliseconds",
+     "Milliseconds as an integer (0-999)"
+    ],
+    [
+     "minutes",
+     "Minutes as an integer (0-59)"
+    ],
+    [
+     "months",
+     "Months as an integer (1-12)"
+    ],
+    [
+     "nanoseconds",
+     "Nanoseconds as an integer (0-999)"
+    ],
+    [
+     "seconds",
+     "Seconds as an integer (0-59)"
+    ],
+    [
+     "sign",
+     "1 positive -1 negative"
+    ],
+    [
+     "weeks",
+     "Weeks as an integer"
+    ],
+    [
+     "years",
+     "Years as an integer"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//Create a Duration\n\nconst duration = new Temporal.Duration(0, 0, 0, 7, 2, 0);\n\n// List the Properties\n\nlet text =\n\n\"blank: \" + duration.blank + \" \" +\n\n\"sign: \" + duration.sign + \" \" +\n\n\"years: \" + duration.years + \" \" +\n\n\"months: \" + duration.months + \" \" +\n\n\"weeks: \" + duration.weeks + \" \" +\n\n\"days: \" + duration.days + \" \" +\n\n\"hour: \" + duration.hours  + \" \" +\n\n\"minutes: \" + duration.minutes  + \" \" +\n\n\"seconds: \" + duration.seconds  + \" \" +\n\n\"milliseconds: \" + duration.milliseconds  + \" \" +\n\n\"microseconds: \" + duration.microseconds  + \" \" +\n\n\"nanoseconds: \" + duration.nanoseconds;",
+   "caption": "Display All Duration Properties"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_prop"
+  }
+ ]
+}

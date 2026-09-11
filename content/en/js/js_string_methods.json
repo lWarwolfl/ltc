@@ -1,0 +1,1128 @@
+{
+ "slug": "js_string_methods",
+ "course": "js",
+ "order": 29,
+ "url": "/js/js_string_methods.asp",
+ "title": "JavaScript String Methods",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript String Methods"
+  },
+  {
+   "type": "h2",
+   "text": "Basic String Methods"
+  },
+  {
+   "type": "p",
+   "text": "Javascript strings are primitive and immutable:\nAll string methods produce a new string without altering the original string."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "String length\nString charAt()\nString charCodeAt()\nString codePointAt()\nString concat()\nString at()\nString [ ]\nString slice()\nString substring()\nString substr()\nString toUpperCase()\nString toLowerCase()",
+     "String isWellFormed()\nString toWellFormed()\nString trim()\nString trimStart()\nString trimEnd()\nString padStart()\nString padEnd()\nString repeat()\nString replace()\nString replaceAll()\nString split()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "See Also:"
+  },
+  {
+   "type": "p",
+   "text": "String Tutorial"
+  },
+  {
+   "type": "p",
+   "text": "String Search"
+  },
+  {
+   "type": "p",
+   "text": "String Templates"
+  },
+  {
+   "type": "p",
+   "text": "String Reference"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String Length"
+  },
+  {
+   "type": "p",
+   "text": "The length property returns the length of a string:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n\nlet length = text.length;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_length"
+  },
+  {
+   "type": "h2",
+   "text": "Extracting String Characters"
+  },
+  {
+   "type": "p",
+   "text": "There are 4 methods for extracting string characters:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The at(position) Method",
+    "The charAt(position) Method",
+    "The charCodeAt(position) Method",
+    "Using property access [] like in arrays"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String charAt()"
+  },
+  {
+   "type": "p",
+   "text": "The charAt() method returns the character at a specified\nindex (position) in a string:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"HELLO WORLD\";\n\nlet char = text.charAt(0);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_charat"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String charCodeAt()"
+  },
+  {
+   "type": "p",
+   "text": "The charCodeAt() method returns the code of the character\nat a specified index in a string:"
+  },
+  {
+   "type": "p",
+   "text": "The method returns a UTF-16 code (an integer between 0 and 65535)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"HELLO WORLD\";\n\nlet char = text.charCodeAt(0);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_charcodeat"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript codePointAt()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"HELLO WORLD\";\n\nlet code = text.codePointAt(0);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_codepointat"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String at()"
+  },
+  {
+   "type": "p",
+   "text": "ES2022 introduced the string method at():"
+  },
+  {
+   "type": "p",
+   "text": "The at() method returns the character at a specified index (position) in a string."
+  },
+  {
+   "type": "p",
+   "text": "The at() method is supported in all modern browsers since March 2022:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const name = \"W3Schools\";\n\nlet letter = name.at(2);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const name = \"W3Schools\";\n\nlet letter = name[2];",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_at"
+  },
+  {
+   "type": "p",
+   "text": "The at() method is a new addition to JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "It allows the use of negative indexes while charAt() do not."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const name = \"W3Schools\";\n\nlet letter = name.at(-5);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const name = \"W3Schools\";\n\nlet letter = charAt(myString.length-5);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_at_3"
+  },
+  {
+   "type": "h2",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "at() is an ECMAScript 2022 feature."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2022 is supported in all modern browsers since March 2022:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome92",
+     "Edge92",
+     "Firefox90",
+     "Safari15.4",
+     "Opera78"
+    ],
+    [
+     "Apr 2021",
+     "Jul 2021",
+     "Jul 2021",
+     "Mar 2022",
+     "Aug 2021"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Property Access [ ]"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"HELLO WORLD\";\n\nlet char = text[0];",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Property access might be a little unpredictable:\n\n  It makes strings look like arrays (but they are not)\n  If no character is found, [ ] returns undefined, while charAt() returns an empty string.\n  Propert access is read only, but str[0] = \"A\" gives no error in \"sloppy mode\"."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"HELLO WORLD\";\n\n// Try to change the first letter to \"A\"\n\ntry {\n\n  text[0] = \"A\";\n\n} catch(err) {\n\n  text = err.message\n\n}",
+   "caption": "Example (Sloppy Mode)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop2"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"using strict\";\n\nlet text = \"HELLO WORLD\";\n\n// Try to change the first letter to \"A\"\n\ntry {\n\n text[0] = \"A\";\n\n} catch(err) {\n\n text = err.message\n\n}",
+   "caption": "Example (Strict Mode)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop_error"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String concat()"
+  },
+  {
+   "type": "p",
+   "text": "concat() joins two or more strings:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text1 = \"Hello\";\n\nlet text2 = \"World\";\n\nlet text3 = text1.concat(\" \", text2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_concat"
+  },
+  {
+   "type": "p",
+   "text": "The concat() method can be used instead of the plus operator.\nThese two lines do the same:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "text = \"Hello\" + \" \" + \"World!\";\n\ntext = \"Hello\".concat(\" \", \"World!\");",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "All string methods return a new string. They don't modify the original string.\nFormally said:Strings are immutable: Strings cannot be changed, only replaced."
+  },
+  {
+   "type": "h2",
+   "text": "Extracting String Parts"
+  },
+  {
+   "type": "p",
+   "text": "There are 3 methods for extracting a part of a string:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "slice(start, end)",
+    "substring(start, end)",
+    "substr(start, length)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String slice()"
+  },
+  {
+   "type": "p",
+   "text": "slice() extracts a part of a string and returns the\nextracted part in a new string."
+  },
+  {
+   "type": "p",
+   "text": "The method takes 2 parameters: start position, and end position (end not included)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(7, 13);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_slice"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JavaScript counts positions from zero.\nFirst position is 0.\nSecond position is 1."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(7);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(-12);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(-12, -6);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_slice_rest"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String substring()"
+  },
+  {
+   "type": "p",
+   "text": "substring() is similar to slice()."
+  },
+  {
+   "type": "p",
+   "text": "The difference is that start and end values less than 0 are treated as 0 in\nsubstring()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substring(7, 13);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substring"
+  },
+  {
+   "type": "p",
+   "text": "If you omit the second parameter, substring() will slice out the rest of the\nstring."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String substr()"
+  },
+  {
+   "type": "p",
+   "text": "substr() is similar to slice()."
+  },
+  {
+   "type": "p",
+   "text": "The difference is\nthat the second parameter specifies the length\nof the extracted part."
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "Warning\nThe substr() method is deprecated in the latest JavaScript standard,\nbut is still officially defined in Annex B of the ECMAScript specification for backward compatibility.\nYou are strongly advised to use substring() or slice() instead."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(7, 6);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr"
+  },
+  {
+   "type": "p",
+   "text": "If you omit the second parameter, substr() will slice out the rest of the\nstring."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(7);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr1"
+  },
+  {
+   "type": "p",
+   "text": "If the first parameter is negative, the position counts from the end of the\nstring."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(-4);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr2"
+  },
+  {
+   "type": "h2",
+   "text": "Converting to Upper and Lower Case"
+  },
+  {
+   "type": "p",
+   "text": "A string is converted to upper case with toUpperCase():"
+  },
+  {
+   "type": "p",
+   "text": "A string is converted to lower case with toLowerCase():"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String toUpperCase()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text1 = \"Hello World!\";\n\nlet text2 = text1.toUpperCase();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_toupper"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String toLowerCase()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text1 = \"Hello World!\";       // String\n\nlet text2 = text1.toLowerCase();  // text2 is text1\nconverted to lower",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_tolower"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String isWellFormed()"
+  },
+  {
+   "type": "p",
+   "text": "The isWellFormed() method returns true\nif a string is well formed."
+  },
+  {
+   "type": "p",
+   "text": "Otherwise it returns false."
+  },
+  {
+   "type": "p",
+   "text": "A string is not well formed if it contains lone surrogates."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello world!\";\n\nlet result = text.isWellFormed();",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.isWellFormed();",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_iswellformed"
+  },
+  {
+   "type": "h2",
+   "text": "Lone Surrogates"
+  },
+  {
+   "type": "p",
+   "text": "A lone surrogate is a Unicode surrogate code point that is not part of a valid surrogate pair\nused to represent characters in UTF-16 encoding."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String toWellFormed()"
+  },
+  {
+   "type": "p",
+   "text": "The String method toWellFormed()\nreturns a new string where all \"lone surrogates\" are replaced with the Unicode replacement character (U+FFFD)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.toWellFormed();",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_towellformed"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String trim()"
+  },
+  {
+   "type": "p",
+   "text": "The trim() method removes whitespace from both sides of a string:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text1 = \"      Hello World!      \";\n\nlet text2 = text1.trim();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trim"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String trimStart()"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2019 added the String method trimStart() to JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "The trimStart() method works like trim(), but removes whitespace only from the start of a string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text1 = \"     Hello World!     \";\n\nlet text2 = text1.trimStart();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trimstart"
+  },
+  {
+   "type": "h2",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "trimStart() is an ECMAScript 2019 feature."
+  },
+  {
+   "type": "p",
+   "text": "ES2019 is supported in all modern browsers since January 2020:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome66",
+     "Edge79",
+     "Firefox61",
+     "Safari12",
+     "Opera50"
+    ],
+    [
+     "Apr 2018",
+     "Jan 2020",
+     "Jun 2018",
+     "Sep 2018",
+     "May 2018"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String trimEnd()"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2019 added the string method trimEnd() to JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "The trimEnd() method works like trim(), but removes whitespace only from the end of a string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text1 = \"     Hello World!     \";\n\nlet text2 = text1.trimEnd();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trimend"
+  },
+  {
+   "type": "h2",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "trimEnd() is an ECMAScript 2019 feature."
+  },
+  {
+   "type": "p",
+   "text": "ES2019 is supported in all modern browsers since January 2020:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome66",
+     "Edge79",
+     "Firefox61",
+     "Safari12",
+     "Opera50"
+    ],
+    [
+     "Apr 2018",
+     "Jan 2020",
+     "Jun 2018",
+     "Sep 2018",
+     "May 2018"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String Padding"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2017 added two new string methods to JavaScript: padStart()\nand padEnd() to support padding at the beginning and at the end of a string."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String padStart()"
+  },
+  {
+   "type": "p",
+   "text": "The padStart() method pads a string from the start."
+  },
+  {
+   "type": "p",
+   "text": "It pads a string with another string (multiple times) until it reaches a given length."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"5\";\n\nlet padded = text.padStart(4,\"0\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"5\";\n\nlet padded = text.padStart(4,\"x\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding1"
+  },
+  {
+   "type": "p",
+   "text": "The padStart() method is a string method."
+  },
+  {
+   "type": "p",
+   "text": "To pad a number, convert the number to a string first."
+  },
+  {
+   "type": "p",
+   "text": "See the example below."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let numb = 5;\n\nlet text = numb.toString();\n\nlet padded = text.padStart(4,\"0\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding3"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String padEnd()"
+  },
+  {
+   "type": "p",
+   "text": "The padEnd() method pads a string from the end."
+  },
+  {
+   "type": "p",
+   "text": "It pads a string with another string (multiple times) until it reaches a given length."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"5\";\n\nlet padded = text.padEnd(4,\"0\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"5\";\n\nlet padded = text.padEnd(4,\"x\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding2"
+  },
+  {
+   "type": "p",
+   "text": "The padEnd() method is a string method."
+  },
+  {
+   "type": "p",
+   "text": "To pad a number, convert the number to a string first."
+  },
+  {
+   "type": "p",
+   "text": "See the example below."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let numb = 5;\n\nlet text = numb.toString();\n\nlet padded = text.padEnd(4,\"0\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding5"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String repeat()"
+  },
+  {
+   "type": "p",
+   "text": "The repeat() method returns a string with a number of copies of a string."
+  },
+  {
+   "type": "p",
+   "text": "The repeat() method returns a new string."
+  },
+  {
+   "type": "p",
+   "text": "The repeat() method does not change the original string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello world!\";\n\nlet result = text.repeat(2);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello world!\";\n\nlet result = text.repeat(4);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_repeat"
+  },
+  {
+   "type": "h2",
+   "text": "Syntax"
+  },
+  {
+   "type": "p",
+   "text": "string.repeat(count)"
+  },
+  {
+   "type": "h2",
+   "text": "Parameters"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Parameter",
+     "Description"
+    ],
+    [
+     "count",
+     "Required.\nThe number of copies wanted."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Return Value"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Type",
+     "Description"
+    ],
+    [
+     "String",
+     "A new string containing the copies."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Replacing String Content"
+  },
+  {
+   "type": "p",
+   "text": "The replace() method replaces a specified value with another\nvalue in a string:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(\"Microsoft\", \"W3Schools\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace"
+  },
+  {
+   "type": "p",
+   "text": "The replace() method does not change the string it is called on."
+  },
+  {
+   "type": "p",
+   "text": "The replace() method returns a new string."
+  },
+  {
+   "type": "p",
+   "text": "The replace() method replaces only the first match"
+  },
+  {
+   "type": "p",
+   "text": "If you want to replace all matches, use a regular expression with the /g flag set. See examples below."
+  },
+  {
+   "type": "p",
+   "text": "By default, the replace() method replaces only the first match:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Please visit Microsoft and Microsoft!\";\n\nlet newText = text.replace(\"Microsoft\", \"W3Schools\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_first"
+  },
+  {
+   "type": "p",
+   "text": "By default, the replace() method is case sensitive. Writing MICROSOFT (with\nupper-case) will not work:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(\"MICROSOFT\", \"W3Schools\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_case"
+  },
+  {
+   "type": "p",
+   "text": "To replace case insensitive, use a regular expression with an /i flag (insensitive):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(/MICROSOFT/i, \"W3Schools\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_insensitive"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Regular expressions are written without quotes."
+  },
+  {
+   "type": "p",
+   "text": "To replace all matches, use a regular expression with a /g flag (global match):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Please visit Microsoft and Microsoft!\";\n\nlet newText = text.replace(/Microsoft/g, \"W3Schools\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_global"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "You will learn a lot more about regular expressions in the chapter JavaScript Regular\nExpressions."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String ReplaceAll()"
+  },
+  {
+   "type": "p",
+   "text": "In 2021, JavaScript introduced the string method replaceAll():"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "text = text.replaceAll(\"Cats\",\"Dogs\");\n\ntext = text.replaceAll(\"cats\",\"dogs\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replaceall"
+  },
+  {
+   "type": "p",
+   "text": "The replaceAll() method allows you to specify a\nregular expression instead of a string to be replaced."
+  },
+  {
+   "type": "p",
+   "text": "If the parameter is a regular expression, the global flag (g) must be set, otherwise\na TypeError is thrown."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "text = text.replaceAll(/Cats/g,\"Dogs\");\n\ntext = text.replaceAll(/cats/g,\"dogs\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replaceall2"
+  },
+  {
+   "type": "p",
+   "text": "replaceAll() is an ES2021 feature."
+  },
+  {
+   "type": "p",
+   "text": "replaceAll() does not work in Internet Explorer."
+  },
+  {
+   "type": "h2",
+   "text": "Converting a String to an Array"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "If you want to work with a string as an array, you can convert it to an array."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String split()"
+  },
+  {
+   "type": "p",
+   "text": "A string can be converted to an array with the split() method:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "text.split(\"\")     // Split on characters\n\ntext.split(\",\")    // Split on commas\n\ntext.split(\" \")    // Split on spaces\n\ntext.split(\"|\")    // Split on pipe",
+   "caption": "Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hi fox!\";\n\nconst myArr = text.split(\"\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"The quick brown fox.\";\n\nconst myArr = text.split(\" \");",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"The quick brown fox.\";\n\nconst myArr = text.split();",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_split_characters"
+  },
+  {
+   "type": "h2",
+   "text": "Using split(\"\") Can be Unsafe"
+  },
+  {
+   "type": "p",
+   "text": "Using split(\"\") is unsafe for strings containing emojis or complex characters."
+  },
+  {
+   "type": "p",
+   "text": "The method splits by UTF-16 code units and will break surrogate pairs."
+  },
+  {
+   "type": "p",
+   "text": "split(\"\") is always unsafe for emojis. It will slice right through them and create broken, corrupt code fragments."
+  },
+  {
+   "type": "p",
+   "text": "split(\" \") is usually safe for words, even if they have emojis inside them, as long as the emoji is not glued right next to a space you are splitting on."
+  },
+  {
+   "type": "h3",
+   "text": "Summary of Options:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "text.split(\"\") is most unsafe\nIt breaks up 4-byte emojis (like 💩 becomes ['\\uD83D', '\\uDCA9']).",
+    "Spread  [...text] is partially safe:\nIt works for simple emojis like 💩 or 🔥, but destroys complex emojis like 👨‍👩‍👧‍👦, 🧑‍⚕️ (doctor), or flags.",
+    "Intl.Segmenter is 100% Safe:\nIt handles every emoji, accent, and complex characters."
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"👨‍👩‍👧‍👦\";\n\nconst myArr = text.split(\"\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"👨‍👩‍👧‍👦\";\n\nconst segmenter = new Intl.Segmenter(\"en\", {granularity:\"grapheme\"});\n\nconst myArr = Array.from(segmenter.segment(text)).map(s => s.segment);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_split_unsafe"
+  },
+  {
+   "type": "h2",
+   "text": "Complete JavaScript Reference"
+  },
+  {
+   "type": "p",
+   "text": "For a complete reference to all JavaScript properties and methods, with full descriptions and many examples, go to:"
+  },
+  {
+   "type": "p",
+   "text": "W3Schools' Full JavaScript Reference."
+  },
+  {
+   "type": "p",
+   "text": "The reference inludes all JavaScript updates from 1999 to 2025."
+  }
+ ]
+}

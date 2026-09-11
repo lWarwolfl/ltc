@@ -1,0 +1,240 @@
+{
+ "slug": "css3_pagination",
+ "course": "css",
+ "order": 158,
+ "url": "/css/css3_pagination.asp",
+ "title": "صفحه‌بندی در CSS",
+ "summary": "صفحه‌بندی به کاربر کمک می‌کند بین صفحه‌های یک سایت جابه‌جا شود. در این درس یک نوار صفحه‌بندی واکنش‌گرا می‌سازید و حالت جاری و غیرفعال را روی آن پیاده می‌کنید.",
+ "objectives": [
+  "ساختار صفحه‌بندی با <ul> و پیوندها را توضیح دهید",
+  "پیدا کردن مشکل چیدمان شماره‌ها را با display: flex حل کنید",
+  "صفحهٔ جاری را با کلاس active برجسته کنید",
+  "دکمهٔ غیرفعال را با pointer-events: none; بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "نمونه‌های صفحه‌بندی در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "صفحه‌بندی در CSS"
+  },
+  {
+   "type": "p",
+   "text": "یاد بگیرید چطور با CSS یک صفحه‌بندی واکنش‌گرا بسازید."
+  },
+  {
+   "type": "p",
+   "text": "اگر سایتی با صفحه‌های زیاد دارید، بهتر است روی هر صفحه نوعی صفحه‌بندی بگذارید."
+  },
+  {
+   "type": "p",
+   "text": "صفحه‌بندی معمولاً چند پیوند است که داخل یک فهرست بدون ترتیب (<ul>) قرار می‌گیرند. هر پیوند به شمارهٔ یک صفحه اشاره می‌کند. علاوه بر آن کنترل‌های «قبلی» و «بعدی» هم وجود دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "«",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "»"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".pagination {\n  display: flex;\n  justify-content: center;\n\n  list-style: none; /* remove list bullets */\n  padding: 0px;\n}\n\n.pagination li a\n  {\n  display: block; /* let links fill the list item */\n\n  padding: 8px 12px;\n  text-decoration: none;\n  border: 1px\n  solid gray;\n  color: black;\n  margin: 0 4px;\n  border-radius: 5px; /* add\n  rounded borders */\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_ex_pagination"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال"
+  },
+  {
+   "type": "p",
+   "text": "ظرف صفحه‌بندی را این‌طور استایل دهید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "display: flex; تا شماره‌های صفحه افقی کنار هم بچینند",
+    "justify-content: center; تا در وسط تراز شوند",
+    "list-style: none; تا نقطه‌های فهرست حذف شوند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "سپس عنصرهای <a> داخل عنصرهای <li> را استایل کنید تا ظاهر شماره‌های صفحه ساخته شود، با خصوصیت‌هایی مثل display، padding، text-decoration، border، background-color، color، font-size و border-radius."
+  },
+  {
+   "type": "h2",
+   "text": "صفحه‌بندی با کلاس active"
+  },
+  {
+   "type": "p",
+   "text": "صفحهٔ فعال جاری را با کلاس ‎.active مشخص کنید تا معلوم شود کاربر روی کدام صفحه است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "«",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "»"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".pagination li a.active {\n  background-color: #4CAF50;\n\n  color: white;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_ex_pagination_active"
+  },
+  {
+   "type": "h2",
+   "text": "صفحه‌بندی با کلاس disabled"
+  },
+  {
+   "type": "p",
+   "text": "اگر کاربر روی آخرین صفحه است، دکمهٔ «بعدی» باید غیرفعال باشد."
+  },
+  {
+   "type": "p",
+   "text": "در این‌جا یک کلاس ‎.disabled اضافه می‌کنیم و خصوصیت‌های color، cursor و pointer-events را تعیین می‌کنیم تا دکمهٔ «بعدی» غیرفعال شود:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "«",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "»"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".pagination li a.disabled {\n  color: #dddddd;\n  cursor:\n  not-allowed;\n  pointer-events: none;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_ex_pagination_disabled"
+  },
+  {
+   "type": "h2",
+   "text": "زیرصفحه‌های صفحه‌بندی"
+  },
+  {
+   "type": "p",
+   "text": "یادگیری صفحه‌بندی در CSS را ادامه دهید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "سبک‌های صفحه‌بندی، جلوه‌های hover، انتقال‌ها و مسیر راهنما"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل pagination.html بسازید و پیوندهای ۱ تا ۵ را همراه با «قبلی» و «بعدی» داخل یک <ul> بگذارید.",
+   "hint": "برای هر شماره یک <li> بسازید و پیوند را داخل آن قرار دهید."
+  },
+  {
+   "prompt": "با display: flex; و justify-content: center; فهرست را افقی و وسط‌چین کنید و نقطه‌های فهرست را با list-style: none; بردارید.",
+   "hint": "list-style: none; باید روی خود <ul> نوشته شود، نه روی <li>."
+  },
+  {
+   "prompt": "به شمارهٔ صفحهٔ ۳ کلاس active بدهید و رنگ پس‌زمینه‌اش را متفاوت کنید.",
+   "hint": "کلاس را با نقطه در CSS بنویسید: ‎.active { background-color: ... }‎"
+  },
+  {
+   "prompt": "به دکمهٔ «بعدی» یک کلاس disabled بدهید که color: #ccc; pointer-events: none; و cursor: not-allowed; داشته باشد.",
+   "hint": "pointer-events: none; جلوی کلیک‌شدن روی پیوند را می‌گیرد."
+  },
+  {
+   "prompt": "در مرورگر روی شماره‌ها ماوس ببرید و بگویید چرا دکمهٔ غیرفعال هیچ واکنشی نشان نمی‌دهد.",
+   "hint": "همان pointer-events است که رویدادهای ماوس را روی آن عنصر غیرفعال می‌کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "صفحه‌بندی معمولاً داخل کدام عنصر HTML ساخته می‌شود؟",
+   "options": [
+    "یک <table>",
+    "یک فهرست بدون ترتیب <ul>",
+    "یک <div> با position: fixed",
+    "یک <form>"
+   ],
+   "answer": 1,
+   "explanation": "هر شمارهٔ صفحه یک پیوند داخل <li> است و کل فهرست در <ul> می‌آید."
+  },
+  {
+   "question": "برای افقی چیدن شماره‌های صفحه در ظرف صفحه‌بندی چه می‌دهیم؟",
+   "options": [
+    "display: flex;",
+    "float: right;",
+    "position: absolute;",
+    "text-decoration: none;"
+   ],
+   "answer": 0,
+   "explanation": "display: flex; فرزندان ظرف را در یک ردیف افقی می‌چیند؛ justify-content: center; هم آن‌ها را وسط‌چین می‌کند."
+  },
+  {
+   "question": "کلاس .active روی شمارهٔ صفحه چه کاری می‌کند؟",
+   "options": [
+    "پیوند را غیرفعال می‌کند",
+    "صفحهٔ جاری را مشخص و برجسته می‌کند",
+    "نقطه‌های فهرست را حذف می‌کند",
+    "پهنای ظرف را تعیین می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "کلاس active نشان می‌دهد کاربر روی کدام صفحه است و با رنگ متمایز برجسته می‌شود."
+  },
+  {
+   "question": "برای غیرفعال کردن واقعی دکمهٔ «بعدی» کدام خصوصیت جلوی کلیک را می‌گیرد؟",
+   "options": [
+    "color",
+    "font-size",
+    "pointer-events",
+    "border-radius"
+   ],
+   "answer": 2,
+   "explanation": "pointer-events: none; رویدادهای ماوس را روی عنصر غیرفعال می‌کند؛ color فقط ظاهر را کم‌رنگ می‌کند."
+  },
+  {
+   "question": "کدام خصوصیت نقطه‌های کنار هر آیتم فهرست را حذف می‌کند؟",
+   "options": [
+    "text-decoration: none;",
+    "list-style: none;",
+    "display: flex;",
+    "justify-content: center;"
+   ],
+   "answer": 1,
+   "explanation": "list-style: none; نشانگرهای فهرست را حذف می‌کند؛ text-decoration زیرخط پیوند را برمی‌دارد."
+  }
+ ]
+}

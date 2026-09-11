@@ -1,0 +1,145 @@
+{
+ "slug": "css3_variables_mediaqueries",
+ "course": "css",
+ "order": 166,
+ "url": "/css/css3_variables_mediaqueries.asp",
+ "title": "متغیرهای CSS در media query",
+ "summary": "با media query می‌توان مقدار متغیرها را برای دستگاه‌های مختلف عوض کرد. در این درس یک متغیر اندازهٔ قلم تعریف می‌کنید و داخل ‎@media‎ مقدارش را برای صفحه‌های پهن‌تر تغییر می‌دهید.",
+ "objectives": [
+  "متغیر محلی در یک کلاس تعریف کنید",
+  "مقدار متغیر را داخل قاعدهٔ ‎@media‎ بازنویسی کنید",
+  "اثر تغییر پهنا روی اندازهٔ قلم را ببینید",
+  "مقدار محاسبه‌شدهٔ متغیر را در ابزار بازرس بخوانید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متغیرهای CSS در media query"
+  },
+  {
+   "type": "h2",
+   "text": "متغیرهای CSS در media query"
+  },
+  {
+   "type": "p",
+   "text": "media query برای تعریف قاعده‌های استایل متفاوت برای دستگاه‌های مختلف است (صفحه‌نمایش، تبلت، گوشی موبایل و...). می‌توانید media query را در فصل Media Queries ما بیشتر یاد بگیرید."
+  },
+  {
+   "type": "p",
+   "text": "حالا می‌خواهیم برای صفحه‌های باریک‌تر از 450px یک مقدار متغیر و برای صفحه‌های پهن‌تر از 450px مقدار دیگری تعیین کنیم."
+  },
+  {
+   "type": "p",
+   "text": "در این‌جا اول یک متغیر محلی تازه به نام ‎--fontsize‎ برای کلاس ‎.container‎ تعریف می‌کنیم و مقدارش را ۲۰ پیکسل می‌گذاریم. بعد یک قاعدهٔ ‎@media‎ می‌سازیم که می‌گوید: «وقتی پهنای مرورگر 450px یا بیشتر شد، مقدار متغیر ‎--fontsize‎ در کلاس ‎.container‎ را به 40px تغییر بده.»:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ":root {\n  --primary-bg-color: #1e90ff;\n  --primary-color:\n  #ffffff;\n}\n\nbody {\n  background-color:\n  var(--primary-bg-color);\n}\n\n.container {\n  --fontsize: 20px;\n\n  color: var(--primary-bg-color);\n  background-color:\n  var(--primary-color);\n  padding: 15px;\n  font-size:\n  var(--fontsize);\n}\n\n.container h2 {\n  border-bottom: 2px\n  solid var(--primary-bg-color);\n}\n\n@media screen and (min-width:\n  450px) {\n  .container {\n    --fontsize: 40px;\n\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_var_mq"
+  },
+  {
+   "type": "p",
+   "text": "مثال دیگری که در آن مقدار متغیر ‎--primary-bg-color‎ را هم داخل قاعدهٔ ‎@media‎ عوض می‌کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ":root {\n  --primary-bg-color: #1e90ff;\n  --primary-color:\n  #ffffff;\n}\n\nbody {\n  background-color:\n  var(--primary-bg-color);\n}\n\n.container {\n  --fontsize: 20px;\n\n  color: var(--primary-bg-color);\n  background-color:\n  var(--primary-color);\n  padding: 15px;\n  font-size:\n  var(--fontsize);\n}\n\n.container h2 {\n  border-bottom: 2px\n  solid var(--primary-bg-color);\n}\n\n@media screen and (min-width: 450px) {\n  .container {\n\n  --fontsize: 40px;\n  }\n  :root {\n\n  --primary-bg-color: lightblue;\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_var_mq2"
+  },
+  {
+   "type": "h2",
+   "text": "تابع var() در CSS"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "تابع",
+    "توضیحات"
+   ],
+   "rows": [
+    [
+     "var()",
+     "مقدار یک متغیر CSS را درج می‌کند"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل var-mq.html بسازید، در کلاس ‎.container‎ متغیر ‎--fontsize: 20px;‎ تعریف کنید و اندازهٔ قلم متن را با var() به آن وصل کنید.",
+   "hint": "متغیر ابتدا مقدار ۲۰ پیکسل دارد و همه‌جا همین مقدار به کار می‌رود."
+  },
+  {
+   "prompt": "یک ‎@media (min-width: 450px)‎ اضافه کنید و داخلش مقدار ‎--fontsize‎ را 40px کنید.",
+   "hint": "تعریف دوبارهٔ متغیر داخل قاعدهٔ ‎@media‎ فقط وقتی پهنای مرورگر به آن حد برسد اثر می‌گذارد."
+  },
+  {
+   "prompt": "پنجره را باریک و پهن کنید و بگویید در چه پهناهایی اندازهٔ قلم عوض می‌شود.",
+   "hint": "مرز همان 450px است که در min-width نوشته‌اید."
+  },
+  {
+   "prompt": "در همان قاعدهٔ ‎@media‎ مقدار ‎--primary-bg-color‎ را هم عوض کنید تا رنگ صفحه هم تغییر کند.",
+   "hint": "هر متغیری که داخل این قاعده دوباره تعریف شود، همان‌جا مقدار تازه می‌گیرد."
+  },
+  {
+   "prompt": "در ابزار بازرس، مقدار محاسبه‌شدهٔ متغیر را زیر عنصر ‎.container‎ در دو حالت باریک و پهن بخوانید.",
+   "hint": "در پنل Styles مقدار متغیرها و اینکه کدام تعریف برنده شده دیده می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در این درس متغیر ‎--fontsize‎ کجا تعریف می‌شود؟",
+   "options": [
+    "روی عنصر body در HTML",
+    "در کلاس ‎.container‎",
+    "در JavaScript",
+    "در فایل جدا"
+   ],
+   "answer": 1,
+   "explanation": "متغیر داخل کلاس ‎.container‎ تعریف می‌شود، پس همان بخش از صفحه به آن دسترسی دارد."
+  },
+  {
+   "question": "قاعدهٔ ‎@media (min-width: 450px)‎ چه زمانی اعمال می‌شود؟",
+   "options": [
+    "وقتی پهنای مرورگر کمتر از 450px باشد",
+    "وقتی پهنای مرورگر 450px یا بیشتر باشد",
+    "همیشه",
+    "فقط در چاپ"
+   ],
+   "answer": 1,
+   "explanation": "min-width کمترین پهنا را تعیین می‌کند، پس از 450px به بالا شرط برقرار است."
+  },
+  {
+   "question": "چرا تعریف دوبارهٔ یک متغیر داخل قاعدهٔ ‎@media‎ کار می‌کند؟",
+   "options": [
+    "چون media query متغیر را حذف می‌کند",
+    "چون هم‌نام‌بودن متغیر و امکان بازنویسی آن در دامنهٔ همان قاعده",
+    "چون JavaScript آن را عوض می‌کند",
+    "چون CSS اجازهٔ تغییر رنگ را نمی‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "همان مکانیزم بازنویسی متغیر است: تعریف تازه در محدودهٔ فعال، مقدار قبلی را جایگزین می‌کند."
+  },
+  {
+   "question": "کدام مورد دربارهٔ media query درست است؟",
+   "options": [
+    "فقط برای رنگ‌ها به کار می‌رود",
+    "برای تعریف قاعده‌های استایل متفاوت برای دستگاه‌های مختلف به کار می‌رود",
+    "فقط در چاپ کار می‌کند",
+    "جایگزین متغیرهاست"
+   ],
+   "answer": 1,
+   "explanation": "media query شرط‌هایی بر پایهٔ ویژگی دستگاه است و داخل آن می‌توان هر استایلی، از جمله مقدار متغیرها، را تعیین کرد."
+  }
+ ]
+}

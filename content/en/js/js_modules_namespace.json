@@ -1,0 +1,221 @@
+{
+ "slug": "js_modules_namespace",
+ "course": "js",
+ "order": 236,
+ "url": "/js/js_modules_namespace.asp",
+ "title": "JS Module Namespace",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JS Module Namespace"
+  },
+  {
+   "type": "h2",
+   "text": "The Module Namespace Object"
+  },
+  {
+   "type": "p",
+   "text": "When you use the syntax:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as name from \"module\";",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "JavaScript creates a module namespace object."
+  },
+  {
+   "type": "p",
+   "text": "This is an immutable object that contains all the exported bindings from that module."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// math_module.js\n\nexport const PI = 3.14159;\n\nexport function add(a, b) {\n\n  return a + b;\n\n}\n\nexport function multiply(a, b) {\n\n  return a * b;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as math from \"./math_module.js\";\n\n// Now you can use the math namespace object:\n\nlet myPi = math.PI\n\nlet result1 = math.add(2, 3));\n\nlet result2 = math.multiply(2, 3));",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_namespace_2"
+  },
+  {
+   "type": "h2",
+   "text": "Module Namespace Support"
+  },
+  {
+   "type": "p",
+   "text": "Module namespace support refers to the mechanism that allows you to import all exports from a module\ninto a single namespace object."
+  },
+  {
+   "type": "p",
+   "text": "The Module Namespace feature is a part of the ES Modules introduced in ECMAScript 2015\nto help organize and access modules in a consistent way."
+  },
+  {
+   "type": "h2",
+   "text": "Module Namespace Features"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "Description"
+    ],
+    [
+     "Namespace",
+     "A special object containing all exports from a module"
+    ],
+    [
+     "Syntax",
+     "import * as name from module"
+    ],
+    [
+     "Purpose",
+     "Organize, access, and reference module exports safely"
+    ],
+    [
+     "Read Only",
+     "You can access exports but not reassign them"
+    ],
+    [
+     "Live Binding",
+     "If an exported value changes in the module, the namespace reflects that change automatically"
+    ],
+    [
+     "Enumerable",
+     "Its properties are enumerable and correspond to named exports"
+    ],
+    [
+     "Prototype",
+     "The namespace is a plain object with no prototype(Object.getPrototypeOf(math) === null)."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Related Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { add } from \"./math_module.js\";",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import math from \"./math_module.js\";",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as math from \"./math_module.js\";",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Module Namespace Export"
+  },
+  {
+   "type": "p",
+   "text": "Module namespace export refers to exporting an entire imported module namespace object from another module."
+  },
+  {
+   "type": "h2",
+   "text": "Namespace Export"
+  },
+  {
+   "type": "p",
+   "text": "Normally, you import all of a module's exports into a module namespace object like this:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as math from \"./math_module.js\";\n\nlet myPi = math.PI;\n\nlet result = math.add(2, 3);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// math_module.js\n\nexport const PI = 3.14159;\n\nexport function add(a, b) {\n\n  return a + b;\n\n}\n\nexport function multiply(a, b) {\n\n  return a * b;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_namespace_2"
+  },
+  {
+   "type": "p",
+   "text": "With module namespace exports, you can re-export that entire namespace from your own module - without having to import it first:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "export * from \"./math_module.js\";",
+   "caption": "utilities.js"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as math from \"./utilities.js\";",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_export_2"
+  },
+  {
+   "type": "p",
+   "text": "The syntax export * as name from \"module\" was added in ECMAScript 2020."
+  },
+  {
+   "type": "h2",
+   "text": "Syntax Overview"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax",
+     "Result"
+    ],
+    [
+     "export * from \"module\"",
+     "Re-export all named exports individually (not as a namespace)"
+    ],
+    [
+     "export * as name from \"module\"",
+     "Re-export all exports grouped under a single namespace"
+    ],
+    [
+     "export { name } from \"module\"",
+     "Re-export specific exports"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Aggregator Scripts"
+  },
+  {
+   "type": "p",
+   "text": "An aggregator script is a script used only to import and re-export items from other modules."
+  },
+  {
+   "type": "p",
+   "text": "Instead of filling your top module with many import statements, you can use a single aggregator script to do it all."
+  }
+ ]
+}

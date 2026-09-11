@@ -1,0 +1,234 @@
+{
+ "slug": "js_modules_import",
+ "course": "js",
+ "order": 235,
+ "url": "/js/js_modules_import.asp",
+ "title": "JavaScript Modules Import",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Modules Import"
+  },
+  {
+   "type": "h2",
+   "text": "Import"
+  },
+  {
+   "type": "p",
+   "text": "You can import modules in two ways, based on if they are\nnamed exports or default exports."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { name, age } from \"./person.js\";",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import message from \"./message.js\";",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Named Imports"
+  },
+  {
+   "type": "p",
+   "text": "Named imports match named exports in a module."
+  },
+  {
+   "type": "p",
+   "text": "They let you import one or more explicitly named variables or functions from a module."
+  },
+  {
+   "type": "p",
+   "text": "You must use the exact names enclosed in curly { } braces:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { name, age } from \"./person.js\";",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "import { add, subtract, PI } from './math.js';",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
+  },
+  {
+   "type": "h2",
+   "text": "Named Import Rules"
+  },
+  {
+   "type": "p",
+   "text": "Import names must match export names:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { addd } from './math.js'; // ❌ Error (name mismatch)",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "You can import multiple items at once:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { add, PI } from './math.js';",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "You can rename them using as:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { add as addition } from './math.js';",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Default Import"
+  },
+  {
+   "type": "p",
+   "text": "Default import is the way to import the primary exported value from a module -\nthe one that was exported using export default."
+  },
+  {
+   "type": "p",
+   "text": "Defalt imports are the counterpart to default exports."
+  },
+  {
+   "type": "p",
+   "text": "You can give a default export any name you like, during import, without using curly braces:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import text from \"./message.js\";",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import message from \"./message.js\";",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_import"
+  },
+  {
+   "type": "h2",
+   "text": "Default Import Rules"
+  },
+  {
+   "type": "p",
+   "text": "Default import imports single default exports"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import message from \"./message.js\";",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "There is no required name. Renaming is allowed."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import text from \"./message.js\";",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Default + Named Import"
+  },
+  {
+   "type": "p",
+   "text": "A module can provide one main function plus some helpers:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "export default function parse() { ... }\n\nexport function validate() { ... }\n\nexport function format() { ... }",
+   "caption": "Module File"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import parse, { validate, format } from './parser.js';",
+   "caption": "Module File"
+  },
+  {
+   "type": "h2",
+   "text": "Importing All"
+  },
+  {
+   "type": "p",
+   "text": "You can import all named exports from a module as a single object using the * syntax."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Import all named exports from person.js\n\nimport * as person from \"./person.js\";",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Import all named exports from math.js\n\nimport * as math from \"./math.js\";",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules4"
+  },
+  {
+   "type": "h2",
+   "text": "Default Import vs Named"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "Default Import",
+     "Named Import"
+    ],
+    [
+     "Typical use case",
+     "One main feature per module",
+     "Multiple features"
+    ],
+    [
+     "Matches export name?",
+     "No (you choose)",
+     "Yes (must match)"
+    ],
+    [
+     "Can rename freely?",
+     "Always",
+     "Only with as"
+    ],
+    [
+     "Export count",
+     "Only one default export allowed",
+     "Multiple exports allowed"
+    ]
+   ]
+  }
+ ]
+}

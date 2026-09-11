@@ -1,0 +1,218 @@
+{
+ "slug": "js_errors",
+ "course": "js",
+ "order": 105,
+ "url": "/js/js_errors.asp",
+ "title": "JavaScript Error Statements",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Error Statements"
+  },
+  {
+   "type": "h2",
+   "text": "The try Statement"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript, the try statement is used to handle errors\n(also called exceptions) that may occur during code execution - without stopping the entire program."
+  },
+  {
+   "type": "p",
+   "text": "The try statement works together with catch."
+  },
+  {
+   "type": "p",
+   "text": "Sometimes it works with finally."
+  },
+  {
+   "type": "p",
+   "text": "And sometimes it works with throw."
+  },
+  {
+   "type": "h2",
+   "text": "The Try Block"
+  },
+  {
+   "type": "p",
+   "text": "The try block contains the code that might throw an error."
+  },
+  {
+   "type": "p",
+   "text": "If no error occurs, the catch block is skipped."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  // Code that may cause an error\n\n} catch (error) {\n\n  // Code to handle the error\n\n}",
+   "caption": "Syntax"
+  },
+  {
+   "type": "h2",
+   "text": "The Catch Block"
+  },
+  {
+   "type": "p",
+   "text": "The catch block executes only if an error occurs in the try block."
+  },
+  {
+   "type": "p",
+   "text": "The error object provides details about what went wrong."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  // Code that may cause an error\n\n} catch (error) {\n\n  // Code to handle the error\n\n}",
+   "caption": "Syntax"
+  },
+  {
+   "type": "h2",
+   "text": "The Finally Block (Optional)"
+  },
+  {
+   "type": "p",
+   "text": "The finally block executes after the try and catch blocks,\nwhether an error occurred or not."
+  },
+  {
+   "type": "p",
+   "text": "It is commonly used for cleanup tasks (e.g., closing files, stopping loaders, etc.)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  // Code that may cause an error\n\n} catch (error) {\n\n  // Code to handle the error\n\n} finally {\n\n  // Code that always runs, no matter what\n\n}",
+   "caption": "Syntax"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Throws Errors"
+  },
+  {
+   "type": "p",
+   "text": "When an error occurs, JavaScript will\nnormally stop and generate an error message."
+  },
+  {
+   "type": "p",
+   "text": "The technical term for this is: JavaScript will throw an\nexception (throw an error)."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JavaScript will actually create an Error object with two properties:\nname and message."
+  },
+  {
+   "type": "h2",
+   "text": "The throw Statement"
+  },
+  {
+   "type": "p",
+   "text": "The throw statement allows you to create a custom error."
+  },
+  {
+   "type": "p",
+   "text": "Technically you can throw an exception (throw an error)."
+  },
+  {
+   "type": "p",
+   "text": "The exception can be a JavaScript String, a Number, a Boolean or an Object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "throw \"Too big\";    // throw a text\n\nthrow 500;          // throw a number",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "If you use throw together with try and\ncatch, you can control program\nflow and generate custom error messages."
+  },
+  {
+   "type": "h2",
+   "text": "Input Validation Example"
+  },
+  {
+   "type": "p",
+   "text": "This example examines input. If the value is wrong,\nan exception (err) is thrown."
+  },
+  {
+   "type": "p",
+   "text": "The exception (err) is caught by the catch statement and a custom error message is displayed:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n<body>\n\n<p>Please input a number between\n5 and 10:</p>\n\n<input id=\"demo\" type=\"text\">\n<button type=\"button\"\nonclick=\"myFunction()\">Test Input</button>\n<p id=\"p01\"></p>\n\n<script>\nfunction myFunction() {\n  const message =\ndocument.getElementById(\"p01\");\n  message.innerHTML = \"\";\n\n  let x =\ndocument.getElementById(\"demo\").value;\n\ntry {\n    if(x.trim() == \"\") throw \"empty\";\n\n if(isNaN(x)) throw \"not a number\";\n\n x = Number(x);\n    if(x < 5) throw\n \"too low\";\n    if(x > 10) throw \"too\n high\";\n  } catch(err) {\n    message.innerHTML =\n\"Input is \" + err;\n  }\n}\n</script>\n\n</body>\n</html>",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_throw_error"
+  },
+  {
+   "type": "h2",
+   "text": "HTML Validation"
+  },
+  {
+   "type": "p",
+   "text": "The code above is just an example."
+  },
+  {
+   "type": "p",
+   "text": "Modern browsers will often use a combination of JavaScript and built-in HTML\nvalidation, using predefined validation rules defined in HTML attributes:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<input id=\"demo\" type=\"number\" min=\"5\" max=\"10\" step=\"1\">",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "You can read more about forms validation in a later chapter of this tutorial."
+  },
+  {
+   "type": "h2",
+   "text": "Finally Example"
+  },
+  {
+   "type": "p",
+   "text": "The finally statement lets you execute code, after try and\ncatch, regardless of the result:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n    Block of code to try\n\n} catch(err) {\n\n    Block of code to handle errors\n\n} finally {\n  Block of code to be executed regardless of the try / catch result\n\n}",
+   "caption": "Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction() {\n  const message =\ndocument.getElementById(\"p01\");\n  message.innerHTML = \"\";\n\n  let x =\ndocument.getElementById(\"demo\").value;\n\ntry {\n\nif(x.trim() == \"\") throw \"is empty\";\n    if(isNaN(x))\nthrow \"is not a number\";\n\n    x = Number(x);\n    if(x >\n10) throw \"is too high\";\n    if(x <\n5) throw \"is too low\";\n  } catch(err)\n{\n    message.innerHTML = \"Error: \" +\nerr + \".\";\n  } finally {\n    document.getElementById(\"demo\").value = \"\";\n\n    }\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_finally_error"
+  },
+  {
+   "type": "h2",
+   "text": "See Also:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Errors"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Silent Errors"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Error Object"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Debugging"
+  }
+ ]
+}

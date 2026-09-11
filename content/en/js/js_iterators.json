@@ -1,0 +1,354 @@
+{
+ "slug": "js_iterators",
+ "course": "js",
+ "order": 77,
+ "url": "/js/js_iterators.asp",
+ "title": "JavaScript Iterators",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Iterators"
+  },
+  {
+   "type": "h2",
+   "text": "The Iterator Object"
+  },
+  {
+   "type": "p",
+   "text": "An Iterator is an object that provides a standard way to access elements sequentially."
+  },
+  {
+   "type": "p",
+   "text": "An Iterator must adheres to the Iterator Protocol: It must have a next() method."
+  },
+  {
+   "type": "h2",
+   "text": "The next() Method"
+  },
+  {
+   "type": "p",
+   "text": "The next() method returns an object with two properties:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The value property holds the next value in the iteration sequence.",
+    "The done property returns false if there are more elements to iterate over,\notherwise it returns true."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The For Of Loop"
+  },
+  {
+   "type": "p",
+   "text": "The JavaScript for..of statement loops\nthrough the elements of an iterable object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "for (variable of iterable) {\n\n  // code block to be executed\n\n}",
+   "caption": "Syntax"
+  },
+  {
+   "type": "p",
+   "text": "Technically, iterables must implement the Symbol.iterator method."
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript the following are iterables:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Strings",
+    "Arrays",
+    "Typed Arrays",
+    "Sets",
+    "Maps"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Because their prototype objects have a\nSymbol.iterator method:"
+  },
+  {
+   "type": "p",
+   "text": "Iterators provide a controlled way to work with data sequences, enabling custom iteration logic\nfor various data structures."
+  },
+  {
+   "type": "p",
+   "text": "They are particularly useful for handling streams of data,\nlazy computation of values, and building custom data structures with defined iteration behaviors."
+  },
+  {
+   "type": "h2",
+   "text": "Helper Functions"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2025 (ECMAScript 2025) officially approved a set of new Iterator Helper methods that\nsignificantly enhance the functionality of iterators in JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "The methods provide a more functional and efficient way to work with iterable objects, including generators,\nby allowing direct manipulation and transformation without first converting them to arrays:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Function",
+     "Description"
+    ],
+    [
+     "drop()",
+     "Returns an iterator that skips a specified number of elements before yielding the rest"
+    ],
+    [
+     "every()",
+     "Returns true if all elements satisfy a test function"
+    ],
+    [
+     "filter()",
+     "Returns an iterator containing elements that satisfy a filter function"
+    ],
+    [
+     "find()",
+     "Returns the first element that satisfies a test function"
+    ],
+    [
+     "flatMap()",
+     "Returns an iterator by mapping each element and then flattening the results"
+    ],
+    [
+     "forEach()",
+     "Executes a function once for each element in the iterator."
+    ],
+    [
+     "from()",
+     "creates an iterator object from an iterable"
+    ],
+    [
+     "map()",
+     "Returns an iterator with all elements transformed by a map function"
+    ],
+    [
+     "reduce()",
+     "Applies a reducer function against each element to reduce it to a single value"
+    ],
+    [
+     "some()",
+     "Returns true if at least one element satisfy a test function"
+    ],
+    [
+     "take()",
+     "Returns an iterator that yields a specified number of elements"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The Iterator.from() Method"
+  },
+  {
+   "type": "p",
+   "text": "The Iterator.from()\ncreates an iterator object from an existing iterable or iterator object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3]);\n\n// Iterate over the elements\n\nlet text = \"\";\n\nfor (const x of myIterator) {\n\n  text += x;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_from"
+  },
+  {
+   "type": "h2",
+   "text": "The drop() Method"
+  },
+  {
+   "type": "p",
+   "text": "The drop() method\nreturns a new iterator that skips a specified number of elements before yielding the rest."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Remove the first five\n\nconst firstFive = myIterator.drop(5);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_drop"
+  },
+  {
+   "type": "h2",
+   "text": "The every() Method"
+  },
+  {
+   "type": "p",
+   "text": "The every(fn) method\nreturns true if all elements in the iterator satisfy the provided test function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Is every Element greater than 7?\n\nlet result = myIterator.every(x => x > 7);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_every"
+  },
+  {
+   "type": "h2",
+   "text": "The filter() Method"
+  },
+  {
+   "type": "p",
+   "text": "The filter() method\nreturns a new iterator containing elements that satisfy a filter function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([32, 33, 16, 40]);\n\n// Filter the iterator\n\nconst filteredIterator = myIterator.filter(x => x > 18);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_filter"
+  },
+  {
+   "type": "h2",
+   "text": "The find() Method"
+  },
+  {
+   "type": "p",
+   "text": "The find(fn) method\nreturns the first element that satisfies a test function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([3, 10, 18, 30, 20]);\n\n// Find first greater than 18\n\nlet result = myIterator.find(x => x > 18);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_find"
+  },
+  {
+   "type": "h2",
+   "text": "The flatMap() Method"
+  },
+  {
+   "type": "p",
+   "text": "The flatMap() method\nreturns a new iterator by mapping each element and then flattening\nthe results into a single iterator."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Map the Iterator\n\nconst mappedIterator = myIterator.flatMap(x => [x, x * 10]);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_flatmap"
+  },
+  {
+   "type": "h2",
+   "text": "The forEach() Method"
+  },
+  {
+   "type": "p",
+   "text": "The forEach() method\nexecutes a provided function once for each element in the iterator."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Iterate over all elements\n\nlet text = \"\";\n\nmyIterator.forEach (x => text += x);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_foreach"
+  },
+  {
+   "type": "h2",
+   "text": "The map() Method"
+  },
+  {
+   "type": "p",
+   "text": "The map() method\nreturns a new iterator with all elements transformed by a map function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Now you can use the map method\n\nconst mappedIterator = myIterator.map(x => x * 2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_map"
+  },
+  {
+   "type": "h2",
+   "text": "The reduce() Method"
+  },
+  {
+   "type": "p",
+   "text": "The reduce() method\napplies a reducer function against an accumulator and each element to reduce it to a single value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from([175, 50, 25]);\n\n// Reduce the Iterator\n\nlet result = myIterator.reduce(myFunc);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_reduce"
+  },
+  {
+   "type": "h2",
+   "text": "The some() Method"
+  },
+  {
+   "type": "p",
+   "text": "The some() method\nreturns true if at least one element in the iterator satisfies the provided test function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Is some Element greater than 7?\n\nlet result = myIterator.some(x => x > 7);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_some"
+  },
+  {
+   "type": "h2",
+   "text": "The take() Method"
+  },
+  {
+   "type": "p",
+   "text": "The take() method\nreturns a new iterator that yields at most a specified number of elements."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Take the first five elements\n\nconst firstFive = myIterator.take(5);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_take"
+  },
+  {
+   "type": "p",
+   "text": "Iterators bring the iteration concept directly into the core JavaScript language\nand provide a mechanism for customizing the behavior of for...of."
+  }
+ ]
+}

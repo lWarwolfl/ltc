@@ -1,0 +1,293 @@
+{
+ "slug": "js_modules_dynamic",
+ "course": "js",
+ "order": 237,
+ "url": "/js/js_modules_dynamic.asp",
+ "title": "JavaScript Dynamic Modules",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Dynamic Modules"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Dynamic Import"
+  },
+  {
+   "type": "p",
+   "text": "Dynamic Import uses the syntax:"
+  },
+  {
+   "type": "p",
+   "text": "import(module);"
+  },
+  {
+   "type": "p",
+   "text": "Dynamic Import was introduced in ECMAScript 2020"
+  },
+  {
+   "type": "p",
+   "text": "Dynamic Import is a way to load JavaScript modules at runtime,\nrather than at the start of your program."
+  },
+  {
+   "type": "h2",
+   "text": "Modern Software"
+  },
+  {
+   "type": "p",
+   "text": "Modern software splits imports into separate chunks."
+  },
+  {
+   "type": "p",
+   "text": "Modules are downloaded only when requested - this method has many names:."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Dynamic Import",
+    "Code Splitting",
+    "Lazy Loading",
+    "Conditional Loading"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Dynamic import is one of the most powerful features for modular and efficient code."
+  },
+  {
+   "type": "p",
+   "text": "Unlike Static Import (which must appear at the top of a file),\nDynamic Import can be used anywhere - inside functions, conditionals, event handlers, etc."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import(\"./module.js\")",
+   "caption": "Syntax"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The argument must be a string or expression that resolves to a path",
+    "You must run the import inside a module script (<script type=\"module\">)"
+   ]
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Type",
+     "Example",
+     "When Loaded"
+    ],
+    [
+     "Static",
+     "import { add } from './math.js';",
+     "At load time"
+    ],
+    [
+     "Dynamic",
+     "const math = await import('./math.js');",
+     "When needed"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Improved Performance"
+  },
+  {
+   "type": "p",
+   "text": "Modules can improve performance by allowing tools to implement \"code splitting\".\nThis means that a user's browser only needs to load the JavaScript modules required for\nthe specific features they are using at a given moment, rather than the entire application's code at once."
+  },
+  {
+   "type": "p",
+   "text": "While modules themselves are a language feature, when combined with bundlers like Webpack or Rollup,\nthey can lead to performance improvements through optimizations like tree-shaking (eliminating unused code),\ncode splitting, and minification."
+  },
+  {
+   "type": "h2",
+   "text": "How Dynamic Import Works"
+  },
+  {
+   "type": "p",
+   "text": "Dynamic Modules use modern async/await:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function run() {\n\n  const module = await import(\"./math.js\");\n\n  let result = module.add(2, 3);\n\n}\n\nrun();",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Export an \"add\" function\n\nexport function add(a, b) {\n\n  return a + b;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules6"
+  },
+  {
+   "type": "h2",
+   "text": "Example Explained"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The script starts running",
+    "It defines and calls run()",
+    "Inside run(), it dynamically loads math.js",
+    "Once loaded, it gets access to the exported function add()",
+    "It calls add(2, 3) and gets 5",
+    "It displays the result"
+   ]
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Step",
+     "Code",
+     "Explained"
+    ],
+    [
+     "1",
+     "async function run()",
+     "Define a function that can use await"
+    ],
+    [
+     "2",
+     "await import(\"./math.js\")",
+     "Load the module file only when needed"
+    ],
+    [
+     "3",
+     "module.add(2, 3)",
+     "Use the exported function from the module"
+    ],
+    [
+     "4",
+     "run()",
+     "Start the process"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function run() {",
+   "caption": null
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "This line defines an asynchronous function called run()",
+    "The async keyword means the function can use await inside it",
+    "The await keyword pauses the function until a Promise is resolved",
+    "In this case, the Promise is the import of the module"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const module = await import(\"./math.js\");",
+   "caption": null
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "import(\"./math.js\") defines a dynamic import",
+    "The module math.js is loaded on demand",
+    "math.js returns a Promise that resolves to its exported content",
+    "The await keyword waits until the module is fully loaded",
+    "Once loaded, the variable module contains the data exported from math.js"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let result = module.add(2, 3);",
+   "caption": null
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Calls the exported function add() from the imported module",
+    "Passes in 2 and 3 as arguments",
+    "The function adds them and returns 5",
+    "The result is stored in result"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "run();",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "When it runs:"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "It loads the module math.js dynamically",
+    "It waits for the module to finish loading",
+    "It calls the add() function of the module",
+    "It displays the result"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Another Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function run(x) {\n\n  const module = await import(\"./temperatures.js\");\n\n  let celsius = module.toCelsius(x);\n\n  document.getElementById(\"demo\").textContent = celsius + \" Celcius\";\n\n}\n\nrun(50);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Convert Fahrenheit to Celsius\n\nexport function toCelsius(farenheit) {\n\n  return (farenheit - 32) * 5 / 9;\n\n}\n\n// Convert Celsius to Fahrenheit\n\nexport function toFahrenheit(celsius) {\n\n  return (celsius * 9 / 5) + 32;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules5"
+  },
+  {
+   "type": "h2",
+   "text": "Dynamic Import Key Features"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Lazy Loading - Load code only when it is needed",
+    "Performance Optimization - Reduce initial load size for faster page load",
+    "Conditional Imports - Import different modules based on conditions."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Conditional Loading"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (user.isAdmin) {\n\n  const adminTools = await import(\"./admin-tools.js\");\n\n  adminTools.init();\n\n}",
+   "caption": null
+  }
+ ]
+}

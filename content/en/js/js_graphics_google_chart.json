@@ -1,0 +1,122 @@
+{
+ "slug": "js_graphics_google_chart",
+ "course": "js",
+ "order": 254,
+ "url": "/js/js_graphics_google_chart.asp",
+ "title": "Google Chart",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Google Chart"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "From simple line charts to complex hierarchical tree maps,\nthe Google Chart gallery provides a large number of ready-to-use chart types:\n\nScatter Chart\nLine Chart\nBar / Column Chart\nArea Chart\nPie Chart\nDonut Chart\nOrg Chart\nMap / Geo Chart"
+  },
+  {
+   "type": "h2",
+   "text": "How to Use Google Chart?"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<div id=\"myChart\" style=\"max-width:700px; height:400px\"></div>",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script src=\"https://www.gstatic.com/charts/loader.js\"></script>",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script>\n\ngoogle.charts.load('current',{packages:['corechart']});\n\ngoogle.charts.setOnLoadCallback(drawChart);\n\n// Your Function\n\nfunction drawChart() {\n\n...\n\n}\n\n</script>",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Bar Charts"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function drawChart() {\n\n// Set Data\n\nconst data = google.visualization.arrayToDataTable([\n\n  ['Contry', 'Mhl'],\n\n  ['Italy', 55],\n\n  ['France', 49],\n\n  ['Spain', 44],\n\n  ['USA', 24],\n\n  ['Argentina', 15]\n\n]);\n\n// Set Options\n\nconst options = {\n\n  title: 'World Wide Wine Production'\n\n};\n\n// Draw\n\nconst chart = new google.visualization.BarChart(document.getElementById('myChart'));\n\nchart.draw(data, options);\n\n}",
+   "caption": "Source Code"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_bar"
+  },
+  {
+   "type": "h2",
+   "text": "Pie Charts"
+  },
+  {
+   "type": "p",
+   "text": "To convert a Bar Chart to a Pie chart, just replace:\ngoogle.visualization.BarChartwith:\ngoogle.visualization.PieChart"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const chart = new google.visualization.PieChart(document.getElementById('myChart'));",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_pie"
+  },
+  {
+   "type": "h2",
+   "text": "3D Pie"
+  },
+  {
+   "type": "p",
+   "text": "To display the Pie in 3D, just add is3D: true to the options:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const options = {\n\n  title: 'World Wide Wine Production',\n\n  is3D: true\n\n};",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_pie3d"
+  },
+  {
+   "type": "h2",
+   "text": "Line Graph"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function drawChart() {\n\n// Set Data\n\nconst data = google.visualization.arrayToDataTable([\n\n  ['Price', 'Size'],\n\n  [50,7],[60,8],[70,8],[80,9],[90,9],[100,9],\n\n  [110,10],[120,11],[130,14],[140,14],[150,15]\n\n  ]);\n\n// Set Options\n\nconst options = {\n\n  title: 'House Prices vs Size',\n\n  hAxis: {title: 'Square Meters'},\n\n  vAxis: {title: 'Price in Millions'},\n\n  legend: 'none'\n\n};\n\n// Draw Chart\n\nconst chart = new google.visualization.LineChart(document.getElementById('myChart'));\n\nchart.draw(data, options);\n\n}",
+   "caption": "Source Code"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_line"
+  },
+  {
+   "type": "h2",
+   "text": "Scatter Plots"
+  },
+  {
+   "type": "p",
+   "text": "To scatter plot the same data, change google.visualization to ScatterChart:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const chart = new google.visualization.ScatterChart(document.getElementById('myChart'));",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_scatter"
+  }
+ ]
+}

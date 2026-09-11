@@ -1,0 +1,311 @@
+{
+ "slug": "html5_canvas",
+ "course": "html",
+ "order": 63,
+ "url": "/html/html5_canvas.asp",
+ "title": "گرافیک canvas در HTML",
+ "summary": "عنصر <canvas> یک ناحیهٔ مستطیلی برای کشیدن گرافیک روی صفحه است. در این درس می‌بینید canvas چه چیزی است، چرا برای کشیدن واقعی به JavaScript نیاز دارد و چطور با متدهای بافت دوبعدی خط، دایره، متن و گرادیان بکشید.",
+ "objectives": [
+  "بگویید عنصر <canvas> چیست و چه ویژگی‌هایی لازم دارد",
+  "با getContext(\"2d\") بافت دوبعدی را بگیرید",
+  "با متدهای canvas یک خط، یک دایره و یک متن بکشید",
+  "با createLinearGradient یک مستطیل گرادیانی بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "گرافیک canvas در HTML"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر شما از عنصر <canvas> پشتیبانی نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "عنصر <canvas> در HTML برای کشیدن گرافیک روی صفحهٔ وب به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "تصویر سمت چپ با <canvas> ساخته شده است و چهار چیز را نشان می‌دهد: یک مستطیل قرمز، یک مستطیل گرادیانی، یک مستطیل چندرنگ و یک متن چندرنگ."
+  },
+  {
+   "type": "h2",
+   "text": "canvas در HTML چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "عنصر <canvas> در HTML برای کشیدن گرافیک، به‌صورت درجا و با JavaScript به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "عنصر <canvas> فقط ظرفی برای گرافیک است. برای کشیدن واقعی گرافیک باید از JavaScript استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "canvas چند متد برای کشیدن مسیر، جعبه، دایره و متن و همچنین افزودن تصویر دارد."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ مرورگرهای اصلی از canvas پشتیبانی می‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "مثال‌های canvas"
+  },
+  {
+   "type": "p",
+   "text": "canvas یک ناحیهٔ مستطیلی روی صفحهٔ HTML است. به‌طور پیش‌فرض، canvas نه حاشیه دارد و نه محتوا."
+  },
+  {
+   "type": "p",
+   "text": "نشانه‌گذاری آن این‌طور است:"
+  },
+  {
+   "type": "p",
+   "text": "<canvas id=\"myCanvas\" width=\"200\" height=\"100\">\n</canvas>"
+  },
+  {
+   "type": "p",
+   "text": "نکته: همیشه ویژگی id را تعیین کنید (تا در اسکریپت به آن ارجاع بدهید) و ویژگی‌های width و height را هم بگذارید تا اندازهٔ canvas مشخص شود. برای افزودن حاشیه، از ویژگی style استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "این هم نمونه‌ای از یک canvas سادهٔ خالی:"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر شما از عنصر canvas پشتیبانی نمی‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<canvas id=\"myCanvas\" width=\"200\" height=\"100\"\nstyle=\"border:1px solid\n#000000;\">\n\n</canvas>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_canvas_empty"
+  },
+  {
+   "type": "h2",
+   "text": "افزودن JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "بعد از ساختن ناحیهٔ مستطیلی canvas، باید یک JavaScript اضافه کنید که کار کشیدن را انجام دهد."
+  },
+  {
+   "type": "p",
+   "text": "چند نمونه:"
+  },
+  {
+   "type": "h3",
+   "text": "کشیدن خط"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر شما از عنصر canvas پشتیبانی نمی‌کند"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nvar c = document.getElementById(\"myCanvas\");\nvar ctx = c.getContext(\"2d\");\n\n ctx.moveTo(0, 0);\nctx.lineTo(200, 100);\n\n ctx.stroke();\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_canvas_tut_path"
+  },
+  {
+   "type": "h2",
+   "text": "کشیدن دایره"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر شما از عنصر canvas پشتیبانی نمی‌کند"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nvar c = document.getElementById(\"myCanvas\");\nvar ctx = c.getContext(\"2d\");\n\n ctx.beginPath();\nctx.arc(95, 50, 40, 0, 2 * Math.PI);\nctx.stroke();\n\n  </script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_canvas_tut_path2"
+  },
+  {
+   "type": "h2",
+   "text": "کشیدن متن"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر شما از عنصر canvas پشتیبانی نمی‌کند"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nvar c = document.getElementById(\"myCanvas\");\nvar ctx = c.getContext(\"2d\");\n\n ctx.font = \"30px Arial\";\nctx.fillText(\"Hello World\", 10, 50);\n\n   </script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_canvas_tut_text"
+  },
+  {
+   "type": "h2",
+   "text": "متن دورخط"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر شما از عنصر canvas پشتیبانی نمی‌کند"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nvar c = document.getElementById(\"myCanvas\");\nvar ctx = c.getContext(\"2d\");\n\n ctx.font = \"30px Arial\";\nctx.strokeText(\"Hello World\", 10, 50);\n\n  </script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_canvas_tut_text2"
+  },
+  {
+   "type": "h2",
+   "text": "کشیدن گرادیان خطی"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر شما از عنصر canvas پشتیبانی نمی‌کند"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nvar c = document.getElementById(\"myCanvas\");\n\n var ctx = c.getContext(\"2d\");\n\n // Create gradient\n\n var grd = ctx.createLinearGradient(0, 0, 200, 0);\n\n grd.addColorStop(0, \"red\");\n\n grd.addColorStop(1, \"white\");\n\n // Fill with gradient\n\n ctx.fillStyle = grd;\n\n ctx.fillRect(10, 10, 150, 80);\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_canvas_tut_grad"
+  },
+  {
+   "type": "h2",
+   "text": "کشیدن گرادیان دایره‌ای"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر شما از عنصر canvas پشتیبانی نمی‌کند"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nvar c = document.getElementById(\"myCanvas\");\n\n var ctx = c.getContext(\"2d\");\n\n // Create gradient\n\n var grd = ctx.createRadialGradient(75, 50, 5, 90, 60, 100);\n\n grd.addColorStop(0, \"red\");\n\n grd.addColorStop(1, \"white\");\n\n // Fill with gradient\n\n  ctx.fillStyle = grd;\nctx.fillRect(10, 10, 150, 80);\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_canvas_tut_grad2"
+  },
+  {
+   "type": "h2",
+   "text": "کشیدن تصویر"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nvar c = document.getElementById(\"myCanvas\");\n\n var ctx = c.getContext(\"2d\");\n\n var img = document.getElementById(\"scream\");\n\n ctx.drawImage(img, 10, 10);\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_canvas_tut_img"
+  },
+  {
+   "type": "h2",
+   "text": "آموزش canvas در HTML"
+  },
+  {
+   "type": "p",
+   "text": "برای یادگیری بیشتر دربارهٔ <canvas>، آموزش canvas در HTML ما را بخوانید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل canvas.html بسازید و یک <canvas id=\"myCanvas\" width=\"200\" height=\"100\" style=\"border:1px solid #000;\"> در آن بگذارید.",
+   "hint": "canvas به‌طور پیش‌فرض نه حاشیه دارد نه محتوا؛ حاشیه را با ویژگی style بدهید."
+  },
+  {
+   "prompt": "داخل یک <script> عنصر را با document.getElementById بگیرید و با getContext(\"2d\") بافت دوبعدی را بسازید.",
+   "hint": "همان ctx که در همهٔ مثال‌های درس دیده می‌شود از همین متد می‌آید."
+  },
+  {
+   "prompt": "با moveTo و lineTo و stroke یک خط بکشید، بعد با beginPath و arc یک دایره بکشید.",
+   "hint": "قبل از شروع مسیر تازه beginPath را صدا بزنید تا مسیر قبلی پاک شود."
+  },
+  {
+   "prompt": "با fillText یک متن روی canvas بنویسید و اندازهٔ قلمش را با ctx.font عوض کنید.",
+   "hint": "ویژگی font را قبل از fillText تنظیم کنید."
+  },
+  {
+   "prompt": "با createLinearGradient و addColorStop یک مستطیل گرادیانی بکشید.",
+   "hint": "گرادیان را به fillStyle بدهید و بعد fillRect را صدا بزنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "عنصر <canvas> به‌تنهایی چه کاری انجام می‌دهد؟",
+   "options": [
+    "خودش شکل‌ها را می‌کشد",
+    "فقط ظرفی برای گرافیک است و کشیدن با JavaScript انجام می‌شود",
+    "فقط برای پخش ویدئو به کار می‌رود",
+    "بدون JavaScript هم گرافیک می‌کشد"
+   ],
+   "answer": 1,
+   "explanation": "canvas فقط یک ناحیهٔ مستطیلی خالی است؛ برای کشیدن واقعی گرافیک باید با JavaScript متدهای آن را صدا بزنید."
+  },
+  {
+   "question": "برای گرفتن بافت دوبعدی یک canvas کدام کد درست است؟",
+   "options": [
+    "c.getContext(\"2d\")",
+    "c.context(2)",
+    "c.canvas(\"2d\")",
+    "c.draw(\"2d\")"
+   ],
+   "answer": 0,
+   "explanation": "پس از گرفتن عنصر با document.getElementById، متد getContext(\"2d\") شیء بافت (ctx) را برمی‌گرداند که همهٔ متدهای رسم روی آن صدا زده می‌شوند."
+  },
+  {
+   "question": "کدام متد یک متن را روی canvas پر می‌کند؟",
+   "options": [
+    "strokeText",
+    "drawText",
+    "fillText",
+    "writeText"
+   ],
+   "answer": 2,
+   "explanation": "fillText متن را توپُر می‌کشد و strokeText فقط دور حروف را خط می‌کشد. drawText و writeText متد canvas نیستند."
+  },
+  {
+   "question": "برای کشیدن دایره روی canvas از کدام متد استفاده می‌کنیم؟",
+   "options": [
+    "circle()",
+    "arc()",
+    "ellipse()",
+    "round()"
+   ],
+   "answer": 1,
+   "explanation": "دایره با beginPath و arc رسم می‌شود؛ مثلاً ctx.arc(95, 50, 40, 0, 2 * Math.PI) و بعد stroke."
+  },
+  {
+   "question": "چرا تعیین width و height روی canvas لازم است؟",
+   "options": [
+    "چون رنگ پس‌زمینه را تعیین می‌کند",
+    "چون بدون آن getContext کار نمی‌کند",
+    "چون سرعت رسم را دو برابر می‌کند",
+    "چون اندازهٔ ناحیهٔ canvas را مشخص می‌کند"
+   ],
+   "answer": 3,
+   "explanation": "width و height اندازهٔ ناحیهٔ رسم را تعیین می‌کنند؛ رنگ و حاشیه کار ویژگی style است."
+  }
+ ]
+}

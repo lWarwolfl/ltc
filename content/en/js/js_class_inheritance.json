@@ -1,0 +1,138 @@
+{
+ "slug": "js_class_inheritance",
+ "course": "js",
+ "order": 219,
+ "url": "/js/js_class_inheritance.asp",
+ "title": "JavaScript Class Inheritance",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Class Inheritance"
+  },
+  {
+   "type": "h2",
+   "text": "Class Inheritance"
+  },
+  {
+   "type": "p",
+   "text": "To create a class inheritance, use the extends\nkeyword."
+  },
+  {
+   "type": "p",
+   "text": "A class created with a class inheritance inherits all the methods from\nanother class:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "class Car {\n  constructor(brand) {\n    this.carname =\n  brand;\n\n  }\n  present() {\n    return 'I have a ' + this.carname;\n\n  }\n}\n\nclass Model extends Car {\n\n  constructor(brand, mod) {\n    super(brand);\n    this.model = mod;\n\n  }\n  show() {\n\n      return this.present() + ', it is a ' + this.model;\n\n  }\n}\n\nlet myCar = new Model(\"Ford\", \"Mustang\");\ndocument.getElementById(\"demo\").innerHTML\n  = myCar.show();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_inherit"
+  },
+  {
+   "type": "p",
+   "text": "The super() method refers to the parent\nclass."
+  },
+  {
+   "type": "p",
+   "text": "By calling the super() method in the\nconstructor method, we call the parent's constructor method and gets access to\nthe parent's properties and methods."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Inheritance is useful for code reusability: reuse properties and methods of an existing class when you create a new class."
+  },
+  {
+   "type": "h2",
+   "text": "Getters and Setters"
+  },
+  {
+   "type": "p",
+   "text": "Classes also allow you to use getters and setters."
+  },
+  {
+   "type": "p",
+   "text": "It can be smart to use getters and setters for your properties, especially if\nyou want to do something special with the value before returning them, or before\nyou set them."
+  },
+  {
+   "type": "p",
+   "text": "To add getters and setters in the class, use the\nget and set keywords."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "class Car {\n  constructor(brand) {\n    this.carname\n  = brand;\n  }\n  get cnam() {\n\n  return this.carname;\n  }\n  set cnam(x) {\n\n  this.carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  document.getElementById(\"demo\").innerHTML = myCar.cnam;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_getters"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "even if the getter is a method, you do not use parentheses when you\nwant to get the property value."
+  },
+  {
+   "type": "p",
+   "text": "The name of the getter/setter method cannot be the same as the name of the\nproperty, in this case carname."
+  },
+  {
+   "type": "p",
+   "text": "Many programmers use an underscore character _\nbefore the property name to separate the getter/setter from the actual property:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "class Car {\n  constructor(brand) {\n    this._carname\n  = brand;\n  }\n  get carname() {\n\n  return this._carname;\n  }\n  set carname(x) {\n\n  this._carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  document.getElementById(\"demo\").innerHTML = myCar.carname;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_getters2"
+  },
+  {
+   "type": "p",
+   "text": "To use a setter, use the same syntax as when you set a property value, without parentheses:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "class Car {\n  constructor(brand) {\n    this._carname\n  = brand;\n  }\n  get carname() {\n\n  return this._carname;\n  }\n  set carname(x) {\n\n  this._carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  myCar.carname = \"Volvo\";\n\n  document.getElementById(\"demo\").innerHTML = myCar.carname;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_setter"
+  },
+  {
+   "type": "h2",
+   "text": "Hoisting"
+  },
+  {
+   "type": "p",
+   "text": "Unlike functions, and other JavaScript declarations, class declarations are not hoisted."
+  },
+  {
+   "type": "p",
+   "text": "That means that you must declare a class before you can use it:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//You cannot use the class yet.\n//myCar = new Car(\"Ford\") will raise an error.\n\nclass Car {\n\n  constructor(brand) {\n    this.carname = brand;\n\n  }\n}\n\n//Now you can use the class:\nconst myCar = new Car(\"Ford\")",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_hoisting"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "For other declarations, like functions, you will NOT get an\nerror when you try to use it before it is declared, because the default behavior\nof JavaScript declarations are hoisting (moving the declaration to the top)."
+  }
+ ]
+}

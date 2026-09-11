@@ -1,0 +1,205 @@
+{
+ "slug": "css_supports_rule",
+ "course": "css",
+ "order": 187,
+ "url": "/css/css_supports_rule.asp",
+ "title": "قاعدهٔ @supports در CSS",
+ "summary": "قاعدهٔ @supports به شما اجازه می‌دهد قبل از اعمال یک شیوه، پشتیبانی مرورگر از خصوصیت یا مقدار آن را بسنجید. در این درس نحو این قاعده، شیوه‌های جانشین، نفی با not و ترکیب شرط‌ها با and و or را یاد می‌گیرید.",
+ "objectives": [
+  "توضیح دهید قاعدهٔ @supports چه چیزی را بررسی می‌کند",
+  "یک قاعدهٔ @supports با شیوهٔ جانشین بنویسید",
+  "شرط‌ها را با not و and و or ترکیب کنید",
+  "بگویید چرا شیوهٔ جانشین باید بیرون از @supports باشد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "قاعدهٔ @supports در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "قاعدهٔ @supports در CSS"
+  },
+  {
+   "type": "p",
+   "text": "قاعدهٔ @supports به شما اجازه می‌دهد بررسی کنید که مرورگر از یک خصوصیت یا مقدار خاص CSS پشتیبانی می‌کند یا نه و اگر آن ویژگی پشتیبانی نمی‌شود، شیوه‌های جانشین (fallback) تعریف کنید."
+  },
+  {
+   "type": "p",
+   "text": "این کار برای وقتی مفید است که بخواهید شیوه‌ای را فقط در مرورگری اعمال کنید که از عهدهٔ آن برمی‌آید."
+  },
+  {
+   "type": "h3",
+   "text": "نحو پایه"
+  },
+  {
+   "type": "p",
+   "text": "@supports (property: value) {\n  /* قواعد CSS که در صورت درست بودن شرط اعمال می‌شوند */\n}"
+  },
+  {
+   "type": "h2",
+   "text": "مثال: استفاده از @supports با grid و flex"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید @supports را با CSS معمولی ترکیب کنید تا شیوهٔ جانشین بدهید."
+  },
+  {
+   "type": "p",
+   "text": "در اینجا اگر مرورگر از display: flex پشتیبانی کند، CSS داخل قاعدهٔ @supports اعمال می‌شود. در غیر این صورت کلاس .container که بیرون از قاعدهٔ @supports است اعمال می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/* use this CSS if the browser does not support display: flex */\n\n.container {\n\n  float: left;\n\n  width: 100%;\n\n}\n\n/* use this CSS if the browser supports display: flex */\n\n@supports (display: flex) {\n\n  .container {\n\n    display: flex;\n\n  }\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_supports_fallback"
+  },
+  {
+   "type": "p",
+   "text": "در اینجا اگر مرورگر از display: grid پشتیبانی کند، CSS داخل قاعدهٔ @supports اعمال می‌شود. در غیر این صورت کلاس .container که بیرون از قاعدهٔ @supports است اعمال می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/* use this CSS if the browser does not support display: grid */\n.container\n    {\n  display: table;\n  width: 90%;\n  background-color:\n    #2196F3;\n  padding: 10px;\n}\n\n/* use this CSS if the browser\n    supports display: grid */\n@supports (display: grid) {\n  .container\n    {\n    display: grid;\n    grid: auto;\n\n    grid-gap: 10px;\n    background-color: #2196F3;\n\n    padding: 10px;\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_atrule_supports"
+  },
+  {
+   "type": "h2",
+   "text": "نفی با not"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید از not استفاده کنید تا شیوه را فقط وقتی اعمال کنید که یک ویژگی پشتیبانی نمی‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@supports not (display: grid) {\n\n  .warning {\n\n    background-color: pink;\n\n    padding: 10px;\n\n    border: 1px solid red;\n\n  }\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "ترکیب شرط‌ها"
+  },
+  {
+   "type": "p",
+   "text": "برای چند شرط می‌توانید از and، or و not استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@supports (display: grid) and (gap: 10px) {\n\n  .container {\n\n    display: grid;\n\n    gap: 10px;\n\n  }\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "همیشه شیوه‌های جانشین را برای مرورگرهای قدیمی‌تر، بیرون از @supports بنویسید."
+  },
+  {
+   "type": "h2",
+   "text": "مرجع CSS"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "قاعدهٔ at",
+    "توضیحات"
+   ],
+   "rows": [
+    [
+     "@supports",
+     "برای بررسی اینکه مرورگر از یک ویژگی CSS پشتیبانی می‌کند یا نه به کار می‌رود"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل supports.html بسازید و یک div با کلاس container داخلش بگذارید. بیرون از هر قاعده‌ای برایش float: left; و width: 100%; بنویسید.",
+   "hint": "این CSS جانشین است؛ برای مرورگرهایی که flex را نمی‌فهمند."
+  },
+  {
+   "prompt": "به همان فایل یک قاعدهٔ @supports (display: flex) اضافه کنید و داخلش برای .container مقدار display: flex; بگذارید. صفحه را در مرورگر باز کنید.",
+   "hint": "شرط داخل پرانتز باید دقیقاً خصوصیت و مقدار باشد؛ مثل (display: flex)."
+  },
+  {
+   "prompt": "قاعده را به @supports not (display: grid) عوض کنید و داخلش پس‌زمینهٔ صورتی برای یک div بگذارید. ببینید در مرورگر امروزی چه اتفاقی می‌افتد؟",
+   "hint": "چون مرورگر امروزی از grid پشتیبانی می‌کند، شرط not برقرار نیست و شیوه اعمال نمی‌شود."
+  },
+  {
+   "prompt": "یک قاعده با شرط ترکیبی بنویسید: @supports (display: grid) and (gap: 10px) و داخلش ظرف را grid کنید.",
+   "hint": "شرط‌ها را با and و or ترکیب کنید؛ همهٔ شرط‌ها با یک جفت پرانتز جدا نوشته می‌شوند."
+  },
+  {
+   "prompt": "توضیح دهید چرا برای هر @supports باید شیوهٔ جانشین هم بنویسیم.",
+   "hint": "مرورگرهای قدیمی‌تر اصلاً قاعدهٔ @supports را نمی‌خوانند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "قاعدهٔ @supports چه کاری انجام می‌دهد؟",
+   "options": [
+    "بررسی می‌کند مرورگر از یک خصوصیت یا مقدار CSS پشتیبانی می‌کند یا نه",
+    "سرعت بارگذاری صفحه را اندازه می‌گیرد",
+    "فایل CSS را به مرورگر معرفی می‌کند",
+    "خصوصیت‌های ناشناخته را به‌طور خودکار ترجمه می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "شرط @supports روی پشتیبانی مرورگر از یک خصوصیت یا مقدار CSS تست می‌شود و اگر درست بود، قواعد داخلش اعمال می‌شوند."
+  },
+  {
+   "question": "در مثال درس، شیوهٔ جانشین برای display: flex کجا نوشته می‌شود؟",
+   "options": [
+    "داخل @supports بعد از شیوهٔ اصلی",
+    "داخل تگ <style> در فایل HTML",
+    "بیرون از قاعدهٔ @supports",
+    "در فایل JavaScript"
+   ],
+   "answer": 2,
+   "explanation": "قواعد بیرون از @supports همیشه خوانده می‌شوند و نقش جانشین را بازی می‌کنند؛ مرورگر قدیمی که @supports را نمی‌فهمد، فقط همان‌ها را اعمال می‌کند."
+  },
+  {
+   "question": "با کدام کلیدواژه شیوه‌ای را فقط وقتی اعمال می‌کنید که ویژگی پشتیبانی نمی‌شود؟",
+   "options": [
+    "and",
+    "not",
+    "or",
+    "if"
+   ],
+   "answer": 1,
+   "explanation": "@supports not (display: grid) شرط را برعکس می‌کند. and و or برای ترکیب چند شرط‌اند و if در CSS وجود ندارد."
+  },
+  {
+   "question": "اگر بنویسید @supports (display: grid) or (display: flex)، شرط چه زمانی برقرار است؟",
+   "options": [
+    "فقط وقتی هر دو پشتیبانی شوند",
+    "هرگز",
+    "وقتی دست‌کم یکی از این دو پشتیبانی شود",
+    "فقط وقتی هیچ‌کدام پشتیبانی نشوند"
+   ],
+   "answer": 2,
+   "explanation": "or یعنی دست‌کم یکی از شرط‌ها کافی است. حالت نیاز به هر دو، کارِ and است."
+  },
+  {
+   "question": "کدام جمله دربارهٔ مرورگرهای قدیمی درست است؟",
+   "options": [
+    "قاعدهٔ @supports را اجرا می‌کنند ولی شیوه‌های جانشین را نادیده می‌گیرند",
+    "برای کار کردن صفحه باید شیوهٔ جانشین را بیرون از @supports بنویسید",
+    "بدون @supports هیچ CSS ای را نمی‌خوانند",
+    "برای پشتیبانی از آن‌ها باید JavaScript بنویسید"
+   ],
+   "answer": 1,
+   "explanation": "مرورگر قدیمی خودِ @supports را نمی‌شناسد و کل قاعده را رد می‌کند؛ به همین دلیل شیوهٔ جانشین باید بیرون از آن باشد."
+  }
+ ]
+}

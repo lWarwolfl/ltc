@@ -1,0 +1,697 @@
+{
+ "slug": "js_regexp_flags",
+ "course": "js",
+ "order": 82,
+ "url": "/js/js_regexp_flags.asp",
+ "title": "JavaScript RegExp Flags",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript RegExp Flags"
+  },
+  {
+   "type": "h2",
+   "text": "RegExp Modifier Flags"
+  },
+  {
+   "type": "p",
+   "text": "Flags are parameters that can modify how a regex pattern is used,\nsuch as making it case-insensitive or global."
+  },
+  {
+   "type": "p",
+   "text": "/pattern/flags"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Regex Flags"
+  },
+  {
+   "type": "h2",
+   "text": "Revised July 2025"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Flag",
+     "Description"
+    ],
+    [
+     "/d",
+     "Performs substring matches (new 2022)"
+    ],
+    [
+     "/g",
+     "Performs a global match (find all)"
+    ],
+    [
+     "/i",
+     "Performs case-insensitive matching"
+    ],
+    [
+     "/m",
+     "Performs multiline matching"
+    ],
+    [
+     "/s",
+     "Allows . (dot) to match line terminators (new 2018)"
+    ],
+    [
+     "/u",
+     "Enables Unicode support (new 2015)"
+    ],
+    [
+     "/v",
+     "An upgrade to the /u flag for better Unicode support (new 2025)"
+    ],
+    [
+     "/y",
+     "Performs a \"sticky\" search (new 2015)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Flag Syntax: /pattern/flags"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "/",
+     "Opening delimiter for the regular expression"
+    ],
+    [
+     "pattern",
+     "Regular expression (a search criteria)"
+    ],
+    [
+     "/",
+     "Closing delimiter for the regular expression"
+    ],
+    [
+     "flags",
+     "One or more single modifier flags"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "RegExp /g Flag (Global)"
+  },
+  {
+   "type": "p",
+   "text": "The /g flag matches all occurrences of the pattern, rather than just the first one."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Is this all there is?\";\n\nconst pattern = /is/g;\n\nlet result = text.match(pattern);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_g"
+  },
+  {
+   "type": "h2",
+   "text": "RegExp /i Flag (Insensitive)"
+  },
+  {
+   "type": "p",
+   "text": "The /i flag makes the match case-insensitive: /abc/i matches \"abc\", \"AbC\", \"ABC\"."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Visit W3Schools\";\n\nconst pattern = /is/g;\n\nlet result = text.match(pattern);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_i"
+  },
+  {
+   "type": "h2",
+   "text": "RegExp /d Flag"
+  },
+  {
+   "type": "p",
+   "text": "The /d flag (the Indices flag) is used to find the start and end positions\nof substrings captured by regular expression groups."
+  },
+  {
+   "type": "p",
+   "text": "It does not change the regex match. It provides metadata about the result."
+  },
+  {
+   "type": "p",
+   "text": "The array returned by exec() or match()\nincludes an additional indices property: An array of pairs representing the [start, end] index of a specific capture group."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"aaaabb\";\n\nconst pattern = /(aa)(bb)/d;\n\nlet result = text.match(pattern);\n\nlet indexes = result.indices;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_indices"
+  },
+  {
+   "type": "p",
+   "text": "You can check if a regex has the /d flag using the hasIndices property."
+  },
+  {
+   "type": "h2",
+   "text": "RegExp /s Flag (Single line/DotAll)"
+  },
+  {
+   "type": "p",
+   "text": "The /s flag allows the . (dot) metacharacter to match newline characters (\\n) in addition to any other\ncharacter."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Line\\nLine.\";\n\nconst pattern = /Line./gs;\n\nlet result = text.match(pattern);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_s"
+  },
+  {
+   "type": "h2",
+   "text": "RegExp /m Flag (Multiline)"
+  },
+  {
+   "type": "p",
+   "text": "The /m (multiline) flag specifies a multiline match."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = `Is this\n\nall there\n\nis`\n\nlet pattern = /^is/m;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_m"
+  },
+  {
+   "type": "p",
+   "text": "The /m flag affects the behavior of ^ and $."
+  },
+  {
+   "type": "p",
+   "text": "^ specifies a match at the start of a string."
+  },
+  {
+   "type": "p",
+   "text": "$ specifies a match at the end of a string."
+  },
+  {
+   "type": "p",
+   "text": "With /m set, ^ and $ will match the start and end of each line,\nin a multiline string, in addition to the start and end of the entire string."
+  },
+  {
+   "type": "h2",
+   "text": "RegExp /y Flag (Sticky):"
+  },
+  {
+   "type": "p",
+   "text": "The /y flag performs a \"sticky\" search from the lastIndex property of the RegExp object."
+  },
+  {
+   "type": "p",
+   "text": "The /y flag lets a match start at the exact position where the last match ended."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"abc def ghi\";\n\nconst pattern = /\\w+/y;\n\n// Start match from position 4\n\npattern.lastIndex = 4;\n\nlet result = text.match(pattern);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"abc def ghi\";\n\nconst pattern = /\\w+/;\n\n// Start match from position 4\n\npattern.lastIndex = 4;\n\nlet result = text.match(pattern);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_y"
+  },
+  {
+   "type": "p",
+   "text": "The example above uses a regex metacharacter \\w"
+  },
+  {
+   "type": "p",
+   "text": "The meaning of /\\w/ is \"match an (alphanumeric) word character\"."
+  },
+  {
+   "type": "p",
+   "text": "The meaning of /\\w+/ is \"match one or more word characters\"."
+  },
+  {
+   "type": "p",
+   "text": "You will learn more about metacharacters in the next chapters."
+  },
+  {
+   "type": "h2",
+   "text": "RegExp /u Flag (Unicode)"
+  },
+  {
+   "type": "p",
+   "text": "The /u flag enables full Unicode support in a regular expression."
+  },
+  {
+   "type": "p",
+   "text": "By default, JavaScript RegExp treats 4-byte Unicode characters\n(like emojis or less common symbols) as two separate 2-byte \"surrogate\" code units."
+  },
+  {
+   "type": "p",
+   "text": "The /u flag treats the pattern as a sequence of Unicode code points,\nwhich is important for correctly handling of characters outside the Basic Multilingual Plane (BMP)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"䷀\";\n\nconst pattern = /\\u{04DC0}/u;\n\n// Returns true:\n\nlet result = pattern.test(text);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_u_1"
+  },
+  {
+   "type": "p",
+   "text": "Without the /u flag, regular expressions are not \"Unicode-aware\"."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"䷀\";\n\nconst pattern = /\\u{04DC0}/;\n\n// Returns false:\n\nlet result = pattern.test(text);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_u_3"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2025 introduced the /v flag as an \"upgrade\" to the /u flag."
+  },
+  {
+   "type": "p",
+   "text": "The /v Flag enables more Unicode-related features."
+  },
+  {
+   "type": "h2",
+   "text": "RegExp /v Flag (Unicode Sets)"
+  },
+  {
+   "type": "p",
+   "text": "The /v flag is an upgrade to the /u flag for better Unicode support."
+  },
+  {
+   "type": "p",
+   "text": "It enables more Unicode-related features."
+  },
+  {
+   "type": "p",
+   "text": "The new features are:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The \\p escape sequence matches strings, instead of just characters.",
+    "The character class is upgraded to allow intersection, union, and subtraction syntaxes,\nas well as matching multiple Unicode characters."
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello 😄\";\n\nconst pattern = /\\p{Emoji}/v;\n\n// Returns true:\n\nlet result = pattern.test(text);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_v"
+  },
+  {
+   "type": "p",
+   "text": "Without the /v flag, regular expressions are not \"Unicode-aware\"."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello 😄\";\n\nconst pattern = /\\p{Emoji}/;\n\n// Returns false:\n\nlet result = pattern.test(text);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_v_2"
+  },
+  {
+   "type": "h2",
+   "text": "RegExp Group Modifiers (?flag)"
+  },
+  {
+   "type": "p",
+   "text": "The (?flag) syntax is a group modifier (inline flag modifier)."
+  },
+  {
+   "type": "p",
+   "text": "It allows for modifying flags in a part of a pattern, rather than to the entire pattern."
+  },
+  {
+   "type": "p",
+   "text": "(?flags:pattern) enables the flags only for the pattern in the group."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"W3Schools tutorials.\";\n\nconst pattern = /(?i:WShools) tutorials/;\n\n// Returns true:\n\nlet result = pattern.test(text);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"W3Schools Tutorials.\";\n\nconst pattern = /(?i:W3Sshools) tutorials/;\n\n// Returns false:\n\nlet result = pattern.test(text);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_groups_modifier"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Regex Flag Properties"
+  },
+  {
+   "type": "h2",
+   "text": "Revised July 2025"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Property",
+     "Description"
+    ],
+    [
+     "global",
+     "Returns true if the /g flag is set"
+    ],
+    [
+     "hasIndices",
+     "Returns true if the /d flag is set"
+    ],
+    [
+     "ignoreCase",
+     "Returns true if the /i flag is set"
+    ],
+    [
+     "multiline",
+     "Returns true if the /m flag is set"
+    ],
+    [
+     "dotAll",
+     "Returns true if the /s flag is set"
+    ],
+    [
+     "sticky",
+     "Returns true if the /y flag is set"
+    ],
+    [
+     "unicode",
+     "Returns true if the /u flag is set"
+    ],
+    [
+     "unicodeSets",
+     "Returns true if the /v flag is set"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The dotAll Property"
+  },
+  {
+   "type": "p",
+   "text": "The dotAll property returns true\nif the /s flag is set."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/s;\n\nlet result = pattern.dotAll;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_dotall"
+  },
+  {
+   "type": "h2",
+   "text": "The global Property"
+  },
+  {
+   "type": "p",
+   "text": "The global property returns true\nif the /g flag is set."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/g;\n\nlet result = pattern.global;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_global"
+  },
+  {
+   "type": "h2",
+   "text": "The hasIndices Property"
+  },
+  {
+   "type": "p",
+   "text": "The hasIndices property returns true\nif the /d flag is set."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/d;\n\nlet result = pattern.hasIndices;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_hasindices"
+  },
+  {
+   "type": "h2",
+   "text": "The ignoreCase Property"
+  },
+  {
+   "type": "p",
+   "text": "The ignoreCase property returns true\nif the /i flag is set."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/i;\n\nlet result = pattern.ignoreCase;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_ignorecase"
+  },
+  {
+   "type": "h2",
+   "text": "The multiline Property"
+  },
+  {
+   "type": "p",
+   "text": "The multiline property returns true\nif the /m flag is set."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/m;\n\nlet result = pattern.multiline;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_multiline"
+  },
+  {
+   "type": "h2",
+   "text": "The sticky Property"
+  },
+  {
+   "type": "p",
+   "text": "The sticky property returns true\nif the /y flag is set."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/y;\n\nlet result = pattern.sticky;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_sticky"
+  },
+  {
+   "type": "h2",
+   "text": "The unicode Property"
+  },
+  {
+   "type": "p",
+   "text": "The unicode property returns true\nif the /u flag is set."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"䷀\";\n\nconst pattern = /\\u{04DC0}/u;\n\nlet result = pattern.unicode;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_unicode"
+  },
+  {
+   "type": "h2",
+   "text": "The unicodeSets Property"
+  },
+  {
+   "type": "p",
+   "text": "The unicodeSets property returns true\nif the /v flag is set."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello 😄\";\n\nconst pattern = /\\p{Emoji}/v;\n\nlet result = pattern.unicodeSets;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_unicodesets"
+  },
+  {
+   "type": "h2",
+   "text": "Regular Expression Methods"
+  },
+  {
+   "type": "p",
+   "text": "Regular Expression Search and Replace can be done with different methods."
+  },
+  {
+   "type": "p",
+   "text": "These are the most common:"
+  },
+  {
+   "type": "h3",
+   "text": "String Methods"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Method",
+     "Description"
+    ],
+    [
+     "match(regex)",
+     "Returns an Array of results"
+    ],
+    [
+     "matchAll(regex)",
+     "Returns an Iterator of results"
+    ],
+    [
+     "replace(regex)",
+     "Returns a new String"
+    ],
+    [
+     "replaceAll(regex)",
+     "Returns a new String"
+    ],
+    [
+     "search(regex)",
+     "Returns the index of the first match"
+    ],
+    [
+     "split(regex)",
+     "Returns an Array of results"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "RegExp Methods"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Method",
+     "Description"
+    ],
+    [
+     "regex.exec()",
+     "Returns an Iterator of results"
+    ],
+    [
+     "regex.test()",
+     "Returns true or false"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "See Also:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Tutorial"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Character Classes"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Meta Characters"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Assertions"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Groups"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Quantifiers"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Patterns"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Objects"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Methods"
+  }
+ ]
+}

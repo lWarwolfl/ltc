@@ -1,0 +1,638 @@
+{
+ "slug": "js_temporal_instant",
+ "course": "js",
+ "order": 185,
+ "url": "/js/js_temporal_instant.asp",
+ "title": "JavaScript Temporal Instant",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Temporal Instant"
+  },
+  {
+   "type": "h2",
+   "text": "The Temporal.Instant Object"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Instant object represents an exact moment in UTC time."
+  },
+  {
+   "type": "p",
+   "text": "UTC time has NO time zone or calendar."
+  },
+  {
+   "type": "p",
+   "text": "Example: 2026-05-17T14:30:00Z"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant"
+  },
+  {
+   "type": "p",
+   "text": "The Z at the end of the date stands for Zero time."
+  },
+  {
+   "type": "p",
+   "text": "The T in the middle is a separator between date and time."
+  },
+  {
+   "type": "h2",
+   "text": "What is UTC Time?"
+  },
+  {
+   "type": "p",
+   "text": "UTC stands for Universal Time Coordinated."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "It is the exact time on the zero meridian (Greenwich, London)",
+    "It is the same moment everywhere on earth",
+    "It is not affected by any time zones",
+    "It is not affected by DST (Daylight Saving Time)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Prior to 1972, UTC was called Greenwich Mean Time (GMT)."
+  },
+  {
+   "type": "p",
+   "text": "Is now referred to as Universal Time Coordinated (UTC)."
+  },
+  {
+   "type": "p",
+   "text": "Is also referred to as Coordinated Universal Time."
+  },
+  {
+   "type": "h2",
+   "text": "What is Instant Time?"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "It is measured in UTC",
+    "It is stored as nanoseconds since Unix epoch",
+    "Unix epoch is January 1, 1970 00:00:00"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "What is Local Time"
+  },
+  {
+   "type": "p",
+   "text": "To obtain local time in world, you need to add or subtract hours from UTC\ndepending on how many time zones you are away from Greenwich."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "London:    12:00 (UTC)\n\nOslo:      14:00 (UTC+2)\n\nNew York:  08:00 (UTC-4)\n\nTokyo:     21:00 (UTC+9)",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "How to Create a Temporal.Instant"
+  },
+  {
+   "type": "p",
+   "text": "An Instant can be created in several different ways:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "From",
+     "Code"
+    ],
+    [
+     "With Constructor",
+     "new Temporal.Instant()"
+    ],
+    [
+     "From String",
+     "Temporal.Instant.from()"
+    ],
+    [
+     "From Epoch millisec",
+     "Temporal.Instant.fromEpochMilliseconds()"
+    ],
+    [
+     "From Epoch nanosec",
+     "Temporal.Instant.fromEpochNanoseconds()"
+    ],
+    [
+     "From Current Time",
+     "Temporal.Now.instant()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Create an Instant from new"
+  },
+  {
+   "type": "p",
+   "text": "You can create an Instant using the new Temporal.Instant() constructor."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = new Temporal.Instant(1779028200000000000n);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_new"
+  },
+  {
+   "type": "p",
+   "text": "The n at the end means BigInt."
+  },
+  {
+   "type": "p",
+   "text": "The parameter must be a BigInt."
+  },
+  {
+   "type": "h2",
+   "text": "Create an Instant from a String"
+  },
+  {
+   "type": "p",
+   "text": "You can create an Instant from an\nRFC 9557 string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant"
+  },
+  {
+   "type": "h2",
+   "text": "What is the Z at the End?"
+  },
+  {
+   "type": "p",
+   "text": "The Z at the end of the time, is the\nISO 8601 standard for formatting UTC time."
+  },
+  {
+   "type": "p",
+   "text": "It indicates that the offset from UTC time is 0 (Zero)."
+  },
+  {
+   "type": "p",
+   "text": "It is also known as Z time, Zero time or Zulu time."
+  },
+  {
+   "type": "p",
+   "text": "The T in the middle is the ISO 8601\nstandard for separating date and time."
+  },
+  {
+   "type": "h2",
+   "text": "Create an Instant from Epoch Milliseconds"
+  },
+  {
+   "type": "p",
+   "text": "You can create an Instant object from the number of milliseconds since the Unix epoch."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.fromEpochMilliseconds(1779028200000);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_epoch"
+  },
+  {
+   "type": "p",
+   "text": "Unix epoch is at January 1, 1970 00:00:00 UTC"
+  },
+  {
+   "type": "p",
+   "text": "This is similar to how JavaScript Date works internally."
+  },
+  {
+   "type": "h2",
+   "text": "Create an Instant from Epoch Nanoseconds"
+  },
+  {
+   "type": "p",
+   "text": "You can create an Instant object from the number of nanoseconds since the Unix epoch."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.fromEpochNanoseconds(1779028200000000000n);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_epoch_nano"
+  },
+  {
+   "type": "h2",
+   "text": "Create an Instant from Current Time"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Temporal.Instant does not have any method for creating an instant from current time."
+  },
+  {
+   "type": "p",
+   "text": "You must use a Temporal.Now method instead."
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.Now.instant() method returns an Instant object with the exact current time."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Now.instant();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_instant"
+  },
+  {
+   "type": "h2",
+   "text": "HowTo Replace Date.now()"
+  },
+  {
+   "type": "p",
+   "text": "With Date, you use Date.now() to get the current\ntimestamp."
+  },
+  {
+   "type": "p",
+   "text": "The Date.now() method returns the timestamp value in\nmilliseconds:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let timestamp = Date.now();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_5"
+  },
+  {
+   "type": "p",
+   "text": "With Temporal, you use Temporal.Now.instant():"
+  },
+  {
+   "type": "p",
+   "text": "The property epochMilliseconds returns the timestamp value in\nmilliseconds:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Now.instant();\n\nlet timestamp = instant.epochMilliseconds;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_6"
+  },
+  {
+   "type": "p",
+   "text": "The property epochNanoseconds returns the timestamp value in\nnanoseconds:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Now.instant();\n\nlet timestamp = instant.epochNanoseconds;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_1"
+  },
+  {
+   "type": "p",
+   "text": "Nanosecond precision is 1,000,000 (one million) times higher than millisecond precision."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Instant compare()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// compare()\n\nlet x1 = Temporal.Instant.compare(i1, i2));\n\nlet x2 = Temporal.Instant.compare(i1, i3));\n\nlet x3 = Temporal.Instant.compare(i3, i1));",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_compare"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Instant equals()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// equals()\n\nlet x1 = i1.equals(i2);\n\nlet x2 = i1.equals(i3);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_equals"
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own compare() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal.Instant.compare(instant1, instant2)",
+    "Temporal.PlainDate.compare(plaindate1, plaindate2)",
+    "Temporal.PlainTime.compare(plaintime1, plaintime2)",
+    "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
+    "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
+    "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
+    "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
+    "Temporal.Duration.compare(duration1, duration2)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Most (*) temporal objects have their own equals() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "instant.equals(instant)",
+    "plaindate.equals(plaindate)",
+    "plaintime.equals(plaintime)",
+    "plainyearmonth.equals(plainyearmonth)",
+    "plainmonthday.equals(plainmonthday)",
+    "plaindateTime.equals(plaindatetime)",
+    "zoneddateTime.equals(zoneddtatime)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "(*) Duration has not."
+  },
+  {
+   "type": "h3",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "Temporal Compare"
+  },
+  {
+   "type": "h2",
+   "text": "Convert Instant Time to Local Time"
+  },
+  {
+   "type": "p",
+   "text": "A Temporal.Instant does not include time zone information."
+  },
+  {
+   "type": "p",
+   "text": "You must convert it to a Temporal.ZonedDateTime to display local time."
+  },
+  {
+   "type": "p",
+   "text": "The toZonedDateTimeISO() method converts a UTC moment\nto a specific time zone:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");\n\nconst zoned = instant.toZonedDateTimeISO(\"Europe/Oslo\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_zoned"
+  },
+  {
+   "type": "p",
+   "text": "Instant = \"What time is it globally?\""
+  },
+  {
+   "type": "p",
+   "text": "ZonedDateTime = \"What time is it here?\""
+  },
+  {
+   "type": "h2",
+   "text": "UTC vs Local Time"
+  },
+  {
+   "type": "p",
+   "text": "UTC is a global clock."
+  },
+  {
+   "type": "p",
+   "text": "Time zone is the local view of the same clock."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Type",
+     "Description"
+    ],
+    [
+     "UTC",
+     "Same worldwide"
+    ],
+    [
+     "Local Time",
+     "Depends on Location"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "UTC (Coordinated Universal Time) is the standard time used worldwide."
+  },
+  {
+   "type": "p",
+   "text": "It is not affected by any time zones or daylight saving time."
+  },
+  {
+   "type": "h2",
+   "text": "Why UTC is Important"
+  },
+  {
+   "type": "p",
+   "text": "UTC is used as a reference time:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Servers and databases store time in UTC",
+    "Logs use UTC timestmps to avoid ime confusion",
+    "Most APIs use UTC timestamps"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "When to Use Temporal.Instant"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "For exact moments in UTC time",
+    "For timestamps",
+    "For database logs",
+    "For event logs",
+    "For comparing moments"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Compare Instant with Other Types"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Type",
+     "Meaning"
+    ],
+    [
+     "Instant",
+     "Exact Moment in UTC time"
+    ],
+    [
+     "PlainDateTime",
+     "Plain Date and Time (No Timezone)"
+    ],
+    [
+     "ZonedDateTime",
+     "Local Date and Time (+ Time Zone)"
+    ]
+   ]
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/js/img_temporal.svg",
+   "alt": "Temporal Map"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Instant Methods"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Constructing",
+     "Description"
+    ],
+    [
+     "new",
+     "Creates a new Temporal.Instant object"
+    ],
+    [
+     "from()",
+     "Creates a new Instant object from another instant or a string"
+    ],
+    [
+     "fromEpochMilliseconds()",
+     "Returns a new Instant object from a number of milliseconds"
+    ],
+    [
+     "fromEpochNanoseconds()",
+     "Returns a new Instant object from a number of nanoseconds"
+    ],
+    [
+     "Arithmetic",
+     ""
+    ],
+    [
+     "add()",
+     "Returns a new Instant with a duration added"
+    ],
+    [
+     "round()",
+     "Returns a new Instant with this instant rounded"
+    ],
+    [
+     "subtract()",
+     "Returns a new Instant with a duration subtracted"
+    ],
+    [
+     "Comparing",
+     ""
+    ],
+    [
+     "compare()",
+     "Returns -1, 0, or 1 from comparing two instants"
+    ],
+    [
+     "equals()",
+     "Returns true if two instants are identical"
+    ],
+    [
+     "since()",
+     "Returns the duration since another date"
+    ],
+    [
+     "until()",
+     "Returns the duration until another date"
+    ],
+    [
+     "Converting",
+     ""
+    ],
+    [
+     "toZonedDateTimeISO()",
+     "Returns a new ZonedDatetime object"
+    ],
+    [
+     "Formatting",
+     ""
+    ],
+    [
+     "toJSON()",
+     "Returns an RFC 9557 format string for JSON serialization"
+    ],
+    [
+     "toLocaleString()",
+     "Returns a language-sensitive representation of the instant"
+    ],
+    [
+     "toString()",
+     "Returns an RFC 9557 format string representation of the instant"
+    ],
+    [
+     "valueOf()",
+     "Throws a TypeError (Instants should not be converted to a primitives)"
+    ]
+   ]
+  }
+ ]
+}

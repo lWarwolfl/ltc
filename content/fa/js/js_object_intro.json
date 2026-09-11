@@ -1,0 +1,494 @@
+{
+ "slug": "js_object_intro",
+ "course": "js",
+ "order": 46,
+ "url": "/js/js_object_intro.asp",
+ "title": "شیءها در JavaScript",
+ "summary": "شیءها متغیرهایی هستند که هم مقدار و هم تابع نگه می‌دارند؛ مقدارهای نام‌دار خصوصیت و تابع‌ها متد نام دارند. در این درس با شیء متنی، کلیدواژهٔ const، دسترسی با نقطه و براکت، و تفاوت شیء با مقدارهای اولیه آشنا می‌شوید.",
+ "objectives": [
+  "بگویید خصوصیت و متد در شیء چه تفاوتی دارند",
+  "شیء را با روش شیء متنی بسازید",
+  "با نقطه‌گذاری و براکت‌گذاری به خصوصیت‌ها دسترسی پیدا کنید",
+  "تشخیص دهید در JavaScript کدام مقدارها شیء هستند"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "شیءها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیءهای JavaScript چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "شیءها متغیرهایی هستند که می‌توانند هم مقدار و هم تابع نگه دارند."
+  },
+  {
+   "type": "p",
+   "text": "مقدارها به شکل جفت‌های key:value ذخیره می‌شوند که به آن‌ها خصوصیت می‌گویند."
+  },
+  {
+   "type": "p",
+   "text": "تابع‌ها به شکل جفت‌های key:function() ذخیره می‌شوند که به آن‌ها متد می‌گویند."
+  },
+  {
+   "type": "h2",
+   "text": "مقایسه با دنیای واقعی"
+  },
+  {
+   "type": "p",
+   "text": "در دنیای واقعی می‌توانیم چیزها را به شکل شیء توصیف کنیم (یک خودرو، یک شخص، یک خانه)"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "شیء خودرو"
+    ],
+    [
+     ""
+    ]
+   ]
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت‌های خودرو",
+     "متدهای خودرو"
+    ],
+    [
+     "car.name = Fiat\ncar.model = 500\ncar.weight = 850kg\ncar.color = white",
+     "car.start()\ncar.drive()\ncar.brake()\ncar.stop()"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "خودروهای مختلف خصوصیت‌های یکسانی دارند، اما مقدار خصوصیت‌ها از خودرویی به خودروی دیگر فرق می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "خودروهای مختلف متدهای یکسانی دارند، اما متدها می‌توانند در زمان‌های متفاوت انجام شوند."
+  },
+  {
+   "type": "h2",
+   "text": "یک مثال از شیء"
+  },
+  {
+   "type": "p",
+   "text": "این مثال مقدارهای زیادی (Fiat، 500، white) را به شیئی به نام car نسبت می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const car = {\n\n      type: \"Fiat\",\n\n      model: \"500\",\n\n      color: \"white\"\n\n    };",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_objects_object"
+  },
+  {
+   "type": "p",
+   "text": "type، model و color خصوصیت هستند"
+  },
+  {
+   "type": "p",
+   "text": "\"Fiat\"، \"500\" و \"white\" مقدار خصوصیت هستند"
+  },
+  {
+   "type": "h2",
+   "text": "شیء متنی (object literal)"
+  },
+  {
+   "type": "p",
+   "text": "شیء متنی (object literal) یک شیء را «بدون واسطه» با نحوی کوتاه توصیف می‌کند: صفر یا چند جفت key:value داخل آکولاد که همهٔ خصوصیت‌های شیء را مشخص می‌کنند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{firstName:\"John\", lastName:\"Doe\", age:50, eyeColor:\"blue\"}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "روش ساختن شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "شیء متنی ساده‌ترین و رایج‌ترین روش تعریف شیء در JavaScript است."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ مثال‌های زیر یک شیء JavaScript یکسان می‌سازند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\", age:50, eyeColor:\"blue\"};",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_objects_create_1"
+  },
+  {
+   "type": "p",
+   "text": "فاصله‌ها و شکستن خط مهم نیستند؛ شیء متنی می‌تواند چند خط باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_objects_create_2"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید شیء خالی بسازید و خصوصیت‌ها را بعداً اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {};\n\n// Add Properties\n\nperson.firstName = \"John\";\n\nperson.lastName = \"Doe\";\n\nperson.age = 50;\n\nperson.eyeColor = \"blue\";",
+   "caption": "مثال ۳"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_create_empty"
+  },
+  {
+   "type": "p",
+   "text": "بهتر است شیءها را با کلیدواژهٔ const تعریف کنید."
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از کلیدواژهٔ new"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = new Object({\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n});",
+   "caption": "مثال ۴"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_create_new"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "استفاده از new Object() لازم نیست. برای خوانایی، سادگی و سرعت، به‌جای آن از شیء متنی استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های شیء"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید به خصوصیت‌های شیء به دو شکل دسترسی پیدا کنید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "نقطه‌گذاری (dot notation)",
+    "براکت‌گذاری (bracket notation)"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "objectName.propertyName",
+   "caption": "نقطه‌گذاری"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person.firstName;",
+   "caption": "نقطه‌گذاری"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties1"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "objectName[\"propertyName\"]",
+   "caption": "براکت‌گذاری"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person[\"firstName\"];",
+   "caption": "براکت‌گذاری"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties2"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "شیءها می‌توانند متد هم داشته باشند."
+  },
+  {
+   "type": "p",
+   "text": "متدهای شیء کارهایی هستند که می‌توان روی شیء انجام داد."
+  },
+  {
+   "type": "p",
+   "text": "متدهای شیء تعریف‌های تابعی هستند که به‌عنوان مقدار خصوصیت ذخیره می‌شوند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    firstName: \"John\",\n\n    lastName : \"Doe\",\n\n    age      : 50,\n\n    fullName : function() {\n\n    return this.firstName + \" \" + this.lastName;\n  }\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_method"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "مقدار خصوصیت"
+    ],
+    [
+     "firstName",
+     "John"
+    ],
+    [
+     "lastName",
+     "Doe"
+    ],
+    [
+     "age",
+     "50"
+    ],
+    [
+     "fullName",
+     "function() {return this.firstName + \" \" + this.lastName;}"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "در متد شیء، this به خود شیء اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا this به شیء person اشاره می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید:"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "متدهای شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "this در شیءها چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "روش نمایش شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ شیء (object constructor) چیست؟"
+  },
+  {
+   "type": "h2",
+   "text": "خلاصهٔ بخش"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "شیءها ظرف‌هایی برای خصوصیت‌ها و متدها هستند",
+    "خصوصیت‌ها مقدارهای نام‌دار هستند که به شکل جفت‌های key:value ذخیره می‌شوند",
+    "متدها تابع‌هایی هستند که به شکل جفت‌های key:function() ذخیره می‌شوند."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "در JavaScript، شیءها پادشاه‌اند"
+  },
+  {
+   "type": "h2",
+   "text": "اگر شیءها را بفهمید، JavaScript را فهمیده‌اید."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript تقریباً «همه چیز» شیء است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "شیءها شیء هستند",
+    "Math شیء است",
+    "Date شیء است",
+    "آرایه‌ها شیء هستند",
+    "Map شیء است",
+    "Set شیء است",
+    "RegExp شیء است",
+    "خطاها شیء هستند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "همهٔ مقدارهای JavaScript، جز مقدارهای اولیه، شیء هستند."
+  },
+  {
+   "type": "h2",
+   "text": "مقدارهای اولیه در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "نوع دادهٔ اولیه نوعی است که فقط یک مقدار اولیهٔ ساده را نگه می‌دارد."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript هفت نوع دادهٔ اولیه تعریف می‌کند:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "نوع",
+    "مقدار نمونه"
+   ],
+   "rows": [
+    [
+     "رشته",
+     "\"Hello\""
+    ],
+    [
+     "عدد",
+     "3.14"
+    ],
+    [
+     "بولی",
+     "true"
+    ],
+    [
+     "bigint",
+     "12345678901234n"
+    ],
+    [
+     "null",
+     "null"
+    ],
+    [
+     "undefined",
+     "undefined"
+    ],
+    [
+     "symbol",
+     "symbol"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل obj.html بسازید و شیء car را با خصوصیت‌های type، model و color بسازید و مقدارها را در کنسول چاپ کنید.",
+   "hint": "مقدارها با جفت key:value داخل آکولاد نوشته می‌شوند."
+  },
+  {
+   "prompt": "به همان شیء یک متد به نام drive() اضافه کنید که پیامی چاپ کند و آن را با car.drive() صدا بزنید.",
+   "hint": "متد تابعی است که به‌عنوان مقدار خصوصیت ذخیره می‌شود."
+  },
+  {
+   "prompt": "شیء خالی بسازید، بعد با تخصیص خصوصیت‌ها را یکی‌یکی اضافه کنید و نتیجه را ببینید.",
+   "hint": "با {} شیء خالی می‌سازید و بعد با علامت = خصوصیت اضافه می‌کنید."
+  },
+  {
+   "prompt": "شیئی با خصوصیت name و متد fullName() بسازید و داخل متد از this.name استفاده کنید؛ ببینید چرا این شکل درست است.",
+   "hint": "این مثال در جدول درس هم آمده: مقدار خصوصیت fullName یک تابع است."
+  },
+  {
+   "prompt": "در کنسول typeof Math و typeof Date و typeof [] را بررسی کنید و بگویید کدام‌ها شیء هستند.",
+   "hint": "در JavaScript همهٔ این‌ها شیء هستند؛ فقط مقدارهای اولیه شیء نیستند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در یک شیء JavaScript، مقدارها به چه شکل ذخیره می‌شوند؟",
+   "options": [
+    "به شکل جفت‌های key:value که خصوصیت نام دارند",
+    "به شکل آرایه‌ای از مقدارها",
+    "به شکل رشته‌های پشت سر هم",
+    "فقط به شکل تابع"
+   ],
+   "answer": 0,
+   "explanation": "در شیء، مقدارها به شکل key:value ذخیره می‌شوند و به آن‌ها خصوصیت می‌گویند؛ تابعی که به‌عنوان مقدار خصوصیت ذخیره شود، متد نام دارد."
+  },
+  {
+   "question": "شیء متنی (object literal) کدام است؟",
+   "options": [
+    "new Object()",
+    "یک شیء با جفت‌های key:value داخل آکولاد",
+    "یک آرایهٔ خالی",
+    "یک تابع بی‌نام"
+   ],
+   "answer": 1,
+   "explanation": "شیء متنی با آکولاد و جفت‌های key:value نوشته می‌شود. این روش ساده‌ترین و رایج‌ترین راه تعریف شیء است و به‌جای new Object() توصیه می‌شود."
+  },
+  {
+   "question": "برای دسترسی به خصوصیت‌های شیء چند روش اصلی وجود دارد؟",
+   "options": [
+    "فقط یک روش: نقطه‌گذاری",
+    "سه روش: نقطه‌گذاری، براکت‌گذاری و فراخوانی",
+    "دو روش: نقطه‌گذاری و براکت‌گذاری",
+    "فقط براکت‌گذاری"
+   ],
+   "answer": 2,
+   "explanation": "دسترسی با نقطه‌گذاری مثل person.name و با براکت‌گذاری مثل person[\"name\"] انجام می‌شود؛ روش دیگری برای خواندن خصوصیت وجود ندارد."
+  },
+  {
+   "question": "هفت نوع دادهٔ اولیه (primitive) JavaScript کدام‌اند؟",
+   "options": [
+    "object، array، function، null، undefined، map و set",
+    "string، number، boolean، bigint، null، undefined و symbol",
+    "string، number، boolean، object، array، date و map",
+    "int، float، string، boolean، null، undefined و symbol"
+   ],
+   "answer": 1,
+   "explanation": "هفت نوع اولیه هم‌اند: string، number، boolean، bigint، null، undefined و symbol. همهٔ مقدارهای دیگر، از جمله آرایه و تابع، شیء هستند."
+  },
+  {
+   "question": "در مثال شیء car، عبارت car.name چه چیزی است؟",
+   "options": [
+    "یک متد",
+    "یک کلاس",
+    "یک خصوصیت",
+    "یک نوع دادهٔ اولیه"
+   ],
+   "answer": 2,
+   "explanation": "car.name خصوصیت است، چون مقدار نام‌دار داخل شیء است. متد تابعی است که به‌عنوان مقدار خصوصیت ذخیره می‌شود؛ مثل car.start()."
+  }
+ ]
+}

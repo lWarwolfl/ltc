@@ -1,0 +1,576 @@
+{
+ "slug": "js_mistakes",
+ "course": "js",
+ "order": 114,
+ "url": "/js/js_mistakes.asp",
+ "title": "JavaScript Common Mistakes",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Common Mistakes"
+  },
+  {
+   "type": "p",
+   "text": "This chapter points out some common JavaScript mistakes."
+  },
+  {
+   "type": "h2",
+   "text": "Accidentally Using the Assignment Operator"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript programs may generate unexpected results if a programmer\naccidentally uses an assignment operator (=), instead of a comparison operator\n(==) in an if statement."
+  },
+  {
+   "type": "p",
+   "text": "This if statement returns false (as\nexpected) because x is\nnot equal to 10:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\nif (x == 10)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_equal_1"
+  },
+  {
+   "type": "p",
+   "text": "This if statement returns true (maybe not\nas expected), because 10 is\ntrue:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\nif (x = 10)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_equal_2"
+  },
+  {
+   "type": "p",
+   "text": "This if statement returns false (maybe not\nas expected), because 0 is\nfalse:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\nif (x = 0)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_equal_3"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "An assignment always returns the value of the assignment."
+  },
+  {
+   "type": "h2",
+   "text": "Expecting Loose Comparison"
+  },
+  {
+   "type": "p",
+   "text": "In regular comparison, data type does not matter. This if statement returns\ntrue:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nlet y = \"10\";\nif (x == y)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_loose_1"
+  },
+  {
+   "type": "p",
+   "text": "In strict comparison, data type does matter. This if statement returns false:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nlet y = \"10\";\nif (x === y)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_loose_2"
+  },
+  {
+   "type": "p",
+   "text": "It is a common mistake to forget that switch statements use strict\ncomparison:"
+  },
+  {
+   "type": "p",
+   "text": "This case switch will display an alert:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nswitch(x) {\n  case 10: alert(\"Hello\");\n\n    }",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_loose_3"
+  },
+  {
+   "type": "p",
+   "text": "This case switch will not display an alert:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\nswitch(x) {\n  case \"10\": alert(\"Hello\");\n\n    }",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_loose_4"
+  },
+  {
+   "type": "h2",
+   "text": "Confusing Addition & Concatenation"
+  },
+  {
+   "type": "p",
+   "text": "Addition is about adding numbers."
+  },
+  {
+   "type": "p",
+   "text": "Concatenation is about adding strings."
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript both operations use the same + operator."
+  },
+  {
+   "type": "p",
+   "text": "Because of this, adding a number as a number will produce a different\nresult from adding a number as a string:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nx = 10 + 5;       //\n    Now x is 15\n\nlet y = 10;\n\ny += \"5\";\n    // Now y is \"105\"",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_add_1"
+  },
+  {
+   "type": "p",
+   "text": "When adding two variables, it can be difficult to anticipate the result:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nlet y = 5;\n\nlet z = x + y;     // Now z is 15\n\nlet x = 10;\n\nlet y = \"5\";\n\nlet z = x + y;     // Now z is \"105\"",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_add_2"
+  },
+  {
+   "type": "h2",
+   "text": "Misunderstanding Floats"
+  },
+  {
+   "type": "p",
+   "text": "All numbers in JavaScript are stored as 64-bits Floating point numbers\n(Floats)."
+  },
+  {
+   "type": "p",
+   "text": "All programming languages, including JavaScript, have difficulties with\nprecise floating point values:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0.1;\n\nlet y = 0.2;\nlet z = x + y\n    // the result in z will not be 0.3",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_floats"
+  },
+  {
+   "type": "p",
+   "text": "To solve the problem above, it helps to multiply and divide:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let z = (x * 10 + y * 10) / 10;       // z will be 0.3",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_floats_ok"
+  },
+  {
+   "type": "h2",
+   "text": "Breaking a JavaScript String"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript will allow you to break a statement into two lines:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x =\n\"Hello World!\";",
+   "caption": "Example 1"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_string_1"
+  },
+  {
+   "type": "p",
+   "text": "But, breaking a statement in the middle of a string will not work:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"Hello\nWorld!\";",
+   "caption": "Example 2"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_string_2"
+  },
+  {
+   "type": "p",
+   "text": "You must use a \"backslash\" if you must break a statement in a string:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"Hello \\\nWorld!\";",
+   "caption": "Example 3"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_string_3"
+  },
+  {
+   "type": "h2",
+   "text": "Misplacing Semicolon"
+  },
+  {
+   "type": "p",
+   "text": "Because of a misplaced semicolon, this code block will execute regardless of\nthe value of x:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (x == 19);\n{\n\n    // code block\n}",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_semicolon"
+  },
+  {
+   "type": "h2",
+   "text": "Breaking a Return Statement"
+  },
+  {
+   "type": "p",
+   "text": "It is a default JavaScript behavior to close a statement automatically at the\nend of a line."
+  },
+  {
+   "type": "p",
+   "text": "Because of this, these two examples will return the same result:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let power = 10\n  return a * power\n}",
+   "caption": "Example 1"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_1"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let power = 10;\n  return a * power;\n}",
+   "caption": "Example 2"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_2"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript will also allow you to break a statement into two lines."
+  },
+  {
+   "type": "p",
+   "text": "Because of this, example 3 will also return the same result:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let\n  power = 10;\n  return a * power;\n}",
+   "caption": "Example 3"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_3"
+  },
+  {
+   "type": "p",
+   "text": "But, what will happen if you break the return statement in two lines like\nthis:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let\n  power = 10;\n  return\n  a * power;\n}",
+   "caption": "Example 4"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_4"
+  },
+  {
+   "type": "p",
+   "text": "The function will return undefined!"
+  },
+  {
+   "type": "p",
+   "text": "Why? Because JavaScript thought you meant:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let\n  power = 10;\n  return;\n  a * power;\n}",
+   "caption": "Example 5"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_5"
+  },
+  {
+   "type": "h2",
+   "text": "Explanation"
+  },
+  {
+   "type": "p",
+   "text": "If a statement is incomplete like:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "JavaScript will try to complete the statement by reading the next line:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "power = 10;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "But since this statement is complete:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "return",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "JavaScript will automatically close it like this:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "return;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "This happens because closing (ending) statements with semicolon is optional in\nJavaScript."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript will close the return statement at the end of the line, because\nit is a complete statement."
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "Never break a return statement."
+  },
+  {
+   "type": "h2",
+   "text": "Accessing Arrays with Named Indexes"
+  },
+  {
+   "type": "p",
+   "text": "Many programming languages support arrays with named indexes."
+  },
+  {
+   "type": "p",
+   "text": "Arrays with named indexes are called associative\narrays (or hashes)."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript does not support arrays with named indexes."
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript, arrays use numbered indexes:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = [];\n\nperson[0] = \"John\";\n\nperson[1] = \"Doe\";\n\nperson[2] = 46;\nperson.length;\n // person.length will return 3\nperson[0];\n // person[0] will return \"John\"",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_associative_1"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript, objects use named indexes."
+  },
+  {
+   "type": "p",
+   "text": "If you use a named index, when accessing an array, JavaScript will redefine\nthe array to a standard object."
+  },
+  {
+   "type": "p",
+   "text": "After the automatic redefinition, array methods and properties will produce undefined or\nincorrect results:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = [];\n\nperson[\"firstName\"] = \"John\";\n\nperson[\"lastName\"] = \"Doe\";\n\nperson[\"age\"] = 46;\nperson.length;      // person.length will\n return 0\nperson[0];\n // person[0] will return undefined",
+   "caption": "Example:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_associative_2"
+  },
+  {
+   "type": "h2",
+   "text": "Ending Definitions with a Comma"
+  },
+  {
+   "type": "p",
+   "text": "Trailing commas in object and array definition are legal in ECMAScript 5."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person = {firstName:\"John\", lastName:\"Doe\", age:46,}",
+   "caption": "Object Example:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "points = [40, 100, 1, 5, 25, 10,];",
+   "caption": "Array Example:"
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "WARNING !!\nInternet Explorer 8 will crash.\nJSON does not allow trailing commas."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person = {\"firstName\":\"John\", \"lastName\":\"Doe\", \"age\":46}",
+   "caption": "JSON:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "points = [40, 100, 1, 5, 25, 10];",
+   "caption": "JSON:"
+  },
+  {
+   "type": "h2",
+   "text": "Undefined is Not Null"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript objects, variables, properties, and methods can be undefined."
+  },
+  {
+   "type": "p",
+   "text": "In addition, empty JavaScript objects can have the value null."
+  },
+  {
+   "type": "p",
+   "text": "This can make it a little bit difficult to test if an object is empty."
+  },
+  {
+   "type": "p",
+   "text": "You can test if an object exists by testing if the type is  undefined:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (typeof myObj === \"undefined\")",
+   "caption": "Example:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_object_undefined"
+  },
+  {
+   "type": "p",
+   "text": "But you cannot test if an object is null, because this will throw an error if the\nobject is undefined:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (myObj === null)",
+   "caption": "Incorrect:"
+  },
+  {
+   "type": "p",
+   "text": "To solve this problem, you must test if an object is not null,\nand not undefined."
+  },
+  {
+   "type": "p",
+   "text": "But this can still throw an error:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (myObj !== null && typeof myObj\n  !== \"undefined\")",
+   "caption": "Incorrect:"
+  },
+  {
+   "type": "p",
+   "text": "Because of this, you must test for not undefined before you can\ntest for not null:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (typeof myObj !== \"undefined\" && myObj !== null)",
+   "caption": "Correct:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_object_null"
+  }
+ ]
+}

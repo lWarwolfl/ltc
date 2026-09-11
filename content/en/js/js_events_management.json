@@ -1,0 +1,63 @@
+{
+ "slug": "js_events_management",
+ "course": "js",
+ "order": 152,
+ "url": "/js/js_events_management.asp",
+ "title": "JavaScript Event Management",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Event Management"
+  },
+  {
+   "type": "p",
+   "text": "Event Management is about adding, removing, and controlling events."
+  },
+  {
+   "type": "h2",
+   "text": "Adding Events"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button id=\"btn\">Click</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst btn = document.getElementById(\"btn\");\n\n// Let btn listen for click\n\nbtn.addEventListener(\"click\", myFunction);\n\nfunction myFunction() {\n\n  document.getElementById(\"demo\").innerHTML = \"Clicked!\";\n\n}\n\n</script>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_add"
+  },
+  {
+   "type": "h2",
+   "text": "Removing Events"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button id=\"add\">Add</button>\n\n<button id=\"remove\">Remove</button>\n\n<button id=\"test\">Test click</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst test = document.getElementById(\"test\");\n\nconst remove = document.getElementById(\"remove\");\n\nconst add = document.getElementById(\"add\");\n\nfunction myFunction() {\n\n    document.getElementById(\"demo\").innerHTML += \"Hello!\";\n\n}\n\n// Let add listen for click\n\nadd.addEventListener(\"click\", function () {\n\n  // Let test listen for click\n\n  test.addEventListener(\"click\", myFunction);\n\n});\n\n// Let remove listen for click\n\nremove.addEventListener(\"click\", function () {\n\n  // Prevent test from listen for click\n\n  test.removeEventListener(\"click\", myFunction);\n\n});\n\n</script>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_remove"
+  },
+  {
+   "type": "p",
+   "text": "To remove an event listener, you must use the same named function you used to add it."
+  },
+  {
+   "type": "h2",
+   "text": "Blocking Events"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<a href=\"https://www.w3schools.com\" id=\"link\">Go to W3Schools</a>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst link = document.getElementById(\"link\");\n\n// Let link listen for click\n\nlink.addEventListener(\"click\", function (event) {\n\n  event.preventDefault();\n\n  document.getElementById(\"demo\").innerHTML = \"Link blocked!\";\n\n});\n\n</script>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_block"
+  }
+ ]
+}

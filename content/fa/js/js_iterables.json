@@ -1,0 +1,362 @@
+{
+ "slug": "js_iterables",
+ "course": "js",
+ "order": 76,
+ "url": "/js/js_iterables.asp",
+ "title": "Iterableها در JavaScript",
+ "summary": "Iterable شیئی است که می‌توان با حلقهٔ for...of روی آن پیمایش کرد؛ رشته‌ها، آرایه‌ها، Setها و Mapها Iterable هستند. در این درس پیمایش این ساختمان‌ها، پروتکل iterator با متد next() و ساختن یک Iterable دست‌ساز با Symbol.iterator را یاد می‌گیرید.",
+ "objectives": [
+  "بگویید چه شیءهایی در JavaScript Iterable هستند",
+  "روی رشته، آرایه، Set و Map با for...of پیمایش کنید",
+  "نقش متد next() و دو خصوصیت value و done را توضیح دهید",
+  "یک Iterable دست‌ساز با Symbol.iterator بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Iterableها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "Iterable یک شیء قابل پیمایش است"
+  },
+  {
+   "type": "p",
+   "text": "روی Iterable می‌توان با حلقه‌های for...of پیمایش کرد"
+  },
+  {
+   "type": "h2",
+   "text": "حلقهٔ for...of"
+  },
+  {
+   "type": "p",
+   "text": "دستور for..of در JavaScript روی عنصرهای یک شیء قابل پیمایش می‌چرخد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "for (variable of iterable) {\n\n  // code block to be executed\n\n}",
+   "caption": "نحو"
+  },
+  {
+   "type": "h2",
+   "text": "پیمایش"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش یعنی چرخیدن روی دنباله‌ای از عنصرها."
+  },
+  {
+   "type": "p",
+   "text": "چند مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "پیمایش روی یک رشته",
+    "پیمایش روی یک آرایه",
+    "پیمایش روی یک Set",
+    "پیمایش روی یک Map"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پیمایش روی یک رشته"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با حلقهٔ for...of روی عنصرهای یک رشته پیمایش کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const name = \"W3Schools\";\n\nfor (const x of name) {\n\n  // code block to be executed\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_string"
+  },
+  {
+   "type": "h2",
+   "text": "پیمایش روی یک آرایه"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با حلقهٔ for...of روی عنصرهای یک آرایه پیمایش کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const letters = [\"a\",\"b\",\"c\"];\n\nfor (const x of letters) {\n\n  // code block to be executed\n\n}",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_array"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [2,4,6,8];\n\nfor (const x of numbers) {\n\n  // code block to be executed\n\n}",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_array2"
+  },
+  {
+   "type": "h2",
+   "text": "پیمایش روی یک Set"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با حلقهٔ for...of روی عنصرهای یک Set پیمایش کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const letters = new Set([\"a\",\"b\",\"c\"]);\n\nfor (const x of letters) {\n\n  // code block to be executed\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_set"
+  },
+  {
+   "type": "h2",
+   "text": "پیمایش روی یک Map"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با حلقهٔ for...of روی عنصرهای یک Map پیمایش کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);\n\nfor (const x of fruits) {\n\n  // code block to be executed\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_map"
+  },
+  {
+   "type": "h2",
+   "text": "Iteratorها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتکل iterator تعیین می‌کند چگونه از یک شیء دنباله‌ای از مقدارها تولید شود."
+  },
+  {
+   "type": "p",
+   "text": "یک شیء وقتی iterator می‌شود که متد next() داشته باشد."
+  },
+  {
+   "type": "p",
+   "text": "متد next() باید شیئی با دو خصوصیت برگرداند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "value (مقدار بعدی)",
+    "done (true یا false)"
+   ]
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "value",
+     "مقداری که iterator برمی‌گرداند (اگر done برابر true باشد می‌توان آن را ننوشت)"
+    ],
+    [
+     "done",
+     "اگر iterator کارش تمام شده باشد true و اگر مقدار تازه‌ای تولید کرده باشد false"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "از نظر فنی، Iterableها باید متد Symbol.iterator را پیاده‌سازی کنند."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript اینها Iterable هستند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "رشته‌ها",
+    "آرایه‌ها",
+    "آرایه‌های نوع‌دار (Typed Array)",
+    "Setها",
+    "Mapها"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "چون شیءهای prototype آن‌ها متد Symbol.iterator دارند:"
+  },
+  {
+   "type": "h2",
+   "text": "Iterable دست‌ساز"
+  },
+  {
+   "type": "p",
+   "text": "این Iterable هر بار که متد next() صدا زده شود یک عدد بی‌پایان برمی‌گرداند: 10، 20، 30، 40 و همین‌طور ادامه."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Home Made Iterable\n\nfunction myNumbers() {\n\n  let n = 0;\n\n  return {\n\n    next: function() {\n\n      n += 10;\n\n      return {value:n, done:false};\n\n    }\n\n  };\n\n}\n\n// Run the Iterable\n\nconst n = myNumbers();\n\nn.next(); // Returns 10\n\nn.next(); // Returns 20\n\nn.next(); // Returns 30",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade"
+  },
+  {
+   "type": "p",
+   "text": "Iterableهای دست‌ساز از دستور for...of در JavaScript پشتیبانی نمی‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "Iterable در JavaScript شیئی است که Symbol.iterator دارد."
+  },
+  {
+   "type": "p",
+   "text": "Symbol.iterator تابعی است که یک تابع next() برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "روی یک iterable با این کد می‌توان پیمایش کرد: for (const x of iterable) { }"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nmyNumbers = {};\n\n// Make it Iterable\n\nmyNumbers[Symbol.iterator] = function() {\n\n  let n = 0;\n\n  done = false;\n\n  return {\n\n    next() {\n\n      n += 10;\n\n      if (n == 100) {done = true}\n\n      return {value:n, done:done};\n\n    }\n\n  };\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "for (const num of myNumbers) {\n\n  // Any Code Here\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade2"
+  },
+  {
+   "type": "p",
+   "text": "متد Symbol.iterator خودکار توسط for..of صدا زده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "اما می‌توانیم این کار را «دستی» هم انجام دهیم:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let iterator = myNumbers[Symbol.iterator]();\n\nwhile (true) {\n\n  const result = iterator.next();\n\n  if (result.done) break;\n\n  // Any Code Here\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade3"
+  },
+  {
+   "type": "p",
+   "text": "Iteratorها راهی کنترل‌شده برای کار با دنباله‌های داده می‌دهند و امکان منطق پیمایش سفارشی برای ساختمان‌های داده گوناگون را فراهم می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "در درس بعد با توابع کمکی تازهٔ Iterator آشنا می‌شوید که در ECMAScript 2025 معرفی شدند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل iterables.html بسازید و با حلقهٔ for...of روی یک رشته بچرخید و هر کاراکتر را چاپ کنید.",
+   "hint": "ساختار پایه for (const x of name) است؛ در هر تکرار یک کاراکتر در x می‌آید."
+  },
+  {
+   "prompt": "همین پیمایش را برای یک آرایه، یک Set و یک Map انجام دهید و خروجی هرکدام را در کنسول ببینید.",
+   "hint": "Set را با new Set([...]) و Map را با new Map([...]) بسازید."
+  },
+  {
+   "prompt": "یک Iterable دست‌ساز بنویسید که با هر next() عدد دهتا زیاد کند و سه بار next() را صدا بزنید.",
+   "hint": "باید شیئی برگردانید که متد next() دارد و {value:n, done:false} می‌دهد."
+  },
+  {
+   "prompt": "به همان شیء متد Symbol.iterator اضافه کنید تا با for...of کار کند و کاری کنید در عدد 100 مقدار done برابر true شود.",
+   "hint": "myNumbers[Symbol.iterator] = function() { ... return { next() {...} } } و داخل next() وقتی به 100 رسیدید done = true کنید."
+  },
+  {
+   "prompt": "متد Symbol.iterator را دستی صدا بزنید و با حلقهٔ while و بررسی result.done پیمایش کنید.",
+   "hint": "let iterator = myNumbers[Symbol.iterator](); بعد در هر دور const result = iterator.next(); و با if (result.done) break;"
+  }
+ ],
+ "quiz": [
+  {
+   "question": "Iterable در JavaScript چیست؟",
+   "options": [
+    "شیئی که می‌توان با for...of روی آن پیمایش کرد",
+    "آرایه‌ای که فقط عدد نگه می‌دارد",
+    "تابعی که یک مقدار برمی‌گرداند",
+    "شیئی که همیشه متد next() ندارد"
+   ],
+   "answer": 0,
+   "explanation": "Iterable شیئی است که متد Symbol.iterator دارد، پس حلقهٔ for...of می‌تواند رویش بچرخد. شیئی که Symbol.iterator ندارد قابل پیمایش نیست."
+  },
+  {
+   "question": "کدام گزینه Iterable نیست؟",
+   "options": [
+    "رشته",
+    "آرایه",
+    "Set",
+    "شیء معمولی بدون Symbol.iterator"
+   ],
+   "answer": 3,
+   "explanation": "رشته‌ها، آرایه‌ها، آرایه‌های نوع‌دار، Setها و Mapها متد Symbol.iterator دارند، اما شیء معمولی این متد را ندارد و مستقیماً پیمایش نمی‌شود."
+  },
+  {
+   "question": "متد next() یک iterator چه چیزی برمی‌گرداند؟",
+   "options": [
+    "یک مقدار خام",
+    "شیئی با خصوصیت‌های value و done",
+    "یک آرایه",
+    "فقط true یا false"
+   ],
+   "answer": 1,
+   "explanation": "next() همیشه شیئی با دو خصوصیت برمی‌گرداند: value برای مقدار بعدی و done که می‌گوید پیمایش تمام شده یا نه."
+  },
+  {
+   "question": "چرا Iterableهای دست‌ساز با for...of کار نمی‌کنند؟",
+   "options": [
+    "چون متد Symbol.iterator ندارند",
+    "چون آرایه نیستند",
+    "چون متد next() دارند",
+    "چون مقدارشان رشته است"
+   ],
+   "answer": 0,
+   "explanation": "داشتن متد next() کافی نیست؛ برای کار کردن for...of شیء باید متد Symbol.iterator داشته باشد که یک iterator برگرداند."
+  },
+  {
+   "question": "کدام خصوصیت نشان می‌دهد پیمایش تمام شده است؟",
+   "options": [
+    "value",
+    "done",
+    "size",
+    "next"
+   ],
+   "answer": 1,
+   "explanation": "خصوصیت done اگر عنصر تازه‌ای مانده باشد false و اگر پیمایش تمام شده باشد true است؛ حلقهٔ for...of با true شدن done بیرون می‌آید."
+  }
+ ]
+}

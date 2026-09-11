@@ -1,0 +1,313 @@
+{
+ "slug": "js_function_bind",
+ "course": "js",
+ "order": 207,
+ "url": "/js/js_function_bind.asp",
+ "title": "JavaScript Function bind()",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Function bind()"
+  },
+  {
+   "type": "h2",
+   "text": "Method Borrowing"
+  },
+  {
+   "type": "p",
+   "text": "Like with call() and apply(), the bind() method can borrow a method from another object."
+  },
+  {
+   "type": "p",
+   "text": "Unlike call() and apply(), the bind() method does not run the function immediately."
+  },
+  {
+   "type": "p",
+   "text": "Instead, it returns a new function that can be called later."
+  },
+  {
+   "type": "p",
+   "text": "The new function remembers the this value you chose."
+  },
+  {
+   "type": "p",
+   "text": "bind() is an advanced topic."
+  },
+  {
+   "type": "p",
+   "text": "Make sure you understand this, call(), and apply() first."
+  },
+  {
+   "type": "p",
+   "text": "The this Keyword"
+  },
+  {
+   "type": "p",
+   "text": "The call() Method"
+  },
+  {
+   "type": "p",
+   "text": "The apply() Method"
+  },
+  {
+   "type": "h2",
+   "text": "Basic bind() Syntax"
+  },
+  {
+   "type": "p",
+   "text": "The bind() method creates a new function."
+  },
+  {
+   "type": "p",
+   "text": "The first argument sets the this value for the new function."
+  },
+  {
+   "type": "p",
+   "text": "Additional arguments become fixed arguments for the new function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const newFunction = functionName.bind(this, arg1, arg2, ...);",
+   "caption": "Syntax"
+  },
+  {
+   "type": "h2",
+   "text": "Using bind() to Fix this"
+  },
+  {
+   "type": "p",
+   "text": "The most common use of bind() is to make sure a function always uses the same this value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person1 = { name: \"John\" };\n\nconst person2 = { name: \"Paul\" };\n\nconst person3 = { name: \"Ringo\" };\n\nfunction greet() {\n\n  return \"Hello \" + this.name;\n\n}\n\nconst greetJohn = greet.bind(person1);\n\ngreetJohn();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_greet"
+  },
+  {
+   "type": "p",
+   "text": "greetJohn is a new function that always uses person1 as this."
+  },
+  {
+   "type": "p",
+   "text": "The example below creates 2 objects (person and member)."
+  },
+  {
+   "type": "p",
+   "text": "The member object borrows the fullname method from the person object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create person Object\n\nconst person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    fullName: function () {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\n// Create member Object\n\nconst member = {\n\n  firstName:\"Hege\",\n\n  lastName: \"Nilsen\",\n\n}\n\n// Bind the fullName method to the member Object\n\nlet fullName = person.fullName.bind(member);\n\n// Later call fullname()\n\nfullname()",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_borrow"
+  },
+  {
+   "type": "p",
+   "text": "fullName is a new function that always uses member as this."
+  },
+  {
+   "type": "h2",
+   "text": "bind() vs call() and apply()"
+  },
+  {
+   "type": "p",
+   "text": "The difference between these methods is important:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "call() calls a function immediately",
+    "apply() calls a function immediately",
+    "bind() returns a new function"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Call a function\n\ngreet.call(person);\n\n// Call a function\n\ngreet.apply(person);\n\n// Create a new function\n\nconst greetLater = greet.bind(person);\n\n// Call the new function\n\ngreetLater();",
+   "caption": "Comparison"
+  },
+  {
+   "type": "h2",
+   "text": "bind() for Functions Called Later"
+  },
+  {
+   "type": "p",
+   "text": "Without bind(), the this value may be lost."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n      name: \"John\",\n\n      sayHello: function() {\n\n        return \"Hello \" + this.name;\n\n      }\n\n    };\n\n    const hello = person.sayHello;\n\n    hello(); // this is not person",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The function above loses its this value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const hello = person.sayHello.bind(person);\n\n    hello();",
+   "caption": "Example with bind()"
+  },
+  {
+   "type": "h2",
+   "text": "Using bind() for Preserving this"
+  },
+  {
+   "type": "p",
+   "text": "The bind() method can be used to prevent losing this."
+  },
+  {
+   "type": "p",
+   "text": "In the following example, the person object has a display method."
+  },
+  {
+   "type": "p",
+   "text": "In the display method, this refers to the person object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nperson.display();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind1"
+  },
+  {
+   "type": "p",
+   "text": "When a function is used as a callback, this is lost."
+  },
+  {
+   "type": "p",
+   "text": "The example below uses person.display as a callback in the setTimeout() method."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nsetTimeout(person.display, 3000);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind"
+  },
+  {
+   "type": "p",
+   "text": "The bind() method solves this problem."
+  },
+  {
+   "type": "p",
+   "text": "In the following example, the bind() method is used to bind person.display to person."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nlet display = person.display.bind(person);\n\nsetTimeout(display, 3000);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind2"
+  },
+  {
+   "type": "h2",
+   "text": "bind() with Arguments"
+  },
+  {
+   "type": "p",
+   "text": "Arguments passed to bind() become fixed values."
+  },
+  {
+   "type": "p",
+   "text": "This is sometimes called partial application."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function multiply(a, b) {\n\n      return a * b;\n\n    }\n\n    const double = multiply.bind(null, 2);\n\n    double(5);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_arguments"
+  },
+  {
+   "type": "p",
+   "text": "The double function will always multiply by 2."
+  },
+  {
+   "type": "h2",
+   "text": "bind() Does Not Change the Original Function"
+  },
+  {
+   "type": "p",
+   "text": "The original function is not modified."
+  },
+  {
+   "type": "p",
+   "text": "Each call to bind() creates a new function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const greetJohn = greet.bind({ name: \"John\" });\n\nconst greetAnna = greet.bind({ name: \"Anna\" });",
+   "caption": "Examples"
+  },
+  {
+   "type": "h2",
+   "text": "Common Mistakes"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Expecting bind() to Call the Function\nbind() does not execute the function.",
+    "Forgetting to Call the Returned Function\nYou must call the new function yourself.",
+    "Overusing bind()\nSometimes a normal function call is simpler."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Related this Topics"
+  },
+  {
+   "type": "p",
+   "text": "The this Keyword"
+  },
+  {
+   "type": "p",
+   "text": "The call() Method"
+  },
+  {
+   "type": "p",
+   "text": "The apply() Method"
+  },
+  {
+   "type": "p",
+   "text": "The bind() Method"
+  },
+  {
+   "type": "h2",
+   "text": "Next Chapter"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Self Invocing Functions"
+  }
+ ]
+}

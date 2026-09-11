@@ -1,0 +1,370 @@
+{
+ "slug": "js_maps_weak",
+ "course": "js",
+ "order": 74,
+ "url": "/js/js_maps_weak.asp",
+ "title": "WeakMap در JavaScript",
+ "summary": "WeakMap مجموعه‌ای از جفت‌های کلید-مقدار است که کلیدهایش باید شیء باشند و به آن‌ها ارجاع ضعیف نگه می‌دارد. در این درس می‌بینید WeakMap چگونه بدون جلوگیری از جمع‌آوری زباله داده‌ها را به شیءها می‌چسباند و چرا قابل پیمایش نیست.",
+ "objectives": [
+  "یک WeakMap بسازید و با set() و get() کار کنید",
+  "نقش جمع‌آوری زباله و ارجاع ضعیف را توضیح دهید",
+  "دلیل اینکه کلید WeakMap باید شیء باشد را بگویید",
+  "محدودیت‌های WeakMap مثل نداشتن size و نبود پیمایش را تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "WeakMap در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء WeakMap"
+  },
+  {
+   "type": "p",
+   "text": "WeakMap در JavaScript مجموعه‌ای از جفت‌های کلید/مقدار است که کلیدهایش باید شیء باشند."
+  },
+  {
+   "type": "p",
+   "text": "WeakMap به کلیدهایش ارجاع ضعیف (weak reference) نگه می‌دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a WeakMap\n\nlet myMap = new WeakMap();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Set a WeakMap value\n\nmyMap.set(myObj, \"player\");\n\n// Get the WeakMap value\n\nlet type = myMap.get(myObj);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap"
+  },
+  {
+   "type": "h2",
+   "text": "جمع‌آوری زباله (Garbage Collection)"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript از سازوکاری برای مدیریت حافظه استفاده می‌کند که Garbage Collection نام دارد."
+  },
+  {
+   "type": "p",
+   "text": "کارهای اصلی آن اینهاست:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "تضمین استفادهٔ بهینه از منابع حافظه",
+    "آزاد کردن حافظه‌ای که متغیرهای بی‌استفاده اشغال کرده‌اند",
+    "جلوگیری از نشت حافظه"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ارجاع‌های ضعیف"
+  },
+  {
+   "type": "p",
+   "text": "برخلاف Map معمولی، WeakMap جلوی جمع‌آوری زبالهٔ کلیدهایش را نمی‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "اگر در برنامه هیچ ارجاعی به یک کلید (شیء) نباشد، آن کلید واجد شرایط جمع‌آوری زباله می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "وقتی کلید جمع‌آوری شود، جفت کلید-مقدارش از WeakMap حذف می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let myMap = new WeakMap();\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\nmyMap.set(myObj, \"secret\");\n\nmyObj = null;\n\n// now myObj (and its values) in myMap can be garbage collected",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "کلیدها باید شیء باشند"
+  },
+  {
+   "type": "p",
+   "text": "مقدارهای اولیه (primitive) نمی‌توانند کلید WeakMap باشند."
+  },
+  {
+   "type": "p",
+   "text": "کلیدها باید شیء یا symbolهای ثبت‌نشده باشند."
+  },
+  {
+   "type": "p",
+   "text": "این محدودیت به سازوکار جمع‌آوری زباله گره خورده است؛ مقدارهای اولیه مانند شیءها جمع‌آوری نمی‌شوند."
+  },
+  {
+   "type": "h2",
+   "text": "ردیابی شیءها"
+  },
+  {
+   "type": "p",
+   "text": "خانه‌های WeakMap به‌صورت ضعیف نگه داشته می‌شوند: اگر کلید شیء دیگر قابل دسترسی نباشد، نگاشت آن خودکار حذف می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "این برای ردیابی داده‌های مربوط به شیءها بدون جلوگیری از جمع‌آوری زباله عالی است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"\";\n\n// Create a WeakMap to store visit counts\n\nconst visitsCount = new WeakMap();\n\n// Create Visitor Objects\n\nconst John = {name:\"John\", age:40};\n\nconst Paul = {name:\"Paul\", age:41};\n\nconst Ringo = {name:\"Ringo\", age:42};\n\nconst George = {name:\"George\", age:43};\n\n// Track visits\n\ntrack(Paul);\n\ntrack(Ringo);\n\ntrack(Paul);\n\ntrack(Paul);\n\ntrack(John);\n\n// Function to track visitors\n\nfunction track(visitor) {\n\n  let count = visitsCount.get(visitor) || 0;\n\n  count++;\n\n  visitsCount.set(visitor, count);\n\n  text += visitor.name + \", age \" + visitor.age + \", has visited \" + count + \" time(s).<br>\";\n\n}",
+   "caption": "ردیابی بازدیدکنندگان"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap_visitors"
+  },
+  {
+   "type": "h2",
+   "text": "پاک‌سازی خودکار"
+  },
+  {
+   "type": "p",
+   "text": "اگر همهٔ ارجاع‌ها به یک شیء بازدیدکننده را بردارید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "John = null;\n\n// The entry for John is now removed from the WeakMap (persons)",
+   "caption": "ردیابی بازدیدکنندگان:"
+  },
+  {
+   "type": "h2",
+   "text": "قابل پیمایش نیست"
+  },
+  {
+   "type": "p",
+   "text": "WeakMap قابل شمارش (enumerable) نیست."
+  },
+  {
+   "type": "p",
+   "text": "نمی‌توانید با حلقه‌های for، متد forEach() یا keys() روی کلیدها و مقدارها پیمایش کنید."
+  },
+  {
+   "type": "p",
+   "text": "به size هم دسترسی ندارید."
+  },
+  {
+   "type": "h2",
+   "text": "متدهای محدود"
+  },
+  {
+   "type": "p",
+   "text": "WeakMap مجموعهٔ محدودی متد دارد:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "new WeakMap()",
+     "یک شیء WeakMap تازه می‌سازد"
+    ],
+    [
+     "get(key)",
+     "مقدار یک کلید را از WeakMap می‌خواند"
+    ],
+    [
+     "set(key, value)",
+     "مقدار یک کلید را در WeakMap تنظیم می‌کند"
+    ],
+    [
+     "delete(key)",
+     "عنصری را که با کلید مشخص شده حذف می‌کند"
+    ],
+    [
+     "has(key)",
+     "اگر کلیدی در WeakMap وجود داشته باشد true برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "دادهٔ محرمانه با WeakMap"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create WeakMap\n\nconst myMap = new WeakMap();\n\n// Private Fields Simulation\n\nclass User {\n\n  constructor(name) {\n\n  myMap.set(this, {secret:\"hidden data\"});\n\n  this.name = name;\n\n }\n\n getSecret() {\n\n  return myMap.get(this).secret;\n\n  }\n\n}\n\nconst user1 = new User(\"John\");\n\nsecret = user1.getSecret();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap_secret"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال"
+  },
+  {
+   "type": "p",
+   "text": "WeakMap اجازهٔ پیمایش نمی‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "کد بیرونی نمی‌تواند «کشف» کند چه شیءهایی داخل WeakMap ذخیره شده‌اند."
+  },
+  {
+   "type": "p",
+   "text": "برای رسیدن به مقدار محرمانه به همان ارجاع this نیاز دارید که در سازنده به کار رفت."
+  },
+  {
+   "type": "p",
+   "text": "کد بیرونی به user1 و myMap دسترسی دارد، اما به ارجاع this داخل myMap نه؛ تا وقتی خودتان آن را آشکار نکنید (مثلاً با getSecret())، مقدار محرمانه دست‌نیافتنی است."
+  },
+  {
+   "type": "h2",
+   "text": "حریم خصوصی"
+  },
+  {
+   "type": "p",
+   "text": "WeakMap عمداً برای حریم خصوصی طراحی شده است: با یک کلید شیء می‌توانید set، get، has و delete را انجام دهید، اما نمی‌توانید داخلش را ببینید."
+  },
+  {
+   "type": "p",
+   "text": "این ابزار خوبی برای شبیه‌سازی خصوصیت‌های خصوصی در کلاس‌های JavaScript بود (پیش از آنکه فیلدهای #private به زبان اضافه شوند)."
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "Map در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متدهای Map در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع Map در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Set در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "WeakMap یکی از ویژگی‌های ES6 است."
+  },
+  {
+   "type": "p",
+   "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن به‌طور کامل پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome51",
+     "Edge15",
+     "Firefox54",
+     "Safari10",
+     "Opera38"
+    ],
+    [
+     "May 2016",
+     "Apr 2017",
+     "Jun 2017",
+     "Sep 2016",
+     "Jun 2016"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل weakmap.html بسازید، یک WeakMap و یک شیء ساده بسازید و با set() مقداری را به آن نسبت دهید.",
+   "hint": "کلید باید شیء باشد: myMap.set(myObj, \"player\")."
+  },
+  {
+   "prompt": "با get() مقدار ذخیره‌شده را بخوانید، بعد متغیر شیء را null کنید و بگویید چرا حالا واجد شرایط جمع‌آوری زباله است.",
+   "hint": "با myObj = null; دیگر ارجاعی به آن شیء نمی‌ماند."
+  },
+  {
+   "prompt": "یک رشته را به‌عنوان کلید WeakMap بگذارید و خطای کنسول را ببینید، بعد کلید را با یک شیء عوض کنید.",
+   "hint": "کلید WeakMap باید شیء یا symbol ثبت‌نشده باشد، نه رشته."
+  },
+  {
+   "prompt": "بخواهید با for...of یا متد keys() روی یک WeakMap پیمایش کنید و ببینید راه نمی‌دهد.",
+   "hint": "WeakMap قابل شمارش نیست و فقط set، get، has و delete دارد؛ size هم ندارد."
+  },
+  {
+   "prompt": "مثال «ردیابی بازدیدکنندگان» را در فایل خودتان بنویسید و بشمارید Paul چند بار بازدید کرده است.",
+   "hint": "در تابع ردیابی اول let count = visitsCount.get(visitor) || 0; بعد count++ و visitsCount.set(visitor, count)."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کلیدهای WeakMap چه نوعی دارند؟",
+   "options": [
+    "هر نوع داده‌ای",
+    "فقط رشته",
+    "باید شیء باشند",
+    "فقط عدد"
+   ],
+   "answer": 2,
+   "explanation": "کلید WeakMap باید شیء یا symbol ثبت‌نشده باشد. مقدارهای اولیه (primitive) مجاز نیستند، چون مانند شیءها جمع‌آوری زباله نمی‌شوند."
+  },
+  {
+   "question": "چرا WeakMap جلوی جمع‌آوری زبالهٔ کلیدهایش را نمی‌گیرد؟",
+   "options": [
+    "چون به کلیدها ارجاع ضعیف نگه می‌دارد",
+    "چون کلیدها را کپی می‌کند",
+    "چون کلیدها را رمزنگاری می‌کند",
+    "چون همهٔ کلیدها را همیشه در حافظه نگه می‌دارد"
+   ],
+   "answer": 0,
+   "explanation": "WeakMap ارجاع ضعیف نگه می‌دارد؛ اگر ارجاع دیگری به شیء کلید نماند، واجد شرایط جمع‌آوری زباله می‌شود و جفت کلید-مقدارش خودکار از WeakMap حذف می‌شود."
+  },
+  {
+   "question": "کدام گزینه در WeakMap وجود ندارد؟",
+   "options": [
+    "متد set()",
+    "متد get()",
+    "خصوصیت size",
+    "متد has()"
+   ],
+   "answer": 2,
+   "explanation": "WeakMap نه خصوصیت size دارد و نه قابل پیمایش است؛ فقط متدهای set، get، has و delete را دارد."
+  },
+  {
+   "question": "WeakMap بیشتر برای چه کاری ساخته شده است؟",
+   "options": [
+    "ذخیرهٔ حجم زیادی دادهٔ عددی",
+    "مرتب کردن آرایه‌ها",
+    "ردیابی داده‌های مربوط به یک شیء بدون جلوگیری از جمع‌آوری زباله",
+    "جایگزینی آرایه‌ها"
+   ],
+   "answer": 2,
+   "explanation": "خانه‌های WeakMap ضعیف نگه داشته می‌شوند، پس برای چسباندن داده به یک شیء بدون جلوگیری از جمع‌آوری زباله مناسب است؛ به همین دلیل هم برای شبیه‌سازی خصوصیت‌های خصوصی به کار می‌رفت."
+  },
+  {
+   "question": "در مثال دادهٔ محرمانه، رسیدن به مقدار محرمانه به چه چیزی نیاز دارد؟",
+   "options": [
+    "به ارجاع this که در سازنده ذخیره شد",
+    "به حلقهٔ for...of روی WeakMap",
+    "به خصوصیت size",
+    "به متد keys()"
+   ],
+   "answer": 0,
+   "explanation": "چون WeakMap قابل پیمایش نیست، کد بیرونی نمی‌تواند داخلش را ببیند؛ برای رسیدن به مقدار محرمانه همان ارجاع this لازم است که با getSecret() آشکار می‌شود."
+  }
+ ]
+}

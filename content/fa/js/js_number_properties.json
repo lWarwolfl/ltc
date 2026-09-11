@@ -1,0 +1,357 @@
+{
+ "slug": "js_number_properties",
+ "course": "js",
+ "order": 33,
+ "url": "/js/js_number_properties.asp",
+ "title": "خصوصیت‌های عدد در JavaScript",
+ "summary": "این درس خصوصیت‌های شیء Number را معرفی می‌کند: EPSILON، MAX_VALUE، MIN_VALUE، MAX_SAFE_INTEGER، MIN_SAFE_INTEGER، POSITIVE_INFINITY، NEGATIVE_INFINITY و NaN. بعد از این درس می‌دانید این ثابت‌ها چه محدودیت‌هایی از عددها را نشان می‌دهند و چرا فقط با خود Number قابل دسترسی‌اند.",
+ "objectives": [
+  "ثابت‌های عدد را با Number.MAX_VALUE و مانند آن بخوانید",
+  "توضیح دهید چرا x.MAX_VALUE مقدار undefined می‌دهد",
+  "محدودهٔ عددهای صحیح ایمن را تشخیص دهید",
+  "با POSITIVE_INFINITY و NaN کار کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "خصوصیت‌های عدد در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های عدد"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Number.EPSILON\nNumber.MAX_VALUE\nNumber.MIN_VALUE",
+     "Number.MAX_SAFE_INTEGER\nNumber.MIN_SAFE_INTEGER\nNumber.POSITIVE_INFINITY\nNumber.NEGATIVE_INFINITY\nNumber.NaN"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش اعداد"
+  },
+  {
+   "type": "p",
+   "text": "متدهای عدد"
+  },
+  {
+   "type": "p",
+   "text": "مرجع عدد"
+  },
+  {
+   "type": "h2",
+   "text": "EPSILON در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Number.EPSILON تفاوت بین کوچک‌ترین عدد ممیز شناور بزرگ‌تر از 1 و خود 1 است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Number.EPSILON;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_epsilon"
+  },
+  {
+   "type": "p",
+   "text": "Number.EPSILON یکی از ویژگی‌های ES6 است."
+  },
+  {
+   "type": "p",
+   "text": "در Internet Explorer کار نمی‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "MAX_VALUE در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Number.MAX_VALUE ثابتی است که بزرگ‌ترین عدد ممکن در JavaScript را نشان می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Number.MAX_VALUE;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_max"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های Number روی متغیرها کار نمی‌کنند"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های عدد به شیء Number در JavaScript تعلق دارند."
+  },
+  {
+   "type": "p",
+   "text": "این خصوصیت‌ها فقط به شکل Number.MAX_VALUE قابل دسترسی هستند."
+  },
+  {
+   "type": "p",
+   "text": "اگر x.MAX_VALUE را به کار ببرید که x یک متغیر یا یک مقدار است، خروجی undefined می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 6;\n\nx.MAX_VALUE",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_max_undefined"
+  },
+  {
+   "type": "h2",
+   "text": "MIN_VALUE در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Number.MIN_VALUE ثابتی است که کوچک‌ترین عدد ممکن در JavaScript را نشان می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Number.MIN_VALUE;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_min"
+  },
+  {
+   "type": "h2",
+   "text": "کمترین و بیشترین عدد صحیح ایمن"
+  },
+  {
+   "type": "p",
+   "text": "ES6 دو خصوصیت max و min به شیء Number اضافه کرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Number.MAX_SAFE_INTEGER",
+    "Number.MIN_SAFE_INTEGER"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "MIN_SAFE_INTEGER در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Number.MIN_SAFE_INTEGER کمترین عدد صحیح ایمن در JavaScript را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "Number.MIN_SAFE_INTEGER برابر -(253 - 1) است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Number.MIN_SAFE_INTEGER;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_min_safe"
+  },
+  {
+   "type": "h2",
+   "text": "MAX_SAFE_INTEGER در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Number.MAX_SAFE_INTEGER بیشترین عدد صحیح ایمن در JavaScript را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "Number.MAX_SAFE_INTEGER برابر (253 - 1) است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Number.MAX_SAFE_INTEGER;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_max_safe"
+  },
+  {
+   "type": "h2",
+   "text": "POSITIVE_INFINITY در JavaScript"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Number.POSITIVE_INFINITY;",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 1 / 0;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_pos_infinity"
+  },
+  {
+   "type": "h2",
+   "text": "NEGATIVE_INFINITY در JavaScript"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Number.NEGATIVE_INFINITY;",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = -1 / 0;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_neg_infinity"
+  },
+  {
+   "type": "h2",
+   "text": "NaN در JavaScript، عدد نیست"
+  },
+  {
+   "type": "p",
+   "text": "NaN یک کلمهٔ رزروشدهٔ JavaScript برای عددی است که عدد معتبری نیست."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Number.NaN;",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 100 / \"Apple\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_nan"
+  },
+  {
+   "type": "h2",
+   "text": "مرجع کامل JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، همراه با توضیح کامل و مثال‌های فراوان، به اینجا بروید:"
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل JavaScript در W3Schools."
+  },
+  {
+   "type": "p",
+   "text": "این مرجع همهٔ به‌روزرسانی‌های JavaScript از 1999 تا 2025 را در بر می‌گیرد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "در کنسول let x = Number.MAX_SAFE_INTEGER; و let y = Number.MIN_SAFE_INTEGER; را چاپ کنید و مقدار هر دو را یادداشت کنید.",
+   "hint": "این دو خصوصیت به شیء Number تعلق دارند و بیشترین و کمترین عدد صحیح ایمن را می‌دهند."
+  },
+  {
+   "prompt": "let x = 6; بسازید و x.MAX_VALUE را چاپ کنید. توضیح دهید چرا خروجی undefined است.",
+   "hint": "خصوصیت‌های Number فقط با خود Number قابل دسترسی‌اند، نه با یک متغیر یا مقدار عددی."
+  },
+  {
+   "prompt": "خروجی let x = Number.MAX_SAFE_INTEGER + 1; و let y = Number.MAX_SAFE_INTEGER + 2; را با هم مقایسه کنید و بنویسید چرا برابر به نظر می‌رسند.",
+   "hint": "بالاتر از محدودهٔ ایمن، عددها دیگر دقیق نمایش داده نمی‌شوند و گِرد می‌شوند."
+  },
+  {
+   "prompt": "let a = Number.POSITIVE_INFINITY; let b = Number.NEGATIVE_INFINITY; را چاپ کنید و بعد با let c = 1 / 0; و let d = -1 / 0; همان نتیجه‌ها را بگیرید.",
+   "hint": "تقسیم بر صفر هم Infinity تولید می‌کند و خصوصیت‌های POSITIVE_INFINITY و NEGATIVE_INFINITY همین مقدارها را نگه می‌دارند."
+  },
+  {
+   "prompt": "let x = 100 / \"Apple\"; را اجرا کنید و با Number.isNaN(x) بررسی کنید که نتیجه NaN است یا نه. سپس همین کار را برای let y = Number.NaN; تکرار کنید.",
+   "hint": "NaN با هیچ مقداری، حتی خودش، برابر نیست؛ پس برای بررسی از Number.isNaN() استفاده کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "Number.MAX_SAFE_INTEGER چه چیزی را نشان می‌دهد؟",
+   "options": [
+    "بزرگ‌ترین عددی که JavaScript می‌تواند ذخیره کند",
+    "بیشترین عدد صحیحی که می‌توان دقیقاً نمایش داد و برابر 9007199254740991 است",
+    "تعداد رقم‌های مجاز در یک عدد",
+    "مقدار Infinity"
+   ],
+   "answer": 1,
+   "explanation": "MAX_SAFE_INTEGER بزرگ‌ترین عدد صحیح ایمن است، یعنی بزرگ‌ترین عدد صحیحی که می‌توان آن را دقیقاً نمایش داد؛ محدودهٔ ذخیره‌سازی (MAX_VALUE) بسیار بزرگ‌تر است اما دقیق نیست."
+  },
+  {
+   "question": "خروجی let x = 6; x.MAX_VALUE; چیست؟",
+   "options": [
+    "undefined",
+    "خطای TypeError",
+    "بزرگ‌ترین عدد JavaScript",
+    "NaN"
+   ],
+   "answer": 0,
+   "explanation": "خصوصیت‌های عدد به شیء Number تعلق دارند و فقط به شکل Number.MAX_VALUE قابل دسترسی‌اند؛ روی یک متغیر یا مقدار، خروجی undefined است."
+  },
+  {
+   "question": "Number.EPSILON چیست؟",
+   "options": [
+    "کوچک‌ترین عدد ممکن در JavaScript",
+    "تفاوت بین کوچک‌ترین عدد ممیز شناور بزرگ‌تر از 1 و خود 1",
+    "بیشترین دقت عددهای اعشاری",
+    "همان MAX_VALUE است"
+   ],
+   "answer": 1,
+   "explanation": "EPSILON کوچک‌ترین فاصلهٔ ممکن بین دو عدد ممیز شناور نزدیک به 1 را نشان می‌دهد؛ ویژگی ES6 است و در Internet Explorer کار نمی‌کند."
+  },
+  {
+   "question": "کدام خصوصیت‌ها بیشترین و کمترین عدد صحیح ایمن را می‌دهند؟",
+   "options": [
+    "Number.MAX_VALUE و Number.MIN_VALUE",
+    "Number.POSITIVE_INFINITY و Number.NEGATIVE_INFINITY",
+    "Number.MAX_SAFE_INTEGER و Number.MIN_SAFE_INTEGER",
+    "Number.EPSILON و Number.NaN"
+   ],
+   "answer": 2,
+   "explanation": "MAX_SAFE_INTEGER و MIN_SAFE_INTEGER محدودهٔ عددهای صحیح ایمن را مشخص می‌کنند؛ MAX_VALUE و MIN_VALUE کوچک‌ترین و بزرگ‌ترین مقدار قابل ذخیره‌اند که دقیق نیستند."
+  },
+  {
+   "question": "let x = 1 / 0; چه نتیجه‌ای می‌دهد؟",
+   "options": [
+    "خطای تقسیم بر صفر",
+    "NaN",
+    "Infinity",
+    "0"
+   ],
+   "answer": 2,
+   "explanation": "تقسیم بر صفر در JavaScript خطا نمی‌دهد و Infinity می‌دهد؛ برای -1 / 0 نتیجه -Infinity می‌شود."
+  }
+ ]
+}

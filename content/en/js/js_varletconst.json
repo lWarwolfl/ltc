@@ -1,0 +1,251 @@
+{
+ "slug": "js_varletconst",
+ "course": "js",
+ "order": 55,
+ "url": "/js/js_varletconst.asp",
+ "title": "JavaScript var let and const",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript var let and const"
+  },
+  {
+   "type": "h2",
+   "text": "Difference Between var, let and const"
+  },
+  {
+   "type": "p",
+   "text": "The primary difference between var, let,\nand const lies in scoping mechanisms, reassignment rules, and how JavaScript handles\nthem via hoisting."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "",
+     "Scope",
+     "Redeclare",
+     "Reassign",
+     "Hoisted",
+     "NOTE"
+    ],
+    [
+     "var",
+     "No",
+     "Yes",
+     "Yes",
+     "Yes",
+     "Undefined"
+    ],
+    [
+     "let",
+     "Yes",
+     "No",
+     "Yes",
+     "Yes",
+     "Not initialized"
+    ],
+    [
+     "const",
+     "Yes",
+     "No",
+     "No",
+     "Yes",
+     "Not initialized"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Variables declared with var are hoisted but initialized with undefined."
+  },
+  {
+   "type": "p",
+   "text": "Variables declared with let and const are also hoisted,\nbut not initialized."
+  },
+  {
+   "type": "p",
+   "text": "Using a let or const variable before it is declared will\nresult in a ReferenceError."
+  },
+  {
+   "type": "p",
+   "text": "The time between the start of the block and the declaration is called the Temporal Dead Zone."
+  },
+  {
+   "type": "h2",
+   "text": "What is Not Good?"
+  },
+  {
+   "type": "p",
+   "text": "var does not have to be declared."
+  },
+  {
+   "type": "p",
+   "text": "var is hoisted."
+  },
+  {
+   "type": "p",
+   "text": "var binds to this."
+  },
+  {
+   "type": "p",
+   "text": "Modern JavaScript standards recommend avoiding var entirely to minimize unintentional bugs."
+  },
+  {
+   "type": "h2",
+   "text": "Scope Rules"
+  },
+  {
+   "type": "p",
+   "text": "var is function-scoped:\nIf you declare a var variable inside a loop or an if block,\nit \"leaks out\" and is accessible anywhere outside the block."
+  },
+  {
+   "type": "p",
+   "text": "let and const are block-scoped:\nThey are confined strictly to the nearest pair of curly braces {} (such as loops, functions, or conditional blocks)."
+  },
+  {
+   "type": "p",
+   "text": "As a rule of thumb, you should use const by default, and only use let when you have to reassign the\nvariable after initialization."
+  },
+  {
+   "type": "p",
+   "text": "You should avoid using var."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "var",
+     "let",
+     "const"
+    ],
+    [
+     "Scope",
+     "Function or global scope",
+     "Block-scope { }",
+     "Block-scope { }"
+    ],
+    [
+     "Reassignment",
+     "Can be updated",
+     "Can be updated",
+     "Cannot be updated"
+    ],
+    [
+     "Redeclaration",
+     "Can be redeclared",
+     "Cannot be redeclared",
+     "Cannot be redeclared"
+    ],
+    [
+     "Hoisting",
+     "Initialized as undefined",
+     "Hoisted, not initialized",
+     "Hoisted, not initialized"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "What is Good?"
+  },
+  {
+   "type": "p",
+   "text": "let and const\nhave block scope."
+  },
+  {
+   "type": "p",
+   "text": "let and const\ncan not be redeclared."
+  },
+  {
+   "type": "p",
+   "text": "let and const\nmust be declared before use."
+  },
+  {
+   "type": "p",
+   "text": "let and const\ndoes not bind to this."
+  },
+  {
+   "type": "p",
+   "text": "let and const\nare not hoisted."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (true) {\n\n  var firstName = \"John\";\n\n  let lastName = \"Doe\";\n\n}\n\nlet text1 = text2 = \"unknown\";\n\nif (typeof firstName !== \"undefined\") text1 = firstName;\n\nif (typeof lastName !== \"undefined\") text2 = lastName;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_block_scope"
+  },
+  {
+   "type": "h2",
+   "text": "Reassignment vs. Redeclaration"
+  },
+  {
+   "type": "p",
+   "text": "var allows you to accidentally re-declare the exact same variable name in the same scope, silently overwriting earlier values."
+  },
+  {
+   "type": "p",
+   "text": "let can be updated/reassigned, but it throws an error if you attempt to re-declare it within the same scope."
+  },
+  {
+   "type": "p",
+   "text": "const is strictly read-only. It requires an initial value immediately upon declaration and cannot be reassigned later."
+  },
+  {
+   "type": "p",
+   "text": "Note on const objects:\nYou cannot reassign a const variable with a completely new value,\nyou can still change the properties of an object or array declared with const."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create user object\n\nconst user = { name: \"Alice\" };\n\n// This will work\n\nuser.name = \"Bob\";\n\nlet text = user.name + \" \";\n\n// This will not work\n\ntry {\n\n  user = { name: \"Charlie\" };\n\n  text += user.name;\n\n} catch(err) {\n\n  text += err;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_const_object3"
+  },
+  {
+   "type": "h2",
+   "text": "Hoisting and the Temporal Dead Zone (TDZ)"
+  },
+  {
+   "type": "p",
+   "text": "All variables are hoisted to the top of their scope by the JavaScript engine, but they are treated differently:"
+  },
+  {
+   "type": "p",
+   "text": "var variables are hoisted and automatically assigned a default value of undefined. You can reference them before they are declared in the code without breaking the application."
+  },
+  {
+   "type": "p",
+   "text": "let and const are hoisted but remain completely uninitialized. The region of code from the start of the block until the line they are declared is called the Temporal Dead Zone. Accessing them here instantly crashes with a ReferenceError."
+  },
+  {
+   "type": "h2",
+   "text": "Best Practice"
+  },
+  {
+   "type": "p",
+   "text": "Developers should follow these guidelines for modern JavaScript (ES6 - 2015+):"
+  },
+  {
+   "type": "p",
+   "text": "Always use const by default.\nIt prevents accidental reassignments and makes your code more predictable."
+  },
+  {
+   "type": "p",
+   "text": "Only use let when:\nYou know its value needs to change later (inside a loop or a mathematical counter)."
+  },
+  {
+   "type": "p",
+   "text": "Never use var.\nIts unpredictable scoping and the redeclaration rules are known to cause bugs."
+  }
+ ]
+}

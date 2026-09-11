@@ -1,0 +1,625 @@
+{
+ "slug": "js_async_debug",
+ "course": "js",
+ "order": 230,
+ "url": "/js/js_async_debug.asp",
+ "title": "Asynchronous Debugging",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Asynchronous Debugging"
+  },
+  {
+   "type": "h2",
+   "text": "Asynchronous Bugs"
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous code can be more difficult to debug than synchronous code."
+  },
+  {
+   "type": "p",
+   "text": "The code often executes later than expected, and several asynchronous operations may run at the same time."
+  },
+  {
+   "type": "p",
+   "text": "This chapter shows techniques for finding and fixing common problems in asynchronous JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "This chapter shows practical ways to debug fetch(), promises, and async/await."
+  },
+  {
+   "type": "p",
+   "text": "Async debugging is about finding where the code stops."
+  },
+  {
+   "type": "p",
+   "text": "Then to find why it stopped."
+  },
+  {
+   "type": "h2",
+   "text": "Log Events"
+  },
+  {
+   "type": "p",
+   "text": "The easiest way to debug asynchronous code is to log when things happen."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "console.log(\"Before fetch\");\n\nconst promise = fetch(\"fetch.txt\");\n\nconsole.log(\"After fetch\");",
+   "caption": "Use console.log()"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Before fetch\");\n\nconst promise = fetch(\"fetch.txt\");\n\nmyDisplayer(\"After fetch\");",
+   "caption": "Use a display function"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_2"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "console.log(), often display the current state of a Promise like:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "<pending>",
+    "<fulfilled>",
+    "<rejected>"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "This information is provided by the debugging tool. It is not part of the JavaScript language."
+  },
+  {
+   "type": "p",
+   "text": "Why can't JavaScript do the same?"
+  },
+  {
+   "type": "p",
+   "text": "There is no standard properties like:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "promise.state",
+    "promise.status"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "They simply do not exist."
+  },
+  {
+   "type": "p",
+   "text": "The state part of the Promise is not in its public API."
+  },
+  {
+   "type": "h2",
+   "text": "Async Bugs Can be Invisible"
+  },
+  {
+   "type": "p",
+   "text": "Async code often fails after your function has already returned."
+  },
+  {
+   "type": "p",
+   "text": "This makes it feel like nothing happened."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response);\n\n}\n\nmyDisplayer(\"Start\");\n\n// Try to load a missing file\n\nloadText(\"missing.txt\");\n\nmyDisplayer(\"Done\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_3"
+  },
+  {
+   "type": "p",
+   "text": "The Done message prints even if loadText() fails."
+  },
+  {
+   "type": "p",
+   "text": "This is because the fetch() fails later."
+  },
+  {
+   "type": "h2",
+   "text": "Rule 1: Always Handle Errors"
+  },
+  {
+   "type": "p",
+   "text": "Unhandled promise rejections confuse beginners."
+  },
+  {
+   "type": "p",
+   "text": "Handle errors early and clearly."
+  },
+  {
+   "type": "p",
+   "text": "Use try...catch to handle Promises."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  try {\n\n    let response = await fetch(file);\n\n    let data = await response.json()\n\n    myDisplayer(JSON.stringify(data));\n\n  } catch (error) {\n\n    myDisplayer(error);\n\n  }\n\n}\n\n// Call async function\n\nloadData(\"customer.json\")",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_error_2"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "The code above catches network errors and JSON parsing errors."
+  },
+  {
+   "type": "p",
+   "text": "It does not catch HTTP errors like 404 (file not found)."
+  },
+  {
+   "type": "h2",
+   "text": "Rule 2: Check response.ok"
+  },
+  {
+   "type": "p",
+   "text": "Fetch does not reject on HTTP errors like 404."
+  },
+  {
+   "type": "p",
+   "text": "You must check response.ok."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  try {\n\n    let response = await fetch(file);\n\n    if (!response.ok) {\n\n      console.log(\"HTTP Error:\", response.status);\n\n      return;\n\n    }\n\n    let data = await response.json()\n\n    myDisplayer(JSON.stringify(data));\n\n  } catch (error) {\n\n    myDisplayer(error);\n\n  }\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_error"
+  },
+  {
+   "type": "p",
+   "text": "The code above separates HTTP errors from network errors."
+  },
+  {
+   "type": "p",
+   "text": "Most fetch bugs are not JavaScript bugs."
+  },
+  {
+   "type": "p",
+   "text": "They are URL and server response bugs."
+  },
+  {
+   "type": "h2",
+   "text": "Rule 3: Log the Right Things"
+  },
+  {
+   "type": "p",
+   "text": "Logging a promise is not the same as logging the data."
+  },
+  {
+   "type": "p",
+   "text": "Log the response and status first."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  let response = await fetch(file);\n\n  myDisplayer(response.status);\n\n  myDisplayer(response.headers.get(\"content-type\"));\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_4"
+  },
+  {
+   "type": "p",
+   "text": "The above code tells you if the server returned what you expected."
+  },
+  {
+   "type": "h2",
+   "text": "Common Response Headers"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Header",
+     "Description"
+    ],
+    [
+     "Content-Type",
+     "Type of the response (text/html, application/json, etc.)"
+    ],
+    [
+     "Content-Length",
+     "Size of the response in bytes"
+    ],
+    [
+     "Cache-Control",
+     "How the response may be cached"
+    ],
+    [
+     "Expires",
+     "When the cached response expires"
+    ],
+    [
+     "Last-Modified",
+     "When the resource was last modified"
+    ],
+    [
+     "ETag",
+     "Resource version identifier used for caching"
+    ],
+    [
+     "Date",
+     "Time the server generated the response"
+    ],
+    [
+     "Server",
+     "Information about the web server"
+    ],
+    [
+     "Access-Control-Allow-Origin",
+     "CORS policy"
+    ],
+    [
+     "Content-Encoding",
+     "Compression used (gzip, br, etc.)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Use the Browser Network Tab"
+  },
+  {
+   "type": "p",
+   "text": "The Network tab is a panel in your Browser's Developer Tools."
+  },
+  {
+   "type": "p",
+   "text": "It shows all network request made by your web page."
+  },
+  {
+   "type": "p",
+   "text": "It is one of the most useful tools for debugging asynchronous JavaScript because it lets you see exactly\nwhat is happening when your code uses fetch(), loads images, downloads JSON, or sends data to a server."
+  },
+  {
+   "type": "p",
+   "text": "How to Use the Developer Tools:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Open a Website",
+    "Press F12, or",
+    "Right-click the page and select Inspect.",
+    "Then select the Network tab.",
+    "Refresh the page"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The Network tab shows every request made by your application:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Which files were requested",
+    "Whether they succeeded",
+    "HTTP status codes",
+    "Download times"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const response = await fetch(\"customer.json\");",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Some Possible Results"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Name",
+     "Status",
+     "Type",
+     "Size",
+     "Time"
+    ],
+    [
+     "customer.json",
+     "200",
+     "fetch",
+     "548 Bytes",
+     "134ms"
+    ],
+    [
+     "customer.json",
+     "404",
+     "fetch",
+     "",
+     ""
+    ],
+    [
+     "customer.json",
+     "Failed",
+     "",
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "This is much easier than trying to guess why fetch() failed."
+  },
+  {
+   "type": "h2",
+   "text": "Use Breakpoints"
+  },
+  {
+   "type": "p",
+   "text": "Modern browsers allow you to pause JavaScript execution."
+  },
+  {
+   "type": "p",
+   "text": "While execution is paused, you can inspect variables, Promises, and the Call Stack."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Example\nconst response = await fetch(\"demo.txt\");\n\ndebugger;\n\nconst text = await response.text();",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "When execution reaches debugger, DevTools pauses automatically."
+  },
+  {
+   "type": "h2",
+   "text": "Breakpoints on await"
+  },
+  {
+   "type": "p",
+   "text": "You can set breakpoints on await lines."
+  },
+  {
+   "type": "p",
+   "text": "This lets you inspect values before and after async steps."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  console.log(data);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Set a breakpoint on the first await line."
+  },
+  {
+   "type": "p",
+   "text": "Step over and inspect response."
+  },
+  {
+   "type": "h2",
+   "text": "Common Async Errors"
+  },
+  {
+   "type": "p",
+   "text": "Forgetting await is the most common beginner mistake."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = response.json();\n\n  console.log(data);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "This logs a promise, not the JSON."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  console.log(data);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Debugging Promise Chains"
+  },
+  {
+   "type": "p",
+   "text": "Promises can fail anywhere in the chain."
+  },
+  {
+   "type": "p",
+   "text": "Add logs between steps to find where it fails."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fetch(\"data.json\")\n\n.then(function(response) {\n\n  console.log(\"Got response\");\n\n  return response.json();\n\n})\n\n.then(function(data) {\n\n  console.log(\"Got data\");\n\n  console.log(data);\n\n})\n\n.catch(function(error) {\n\n  console.log(\"Failed\");\n\n  console.log(error);\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "This shows which step is failing."
+  },
+  {
+   "type": "h2",
+   "text": "Understand Execution Order"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Start\");\n\nsetTimeout(function() {myDisplayer(\"Timer\")},1000);\n\nmyDisplayer(\"End\");",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Start\n\nEnd\n\nTimer",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_order"
+  },
+  {
+   "type": "h2",
+   "text": "Debug Parallel Operations"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const customer = fetch(\"customer.json\");\n\nconst products = fetch(\"products.json\");\n\nconst news = fetch(\"news.json\");",
+   "caption": "Result"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "All three requests start immediately",
+    "The browser may finish them in any order",
+    "That is normal"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Check response.ok"
+  },
+  {
+   "type": "p",
+   "text": "Many beginners forget this."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const response = await fetch(\"missing.txt\");\n\nconst text = await response.text();",
+   "caption": "Wrong:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (!response.ok) {\n\n  console.log(response.status);\n\n}",
+   "caption": "Better:"
+  },
+  {
+   "type": "h2",
+   "text": "Handle Promise Rejections"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fetch(\"missing.txt\")\n\n.then(function(response){\n\n  return response.text();\n\n})\n\n.catch(function(err){\n\n  console.log(err);\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Explain the difference between:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Rejected Promise",
+    "HTTP error"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Use finally()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "showSpinner();\n\ntry {\n\n  ...\n\n}\n\nfinally {\n\n  hideSpinner();\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Cleanup code belongs in finally()."
+  },
+  {
+   "type": "h2",
+   "text": "Debugging HowTo"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Add try...catch around awaited code.",
+    "Check both response.ok and response.status.",
+    "Use breakpoints on await lines.",
+    "Use the Network tab."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Debugging Checklist"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Did the Promise resolve?",
+    "Did you forget await?",
+    "Did you check response.ok?",
+    "Is your code inside an async function?",
+    "Did the request appear in the Network tab?",
+    "Are errors reported in the Console?",
+    "Are you blocking the Event Loop?"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Summary"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Use console.log() to trace execution.",
+    "Inspect Promise objects while debugging.",
+    "Use try...catch to handle rejected Promises.",
+    "Use the browser's Network tab to inspect requests.",
+    "Set breakpoints to inspect variables and execution.",
+    "Check response.ok after every fetch()."
+   ]
+  }
+ ]
+}

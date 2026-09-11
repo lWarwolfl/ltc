@@ -1,0 +1,745 @@
+{
+ "slug": "js_temporal_standards",
+ "course": "js",
+ "order": 200,
+ "url": "/js/js_temporal_standards.asp",
+ "title": "Temporal Standards",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Temporal Standards"
+  },
+  {
+   "type": "p",
+   "text": "Temporal is based on the following standards:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Name",
+     "Description"
+    ],
+    [
+     "ISO 8601 Date/Time",
+     "International standard"
+    ],
+    [
+     "ISO 8601 Duration",
+     "ISO 8601 duration codes"
+    ],
+    [
+     "RFC 3339 Date/Time",
+     "Internet standard"
+    ],
+    [
+     "RFC 9557 Date/Time",
+     "Temporal standard"
+    ],
+    [
+     "RFC 5545 iCalendar",
+     "The iCalendar data format"
+    ],
+    [
+     "JavaScript Calendars",
+     "Internet calendar systems"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The ISO 8601 Standard"
+  },
+  {
+   "type": "p",
+   "text": "ISO 8601 is the International Standard for representing dates and times."
+  },
+  {
+   "type": "p",
+   "text": "It is a machine-readable text format in the form YYYY-MM-DDThh:mm:ssZ."
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/jsref/img_iso8601.svg",
+   "alt": "ISO 8601"
+  },
+  {
+   "type": "p",
+   "text": "ISO 8601 was designed to eliminate confusion caused by regional date variations."
+  },
+  {
+   "type": "p",
+   "text": "It follows a \"largest to smallest\" hierarchy (year, month, day, hour, minute, second)\nwhich ensures that dates are alphabetically sortable."
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "ISO 8601 avoids confusion between regional formats like:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "MM/DD/YYYY (US format)",
+    "DD/MM/YYYY (European format)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ISO 8601 Strings"
+  },
+  {
+   "type": "p",
+   "text": "An ISO 8601 string represents dates and times in a structured and sortable format:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Format",
+     "Description"
+    ],
+    [
+     "YYYY",
+     "A 4-digit year"
+    ],
+    [
+     "MM",
+     "2-digit month"
+    ],
+    [
+     "DD",
+     "2-digit day"
+    ],
+    [
+     "T",
+     "Separator for time"
+    ],
+    [
+     "hh",
+     "Hour"
+    ],
+    [
+     "mm",
+     "Minute"
+    ],
+    [
+     "ss",
+     "Second"
+    ],
+    [
+     "Z",
+     "Zero (Zulu) time Zone"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "Examples"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Format",
+     "Format",
+     "Example"
+    ],
+    [
+     "Date (4-digit year)",
+     "YYYY-MM-DD",
+     "2026-05-17"
+    ],
+    [
+     "Time (24 hour)",
+     "hh:mm:ss",
+     "14:30:00"
+    ],
+    [
+     "Date & Time",
+     "YYYY-MM-DDThh:mm:ssZ",
+     "2026-05-17T14:30:00Z"
+    ],
+    [
+     "Date & Time UTC",
+     "YYYY-MM-DDThh:mm:ssZ",
+     "2026-05-17T14:30:00Z"
+    ],
+    [
+     "Date & Time + Offset",
+     "YYYY-MM-DDThh:mm:ss±hh:mm",
+     "2026-05-17T14:30:00+01:00"
+    ],
+    [
+     "Week Date",
+     "YYYY-Www-D",
+     "2026-W20-7"
+    ],
+    [
+     "Ordinal (001-366)",
+     "YYYY-nnn",
+     "2026-074"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ISO 8601 Duration Codes"
+  },
+  {
+   "type": "p",
+   "text": "An ISO 8601 duration represent lengths of time."
+  },
+  {
+   "type": "p",
+   "text": "It uses a standard format starting with ±P (Period),\nfollowed by the structure nYnMnDTnHnMnS."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Code",
+     "Description"
+    ],
+    [
+     "±",
+     "Optional positive/negative duration (default is +)."
+    ],
+    [
+     "P",
+     "Duration designator (for period)"
+    ],
+    [
+     "nY",
+     "Number of calendar years"
+    ],
+    [
+     "nM",
+     "Number of calendar months"
+    ],
+    [
+     "nW",
+     "Number of weeks"
+    ],
+    [
+     "nD",
+     "Number of calendar days"
+    ],
+    [
+     "T",
+     "Time designator (precedes time components)"
+    ],
+    [
+     "nH",
+     "Number of hours"
+    ],
+    [
+     "nM",
+     "Number of minutes"
+    ],
+    [
+     "nS",
+     "Number of seconds"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "±P nY nM nW nD T nH nM nS",
+   "caption": "Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "P3Y6M4DT12H30M5S",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "More Examples"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Duration",
+     "Code"
+    ],
+    [
+     "1 Day",
+     "P1D"
+    ],
+    [
+     "45 Minutes",
+     "PT45M"
+    ],
+    [
+     "1 Year, 2 Months, 3 Days",
+     "P1Y2M3D"
+    ],
+    [
+     "4 Hours, 5 Minutes, 6 Seconds",
+     "PT4H5M6S"
+    ],
+    [
+     "2.5 Hours",
+     "PT2H30M"
+    ],
+    [
+     "5 Weeks",
+     "P5W"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Usage Rules"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Time Separator\nIf you have hours, minutes, or seconds, you must use the T separator,\nor the code will be invalid (e.g. PT3H not P3H).",
+    "Optionality\nComponents are optional, but at least one must be present after P or T.",
+    "Order\nThe order must be preserved:\nP-> Y-> M-> W-> D-> T-> H-> M-> S.",
+    "Decimal fractions\nYou can use decimal points for the smallest unit,\nlike PT0.0021S for 2.1 milliseconds."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The RF 3339 Format"
+  },
+  {
+   "type": "p",
+   "text": "RFC 3339 is the Internet Standard for Date and Time Formats."
+  },
+  {
+   "type": "p",
+   "text": "It is a Subset of ISO 8601 designed for use in Internet protocols."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "Description"
+    ],
+    [
+     "Format",
+     "Follows the ISO pattern YYYY-MM-DDThh:mm:ssZ"
+    ],
+    [
+     "Time Zones",
+     "Requires a Z for time zone UTC or an offset (+05:00)"
+    ],
+    [
+     "T Separator",
+     "Allows the \"T\" separator to be replaced by \" \" for readability"
+    ],
+    [
+     "Web APIs",
+     "The default format for timestamps in JSON and RESTful APIs"
+    ],
+    [
+     "Programming",
+     "Modern languages have bult-in support like toISOString()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The RFC 9557 Format"
+  },
+  {
+   "type": "p",
+   "text": "RFC 9557 is the primary format used by JavaScript Temporal to represent dates."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "ISO 8601",
+     "RFC 3339",
+     "RFC 9557"
+    ],
+    [
+     "Format",
+     "YYYY-MM-DDThh:mm:ssZ",
+     "Same",
+     "Same"
+    ],
+    [
+     "UTC Offset",
+     "Yes",
+     "Yes",
+     "Yes"
+    ],
+    [
+     "IANA Zone",
+     "No",
+     "No",
+     "[America/New_York]"
+    ],
+    [
+     "Calendars",
+     "ISO only",
+     "ISO only",
+     "[u-ca=hebrew]"
+    ],
+    [
+     "Compabile",
+     "The Standard",
+     "Subset of ISO 8601",
+     "Extends 3339"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "RFC 9557 was created because ISO 8601 and RFC 3339 did not contain enough\ninformation to determine the geographical time zone or handle future DST\n(Daylight Saving Time) changes."
+  },
+  {
+   "type": "h2",
+   "text": "RFC 5545 iCalendar"
+  },
+  {
+   "type": "p",
+   "text": "RFC 5545 is the official internet standard for the iCalendar data format.\nIt defines how calendar systems should store and share calendar data like meetings, tasks,\nand free/busy times using plain text files."
+  },
+  {
+   "type": "p",
+   "text": "iCalendar is text-based. It Uses readable lines of text encoded in UTF-8."
+  },
+  {
+   "type": "p",
+   "text": "iCalendar is is application independent. It works across different apps like Apple Calendar,\nGoogle Calendar, and Microsoft Outlook."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "BEGIN:VCALENDAR\n\nVERSION:2.0\n\nPRODID:-//Example Corp//NONSGML Calendar App//EN\n\nCALSCALE:GREGORIAN\n\nMETHOD:PUBLISH\n\nBEGIN:VEVENT\n\nUID:uid123456789@example.com\n\nDTSTAMP:20260810T120000Z\n\nORGANIZER;CN=John Doe:mailto:john.doe@example.com\n\nDTSTART:20260812T140000Z\n\nDTEND:20260812T150000Z\n\nSUMMARY:Project Kickoff Meeting\n\nDESCRIPTION:Initial team synchronization and roadmap review.\n\nLOCATION:Conference Room A\n\nSTATUS:CONFIRMED\n\nCLASS:PUBLIC\n\nEND:VEVENT\n\nEND:VCALENDAR",
+   "caption": "Examples"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Field",
+     "Description"
+    ],
+    [
+     "BEGIN:VCALENDAR",
+     "Required. Begins a calendar object."
+    ],
+    [
+     "VERSION:2.0",
+     "Required. Specifies compliance with RFC 5545."
+    ],
+    [
+     "PRODID",
+     "Required. -//Organization//Product//Language."
+    ],
+    [
+     "BEGIN:VEVENT",
+     "Required. Begins a single calendar event."
+    ],
+    [
+     "UID",
+     "A globally unique event identifier to prevent duplicates."
+    ],
+    [
+     "DTSTAMP",
+     "The exact date and time the file was generated."
+    ],
+    [
+     "ORGANIZER",
+     "Defines who is hosting or managing the event."
+    ],
+    [
+     "DTSTART",
+     "Event start time (YYYYMMDDTHHMMSSZ in UTC)."
+    ],
+    [
+     "DTEND",
+     "Event end time (YYYYMMDDTHHMMSSZ in UTC)."
+    ],
+    [
+     "SUMMARY",
+     "The title of the calendar event."
+    ],
+    [
+     "DESCRIPTION",
+     "The detailed notes or body text of the event."
+    ],
+    [
+     "LOCATION",
+     "The location of the event."
+    ],
+    [
+     "CLASS",
+     "PUBLIC, PRIVATE or CONFIDENTIAL."
+    ],
+    [
+     "STATUS",
+     "TENTATIVE, CONFIRMED or CANCELLED."
+    ],
+    [
+     "END:VEVENT",
+     "Required. Ends a single calendar event."
+    ],
+    [
+     "END:VCALENDAR",
+     "Required. Ends a calendar object."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Calendar Systems in JavaScript"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal supports multiple calendar systems",
+    "The calendars are based on the Unicode CLDR standard",
+    "They are used with the Intl API.",
+    "The default is iso8601.",
+    "Calendars affect how dates are interpreted and displayed.",
+    "Use [u-ca=calendar] to specify a calendar."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Supported Calendar Identifiers"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Calendar ID",
+     "Name",
+     "Region",
+     "Description"
+    ],
+    [
+     "iso8601",
+     "ISO 8601",
+     "Worldwide",
+     "The default calendar used by Temporal"
+    ],
+    [
+     "gregory",
+     "Gregorian",
+     "Worldwide",
+     "The most widely used civil calendar today"
+    ],
+    [
+     "buddhist",
+     "Buddhist",
+     "Thailand",
+     "A different year numbering system than Gregorian"
+    ],
+    [
+     "chinese",
+     "Chinese",
+     "China",
+     "A lunisolar calendar used for traditional festivals"
+    ],
+    [
+     "coptic",
+     "Coptic",
+     "Egypt",
+     "Used by the Coptic Orthodox Church"
+    ],
+    [
+     "dangi",
+     "Dangi",
+     "Korea",
+     "Traditional Korean lunisolar calendar"
+    ],
+    [
+     "ethiopic",
+     "Ethiopic",
+     "Ethiopia",
+     "A calendar with 13 months"
+    ],
+    [
+     "ethioaa",
+     "Ethiopic AA",
+     "Ethiopia",
+     "Alternative Ethiopic era"
+    ],
+    [
+     "hebrew",
+     "Hebrew",
+     "Israel",
+     "A lunisolar calendar used in Jewish traditions"
+    ],
+    [
+     "indian",
+     "Indian (Saka)",
+     "India",
+     "The official civil calendar of India"
+    ],
+    [
+     "islamic",
+     "Islamic",
+     "Middle East",
+     "A lunar calendar used in Islamic countries"
+    ],
+    [
+     "islamic-umalqura",
+     "Umm al-Qura",
+     "Saudi Arabia",
+     "The official Saudi calendar"
+    ],
+    [
+     "japanese",
+     "Japanese",
+     "Japan",
+     "Based on imperial eras"
+    ],
+    [
+     "persian",
+     "Persian",
+     "Iran",
+     "A solar calendar with high accuracy"
+    ],
+    [
+     "roc",
+     "Republic of China",
+     "Taiwan",
+     "Used in Taiwan (Minguo calendar)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Calendar Systems Explained"
+  },
+  {
+   "type": "p",
+   "text": "A calendar system defines how dates are calculated."
+  },
+  {
+   "type": "p",
+   "text": "Different cultures use different calendars."
+  },
+  {
+   "type": "h3",
+   "text": "Solar Calendars"
+  },
+  {
+   "type": "p",
+   "text": "Based on the Earth's orbit around the sun."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Gregorian",
+    "ISO 8601",
+    "Persian"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "These calendars track seasons accurately."
+  },
+  {
+   "type": "h3",
+   "text": "Lunar Calendars"
+  },
+  {
+   "type": "p",
+   "text": "Based on the phases of the moon."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Islamic"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Lunar calendars have shorter years."
+  },
+  {
+   "type": "h3",
+   "text": "Lunisolar Calendars"
+  },
+  {
+   "type": "p",
+   "text": "Combine solar and lunar cycles."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Chinese",
+    "Hebrew",
+    "Dangi"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "They adjust months to stay aligned with seasons."
+  },
+  {
+   "type": "h3",
+   "text": "Era-Based Calendars"
+  },
+  {
+   "type": "p",
+   "text": "Use eras instead of a continuous year count."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Japanese",
+    "ROC (Taiwan)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Using Calendars in Temporal"
+  },
+  {
+   "type": "p",
+   "text": "The from() method supports calendars using the [u-ca=calendar] syntax or a calendar\nproperty in objects."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.PlainDate.from(\"2026-05-17[u-ca=japanese]\")",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.PlainDate.from({year:2026, month:5, day:17, calendar:\"hebrew\"})",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_japanese"
+  }
+ ]
+}

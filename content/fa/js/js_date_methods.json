@@ -1,0 +1,627 @@
+{
+ "slug": "js_date_methods",
+ "course": "js",
+ "order": 59,
+ "url": "/js/js_date_methods.asp",
+ "title": "متدهای get در تاریخ JavaScript",
+ "summary": "متدهای get یک شیء Date اجازه می‌دهند سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیه را بگیرید. در این درس شمارش ماه از صفر، روز هفته، متد ایستای Date.now() و معادل‌های UTC هر متد را یاد می‌گیرید.",
+ "objectives": [
+  "ماه و روز هفته را با متدهای get به‌صورت عدد بگیرید",
+  "عدد ماه را با آرایهٔ نام ماه‌ها به نام تبدیل کنید",
+  "تفاوت مقدار getTime و Date.now را توضیح دهید",
+  "معادل UTC هر متد get را تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متدهای get در تاریخ JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "سازندهٔ new Date()"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، شیءهای تاریخ با new Date() ساخته می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "new Date() یک شیء تاریخ با تاریخ و زمان جاری برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Date();",
+   "caption": "گرفتن زمان جاری"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای get تاریخ"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "getFullYear()",
+     "سال را به‌صورت عدد چهاررقمی برمی‌گرداند (yyyy)"
+    ],
+    [
+     "getMonth()",
+     "ماه را به‌صورت عدد برمی‌گرداند (۰ تا ۱۱)"
+    ],
+    [
+     "getDate()",
+     "روز ماه را به‌صورت عدد برمی‌گرداند (۱ تا ۳۱)"
+    ],
+    [
+     "getDay()",
+     "روز هفته را به‌صورت عدد برمی‌گرداند (۰ تا ۶)"
+    ],
+    [
+     "getHours()",
+     "ساعت را برمی‌گرداند (۰ تا ۲۳)"
+    ],
+    [
+     "getMinutes()",
+     "دقیقه را برمی‌گرداند (۰ تا ۵۹)"
+    ],
+    [
+     "getSeconds()",
+     "ثانیه را برمی‌گرداند (۰ تا ۵۹)"
+    ],
+    [
+     "getMilliseconds()",
+     "میلی‌ثانیه را برمی‌گرداند (۰ تا ۹۹۹)"
+    ],
+    [
+     "getTime()",
+     "زمان را برمی‌گرداند (میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰)"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "متدهای get بالا زمان محلی را برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "زمان جهانی (UTC) در پایین همین صفحه توضیح داده شده است."
+  },
+  {
+   "type": "p",
+   "text": "متدهای get اطلاعات را از شیءهای تاریخ موجود برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "در یک شیء تاریخ، زمان ایستا است؛ «ساعت» آن «کار نمی‌کند»."
+  },
+  {
+   "type": "p",
+   "text": "زمان داخل یک شیء تاریخ با زمان جاری یکسان نیست."
+  },
+  {
+   "type": "h2",
+   "text": "متد getFullYear()"
+  },
+  {
+   "type": "p",
+   "text": "متد getFullYear() سال یک تاریخ را به‌صورت عدد چهاررقمی برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getFullYear();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getFullYear();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_getfullyear2"
+  },
+  {
+   "type": "h2",
+   "text": "هشدار!"
+  },
+  {
+   "type": "p",
+   "text": "کدهای قدیمی JavaScript ممکن است از متد غیراستاندارد getYear() استفاده کنند."
+  },
+  {
+   "type": "p",
+   "text": "قرار است getYear() سالی دو رقمی برگرداند."
+  },
+  {
+   "type": "p",
+   "text": "متد getYear() منسوخ شده است؛ از آن استفاده نکنید!"
+  },
+  {
+   "type": "h2",
+   "text": "متد getMonth()"
+  },
+  {
+   "type": "p",
+   "text": "متد getMonth() ماه یک تاریخ را به‌صورت عدد برمی‌گرداند (۰ تا ۱۱)."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "در JavaScript ژانویه ماه شمارهٔ ۰ است، فوریه شمارهٔ ۱ و ... و در پایان دسامبر ماه شمارهٔ ۱۱."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getMonth();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getMonth();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_getmonth2"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "می‌توانید از آرایه‌ای از نام‌ها استفاده کنید تا ماه را به‌صورت نام برگردانید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"January\", \"February\", \"March\", \"April\", \"May\",\n\"June\", \"July\", \"August\", \"September\", \"October\",\n\"November\", \"December\"];\n\nconst d = new Date(\"2021-03-25\");\n\nlet month = months[d.getMonth()];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"January\", \"February\", \"March\", \"April\", \"May\",\n\"June\", \"July\", \"August\", \"September\", \"October\",\n\"November\", \"December\"];\n\nconst d = new Date();\n\nlet month = months[d.getMonth()];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_month2"
+  },
+  {
+   "type": "h2",
+   "text": "متد getDate()"
+  },
+  {
+   "type": "p",
+   "text": "متد getDate() روز ماه یک تاریخ را به‌صورت عدد برمی‌گرداند (۱ تا ۳۱):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getDate();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getDate();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_getdate2"
+  },
+  {
+   "type": "h2",
+   "text": "متد getHours()"
+  },
+  {
+   "type": "p",
+   "text": "متد getHours() ساعت یک تاریخ را به‌صورت عدد برمی‌گرداند (۰ تا ۲۳):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getHours();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getHours();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_gethours2"
+  },
+  {
+   "type": "h2",
+   "text": "متد getMinutes()"
+  },
+  {
+   "type": "p",
+   "text": "متد getMinutes() دقیقهٔ یک تاریخ را به‌صورت عدد برمی‌گرداند (۰ تا ۵۹):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getMinutes();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getMinutes();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_getminutes2"
+  },
+  {
+   "type": "h2",
+   "text": "متد getSeconds()"
+  },
+  {
+   "type": "p",
+   "text": "متد getSeconds() ثانیهٔ یک تاریخ را به‌صورت عدد برمی‌گرداند (۰ تا ۵۹):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getSeconds();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getSeconds();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_getseconds2"
+  },
+  {
+   "type": "h2",
+   "text": "متد getMilliseconds()"
+  },
+  {
+   "type": "p",
+   "text": "متد getMilliseconds() میلی‌ثانیهٔ یک تاریخ را به‌صورت عدد برمی‌گرداند (۰ تا ۹۹۹):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getMilliseconds();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getMilliseconds();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_getmilliseconds2"
+  },
+  {
+   "type": "h2",
+   "text": "متد getDay()"
+  },
+  {
+   "type": "p",
+   "text": "متد getDay() روز هفتهٔ یک تاریخ را به‌صورت عدد برمی‌گرداند (۰ تا ۶)."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "در JavaScript اولین روز هفته (روز ۰) یکشنبه است. بعضی کشورهای جهان دوشنبه را اولین روز هفته می‌دانند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getDay();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getDay();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_getday2"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید از آرایه‌ای از نام‌ها و متد getDay() استفاده کنید تا روز هفته را به‌صورت نام برگردانید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const days = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\",\n\"Thursday\", \"Friday\", \"Saturday\"];\n\nconst d = new Date(\"2021-03-25\");\n\nlet day = days[d.getDay()];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const days = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\",\n\"Thursday\", \"Friday\", \"Saturday\"];\n\nconst d = new Date();\n\nlet day = days[d.getDay()];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_weekday2"
+  },
+  {
+   "type": "h2",
+   "text": "متد getTime()"
+  },
+  {
+   "type": "p",
+   "text": "متد getTime() تعداد میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"1970-01-01\");\n\nd.getTime();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2021-03-25\");\n\nd.getTime();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.getTime();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_gettime3"
+  },
+  {
+   "type": "h2",
+   "text": "متد Date.now()"
+  },
+  {
+   "type": "p",
+   "text": "Date.now() تعداد میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let ms = Date.now();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const minute = 1000 * 60;\n\nconst hour = minute * 60;\n\nconst day = hour * 24;\n\nconst year = day * 365;\n\nlet years = Math.round(Date.now() / year);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_now"
+  },
+  {
+   "type": "p",
+   "text": "Date.now() یک متد ایستا (static) از شیء Date است."
+  },
+  {
+   "type": "p",
+   "text": "نمی‌توانید آن را روی یک شیء تاریخ به‌شکل myDate.now() به کار ببرید."
+  },
+  {
+   "type": "p",
+   "text": "نحو آن همیشه Date.now() است."
+  },
+  {
+   "type": "h2",
+   "text": "متدهای get تاریخ به وقت UTC"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "معادل",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "getUTCDate()",
+     "getDate()",
+     "تاریخ را به وقت UTC برمی‌گرداند"
+    ],
+    [
+     "getUTCFullYear()",
+     "getFullYear()",
+     "سال را به وقت UTC برمی‌گرداند"
+    ],
+    [
+     "getUTCMonth()",
+     "getMonth()",
+     "ماه را به وقت UTC برمی‌گرداند"
+    ],
+    [
+     "getUTCDay()",
+     "getDay()",
+     "روز را به وقت UTC برمی‌گرداند"
+    ],
+    [
+     "getUTCHours()",
+     "getHours()",
+     "ساعت را به وقت UTC برمی‌گرداند"
+    ],
+    [
+     "getUTCMinutes()",
+     "getMinutes()",
+     "دقیقه را به وقت UTC برمی‌گرداند"
+    ],
+    [
+     "getUTCSeconds()",
+     "getSeconds()",
+     "ثانیه را به وقت UTC برمی‌گرداند"
+    ],
+    [
+     "getUTCMilliseconds()",
+     "getMilliseconds()",
+     "میلی‌ثانیه را به وقت UTC برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "متدهای UTC از زمان UTC (زمان هماهنگ جهانی) استفاده می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "زمان UTC همان GMT (زمان گرینویچ) است."
+  },
+  {
+   "type": "p",
+   "text": "تفاوت زمان محلی و زمان UTC می‌تواند تا ۲۴ ساعت باشد."
+  },
+  {
+   "type": "p",
+   "text": "زمان محلی؟"
+  },
+  {
+   "type": "p",
+   "text": "زمان UTC؟"
+  },
+  {
+   "type": "h2",
+   "text": "متد getTimezoneOffset()"
+  },
+  {
+   "type": "p",
+   "text": "متد getTimezoneOffset() تفاوت زمان محلی و زمان UTC را بر حسب دقیقه برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let diff = d.getTimezoneOffset();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_gettimezoneoffset"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش تاریخ JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "قالب‌های تاریخ JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متدهای set در تاریخ JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع تاریخ JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل getdate.html بسازید و با new Date(\"2021-03-25\") یک شیء تاریخ بسازید؛ سپس getFullYear و getMonth و getDate را چاپ کنید.",
+   "hint": "getMonth از صفر شروع می‌شود، پس برای مارس عدد ۲ چاپ می‌شود."
+  },
+  {
+   "prompt": "روز هفته را با getDay بگیرید و با یک آرایه از نام روزها آن را به نام تبدیل کنید.",
+   "hint": "روز ۰ در JavaScript یکشنبه است؛ پس آرایه باید از Sunday شروع شود."
+  },
+  {
+   "prompt": "با getTime دو تاریخ مختلف را بگیرید و تفاضلشان را بر حسب دقیقه حساب کنید.",
+   "hint": "مقدار getTime میلی‌ثانیه است؛ برای دقیقه بر ۶۰۰۰۰ تقسیم کنید."
+  },
+  {
+   "prompt": "با Date.now() زمان جاری را بگیرید و ببینید چرا myDate.now() خطا می‌دهد.",
+   "hint": "Date.now یک متد ایستا است و همیشه به شکل Date.now() صدا زده می‌شود."
+  },
+  {
+   "prompt": "متد getTimezoneOffset را روی شیء تاریخ اجرا کنید و بگویید منطقهٔ زمانی سیستم شما چند دقیقه با UTC فاصله دارد.",
+   "hint": "خروجی بر حسب دقیقه است و برای ایران عدد منفی (نزدیک ۲۱۰-) در می‌آید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای گرفتن ماه یک تاریخ کدام متد را به کار می‌بریم؟",
+   "options": [
+    "getDate()",
+    "getMonth()",
+    "getDay()",
+    "getFullYear()"
+   ],
+   "answer": 1,
+   "explanation": "getMonth ماه را به‌صورت عدد از ۰ تا ۱۱ برمی‌گرداند؛ getDate روز ماه و getDay روز هفته را می‌دهد."
+  },
+  {
+   "question": "خروجی getDay() برای یکشنبه چه عددی است؟",
+   "options": [
+    "۱",
+    "۷",
+    "۰",
+    "۶"
+   ],
+   "answer": 2,
+   "explanation": "در JavaScript اولین روز هفته (روز ۰) یکشنبه است و شنبه عدد ۶ می‌گیرد."
+  },
+  {
+   "question": "مقدار بازگشتی getTime() چیست؟",
+   "options": [
+    "زمان به‌صورت رشته متنی",
+    "تعداد میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰",
+    "شمارهٔ ماه",
+    "منطقهٔ زمانی"
+   ],
+   "answer": 1,
+   "explanation": "getTime تعداد میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ را می‌دهد؛ به همین دلیل مقایسه و تفاضل گرفتن با آن ساده است."
+  },
+  {
+   "question": "تفاوت متدهای getUTC با متدهای get معمولی چیست؟",
+   "options": [
+    "متدهای getUTC فقط داخل تابع کار می‌کنند",
+    "متدهای get زمان محلی و متدهای getUTC زمان جهانی را برمی‌گردانند",
+    "متدهای getUTC واحد دیگری دارند",
+    "هیچ تفاوتی ندارند"
+   ],
+   "answer": 1,
+   "explanation": "متدهای get زمان محلی مرورگر را می‌دهند و معادل‌های UTC همان مقدار را به وقت جهانی (که با GMT یکی است) برمی‌گردانند."
+  },
+  {
+   "question": "چرا چاپ مستقیم یک شیء تاریخ بعد از گذشت چند ثانیه تغییر نمی‌کند؟",
+   "options": [
+    "چون خروجی رشته در حافظهٔ موقت می‌ماند",
+    "چون زمان داخل شیء Date ایستا است و ساعت کار نمی‌کند",
+    "چون getTime فقط یک بار قابل فراخوانی است",
+    "چون Date.now مقدار را قفل می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "شیء تاریخ همان لحظهٔ ساخت را نگه می‌دارد؛ برای زمان جدید باید شیء تازه‌ای با new Date() بسازید."
+  }
+ ]
+}

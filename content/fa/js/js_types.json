@@ -1,0 +1,380 @@
+{
+ "slug": "js_types",
+ "course": "js",
+ "order": 10,
+ "url": "/js/js_types.asp",
+ "title": "انواع داده در JavaScript",
+ "summary": "JavaScript هشت نوع داده دارد؛ از رشته و عدد تا شیء، undefined و null. در این درس انواع داده را فهرست می‌کنیم، با عملگر typeof نوع یک متغیر را پیدا می‌کنیم و می‌بینیم مقدار خالی با undefined یکی نیست.",
+ "objectives": [
+  "هشت نوع دادهٔ JavaScript را نام ببرید",
+  "با عملگر typeof نوع یک متغیر یا عبارت را پیدا کنید",
+  "تفاوت عدد و رشته را در کوتیشن تشخیص دهید",
+  "تفاوت مقدار خالی با undefined را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "انواع داده در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript ۸ نوع داده دارد"
+  },
+  {
+   "type": "p",
+   "text": "یک متغیر JavaScript می‌تواند ۸ نوع داده را نگه دارد:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نوع",
+     "توضیح"
+    ],
+    [
+     "String",
+     "متنی از نویسه‌ها که داخل کوتیشن قرار می‌گیرد"
+    ],
+    [
+     "Number",
+     "عددی که یک مقدار ریاضی را نشان می‌دهد"
+    ],
+    [
+     "Bigint",
+     "عددی که یک عدد صحیح بزرگ را نشان می‌دهد"
+    ],
+    [
+     "Boolean",
+     "نوعی داده که درست یا غلط را نشان می‌دهد"
+    ],
+    [
+     "Object",
+     "مجموعه‌ای از جفت‌های کلید-مقدار داده"
+    ],
+    [
+     "Undefined",
+     "متغیر اولیه‌ای که هیچ مقداری به آن داده نشده است"
+    ],
+    [
+     "Null",
+     "مقدار اولیه‌ای که نبودِ شیء را نشان می‌دهد"
+    ],
+    [
+     "Symbol",
+     "شناسه‌ای یکتا و اولیه"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// String\n\nlet color = \"Yellow\";\n\nlet lastName = \"Johnson\";\n\n// Number\n\nlet length = 16;\n\nlet weight = 7.5;\n\n// BigInt\n\nlet x = 1234567890123456789012345n;\n\nlet y = BigInt(1234567890123456789012345)\n\n// Boolean\n\nlet x = true;\n\nlet y = false;\n\n// Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Array object\n\nconst cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\n// Date object\n\nconst date = new Date(\"2022-03-25\");\n\n// Undefined\n\nlet x;\n\nlet y;\n\n// Null\n\nlet x = null;\n\nlet y = null;\n\n// Symbol\n\nconst x = Symbol();\n\nconst y = Symbol();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر typeof"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید از عملگر typeof در JavaScript استفاده کنید تا نوع یک متغیر JavaScript را پیدا کنید."
+  },
+  {
+   "type": "p",
+   "text": "عملگر typeof نوع یک متغیر یا عبارت را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof \"\"             // Returns\n \"string\"\n\ntypeof \"John\"         // Returns\n \"string\"\n\ntypeof \"John Doe\"     // Returns\n \"string\"",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_typeof_string"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof 0              // Returns\n \"number\"\n\n  typeof 314            // Returns\n \"number\"\n\n  typeof 3.14           // Returns\n \"number\"\n\n  typeof (3)            // Returns\n \"number\"\ntypeof (3 + 4)        // Returns\n \"number\"",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_typeof_number"
+  },
+  {
+   "type": "h2",
+   "text": "رشته‌ها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "رشته (متن) دنباله‌ای از نویسه‌هاست؛ مثل \"John Doe\"."
+  },
+  {
+   "type": "p",
+   "text": "رشته‌ها با کوتیشن نوشته می‌شوند. می‌توانید از کوتیشن تک یا دوتایی استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Using double quotes:\n\nlet carName1 = \"Volvo XC60\";\n\n// Using single quotes:\n\nlet carName2 = 'Volvo XC60';",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_string_quotes"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید داخل رشته از کوتیشن استفاده کنید، به شرطی که با کوتیشن‌های دور رشته یکی نباشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Single quote inside double quotes:\n\nlet answer1 = \"It's alright\";\n\n// Single quotes inside double quotes:\n\nlet answer2 = \"He is called 'Johnny'\";\n\n// Double quotes inside single quotes:\n\nlet answer3 = 'He is called \"Johnny\"';",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_string"
+  },
+  {
+   "type": "p",
+   "text": "در ادامهٔ این آموزش دربارهٔ رشته‌های JavaScript بسیار بیشتر یاد می‌گیرید."
+  },
+  {
+   "type": "h2",
+   "text": "عددها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ عددهای JavaScript به‌صورت عدد اعشاری (floating point) ذخیره می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "عددها را می‌توان با یا بدون اعشار نوشت:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// With decimals:\n\nlet x1 = 34.00;\n\n// Without decimals:\n\nlet x2 = 34;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_numbers"
+  },
+  {
+   "type": "h2",
+   "text": "نماد علمی"
+  },
+  {
+   "type": "p",
+   "text": "عددهای بسیار بزرگ یا بسیار کوچک را می‌توان با نماد علمی (نمایی) نوشت:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let y = 123e5;    // 12300000\n\nlet z = 123e-5;   // 0.00123",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_numbers_large"
+  },
+  {
+   "type": "h2",
+   "text": "مقدارهای بولی در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مقدارهای بولی JavaScript فقط یکی از دو مقدار را دارند: true یا false"
+  },
+  {
+   "type": "p",
+   "text": "مقدار بولی یک عبارت، پایهٔ مقایسه‌ها در JavaScript است."
+  },
+  {
+   "type": "p",
+   "text": "با فرض x = 5، جدول زیر مقایسه را توضیح می‌دهد:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "توضیح",
+     "عبارت",
+     "نتیجه"
+    ],
+    [
+     "برابر است با",
+     "(x == 8)",
+     "false"
+    ],
+    [
+     "برابر نیست",
+     "(x != 8)",
+     "true"
+    ],
+    [
+     "بزرگ‌تر از",
+     "(x > 8)",
+     "false"
+    ],
+    [
+     "کوچک‌تر از",
+     "(x < 8)",
+     "true"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 5;\n\n(x == 8); // equals false\n\n(x != 8); // equals true",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_equality"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ عملگرهای مقایسه در JavaScript (مثل ==، !=، <، >) از مقایسه مقدار true یا false برمی‌گردانند."
+  },
+  {
+   "type": "h2",
+   "text": "نوع دادهٔ undefined"
+  },
+  {
+   "type": "p",
+   "text": "در برنامه‌های رایانه‌ای، متغیرها اغلب بدون مقدار تعریف می‌شوند. مقدار می‌تواند چیزی باشد که باید محاسبه شود یا بعداً فراهم شود؛ مثل ورودی کاربر."
+  },
+  {
+   "type": "p",
+   "text": "متغیری که مقدار ندارد نوع دادهٔ undefined دارد."
+  },
+  {
+   "type": "p",
+   "text": "متغیری که مقدار ندارد، مقدارش هم undefined است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let carName;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_types_undefined"
+  },
+  {
+   "type": "h2",
+   "text": "مقدارهای خالی"
+  },
+  {
+   "type": "p",
+   "text": "یک مقدار خالی هیچ ربطی به undefined ندارد."
+  },
+  {
+   "type": "p",
+   "text": "رشتهٔ خالی هم یک مقدار مجاز دارد و هم یک نوع."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let car = \"\";    //\n    The value is\n    \"\", the typeof is \"string\"",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_empty"
+  },
+  {
+   "type": "p",
+   "text": "در ادامهٔ این آموزش دربارهٔ انواع داده بسیار بیشتر یاد می‌گیرید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل types.html بسازید و از هر نوع داده یک متغیر نمونه بسازید: رشته، عدد، بولی، شیء، آرایه و undefined.",
+   "hint": "عددها بدون کوتیشن و رشته‌ها داخل کوتیشن نوشته می‌شوند."
+  },
+  {
+   "prompt": "نوع هر متغیر را با typeof در کنسول چاپ کنید و خروجی‌ها را ببینید.",
+   "hint": "typeof \"\" و typeof 0 را هم امتحان کنید تا رفتار مقدارهای خالی را ببینید."
+  },
+  {
+   "prompt": "دو متغیر بسازید که یکی عدد باشد و یکی عدد داخل کوتیشن، و typeof هر دو را در کنسول ببینید.",
+   "hint": "عددی که داخل کوتیشن است رشته محسوب می‌شود."
+  },
+  {
+   "prompt": "با فرض x = 5، چهار مقایسهٔ (x == 8)، (x != 8)، (x > 8) و (x < 8) را در کنسول حساب کنید و نتیجه‌های بولی را بگویید.",
+   "hint": "عملگرهای مقایسه همیشه true یا false برمی‌گردانند."
+  },
+  {
+   "prompt": "یک متغیر بدون مقدار تعریف کنید و typeof و مقدارش را در کنسول ببینید؛ بعد یک رشتهٔ خالی بسازید و همان کار را تکرار کنید.",
+   "hint": "متغیر بدون مقدار، نوع و مقدار undefined دارد اما رشتهٔ خالی نوع string دارد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "JavaScript چند نوع داده دارد؟",
+   "options": [
+    "۴ نوع",
+    "۶ نوع",
+    "۸ نوع",
+    "۱۰ نوع"
+   ],
+   "answer": 2,
+   "explanation": "JavaScript ۸ نوع داده دارد: String، Number، Bigint، Boolean، Object، Undefined، Null و Symbol."
+  },
+  {
+   "question": "نوع دادهٔ متغیری که مقدار ندارد چیست؟",
+   "options": [
+    "null",
+    "undefined",
+    "string",
+    "boolean"
+   ],
+   "answer": 1,
+   "explanation": "متغیر بدون مقدار هم نوعش undefined است و هم مقدارش. null مقدار اولیه‌ای است که نبودِ شیء را نشان می‌دهد و با نبودِ مقدار یکسان نیست."
+  },
+  {
+   "question": "typeof \"John\" چه برمی‌گرداند؟",
+   "options": [
+    "\"string\"",
+    "\"text\"",
+    "\"object\"",
+    "\"char\""
+   ],
+   "answer": 0,
+   "explanation": "هر متنی که داخل کوتیشن باشد رشته است، پس typeof آن \"string\" است."
+  },
+  {
+   "question": "کدام مقدار بولی یک مقایسه در JavaScript است؟",
+   "options": [
+    "0 و 1",
+    "true و false",
+    "\"yes\" و \"no\"",
+    "null و undefined"
+   ],
+   "answer": 1,
+   "explanation": "عملگرهای مقایسه همیشه true یا false برمی‌گردانند؛ مقدارهای بولی JavaScript فقط همین دو مقدار را دارند."
+  },
+  {
+   "question": "کدام جمله دربارهٔ رشتهٔ خالی درست است؟",
+   "options": [
+    "با undefined یکی است",
+    "نوعش undefined است",
+    "هم مقدار مجاز دارد و هم نوع (string)",
+    "خطای نحوی می‌دهد"
+   ],
+   "answer": 2,
+   "explanation": "رشتهٔ خالی \"\" یک مقدار مجاز و نوع string دارد و هیچ ربطی به undefined ندارد."
+  }
+ ]
+}

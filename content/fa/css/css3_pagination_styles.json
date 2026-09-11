@@ -1,0 +1,178 @@
+{
+ "slug": "css3_pagination_styles",
+ "course": "css",
+ "order": 159,
+ "url": "/css/css3_pagination_styles.asp",
+ "title": "سبک‌های صفحه‌بندی در CSS",
+ "summary": "بعد از ساختن صفحه‌بندی نوبت جلوه‌های ظاهری آن است. در این درس جلوهٔ hover، انتقال نرم رنگ و مسیر راهنما (breadcrumb) را می‌سازید.",
+ "objectives": [
+  "با انتخابگر ‎:hover‎ رنگ پیوندهای صفحه را عوض کنید",
+  "با transition تغییر رنگ را نرم کنید",
+  "یک مسیر راهنما بسازید",
+  "بخش جاری مسیر راهنما را متمایز کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "سبک‌های صفحه‌بندی در CSS"
+  },
+  {
+   "type": "p",
+   "text": "این صفحه استایل‌دهی پیشرفتهٔ صفحه‌بندی را پوشش می‌دهد: جلوه‌های hover، انتقال‌ها و مسیر راهنما (breadcrumb)."
+  },
+  {
+   "type": "h2",
+   "text": "صفحه‌بندی با جلوهٔ hover"
+  },
+  {
+   "type": "p",
+   "text": "از انتخابگر ‎:hover‎ استفاده کنید تا رنگ پس‌زمینهٔ هر پیوند صفحه هنگام رفتن ماوس روی آن عوض شود:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "«",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "»"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".pagination li a:hover:not(.active) {\n  background-color: lightgray;\n\n  }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_ex_pagination_hover"
+  },
+  {
+   "type": "h2",
+   "text": "جلوهٔ انتقال روی hover"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت transition را به پیوندهای صفحه اضافه کنید تا هنگام hover جلوهٔ انتقال ساخته شود:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "«",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "»"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".pagination li a {\n  display: block;\n  padding: 8px 12px;\n\n  text-decoration: none;\n  border: 1px solid gray;\n  color:\n  black;\n  margin: 0 4px;\n  border-radius: 5px;\n\n  transition: background-color 1s;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_ex_pagination_transition"
+  },
+  {
+   "type": "h2",
+   "text": "صفحه‌بندی مسیر راهنما (breadcrumb)"
+  },
+  {
+   "type": "p",
+   "text": "گونهٔ دیگری از صفحه‌بندی، «مسیر راهنما» (breadcrumb) نام دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خانه",
+    "تصاویر",
+    "تابستان ۲۵",
+    "ایتالیا"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul.breadcrumb {\n  padding: 8px;\n\nlist-style: none;\n  background-color: #eee;\n}\n\nul.breadcrumb li {display: inline;}\nul.breadcrumb li a {color: green;}\n\nul.breadcrumb li+li:before {\n\npadding: 8px;\n  color: black;\n  content: \"/\\00a0\";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_breadcrumbs"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل pagination-hover.html بسازید و به پیوندهای صفحه یک انتخابگر ‎:hover‎ بدهید که رنگ پس‌زمینه را عوض کند.",
+   "hint": "انتخابگر را به خود پیوند بچسبانید: ‎ul li a:hover { ... }‎"
+  },
+  {
+   "prompt": "برای همان پیوندها transition: background-color 0.3s; بگذارید و سرعت تغییر را در مرورگر ببینید.",
+   "hint": "transition را روی حالت عادی پیوند بنویسید، نه داخل ‎:hover‎."
+  },
+  {
+   "prompt": "یک مسیر راهنما بسازید: خانه / تصاویر / تابستان ۲۵ / ایتالیا، و بین هر بخش یک جداکننده بگذارید.",
+   "hint": "برای جداکننده می‌توانید از محتوای داخل هر <li> یا از خصوصیت border استفاده کنید، به‌جای آخرین آیتم."
+  },
+  {
+   "prompt": "در مسیر راهنما، رنگ بخش جاری (ایتالیا) را متفاوت کنید تا معلوم شود کاربر کجاست.",
+   "hint": "برای بخش جاری یک کلاس جدا بسازید و رنگ متنش را عوض کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای تغییر رنگ پیوند صفحه هنگام رفتن ماوس از کدام انتخابگر استفاده می‌کنیم؟",
+   "options": [
+    ":hover",
+    ":focus",
+    ":first-child",
+    ".active"
+   ],
+   "answer": 0,
+   "explanation": "‎:hover‎ وقتی فعال می‌شود که نشانگر ماوس روی عنصر باشد؛ ‎:focus‎ مربوط به عنصر انتخاب‌شده با کیبورد است."
+  },
+  {
+   "question": "transition روی پیوندها چه چیزی می‌سازد؟",
+   "options": [
+    "حاشیهٔ گرد",
+    "جلوهٔ گذر نرم هنگام تغییر حالت",
+    "غیرفعال شدن کلیک",
+    "مسیر راهنما"
+   ],
+   "answer": 1,
+   "explanation": "transition تغییر خصوصیت‌ها را در مدت زمان مشخص به‌نرمی انجام می‌دهد، پس عوض‌شدن رنگ پله‌ای و ناگهانی نیست."
+  },
+  {
+   "question": "«مسیر راهنما» (breadcrumb) چه چیزی را نشان می‌دهد؟",
+   "options": [
+    "شمارهٔ صفحه‌های سایت",
+    "مسیر کاربر از خانه تا صفحهٔ جاری",
+    "فهرست پیوندهای خروجی",
+    "پهنای ظرف صفحه‌بندی"
+   ],
+   "answer": 1,
+   "explanation": "breadcrumb مسیر حرکت کاربر را نشان می‌دهد، مثلاً خانه / تصاویر / تابستان ۲۵ / ایتالیا."
+  },
+  {
+   "question": "در مثال مسیر راهنما کدام مورد به‌شکل پیوند نمایش داده می‌شود؟",
+   "options": [
+    "فقط آخرین بخش (ایتالیا)",
+    "بخش‌های میانی (خانه، تصاویر، تابستان ۲۵)",
+    "هیچ‌کدام",
+    "همهٔ بخش‌ها به‌شکل دکمه"
+   ],
+   "answer": 1,
+   "explanation": "بخش‌های میانی پس‌زمینه می‌گیرند و مثل پیوند دیده می‌شوند؛ بخش آخر صفحهٔ جاری است و رنگ متفاوتی دارد."
+  }
+ ]
+}

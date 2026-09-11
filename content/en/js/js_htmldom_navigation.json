@@ -1,0 +1,384 @@
+{
+ "slug": "js_htmldom_navigation",
+ "course": "js",
+ "order": 246,
+ "url": "/js/js_htmldom_navigation.asp",
+ "title": "JavaScript HTML DOM Navigation",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript HTML DOM Navigation"
+  },
+  {
+   "type": "p",
+   "text": "With the HTML DOM, you can navigate the node tree using node\nrelationships."
+  },
+  {
+   "type": "h2",
+   "text": "DOM Nodes"
+  },
+  {
+   "type": "p",
+   "text": "According to the W3C HTML DOM standard, everything in an HTML document is a node:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The entire document is a document node",
+    "Every HTML element is an element node",
+    "The text inside HTML elements are text nodes",
+    "Every HTML attribute is an attribute node (deprecated)",
+    "All comments are comment nodes"
+   ]
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/pic_htmltree.gif",
+   "alt": "DOM HTML tree"
+  },
+  {
+   "type": "p",
+   "text": "With the HTML DOM, all nodes in the node tree can be accessed by JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "New nodes can be created, and all\nnodes can be modified or deleted."
+  },
+  {
+   "type": "h2",
+   "text": "Node Relationships"
+  },
+  {
+   "type": "p",
+   "text": "The nodes in the node tree have a hierarchical relationship to each other."
+  },
+  {
+   "type": "p",
+   "text": "The terms parent, child, and sibling are used to describe the relationships."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "In a node tree, the top node is called the root (or root node)",
+    "Every node has exactly one parent, except the root (which has no parent)",
+    "A node can have a number of children",
+    "Siblings (brothers or sisters) are nodes with the same parent"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "<html>\n       <head>\n          <title>DOM Tutorial</title>\n       </head>\n<body>\n          <h1>DOM Lesson one</h1>\n          <p>Hello world!</p>\n       </body>\n     </html>"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/pic_navigate.gif",
+   "alt": "Node tree"
+  },
+  {
+   "type": "p",
+   "text": "From the HTML above you can read:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "<html> is the root node",
+    "<html> has no parents",
+    "<html> is the parent of <head> and <body>",
+    "<head> is the first child of <html>",
+    "<body> is the last child of <html>"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "and:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "<head> has one child: <title>",
+    "<title> has one child (a text node): \"DOM Tutorial\"",
+    "<body> has two children: <h1> and <p>",
+    "<h1> has one child: \"DOM Lesson one\"",
+    "<p> has one child: \"Hello world!\"",
+    "<h1> and <p> are siblings"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Navigating Between Nodes"
+  },
+  {
+   "type": "p",
+   "text": "You can use the following node properties to navigate between nodes with\nJavaScript:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "parentNode",
+    "childNodes[nodenumber]",
+    "firstChild",
+    "lastChild",
+    "nextSibling",
+    "previousSibling"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Child Nodes and Node Values"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "A common error in DOM processing is to expect an element node to contain text."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<title\n id=\"demo\">DOM Tutorial</title>",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "The element node\n<title> (in the example above) does not contain text."
+  },
+  {
+   "type": "p",
+   "text": "It contains a text node with the value \"DOM Tutorial\"."
+  },
+  {
+   "type": "p",
+   "text": "The value of the text node can be accessed by the\nnode's\ninnerHTML property:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myTitle = document.getElementById(\"demo\").innerHTML;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Accessing the innerHTML property is the same as accessing the nodeValue\nof the first child:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myTitle = document.getElementById(\"demo\").firstChild.nodeValue;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Accessing the first child can also be done like this:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myTitle = document.getElementById(\"demo\").childNodes[0].nodeValue;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "All the (3) following examples retrieves the text of an <h1> element and copies it\ninto a <p> element:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h1 id=\"id01\">My First Page</h1>\n<p id=\"id02\"></p>\n\n<script>\n\n document.getElementById(\"id02\").innerHTML\n = document.getElementById(\"id01\").innerHTML;\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_innerhtml1"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h1 id=\"id01\">My First Page</h1>\n<p id=\"id02\"></p>\n\n<script>\n\n document.getElementById(\"id02\").innerHTML = document.getElementById(\"id01\").firstChild.nodeValue;\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_innerhtml2"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h1 id=\"id01\">My First Page</h1>\n<p id=\"id02\">Hello!</p>\n\n<script>\n\n document.getElementById(\"id02\").innerHTML = document.getElementById(\"id01\").childNodes[0].nodeValue;\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_innerhtml3"
+  },
+  {
+   "type": "h2",
+   "text": "InnerHTML"
+  },
+  {
+   "type": "p",
+   "text": "In this tutorial we use the innerHTML property to retrieve the content of an\nHTML element."
+  },
+  {
+   "type": "p",
+   "text": "However, learning\nthe other methods above is useful for understanding the tree structure and the\nnavigation of the DOM."
+  },
+  {
+   "type": "h2",
+   "text": "DOM Root Nodes"
+  },
+  {
+   "type": "p",
+   "text": "There are two special properties that allow access to the full document:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "document.body - The body of the document",
+    "document.documentElement - The full document"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h2>JavaScript HTMLDOM</h2>\n<p>Displaying document.body</p>\n\n<p\nid=\"demo\"></p>\n\n<script>\ndocument.getElementById(\"demo\").innerHTML\n= document.body.innerHTML;\n</script>\n\n</body>\n\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_body"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h2>JavaScript HTMLDOM</h2>\n<p>Displaying document.documentElement</p>\n\n<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\ndocument.documentElement.innerHTML;\n</script>\n\n</body>\n\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_document"
+  },
+  {
+   "type": "h2",
+   "text": "The nodeName Property"
+  },
+  {
+   "type": "p",
+   "text": "The nodeName property specifies the name of a node."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "nodeName is read-only",
+    "nodeName of an element node is the same as the tag name",
+    "nodeName of an attribute node is the attribute name",
+    "nodeName of a text node is always #text",
+    "nodeName of the document node is always #document"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<h1 id=\"id01\">My First Page</h1>\n\n <p id=\"id02\"></p>\n\n<script>\ndocument.getElementById(\"id02\").innerHTML\n = document.getElementById(\"id01\").nodeName;\n</script>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_nodename"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "nodeName always contains the uppercase tag name of an HTML element."
+  },
+  {
+   "type": "h2",
+   "text": "The nodeValue Property"
+  },
+  {
+   "type": "p",
+   "text": "The nodeValue property specifies the value of a node."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "nodeValue for element nodes is null",
+    "nodeValue for text nodes is the text itself",
+    "nodeValue for attribute nodes is the attribute value"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The nodeType Property"
+  },
+  {
+   "type": "p",
+   "text": "The nodeType property is read only. It returns the type of a node."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<h1 id=\"id01\">My First Page</h1>\n\n <p id=\"id02\"></p>\n\n<script>\ndocument.getElementById(\"id02\").innerHTML\n = document.getElementById(\"id01\").nodeType;\n</script>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_nodetype"
+  },
+  {
+   "type": "p",
+   "text": "The most important nodeType properties are:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "Node",
+    "Type",
+    "Example"
+   ],
+   "rows": [
+    [
+     "ELEMENT_NODE",
+     "1",
+     "<h1 class=\"heading\">W3Schools</h1>"
+    ],
+    [
+     "ATTRIBUTE_NODE",
+     "2",
+     "class = \"heading\" (deprecated)"
+    ],
+    [
+     "TEXT_NODE",
+     "3",
+     "W3Schools"
+    ],
+    [
+     "COMMENT_NODE",
+     "8",
+     "<!-- This is a comment -->"
+    ],
+    [
+     "DOCUMENT_NODE",
+     "9",
+     "The HTML document itself (the parent of <html>)"
+    ],
+    [
+     "DOCUMENT_TYPE_NODE",
+     "10",
+     "<!Doctype html>"
+    ]
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Type 2 is deprecated in the HTML DOM (but works). It is not deprecated in the XML DOM."
+  }
+ ]
+}

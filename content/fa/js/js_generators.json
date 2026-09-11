@@ -1,0 +1,276 @@
+{
+ "slug": "js_generators",
+ "course": "js",
+ "order": 78,
+ "url": "/js/js_generators.asp",
+ "title": "Generatorها در JavaScript",
+ "summary": "Generator تابع ویژه‌ای است که با function* تعریف می‌شود، چند مقدار را یکی‌یکی تولید می‌کند و بین تولیدها متوقف و دوباره ادامه داده می‌شود. در این درس yield، شیء Generator، متد next() و کاربرد generatorها در iteratorهای سفارشی و جریان‌های داده را یاد می‌گیرید.",
+ "objectives": [
+  "تابع Generator را با function* بسازید و با yield مقدار تولید کنید",
+  "شیء Generator و متد next() را توضیح دهید",
+  "بگویید چرا حلقهٔ for...of مقدار return را نمی‌بیند",
+  "کاربرد Generator را در iteratorهای سفارشی و جریان داده بگویید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Generatorها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "یک تابع JavaScript فقط می‌تواند یک مقدار برگرداند."
+  },
+  {
+   "type": "p",
+   "text": "یک Generator در JavaScript می‌تواند چند مقدار را یکی‌یکی برگرداند."
+  },
+  {
+   "type": "p",
+   "text": "یک Generator در JavaScript می‌تواند جریانی از داده تولید کند."
+  },
+  {
+   "type": "p",
+   "text": "یک Generator در JavaScript می‌تواند متوقف و دوباره ادامه داده شود."
+  },
+  {
+   "type": "h2",
+   "text": "توابع Generator"
+  },
+  {
+   "type": "p",
+   "text": "تابع Generator با نحو function* تعریف می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function* myGenerator() {}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "تابع Generator هنگام صدا زده شدن یک شیء Generator برمی‌گرداند، نه یک مقدار مستقیم:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{value:1, done:false}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "شیءهای Generator"
+  },
+  {
+   "type": "p",
+   "text": "شیء Generator را تابع Generator برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "این شیء هم از پروتکل iterable و هم از پروتکل iterator پیروی می‌کند، یعنی می‌توان با حلقه‌های for...of روی آن پیمایش کرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function* myStream() {\n\n// return {value:1, done:false}\n\nyield 1;\n\n// return {value:2, done:false}\n\nyield 2;\n\n// return {value:3, done:true}\n\nreturn 3;\n\n}\n\n// Create a Generator\n\nlet myGenerator = myStream();\n\n// Iterate over the Generator\n\nfor (let value of myGenerator) { // code }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_generator"
+  },
+  {
+   "type": "h2",
+   "text": "کلیدواژهٔ yield"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ yield اجرا را متوقف می‌کند و مقداری را به فراخوان برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "وضعیت generator حفظ می‌شود و با صدا زدن next() از همان نقطهٔ yield ادامه می‌یابد."
+  },
+  {
+   "type": "p",
+   "text": "Generatorها وضعیت درونی‌شان را بین فراخوانی‌های yield نگه می‌دارند و می‌توانند از همان‌جا که رها کرده‌اند ادامه دهند."
+  },
+  {
+   "type": "p",
+   "text": "کد مثال بالا ۱ و ۲ را برمی‌گرداند، نه ۳!"
+  },
+  {
+   "type": "p",
+   "text": "حلقهٔ for..of وقتی done برابر true شود بیرون می‌آید."
+  },
+  {
+   "type": "p",
+   "text": "برای گرفتن همهٔ مقدارها، آن‌ها را با yield برگردانید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function* myStream() {\n\n// return {value:1, done:false}\n\nyield 1;\n\n// return {value:2, done:false}\n\nyield 2;\n\n// return {value:3, done:false}\n\nyeald 3;\n\n}\n\n// Create a Generator\n\nlet myGenerator = myStream();\n\n// Iterate over the Generator\n\nfor (let value of myGenerator) { // code }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_generator_2"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای شیء Generator"
+  },
+  {
+   "type": "p",
+   "text": "شیء Generator از پروتکل‌های iterable و iterator پیروی می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "می‌توان با حلقه‌های for...of روی آن پیمایش کرد."
+  },
+  {
+   "type": "p",
+   "text": "این شیء متدهایی هم دارد:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "next()",
+     "اجرای بعدی تابع generator را ادامه می‌دهد"
+    ],
+    [
+     "return()",
+     "این اجرا را تمام می‌کند و مقدار داده‌شده را برمی‌گرداند"
+    ],
+    [
+     "throw()",
+     "در این اجرا یک استثنا پرتاب می‌کند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد next()"
+  },
+  {
+   "type": "p",
+   "text": "وقتی روی شیء Generator صدا زده شود، اجرای تابع generator را ادامه می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "شیئی برمی‌گرداند که یک value و یک مقدار بولی دارد و نشان می‌دهد generator تمام شده است یا نه:"
+  },
+  {
+   "type": "p",
+   "text": "{ value: value, done: true|false}"
+  },
+  {
+   "type": "h2",
+   "text": "Iteratorهای سفارشی"
+  },
+  {
+   "type": "p",
+   "text": "Generatorها ساختن iteratorهای سفارشی برای ساختمان‌های داده یا دنباله‌های پیچیده را ساده می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "این‌ها می‌توانند مقدارها را بنا به نیاز و کارآمد تولید کنند، پس برای جریان‌های دادهٔ بالقوه بی‌پایان مناسب‌اند."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانند اجرا را متوقف و دوباره ادامه دهند، که برای کنترل دقیق جریان برنامه به کار می‌آید."
+  },
+  {
+   "type": "p",
+   "text": "پیش از آمدن async/await، Generatorها همراه پرامیس‌ها به کار می‌رفتند تا عملیات ناهمزمان را به شکلی دنباله‌وارتر مدیریت کنند."
+  },
+  {
+   "type": "p",
+   "text": "Generatorها مفهوم پیمایش را مستقیم به هستهٔ زبان JavaScript می‌آورند و سازوکاری برای سفارشی کردن رفتار for...of فراهم می‌کنند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل generators.html بسازید و یک تابع generator با function* بنویسید که سه مقدار را با yield بدهد و با for...of روی آن بچرخید.",
+   "hint": "function* myStream() { yield 1; yield 2; yield 3; } و بعد for (let v of myStream())."
+  },
+  {
+   "prompt": "در همان generator یکی از مقدارها را با return برگردانید و ببینید در حلقه ظاهر نمی‌شود.",
+   "hint": "حلقهٔ for..of وقتی done برابر true شود بیرون می‌آید، پس مقدار return پیمایش نمی‌شود."
+  },
+  {
+   "prompt": "متد next() را دستی روی شیء Generator صدا بزنید و هر بار مقدار value و done را در کنسول چاپ کنید.",
+   "hint": "myGenerator.next() شیئی مثل {value: 1, done: false} می‌دهد."
+  },
+  {
+   "prompt": "یک generator بنویسید که داخل حلقهٔ while(true) بی‌وقفه مقدار تولید کند و بیرون از آن فقط پنج مقدار اول را با next() بگیرید.",
+   "hint": "generatorها تنبل‌اند، پس حلقهٔ بی‌پایان داخل آن تا وقتی فقط چند مقدار بخواهید مشکلی نمی‌سازد."
+  },
+  {
+   "prompt": "متد return() را روی generator صدا بزنید و ببینید اجرا زودتر تمام می‌شود.",
+   "hint": "return() اجرای جاری را تمام می‌کند و مقدار داده‌شده به آن را برمی‌گرداند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تابع Generator با چه نحوی تعریف می‌شود؟",
+   "options": [
+    "function*",
+    "async function",
+    "function gen",
+    "function()*"
+   ],
+   "answer": 0,
+   "explanation": "نحو درست function* است؛ ستاره پیش از نام تابع می‌آید و نشان می‌دهد تابع generator است و شیء Generator برمی‌گرداند."
+  },
+  {
+   "question": "کلیدواژهٔ yield چه می‌کند؟",
+   "options": [
+    "تابع را کاملاً پایان می‌دهد",
+    "اجرا را متوقف می‌کند و مقداری به فراخوان می‌فرستد",
+    "مقدار را در کنسول چاپ می‌کند",
+    "تابع را از ابتدا دوباره اجرا می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "yield اجرا را متوقف می‌کند، مقدار را به فراخوان می‌دهد و وضعیت را نگه می‌دارد تا با next() از همان نقطه ادامه پیدا کند."
+  },
+  {
+   "question": "مثالی که در آن yield 1; yield 2; return 3; نوشته شده، در حلقهٔ for...of چه چیزی می‌دهد؟",
+   "options": [
+    "۱، ۲ و ۳",
+    "فقط ۳",
+    "۱ و ۲",
+    "هیچ مقداری"
+   ],
+   "answer": 2,
+   "explanation": "حلقه با done برابر true بیرون می‌آید و مقدار return پیمایش نمی‌شود، پس فقط ۱ و ۲ به دست می‌آید؛ برای گرفتن ۳ باید آن را هم با yield برگردانید."
+  },
+  {
+   "question": "شیء Generator از کدام پروتکل‌ها پیروی می‌کند؟",
+   "options": [
+    "فقط پروتکل iterator",
+    "فقط پروتکل iterable",
+    "هم iterable و هم iterator",
+    "از هیچ‌کدام"
+   ],
+   "answer": 2,
+   "explanation": "شیء Generator هم Symbol.iterator دارد و هم متد next()، پس هم قابل پیمایش است و هم خودش یک iterator است."
+  },
+  {
+   "question": "پیش از async/await، generatorها همراه چه چیزی برای کارهای ناهمزمان به کار می‌رفتند؟",
+   "options": [
+    "آرایه‌ها",
+    "پرامیس‌ها",
+    "Setها",
+    "حلقه‌های for...in"
+   ],
+   "answer": 1,
+   "explanation": "generatorها همراه پرامیس‌ها به کار می‌رفتند تا عملیات ناهمزمان شکل دنباله‌وارتری بگیرد، چون می‌توانستند اجرا را متوقف و بعد ادامه دهند."
+  }
+ ]
+}

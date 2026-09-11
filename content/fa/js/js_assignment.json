@@ -1,0 +1,649 @@
+{
+ "slug": "js_assignment",
+ "course": "js",
+ "order": 13,
+ "url": "/js/js_assignment.asp",
+ "title": "تخصیص در JavaScript",
+ "summary": "عملگرهای تخصیص مقدار را در متغیر می‌گذارند و کوتاه‌نویسی‌هایی مثل += و *= کار محاسبه و تخصیص را یک‌جا انجام می‌دهند. در این درس همهٔ این عملگرها را می‌بینید، به‌همراه عملگرهای منطقی ES2020 و فهرست هشت مقدار falsy.",
+ "objectives": [
+  "هر عملگر تخصیص مثل += یا **= را به شکل بلندش بازنویسی کنید",
+  "عملگرهای تخصیص منطقی &&=، ||= و ??= را توضیح دهید",
+  "هشت مقدار falsy را فهرست کنید",
+  "تشخیص دهید کدام مقدارها برخلاف تصور، truthy هستند"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "تخصیص در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "عملگرهای تخصیص JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "عملگرهای تخصیص مقدارها را به متغیرهای JavaScript نسبت می‌دهند."
+  },
+  {
+   "type": "p",
+   "text": "با فرض x = 10 و y = 5، جدول زیر عملگرهای تخصیص را توضیح می‌دهد:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "عملگر",
+    "مثال",
+    "معادلِ",
+    "نتیجه"
+   ],
+   "rows": [
+    [
+     "=",
+     "x = y",
+     "x = y",
+     "x = 5"
+    ],
+    [
+     "+=",
+     "x += y",
+     "x = x + y",
+     "x = 15"
+    ],
+    [
+     "-=",
+     "x -= y",
+     "x = x - y",
+     "x = 5"
+    ],
+    [
+     "*=",
+     "x *= y",
+     "x = x * y",
+     "x = 50"
+    ],
+    [
+     "**=",
+     "x **= y",
+     "x = x ** y",
+     "x = 100000"
+    ],
+    [
+     "/=",
+     "x /= y",
+     "x = x / y",
+     "x = 2"
+    ],
+    [
+     "%=",
+     "x %= y",
+     "x = x % y",
+     "x = 0"
+    ],
+    [
+     ":",
+     "x: 45",
+     "size.x = 45",
+     "x = 45"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "عملگرهای تخصیص منطقی"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "عملگر",
+    "مثال",
+    "نتیجه"
+   ],
+   "rows": [
+    [
+     "&&=",
+     "true &&= 10",
+     "x = 10"
+    ],
+    [
+     "||=",
+     "false ||= 10",
+     "x = 10"
+    ],
+    [
+     "??=",
+     "null ??= 10",
+     "x = 10"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "عملگر ="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص ساده یک مقدار ساده را به یک متغیر نسبت می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;",
+   "caption": "مثال‌های تخصیص ساده"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10 + y;",
+   "caption": "مثال‌های تخصیص ساده"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_equal"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر +="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص جمع یک مقدار به متغیر اضافه می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\nx += 5;",
+   "caption": "مثال‌های تخصیص جمع"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_plusequal"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر -="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص تفریق یک مقدار را از متغیر کم می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nx -= 5;",
+   "caption": "مثال تخصیص تفریق"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_minequal"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر *="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص ضرب، متغیر را ضرب می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\nx *= 5;",
+   "caption": "مثال تخصیص ضرب"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_multequal"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر **="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص توان، متغیر را به توان عملوند می‌رساند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nx **= 5;",
+   "caption": "مثال تخصیص توان"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_exponential"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر /="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص تقسیم، متغیر را تقسیم می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\nx /= 5;",
+   "caption": "مثال تخصیص تقسیم"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_divequal"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر %="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص باقیمانده، باقیمانده را به متغیر می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nx %= 5;",
+   "caption": "مثال تخصیص باقیمانده"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_modequal"
+  },
+  {
+   "type": "h2",
+   "text": "تخصیص رشته"
+  },
+  {
+   "type": "p",
+   "text": "دو عملگر تخصیص می‌توانند مقدار را به رشته‌ها بدهند:"
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص ساده یک مقدار ساده را به یک رشته می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص جمع یک مقدار به رشته اضافه می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "عملگر ="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص ساده"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello\";",
+   "caption": "تخصیص رشته"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_equal3"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر +="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص جمع برای جمع (الحاق) رشته‌ها هم به کار می‌رود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello\";\ntext += \" World\";",
+   "caption": "مثال تخصیص جمع"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_plusequal2"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر &&="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص «و» منطقی بین دو مقدار به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "اگر مقدار اول درست باشد، مقدار دوم نسبت داده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = true;\n\nlet y = x &&= 10;",
+   "caption": "مثال‌های تخصیص «و» منطقی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = false;\n\nlet y = x &&= 10;",
+   "caption": "مثال‌های تخصیص «و» منطقی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 1;\n\nlet y = x &&= 10;",
+   "caption": "مثال‌های تخصیص «و» منطقی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\n\nlet y = x &&= 10;",
+   "caption": "مثال‌های تخصیص «و» منطقی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = undefined;\n\nlet y = x &&= 10;",
+   "caption": "مثال‌های تخصیص «و» منطقی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = null;\n\nlet y = x &&= 10;",
+   "caption": "مثال‌های تخصیص «و» منطقی"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_logical_and_and"
+  },
+  {
+   "type": "p",
+   "text": "عملگر &&= یکی از ویژگی‌های ES2020 است."
+  },
+  {
+   "type": "h2",
+   "text": "عملگر ||="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص «یا» منطقی بین دو مقدار به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "اگر مقدار اول نادرست باشد، مقدار دوم نسبت داده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = false;\n\nlet y = x ||= 10;",
+   "caption": "مثال‌های تخصیص «یا» منطقی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = true;\n\nlet y = x ||= 10;",
+   "caption": "مثال‌های تخصیص «یا» منطقی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = null;\n\nlet y = x ||= 10;",
+   "caption": "مثال‌های تخصیص «یا» منطقی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = undefined;\n\nlet y = x ||= 10;",
+   "caption": "مثال‌های تخصیص «یا» منطقی"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_logical_or_or"
+  },
+  {
+   "type": "p",
+   "text": "عملگر ||= یکی از ویژگی‌های ES2020 است."
+  },
+  {
+   "type": "h2",
+   "text": "عملگر ??="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص ادغام تهی (nullish) بین دو مقدار به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "اگر مقدار اول undefined یا null باشد، مقدار دوم نسبت داده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x;\n\nx ??= 10;",
+   "caption": "مثال‌های تخصیص ادغام تهی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\n\nx ??= 10;",
+   "caption": "مثال‌های تخصیص ادغام تهی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = null;\n\nx ??= 10;",
+   "caption": "مثال‌های تخصیص ادغام تهی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = undefined;\n\nx ??= 10;",
+   "caption": "مثال‌های تخصیص ادغام تهی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nlet y = 5;\n\nx ??= 10;",
+   "caption": "مثال‌های تخصیص ادغام تهی"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_nullish"
+  },
+  {
+   "type": "p",
+   "text": "عملگر ??= یکی از ویژگی‌های ES2020 است."
+  },
+  {
+   "type": "h2",
+   "text": "مرور سریع"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "عملگر",
+     "نتیجه"
+    ],
+    [
+     "x &&= y",
+     "y را به x نسبت می‌دهد، فقط اگر x درستین (truthy) باشد"
+    ],
+    [
+     "x ||= y",
+     "y را به x نسبت می‌دهد، فقط اگر x نادرستین (falsy) باشد"
+    ],
+    [
+     "x ??= y",
+     "y را به x نسبت می‌دهد، فقط اگر x برابر null یا undefined باشد"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "۸ مقدار FALSY"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "false",
+     "خودِ کلیدواژهٔ بولی"
+    ],
+    [
+     "0",
+     "عدد صفر"
+    ],
+    [
+     "-0",
+     "صفر منفی"
+    ],
+    [
+     "0n",
+     "صفر BigInt"
+    ],
+    [
+     "\"\", '', ``",
+     "هر رشتهٔ خالی"
+    ],
+    [
+     "null",
+     "نبودِ هر مقدار"
+    ],
+    [
+     "undefined",
+     "متغیری که مقداری به آن داده نشده است"
+    ],
+    [
+     "NaN",
+     "«عدد نیست» (Not-a-Number) و معمولاً نتیجهٔ یک عملیات ریاضی نامعتبر است"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "این‌ها TRUTHY هستند"
+  },
+  {
+   "type": "p",
+   "text": "اشتباه رایجی است که این‌ها را falsy بپندارید، در حالی که در واقع true ارزیابی می‌شوند:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "\"0\"",
+     "رشته‌ای که یک صفر دارد، چون خالی نیست، truthy است"
+    ],
+    [
+     "\"false\"",
+     "رشتهٔ \"false\" هم truthy است"
+    ],
+    [
+     "[ ]",
+     "آرایهٔ خالی truthy است"
+    ],
+    [
+     "{ }",
+     "شیء خالی truthy است"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "عملگر گسترش (...)"
+  },
+  {
+   "type": "p",
+   "text": "عملگر ... مجموعه‌های قابل پیمایش را به عنصرهای جداگانه می‌شکند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"12345\";\n\nlet min = Math.min(...text);\n\nlet max = Math.max(...text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_spread"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل assignment.html بسازید، با فرض x = 10 مقدار x += 5 را حساب کنید و نتیجه را در کنسول چاپ کنید.",
+   "hint": "x += 5 همان x = x + 5 است."
+  },
+  {
+   "prompt": "همان متغیر را با -= و *= و /= و %= و **= هم امتحان کنید و نتیجهٔ هر مرحله را چاپ کنید.",
+   "hint": "در جدول درس معادل بلند هر عملگر آمده است."
+  },
+  {
+   "prompt": "دو رشته بسازید و با += آن‌ها را به هم بچسبانید.",
+   "hint": "عملگر += روی رشته‌ها الحاق انجام می‌دهد."
+  },
+  {
+   "prompt": "یک بار با let x = false; x ||= 10; و یک بار با let x = null; x ??= 10; نتیجه را ببینید و توضیح دهید چرا مقدار دوم نسبت داده شد.",
+   "hint": "||= وقتی مقدار اول falsy باشد و ??= وقتی undefined یا null باشد مقدار دوم را می‌گذارد."
+  },
+  {
+   "prompt": "مقدارهای \"0\"، \"false\"، [ ] و { } را در if بگذارید و ببینید هر چهار مورد truthy هستند.",
+   "hint": "رشتهٔ غیرخالی، آرایهٔ خالی و شیء خالی همیشه truthy هستند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "عملگر x **= 5 معادل کدام عبارت است؟",
+   "options": [
+    "x = x * 5",
+    "x = x ** 5",
+    "x = 5 ** x",
+    "x = x + 5"
+   ],
+   "answer": 1,
+   "explanation": "**= عملگر تخصیص توان است، یعنی x را به توان ۵ برسان و نتیجه را در x بگذار."
+  },
+  {
+   "question": "عملگر ??= چه زمانی مقدار دوم را نسبت می‌دهد؟",
+   "options": [
+    "وقتی مقدار اول falsy باشد",
+    "وقتی مقدار اول null یا undefined باشد",
+    "همیشه",
+    "وقتی مقدار اول true باشد"
+   ],
+   "answer": 1,
+   "explanation": "??= فقط برای null و undefined فعال می‌شود؛ مثلاً صفر یا رشتهٔ خالی مقدار اول را عوض نمی‌کند، برخلاف ||= که هر مقدار falsy را رد می‌کند."
+  },
+  {
+   "question": "کدام گزینه جزء هشت مقدار falsy نیست؟",
+   "options": [
+    "0",
+    "\"\"",
+    "\"false\"",
+    "null"
+   ],
+   "answer": 2,
+   "explanation": "رشتهٔ \"false\" غیرخالی است و truthy محسوب می‌شود؛ 0، رشتهٔ خالی، null و undefined از مقدارهای falsy هستند."
+  },
+  {
+   "question": "نتیجهٔ let x = false; let y = x &&= 10; چه می‌شود؟",
+   "options": [
+    "مقدار x برابر 10 می‌شود",
+    "x همان false می‌ماند و مقدار دوم نسبت داده نمی‌شود",
+    "خطا می‌دهد",
+    "y مقدار undefined می‌گیرد"
+   ],
+   "answer": 1,
+   "explanation": "&&= فقط وقتی مقدار اول truthy باشد مقدار دوم را می‌گذارد؛ چون false است، تخصیص انجام نمی‌شود."
+  },
+  {
+   "question": "آرایهٔ خالی [ ] در شرط چه مقداری دارد؟",
+   "options": [
+    "falsy",
+    "truthy",
+    "undefined",
+    "خطای نحوی"
+   ],
+   "answer": 1,
+   "explanation": "آرایهٔ خالی و شیء خالی هر دو truthy هستند؛ این از اشتباهات رایج در JavaScript است."
+  }
+ ]
+}

@@ -1,0 +1,450 @@
+{
+ "slug": "js_dates",
+ "course": "js",
+ "order": 57,
+ "url": "/js/js_dates.asp",
+ "title": "JavaScript Dates",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Dates"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Objects let us work with dates:"
+  },
+  {
+   "type": "p",
+   "text": "Year:\nMonth:\nDay:\nHours:\nMinutes:\nSeconds:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2022-03-25\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_current"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Date objects are static. The \"clock\" is not \"running\".\nThe computer clock is ticking, date objects are not."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Date Output"
+  },
+  {
+   "type": "p",
+   "text": "By default, JavaScript will use the browser's time zone and display a date as a full text string:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "You will learn much more about how to display dates, later in this tutorial."
+  },
+  {
+   "type": "h2",
+   "text": "Creating Date Objects"
+  },
+  {
+   "type": "p",
+   "text": "Date objects are created with the\nnew Date() constructor."
+  },
+  {
+   "type": "p",
+   "text": "There are 9 ways to create a new date object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "new Date()\n\nnew Date(date string)\n\nnew Date(year,month)\n\nnew Date(year,month,day)\n\nnew Date(year,month,day,hours)\n\nnew Date(year,month,day,hours,minutes)\n\nnew Date(year,month,day,hours,minutes,seconds)\n\nnew Date(year,month,day,hours,minutes,seconds,ms)\n\nnew Date(milliseconds)",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript new Date()"
+  },
+  {
+   "type": "p",
+   "text": "new Date() creates a date object with the current date and time:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new"
+  },
+  {
+   "type": "h2",
+   "text": "new Date(date string)"
+  },
+  {
+   "type": "p",
+   "text": "new Date(date string) creates a date object from a date string:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"October 13, 2014 11:13:00\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2022-03-25\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_string"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Date string formats are described in the next chapter."
+  },
+  {
+   "type": "h2",
+   "text": "new Date(year, month, ...)"
+  },
+  {
+   "type": "p",
+   "text": "new Date(year, month, ...) creates a date object with a specified date and time."
+  },
+  {
+   "type": "p",
+   "text": "7 numbers specify year, month, day, hour, minute, second, and millisecond (in that order):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 11, 24, 10, 33, 30, 0);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_all"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JavaScript counts months from 0 to 11:\nJanuary = 0.\nDecember = 11."
+  },
+  {
+   "type": "p",
+   "text": "Specifying a month higher than 11, will not result in an error but add the overflow to the next year:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 15, 24, 10, 33, 30);",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2019, 3, 24, 10, 33, 30);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_month_11"
+  },
+  {
+   "type": "p",
+   "text": "Specifying a day higher than max, will not result in an error but add the overflow to the next month:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 5, 35, 10, 33, 30);",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 6, 5, 10, 33, 30);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_day_35"
+  },
+  {
+   "type": "h2",
+   "text": "Using 6, 4, 3, or 2 Numbers"
+  },
+  {
+   "type": "p",
+   "text": "6 numbers specify year, month, day, hour, minute, second:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 11, 24, 10, 33, 30);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers6"
+  },
+  {
+   "type": "p",
+   "text": "5 numbers specify year, month, day, hour, and minute:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 11, 24, 10, 33);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers5"
+  },
+  {
+   "type": "p",
+   "text": "4 numbers specify year, month, day, and hour:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 11, 24, 10);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers4"
+  },
+  {
+   "type": "p",
+   "text": "3 numbers specify year, month, and day:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 11, 24);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers3"
+  },
+  {
+   "type": "p",
+   "text": "2 numbers specify year and month:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018, 11);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers2"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "You cannot omit month. If you supply only one parameter it will be treated as milliseconds."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(2018);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers1"
+  },
+  {
+   "type": "h2",
+   "text": "Previous Century"
+  },
+  {
+   "type": "p",
+   "text": "One and two digit years will be interpreted as 19xx:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(99, 11, 24);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_two"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(9, 11, 24);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_one"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JavaScript Stores Dates as Milliseconds\nJavaScript stores dates as number of milliseconds since January 01, 1970.\nZero time is January 01, 1970 00:00:00 UTC.\nOne day (24 hours) is 86 400 000 milliseconds.\nNow the time is:  milliseconds past January 01, 1970"
+  },
+  {
+   "type": "h2",
+   "text": "new Date(milliseconds)"
+  },
+  {
+   "type": "p",
+   "text": "new Date(milliseconds) creates a new date object as milliseconds plus zero time:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(100000000000);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(-100000000000);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(24 * 60 * 60 * 1000);\n\n// or\n\nconst d = new Date(86400000);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(0);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_millisec"
+  },
+  {
+   "type": "h2",
+   "text": "Date Methods"
+  },
+  {
+   "type": "p",
+   "text": "When a date object is created, a number of methods allow you to operate on\nit."
+  },
+  {
+   "type": "p",
+   "text": "Date methods allow you to get and set the year, month, day, hour,\nminute, second, and millisecond of date objects, using either local time or UTC\n(universal, or GMT) time."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Date methods and time zones are covered in the next chapters."
+  },
+  {
+   "type": "h2",
+   "text": "Displaying Dates"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript will (by default) output dates using the toString() method.\nThis is a string representation of the date, including the time zone.\nThe format is specified in the ECMAScript specification:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_current"
+  },
+  {
+   "type": "p",
+   "text": "When you display a date object in HTML, it is automatically converted to a\nstring, with the toString() method."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.toString();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_tostring"
+  },
+  {
+   "type": "p",
+   "text": "The toDateString() method converts a date to a more readable\nformat:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.toDateString();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_todatestring"
+  },
+  {
+   "type": "p",
+   "text": "The toUTCString() method converts a date to a string using the UTC standard:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.toUTCString();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_toutcstring"
+  },
+  {
+   "type": "p",
+   "text": "The toISOString() method converts a date to a string using the ISO standard:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nd.toISOString();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_toisostring"
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Formats"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Get Methods"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Set Methods"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Reference"
+  }
+ ]
+}

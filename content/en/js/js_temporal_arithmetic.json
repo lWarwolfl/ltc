@@ -1,0 +1,467 @@
+{
+ "slug": "js_temporal_arithmetic",
+ "course": "js",
+ "order": 193,
+ "url": "/js/js_temporal_arithmetic.asp",
+ "title": "JS Temporal Arithmetic",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JS Temporal Arithmetic"
+  },
+  {
+   "type": "h2",
+   "text": "Add and Subtract Dates Safely"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Temporal has methods for easy and reliable date and time arithmetic."
+  },
+  {
+   "type": "p",
+   "text": "Add and subtract days, months, years, and time without modifying the original value."
+  },
+  {
+   "type": "p",
+   "text": "Perform date arithmetic without DST (Daylight Saving Time) or Time Zone problems."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal add() and subtract()"
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own add() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.add(duration)",
+    "instant.add(duration)",
+    "plaindate.add(duration)",
+    "plaintime.add(duration)",
+    "plainyearmonth.add(duration)",
+    "plainmonthday.add(duration)",
+    "plaindatetime.add(duration)",
+    "zoneddatetime.add(duration)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own subtract() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.subtract(duration)",
+    "instant.subtract(duration)",
+    "plaindate.subtract(duration)",
+    "plaintime.subtract(duration)",
+    "plainyearmonth.subtract(duration)",
+    "plainmonthday.subtract(duration)",
+    "plaindatetime.subtract(duration)",
+    "zoneddatetime.subtract(duration)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Temporal Add"
+  },
+  {
+   "type": "p",
+   "text": "The add() method accepts a duration object as input."
+  },
+  {
+   "type": "p",
+   "text": "Example: { days: 10 }."
+  },
+  {
+   "type": "p",
+   "text": "It returns a new temporal date object moved forward by the duration."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "temporal.add(duration)",
+   "caption": "Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Temporal object\n\nconst myDate = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add a duration\n\nconst newDate = myDate.add({ days: 10 });",
+   "caption": "Syntax"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Temporal Subtract"
+  },
+  {
+   "type": "p",
+   "text": "The subtract() method accepts a duration object as input."
+  },
+  {
+   "type": "p",
+   "text": "Example: { days: 10 }."
+  },
+  {
+   "type": "p",
+   "text": "It returns a new temporal date object moved backward by the duration."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "temporal.subtract(duration)",
+   "caption": "Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Temporal object\n\nconst myDate = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Subtract a duration\n\nconst newDate = myDate.subtract({ days: 10 });",
+   "caption": "Syntax"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_subtract"
+  },
+  {
+   "type": "p",
+   "text": "Both add and subract are immutable: They both return a new Temporal object."
+  },
+  {
+   "type": "h2",
+   "text": "Date Boundaries"
+  },
+  {
+   "type": "p",
+   "text": "Both add and subtract handle date boundaries:"
+  },
+  {
+   "type": "p",
+   "text": "Adding one day to March 31st is April 1st."
+  },
+  {
+   "type": "h2",
+   "text": "Add Months"
+  },
+  {
+   "type": "p",
+   "text": "Temporal automatically handles different month lengths."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Temporal object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst result = date.add({ months: 1 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_month"
+  },
+  {
+   "type": "p",
+   "text": "If the next month has fewer days, Temporal adjusts automatically."
+  },
+  {
+   "type": "h2",
+   "text": "Add Years"
+  },
+  {
+   "type": "p",
+   "text": "Adding years works correctly, even for leap years."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Temporal object\n\nconst date = Temporal.PlainDate.from(\"2024-02-29\");\n\nconst result = date.add({ years: 1 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_year"
+  },
+  {
+   "type": "p",
+   "text": "Temporal handles leap year adjustments automatically."
+  },
+  {
+   "type": "h2",
+   "text": "Supported Duration Units"
+  },
+  {
+   "type": "p",
+   "text": "The add() and subtract()\nmethods accept a duration object as input."
+  },
+  {
+   "type": "p",
+   "text": "Example: { months: 2, days: 7, hours: 1 }."
+  },
+  {
+   "type": "p",
+   "text": "The following duration units are supported:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "years",
+    "months",
+    "weeks",
+    "days",
+    "hours",
+    "minutes",
+    "seconds",
+    "milliseconds",
+    "microseconds",
+    "nanoseconds"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Add Multiple Units"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create any Temporal object\n\nconst myDate = Temporal.PlainDate.from('2026-05-17');\n\n// Add multiple units\n\nconst newDate = myDate.add({ years: 1, months: 2, days: 15 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_multiple"
+  },
+  {
+   "type": "h2",
+   "text": "PlainDateTime add() and subtract()"
+  },
+  {
+   "type": "p",
+   "text": "You can safely add or subtract time."
+  },
+  {
+   "type": "p",
+   "text": "The original value does not change."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDateTime object\n\nconst date = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\n// Add and subtract time\n\nconst earlier = dateTime.subtract({ minutes: 30 });\n\nconst later = dateTime.add({ hours: 2 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_4"
+  },
+  {
+   "type": "h2",
+   "text": "PlainDate add() and subtract()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add and subtract time\n\nconst earlier = date.subtract({ months: 3 });\n\nconst later = date.add({ days: 10 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_add_subtract"
+  },
+  {
+   "type": "h2",
+   "text": "Instant add() and subtract()"
+  },
+  {
+   "type": "p",
+   "text": "From a Temporal.Instant you can only add or subtract time durations\n(hours, minutes, seconds) but not calendar durations like months or years,\nas their length can vary depending on the time zone and the calendar."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Temporal.Instant object\n\nconst now = Temporal.Instant.fromEpochMilliseconds(Date.now());\n\n// Subtract 5 hours and 30 minutes\n\nconst fiveHalfHoursAgo = now.subtract({ hours: 5, minutes: 30 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_subtract_instant"
+  },
+  {
+   "type": "h2",
+   "text": "Add a Duration to Now"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Temporal object\n\nconst today = Temporal.Now.plainDateISO();\n\n// Add a duration\n\nconst nextWeek = today.add({ days: 7 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_now"
+  },
+  {
+   "type": "h2",
+   "text": "Immutable"
+  },
+  {
+   "type": "p",
+   "text": "Unlike the old Date object, Temporal objects are immutable."
+  },
+  {
+   "type": "p",
+   "text": "All methods return a new instance without modifying the existing one."
+  },
+  {
+   "type": "h2",
+   "text": "Date Arithmetic with ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "ZonedDateTime handles daylight saving time (DST) safely."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.ZonedDateTime.from\n\n(\"2026-03-29T00:00:00+01:00[Europe/Oslo]\");\n\nconst nextDay = start.add({ days: 1 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_zoned"
+  },
+  {
+   "type": "p",
+   "text": "If a DST change occurs, Temporal adjusts automatically."
+  },
+  {
+   "type": "h2",
+   "text": "Compare with Date Arithmetic"
+  },
+  {
+   "type": "p",
+   "text": "The JavaScript Date object correctly implements leap year rules, but calendar calculations involving leap years\ncan produce surprising results because invalid dates are automatically adjusted instead of reported as errors."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Date object\n\nlet d = new Date(\"2024-02-29\");\n\n// Add one year\n\nd.setFullYear(d.getFullYear() + 1);",
+   "caption": "Adding one year to a leap day"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_12"
+  },
+  {
+   "type": "p",
+   "text": "Many people would expect February 28, but Date silently moves the date to March 1."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Date object\n\nlet d = new Date(\"2024-02-29\");\n\n// Add one year\n\nd.setDate(d.getDate() + 365);",
+   "caption": "Adding 365 days is not the same"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_13"
+  },
+  {
+   "type": "p",
+   "text": "Now the result is February 28, which is different from setFullYear()."
+  },
+  {
+   "type": "p",
+   "text": "This illustrates that Date mixes calendar and day arithmetic in ways that can be surprising."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Date object\n\nlet d = new Date(2025, 1, 29);",
+   "caption": "Invalid dates are silently corrected"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_14"
+  },
+  {
+   "type": "p",
+   "text": "Instead of reporting an invalid date, JavaScript quietly changes it into another valid date."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal Overflow"
+  },
+  {
+   "type": "p",
+   "text": "Temporal lets you choose what should happen when a date becomes invalid."
+  },
+  {
+   "type": "p",
+   "text": "For example: February 29, 2024 + 1 year becomes invalid, because 2025 has no February 29."
+  },
+  {
+   "type": "p",
+   "text": "The overflow option controls what happens when a date calculation produces an invalid date."
+  },
+  {
+   "type": "p",
+   "text": "With overflow: \"constrain\", Temporal changes the result to the nearest valid date."
+  },
+  {
+   "type": "p",
+   "text": "With overflow: \"reject\", Temporal throws an error instead of changing the date."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\nconst nextYear = d.add({ years: 1 });",
+   "caption": "Overflow Default"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_15"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\nconst nextYear = d.add(\n\n  { years: 1 },\n\n  { overflow: \"constrain\" }\n\n);",
+   "caption": "Oveflow: \"constrain\""
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_16"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\ntry {\n\n  const nextYear = d.add(\n\n    { years: 1 },\n\n    { overflow: \"reject\" }\n\n  );\n\n  text = nextYear.toString();\n\n} catch (err) {\n\n  text = err.name;\n\n}",
+   "caption": "Oveflow: \"reject\""
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_17"
+  },
+  {
+   "type": "p",
+   "text": "With Temporal, you can explicitly choose the overflow behavior."
+  },
+  {
+   "type": "h2",
+   "text": "Best Practices"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Use PlainDate for date-only arithmetic.",
+    "Use ZonedDateTime for time zone-aware calculations.",
+    "Avoid manual millisecond calculations.",
+    "Prefer Temporal because it is Immutable."
+   ]
+  }
+ ]
+}

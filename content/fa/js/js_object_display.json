@@ -1,0 +1,296 @@
+{
+ "slug": "js_object_display",
+ "course": "js",
+ "order": 50,
+ "url": "/js/js_object_display.asp",
+ "title": "نمایش شیءها در JavaScript",
+ "summary": "نمایش مستقیم یک شیء در JavaScript خروجی [object Object] می‌دهد. در این درس چند راه درست نمایش شیء را یاد می‌گیرید: چاپ خصوصیت‌ها به اسم، حلقهٔ for..in، Object.values()، Object.entries() و JSON.stringify().",
+ "objectives": [
+  "توضیح دهید چرا خروجی [object Object] دیده می‌شود",
+  "خصوصیت‌های شیء را در یک حلقه نمایش دهید",
+  "شیء را با Object.values و Object.entries بخوانید",
+  "شیء را با JSON.stringify به رشته تبدیل کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "نمایش شیءها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیءهای JavaScript را چگونه نمایش دهیم؟"
+  },
+  {
+   "type": "p",
+   "text": "نمایش مستقیم یک شیء JavaScript خروجی [object Object] می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nlet text = person;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_display"
+  },
+  {
+   "type": "h2",
+   "text": "چرا [object Object] می‌بینم؟"
+  },
+  {
+   "type": "p",
+   "text": "[object Object] وقتی ظاهر می‌شود که شیئی (ساختاری داده‌ای با خصوصیت‌ها) را در جایی بگذارید که انتظار رشته دارد."
+  },
+  {
+   "type": "p",
+   "text": "[object Object] روش برخورد JavaScript با این وضعیت است."
+  },
+  {
+   "type": "p",
+   "text": "چند راه‌حل برای نمایش شیءهای JavaScript وجود دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "نمایش خصوصیت‌های شیء با نامشان",
+    "نمایش خصوصیت‌های شیء در یک حلقه",
+    "نمایش شیء با Object.values()",
+    "نمایش شیء با JSON.stringify()"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "نمایش خصوصیت‌های شیء"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های شیء را می‌توان داخل یک رشته به هم چسباند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\n// Add Properties\n\nlet text = person.name + \",\" + person.age + \",\" + person.city;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_display_properties_all"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از حلقهٔ for .. in"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های شیء را می‌توان در یک حلقه جمع کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\n// Build a Text\n\nlet text = \"\";\n\nfor (let x in person) {\n\n  text += person[x] + \" \";\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_display_properties_loop"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "داخل حلقه باید person[x] بنویسید. person.x کار نمی‌کند، چون x همان متغیر حلقه است."
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از Object.values()"
+  },
+  {
+   "type": "p",
+   "text": "Object.values() از مقدار خصوصیت‌ها یک آرایه می‌سازد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\n// Create an Array\n\nconst myArray = Object.values(person);\n\n// Stringify the Array\n\nlet text = myArray.toString();",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_values2"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از Object.entries()"
+  },
+  {
+   "type": "p",
+   "text": "Object.entries() کار با شیءها در حلقه‌ها را ساده می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nlet text = \"\";\n\nfor (let [fruit, value] of Object.entries(fruits)) {\n\n  text += fruit + \": \" + value + \"<br>\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_loop"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از JSON.stringify()"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای JavaScript را می‌توان با متد JSON به نام JSON.stringify() به رشته تبدیل کرد."
+  },
+  {
+   "type": "p",
+   "text": "JSON.stringify() در خود JavaScript هست و همهٔ مرورگرها از آن پشتیبانی می‌کنند."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "نتیجه یک رشته به قالب JSON است:\n{\"name\":\"John\",\"age\":50,\"city\":\"New York\"}"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\n// Stringify Object\n\nlet text = JSON.stringify(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_display_stringify"
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای JavaScript چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "متدهای شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "this در شیءها چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ شیء (object constructor) چیست؟"
+  },
+  {
+   "type": "h2",
+   "text": "فصل‌های پیشرفته:"
+  },
+  {
+   "type": "p",
+   "text": "تعریف شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "this پیشرفته در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "محافظت از شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتوتایپ‌های شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع شیء در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "شیء person با چند خصوصیت بسازید و خود شیء را با innerHTML = person در صفحه نمایش دهید تا [object Object] را ببینید.",
+   "hint": "این خروجی طبیعی است؛ JavaScript نمی‌داند شیء را چطور به رشته تبدیل کند."
+  },
+  {
+   "prompt": "با حلقهٔ for..in روی خصوصیت‌های شیء بچرخید و هر خصوصیت را با person[x] در صفحه چاپ کنید.",
+   "hint": "داخل حلقه باید از person[x] استفاده کنید، نه person.x."
+  },
+  {
+   "prompt": "شیء را با Object.values() به آرایه تبدیل کنید و مقدارها را نمایش دهید.",
+   "hint": "Object.values() آرایهٔ مقدار خصوصیت‌ها را می‌دهد."
+  },
+  {
+   "prompt": "با Object.entries() روی جفت‌های کلید و مقدار حلقه بزنید و هر دو را چاپ کنید.",
+   "hint": "Object.entries() آرایه‌ای از جفت‌های [key, value] می‌سازد."
+  },
+  {
+   "prompt": "شیء را با JSON.stringify(person) به رشته تبدیل کنید و نتیجه را در کنسول ببینید.",
+   "hint": "خروجی به شکل {\"key\":\"value\"} است و برای چاپ کردن مناسب است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "اگر یک شیء JavaScript را مستقیم داخل یک متن چاپ کنید، چه می‌بینید؟",
+   "options": [
+    "[object Object]",
+    "مقدار همهٔ خصوصیت‌ها",
+    "خطای TypeError",
+    "آرایه‌ای از خصوصیت‌ها"
+   ],
+   "answer": 0,
+   "explanation": "JavaScript نمی‌تواند شیء را مستقیم به رشته تبدیل کند، پس [object Object] چاپ می‌شود؛ برای دیدن مقدارها باید از راه‌های نمایش مثل حلقه یا JSON.stringify() استفاده کنید."
+  },
+  {
+   "question": "چرا داخل حلقهٔ for..in باید person[x] بنویسیم و نه person.x؟",
+   "options": [
+    "چون x همیشه عدد است",
+    "چون x متغیر حلقه است و مقدارش به‌عنوان نام خصوصیت حساب می‌شود",
+    "چون نقطه‌گذاری داخل حلقه کار نمی‌کند",
+    "چون person.x فقط برای آرایه‌هاست"
+   ],
+   "answer": 1,
+   "explanation": "در person.x نام x به‌عنوان نام خصوصیت خوانده می‌شود، اما در person[x] مقدار متغیر x به کار می‌رود که همان کلید خصوصیت است."
+  },
+  {
+   "question": "کدام متد آرایهٔ مقدارهای خصوصیت‌های شیء را برمی‌گرداند؟",
+   "options": [
+    "Object.keys()",
+    "Object.entries()",
+    "Object.values()",
+    "JSON.stringify()"
+   ],
+   "answer": 2,
+   "explanation": "Object.values() آرایهٔ مقدار خصوصیت‌ها را می‌دهد؛ Object.keys() کلیدها و Object.entries() جفت‌های کلید و مقدار را برمی‌گرداند."
+  },
+  {
+   "question": "خروجی JSON.stringify(person) چه شکلی دارد؟",
+   "options": [
+    "یک شیء جدید",
+    "یک رشته به قالب {\"key\":\"value\"}",
+    "یک آرایه از خصوصیت‌ها",
+    "[object Object]"
+   ],
+   "answer": 1,
+   "explanation": "JSON.stringify() شیء را به رشتهٔ JSON تبدیل می‌کند، مثل {\"name\":\"John\",\"age\":50,\"city\":\"New York\"}؛ همین رشته را می‌توان به‌راحتی چاپ کرد."
+  }
+ ]
+}

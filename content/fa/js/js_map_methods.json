@@ -1,0 +1,479 @@
+{
+ "slug": "js_map_methods",
+ "course": "js",
+ "order": 73,
+ "url": "/js/js_map_methods.asp",
+ "title": "متدهای Map در JavaScript",
+ "summary": "متدهای Map برای ساختن، خواندن، تغییر، حذف و پیمایش عنصرها به کار می‌روند. در این درس new Map()، get()، set()، size، delete()، clear()، has() و متدهای پیمایش مثل entries() و values() را تمرین می‌کنید و با Map.groupBy() آشنا می‌شوید.",
+ "objectives": [
+  "یک Map از آرایه بسازید و مقدار کلید را با get() بخوانید",
+  "با set()، delete()، clear() و has() یک Map را مدیریت کنید",
+  "با entries()، keys() و values() روی Map پیمایش کنید",
+  "کار Map.groupBy() را توضیح دهید و تفاوتش را با Object.groupBy() بگویید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متدهای Map در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متد new Map()"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با دادن یک آرایه به سازندهٔ new Map() یک Map بسازید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Map\n\nconst fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_create_array"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.get()"
+  },
+  {
+   "type": "p",
+   "text": "مقدار یک کلید را در Map با متد get() می‌خوانید"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fruits.get(\"apples\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_get"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.set()"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با متد set() عنصرهایی به Map اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Map\n\nconst fruits = new Map();\n\n// Set Map Values\n\nfruits.set(\"apples\", 500);\n\nfruits.set(\"bananas\", 300);\n\nfruits.set(\"oranges\", 200);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_set_new"
+  },
+  {
+   "type": "p",
+   "text": "از متد set() می‌توان برای تغییر مقدارهای موجود Map هم استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fruits.set(\"apples\", 500);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_set"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت Map.size"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت size تعداد عنصرهای یک Map را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fruits.size;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_size"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.delete()"
+  },
+  {
+   "type": "p",
+   "text": "متد delete() یک عنصر Map را حذف می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fruits.delete(\"apples\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_delete"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.clear()"
+  },
+  {
+   "type": "p",
+   "text": "متد clear() همهٔ عنصرهای Map را حذف می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fruits.clear();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_clear"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.has()"
+  },
+  {
+   "type": "p",
+   "text": "متد has() اگر کلیدی در Map وجود داشته باشد true برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fruits.has(\"apples\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fruits.delete(\"apples\");\n\nfruits.has(\"apples\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_has"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.forEach()"
+  },
+  {
+   "type": "p",
+   "text": "متد forEach() برای هر جفت کلید/مقدار در Map یک کالبک صدا می‌زند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// List all entries\n\nlet text = \"\";\n\nfruits.forEach (function(value, key) {\n\n  text += key + ' = ' + value;\n\n})",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_foreach"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.entries()"
+  },
+  {
+   "type": "p",
+   "text": "متد entries() یک شیء iterator با جفت‌های [کلید، مقدار] داخل Map برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// List all entries\n\nlet text = \"\";\n\nfor (const x of fruits.entries()) {\n\n  text += x;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_entries"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.keys()"
+  },
+  {
+   "type": "p",
+   "text": "متد keys() یک شیء iterator با کلیدهای Map برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// List all keys\n\nlet text = \"\";\n\nfor (const x of fruits.keys()) {\n\n  text += x;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_keys"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.values()"
+  },
+  {
+   "type": "p",
+   "text": "متد values() یک شیء iterator با مقدارهای Map برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// List all values\n\nlet text = \"\";\n\nfor (const x of fruits.values()) {\n\n  text += x;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_values"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با متد values() مقدارهای یک Map را جمع بزنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Sum all values\n\nlet total = 0;\n\nfor (const x of fruits.values()) {\n\n  total += x;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_values1"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از شیء به‌عنوان کلید"
+  },
+  {
+   "type": "p",
+   "text": "امکان استفاده از شیءها به‌عنوان کلید یکی از ویژگی‌های مهم Map است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Objects\n\nconst apples = {name: 'Apples'};\n\nconst bananas = {name: 'Bananas'};\n\nconst oranges = {name: 'Oranges'};\n\n// Create a Map\n\nconst fruits = new Map();\n\n// Add new Elements to the Map\n\nfruits.set(apples, 500);\n\nfruits.set(bananas, 300);\n\nfruits.set(oranges, 200);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_create_objects"
+  },
+  {
+   "type": "p",
+   "text": "یادتان باشد: کلید یک شیء است (apples)، نه یک رشته (\"apples\"):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fruits.get(\"apples\");  // Returns undefined",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_get_undefined"
+  },
+  {
+   "type": "h2",
+   "text": "متد Map.groupBy() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ES2024 متد Map.groupBy() را به JavaScript اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد Map.groupBy() عنصرهای یک iterable را بر اساس مقدارهایی که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متد Map.groupBy() شیء اصلی را تغییر نمی‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "مقدار بازگشتی یک Map است که برای هر گروه یک کلید دارد و به هر کلید آرایه‌ای از عنصرهای همان گروه نسبت داده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Map.groupBy(fruits, myCallback);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_groupby"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "Map.groupBy() یکی از ویژگی‌های ECMAScript 2024 است."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2024 از مارس 2024 در مرورگرهای جدید پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome 117",
+     "Edge 117",
+     "Firefox 119",
+     "Safari 17.4",
+     "Opera 103"
+    ],
+    [
+     "Sep 2023",
+     "Sep 2023",
+     "Oct 2023",
+     "Okt 2024",
+     "May 2023"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "هشدار"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های ES2024 نسبتاً تازه‌اند."
+  },
+  {
+   "type": "p",
+   "text": "مرورگرهای قدیمی‌تر ممکن است به کد جایگزین (Polyfill) نیاز داشته باشند"
+  },
+  {
+   "type": "h2",
+   "text": "مقایسهٔ Object.groupBy() و Map.groupBy()"
+  },
+  {
+   "type": "p",
+   "text": "تفاوت Object.groupBy() و Map.groupBy() این است:"
+  },
+  {
+   "type": "p",
+   "text": "Object.groupBy() عنصرها را در یک شیء JavaScript گروه‌بندی می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "Map.groupBy() عنصرها را در یک شیء Map گروه‌بندی می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "Map در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "WeakMap در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع Map در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Set در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل mapmethods.html بسازید و با new Map([[\"apples\",500],[\"bananas\",300]]) یک Map بسازید و مقدار apples را با get() چاپ کنید.",
+   "hint": "به get() فقط کلید را بدهید: fruits.get(\"apples\")."
+  },
+  {
+   "prompt": "با متد set() مقدار یک کلید موجود را عوض کنید و ببینید مقدار قبلی جایش را به مقدار تازه می‌دهد.",
+   "hint": "set() هم عنصر تازه اضافه می‌کند و هم مقدار کلید موجود را تغییر می‌دهد."
+  },
+  {
+   "prompt": "با متدهای keys()، values() و entries() هر سه نوع پیمایش را روی یک Map بنویسید و خروجی هرکدام را در کنسول ببینید.",
+   "hint": "هر سه یک شیء iterator برمی‌گردانند، پس با حلقهٔ for...of روی آنها بچرخید."
+  },
+  {
+   "prompt": "با متد values() مجموع مقدارهای یک Map را حساب کنید و در کنسول چاپ کنید.",
+   "hint": "let total = 0; بگذارید و در حلقه total += x; کنید."
+  },
+  {
+   "prompt": "با Map.groupBy() یک آرایه از شیءها را بر اساس یک شرط گروه‌بندی کنید و نتیجه را چاپ کنید.",
+   "hint": "تابع کالبک باید برای هر عنصر کلید گروه را برگرداند؛ مثلاً quantity > 200 ? \"ok\" : \"low\"."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام گزینه تعداد عنصرهای یک Map را به دست می‌دهد؟",
+   "options": [
+    "متد get()",
+    "متد has()",
+    "خصوصیت size",
+    "خصوصیت count"
+   ],
+   "answer": 2,
+   "explanation": "size یک خصوصیت است، نه متد، و تعداد عنصرهای Map را برمی‌گرداند. get() مقدار یک کلید را می‌خواند، has() فقط وجود کلید را بررسی می‌کند و count وجود ندارد."
+  },
+  {
+   "question": "متد has() چه کاری انجام می‌دهد؟",
+   "options": [
+    "مقدار یک کلید را برمی‌گرداند",
+    "اگر کلید در Map باشد true برمی‌گرداند",
+    "عنصر مشخص‌شده را حذف می‌کند",
+    "همهٔ عنصرها را پاک می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "has() فقط وجود کلید را بررسی می‌کند و true یا false می‌دهد؛ برای خواندن مقدار از get() استفاده کنید."
+  },
+  {
+   "question": "خروجی متد values() چیست؟",
+   "options": [
+    "یک آرایهٔ معمولی از مقدارها",
+    "یک رشتهٔ متنی",
+    "یک شیء تهی",
+    "یک شیء iterator با مقدارهای Map"
+   ],
+   "answer": 3,
+   "explanation": "keys()، values() و entries() هر سه شیء iterator برمی‌گردانند، نه آرایه؛ برای دیدن مقدارها باید با for...of روی آن‌ها بچرخید."
+  },
+  {
+   "question": "تفاوت Object.groupBy() و Map.groupBy() چیست؟",
+   "options": [
+    "Object.groupBy() در یک شیء Map و Map.groupBy() در یک آرایه گروه می‌بندد",
+    "هر دو دقیقاً یکی هستند",
+    "Map.groupBy() فقط با رشته‌ها کار می‌کند",
+    "Object.groupBy() در یک شیء JavaScript و Map.groupBy() در یک Map گروه‌بندی می‌کند"
+   ],
+   "answer": 3,
+   "explanation": "هر دو عنصرها را گروه‌بندی می‌کنند، اما نوع خروجی فرق دارد: Object.groupBy() یک شیء JavaScript می‌دهد و Map.groupBy() یک Map."
+  },
+  {
+   "question": "Map.groupBy() در کدام نسخهٔ زبان به JavaScript اضافه شد؟",
+   "options": [
+    "ES6",
+    "ES2024",
+    "ES2020",
+    "ES2015"
+   ],
+   "answer": 1,
+   "explanation": "Map.groupBy() یکی از ویژگی‌های ECMAScript 2024 است؛ پس ویژگی تازه‌ای است و مرورگرهای قدیمی‌تر ممکن است به Polyfill نیاز داشته باشند."
+  }
+ ]
+}

@@ -1,0 +1,404 @@
+{
+ "slug": "css_navbar_horizontal",
+ "course": "css",
+ "order": 90,
+ "url": "/css/css_navbar_horizontal.asp",
+ "title": "نوار ناوبری افقی در CSS",
+ "summary": "نوار ناوبری افقی رایج‌ترین نوع منوی سایت است. در این درس آن را هم با float و هم با flexbox می‌سازید و ثابت‌کردن و چسبان‌کردن نوار به بالای صفحه را تمرین می‌کنید.",
+ "objectives": [
+  "با float روی <li> یک نوار افقی بسازید",
+  "همان نوار را با flexbox بازنویسی کنید",
+  "نوار را وسط‌چین کنید و آخرین پیوند را به راست ببرید",
+  "تفاوت position: fixed; و position: sticky; را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "نوار ناوبری افقی در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "نوار ناوبری افقی در CSS"
+  },
+  {
+   "type": "p",
+   "text": "در نوار ناوبری افقی، پیوندهای ناوبری کنار هم و به‌صورت افقی قرار می‌گیرند و معمولاً بالای صفحه تراز می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "پایهٔ نوار ناوبری افقی یک فهرست نامرتب (<ul>) است که هر عضو آن (<li>) یک پیوند (<a>) را نگه می‌دارد؛ همان‌طور که در صفحهٔ آشنایی با نوار ناوبری دیدید."
+  },
+  {
+   "type": "p",
+   "text": "همچنین رایج است که دور عنصر <ul> یک عنصر <nav> بگذاریم تا نقش ظرف نوار ناوبری را بازی کند."
+  },
+  {
+   "type": "h2",
+   "text": "نوار ناوبری افقی با float"
+  },
+  {
+   "type": "p",
+   "text": "یکی از راه‌های ساخت نوار ناوبری افقی، افزودن خصوصیت float به عنصرهای <li> است."
+  },
+  {
+   "type": "p",
+   "text": "اینجا یک نوار ناوبری افقی ساده با پس‌زمینهٔ تیره می‌سازیم و رنگ پس‌زمینهٔ پیوندها را وقتی نشانگر ماوس روی آن‌ها می‌رود عوض می‌کنیم:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خانه",
+    "اخبار",
+    "تماس",
+    "درباره"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n\n    overflow:\nhidden;\n  background-color: #333333;\n}\n\nul li {\n\nfloat: left;\n}\n\nul li a {\n  display: block;\n\ncolor: white;\n  text-align: center;\n\npadding: 14px 16px;\n  text-decoration: none;\n}\n\nul li a:hover {\n  background-color:\n#111111;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_float"
+  },
+  {
+   "type": "p",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "overflow: hidden; - نمی‌گذارد عضوهای فهرست از فهرست بیرون بزنند",
+    "background-color: #333333; - یک پس‌زمینهٔ سیاه به عنصر <ul> می‌دهد",
+    "float: left; - عنصرهای <li> را کنار هم شناور می‌کند",
+    "display: block; - اجازه می‌دهد به <a> حاشیهٔ داخلی، ارتفاع، پهنا و حاشیهٔ بیرونی بدهیم",
+    "padding: 14px 16px; - بین هر عنصر <a> کمی فاصله می‌گذارد",
+    "text-decoration: none; - زیرخط پیوندها را برمی‌دارد"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "نوار ناوبری افقی با flexbox"
+  },
+  {
+   "type": "p",
+   "text": "راه مدرن‌تر ساخت نوار ناوبری افقی، استفاده از flexbox در CSS است."
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر همان نوار ناوبری افقی را می‌سازد، ولی این بار با flexbox:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul {\n  list-style-type: none;\n  margin: 0;\n  padding:\n  0;\n  background-color: #333333;\n  display: flex;\n}\n\nul li a\n  {\n  display: block;\n  color: white;\n  padding: 14px\n  16px;\n  text-decoration: none;\n}\n\nul li a:hover {\n  background-color:\n  #111111;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_flex"
+  },
+  {
+   "type": "p",
+   "text": "راه‌حل اینجا display: flex; است. یک بستر flex می‌سازد و به‌طور پیش‌فرض عضوها از چپ به راست نمایش داده می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "و فقط با افزودن یک خط به بلوک ul یعنی justify-content: center; یک نوار ناوبری وسط‌چین افقی خواهید داشت:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul {\n  list-style-type: none;\n  margin: 0;\n  padding:\n  0;\n  background-color: #333333;\n  display: flex;\n\n  justify-content: center;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_flex_center"
+  },
+  {
+   "type": "h2",
+   "text": "حالت فعال"
+  },
+  {
+   "type": "p",
+   "text": "اینجا کلاس «active» را اضافه می‌کنیم تا پیوند متناظر با صفحهٔ جاری برجسته شود و کاربر بداند در کدام صفحه یا بخش است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خانه",
+    "اخبار",
+    "تماس",
+    "درباره"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul li a.active {\n  background-color: #04AA6D;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_active"
+  },
+  {
+   "type": "h2",
+   "text": "نوار ناوبری افقی خاکستری"
+  },
+  {
+   "type": "p",
+   "text": "این هم نمونه‌ای از نوار ناوبری افقی خاکستری با یک حاشیهٔ نازک خاکستری:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خانه",
+    "اخبار",
+    "تماس",
+    "درباره"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul {\n  list-style-type: none;\n  margin: 0;\n  padding:\n  0;\n  display: flex;\n  border: 1px solid #e7e7e7;\n\n  background-color: #f3f3f3;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_gray"
+  },
+  {
+   "type": "h2",
+   "text": "راست‌چین‌کردن آخرین پیوند"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک یا چند پیوند را با شناورکردن عضوهای فهرست به راست (float: right;) راست‌چین کنید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خانه",
+    "اخبار",
+    "تماس",
+    "درباره"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<ul>\n  <li><a href=\"#home\" class=\"active\">Home</a></li>\n\n<li><a href=\"#news\">News</a></li>\n  <li><a href=\"#contact\">Contact</a></li>\n\n  <li style=\"float:right\"><a href=\"#about\">About</a></li>\n</ul>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_alignright"
+  },
+  {
+   "type": "h2",
+   "text": "جداکننده‌های حاشیه‌ای"
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن جداکننده بین پیوندها، خصوصیت border-right را به عنصرهای <li> (همه جز آخری) اضافه کنید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خانه",
+    "اخبار",
+    "تماس",
+    "درباره"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/* Add a lightgray right border to all list items, except the last */\nul li {\n\n  float: left;\n  border-right: 1px solid #bbbbbb;\n}\n\nul\n  li:last-child {\n  border-right: none;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_dividers"
+  },
+  {
+   "type": "h2",
+   "text": "نوار ناوبری ثابت"
+  },
+  {
+   "type": "p",
+   "text": "با استفاده از خصوصیت position همراه با top یا bottom می‌توانید نوار ناوبری را همیشه در بالای یا پایین صفحه ثابت نگه دارید:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul {\n  position: fixed;\n  top: 0;\n  width: 100%;\n}",
+   "caption": "ثابت در بالا"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_black_fixed"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n}",
+   "caption": "ثابت در پایین"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_black_fixed2"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "مقدار fixed برای position ممکن است روی دستگاه‌های موبایل درست کار نکند."
+  },
+  {
+   "type": "h2",
+   "text": "نوار ناوبری چسبان"
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن نوار ناوبری چسبان، position: sticky; را به <ul> اضافه کنید."
+  },
+  {
+   "type": "p",
+   "text": "عنصری با position: sticky; بسته به جای اسکرول، بین موقعیت نسبی و ثابت جابه‌جا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "عنصر چسبان تا رسیدن به نقطهٔ اسکرول مشخصی موقعیت نسبی دارد و بعد در همان جا «می‌چسبد» (مثل position: fixed)."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ul {\n  position: sticky;\n  top: 0;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_sticky"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "برای اینکه چسبان‌بودن کار کند، باید حداقل یکی از خصوصیت‌های top، right، bottom یا left را تعیین کنید."
+  },
+  {
+   "type": "h2",
+   "text": "منوی بازشو در نوار ناوبری"
+  },
+  {
+   "type": "p",
+   "text": "اینجا برای یکی از پیوندهای منو یک منوی بازشو می‌سازیم:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_dropdown_navbar"
+  },
+  {
+   "type": "h2",
+   "text": "نوار ناوبری واکنش‌گرا"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_navbar_horizontal_responsive"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "دربارهٔ W3Schools Spaces شنیده‌اید؟ اینجا می‌توانید وب‌سایت خود را از صفر بسازید یا از یک قالب آماده استفاده کنید. رایگان شروع کنید ❯"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل hnav.html بسازید و نوار ناوبری افقی را با float: left; روی <li>ها بسازید و مطمئن شوید پیوندها کنار هم می‌نشینند.",
+   "hint": "اگر نوار در ارتفاع فرو ریخت، با overflow: hidden; روی <ul> مشکل را حل کنید."
+  },
+  {
+   "prompt": "در همان فایل با display: block; و padding: 14px 16px; ناحیهٔ کلیک هر پیوند را بزرگ کنید و زیرخط‌ها را با text-decoration: none; بردارید.",
+   "hint": "با بزرگ‌کردن پنجره و کوچک‌کردن آن، تغییر ناحیهٔ کلیک را در ابزار بازرس ببینید."
+  },
+  {
+   "prompt": "همان نوار را یک بار دیگر با display: flex; روی <ul> بسازید و یادتان باشد float را بردارید.",
+   "hint": "با flex دیگر نیازی به float نیست؛ عضوها به‌طور پیش‌فرض از چپ به راست می‌چینند."
+  },
+  {
+   "prompt": "با افزودن یک خط justify-content: center; به بلوک ul نوار را وسط‌چین کنید و بعد با float: right; روی یکی از <li>ها آن پیوند را به راست ببرید.",
+   "hint": "خصوصیت float روی عنصر مستقل اثر می‌گذارد و ترتیب بقیه را به هم نمی‌زند."
+  },
+  {
+   "prompt": "نوار را با position: fixed; و top: 0; به بالای صفحه بچسبانید، اسکرول کنید و بگویید چرا به محتوا margin-top دادیم.",
+   "hint": "نوار ثابت از جریان صفحه بیرون می‌آید و روی محتوا می‌افتد؛ margin-top فضا را برمی‌گرداند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای افقی‌کردن عضوهای فهرست در روش کلاسیک، کدام خصوصیت را به <li> می‌دهیم؟",
+   "options": [
+    "float: left;",
+    "display: inline-block; روی ul",
+    "position: absolute;",
+    "text-align: center;"
+   ],
+   "answer": 0,
+   "explanation": "در روش قدیمی‌تر، float: left; روی <li>ها آن‌ها را کنار هم می‌چیند؛ در روش جدید به‌جایش از display: flex; روی <ul> استفاده می‌شود."
+  },
+  {
+   "question": "چرا در مثال نوار ناوبری افقی، <ul> خصوصیت overflow: hidden; دارد؟",
+   "options": [
+    "برای پنهان‌کردن پیوندهای اضافه",
+    "برای اینکه عضوهای شناور از فهرست بیرون نزنند",
+    "برای حذف نوار اسکرول عمودی",
+    "برای گردکردن گوشه‌ها"
+   ],
+   "answer": 1,
+   "explanation": "عنصرهای شناور از جریان عادی بیرون می‌آیند و ارتفاع والد را صفر می‌کنند؛ overflow: hidden; ظرف را بسته نگه می‌دارد."
+  },
+  {
+   "question": "در روش flexbox، کدام یک خط کافی است تا نوار ناوبری وسط‌چین شود؟",
+   "options": [
+    "align-items: center;",
+    "justify-content: center;",
+    "text-align: center;",
+    "margin: 0 auto;"
+   ],
+   "answer": 1,
+   "explanation": "در یک بستر flex، محور اصلی افقی است و justify-content: center; عضوها را روی آن محور وسط‌چین می‌کند."
+  },
+  {
+   "question": "برای چسبیدن نوار به بالای صفحه هنگام اسکرول، کدام مقدار position مناسب است؟",
+   "options": [
+    "position: absolute;",
+    "position: relative;",
+    "position: fixed;",
+    "position: static;"
+   ],
+   "answer": 2,
+   "explanation": "با fixed نوار از جریان صفحه خارج می‌شود و همیشه در موقعیت تعیین‌شده می‌ماند؛ برای sticky هم باید top یا bottom تعیین شود."
+  },
+  {
+   "question": "برای اینکه position: sticky; کار کند، چه چیزی لازم است؟",
+   "options": [
+    "تعیین حداقل یکی از top، right، bottom یا left",
+    "دادن ارتفاع به عنصر",
+    "استفاده از float",
+    "تعیین z-index"
+   ],
+   "answer": 0,
+   "explanation": "درس تأکید می‌کند بدون تعیین حداقل یکی از این چهار خصوصیت، چسبان‌بودن عمل نمی‌کند، چون مرورگر نمی‌داند عنصر کجا باید بچسبد."
+  }
+ ]
+}

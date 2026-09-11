@@ -1,0 +1,783 @@
+{
+ "slug": "js_regexp_flags",
+ "course": "js",
+ "order": 82,
+ "url": "/js/js_regexp_flags.asp",
+ "title": "پرچم‌های RegExp در JavaScript",
+ "summary": "پرچم‌ها رفتار الگوی regex را تغییر می‌دهند: g سراسری، i بی‌تفاوت به بزرگی و کوچکی حروف، m چندخطی، s تک‌خطی، d برای اندیس‌ها، u و v برای Unicode و y برای جست‌وجوی چسبنده. در این درس هر پرچم و خصوصیت بررسی آن را تمرین می‌کنید.",
+ "objectives": [
+  "معنای پرچم‌های g، i، m، s، d، u، v و y را بگویید",
+  "با نحو /pattern/flags الگویی با پرچم بسازید",
+  "خصوصیت‌هایی مثل global و dotAll را برای بررسی پرچم‌ها به کار ببرید",
+  "تغییردهندهٔ گروهی (?flag) را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پرچم‌های RegExp در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "پرچم‌های تغییردهندهٔ RegExp"
+  },
+  {
+   "type": "p",
+   "text": "پرچم‌ها پارامترهایی هستند که نحوهٔ استفاده از الگوی regex را تغییر می‌دهند، مثلاً بی‌تفاوت کردن به بزرگی و کوچکی حروف یا سراسری کردن جست‌وجو."
+  },
+  {
+   "type": "p",
+   "text": "/pattern/flags"
+  },
+  {
+   "type": "h2",
+   "text": "پرچم‌های Regex در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "بازنگری در جولای 2025"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Flag",
+     "توضیح"
+    ],
+    [
+     "/d",
+     "تطبیق زیررشته انجام می‌دهد (تازه در 2022)"
+    ],
+    [
+     "/g",
+     "تطبیق سراسری انجام می‌دهد (همه را پیدا می‌کند)"
+    ],
+    [
+     "/i",
+     "تطبیق بدون حساسیت به بزرگی و کوچکی حروف انجام می‌دهد"
+    ],
+    [
+     "/m",
+     "تطبیق چندخطی انجام می‌دهد"
+    ],
+    [
+     "/s",
+     "اجازه می‌دهد . (نقطه) با پایان‌خط‌ها تطبیق کند (تازه در 2018)"
+    ],
+    [
+     "/u",
+     "پشتیبانی Unicode را فعال می‌کند (تازه در 2015)"
+    ],
+    [
+     "/v",
+     "ارتقای پرچم /u برای پشتیبانی بهتر از Unicode (تازه در 2025)"
+    ],
+    [
+     "/y",
+     "جست‌وجوی «چسبنده» (sticky) انجام می‌دهد (تازه در 2015)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "نحو پرچم‌ها: /pattern/flags"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "/",
+     "جداکنندهٔ ابتدای عبارت باقاعده"
+    ],
+    [
+     "pattern",
+     "عبارت باقاعده (یک معیار جست‌وجو)"
+    ],
+    [
+     "/",
+     "جداکنندهٔ انتهای عبارت باقاعده"
+    ],
+    [
+     "flags",
+     "یک یا چند پرچم تغییردهندهٔ تک‌حرفی"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پرچم /g در RegExp (سراسری)"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /g با همهٔ رخدادهای الگو تطبیق می‌کند، نه فقط با نخستین رخداد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Is this all there is?\";\n\nconst pattern = /is/g;\n\nlet result = text.match(pattern);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_g"
+  },
+  {
+   "type": "h2",
+   "text": "پرچم /i در RegExp (بی‌تفاوت به بزرگی و کوچکی حروف)"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /i تطبیق را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند: /abc/i با \"abc\"، \"AbC\" و \"ABC\" تطبیق می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Visit W3Schools\";\n\nconst pattern = /is/g;\n\nlet result = text.match(pattern);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_i"
+  },
+  {
+   "type": "h2",
+   "text": "پرچم /d در RegExp"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /d (پرچم اندیس‌ها) برای یافتن موقعیت شروع و پایان زیررشته‌هایی است که گروه‌های عبارت باقاعده می‌گیرند."
+  },
+  {
+   "type": "p",
+   "text": "این پرچم تطبیق regex را تغییر نمی‌دهد؛ فقط فراداده‌ای دربارهٔ نتیجه می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌ای که exec() یا match() برمی‌گردانند یک خصوصیت اضافی به نام indices هم دارد: آرایه‌ای از جفت‌ها که اندیس [start, end] یک گروه گرفته‌شدهٔ مشخص را نشان می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"aaaabb\";\n\nconst pattern = /(aa)(bb)/d;\n\nlet result = text.match(pattern);\n\nlet indexes = result.indices;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_indices"
+  },
+  {
+   "type": "p",
+   "text": "با خصوصیت hasIndices می‌توانید بررسی کنید آیا یک regex پرچم /d دارد یا نه."
+  },
+  {
+   "type": "h2",
+   "text": "پرچم /s در RegExp (تک‌خطی/DotAll)"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /s اجازه می‌دهد متاکاراکتر . (نقطه) علاوه بر هر کاراکتر دیگر، با کاراکتر خط جدید (\\n) هم تطبیق کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Line\\nLine.\";\n\nconst pattern = /Line./gs;\n\nlet result = text.match(pattern);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_s"
+  },
+  {
+   "type": "h2",
+   "text": "پرچم /m در RegExp (چندخطی)"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /m (چندخطی) تطبیق چندخطی را مشخص می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = `Is this\n\nall there\n\nis`\n\nlet pattern = /^is/m;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_m"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /m رفتار ^ و $ را تغییر می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "^ تطبیق در ابتدای رشته را مشخص می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "$ تطبیق در انتهای رشته را مشخص می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "با فعال بودن /m، کاراکترهای ^ و $ علاوه بر ابتدا و انتهای کل رشته، در یک رشتهٔ چندخطی با ابتدا و انتهای هر خط هم تطبیق می‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "پرچم /y در RegExp (چسبنده):"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /y یک جست‌وجوی «چسبنده» از خصوصیت lastIndex شیء RegExp انجام می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "پرچم /y اجازه می‌دهد تطبیق دقیقاً از همان جایی شروع شود که تطبیق قبلی تمام شده بود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"abc def ghi\";\n\nconst pattern = /\\w+/y;\n\n// Start match from position 4\n\npattern.lastIndex = 4;\n\nlet result = text.match(pattern);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"abc def ghi\";\n\nconst pattern = /\\w+/;\n\n// Start match from position 4\n\npattern.lastIndex = 4;\n\nlet result = text.match(pattern);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_y"
+  },
+  {
+   "type": "p",
+   "text": "مثال بالا از متاکاراکتر \\w در regex استفاده می‌کند"
+  },
+  {
+   "type": "p",
+   "text": "معنای /\\w/ این است: «با یک کاراکتر کلمه (حرف یا رقم) تطبیق بده»."
+  },
+  {
+   "type": "p",
+   "text": "معنای /\\w+/ این است: «با یک یا چند کاراکتر کلمه تطبیق بده»."
+  },
+  {
+   "type": "p",
+   "text": "در درس‌های بعدی دربارهٔ متاکاراکترها بیشتر یاد می‌گیرید."
+  },
+  {
+   "type": "h2",
+   "text": "پرچم /u در RegExp (Unicode)"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /u پشتیبانی کامل Unicode را در عبارت باقاعده فعال می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "به‌طور پیش‌فرض، RegExp در JavaScript کاراکترهای ۴ بایتی Unicode (مثل ایموجی‌ها یا نمادهای کم‌رایج) را دو واحد کد «جانشین» (surrogate) ۲ بایتی جدا می‌بیند."
+  },
+  {
+   "type": "p",
+   "text": "پرچم /u الگو را دنباله‌ای از کدپوینت‌های Unicode می‌بیند و این برای درست کار کردن با کاراکترهای بیرون از صفحهٔ چندزبانهٔ پایه (BMP) مهم است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"䷀\";\n\nconst pattern = /\\u{04DC0}/u;\n\n// Returns true:\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_u_1"
+  },
+  {
+   "type": "p",
+   "text": "بدون پرچم /u، عبارت‌های باقاعده به Unicode آگاه نیستند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"䷀\";\n\nconst pattern = /\\u{04DC0}/;\n\n// Returns false:\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_u_3"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2025 پرچم /v را به‌عنوان «ارتقای» پرچم /u معرفی کرد."
+  },
+  {
+   "type": "p",
+   "text": "پرچم /v ویژگی‌های بیشتری مربوط به Unicode را فعال می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "پرچم /v در RegExp (مجموعه‌های Unicode)"
+  },
+  {
+   "type": "p",
+   "text": "پرچم /v ارتقای پرچم /u برای پشتیبانی بهتر از Unicode است."
+  },
+  {
+   "type": "p",
+   "text": "این پرچم ویژگی‌های بیشتری مربوط به Unicode را فعال می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های تازه این‌ها هستند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "دنبالهٔ فرار \\p با رشته‌ها تطبیق می‌کند، نه فقط با کاراکترها.",
+    "کلاس کاراکتر ارتقا یافته تا نحو اشتراک، اجتماع و تفاضل را بپذیرد و همچنین با چند کاراکتر Unicode تطبیق کند."
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello 😄\";\n\nconst pattern = /\\p{Emoji}/v;\n\n// Returns true:\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_v"
+  },
+  {
+   "type": "p",
+   "text": "بدون پرچم /v، عبارت‌های باقاعده به Unicode آگاه نیستند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello 😄\";\n\nconst pattern = /\\p{Emoji}/;\n\n// Returns false:\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_v_2"
+  },
+  {
+   "type": "h2",
+   "text": "تغییردهنده‌های گروهی در RegExp (‎?flag)"
+  },
+  {
+   "type": "p",
+   "text": "نحو (?flag) یک تغییردهندهٔ گروهی (تغییردهندهٔ پرچم درون‌خطی) است."
+  },
+  {
+   "type": "p",
+   "text": "این نحو اجازه می‌دهد پرچم‌ها در بخشی از الگو تغییر کنند، نه برای کل الگو."
+  },
+  {
+   "type": "p",
+   "text": "(?flags:pattern) پرچم‌ها را فقط برای الگوی داخل گروه فعال می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"W3Schools tutorials.\";\n\nconst pattern = /(?i:WShools) tutorials/;\n\n// Returns true:\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"W3Schools Tutorials.\";\n\nconst pattern = /(?i:W3Sshools) tutorials/;\n\n// Returns false:\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_groups_modifier"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های پرچم Regex در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "بازنگری در جولای 2025"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیح"
+    ],
+    [
+     "global",
+     "اگر پرچم /g فعال باشد true برمی‌گرداند"
+    ],
+    [
+     "hasIndices",
+     "اگر پرچم /d فعال باشد true برمی‌گرداند"
+    ],
+    [
+     "ignoreCase",
+     "اگر پرچم /i فعال باشد true برمی‌گرداند"
+    ],
+    [
+     "multiline",
+     "اگر پرچم /m فعال باشد true برمی‌گرداند"
+    ],
+    [
+     "dotAll",
+     "اگر پرچم /s فعال باشد true برمی‌گرداند"
+    ],
+    [
+     "sticky",
+     "اگر پرچم /y فعال باشد true برمی‌گرداند"
+    ],
+    [
+     "unicode",
+     "اگر پرچم /u فعال باشد true برمی‌گرداند"
+    ],
+    [
+     "unicodeSets",
+     "اگر پرچم /v فعال باشد true برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت dotAll"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت dotAll اگر پرچم /s فعال باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/s;\n\nlet result = pattern.dotAll;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_dotall"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت global"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت global اگر پرچم /g فعال باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/g;\n\nlet result = pattern.global;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_global"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت hasIndices"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت hasIndices اگر پرچم /d فعال باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/d;\n\nlet result = pattern.hasIndices;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_hasindices"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت ignoreCase"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت ignoreCase اگر پرچم /i فعال باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/i;\n\nlet result = pattern.ignoreCase;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_ignorecase"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت multiline"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت multiline اگر پرچم /m فعال باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/m;\n\nlet result = pattern.multiline;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_multiline"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت sticky"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت sticky اگر پرچم /y فعال باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools/y;\n\nlet result = pattern.sticky;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_sticky"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت unicode"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت unicode اگر پرچم /u فعال باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"䷀\";\n\nconst pattern = /\\u{04DC0}/u;\n\nlet result = pattern.unicode;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_unicode"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت unicodeSets"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت unicodeSets اگر پرچم /v فعال باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello 😄\";\n\nconst pattern = /\\p{Emoji}/v;\n\nlet result = pattern.unicodeSets;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_prop_unicodesets"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای عبارت باقاعده"
+  },
+  {
+   "type": "p",
+   "text": "جست‌وجو و جایگزینی با عبارت باقاعده را می‌توان با متدهای گوناگون انجام داد."
+  },
+  {
+   "type": "p",
+   "text": "این‌ها رایج‌ترین‌اند:"
+  },
+  {
+   "type": "h3",
+   "text": "متدهای رشته"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "توضیح"
+    ],
+    [
+     "match(regex)",
+     "یک آرایه از نتیجه‌ها برمی‌گرداند"
+    ],
+    [
+     "matchAll(regex)",
+     "یک iterator از نتیجه‌ها برمی‌گرداند"
+    ],
+    [
+     "replace(regex)",
+     "یک رشتهٔ تازه برمی‌گرداند"
+    ],
+    [
+     "replaceAll(regex)",
+     "یک رشتهٔ تازه برمی‌گرداند"
+    ],
+    [
+     "search(regex)",
+     "اندیس نخستین تطبیق را برمی‌گرداند"
+    ],
+    [
+     "split(regex)",
+     "یک آرایه از نتیجه‌ها برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "متدهای RegExp"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "توضیح"
+    ],
+    [
+     "regex.exec()",
+     "یک iterator از نتیجه‌ها برمی‌گرداند"
+    ],
+    [
+     "regex.test()",
+     "true یا false برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "کلاس‌های کاراکتر در RegExp"
+  },
+  {
+   "type": "p",
+   "text": "متاکاراکترهای RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ادعاهای RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گروه‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "سنجه‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "الگوهای RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متدهای RegExp در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل flags.html بسازید، الگویی با پرچم g بنویسید و با match() همهٔ رخدادها را بگیرید؛ بعد پرچم g را بردارید و تفاوت را ببینید.",
+   "hint": "بدون g فقط نخستین تطبیق برمی‌گردد؛ با g همهٔ تطبیق‌ها در آرایه می‌آیند."
+  },
+  {
+   "prompt": "پرچم i را امتحان کنید و ببینید الگوی /abc/i با متن AbC هم تطبیق می‌کند.",
+   "hint": "i یعنی بی‌تفاوت به بزرگی و کوچکی حروف، پس بزرگی و کوچکی حروف مهم نیست."
+  },
+  {
+   "prompt": "خصوصیت‌های global، ignoreCase و multiline را چاپ کنید و بگویید هر کدام با چه پرچمی true می‌شوند.",
+   "hint": "هر خصوصیت با پرچم هم‌خوان خودش فعال می‌شود: global با g، ignoreCase با i و multiline با m."
+  },
+  {
+   "prompt": "یک الگو با پرچم d بسازید و مقدار خصوصیت indices را در کنسول ببینید.",
+   "hint": "با پرچم d نتیجه یک آرایهٔ indices اضافه دارد و خصوصیت hasIndices مقدار true می‌دهد."
+  },
+  {
+   "prompt": "با فعال کردن /m رفتار ^ و $ را روی یک رشتهٔ چندخطی امتحان کنید و بگویید چه تغییری می‌کند.",
+   "hint": "با /m این دو با ابتدا و انتهای هر خط تطبیق می‌کنند، نه فقط با ابتدا و انتهای کل رشته."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "پرچم i چه می‌کند؟",
+   "options": [
+    "تطبیق را سراسری می‌کند",
+    "تطبیق را چندخطی می‌کند",
+    "تطبیق را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند",
+    "جست‌وجو را چسبنده می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "i یعنی بی‌تفاوت به بزرگی و کوچکی حروف، پس /abc/i با abc و AbC و ABC تطبیق می‌کند. سراسری کار g، چندخطی کار m و چسبنده کار y است."
+  },
+  {
+   "question": "با کدام پرچم نقطه (.) با کاراکتر خط جدید هم تطبیق می‌کند؟",
+   "options": [
+    "/m",
+    "/s",
+    "/u",
+    "/y"
+   ],
+   "answer": 1,
+   "explanation": "پرچم /s که DotAll هم نام دارد اجازه می‌دهد . با کاراکتر خط جدید هم تطبیق کند؛ /m رفتار ^ و $ را عوض می‌کند."
+  },
+  {
+   "question": "کدام خصوصیت نشان می‌دهد پرچم g فعال است؟",
+   "options": [
+    "multiline",
+    "dotAll",
+    "global",
+    "sticky"
+   ],
+   "answer": 2,
+   "explanation": "هر خصوصیت با پرچم هم‌خوان خودش کار می‌کند: global با /g، multiline با /m، dotAll با /s و sticky با /y."
+  },
+  {
+   "question": "تفاوت پرچم y با g چیست؟",
+   "options": [
+    "y تطبیق را از موقعیت پایان تطبیق قبلی شروع می‌کند",
+    "y مانند g است ولی سریع‌تر اجرا می‌شود",
+    "y تطبیق را چندخطی می‌کند",
+    "y پشتیبانی Unicode را فعال می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "پرچم y جست‌وجوی «چسبنده» است و تطبیق را دقیقاً از موقعیت پایان تطبیق قبلی (خصوصیت lastIndex) شروع می‌کند؛ g از هر جای رشته دنبال تطبیق می‌گردد."
+  },
+  {
+   "question": "نحو (?flags:pattern) چه کاری می‌کند؟",
+   "options": [
+    "پرچم‌ها را برای کل الگو فعال می‌کند",
+    "پرچم‌ها را فقط برای الگوی داخل گروه فعال می‌کند",
+    "الگو را حذف می‌کند",
+    "گروه را غیرفعال می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "این نحو یک تغییردهندهٔ گروهی است و پرچم‌ها را فقط برای الگوی داخل همان گروه فعال می‌کند، نه برای کل الگو."
+  }
+ ]
+}

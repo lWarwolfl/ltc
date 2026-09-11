@@ -1,0 +1,203 @@
+{
+ "slug": "css_counters",
+ "course": "css",
+ "order": 101,
+ "url": "/css/css_counters.asp",
+ "title": "شمارنده‌های CSS",
+ "summary": "شمارنده‌های CSS به شما اجازه می‌دهند سرتیترها و عضوهای فهرست را بدون یک خط JavaScript شماره‌گذاری کنید. در این درس چهار خصوصیت شمارنده را می‌بینید و شمارش را کم و زیاد می‌کنید.",
+ "objectives": [
+  "با counter-reset یک شمارنده بسازید",
+  "با counter-increment شمارنده را جلو ببرید",
+  "مقدار شمارنده را با counter() نشان دهید",
+  "شمارش را کم‌کردن و با مقدار دلخواه جلو بردن را تمرین کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "شمارنده‌های CSS"
+  },
+  {
+   "type": "h2",
+   "text": "شمارنده‌های CSS"
+  },
+  {
+   "type": "p",
+   "text": "با شمارنده‌های CSS می‌توانید بدون استفاده از JavaScript شماره‌گذاری پویا برای عنصرها بسازید (مثل سرتیترها، بخش‌ها یا عضوهای فهرست)."
+  },
+  {
+   "type": "p",
+   "text": "شمارنده‌های CSS «متغیرهایی» هستند که خود CSS نگه می‌دارد و قواعد CSS می‌توانند مقدارشان را یکی زیاد یا کم کنند."
+  },
+  {
+   "type": "h3",
+   "text": "پیتزا"
+  },
+  {
+   "type": "h3",
+   "text": "همبرگر"
+  },
+  {
+   "type": "h3",
+   "text": "هات‌داگ"
+  },
+  {
+   "type": "h2",
+   "text": "شماره‌گذاری خودکار با شمارنده‌ها در CSS"
+  },
+  {
+   "type": "p",
+   "text": "شمارنده‌های CSS شبیه «متغیر» هستند. قواعد CSS می‌توانند مقدار این متغیرها را یکی زیاد یا کم کنند."
+  },
+  {
+   "type": "p",
+   "text": "برای کار با شمارنده‌های CSS از خصوصیت‌های زیر استفاده می‌کنیم:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "counter-reset - یک شمارنده می‌سازد یا آن را بازنشانی می‌کند",
+    "counter-increment - مقدار یک شمارنده را زیاد یا کم می‌کند",
+    "content - محتوای تولیدشده درج می‌کند",
+    "counter() - مقدار یک شمارنده را به عنصر اضافه می‌کند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برای استفاده از یک شمارندهٔ CSS، اول باید آن را با خصوصیت counter-reset بسازید."
+  },
+  {
+   "type": "h2",
+   "text": "کم و زیادکردن شمارنده در CSS"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر یک شمارنده برای صفحه می‌سازد (در انتخابگر body) و بعد برای هر عنصر <h2> مقدار شمارنده را یک واحد زیاد می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "body {\n  counter-reset: section;\n}\n\nh2::before {\n  counter-increment: section;\n  content: \"Section \" counter(section) \": \";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_counters1"
+  },
+  {
+   "type": "h2",
+   "text": "کم‌کردن شمارنده"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت counter-increment پارامتر دومی هم دارد. مقدار پیش‌فرض آن 1 است. برای کم‌کردن مقدار شمارنده می‌توانید آن را روی -1 بگذارید."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "body {\n  counter-reset: section;\n}\n\nh2::before {\n  counter-increment: section\n  -1;\n  content: \"Section \" counter(section) \": \";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_counters1_1"
+  },
+  {
+   "type": "h2",
+   "text": "افزایش با مقدارهای دلخواه"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید شمارنده را هر چقدر بخواهید زیاد کنید. اینجا آن را دو واحد زیاد می‌کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "body {\n  counter-reset: section;\n}\n\nh2::before {\n  counter-increment: section\n  2;\n  content: \"Section \" counter(section) \": \";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_counters1_2"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل counters.html بسازید، در انتخابگر body یک counter-reset بگذارید و بعد با h2::before و content: counter(...) سرتیترها را شماره‌گذاری کنید.",
+   "hint": "شمارنده اول باید با counter-reset ساخته شود؛ بدون آن counter() مقداری ندارد."
+  },
+  {
+   "prompt": "روی h2 خصوصیت counter-increment را با مقدار 1 بگذارید و ببینید شماره‌ها چطور جلو می‌روند.",
+   "hint": "همان خط counter-increment مقدار شمارنده را برای هر سرتیتر یکی زیاد می‌کند."
+  },
+  {
+   "prompt": "مقدار counter-increment را به -1 عوض کنید و نتیجه را با حالت قبل مقایسه کنید.",
+   "hint": "پارامتر دوم این خصوصیت جهت شمارش را تعیین می‌کند؛ مقدار پیش‌فرضش 1 است."
+  },
+  {
+   "prompt": "شمارنده را با مقدار 2 جلو ببرید تا شماره‌ها یک‌درمیان بالا بروند؛ مثلاً 2، 4، 6.",
+   "hint": "counter-increment هر مقدار عددی می‌پذیرد، پس 2 شمارش را دو برابر می‌کند."
+  },
+  {
+   "prompt": "شمارنده را روی یک فهرست <ul> اعمال کنید و بگویید چرا شماره‌گذاری بدون JavaScript کار می‌کند.",
+   "hint": "مقدار شمارنده در خود CSS نگه داشته می‌شود، پس HTML نیازی به شماره‌های دستی ندارد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "شمارنده‌های CSS چطور شماره‌گذاری می‌کنند؟",
+   "options": [
+    "با JavaScript",
+    "با متغیرهایی که خود CSS نگه می‌دارد",
+    "با صفت‌های HTML",
+    "با فایل بیرونی"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید شمارنده‌ها «متغیر»هایی هستند که CSS نگه می‌دارد و قواعد CSS مقدارشان را کم و زیاد می‌کنند؛ به JavaScript نیازی نیست."
+  },
+  {
+   "question": "برای ساختن یک شمارنده از کدام خصوصیت استفاده می‌کنیم؟",
+   "options": [
+    "counter-increment",
+    "counter-reset",
+    "counter()",
+    "content"
+   ],
+   "answer": 1,
+   "explanation": "شمارندهٔ CSS اول باید با counter-reset ساخته یا بازنشانی شود؛ بعد نوبت counter-increment و content می‌رسد."
+  },
+  {
+   "question": "مقدار پیش‌فرض پارامتر شمارش در counter-increment چقدر است؟",
+   "options": [
+    "0",
+    "1",
+    "10",
+    "-1"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید مقدار پیش‌فرض 1 است، به همین دلیل هر عنصر شمارنده را یک واحد جلو می‌برد؛ برای کم‌کردن آن باید -1 بگذارید."
+  },
+  {
+   "question": "برای نمایش مقدار شمارنده روی صفحه کدام خصوصیت به کار می‌رود؟",
+   "options": [
+    "content",
+    "display",
+    "counter-reset",
+    "resize"
+   ],
+   "answer": 0,
+   "explanation": "خصوصیت content مقدار شمارنده را با تابع counter() در صفحه درج می‌کند و همراه شبه‌عنصرهای ::before یا ::after نوشته می‌شود."
+  },
+  {
+   "question": "تابع counter() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "مقدار فعلی شمارندهٔ نامدار",
+    "تعداد عنصرهای صفحه",
+    "مجموع همهٔ شمارنده‌ها",
+    "نام شمارنده"
+   ],
+   "answer": 0,
+   "explanation": "در فهرست خصوصیت‌ها آمده که counter() مقدار جاری شمارندهٔ نامدار را به عنصر اضافه می‌کند؛ برای چند سطح تودرتو تابع counters() به کار می‌رود."
+  }
+ ]
+}

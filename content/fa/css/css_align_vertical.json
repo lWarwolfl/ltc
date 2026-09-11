@@ -1,0 +1,185 @@
+{
+ "slug": "css_align_vertical",
+ "course": "css",
+ "order": 79,
+ "url": "/css/css_align_vertical.asp",
+ "title": "ترازبندی عمودی در CSS",
+ "summary": "وسط‌چین کردن عمودی در CSS چند راه دارد: Flexbox، Grid و ترکیب position با transform. این درس هر سه را با مثال می‌آورد و می‌گوید کدام برای عنصرهای با اندازهٔ نامعلوم مناسب‌تر است.",
+ "objectives": [
+  "با Flexbox محتوا را در هر دو محور وسط‌چین کنید",
+  "با Grid و place-items همین کار را انجام دهید",
+  "روش position همراه transform را برای عنصر با اندازهٔ نامعلوم به کار ببرید",
+  "بگویید چرا transform در این روش لازم است"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ترازبندی عمودی در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "وسط‌چین کردن عمودی"
+  },
+  {
+   "type": "p",
+   "text": "وسط‌چین کردن عمودی در CSS با تکنیک‌های جدید چیدمان مثل Flexbox و Grid انجام می‌شود، یا با موقعیت‌دهی همراه با transform."
+  },
+  {
+   "type": "h2",
+   "text": "وسط‌چین کردن با Flexbox"
+  },
+  {
+   "type": "p",
+   "text": "با flexbox در CSS می‌توانید عنصرها را در هر دو جهت افقی و عمودی داخل یک ظرف flex وسط‌چین کنید."
+  },
+  {
+   "type": "p",
+   "text": "ظرف flexی که هم خصوصیت justify-content و هم align-items آن روی center باشد، آیتم‌ها را در وسط (در هر دو محور) تراز می‌کند:"
+  },
+  {
+   "type": "p",
+   "text": "من هم عمودی و هم افقی وسط‌چین شده‌ام."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".center {\n  display: flex;\n  justify-content: center;\n\n  align-items: center;\n  height: 200px;\n  border: 3px solid\n  green;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_align_flex"
+  },
+  {
+   "type": "h2",
+   "text": "وسط‌چین کردن با Grid"
+  },
+  {
+   "type": "p",
+   "text": "با grid در CSS می‌توانید عنصرها را در هر دو جهت افقی و عمودی داخل یک ظرف grid وسط‌چین کنید."
+  },
+  {
+   "type": "p",
+   "text": "ظرف gridی که خصوصیت place-items آن روی center باشد، آیتم‌ها را در وسط (در هر دو محور) تراز می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "من هم عمودی و هم افقی وسط‌چین شده‌ام."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".center {\n  display: grid;\n  place-items: center;\n  height: 200px;\n  border: 3px solid\n  green;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_align_grid"
+  },
+  {
+   "type": "h2",
+   "text": "وسط‌چین کردن با position و transform"
+  },
+  {
+   "type": "p",
+   "text": "اگر با عنصرهایی سر و کار دارید که اندازه‌شان نامعلوم یا متغیر است، روشی رایج این است که position: absolute; را با transform: translate(); ترکیب کنید تا عنصر وسط‌چین شود:"
+  },
+  {
+   "type": "p",
+   "text": "من هم عمودی و هم افقی وسط‌چین شده‌ام."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".container p {\n  margin: 0;\n\nposition: absolute;\n  top: 50%;\n\nleft: 50%;\n  transform: translate(-50%, -50%);\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_align_transform"
+  },
+  {
+   "type": "p",
+   "text": "نکته: دربارهٔ خصوصیت transform در بخش تبدیل‌های دوبعدی (2D Transforms) بیشتر یاد می‌گیرید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل center-v.html بسازید و یک ظرف با display: flex و ارتفاع مشخص درست کنید؛ با justify-content: center و align-items: center محتوا را در وسط هر دو محور بگذارید.",
+   "hint": "justify-content محور افقی و align-items محور عمودی را کنترل می‌کند."
+  },
+  {
+   "prompt": "همان کار را با display: grid و place-items: center انجام دهید.",
+   "hint": "place-items هر دو محور را با هم وسط می‌آورد."
+  },
+  {
+   "prompt": "یک عنصر با اندازهٔ نامعلوم را این‌طور وسط‌چین کنید: position: absolute با top: 50% و left: 50% و transform: translate(-50%, -50%).",
+   "hint": "transform عنصر را به اندازهٔ نصف عرض و ارتفاع خودش عقب می‌کشد."
+  },
+  {
+   "prompt": "هر سه روش را در یک صفحه کنار هم بگذارید و بگویید کدام برای عنصر با اندازهٔ متغیر مناسب‌تر است.",
+   "hint": "روش position همراه transform برای اندازهٔ نامعلوم ساخته شده است."
+  },
+  {
+   "prompt": "یکی از روش‌ها را عمداً ناقص امتحان کنید (مثلاً فقط justify-content بدون align-items) و در یک خط بگویید چرا وسط نمی‌افتد.",
+   "hint": "برای وسط شدن در هر دو محور به هر دو خصوصیت نیاز دارید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "با Flexbox برای وسط‌چین کردن در هر دو محور کدام دو خصوصیت لازم است؟",
+   "options": [
+    "justify-content و align-items روی center",
+    "text-align و margin",
+    "float و clear",
+    "position و z-index"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید ظرف flexی که هر دو خصوصیت justify-content و align-items آن center باشد، آیتم‌ها را در هر دو محور وسط می‌آورد."
+  },
+  {
+   "question": "در Grid کدام خصوصیت محتوا را در هر دو محور وسط می‌آورد؟",
+   "options": [
+    "justify-content: flex-start",
+    "align-items: stretch",
+    "place-items: center",
+    "grid-gap: center"
+   ],
+   "answer": 2,
+   "explanation": "place-items: center در Grid هم ترازبندی افقی و هم عمودی را با هم انجام می‌دهد."
+  },
+  {
+   "question": "روش position همراه transform برای چه عنصرهایی مناسب است؟",
+   "options": [
+    "برای عنصرهایی با اندازهٔ نامعلوم یا متغیر",
+    "فقط برای تصویرها",
+    "فقط برای جدول‌ها",
+    "فقط برای متن"
+   ],
+   "answer": 0,
+   "explanation": "درس همین را دلیل استفاده از این روش می‌داند؛ چون وقتی اندازه معلوم نیست، نمی‌توان با عدد ثابت وسط‌چین کرد."
+  },
+  {
+   "question": "در روش position همراه transform، top و left معمولاً چه مقادیری می‌گیرند؟",
+   "options": [
+    "۰ و ۰",
+    "50%",
+    "100%",
+    "25%"
+   ],
+   "answer": 1,
+   "explanation": "با top: 50% و left: 50% عنصر به مرکز کادر می‌رود، ولی هنوز گوشه‌اش آنجاست؛ برای همین transform لازم است."
+  },
+  {
+   "question": "برای اینکه عنصر با transform دقیقاً وسط بنشیند از کدام مقدار استفاده می‌کنیم؟",
+   "options": [
+    "translate(0, 0)",
+    "translate(50%, 50%)",
+    "translate(-50%, -50%)",
+    "translate(100%, 100%)"
+   ],
+   "answer": 2,
+   "explanation": "translate(-50%, -50%) عنصر را به اندازهٔ نصف عرض و نصف ارتفاع خودش عقب می‌کشد تا مرکزش روی نقطهٔ وسط بیفتد."
+  }
+ ]
+}

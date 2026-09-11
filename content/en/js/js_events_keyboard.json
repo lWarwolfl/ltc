@@ -1,0 +1,111 @@
+{
+ "slug": "js_events_keyboard",
+ "course": "js",
+ "order": 150,
+ "url": "/js/js_events_keyboard.asp",
+ "title": "JavaScript Keyboard Events",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Keyboard Events"
+  },
+  {
+   "type": "p",
+   "text": "Keyboard Events happen when the user presses a key on the keyboard:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "keydown (key is pressed down)",
+    "keyup (key is released)",
+    "keypress (deprecated)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "keypress only fires for character keys (a or 5),\nnot for control keys (alt or backspace)."
+  },
+  {
+   "type": "p",
+   "text": "Developers are advised to use keydown or keyup instead."
+  },
+  {
+   "type": "h2",
+   "text": "The keydown Event"
+  },
+  {
+   "type": "h3",
+   "text": "Using event.key"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<input id=\"k\" type=\"text\" placeholder=\"Press a key\">\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst k = document.getElementById(\"k\");\n\n// Let k listen for keydown\n\nk.addEventListener(\"keydown\", function (event) {\n\n// Then display the event.key\n\n  document.getElementById(\"demo\").innerHTML = \"You pressed: \" + event.key;\n\n});\n\n</script>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_keydown"
+  },
+  {
+   "type": "h2",
+   "text": "Key Properties"
+  },
+  {
+   "type": "p",
+   "text": "The KeyboardEvent object provides useful properties to determine which key was involved in the event:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Property",
+     "Description",
+     "When pressing Z"
+    ],
+    [
+     "event.key",
+     "Returns the value of the key.Can vary based on language settings.",
+     "Returns z(or Z if shift is held)"
+    ],
+    [
+     "event.code",
+     "Returns the key code.Constant, regardless of language settings.",
+     "Always returns \"KeyZ\""
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "You can also detect modifier keys using properties like event.ctrlKey, event.shiftKey, event.altKey,\nand event.metaKey to implement key combinations (e.g., Ctrl + S)."
+  },
+  {
+   "type": "h2",
+   "text": "Detect Enter"
+  },
+  {
+   "type": "h3",
+   "text": "Using event.code"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<input id=\"in01\" type=\"text\" placeholder=\"Press Enter\">\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst in01 = document.getElementById(\"in01\");\n\n// Let in01 listen for keydown\n\nin01.addEventListener(\"keydown\", function (event) {\n\n// If event.code was \"enter\", then display text\n\n  if (event.code === \"Enter\") {\n\n    document.getElementById(\"demo\").innerHTML = \"Enter was pressed!\";\n\n  }\n\n});\n\n</script>",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_detectenter"
+  },
+  {
+   "type": "h2",
+   "text": "Summary"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript provides keyboard events to detect and handle user input from the keyboard,\nenabling interactive web experiences like form validation, game controls, and keyboard shortcuts."
+  }
+ ]
+}

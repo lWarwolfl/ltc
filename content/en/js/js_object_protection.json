@@ -1,0 +1,279 @@
+{
+ "slug": "js_object_protection",
+ "course": "js",
+ "order": 216,
+ "url": "/js/js_object_protection.asp",
+ "title": "JavaScript Object Protection",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Object Protection"
+  },
+  {
+   "type": "h2",
+   "text": "Object Protection Methods"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Prevents re-assignment\n\nconst car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\n// Prevents adding object properties\n\nObject.preventExtensions(object)\n\n// Returns true if properties can be added to an object\n\nObject.isExtensible(object)\n\n// Prevents adding and deleting object properties\n\nObject.seal(object)\n\n// Returns true if object is sealed\n\nObject.isSealed(object)\n\n// Prevents any changes to an object\n\nObject.freeze(object)\n\n// Returns true if object is frozen\n\nObject.isFrozen(object)",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Using const"
+  },
+  {
+   "type": "p",
+   "text": "The most common way to protect an object from being changed\nis by using the const keyword."
+  },
+  {
+   "type": "p",
+   "text": "With const you cannot re-assign the object,\nbut you can change the value of a property, delete a property or create a new property."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Object.preventExtensions()"
+  },
+  {
+   "type": "p",
+   "text": "The Object.preventExtensions() method prevents adding properties to an object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Prevent Extensions\n\nObject.preventExtensions(person);\n\n// This will throw an error\n\nperson.nationality = \"English\";",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_preventextensions"
+  },
+  {
+   "type": "p",
+   "text": "Since arrays are objects, arrays can be prevented from extensions too:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.preventExtensions(fruits);\n\n// This will throw an error:\n\nfruits.push(\"Kiwi\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_preventextensions2"
+  },
+  {
+   "type": "p",
+   "text": "The Object.preventExtensions() method will fail silently in non-strict mode and throw a TypeError in strict mode."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Object.isExtensible()"
+  },
+  {
+   "type": "p",
+   "text": "You can use Object.isExtensible() to check if an object is extensible."
+  },
+  {
+   "type": "p",
+   "text": "The Object.isExtensible() returns true if an object is extensible."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Prevent Extensions\n\nObject.preventExtensions(person);\n\n// This will return false\n\nlet answer = Object.isExtensible(person);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\n// Prevent Extensions\n\nObject.preventExtensions(fruits);\n\n// This will return false\n\nlet answer = Object.isExtensible(fruits);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_isextensible"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Object.seal()"
+  },
+  {
+   "type": "p",
+   "text": "The Object.seal() method prevents additions or deletions of new properties."
+  },
+  {
+   "type": "p",
+   "text": "The Object.seal() method makes existing properties non-configurable."
+  },
+  {
+   "type": "p",
+   "text": "The Object.isSealed() method can be used to check if an object is sealed."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\"\n\n// Create Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Seal Object\n\nObject.seal(person)\n\n// This will throw an error\n\ndelete person.age;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_seal2"
+  },
+  {
+   "type": "p",
+   "text": "Since arrays are objects, arrays can be sealed too:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.seal(fruits);\n\n// This will throw an error:\n\nfruits.push(\"Kiwi\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_seal"
+  },
+  {
+   "type": "p",
+   "text": "The Object.seal() method will fail silently in non-strict mode and throw a TypeError in strict mode."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Object.isSealed()"
+  },
+  {
+   "type": "p",
+   "text": "The Object.isSealed() method can be used to check if an object is sealed."
+  },
+  {
+   "type": "p",
+   "text": "The Object.isSealed() returns true if an object is sealed."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Seal Object\n\nObject.seal(person);\n\n// This will return true\n\nlet answer = Object.isSealed(person);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\n// Seal Array\n\nObject.seal(fruits);\n\n// This will return true\n\nlet answer = Object.isSealed(fruits);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_issealed"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Object.freeze()"
+  },
+  {
+   "type": "p",
+   "text": "The Object.freeze() method prevents any changes to an object."
+  },
+  {
+   "type": "p",
+   "text": "Frozen objects are read-only."
+  },
+  {
+   "type": "p",
+   "text": "No modification, addition or deletion of properties are allowed."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\"\n\n// Create Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Freeze Object\n\nObject.freeze(person)\n\n// This will throw an error\n\nperson.age = 51;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_freeze2"
+  },
+  {
+   "type": "p",
+   "text": "Since arrays are objects, arrays can be frozen too:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.freeze(fruits);\n\n// This will trow an error:\n\nfruits.push(\"Kiwi\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_freeze"
+  },
+  {
+   "type": "p",
+   "text": "The Object.freeze() method will fail silently in non-strict mode and throw a TypeError in strict mode."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Object.isFrozen()"
+  },
+  {
+   "type": "p",
+   "text": "The Object.isFrozen() method can be used to check if an object is frozen."
+  },
+  {
+   "type": "p",
+   "text": "The Object.isFrozen() returns true if an object is frozen."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Freeze Object\n\nObject.freeze(person);\n\n// This will return true\n\nlet answer = Object.isFrozen(person);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.freeze(fruits);\n\n// This will return true:\n\nlet answer = Object.isFrozen(fruits);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_isfrozen"
+  },
+  {
+   "type": "h2",
+   "text": "Advanced Chapters:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Object Definitions"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Object Advanced this"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Object Iterations"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Object Getters & Setters"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Object Management"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Object Protection"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Object Prototypes"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Object Reference"
+  }
+ ]
+}

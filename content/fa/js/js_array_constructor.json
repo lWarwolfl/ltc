@@ -1,0 +1,351 @@
+{
+ "slug": "js_array_constructor",
+ "course": "js",
+ "order": 62,
+ "url": "/js/js_array_constructor.asp",
+ "title": "سازندهٔ new Array()",
+ "summary": "سازندهٔ new Array() شکل دیگری برای ساختن آرایه در JavaScript است، در کنار آرایهٔ تحت‌اللفظی [ ]. در این درس نحو آن، تفاوتش با Array() بدون new و تلهٔ خطرناک new Array(number) را می‌بینید.",
+ "objectives": [
+  "با سازندهٔ new Array() آرایه بسازید",
+  "تفاوت new Array() و Array() را توضیح دهید",
+  "تشخیص دهید new Array(3) چه چیزی می‌سازد",
+  "بگویید چرا آرایهٔ تحت‌اللفظی روش پیشنهادی است"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "سازندهٔ new Array()"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ new Array() یک شیء آرایه می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "new Array()\n\nnew Array(number)\n\nnew Array(element1, element2, ..., elementN)\n\nArray()\n\nArray(number)\n\nArray(element1, element2, ..., elementN)",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "new Array()\n\nnew Array(3)\n\nnew Array(\"3\")\n\nnew Array(\"Saab\", \"Volvo\", \"BMW\")",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Array()\n\nArray(3)\n\nArray(\"3\")\n\nArray(\"Saab\", \"Volvo\", \"BMW\")",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_constructor_array_create"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو",
+     "توضیح"
+    ],
+    [
+     "new Array()",
+     "یک آرایهٔ خالی می‌سازد."
+    ],
+    [
+     "new Array(x)",
+     "آرایه‌ای با x جای خالی می‌سازد."
+    ],
+    [
+     "new Array(elem1)",
+     "آرایه‌ای با یک عنصر می‌سازد."
+    ],
+    [
+     "new Array(elem1,...,elemN)",
+     "آرایه‌ای با چند عنصر می‌سازد."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "تفاوت؟ new Array() در برابر Array()"
+  },
+  {
+   "type": "p",
+   "text": "پاسخ کوتاه: هیچ تفاوت کاربردی بین new Array() و Array() وجود ندارد."
+  },
+  {
+   "type": "p",
+   "text": "هر دو دستور دقیقاً یک کار انجام می‌دهند و یک آرایه می‌سازند."
+  },
+  {
+   "type": "h2",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "تابع سازندهٔ Array باهوش است."
+  },
+  {
+   "type": "p",
+   "text": "طوری برنامه‌ریزی شده که بررسی کند کلیدواژهٔ new را فراموش کرده‌اید یا نه."
+  },
+  {
+   "type": "p",
+   "text": "اگر آن را ننویسید، خودش پشت صحنه اضافه‌اش می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "new Array() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript یک سازندهٔ آرایهٔ آماده به نام new Array() دارد."
+  },
+  {
+   "type": "p",
+   "text": "اما بیشتر وقت‌ها می‌توانید به‌جایش [] بنویسید."
+  },
+  {
+   "type": "p",
+   "text": "این دو دستور مختلف هر دو یک آرایهٔ خالی جدید به نام points می‌سازند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = new Array();\n\nconst points = [];",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "این دو دستور مختلف هر دو آرایهٔ جدیدی با ۶ عدد می‌سازند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = new Array(40, 100, 1, 5, 25, 10);\n\nconst points = [40, 100, 1, 5, 25, 10];",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_literal"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ new می‌تواند نتیجه‌های غیرمنتظره‌ای بدهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an array with three elements:\n\nconst points = new Array(40, 100, 1);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_new_array_three"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an array with two elements:\n\nconst points = new Array(40, 100);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_new_array_two"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an array with one element ???\n\nconst points = new Array(40);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_new_error"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40];",
+   "caption": "یک خطای رایج"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = new Array(40);",
+   "caption": "یک خطای رایج"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an array with one element:\n\nconst points = [40];",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_one"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an array with 40 undefined elements:\n\nconst points = new Array(40);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_new_error2"
+  },
+  {
+   "type": "h2",
+   "text": "هشدار مهم"
+  },
+  {
+   "type": "p",
+   "text": "هر جا ممکن است، به‌جای new Array() از آرایهٔ تحت‌اللفظی [ ] استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "new Array(number) حالت خاص و خطرناک است."
+  },
+  {
+   "type": "p",
+   "text": "new Array(3) آرایه‌ای با ۳ عنصر خالی می‌سازد، نه آرایه‌ای که عدد ۳ را در خود دارد."
+  },
+  {
+   "type": "p",
+   "text": "تایپ [ ] سریع‌تر است، خواندنش آسان‌تر است و از «تلهٔ عدد تکی» جلوگیری می‌کند:"
+  },
+  {
+   "type": "p",
+   "text": "برای نمونه، [3] واقعاً همان [3] را می‌سازد، نه [null,null,null] را."
+  },
+  {
+   "type": "h2",
+   "text": "آرایهٔ تحت‌اللفظی (روش ترجیحی)"
+  },
+  {
+   "type": "p",
+   "text": "روش پیشنهادی برای ساختن آرایه، استفاده از آرایهٔ تحت‌اللفظی است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_constructor_array_create_3"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای جست‌وجو در آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای مرتب‌سازی آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای پیمایش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل آرایه در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل constructor.html بسازید و آرایه‌ای با new Array(\"Saab\", \"Volvo\", \"BMW\") بسازید و آن را چاپ کنید.",
+   "hint": "همین آرایه را با آرایهٔ تحت‌اللفظی هم بسازید و نتیجه را مقایسه کنید؛ تفاوتی نمی‌بینید."
+  },
+  {
+   "prompt": "new Array(40) را با [40] مقایسه کنید و length هر دو را ببینید.",
+   "hint": "new Array(40) چهل جای خالی می‌سازد، اما [40] یک عنصر با مقدار ۴۰."
+  },
+  {
+   "prompt": "new Array() را بدون new، یعنی فقط Array() صدا بزنید و نتیجه را بررسی کنید.",
+   "hint": "سازندهٔ Array اگر new را جا انداخته باشید خودش اضافه‌اش می‌کند."
+  },
+  {
+   "prompt": "آرایه‌ای با new Array(3) بسازید و بعد با [] عنصرهایش را پر کنید و طولش را ببینید.",
+   "hint": "طول آرایه از همان ابتدا ۳ است، اما همهٔ عنصرها خالی و undefinedاند."
+  },
+  {
+   "prompt": "یک آرایهٔ خالی با هر دو شکل بسازید و با push سه عنصر به هر کدام اضافه کنید؛ نتیجهٔ نهایی را مقایسه کنید.",
+   "hint": "خروجی هر دو یکسان است؛ پس خواندن و کوتاه‌بودن [ ] را انتخاب کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "new Array(3) چه چیزی می‌سازد؟",
+   "options": [
+    "آرایه‌ای با یک عنصر به مقدار ۳",
+    "آرایه‌ای با ۳ عنصر خالی",
+    "آرایه‌ای با عددهای ۱ تا ۳",
+    "خطا می‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "وقتی تنها آرگومان یک عدد باشد، سازندهٔ Array آن را طول آرایه می‌گیرد؛ پس سه عنصر خالی می‌سازد، نه آرایه‌ای با مقدار ۳."
+  },
+  {
+   "question": "تفاوت new Array() و Array() چیست؟",
+   "options": [
+    "Array() سریع‌تر است",
+    "new Array() فقط آرایهٔ خالی می‌سازد",
+    "تفاوت کاربردی ندارند و هر دو یک آرایه می‌سازند",
+    "Array() خطا می‌دهد"
+   ],
+   "answer": 2,
+   "explanation": "تابع سازندهٔ Array خودش کلیدواژهٔ new را پشت صحنه اضافه می‌کند، پس هر دو دقیقاً یک کار انجام می‌دهند."
+  },
+  {
+   "question": "برای ساختن آرایه‌ای با یک عنصر به مقدار ۴۰ کدام شکل درست است؟",
+   "options": [
+    "new Array(40)",
+    "Array(40)",
+    "[40]",
+    "Array[40]"
+   ],
+   "answer": 2,
+   "explanation": "[40] آرایه‌ای با یک عنصر می‌سازد، اما new Array(40) یا Array(40) آرایه‌ای با ۴۰ جای خالی می‌سازد؛ همین «تلهٔ عدد تکی» است."
+  },
+  {
+   "question": "چرا توصیه می‌شود به‌جای new Array() از [ ] استفاده کنیم؟",
+   "options": [
+    "چون [ ] حافظهٔ کمتری می‌گیرد",
+    "چون کوتاه‌تر و خواناتر است و از تلهٔ عدد تکی جلوگیری می‌کند",
+    "چون new Array() در مرورگرهای جدید کار نمی‌کند",
+    "چون [ ] مرتب‌سازی خودکار دارد"
+   ],
+   "answer": 1,
+   "explanation": "آرایهٔ تحت‌اللفظی سریع‌تر تایپ می‌شود، خواندنش آسان‌تر است و وقتی یک عدد تنها بدهید رفتار غافلگیرکنندهٔ new Array() پیش نمی‌آید."
+  },
+  {
+   "question": "new Array() بدون هیچ آرگومانی چه چیزی می‌سازد؟",
+   "options": [
+    "آرایه‌ای با یک عنصر undefined",
+    "آرایه‌ای خالی",
+    "null",
+    "خطای نحوی"
+   ],
+   "answer": 1,
+   "explanation": "بدون آرگومان، سازندهٔ Array یک آرایهٔ خالی می‌سازد و بعد می‌توان عنصرها را با اندیس یا push اضافه کرد."
+  }
+ ]
+}

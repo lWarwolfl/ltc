@@ -1,0 +1,252 @@
+{
+ "slug": "css_tooltip",
+ "course": "css",
+ "order": 141,
+ "url": "/css/css_tooltip.asp",
+ "title": "راهنمای ابزار (tooltip) در CSS",
+ "summary": "راهنمای ابزار جعبهٔ کوچکی است که وقتی ماوس روی عنصری می‌رود اطلاعات بیشتری نشان می‌دهد. در این درس آن را با یک نگه‌دارنده و یک متن پنهان می‌سازید، در چهار جهت موقعیت می‌دهید و محو شدن تدریجی به آن اضافه می‌کنید.",
+ "objectives": [
+  "یک راهنمای ابزار پایه با position بسازید",
+  "راهنمای ابزار را در چهار جهت موقعیت دهید",
+  "نقش visibility و :hover را توضیح دهید",
+  "با opacity و transition محو شدن تدریجی بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "راهنمای ابزار (tooltip) در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "راهنمای ابزار (tooltip) در CSS"
+  },
+  {
+   "type": "p",
+   "text": "راهنمای ابزار CSS برای نشان دادن اطلاعات بیشتر دربارهٔ چیزی است، وقتی کاربر نشانگر ماوس را روی عنصری می‌برد:"
+  },
+  {
+   "type": "p",
+   "text": "بالا: متن راهنمای ابزار"
+  },
+  {
+   "type": "p",
+   "text": "راست: متن راهنمای ابزار"
+  },
+  {
+   "type": "p",
+   "text": "پایین: متن راهنمای ابزار"
+  },
+  {
+   "type": "p",
+   "text": "چپ: متن راهنمای ابزار"
+  },
+  {
+   "type": "h2",
+   "text": "ساختن یک راهنمای ابزار پایه در CSS"
+  },
+  {
+   "type": "p",
+   "text": "راهنمای ابزاری بسازید که وقتی کاربر ماوس را روی عنصر می‌برد ظاهر می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "<style>\n/* Tooltip container */\n.tooltip {\n  position: relative;\n\ndisplay: inline-block;\n  border-bottom: 1px dotted\nblack; /* Add dots under the hoverable text */\n  cursor: pointer;\n}\n\n/* Tooltip text\n*/\n.tooltiptext {\n  visibility: hidden; /*\n  Hidden by default */\n  width: 130px;\n\nbackground-color: black;\n  color: #ffffff;\n  text-align: center;\n\n    padding: 5px 0;\n\nborder-radius: 6px;\n  position: absolute;\n\n    z-index: 1; /* Ensure tooltip is displayed above\n  content */\n}\n\n/* Show\nthe tooltip text on hover */\n.tooltip:hover\n.tooltiptext {\n  visibility: visible;\n}\n</style>\n\n<div class=\"tooltip\">Hover\nover me\n\n  <span class=\"tooltiptext\">Some\n  tooltip\ntext</span>\n</div>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال"
+  },
+  {
+   "type": "p",
+   "text": "HTML:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "از یک عنصر نگه‌دارنده (مثل <div>) استفاده کنید و کلاس «tooltip» را به آن بدهید. وقتی کاربر ماوس را روی این <div> می‌برد، متن راهنمای ابزار نمایش داده می‌شود.",
+    "متن راهنمای ابزار داخل یک عنصر درون‌خطی (مثل <span>) با class=\"tooltiptext\" گذاشته می‌شود."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "CSS:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کلاس tooltip از position:relative استفاده می‌کند، که برای موقعیت‌دهی متن راهنمای ابزار (position:absolute) لازم است. نکته: مثال‌های پایین را برای موقعیت‌دهی راهنمای ابزار ببینید.",
+    "کلاس tooltiptext متن واقعی راهنمای ابزار را نگه می‌دارد. به‌طور پیش‌فرض پنهان است و با hover دیده می‌شود.",
+    "انتخابگر :hover برای نمایش متن راهنمای ابزار استفاده می‌شود، وقتی کاربر ماوس را روی <div> با class=\"tooltip\" می‌برد."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "موقعیت‌دهی راهنمای ابزار"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید راهنمای ابزار را هرطور که می‌خواهید موقعیت دهید. اینجا نشان می‌دهیم چطور آن را در چپ، راست، بالا و پایین قرار دهید."
+  },
+  {
+   "type": "h3",
+   "text": "راهنمای ابزار راست‌چین و چپ‌چین"
+  },
+  {
+   "type": "p",
+   "text": "در این مثال راهنمای ابزار سمت راست (left:105%) متن «قابل hover» (همان <div>) قرار می‌گیرد. همچنین توجه کنید که top:-5px برای قرار گرفتن آن در میانهٔ عنصر نگه‌دارنده استفاده می‌شود. عدد ۵ را به این دلیل به کار می‌بریم که متن راهنمای ابزار حاشیهٔ داخلی بالا و پایین 5px دارد. اگر حاشیهٔ داخلی را بیشتر کنید، مقدار خصوصیت top را هم بیشتر کنید تا در میانه بماند (اگر این چیزی است که می‌خواهید). همین موضوع برای قرار دادن راهنمای ابزار در سمت چپ هم صادق است."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext {\n  top: -5px;\n\nleft:\n105%;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_right"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext {\n  top: -5px;\n\nright:\n105%;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_left"
+  },
+  {
+   "type": "h3",
+   "text": "راهنمای ابزار بالا‌چین و پایین‌چین"
+  },
+  {
+   "type": "p",
+   "text": "اگر می‌خواهید راهنمای ابزار در بالا یا پایین ظاهر شود، مثال‌های زیر را ببینید. توجه کنید که از خصوصیت margin-left با مقدار منفی ۶۵ پیکسل استفاده می‌کنیم. این کار برای وسط‌چین کردن راهنمای ابزار در بالا یا پایین متن «قابل hover» است. این مقدار نصف پهنای راهنمای ابزار است (130/2 = 65)."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext {\n  width: 130px;\n\nbottom: 100%;\n  left:\n  65%;\n  margin-left: -65px; /* Use half of the width\n(130/2 = 65), to center the tooltip */\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_top"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext {\n  width: 130px;\n  top: 100%;\n  left:\n50%;\n  margin-left: -65px; /* Use half of the width\n(130/2 = 65), to center the tooltip */\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_bottom"
+  },
+  {
+   "type": "h2",
+   "text": "راهنمای ابزار با محو شدن تدریجی"
+  },
+  {
+   "type": "p",
+   "text": "اگر راهنمای ابزاری می‌خواهید که به‌تدریج ظاهر شود، از خصوصیت transition و خصوصیت opacity استفاده کنید و از کاملاً نامرئی به ۱۰۰٪ مرئی برسید، در مدت چند ثانیهٔ مشخص (در مثال ما ۲ ثانیه):"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext {\n  opacity: 0;\n\ntransition: opacity 2s;\n}\n\n.tooltip:hover\n.tooltiptext {\n  opacity: 1;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_transition"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل tooltip.html بسازید و یک <div class=\"tooltip\"> با یک <span class=\"tooltiptext\"> داخل آن بنویسید و با ماوس روی متن ببرید.",
+   "hint": "کلاس tooltiptext باید در حالت عادی visibility: hidden; و در .tooltip:hover visibility: visible; باشد."
+  },
+  {
+   "prompt": "با position: relative; روی نگه‌دارنده و position: absolute; روی متن، راهنمای ابزار را به سمت راست متن ببرید.",
+   "hint": "left: 105%; و top: -5px; را روی .tooltiptext بگذارید."
+  },
+  {
+   "prompt": "همان راهنمای ابزار را به بالای متن ببرید و با margin-left منفی وسط‌چین کنید.",
+   "hint": "bottom: 100%; و margin-left: -65px; که نصف پهنای 130px است."
+  },
+  {
+   "prompt": "به راهنمای ابزار محو شدن تدریجی اضافه کنید و بگویید کدام خصوصیت باعث آن می‌شود.",
+   "hint": "opacity: 0; را با transition: opacity 2s; ترکیب کنید و در hover آن را به 1 برسانید."
+  },
+  {
+   "prompt": "در ابزار بازرس مرورگر بررسی کنید که پیش از hover مقدار visibility روی hidden است یا نه.",
+   "hint": "پیش‌فرض پنهان بودن باعث می‌شود راهنمای ابزار تا زمانی که ماوس روی عنصر نیامده دیده نشود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "چرا کلاس tooltip باید position: relative داشته باشد؟",
+   "options": [
+    "تا متن راهنمای ابزار با position: absolute نسبت به آن موقعیت بگیرد",
+    "تا متن راهنمای ابزار پنهان شود",
+    "تا رنگ راهنمای ابزار عوض شود",
+    "تا راهنمای ابزار بی‌نهایت تکرار شود"
+   ],
+   "answer": 0,
+   "explanation": "عنصر موقعیت‌دهی‌شده مرجع مختصات فرزند absolute خود است، پس بدون position: relative روی نگه‌دارنده، مختصات left و top به صفحه حساب می‌شوند."
+  },
+  {
+   "question": "متن راهنمای ابزار به‌طور پیش‌فرض چه حالتی دارد و چطور دیده می‌شود؟",
+   "options": [
+    "مرئی است و با hover پنهان می‌شود",
+    "پنهان است و با :hover مرئی می‌شود",
+    "همیشه مرئی است",
+    "با کلیک مرئی می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "کلاس tooltiptext با visibility: hidden; پنهان است و قاعدهٔ .tooltip:hover .tooltiptext آن را مرئی می‌کند."
+  },
+  {
+   "question": "برای بردن راهنمای ابزار به سمت راست متن از کدام مقدار استفاده می‌کنیم؟",
+   "options": [
+    "right: 105%;",
+    "left: 105%;",
+    "top: 105%;",
+    "bottom: 105%;"
+   ],
+   "answer": 1,
+   "explanation": "left: 105% یعنی لبهٔ چپ راهنمای ابزار کمی بعد از انتهای عنصر نگه‌دارنده قرار می‌گیرد؛ right: 105% آن را به سمت چپ می‌برد."
+  },
+  {
+   "question": "در راهنمای ابزار بالا‌چین با پهنای 130px، مقدار margin-left چقدر است و چرا؟",
+   "options": [
+    "130px، برای پر کردن فضا",
+    "65px-، نصف پهنا برای وسط‌چین شدن",
+    "0، نیازی به آن نیست",
+    "5px، به اندازهٔ حاشیهٔ داخلی"
+   ],
+   "answer": 1,
+   "explanation": "برای وسط‌چین کردن، عنصر را به اندازهٔ نصف پهنایش به چپ می‌بریم؛ نصف ۱۳۰ برابر ۶۵ است."
+  },
+  {
+   "question": "برای محو شدن تدریجی راهنمای ابزار کدام ترکیب درست است؟",
+   "options": [
+    "visibility به‌جای opacity",
+    "opacity: 0; در حالت عادی و opacity: 1; در hover همراه transition",
+    "فقط تغییر رنگ پس‌زمینه",
+    "display: none; در هر دو حالت"
+   ],
+   "answer": 1,
+   "explanation": "visibility پله‌ای عوض می‌شود و محو شدن نمی‌دهد؛ برای محو شدن تدریجی باید opacity را با transition تغییر دهید."
+  }
+ ]
+}

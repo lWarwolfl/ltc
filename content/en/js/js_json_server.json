@@ -1,0 +1,307 @@
+{
+ "slug": "js_json_server",
+ "course": "js",
+ "order": 172,
+ "url": "/js/js_json_server.asp",
+ "title": "JavaScript Loading JSON",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Loading JSON"
+  },
+  {
+   "type": "h2",
+   "text": "The fetch() Method"
+  },
+  {
+   "type": "p",
+   "text": "JSON is often stored in files or returned by calls to web servers."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript can load JSON and convert it into JavaScript values."
+  },
+  {
+   "type": "p",
+   "text": "The modern way to load JSON is with the fetch() method."
+  },
+  {
+   "type": "p",
+   "text": "This chapter assumes that you are familiar with fetch()."
+  },
+  {
+   "type": "p",
+   "text": "If not, see the JavaScript Fetch API tutorial."
+  },
+  {
+   "type": "h2",
+   "text": "A JSON File"
+  },
+  {
+   "type": "p",
+   "text": "JSON files normally use the .json extension."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\n\n  \"id\": 101,\n\n  \"name\": \"John Doe\",\n\n  \"city\": \"New York\",\n\n  \"member\": true\n\n}",
+   "caption": "customer.json"
+  },
+  {
+   "type": "h2",
+   "text": "Loading JSON"
+  },
+  {
+   "type": "p",
+   "text": "Use the fetch() method to request the JSON file."
+  },
+  {
+   "type": "p",
+   "text": "The response.json() method parses the JSON text and returns a JavaScript value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadJSON() {\n\n  const response = await fetch(\"customer.json\");\n\n  const customer = await response.json();\n\n  myDisplayer(customer.name);\n\n}\n\nloadJSON();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_fetch_object"
+  },
+  {
+   "type": "h2",
+   "text": "Loading a JSON Array"
+  },
+  {
+   "type": "p",
+   "text": "If the file contains a JSON array, response.json() returns a JavaScript array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]",
+   "caption": "products.json"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadProducts() {\n\n  const response = await fetch(\"products.json\");\n\n  const products = await response.json();\n\n   myDisplayer(products[0].name);\n\n   myDisplayer(products[0].price);\n\n}\n\nloadProducts();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_fetch_array"
+  },
+  {
+   "type": "h2",
+   "text": "Checking for Errors"
+  },
+  {
+   "type": "p",
+   "text": "The fetch() method does not throw an error for HTTP errors such as 404."
+  },
+  {
+   "type": "p",
+   "text": "Check the ok and status properties before reading the JSON file."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadJSON(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.ok);\n\n  myDisplayer(response.status);\n\n  const customer = await response.json();\n\n  myDisplayer(customer.name);\n\n}\n\nloadJSON(\"customer.json\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_fetch_array_error"
+  },
+  {
+   "type": "h2",
+   "text": "Handling Errors"
+  },
+  {
+   "type": "p",
+   "text": "Use try...catch to handle loading errors."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadJSON(file) {\n\n  try {\n\n    const response = await fetch(file);\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const customer = await response.json();\n\n    myDisplayer(customer.name);\n\n  }\n\n  catch(err) {myDisplayer(err.message)}\n\n}\n\nloadJSON(\"customer.json\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_fetch_array_try"
+  },
+  {
+   "type": "h2",
+   "text": "Loading Multiple JSON Files"
+  },
+  {
+   "type": "p",
+   "text": "Independent downloads can run in parallel."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download files\n\nasync function loadData() {\n\n  const [customerResponse, productsResponse, newsResponse] = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n  const customer = await customerResponse.json();\n\n  const products = await productsResponse.json();\n\n  const news = await newsResponse.json();\n\n  myDisplayer(\"Custome name: \" + customer.name);\n\n  myDisplayer(products.length + \" products\");\n\n  myDisplayer(news.length + \" news items\");\n\n}\n\n// Call the async function\n\nloadData();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_parallel"
+  },
+  {
+   "type": "h2",
+   "text": "Sending JSON"
+  },
+  {
+   "type": "p",
+   "text": "The fetch() method can also send JSON to a web server."
+  },
+  {
+   "type": "p",
+   "text": "Use the POST method to send new data."
+  },
+  {
+   "type": "p",
+   "text": "Convert the JavaScript object to JSON text with JSON.stringify()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nconst response = await fetch(\"/api/person\", {\n\n  method: \"POST\",\n\n  headers: {\n\n    \"Content-Type\": \"application/json\"\n\n  },\n\n  body: JSON.stringify(person)\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "The Request Options"
+  },
+  {
+   "type": "p",
+   "text": "The second argument of fetch() contains the request options."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Option",
+     "Description"
+    ],
+    [
+     "method",
+     "The HTTP request method, such as POST."
+    ],
+    [
+     "headers",
+     "Additional information about the request."
+    ],
+    [
+     "body",
+     "The data sent with the request."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The Content-Type Header"
+  },
+  {
+   "type": "p",
+   "text": "The Content-Type header tells the server what type of data is being sent."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "headers: {\n\n  \"Content-Type\": \"application/json\"\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The value application/json tells the server that the request body contains JSON."
+  },
+  {
+   "type": "h2",
+   "text": "The Request Body"
+  },
+  {
+   "type": "p",
+   "text": "The request body must contain text, not a JavaScript object."
+  },
+  {
+   "type": "p",
+   "text": "Use JSON.stringify() to convert the object into JSON text."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "body: JSON.stringify(person)",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Reading the Server Response"
+  },
+  {
+   "type": "p",
+   "text": "A server can return JSON after receiving the request."
+  },
+  {
+   "type": "p",
+   "text": "Use response.json() to read the returned JSON."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nconst response = await fetch(\"/api/person\", {\n\n  method: \"POST\",\n\n  headers: {\n\n    \"Content-Type\": \"application/json\"\n\n  },\n\n  body: JSON.stringify(person)\n\n});\n\nconst result = await response.json();\n\ndocument.getElementById(\"demo\").textContent = result.message;",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Checking the Response"
+  },
+  {
+   "type": "p",
+   "text": "The fetch() method does not reject its Promise for HTTP errors such as 404 or 500."
+  },
+  {
+   "type": "p",
+   "text": "Check the response.ok property before reading the response."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const response = await fetch(\"/api/person\", {\n\n  method: \"POST\",\n\n  headers: {\n\n    \"Content-Type\": \"application/json\"\n\n  },\n\n  body: JSON.stringify(person)\n\n});\n\nif (!response.ok) {\n\n  throw new Error(\"HTTP error \" + response.status);\n\n}\n\nconst result = await response.json();",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Sending JSON with Error Handling"
+  },
+  {
+   "type": "p",
+   "text": "Use try...catch to handle request and response errors."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function sendPerson() {\n\n  const person = {\n\n    name: \"John\",\n\n    age: 30\n\n  };\n\n  try {\n\n    const response = await fetch(\"/api/person\", {\n\n      method: \"POST\",\n\n      headers: {\n\n          \"Content-Type\": \"application/json\"\n\n      },\n\n      body: JSON.stringify(person)\n\n    });\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const result = await response.json();\n\n    document.getElementById(\"demo\").textContent =\n\n    result.message;\n\n  }\n\n  catch (error) {\n\n    document.getElementById(\"demo\").textContent =\n\n    error.message;\n\n  }\n\n}\n\nsendPerson();",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Complete Example"
+  },
+  {
+   "type": "p",
+   "text": "This example sends form data to a server as JSON."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<input id=\"name\" value=\"John\">\n\n<input id=\"age\" type=\"number\" value=\"30\">\n\n<button onclick=\"sendPerson()\">Send</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nasync function sendPerson() {\n\n  const person = {\n\n    name: document.getElementById(\"name\").value,\n\n    age: Number(document.getElementById(\"age\").value)\n\n  };\n\n  try {\n\n    const response = await fetch(\"/api/person\", {\n\n      method: \"POST\",\n\n      headers: {\n\n        \"Content-Type\": \"application/json\"\n\n      },\n\n      body: JSON.stringify(person)\n\n    });\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const result = await response.json();\n\n    document.getElementById(\"demo\").textContent =\n\n    result.message;\n\n  }\n\n  catch (error) {\n\n    document.getElementById(\"demo\").textContent =\n\n    error.message;\n\n  }\n\n}\n\n</script>",
+   "caption": "Example"
+  }
+ ]
+}

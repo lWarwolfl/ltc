@@ -1,0 +1,529 @@
+{
+ "slug": "js_booleans",
+ "course": "js",
+ "order": 20,
+ "url": "/js/js_booleans.asp",
+ "title": "مقدارهای بولی در JavaScript",
+ "summary": "مقدار بولی فقط دو حالت دارد: true و false، و همین دو پایهٔ همهٔ مقایسه‌ها و شرط‌های JavaScript هستند. در این درس می‌بینید کدام مقدارها truthy و کدام falsey هستند، تابع Boolean() را امتحان می‌کنید و یاد می‌گیرید چرا نباید شیء Boolean بسازید.",
+ "objectives": [
+  "توضیح دهید نوع دادهٔ بولی چیست و چند حالت دارد",
+  "مقدارهای truthy و falsey را تشخیص دهید",
+  "با تابع Boolean() مقدار بولی یک عبارت را پیدا کنید",
+  "دلیل توصیه نشدن ساختن شیء Boolean را بیان کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مقدارهای بولی در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "نوع دادهٔ بولی"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، بولی یک نوع دادهٔ اولیه است که فقط یکی از دو مقدار را می‌تواند داشته باشد:"
+  },
+  {
+   "type": "p",
+   "text": "true یا false"
+  },
+  {
+   "type": "p",
+   "text": "مقدار بولی یک عبارت، پایهٔ همهٔ مقایسه‌ها و شرط‌های JavaScript است."
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های مهم مقدار بولی"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "true و false نوع دادهٔ بولی هستند",
+    "true و false تنها مقدارهای ممکن بولی هستند",
+    "true و false باید با حروف کوچک نوشته شوند",
+    "true و false باید بدون کوتیشن نوشته شوند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "کاربردهای مقدار بولی"
+  },
+  {
+   "type": "p",
+   "text": "خیلی اوقات در برنامه‌نویسی به نوع داده‌ای نیاز دارید که یکی از دو مقدار را نشان دهد، مثل:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "بله یا خیر",
+    "روشن یا خاموش",
+    "true یا false"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مقدارهای بولی پایهٔ عملیات منطقی و جریان کنترل در برنامه‌نویسی JavaScript هستند."
+  },
+  {
+   "type": "h2",
+   "text": "مقایسه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ عملگرهای مقایسه در JavaScript (مثل ==، !=، < و >) حاصل مقایسه را true یا false برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "با فرض x = 5، جدول زیر مقایسه را توضیح می‌دهد:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "توضیح",
+     "مثال",
+     "خروجی"
+    ],
+    [
+     "برابر است با",
+     "(x == 8)",
+     "false"
+    ],
+    [
+     "برابر نیست با",
+     "(x != 8)",
+     "true"
+    ],
+    [
+     "بزرگ‌تر از",
+     "(x > 8)",
+     "false"
+    ],
+    [
+     "کوچک‌تر از",
+     "(x < 8)",
+     "true"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 5;\n\n(x == 8); // equals false\n\n(x != 8); // equals true",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_equality"
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "مقایسه‌ها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شرط‌ها"
+  },
+  {
+   "type": "p",
+   "text": "مقدارهای بولی در دستورهای if بسیار استفاده می‌شوند تا بر اساس منطق برنامه، بلوک کد قابل اجرا تعیین شود."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "مثال",
+     "نتیجه"
+    ],
+    [
+     "if (day == \"Monday\")",
+     "true یا false"
+    ],
+    [
+     "if (salary > 9000)",
+     "true یا false"
+    ],
+    [
+     "if (age < 18)",
+     "true یا false"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (hour < 18) {\n\n  greeting = \"Good day\";\n\n} else {\n\n  greeting = \"Good evening\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_if"
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "دستور if در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "دستور if else در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "حلقه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "مقدارهای بولی در حلقه‌ها بسیار استفاده می‌شوند تا شرط ادامهٔ حلقه تعیین شود."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "توضیح",
+     "مثال"
+    ],
+    [
+     "حلقهٔ for",
+     "for (i = 0; i < 5; i++)"
+    ],
+    [
+     "حلقهٔ while",
+     "while (i < 10)"
+    ],
+    [
+     "حلقهٔ for in",
+     "for (x in person)"
+    ],
+    [
+     "حلقهٔ for of",
+     "for (x of cars)"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "while (i < 10) {\n\n  text += i;\n\n  i++;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_loop_while"
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "حلقه‌ها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "تابع Boolean()"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید از تابع Boolean() استفاده کنید تا بفهمید یک عبارت یا یک متغیر true است یا نه:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Boolean(10 > 9)",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_expression1"
+  },
+  {
+   "type": "p",
+   "text": "یا حتی ساده‌تر:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "(10 > 9)",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_expression2"
+  },
+  {
+   "type": "h2",
+   "text": "هر چیزی که «مقدار» دارد true است"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "100 is true\n\n3.14 is true\n\n-15 is true\n\ntrue is true\n\n\"Hello\" is true\n\n\"false\" is true\n\n(7 + 1 + 3.14) is true\n\n[ ] is true\n\n{ } is true",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript هم آرایهٔ خالی [ ] و هم شیء خالی { } truthy هستند، چون هر دو شیء به شمار می‌روند."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءها در JavaScript در بافت بولی مقدار true می‌دهند، بی‌توجه به محتوایشان."
+  },
+  {
+   "type": "h2",
+   "text": "هر چیزی که «مقدار» ندارد false است"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "0 is false\n\n\"\" is false\n\nundefined is false\n\nnull is false\n\nNaN is false\n\nfalse is false",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\n\nBoolean(x);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_zero"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = -0;\n\nBoolean(x);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_minus"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"\";\n\nBoolean(x);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_empty"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x;\n\nBoolean(x);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_undefined"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = null;\n\nBoolean(x);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_null"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = false;\n\nBoolean(x);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_false"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10 / \"Hallo\";\n\nBoolean(x);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_boolean_nan"
+  },
+  {
+   "type": "h2",
+   "text": "مقدارهای بولی به شکل شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "به طور معمول، مقدارهای بولی JavaScript مقادیر اولیه‌ای هستند که از مقدارهای ثابت (literal) ساخته می‌شوند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = false;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "اما مقدارهای بولی را می‌توان با کلمهٔ کلیدی new به شکل شیء هم تعریف کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let y = new Boolean(false);",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = false;\n\nlet y = new Boolean(false);\n\n //\ntypeof x returns boolean\n\n //\ntypeof y returns object",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_booleans_object"
+  },
+  {
+   "type": "h2",
+   "text": "هشدار"
+  },
+  {
+   "type": "p",
+   "text": "شیء Boolean نسازید."
+  },
+  {
+   "type": "p",
+   "text": "کلمهٔ کلیدی new کد را پیچیده و سرعت اجرا را کند می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "شیءهای Boolean می‌توانند نتیجه‌های غیرمنتظره بدهند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = Boolean(false);\n\nlet y = new Boolean(false);\n\n(x == y) returns true\n\n(x === y) returns false",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_booleans_object1"
+  },
+  {
+   "type": "p",
+   "text": "مقایسهٔ دو شیء در JavaScript همیشه false برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "مرجع کامل مقدارهای بولی"
+  },
+  {
+   "type": "p",
+   "text": "برای مرجع کامل، به مرجع کامل مقدارهای بولی JavaScript ما سر بزنید."
+  },
+  {
+   "type": "p",
+   "text": "این مرجع توضیح و مثال همهٔ خصوصیت‌ها و متدهای Boolean را دارد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل booleans.html بسازید و متغیر let x = 5; را تعریف کنید. چهار مقایسهٔ x == 8، x != 8، x > 8 و x < 8 را در کنسول چاپ کنید و خروجی‌ها را با جدول درس مقایسه کنید.",
+   "hint": "هر مقایسه در JavaScript یکی از دو مقدار true یا false را برمی‌گرداند."
+  },
+  {
+   "prompt": "با تابع Boolean() بررسی کنید که یک رشتهٔ خالی چه مقدار بولی می‌گیرد و یک رشتهٔ غیرخالی چه مقدار.",
+   "hint": "رشتهٔ خالی falsey است و رشتهٔ «سلام» truthy."
+  },
+  {
+   "prompt": "مقدار بولی یک آرایهٔ خالی و یک شیء خالی را با Boolean() چاپ کنید و نتیجه را توضیح دهید.",
+   "hint": "در JavaScript آرایه و شیء حتی وقتی خالی‌اند truthy هستند، چون نوعشان شیء است."
+  },
+  {
+   "prompt": "مقدار Boolean() را برای 0، NaN، null و undefined چاپ کنید و ببینید هر چهار مورد falsey هستند.",
+   "hint": "این مقدارها مقدار «ندارند»، پس در بافت بولی false می‌شوند."
+  },
+  {
+   "prompt": "یک if با شرط day == \"Monday\" بنویسید و خروجی را با تغییر مقدار day به چند روز مختلف آزمایش کنید.",
+   "hint": "مقدار بولی همان شرط، تعیین می‌کند بلوک if اجرا شود یا نه."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "مقدار بولی در JavaScript چند حالت می‌تواند داشته باشد؟",
+   "options": [
+    "سه حالت",
+    "دو حالت: true و false",
+    "هر تعدادی",
+    "فقط true"
+   ],
+   "answer": 1,
+   "explanation": "نوع دادهٔ بولی فقط دو مقدار ممکن دارد: true و false. همین دو مقدار پایهٔ همهٔ مقایسه‌ها و شرط‌ها هستند."
+  },
+  {
+   "question": "true و false چطور باید نوشته شوند؟",
+   "options": [
+    "با حرف بزرگ و داخل کوتیشن",
+    "با حروف کوچک و بدون کوتیشن",
+    "با حروف کوچک و داخل کوتیشن",
+    "هر شکلی درست است"
+   ],
+   "answer": 1,
+   "explanation": "true و false باید با حروف کوچک و بدون کوتیشن نوشته شوند. \"True\" با کوتیشن یک رشتهٔ معمولی است و true نیست."
+  },
+  {
+   "question": "تابع Boolean() برای یک آرایهٔ خالی چه برمی‌گرداند؟",
+   "options": [
+    "false",
+    "true",
+    "undefined",
+    "0"
+   ],
+   "answer": 1,
+   "explanation": "در JavaScript هر شیء، از جمله آرایهٔ خالی و شیء خالی، در بافت بولی true می‌شود. فقط مقدارهایی مثل 0، رشتهٔ خالی، NaN، null و undefined false هستند."
+  },
+  {
+   "question": "کدام مقدار در بافت بولی false می‌شود؟",
+   "options": [
+    "یک رشتهٔ غیرخالی",
+    "عدد منفی",
+    "عدد 0",
+    "یک شیء خالی"
+   ],
+   "answer": 2,
+   "explanation": "عدد 0 یکی از مقدارهای falsey است. برخلاف آن، عدد منفی مقدار دارد و true می‌شود، و شیء خالی هم چون شیء است true می‌شود."
+  },
+  {
+   "question": "چرا ساختن شیء Boolean با کلمهٔ کلیدی new توصیه نمی‌شود؟",
+   "options": [
+    "کار نمی‌کند",
+    "کد را پیچیده می‌کند، سرعت را کم می‌کند و نتیجهٔ غیرمنتظره می‌دهد",
+    "فقط در مرورگر قدیمی کار می‌کند",
+    "حافظهٔ زیادی مصرف می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "شیء Boolean رفتار غیرمنتظره دارد، مثلاً مقایسهٔ دو شیء همیشه false می‌شود، و علاوه بر آن کد را پیچیده و اجرا را کند می‌کند. پس همیشه از مقدار بولی اولیه استفاده کنید."
+  }
+ ]
+}

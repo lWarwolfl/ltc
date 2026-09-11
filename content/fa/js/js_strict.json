@@ -1,0 +1,461 @@
+{
+ "slug": "js_strict",
+ "course": "js",
+ "order": 56,
+ "url": "/js/js_strict.asp",
+ "title": "حالت سخت‌گیرانه (use strict) در JavaScript",
+ "summary": "با افزودن \"use strict\"; به ابتدای اسکریپت یا تابع، کد در حالت سخت‌گیرانه اجرا می‌شود. در این درس می‌بینید کدام کارها در این حالت خطا می‌دهند، دامنهٔ اعلام آن چگونه است و چرا نوشتن JavaScript امن‌تر را آسان‌تر می‌کند.",
+ "objectives": [
+  "بگویید دستور use strict چه می‌کند و کجا نوشته می‌شود",
+  "تفاوت حالت سخت‌گیرانه سراسری و محلی را توضیح دهید",
+  "فهرست کارهایی را بگویید که در strict ممنوع است",
+  "رفتار this را در تابع‌های حالت سخت‌گیرانه تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "حالت سخت‌گیرانه (use strict) در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "دستور «use strict»"
+  },
+  {
+   "type": "p",
+   "text": "دستور «use strict» در نسخهٔ ۵ ECMAScript معرفی شد."
+  },
+  {
+   "type": "p",
+   "text": "این دستور مشخص می‌کند که کد JavaScript باید در «حالت سخت‌گیرانه» اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "این یک دستور نیست؛ یک عبارت تحت‌اللفظی است که نسخه‌های قدیمی‌تر JavaScript آن را نادیده می‌گیرند."
+  },
+  {
+   "type": "p",
+   "text": "هدف «use strict» این است که نشان دهد کد باید در «حالت سخت‌گیرانه» اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "در حالت سخت‌گیرانه مثلاً نمی‌توانید از متغیرهای تعریف‌نشده استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "اعلام حالت سخت‌گیرانه"
+  },
+  {
+   "type": "p",
+   "text": "حالت سخت‌گیرانه با افزودن \"use strict\"; به ابتدای اسکریپت یا تابع اعلام می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "اگر در ابتدای اسکریپت اعلام شود، دامنهٔ سراسری دارد (همهٔ کد اسکریپت در حالت سخت‌گیرانه اجرا می‌شود):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nx = 3.14;       // This will cause an error\n because x is not declared",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_variable"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nmyFunction();\n\nfunction myFunction() {\n\n   y = 3.14;   // This will also cause an error\n because y is not declared\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_global"
+  },
+  {
+   "type": "p",
+   "text": "اگر داخل تابع اعلام شود، دامنهٔ محلی دارد (فقط کد داخل تابع در حالت سخت‌گیرانه است):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "x = 3.14;       // This will not cause an error.\n\nmyFunction();\n\nfunction\n myFunction() {\n\n  \"use strict\";\n\n    y = 3.14;   // This will cause an error\n}",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_local"
+  },
+  {
+   "type": "h2",
+   "text": "نحو \"use strict\";"
+  },
+  {
+   "type": "p",
+   "text": "نحو اعلام حالت سخت‌گیرانه طوری طراحی شده که با نسخه‌های قدیمی‌تر JavaScript سازگار باشد."
+  },
+  {
+   "type": "p",
+   "text": "کامپایل یک عبارت عددی (4 + 5;) یا یک عبارت رشته‌ای (\"John Doe\";) در برنامهٔ JavaScript هیچ عارضهٔ جانبی ندارد؛ فقط به متغیری که وجود ندارد تبدیل می‌شود و از بین می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "پس \"use strict\"; فقط برای کامپایلرهای جدیدی مهم است که معنی آن را «می‌فهمند»."
+  },
+  {
+   "type": "h2",
+   "text": "چرا حالت سخت‌گیرانه؟"
+  },
+  {
+   "type": "p",
+   "text": "حالت سخت‌گیرانه نوشتن JavaScript «امن» را آسان‌تر می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "حالت سخت‌گیرانه «نحو بد»ی را که قبلاً پذیرفته می‌شد به خطای واقعی تبدیل می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "برای نمونه، در JavaScript عادی اگر نام متغیر را اشتباه تایپ کنید یک متغیر سراسری جدید ساخته می‌شود؛ در حالت سخت‌گیرانه خطا می‌گیرید و ساختن ناخواستهٔ متغیر سراسری ناممکن می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript عادی، اگر به خصوصیت‌های غیرقابل‌نوشتن مقدار بدهید هیچ بازخورد خطایی نمی‌گیرید."
+  },
+  {
+   "type": "p",
+   "text": "در حالت سخت‌گیرانه، هر مقداردهی به خصوصیت غیرقابل‌نوشتن، خصوصیت فقط‌خواندنی (getter-only)، خصوصیت ناموجود، متغیر ناموجود یا شیء ناموجود خطا می‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "موارد غیرمجاز در حالت سخت‌گیرانه"
+  },
+  {
+   "type": "p",
+   "text": "استفاده از متغیر بدون تعریف کردن آن مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\n x = 3.14;                // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_variable"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "شیءها هم متغیر هستند."
+  },
+  {
+   "type": "p",
+   "text": "استفاده از شیء بدون تعریف کردن آن مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\n x = {p1:10, p2:20};      // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_object"
+  },
+  {
+   "type": "p",
+   "text": "حذف متغیر (یا شیء) مجاز نیست."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nlet x = 3.14;\n\ndelete x;                // This\nwill cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_delete"
+  },
+  {
+   "type": "p",
+   "text": "حذف تابع مجاز نیست."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nfunction x(p1, p2) {};\ndelete x;\n // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_delete_function"
+  },
+  {
+   "type": "p",
+   "text": "تکرار نام پارامتر مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nfunction x(p1, p1) {};   // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_duplicate"
+  },
+  {
+   "type": "p",
+   "text": "عددهای هشت‌هشتی (octal) مجاز نیستند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nlet x = 010;             // This\nwill cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_octal"
+  },
+  {
+   "type": "p",
+   "text": "نویسه‌های فرار هشت‌هشتی (octal escape) مجاز نیستند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\nlet x = \"\\010\";            // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_escape"
+  },
+  {
+   "type": "p",
+   "text": "نوشتن در خصوصیت فقط‌خواندنی مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\nconst obj = {};\n\nObject.defineProperty(obj, \"x\", {value:0, writable:false});\n\nobj.x = 3.14;            // This\nwill cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_readonly"
+  },
+  {
+   "type": "p",
+   "text": "نوشتن در خصوصیتی که فقط getter دارد مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\nconst obj = {get x()\n{return 0} };\n\nobj.x = 3.14;            // This\nwill cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_getonly"
+  },
+  {
+   "type": "p",
+   "text": "حذف خصوصیتی که قابل حذف نیست مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\ndelete Object.prototype; // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_deleteprop"
+  },
+  {
+   "type": "p",
+   "text": "واژهٔ eval را نمی‌توان به‌عنوان متغیر به کار برد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nlet eval = 3.14;         // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval"
+  },
+  {
+   "type": "p",
+   "text": "واژهٔ arguments را نمی‌توان به‌عنوان متغیر به کار برد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nlet arguments = 3.14;    // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_arguments"
+  },
+  {
+   "type": "p",
+   "text": "دستور with مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nwith (Math){x = cos(2)}; // This will cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_width"
+  },
+  {
+   "type": "p",
+   "text": "به دلایل امنیتی، eval() اجازه ندارد در دامنه‌ای که از آن فراخوانی شده متغیر بسازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\neval (\"x = 2\");\n\nalert (x);      // This\nwill cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval4"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\neval (\"var x = 2\");\n\nalert (x);    // This\nwill cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval2"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "eval (\"let x = 2\");\n\nalert (x);        // This\nwill cause an error",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval3"
+  },
+  {
+   "type": "p",
+   "text": "رفتار کلیدواژهٔ this در تابع‌ها در حالت سخت‌گیرانه فرق می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this به شیئی اشاره می‌کند که تابع را فراخوانی کرده است."
+  },
+  {
+   "type": "p",
+   "text": "اگر شیئی مشخص نشده باشد، تابع‌ها در حالت سخت‌گیرانه undefined برمی‌گردانند و تابع‌ها در حالت عادی شیء سراسری (window) را برمی‌گردانند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nfunction myFunction() {\n\n  alert(this); // will alert \"undefined\"\n}\nmyFunction();",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_this"
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "حواستان باشد! دستور «use strict» فقط در ابتدای اسکریپت یا تابع شناخته می‌شود."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل strict.html بسازید و در اولین خط اسکریپت \"use strict\"; بنویسید؛ سپس به یک متغیر تعریف‌نشده مقدار بدهید و خطای کنسول را بخوانید.",
+   "hint": "در حالت سخت‌گیرانه متغیر تعریف‌نشده خطا می‌دهد، ولی در حالت عادی بی‌صدا یک متغیر سراسری ساخته می‌شود."
+  },
+  {
+   "prompt": "همان کد را بردارید و کافی است \"use strict\"; را از ابتدای اسکریپت حذف کنید؛ تفاوت نتیجه را در کنسول ببینید.",
+   "hint": "این دستور فقط در ابتدای اسکریپت یا ابتدای تابع شناخته می‌شود."
+  },
+  {
+   "prompt": "حالت سخت‌گیرانه را فقط داخل یک تابع اعلام کنید و بیرون از تابع یک متغیر تعریف‌نشده بسازید.",
+   "hint": "اعلام داخل تابع دامنهٔ محلی دارد؛ بیرون از تابع کد در حالت عادی اجرا می‌شود."
+  },
+  {
+   "prompt": "یک تابع با دو پارامتر هم‌نام بنویسید و حالت سخت‌گیرانه را فعال کنید؛ خطا را ثبت کنید.",
+   "hint": "تکرار نام پارامتر در حالت سخت‌گیرانه خطای نحو است."
+  },
+  {
+   "prompt": "یک متغیر را با let تعریف کنید و با delete بخواهید حذفش کنید؛ تفاوت حالت عادی و strict را ببینید.",
+   "hint": "حذف متغیر در حالت سخت‌گیرانه خطا می‌دهد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "دستور \"use strict\"; چه چیزی را تعیین می‌کند؟",
+   "options": [
+    "نسخهٔ JavaScript را",
+    "اینکه کد در حالت سخت‌گیرانه اجرا شود",
+    "منطقهٔ زمانی مرورگر را",
+    "نوع دادهٔ متغیرها را"
+   ],
+   "answer": 1,
+   "explanation": "این دستور مشخص می‌کند کد باید در حالت سخت‌گیرانه اجرا شود؛ نحو بد قبلی به خطای واقعی تبدیل می‌شود."
+  },
+  {
+   "question": "\"use strict\"; برای اثرگذاری باید کجا نوشته شود؟",
+   "options": [
+    "انتهای اسکریپت",
+    "داخل هر تابع، بعد از دستورهای دیگر",
+    "در ابتدای اسکریپت یا ابتدای تابع",
+    "داخل تگ style"
+   ],
+   "answer": 2,
+   "explanation": "این دستور فقط در ابتدای اسکریپت (دامنهٔ سراسری) یا ابتدای تابع (دامنهٔ محلی) شناخته می‌شود."
+  },
+  {
+   "question": "کدام مورد در حالت سخت‌گیرانه خطا می‌دهد؟",
+   "options": [
+    "استفاده از متغیر تعریف‌نشده",
+    "استفاده از let و const",
+    "نوشتن تابع",
+    "مقداردهی به متغیری که تعریف شده است"
+   ],
+   "answer": 0,
+   "explanation": "در حالت سخت‌گیرانه نمی‌توان بدون تعریف از متغیر استفاده کرد؛ همچنین مقداردهی به خصوصیت‌های فقط‌خواندنی یا ناموجود خطا می‌دهد."
+  },
+  {
+   "question": "در حالت سخت‌گیرانه، تابعی که بدون شیء فراخوانی شود، this را چه چیزی برمی‌گرداند؟",
+   "options": [
+    "شیء window",
+    "undefined",
+    "null",
+    "شیء document"
+   ],
+   "answer": 1,
+   "explanation": "در حالت سخت‌گیرانه اگر شیئی تابع را فراخوانی نکرده باشد، this همان undefined است؛ در حالت عادی شیء سراسری window برمی‌گردد."
+  },
+  {
+   "question": "چرا می‌گویند حالت سخت‌گیرانه نوشتن JavaScript امن‌تر را آسان می‌کند؟",
+   "options": [
+    "چون کد را رمزنگاری می‌کند",
+    "چون نحو بدِ قبلاً پذیرفته‌شده را به خطای واقعی تبدیل می‌کند",
+    "چون اجرای کد را متوقف می‌کند",
+    "چون متغیرها را خودکار تعریف می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "خطاهای پنهان مثل ساختن ناخواستهٔ متغیر سراسری یا نوشتن در خصوصیت فقط‌خواندنی در حالت سخت‌گیرانه خطا می‌شوند و زودتر دیده می‌شوند."
+  }
+ ]
+}

@@ -1,0 +1,209 @@
+{
+ "slug": "js_errors_silent",
+ "course": "js",
+ "order": 104,
+ "url": "/js/js_errors_silent.asp",
+ "title": "JavaScript Silent Errors",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Silent Errors"
+  },
+  {
+   "type": "h2",
+   "text": "Silent Errors"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript can fail siently."
+  },
+  {
+   "type": "p",
+   "text": "A silent error will not stop your program. The execution will continue."
+  },
+  {
+   "type": "p",
+   "text": "The reason for silent errors is historical:"
+  },
+  {
+   "type": "p",
+   "text": "The first version of JavaScript did not have catch...try exceptions."
+  },
+  {
+   "type": "p",
+   "text": "Silent errors are issues that do not throw exceptions or stop execution,\nbut still cause logic bugs, unexpected behavior, or failures that are easy to miss."
+  },
+  {
+   "type": "p",
+   "text": "Below are some examples of common silent errors, with examples to try:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 1 / 0;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_silent1"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let result = \"Not Active.\";\n\nlet isActive = false;\n\n// ❌ Assignment, not comparison\n\nif (isActive = true) {\n\n  let result = \"Active!\";\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_silent2"
+  },
+  {
+   "type": "h3",
+   "text": "Explanation"
+  },
+  {
+   "type": "p",
+   "text": "When execution reaches the if statement, you might expect that the conditional block\nwill not be executed because isActive is false."
+  },
+  {
+   "type": "p",
+   "text": "But, the code (isActive = true) in the evaluation will set\nisActive to true instead of checking equality with  (isActive == true)."
+  },
+  {
+   "type": "p",
+   "text": "This (true) is also the value of the if condition, so the block will be executed."
+  },
+  {
+   "type": "p",
+   "text": "The above mistake is not an error that JavaScript could have detected (it may have been intended)."
+  },
+  {
+   "type": "p",
+   "text": "It is a mistake of the programmer."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// NaN - no error, just wrong data\n\nconst result = parseInt(\"abc\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_silent3"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const user = {};\n\nlet result = user.name;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_silent4"
+  },
+  {
+   "type": "h2",
+   "text": "Type Coercion"
+  },
+  {
+   "type": "p",
+   "text": "Type coercion is the automatic (implicit) conversion of values from one data type to another."
+  },
+  {
+   "type": "p",
+   "text": "Because JavaScript is weakly typed, it doesn't throw errors when types don't match;\nit just tries to coerce them."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript coerces types differently per operator, so type coercion can hide bugs."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let result1 = ('5' + '2'); // = 52\n\nlet result2 = ('5' - '2'); // = 3",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_silent5"
+  },
+  {
+   "type": "h2",
+   "text": "String Coercion (+)"
+  },
+  {
+   "type": "p",
+   "text": "If any part of a + operation is a string, JavaScript converts everything to strings:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"5\" + 2 // x = \"52\"",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Numeric Coercion"
+  },
+  {
+   "type": "p",
+   "text": "Other arithmetic operators (-, *, /, %) and the unary plus (+x) force values into numbers."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"5\" - 2 // x = 3",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Loose Equality (==)"
+  },
+  {
+   "type": "p",
+   "text": "This operator performs coercion to find a \"common type\" before comparing."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = (5 == \"5\") // x = true",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Practices to Avoid Bugs"
+  },
+  {
+   "type": "p",
+   "text": "Use === (Strict Equality)\nThis checks both value and type without coercion, preventing weird results."
+  },
+  {
+   "type": "p",
+   "text": "Be Explicit\nInstead of relying on automatic behavior, use MDN's recommended conversion methods\nlike Number() or String() to make your intent clear."
+  },
+  {
+   "type": "p",
+   "text": "Watch for NaN\nIf a string cannot be converted to a valid number, like \"abc\" - 1), the result is NaN (Not-a-Number)."
+  },
+  {
+   "type": "h2",
+   "text": "See Also:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Errors"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Error Statements"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Error Object"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Debugging"
+  }
+ ]
+}

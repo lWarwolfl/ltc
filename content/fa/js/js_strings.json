@@ -1,0 +1,491 @@
+{
+ "slug": "js_strings",
+ "course": "js",
+ "order": 28,
+ "url": "/js/js_strings.asp",
+ "title": "رشته‌ها در JavaScript",
+ "summary": "رشته در JavaScript برای ذخیرهٔ متن به کار می‌رود و با کوتیشن تک، دوتایی یا backtick نوشته می‌شود. در این درس کوتیشن داخل کوتیشن، طول رشته، نویسه‌های فرار، شکستن خطوط بلند و تفاوت رشتهٔ اولیه با شیء String را یاد می‌گیرید.",
+ "objectives": [
+  "رشته را با هر سه شکل کوتیشن بنویسید",
+  "طول رشته را با length به دست آورید",
+  "از نویسه‌های فرار مثل \\n و \\t درست استفاده کنید",
+  "تفاوت رشتهٔ اولیه و شیء String را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "رشته‌ها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "رشته‌ها برای ذخیرهٔ متن به کار می‌روند"
+  },
+  {
+   "type": "p",
+   "text": "رشته‌ها با کوتیشن نوشته می‌شوند"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از کوتیشن"
+  },
+  {
+   "type": "p",
+   "text": "رشته در JavaScript صفر یا چند نویسه است که داخل کوتیشن نوشته می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"John Doe\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید از کوتیشن تک یا دوتایی استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let carName1 = \"Volvo XC60\";\n  // Double quotes\n\nlet carName2 = 'Volvo XC60';  // Single quotes",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_quotes"
+  },
+  {
+   "type": "p",
+   "text": "رشته‌هایی که با کوتیشن تک یا دوتایی ساخته می‌شوند یکسان کار می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "هیچ تفاوتی میان این دو نیست."
+  },
+  {
+   "type": "h2",
+   "text": "کوتیشن داخل کوتیشن"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید داخل رشته از کوتیشن استفاده کنید، تا وقتی با کوتیشن‌های دور رشته یکی نباشند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let answer1 = \"It's alright\";\n\nlet answer2 = \"He is called 'Johnny'\";\n\nlet answer3 = 'He is called \"Johnny\"';",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_quotes_mixed"
+  },
+  {
+   "type": "h2",
+   "text": "رشته‌های قالبی"
+  },
+  {
+   "type": "p",
+   "text": "قالب‌ها همراه ES6 معرفی شدند (JavaScript 2016)."
+  },
+  {
+   "type": "p",
+   "text": "قالب‌ها رشته‌هایی هستند که میان backtick قرار می‌گیرند (`This is a template string`)."
+  },
+  {
+   "type": "p",
+   "text": "قالب‌ها اجازه می‌دهند هم کوتیشن تک و هم دوتایی داخل رشته بیاید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = `He's often called \"Johnny\"`;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_templates_quotes"
+  },
+  {
+   "type": "h2",
+   "text": "طول رشته"
+  },
+  {
+   "type": "p",
+   "text": "برای پیدا کردن طول یک رشته از خصوصیت درونی length استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n\nlet length = text.length;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_length"
+  },
+  {
+   "type": "h2",
+   "text": "نویسه‌های فرار"
+  },
+  {
+   "type": "p",
+   "text": "چون رشته‌ها باید داخل کوتیشن نوشته شوند، JavaScript این رشته را اشتباه می‌فهمد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"We are the so-called \"Vikings\" from the north.\";",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "این رشته به \"We are the so-called \" بریده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "برای حل این مشکل می‌توانید از نویسهٔ فرار بک‌اسلش استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "نویسهٔ فرار بک‌اسلش (\\) نویسه‌های ویژه را به نویسه‌های عادی رشته تبدیل می‌کند:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "کد",
+    "نتیجه",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "\\'",
+     "'",
+     "کوتیشن تک"
+    ],
+    [
+     "\\\"",
+     "\"",
+     "کوتیشن دوتایی"
+    ],
+    [
+     "\\\\",
+     "\\",
+     "بک‌اسلش"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"We are the so-called \\\"Vikings\\\" from the north.\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text= 'It\\'s alright.';",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"The character \\\\ is called backslash.\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_escape_quotes2"
+  },
+  {
+   "type": "p",
+   "text": "شش دنبالهٔ فرار دیگر هم در JavaScript معتبرند:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "کد",
+    "نتیجه"
+   ],
+   "rows": [
+    [
+     "\\b",
+     "بک‌اسپیس (Backspace)"
+    ],
+    [
+     "\\f",
+     "فرم فید (Form Feed)"
+    ],
+    [
+     "\\n",
+     "خط جدید (New Line)"
+    ],
+    [
+     "\\r",
+     "بازگشت به ابتدای خط (Carriage Return)"
+    ],
+    [
+     "\\t",
+     "تب افقی (Horizontal Tabulator)"
+    ],
+    [
+     "\\v",
+     "تب عمودی (Vertical Tabulator)"
+    ]
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "شش نویسهٔ فرار بالا در اصل برای کنترل ماشین تحریر، تله‌تایپ و دستگاه فکس طراحی شده بودند. این‌ها در HTML هیچ معنایی ندارند."
+  },
+  {
+   "type": "h2",
+   "text": "شکستن خطوط بلند"
+  },
+  {
+   "type": "p",
+   "text": "برای خوانایی، برنامه‌نویسان معمولاً از خطوط بلند کد پرهیز می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "راه امن شکستن یک دستور، شکستن پس از یک عملگر است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.getElementById(\"demo\").innerHTML =\n\"Hello Dolly!\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_statements_linebreak"
+  },
+  {
+   "type": "p",
+   "text": "راه امن شکستن یک رشته، استفاده از جمع رشته‌ها است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.getElementById(\"demo\").innerHTML = \"Hello \" +\n\"Dolly!\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_break_ok"
+  },
+  {
+   "type": "h2",
+   "text": "رشته‌های قالبی"
+  },
+  {
+   "type": "p",
+   "text": "قالب‌ها همراه ES6 معرفی شدند (JavaScript 2015)."
+  },
+  {
+   "type": "p",
+   "text": "قالب‌ها رشته‌هایی هستند که میان backtick قرار می‌گیرند (`This is a template string`)."
+  },
+  {
+   "type": "p",
+   "text": "قالب‌ها امکان نوشتن رشته‌های چندخطی را می‌دهند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text =\n\n`The quick\n\nbrown fox\n\njumps over\n\nthe lazy dog`;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_templates_multiline"
+  },
+  {
+   "type": "h2",
+   "text": "رشته‌ها به شکل شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "به طور معمول، رشته‌های JavaScript مقدارهای اولیه‌ای هستند که از مقدارهای ثابت (literal) ساخته می‌شوند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"John\";",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "اما رشته‌ها را می‌توان با کلمهٔ کلیدی new به شکل شیء هم تعریف کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let y = new String(\"John\");",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"John\";\n\nlet y = new String(\"John\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_object"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "شیء String نسازید.\nکلمهٔ کلیدی new کد را پیچیده و سرعت اجرا را کند می‌کند.\nشیءهای String می‌توانند نتیجه‌های غیرمنتظره بدهند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"John\";\n\nlet y = new String(\"John\");",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_object1"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"John\";\n\nlet y = new String(\"John\");",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_object2"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "به تفاوت (x==y) و (x===y) توجه کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = new String(\"John\");\n\nlet y = new String(\"John\");",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_object3"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = new String(\"John\");\n\nlet y = new String(\"John\");",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_object4"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "مقایسهٔ دو شیء در JavaScript همیشه false برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید:"
+  },
+  {
+   "type": "p",
+   "text": "متدهای رشته در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "جست‌وجو در رشته در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع رشته در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل strings.html بسازید و یک رشته با کوتیشن دوتایی و یکی با کوتیشن تک تعریف کنید و هر دو را در کنسول چاپ کنید.",
+   "hint": "هر دو شکل یکسان کار می‌کنند؛ تفاوتی در نتیجه نیست."
+  },
+  {
+   "prompt": "یک رشته بسازید که داخلش کوتیشن دوتایی باشد، ولی خود رشته با کوتیشن تک پیچیده شده باشد؛ بعد برعکسش را هم امتحان کنید.",
+   "hint": "کوتیشن داخل رشته نباید با کوتیشن دور رشته یکی باشد."
+  },
+  {
+   "prompt": "با خصوصیت length طول یک رشته را چاپ کنید و بعد یک کاراکتر به آن اضافه کنید و ببینید عدد چطور عوض می‌شود.",
+   "hint": "length طول رشته را به تعداد نویسه‌ها می‌شمارد."
+  },
+  {
+   "prompt": "یک رشته با backtick بنویسید که چند خط باشد و بعد همان متن را با کوتیشن معمولی بنویسید؛ تفاوت را در کنسول ببینید.",
+   "hint": "قالب‌ها رشته‌های چندخطی را بدون کاراکتر فرار می‌پذیرند."
+  },
+  {
+   "prompt": "یک کاراکتر فرار مثل \\n را در رشته‌ای بگذارید و همان را یک بار با backtick بنویسید؛ هر دو خروجی را مقایسه کنید.",
+   "hint": "backtick خط جدید واقعی را نگه می‌دارد و کوتیشن معمولی به \\n نیاز دارد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "رشته در JavaScript با چه چیزی نوشته می‌شود؟",
+   "options": [
+    "فقط کوتیشن دوتایی",
+    "فقط کوتیشن تک",
+    "کوتیشن تک یا دوتایی، هر دو یکسان",
+    "backtick فقط"
+   ],
+   "answer": 2,
+   "explanation": "هر دو نوع کوتیشن رشته می‌سازند و نتیجهٔ یکسانی دارند؛ هیچ تفاوتی میان آن دو نیست. backtick هم برای رشته‌های قالبی به کار می‌رود."
+  },
+  {
+   "question": "اگر رشته را با کوتیشن دوتایی بپیچیم و داخلش هم کوتیشن دوتایی بیاوریم چه می‌شود؟",
+   "options": [
+    "هیچ مشکلی پیش نمی‌آید",
+    "رشته وسط کوتیشن داخلی بریده می‌شود و خطا می‌دهد",
+    "مرورگر خودش کوتیشن داخلی را حذف می‌کند",
+    "رشته به عدد تبدیل می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "JavaScript همان کوتیشن داخلی را پایان رشته می‌بیند و بقیهٔ متن خطای نحو می‌شود. راه‌حلش استفاده از کوتیشن متفاوت دور رشته یا کاراکتر فرار است."
+  },
+  {
+   "question": "کدام خصوصیت طول یک رشته را برمی‌گرداند؟",
+   "options": [
+    "size",
+    "count",
+    "length",
+    "len"
+   ],
+   "answer": 2,
+   "explanation": "طول رشته با خصوصیت length به دست می‌آید؛ مثلاً \"Hello\".length مقدار 5 می‌دهد. نام‌های size و count و len در JavaScript وجود ندارند."
+  },
+  {
+   "question": "قالب‌ها (template) با کدام نسخهٔ JavaScript و با چه علامتی معرفی شدند؟",
+   "options": [
+    "ES5 با کوتیشن تک",
+    "ES6 با backtick",
+    "ES2020 با علامت ?",
+    "ES1 با کوتیشن دوتایی"
+   ],
+   "answer": 1,
+   "explanation": "قالب‌ها با ES6 آمدند و رشته‌ای هستند که میان backtick قرار می‌گیرد؛ همین شکل نوشتن، امکان آوردن کوتیشن تک و دوتایی و متن چندخطی را می‌دهد."
+  },
+  {
+   "question": "چرا ساختن شیء String با new توصیه نمی‌شود؟",
+   "options": [
+    "کار نمی‌کند",
+    "کد را پیچیده و کند می‌کند و نتیجهٔ غیرمنتظره می‌دهد",
+    "فقط با اعداد کار می‌کند",
+    "به کوتیشن نیاز دارد"
+   ],
+   "answer": 1,
+   "explanation": "شیء String رفتار غیرمنتظره دارد؛ مثلاً مقایسهٔ دو شیء همیشه false می‌شود و == و === نتیجهٔ متفاوت می‌دهند. علاوه بر آن کد را پیچیده و اجرا را کند می‌کند."
+  }
+ ]
+}

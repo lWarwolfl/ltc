@@ -1,0 +1,322 @@
+{
+ "slug": "js_function_apply",
+ "course": "js",
+ "order": 206,
+ "url": "/js/js_function_apply.asp",
+ "title": "JavaScript Function apply()",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Function apply()"
+  },
+  {
+   "type": "h2",
+   "text": "Method Reuse"
+  },
+  {
+   "type": "p",
+   "text": "The apply() method lets you write a method that can be used on different objects."
+  },
+  {
+   "type": "p",
+   "text": "The apply() method is used to call a function with a specific this."
+  },
+  {
+   "type": "p",
+   "text": "The apply() method is similar to call(), but it passes arguments in an array."
+  },
+  {
+   "type": "p",
+   "text": "apply() is an advanced topic."
+  },
+  {
+   "type": "p",
+   "text": "Make sure you understand this and call() before continuing."
+  },
+  {
+   "type": "p",
+   "text": "The this Keyword"
+  },
+  {
+   "type": "p",
+   "text": "The call() Method"
+  },
+  {
+   "type": "h2",
+   "text": "Basic apply() Syntax"
+  },
+  {
+   "type": "p",
+   "text": "The apply() method is used to call a function with an object as an argument."
+  },
+  {
+   "type": "p",
+   "text": "The apply() method takes this as the first argument."
+  },
+  {
+   "type": "p",
+   "text": "The second argument is an array of values passed to the function."
+  },
+  {
+   "type": "p",
+   "text": "The apply() method is similar to the call() method (previous chapter)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "functionName.apply(this, [arg1, arg2, ...]);",
+   "caption": "Syntax"
+  },
+  {
+   "type": "h2",
+   "text": "Using apply() to Set this"
+  },
+  {
+   "type": "p",
+   "text": "When you use apply(), you can decide what this should refer to."
+  },
+  {
+   "type": "p",
+   "text": "In the example below, the greet function returns a greeting + this.name."
+  },
+  {
+   "type": "p",
+   "text": "When you use apply(), you decide that this should be the person3 object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person1 = { name: \"John\" };\n\nconst person2 = { name: \"Paul\" };\n\nconst person3 = { name: \"Ringo\" };\n\nfunction greet(greeting) {\n\n  return greeting + \" \" + this.name;\n\n}\n\ngreet.apply(person3, [\"Hello\"]);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_apply_greeting"
+  },
+  {
+   "type": "h2",
+   "text": "The Difference Between call() and apply()"
+  },
+  {
+   "type": "p",
+   "text": "The only difference between apply() and call() is how arguments are passed."
+  },
+  {
+   "type": "p",
+   "text": "The call() method takes arguments separately."
+  },
+  {
+   "type": "p",
+   "text": "The apply() method takes arguments as an array."
+  },
+  {
+   "type": "p",
+   "text": "Use apply() when your arguments are already stored in an array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "greet.call(person, \"Hello\");\n\ngreet.apply(person, [\"Hello\"]);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Borrowing a Method from Another Object"
+  },
+  {
+   "type": "p",
+   "text": "You can use apply() to borrow a method from another object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a person Object\n\nconst person = {\n\n    fullName: function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\n// Create a person1 Object\n\nconst person1 = {\n\n  firstName:\"John\",\n\n    lastName: \"Doe\"\n\n  }\n\n// Create a person2 Object\n\nconst person2 = {\n\n  firstName:\"Mary\",\n\n    lastName: \"Doe\"\n}\n\n// This will return \"John Doe\":\n\n  person.fullName.apply(person1);",
+   "caption": "Example 1"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_apply"
+  },
+  {
+   "type": "p",
+   "text": "In these 2 examples, the apply() method behaves exactly the same as the call() method."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a person Object\n\nconst person = {\n\n    fullName: function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\n// Create a person1 Object\n\nconst person1 = {\n\n  firstName:\"John\",\n\n    lastName: \"Doe\"\n\n  }\n\n// Create a person2 Object\n\nconst person2 = {\n\n    firstName:\"Mary\",\n\n    lastName: \"Doe\"\n}\n\n// This will return \"Mary Doe\"\n\n  person.fullName.call(person2);",
+   "caption": "Example 2"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_apply2"
+  },
+  {
+   "type": "h2",
+   "text": "The apply() Method with Arguments"
+  },
+  {
+   "type": "p",
+   "text": "The apply() method accepts arguments in an array."
+  },
+  {
+   "type": "p",
+   "text": "All arguments must be placed inside an array, in the correct order."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    fullName: function(city, country) {\n\n    return this.firstName + \" \" + this.lastName\n  + \",\" + city + \",\" + country;\n\n    }\n}\n\nconst person1 = {\n\n  firstName:\"John\",\n\n    lastName: \"Doe\"\n\n}\n\nperson.fullName.apply(person1, [\"Oslo\", \"Norway\"]);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_apply_arguments"
+  },
+  {
+   "type": "p",
+   "text": "Compared with the call() method:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  fullName: function(city, country) {\n\n    return this.firstName + \" \" + this.lastName\n  + \",\" + city + \",\" + country;\n\n    }\n}\n\nconst person1 = {\n\n    firstName:\"John\",\n\n    lastName: \"Doe\"\n\n}\n\nperson.fullName.call(person1, \"Oslo\", \"Norway\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_arguments"
+  },
+  {
+   "type": "h2",
+   "text": "Simulate Array Methods with apply()"
+  },
+  {
+   "type": "p",
+   "text": "A common use case for apply() is working with Math functions on arrays."
+  },
+  {
+   "type": "p",
+   "text": "The Math.max() method returns the highest number in a list of number arguments:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Math.max(4, 8, 5, 1);  // Will return 8",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_math"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Arrays do not have a max() method, but you can simulate it with the apply method."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [4, 8, 5, 1];\n\nMath.max.apply(null, numbers);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_math_apply"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, null is used as this, because Math.max() does\nnot need a this value."
+  },
+  {
+   "type": "p",
+   "text": "These examples will give the same result:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Math.max.apply(\" \", numbers);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Math.max.apply(0, numbers);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_math_apply2"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Strict Mode"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript strict mode, if the first argument of the apply() method is not an object,\nit becomes the owner (object) of the invoked function.\nIn \"non-strict\" mode, it becomes the global object."
+  },
+  {
+   "type": "h2",
+   "text": "apply() Does Not Create a New Function"
+  },
+  {
+   "type": "p",
+   "text": "The call() method and the apply() method runs the function immediately."
+  },
+  {
+   "type": "p",
+   "text": "They do not return a new function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sum(a, b) {\n\n      return a + b;\n\n    }\n\n    sum.apply(null, [4, 5]);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "If you want a function that can be called later with the same this, use bind() instead."
+  },
+  {
+   "type": "h2",
+   "text": "Common Mistakes"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Forgetting to Use an Array\nThe second argument to apply() must be an array.",
+    "Confusing apply() with bind()\napply() runs immediately. bind() returns a new function.",
+    "Using apply() when call() is Simpler\nIf you do not have an array, call() is often clearer."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Related this Topics"
+  },
+  {
+   "type": "p",
+   "text": "The this Keyword"
+  },
+  {
+   "type": "p",
+   "text": "The call() Method"
+  },
+  {
+   "type": "p",
+   "text": "The apply() Method"
+  },
+  {
+   "type": "p",
+   "text": "The bind() Method"
+  },
+  {
+   "type": "h2",
+   "text": "Next Chapter"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Function bind()"
+  }
+ ]
+}

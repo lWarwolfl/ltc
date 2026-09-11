@@ -1,0 +1,369 @@
+{
+ "slug": "js_datatypes_symbol",
+ "course": "js",
+ "order": 94,
+ "url": "/js/js_datatypes_symbol.asp",
+ "title": "JavaScript Symbols",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Symbols"
+  },
+  {
+   "type": "h2",
+   "text": "Unique Values"
+  },
+  {
+   "type": "p",
+   "text": "A Symbol represents a unique identifier."
+  },
+  {
+   "type": "p",
+   "text": "Every Symbol value is unique, even if they have the same description."
+  },
+  {
+   "type": "p",
+   "text": "A Symbol is a hidden identifier that no code can accidentally access."
+  },
+  {
+   "type": "h2",
+   "text": "Creating Symbols"
+  },
+  {
+   "type": "p",
+   "text": "Use Symbol() to create a Symbol:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id1 = Symbol();\n\nconst id2 = Symbol();",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The two Symbols are different:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id1 = Symbol();\n\nconst id2 = Symbol();\n\nlet result = (id1 === id2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol"
+  },
+  {
+   "type": "p",
+   "text": "The result is false."
+  },
+  {
+   "type": "p",
+   "text": "Every Symbol has a unique value."
+  },
+  {
+   "type": "h2",
+   "text": "Symbol Descriptions"
+  },
+  {
+   "type": "p",
+   "text": "You can add a description to a Symbol:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The description is only for debugging and readability."
+  },
+  {
+   "type": "p",
+   "text": "It does not make the Symbol unique."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id1 = Symbol(\"id\");\n\nconst id2 = Symbol(\"id\");\n\nlet result = (id1 === id2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbols"
+  },
+  {
+   "type": "p",
+   "text": "The result is still false."
+  },
+  {
+   "type": "p",
+   "text": "Symbols are always unique."
+  },
+  {
+   "type": "p",
+   "text": "If you create two symbols with the same description they will have different values:"
+  },
+  {
+   "type": "p",
+   "text": "Symbol(\"id\") == Symbol(\"id\"); // false"
+  },
+  {
+   "type": "h2",
+   "text": "Using Symbols as Object Keys"
+  },
+  {
+   "type": "p",
+   "text": "Symbols are often used as object property keys."
+  },
+  {
+   "type": "p",
+   "text": "This lets you create hidden or unique properties."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\"\n\n};\n\nperson[id] = 123;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_objectkey"
+  },
+  {
+   "type": "h2",
+   "text": "The Symbol Type"
+  },
+  {
+   "type": "p",
+   "text": "A JavaScript Symbol is a primitive data type just like Number, String, or Boolean."
+  },
+  {
+   "type": "p",
+   "text": "The JavaScript type of a Symbol is symbol:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");\n\nlet type = typeof id;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_typeof"
+  },
+  {
+   "type": "h2",
+   "text": "Hidden Identifiers"
+  },
+  {
+   "type": "p",
+   "text": "A Symbol represents a unique \"hidden\" identifier that no code can accidentally access."
+  },
+  {
+   "type": "p",
+   "text": "For instance, if different programmers want to add a person.id property to a person object belonging to a third-party code,\nthey could mix each others values."
+  },
+  {
+   "type": "p",
+   "text": "Using Symbol() to create a unique identifiers, solves this problem:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\nlet id = Symbol('id');\n\nperson[id] = 140353;\n\n// Now person[id] = 140353\n\n// but person.id is still undefined",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_symbol"
+  },
+  {
+   "type": "h2",
+   "text": "Symbols are Not Included in for...in"
+  },
+  {
+   "type": "p",
+   "text": "Symbol properties are ignored by for...in loops:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\"\n\n};\n\nperson[id] = 123;\n\nlet text = \"\";\n\nfor (let x in person) {\n\n  text += x + \"<br>\";\n\n}\n\n// Display text",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_forin"
+  },
+  {
+   "type": "p",
+   "text": "The Symbol property is not displayed."
+  },
+  {
+   "type": "h2",
+   "text": "Symbols are Not Included in JSON"
+  },
+  {
+   "type": "p",
+   "text": "Symbol properties are ignored by JSON.stringify():"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");\n\nconst person = {\n\n  name: \"John\"\n\n};\n\nperson[id] = 123;\n\nlet text = JSON.stringify(person);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_json"
+  },
+  {
+   "type": "h2",
+   "text": "Global Symbols"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript has a global Symbol registry."
+  },
+  {
+   "type": "p",
+   "text": "Use Symbol.for() to create or reuse a global Symbol:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id1 = Symbol.for(\"id\");\n\nconst id2 = Symbol.for(\"id\");\n\nlet result = (id1 === id2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_global"
+  },
+  {
+   "type": "p",
+   "text": "The result is true."
+  },
+  {
+   "type": "h2",
+   "text": "Well-Known Symbols"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript provides built-in Symbols called well-known Symbols."
+  },
+  {
+   "type": "p",
+   "text": "These Symbols control JavaScript behaviors."
+  },
+  {
+   "type": "p",
+   "text": "Examples:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Symbol.iterator",
+    "Symbol.asyncIterator",
+    "Symbol.toStringTag",
+    "Symbol.toPrimitive"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Symbol.iterator"
+  },
+  {
+   "type": "p",
+   "text": "The Symbol.iterator Symbol defines an iterable object."
+  },
+  {
+   "type": "p",
+   "text": "This makes objects work with loops like for...of."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myObject = {\n\n  data: [\"A\", \"B\", \"C\"],\n\n  [Symbol.iterator]() {\n\n    let index = 0;\n\n    let data = this.data;\n\n    return {\n\n      next() {\n\n        if (index < data.length) {\n\n          return {value:data[index++], done:false};\n\n        } else {\n\n          return {done:true};\n\n        }\n\n      }\n\n    };\n\n  }\n\n};\n\nlet text = \"\";\n\nfor (const x of myObject) {\n\n  text += x + \"<br>\";\n\n}\n\n// Display text",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_iterator"
+  },
+  {
+   "type": "h2",
+   "text": "When to Use Symbols"
+  },
+  {
+   "type": "p",
+   "text": "Use Symbols when you need:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Unique object property names",
+    "Hidden object properties",
+    "Custom iterable objects",
+    "Special object behavior"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "When NOT to Use Symbols"
+  },
+  {
+   "type": "p",
+   "text": "Symbols are not commonly used in everyday JavaScript code."
+  },
+  {
+   "type": "p",
+   "text": "Do not use Symbols unless you need unique property keys or advanced object behavior."
+  },
+  {
+   "type": "p",
+   "text": "For normal object properties, use strings names instead."
+  },
+  {
+   "type": "h2",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "Symbol is an ES6  feature."
+  },
+  {
+   "type": "p",
+   "text": "ES6 is fully supported in all modern browsers since June 2017:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome51",
+     "Edge15",
+     "Firefox54",
+     "Safari10",
+     "Opera38"
+    ],
+    [
+     "May 2016",
+     "Apr 2017",
+     "Jun 2017",
+     "Sep 2016",
+     "Jun 2016"
+    ]
+   ]
+  }
+ ]
+}

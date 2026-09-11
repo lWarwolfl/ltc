@@ -1,0 +1,565 @@
+{
+ "slug": "js_array_sort",
+ "course": "js",
+ "order": 65,
+ "url": "/js/js_array_sort.asp",
+ "title": "JavaScript Array Sort",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Array Sort"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Alphabetic Sort\nArray sort()\nArray reverse()\nArray toSorted()\nArray toReversed()\nSorting Objects",
+     "Numeric Sort\nNumeric Sort\nRandom Sort\nMath.min()\nMath.max()\nHome made Min()\nHome made Max()"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Complete JavaScript Array Reference"
+  },
+  {
+   "type": "h2",
+   "text": "Sorting an Array"
+  },
+  {
+   "type": "p",
+   "text": "The sort() method sorts an array alphabetically:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.sort();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort"
+  },
+  {
+   "type": "h2",
+   "text": "Reversing an Array"
+  },
+  {
+   "type": "p",
+   "text": "The reverse() method reverses the elements in an array:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.reverse();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reverse2"
+  },
+  {
+   "type": "p",
+   "text": "By combining sort() and reverse(),\nyou can sort an array in descending order:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.sort();\n\nfruits.reverse();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_reverse"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array toSorted() Method"
+  },
+  {
+   "type": "p",
+   "text": "ES2023 added the toSorted() method as a safe way\nto sort an array without altering the original array."
+  },
+  {
+   "type": "p",
+   "text": "The difference between toSorted() and sort()\nis that the first method creates a new array, keeping the original array unchanged, while the last method alters the original array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\"];\n\nconst sorted = months.toSorted();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_tosorted"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array toReversed() Method"
+  },
+  {
+   "type": "p",
+   "text": "ES2023 added the toReversed() method as a safe way\nto reverse an array without altering the original array."
+  },
+  {
+   "type": "p",
+   "text": "The difference between toReversed() and reverse() is that the first method\ncreates a new array, keeping the original array unchanged, while the last method alters the original array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\"];\n\nconst reversed = months.toReversed();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_toreversed"
+  },
+  {
+   "type": "h2",
+   "text": "Numeric Sort"
+  },
+  {
+   "type": "p",
+   "text": "By default, the sort() function sorts values as strings."
+  },
+  {
+   "type": "p",
+   "text": "This works well for strings (\"Apple\" comes before \"Banana\")."
+  },
+  {
+   "type": "p",
+   "text": "If numbers are sorted as strings, \"25\" is bigger than \"100\",\nbecause \"2\" is bigger than \"1\"."
+  },
+  {
+   "type": "p",
+   "text": "Because of this, the sort() method will produce incorrect result when sorting\nnumbers."
+  },
+  {
+   "type": "p",
+   "text": "You can fix this by providing a compare function:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(a, b){return a - b});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort2"
+  },
+  {
+   "type": "p",
+   "text": "Use the same trick to sort an array descending:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(a, b){return b - a});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort3"
+  },
+  {
+   "type": "h2",
+   "text": "The Compare Function"
+  },
+  {
+   "type": "p",
+   "text": "The purpose of the compare function is to define an alternative sort\norder."
+  },
+  {
+   "type": "p",
+   "text": "The compare function should return a negative, zero, or positive value, depending on\nthe arguments:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function(a, b){return a - b}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "When the sort() function compares two values, it sends the values to the\ncompare function, and sorts the values according to the returned (negative,\nzero, positive) value."
+  },
+  {
+   "type": "p",
+   "text": "If the result is negative, a is sorted before\nb."
+  },
+  {
+   "type": "p",
+   "text": "If the result is positive, b is sorted\nbefore a."
+  },
+  {
+   "type": "p",
+   "text": "If the result is 0, no changes are done with the sort order of the two\nvalues."
+  },
+  {
+   "type": "p",
+   "text": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "The compare function compares all the values in the array, two values at a\ntime (a, b)."
+  },
+  {
+   "type": "p",
+   "text": "When comparing 40 and 100, the sort() method calls the compare function(40, 100)."
+  },
+  {
+   "type": "p",
+   "text": "The function calculates 40 - 100 (a - b), and\nsince the result is negative (-60),  the sort function will sort 40 as a value lower than 100."
+  },
+  {
+   "type": "p",
+   "text": "You can use this code snippet to experiment with numerically and\nalphabetically sorting:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"myFunction1()\">Sort Alphabetically</button>\n<button\n onclick=\"myFunction2()\">Sort Numerically</button>\n\n<p id=\"demo\"></p>\n\n<script>\nconst points = [40, 100, 1, 5, 25, 10];\n\n document.getElementById(\"demo\").innerHTML = points;\n\nfunction\n myFunction1() {\n  points.sort();\n  document.getElementById(\"demo\").innerHTML\n = points;\n}\n\nfunction myFunction2() {\n  points.sort(function(a, b){return\n a - b});\n  document.getElementById(\"demo\").innerHTML = points;\n}\n\n </script>",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_alpha"
+  },
+  {
+   "type": "h2",
+   "text": "Sorting an Array in Random Order"
+  },
+  {
+   "type": "p",
+   "text": "Using a sort function, like explained above, you can sort an numeric array in random order"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(){return 0.5 - Math.random()});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_random"
+  },
+  {
+   "type": "h2",
+   "text": "The Fisher Yates Method"
+  },
+  {
+   "type": "p",
+   "text": "The points.sort() method in the example above is not accurate. It will favor some\nnumbers over others."
+  },
+  {
+   "type": "p",
+   "text": "The most popular correct method, is called the Fisher Yates shuffle, and was\nintroduced in data science as early as 1938!"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript the method can be translated to this:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\nfor (let i = points.length -1; i > 0; i--) {\n\n  let j = Math.floor(Math.random() * (i+1));\n\n  let k = points[i];\n\n  points[i] = points[j];\n\n  points[j] = k;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_random2"
+  },
+  {
+   "type": "h2",
+   "text": "Find the Lowest (or Highest) Array Value"
+  },
+  {
+   "type": "p",
+   "text": "There are no built-in functions for finding the max or min\nvalue in an array."
+  },
+  {
+   "type": "p",
+   "text": "To find the lowest or highest value you have 3 options:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Sort the array and read the first or last element",
+    "Use Math.min() or Math.max()",
+    "Write a home made function"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Find Min or Max with sort()"
+  },
+  {
+   "type": "p",
+   "text": "After you have sorted an array, you can use the\nindex to obtain the highest and lowest values."
+  },
+  {
+   "type": "h2",
+   "text": "Sort Ascending:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(a, b){return a - b});\n\n// now points[0] contains the lowest value\n\n// and points[points.length-1] contains the highest value",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_low"
+  },
+  {
+   "type": "h2",
+   "text": "Sort Descending:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(a, b){return b - a});\n\n// now points[0] contains the highest value\n\n// and points[points.length-1] contains the lowest value",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_high"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Sorting a whole array is a very inefficient method if you only want to find the highest (or lowest) value."
+  },
+  {
+   "type": "h2",
+   "text": "Using Math.min() on an Array"
+  },
+  {
+   "type": "p",
+   "text": "You can use Math.min.apply to find the lowest number in an array:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myArrayMin(arr) {\n\n  return Math.min.apply(null, arr);\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_math_min"
+  },
+  {
+   "type": "p",
+   "text": "Math.min.apply(null, [1, 2, 3]) is equivalent to Math.min(1, 2, 3)."
+  },
+  {
+   "type": "h2",
+   "text": "Using Math.max() on an Array"
+  },
+  {
+   "type": "p",
+   "text": "You can use Math.max.apply to find the highest number in an array:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myArrayMax(arr) {\n\n    return Math.max.apply(null, arr);\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_math_max"
+  },
+  {
+   "type": "p",
+   "text": "Math.max.apply(null, [1, 2, 3]) is equivalent to Math.max(1, 2, 3)."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array Minimum Method"
+  },
+  {
+   "type": "p",
+   "text": "There is no built-in function for finding the lowest value in a JavaScript array."
+  },
+  {
+   "type": "p",
+   "text": "The fastest code to find the lowest number is to use a home made method."
+  },
+  {
+   "type": "p",
+   "text": "This function loops through an array comparing each value with the lowest value found:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myArrayMin(arr) {\n  let len = arr.length;\n  let min = Infinity;\n  while (len--) {\n\n  if (arr[len] < min) {\n\n  min = arr[len];\n    }\n  }\n  return min;\n}",
+   "caption": "Example (Find Min)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_min"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array Maximum Method"
+  },
+  {
+   "type": "p",
+   "text": "There is no built-in function for finding the highest value in a JavaScript array."
+  },
+  {
+   "type": "p",
+   "text": "The fastest code to find the highest number is to use a home made method."
+  },
+  {
+   "type": "p",
+   "text": "This function loops through an array comparing each value with the highest value found:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myArrayMax(arr) {\n\n  let len = arr.length;\n\n  let max = -Infinity;\n\n  while (len--) {\n\n  if (arr[len] > max) {\n\n  max = arr[len];\n    }\n  }\n  return max;\n}",
+   "caption": "Example (Find Max)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_max"
+  },
+  {
+   "type": "h2",
+   "text": "Sorting Object Arrays"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript arrays often contain objects:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\n\n {type:\"Volvo\", year:2016},\n\n {type:\"Saab\", year:2001},\n\n {type:\"BMW\", year:2010}\n];",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Even if objects have properties of different data types, the sort() method\ncan be used to sort the array."
+  },
+  {
+   "type": "p",
+   "text": "The solution is to write a compare function to compare the property values:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "cars.sort(function(a, b){return a.year - b.year});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_object1"
+  },
+  {
+   "type": "p",
+   "text": "Comparing string properties is a little more complex:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "cars.sort(function(a, b){\n\n  let x = a.type.toLowerCase();\n\n  let y = b.type.toLowerCase();\n\n    if (x < y) {return -1;}\n\n if (x > y) {return 1;}\n  return 0;\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_object2"
+  },
+  {
+   "type": "h2",
+   "text": "Stable Array sort()"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 revised the Array sort() method."
+  },
+  {
+   "type": "p",
+   "text": "Before 2019, the specification allowed unstable sorting algorithms such as QuickSort."
+  },
+  {
+   "type": "p",
+   "text": "After ES2019, browsers must use a stable sorting algorithm:"
+  },
+  {
+   "type": "p",
+   "text": "When sorting elements on a value, the elements must keep their relative position to other elements with the same value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [\n\n  {name:\"X00\",price:100 },\n\n  {name:\"X01\",price:100 },\n\n  {name:\"X02\",price:100 },\n\n  {name:\"X03\",price:100 },\n\n  {name:\"X04\",price:110 },\n\n  {name:\"X05\",price:110 },\n\n  {name:\"X06\",price:110 },\n\n  {name:\"X07\",price:110 }\n\n];",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_stable_sort"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, when sorting on price, the result is not allowed to come out with the names\nin an other relative position like this:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "X01 100\n\nX03 100\n\nX00 100\n\nX02 100\n\nX05 110\n\nX04 110\n\nX06 110\n\nX07 110",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "See Also:"
+  },
+  {
+   "type": "p",
+   "text": "Array Tutorial"
+  },
+  {
+   "type": "p",
+   "text": "Array Constructor"
+  },
+  {
+   "type": "p",
+   "text": "Array Basic Methods"
+  },
+  {
+   "type": "p",
+   "text": "Array Search Methods"
+  },
+  {
+   "type": "p",
+   "text": "Array Iteration Methods"
+  },
+  {
+   "type": "p",
+   "text": "Array Reference"
+  },
+  {
+   "type": "h2",
+   "text": "Complete JavaScript Reference"
+  },
+  {
+   "type": "p",
+   "text": "For a complete reference to all JavaScript properties and methods, with full descriptions and many examples, go to:"
+  },
+  {
+   "type": "p",
+   "text": "W3Schools' Full JavaScript Reference."
+  },
+  {
+   "type": "p",
+   "text": "The reference inludes all JavaScript updates from 1999 to 2025."
+  }
+ ]
+}

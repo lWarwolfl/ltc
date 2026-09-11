@@ -1,0 +1,505 @@
+{
+ "slug": "js_temporal_plaintime",
+ "course": "js",
+ "order": 190,
+ "url": "/js/js_temporal_plaintime.asp",
+ "title": "JavaScript Temporal PlainTime",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Temporal PlainTime"
+  },
+  {
+   "type": "h2",
+   "text": "The PlainTime Object"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.PlainTime object is a time object without a date."
+  },
+  {
+   "type": "p",
+   "text": "It represents an ISO 8601 wall-clock time without a date or time zone."
+  },
+  {
+   "type": "p",
+   "text": "Example: 10:30:00."
+  },
+  {
+   "type": "p",
+   "text": "It is useful for opening hours, alarms, and any time-only values."
+  },
+  {
+   "type": "h2",
+   "text": "The Temporal.PlainTime Object"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal PlainTime object is a time object with no date."
+  },
+  {
+   "type": "p",
+   "text": "It represents an ISO 8601 wall-clock time without a date or time zone."
+  },
+  {
+   "type": "p",
+   "text": "Example: 14:30:00."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Temporal.PlainTime(14, 30);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime"
+  },
+  {
+   "type": "h2",
+   "text": "Create a PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "You can create a PlainTime from a string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_from"
+  },
+  {
+   "type": "p",
+   "text": "You can also create a PlainTime using numeric values."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = new Temporal.PlainTime(14, 30);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime"
+  },
+  {
+   "type": "p",
+   "text": "The parameters are: hour, minute, second, millisecond, microsecond, nanosecond."
+  },
+  {
+   "type": "h2",
+   "text": "Get the Current Time"
+  },
+  {
+   "type": "p",
+   "text": "You can get the current local time using Temporal.Now.plainTimeISO()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const now = Temporal.Now.plainTimeISO();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_now"
+  },
+  {
+   "type": "h2",
+   "text": "Get Time Parts"
+  },
+  {
+   "type": "p",
+   "text": "You can read the different parts of a PlainTime value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30:15.123\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_from2"
+  },
+  {
+   "type": "h2",
+   "text": "Add and Subtract PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "Use add() and subtract()\nto do PlainTime math."
+  },
+  {
+   "type": "p",
+   "text": "PlainTime is immutable, so the original value is not changed."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30\");\n\nconst later = time.add({ minutes: 45 });\n\nconst earlier = time.subtract({ hours: 2 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_add"
+  },
+  {
+   "type": "p",
+   "text": "If the time passes midnight, it wraps around:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"23:30\");\n\nconst result = time.add({ minutes: 90 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_add_2"
+  },
+  {
+   "type": "h2",
+   "text": "Calculate PlainTime Differences"
+  },
+  {
+   "type": "p",
+   "text": "Use since() and until()\nto calculate PlainTime differences."
+  },
+  {
+   "type": "p",
+   "text": "Both methods return a Temporal.Duration object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainTime objects\n\nconst start = Temporal.PlainTime.from(\"09:00\");\n\nconst end = Temporal.PlainTime.from(\"17:30\");\n\n// Calculate the difference\n\nconst diff = start.since(end);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainTime objects\n\nconst start = Temporal.PlainTime.from(\"09:00\");\n\nconst end = Temporal.PlainTime.from(\"17:30\");\n\n// Calculate the difference\n\nconst diff = start.until(end);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_since"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript since() and until()"
+  },
+  {
+   "type": "p",
+   "text": "All temporal date objects have their own since() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "plaindate.since(plaindate)",
+    "plaintime.since(plaintime)",
+    "plainyearmonth.since(plainyearmonth)",
+    "plainmonthday.since(plainmonthday)",
+    "plaindatetime.since(plaindatetime)",
+    "zoneddatetime.since(zoneddatetime)",
+    "instant.since(instant)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own until() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "plaindate.until(plaindate)",
+    "plaintime.until(plaintime)",
+    "plainyearmonth.until(plainyearmonth)",
+    "plainmonthday.until(plainmonthday)",
+    "plaindatetime.until(plaindatetime)",
+    "zoneddatetime.until(zoneddatetime)",
+    "instant.until(instant)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "LearnMore:"
+  },
+  {
+   "type": "p",
+   "text": "Temporal Since and Until Tutorial"
+  },
+  {
+   "type": "h2",
+   "text": "The PlainTime compare() Method"
+  },
+  {
+   "type": "p",
+   "text": "Use Temporal.PlainTime.compare() to compare times."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainTime objects\n\nconst a = Temporal.PlainTime.from(\"08:30\");\n\nconst b = Temporal.PlainTime.from(\"14:30\");\n\n// Compare the two objects\n\nresult = Temporal.PlainTime.compare(a, b));",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_compare"
+  },
+  {
+   "type": "p",
+   "text": "The result is:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "-1 if the first time is earlier",
+    "0 if they are equal",
+    "1 if the first time is later"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Do not use =, <, or > when comparing temporal time."
+  },
+  {
+   "type": "p",
+   "text": "All temporal objects have their own compare() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal.Instant.compare(instant1, instant2)",
+    "Temporal.PlainDate.compare(plaindate1, plaindate2)",
+    "Temporal.PlainTime.compare(plaintime1, plaintime2)",
+    "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
+    "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
+    "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
+    "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
+    "Temporal.Duration.compare(duration1, duration2)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "LearnMore:"
+  },
+  {
+   "type": "p",
+   "text": "Temporal Compare Tutorial"
+  },
+  {
+   "type": "h2",
+   "text": "The PlainTime equals() Method"
+  },
+  {
+   "type": "p",
+   "text": "Use equals() to check if two times are the same."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainTime objects\n\nconst a = Temporal.PlainTime.from(\"14:30\");\n\nconst b = Temporal.PlainTime.from(\"14:30\");\n\n// Compare the two objects\n\nresult = a.equals(b);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_equals"
+  },
+  {
+   "type": "p",
+   "text": "Most (*) temporal objects have their own equals() method:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "instant.equals(instant)",
+    "plaindate.equals(plaindate)",
+    "plaintime.equals(plaintime)",
+    "plainyearmonth.equals(plainyearmonth)",
+    "plainmonthday.equals(plainmonthday)",
+    "plaindateTime.equals(plaindatetime)",
+    "zoneddateTime.equals(zoneddtatime)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "(*) Duration has not."
+  },
+  {
+   "type": "h2",
+   "text": "LearnMore:"
+  },
+  {
+   "type": "p",
+   "text": "Temporal Equals Tutorial"
+  },
+  {
+   "type": "h2",
+   "text": "When to Use PlainTime"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Opening hours (for example: 09:00 to 17:00).",
+    "Alarm clock times.",
+    "Recurring daily schedules.",
+    "Time input fields (without date and time zone)."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "If you need date, use PlainDateTime."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal PlainTime Methods"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Constructing",
+     "Description"
+    ],
+    [
+     "from()",
+     "Creates a new PlainTime object from an object or a string"
+    ],
+    [
+     "new",
+     "Creates a new PlainTime object from integer parameters"
+    ],
+    [
+     "Arithmetic",
+     ""
+    ],
+    [
+     "add()",
+     "Returns a new PlainTime with a duration added"
+    ],
+    [
+     "subtract()",
+     "Returns a new PlainTime with a duration subtracted"
+    ],
+    [
+     "round()",
+     "Returns a new PlainTime rounded to a given unit"
+    ],
+    [
+     "Comparing",
+     ""
+    ],
+    [
+     "compare()",
+     "Returns -1, 0, or 1 from comparing two times"
+    ],
+    [
+     "equals()",
+     "Returns true if two PlainTime objects are identical"
+    ],
+    [
+     "since()",
+     "Returns the difference since another time"
+    ],
+    [
+     "until()",
+     "Returns the difference until another time"
+    ],
+    [
+     "Modifying",
+     ""
+    ],
+    [
+     "with()",
+     "Returns a new PlainTime with specified fields modified"
+    ],
+    [
+     "Formatting",
+     ""
+    ],
+    [
+     "toJSON()",
+     "Returns an RFC 9557 format string for JSON serialization"
+    ],
+    [
+     "toLocaleString()",
+     "Returns a language-sensitive representation of the time"
+    ],
+    [
+     "toString()",
+     "Returns an RFC 9557 format representation of the time"
+    ],
+    [
+     "valueOf()",
+     "Throws a TypeError\nPrevents temporals from being converted to primitives"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.PlainTime Properties"
+  },
+  {
+   "type": "p",
+   "text": "The Temporal.PlainTime object has 6 properties of time information."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Property",
+     "Description"
+    ],
+    [
+     "hour",
+     "The hour as an integer (0-23)"
+    ],
+    [
+     "microsecond",
+     "The microsecond as an integer (0-999)"
+    ],
+    [
+     "millisecond",
+     "The millisecond as an integer (0-999)"
+    ],
+    [
+     "minute",
+     "The minute as an integer (0-59)"
+    ],
+    [
+     "nanosecond",
+     "The nanosecond as an integer (0-999)"
+    ],
+    [
+     "second",
+     "The second as an integer (0-59)"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Temporal.PlainTime(14, 30);",
+   "caption": "Display All Properties"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_prop"
+  }
+ ]
+}

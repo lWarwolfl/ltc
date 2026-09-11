@@ -1,0 +1,652 @@
+{
+ "slug": "js_array_sort",
+ "course": "js",
+ "order": 65,
+ "url": "/js/js_array_sort.asp",
+ "title": "مرتب‌سازی آرایه در JavaScript",
+ "summary": "در این درس آرایه‌ها را الفبایی و عددی مرتب می‌کنید، ترتیب آن‌ها را برمی‌گردانید و یاد می‌گیرید چرا sort() پیش‌فرض برای عددها نتیجهٔ نادرست می‌دهد. با تابع مقایسه، مرتب‌سازی تصادفی، یافتن کمینه و بیشینه و مرتب‌سازی آرایهٔ شیءها هم آشنا می‌شوید.",
+ "objectives": [
+  "آرایه را با sort() و reverse() مرتب و برعکس کنید",
+  "برای مرتب‌سازی عددی تابع مقایسه بنویسید",
+  "تفاوت sort() با toSorted() و reverse() با toReversed() را توضیح دهید",
+  "کمترین و بیشترین مقدار آرایه را با سه روش مختلف پیدا کنید",
+  "آرایهٔ شیءها را بر اساس مقدار یک خصوصیت مرتب کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مرتب‌سازی آرایه در JavaScript"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "مرتب‌سازی الفبایی\nsort(): مرتب کردن آرایه\nreverse(): برگرداندن ترتیب آرایه\ntoSorted(): مرتب‌سازی روی یک نسخهٔ تازه\ntoReversed(): برگرداندن ترتیب روی یک نسخهٔ تازه\nمرتب‌سازی شیءها",
+     "مرتب‌سازی عددی\nمرتب‌سازی عددی\nمرتب‌سازی تصادفی\nMath.min(): کمترین مقدار\nMath.max(): بیشترین مقدار\nتابع دست‌ساز کمینه\nتابع دست‌ساز بیشینه"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل آرایه‌های JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "مرتب کردن آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد sort() آرایه را به ترتیب الفبایی مرتب می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.sort();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort"
+  },
+  {
+   "type": "h2",
+   "text": "برگرداندن ترتیب آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد reverse() ترتیب عضوهای آرایه را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.reverse();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reverse2"
+  },
+  {
+   "type": "p",
+   "text": "با ترکیب sort() و reverse() می‌توانید آرایه را نزولی مرتب کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.sort();\n\nfruits.reverse();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_reverse"
+  },
+  {
+   "type": "h2",
+   "text": "متد toSorted() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2023 متد toSorted() را اضافه کرد تا بتوان بدون تغییر آرایهٔ اصلی آن را مرتب کرد."
+  },
+  {
+   "type": "p",
+   "text": "تفاوت toSorted() با sort() این است که اولی آرایهٔ جدیدی می‌سازد و آرایهٔ اصلی را دست‌نخورده نگه می‌دارد، اما دومی آرایهٔ اصلی را تغییر می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\"];\n\nconst sorted = months.toSorted();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_tosorted"
+  },
+  {
+   "type": "h2",
+   "text": "متد toReversed() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2023 متد toReversed() را اضافه کرد تا بتوان بدون تغییر آرایهٔ اصلی ترتیب آن را برگرداند."
+  },
+  {
+   "type": "p",
+   "text": "تفاوت toReversed() با reverse() این است که اولی آرایهٔ جدیدی می‌سازد و آرایهٔ اصلی را دست‌نخورده نگه می‌دارد، اما دومی آرایهٔ اصلی را تغییر می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\"];\n\nconst reversed = months.toReversed();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_toreversed"
+  },
+  {
+   "type": "h2",
+   "text": "مرتب‌سازی عددی"
+  },
+  {
+   "type": "p",
+   "text": "متد sort() به‌طور پیش‌فرض مقدارها را مثل رشته مرتب می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این کار برای رشته‌ها درست جواب می‌دهد («Apple» قبل از «Banana» می‌آید)."
+  },
+  {
+   "type": "p",
+   "text": "اگر عددها مثل رشته مرتب شوند، «25» بزرگ‌تر از «100» می‌شود، چون «2» از «1» بزرگ‌تر است."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل sort() هنگام مرتب کردن عددها نتیجهٔ نادرست می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "این مشکل را با دادن یک تابع مقایسه حل می‌کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(a, b){return a - b});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort2"
+  },
+  {
+   "type": "p",
+   "text": "با همین ترفند آرایه را نزولی مرتب کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(a, b){return b - a});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort3"
+  },
+  {
+   "type": "h2",
+   "text": "تابع مقایسه"
+  },
+  {
+   "type": "p",
+   "text": "هدف تابع مقایسه این است که ترتیب مرتب‌سازی دیگری تعریف کنید."
+  },
+  {
+   "type": "p",
+   "text": "تابع مقایسه باید بسته به آرگومان‌ها یک مقدار منفی، صفر یا مثبت برگرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function(a, b){return a - b}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "وقتی sort() دو مقدار را مقایسه می‌کند، آن‌ها را به تابع مقایسه می‌فرستد و بر اساس مقدار برگشتی (منفی، صفر یا مثبت) مرتبشان می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "اگر نتیجه منفی باشد، a قبل از b قرار می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "اگر نتیجه مثبت باشد، b قبل از a قرار می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "اگر نتیجه ۰ باشد، ترتیب این دو مقدار تغییری نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "مثال:"
+  },
+  {
+   "type": "p",
+   "text": "تابع مقایسه همهٔ مقدارهای آرایه را دو به دو (a, b) با هم می‌سنجد."
+  },
+  {
+   "type": "p",
+   "text": "وقتی ۴۰ و ۱۰۰ با هم مقایسه می‌شوند، متد sort() تابع مقایسه را با (40, 100) صدا می‌زند."
+  },
+  {
+   "type": "p",
+   "text": "تابع عبارت 40 - 100 (یعنی a - b) را حساب می‌کند و چون نتیجه منفی است (-60)، sort مقدار ۴۰ را کوچک‌تر از ۱۰۰ می‌بیند."
+  },
+  {
+   "type": "p",
+   "text": "با این قطعه کد می‌توانید مرتب‌سازی عددی و الفبایی را آزمایش کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"myFunction1()\">Sort Alphabetically</button>\n<button\n onclick=\"myFunction2()\">Sort Numerically</button>\n\n<p id=\"demo\"></p>\n\n<script>\nconst points = [40, 100, 1, 5, 25, 10];\n\n document.getElementById(\"demo\").innerHTML = points;\n\nfunction\n myFunction1() {\n  points.sort();\n  document.getElementById(\"demo\").innerHTML\n = points;\n}\n\nfunction myFunction2() {\n  points.sort(function(a, b){return\n a - b});\n  document.getElementById(\"demo\").innerHTML = points;\n}\n\n </script>",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_alpha"
+  },
+  {
+   "type": "h2",
+   "text": "مرتب کردن آرایه به ترتیب تصادفی"
+  },
+  {
+   "type": "p",
+   "text": "با یک تابع مقایسه، همان‌طور که در بالا توضیح دادیم، می‌توانید آرایهٔ عددی را به ترتیب تصادفی مرتب کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(){return 0.5 - Math.random()});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_random"
+  },
+  {
+   "type": "h2",
+   "text": "روش فیشر ییتس"
+  },
+  {
+   "type": "p",
+   "text": "روشی که در مثال بالا با points.sort() دیدید دقیق نیست و به بعضی عددها شانس بیشتری می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "معروف‌ترین روش درست، بُر زدن فیشر ییتس نام دارد و از سال ۱۹۳۸ در علم داده معرفی شده است!"
+  },
+  {
+   "type": "p",
+   "text": "همین روش در JavaScript به این شکل نوشته می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\nfor (let i = points.length -1; i > 0; i--) {\n\n  let j = Math.floor(Math.random() * (i+1));\n\n  let k = points[i];\n\n  points[i] = points[j];\n\n  points[j] = k;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_random2"
+  },
+  {
+   "type": "h2",
+   "text": "یافتن کمترین (یا بیشترین) مقدار آرایه"
+  },
+  {
+   "type": "p",
+   "text": "تابع آماده‌ای برای یافتن بیشترین یا کمترین مقدار آرایه وجود ندارد."
+  },
+  {
+   "type": "p",
+   "text": "برای یافتن کمترین یا بیشترین مقدار ۳ راه دارید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "آرایه را مرتب کنید و عضو اول یا آخر را بخوانید",
+    "از Math.min() یا Math.max() استفاده کنید",
+    "یک تابع دست‌ساز بنویسید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "یافتن کمینه یا بیشینه با sort()"
+  },
+  {
+   "type": "p",
+   "text": "بعد از مرتب کردن آرایه، با اندیس می‌توانید بیشترین و کمترین مقدار را به دست آورید."
+  },
+  {
+   "type": "h2",
+   "text": "مرتب‌سازی صعودی:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(a, b){return a - b});\n\n// now points[0] contains the lowest value\n\n// and points[points.length-1] contains the highest value",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_low"
+  },
+  {
+   "type": "h2",
+   "text": "مرتب‌سازی نزولی:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = [40, 100, 1, 5, 25, 10];\n\npoints.sort(function(a, b){return b - a});\n\n// now points[0] contains the highest value\n\n// and points[points.length-1] contains the lowest value",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_high"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اگر فقط می‌خواهید بیشترین (یا کمترین) مقدار را پیدا کنید، مرتب کردن کل آرایه روش بسیار ناکارآمدی است."
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از Math.min() روی آرایه"
+  },
+  {
+   "type": "p",
+   "text": "برای یافتن کمترین عدد آرایه می‌توانید از Math.min.apply استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myArrayMin(arr) {\n\n  return Math.min.apply(null, arr);\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_math_min"
+  },
+  {
+   "type": "p",
+   "text": "عبارت Math.min.apply(null, [1, 2, 3]) معادل Math.min(1, 2, 3) است."
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از Math.max() روی آرایه"
+  },
+  {
+   "type": "p",
+   "text": "برای یافتن بیشترین عدد آرایه می‌توانید از Math.max.apply استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myArrayMax(arr) {\n\n    return Math.max.apply(null, arr);\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_math_max"
+  },
+  {
+   "type": "p",
+   "text": "عبارت Math.max.apply(null, [1, 2, 3]) معادل Math.max(1, 2, 3) است."
+  },
+  {
+   "type": "h2",
+   "text": "یافتن کمینه در آرایه"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript تابع آماده‌ای برای یافتن کمترین مقدار آرایه وجود ندارد."
+  },
+  {
+   "type": "p",
+   "text": "سریع‌ترین راه یافتن کمترین عدد، نوشتن یک تابع دست‌ساز است."
+  },
+  {
+   "type": "p",
+   "text": "این تابع روی آرایه حلقه می‌زند و هر مقدار را با کمترین مقدار پیدا شده مقایسه می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myArrayMin(arr) {\n  let len = arr.length;\n  let min = Infinity;\n  while (len--) {\n\n  if (arr[len] < min) {\n\n  min = arr[len];\n    }\n  }\n  return min;\n}",
+   "caption": "مثال (یافتن کمینه)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_min"
+  },
+  {
+   "type": "h2",
+   "text": "یافتن بیشینه در آرایه"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript تابع آماده‌ای برای یافتن بیشترین مقدار آرایه وجود ندارد."
+  },
+  {
+   "type": "p",
+   "text": "سریع‌ترین راه یافتن بیشترین عدد، نوشتن یک تابع دست‌ساز است."
+  },
+  {
+   "type": "p",
+   "text": "این تابع روی آرایه حلقه می‌زند و هر مقدار را با بیشترین مقدار پیدا شده مقایسه می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myArrayMax(arr) {\n\n  let len = arr.length;\n\n  let max = -Infinity;\n\n  while (len--) {\n\n  if (arr[len] > max) {\n\n  max = arr[len];\n    }\n  }\n  return max;\n}",
+   "caption": "مثال (یافتن بیشینه)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_max"
+  },
+  {
+   "type": "h2",
+   "text": "مرتب‌سازی آرایهٔ شیءها"
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌های JavaScript اغلب شیء در خود دارند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\n\n {type:\"Volvo\", year:2016},\n\n {type:\"Saab\", year:2001},\n\n {type:\"BMW\", year:2010}\n];",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "حتی اگر شیءها خصوصیت‌هایی با نوع دادهٔ متفاوت داشته باشند، با sort() می‌توان آرایه را مرتب کرد."
+  },
+  {
+   "type": "p",
+   "text": "راه‌حل این است که یک تابع مقایسه برای سنجیدن مقدار خصوصیت‌ها بنویسید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "cars.sort(function(a, b){return a.year - b.year});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_object1"
+  },
+  {
+   "type": "p",
+   "text": "سنجیدن خصوصیت‌های رشته‌ای کمی پیچیده‌تر است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "cars.sort(function(a, b){\n\n  let x = a.type.toLowerCase();\n\n  let y = b.type.toLowerCase();\n\n    if (x < y) {return -1;}\n\n if (x > y) {return 1;}\n  return 0;\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_sort_object2"
+  },
+  {
+   "type": "h2",
+   "text": "مرتب‌سازی پایدار در sort() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد sort() آرایه را بازنگری کرد."
+  },
+  {
+   "type": "p",
+   "text": "پیش از ۲۰۱۹، استاندارد الگوریتم‌های مرتب‌سازی ناپایدار مثل QuickSort را هم مجاز می‌دانست."
+  },
+  {
+   "type": "p",
+   "text": "بعد از ES2019، مرورگرها باید از الگوریتم مرتب‌سازی پایدار استفاده کنند:"
+  },
+  {
+   "type": "p",
+   "text": "وقتی عضوها بر اساس یک مقدار مرتب می‌شوند، باید موقعیت نسبی خود را نسبت به عضوهای دیگر با همان مقدار حفظ کنند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [\n\n  {name:\"X00\",price:100 },\n\n  {name:\"X01\",price:100 },\n\n  {name:\"X02\",price:100 },\n\n  {name:\"X03\",price:100 },\n\n  {name:\"X04\",price:110 },\n\n  {name:\"X05\",price:110 },\n\n  {name:\"X06\",price:110 },\n\n  {name:\"X07\",price:110 }\n\n];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_stable_sort"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، وقتی بر اساس price مرتب می‌کنیم، نتیجه مجاز نیست نام‌ها را با موقعیت نسبی دیگری مثل این بیرون بدهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "X01 100\n\nX03 100\n\nX00 100\n\nX02 100\n\nX05 110\n\nX04 110\n\nX06 110\n\nX07 110",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای پایهٔ آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای جست‌وجو در آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای پیمایش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "مرجع آرایه"
+  },
+  {
+   "type": "h2",
+   "text": "مرجع کامل JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، همراه با توضیح کامل و مثال‌های فراوان، به این بخش بروید:"
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل JavaScript در W3Schools."
+  },
+  {
+   "type": "p",
+   "text": "این مرجع همهٔ به‌روزرسانی‌های JavaScript از ۱۹۹۹ تا ۲۰۲۵ را در بر می‌گیرد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل sort.html بسازید و آرایه‌ای از نام میوه‌ها را با sort() مرتب کنید و بعد با reverse() ترتیبش را برگردانید؛ هر دو خروجی را چاپ کنید.",
+   "hint": "ترکیب sort() و سپس reverse() آرایه را نزولی مرتب می‌کند."
+  },
+  {
+   "prompt": "آرایه‌ای از عددها بسازید و آن را بدون تابع مقایسه مرتب کنید؛ بعد با (a, b) => a - b دوباره مرتب کنید و دو خروجی را با هم مقایسه کنید.",
+   "hint": "بدون تابع مقایسه، عددها مثل رشته مرتب می‌شوند و ۱۰۰ قبل از ۲۵ می‌آید."
+  },
+  {
+   "prompt": "با به کار بردن toSorted() روی آرایه، نتیجه را در متغیر جدیدی بریزید و بعد آرایهٔ اصلی را چاپ کنید تا ببینید تغییری کرده یا نه.",
+   "hint": "toSorted() آرایهٔ جدید می‌سازد و آرایهٔ اصلی را دست‌نخورده می‌گذارد."
+  },
+  {
+   "prompt": "کمترین و بیشترین عدد یک آرایهٔ عددی را یک‌بار با sort() و اندیس صفر و آخر، و یک‌بار با Math.min.apply و Math.max.apply پیدا کنید.",
+   "hint": "Math.min.apply(null, arr) معادل است با فراخوانی Math.min روی همهٔ عضوهای آرایه."
+  },
+  {
+   "prompt": "آرایه‌ای از شیءها مثل {type: \"Volvo\", year: 2011} بسازید و با یک تابع مقایسه آن‌ها را بر اساس مقدار year مرتب کنید.",
+   "hint": "در تابع مقایسه دو شیء را بگیرید و اختلاف یکی از خصوصیت‌ها را برگردانید، مثلاً a.year - b.year."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "چرا آرایهٔ [1, 5, 10, 25, 100] با sort() درست مرتب نمی‌شود؟",
+   "options": [
+    "چون sort() فقط روی رشته‌ها کار می‌کند",
+    "چون sort() مقدارها را مثل رشته مرتب می‌کند",
+    "چون آرایه باید عددی نباشد",
+    "چون sort() آرایه را کپی می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "sort() پیش‌فرض همه را رشته می‌بیند؛ پس «100» قبل از «25» می‌آید، چون «1» از «2» کوچک‌تر است. برای عددها باید تابع مقایسه بدهید."
+  },
+  {
+   "question": "برای مرتب‌سازی صعودی یک آرایهٔ عددی کدام تابع مقایسه درست است؟",
+   "options": [
+    "(a, b) => b - a",
+    "(a, b) => a - b",
+    "(a, b) => a + b",
+    "(a, b) => a > b"
+   ],
+   "answer": 1,
+   "explanation": "اگر a - b منفی باشد، a قبل از b می‌آید؛ یعنی ترتیب صعودی. برای نزولی باید b - a بنویسید."
+  },
+  {
+   "question": "تفاوت sort() با toSorted() چیست؟",
+   "options": [
+    "toSorted() آرایهٔ اصلی را تغییر نمی‌دهد و آرایهٔ جدید می‌سازد",
+    "sort() آرایهٔ اصلی را تغییر نمی‌دهد",
+    "toSorted() فقط روی رشته‌ها کار می‌کند",
+    "هر دو آرایهٔ اصلی را تغییر می‌دهند"
+   ],
+   "answer": 0,
+   "explanation": "toSorted() نسخهٔ تازه‌ای برمی‌گرداند و آرایهٔ اصلی را دست‌نخورده می‌گذارد، اما sort() همان آرایهٔ اصلی را بازآرایی می‌کند."
+  },
+  {
+   "question": "در تابع مقایسه، اگر مقدار برگشتی منفی باشد sort() چه می‌کند؟",
+   "options": [
+    "b را قبل از a می‌گذارد",
+    "a را قبل از b می‌گذارد",
+    "ترتیب دو مقدار را تغییر نمی‌دهد",
+    "خطا می‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "نتیجهٔ منفی یعنی a کوچک‌تر است و قبل از b قرار می‌گیرد. صفر یعنی ترتیب تغییری نمی‌کند و مقدار مثبت یعنی b اول می‌آید."
+  },
+  {
+   "question": "کدام عبارت معادل Math.min.apply(null, [1, 2, 3]) است؟",
+   "options": [
+    "Math.min(1, 2, 3)",
+    "Math.min([1, 2, 3])",
+    "Math.min.apply([1, 2, 3])",
+    "Math.min(0, 1, 2, 3)"
+   ],
+   "answer": 0,
+   "explanation": "apply عضوهای آرایه را به‌صورت آرگومان‌های جدا به تابع می‌دهد، پس نتیجه همان Math.min(1, 2, 3) است؛ اگر آرایه را مستقیم بدهید NaN می‌گیرید."
+  }
+ ]
+}

@@ -1,0 +1,278 @@
+{
+ "slug": "js_hoisting",
+ "course": "js",
+ "order": 54,
+ "url": "/js/js_hoisting.asp",
+ "title": "بالا کشیدن (Hoisting) در JavaScript",
+ "summary": "در JavaScript تعریف متغیرها پیش از اجرای کد به بالای دامنه برده می‌شود؛ این رفتار را hoisting می‌گویند. در این درس می‌بینید چرا متغیر var پیش از مقداردهی undefined است، let و const چطور در محدودهٔ مردهٔ زمانی گیر می‌کنند و چرا تعریف متغیرها در ابتدای دامنه بهترین قاعده است.",
+ "objectives": [
+  "توضیح دهید hoisting چیست و در چه دامنه‌ای رخ می‌دهد",
+  "تفاوت رفتار var با let و const را پیش از تعریف بیان کنید",
+  "تشخیص دهید چه زمانی مقدار یک متغیر undefined می‌شود",
+  "کدی بنویسید که متغیرهایش در ابتدای دامنه تعریف شده باشند"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "بالا کشیدن (Hoisting) در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Hoisting رفتار پیش‌فرض JavaScript برای بردن تعریف‌ها به ابتدای دامنه است."
+  },
+  {
+   "type": "h2",
+   "text": "تعریف‌های JavaScript بالا کشیده می‌شوند"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript می‌توان متغیری را بعد از استفاده‌اش تعریف کرد."
+  },
+  {
+   "type": "p",
+   "text": "به بیان دیگر: می‌توان متغیر را پیش از تعریف‌شدنش به کار برد."
+  },
+  {
+   "type": "p",
+   "text": "مثال ۱ همان نتیجهٔ مثال ۲ را می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "x = 5; // Assign 5 to x\n\nelem = document.getElementById(\"demo\"); // Find an element\n\nelem.innerHTML = x;\n// Display x in the element\n\nvar x; // Declare x",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_hoisting1"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var x; // Declare x\n\nx = 5; // Assign 5 to x\n\nelem = document.getElementById(\"demo\"); // Find an element\nelem.innerHTML = x;\n// Display x in the element",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_hoisting2"
+  },
+  {
+   "type": "p",
+   "text": "برای درک این موضوع باید با اصطلاح hoisting آشنا شوید."
+  },
+  {
+   "type": "p",
+   "text": "Hoisting رفتار پیش‌فرض JavaScript است که همهٔ تعریف‌ها را به بالای دامنهٔ جاری می‌برد (به ابتدای اسکریپت جاری یا تابع جاری)."
+  },
+  {
+   "type": "h2",
+   "text": "کلیدواژه‌های let و const"
+  },
+  {
+   "type": "p",
+   "text": "متغیرهای تعریف‌شده با let و const به بالای بلوک بالا کشیده می‌شوند، اما مقداردهی اولیه نمی‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "یعنی بلوک کد از وجود متغیر آگاه است، اما تا وقتی تعریف نشده نمی‌توان از آن استفاده کرد."
+  },
+  {
+   "type": "p",
+   "text": "استفاده از متغیر let پیش از تعریف آن به ReferenceError منجر می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "متغیر از ابتدای بلوک تا لحظهٔ تعریف، در «محدودهٔ مردهٔ زمانی» قرار دارد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "carName = \"Volvo\";\n\nlet carName;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_hoisting_let"
+  },
+  {
+   "type": "p",
+   "text": "استفاده از متغیر const پیش از تعریف آن خطای نحو است، پس کد به‌سادگی اجرا نمی‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "carName = \"Volvo\";\n\nconst carName;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_hoisting_const"
+  },
+  {
+   "type": "p",
+   "text": "دربارهٔ let و const در درس let و const در JavaScript بیشتر بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "مقداردهی‌های JavaScript بالا کشیده نمی‌شوند"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript فقط تعریف‌ها را بالا می‌کشد، نه مقداردهی‌ها را."
+  },
+  {
+   "type": "p",
+   "text": "مثال ۱ همان نتیجهٔ مثال ۲ را نمی‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var x = 5; // Initialize x\nvar y = 7; // Initialize y\n\nelem = document.getElementById(\"demo\"); // Find an element\n\nelem.innerHTML = x + \" \" + y;           // Display x and y",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_hoisting4"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var x = 5; // Initialize x\n\nelem = document.getElementById(\"demo\"); // Find an element\n\nelem.innerHTML = x + \" \" + y;           // Display x and y\n\nvar y = 7; // Initialize y",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_hoisting3"
+  },
+  {
+   "type": "p",
+   "text": "آیا این منطقی است که y در مثال آخر undefined باشد؟"
+  },
+  {
+   "type": "p",
+   "text": "دلیلش این است که فقط تعریف (var y) به بالا کشیده می‌شود، نه مقداردهی (=7)."
+  },
+  {
+   "type": "p",
+   "text": "به‌خاطر hoisting، متغیر y پیش از استفاده تعریف شده است، اما چون مقداردهی‌ها بالا کشیده نمی‌شوند، مقدار y همان undefined است."
+  },
+  {
+   "type": "p",
+   "text": "مثال ۲ معادل نوشتن این کد است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var x = 5; // Initialize x\n\nvar y;     // Declare y\n\nelem = document.getElementById(\"demo\"); // Find an element\n\nelem.innerHTML = x + \" \" + y;           // Display x and y\n\ny = 7;    // Assign 7 to y",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_hoisting5"
+  },
+  {
+   "type": "h2",
+   "text": "متغیرها را در ابتدای دامنه تعریف کنید!"
+  },
+  {
+   "type": "p",
+   "text": "برای بسیاری از برنامه‌نویسان، hoisting رفتاری ناشناخته یا نادیده‌گرفته‌شده در JavaScript است."
+  },
+  {
+   "type": "p",
+   "text": "اگر برنامه‌نویس hoisting را نفهمد، برنامه‌اش ممکن است باگ (خطا) داشته باشد."
+  },
+  {
+   "type": "p",
+   "text": "برای پرهیز از باگ، همیشه همهٔ متغیرها را در ابتدای هر دامنه تعریف کنید."
+  },
+  {
+   "type": "p",
+   "text": "چون JavaScript کد را همین‌طور تفسیر می‌کند، این همیشه قاعدهٔ خوبی است."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JavaScript در حالت strict اجازه نمی‌دهد متغیرهای تعریف‌نشده به کار برده شوند. درس «use strict» را در فصل بعد بخوانید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل hoist.html بسازید و اول به متغیری مقدار بدهید، بعد پایین‌تر آن را با var تعریف کنید؛ نتیجه را در کنسول ببینید.",
+   "hint": "تعریف var بالا کشیده می‌شود، پس کد خطا نمی‌دهد و مقدار درست چاپ می‌شود."
+  },
+  {
+   "prompt": "همان کد را با let بازنویسی کنید و خطای کنسول را بخوانید.",
+   "hint": "متغیر let پیش از تعریف در محدودهٔ مردهٔ زمانی است و ReferenceError می‌گیرید."
+  },
+  {
+   "prompt": "دو متغیر با var بسازید، یکی را در ابتدای کد مقداردهی کنید و دیگری را بعد از دستور چاپ؛ خروجی undefined را ببینید.",
+   "hint": "فقط تعریف بالا می‌رود؛ مقداردهی سر جای خودش می‌ماند، پس y پیش از مقداردهی undefined است."
+  },
+  {
+   "prompt": "کدی بنویسید که متغیر const را پیش از تعریف مقداردهی کند و ببینید چرا کد به‌کل اجرا نمی‌شود.",
+   "hint": "استفاده از const پیش از تعریف خطای نحو است، یعنی کد حتی شروع هم نمی‌شود."
+  },
+  {
+   "prompt": "همهٔ متغیرهای یک فایل نمونه را به ابتدای اسکریپت منتقل کنید و کد را دوباره اجرا کنید.",
+   "hint": "این همان قاعدهٔ پیشنهادی است: تعریف‌ها را در بالای هر دامنه بنویسید تا hoisting غافلگیرتان نکند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "hoisting در JavaScript چه رفتاری است؟",
+   "options": [
+    "بردن تعریف‌ها به بالای دامنهٔ جاری",
+    "تبدیل متغیرها به رشته",
+    "اجرای کد از خط آخر",
+    "حذف متغیرهای بی‌استفاده"
+   ],
+   "answer": 0,
+   "explanation": "موتور JavaScript تعریف‌ها را پیش از اجرای کد به بالای دامنه (اسکریپت یا تابع) می‌برد؛ به همین کار hoisting می‌گویند."
+  },
+  {
+   "question": "مقدار y در کدی که x را چاپ می‌کند و y را پایین‌تر با var مقداردهی می‌کند، در لحظهٔ چاپ چیست؟",
+   "options": [
+    "0",
+    "undefined",
+    "خطای مرجع",
+    "null"
+   ],
+   "answer": 1,
+   "explanation": "فقط تعریف (var y) بالا می‌رود، نه مقداردهی؛ پس y پیش از مقداردهی مقدار undefined دارد."
+  },
+  {
+   "question": "استفاده از متغیر let پیش از تعریف چه نتیجه‌ای دارد؟",
+   "options": [
+    "کار می‌کند و undefined می‌دهد",
+    "مقدار پیش‌فرض صفر می‌گیرد",
+    "به خطای ReferenceError منجر می‌شود",
+    "به دامنهٔ سراسری می‌رود"
+   ],
+   "answer": 2,
+   "explanation": "let بالا کشیده می‌شود اما مقداردهی اولیه نمی‌شود؛ بازهٔ پیش از تعریف محدودهٔ مردهٔ زمانی است و ReferenceError می‌دهد."
+  },
+  {
+   "question": "کدام جمله دربارهٔ مقداردهی‌ها (initializations) درست است؟",
+   "options": [
+    "مقداردهی‌ها هم بالا کشیده می‌شوند",
+    "مقداردهی‌ها فقط با const بالا می‌روند",
+    "مقداردهی‌ها هرگز بالا کشیده نمی‌شوند",
+    "مقداردهی‌ها بالا می‌روند و صفر می‌شوند"
+   ],
+   "answer": 2,
+   "explanation": "JavaScript فقط تعریف‌ها را بالا می‌کشد؛ مقداردهی سر جای خودش می‌ماند و به همین دلیل مقدار متغیر var پیش از خط مقداردهی undefined است."
+  },
+  {
+   "question": "چرا توصیه می‌شود همهٔ متغیرها در ابتدای هر دامنه تعریف شوند؟",
+   "options": [
+    "چون کد تندتر اجرا می‌شود",
+    "چون JavaScript کد را همین‌طور تفسیر می‌کند و باگ کمتری می‌ماند",
+    "چون در حالت strict اجباری است",
+    "چون متغیرها سریع‌تر پاک می‌شوند"
+   ],
+   "answer": 1,
+   "explanation": "نتیجهٔ hoisting همان چیزی است که موتور JavaScript اجرا می‌کند؛ اگر تعریف‌ها را خودتان بالا بنویسید، رفتار کد با انتظارتان یکی می‌ماند و باگ‌های غافلگیرکننده کمتر می‌شود."
+  }
+ ]
+}

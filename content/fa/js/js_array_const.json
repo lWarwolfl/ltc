@@ -1,0 +1,313 @@
+{
+ "slug": "js_array_const",
+ "course": "js",
+ "order": 67,
+ "url": "/js/js_array_const.asp",
+ "title": "آرایهٔ const در JavaScript",
+ "summary": "در این درس یاد می‌گیرید چرا رسم شده آرایه‌ها را با const تعریف کنند و بدانید const ارجاع را ثابت می‌کند نه محتوا را. تفاوت آرایهٔ const با آرایهٔ var در مقداردهی اولیه، دامنهٔ بلوکی و تعریف دوباره را می‌بینید.",
+ "objectives": [
+  "آرایه را با const تعریف کنید و توضیح دهید چرا می‌توان عضوهایش را عوض کرد",
+  "تعریف دوباره و مقداردهی دوبارهٔ آرایهٔ const را تشخیص دهید",
+  "توضیح دهید چرا آرایهٔ const باید همان لحظهٔ تعریف مقدار بگیرد",
+  "تفاوت دامنهٔ بلوکی const با var را روی آرایه نشان دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "آرایهٔ const در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "استاندارد ECMAScript 2015 (ES6)"
+  },
+  {
+   "type": "p",
+   "text": "در سال ۲۰۱۵، JavaScript کلیدواژهٔ مهم و تازه‌ای به نام const را معرفی کرد."
+  },
+  {
+   "type": "p",
+   "text": "الان رسم رایج این است که آرایه‌ها را با const تعریف می‌کنند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_const_array_use"
+  },
+  {
+   "type": "h2",
+   "text": "مقدار جدید نمی‌گیرد"
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌ای که با const تعریف شده باشد نمی‌تواند مقدار جدید بگیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\ncars = [\"Toyota\", \"Volvo\", \"Audi\"];    // ERROR",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_const_array_assign"
+  },
+  {
+   "type": "h2",
+   "text": "آرایه‌ها ثابت نیستند"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ const کمی گمراه‌کننده است."
+  },
+  {
+   "type": "p",
+   "text": "آرایهٔ ثابت تعریف نمی‌کند، بلکه یک ارجاع ثابت به آرایه تعریف می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل هنوز می‌توانیم عضوهای یک آرایهٔ const را تغییر دهیم."
+  },
+  {
+   "type": "h2",
+   "text": "عضوها قابل تغییرند"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید عضوهای یک آرایهٔ const را عوض کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// You can create a constant array:\n\nconst cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\n// You can change an element:\n\ncars[0] = \"Toyota\";\n\n// You can add an element:\n\ncars.push(\"Audi\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_const_array"
+  },
+  {
+   "type": "h2",
+   "text": "مقداردهی هنگام تعریف"
+  },
+  {
+   "type": "p",
+   "text": "متغیرهای const در JavaScript باید همان لحظهٔ تعریف مقدار بگیرند:"
+  },
+  {
+   "type": "p",
+   "text": "یعنی آرایه‌ای که با const تعریف می‌شود باید همان‌جا مقداردهی اولیه شود."
+  },
+  {
+   "type": "p",
+   "text": "استفاده از const بدون مقداردهی اولیه به آرایه، خطای نحو است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars;\n\ncars = [\"Saab\", \"Volvo\", \"BMW\"];",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌هایی که با var تعریف می‌شوند هر زمان می‌توانند مقداردهی اولیه شوند."
+  },
+  {
+   "type": "p",
+   "text": "حتی می‌توانید آرایه را قبل از تعریفش به کار ببرید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\nvar cars;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_hoisting_var"
+  },
+  {
+   "type": "h2",
+   "text": "دامنهٔ بلوکی const"
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌ای که با const تعریف می‌شود دامنهٔ بلوکی دارد."
+  },
+  {
+   "type": "p",
+   "text": "آرایهٔ تعریف‌شده درون یک بلوک با آرایهٔ تعریف‌شده بیرون بلوک یکی نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\n// Here cars[0] is \"Saab\"\n\n{\n\n  const cars = [\"Toyota\", \"Volvo\", \"BMW\"];\n\n  // Here cars[0] is \"Toyota\"\n\n}\n\n// Here cars[0] is \"Saab\"",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_const"
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌ای که با var تعریف می‌شود دامنهٔ بلوکی ندارد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\n// Here cars[0] is \"Saab\"\n\n{\n\n  var cars = [\"Toyota\", \"Volvo\", \"BMW\"];\n\n  // Here cars[0] is \"Toyota\"\n\n}\n\n// Here cars[0] is \"Toyota\"",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_var"
+  },
+  {
+   "type": "p",
+   "text": "دربارهٔ دامنهٔ بلوکی می‌توانید در درس JavaScript Scope بیشتر بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "تعریف دوبارهٔ آرایه"
+  },
+  {
+   "type": "p",
+   "text": "تعریف دوبارهٔ آرایه‌ای که با var ساخته شده در هر جای برنامه مجاز است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var cars = [\"Volvo\", \"BMW\"];   // Allowed\n\nvar cars = [\"Toyota\", \"BMW\"];  // Allowed\n\ncars = [\"Volvo\", \"Saab\"];      // Allowed",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "تعریف دوباره یا مقداردهی دوبارهٔ آرایه به const، در همان دامنه یا همان بلوک، مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var cars = [\"Volvo\", \"BMW\"];     // Allowed\n\nconst cars = [\"Volvo\", \"BMW\"];   // Not allowed\n\n{\n\n  var cars = [\"Volvo\", \"BMW\"];   // Allowed\n\n  const cars = [\"Volvo\", \"BMW\"]; // Not allowed\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "تعریف دوباره یا مقداردهی دوبارهٔ آرایهٔ const موجود، در همان دامنه یا همان بلوک، مجاز نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Volvo\", \"BMW\"];   // Allowed\n\nconst cars = [\"Volvo\", \"BMW\"];   // Not allowed\n\nvar cars = [\"Volvo\", \"BMW\"];     // Not allowed\n\ncars = [\"Volvo\", \"BMW\"];         // Not allowed\n\n{\n\n  const cars = [\"Volvo\", \"BMW\"]; // Allowed\n\n  const cars = [\"Volvo\", \"BMW\"]; // Not allowed\n\n  var cars = [\"Volvo\", \"BMW\"];   // Not allowed\n\n  cars = [\"Volvo\", \"BMW\"];       // Not allowed\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "تعریف دوبارهٔ آرایه با const در دامنهٔ دیگر یا بلوک دیگر مجاز است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Volvo\", \"BMW\"];   // Allowed\n\n{\n\n  const cars = [\"Volvo\", \"BMW\"]; // Allowed\n\n}\n\n{\n\n  const cars = [\"Volvo\", \"BMW\"]; // Allowed\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "مرجع کامل آرایه"
+  },
+  {
+   "type": "p",
+   "text": "برای مرجع کامل آرایه به این بخش از سایت بروید:"
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل آرایه‌های JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "این مرجع توضیح و مثال همهٔ خصوصیت‌ها و متدهای آرایه را دارد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل arrayconst.html بسازید و آرایه‌ای از ماشین‌ها را با const تعریف کنید؛ بعد عضو دوم آرایه را عوض کنید و آرایه را چاپ کنید.",
+   "hint": "const فقط ارجاع را ثابت نگه می‌دارد؛ تغییر دادن عضوهای آرایه مجاز است."
+  },
+  {
+   "prompt": "همان آرایه را با use strict به یک آرایهٔ جدید نسبت دهید تا خطای کنسول را ببینید.",
+   "hint": "آرایهٔ const را نمی‌توان دوباره مقداردهی کرد؛ فقط عضوهای آن قابل تغییرند."
+  },
+  {
+   "prompt": "یک آرایهٔ const بدون مقدار اولیه تعریف کنید و خطای نحو کنسول را بخوانید؛ بعد آرایه را همراه با مقدارش تعریف کنید.",
+   "hint": "آرایهٔ const باید همان لحظهٔ تعریف مقداردهی اولیه شود."
+  },
+  {
+   "prompt": "آرایه‌ای با var بسازید و آن را قبل از خط تعریف استفاده کنید؛ بعد همین کار را با const انجام دهید و تفاوت خطاها را ببینید.",
+   "hint": "آرایهٔ var را می‌توان قبل از تعریفش به کار برد، اما const دامنهٔ بلوکی دارد و این کار مجاز نیست."
+  },
+  {
+   "prompt": "یک بلوک { } بسازید و درون آن آرایه‌ای با const و بیرون آن آرایهٔ دیگری با همان نام تعریف کنید؛ ببینید هر کدام چه طولی دارند.",
+   "hint": "آرایهٔ const درون بلوک فقط داخل همان بلوک معتبر است، پس بیرون بلوک با آرایهٔ دیگری روبه‌رو هستید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام جمله دربارهٔ آرایهٔ تعریف‌شده با const درست است؟",
+   "options": [
+    "نه ارجاعش تغییر می‌کند و نه عضوهایش",
+    "عضوهایش قابل تغییرند اما نمی‌توان آن را به آرایهٔ دیگری نسبت داد",
+    "عضوهایش هم قابل تغییر نیستند",
+    "فقط در حالت strict کار می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "const یک ارجاع ثابت به آرایه می‌سازد؛ پس نمی‌توان آرایه را با آرایهٔ دیگری جایگزین کرد، اما عضوها را می‌توان عوض کرد."
+  },
+  {
+   "question": "آرایهٔ const چه زمانی باید مقدار بگیرد؟",
+   "options": [
+    "هر زمان، مثل متغیر var",
+    "در همان لحظهٔ تعریف",
+    "فقط بعد از اولین استفاده",
+    "اصلاً نیازی به مقداردهی ندارد"
+   ],
+   "answer": 1,
+   "explanation": "آرایهٔ const موقع تعریف باید مقداردهی اولیه شود؛ const بدون مقدار، خطای نحو می‌دهد. آرایهٔ var این محدودیت را ندارد."
+  },
+  {
+   "question": "آرایهٔ تعریف‌شده درون یک بلوک با آرایهٔ هم‌نام تعریف‌شده بیرون بلوک چه رابطه‌ای دارد؟",
+   "options": [
+    "هر دو یک آرایه‌اند",
+    "آرایهٔ درون بلوک روی بیرونی اثر می‌گذارد",
+    "با هم فرق دارند، چون آرایهٔ const دامنهٔ بلوکی دارد",
+    "آرایهٔ بیرون بلوک نامعتبر می‌شود"
+   ],
+   "answer": 2,
+   "explanation": "آرایهٔ const دامنهٔ بلوکی دارد؛ پس آرایهٔ درون بلوک فقط داخل همان بلوک معتبر است و آرایهٔ بیرونی جداست."
+  },
+  {
+   "question": "چرا می‌توان عضوهای یک آرایهٔ const را تغییر داد؟",
+   "options": [
+    "چون const فقط برای متغیرهای عددی به کار می‌رود",
+    "چون const ارجاع به آرایه را ثابت نگه می‌دارد، نه محتوای آن را",
+    "چون آرایه‌ها در JavaScript همیشه ثابت‌اند",
+    "چون sort() آرایهٔ اصلی را تغییر نمی‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "کلیدواژهٔ const ارجاع را قفل می‌کند؛ پس مثلاً cars[0] = \"Opel\" کار می‌کند ولی cars = [\"Opel\"] خطا می‌دهد."
+  },
+  {
+   "question": "کدام کار با آرایهٔ const در همان دامنه مجاز نیست؟",
+   "options": [
+    "تغییر یک عضو با اندیس",
+    "افزودن عضو با push()",
+    "تعریف دوبارهٔ همان نام با const",
+    "خواندن طول آرایه"
+   ],
+   "answer": 2,
+   "explanation": "تعریف دوباره یا مقداردهی دوبارهٔ آرایهٔ const در همان دامنه یا همان بلوک مجاز نیست؛ در دامنه یا بلوک دیگر مجاز است."
+  }
+ ]
+}

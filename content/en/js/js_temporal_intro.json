@@ -1,0 +1,317 @@
+{
+ "slug": "js_temporal_intro",
+ "course": "js",
+ "order": 182,
+ "url": "/js/js_temporal_intro.asp",
+ "title": "JavaScript Temporal Why?",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Temporal Why?"
+  },
+  {
+   "type": "h2",
+   "text": "Why Was Temporal Created?"
+  },
+  {
+   "type": "p",
+   "text": "The Date object was created in 1995 and has some design issues that causes bugs."
+  },
+  {
+   "type": "p",
+   "text": "For example, months in Date are zero-based, which is confusing."
+  },
+  {
+   "type": "p",
+   "text": "Another problem is Date methods can change the Date object (mutation),\nwhich can create unexpected results."
+  },
+  {
+   "type": "p",
+   "text": "Temporal was created to solve these issues with clearer object types and predictable behavior."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Month 5 is June\n\nlet d = new Date(2026, 5, 17);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Date\n\nlet d = new Date(2026, 5, 17);\n\n// Add 7 days\n\nd.setDate(d.getDate() + 7);\n\n// Here the original date (d) is lost",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects2"
+  },
+  {
+   "type": "h2",
+   "text": "A Simple Temporal Example"
+  },
+  {
+   "type": "p",
+   "text": "With Temporal, you can get today's date and add days in a clear and safe way."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Temporal object\n\nconst today = Temporal.Now.plainDateISO();\n\n// Add a duration\n\nconst nextWeek = today.add({ days: 7 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_now"
+  },
+  {
+   "type": "h2",
+   "text": "Compare With Date"
+  },
+  {
+   "type": "p",
+   "text": "With JavaScript Date, you only have one type of date object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let d = new Date();",
+   "caption": "Date Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_old_date"
+  },
+  {
+   "type": "h2",
+   "text": "Separate Objects"
+  },
+  {
+   "type": "p",
+   "text": "Temporal gives you separate objects depending on what you need:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Instant - Exact moment in UTC",
+    "PlainDate - Date only",
+    "PlainDateTime - Date and time only",
+    "ZonedDateTime - Date and time with zone"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "When to Use Each Object"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Instant - For timestamps and comparisons",
+    "PlainDate - For birthdays and calendar dates",
+    "PlainDateTime - For local scheduling tasks",
+    "ZonedDateTime - For time zone-aware apps"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Temporal Objects are Immutable"
+  },
+  {
+   "type": "p",
+   "text": "Temporal objects are immutable, which means they cannot be changed after they are created."
+  },
+  {
+   "type": "p",
+   "text": "Temporal objects return a new value instead of modifying the existing one."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal Dates are DST-Safe"
+  },
+  {
+   "type": "p",
+   "text": "DST-safe arithmetic ensures time calculations (addition and subtraction) remain accurate across\nDaylight Saving Time (DST) transitions, preventing 1-hour errors."
+  },
+  {
+   "type": "p",
+   "text": "It involves using timezone and calendar-aware objects (ZonedDateTime) that understand\nlocal clock shifts."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal Dates Uses RFC 5545"
+  },
+  {
+   "type": "p",
+   "text": "RFC 5545 (Internet Calendaring and Scheduling Core Object Specification),\nis the industry standard for exchanging calendar and scheduling information."
+  },
+  {
+   "type": "p",
+   "text": "It allows different systems (like Google Calendar, Apple Calendar,\nand Microsoft Outlook) to communicate seamlessly."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Date vs Temporal"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "Date",
+     "Temporal"
+    ],
+    [
+     "ISO 8601 Date/Time",
+     "Yes",
+     "Yes"
+    ],
+    [
+     "RFC 3339 Date/Time",
+     "Yes",
+     "Yes"
+    ],
+    [
+     "RFC 9557 Date/Time",
+     "No",
+     "Yes"
+    ],
+    [
+     "Time zone support",
+     "Limited",
+     "Built-in"
+    ],
+    [
+     "Immutable",
+     "No",
+     "Yes"
+    ],
+    [
+     "Date-Only Type",
+     "No",
+     "Yes"
+    ],
+    [
+     "Time-Only Type",
+     "No",
+     "Yes"
+    ],
+    [
+     "1-Based Months",
+     "No",
+     "Yes"
+    ],
+    [
+     "DST safe arithmetic",
+     "No",
+     "Yes"
+    ],
+    [
+     "ISO 8601 Duration",
+     "No",
+     "Yes"
+    ],
+    [
+     "RFC 9557 iCalendar",
+     "No",
+     "Yes"
+    ],
+    [
+     "Modern API design",
+     "No",
+     "Yes"
+    ],
+    [
+     "Precision",
+     "Milliseconds",
+     "Nanoseconds"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Temporal is a set of built-in date and time objects that\nare easier and safer to use than JavaScript Date."
+  },
+  {
+   "type": "p",
+   "text": "Temporal uses distinct classes for dates and times to prevent bugs related\nto local time adjustments (like DST transitions)."
+  },
+  {
+   "type": "h2",
+   "text": "When to Use Temporal?"
+  },
+  {
+   "type": "p",
+   "text": "Use Temporal when you need reliable date and time handling."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "You need correct time zone support",
+    "You need safe date arithmetic (add / subtract, since / until)",
+    "You need to avoid DST bugs",
+    "You need predictable and readable code"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "You may still have to use JavaScript Date to support environments\nwhere Temporal is not available."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal Objects"
+  },
+  {
+   "type": "h3",
+   "text": "Revised March 2026"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Object",
+     "Description"
+    ],
+    [
+     "Temporal.Duration",
+     "Object for duration (days, hours, minutes)"
+    ],
+    [
+     "Temporal.Instant",
+     "Object for exact moment in UTC time"
+    ],
+    [
+     "Temporal.PlainDateTime",
+     "Object for Date and Time only (no time zone)"
+    ],
+    [
+     "Temporal.PlainDate",
+     "Object for Date only (year, month, day)"
+    ],
+    [
+     "Temporal.PlainTime",
+     "Object for Time only"
+    ],
+    [
+     "Temporal.PlainYearMonth",
+     "Object for Year and Month only"
+    ],
+    [
+     "Temporal.PlainMonthDay",
+     "Object for Month and Day only"
+    ],
+    [
+     "Temporal.ZonedDateTime",
+     "Object for Date and Time with time zone"
+    ],
+    [
+     "Temporal.Now",
+     "Container for temporal methods"
+    ]
+   ]
+  }
+ ]
+}

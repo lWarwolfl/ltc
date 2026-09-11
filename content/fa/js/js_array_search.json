@@ -1,0 +1,465 @@
+{
+ "slug": "js_array_search",
+ "course": "js",
+ "order": 64,
+ "url": "/js/js_array_search.asp",
+ "title": "جست‌وجو در آرایه‌های JavaScript",
+ "summary": "در این درس یاد می‌گیرید چطور عضوی را در آرایه پیدا کنید، اندیس یا مقدار آن را بگیرید و وجود یک مقدار را بررسی کنید. با indexOf()، lastIndexOf()، includes()، find()، findIndex()، findLast() و findLastIndex() کار می‌کنید.",
+ "objectives": [
+  "با indexOf() و lastIndexOf() موقعیت یک عضو را پیدا کنید",
+  "با includes() وجود یک مقدار، از جمله NaN، را بررسی کنید",
+  "با find() و findIndex() عضوی را بر اساس یک شرط پیدا کنید",
+  "تفاوت برگرداندن مقدار با برگرداندن اندیس را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "جست‌وجو در آرایه‌های JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای جست‌وجو در آرایه"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "indexOf(): اولین موقعیت یک مقدار\nlastIndexOf(): آخرین موقعیت یک مقدار\nincludes(): بررسی وجود یک مقدار",
+     "find(): اولین عضوی که شرط را دارد\nfindIndex(): اندیس اولین عضوی که شرط را دارد\nfindLast(): آخرین عضوی که شرط را دارد\nfindLastIndex(): اندیس آخرین عضوی که شرط را دارد"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل آرایه‌های JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متد indexOf() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد indexOf() آرایه را برای یافتن یک مقدار می‌گردد و موقعیت آن را برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "توجه: عضو اول موقعیت ۰ دارد، عضو دوم موقعیت ۱ و همین‌طور تا آخر."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Apple\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet position = fruits.indexOf(\"Apple\") + 1;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_indexof"
+  },
+  {
+   "type": "h3",
+   "text": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "نحو: array.indexOf(item, start)"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "item",
+     "الزامی. مقداری که باید جست‌وجو شود."
+    ],
+    [
+     "start",
+     "اختیاری. نقطهٔ شروع جست‌وجو. مقدار منفی یعنی از آن موقعیت با شمارش از انتها شروع کن و تا انتهای آرایه بگرد."
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "اگر عضو پیدا نشود، Array.indexOf() مقدار -1 را برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "اگر عضو بیش از یک‌بار در آرایه باشد، موقعیت اولین‌بار را برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "متد lastIndexOf() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "Array.lastIndexOf() مثل Array.indexOf() است، اما موقعیت آخرین‌بارِ آن عضو را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Apple\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet position = fruits.lastIndexOf(\"Apple\") + 1;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_lastindexof"
+  },
+  {
+   "type": "h3",
+   "text": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "نحو: array.lastIndexOf(item, start)"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "item",
+     "الزامی. مقداری که باید جست‌وجو شود"
+    ],
+    [
+     "start",
+     "اختیاری. نقطهٔ شروع جست‌وجو. مقدار منفی یعنی از آن موقعیت با شمارش از انتها شروع کن و تا ابتدای آرایه بگرد."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد includes() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2016 متد Array.includes() را به آرایه‌ها اضافه کرد. با آن می‌توانید بررسی کنید عضوی در آرایه هست یا نه (حتی NaN، برخلاف indexOf)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.includes(\"Mango\"); // is true",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_includes"
+  },
+  {
+   "type": "h3",
+   "text": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "نحو: array.includes(search-item)"
+  },
+  {
+   "type": "p",
+   "text": "Array.includes() یافتن مقدار NaN را هم ممکن می‌کند، برخلاف Array.indexOf()."
+  },
+  {
+   "type": "h2",
+   "text": "متد find() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد find() مقدار اولین عضوی از آرایه را برمی‌گرداند که تابع آزمون را پاس کند."
+  },
+  {
+   "type": "p",
+   "text": "این مثال اولین عضوی را پیدا می‌کند (مقدارش را برمی‌گرداند) که بزرگ‌تر از ۱۸ باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [4, 9, 16, 25, 29];\n\nlet first =\n  numbers.find(myFunction);\n\nfunction myFunction(value, index, array) {\n  return\n  value > 18;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_find"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۳ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد findIndex() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد findIndex() اندیس اولین عضوی از آرایه را برمی‌گرداند که تابع آزمون را پاس کند."
+  },
+  {
+   "type": "p",
+   "text": "این مثال اندیس اولین عضوی را پیدا می‌کند که بزرگ‌تر از ۱۸ است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [4, 9, 16, 25, 29];\n\nlet first =\n  numbers.findIndex(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_find_index"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید که این تابع ۳ آرگومان می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مقدار عضو",
+    "اندیس عضو",
+    "خود آرایه"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد findLast() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2023 متد findLast() را اضافه کرد که از انتهای آرایه شروع می‌کند و مقدار اولین عضوی را برمی‌گرداند که شرط را برآورده کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const temp = [27, 28, 30, 40, 42, 35, 30];\n\nlet high = temp.findLast(x => x > 40);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_findLast"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "findLast() از ویژگی‌های ECMAScript 2023 است."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2023 از ژوئیهٔ ۲۰۲۳ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome110",
+     "Edge110",
+     "Firefox115",
+     "Safari16.4",
+     "Opera96"
+    ],
+    [
+     "فوریهٔ ۲۰۲۳",
+     "فوریهٔ ۲۰۲۳",
+     "ژوئیهٔ ۲۰۲۳",
+     "مارس ۲۰۲۳",
+     "مهٔ ۲۰۲۳"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد findLastIndex() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد findLastIndex() اندیس آخرین عضوی را پیدا می‌کند که شرط را برآورده کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const temp = [27, 28, 30, 40, 42, 35, 30];\n\nlet pos = temp.findLastIndex(x => x > 40);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_findlastindex"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "findLastIndex() از ویژگی‌های ECMAScript 2023 است."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2023 از ژوئیهٔ ۲۰۲۳ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome110",
+     "Edge110",
+     "Firefox115",
+     "Safari16.4",
+     "Opera96"
+    ],
+    [
+     "فوریهٔ ۲۰۲۳",
+     "فوریهٔ ۲۰۲۳",
+     "ژوئیهٔ ۲۰۲۳",
+     "مارس ۲۰۲۳",
+     "مهٔ ۲۰۲۳"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای پایهٔ آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای مرتب‌سازی آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای پیمایش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "مرجع آرایه"
+  },
+  {
+   "type": "h2",
+   "text": "مرجع کامل JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، همراه با توضیح کامل و مثال‌های فراوان، به این بخش بروید:"
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل JavaScript در W3Schools."
+  },
+  {
+   "type": "p",
+   "text": "این مرجع همهٔ به‌روزرسانی‌های JavaScript از ۱۹۹۹ تا ۲۰۲۵ را در بر می‌گیرد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل search.html بسازید و آرایه‌ای از نام میوه‌ها بنویسید؛ با indexOf() موقعیت \"Mango\" را چاپ کنید و بعد موقعیت یک میوهٔ ناموجود را هم چاپ کنید.",
+   "hint": "اگر عضو پیدا نشود، indexOf() مقدار -1 را برمی‌گرداند."
+  },
+  {
+   "prompt": "با includes() بررسی کنید مقدار NaN در آرایه هست یا نه و نتیجه را چاپ کنید؛ همین کار را با indexOf() هم امتحان کنید و تفاوت را ببینید.",
+   "hint": "includes() مقدار NaN را پیدا می‌کند، اما indexOf() نمی‌تواند."
+  },
+  {
+   "prompt": "آرایه‌ای بسازید که یک مقدار تکراری داشته باشد و هم indexOf() و هم lastIndexOf() را روی آن امتحان کنید و هر دو خروجی را کنار هم چاپ کنید.",
+   "hint": "indexOf() موقعیت اولین‌بار و lastIndexOf() موقعیت آخرین‌بار را می‌دهد."
+  },
+  {
+   "prompt": "با find() اولین عددی از آرایه را پیدا کنید که از ۱۸ بزرگ‌تر است؛ بعد با findIndex() اندیس همان عضو را بگیرید.",
+   "hint": "find() مقدار عضو را برمی‌گرداند و findIndex() اندیس آن را."
+  },
+  {
+   "prompt": "با findLast() و findLastIndex() آخرین عددی را پیدا کنید که شرط بزرگ‌تر از ۱۸ را دارد و هر دو نتیجه را با هم مقایسه کنید.",
+   "hint": "findLast() از انتهای آرایه شروع می‌کند و مقدار را می‌دهد؛ findLastIndex() اندیس را."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "اگر عضوی در آرایه پیدا نشود، indexOf() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "۰",
+    "null",
+    "-1",
+    "undefined"
+   ],
+   "answer": 2,
+   "explanation": "indexOf() وقتی عضو را پیدا نکند عدد -1 را برمی‌گرداند؛ صفر یعنی عضو در موقعیت اول پیدا شده است."
+  },
+  {
+   "question": "برای بررسی وجود مقدار NaN در آرایه کدام متد مناسب است؟",
+   "options": [
+    "indexOf()",
+    "includes()",
+    "findIndex() و indexOf() هر دو",
+    "lastIndexOf()"
+   ],
+   "answer": 1,
+   "explanation": "includes() می‌تواند NaN را تشخیص دهد، اما indexOf() و lastIndexOf() به دلیل مقایسه با === مقدار NaN را پیدا نمی‌کنند."
+  },
+  {
+   "question": "متد find() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "اندیس اولین عضوی که شرط را پاس می‌کند",
+    "مقدار اولین عضوی که شرط را پاس می‌کند",
+    "آرایه‌ای از همهٔ عضوهای منطبق",
+    "تعداد عضوهای منطبق"
+   ],
+   "answer": 1,
+   "explanation": "find() مقدار عضو را برمی‌گرداند. اگر اندیس می‌خواهید باید از findIndex() استفاده کنید."
+  },
+  {
+   "question": "آرایهٔ [\"a\", \"b\", \"a\"] را در نظر بگیرید. lastIndexOf(\"a\") چه چیزی می‌دهد؟",
+   "options": [
+    "۰",
+    "۲",
+    "۱",
+    "-1"
+   ],
+   "answer": 1,
+   "explanation": "lastIndexOf() موقعیت آخرین‌بار را برمی‌گرداند؛ آخرین «a» در اندیس ۲ است. indexOf() همان مقدار را ۰ می‌داد."
+  },
+  {
+   "question": "متد findLast() از کدام سمت آرایه شروع به جست‌وجو می‌کند؟",
+   "options": [
+    "از ابتدای آرایه",
+    "از انتهای آرایه",
+    "از وسط آرایه",
+    "از بزرگ‌ترین اندیس به‌صورت تصادفی"
+   ],
+   "answer": 1,
+   "explanation": "findLast() که در ES2023 اضافه شد از انتهای آرایه به عقب می‌گردد و مقدار اولین عضوی را می‌دهد که شرط را برآورده کند."
+  }
+ ]
+}

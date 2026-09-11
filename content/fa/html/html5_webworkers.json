@@ -1,0 +1,306 @@
+{
+ "slug": "html5_webworkers",
+ "course": "html",
+ "order": 74,
+ "url": "/html/html5_webworkers.asp",
+ "title": "API Web Workers در HTML",
+ "summary": "web worker یک فایل JavaScript بیرونی است که در پس‌زمینه اجرا می‌شود و صفحه را بی‌پاسخ نمی‌کند. این درس ساخت فایل worker، ارسال و دریافت پیام با postMessage و onmessage، پایان دادن با terminate و محدودیت دسترسی workerها به DOM را آموزش می‌دهد.",
+ "objectives": [
+  "بگویید web worker چیست و چه مشکلی را حل می‌کند",
+  "یک فایل worker و یک شیء Web Worker بسازید",
+  "پیام‌ها را با postMessage() و onmessage بین صفحه و کارگر رد و بدل کنید",
+  "کارگر را با terminate() متوقف کنید و محدودیت دسترسی به DOM را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "API Web Workers در HTML"
+  },
+  {
+   "type": "p",
+   "text": "web worker یک فایل JavaScript بیرونی است که در پس‌زمینه اجرا می‌شود، بدون اینکه روی کارایی صفحه اثر بگذارد."
+  },
+  {
+   "type": "h2",
+   "text": "Web Worker چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "وقتی اسکریپت‌ها در صفحهٔ HTML اجرا می‌شوند، صفحه تا پایان اسکریپت بی‌پاسخ می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "web worker یک فایل JavaScript بیرونی است که در پس‌زمینه و مستقل از بقیهٔ اسکریپت‌ها اجرا می‌شود، بدون اینکه روی کارایی صفحه اثر بگذارد. می‌توانید به کار خود ادامه دهید: کلیک کردن، انتخاب کردن و مانند آن، در حالی که web worker در پس‌زمینه اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "Web workerها برای کدهای سنگینی مفیدند که نمی‌توانند روی thread اصلی اجرا شوند، چون کارهای طولانی صفحه را بی‌پاسخ می‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "عددهای جدول، اولین نسخهٔ مرورگری را نشان می‌دهند که به‌طور کامل از API Web Workers پشتیبانی می‌کند."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "API",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Web Workers",
+     "4.0",
+     "10.0",
+     "3.5",
+     "4.0",
+     "11.5"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مثال API Web Workers"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر یک web worker ساده می‌سازد که در پس‌زمینه عدد می‌شمارد:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "معمولاً از web workerها برای چنین اسکریپت‌های ساده‌ای استفاده نمی‌شود، بلکه برای کارهای پرمصرف‌تر از نظر CPU به کار می‌آیند!"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی API Web Worker را بررسی کنید"
+  },
+  {
+   "type": "p",
+   "text": "پیش از استفاده از web worker می‌توانیم سریع پشتیبانی مرورگر را بررسی کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nconst x = document.getElementById(\"result\");\n\n  if(typeof(Worker) !== \"undefined\") {\n  x.innerHTML = \"Your browser\n  support Web Workers!\";\n} else {\n  x.innerHTML = \"Sorry, your\n  browser does not support Web Workers.\";\n}\n\n  </script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker_browsertest"
+  },
+  {
+   "type": "h2",
+   "text": "یک فایل .js برای Web Worker بسازید"
+  },
+  {
+   "type": "p",
+   "text": "حالا بیایید یک web worker در یک فایل JavaScript بیرونی بسازیم."
+  },
+  {
+   "type": "p",
+   "text": "اینجا اسکریپتی می‌سازیم که می‌شمارد. این اسکریپت در فایل \\\"demo_workers.js\\\" ذخیره می‌شود:"
+  },
+  {
+   "type": "p",
+   "text": "var i = 0;\n\nfunction timedCount()\n{\n\ni = i + 1;\n\npostMessage(i);\n  setTimeout(\"timedCount()\",500);\n}\n\ntimedCount();"
+  },
+  {
+   "type": "p",
+   "text": "نکته: بخش مهم کد بالا متد postMessage() است که برای فرستادن پیام به صفحهٔ HTML به کار می‌رود."
+  },
+  {
+   "type": "h2",
+   "text": "یک شیء Web Worker بسازید"
+  },
+  {
+   "type": "p",
+   "text": "وقتی فایل .js مربوط به web worker را ساختیم، می‌توانیم آن را از صفحهٔ HTML صدا بزنیم."
+  },
+  {
+   "type": "p",
+   "text": "خط‌های زیر بررسی می‌کنند که کارگر (w) از قبل وجود دارد یا نه؛ اگر نداشت، یک شیء web worker تازه می‌سازند و به فایل .js اشاره می‌دهند: \\\"demo_workers.js\\\":"
+  },
+  {
+   "type": "p",
+   "text": "if (typeof(w) == \"undefined\") {\n    w = new Worker(\"demo_workers.js\");\n }"
+  },
+  {
+   "type": "p",
+   "text": "بعد می‌توانیم پیام‌ها را به web worker بفرستیم و از آن بگیریم."
+  },
+  {
+   "type": "p",
+   "text": "داده میان web workerها و thread اصلی با سیستمی از پیام‌ها رد و بدل می‌شود: هر دو طرف پیام خود را با متد postMessage() می‌فرستند و با event handler مربوط به onmessage به پیام‌ها پاسخ می‌دهند."
+  },
+  {
+   "type": "p",
+   "text": "یک event listener از نوع onmessage به شیء web worker اضافه کنید."
+  },
+  {
+   "type": "p",
+   "text": "w.onmessage = function(event){\n  document.getElementById(\"result\").innerHTML = event.data;\n };"
+  },
+  {
+   "type": "p",
+   "text": "وقتی web worker داخل فایل .js پیامی می‌فرستد، کد داخل event listener اجرا می‌شود. دادهٔ آمده از web worker در event.data ذخیره می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "پایان دادن به Web Worker"
+  },
+  {
+   "type": "p",
+   "text": "وقتی شیء web worker ساخته شد، تا زمانی که پایانش ندهید به شنیدن پیام‌ها ادامه می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "برای پایان دادن به شیء web worker و آزاد کردن منابع مرورگر و رایانه، از متد terminate() استفاده کنید:"
+  },
+  {
+   "type": "p",
+   "text": "w.terminate();"
+  },
+  {
+   "type": "h2",
+   "text": "استفادهٔ دوباره از Web Worker"
+  },
+  {
+   "type": "p",
+   "text": "اگر بعد از پایان دادن، متغیر web worker را undefined بگذارید، می‌توانید همان کارگر و کد را دوباره به کار ببرید:"
+  },
+  {
+   "type": "p",
+   "text": "w = undefined;"
+  },
+  {
+   "type": "h2",
+   "text": "مثال کامل Web Worker"
+  },
+  {
+   "type": "p",
+   "text": "کد Web Worker را در فایل .js قبلاً دیده‌ایم."
+  },
+  {
+   "type": "p",
+   "text": "پایین، کد کامل صفحهٔ HTML آمده است:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<p>Count numbers: <output id=\"result\"></output></p>\n\n<button onclick=\"startWorker()\">Start Worker</button>\n\n<button onclick=\"stopWorker()\">Stop Worker</button>\n\n<script>\n\n  let w;\n\nfunction startWorker()\n{\n  const x = document.getElementById(\"result\");\n\nif (typeof(Worker) !== \"undefined\")\n{\n\n    if (typeof(w) == \"undefined\") {\n\n        w = new Worker(\"demo_workers.js\");\n\n      }\n\n    w.onmessage = function(event) {\n\n        x.innerHTML = event.data;\n\n    };\n\n  }\nelse\n{\n\n  x.innerHTML = \"Sorry! No Web Worker support.\";\n\n    }\n\n}\n\nfunction stopWorker()\n{\n\n  w.terminate();\n  w = undefined;\n\n}\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker"
+  },
+  {
+   "type": "h2",
+   "text": "Web Workerها و DOM"
+  },
+  {
+   "type": "p",
+   "text": "چون web workerها در فایل‌های .js بیرونی هستند، به این شیءهای JavaScript دسترسی ندارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "شیء window",
+    "شیء document",
+    "شیء parent"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل demo_workers.js بسازید و درونش تابعی بنویسید که هر نیم‌ثانیه با postMessage() یک عدد به صفحه بفرستد.",
+   "hint": "تکرار را با setTimeout(\"timedCount()\",500) انجام دهید."
+  },
+  {
+   "prompt": "در صفحهٔ HTML با new Worker(\"demo_workers.js\") یک شیء web worker بسازید.",
+   "hint": "اول با typeof(w) == \"undefined\" بررسی کنید که کارگر از قبل ساخته نشده باشد."
+  },
+  {
+   "prompt": "به شیء کارگر یک onmessage اضافه کنید و event.data را داخل عنصری با id=\"result\" بگذارید.",
+   "hint": "دادهٔ آمده از کارگر در event.data ذخیره می‌شود."
+  },
+  {
+   "prompt": "کارگر را با متد terminate() متوقف کنید و بعد متغیرش را undefined بگذارید تا بتوانید دوباره از همان کد استفاده کنید.",
+   "hint": "پایان دادن، منابع مرورگر و رایانه را آزاد می‌کند."
+  },
+  {
+   "prompt": "در دو خط توضیح دهید چرا یک web worker نمی‌تواند به شیء document دسترسی داشته باشد.",
+   "hint": "web workerها در فایل‌های .js بیرونی اجرا می‌شوند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "web worker چیست؟",
+   "options": [
+    "یک فایل JavaScript بیرونی که در پس‌زمینه اجرا می‌شود",
+    "یک عنصر HTML برای پخش ویدیو",
+    "یک ویژگی برای قابل کشیدن کردن عنصر",
+    "یک نوع قالب تصویر"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید web worker یک فایل JavaScript بیرونی است که مستقل از بقیهٔ اسکریپت‌ها در پس‌زمینه اجرا می‌شود."
+  },
+  {
+   "question": "web workerها به کدام شیءهای JavaScript دسترسی ندارند؟",
+   "options": [
+    "postMessage و setTimeout",
+    "window، document و parent",
+    "console و alert",
+    "number و string"
+   ],
+   "answer": 1,
+   "explanation": "چون web worker در فایل .js بیرونی است، به window و document و parent دسترسی ندارد؛ ولی postMessage و setTimeout در دسترس‌اند."
+  },
+  {
+   "question": "کدام متد پیام را از web worker به صفحهٔ HTML برمی‌گرداند؟",
+   "options": [
+    "setData()",
+    "onmessage()",
+    "getData()",
+    "postMessage()"
+   ],
+   "answer": 3,
+   "explanation": "postMessage() پیام را به صفحهٔ HTML می‌فرستد و onmessage رویدادی است که پیام را در صفحه دریافت می‌کند."
+  },
+  {
+   "question": "برای توقف یک web worker از چه متدی استفاده می‌کنیم؟",
+   "options": [
+    "stop()",
+    "close()",
+    "terminate()",
+    "pause()"
+   ],
+   "answer": 2,
+   "explanation": "درس می‌گوید با متد terminate() به کارگر پایان می‌دهیم و منابع مرورگر و رایانه آزاد می‌شود."
+  },
+  {
+   "question": "دادهٔ آمده از web worker در کدام محل ذخیره می‌شود؟",
+   "options": [
+    "event.value",
+    "event.target",
+    "event.data",
+    "event.message"
+   ],
+   "answer": 2,
+   "explanation": "در listener مربوط به onmessage، دادهٔ web worker داخل event.data قرار می‌گیرد."
+  }
+ ]
+}

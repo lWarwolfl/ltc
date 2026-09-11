@@ -1,0 +1,60 @@
+{
+ "slug": "js_graphics_d3js",
+ "course": "js",
+ "order": 255,
+ "url": "/js/js_graphics_d3js.asp",
+ "title": "D3.js",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "D3.js"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "D3.js is a JavaScript library for manipulating HTML data.\nD3.js is easy to use."
+  },
+  {
+   "type": "h2",
+   "text": "How to Use D3.js?"
+  },
+  {
+   "type": "p",
+   "text": "To use D3.js in your web page, add a link to the library:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script src=\"//d3js.org/d3.v3.min.js\"></script>",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "This script selects the body element and appends a paragraph with the text \"Hello World!\":"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "d3.select(\"body\").append(\"p\").text(\"Hello World!\");",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_d3js_element"
+  },
+  {
+   "type": "h2",
+   "text": "Scatter Plot"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Set Dimensions\n\nconst xSize = 500;\n\nconst ySize = 500;\n\nconst margin = 40;\n\nconst xMax = xSize - margin*2;\n\nconst yMax = ySize - margin*2;\n\n// Create Random Points\n\nconst numPoints = 100;\n\nconst data = [];\n\nfor (let i = 0; i < numPoints; i++) {\n\n  data.push([Math.random() * xMax, Math.random() * yMax]);\n\n}\n\n// Append SVG Object to the Page\n\nconst svg = d3.select(\"#myPlot\")\n\n  .append(\"svg\")\n\n  .append(\"g\")\n\n  .attr(\"transform\",\"translate(\" + margin + \",\" + margin + \")\");\n\n// X Axis\n\nconst x = d3.scaleLinear()\n\n  .domain([0, 500])\n\n  .range([0, xMax]);\n\nsvg.append(\"g\")\n\n  .attr(\"transform\", \"translate(0,\" + yMax + \")\")\n\n  .call(d3.axisBottom(x));\n\n// Y Axis\n\nconst y = d3.scaleLinear()\n\n  .domain([0, 500])\n\n  .range([ yMax, 0]);\n\nsvg.append(\"g\")\n\n  .call(d3.axisLeft(y));\n\n// Dots\n\nsvg.append('g')\n\n  .selectAll(\"dot\")\n\n  .data(data).enter()\n\n  .append(\"circle\")\n\n  .attr(\"cx\", function (d) { return d[0] } )\n\n  .attr(\"cy\", function (d) { return d[1] } )\n\n  .attr(\"r\", 3)\n\n  .style(\"fill\", \"Red\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_d3js_scatterplot"
+  }
+ ]
+}

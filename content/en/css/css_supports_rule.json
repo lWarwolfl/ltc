@@ -1,0 +1,119 @@
+{
+ "slug": "css_supports_rule",
+ "course": "css",
+ "order": 187,
+ "url": "/css/css_supports_rule.asp",
+ "title": "CSS @supports Rule",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "CSS @supports Rule"
+  },
+  {
+   "type": "h2",
+   "text": "The CSS @supports Rule"
+  },
+  {
+   "type": "p",
+   "text": "The @supports rule lets you\ncheck if the browser supports a specific CSS property or value, and to define fallback styles if the feature is not supported."
+  },
+  {
+   "type": "p",
+   "text": "This is useful for applying styles only when the browser can handle them."
+  },
+  {
+   "type": "h3",
+   "text": "Basic Syntax"
+  },
+  {
+   "type": "p",
+   "text": "@supports (property: value) {\n  /* CSS rules to apply if condition is true */\n}"
+  },
+  {
+   "type": "h2",
+   "text": "Example: Using @supports with grid and flex"
+  },
+  {
+   "type": "p",
+   "text": "You can combine\n@supports with regular CSS to provide fallback styling."
+  },
+  {
+   "type": "p",
+   "text": "Here, if the browser supports display: flex, the CSS inside the @supports rule will\n  be applied. If not, the .container class outside the @supports rule will be\n  applied:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/* use this CSS if the browser does not support display: flex */\n\n.container {\n\n  float: left;\n\n  width: 100%;\n\n}\n\n/* use this CSS if the browser supports display: flex */\n\n@supports (display: flex) {\n\n  .container {\n\n    display: flex;\n\n  }\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_supports_fallback"
+  },
+  {
+   "type": "p",
+   "text": "Here, if the browser supports display: grid, the CSS inside the @supports rule will\n  be applied. If not, the .container class outside the @supports rule will be\n  applied:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/* use this CSS if the browser does not support display: grid */\n.container\n    {\n  display: table;\n  width: 90%;\n  background-color:\n    #2196F3;\n  padding: 10px;\n}\n\n/* use this CSS if the browser\n    supports display: grid */\n@supports (display: grid) {\n  .container\n    {\n    display: grid;\n    grid: auto;\n\n    grid-gap: 10px;\n    background-color: #2196F3;\n\n    padding: 10px;\n  }\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_atrule_supports"
+  },
+  {
+   "type": "h2",
+   "text": "Negating with not"
+  },
+  {
+   "type": "p",
+   "text": "You can use not to apply styles only when a feature is not supported:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@supports not (display: grid) {\n\n  .warning {\n\n    background-color: pink;\n\n    padding: 10px;\n\n    border: 1px solid red;\n\n  }\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Combining Conditions"
+  },
+  {
+   "type": "p",
+   "text": "You can use and, or, and not for multiple conditions:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@supports (display: grid) and (gap: 10px) {\n\n  .container {\n\n    display: grid;\n\n    gap: 10px;\n\n  }\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Always provide fallback styles outside of\n  @supports, for older browsers."
+  },
+  {
+   "type": "h2",
+   "text": "CSS Reference"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "At-rule",
+    "Description"
+   ],
+   "rows": [
+    [
+     "@supports",
+     "Used to test whether a browser supports a CSS feature"
+    ]
+   ]
+  }
+ ]
+}

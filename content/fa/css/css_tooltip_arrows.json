@@ -1,0 +1,179 @@
+{
+ "slug": "css_tooltip_arrows",
+ "course": "css",
+ "order": 142,
+ "url": "/css/css_tooltip_arrows.asp",
+ "title": "فلش‌های راهنمای ابزار در CSS",
+ "summary": "با شبه‌عنصر ::after و حاشیه‌های شفاف می‌توانید به راهنمای ابزار فلش اضافه کنید تا شبیه حباب گفتگو شود. این درس فلش را در چهار جهت می‌سازد و نکتهٔ وسط‌چین ماندن آن را نشان می‌دهد.",
+ "objectives": [
+  "با ::after و content یک شبه‌عنصر بسازید",
+  "با حاشیه‌های شفاف مثلث بسازید",
+  "فلش را در چهار ضلع راهنمای ابزار قرار دهید",
+  "رابطهٔ border-width و margin منفی را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "فلش‌های راهنمای ابزار در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "فلش‌های راهنمای ابزار"
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن فلشی که از سمت مشخصی از راهنمای ابزار بیرون بزند، با شبه‌عنصر ::after و خصوصیت content یک محتوای «خالی» بعد از راهنمای ابزار اضافه کنید. خود فلش با حاشیه‌ها ساخته می‌شود. این کار راهنمای ابزار را شبیه حباب گفتگو می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این مثال نشان می‌دهد چطور فلشی به پایین راهنمای ابزار اضافه کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext::after {\n  content: \" \";\n  position: absolute;\n\n    top: 100%;\n/* At the bottom of the tooltip */\n  left: 50%;\n  margin-left: -5px;\n\nborder-width: 5px;\n  border-style: solid;\n\nborder-color: black transparent transparent transparent;\n}",
+   "caption": "فلش پایین"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_arrow_bottom"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال"
+  },
+  {
+   "type": "p",
+   "text": "فلش را داخل راهنمای ابزار موقعیت دهید: top: 100% فلش را در پایین راهنمای ابزار می‌گذارد. left: 50% فلش را وسط‌چین می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "نکته: خصوصیت border-width اندازهٔ فلش را تعیین می‌کند. اگر آن را تغییر دادید، مقدار margin-left را هم به همان اندازه تغییر دهید. این کار فلش را وسط‌چین نگه می‌دارد."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت border-color محتوا را به فلش تبدیل می‌کند. حاشیهٔ بالا را black و بقیه را transparent می‌گذاریم. اگر همهٔ ضلع‌ها black بودند، به‌جای فلش یک مربع سیاه می‌دیدید."
+  },
+  {
+   "type": "p",
+   "text": "این مثال نشان می‌دهد چطور فلشی به بالای راهنمای ابزار اضافه کنیم. توجه کنید که این بار رنگ حاشیهٔ پایین را تعیین می‌کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext::after {\n  content: \" \";\n  position: absolute;\n  bottom: 100%;  /* At the top of the tooltip */\n\n    left: 50%;\n  margin-left: -5px;\n\nborder-width: 5px;\n  border-style: solid;\n\nborder-color: transparent transparent black transparent;\n}",
+   "caption": "فلش بالا"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_arrow_top"
+  },
+  {
+   "type": "p",
+   "text": "این مثال نشان می‌دهد چطور فلشی به سمت چپ راهنمای ابزار اضافه کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext::after {\n  content: \" \";\n  position: absolute;\n\n    top: 50%;\n  right: 100%; /* To the left of the\ntooltip */\n  margin-top: -5px;\n\nborder-width: 5px;\n  border-style: solid;\n\nborder-color: transparent black transparent transparent;\n}",
+   "caption": "فلش چپ"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_arrow_left"
+  },
+  {
+   "type": "p",
+   "text": "این مثال نشان می‌دهد چطور فلشی به سمت راست راهنمای ابزار اضافه کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".tooltiptext::after {\n  content: \" \";\n  position: absolute;\n\n    top: 50%;\n  left: 100%; /* To the right of the\ntooltip */\n  margin-top: -5px;\n\nborder-width: 5px;\n  border-style: solid;\n\nborder-color: transparent transparent transparent black;\n}",
+   "caption": "فلش راست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_tooltip_arrow_right"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "راهنمای ابزار درس قبل را باز کنید و با .tooltiptext::after یک فلش به پایین آن اضافه کنید.",
+   "hint": "content: \" \"; لازم است، وگرنه شبه‌عنصر ساخته نمی‌شود."
+  },
+  {
+   "prompt": "با border-width: 5px; و border-color: black transparent transparent transparent; فلش پایین را بسازید.",
+   "hint": "فقط ضلع بالایی رنگ دارد؛ سه ضلع دیگر transparent فلش مثلثی را می‌سازند."
+  },
+  {
+   "prompt": "همان فلش را به بالای راهنمای ابزار ببرید و بگویید کدام ضلع باید رنگ بگیرد.",
+   "hint": "این بار border-color: transparent transparent black transparent; و bottom: 100%;."
+  },
+  {
+   "prompt": "فلش را به سمت چپ و راست ببرید و در هر حالت خصوصیت margin-top یا margin-left مناسب را تنظیم کنید.",
+   "hint": "برای فلش‌های چپ و راست به‌جای margin-left از margin-top منفی استفاده می‌کنید."
+  },
+  {
+   "prompt": "border-width را به 10px تغییر دهید و بگویید چه چیزی در فلش و در margin باید هم‌زمان عوض شود.",
+   "hint": "با دو برابر شدن پهنای فلش، margin-left هم باید دو برابر شود تا فلش وسط بماند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "فلش راهنمای ابزار با کدام شبه‌عنصر ساخته می‌شود؟",
+   "options": [
+    "::before",
+    "::after",
+    ":hover",
+    "::first-line"
+   ],
+   "answer": 1,
+   "explanation": "مثال‌ها از ::after استفاده می‌کنند و همراه آن خصوصیت content لازم است تا شبه‌عنصر ساخته شود."
+  },
+  {
+   "question": "برای ساختن فلش پایین، کدام مقدار border-color درست است؟",
+   "options": [
+    "black transparent transparent transparent",
+    "transparent black transparent transparent",
+    "transparent transparent black transparent",
+    "transparent transparent transparent black"
+   ],
+   "answer": 0,
+   "explanation": "برای فلش پایین باید ضلع بالایی رنگ داشته باشد و بقیه شفاف باشند؛ اگر همهٔ ضلع‌ها رنگ داشتند مربع می‌شد."
+  },
+  {
+   "question": "چرا در مثال فلش پایین از border-color شفاف برای بقیهٔ ضلع‌ها استفاده می‌شود؟",
+   "options": [
+    "برای اینکه فلش گرد شود",
+    "برای اینکه فقط یک مثلث دیده شود و نه یک مربع",
+    "برای کاهش اندازهٔ فلش",
+    "برای وسط‌چین کردن فلش"
+   ],
+   "answer": 1,
+   "explanation": "حاشیه‌های مجاور با زاویهٔ ۴۵ درجه به هم می‌رسند؛ شفاف بودن سه ضلع فقط مثلث رنگی را باقی می‌گذارد."
+  },
+  {
+   "question": "اگر border-width را تغییر دهیم کدام مقدار باید هم‌زمان تنظیم شود؟",
+   "options": [
+    "margin-left یا margin-top منفی به همان اندازه",
+    "width راهنمای ابزار",
+    "opacity شبه‌عنصر",
+    "position شبه‌عنصر"
+   ],
+   "answer": 0,
+   "explanation": "برای وسط‌چین ماندن فلش، جابه‌جایی منفی باید به اندازهٔ پهنای فلش باشد؛ منبع این نکته را هم یادآور شده است."
+  },
+  {
+   "question": "فلش راهنمای ابزار چگونه ساخته می‌شود؟",
+   "options": [
+    "با یک تصویر PNG",
+    "با حاشیه‌های رنگی و شفاف",
+    "با خصوصیت box-shadow",
+    "با transform: rotate(45deg) روی خود متن"
+   ],
+   "answer": 1,
+   "explanation": "در این درس فلش از حاشیه‌ها ساخته می‌شود: رنگ دادن به یک ضلع و شفاف گذاشتن بقیه، مثلث می‌سازد."
+  }
+ ]
+}

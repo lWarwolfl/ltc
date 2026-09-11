@@ -1,0 +1,372 @@
+{
+ "slug": "js_json_stringify",
+ "course": "js",
+ "order": 171,
+ "url": "/js/js_json_stringify.asp",
+ "title": "JavaScript JSON Stringify",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript JSON Stringify"
+  },
+  {
+   "type": "h2",
+   "text": "The JSON.stringify() Method"
+  },
+  {
+   "type": "p",
+   "text": "The JSON.stringify() method converts a JavaScript value into JSON text."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript variables must be converted to plain text before they can be:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Sent to a server over HTTP",
+    "Transmitted between applications",
+    "Stored in a text file"
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "The JSON.stringify() method returns a text string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "JSON.stringify(value, replacer, space)",
+   "caption": "Syntax"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Parameter",
+     "Description"
+    ],
+    [
+     "value",
+     "The JavaScript value to convert."
+    ],
+    [
+     "replacer",
+     "An optional function or array that selects or transforms values."
+    ],
+    [
+     "space",
+     "An optional number or string used to indent the JSON text."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Converting an Object"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a JavaScript object\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\n// Convert the object to a JSON text\n\nconst text = JSON.stringify(person);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object"
+  },
+  {
+   "type": "h2",
+   "text": "Converting an Array"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a JavaScript array\n\nconst cars = [\"Ford\", \"Volvo\", \"BMW\"];\n\n// Convert the array to a JSON text\n\nconst text = JSON.stringify(cars);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_array"
+  },
+  {
+   "type": "h2",
+   "text": "Converting Other Values"
+  },
+  {
+   "type": "p",
+   "text": "JSON.stringify() can convert all JavaScript values that JSON supports."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "JavaScript Value",
+     "JSON Text"
+    ],
+    [
+     "String",
+     "\"John\""
+    ],
+    [
+     "Number",
+     "42"
+    ],
+    [
+     "Boolean",
+     "true"
+    ],
+    [
+     "null",
+     "null"
+    ],
+    [
+     "Object",
+     "{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}"
+    ],
+    [
+     "Array",
+     "[\"Ford\",\"Volvo\",\"BMW\"]"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "JSON.stringify(\"John\");\n\nJSON.stringify(42);\n\nJSON.stringify(false);\n\nJSON.stringify(Boolean(0));\n\nJSON.stringify(true);\n\nJSON.stringify(Boolean(1));\n\nJSON.stringify(undefined);\n\n// These returns null\n\nJSON.stringify(null);\n\nJSON.stringify(NaN);\n\nJSON.stringify(Infinity);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_all"
+  },
+  {
+   "type": "h2",
+   "text": "Selecting Properties"
+  },
+  {
+   "type": "p",
+   "text": "A replacer array can choose which properties to include."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nlet text = JSON.stringify(person, [\"name\", \"city\"]);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_select"
+  },
+  {
+   "type": "p",
+   "text": "The resulting JSON contains only the selected properties."
+  },
+  {
+   "type": "h2",
+   "text": "Transforming Values"
+  },
+  {
+   "type": "p",
+   "text": "A replacer function can modify values before they are converted."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nconst text = JSON.stringify(person,\nfunction(key, value) {\n\n  if (key == \"age\") {\n\n    return value + 1;\n\n  }\n\n  return value;\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_replace"
+  },
+  {
+   "type": "h2",
+   "text": "Formatting JSON"
+  },
+  {
+   "type": "p",
+   "text": "The optional space parameter makes JSON easier to read."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nlet text = JSON.stringify(person, null, 1);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_space"
+  },
+  {
+   "type": "p",
+   "text": "The value null selects NO replacer."
+  },
+  {
+   "type": "p",
+   "text": "The value 1 indents each level with one space."
+  },
+  {
+   "type": "h2",
+   "text": "Unsupported Values"
+  },
+  {
+   "type": "p",
+   "text": "Some JavaScript values cannot be represented in JSON."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Value",
+     "Result"
+    ],
+    [
+     "BigInt",
+     "Throws a TypeError."
+    ],
+    [
+     "Infinity",
+     "Converted to null in objects and in arrays."
+    ],
+    [
+     "NaN",
+     "Converted to null in objects and in arrays."
+    ],
+    [
+     "undefined",
+     "Omitted from objects. Converted to null in arrays."
+    ],
+    [
+     "Functions",
+     "Omitted from objects. Converted to null in arrays."
+    ],
+    [
+     "Symbol",
+     "Omitted from objects. Converted to null in arrays."
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  greet: function() {},\n\n  age: undefined\n\n};\n\nlet text = JSON.stringify(person);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_unsupported"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "The resulting JSON syntax contains only the supported values."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  greet: NAN,\n\n  age: Infinity\n\n};\n\nlet text = JSON.stringify(person);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_unsupported_2"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// JavaScript Array\n\nconst cars = [\"Ford\", \"Volvo\", function() {}, undefined, NaN, Infinity];\n\n// Convert the array to JSON\n\nlet text = JSON.stringify(cars);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_array_unsupported"
+  },
+  {
+   "type": "h2",
+   "text": "Stringifying Dates"
+  },
+  {
+   "type": "p",
+   "text": "The JSON.stringify() function will convert Date objects into strings."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {name:\"John\", today:date, city:\"New York\"};\n\nlet text = JSON.stringify(person);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_date"
+  },
+  {
+   "type": "p",
+   "text": "You can convert the string back into a date object at the receiver."
+  },
+  {
+   "type": "h2",
+   "text": "Storing Data"
+  },
+  {
+   "type": "p",
+   "text": "When storing data, the data has to be a certain format, and regardless of where you choose to store it,\ntext is always one of the legal formats."
+  },
+  {
+   "type": "p",
+   "text": "JSON makes it possible to store JavaScript objects as text."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Store data:\n\nconst myObj = {name: \"John\", age: 31, city: \"New York\"};\n\nconst myJSON = JSON.stringify(myObj);\nlocalStorage.setItem(\"testJSON\", myJSON);\n\n// Retrieve data:\n\nlet text = localStorage.getItem(\"testJSON\");\n\nlet obj = JSON.parse(text);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_store"
+  },
+  {
+   "type": "h2",
+   "text": "Common Stringify Mistakes"
+  },
+  {
+   "type": "p",
+   "text": "Calling JSON.stringify() twice, adds escaped quotation marks."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {name:\"John\"};\n\nconst text = JSON.stringify(person);\n\nconst textAgain = JSON.stringify(text);",
+   "caption": "Wrong"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_twice"
+  },
+  {
+   "type": "p",
+   "text": "JSON.stringify() cannot convert objects that contain circular references."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {};\n\nperson.self = person;\n\nJSON.stringify(person);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The example above throws a TypeError."
+  }
+ ]
+}

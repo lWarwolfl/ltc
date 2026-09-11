@@ -1,0 +1,276 @@
+{
+ "slug": "js_object_this",
+ "course": "js",
+ "order": 49,
+ "url": "/js/js_object_this.asp",
+ "title": "کلیدواژهٔ this در JavaScript",
+ "summary": "کلیدواژهٔ this به یک شیء اشاره می‌کند؛ داخل متد شیء به خود شیء و به‌تنهایی به شیء سراسری. در این درس می‌بینید چرا this باعث می‌شود یک متد با شیءهای مختلف کار کند و در حالت strict چه تفاوتی پیدا می‌کند.",
+ "objectives": [
+  "نقش this را در متد شیء توضیح دهید",
+  "بگویید this به‌تنهایی به چه چیزی اشاره می‌کند",
+  "تشخیص دهید چرا یک متد با this برای چند شیء کار می‌کند",
+  "رفتار this در حالت strict را بگویید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "کلیدواژهٔ this در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "this در شیءها"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this به یک شیء اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript از this برای دسترسی به شیئی استفاده می‌شود که متد را صدا زده است."
+  },
+  {
+   "type": "h2",
+   "text": "this در متد شیء"
+  },
+  {
+   "type": "p",
+   "text": "وقتی داخل متد یک شیء به کار برود، this به خود شیء اشاره می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  fullName: function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n  }\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_method"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "this.firstName به خصوصیت firstName از شیء person اشاره می‌کند",
+    "this.lastName به خصوصیت lastName از شیء person اشاره می‌کند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "چرا از this استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this امکان می‌دهد همان یک متد با شیءهای مختلف به کار برود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person1 = {\n\n      name: \"John\",\n\n      hello: function() {\n\n        return \"Hello \" + this.name;\n\n      }\n\n    };\n\n    const person2 = {\n\n      name: \"Anna\",\n\n      hello: function() {\n\n        return \"Hello \" + this.name;\n\n      }\n\n    };\n\n    document.getElementById(\"demo\").innerHTML = person1.hello();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_this_multi"
+  },
+  {
+   "type": "h2",
+   "text": "this به‌تنهایی"
+  },
+  {
+   "type": "p",
+   "text": "وقتی به‌تنهایی به کار برود، this به شیء سراسری (global) اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در مرورگر، شیء سراسری همان شیء window است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = this;\n\n    document.getElementById(\"demo\").innerHTML = x;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_this_alone"
+  },
+  {
+   "type": "p",
+   "text": "در حالت strict، وقتی this به‌تنهایی به کار برود مقدارش undefined است."
+  },
+  {
+   "type": "h2",
+   "text": "this در تابع"
+  },
+  {
+   "type": "p",
+   "text": "در یک تابع معمولی هم this به شیء سراسری اشاره می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "function myFunction() {\n\n      return this;\n\n    }\n\n    document.getElementById(\"demo\").innerHTML = myFunction();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_function"
+  },
+  {
+   "type": "h2",
+   "text": "خلاصهٔ بخش"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "در متد شیء، this به خود شیء اشاره می‌کند",
+    "this به متدها امکان دسترسی به خصوصیت‌های شیء را می‌دهد",
+    "this به‌تنهایی به شیء سراسری اشاره می‌کند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای JavaScript چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "متدهای شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "روش نمایش شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ شیء (object constructor) چیست؟"
+  },
+  {
+   "type": "h2",
+   "text": "فصل‌های پیشرفته:"
+  },
+  {
+   "type": "p",
+   "text": "تعریف شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "this پیشرفته در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "محافظت از شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتوتایپ‌های شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع شیء در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل this.html بسازید و شیء person با خصوصیت‌های firstName و lastName بسازید؛ متد fullName() را با this.firstName و this.lastName بنویسید.",
+   "hint": "داخل متد، this به خود شیء person اشاره می‌کند."
+  },
+  {
+   "prompt": "همان متد را روی شیء دومی با خصوصیت‌های متفاوت به کار ببرید و ببینید کد متد عوض نشده اما خروجی فرق دارد.",
+   "hint": "همین دلیل وجود this است: یک متد برای چند شیء."
+  },
+  {
+   "prompt": "در کنسول بیرون از هر تابع console.log(this); را اجرا کنید و ببینید چه چیزی چاپ می‌شود.",
+   "hint": "this به‌تنهایی به شیء سراسری اشاره می‌کند که در مرورگر همان window است."
+  },
+  {
+   "prompt": "یک تابع معمولی بنویسید که this را چاپ کند و آن را صدا بزنید؛ نتیجه را با کنسول مقایسه کنید.",
+   "hint": "در تابع معمولی هم this به شیء سراسری اشاره می‌کند."
+  },
+  {
+   "prompt": "یک فایل بسازید که با use strict شروع شود و تابعی داشته باشد که this را چاپ کند؛ تفاوت را با حالت عادی بگویید.",
+   "hint": "در حالت strict، this به‌تنهایی undefined است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در متد یک شیء، this به چه چیزی اشاره می‌کند؟",
+   "options": [
+    "به شیء سراسری",
+    "به خود شیء",
+    "به پارامتر اول متد",
+    "به undefined"
+   ],
+   "answer": 1,
+   "explanation": "داخل متد شیء، this همان شیء است؛ پس this.firstName به خصوصیت firstName از همان شیء اشاره می‌کند."
+  },
+  {
+   "question": "this به‌تنهایی و بیرون از تابع، در مرورگر به چه چیزی اشاره می‌کند؟",
+   "options": [
+    "به null",
+    "به آخرین شیء ساخته‌شده",
+    "به شیء سراسری window",
+    "به undefined در همهٔ حالت‌ها"
+   ],
+   "answer": 2,
+   "explanation": "this به‌تنهایی به شیء سراسری اشاره می‌کند و در مرورگر شیء سراسری همان window است؛ فقط در حالت strict مقدارش undefined می‌شود."
+  },
+  {
+   "question": "چرا از this داخل متد استفاده می‌کنیم؟",
+   "options": [
+    "چون باعث می‌شود همان متد با شیءهای مختلف کار کند",
+    "چون سرعت اجرا را بیشتر می‌کند",
+    "چون بدون این کلمه JavaScript اجرا نمی‌شود",
+    "چون مقدار خصوصیت‌ها را روی دیسک ذخیره می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "this اجازه می‌دهد متد به خصوصیت‌های شیئی که آن را صدا زده دسترسی داشته باشد؛ پس یک متد برای همهٔ شیءهای هم‌نوع کافی است."
+  },
+  {
+   "question": "در حالت strict، this به‌تنهایی چه مقداری دارد؟",
+   "options": [
+    "شیء window",
+    "صفر",
+    "یک شیء خالی",
+    "undefined"
+   ],
+   "answer": 3,
+   "explanation": "در حالت strict وقتی this به‌تنهایی به کار برود مقدارش undefined است؛ در غیر strict به شیء سراسری اشاره می‌کند."
+  },
+  {
+   "question": "اگر متدی از this.id استفاده کند و آن را روی شیء دیگری صدا بزنید، چه اتفاقی می‌افتد؟",
+   "options": [
+    "همیشه مقدار شیء اول را می‌خواند",
+    "به خصوصیت id از همان شیئی اشاره می‌کند که متد را صدا زده",
+    "خطای نحو می‌دهد",
+    "همیشه undefined برمی‌گرداند"
+   ],
+   "answer": 1,
+   "explanation": "چون this در زمان فراخوانی به شیئی اشاره می‌کند که متد را صدا زده، خروجی بر اساس همان شیء حساب می‌شود؛ همان چیزی که یک متد را برای چند شیء قابل استفاده می‌کند."
+  }
+ ]
+}

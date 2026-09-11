@@ -1,0 +1,407 @@
+{
+ "slug": "js_async",
+ "course": "js",
+ "order": 222,
+ "url": "/js/js_async.asp",
+ "title": "Asynchronous Programming",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Asynchronous Programming"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript runs one task at a time."
+  },
+  {
+   "type": "p",
+   "text": "While one task is running, no other JavaScript code can run.\nIf a task takes a long time, the browser cannot respond to user actions until the task finishes."
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous programming solves this problem by allowing long-running operations to complete in the background while JavaScript continues running other code."
+  },
+  {
+   "type": "h2",
+   "text": "What Does \"Async\" Mean?"
+  },
+  {
+   "type": "p",
+   "text": "The word async means not at the same time."
+  },
+  {
+   "type": "p",
+   "text": "Instead of waiting for one task to finish before starting the next, JavaScript can continue running other code while waiting for an operation to complete."
+  },
+  {
+   "type": "p",
+   "text": "When the operation finishes, JavaScript continues by running code that handles the result."
+  },
+  {
+   "type": "h2",
+   "text": "Synchronous JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript executes code one line at a time."
+  },
+  {
+   "type": "p",
+   "text": "By default, JavaScript executes statements one after another."
+  },
+  {
+   "type": "p",
+   "text": "Each statement must finish before the next statement can begin."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 5;\n\nlet y = x * 2;",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"A\");\n\nmyDisplayer(\"B\");\n\nmyDisplayer(\"C\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_synchronous"
+  },
+  {
+   "type": "p",
+   "text": "The output should be: A B C."
+  },
+  {
+   "type": "h2",
+   "text": "Control Flow"
+  },
+  {
+   "type": "p",
+   "text": "Control Flow is the order in which statements are executed in a program."
+  },
+  {
+   "type": "p",
+   "text": "By default, JavaScript runs code from top to bottom and left to right."
+  },
+  {
+   "type": "h2",
+   "text": "Function Sequence"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript functions are executed in the sequence they are called.\nNot in the sequence they are defined."
+  },
+  {
+   "type": "p",
+   "text": "This example will display \"Hello Goodbye\" because the functions are called in that order:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFirst() {\n  myDisplayer(\"Hello\");\n}\n\nfunction\n  mySecond() {\n\n  myDisplayer(\"Goodbye\");\n}\n\nmyFirst();\nmySecond();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_flow1"
+  },
+  {
+   "type": "p",
+   "text": "This example will display \"Goodbye Hello\" because the functions are called in that order:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFirst() {\n  myDisplayer(\"Hello\");\n}\n\nfunction\n  mySecond() {\n\n  myDisplayer(\"Goodbye\");\n}\n\nmySecond();\nmyFirst();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_flow2"
+  },
+  {
+   "type": "p",
+   "text": "The examples above are normal synchronous flow."
+  },
+  {
+   "type": "h2",
+   "text": "Blocking Code"
+  },
+  {
+   "type": "p",
+   "text": "A long-running task blocks JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "While JavaScript is busy, it cannot respond to button clicks, keyboard input, or other events."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function wait() {\n\n  let i = 2e9;\n\n  while (--i > 0);\n\n}\n\nwait();\n\nmyDisplayer(\"Done!\");",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Why Async Programming?"
+  },
+  {
+   "type": "p",
+   "text": "Some operations take time to complete:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "downloading data",
+    "reading files",
+    "waiting for events",
+    "waiting for user input",
+    "waiting for a timer"
+   ]
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Timers run after a specified number of milliseconds",
+    "Events run when triggered by an event",
+    "Network requests run when the data arrives"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "If JavaScript waited for these tasks, the page would freeze."
+  },
+  {
+   "type": "p",
+   "text": "A frozen page is a broken page."
+  },
+  {
+   "type": "p",
+   "text": "To stay responsive, JavaScript can use async programming."
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous flow refers to how JavaScript allows certain operations to\nrun in the background and let their results be handled when they are ready."
+  },
+  {
+   "type": "h2",
+   "text": "Asynchronous Concepts"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript handles asynchronus programming using different core concepts."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Concept",
+     "Description"
+    ],
+    [
+     "Synchronus",
+     "JavaScript standard flow is executing line by line."
+    ],
+    [
+     "Timers",
+     "Allows code to run while other code is waiting."
+    ],
+    [
+     "Callbacks",
+     "Callbacks were the first solution for async JavaScript."
+    ],
+    [
+     "Events",
+     "Stores callback function waiting to be executed."
+    ],
+    [
+     "Promises",
+     "Tools to handle asynchronous operations cleanly."
+    ],
+    [
+     "Async/Await",
+     "The clean and modern way to handle async code."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Common Asynchronous Operations"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Operation",
+     "Example"
+    ],
+    [
+     "Timer",
+     "setTimeout()"
+    ],
+    [
+     "Network request",
+     "fetch()"
+    ],
+    [
+     "User interaction",
+     "click events"
+    ],
+    [
+     "Animation",
+     "requestAnimationFrame()"
+    ],
+    [
+     "Web Workers",
+     "Background processing"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Ways to Handle Async Results"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript has several ways to handle asynchronous results."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Callbacks",
+    "Promises",
+    "Async functions and await"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The next chapters explain each technique."
+  },
+  {
+   "type": "h2",
+   "text": "Summary"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "JavaScript executes one task at a time.",
+    "Long-running tasks can block a page in the browser.",
+    "Asynchronous operations can prevent blocking.",
+    "Asynchronous programming keeps applications responsive.",
+    "Asynchronous behavior are provided by browser and JavaScript APIs\nlike callbacks, promises, async and await."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Asynchronous vs Parallel"
+  },
+  {
+   "type": "p",
+   "text": "Parallel means doing multiple things at the same time on different processors."
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous means switching between tasks, not necessarily running them simultaneously."
+  },
+  {
+   "type": "p",
+   "text": "A single-threaded JavaScript engine handles asynchronous tasks by using an event\nloop to switch between them, rather than utilizing multiple CPU cores.\nWhen a task finishes, it signals the main thread (via a callback, promise, or event) to handle the result."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "Async (Deferred)",
+     "Parallel (Simultaneous)"
+    ],
+    [
+     "Goal",
+     "Responsiveness (Don't freeze)",
+     "Performance (Get it done faster)"
+    ],
+    [
+     "Execution",
+     "Non-blocking (waiting for I/O)",
+     "Simultaneous (crunching many numbers)"
+    ],
+    [
+     "Hardware",
+     "Can run on 1 processor",
+     "Requires multiple processors"
+    ],
+    [
+     "Example",
+     "Running code while the user scrolls",
+     "Processing 10,000 images at once"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "In short, asynchronous tells the system:"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "Start this task now",
+    "I don't need the result immediately",
+    "Notify me later when it's done"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Analogy:"
+  },
+  {
+   "type": "p",
+   "text": "Ordering food at a restaurant."
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "Place your order (async call)",
+    "Sit down and do other things while the chef makes it",
+    "The server brings the food (callback)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "What You Will Learn"
+  },
+  {
+   "type": "p",
+   "text": "This tutorial will build the understanding of async programming step by step:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "What are timeouts.",
+    "Why callbacks were created.",
+    "How promises represent future values.",
+    "Why async and await are preferred.",
+    "How to debug async code."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Each of these tools was created to solve problems from the previous tool."
+  },
+  {
+   "type": "p",
+   "text": "Callbacks were the first solution for asynchronous JavaScript."
+  }
+ ]
+}

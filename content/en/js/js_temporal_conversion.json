@@ -1,0 +1,469 @@
+{
+ "slug": "js_temporal_conversion",
+ "course": "js",
+ "order": 196,
+ "url": "/js/js_temporal_conversion.asp",
+ "title": "JavaScript Temporal Conversion",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Temporal Conversion"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal Conversion Rules"
+  },
+  {
+   "type": "p",
+   "text": "The table below shows how Temporal types can be converted."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "From",
+     "PlainDate",
+     "PlainTime",
+     "PlainDateTime",
+     "ZonedDateTime",
+     "Instant"
+    ],
+    [
+     "PlainDate",
+     "",
+     "No",
+     "Yes",
+     "No",
+     "No"
+    ],
+    [
+     "PlainTime",
+     "No",
+     "",
+     "No",
+     "No",
+     "No"
+    ],
+    [
+     "PlainDateTime",
+     "Yes",
+     "Yes",
+     "",
+     "Yes",
+     "No"
+    ],
+    [
+     "ZonedDateTime",
+     "Yes",
+     "Yes",
+     "Yes",
+     "",
+     "Yes"
+    ],
+    [
+     "Instant",
+     "No",
+     "No",
+     "No",
+     "Yes",
+     ""
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Conversion Methods"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "From",
+     "To",
+     "Method"
+    ],
+    [
+     "Date",
+     "Instant",
+     "date.toTemporalInstant()"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "PlainDate",
+     "PlainTime",
+     "None"
+    ],
+    [
+     "PlainDate",
+     "PlainDateTime",
+     "date.toPlainDateTime()"
+    ],
+    [
+     "PlainDate",
+     "ZonedTime",
+     "None"
+    ],
+    [
+     "PlainDate",
+     "Instant",
+     "None"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "PlainYearMonth",
+     "PlainDate",
+     "yearmonth.toPlainDate()"
+    ],
+    [
+     "PlainMonthDay",
+     "PlainDate",
+     "monthday.toPlainDate()"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "PlainDateTime",
+     "PlainDate",
+     "datetime.toPlainDate()"
+    ],
+    [
+     "PlainDateTime",
+     "PlainTime",
+     "datetime.toPlainTime()"
+    ],
+    [
+     "PlainDateTime",
+     "ZonedDateTime",
+     "datetime.toZonedDateTime()"
+    ],
+    [
+     "PlainDateTime",
+     "Instant",
+     "None"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "ZonedDateTime",
+     "PlainDate",
+     "zoned.toPlainDate()"
+    ],
+    [
+     "ZonedDateTime",
+     "PlainDateTime",
+     "zoned.toPlainDateTime()"
+    ],
+    [
+     "ZonedDateTime",
+     "PlainTime",
+     "zoned.toPlainTime()"
+    ],
+    [
+     "ZonedDateTime",
+     "Instant",
+     "zoned.toInstant()"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "Instant",
+     "ZonedDateTime",
+     "zoned.toZonedDateTimeISO()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Legacy Date to Temporal Instant"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const legacyDate = new Date();\n\nconst instant = legacyDate.toTemporalInstant();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_to_temporal"
+  },
+  {
+   "type": "h2",
+   "text": "PlainDate to PlainDateTime"
+  },
+  {
+   "type": "p",
+   "text": "You might like to add a time."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst dateTime = date.toPlainDateTime();",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst dateTime = date.toPlainDateTime(\"14:30\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_to_plaindatetime"
+  },
+  {
+   "type": "h2",
+   "text": "Combine Date and Time"
+  },
+  {
+   "type": "p",
+   "text": "You can combine PlainDate and PlainTime to create a PlainDateTime object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Create a PlainTime object\n\nconst time = Temporal.PlainTime.from(\"14:30\");\n\n// Convert into a PlainDateTime object\n\nconst dateTime = date.toPlainDateTime(time);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_1"
+  },
+  {
+   "type": "h2",
+   "text": "PlainDateTime to PlainDate"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nconst date = dateTime.toPlainDate();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "PlainDateTime to PlainTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nconst time = dateTime.toPlainTime();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_to_plaintime"
+  },
+  {
+   "type": "h2",
+   "text": "PlainDateTime to ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "PlainDateTime does not contain a time zone."
+  },
+  {
+   "type": "p",
+   "text": "You must provide one to create a ZonedDateTime."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nconst zoned = dateTime.toZonedDateTime();",
+   "caption": "Wrong"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nconst zoned = dateTime.toZonedDateTime(\"Europe/Oslo\");",
+   "caption": "Wrong"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_to_zoneddatetime"
+  },
+  {
+   "type": "h2",
+   "text": "ZonedDateTime to PlainDateTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");\n\nconst dateTime = zoned.toPlainDateTime();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoneddatetime_to_plaindatetime"
+  },
+  {
+   "type": "h2",
+   "text": "ZonedDateTime to PlainDate"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");\n\nconst date = zoned.toPlainDate();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoneddatetime_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "ZonedDateTime to PlainTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");\n\nconst time = zoned.toPlainTime();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoneddatetime_to_plaintime"
+  },
+  {
+   "type": "h2",
+   "text": "ZonedDateTime to Instant"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");\n\nconst instant = zoned.toInstant();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoneddatetime_to_instant"
+  },
+  {
+   "type": "h2",
+   "text": "Instant to ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "Instant does not have a toZonedDateTime() method."
+  },
+  {
+   "type": "p",
+   "text": "You must convert it to a ISO zone first."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T12:30:00Z\");\n\nconst zoned = instant.toZonedDateTime(\"Europe/Oslo\");",
+   "caption": "Wrong"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T12:30:00Z\");\n\nconst zoned = instant.toZonedDateTimeISO(\"Europe/Oslo\");",
+   "caption": "Wrong"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_to_zoneddatetime"
+  },
+  {
+   "type": "h2",
+   "text": "Special Temporal Types"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "From",
+     "toPlainDate()",
+     "toPlainDateTime()",
+     "toZonedDateTime()"
+    ],
+    [
+     "PlainYearMonth",
+     "YES+ day value",
+     "No",
+     "No"
+    ],
+    [
+     "PlainMonthDay",
+     "YES+ year value",
+     "No",
+     "No"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "PlainMonthDay and PlainYearMonth need missing parts before becoming a full date."
+  },
+  {
+   "type": "h2",
+   "text": "PlainYearMonth to PlainDate"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const yearMonth = new Temporal.PlainYearMonth(2026, 5);\n\nconst date = yearMonth.toPlainDate({ day: 17 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "PlainMonthDay to PlainDate"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const monthDay = new Temporal.PlainYearMonth(2026, 5);\n\nconst date = monthDay.toPlainDate({ year: 2026 });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainmonthday_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "Time Zone Conversion"
+  },
+  {
+   "type": "p",
+   "text": "Converting time from another time zone is handled\nby the ZonedDateTime method withTimeZone()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zdtOslo = Temporal.Now.zonedDateTimeISO('Europe/Oslo');\n\nconst zdtTokyo = zdtOslo.withTimeZone('Asia/Tokyo');",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zone_to_zone"
+  }
+ ]
+}

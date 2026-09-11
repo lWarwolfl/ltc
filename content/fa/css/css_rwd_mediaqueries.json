@@ -1,0 +1,301 @@
+{
+ "slug": "css_rwd_mediaqueries",
+ "course": "css",
+ "order": 191,
+ "url": "/css/css_rwd_mediaqueries.asp",
+ "title": "طراحی وب واکنش‌گرا، media query",
+ "summary": "media query ابزار اصلی واکنش‌گرایی است: با @media می‌توانید شیوه‌ها را مشروط به پهنای viewport، جهت نمایشگر یا ترجیح‌های کاربر کنید. این درس نقطهٔ شکست، پنهان کردن عنصر، تغییر اندازهٔ قلم و احترام به prefers-reduced-motion را نشان می‌دهد.",
+ "objectives": [
+  "بگویید media query و نقطهٔ شکست چه هستند",
+  "با @media چیدمان grid را در اندازه‌های مختلف عوض کنید",
+  "عنصرها را روی صفحه‌های کوچک پنهان کنید و اندازهٔ قلم را تغییر دهید",
+  "برای ترجیح کاهش حرکت کاربر شیوهٔ جداگانه بنویسید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "طراحی وب واکنش‌گرا، media query"
+  },
+  {
+   "type": "h2",
+   "text": "media query در CSS"
+  },
+  {
+   "type": "p",
+   "text": "media queryهای CSS به شما اجازه می‌دهند شیوه‌ها را بر اساس ویژگی‌های دستگاه یا محیطی که صفحهٔ وب را نشان می‌دهد اعمال کنید."
+  },
+  {
+   "type": "p",
+   "text": "media queryهای CSS برای ساختن صفحه‌های واکنش‌گرا ضروری‌اند."
+  },
+  {
+   "type": "p",
+   "text": "قاعدهٔ @media در CSS برای افزودن media query به شیوه‌نامهٔ شما به کار می‌رود."
+  },
+  {
+   "type": "h2",
+   "text": "افزودن نقطهٔ شکست با media query"
+  },
+  {
+   "type": "p",
+   "text": "در درس قبلی یک صفحهٔ وب با چیدمان grid ساختیم. حالا می‌خواهیم با media query یک نقطهٔ شکست اضافه کنیم تا آیتم‌های grid روی صفحه‌های بزرگ‌تر جابه‌جا شوند."
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/rwd_phone.png",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/rwd_desktop.png",
+   "alt": ""
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@media (min-width: 600px) {\n  .header {grid-area: 1 / span 6;}\n\n  .menu {grid-area: 2 / span 1;}\n  .content {grid-area: 2 / span 4;}\n\n  .facts {grid-area: 2 / span 1;}\n  .footer {grid-area: 3 / span 6;}\n\n  }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryresponsive_breakpoints"
+  },
+  {
+   "type": "h2",
+   "text": "یک نقطهٔ شکست دیگر"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید هر تعداد نقطهٔ شکست که می‌خواهید اضافه کنید."
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/rwd_desktop.png",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/rwd_tablet.png",
+   "alt": ""
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/rwd_phone.png",
+   "alt": ""
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@media (min-width: 600px) {\n  .header {grid-area: 1 / span 6;}\n\n  .menu {grid-area: 2 / span 1;}\n  .content {grid-area: 2 / span 4;}\n\n  .facts {grid-area: 3 / span 6;}\n  .footer {grid-area: 4 / span 6;}\n\n  }\n\n  @media (min-width: 768px) {\n  .header {grid-area: 1 / span 6;}\n\n  .menu {grid-area: 2 / span 1;}\n  .content {grid-area: 2 / span 4;}\n\n  .facts {grid-area: 2 / span 1;}\n  .footer {grid-area: 3 / span 6;}\n\n  }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryresponsive_breakpoints2"
+  },
+  {
+   "type": "h2",
+   "text": "نقطه‌های شکست معمول دستگاه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "صفحه‌ها و دستگاه‌های بی‌شماری با ارتفاع و پهنای متفاوت وجود دارند، پس ساختن یک نقطهٔ شکست دقیق برای هر دستگاه سخت است. برای ساده ماندن کار می‌توانید پنج گروه را هدف بگیرید:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/*\n  Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px)\n  {...}\n\n/* Small devices (portrait tablets and large phones, 600px and up)\n  */\n@media only screen and (min-width: 600px) {...}\n\n/* Medium devices (landscape tablets, 768px and up) */\n\n  @media only screen and (min-width: 768px) {...}\n\n/* Large devices (laptops/desktops, 992px and up)\n  */\n\n  @media only screen and (min-width: 992px) {...}\n\n/* Extra large devices (large\n  laptops and desktops,\n  1200px and up) */\n@media only screen and (min-width: 1200px) {...}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryresponsive_mediaquery_breakpoints"
+  },
+  {
+   "type": "h2",
+   "text": "media query برای جهت نمایشگر"
+  },
+  {
+   "type": "p",
+   "text": "media query را می‌توان برای تغییر چیدمان صفحه بر اساس جهت نمایشگر هم به کار برد."
+  },
+  {
+   "type": "p",
+   "text": "در اینجا اگر جهت نمایشگر حالت landscape باشد، پس‌زمینهٔ body را عوض می‌کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@media only screen and (orientation:\nlandscape) {\n  body {\n\n    background-color: lightblue;\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryresponsive_mediaquery_orientation2"
+  },
+  {
+   "type": "h2",
+   "text": "پنهان کردن عنصرها با media query"
+  },
+  {
+   "type": "p",
+   "text": "در اینجا با media query یک عنصر را روی صفحه‌های کوچک پنهان می‌کنیم:"
+  },
+  {
+   "type": "p",
+   "text": "من روی صفحه‌های کوچک پنهان می‌شوم."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/* Hide element if the viewport width is 600px or less */\n@media\n  screen and (max-width: 600px) {\n  #div1 {\n\n  display: none;\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_hide2"
+  },
+  {
+   "type": "h2",
+   "text": "تغییر اندازهٔ قلم با media query"
+  },
+  {
+   "type": "p",
+   "text": "در اینجا با media query اندازهٔ قلم یک عنصر را در پهنای مختلف viewport عوض می‌کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/* If viewport width is 600px or more, set font-size to 80px */\n@media screen and (min-width:\n  600px) {\n  #div1 {\n\n  font-size: 80px;\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_fontsize2"
+  },
+  {
+   "type": "h2",
+   "text": "media query برای ترجیح‌های کاربر"
+  },
+  {
+   "type": "p",
+   "text": "بعضی کاربران به حرکت حساس‌اند و وب‌سایت‌هایی با انیمیشن کمتر را ترجیح می‌دهند."
+  },
+  {
+   "type": "p",
+   "text": "قابلیت media با نام prefers-reduced-motion به شما اجازه می‌دهد بررسی کنید کاربر خواسته حرکت کمتر شود یا نه، مثل انیمیشن‌ها و انتقال‌ها. با این قابلیت می‌توانید برای کاربرانی که این تنظیم را روی رایانهٔ خود فعال کرده‌اند، انیمیشن و انتقال را خاموش کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@media (prefers-reduced-motion: reduce) {\n\n  * {\n\n    animation: none !important;\n\n    transition: none !important;\n\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_userpref"
+  },
+  {
+   "type": "h2",
+   "text": "مرجع @media در CSS"
+  },
+  {
+   "type": "p",
+   "text": "برای مرور کامل همهٔ نوع‌های media و قابلیت‌ها و عبارت‌های آن، قاعدهٔ @media را در مرجع CSS ما ببینید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل mq.html بسازید، یک صفحه با چیدمان grid مثل درس قبلی آماده کنید و در حالت موبایل هر پنج بخش را ستونی بچینید.",
+   "hint": "برای شروع از grid-template-areas در حالت پیش‌فرض (موبایل) استفاده کنید."
+  },
+  {
+   "prompt": "با @media (min-width: 600px) در همان فایل، menu و content و facts را کنار هم بچینید.",
+   "hint": "با grid-area: 2 / span 1; و امثال آن، ناحیهٔ هر بخش را در سطر دوم تعیین کنید."
+  },
+  {
+   "prompt": "یک نقطهٔ شکست دوم با min-width: 768px اضافه کنید و چیدمان را در سه اندازه (باریک، متوسط، پهن) آزمایش کنید.",
+   "hint": "می‌توانید به هر تعداد نقطهٔ شکست که لازم دارید اضافه کنید."
+  },
+  {
+   "prompt": "یک media query برای orientation: landscape بنویسید که پس‌زمینهٔ body را عوض کند و گوشی خود را بچرخانید یا اندازهٔ پنجره را عوض کنید.",
+   "hint": "شرط را با @media only screen and (orientation: landscape) بنویسید."
+  },
+  {
+   "prompt": "با یک media query عنصری را در عرض ۶۰۰ پیکسل و کمتر پنهان کنید و بعد اندازهٔ قلم یک عنصر دیگر را در عرض ۶۰۰ پیکسل و بیشتر به 80px برسانید.",
+   "hint": "برای پنهان کردن از display: none; داخل @media استفاده کنید."
+  },
+  {
+   "prompt": "قاعدهٔ @media (prefers-reduced-motion: reduce) را بنویسید و داخلش انیمیشن و انتقال را خاموش کنید.",
+   "hint": "در این حالت کاربر خواسته حرکت کمتر شود؛ پس animation: none !important; و transition: none !important; بگذارید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "قاعدهٔ @media در CSS چه کاری می‌کند؟",
+   "options": [
+    "شیوه‌ها را بر اساس ویژگی‌های دستگاه یا محیط اعمال می‌کند",
+    "فایل CSS را به HTML وصل می‌کند",
+    "سرعت بارگذاری را اندازه می‌گیرد",
+    "متغیرهای CSS را تعریف می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "@media شیوه‌ها را مشروط می‌کند؛ مثلاً فقط وقتی پهنای viewport از ۶۰۰ پیکسل بیشتر است."
+  },
+  {
+   "question": "breakpoint در طراحی واکنش‌گرا چیست؟",
+   "options": [
+    "اندازه‌ای از صفحه که در آن چیدمان عوض می‌شود",
+    "نام فایل CSS",
+    "حداکثر تعداد media query در یک فایل",
+    "نقطه‌ای که صفحه‌خوان از آن عبور می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "نقطهٔ شکست پهنایی است که در آن با media query چیدمان را برای اندازهٔ بزرگ‌تر یا کوچک‌تر عوض می‌کنید."
+  },
+  {
+   "question": "برای پنهان کردن یک عنصر در صفحه‌های ۶۰۰ پیکسل و کمتر چه می‌نویسید؟",
+   "options": [
+    "@media screen and (max-width: 600px) { #div1 { display: none; } }",
+    "@media screen and (min-width: 600px) { #div1 { display: block; } }",
+    "@media print { #div1 { display: none; } }",
+    "#div1 { media: 600px; }"
+   ],
+   "answer": 0,
+   "explanation": "برای صفحه‌های کوچک از max-width استفاده می‌کنیم و پنهان کردن با display: none; انجام می‌شود."
+  },
+  {
+   "question": "قاعدهٔ @media (orientation: landscape) چه زمانی اعمال می‌شود؟",
+   "options": [
+    "وقتی نمایشگر افقی‌تر از ارتفاعش پهن باشد",
+    "وقتی صفحه چاپ شود",
+    "وقتی پهنای صفحه از ۶۰۰ پیکسل بیشتر باشد",
+    "وقتی کاربر صفحه را کوچک کند"
+   ],
+   "answer": 0,
+   "explanation": "orientation حالت نمایشگر را می‌سنجد؛ landscape یعنی پهنای نمایشگر از ارتفاعش بیشتر است."
+  },
+  {
+   "question": "قابلیت prefers-reduced-motion برای چه کسانی به کار می‌آید؟",
+   "options": [
+    "کاربرانی که حرکت و انیمیشن زیاد را نمی‌پسندند یا به آن حساس‌اند",
+    "کاربرانی که اینترنت کند دارند",
+    "کاربرانی که فایل CSS را خاموش کرده‌اند",
+    "کاربرانی که فقط از چاپگر استفاده می‌کنند"
+   ],
+   "answer": 0,
+   "explanation": "اگر کاربر این تنظیم را فعال کرده باشد، با این قابلیت انیمیشن و انتقال را برایش خاموش می‌کنید."
+  },
+  {
+   "question": "در مثال درس، برای صفحه‌های میانی (min-width: 768px) چه تفاوتی با حالت ۶۰۰ پیکسل وجود دارد؟",
+   "options": [
+    "هیچ تفاوتی ندارد",
+    "بخش facts در سطر دوم کنار محتوا می‌ماند و footer به سطر سوم می‌رود",
+    "همهٔ بخش‌ها پنهان می‌شوند",
+    "سرتیتر حذف می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "در مثال دوم درس، در ۷۶۸ پیکسل ناحیهٔ facts به سطر دوم کنار content می‌آید و footer در سطر سوم جدا می‌شود؛ برای همین می‌توانید به تعداد دلخواه نقطهٔ شکست اضافه کنید."
+  }
+ ]
+}

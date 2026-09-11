@@ -1,0 +1,748 @@
+{
+ "slug": "js_timers",
+ "course": "js",
+ "order": 44,
+ "url": "/js/js_timers.asp",
+ "title": "تایمرها در JavaScript",
+ "summary": "تایمرها اجرای یک تابع را با تأخیر یا به‌طور مکرر زمان‌بندی می‌کنند. در این درس setTimeout() و setInterval()، لغو تایمر با clearTimeout() و clearInterval()، پاس دادن کالبک، حداقلی بودن تأخیر و اشتباه‌های رایج تایمرها را یاد می‌گیرید.",
+ "objectives": [
+  "تابعی را با setTimeout() و پس از تأخیر اجرا کنید",
+  "تایمر تکراری با setInterval() بسازید و با clearInterval() متوقفش کنید",
+  "توضیح دهید چرا تأخیر صفر به معنی اجرای فوری نیست",
+  "تشخیص دهید چرا پاس دادن رشته به تایمر توصیه نمی‌شود"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "تایمرها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "اجرای تابع با تأخیر"
+  },
+  {
+   "type": "p",
+   "text": "تایمرهای JavaScript به شما امکان می‌دهند تابعی را با تأخیر یا به‌طور مکرر و با فاصله‌های ثابت اجرا کنید."
+  },
+  {
+   "type": "p",
+   "text": "دو تابع اصلی تایمر setTimeout() و setInterval() هستند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "تابع",
+     "توضیح"
+    ],
+    [
+     "setTimeout()",
+     "تابعی را یک بار و با تأخیر اجرا می‌کند."
+    ],
+    [
+     "setInterval()",
+     "تابعی را به‌طور مکرر اجرا می‌کند."
+    ],
+    [
+     "clearTimeout()",
+     "تایمر تأخیری را لغو می‌کند."
+    ],
+    [
+     "clearInterval()",
+     "تایمر تکراری را متوقف می‌کند."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "تابع setTimeout()"
+  },
+  {
+   "type": "p",
+   "text": "تابع setTimeout() اجرای یک‌بارهٔ یک تابع را با تأخیر برنامه‌ریزی می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(function, milliseconds);",
+   "caption": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "آرگومان اول تابعی است که باید اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان دوم تأخیر بر حسب میلی‌ثانیه است."
+  },
+  {
+   "type": "p",
+   "text": "یک ثانیه 1000 میلی‌ثانیه است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Call a Timeout\n\nsetTimeout(myFunction, 3000);\n\n// The callback function\n\nfunction myFunction() {\n\n  myDisplayer(\"Hello!\");\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_timeout"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "وقتی نام یک تابع به تابع دیگری پاس داده شود، به آن تابع کالبک می‌گویند."
+  },
+  {
+   "type": "h2",
+   "text": "پاس دادن تابع"
+  },
+  {
+   "type": "p",
+   "text": "به setTimeout() فقط نام تابع را پاس بدهید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(myFunction, 3000);",
+   "caption": "درست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(myFunction(), 3000);",
+   "caption": "درست:"
+  },
+  {
+   "type": "p",
+   "text": "مثال نادرست، myFunction() را همان لحظه صدا می‌زند."
+  },
+  {
+   "type": "p",
+   "text": "بعد مقدار برگشتی آن به setTimeout() پاس داده می‌شود."
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "تابع setTimeout() زمان اجرای کالبک را برای بعد تنظیم می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از تابع بی‌نام"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک تابع بی‌نام به setTimeout() پاس بدهید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(function() {\n\n  myDisplayer(\"Hello!\");\n\n}, 3000);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_anonymous"
+  },
+  {
+   "type": "h2",
+   "text": "تایمرها JavaScript را متوقف نمی‌کنند"
+  },
+  {
+   "type": "p",
+   "text": "صدا زدن setTimeout() باعث توقف JavaScript نمی‌شود."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript بی‌درنگ به دستور بعدی می‌رود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Start\");\n\nsetTimeout(function() {myDisplayer(\"Timer\")}, 3000);\n\nmyDisplayer(\"End\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "Start\n\nEnd\n\nTimer",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_continue"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "توابع تایمر اجرای کالبک را به بعد موکول می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "setTimeout() جلوی اجرای بقیهٔ کد JavaScript را نمی‌گیرد."
+  },
+  {
+   "type": "h2",
+   "text": "تأخیر صفر"
+  },
+  {
+   "type": "p",
+   "text": "تأخیر صفر میلی‌ثانیه‌ای به این معنا نیست که تابع کالبک همان لحظه اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "یعنی کالبک به‌محض تمام شدن کار جاری JavaScript اجرا می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Start\");\n\nsetTimeout(function() {myDisplayer(\"Timer\")}, 0);\n\nmyDisplayer(\"End\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "Start\n\nEnd\n\nTimer",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_zero"
+  },
+  {
+   "type": "h2",
+   "text": "تأخیر یک حداقل است"
+  },
+  {
+   "type": "p",
+   "text": "تأخیر مشخص‌شده زودترین زمانی است که کالبک می‌تواند اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "اگر JavaScript مشغول باشد، کالبک ممکن است دیرتر اجرا شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(function() {\n\n  myDisplayer(\"Timer finished\");\n\n}, 1000);\n\nlet i = 4e9;\n\nwhile (--i > 0);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_minimum"
+  },
+  {
+   "type": "p",
+   "text": "تأخیر تایمر یک ثانیه است."
+  },
+  {
+   "type": "p",
+   "text": "با این حال کالبک تا تمام شدن حلقه اجرا نمی‌شود."
+  },
+  {
+   "type": "p",
+   "text": "تایمرها JavaScript در حال اجرا را قطع نمی‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "یک تابع طولانی می‌تواند کالبک‌های تایمر را عقب بیندازد و صفحه را بی‌پاسخ کند."
+  },
+  {
+   "type": "h2",
+   "text": "لغو یک تایمر تأخیری"
+  },
+  {
+   "type": "p",
+   "text": "تابع setTimeout() یک شناسهٔ تایمر برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "برای لغو تایمر، آن شناسه را به clearTimeout() بدهید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "clearTimeout(timerId);",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"startTimer()\">Start Timer</button>\n\n<button onclick=\"stopTimer()\">Stop Timer</button>\n\n<p id=\"demo\"></p>",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let timer;\n\nfunction startTimer() {\n\n  timer = setTimeout(function() {\n\n    document.getElementById(\"demo\").innerHTML = \"Finished\";\n\n  }, 5000);\n\n}\n\nfunction stopTimer() {\n\n  clearTimeout(timer);\n\n  document.getElementById(\"demo\").innerHTML = \"Timer stopped\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_clear_timeout"
+  },
+  {
+   "type": "h2",
+   "text": "تابع setInterval()"
+  },
+  {
+   "type": "p",
+   "text": "تابع setInterval() یک کالبک را به‌طور مکرر اجرا می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setInterval(function, milliseconds);",
+   "caption": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "کالبک به‌طور مکرر و با فاصلهٔ (حداقل) تأخیر مشخص‌شده صدا زده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setInterval(showTime, 1000);\n\nfunction showTime() {\n\n  const date = new Date();\n\n  myDisplayer(date.toLocaleTimeString());\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_interval"
+  },
+  {
+   "type": "h2",
+   "text": "لغو یک تایمر تکراری"
+  },
+  {
+   "type": "p",
+   "text": "تابع setInterval() یک شناسهٔ تایمر تکراری برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "برای متوقف کردن تایمر، آن شناسه را به clearInterval() بدهید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "clearInterval(intervalId);",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"startClock()\">Start Clock</button>\n\n<button onclick=\"stopClock()\">Stop Clock</button>\n\n<p id=\"demo\"></p>",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let timer;\n\nfunction startClock() {\n\n  if (!timer) {\n\n    timer = setInterval(showTime, 1000);\n\n  }\n\n}\n\nfunction showTime() {\n\n  const date = new Date();\n\n  document.getElementById(\"demo\").innerHTML = date.toLocaleTimeString();\n\n}\n\nfunction stopClock() {\n\n  clearInterval(timer);\n\n  timer = undefined;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_clear_interval"
+  },
+  {
+   "type": "h2",
+   "text": "تایمر تأخیری یا تکراری؟"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "کاربرد",
+     "تابع"
+    ],
+    [
+     "اجرای یک‌بارهٔ تابع با تأخیر",
+     "setTimeout()"
+    ],
+    [
+     "اجرای مکرر تابع",
+     "setInterval()"
+    ],
+    [
+     "لغو تابع تأخیری",
+     "clearTimeout()"
+    ],
+    [
+     "توقف تابع تکراری",
+     "clearInterval()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پاس دادن آرگومان"
+  },
+  {
+   "type": "p",
+   "text": "آرگومان‌هایی که به setTimeout() یا setInterval() پاس داده می‌شوند، به تابع کالبک هم پاس داده می‌شوند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(showMessage, 2000, \"Hello\", \"John\");\n\nfunction showMessage(greeting, name) {\n\n  document.getElementById(\"demo\").innerHTML = greeting + \" \" + name;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_arguments"
+  },
+  {
+   "type": "h2",
+   "text": "setTimeout() تکراری"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با صدا زدن دوبارهٔ setTimeout() پس از پایان هر کار، یک تایمر تکراری بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function repeat() {\n\n  myDisplayer(\"Hello\");\n\n  setTimeout(repeat, 1000);\n\n}\n\nrepeat();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_repeat"
+  },
+  {
+   "type": "p",
+   "text": "در setTimeout() تکراری، تأخیر بعدی پس از پایان کالبک جاری شروع می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "در setInterval()، تایمر به برنامه‌ریزی کالبک‌ها با فاصله‌های منظم ادامه می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "setTimeout() تکراری وقتی مفید است که باید یک کار پیش از شروع تأخیر بعدی تمام شود."
+  },
+  {
+   "type": "h2",
+   "text": "مثال شمارش معکوس"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"startCountdown()\">Start Countdown</button>\n\n<p id=\"demo\"></p>",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let timer;\n\nfunction startCountdown() {\n\n  clearInterval(timer);\n\n  let count = 10;\n\n  myDisplayer(count);\n\n  timer = setInterval(function() {\n\n    count--;\n\n    myDisplayer(count);\n\n    if (count === 0) {\n\n      clearInterval(timer);\n\n      myDisplayer(\"Finished!\");\n\n    }\n\n  }, 1000);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_countdown"
+  },
+  {
+   "type": "h2",
+   "text": "از رشته به‌عنوان کد تایمر پرهیز کنید"
+  },
+  {
+   "type": "p",
+   "text": "توابع تایمر رشته هم می‌پذیرند، اما نباید از رشته به‌عنوان کد JavaScript استفاده کرد."
+  },
+  {
+   "type": "h3",
+   "text": "توصیه نمی‌شود"
+  },
+  {
+   "type": "p",
+   "text": "setTimeout(\"myFunction()\", 1000);"
+  },
+  {
+   "type": "h3",
+   "text": "توصیه می‌شود"
+  },
+  {
+   "type": "p",
+   "text": "setTimeout(myFunction, 1000);"
+  },
+  {
+   "type": "p",
+   "text": "پاس دادن تابع امن‌تر، خواناتر و برای اشکال‌زدایی ساده‌تر است."
+  },
+  {
+   "type": "h2",
+   "text": "تایمرها روی رشتهٔ اصلی (main thread) اجرا می‌شوند"
+  },
+  {
+   "type": "p",
+   "text": "مرورگر مدت انتظار را بیرون از کار جاری JavaScript مدیریت می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "با این حال کالبک تایمر همچنان روی رشتهٔ اصلی JavaScript اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "پس یک کالبک طولانی تایمر می‌تواند صفحه را قفل کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setTimeout(function() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n  document.getElementById(\"demo\").innerHTML = \"Finished\";\n\n}, 1000);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_blocking"
+  },
+  {
+   "type": "p",
+   "text": "تایمر فقط زمان شروع کالبک را عقب می‌اندازد."
+  },
+  {
+   "type": "p",
+   "text": "جلوی قفل کردن صفحه توسط کالبک پس از شروع را نمی‌گیرد."
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه‌های رایج در تایمرها"
+  },
+  {
+   "type": "h3",
+   "text": "صدا زدن همان لحظهٔ تابع"
+  },
+  {
+   "type": "p",
+   "text": "setTimeout(myFunction(), 1000);"
+  },
+  {
+   "type": "p",
+   "text": "هنگام پاس دادن تابع، پرانتز را بردارید:"
+  },
+  {
+   "type": "p",
+   "text": "setTimeout(myFunction, 1000);"
+  },
+  {
+   "type": "h3",
+   "text": "فراموش کردن شناسهٔ تایمر"
+  },
+  {
+   "type": "p",
+   "text": "اگر قرار است تایمر بعداً لغو شود، شناسهٔ برگشتی را نگه دارید."
+  },
+  {
+   "type": "p",
+   "text": "const timer = setTimeout(myFunction, 1000);\nclearTimeout(timer);"
+  },
+  {
+   "type": "h3",
+   "text": "راه‌اندازی چند تایمر تکراری"
+  },
+  {
+   "type": "p",
+   "text": "اگر یک تایمر تکراری را بیش از یک بار راه بیندازید، چند تایمر تکراری ساخته می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "if (!timer) {\n  timer = setInterval(myFunction, 1000);\n}"
+  },
+  {
+   "type": "h3",
+   "text": "توقع زمان‌بندی دقیق"
+  },
+  {
+   "type": "p",
+   "text": "تأخیر تایمر یک زمان‌بندی دقیق نیست."
+  },
+  {
+   "type": "p",
+   "text": "کالبک‌ها فقط وقتی اجرا می‌شوند که JavaScript آماده باشد."
+  },
+  {
+   "type": "h3",
+   "text": "فراموش کردن متوقف کردن تایمر تکراری"
+  },
+  {
+   "type": "p",
+   "text": "تایمر تکراری تا متوقف شدن یا بسته شدن صفحه ادامه می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "clearInterval(timer);"
+  },
+  {
+   "type": "h2",
+   "text": "مثال نمایش اسلاید"
+  },
+  {
+   "type": "p",
+   "text": "از تایمرها می‌توان برای عوض کردن خودکار تصویرها استفاده کرد."
+  },
+  {
+   "type": "p",
+   "text": "این مثال هر سه ثانیه یک تصویر جدید نشان می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<img id=\"slide\" src=\"img_nature.jpg\" style=\"width:100%;max-width:600px\">\n\n<button onclick=\"startSlides()\">Start</button>\n\n<button onclick=\"stopSlides()\">Stop</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const images = [\n\n  \"img_nature.jpg\",\n\n  \"img_snowtops.jpg\",\n\n  \"img_mountains.jpg\"\n\n];\n\nlet index = 0;\n\nlet timer;\n\nfunction showNextSlide() {\n\n  index = (index + 1) % images.length;\n\n  document.getElementById(\"slide\").src = images[index];\n\n}\n\nfunction startSlides() {\n\n  if (!timer) {\n\n    timer = setInterval(showNextSlide, 3000);\n\n  }\n\n}\n\nfunction stopSlides() {\n\n  clearInterval(timer);\n\n  timer = undefined;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_timers_slideshow"
+  },
+  {
+   "type": "p",
+   "text": "عملگر باقی‌مانده (%) پس از آخرین تصویر، اندیس را به صفر برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "بررسی داخل startSlides() جلوی هم‌زمان اجرا شدن چند تایمر تکراری را می‌گیرد."
+  },
+  {
+   "type": "h2",
+   "text": "تایمرها و JavaScript ناهمگام"
+  },
+  {
+   "type": "p",
+   "text": "تایمرها APIهای مرورگر هستند که اجرای کالبک‌ها را به بعد موکول می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "از آن‌ها اغلب به‌عنوان مثال سادهٔ JavaScript ناهمگام استفاده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "خودِ کالبک ناهمگام نیست."
+  },
+  {
+   "type": "p",
+   "text": "تایمر مرورگر فقط باعث می‌شود کالبک برای اجرای بعدی زمان‌بندی شود."
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید:"
+  },
+  {
+   "type": "p",
+   "text": "برنامه‌نویسی ناهمگام شامل این‌هاست:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کالبک‌ها",
+    "پرامیس‌ها",
+    "async / await",
+    "حلقهٔ رویداد",
+    "Web Workers"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برای اینکه ببینید تایمرها کجای برنامه‌نویسی ناهمگام قرار می‌گیرند:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش برنامه‌نویسی ناهمگام JavaScript را بخوانید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل timers.html بسازید و با setTimeout(myFunction, 2000); اجرای یک تابع را دو ثانیه عقب بیندازید؛ تابع هم یک پیام در کنسول چاپ کند.",
+   "hint": "آرگومان دوم تأخیر بر حسب میلی‌ثانیه است؛ مقدار 2000 یعنی دو ثانیه."
+  },
+  {
+   "prompt": "یک بار setTimeout(myFunction(), 1000); را با پرانتز بنویسید و ببینید تابع همان لحظه اجرا می‌شود؛ بعد پرانتز را بردارید.",
+   "hint": "با پرانتز، تابع همان لحظه صدا زده می‌شود و مقدار برگشتی‌اش پاس داده می‌شود، نه خود تابع."
+  },
+  {
+   "prompt": "با setInterval یک شمارنده بسازید که هر ثانیه یکی به عدد صفحه اضافه کند و بعد از پنج بار با clearInterval متوقفش کنید.",
+   "hint": "شناسهٔ برگشتی setInterval را در یک متغیر نگه دارید تا بعداً قابل لغو باشد."
+  },
+  {
+   "prompt": "یک setTimeout با تأخیر 0 بنویسید و دو دستور بعد از آن بگذارید؛ ترتیب چاپ در کنسول را ببینید و توضیح دهید.",
+   "hint": "کالبک با تأخیر صفر بعد از تمام شدن کار جاری JavaScript اجرا می‌شود، نه پیش از دستورهای بعدی."
+  },
+  {
+   "prompt": "یک حلقهٔ سنگین بنویسید و بعد از آن یک setTimeout بگذارید؛ ببینید چرا کالبک دیرتر از تأخیر تعیین‌شده اجرا می‌شود.",
+   "hint": "تایمرها JavaScript در حال اجرا را قطع نمی‌کنند؛ تأخیر مشخص‌شده فقط حداقل زمان است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام تابع اجرای مکرر یک تابع را زمان‌بندی می‌کند؟",
+   "options": [
+    "setTimeout()",
+    "setInterval()",
+    "clearTimeout()",
+    "clearInterval()"
+   ],
+   "answer": 1,
+   "explanation": "setInterval() کالبک را پشت سر هم و با فاصلهٔ مشخص اجرا می‌کند، اما setTimeout() فقط یک بار اجرا می‌شود و clearTimeout() و clearInterval() تایمرها را لغو می‌کنند."
+  },
+  {
+   "question": "در setTimeout(myFunction, 1000) عدد 1000 چه چیزی را مشخص می‌کند؟",
+   "options": [
+    "تعداد بارهای اجرا",
+    "شناسهٔ تایمر",
+    "نام تابع کالبک",
+    "تأخیر بر حسب میلی‌ثانیه"
+   ],
+   "answer": 3,
+   "explanation": "آرگومان دوم تأخیر بر حسب میلی‌ثانیه است؛ 1000 میلی‌ثانیه یک ثانیه است."
+  },
+  {
+   "question": "چرا setTimeout(myFunction(), 1000) نادرست است؟",
+   "options": [
+    "چون با پرانتز تابع همان لحظه صدا زده می‌شود و مقدار برگشتی‌اش پاس داده می‌شود",
+    "چون setTimeout آرگومان دوم را نمی‌پذیرد",
+    "چون myFunction را نمی‌توان کالبک کرد",
+    "چون تأخیر باید بیشتر از 1000 باشد"
+   ],
+   "answer": 0,
+   "explanation": "گذاشتن پرانتز تابع را همان لحظه اجرا می‌کند؛ به setTimeout باید فقط نام تابع و بدون پرانتز داده شود."
+  },
+  {
+   "question": "تأخیر صفر میلی‌ثانیه‌ای در setTimeout به چه معناست؟",
+   "options": [
+    "کالبک همان لحظه و پیش از دستورهای بعدی اجرا می‌شود",
+    "کالبک بلافاصله لغو می‌شود",
+    "کالبک به‌محض تمام شدن کار جاری JavaScript اجرا می‌شود",
+    "تایمر بی‌اثر است و کالبک هرگز اجرا نمی‌شود"
+   ],
+   "answer": 2,
+   "explanation": "تأخیر صفر یعنی کالبک در اولین فرصت پس از پایان کار جاری اجرا می‌شود، نه پیش از دستورهای بعدی؛ چون تایمرها JavaScript را متوقف نمی‌کنند."
+  },
+  {
+   "question": "اگر تایمر تکراری را متوقف نکنید، تا چه زمانی ادامه دارد؟",
+   "options": [
+    "تا متوقف شدن با clearInterval یا بسته شدن صفحه",
+    "فقط یک بار اجرا می‌شود",
+    "تا پایان همان ثانیه",
+    "تا وقتی دوباره setTimeout صدا زده شود"
+   ],
+   "answer": 0,
+   "explanation": "تایمر تکراری تا متوقف شدن با clearInterval() یا بسته شدن صفحه ادامه می‌دهد؛ پس شناسهٔ آن را در متغیر نگه دارید."
+  }
+ ]
+}

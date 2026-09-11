@@ -1,0 +1,355 @@
+{
+ "slug": "js_object_methods",
+ "course": "js",
+ "order": 48,
+ "url": "/js/js_object_methods.asp",
+ "title": "متدهای شیء در JavaScript",
+ "summary": "متدها تابع‌هایی هستند که به‌عنوان مقدار خصوصیت در شیء ذخیره می‌شوند. در این درس کلیدواژهٔ this، تفاوت صدا زدن متد با پرانتز و بدون پرانتز، و اضافه کردن متد به شیء را یاد می‌گیرید.",
+ "objectives": [
+  "بگویید متد شیء با خصوصیت چه تفاوتی دارد",
+  "متد را با پرانتز صدا بزنید و تفاوتش را با بدون پرانتز توضیح دهید",
+  "نقش this را در متد شیء توضیح دهید",
+  "متد جدید به شیء اضافه کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متدهای شیء در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "متدها کارهایی هستند که می‌توان روی شیء انجام داد."
+  },
+  {
+   "type": "p",
+   "text": "متدها تابع‌هایی هستند که به‌عنوان مقدار خصوصیت ذخیره می‌شوند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  fullName: function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_method"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "مقدار"
+    ],
+    [
+     "firstName",
+     "John"
+    ],
+    [
+     "lastName",
+     "Doe"
+    ],
+    [
+     "age",
+     "50"
+    ],
+    [
+     "fullName",
+     "function() {\n  return this.firstName + \" \"  + this.lastName;\n}"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "کلیدواژهٔ this"
+  },
+  {
+   "type": "p",
+   "text": "در متد شیء، this به خود شیء اشاره می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  id: 5566,\n\n  getId: function() {\n\n    return this.id;\n\n  }\n\n};\n\nlet number = person.getId();",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_function_this"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا this به شیء person اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "یعنی this.id همان خصوصیت id از شیء person است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  fullName: function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_method"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا this به شیء person اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "یعنی this.firstName همان خصوصیت firstName از شیء person است."
+  },
+  {
+   "type": "p",
+   "text": "یعنی this.lastName همان خصوصیت lastName از شیء person است."
+  },
+  {
+   "type": "h2",
+   "text": "دسترسی به متدهای شیء"
+  },
+  {
+   "type": "p",
+   "text": "برای صدا زدن متد شیء، پرانتز () را اضافه کنید:"
+  },
+  {
+   "type": "p",
+   "text": "بدون پرانتز، خود تابع به دست می‌آید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "objectName.methodName()",
+   "caption": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "اگر متد را با پرانتز صدا بزنید، مثل یک تابع اجرا می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "name = person.fullName();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_method"
+  },
+  {
+   "type": "p",
+   "text": "اگر متد را بدون پرانتز صدا بزنید، تعریف تابع برگردانده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "name = person.fullName;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_function"
+  },
+  {
+   "type": "h2",
+   "text": "اضافه کردن متد به شیء"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با نسبت دادن یک تابع به یک خصوصیت، متدی به شیء اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Assign person.name to a function\n\nperson.name = function () {\n  return this.firstName + \" \" + this.lastName;\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_method_add"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا person.name خصوصیتی است که یک تابع به آن نسبت داده شده است."
+  },
+  {
+   "type": "h2",
+   "text": "اضافه کردن یک متد JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "این مثال از متد toUpperCase() در JavaScript برای تبدیل متن به حروف بزرگ استفاده می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person.name = function () {\n\n  return (this.firstName + \" \" + this.lastName).toUpperCase();\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_method_toupper"
+  },
+  {
+   "type": "h2",
+   "text": "خلاصهٔ بخش"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "متدها تابع‌هایی هستند که به‌عنوان خصوصیت شیء ذخیره می‌شوند",
+    "متد را با پرانتز صدا بزنید: person.fullName()",
+    "در متدها، this به خود شیء اشاره می‌کند",
+    "می‌توانید با نسبت دادن تابع به یک خصوصیت، متد به شیء اضافه کنید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای JavaScript چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "this در شیءها چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "روش نمایش شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ شیء (object constructor) چیست؟"
+  },
+  {
+   "type": "h2",
+   "text": "فصل‌های پیشرفته:"
+  },
+  {
+   "type": "p",
+   "text": "تعریف شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "this پیشرفته در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "محافظت از شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتوتایپ‌های شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع شیء در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "شیء person با خصوصیت‌های firstName و lastName و متد fullName() بسازید که هر دو را به هم بچسباند.",
+   "hint": "مقدار خصوصیت fullName یک تابع است، پس بدون پرانتز فقط تعریف تابع را می‌گیرید."
+  },
+  {
+   "prompt": "همان متد را یک بار با پرانتز و یک بار بدون پرانتز در کنسول چاپ کنید و تفاوت خروجی را توضیح دهید.",
+   "hint": "با پرانتز تابع اجرا می‌شود و مقدار برگشتی می‌آید؛ بدون پرانتز خود تابع."
+  },
+  {
+   "prompt": "بنویسید console.log(this) داخل یک متد شیء و ببینید this به چه چیزی اشاره می‌کند.",
+   "hint": "در متد شیء، this به خود شیء اشاره می‌کند، پس کل شیء را می‌بینید."
+  },
+  {
+   "prompt": "بعد از ساختن شیء، متد جدیدی با تخصیص یک تابع به یک خصوصیت اضافه کنید و آن را صدا بزنید.",
+   "hint": "person.newMethod = function() { ... }; همان الگوی درس است."
+  },
+  {
+   "prompt": "داخل یک متد از متد toUpperCase() استفاده کنید تا نام را با حروف بزرگ برگردانید.",
+   "hint": "روی رشته می‌توانید متدهای خود رشته را هم صدا بزنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "متد شیء چیست؟",
+   "options": [
+    "یک مقدار عددی داخل شیء",
+    "تابعی که به‌عنوان مقدار خصوصیت ذخیره می‌شود",
+    "نام خود شیء",
+    "یک نوع دادهٔ اولیه"
+   ],
+   "answer": 1,
+   "explanation": "متد تابعی است که به‌عنوان مقدار یک خصوصیت در شیء ذخیره می‌شود و کارهایی را روی شیء انجام می‌دهد."
+  },
+  {
+   "question": "تفاوت person.fullName و person.fullName() چیست؟",
+   "options": [
+    "هر دو متد را اجرا می‌کنند",
+    "اولی تابع را اجرا می‌کند و دومی تعریف تابع را می‌دهد",
+    "اولی تعریف تابع را می‌دهد و دومی متد را اجرا می‌کند",
+    "هیچ تفاوتی ندارند"
+   ],
+   "answer": 2,
+   "explanation": "بدون پرانتز فقط خود تابع (تعریف آن) به دست می‌آید؛ با پرانتز متد فراخوانی و اجرا می‌شود."
+  },
+  {
+   "question": "در متد یک شیء، this به چه چیزی اشاره می‌کند؟",
+   "options": [
+    "به خود شیء",
+    "به متغیر سراسری",
+    "به پنجرهٔ مرورگر",
+    "به هیچ چیز؛ undefined برمی‌گرداند"
+   ],
+   "answer": 0,
+   "explanation": "در متد شیء، this به خود شیء اشاره می‌کند؛ پس this.firstName همان خصوصیت firstName از آن شیء است."
+  },
+  {
+   "question": "چگونه می‌توان بعد از ساختن شیء، متد جدیدی به آن اضافه کرد؟",
+   "options": [
+    "فقط با re-declaring کل شیء",
+    "با تخصیص یک تابع به یک خصوصیت جدید",
+    "با عملگر in",
+    "با کلیدواژهٔ delete"
+   ],
+   "answer": 1,
+   "explanation": "همان روش اضافه کردن خصوصیت کار می‌کند: یک تابع را به خصوصیت جدید نسبت می‌دهید و بعد با پرانتز صدا می‌زنید."
+  },
+  {
+   "question": "داخل متد fullName برای دسترسی به خصوصیت firstName از چه چیزی استفاده می‌کنیم؟",
+   "options": [
+    "person.firstName",
+    "this.firstName",
+    "window.firstName",
+    "self.firstName"
+   ],
+   "answer": 1,
+   "explanation": "داخل متد، this به خود شیء اشاره می‌کند؛ پس this.firstName همان خصوصیت firstName از آن شیء است."
+  }
+ ]
+}

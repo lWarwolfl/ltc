@@ -1,0 +1,169 @@
+{
+ "slug": "css3_images_modal",
+ "course": "css",
+ "order": 146,
+ "url": "/css/css3_images_modal.asp",
+ "title": "تصویرهای مودال واکنش‌گرا در CSS",
+ "summary": "تصویر مودال نسخهٔ بزرگ تصویر را در یک پنجرهٔ شناور نشان می‌دهد بدون آنکه از صفحه خارج شوید. این درس CSS مودال را می‌سازد، با انیمیشن zoomIn بازش می‌کند و با JavaScript آن را روی کلیک تصویر باز و بسته می‌کند.",
+ "objectives": [
+  "یک پنجرهٔ مودال با position: fixed بسازید",
+  "مودال را به‌طور پیش‌فرض پنهان نگه دارید و با کلاس نشان دهید",
+  "با @keyframes انیمیشن zoomIn بسازید",
+  "گالری و مودال را با media query واکنش‌گرا کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "تصویرهای مودال واکنش‌گرا در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "گالری تصویر مودال واکنش‌گرا"
+  },
+  {
+   "type": "p",
+   "text": "تصویر مودال به کاربر اجازه می‌دهد نسخهٔ بزرگ‌تر یک تصویر را بدون ترک صفحهٔ جاری ببیند. وقتی کاربر روی تصویر مودال کلیک می‌کند، پنجرهٔ بازشویی روی محتوای اصلی صفحه ظاهر می‌شود، معمولاً با پس‌زمینهٔ نیمه‌شفاف. این پنجره باید توسط کاربر بسته شود، معمولاً با یک دکمهٔ «بستن» یا علامت «X» در گوشهٔ بالا-راست."
+  },
+  {
+   "type": "p",
+   "text": "این مثال نشان می‌دهد چطور HTML، CSS و JavaScript را با هم به کار ببریم تا یک گالری تصویر مودال واکنش‌گرا بسازیم."
+  },
+  {
+   "type": "p",
+   "text": "با CSS یک پنجرهٔ مودال (جعبهٔ گفتگو) می‌سازیم و آن را به‌طور پیش‌فرض پنهان می‌کنیم."
+  },
+  {
+   "type": "p",
+   "text": "سپس با JavaScript وقتی کاربر روی تصویر کلیک می‌کند، پنجرهٔ مودال را با تصویر درست داخلش نشان می‌دهیم:"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_5terre.jpg",
+   "alt": "Cinque Terre"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_forest.jpg",
+   "alt": "Forest"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_lights.jpg",
+   "alt": "Northern Lights"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_mountains.jpg",
+   "alt": "Mountains"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_5terre.jpg",
+   "alt": "Cinque Terre"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_forest.jpg",
+   "alt": "Forest"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_lights.jpg",
+   "alt": "Northern Lights"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_mountains.jpg",
+   "alt": "Mountains"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n<head>\n<meta name=\"viewport\" content=\"width=device-width,\n  initial-scale=1.0\">\n<style>\n* {\n  margin: 0;\n  padding: 0;\n\n  box-sizing: border-box;\n}\n\nh1 {\n  text-align: center;\n  padding:\n  20px;\n}\n\n.gallery {\n  display: flex;\n  flex-wrap: wrap;\n\n  justify-content: flex-start;\n  padding: 0 15px;\n}\n\n.gallery-item {\n\n  position: relative;\n  width: calc(25% - 20px);\n  height: auto;\n  margin:\n  10px;\n  cursor: pointer;\n  transition: transform 0.5s ease;\n}\n\n  .gallery-item:hover {\n  transform: scale(1.1);\n}\n\n/* The Modal\n  (background) */\n.modal {\n  display: none;\n  position: fixed;\n  z-index:\n  1000;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n\n  background-color: rgba(0, 0, 0, 0.8);\n  align-items: center;\n\n  justify-content: center;\n  transition: opacity 0.5s ease;\n}\n\n/*\n  Modal content (image) */\n.modal-content {\n  position: relative;\n  width:\n  90%;\n  height: auto;\n  max-width: 90%;\n  max-height: 90%;\n  border-radius:\n  5px;\n  overflow: hidden;\n  animation: zoomIn 0.5s;\n}\n\n@keyframes\n  zoomIn {\n  from {transform: scale(0.6);}\n  to {transform: scale(1);}\n}\n\n.modal.show {\n  display: flex;\n  opacity: 1;\n}\n\n/* Close button\n  */\n.close {\n  position: absolute;\n  top: 10px;\n  right: 15px;\n  color:\n  #ffffff;\n  font-size: 35px;\n  font-weight: bold;\n  cursor: pointer;\n\n  transition: transform 0.3s;\n}\n\n/* Caption of modal image */\n\n  .caption {\n  position: absolute;\n  bottom: 15px;\n  width: 100%;\n\n  text-align: center;\n  color: #ffffff;\n  font-size: 24px;\n}\n\n@media\n  screen and (max-width: 768px) {\n  .gallery-item {\n    width: calc(50% - 20px);\n\n  }\n}\n\n@media screen and (max-width: 480px) {\n  .gallery-item {\n\n  width: calc(100% - 20px);\n  }\n}\n</style>\n</head>\n<body>\n\n  <h1>Responsive Modal Images</h1>\n\n<div class=\"gallery\">\n  <img\n  src=\"img_5terre.jpg\" alt=\"Cinque Terre\" class=\"gallery-item\"\n  onclick=\"openModal('modal1', 'Cinque Terre')\">\n\n  <img src=\"img_forest.jpg\" alt=\"Forest\" class=\"gallery-item\"\n  onclick=\"openModal('modal2', 'Forest')\">\n  <img\n  src=\"img_lights.jpg\" alt=\"Northern Lights\" class=\"gallery-item\"\n  onclick=\"openModal('modal3', 'Nothern Lights')\">\n\n  <img src=\"img_mountains.jpg\" alt=\"Mountains\" class=\"gallery-item\"\n  onclick=\"openModal('modal4', 'Mountains')\">\n</div>\n\n<div id=\"modal1\" class=\"modal\">\n  <span class=\"close\"\n  onclick=\"closeModal('modal1')\">&times;</span>\n  <img src=\"img_5terre.jpg\"\n  alt=\"Cinque Terre\" class=\"modal-content\">\n  <div\n  class=\"caption\"></div>\n</div>\n\n<div id=\"modal2\" class=\"modal\">\n\n  <span class=\"close\" onclick=\"closeModal('modal2')\">&times;</span>\n  <img\n  src=\"img_forest.jpg\" alt=\"Forest\" class=\"modal-content\">\n  <div class=\"caption\"></div>\n</div>\n\n<div id=\"modal3\"\n  class=\"modal\">\n  <span class=\"close\"\n  onclick=\"closeModal('modal3')\">&times;</span>\n  <img src=\"img_lights.jpg\"\n  alt=\"Northern Lights\" class=\"modal-content\">\n  <div\n  class=\"caption\"></div>\n</div>\n\n<div id=\"modal4\" class=\"modal\">\n\n  <span class=\"close\" onclick=\"closeModal('modal4')\">&times;</span>\n  <img\n  src=\"img_mountains.jpg\" alt=\"Mountains\" class=\"modal-content\">\n  <div class=\"caption\"></div>\n</div>\n\n<script>\nfunction openModal(modalId, caption) {\n  let modal =\n  document.getElementById(modalId);\n  modal.style.display = \"flex\";\n\n  modal.classList.add(\"show\");\n  let message = modal.querySelector(\".caption\");\n\n  message.innerText = caption;\n}\n\nfunction closeModal(modalId) {\n  let\n  modal = document.getElementById(modalId);\n  modal.classList.remove(\"show\");\n\n  setTimeout(function () {\n    modal.style.display = \"none\";\n\n  modal.querySelector(\".caption\").innerText = \"\";\n  }, 300);\n}\n</script>\n\n  </body>\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_image_modal_js"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل modal.html بسازید، چهار تصویر در یک گالری بگذارید و هرکدام را در یک .gallery-item قرار دهید.",
+   "hint": "پهنای هر آیتم را calc(25% - 20px) بگذارید تا چهار تصویر در یک سطر جا شوند."
+  },
+  {
+   "prompt": "یک .modal بسازید که به‌طور پیش‌فرض display: none; باشد و با پس‌زمینهٔ rgba(0, 0, 0, 0.8) پوشش بدهد.",
+   "hint": "position: fixed; و z-index بالا باعث می‌شود مودال روی همهٔ محتوا بیفتد."
+  },
+  {
+   "prompt": "با کلیک روی هر تصویر کلاس show را به مودال اضافه کنید تا با display: flex ظاهر شود.",
+   "hint": "با classList.add(\"show\") و یک قاعدهٔ .modal.show { display: flex; } این کار را انجام دهید."
+  },
+  {
+   "prompt": "برای مودال یک animation از نوع zoomIn با scale(0.6) به scale(1) بسازید.",
+   "hint": "@keyframes zoomIn و بعد animation: zoomIn 0.5s; روی .modal-content."
+  },
+  {
+   "prompt": "دکمهٔ بستن را در گوشهٔ بالا-راست بگذارید و با کلیک روی آن مودال را ببندید.",
+   "hint": "position: absolute; با top و right و یک شنوندهٔ کلیک که کلاس show را برمی‌دارد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "مودال به‌طور پیش‌فرض چه حالتی دارد و چطور نمایش داده می‌شود؟",
+   "options": [
+    "نمایش داده می‌شود و با کلیک پنهان می‌شود",
+    "پنهان است و با افزودن یک کلاس نشان داده می‌شود",
+    "همیشه نیمه‌شفاف است",
+    "فقط با تغییر اندازهٔ مرورگر ظاهر می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "کلاس .modal با display: none; پنهان است و با افزودن کلاس show از طریق JavaScript و قاعدهٔ .modal.show به display: flex می‌رسد."
+  },
+  {
+   "question": "چرا مودال از position: fixed استفاده می‌کند؟",
+   "options": [
+    "تا روی محتوای صفحه شناور بماند و با اسکرول جابه‌جا نشود",
+    "تا تصویر را بزرگ کند",
+    "تا گالری چهارستونه شود",
+    "تا فریم‌بندی انیمیشن تندتر شود"
+   ],
+   "answer": 0,
+   "explanation": "position: fixed عنصر را نسبت به پنجرهٔ مرورگر ثابت می‌کند، پس پنجرهٔ مودال روی همهٔ محتوا می‌ماند و با اسکرول حرکت نمی‌کند."
+  },
+  {
+   "question": "انیمیشن zoomIn در این مثال چه کاری می‌کند؟",
+   "options": [
+    "مودال را از scale(0.6) به scale(1) بزرگ می‌کند",
+    "تصویر را برمی‌گرداند",
+    "رنگ پس‌زمینه را عوض می‌کند",
+    "مودال را محو می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "zoomIn با transform: scale از بزرگ‌نمایی کوچک‌تر به اندازهٔ کامل می‌رسد و حس باز شدن نرم می‌دهد."
+  },
+  {
+   "question": "کلاس gallery-item:hover چه اثری دارد؟",
+   "options": [
+    "تصویر را با transform: scale(1.1) کمی بزرگ می‌کند",
+    "تصویر را پنهان می‌کند",
+    "مودال را می‌بندد",
+    "متن را وسط‌چین می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "در مثال، hover روی آیتم گالری با scale(1.1) و transition: transform 0.5s ease کمی بزرگ‌نمایی می‌کند تا کاربر متوجه قابل کلیک بودن تصویر شود."
+  },
+  {
+   "question": "در media query با پهنای کمتر از 768px و 480px، پهنای آیتم‌های گالری به چه تغییر می‌کند؟",
+   "options": [
+    "به calc(50% - 20px) و بعد calc(100% - 20px)",
+    "به 25% ثابت می‌ماند",
+    "به 0",
+    "به 768px"
+   ],
+   "answer": 0,
+   "explanation": "با باریک شدن صفحه از چهار ستون به دو ستون و بعد به یک ستون می‌رویم تا تصویرها خوانا بمانند."
+  }
+ ]
+}

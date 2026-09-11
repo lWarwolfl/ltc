@@ -1,0 +1,402 @@
+{
+ "slug": "js_debugging",
+ "course": "js",
+ "order": 107,
+ "url": "/js/js_debugging.asp",
+ "title": "JavaScript Debugging",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Debugging"
+  },
+  {
+   "type": "h2",
+   "text": "Debugging for Beginners"
+  },
+  {
+   "type": "p",
+   "text": "Many beginners quit because they cannot debug."
+  },
+  {
+   "type": "p",
+   "text": "This page shows you how to find out why code does not work."
+  },
+  {
+   "type": "p",
+   "text": "Debugging means finding and fixing mistakes (bugs) in your code."
+  },
+  {
+   "type": "p",
+   "text": "Bugs are normal. The skill is learning how to locate them quickly."
+  },
+  {
+   "type": "h2",
+   "text": "Why Code Does Not Work?"
+  },
+  {
+   "type": "p",
+   "text": "Programming code might contain syntax errors, or logical errors."
+  },
+  {
+   "type": "p",
+   "text": "Many of these errors are difficult to diagnose."
+  },
+  {
+   "type": "p",
+   "text": "When code fails, beginners often guess what is wrong."
+  },
+  {
+   "type": "p",
+   "text": "Debugging is the opposite: you check facts."
+  },
+  {
+   "type": "p",
+   "text": "A good debugging habit is: Read → Reproduce → Reduce → Fix"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Read the error",
+    "Reproduce the problem",
+    "Reduce to a small example",
+    "Then fix it."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Often, when programming code contains errors, nothing will happen. There are\nno error messages, and you will get no indications where to search for errors."
+  },
+  {
+   "type": "p",
+   "text": "Searching for (and fixing) errors in programming code is called code debugging."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "❝\n\nErrors can and will happen, every time you write computer code."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Debuggers"
+  },
+  {
+   "type": "p",
+   "text": "Debugging is not easy. But fortunately, all modern browsers have a built-in\nJavaScript debugger."
+  },
+  {
+   "type": "p",
+   "text": "Built-in debuggers can be turned on and off, forcing errors to be reported to\nthe user."
+  },
+  {
+   "type": "p",
+   "text": "With a debugger, you can also set breakpoints (places where code execution\ncan be stopped), and examine variables while the code is executing."
+  },
+  {
+   "type": "h2",
+   "text": "Did You Know?"
+  },
+  {
+   "type": "p",
+   "text": "Debugging is the process of testing, finding, and reducing bugs (errors) in computer programs."
+  },
+  {
+   "type": "p",
+   "text": "The first known computer bug was a real bug (an insect) stuck in the electronics."
+  },
+  {
+   "type": "h2",
+   "text": "Step 1: Look in the Console"
+  },
+  {
+   "type": "p",
+   "text": "The browser console shows errors and messages from JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "If your code \"does nothing\", the console often tells you why."
+  },
+  {
+   "type": "p",
+   "text": "Normally (otherwise follow the steps at the bottom of this page), you activate debugging in your browser with\nthe F12 key, and select Console in the debugger menu."
+  },
+  {
+   "type": "p",
+   "text": "If you do only one thing: always check the console when something fails."
+  },
+  {
+   "type": "h2",
+   "text": "Step 2: Use console.log()"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript console.log() prints values to the console."
+  },
+  {
+   "type": "p",
+   "text": "This helps you to see what your code is doing."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n<script>\n\nconsole.log(\"Hello!\");\n\n</script>\n\n</body>\n</html>",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let price = 50;\n\nlet quantity = 3;\n\nlet total = price * quantity;\n\nconsole.log(\"Total:\", total);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_debugging_console"
+  },
+  {
+   "type": "h2",
+   "text": "Tip:"
+  },
+  {
+   "type": "p",
+   "text": "Log the value before and after the line you suspect."
+  },
+  {
+   "type": "p",
+   "text": "That can tell you where things start going wrong."
+  },
+  {
+   "type": "h2",
+   "text": "Step 3: Confirm Your Assumptions"
+  },
+  {
+   "type": "p",
+   "text": "Many bugs happen because you assume a value is something, but it is not."
+  },
+  {
+   "type": "p",
+   "text": "Check the value."
+  },
+  {
+   "type": "p",
+   "text": "Check the type."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 5;\n\nlet y = \"5\";\n\nconsole.log(x + y);  // 55 (string!)\n\nconsole.log(x + Number(y));  // 10 (number)",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_debugging_types"
+  },
+  {
+   "type": "h2",
+   "text": "Reading Error Messages (Beginner Friendly)"
+  },
+  {
+   "type": "p",
+   "text": "Error messages look scary, but they usually mean one of a few common things."
+  },
+  {
+   "type": "h3",
+   "text": "ReferenceError"
+  },
+  {
+   "type": "p",
+   "text": "Means: This name does not exist."
+  },
+  {
+   "type": "p",
+   "text": "Often a misspelling or variable not declared."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "console.log(myValue);\n\n// ReferenceError: myValue is not defined",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_debugging_referenceerror"
+  },
+  {
+   "type": "h3",
+   "text": "TypeError"
+  },
+  {
+   "type": "p",
+   "text": "Means: You tried to use a value in an impossible way."
+  },
+  {
+   "type": "p",
+   "text": "Often undefined or null."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x;\n\nconsole.log(x.length);\n\n// TypeError: Cannot read properties of undefined",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_debugging_typeerror"
+  },
+  {
+   "type": "p",
+   "text": "In the console window, the error usually includes a line number."
+  },
+  {
+   "type": "p",
+   "text": "Click it in the console to jump to the exact line."
+  },
+  {
+   "type": "h2",
+   "text": "A Simple Debugging Checklist"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Check the console for errors",
+    "Read the error message carefully",
+    "Log values with console.log()",
+    "Reduce the problem to a small example",
+    "Fix one thing at a time."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Common Beginner Mistakes"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nif (x = 5) {\n\n  console.log(\"This runs\");\n\n}",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nif (x === 5) {\n\n  console.log(\"This runs only if x is 5\");\n\n}",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_debugging_equals"
+  },
+  {
+   "type": "p",
+   "text": "If your if statement behaves strangely, check if you accidentally used =."
+  },
+  {
+   "type": "h2",
+   "text": "Major Browsers' Debugging Tools"
+  },
+  {
+   "type": "p",
+   "text": "You can activate debugging in your browser with F12, and select Console in the debugger menu."
+  },
+  {
+   "type": "p",
+   "text": "Otherwise follow these steps:"
+  },
+  {
+   "type": "h2",
+   "text": "Chrome"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Open the browser.",
+    "From the menu, select \"More tools\".",
+    "From tools, choose \"Developer tools\".",
+    "Finally, select Console."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Firefox"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Open the browser.",
+    "From the menu, select \"Web Developer\".",
+    "Finally, select \"Web Console\"."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Edge"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Open the browser.",
+    "From the menu, select \"Developer Tools\".",
+    "Finally, select \"Console\"."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Opera"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Open the browser.",
+    "From the menu, select \"Developer\".",
+    "From \"Developer\", select \"Developer tools\".",
+    "Finally, select \"Console\"."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Safari"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Go to Safari, Preferences, Advanced in the main menu.",
+    "Check \"Enable Show Develop menu in menu bar\".",
+    "When the new option \"Develop\" appears in the menu:Choose \"Show Error\n Console\"."
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script>\n\nlet a = 5;\n\nlet b = 6;\n\nlet c = a + b;\n\nconsole.log(c);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_console"
+  },
+  {
+   "type": "h2",
+   "text": "See Also:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Errors"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Silent Errors"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Error Statemets"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Error Object"
+  }
+ ]
+}

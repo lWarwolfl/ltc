@@ -1,0 +1,355 @@
+{
+ "slug": "js_date_formats",
+ "course": "js",
+ "order": 58,
+ "url": "/js/js_date_formats.asp",
+ "title": "JavaScript Date Formats",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Date Formats"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Date Input"
+  },
+  {
+   "type": "p",
+   "text": "There are generally 3 types of JavaScript date input formats:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "Type",
+    "Example"
+   ],
+   "rows": [
+    [
+     "ISO Date",
+     "\"2015-03-25\"  (The International Standard)"
+    ],
+    [
+     "Short Date",
+     "\"03/25/2015\""
+    ],
+    [
+     "Long Date",
+     "\"Mar 25 2015\" or \"25 Mar 2015\""
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Date Output"
+  },
+  {
+   "type": "p",
+   "text": "Independent of input format, JavaScript will (by default) output dates in full\ntext string format:"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript ISO Dates"
+  },
+  {
+   "type": "p",
+   "text": "ISO 8601 is the international standard for the representation of dates and\ntimes."
+  },
+  {
+   "type": "p",
+   "text": "The ISO 8601 syntax (YYYY-MM-DD) is also the preferred JavaScript date format:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-03-25\");",
+   "caption": "Example (Complete date)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso1"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The computed date will be relative to your time zone.Depending on your time zone, the result above\nwill vary between March 24 and March 25."
+  },
+  {
+   "type": "h2",
+   "text": "ISO Dates (Year and Month)"
+  },
+  {
+   "type": "p",
+   "text": "ISO dates can be written without specifying the day (YYYY-MM):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-03\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso2"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Time zones will vary the result above between February 28 and March 01."
+  },
+  {
+   "type": "h2",
+   "text": "ISO Dates (Only Year)"
+  },
+  {
+   "type": "p",
+   "text": "ISO dates can be written without month and day (YYYY):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso3"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Time zones will vary the result above between December 31 2014 and January 01 2015."
+  },
+  {
+   "type": "h2",
+   "text": "ISO Dates (Date-Time)"
+  },
+  {
+   "type": "p",
+   "text": "ISO dates can be written with added hours, minutes, and seconds\n(YYYY-MM-DDTHH:MM:SSZ):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-03-25T12:00:00Z\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso4"
+  },
+  {
+   "type": "p",
+   "text": "Date and time are separated with a capital T."
+  },
+  {
+   "type": "p",
+   "text": "UTC time is defined with a capital letter Z."
+  },
+  {
+   "type": "p",
+   "text": "If you want to modify the time relative to UTC, remove the Z and add +HH:MM or -HH:MM\ninstead:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-03-25T12:00:00-06:30\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso5"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "UTC (Universal Time Coordinated)  is the same as GMT (Greenwich Mean Time)."
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "Omitting T or Z in a date-time string can give different results in different browsers."
+  },
+  {
+   "type": "h2",
+   "text": "Time Zones"
+  },
+  {
+   "type": "p",
+   "text": "When setting a date, without specifying the time zone, JavaScript will use\nthe browser's time zone."
+  },
+  {
+   "type": "p",
+   "text": "When getting a date, without specifying the time zone, the result is\nconverted to the browser's time zone."
+  },
+  {
+   "type": "p",
+   "text": "In other words: If a date/time is created in GMT (Greenwich Mean Time), the\ndate/time will be converted to CDT (Central US Daylight Time) if a user browses\nfrom central US."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Short Dates."
+  },
+  {
+   "type": "p",
+   "text": "Short dates are written with an \"MM/DD/YYYY\" syntax like this:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"03/25/2015\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_7"
+  },
+  {
+   "type": "h2",
+   "text": "WARNINGS !"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-3-25\");",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015/03/25\");",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"25-03-2015\");",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Long Dates."
+  },
+  {
+   "type": "p",
+   "text": "Long dates are most often written with a \"MMM DD YYYY\" syntax like this:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"Mar 25 2015\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_1"
+  },
+  {
+   "type": "p",
+   "text": "Month and day can be in any order:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"25 Mar 2015\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_2"
+  },
+  {
+   "type": "p",
+   "text": "And, month can be written in full (January), or abbreviated (Jan):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"January 25 2015\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_4"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"Jan 25 2015\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_5"
+  },
+  {
+   "type": "p",
+   "text": "Commas are ignored. Names are case insensitive:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"JANUARY, 25, 2015\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_6"
+  },
+  {
+   "type": "h2",
+   "text": "Date Input - Parsing Dates"
+  },
+  {
+   "type": "p",
+   "text": "If you have a valid date string, you can use the\nDate.parse() method to convert it to milliseconds."
+  },
+  {
+   "type": "p",
+   "text": "Date.parse() returns the number of milliseconds between the date and January\n1, 1970:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let msec = Date.parse(\"March 21, 2012\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_parse"
+  },
+  {
+   "type": "p",
+   "text": "You can then use the number of milliseconds to convert it to a date object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let msec = Date.parse(\"March 21, 2012\");\n\nconst d = new Date(msec);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_convert"
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Tutorial"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Get Methods"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Set Methods"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Date Reference"
+  }
+ ]
+}

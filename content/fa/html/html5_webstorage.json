@@ -1,0 +1,282 @@
+{
+ "slug": "html5_webstorage",
+ "course": "html",
+ "order": 73,
+ "url": "/html/html5_webstorage.asp",
+ "title": "API Web Storage در HTML",
+ "summary": "Web Storage داده را به‌صورت محلی و امن در مرورگر کاربر ذخیره می‌کند؛ بدون کوکی و بدون ارسال به سرور. در این درس با دو شیء localStorage و sessionStorage، متدهای setItem، getItem و removeItem و ساخت یک شمارندهٔ کلیک آشنا می‌شوید.",
+ "objectives": [
+  "توضیح دهید Web Storage چه فرقی با کوکی دارد",
+  "داده را با localStorage.setItem() ذخیره و با getItem() بخوانید",
+  "تفاوت localStorage و sessionStorage را تشخیص دهید",
+  "یک آیتم را با removeItem() پاک کنید و شمارندهٔ کلیک بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "API Web Storage در HTML"
+  },
+  {
+   "type": "p",
+   "text": "API Web Storage در HTML؛ بهتر از کوکی‌ها."
+  },
+  {
+   "type": "h2",
+   "text": "Web Storage چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "با web storage برنامه‌ها می‌توانند داده را به‌صورت محلی داخل مرورگر کاربر ذخیره کنند."
+  },
+  {
+   "type": "p",
+   "text": "پیش از HTML5 دادهٔ برنامه باید در کوکی‌ها ذخیره می‌شد که با هر درخواست به سرور فرستاده می‌شد. Web storage امن‌تر است و حجم زیادی داده را می‌توان به‌صورت محلی ذخیره کرد، بدون اینکه روی کارایی وب‌سایت اثر بگذارد."
+  },
+  {
+   "type": "p",
+   "text": "برخلاف کوکی‌ها، سقف ذخیره‌سازی بسیار بزرگ‌تر است (حداقل 5MB) و اطلاعات هرگز به سرور فرستاده نمی‌شود."
+  },
+  {
+   "type": "p",
+   "text": "Web storage به تفکیک مبدأ است (هر دامنه و پروتکل جدا). همهٔ صفحه‌های یک مبدأ می‌توانند یک داده را ذخیره کنند و به آن دسترسی داشته باشند."
+  },
+  {
+   "type": "h2",
+   "text": "شیءهای API Web Storage"
+  },
+  {
+   "type": "p",
+   "text": "Web storage دو شیء برای ذخیرهٔ داده در مرورگر در اختیار می‌گذارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "window.localStorage: داده را بدون تاریخ انقضا ذخیره می‌کند (با بستن تب مرورگر از بین نمی‌رود)",
+    "window.sessionStorage: داده را برای یک نشست ذخیره می‌کند (با بستن تب مرورگر از بین می‌رود)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "عددهای جدول، اولین نسخهٔ مرورگری را نشان می‌دهند که به‌طور کامل از Web Storage پشتیبانی می‌کند."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "API",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "localStorage",
+     "4.0",
+     "8.0",
+     "3.5",
+     "4.0",
+     "11.5"
+    ],
+    [
+     "sessionStorage",
+     "4.0",
+     "8.0",
+     "3.5",
+     "4.0",
+     "11.5"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی API Web Storage را تست کنید"
+  },
+  {
+   "type": "p",
+   "text": "پیش از استفاده از web storage می‌توانیم سریع پشتیبانی مرورگر از localStorage و sessionStorage را بررسی کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nconst x = document.getElementById(\"result\");\nif (typeof(Storage)\n  !== \"undefined\") {\n  x.innerHTML = \"Your browser supports Web\n  storage!\";\n} else {\n  x.innerHTML = \"Sorry, no Web storage\n  support!\";\n}\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webstorage_browsertest"
+  },
+  {
+   "type": "h2",
+   "text": "شیء localStorage"
+  },
+  {
+   "type": "p",
+   "text": "شیء localStorage داده را بدون تاریخ انقضا ذخیره می‌کند. با بستن مرورگر از بین نمی‌رود و فردا، هفتهٔ بعد یا سال بعد هم در دسترس است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nconst x = document.getElementById(\"result\");\n\nif (typeof(Storage)\n  !== \"undefined\") {\n  // Store\n  localStorage.setItem(\"lastname\",\n  \"Smith\");\n  localStorage.setItem(\"bgcolor\", \"yellow\");\n  //\n  Retrieve\n  x.innerHTML = localStorage.getItem(\"lastname\");\n\n  x.style.backgroundColor = localStorage.getItem(\"bgcolor\");\n} else {\n\n  x.innerHTML = \"Sorry, no Web storage support!\";\n}\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webstorage_local"
+  },
+  {
+   "type": "p",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "با متد localStorage.setItem() جفت‌های نام/مقدار بسازید",
+    "با متد localStorage.getItem() مقدارهای ذخیره‌شده را بخوانید",
+    "مقدار \\\"lastname\\\" را بخوانید و داخل عنصری با id=\\\"result\\\" بگذارید",
+    "مقدار \\\"bgcolor\\\" را بخوانید و در style و خصوصیت backgroundColor عنصری با id=\\\"result\\\" بگذارید"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "نحو حذف آیتم \\\"lastname\\\" از localStorage چنین است:"
+  },
+  {
+   "type": "p",
+   "text": "localStorage.removeItem(\"lastname\");"
+  },
+  {
+   "type": "p",
+   "text": "نکته: جفت‌های نام/مقدار همیشه به‌صورت رشته ذخیره می‌شوند. یادتان باشد وقتی لازم شد آن‌ها را به قالب دیگری تبدیل کنید!"
+  },
+  {
+   "type": "h2",
+   "text": "شمردن کلیک‌ها با localStorage"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر تعداد بارهایی را می‌شمارد که کاربر روی دکمه‌ای کلیک کرده است. در این کد رشتهٔ مقدار به عدد تبدیل می‌شود تا شمارنده بتواند افزایش پیدا کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nfunction clickCounter() {\n  const x =\n  document.getElementById(\"result\");\n  if (typeof(Storage) !==\n  \"undefined\") {\n    if (localStorage.clickcount) {\n\n  localStorage.clickcount = Number(localStorage.clickcount)+1;\n\n  } else {\n      localStorage.clickcount = 1;\n\n  }\n    x.innerHTML = \"You have clicked the button \" +\n  localStorage.clickcount + \" time(s)!\";\n  } else {\n\n  x.innerHTML = \"Sorry, no Web storage support!\";\n  }\n}\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webstorage_local_clickcount"
+  },
+  {
+   "type": "h2",
+   "text": "شیء sessionStorage"
+  },
+  {
+   "type": "p",
+   "text": "شیء sessionStorage مثل شیء localStorage است، با این تفاوت که داده را فقط برای یک نشست ذخیره می‌کند! داده وقتی کاربر آن تب مرورگر را ببندد حذف می‌شود."
+  },
+  {
+   "type": "h3",
+   "text": "شمردن کلیک‌ها با sessionStorage"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر تعداد بارهایی را می‌شمارد که کاربر در نشست فعلی روی دکمه‌ای کلیک کرده است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "<script>\nfunction clickCounter() {\n  const x =\n  document.getElementById(\"result\");\n  if (typeof(Storage) !==\n  \"undefined\") {\n    if (sessionStorage.clickcount) {\n\n  sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;\n\n  } else {\n      sessionStorage.clickcount = 1;\n\n  }\n    x.innerHTML = \"You have clicked the button \" +\n  sessionStorage.clickcount + \" time(s) in this session!\";\n  } else {\n\n  x.innerHTML = \"Sorry, no Web storage support!\";\n  }\n}\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webstorage_session"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل storage.html بسازید و با localStorage.setItem() یک جفت نام/مقدار در مرورگر ذخیره کنید.",
+   "hint": "جفت‌ها همیشه به‌صورت رشته ذخیره می‌شوند."
+  },
+  {
+   "prompt": "مقدار ذخیره‌شده را با localStorage.getItem() بخوانید و داخل عنصری با id=\"result\" بگذارید.",
+   "hint": "مقدار برگشتی یک رشته است."
+  },
+  {
+   "prompt": "تب مرورگر را ببندید و باز کنید و ببینید مقدار localStorage مانده است؛ بعد همین کار را با sessionStorage تست کنید.",
+   "hint": "دادهٔ sessionStorage با بستن تب از بین می‌رود."
+  },
+  {
+   "prompt": "با localStorage.removeItem() یک آیتم را از حافظهٔ مرورگر پاک کنید.",
+   "hint": "نام همان کلیدی را بدهید که ذخیره کرده‌اید."
+  },
+  {
+   "prompt": "یک شمارندهٔ کلیک با localStorage بنویسید تا تعداد کلیک‌ها بین بازدیدهای مختلف حفظ شود.",
+   "hint": "مقدار رشته را با Number() به عدد تبدیل کنید تا بتوانید افزایشش دهید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تفاوت اصلی localStorage و sessionStorage چیست؟",
+   "options": [
+    "localStorage داده را برای یک نشست و sessionStorage برای همیشه نگه می‌دارد",
+    "localStorage داده را بدون تاریخ انقضا ذخیره می‌کند و sessionStorage فقط برای یک نشست",
+    "هیچ تفاوتی با هم ندارند",
+    "sessionStorage امن‌تر است چون داده را به سرور می‌فرستد"
+   ],
+   "answer": 1,
+   "explanation": "localStorage با بستن تب یا مرورگر پاک نمی‌شود، اما sessionStorage فقط تا پایان همان نشست و همان تب زنده می‌ماند."
+  },
+  {
+   "question": "دربارهٔ سقف ذخیره‌سازی web storage کدام گزینه درست است؟",
+   "options": [
+    "دقیقاً مثل کوکی‌ها کوچک است",
+    "نامحدود است",
+    "حداقل 5MB است و اطلاعات هرگز به سرور فرستاده نمی‌شود",
+    "فقط 5KB است"
+   ],
+   "answer": 2,
+   "explanation": "درس می‌گوید سقف ذخیره‌سازی برخلاف کوکی‌ها بسیار بزرگ‌تر است (حداقل 5MB) و اطلاعات به سرور منتقل نمی‌شود."
+  },
+  {
+   "question": "جفت‌های نام/مقدار در web storage به چه صورتی ذخیره می‌شوند؟",
+   "options": [
+    "همیشه به‌صورت رشته",
+    "همیشه به‌صورت عدد",
+    "همیشه به‌صورت شیء",
+    "به‌صورت بولین"
+   ],
+   "answer": 0,
+   "explanation": "نکتهٔ درس صریح است که این جفت‌ها همیشه رشته ذخیره می‌شوند و باید هنگام نیاز تبدیلشان کنید."
+  },
+  {
+   "question": "کدام متد یک آیتم را از localStorage حذف می‌کند؟",
+   "options": [
+    "localStorage.delete()",
+    "localStorage.clearItem()",
+    "localStorage.pop()",
+    "localStorage.removeItem()"
+   ],
+   "answer": 3,
+   "explanation": "نحو حذف در درس localStorage.removeItem(\"lastname\") است؛ متدهای دیگر وجود ندارند."
+  },
+  {
+   "question": "دادهٔ web storage به چه محدوده‌ای تعلق دارد؟",
+   "options": [
+    "به کل مرورگر بدون توجه به دامنه",
+    "به مبدأ (دامنه و پروتکل) و صفحه‌های همان مبدأ به آن دسترسی دارند",
+    "فقط به همان یک صفحه",
+    "به سرور سایت"
+   ],
+   "answer": 1,
+   "explanation": "web storage به تفکیک مبدأ است، پس همهٔ صفحه‌های یک دامنه و پروتکل می‌توانند همان داده را بخوانند."
+  }
+ ]
+}

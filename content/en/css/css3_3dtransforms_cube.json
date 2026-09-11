@@ -1,0 +1,135 @@
+{
+ "slug": "css3_3dtransforms_cube",
+ "course": "css",
+ "order": 134,
+ "url": "/css/css3_3dtransforms_cube.asp",
+ "title": "CSS 3D Transforms - 3D Cube",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "CSS 3D Transforms - 3D Cube"
+  },
+  {
+   "type": "h2",
+   "text": "CSS - A Rotating 3D Cube"
+  },
+  {
+   "type": "p",
+   "text": "Here we demonstrate how to make another classic 3D object: A rotating cube."
+  },
+  {
+   "type": "p",
+   "text": "front"
+  },
+  {
+   "type": "p",
+   "text": "back"
+  },
+  {
+   "type": "p",
+   "text": "right"
+  },
+  {
+   "type": "p",
+   "text": "left"
+  },
+  {
+   "type": "p",
+   "text": "top"
+  },
+  {
+   "type": "p",
+   "text": "bottom"
+  },
+  {
+   "type": "h2",
+   "text": "The HTML Structure"
+  },
+  {
+   "type": "p",
+   "text": "Let's start with the basic HTML structure:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<div class=\"container\">\n  <div class=\"cube\">\n\n  <div class=\"face front\">front</div>\n    <div class=\"face\n  back\">back</div>\n    <div class=\"face right\">right</div>\n\n  <div class=\"face left\">left</div>\n    <div class=\"face\n  top\">top</div>\n    <div class=\"face bottom\">bottom</div>\n\n  </div>\n</div>",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "The container element will house the 3D\nspace. The cube element acts as the 3D object.\nSix separate face elements are used for the\nsix faces of the cube (front, back, right, left, top, and bottom)."
+  },
+  {
+   "type": "h2",
+   "text": "The CSS Styling"
+  },
+  {
+   "type": "p",
+   "text": "First, we define the 3D container box: Apply perspective, along with height,\nwidth and margin:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".container {\n  width: 200px;\n  height: 200px;\n\n  margin: 100px auto;\n  perspective: 600px;\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Now the cube element can be transformed in its container's 3D space.\nWe add width: 100%; and height: 100%;. The position: relative is used to position cube faces absolutely.\nThe transform-style: preserve-3d is essential here. It forces child elements\ninto 3D space. Without this, the faces flatten into a 2D sheet.\nWe also add a CSS animation, to trigger continuous rotation of the cube:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".cube {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transform-style: preserve-3d;\n  animation: spin 12s\n  infinite linear;\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Then, we add some base styling for all six cube faces.\nTo position the faces in 3D space, we will need to reset their positions in 2D with position: absolute.\nWe also add a translucent red background color to observe the depth:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".face {\n  position: absolute;\n  width: 200px;\n\n  height: 200px;\n  border: 2px solid white;\n  line-height:\n  200px;\n  text-align: center;\n  font-size: 24px;\n\n  font-weight: bold;\n  color: white;\n  background: rgba(255, 0, 0,\n  0.5);\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Next, we need to position each face individually in 3D space. Assuming a\n200px cube, each face translates exactly 100px from center:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".front { transform: rotateY( 0deg) translateZ(100px); }\n.back { transform:\n  rotateY(180deg) translateZ(100px); }\n.left { transform: rotateY(-90deg)\n  translateZ(100px); }\n.right { transform: rotateY( 90deg) translateZ(100px);\n  }\n.top { transform: rotateX( 90deg) translateZ(100px); }\n.bottom {\n  transform: rotateX(-90deg) translateZ(100px); }",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "At the end, we create the keyframe animation to rotate the cube:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@keyframes spin {\n  from { transform: rotateX(0deg) rotateY(0deg); }\n\n  to { transform: rotateX(360deg) rotateY(360deg); }\n}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Full Example of Rotating 3D Cube"
+  },
+  {
+   "type": "p",
+   "text": "Here is the full example of the rotating 3D cube:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".container {\n  width: 200px;\n  height: 200px;\n\n  margin: 100px auto;\n  perspective: 600px;\n}\n\n.cube {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 12s infinite linear;\n}\n\n.face {\n  position: absolute;\n  width: 200px;\n\n  height: 200px;\n  border: 2px solid white;\n  line-height:\n  200px;\n  text-align: center;\n  font-size: 24px;\n\n  font-weight: bold;\n  color: white;\n  background: rgba(255, 0,\n  0, 0.5);\n}\n\n.front { transform: rotateY( 0deg)\n  translateZ(100px); }\n.back { transform: rotateY(180deg) translateZ(100px);\n  }\n.left { transform:\n  rotateY(-90deg) translateZ(100px); }\n.right { transform: rotateY( 90deg)\n  translateZ(100px); }\n.top { transform: rotateX( 90deg) translateZ(100px); }\n\n  .bottom { transform: rotateX(-90deg) translateZ(100px); }\n\n@keyframes\n  spin {\n  from { transform: rotateX(0deg) rotateY(0deg); }\n  to\n  { transform: rotateX(360deg) rotateY(360deg); }\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_cube"
+  }
+ ]
+}

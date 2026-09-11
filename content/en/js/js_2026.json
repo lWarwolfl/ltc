@@ -1,0 +1,425 @@
+{
+ "slug": "js_2026",
+ "course": "js",
+ "order": 124,
+ "url": "/js/js_2026.asp",
+ "title": "ECMAScript 2026",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ECMAScript 2026"
+  },
+  {
+   "type": "h2",
+   "text": "New Features in JavaScript 2026"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2026 (ES2026), the 17th edition of the JavaScript language specification,\nwas officially ratified by ECMA International on June 30, 2026."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Accurate Math with Math.sumPrecise()",
+    "Error detection with Error.isError()",
+    "Asynchronous array creation with Array.fromAsync()",
+    "Map upsert with getOrInsert()",
+    "High-precision JSON with rawJSON()",
+    "Base64 and hexadecimal encodings for Uint8Array"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Features Pushed to ES2027"
+  },
+  {
+   "type": "p",
+   "text": "While highly visible in the ecosystem through mature polyfills, a couple of major proposals just missed\nthe June 2026 cutoff for official inclusion and are officially slated for next year's spec:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal API\nThe long-time-overdue successor to the buggy, 30-year-old Date object.\nUnlike Date, Temporal objects are immutable and provide first-class support for time zones\nand non-Gregorian calendars.",
+    "Explicit Resource Management (using keyword)\nC#-style block-scoped disposal variables that auto-clean up database connections\nand streams when leaving context, avoiding try...finally boilerplate."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Accurate Math with Math.sumPrecise()"
+  },
+  {
+   "type": "p",
+   "text": "Math.sumPrecise() fixes the classic\n0.1 + 0.2 === 0.30000000000000004 floating-point problem when summing lists of numbers."
+  },
+  {
+   "type": "p",
+   "text": "Computers do not think in base-10 decimals like humans; they think in binary bits, which causes\nstructural math flaws in programming."
+  },
+  {
+   "type": "p",
+   "text": "The Problem: In JavaScript, 0.1 + 0.2 has historically equaled 0.30000000000000004 due to floating-point rounding errors.\nThis is dangerous for financial apps."
+  },
+  {
+   "type": "p",
+   "text": "The Fix: Math.sumPrecise changes how the underlying language engine calculates a list of decimals,\nbypassing the system's structural limitation to deliver a perfect sum."
+  },
+  {
+   "type": "h2",
+   "text": "Map Upsert with getOrInsert()"
+  },
+  {
+   "type": "p",
+   "text": "Map.prototype.getOrInsert removes the boilerplate of checking if a key exists before adding\nan item to a Map structure."
+  },
+  {
+   "type": "p",
+   "text": "A data structure (like an Array or a Map) holds your information. Previously, JavaScript's built-in structures\nlacked common-sense shortcuts found in other languages."
+  },
+  {
+   "type": "p",
+   "text": "The Problem: If you wanted to update a dictionary (Map), you had to write an if statement to check if the\nkey existed, create it if missing, and then update it."
+  },
+  {
+   "type": "p",
+   "text": "The Fix: Map.prototype.getOrInsert lets you find or create data in one quick move.\nIt expands what the data structure can do natively."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const userRoles = new Map();\n\n// Old Way: Multi-line checks\n\nif (!userRoles.has(\"admin\")) {\n\n  userRoles.set(\"admin\", []);\n\n}\n\nuserRoles.get(\"admin\").push(\"Alice\");\n\n// New ES2026 Way: Single-line default insertion\n\nuserRoles.getOrInsert(\"admin\", []).push(\"Bob\");\n\nuserRoles.getOrInsert(\"admin\", []).push(\"Charlie\");\n\nconsole.log(userRoles.get(\"admin\")); // ['Bob', 'Charlie']",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "High-Precision JSON with rawJSON()"
+  },
+  {
+   "type": "p",
+   "text": "JSON.rawJSON preserves large numbers (like ID strings from databases) without losing digits due to internal rounding."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const precisionLossJSON = '{\"id\": 9223372036854775807}';\n\n// New ES2026 Reviver: Accesses the raw source string before rounding\n\nconst data = JSON.parse(precisionLossJSON, (key, value, context) => {\n\n  if (key === 'id') {\n\n    return context.source; // \"9223372036854775807\" as a string\n\n  }\n\n  return value;\n\n});\n\n// New ES2026 Stringify: Outputs the unrounded big integer safely\n\nconst output = JSON.stringify({\n\n  id: JSON.rawJSON(\"9223372036854775807\")\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Error.isError()"
+  },
+  {
+   "type": "p",
+   "text": "Error.isError() is a static method to reliably check if a value is an Error object,\nimproving error handling and debugging."
+  },
+  {
+   "type": "p",
+   "text": "Error.isError() reliably detects error objects even if they originated from inside an\n<iframe> or a separate runtime sandbox."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Error.isError(new TypeError());   // true\n\nError.isError({ name: \"Error\" }); // false",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_iserror"
+  },
+  {
+   "type": "p",
+   "text": "Realm-safe error check:\nAn Error from an iframe verifies with Error.isError()\nand fails with instanceof."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  throw new TypeError(\"Invalid format\");\n\n} catch (err) {\n\n  // Old Way: Could fail across different window contexts\n\n  console.log(err instanceof Error);\n\n  // New ES2026 Way: Globally reliable\n\n  console.log(Error.isError(err)); // true\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h3",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "Error.isError() is already supported in many browsers:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome134",
+     "Edge134",
+     "Firefox138",
+     "Safari❌",
+     "Opera119"
+    ],
+    [
+     "Mar 2025",
+     "Mar 2025",
+     "Apr 2025",
+     "❌",
+     "May 2025"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Array.fromAsync()"
+  },
+  {
+   "type": "p",
+   "text": "Array.fromAsync()\nis a feature that allows developers to create a new Array instance from\nasynchronous iterables, array-like objects, or Promises, streamlining the handling of data from async sources."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// An async generator simulating a paginated API\n\nasync function* fetchPages() {\n\n  yield;\n\n  yield;\n\n}\n\n// New ES2026 Way: Resolves and flattens natively\n\nconst allData = await Array.fromAsync(fetchPages(), flatMap => flatMap);\n\nconsole.log(allData); // [1, 2, 3, 4]",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function* asyncGenerator() {\n\n  yield Promise.resolve(1);\n\n  yield Promise.resolve(2);\n\n  yield Promise.resolve(3);\n\n}\n\nasync function processAsyncData() {\n\n  const arr = await Array.fromAsync(asyncGenerator());\n\n}\n\nprocessAsyncData();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_fromasync"
+  },
+  {
+   "type": "h3",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "Array.fromAsync() is supported in all major browsers:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome121",
+     "Edge121",
+     "Firefox115",
+     "Safari16.4",
+     "Opera107"
+    ],
+    [
+     "Jan 2024",
+     "Jan 2024",
+     "Jul 2023",
+     "May 2023",
+     "Feb 2024"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "New Uint8Array Methods"
+  },
+  {
+   "type": "p",
+   "text": "Base64 and Hexadecimal Encodings for Uint8Array."
+  },
+  {
+   "type": "p",
+   "text": "These new static methods facilitate working with binary data by adding direct conversion between\nUint8Array objects and Base64 or hexadecimal strings."
+  },
+  {
+   "type": "p",
+   "text": "This eliminates the need for external buffer modules or hacky window methods\nlike btoa() and atob()."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Uint8Array fromBase64()\nCreates a Uint8Array object from a base64-encoded string",
+    "Uint8Array toBase64()\nReturns a base64-encoded string from the data in an int8Array",
+    "Uint8Array fromHex()\nCreates a Uint8Array object from a hexadecimal string",
+    "Uint8Array toHex()\nReturns a hex-encoded string from the data in an int8Array"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Uint8Array to/fromBase64()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Creating raw binary data\n\nconst bytes = new Uint8Array([72, 101, 108, 108, 111]); // \"Hello\"\n\n// New ES2026: Direct string conversions\n\nconst base64String = bytes.toBase64();\n\nconsole.log(base64String); // \"SGVsbG8=\"\n\nconst hexString = bytes.toHex();\n\nconsole.log(hexString); // \"48656c6c6f\"\n\n// Reversing the operation\n\nconst restoredBytes = Uint8Array.fromBase64(\"SGVsbG8=\");",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let string = 'W3Schools 123';\n\nconst arr = Uint8Array.fromBase64(string);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const arr = new Uint8Array([91,116,156,134,138,37,179,93,183]);\n\nlet text = arr.toBase64();",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_uint8array_fromBase64"
+  },
+  {
+   "type": "h3",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "to/fromBase64() is supported in all major browsers:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome140",
+     "Edge140",
+     "Firefox133",
+     "Safari18.2",
+     "Opera124"
+    ],
+    [
+     "Sep 2025",
+     "Sep 2025",
+     "Nov 2024",
+     "Des 2024",
+     "Nov 2024"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Uint8Array to/fromHex()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = '5b749c868a25b35db7';\n\nconst arr = Uint8Array.fromHex(text);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const arr = new Uint8Array([91,116,156,134,138,37,179,93,183]);\n\nlet text = arr.toHex();",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_uint8array_fromhex"
+  },
+  {
+   "type": "h3",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "to/fromHex() is supported in all major browsers:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome140",
+     "Edge140",
+     "Firefox133",
+     "Safari18.2",
+     "Opera124"
+    ],
+    [
+     "Sep 2025",
+     "Sep 2025",
+     "Nov 2024",
+     "Des 2024",
+     "Nov 2025"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Accurate Floating-Point Math"
+  },
+  {
+   "type": "p",
+   "text": "The Math.sumPrecise() Method fixes the classic 0.1 + 0.2 === 0.30000000000000004\nfloating-point problem when summing lists of numbers."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Old Way: Inaccuracies accumulate\n\nconst items = [0.1, 0.2, 0.3];\n\nconst badSum = items.reduce((a, b) => a + b, 0);\n\nmyDisplayer(badSum);\n\n// New ES2026 Way: Perfectly precise\n\nconst preciseSum = Math.sumPrecise(items);\n\nmyDisplayer(preciseSum);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sumprecise"
+  },
+  {
+   "type": "h3",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "Math.sumPrecise() is supported in all major browsers:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome147",
+     "Edge147",
+     "Firefox137",
+     "Safari26.2",
+     "Opera131;"
+    ],
+    [
+     "Apr 2026",
+     "Apr 2026",
+     "Apr 2025",
+     "Nov 2025",
+     "Apr 2026"
+    ]
+   ]
+  }
+ ]
+}

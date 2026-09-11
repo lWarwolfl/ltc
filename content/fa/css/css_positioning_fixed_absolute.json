@@ -1,0 +1,179 @@
+{
+ "slug": "css_positioning_fixed_absolute",
+ "course": "css",
+ "order": 68,
+ "url": "/css/css_positioning_fixed_absolute.asp",
+ "title": "موقعیت‌دهی fixed و absolute در CSS",
+ "summary": "در این درس دو مقدار مهم position را جداگانه بررسی می‌کنید: fixed که نسبت به پنجرهٔ دید ثابت می‌ماند و absolute که نسبت به نزدیک‌ترین والد موقعیت‌دار قرار می‌گیرد. تفاوت‌شان را با مثال عملی می‌بینید.",
+ "objectives": [
+  "رفتار عنصر fixed هنگام اسکرول را توضیح دهید",
+  "بگویید عنصر absolute نسبت به کدام والد حساب می‌شود",
+  "با یک والد relative جای عنصر absolute را کنترل کنید",
+  "تفاوت فضاگرفتن fixed و absolute در سند را تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "موقعیت‌دهی fixed و absolute در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "position: fixed در CSS"
+  },
+  {
+   "type": "p",
+   "text": "عنصری با position: fixed; نسبت به viewport (پنجرهٔ دید) قرار می‌گیرد؛ یعنی حتی با پیمایش صفحه همیشه سر جای خودش می‌ماند. خصوصیت‌های top، right، bottom و left جای نهایی عنصر را تعیین می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "عنصر fixed در جایی از صفحه که به‌طور عادی باید آنجا باشد، جای خالی باقی نمی‌گذارد."
+  },
+  {
+   "type": "p",
+   "text": "این عنصر <div> خصوصیت position: fixed; دارد"
+  },
+  {
+   "type": "p",
+   "text": "به عنصر fixed در گوشهٔ پایین و راست صفحه توجه کنید. کد CSS به‌کاررفته این است:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "div.fixed {\n  position: fixed;\n\nbottom: 0;\n  right: 0;\n  width:\n300px;\n  border: 3px solid #73AD21;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_position_fixed"
+  },
+  {
+   "type": "h2",
+   "text": "position: absolute در CSS"
+  },
+  {
+   "type": "p",
+   "text": "عنصری با position: absolute; نسبت به نزدیک‌ترین والد موقعیت‌دار قرار می‌گیرد؛ یعنی والدی که position آن static نباشد."
+  },
+  {
+   "type": "p",
+   "text": "اما اگر عنصر absolute هیچ والد موقعیت‌داری نداشته باشد، بدنهٔ سند را معیار می‌گیرد و همراه با پیمایش صفحه حرکت می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "توجه: عنصرهای absolute از جریان عادی سند بیرون می‌آیند و می‌توانند روی عنصرهای دیگر بیفتند."
+  },
+  {
+   "type": "p",
+   "text": "یک مثال ساده:"
+  },
+  {
+   "type": "p",
+   "text": "این عنصر <div> خصوصیت position: absolute; دارد"
+  },
+  {
+   "type": "p",
+   "text": "کد CSS به‌کاررفته این است:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "div.relative {\n  position: relative;\n\nwidth: 400px;\n  height: 200px;\n  border: 3px solid green;\n}\n\ndiv.absolute {\n  position: absolute;\n\ntop: 80px;\n  right: 0;\n  width: 200px;\n  height: 100px;\n  border: 3px solid\n  red;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_position_absolute"
+  },
+  {
+   "type": "h2",
+   "text": "قرار دادن متن روی تصویر"
+  },
+  {
+   "type": "p",
+   "text": "روش قرار دادن متن روی تصویر:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_image_text_top_left"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل fixed.html بسازید، یک <div> با position: fixed و bottom: 0 و right: 0 بگذارید و صفحه را اسکرول کنید تا ببینید همیشه سر جایش می‌ماند.",
+   "hint": "fixed نسبت به viewport حساب می‌شود، نه نسبت به صفحه."
+  },
+  {
+   "prompt": "به همان عنصر یک پس‌زمینه و مقداری padding بدهید و ببینید در صفحه جای خالی برایش باقی نمی‌ماند.",
+   "hint": "عنصر fixed از جریان عادی سند بیرون است."
+  },
+  {
+   "prompt": "یک <div> والد با position: relative بسازید و داخلش یک فرزند با position: absolute و top: 0 بگذارید؛ ببینید فرزند نسبت به والد حساب می‌شود.",
+   "hint": "هر والدی که position آن static نباشد، معیار absolute می‌شود."
+  },
+  {
+   "prompt": "همان فرزند را از والد بیرون بیاورید و دوباره امتحان کنید تا ببینید حالا نسبت به بدنهٔ سند حساب می‌شود.",
+   "hint": "بدون والد موقعیت‌دار، معیار بدنهٔ سند است."
+  },
+  {
+   "prompt": "دو عنصر absolute را روی هم بیندازید و در یک خط توضیح دهید چرا روی هم می‌افتند.",
+   "hint": "absolute از جریان عادی سند بیرون می‌آید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "عنصر با position: fixed نسبت به چه چیزی قرار می‌گیرد؟",
+   "options": [
+    "نسبت به والد خودش",
+    "نسبت به بدنهٔ سند در همه حال",
+    "نسبت به viewport",
+    "نسبت به عنصر بالای خودش"
+   ],
+   "answer": 2,
+   "explanation": "fixed همیشه نسبت به viewport حساب می‌شود؛ به همین دلیل با اسکرول صفحه جابه‌جا نمی‌شود."
+  },
+  {
+   "question": "عنصر fixed در جای عادی خودش در صفحه فضا اشغال می‌کند؟",
+   "options": [
+    "بله، فضا اشغال می‌کند",
+    "فقط وقتی top تعیین شده باشد",
+    "فقط در حالت اسکرول",
+    "نه، جای خالی باقی نمی‌گذارد"
+   ],
+   "answer": 3,
+   "explanation": "عنصر fixed از جریان سند بیرون می‌رود، پس جای خالی‌ای در صفحه به جا نمی‌گذارد."
+  },
+  {
+   "question": "عنصر absolute اگر هیچ والد موقعیت‌داری نداشته باشد، نسبت به چه چیزی حساب می‌شود؟",
+   "options": [
+    "نسبت به بدنهٔ سند",
+    "نسبت به viewport",
+    "نسبت به نزدیک‌ترین عنصر fixed",
+    "نسبت به صفحهٔ چاپ"
+   ],
+   "answer": 0,
+   "explanation": "در این حالت بدنهٔ سند معیار می‌شود و عنصر همراه با پیمایش صفحه حرکت می‌کند؛ این نکته‌ای است که درس جداگانه هشدار می‌دهد."
+  },
+  {
+   "question": "کدام خصوصیت‌ها جای نهایی یک عنصر موقعیت‌دار را تعیین می‌کنند؟",
+   "options": [
+    "width و height",
+    "top، right، bottom و left",
+    "margin و padding",
+    "display و float"
+   ],
+   "answer": 1,
+   "explanation": "بعد از تعیین نوع position، جای نهایی عنصر با top، right، bottom و left مشخص می‌شود."
+  },
+  {
+   "question": "کدام جمله دربارهٔ عنصر absolute درست است؟",
+   "options": [
+    "در جریان عادی سند می‌ماند",
+    "همیشه ثابت روی صفحه می‌ماند",
+    "از جریان عادی سند بیرون می‌آید و می‌تواند روی عناصر دیگر بیفتد",
+    "فقط روی تصویر کار می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "absolute از جریان عادی سند حذف می‌شود، پس جایش خالی نمی‌ماند و می‌تواند روی عنصرهای دیگر قرار بگیرد."
+  }
+ ]
+}

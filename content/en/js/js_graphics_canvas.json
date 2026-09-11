@@ -1,0 +1,60 @@
+{
+ "slug": "js_graphics_canvas",
+ "course": "js",
+ "order": 251,
+ "url": "/js/js_graphics_canvas.asp",
+ "title": "HTML Canvas",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "HTML Canvas"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "HTML Canvas is perfect for Scatter Plots\nHTML Canvas is perfect for Line Graphs\nHTML Canvas is perfect for combining Scatter and Lines"
+  },
+  {
+   "type": "h2",
+   "text": "Scatter Plots"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Plot Scatter\n\nctx.fillStyle = \"red\";\n\nfor (let i = 0; i < xArray.length-1; i++) {\n\n  let x = xArray[i]*400/150;\n\n  let y = yArray[i]*400/15;\n\n  ctx.beginPath();\n\n  ctx.ellipse(x, y, 2, 3, 0, 0, Math.PI * 2);\n\n  ctx.fill();\n\n}",
+   "caption": "Source Code"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_canvas_scatter"
+  },
+  {
+   "type": "h2",
+   "text": "Line Graphs"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let xMax = canvas.height;\n\nlet slope = 1.2;\n\nlet intercept = 70;\n\n// Plot Scatter\n\nctx.moveTo(0, intercept);\n\nctx.lineTo(xMax, f(xMax));\n\nctx.strokeStyle = \"black\";\n\nctx.stroke();\n\n// Line Function\n\nfunction f(x) {\n\n  return x * slope + intercept;\n\n}",
+   "caption": "Source Code"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_canvas_line"
+  },
+  {
+   "type": "h2",
+   "text": "Combined"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let xMax = canvas.height;\n\nlet yMax = canvas.width;\n\nlet slope = 1.2;\n\nlet intercept = 70;\n\nconst xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Plot Scatter\n\nctx.fillStyle = \"red\";\n\nfor (let i = 0; i < xArray.length-1; i++) {\n\n  let x = xArray[i]*400/150;\n\n  let y = yArray[i]*400/15;\n\n  ctx.beginPath();\n\n  ctx.ellipse(x, y, 2, 3, 0, 0, Math.PI * 2);\n\n  ctx.fill();\n\n}\n\n// Plot Line\n\nctx.moveTo(0, intercept);\n\nctx.lineTo(xMax, f(xMax));\n\nctx.strokeStyle = \"black\";\n\nctx.stroke();\n\n// Line Function\n\nfunction f(x) {\n\n  return x * slope + intercept;\n\n}",
+   "caption": "Source Code"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_canvas_combined"
+  }
+ ]
+}

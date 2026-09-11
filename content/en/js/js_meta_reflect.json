@@ -1,0 +1,820 @@
+{
+ "slug": "js_meta_reflect",
+ "course": "js",
+ "order": 239,
+ "url": "/js/js_meta_reflect.asp",
+ "title": "JavaScript Reflect",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Reflect"
+  },
+  {
+   "type": "h2",
+   "text": "The Reflect Object"
+  },
+  {
+   "type": "p",
+   "text": "Reflect is a object with methods for low-level operations on JavaScript objects."
+  },
+  {
+   "type": "p",
+   "text": "With the Reflect object you can get, set, delete, and check object properties in a consistent way."
+  },
+  {
+   "type": "p",
+   "text": "Reflect was added to JavaScript in ES6 (2015)."
+  },
+  {
+   "type": "h2",
+   "text": "Yor Toolbox"
+  },
+  {
+   "type": "p",
+   "text": "Reflect is a toolbox for working with objects in a safe and consistent way."
+  },
+  {
+   "type": "h2",
+   "text": "Before Reflect"
+  },
+  {
+   "type": "p",
+   "text": "Before Reflect, object operations were scattered:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Using operators like in and delete",
+    "Using methods like  Object.defineProperty",
+    "Using language mechanisms like [[Get]] and [[Set]]"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "After Reflect"
+  },
+  {
+   "type": "p",
+   "text": "Reflect brings all object operations into clean methods:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Reflect methods unifies object operations",
+    "Reflect methods are more predictable than operators (in/delete)",
+    "Reflect methods provides standard return values instead of errors",
+    "Reflect methods are cleaner and safer for meta-programming",
+    "Reflect methods are tailored for the Proxy object"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Examples"
+  },
+  {
+   "type": "p",
+   "text": "With Reflect.has(), you get the in operator as a function."
+  },
+  {
+   "type": "p",
+   "text": "With Reflect.delete(), you get the delete operator as a function."
+  },
+  {
+   "type": "h3",
+   "text": "Why Reflect"
+  },
+  {
+   "type": "p",
+   "text": "Reflect is safe and flexible, especially when used inside a Proxy."
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.has()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.has() method checks if an object has a specific property."
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.has() method is similar to the in operator."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {name: \"John\", lastname: \"Doe\"};\n\nlet answer = Reflect.has(person, \"name\");",
+   "caption": "Check if Property Exists"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let answer = \"name\" in person;",
+   "caption": "Check if Property Exists"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_has"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.has(obj, prop)"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "obj - the target object\nprop - the property to check"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     "true - if true\nfalse if false"
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if obj is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.deleteProperty()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.deleteProperty() method deletes a property from an object."
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.deleteProperty() method is similar to the\ndelete operator."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {name: \"John\", lastname: \"Doe\"};\n\nReflect.deleteProperty(person, \"name\");",
+   "caption": "Deleting a Property"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "delete person.name;",
+   "caption": "Deleting a Property"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_delete"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.deleteProperty(obj, prop)"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "obj - the target object\nprop - the property to delete"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     "true - if true\nfalse if false"
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if obj is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.get()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.get() method retrieves the value of a property:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\nlet age = Reflect.get(user, \"age\");",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let age = user.age;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_get"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.get(obj, prop [,receiver])"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "obj - the target object\nprop - the property to get\nreceiver - the this value if it is a getter"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     "The value of the property"
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if obj is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.set()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.set() method sets the value of a property:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\nReflect.set(user, \"age\", 41);\n\nlet age = Reflect.set(user, \"age\");",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "user.age = 41;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_set"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.set(obj, prop, value [,receiver])"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "obj - the target object\nprop - the property to set\nvalue - the value to set\nreceiver - the this value if it is a setter"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     "true - for success\nfalse - if not"
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if obj is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.apply()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.apply() method calls a function with a this value and an argument array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function greet(message) {\n\n  return message + \", \" + this.name;\n\n}\n\nconst person = {name: \"Jan\"};\n\nlet msg =  Reflect.apply(greet, person, [\"Hello\"]);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let msg = greet.apply(person, [\"Hello\"]);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_apply"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.apply(function, this, arguments)"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "function - target object (function)\nthis - the value of this calling the target\narguments - array-like object of function arguments"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     "The return value from the function"
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if function is not a function or arguments is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Reflect.apply() is preferred when:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "You are doing meta-programming",
+    "You are inside a Proxy handler",
+    "You want consistent behaviors (no silent errors)",
+    "You want to mirror JavaScript's internal operations"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.construct()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.construct() method acts like the new operator,\ncreating a new instance of target with the provided arguments.\nnewTarget allows for custom new.target values for subclassing."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new Array\n\nconst colors = Reflect.construct(Array, [\"red\", \"green\", \"blue\"]);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new Array\n\nconst colors = new Array([\"red\", \"green\", \"blue\"]));",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_construct"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.construct(obj, args [, newTarget])"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "obj - the constructor object\nargs - an array-like object of arguments to be passed\nnewTarget - the constructor"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     "A new object constructed from the argumets list"
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if obj or newTarget is not a constructor, or if args is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.defineProperty()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.defineProperty() defines or modifies a property."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst user = {};\n\n// Add a Property\n\nReflect.defineProperty(user, \"id\", {\n\n  value: 123,\n\n  writable: false\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Add a Property\n\nObject.defineProperty(user, \"id\", {\n\n  value: 123,\n\n  writable: false\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_defineproperty"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.defineProperty(obj, prop, attributes)"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "obj - the target object\nprop - the property to define\nattributes - an array-like object of the property attributes"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     ""
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if obj is not an object or attributes is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "Reflect.defineProperty() in Proxy"
+  },
+  {
+   "type": "p",
+   "text": "Reflect.defineProperty() must be used in Proxy"
+  },
+  {
+   "type": "p",
+   "text": "If used in a Proxy, the defineProperty trap must return true\nor false."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Object.defineProperty() returns the target object",
+    "Reflect.defineProperty() returns true\nor false"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.ownKeys()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.ownKeys(obj) method returns an array of an object's own property\nkeys (string and Symbol based), similar to combining Object.getOwnPropertyNames() and Object.getOwnPropertySymbols()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const sym = Symbol(\"secret\");\n\nconst obj = { a: 1, [sym]: 2 };\n\nlet keys = Reflect.ownKeys(obj);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let keys = Object.keys(obj);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_ownkeys"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.ownKeys(obj)"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "obj - the target object"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     "An Array of the object's own property keys, including strings and symbols"
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if obj is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "Why Using Reflect?"
+  },
+  {
+   "type": "p",
+   "text": "Reflect.ownKeys() also returns symbols."
+  },
+  {
+   "type": "p",
+   "text": "Object.keys() does not."
+  },
+  {
+   "type": "h2",
+   "text": "Reflect.isExtensible()"
+  },
+  {
+   "type": "p",
+   "text": "The Reflect.isExtensible() method Checks if an object is extensible\n(can have properties added), similar to Object.isExtensible()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let answer = Reflect.isExtensible(obj);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let answer = Object.isExtensible(obj);",
+   "caption": "Example"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax"
+    ],
+    [
+     "Reflect.isExtensible(obj)"
+    ],
+    [
+     "Properties"
+    ],
+    [
+     "obj - the target object"
+    ],
+    [
+     "Returns"
+    ],
+    [
+     "true - is extensible\nfalse - is not"
+    ],
+    [
+     "Exeptions"
+    ],
+    [
+     "TypeError thrown if obj is not an object"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "Why Using Reflect?"
+  },
+  {
+   "type": "p",
+   "text": "Object.isExtensible() is a user method - not part of the internal trap machinery."
+  },
+  {
+   "type": "p",
+   "text": "Reflect.isExtensible() maps directly to the internal [[IsExtensible]] method."
+  },
+  {
+   "type": "p",
+   "text": "Reflect.isExtensible() correctly handles primitive targets, which matters when proxied."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Reflect.isExtensible(1); // TypeError\n\nObject.isExtensible(1);  // false (does not throw)",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "When to Use Reflect?"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Case",
+     "Use",
+     "Why"
+    ],
+    [
+     "Getting / setting values",
+     "Yes",
+     "If you need consistent return values"
+    ],
+    [
+     "Creating new objects",
+     "Yes",
+     "Reflect.construct() works with Proxy"
+    ],
+    [
+     "Calling a function with context",
+     "Yes",
+     "Reflect.apply() is cleaner than func.apply()"
+    ],
+    [
+     "Meta programming",
+     "Yes",
+     "Designed for low-level tasks"
+    ],
+    [
+     "Simple object work",
+     "No",
+     "Use normal JS syntax"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect with Proxy (Very Common)"
+  },
+  {
+   "type": "p",
+   "text": "Proxy lets you intercept operations on objects:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  set(target, property, value) {\n\n    log(property + \": \" + value);\n\n    // safe forwarding\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_proxy"
+  },
+  {
+   "type": "p",
+   "text": "Reflect can provide safe and unified forwarding calls."
+  },
+  {
+   "type": "p",
+   "text": "Reflect ensures that a Proxy behaves like a normal object."
+  },
+  {
+   "type": "h2",
+   "text": "Proxy and Reflect"
+  },
+  {
+   "type": "p",
+   "text": "Proxy was designed first. Reflect was designed second."
+  },
+  {
+   "type": "p",
+   "text": "Proxy was designed to allow JavaScript developers to:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Intercept property access",
+    "Override default property behaviors",
+    "Validate data",
+    "Wrap functions",
+    "Virtualize objects",
+    "Create reactive objects"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The idea of Proxy was developed during the ES6 (2015) design phase before Reflect existed."
+  },
+  {
+   "type": "p",
+   "text": "However, Proxy had a big issue:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "\"How to forward an intercepted operations safely?\""
+  },
+  {
+   "type": "p",
+   "text": "JavaScript had no functional equivalents of many operations."
+  },
+  {
+   "type": "p",
+   "text": "Because of this limitation, Reflect was invented."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Reflect History"
+  },
+  {
+   "type": "p",
+   "text": "Reflect was introduced because Proxy needed it."
+  },
+  {
+   "type": "p",
+   "text": "Before Reflect:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "delete, in, new were operators",
+    "some operations threw errors",
+    "object operations returned inconsistent values",
+    "no generic version of property access existed",
+    "no way to forward constructor calls"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "This made Proxy impossible to implement safely."
+  },
+  {
+   "type": "p",
+   "text": "So ES6 (2015) introduced Reflect to:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "provide clean, function-based versions of every internal operation",
+    "return predictable booleans instead of objects",
+    "avoid unnecessary errors",
+    "mirror the JavaScript engine's behavior",
+    "give Proxy traps a reliable forward-path"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Learn More"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Metaprogramming"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Proxy Tutorial"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Meta Reference"
+  }
+ ]
+}

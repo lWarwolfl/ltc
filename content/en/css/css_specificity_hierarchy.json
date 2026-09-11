@@ -1,0 +1,195 @@
+{
+ "slug": "css_specificity_hierarchy",
+ "course": "css",
+ "order": 108,
+ "url": "/css/css_specificity_hierarchy.asp",
+ "title": "CSS Specificity Hierarchy",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "CSS Specificity Hierarchy"
+  },
+  {
+   "type": "h2",
+   "text": "Specificity Hierarchy"
+  },
+  {
+   "type": "p",
+   "text": "Each type of CSS selector has a position in the specificity hierarchy, and the selector types carry different \"weights\"."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "Selector",
+    "Example",
+    "Description",
+    "Weight"
+   ],
+   "rows": [
+    [
+     "Inline styles",
+     "<h1 style=\"color: pink;\">",
+     "Highest priority, will override all other selectors",
+     ""
+    ],
+    [
+     "Id selectors",
+     "#navbar",
+     "Second highest priority",
+     "1-0-0"
+    ],
+    [
+     "Classes, attribute selectors and pseudo-classes",
+     ".test, [type=\"text\"], :hover",
+     "Third highest priority",
+     "0-1-0"
+    ],
+    [
+     "Elements and pseudo-elements",
+     "h1, ::before, ::after",
+     "Low priority",
+     "0-0-1"
+    ],
+    [
+     "Universal selector and :where()",
+     "*, where()",
+     "No priority",
+     "0-0-0"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Understand the Weight Notation"
+  },
+  {
+   "type": "p",
+   "text": "The weight notation uses three numbers (X-Y-Z):"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "X - Number of ID selectors",
+    "Y - Number of class selectors, attribute selectors, and pseudo-classes",
+    "Z - Number of element selectors and pseudo-elements"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The selector with the higher leftmost number wins. If equal, compare the next number, and so on."
+  },
+  {
+   "type": "h2",
+   "text": "Calculate the Specificity Weight"
+  },
+  {
+   "type": "p",
+   "text": "The declaration with the highest specificity/weight value will be applied to the element."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n<head>\n  <style>\n\n  #demo {color: blue;} /* weight: 1-0-0 */\n    p#demo {color:\n  orange;} /* weight: 1-0-1 WINS! */\n    .test {color: green;}\n  /* weight: 0-1-0 */\n    p.test {color: green;} /* weight:\n  0-1-1 */\n    p {color: red;} /* weight: 0-0-1 */\n\n  </style>\n</head>\n<body>\n\n<p id=\"demo\" class=\"test\">Hello World!</p>\n\n</body>\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_specificity_hierarchy"
+  },
+  {
+   "type": "h2",
+   "text": "More Specificity Examples"
+  },
+  {
+   "type": "p",
+   "text": "Understand how specificity works in different scenarios:"
+  },
+  {
+   "type": "h3",
+   "text": "Equal specificity: the latest rule wins"
+  },
+  {
+   "type": "p",
+   "text": "If the same rule is written twice in the external style sheet, the latest rule wins:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "h1 {background-color: yellow;}\n\nh1 {background-color: red;}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_specificity1"
+  },
+  {
+   "type": "h3",
+   "text": "ID selectors beat attribute selectors"
+  },
+  {
+   "type": "p",
+   "text": "Look at the following code lines - Here, the first rule has higher specificity than the second, and will therefore be applied:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "#myDiv {background-color: yellow;}\ndiv[id=myDiv] {background-color: blue;}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_specificity2"
+  },
+  {
+   "type": "h3",
+   "text": "A class selector beats element selectors"
+  },
+  {
+   "type": "p",
+   "text": "A class selector such as .intro beats h1, p, div, etc:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".intro {background-color: yellow;}\nh1 {background-color:\n  red;}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_specificity3"
+  },
+  {
+   "type": "h3",
+   "text": "The universal selector (*)"
+  },
+  {
+   "type": "p",
+   "text": "The universal selector (*) has no specificity weight value:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "* {background-color: yellow;}\nh1 {background-color: red;}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_specificity4"
+  },
+  {
+   "type": "h3",
+   "text": "Inline style vs external style sheet"
+  },
+  {
+   "type": "p",
+   "text": "The embedded style sheet is closer to the element to be styled. So in the\nfollowing situation the last rule will be applied:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "/*From external CSS file:*/\n#content h1 {background-color: red;}\n\n/*In HTML file:*/\n<style>\n#content h1 {background-color:\nyellow;}\n</style>",
+   "caption": "Example"
+  }
+ ]
+}

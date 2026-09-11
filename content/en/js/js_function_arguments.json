@@ -1,0 +1,339 @@
+{
+ "slug": "js_function_arguments",
+ "course": "js",
+ "order": 41,
+ "url": "/js/js_function_arguments.asp",
+ "title": "JavaScript Function Arguments",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Function Arguments"
+  },
+  {
+   "type": "h2",
+   "text": "Parameters vs. Arguments"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript, function parameters and arguments are distinct concepts:"
+  },
+  {
+   "type": "p",
+   "text": "Parameters are the names listed in the function definition."
+  },
+  {
+   "type": "p",
+   "text": "Arguments are the real values passed to, and received by the function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function multiply(a, b) {\n\n  return a * b;\n\n}\n\nlet result = multiply(4, 5);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_multiply"
+  },
+  {
+   "type": "p",
+   "text": "In the example above:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "a and b are parameters",
+    "4 and 5 are arguments"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The argument 4 is assigned to the parameter a."
+  },
+  {
+   "type": "p",
+   "text": "The argument 5 is assigned to the parameter b."
+  },
+  {
+   "type": "h2",
+   "text": "The Arguments Object"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript functions have a built-in object called the arguments\nobject."
+  },
+  {
+   "type": "p",
+   "text": "The argument object contains an array of the arguments used when the function\nwas called (invoked)."
+  },
+  {
+   "type": "p",
+   "text": "This way you can simply use a function to find (for instance) the highest\nvalue in a list of numbers:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "x = findMax(1, 123, 500, 115, 44, 88);\n\nfunction findMax() {\n\n  let max = -Infinity;\n\n    for (let i = 0; i < arguments.length; i++) {\n\n      if (arguments[i] > max) {\n\n      max = arguments[i];\n\n      }\n\n    }\n\n    return max;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_arguments"
+  },
+  {
+   "type": "p",
+   "text": "Or create a function to sum all input values:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "x = sumAll(1, 123, 500, 115, 44, 88);\n\nfunction sumAll() {\n\n  let sum = 0;\n\n    for (let i = 0; i < arguments.length; i++) {\n\n    sum += arguments[i];\n\n    }\n\n    return sum;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_arguments_sum"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "If a function is called with too many arguments (more than declared),\nthese arguments can be reached using the arguments object."
+  },
+  {
+   "type": "h2",
+   "text": "The Order of Arguments Matters"
+  },
+  {
+   "type": "p",
+   "text": "Arguments are assigned to parameters in the order they appear."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function subtract(a, b) {\n\n  return a - b;\n\n}\n\nlet x1 = subtract(10, 5);\n\nlet x2 = subtract(5, 10);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_subtract"
+  },
+  {
+   "type": "p",
+   "text": "The two calls above return different results because the order is different."
+  },
+  {
+   "type": "h2",
+   "text": "Arguments Can Be Variables"
+  },
+  {
+   "type": "p",
+   "text": "Arguments do not have to be values. They can also be variables."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 5;\n\n    let y = 6;\n\n    function multiply(a, b) {\n\n      return a * b;\n\n    }\n\n    multiply(x, y);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Argument Rules"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript function definitions do not specify data types for arguments."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript functions do not perform type checking on the passed arguments."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript functions do not check the number of arguments received."
+  },
+  {
+   "type": "h2",
+   "text": "Incorrect Arguments"
+  },
+  {
+   "type": "p",
+   "text": "Incorrect arguments can return incorrect answers:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function toCelsius(fahrenheit) {\n\n    return (5/9) * (fahrenheit-32);\n\n}\n\nlet value = toCelsius(\"John\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_farenheit_to_celsius_4"
+  },
+  {
+   "type": "h2",
+   "text": "Missing Arguments"
+  },
+  {
+   "type": "p",
+   "text": "If a function is called with fewer arguments than parameters, the missing values become undefined."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function multiply(a, b) {\n\n      return a * b;\n\n    }\n\n    multiply(4);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, b is undefined, so the result is NaN."
+  },
+  {
+   "type": "p",
+   "text": "A JavaScript function does not perform any checking on parameter values (arguments)."
+  },
+  {
+   "type": "h2",
+   "text": "Default Parameters"
+  },
+  {
+   "type": "p",
+   "text": "If a function is called with missing arguments (less than declared), the missing values are set to\nundefined."
+  },
+  {
+   "type": "p",
+   "text": "Sometimes this is acceptable, but sometimes it is better to assign a default\nvalue to the parameter:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(x, y) {\n\n    if (y === undefined) {\n\n    y = 2;\n\n     }\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_undefined"
+  },
+  {
+   "type": "h2",
+   "text": "Default Parameter Values"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2015 allows function parameters to have default values."
+  },
+  {
+   "type": "p",
+   "text": "You can now set a default value for a parameter."
+  },
+  {
+   "type": "p",
+   "text": "The default value is used if no argument is provided."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(x, y = 10) {\n\n  return x + y;\n}\nmyFunction(5);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_default"
+  },
+  {
+   "type": "h2",
+   "text": "Function Rest Parameter"
+  },
+  {
+   "type": "p",
+   "text": "The rest parameter (...) allows a function to treat an indefinite number of arguments as an array:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sum(...args) {\n\n  let sum = 0;\n\n  for (let arg of args) sum += arg;\n\n  return sum;\n\n}\n\nlet x = sum(4, 9, 16, 25, 29, 100, 66, 77);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_rest"
+  },
+  {
+   "type": "h2",
+   "text": "Arguments are Passed by Value"
+  },
+  {
+   "type": "p",
+   "text": "The parameters, in a function call, are the function's arguments."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript arguments are passed by value: The function only\ngets to know the values, not the argument's locations."
+  },
+  {
+   "type": "p",
+   "text": "If a function changes an argument's value, it does not change the parameter's\noriginal value."
+  },
+  {
+   "type": "p",
+   "text": "Changes to arguments are not visible (reflected) outside the function."
+  },
+  {
+   "type": "h2",
+   "text": "Objects are Passed by Reference"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript, object references are values."
+  },
+  {
+   "type": "p",
+   "text": "Because of this, objects will behave like they are passed by reference:"
+  },
+  {
+   "type": "p",
+   "text": "If a function changes an object property, it changes the original value."
+  },
+  {
+   "type": "p",
+   "text": "Changes to object properties are visible (reflected) outside the function."
+  },
+  {
+   "type": "h2",
+   "text": "Common Mistakes"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Confusing Parameters and Arguments\n  Parameters are names.Arguments are values.",
+    "Forgetting the Order\n  Arguments are assigned by position.",
+    "Missing Arguments\n  Use default values to avoid undefined."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Quiz"
+  },
+  {
+   "type": "p",
+   "text": "What happens when a function is called with fewer arguments than parameters?"
+  },
+  {
+   "type": "h2",
+   "text": "Next Chapter"
+  },
+  {
+   "type": "p",
+   "text": "Function Expressions"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "A function expression is a function stored in a variable",
+    "The variable name can be used to call the function"
+   ]
+  }
+ ]
+}

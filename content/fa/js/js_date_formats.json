@@ -1,0 +1,441 @@
+{
+ "slug": "js_date_formats",
+ "course": "js",
+ "order": 58,
+ "url": "/js/js_date_formats.asp",
+ "title": "قالب‌های تاریخ در JavaScript",
+ "summary": "ورودی تاریخ در JavaScript سه قالب اصلی دارد: ISO، کوتاه و بلند. در این درس شکل استاندارد ISO 8601، نقش T و Z، اثر منطقهٔ زمانی روی نتیجه و تبدیل رشتهٔ تاریخ به میلی‌ثانیه با Date.parse() را یاد می‌گیرید.",
+ "objectives": [
+  "سه نوع قالب ورودی تاریخ را نام ببرید",
+  "تاریخ ISO با سال، ماه، روز و زمان بنویسید",
+  "معنی حرف‌های T و Z را توضیح دهید",
+  "یک رشتهٔ تاریخ را با Date.parse() به میلی‌ثانیه تبدیل کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "قالب‌های تاریخ در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "ورودی تاریخ در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "به‌طور کلی ۳ نوع قالب ورودی تاریخ در JavaScript وجود دارد:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "نوع",
+    "مثال"
+   ],
+   "rows": [
+    [
+     "تاریخ ISO",
+     "\"2015-03-25\" (استاندارد بین‌المللی)"
+    ],
+    [
+     "تاریخ کوتاه",
+     "\"03/25/2015\""
+    ],
+    [
+     "تاریخ بلند",
+     "\"Mar 25 2015\" یا \"25 Mar 2015\""
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خروجی تاریخ در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مستقل از قالب ورودی، JavaScript به‌طور پیش‌فرض تاریخ‌ها را به‌صورت رشتهٔ متنی کامل چاپ می‌کند:"
+  },
+  {
+   "type": "h2",
+   "text": "تاریخ‌های ISO در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ISO 8601 استاندارد بین‌المللی نمایش تاریخ و زمان است."
+  },
+  {
+   "type": "p",
+   "text": "نحو ISO 8601 (YYYY-MM-DD) قالب ترجیحی تاریخ در JavaScript نیز هست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-03-25\");",
+   "caption": "مثال (تاریخ کامل)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso1"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "تاریخ محاسبه‌شده به منطقهٔ زمانی شما بستگی دارد. بسته به منطقهٔ زمانی، نتیجهٔ بالا بین ۲۴ و ۲۵ مارس فرق می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "تاریخ‌های ISO (سال و ماه)"
+  },
+  {
+   "type": "p",
+   "text": "تاریخ‌های ISO را می‌توان بدون ذکر روز نوشت (YYYY-MM):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-03\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso2"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "منطقه‌های زمانی نتیجهٔ بالا را بین ۲۸ فوریه و ۱ مارس جابه‌جا می‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "تاریخ‌های ISO (فقط سال)"
+  },
+  {
+   "type": "p",
+   "text": "تاریخ‌های ISO را می‌توان بدون ماه و روز نوشت (YYYY):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso3"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "منطقه‌های زمانی نتیجهٔ بالا را بین ۳۱ دسامبر ۲۰۱۴ و ۱ ژانویهٔ ۲۰۱۵ جابه‌جا می‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "تاریخ‌های ISO (تاریخ و زمان)"
+  },
+  {
+   "type": "p",
+   "text": "تاریخ‌های ISO را می‌توان همراه با ساعت، دقیقه و ثانیه نوشت (YYYY-MM-DDTHH:MM:SSZ):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-03-25T12:00:00Z\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso4"
+  },
+  {
+   "type": "p",
+   "text": "تاریخ و زمان با حرف بزرگ T از هم جدا می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "زمان UTC با حرف بزرگ Z مشخص می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "اگر می‌خواهید زمان را نسبت به UTC تغییر دهید، Z را بردارید و به‌جایش +HH:MM یا -HH:MM بنویسید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-03-25T12:00:00-06:30\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_iso5"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "زمان UTC (زمان هماهنگ جهانی) همان GMT (زمان گرینویچ) است."
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "حذف T یا Z از رشتهٔ تاریخ-زمان می‌تواند در مرورگرهای مختلف نتیجه‌های متفاوتی بدهد."
+  },
+  {
+   "type": "h2",
+   "text": "منطقه‌های زمانی"
+  },
+  {
+   "type": "p",
+   "text": "وقتی تاریخی تنظیم می‌کنید و منطقهٔ زمانی را مشخص نمی‌کنید، JavaScript از منطقهٔ زمانی مرورگر استفاده می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "وقتی تاریخی را می‌گیرید و منطقهٔ زمانی مشخص نیست، نتیجه به منطقهٔ زمانی مرورگر تبدیل می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "به بیان دیگر: اگر تاریخ/زمانی به وقت GMT ساخته شود و کاربری از مرکز آمریکا مرور کند، آن تاریخ/زمان به CDT (زمان تابستانی مرکز آمریکا) تبدیل می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "تاریخ‌های کوتاه در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "تاریخ‌های کوتاه با نحویی مانند \"MM/DD/YYYY\" نوشته می‌شوند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"03/25/2015\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_7"
+  },
+  {
+   "type": "h2",
+   "text": "هشدارها!"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015-3-25\");",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2015/03/25\");",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"25-03-2015\");",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "تاریخ‌های بلند در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "تاریخ‌های بلند بیشتر با نحویی مانند \"MMM DD YYYY\" نوشته می‌شوند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"Mar 25 2015\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_1"
+  },
+  {
+   "type": "p",
+   "text": "ماه و روز می‌توانند به هر ترتیبی بیایند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"25 Mar 2015\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_2"
+  },
+  {
+   "type": "p",
+   "text": "همچنین ماه را می‌توان کامل (January) یا خلاصه (Jan) نوشت:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"January 25 2015\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_4"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"Jan 25 2015\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_5"
+  },
+  {
+   "type": "p",
+   "text": "کاماها نادیده گرفته می‌شوند و نام ماه‌ها به بزرگی و کوچکی حروف حساس نیستند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"JANUARY, 25, 2015\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_string_6"
+  },
+  {
+   "type": "h2",
+   "text": "ورودی تاریخ، تجزیهٔ رشته‌های تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "اگر رشتهٔ تاریخ معتبری داشته باشید، می‌توانید با متد Date.parse() آن را به میلی‌ثانیه تبدیل کنید."
+  },
+  {
+   "type": "p",
+   "text": "Date.parse() تعداد میلی‌ثانیهٔ بین آن تاریخ و ۱ ژانویهٔ ۱۹۷۰ را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let msec = Date.parse(\"March 21, 2012\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_parse"
+  },
+  {
+   "type": "p",
+   "text": "بعد می‌توانید با همان تعداد میلی‌ثانیه آن را به شیء تاریخ تبدیل کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let msec = Date.parse(\"March 21, 2012\");\n\nconst d = new Date(msec);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_convert"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش تاریخ JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متدهای get در تاریخ JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متدهای set در تاریخ JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع تاریخ JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل formats.html بسازید و سه تاریخ را با رشته‌های \"2015-03-25\"، \"03/25/2015\" و \"Mar 25 2015\" بسازید و همه را در کنسول چاپ کنید.",
+   "hint": "مستقل از قالب ورودی، خروجی پیش‌فرض یک رشتهٔ متنی کامل است."
+  },
+  {
+   "prompt": "یک تاریخ با \"2015-03\" و یکی با \"2015\" بسازید و نتیجه را با تاریخ کامل همان سال مقایسه کنید.",
+   "hint": "روز پیش‌فرض ابتدای ماه و ماه پیش‌فرض ژانویه است؛ منطقهٔ زمانی می‌تواند نتیجه را یک روز جابه‌جا کند."
+  },
+  {
+   "prompt": "یک تاریخ-زمان ISO با T و Z بسازید و بعد Z را بردارید و به‌جایش -06:30 بگذارید.",
+   "hint": "حرف Z یعنی UTC و +HH:MM یا -HH:MM یعنی جابه‌جایی نسبت به UTC."
+  },
+  {
+   "prompt": "یک رشتهٔ تاریخ نامعتبر مثل \"25-03-2015\" را با new Date امتحان کنید و خروجی را ببینید.",
+   "hint": "همهٔ قالب‌ها در همهٔ مرورگرها نتیجهٔ یکسان نمی‌دهند؛ قالب ISO امن‌ترین گزینه است."
+  },
+  {
+   "prompt": "با Date.parse(\"March 21, 2012\") تعداد میلی‌ثانیه را بگیرید و از همان عدد یک شیء تاریخ بسازید.",
+   "hint": "Date.parse تعداد میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ را برمی‌گرداند و new Date همان عدد را می‌پذیرد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام قالب ورودی تاریخ در JavaScript قالب استاندارد بین‌المللی است؟",
+   "options": [
+    "MM/DD/YYYY",
+    "ISO 8601 با شکل YYYY-MM-DD",
+    "MMM DD YYYY",
+    "DD-MM-YYYY"
+   ],
+   "answer": 1,
+   "explanation": "ISO 8601 استاندارد بین‌المللی نمایش تاریخ و زمان است و شکل YYYY-MM-DD قالب ترجیحی JavaScript هم هست."
+  },
+  {
+   "question": "در رشتهٔ \"2015-03-25T12:00:00Z\" حرف Z چه چیزی را نشان می‌دهد؟",
+   "options": [
+    "زمان محلی مرورگر",
+    "زمان UTC",
+    "پایان رشته",
+    "منطقهٔ زمانی ایران"
+   ],
+   "answer": 1,
+   "explanation": "Z یعنی زمان UTC تعریف شده است؛ برای جابه‌جایی نسبت به UTC باید Z را برداشت و +HH:MM یا -HH:MM نوشت."
+  },
+  {
+   "question": "اگر قالب ورودی تاریخ را تغییر دهید، خروجی پیش‌فرض تاریخ در JavaScript چه می‌شود؟",
+   "options": [
+    "همیشه به همان قالب ورودی چاپ می‌شود",
+    "همیشه یک رشتهٔ متنی کامل می‌شود",
+    "خروجی عدد میلی‌ثانیه می‌شود",
+    "خروجی خطا می‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "مستقل از قالب ورودی، خروجی پیش‌فرض JavaScript یک رشتهٔ متنی کامل است."
+  },
+  {
+   "question": "متد Date.parse() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "یک شیء تاریخ",
+    "تعداد میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰",
+    "نام ماه",
+    "منطقهٔ زمانی مرورگر"
+   ],
+   "answer": 1,
+   "explanation": "اگر رشتهٔ تاریخ معتبر باشد، Date.parse تعداد میلی‌ثانیهٔ بین آن تاریخ و ۱ ژانویهٔ ۱۹۷۰ را می‌دهد و می‌توان همان عدد را به new Date داد."
+  },
+  {
+   "question": "کدام جمله دربارهٔ قالب‌های کوتاه و بلند تاریخ درست است؟",
+   "options": [
+    "کاما در تاریخ‌های بلند اهمیت دارد",
+    "نام ماه به بزرگی و کوچکی حروف حساس است",
+    "همهٔ قالب‌ها در همهٔ مرورگرها نتیجهٔ یکسان می‌دهند",
+    "حذف T یا Z می‌تواند در مرورگرهای مختلف نتیجهٔ متفاوت بدهد"
+   ],
+   "answer": 3,
+   "explanation": "هشدار خود درس همین است: حذف T یا Z در رشتهٔ تاریخ-زمان می‌تواند نتیجه‌ها را بین مرورگرها فرق دهد؛ کاماها نادیده گرفته می‌شوند و نام ماه‌ها حساس به حروف نیستند."
+  }
+ ]
+}

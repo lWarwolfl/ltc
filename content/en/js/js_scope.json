@@ -1,0 +1,278 @@
+{
+ "slug": "js_scope",
+ "course": "js",
+ "order": 52,
+ "url": "/js/js_scope.asp",
+ "title": "JavaScript Scope",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Scope"
+  },
+  {
+   "type": "h2",
+   "text": "Scope = Visibility"
+  },
+  {
+   "type": "p",
+   "text": "Scope determines the accessibility (visibility) of variables."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript variables have 3 types of scope:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Global scope",
+    "Function scope",
+    "Block scope"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Global Scope"
+  },
+  {
+   "type": "p",
+   "text": "Variables declared Globally (outside any block or function) have\nGlobal Scope."
+  },
+  {
+   "type": "p",
+   "text": "Global variables can be accessed from anywhere in a JavaScript program."
+  },
+  {
+   "type": "p",
+   "text": "Variables declared with var, let\nand const are\nquite similar when declared outside a block."
+  },
+  {
+   "type": "p",
+   "text": "They all have Global Scope:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var x = 1;    // Global scope\n\nlet y = 2;    // Global scope\n\nconst z = 3;  // Global scope",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let carName = \"Volvo\";\n\n// code here can use carName\n\nfunction myFunction() {\n\n// code here can also use carName\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_scope_global"
+  },
+  {
+   "type": "p",
+   "text": "Global variables has Global Scope:"
+  },
+  {
+   "type": "p",
+   "text": "All scripts and functions in the same web page can access a variable with global scope."
+  },
+  {
+   "type": "h2",
+   "text": "Function Scope"
+  },
+  {
+   "type": "p",
+   "text": "All JavaScript functions have their own scope."
+  },
+  {
+   "type": "p",
+   "text": "Variables defined inside a function are not accessible (visible) from outside the\nfunction."
+  },
+  {
+   "type": "p",
+   "text": "Variables declared with var, let\nand const are\nquite similar when declared inside a function."
+  },
+  {
+   "type": "p",
+   "text": "They all have Function Scope:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction1() {\n\n    var carName = \"Volvo\";  // Function Scope\n\n}\n\nfunction myFunction2() {\n\n    let carName = \"Volvo\";  // Function Scope\n\n}\n\nfunction myFunction3() {\n\n    const carName = \"Volvo\";  // Function Scope\n\n}",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// code here can NOT use carName\n\nfunction myFunction() {\n\n  let carName = \"Volvo\";\n  // code here CAN use carName\n}\n\n// code here can NOT use carName",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_scope_local"
+  },
+  {
+   "type": "h3",
+   "text": "Local Variables have Function Scope"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "They can only be accessed from within the function",
+    "No scripts or functions outside the function can access them",
+    "Variables with the same name can be used outside the function",
+    "Variables with the same name can be used in different functions",
+    "Local variables are created when a function starts",
+    "Local variables are deleted when the function is completed",
+    "Arguments (parameters) work as local variables inside functions"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Block Scope"
+  },
+  {
+   "type": "p",
+   "text": "Before ES6, JavaScript variables could only have\nGlobal Scope or Function Scope."
+  },
+  {
+   "type": "p",
+   "text": "ES6 introduced two important new JavaScript keywords: let and const."
+  },
+  {
+   "type": "p",
+   "text": "These two keywords provide Block Scope in JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "Variables declared with let and const\ninside a code block are \"block-scoped,\" meaning they are only accessible within that block."
+  },
+  {
+   "type": "p",
+   "text": "This helps prevent unintended variable overwrites and promotes better code organization:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\n\n  let x = 2;\n\n  }\n\n// x can NOT be used here",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Variables declared with the var keyword can NOT have block scope."
+  },
+  {
+   "type": "p",
+   "text": "Variables declared with the var keyword,\ninside a { } block, can be accessed from outside the block."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\n\n  var x = 2;\n\n  }\n\n// x CAN be used here",
+   "caption": "Example (Not Recommended)"
+  },
+  {
+   "type": "h2",
+   "text": "Automatically Global"
+  },
+  {
+   "type": "p",
+   "text": "If you assign a value to a variable that has not been declared, it will become a GLOBAL variable."
+  },
+  {
+   "type": "p",
+   "text": "This code example will declare a global variable carName, even if\nthe value is assigned inside a function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myFunction();\n\n// code here can use carName\n\nfunction myFunction() {\n\n    carName = \"Volvo\";\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_local_global"
+  },
+  {
+   "type": "h2",
+   "text": "Strict Mode"
+  },
+  {
+   "type": "p",
+   "text": "All modern browsers support running JavaScript in \"Strict Mode\"."
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "In \"Strict Mode\", undeclared variables are not automatically global."
+  },
+  {
+   "type": "h2",
+   "text": "Global Variables in HTML"
+  },
+  {
+   "type": "p",
+   "text": "With JavaScript, the global scope is the JavaScript environment."
+  },
+  {
+   "type": "p",
+   "text": "In HTML, the global scope is the window object."
+  },
+  {
+   "type": "p",
+   "text": "Global variables defined with the var keyword belong to the window object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var carName = \"Volvo\";\n// code here\ncan use window.carName",
+   "caption": "Example (Not Recommended)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_scope_window"
+  },
+  {
+   "type": "p",
+   "text": "Global variables defined with the let keyword do not belong to the window object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let carName = \"Volvo\";\n\n// code here can NOT use window.carName",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_global"
+  },
+  {
+   "type": "h2",
+   "text": "Warning"
+  },
+  {
+   "type": "p",
+   "text": "Do NOT create global variables unless you intend to."
+  },
+  {
+   "type": "p",
+   "text": "Your global variables (or functions) can overwrite window variables (or\nfunctions).Any function, including the window object, can overwrite your global\nvariables and functions."
+  },
+  {
+   "type": "h2",
+   "text": "The Lifetime of JavaScript Variables"
+  },
+  {
+   "type": "p",
+   "text": "The lifetime of a JavaScript variable starts when it is declared."
+  },
+  {
+   "type": "p",
+   "text": "Function (local) variables are deleted when the function is completed."
+  },
+  {
+   "type": "p",
+   "text": "In a web browser, global variables are deleted when you close the browser\nwindow (or tab)."
+  }
+ ]
+}

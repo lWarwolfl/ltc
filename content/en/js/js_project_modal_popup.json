@@ -1,0 +1,262 @@
+{
+ "slug": "js_project_modal_popup",
+ "course": "js",
+ "order": 121,
+ "url": "/js/js_project_modal_popup.asp",
+ "title": "Project - Modal Popup",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Project - Modal Popup"
+  },
+  {
+   "type": "h2",
+   "text": "Modal Popup"
+  },
+  {
+   "type": "p",
+   "text": "A modal is a popup window that appears on top of the page."
+  },
+  {
+   "type": "p",
+   "text": "The project will build a modal that can be closed in three ways:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Click the close button (x)",
+    "Click outside the modal",
+    "Press the Escape key"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Open Modal"
+  },
+  {
+   "type": "h3",
+   "text": "Hello!"
+  },
+  {
+   "type": "p",
+   "text": "This is a modal popup."
+  },
+  {
+   "type": "h2",
+   "text": "What You Will Learn"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "How to show and hide elements",
+    "How to use CSS classes with JavaScript",
+    "How to handle click and keydown events",
+    "How to detect clicks outside an element"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "First: Create the HTML"
+  },
+  {
+   "type": "p",
+   "text": "First create the HTML page"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Add a button with id=\"openBth\"",
+    "Add a Modal structure:"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n\n<html>\n\n<style>\n\n/* CSS will go here */\n\n</style>\n\n<body>\n\n<h2>Modal Popup</h2>\n\n<button id=\"openBtn\">Open Modal</button>\n\n<div id=\"modal\" class=\"modal-overlay\">\n\n  <div class=\"modal-box\">\n\n    <button id=\"closeBtn\" class=\"modal-close\">×</button>\n\n    <h3>Hello!</h3>\n\n    <p>This is a modal popup.</p>\n\n  </div>\n\n</div>\n\n<script>\n\n// JavaScript will go here\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The modal has two parts:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The overlay (background)",
+    "The modal box (content)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Then: Create the CSS"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<style>\n\n/* The overlay (background) */\n\n.modal-overlay {\n\n  display: none;\n\n  position: fixed;\n\n  left: 0;\n\n  top: 0;\n\n  width: 100%;\n\n  height: 100%;\n\n  background: rgba(0, 0, 0, 0.5);\n\n}\n\n/* Show the modal */\n\n.modal-overlay.show {\n\n  display: block;\n\n}\n\n/* The modal box */\n\n.modal-box {\n\n  background: white;\n\n  width: 90%;\n\n  max-width: 400px;\n\n  margin: 100px auto;\n\n  padding: 20px;\n\n  border-radius: 10px;\n\n  position: relative;\n\n}\n\n/* Close button */\n\n.modal-close {\n\n  position: absolute;\n\n  right: 12px;\n\n  top: 8px;\n\n  font-size: 24px;\n\n  border: none;\n\n  background: none;\n\n  cursor: pointer;\n\n}\n\n</style>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_popup_1"
+  },
+  {
+   "type": "h2",
+   "text": "CSS Explained"
+  },
+  {
+   "type": "h2",
+   "text": "Hide the modal by default:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".modal-overlay {\n  display: none;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Show the modal using a class:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".modal-overlay.show {\n  display: block;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript will add and remove the show class."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function openModal() {\n\n  modal.classList.add(\"show\");\n\n}\n\nfunction closeModal() {\n\n  modal.classList.remove(\"show\");\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Then: Create the JavaScript"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const modal = document.getElementById(\"modal\");\n\nconst openBtn = document.getElementById(\"openBtn\");\n\nconst closeBtn = document.getElementById(\"closeBtn\");\n\nfunction openModal() {\n\n  modal.classList.add(\"show\");\n\n}\n\nfunction closeModal() {\n\n  modal.classList.remove(\"show\");\n\n}\n\nopenBtn.addEventListener(\"click\", openModal);\n\ncloseBtn.addEventListener(\"click\", closeModal);\n\n/* Close when clicking outside the modal box */\n\nmodal.addEventListener(\"click\", function (event) {\n\n  if (event.target === modal) {\n\n    closeModal();\n\n  }\n\n});\n\n/* Close when pressing Escape */\n\ndocument.addEventListener(\"keydown\", function (event) {\n\n  if (event.key === \"Escape\") {\n\n    closeModal();\n\n  }\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_popup"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Explained"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Connect the open button to the openModal() function",
+    "Connect the open close button to the closeModal() function",
+    "Connect clocking outside the modal to the closeModal() function",
+    "Connect the open escape key to the closeModal() function"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Connect Functions to Buttons"
+  },
+  {
+   "type": "p",
+   "text": "Connect the open button to the openModal() function, with addEventListener()."
+  },
+  {
+   "type": "p",
+   "text": "Connect the close button to the closeModal() function, with addEventListener()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "openBtn.addEventListener(\"click\", openModal);\n\ncloseBtn.addEventListener(\"click\", closeModal);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Connect Function to Clicking Outside."
+  },
+  {
+   "type": "p",
+   "text": "Check if the click happened on the overlay. Connect it to closeModal():"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "modal.addEventListener(\"click\", function (event) {\n\n  if (event.target === modal) {\n\n    closeModal();\n\n  }\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "event.target === modal means:\nThe user clicked on the overlay, not inside the modal box."
+  },
+  {
+   "type": "h2",
+   "text": "Connect Function to Escape Key"
+  },
+  {
+   "type": "p",
+   "text": "Listen for \"Escape\" key presses. Connect it to closeModal():"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.addEventListener(\"keydown\", function (event) {\n\n  if (event.key === \"Escape\") {\n\n    closeModal();\n\n  }\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Common Mistakes"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Modal never closes when clicking outside:\n  Make sure you check event.target === modal.",
+    "Escape closes even when modal is hidden:\n  This is OK, but you can add a check to close only if it is open.",
+    "Using display: none with animation:\n  If you want fade effects, use opacity instead (bonus challenge)."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Bonus Challenges (Level Up)"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Add a fade-in / fade-out effect using CSS",
+    "Move focus to the modal when it opens (accessibility)",
+    "Trap focus inside the modal (advanced)",
+    "Close the modal with the Enter key when a button is focused"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Projects"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "JavaScript Counter\nA counter project with restore and save in localStorage.",
+    "JavaScript Event Listener\nThe counter project using event listener instead of onclick.",
+    "JavaScript To-Do List\nA do-do list saved in an array in local storage.",
+    "JavaScript Modal Popup\nA modal popup window that appears on top of the page.",
+    "JavaScript Form Validation\nAn HTML Form with form validation."
+   ]
+  }
+ ]
+}

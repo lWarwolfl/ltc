@@ -1,0 +1,671 @@
+{
+ "slug": "js_number_methods",
+ "course": "js",
+ "order": 32,
+ "url": "/js/js_number_methods.asp",
+ "title": "متدهای عدد در JavaScript",
+ "summary": "این درس متدهای عدد را معرفی می‌کند: toString، toExponential، toFixed، toPrecision و valueOf برای قالب‌بندی و نمایش عدد، و متدهای ایستای Number برای تبدیل و بررسی مقدارها. بعد از این درس می‌توانید عدد را به رشتهٔ قالب‌بندی‌شده تبدیل کنید و مقدارهای عددی را با parseInt و parseFloat و isNaN بررسی کنید.",
+ "objectives": [
+  "عدد را با toFixed() و toPrecision() قالب‌بندی کنید",
+  "تفاوت Number() و parseInt() و parseFloat() را توضیح دهید",
+  "با متدهای ایستای Number مقدارها را بررسی کنید",
+  "بگویید چرا X.isInteger() خطا می‌دهد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متدهای عدد در JavaScript"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متدهای پایه\nمتدهای پایهٔ عدد روی هر عددی کار می‌کنند:\ntoString()\ntoExponential()\ntoFixed()\ntoPrecision()\nvalueOf()",
+     "متدهای ایستا\nمتدهای ایستا فقط روی Number کار می‌کنند:\nNumber.isFinite()\nNumber.isInteger()\nNumber.isNan()\nNumber.isSafeInteger()\nNumber.parseInt()\nNumber.parseFloat()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش اعداد"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های عدد"
+  },
+  {
+   "type": "p",
+   "text": "مرجع عدد"
+  },
+  {
+   "type": "h2",
+   "text": "متد toString()"
+  },
+  {
+   "type": "p",
+   "text": "متد toString() یک عدد را به صورت رشته برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ متدهای عدد روی هر نوع عددی (literal، متغیر یا عبارت) کار می‌کنند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 123;\n\nx.toString();\n\n(123).toString();\n\n(100 + 23).toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_tostring"
+  },
+  {
+   "type": "p",
+   "text": "متد toString() می‌تواند یک آرگومان اختیاری radix بگیرد تا عدد را به مبنای دیگری تبدیل کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 123;\n\nlet text = x.toString(2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_tostring2"
+  },
+  {
+   "type": "h2",
+   "text": "متد toExponential()"
+  },
+  {
+   "type": "p",
+   "text": "toExponential() یک رشته برمی‌گرداند که عدد در آن گِرد شده و با نماد توان نوشته شده است."
+  },
+  {
+   "type": "p",
+   "text": "یک پارامتر تعداد رقم‌های بعد از ممیز را تعیین می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 9.656;\n\nx.toExponential(2);\n\nx.toExponential(4);\n\nx.toExponential(6);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_toexponential"
+  },
+  {
+   "type": "p",
+   "text": "این پارامتر اختیاری است. اگر آن را مشخص نکنید، JavaScript عدد را گِرد نمی‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد toFixed()"
+  },
+  {
+   "type": "p",
+   "text": "toFixed() یک رشته برمی‌گرداند که عدد در آن با تعداد مشخصی رقم اعشار نوشته شده است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 9.656;\n\nx.toFixed(0);\n\nx.toFixed(2);\n\nx.toFixed(4);\n\nx.toFixed(6);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_tofixed"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "toFixed(2) برای کار با پول عالی است."
+  },
+  {
+   "type": "h2",
+   "text": "متد toPrecision()"
+  },
+  {
+   "type": "p",
+   "text": "toPrecision() یک رشته برمی‌گرداند که عدد در آن با طول مشخص نوشته شده است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 9.656;\n\nx.toPrecision();\n\nx.toPrecision(2);\n\nx.toPrecision(4);\n\nx.toPrecision(6);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_toprecision"
+  },
+  {
+   "type": "h2",
+   "text": "متد valueOf()"
+  },
+  {
+   "type": "p",
+   "text": "valueOf() یک عدد را به صورت عدد برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 123;\n\nx.valueOf();\n\n(123).valueOf();\n\n(100 + 23).valueOf();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_valueof"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript یک عدد می‌تواند مقدار اولیه باشد (typeof = number) یا یک شیء (typeof = object)."
+  },
+  {
+   "type": "p",
+   "text": "متد valueOf() در داخل JavaScript برای تبدیل شیءهای Number به مقدارهای اولیه به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "دلیلی برای استفاده از آن در کد شما وجود ندارد."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "همهٔ نوع‌های دادهٔ JavaScript یک متد valueOf() و یک متد toString() دارند."
+  },
+  {
+   "type": "h2",
+   "text": "تبدیل متغیرها به عدد"
+  },
+  {
+   "type": "p",
+   "text": "۳ متد JavaScript وجود دارد که می‌توان از آن‌ها برای تبدیل یک متغیر به عدد استفاده کرد:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "Number()",
+     "عددی را که از آرگومانش تبدیل شده برمی‌گرداند."
+    ],
+    [
+     "parseFloat()",
+     "آرگومانش را تجزیه می‌کند و یک عدد ممیز شناور برمی‌گرداند"
+    ],
+    [
+     "parseInt()",
+     "آرگومانش را تجزیه می‌کند و یک عدد صحیح برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "متدهای بالا متد عدد نیستند؛ آن‌ها متدهای سراسری JavaScript هستند."
+  },
+  {
+   "type": "h2",
+   "text": "متد Number()"
+  },
+  {
+   "type": "p",
+   "text": "از متد Number() می‌توان برای تبدیل متغیرهای JavaScript به عدد استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number(true);\n\nNumber(false);\n\nNumber(\"10\");\n\nNumber(\"  10\");\n\nNumber(\"10  \");\n\nNumber(\" 10  \");\n\nNumber(\"10.33\");\n\nNumber(\"10,33\");\n\nNumber(\"10 33\");\n\nNumber(\"John\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_global_number"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اگر عدد قابل تبدیل نباشد، NaN (Not a Number) برگردانده می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "متد Number() روی تاریخ‌ها"
+  },
+  {
+   "type": "p",
+   "text": "Number() می‌تواند یک تاریخ را هم به عدد تبدیل کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number(new Date(\"1970-01-01\"))",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_global_number_date_0"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "متد Date() تعداد میلی‌ثانیه از 1.1.1970 را برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "تعداد میلی‌ثانیه بین 1970-01-02 و 1970-01-01 برابر 86400000 است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number(new Date(\"1970-01-02\"))",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_global_number_date_1"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number(new Date(\"2017-09-30\"))",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_global_number_date"
+  },
+  {
+   "type": "h2",
+   "text": "متد parseInt()"
+  },
+  {
+   "type": "p",
+   "text": "parseInt() یک رشته را تجزیه می‌کند و یک عدد صحیح برمی‌گرداند. فاصله‌ها مجاز هستند. فقط نخستین عدد برگردانده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "parseInt(\"-10\");\n\nparseInt(\"-10.33\");\n\nparseInt(\"10\");\n\nparseInt(\"10.33\");\n\nparseInt(\"10 20 30\");\n\nparseInt(\"10 years\");\n\nparseInt(\"years 10\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_global_parseint"
+  },
+  {
+   "type": "p",
+   "text": "اگر عدد قابل تبدیل نباشد، NaN (Not a Number) برگردانده می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "متد parseFloat()"
+  },
+  {
+   "type": "p",
+   "text": "parseFloat() یک رشته را تجزیه می‌کند و یک عدد برمی‌گرداند. فاصله‌ها مجاز هستند. فقط نخستین عدد برگردانده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "parseFloat(\"10\");\n\nparseFloat(\"10.33\");\n\nparseFloat(\"10 20 30\");\n\nparseFloat(\"10 years\");\n\nparseFloat(\"years 10\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_global_parsefloat"
+  },
+  {
+   "type": "p",
+   "text": "اگر عدد قابل تبدیل نباشد، NaN (Not a Number) برگردانده می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "متدهای شیء Number"
+  },
+  {
+   "type": "p",
+   "text": "این متدهای شیء به شیء Number تعلق دارند:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "Number.isInteger()",
+     "اگر آرگومان عدد صحیح باشد true برمی‌گرداند"
+    ],
+    [
+     "Number.isNaN()",
+     "اگر آرگومان NaN باشد true برمی‌گرداند"
+    ],
+    [
+     "Number.isFinite()",
+     "اگر آرگومان نه Infinity باشد و نه NaN، true برمی‌گرداند"
+    ],
+    [
+     "Number.isSafeInteger()",
+     "اگر آرگومان عدد صحیح ایمن باشد true برمی‌گرداند"
+    ],
+    [
+     "Number.parseFloat()",
+     "یک رشته را به عدد تبدیل می‌کند"
+    ],
+    [
+     "Number.parseInt()",
+     "یک رشته را به عدد صحیح تبدیل می‌کند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متدهای Number روی متغیرها کار نمی‌کنند"
+  },
+  {
+   "type": "p",
+   "text": "متدهای عدد بالا به شیء Number در JavaScript تعلق دارند."
+  },
+  {
+   "type": "p",
+   "text": "این متدها فقط به شکل Number.isInteger() قابل دسترسی هستند."
+  },
+  {
+   "type": "p",
+   "text": "اگر X.isInteger() را به کار ببرید که X یک متغیر است، خطا می‌گیرید:"
+  },
+  {
+   "type": "p",
+   "text": "خطای TypeError: X.isInteger is not a function."
+  },
+  {
+   "type": "h2",
+   "text": "متد Number.isInteger()"
+  },
+  {
+   "type": "p",
+   "text": "متد Number.isInteger() اگر آرگومان عدد صحیح باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number.isInteger(10);\n\nNumber.isInteger(10.5);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_isinteger"
+  },
+  {
+   "type": "h2",
+   "text": "متد Number.isFinite()"
+  },
+  {
+   "type": "p",
+   "text": "متد Number.isFinite() اگر آرگومان نه Infinity، نه -Infinity و نه NaN باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number.isFinite(123);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_isfinite"
+  },
+  {
+   "type": "h2",
+   "text": "متد Number.isNaN()"
+  },
+  {
+   "type": "p",
+   "text": "متد Number.isNaN() اگر آرگومان NaN (Not a Number) باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number.isNaN(123);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_isnan"
+  },
+  {
+   "type": "p",
+   "text": "Number.isNaN() روش ترجیحی برای بررسی برابری با NaN است. با == یا === نمی‌توان برابری با NaN را آزمود."
+  },
+  {
+   "type": "h2",
+   "text": "متد Number.isSafeInteger()"
+  },
+  {
+   "type": "p",
+   "text": "عدد صحیح ایمن عددی صحیح است که بتواند دقیقاً به صورت عدد با دقت مضاعف نمایش داده شود."
+  },
+  {
+   "type": "p",
+   "text": "متد Number.isSafeInteger() اگر آرگومان یک عدد صحیح ایمن باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number.isSafeInteger(10);\n\nNumber.isSafeInteger(12345678901234567890);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_issafeinteger"
+  },
+  {
+   "type": "h2",
+   "text": "متد Number.parseFloat()"
+  },
+  {
+   "type": "p",
+   "text": "Number.parseFloat() یک رشته را تجزیه می‌کند و یک عدد برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "فاصله‌ها مجاز هستند. فقط نخستین عدد برگردانده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number.parseFloat(\"10\");\n\nNumber.parseFloat(\"10.33\");\n\nNumber.parseFloat(\"10 20 30\");\n\nNumber.parseFloat(\"10 years\");\n\nNumber.parseFloat(\"years 10\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_parsefloat"
+  },
+  {
+   "type": "p",
+   "text": "اگر عدد قابل تبدیل نباشد، NaN (Not a Number) برگردانده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "متدهای Number.parseInt() و Number.parseFloat() همان متدهای سراسری parseInt() و parseFloat() هستند."
+  },
+  {
+   "type": "p",
+   "text": "هدف این دو متد ماژولار کردن متدهای سراسری است تا استفاده از همان کد JavaScript بیرون از مرورگر راحت‌تر شود."
+  },
+  {
+   "type": "h2",
+   "text": "متد Number.parseInt()"
+  },
+  {
+   "type": "p",
+   "text": "Number.parseInt() یک رشته را تجزیه می‌کند و یک عدد صحیح برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "فاصله‌ها مجاز هستند. فقط نخستین عدد برگردانده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number.parseInt(\"-10\");\n\nNumber.parseInt(\"-10.33\");\n\nNumber.parseInt(\"10\");\n\nNumber.parseInt(\"10.33\");\n\nNumber.parseInt(\"10 20 30\");\n\nNumber.parseInt(\"10 years\");\n\nNumber.parseInt(\"years 10\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_parseint"
+  },
+  {
+   "type": "p",
+   "text": "اگر عدد قابل تبدیل نباشد، NaN (Not a Number) برگردانده می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "متد Number.isInteger()"
+  },
+  {
+   "type": "p",
+   "text": "متد Number.isInteger() اگر آرگومان عدد صحیح باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number.isInteger(10);\n\nNumber.isInteger(10.5);",
+   "caption": "مثال: isInteger()"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_isinteger"
+  },
+  {
+   "type": "h2",
+   "text": "متد Number.isSafeInteger()"
+  },
+  {
+   "type": "p",
+   "text": "عدد صحیح ایمن عددی صحیح است که بتواند دقیقاً به صورت عدد با دقت مضاعف نمایش داده شود."
+  },
+  {
+   "type": "p",
+   "text": "متد Number.isSafeInteger() اگر آرگومان یک عدد صحیح ایمن باشد true برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Number.isSafeInteger(10);\n\nNumber.isSafeInteger(12345678901234567890);",
+   "caption": "مثال isSafeInteger()"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_issafeinteger"
+  },
+  {
+   "type": "p",
+   "text": "عددهای صحیح ایمن همهٔ عددهای صحیح از -(253 - 1) تا +(253 - 1) هستند. این عدد ایمن است: 9007199254740991. این عدد ایمن نیست: 9007199254740992."
+  },
+  {
+   "type": "h2",
+   "text": "مرجع کامل JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، همراه با توضیح کامل و مثال‌های فراوان، به اینجا بروید:"
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل JavaScript در W3Schools."
+  },
+  {
+   "type": "p",
+   "text": "این مرجع همهٔ به‌روزرسانی‌های JavaScript از 1999 تا 2025 را در بر می‌گیرد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "عدد 9.656 را در متغیری بگذارید و toFixed(0)، toFixed(2) و toFixed(4) را چاپ کنید. نتیجه توضیح دهید چرا همهٔ خروجی‌ها رشته هستند.",
+   "hint": "toFixed تعداد رقم اعشار را تعیین می‌کند و همیشه رشته برمی‌گرداند، به همین دلیل برای پول مناسب است."
+  },
+  {
+   "prompt": "با let x = 9.656; خروجی‌های x.toExponential(2) و x.toPrecision(4) را با هم مقایسه کنید و تفاوت این دو متد را در یک خط توضیح دهید.",
+   "hint": "toExponential با نماد توان می‌نویسد و پارامترش تعداد رقم‌های بعد از ممیز است؛ toPrecision طول کل عدد را تعیین می‌کند."
+  },
+  {
+   "prompt": "parseInt(\"10 years\")، parseInt(\"years 10\") و parseInt(\"10.33\") را اجرا کنید و خروجی هر سه را یادداشت کنید.",
+   "hint": "parseInt نخستین عدد را از ابتدای رشته می‌خواند و بخش اعشاری را دور می‌ریزد."
+  },
+  {
+   "prompt": "با Number.isInteger(10)، Number.isInteger(10.5) و Number.isSafeInteger(12345678901234567890) خروجی‌ها را چاپ کنید.",
+   "hint": "این متدها ایستا هستند و باید روی خود Number صدا زده شوند، نه روی یک متغیر."
+  },
+  {
+   "prompt": "یک متغیر عددی مثل let x = 6; بسازید و x.isInteger() را امتحان کنید. متن خطای کنسول را بخوانید و بنویسید چرا این کد کار نمی‌کند.",
+   "hint": "پیام خطا چیزی شبیه X.isInteger is not a function است، چون این متد ایستای شیء Number است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام متد یک عدد را با تعداد مشخصی رقم اعشار به صورت رشته برمی‌گرداند؟",
+   "options": [
+    "toPrecision()",
+    "toExponential()",
+    "toFixed()",
+    "valueOf()"
+   ],
+   "answer": 2,
+   "explanation": "toFixed(2) عدد را با دو رقم اعشار به صورت رشته می‌دهد و برای پول مناسب است؛ toExponential با نماد توان و toPrecision با طول کل عدد کار می‌کند."
+  },
+  {
+   "question": "خروجی parseInt(\"10.33\") چیست؟",
+   "options": [
+    "10",
+    "10.33",
+    "\"10.33\"",
+    "NaN"
+   ],
+   "answer": 0,
+   "explanation": "parseInt رشته را تجزیه می‌کند و فقط عدد صحیح برمی‌گرداند؛ بخش اعشاری حذف می‌شود. برای گرفتن 10.33 باید parseFloat به کار ببرید."
+  },
+  {
+   "question": "تفاوت متدهای ایستا و متدهای پایهٔ عدد در چیست؟",
+   "options": [
+    "متدهای ایستا فقط روی literal کار می‌کنند",
+    "متدهای ایستا را فقط باید به شکل Number.isInteger() صدا زد، ولی متدهای پایه روی هر عددی کار می‌کنند",
+    "متدهای پایه روی شیء Number تعریف شده‌اند",
+    "هیچ تفاوتی ندارند"
+   ],
+   "answer": 1,
+   "explanation": "متدهای پایه مثل toString و toFixed روی هر عدد (literal، متغیر یا عبارت) کار می‌کنند، اما متدهای ایستا فقط از طریق خود Number قابل دسترسی‌اند و X.isInteger() خطا می‌دهد."
+  },
+  {
+   "question": "چرا برای بررسی برابری با NaN از == استفاده نمی‌کنیم؟",
+   "options": [
+    "چون == فقط برای رشته‌ها کار می‌کند",
+    "چون NaN با هیچ مقداری از جمله خودش برابر نیست و باید Number.isNaN() را به کار برد",
+    "چون NaN یک رشته است",
+    "چون == مقدار را تغییر می‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "NaN با هیچ مقداری، حتی خودش، برابر نیست؛ پس آزمون برابری جواب نمی‌دهد و Number.isNaN() روش درست است."
+  },
+  {
+   "question": "خروجی Number(\"10 33\") چیست؟",
+   "options": [
+    "1033",
+    "10",
+    "33",
+    "NaN"
+   ],
+   "answer": 3,
+   "explanation": "Number() کل رشته را تبدیل می‌کند و رشتهٔ \"10 33\" عدد معتبری نیست، پس NaN می‌دهد؛ در مقابل parseInt(\"10 33\") نخستین عدد یعنی 10 را می‌دهد."
+  }
+ ]
+}

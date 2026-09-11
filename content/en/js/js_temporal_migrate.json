@@ -1,0 +1,267 @@
+{
+ "slug": "js_temporal_migrate",
+ "course": "js",
+ "order": 199,
+ "url": "/js/js_temporal_migrate.asp",
+ "title": "Migrate from Date to Temporal",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Migrate from Date to Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "HowTo Replace Date"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Temporal was designed to replace the old Date object."
+  },
+  {
+   "type": "p",
+   "text": "For new JavaScript projects, Temporal is the modern choice."
+  },
+  {
+   "type": "p",
+   "text": "Temporal provides safer and clearer alternatives to Date patterns."
+  },
+  {
+   "type": "p",
+   "text": "Temporal handles time zones correctly."
+  },
+  {
+   "type": "p",
+   "text": "Temporal avoids mutation and simplifies date math."
+  },
+  {
+   "type": "p",
+   "text": "This chapter shows how to migrate from Date code to modern Temporal code."
+  },
+  {
+   "type": "h2",
+   "text": "Replace new Date()"
+  },
+  {
+   "type": "p",
+   "text": "With Date, you create a date like this:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();",
+   "caption": "Date Example"
+  },
+  {
+   "type": "p",
+   "text": "With Temporal, choose the type you need."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Now.instant();",
+   "caption": "Temporal Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_instant"
+  },
+  {
+   "type": "p",
+   "text": "Use PlainDate if you only need a date."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const today = Temporal.Now.plainDateISO();",
+   "caption": "Temporal Date Only"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "Replace Date.now()"
+  },
+  {
+   "type": "p",
+   "text": "Date provides timestamps in milliseconds."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const timestamp = Date.now();",
+   "caption": "Date Example"
+  },
+  {
+   "type": "p",
+   "text": "With Temporal, use Instant."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const now = Temporal.Now.instant();\n\nconst timestamp = now.epochMilliseconds;",
+   "caption": "Temporal Example"
+  },
+  {
+   "type": "h2",
+   "text": "Replace getFullYear(), getMonth(), getDate()"
+  },
+  {
+   "type": "p",
+   "text": "Date uses getter methods."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nlet year = d.getFullYear();\n\nlet month = d.getMonth();\n\nlet day = d.getDate();",
+   "caption": "Date Example"
+  },
+  {
+   "type": "p",
+   "text": "Temporal exposes properties directly."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.Now.plainDateISO();\n\nlet year = date.year;\n\nlet month = date.month;\n\nlet day = date.day;",
+   "caption": "Temporal Example"
+  },
+  {
+   "type": "p",
+   "text": "Months start at 1, not 0."
+  },
+  {
+   "type": "h2",
+   "text": "Replace setDate() and Other Mutating Methods"
+  },
+  {
+   "type": "p",
+   "text": "Date changes the original object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2026-05-17\");\n\nd.setDate(d.getDate() + 7);",
+   "caption": "Date Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects"
+  },
+  {
+   "type": "p",
+   "text": "Temporal does not mutate values."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst nextWeek = date.add({ days: 7 });",
+   "caption": "Temporal Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_9"
+  },
+  {
+   "type": "h2",
+   "text": "Replace Date Arithmetic"
+  },
+  {
+   "type": "p",
+   "text": "Date often requires manual millisecond calculations."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = new Date(\"2026-05-01\");\n\nconst end = new Date(\"2026-05-17\");\n\nconst duration = end - start;",
+   "caption": "Date Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_8"
+  },
+  {
+   "type": "p",
+   "text": "Temporal provides built-in duration calculations."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = start.until(end);",
+   "caption": "Temporal Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_until_2"
+  },
+  {
+   "type": "h2",
+   "text": "Replace Time Zone Handling"
+  },
+  {
+   "type": "p",
+   "text": "Date mixes local time and UTC."
+  },
+  {
+   "type": "p",
+   "text": "This makes time zone handling confusing."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let d = new Date();\n\nlet time1 = d.toString();\n\nlet time2 = d.toUTCString();",
+   "caption": "Date Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_7"
+  },
+  {
+   "type": "p",
+   "text": "Temporal uses ZonedDateTime for clear time zone handling."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.Now.zonedDateTimeISO();",
+   "caption": "Temporal Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_zoneddatetime"
+  },
+  {
+   "type": "h2",
+   "text": "Convert Date to Temporal"
+  },
+  {
+   "type": "p",
+   "text": "You can convert an existing Date to a Temporal Instant."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nconst instant = Temporal.Instant.fromEpochMilliseconds(d.getTime());",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_convert_date"
+  },
+  {
+   "type": "h2",
+   "text": "Where to Replace Date with Temporal"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Use Temporal for new applications.",
+    "Use Temporal when time zones matter.",
+    "Use Temporal when doing date arithmetic.",
+    "Use Date if you must support older environments."
+   ]
+  }
+ ]
+}

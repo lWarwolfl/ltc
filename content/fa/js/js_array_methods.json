@@ -1,0 +1,896 @@
+{
+ "slug": "js_array_methods",
+ "course": "js",
+ "order": 63,
+ "url": "/js/js_array_methods.asp",
+ "title": "متدهای آرایه در JavaScript",
+ "summary": "آرایه‌ها متدهای آمادهٔ زیادی دارند که کار با عضوهای آن‌ها را ساده می‌کند. در این درس با خصوصیت length، متدهای toString()، at()، join()، pop()، push()، shift()، unshift()، concat()، flat()، splice()، slice() و نسخه‌های امن‌ترشان آشنا می‌شوید.",
+ "objectives": [
+  "عضو جدید را با push() و unshift() به آرایه اضافه کنید",
+  "عضو را با pop() و shift() حذف کنید و مقدار برگشتی را توضیح دهید",
+  "طول آرایه را با خصوصیت length بخوانید و تغییر دهید",
+  "تفاوت splice() با toSpliced() و نیز تفاوت slice() با splice() را تشخیص دهید",
+  "دو آرایه را با concat() ادغام کنید و آرایهٔ تودرتو را با flat() تخت کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متدهای آرایه در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای پایهٔ آرایه"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "length: طول آرایه\ntoString(): تبدیل آرایه به رشته\nat(): دسترسی به عضو با اندیس\njoin(): چسباندن عضوها با جداکننده\npop(): حذف آخرین عضو\npush(): افزودن عضو به انتها\nshift(): حذف اولین عضو\nunshift(): افزودن عضو به ابتدا",
+     "isArray(): تشخیص آرایه بودن\ndelete(): حذف عضو و باقی گذاشتن جای خالی\nconcat(): ادغام آرایه‌ها\ncopyWithin(): کپی عضوها درون آرایه\nflat(): تخت کردن آرایهٔ تودرتو\nslice(): بریدن تکه‌ای از آرایه\nsplice(): درج و حذف عضو\ntoSpliced(): نسخهٔ امن splice"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل آرایه‌های JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت length آرایه"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت length طول (اندازهٔ) آرایه را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet size = fruits.length;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_length"
+  },
+  {
+   "type": "p",
+   "text": "از خصوصیت length می‌توان برای تعیین طول آرایه هم استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.length = 2;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_length_set"
+  },
+  {
+   "type": "h2",
+   "text": "متد toString() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد toString() عضوهای آرایه را به‌صورت رشته‌ای جدا شده با کاما برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet myList = fruits.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_tostring"
+  },
+  {
+   "type": "p",
+   "text": "هر شیء JavaScript یک متد toString() دارد."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript در پشت‌صحنه از toString() استفاده می‌کند، وقتی لازم است شیئی به‌صورت متن نمایش داده شود (مثلاً در HTML) یا به‌عنوان رشته به کار برود."
+  },
+  {
+   "type": "h2",
+   "text": "متد at() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2022 متد at() را به آرایه‌ها اضافه کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits.at(2);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits[2];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_at"
+  },
+  {
+   "type": "p",
+   "text": "متد at() عضوی از آرایه را با شمارهٔ اندیس برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "متد at() همان چیزی را برمی‌گرداند که [] برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "at() از ویژگی‌های ECMAScript 2022 است."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2022 از مارس ۲۰۲۲ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome92",
+     "Edge92",
+     "Firefox90",
+     "Safari15.4",
+     "Opera78"
+    ],
+    [
+     "آوریل ۲۰۲۱",
+     "ژوئیهٔ ۲۰۲۱",
+     "ژوئیهٔ ۲۰۲۱",
+     "مارس ۲۰۲۲",
+     "اوت ۲۰۲۱"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "در بسیاری از زبان‌ها می‌توانید با اندیس منفی مثل [-1] به عضوها از انتهای شیء، آرایه یا رشته دسترسی بگیرید."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript این کار ممکن نیست، چون [] هم برای دسترسی به آرایه و هم برای دسترسی به شیء به کار می‌رود. obj[-1] به مقدار کلید 1- اشاره می‌کند، نه به آخرین خصوصیت شیء."
+  },
+  {
+   "type": "p",
+   "text": "متد at() در ES2022 برای حل همین مشکل معرفی شد."
+  },
+  {
+   "type": "h2",
+   "text": "متد join() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد join() هم همهٔ عضوهای آرایه را به یک رشته تبدیل می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "رفتارش دقیقاً مثل toString() است، با این تفاوت که جداکننده را هم خودتان تعیین می‌کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\ndocument.getElementById(\"demo\").innerHTML = fruits.join(\" * \");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_join"
+  },
+  {
+   "type": "h2",
+   "text": "حذف و افزودن در انتهای آرایه (pop و push)"
+  },
+  {
+   "type": "p",
+   "text": "وقتی با آرایه کار می‌کنید، حذف عضو و افزودن عضو جدید کار ساده‌ای است."
+  },
+  {
+   "type": "p",
+   "text": "معنی pop و push همین است:"
+  },
+  {
+   "type": "p",
+   "text": "بیرون کشیدن عضو از آرایه یا هل دادن عضو به داخل آرایه."
+  },
+  {
+   "type": "h2",
+   "text": "متد pop() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد pop() آخرین عضو آرایه را حذف می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.pop();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_pop"
+  },
+  {
+   "type": "p",
+   "text": "متد pop() مقداری را که بیرون کشیده شده برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits.pop();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_pop_out"
+  },
+  {
+   "type": "h2",
+   "text": "متد push() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد push() عضو جدیدی به آرایه اضافه می‌کند (در انتها):"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.push(\"Kiwi\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_push"
+  },
+  {
+   "type": "p",
+   "text": "متد push() طول جدید آرایه را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet length = fruits.push(\"Kiwi\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_push_length"
+  },
+  {
+   "type": "h2",
+   "text": "جابه‌جایی عضوها از ابتدای آرایه"
+  },
+  {
+   "type": "p",
+   "text": "shift معادل pop است، با این تفاوت که روی اولین عضو کار می‌کند نه آخرین عضو."
+  },
+  {
+   "type": "h2",
+   "text": "متد shift() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد shift() اولین عضو آرایه را حذف می‌کند و بقیهٔ عضوها را یک اندیس به عقب می‌آورد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.shift();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_shift"
+  },
+  {
+   "type": "p",
+   "text": "متد shift() مقداری را که خارج شده برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits.shift();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_shift_return"
+  },
+  {
+   "type": "h2",
+   "text": "متد unshift() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد unshift() عضو جدیدی به آرایه اضافه می‌کند (در ابتدا) و بقیهٔ عضوها را یک اندیس جلو می‌برد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.unshift(\"Lemon\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_unshift"
+  },
+  {
+   "type": "p",
+   "text": "متد unshift() طول جدید آرایه را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.unshift(\"Lemon\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_unshift_return"
+  },
+  {
+   "type": "h2",
+   "text": "تغییر عضوهای آرایه"
+  },
+  {
+   "type": "p",
+   "text": "به عضوهای آرایه با شمارهٔ اندیس آن‌ها دسترسی پیدا می‌کنید:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اندیس آرایه از ۰ شروع می‌شود: [0] عضو اول است، [1] عضو دوم، [2] عضو سوم و همین‌طور ادامه دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits[0] = \"Kiwi\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_change"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت length آرایه"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت length راه ساده‌ای برای افزودن عضو جدید به انتهای آرایه است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits[fruits.length] = \"Kiwi\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_change_add"
+  },
+  {
+   "type": "h2",
+   "text": "متد Array.isArray()"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 5 (JavaScript 2009) متد جدید Array.isArray() را به JavaScript اضافه کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Array.isArray(fruits);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_isarray_method"
+  },
+  {
+   "type": "h2",
+   "text": "متد delete() آرایه"
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "هشدار! استفاده از delete() جای خالی و undefined در آرایه باقی می‌گذارد. به‌جای آن از pop() یا shift() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\ndelete fruits[0];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_delete"
+  },
+  {
+   "type": "h2",
+   "text": "ادغام آرایه‌ها (الحاق)"
+  },
+  {
+   "type": "p",
+   "text": "در زبان‌های برنامه‌نویسی، الحاق یعنی چسباندن رشته‌ها از سر و ته به هم."
+  },
+  {
+   "type": "p",
+   "text": "الحاق «snow» و «ball» نتیجهٔ «snowball» را می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "الحاق آرایه‌ها یعنی چسباندن آرایه‌ها از سر و ته به هم."
+  },
+  {
+   "type": "h2",
+   "text": "متد concat() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد concat() با ادغام (الحاق) آرایه‌های موجود، آرایهٔ جدیدی می‌سازد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myGirls = [\"Cecilie\", \"Lone\"];\n\nconst myBoys = [\"Emil\", \"Tobias\", \"Linus\"];\n\nconst myChildren = myGirls.concat(myBoys);",
+   "caption": "مثال (ادغام دو آرایه)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_concat"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "متد concat() آرایه‌های موجود را تغییر نمی‌دهد و همیشه آرایهٔ جدیدی برمی‌گرداند. این متد هر تعداد آرگومان آرایه می‌تواند بگیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const arr1 = [\"Cecilie\", \"Lone\"];\n\nconst arr2 = [\"Emil\", \"Tobias\", \"Linus\"];\n\nconst arr3 = [\"Robin\", \"Morgan\"];\n\nconst myChildren = arr1.concat(arr2, arr3);",
+   "caption": "مثال (ادغام سه آرایه)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_concat2"
+  },
+  {
+   "type": "p",
+   "text": "متد concat() می‌تواند رشته هم به‌عنوان آرگومان بگیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const arr1 = [\"Emil\", \"Tobias\", \"Linus\"];\n\nconst myChildren = arr1.concat(\"Peter\");",
+   "caption": "مثال (ادغام آرایه با مقدارها)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_concat3"
+  },
+  {
+   "type": "h2",
+   "text": "متد copyWithin() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد copyWithin() عضوهای آرایه را به موقعیت دیگری در همان آرایه کپی می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.copyWithin(2, 0);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\", \"Kiwi\"];\n\nfruits.copyWithin(2, 0, 2);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_copywithin"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "متد copyWithin() مقدارهای موجود را بازنویسی می‌کند، عضو جدیدی به آرایه اضافه نمی‌کند و طول آرایه را تغییر نمی‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "تخت کردن آرایه"
+  },
+  {
+   "type": "p",
+   "text": "تخت کردن آرایه یعنی کم کردن بُعد آرایه."
+  },
+  {
+   "type": "p",
+   "text": "تخت کردن وقتی به کار می‌آید که بخواهید آرایهٔ چندبُعدی را به آرایهٔ یک‌بُعدی تبدیل کنید."
+  },
+  {
+   "type": "h2",
+   "text": "متد flat() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد flat() را معرفی کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد flat() آرایهٔ جدیدی می‌سازد که عضوهای زیرآرایه‌ها تا عمق مشخصی در آن تخت شده‌اند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [[1,2],[3,4],[5,6]];\n\nconst newArr = myArr.flat();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_flat"
+  },
+  {
+   "type": "h2",
+   "text": "متد flatMap() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد flatMap() را به JavaScript اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد flatMap() اول روی همهٔ عضوهای آرایه یک تابع اجرا می‌کند و بعد با تخت کردن نتیجه، آرایهٔ جدیدی می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [1, 2, 3, 4, 5, 6];\n\nconst newArr = myArr.flatMap(x => [x, x * 10]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_flatmap"
+  },
+  {
+   "type": "h2",
+   "text": "درج و برش در آرایه‌ها (splice و slice)"
+  },
+  {
+   "type": "p",
+   "text": "متد splice() عضوهای جدیدی به آرایه اضافه می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متد slice() تکه‌ای از آرایه را می‌برد و جدا می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد splice() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "از متد splice() می‌توان برای افزودن عضوهای جدید به آرایه استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.splice(2, 0, \"Lemon\", \"Kiwi\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_splice"
+  },
+  {
+   "type": "p",
+   "text": "پارامتر اول (2) موقعیتی را تعیین می‌کند که عضوهای جدید باید در آن اضافه شوند."
+  },
+  {
+   "type": "p",
+   "text": "پارامتر دوم (0) تعیین می‌کند چه تعداد عضو باید حذف شود."
+  },
+  {
+   "type": "p",
+   "text": "بقیهٔ پارامترها («Lemon» و «Kiwi») عضوهای جدیدی هستند که اضافه می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "متد splice() آرایه‌ای شامل عضوهای حذف‌شده برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.splice(2, 2, \"Lemon\", \"Kiwi\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_splice_return"
+  },
+  {
+   "type": "h2",
+   "text": "حذف عضو با splice()"
+  },
+  {
+   "type": "p",
+   "text": "با تنظیم درست پارامترها می‌توانید با splice() عضو حذف کنید، بدون آنکه جای خالی در آرایه بماند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nfruits.splice(0, 1);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_remove"
+  },
+  {
+   "type": "p",
+   "text": "پارامتر اول (0) موقعیتی را تعیین می‌کند که عضوهای جدید باید در آن اضافه شوند."
+  },
+  {
+   "type": "p",
+   "text": "پارامتر دوم (1) تعیین می‌کند چه تعداد عضو باید حذف شود."
+  },
+  {
+   "type": "p",
+   "text": "بقیهٔ پارامترها حذف شده‌اند؛ عضو جدیدی اضافه نمی‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "متد toSpliced() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2023 متد toSpliced() را اضافه کرد تا بتوان بدون تغییر آرایهٔ اصلی، عمل splice را انجام داد."
+  },
+  {
+   "type": "p",
+   "text": "تفاوت متد جدید toSpliced() با متد قدیمی splice() این است که متد جدید آرایهٔ تازه‌ای می‌سازد و آرایهٔ اصلی را دست‌نخورده نگه می‌دارد، در حالی که متد قدیمی آرایهٔ اصلی را تغییر می‌داد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\"];\n\nconst spliced = months.toSpliced(0, 1);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_tospliced"
+  },
+  {
+   "type": "h2",
+   "text": "متد slice() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد slice() تکه‌ای از آرایه را برمی‌دارد و در یک آرایهٔ جدید می‌ریزد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Lemon\", \"Apple\", \"Mango\"];\n\nconst citrus = fruits.slice(1);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_slice1"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "متد slice() آرایهٔ جدیدی می‌سازد و هیچ عضوی از آرایهٔ مبدأ حذف نمی‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Lemon\", \"Apple\", \"Mango\"];\n\nconst citrus = fruits.slice(3);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_slice3"
+  },
+  {
+   "type": "p",
+   "text": "متد slice() می‌تواند دو آرگومان بگیرد، مثل slice(1, 3)."
+  },
+  {
+   "type": "p",
+   "text": "در این حالت عضوها را از آرگومان شروع تا قبل از آرگومان پایان انتخاب می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Lemon\", \"Apple\", \"Mango\"];\n\nconst citrus = fruits.slice(1, 3);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_slice"
+  },
+  {
+   "type": "p",
+   "text": "اگر آرگومان پایان را ندهید (مثل مثال‌های اول)، متد slice() بقیهٔ آرایه را برمی‌دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Lemon\", \"Apple\", \"Mango\"];\n\nconst citrus = fruits.slice(2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_slice2"
+  },
+  {
+   "type": "h2",
+   "text": "toString() خودکار"
+  },
+  {
+   "type": "p",
+   "text": "وقتی JavaScript انتظار یک مقدار اولیه (primitive) داشته باشد، آرایه را خودکار به رشته‌ای جدا شده با کاما تبدیل می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "هر وقت بخواهید آرایه‌ای را چاپ کنید همین اتفاق می‌افتد."
+  },
+  {
+   "type": "p",
+   "text": "این دو مثال نتیجهٔ یکسانی می‌دهند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\ndocument.getElementById(\"demo\").innerHTML = fruits.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_tostring"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\ndocument.getElementById(\"demo\").innerHTML = fruits;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_automatic"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "همهٔ شیءهای JavaScript یک متد toString() دارند."
+  },
+  {
+   "type": "h2",
+   "text": "جست‌وجو در آرایه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "جست‌وجو در آرایه‌ها در درس بعدی همین آموزش توضیح داده شده است."
+  },
+  {
+   "type": "h2",
+   "text": "مرتب‌سازی آرایه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "بخش مرتب‌سازی آرایه‌ها متدهایی را پوشش می‌دهد که برای مرتب کردن آرایه به کار می‌روند."
+  },
+  {
+   "type": "h2",
+   "text": "پیمایش آرایه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "بخش پیمایش آرایه‌ها متدهایی را پوشش می‌دهد که روی همهٔ عضوهای آرایه کار می‌کنند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل methods.html بسازید و آرایه‌ای مثل let fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"] بنویسید؛ بعد با push() عضو \"Kiwi\" را به انتها اضافه کنید و آرایه را با console.log چاپ کنید.",
+   "hint": "push() به انتهای آرایه اضافه می‌کند و طول جدید آرایه را برمی‌گرداند."
+  },
+  {
+   "prompt": "با متد pop() آخرین عضو آرایه حذف کنید و مقدار برگشتی آن را در کنسول چاپ کنید؛ بعد همان کار را با shift() روی عضو اول انجام دهید و تفاوت را ببینید.",
+   "hint": "هم pop() و هم shift() عضوی را که حذف کرده‌اند برمی‌گردانند؛ فقط یکی از انتها و دیگری از ابتدا حذف می‌کند."
+  },
+  {
+   "prompt": "دو آرایه بسازید و با concat() آن‌ها را در آرایهٔ سومی ادغام کنید؛ بعد با console.log طول آرایه‌های اولیه را چاپ کنید تا ببینید تغییری کرده‌اند یا نه.",
+   "hint": "concat() آرایه‌های موجود را تغییر نمی‌دهد و همیشه آرایهٔ جدید برمی‌گرداند."
+  },
+  {
+   "prompt": "با متد splice() دو عضو جدید را از موقعیت ۲ به آرایه اضافه کنید و آرایهٔ برگشتی را چاپ کنید؛ سپس با toSpliced() همین کار را تکرار کنید و آرایهٔ اصلی را قبل و بعد مقایسه کنید.",
+   "hint": "splice() آرایهٔ اصلی را تغییر می‌دهد؛ toSpliced() نسخهٔ تازه برمی‌گرداند و اصلی دست‌نخورده می‌ماند."
+  },
+  {
+   "prompt": "آرایه‌ای تودرتو بسازید و با flat() آن را تخت کنید؛ بعد همان آرایه را به join(\" و \") بدهید و خروجی را با toString() مقایسه کنید.",
+   "hint": "join() جداکننده دلخواه می‌گیرد، اما toString() همیشه با کاما عضوها را به هم می‌چسباند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام متد عضوی به انتهای آرایه اضافه می‌کند و طول جدید را برمی‌گرداند؟",
+   "options": [
+    "pop()",
+    "push()",
+    "shift()",
+    "unshift()"
+   ],
+   "answer": 1,
+   "explanation": "push() عضو را به انتها اضافه می‌کند و طول جدید را برمی‌گرداند. pop() از انتها حذف می‌کند، shift() از ابتدا حذف می‌کند و unshift() به ابتدا اضافه می‌کند."
+  },
+  {
+   "question": "متد pop() روی آرایه چه چیزی برمی‌گرداند؟",
+   "options": [
+    "طول جدید آرایه",
+    "اندیس عضو حذف‌شده",
+    "مقداری که حذف شده است",
+    "یک آرایهٔ جدید"
+   ],
+   "answer": 2,
+   "explanation": "pop() عضوی را که از انتهای آرایه بیرون کشیده برمی‌گرداند، نه طول و نه آرایهٔ جدید. push() و unshift() هستند که طول جدید را برمی‌گردانند."
+  },
+  {
+   "question": "آرایه‌ای با ۴ عضو داریم. بعد از اجرای fruits.push(\"Kiwi\") طول آرایه چقدر است؟",
+   "options": [
+    "۳",
+    "۴",
+    "۵",
+    "خطا می‌دهد"
+   ],
+   "answer": 2,
+   "explanation": "push() یک عضو به انتهای آرایه اضافه می‌کند، پس آرایه ۵ عضو می‌شود و متد هم عدد ۵ را برمی‌گرداند."
+  },
+  {
+   "question": "تفاوت اصلی splice() و toSpliced() چیست؟",
+   "options": [
+    "toSpliced() آرایهٔ اصلی را دست‌نخورده نگه می‌دارد و آرایهٔ جدید می‌سازد",
+    "splice() آرایهٔ اصلی را دست‌نخورده نگه می‌دارد",
+    "هر دو آرایهٔ اصلی را تغییر نمی‌دهند",
+    "هیچ تفاوتی ندارند و هر دو آرایهٔ اصلی را تغییر می‌دهند"
+   ],
+   "answer": 0,
+   "explanation": "toSpliced() که در ES2023 اضافه شد آرایهٔ تازه‌ای می‌سازد و آرایهٔ اصلی را تغییر نمی‌دهد، اما splice() آرایهٔ اصلی را دست‌کاری می‌کند."
+  },
+  {
+   "question": "دربارهٔ متد delete() روی آرایه کدام جمله درست است؟",
+   "options": [
+    "آرایه را کوتاه می‌کند و بقیهٔ عضوها را جابه‌جا می‌کند",
+    "جای خالی و undefined در آرایه باقی می‌گذارد",
+    "مثل pop() آخرین عضو را حذف می‌کند",
+    "طول آرایه را یک واحد کم می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "delete() عضو را پاک می‌کند اما جای آن undefined می‌ماند و طول آرایه هم تغییر نمی‌کند؛ به همین دلیل توصیه می‌شود از pop() یا shift() استفاده کنید."
+  }
+ ]
+}

@@ -1,0 +1,268 @@
+{
+ "slug": "js_2024",
+ "course": "js",
+ "order": 126,
+ "url": "/js/js_2024.asp",
+ "title": "ECMAScript 2024",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ECMAScript 2024"
+  },
+  {
+   "type": "h2",
+   "text": "New Features in JavaScript 2024"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "Description",
+     ""
+    ],
+    [
+     "Object.groupBy()",
+     "Groups object elements according to values returned from a callback function",
+     ""
+    ],
+    [
+     "Map.groupBy()",
+     "Groups map elements according to values returned from a callback function",
+     ""
+    ],
+    [
+     "String isWellFormed()",
+     "Returns true if a string is well formed",
+     ""
+    ],
+    [
+     "String.toWellFormed()",
+     "Returns a new string where \"lone surrogates\" are replaced with Unicode U+FFFD",
+     ""
+    ],
+    [
+     "Promise.withResolvers()",
+     "",
+     ""
+    ],
+    [
+     "Atomics\nwaitAsync",
+     "",
+     ""
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Warning"
+  },
+  {
+   "type": "p",
+   "text": "These features are relatively new."
+  },
+  {
+   "type": "p",
+   "text": "Older browsers may need an alternative code (Polyfill)"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Object.groupBy()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Object.groupBy(fruits, myCallback);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_groupby"
+  },
+  {
+   "type": "h2",
+   "text": "Description"
+  },
+  {
+   "type": "p",
+   "text": "The Object.groupBy() method groups elements of an object\naccording to string values returned from a callback function."
+  },
+  {
+   "type": "p",
+   "text": "The Object.groupBy() method return a new object."
+  },
+  {
+   "type": "p",
+   "text": "The Object.groupBy() method does not change the original object."
+  },
+  {
+   "type": "p",
+   "text": "The elements in the original and in the returned object are the same."
+  },
+  {
+   "type": "p",
+   "text": "Future changes will be reflected in both the original and in the returned object."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Map.groupBy()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Map\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Map.groupBy(fruits, myCallback);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_groupby"
+  },
+  {
+   "type": "h2",
+   "text": "Description"
+  },
+  {
+   "type": "p",
+   "text": "The Map.groupBy() method groups elements of a map\naccording to string values returned from a callback function."
+  },
+  {
+   "type": "p",
+   "text": "The Map.groupBy() method returns a new map."
+  },
+  {
+   "type": "p",
+   "text": "The Map.groupBy() method does not change the original object."
+  },
+  {
+   "type": "p",
+   "text": "The elements in the original and in the returned object are the same."
+  },
+  {
+   "type": "p",
+   "text": "Future changes will be reflected in both the original and in the returned object."
+  },
+  {
+   "type": "h2",
+   "text": "Object.groupBy() vs Map.groupBy()"
+  },
+  {
+   "type": "p",
+   "text": "The difference between Object.groupBy() and Map.groupBy() is:"
+  },
+  {
+   "type": "p",
+   "text": "Object.groupBy() groups elements into a JavaScript object."
+  },
+  {
+   "type": "p",
+   "text": "Map.groupBy() groups elements into a Map object."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String isWellFormed()"
+  },
+  {
+   "type": "p",
+   "text": "The isWellFormed() method returns true\nif a string is well formed."
+  },
+  {
+   "type": "p",
+   "text": "Otherwise it returns false."
+  },
+  {
+   "type": "p",
+   "text": "A string is not well formed if it contains lone surrogates."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello world!\";\n\nlet result = text.isWellFormed();",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.isWellFormed();",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_iswellformed"
+  },
+  {
+   "type": "h2",
+   "text": "Lone Surrogates"
+  },
+  {
+   "type": "p",
+   "text": "A lone surrogate is a Unicode surrogate code point that is not part of a valid surrogate pair\nused to represent characters in UTF-16 encoding."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript String toWellFormed()"
+  },
+  {
+   "type": "p",
+   "text": "The String method toWellFormed()\nreturns a new string where all \"lone surrogates\" are replaced with the Unicode replacement character (U+FFFD)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.toWellFormed();",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_towellformed"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Promise.withResolvers()"
+  },
+  {
+   "type": "p",
+   "text": "Promise.withResolvers()\nis a static method that simplifies the creation and management of Promises."
+  },
+  {
+   "type": "p",
+   "text": "Promise.withResolvers() provides a more convenient way to access\nthe resolve and reject functions associated with a Promise outside of its executor function."
+  },
+  {
+   "type": "p",
+   "text": "Instead of the traditional new Promise((resolve, reject) => { ... }) constructor pattern,\nPromise.withResolvers() returns an object containing:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "promise: The newly created Promise instance",
+    "resolve: A function to fulfill the promise with a value",
+    "reject: A function to reject the promise with a reason (error)"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<p id=\"demo\">Waiting...</p>\n\n<script>\n\nconst {promise, resolve, reject} = Promise.withResolvers();\n\n// You can now use 'resolve' and 'reject' anywhere\n\n// in your code to control the state of 'promise'.\n\n// Simulate async work\n\nsetTimeout(() => {\n\n  const success = Math.random() > 0.5;\n\n  if (success) {\n\n    resolve(\"Operation successful!\");\n\n  } else {\n\n    reject(\"Operation failed!\");\n\n  }\n\n}, 1000);\n\n// Update the UI when the promise finishes\n\npromise\n\n  .then((message) => {\n\n    document.getElementById(\"demo\").innerHTML = message;\n\n  })\n\n  .catch((error) => {\n\n    document.getElementById(\"demo\").innerHTML = error;\n;\n\n  });\n\n</script>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_withresolvers"
+  },
+  {
+   "type": "h3",
+   "text": "Example Explained"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The <p id=\"demo\"> initially shows \"Waiting...\"",
+    "After 1 second, the promise resolves or rejects",
+    "The result is written into \"demo\""
+   ]
+  }
+ ]
+}

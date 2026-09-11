@@ -1,0 +1,785 @@
+{
+ "slug": "js_arrays",
+ "course": "js",
+ "order": 61,
+ "url": "/js/js_arrays.asp",
+ "title": "آرایه‌ها در JavaScript",
+ "summary": "آرایه در JavaScript شیئی برای نگه‌داری فهرستی از مقدارهاست که با شمارهٔ اندیس از صفر دسترسی‌پذیرند. در این درس ساختن آرایه، دسترسی و تغییر عنصرها، طول آرایه، حلقه روی عنصرها و تفاوت آرایه با شیء را یاد می‌گیرید.",
+ "objectives": [
+  "آرایه بسازید و به عنصرهایش با اندیس دسترسی پیدا کنید",
+  "طول آرایه را با length به دست آورید و عنصر آخر را بخوانید",
+  "عنصر جدید با push() اضافه کنید و روی آرایه حلقه بزنید",
+  "تشخیص دهید چرا آرایه با شیء فرق دارد و اندیس نام‌دار چه پیامدی دارد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "آرایه‌ها در JavaScript"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array"
+  },
+  {
+   "type": "p",
+   "text": "آرایه یک نوع شیء است که برای نگه‌داری مجموعه‌های داده طراحی شده است."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های کلیدی آرایه‌های JavaScript این‌ها هستند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "عنصرها: آرایه فهرستی از مقدارهاست که به آن‌ها عنصر می‌گویند.",
+    "مرتب: عنصرهای آرایه بر اساس اندیس‌شان مرتب‌اند.",
+    "شمارش از صفر: عنصر اول اندیس ۰ دارد، عنصر دوم اندیس ۱ و به همین ترتیب.",
+    "اندازهٔ پویا: آرایه با افزودن یا حذف عنصرها بزرگ و کوچک می‌شود.",
+    "ناهمگون: آرایه می‌تواند عنصرهایی با نوع‌های دادهٔ مختلف نگه دارد (عدد، رشته، شیء و آرایه‌های دیگر)."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "چرا از آرایه استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "اگر فهرستی از آیتم‌ها دارید (مثلاً فهرستی از نام خودروها)، نگه‌داری نام‌ها در متغیرهای جداگانه این‌طور می‌شود:"
+  },
+  {
+   "type": "p",
+   "text": "let car1 = \"Saab\";\nlet car2 = \"Volvo\";\nlet car3 = \"BMW\";"
+  },
+  {
+   "type": "p",
+   "text": "اما اگر بخواهید روی خودروها حلقه بزنید و یکی مشخص را پیدا کنید چه؟ و اگر ۳ خودرو نداشتید بلکه ۳۰۰ خودرو داشتید؟"
+  },
+  {
+   "type": "p",
+   "text": "راه‌حل، آرایه است!"
+  },
+  {
+   "type": "p",
+   "text": "آرایه می‌تواند مقدارهای زیادی را زیر یک نام نگه دارد و با اشاره به شمارهٔ اندیس به آن مقدارها دسترسی داشته باشید."
+  },
+  {
+   "type": "h2",
+   "text": "ساختن آرایه"
+  },
+  {
+   "type": "p",
+   "text": "استفاده از آرایهٔ تحت‌اللفظی (array literal) ساده‌ترین راه ساختن آرایه در JavaScript است."
+  },
+  {
+   "type": "p",
+   "text": "نحو:"
+  },
+  {
+   "type": "p",
+   "text": "const array_name = [item1, item2, ...];"
+  },
+  {
+   "type": "p",
+   "text": "روش رایج این است که آرایه‌ها را با کلیدواژهٔ const تعریف کنید."
+  },
+  {
+   "type": "p",
+   "text": "دربارهٔ const و آرایه‌ها در فصل JS Array Const بیشتر بخوانید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array"
+  },
+  {
+   "type": "p",
+   "text": "فاصله‌ها و شکستن خط مهم نیستند؛ یک تعریف می‌تواند چند خط طول بکشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\n\n  \"Saab\",\n\n    \"Volvo\",\n\n    \"BMW\"\n\n];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_newlines"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید آرایهٔ خالی هم بسازید و عنصرها را بعداً بدهید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [];\n\ncars[0]= \"Saab\";\n\ncars[1]= \"Volvo\";\n\ncars[2]= \"BMW\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_add_elements"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از کلیدواژهٔ new در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر هم یک آرایه می‌سازد و به آن مقدار می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = new Array(\"Saab\", \"Volvo\", \"BMW\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_new"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "دو مثال بالا دقیقاً یک کار انجام می‌دهند. برای سادگی، خوانایی و سرعت، بیشتر وقت‌ها می‌توانید از روش آرایهٔ تحت‌اللفظی استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "دسترسی به عنصرهای آرایه"
+  },
+  {
+   "type": "p",
+   "text": "با اشاره به شمارهٔ اندیس به یک عنصر آرایه دسترسی پیدا می‌کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\nlet car = cars[0];",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_element"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اندیس‌های آرایه از ۰ شروع می‌شوند؛ [0] عنصر اول و [1] عنصر دوم است."
+  },
+  {
+   "type": "h2",
+   "text": "تغییر یک عنصر آرایه"
+  },
+  {
+   "type": "p",
+   "text": "این دستور مقدار عنصر اول آرایهٔ cars را عوض می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "cars[0] = \"Opel\";",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\ncars[0] = \"Opel\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_element_change"
+  },
+  {
+   "type": "h2",
+   "text": "تبدیل آرایه به رشته"
+  },
+  {
+   "type": "p",
+   "text": "متد toString() در JavaScript آرایه را به رشته‌ای از مقدارهای آرایه (جداشده با کاما) تبدیل می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\ndocument.getElementById(\"demo\").innerHTML = fruits.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_tostring"
+  },
+  {
+   "type": "h2",
+   "text": "نمایش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript می‌توانید با اشاره به نام آرایه، کل آن را نمایش دهید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\nlet text = cars;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_full"
+  },
+  {
+   "type": "h2",
+   "text": "نمایش آرایه با JSON"
+  },
+  {
+   "type": "p",
+   "text": "کل آرایه را می‌توان با JSON.stringify() هم نمایش داد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\nlet text = JSON.stringify(cars);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_json"
+  },
+  {
+   "type": "h2",
+   "text": "آرایه‌ها شیء هستند"
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌ها نوع خاصی از شیء هستند. عملگر typeof در JavaScript برای آرایه‌ها «object» برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "اما بهترین توصیف آرایه‌های JavaScript همان آرایه است."
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌ها برای دسترسی به «عنصرها» از عدد استفاده می‌کنند. در این مثال person[0] مقدار John را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = [\"John\", \"Doe\", 46];",
+   "caption": "آرایه:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_array"
+  },
+  {
+   "type": "p",
+   "text": "شیءها برای دسترسی به «اعضا» از نام استفاده می‌کنند. در این مثال person.firstName مقدار John را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {firstName:\"John\", lastName:\"Doe\", age:46};",
+   "caption": "شیء:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_object"
+  },
+  {
+   "type": "h2",
+   "text": "عنصرهای آرایه می‌توانند شیء باشند"
+  },
+  {
+   "type": "p",
+   "text": "متغیرهای JavaScript می‌توانند شیء باشند. آرایه‌ها نوع خاصی از شیء هستند."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل می‌توانید متغیرهایی با نوع‌های مختلف را در یک آرایه بگذارید."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید شیء در آرایه داشته باشید، تابع در آرایه داشته باشید و آرایه در آرایه بگذارید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myArray[0] = Date.now;\n\nmyArray[1] = myFunction;\n\nmyArray[2] = myCars;",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌ها و متدهای آرایه"
+  },
+  {
+   "type": "p",
+   "text": "نقطهٔ قوت واقعی آرایه‌های JavaScript، خصوصیت‌ها و متدهای آمادهٔ آن است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "cars.length   // Returns the number of elements\n\ncars.sort()   // Sorts the array",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "متدهای آرایه در فصل‌های بعد بررسی می‌شوند."
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت length"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت length طول آرایه را برمی‌گرداند (تعداد عنصرهای آرایه)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet length = fruits.length;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_length"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "مقدار length همیشه یکی بیشتر از بزرگ‌ترین اندیس آرایه است."
+  },
+  {
+   "type": "h2",
+   "text": "دسترسی به عنصر اول آرایه"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits[0];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_first"
+  },
+  {
+   "type": "h2",
+   "text": "دسترسی به عنصر آخر آرایه"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits[fruits.length - 1];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_last"
+  },
+  {
+   "type": "h2",
+   "text": "حلقه زدن روی عنصرهای آرایه"
+  },
+  {
+   "type": "p",
+   "text": "یکی از راه‌های حلقه زدن روی آرایه، استفاده از حلقهٔ for است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fLen = fruits.length;\n\nlet text = \"<ul>\";\nfor (let i = 0; i < fLen; i++) {\n  text += \"<li>\" + fruits[i] + \"</li>\";\n}\ntext\n  += \"</ul>\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_loop"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید از تابع Array.forEach() هم استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet text = \"<ul>\";\nfruits.forEach(myFunction);\ntext += \"</ul>\";\n\nfunction\n  myFunction(value) {\n\n text += \"<li>\" + value + \"</li>\";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_loop_foreach"
+  },
+  {
+   "type": "h2",
+   "text": "افزودن عنصر به آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ساده‌ترین راه افزودن عنصر جدید به آرایه، استفاده از متد push() است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\"];\n\nfruits.push(\"Lemon\");  // Adds a new element (Lemon) to fruits",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_add_push"
+  },
+  {
+   "type": "p",
+   "text": "عنصر جدید را می‌توان با خصوصیت length هم به آرایه افزود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\"];\n\nfruits[fruits.length] = \"Lemon\";  // Adds \"Lemon\" to fruits",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_add"
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "هشدار! افزودن عنصر با اندیس‌های بالا می‌تواند «حفره‌های» undefined در آرایه بسازد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\"];\n\nfruits[6] = \"Lemon\";  // Creates undefined \"holes\" in fruits",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_holes"
+  },
+  {
+   "type": "h2",
+   "text": "آرایه‌های انجمنی"
+  },
+  {
+   "type": "p",
+   "text": "بسیاری از زبان‌های برنامه‌نویسی از آرایه با اندیس نام‌دار پشتیبانی می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌هایی با اندیس نام‌دار را آرایهٔ انجمنی (یا hash) می‌نامند."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript از آرایه با اندیس نام‌دار پشتیبانی نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript آرایه‌ها همیشه از اندیس شماره‌ای استفاده می‌کنند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = [];\n\nperson[0] = \"John\";\n\nperson[1] = \"Doe\";\n\nperson[2] = 46;\n\nperson.length;    // Will return 3\n\nperson[0];        // Will return \"John\"",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_associative_1"
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "هشدار!! اگر از اندیس نام‌دار استفاده کنید، JavaScript آرایه را به شیء تبدیل می‌کند. بعد از آن بعضی متدها و خصوصیت‌های آرایه نتیجهٔ نادرست می‌دهند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = [];\n\nperson[\"firstName\"] = \"John\";\n\nperson[\"lastName\"] = \"Doe\";\n\nperson[\"age\"] = 46;\n\nperson.length;     // Will return 0\n\nperson[0];         // Will return undefined",
+   "caption": "مثال:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_associative_2"
+  },
+  {
+   "type": "h2",
+   "text": "تفاوت آرایه‌ها و شیءها"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript آرایه‌ها از اندیس شماره‌ای استفاده می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript شیءها از اندیس نام‌دار استفاده می‌کنند."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "آرایه‌ها نوع خاصی از شیءها با اندیس‌های شماره‌ای هستند."
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی آرایه و چه زمانی شیء"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "JavaScript از آرایه‌های انجمنی پشتیبانی نمی‌کند.",
+    "وقتی می‌خواهید نام عنصرها رشته (متن) باشد باید از شیء استفاده کنید.",
+    "وقتی می‌خواهید نام عنصرها عدد باشد باید از آرایه استفاده کنید."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "new Array() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript یک سازندهٔ آرایهٔ آماده به نام new Array() دارد."
+  },
+  {
+   "type": "p",
+   "text": "اما می‌توانید با خیال راحت به‌جایش [] بنویسید."
+  },
+  {
+   "type": "p",
+   "text": "این دو دستور مختلف هر دو یک آرایهٔ خالی جدید به نام points می‌سازند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = new Array();\n\nconst points = [];",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "این دو دستور مختلف هر دو آرایهٔ جدیدی با ۶ عدد می‌سازند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const points = new Array(40, 100, 1, 5, 25, 10);\n\nconst points = [40, 100, 1, 5, 25, 10];",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_literal"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ آرایه در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "چگونه آرایه را تشخیص دهیم"
+  },
+  {
+   "type": "p",
+   "text": "پرسش رایج این است: از کجا بفهمم یک متغیر آرایه است؟"
+  },
+  {
+   "type": "p",
+   "text": "مشکل این‌جاست که عملگر typeof در JavaScript «object» برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\"];\n\nlet type = typeof fruits;",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_typeof"
+  },
+  {
+   "type": "p",
+   "text": "عملگر typeof مقدار object را برمی‌گرداند، چون آرایهٔ JavaScript خودش یک شیء است."
+  },
+  {
+   "type": "h3",
+   "text": "راه‌حل ۱:"
+  },
+  {
+   "type": "p",
+   "text": "برای رفع این مشکل، ECMAScript 5 (JavaScript 2009) متد جدید Array.isArray() را معرفی کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Array.isArray(fruits);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_isarray_method"
+  },
+  {
+   "type": "h3",
+   "text": "راه‌حل ۲:"
+  },
+  {
+   "type": "p",
+   "text": "عملگر instanceof اگر شیء با یک سازندهٔ مشخص ساخته شده باشد true برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\"];\n\n(fruits instanceof Array);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_instanceof_array"
+  },
+  {
+   "type": "h2",
+   "text": "آرایه‌ها و شیءهای تودرتو"
+  },
+  {
+   "type": "p",
+   "text": "مقدارهای داخل شیء می‌توانند آرایه باشند و مقدارهای داخل آرایه می‌توانند شیء باشند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myObj =\n  {\n  name: \"John\",\n  age: 30,\n\n  cars: [\n    {name:\"Ford\",\n  models:[\"Fiesta\", \"Focus\", \"Mustang\"]},\n\n  {name:\"BMW\", models:[\"320\", \"X3\", \"X5\"]},\n\n  {name:\"Fiat\", models:[\"500\", \"Panda\"]}\n\n    ]\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "برای دسترسی به آرایه‌های داخل آرایه، برای هر آرایه از حلقهٔ for-in استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "for (let i in myObj.cars) {\n  x += \"<h1>\" + myObj.cars[i].name\n  + \"</h1>\";\n  for (let j in myObj.cars[i].models) {\n\n  x += myObj.cars[i].models[j];\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_nested"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "متدهای آرایه"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای جست‌وجو در آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای مرتب‌سازی آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متدهای پیمایش آرایه"
+  },
+  {
+   "type": "p",
+   "text": "مرجع کامل آرایه در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل arrays.html بسازید و آرایه‌ای از سه نام خودرو با آرایهٔ تحت‌اللفظی بسازید؛ سپس طولش را با length چاپ کنید.",
+   "hint": "آرایه‌ها را معمولاً با const تعریف می‌کنند و طول آرایه با length به دست می‌آید."
+  },
+  {
+   "prompt": "عنصر اول و آخر همان آرایه را با اندیس بگیرید و در کنسول چاپ کنید.",
+   "hint": "اندیس‌ها از ۰ شروع می‌شوند؛ عنصر آخر اندیس length - 1 دارد."
+  },
+  {
+   "prompt": "یک عنصر آرایه را عوض کنید و یک عنصر جدید با push() اضافه کنید؛ خروجی را ببینید.",
+   "hint": "با عدد اندیس می‌توان مقدار عنصر را عوض کرد و push عنصر را به انتهای آرایه اضافه می‌کند."
+  },
+  {
+   "prompt": "همان آرایه را یک بار با toString() و یک بار با JSON.stringify() چاپ کنید و تفاوت خروجی را توضیح دهید.",
+   "hint": "toString مقدارها را با کاما به هم می‌چسباند، اما JSON.stringify شکل دقیق آرایه را با گیومه نگه می‌دارد."
+  },
+  {
+   "prompt": "روی آرایه با حلقهٔ for یک بار و با forEach یک بار پیمایش کنید و هر دو خروجی را مقایسه کنید.",
+   "hint": "در حلقهٔ for اندیس را خودتان می‌شمارید، اما forEach در هر دور مقدار عنصر را به تابع می‌دهد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "اندیس اولین عنصر یک آرایه در JavaScript چیست؟",
+   "options": [
+    "۱",
+    "۰",
+    "-۱",
+    "به نوع عنصر بستگی دارد"
+   ],
+   "answer": 1,
+   "explanation": "اندیس‌ها از صفر شروع می‌شوند؛ [0] عنصر اول و [1] عنصر دوم است."
+  },
+  {
+   "question": "کدام گزینه از ویژگی‌های آرایه‌های JavaScript است؟",
+   "options": [
+    "اندازهٔ ثابت و نوع یکسان عنصرها",
+    "اندیس‌های نام‌دار",
+    "اندازهٔ پویا و امکان نگه‌داری نوع‌های مختلف داده",
+    "عدم پشتیبانی از اندیس عددی"
+   ],
+   "answer": 2,
+   "explanation": "آرایه‌های JavaScript اندازهٔ پویا دارند و می‌توانند عنصرهایی با نوع‌های مختلف را در خود نگه دارند."
+  },
+  {
+   "question": "عملگر typeof برای یک آرایه چه چیزی برمی‌گرداند؟",
+   "options": [
+    "array",
+    "object",
+    "list",
+    "undefined"
+   ],
+   "answer": 1,
+   "explanation": "آرایه در واقع شیء است، پس typeof مقدار object برمی‌گرداند؛ برای تشخیص قطعی باید از Array.isArray() یا instanceof استفاده کرد."
+  },
+  {
+   "question": "با اندیس نام‌دار روی آرایه چه اتفاقی می‌افتد؟",
+   "options": [
+    "آرایه مرتب می‌شود",
+    "JavaScript آرایه را به شیء تبدیل می‌کند و بعضی متدها نتیجهٔ نادرست می‌دهند",
+    "خطای نحوی می‌گیرید",
+    "طول آرایه دو برابر می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "JavaScript از آرایهٔ انجمنی پشتیبانی نمی‌کند؛ با اندیس نام‌دار آرایه به شیء تبدیل می‌شود، length صفر می‌شود و بعضی متدها رفتار درست را از دست می‌دهند."
+  },
+  {
+   "question": "کدام رابطه بین length و اندیس‌های آرایه درست است؟",
+   "options": [
+    "length همیشه برابر بزرگ‌ترین اندیس است",
+    "length همیشه یکی بیشتر از بزرگ‌ترین اندیس است",
+    "length همیشه ۳ است",
+    "رابطه‌ای ندارند"
+   ],
+   "answer": 1,
+   "explanation": "چون اندیس‌ها از صفر شمرده می‌شوند، length همیشه یکی بیشتر از بزرگ‌ترین اندیس آرایه است؛ به همین دلیل عنصر آخر اندیس length - 1 دارد."
+  }
+ ]
+}

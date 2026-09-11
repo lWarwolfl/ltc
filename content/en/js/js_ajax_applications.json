@@ -1,0 +1,101 @@
+{
+ "slug": "js_ajax_applications",
+ "course": "js",
+ "order": 264,
+ "url": "/js/js_ajax_applications.asp",
+ "title": "XML Applications",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "XML Applications"
+  },
+  {
+   "type": "p",
+   "text": "This chapter demonstrates some HTML applications using\nXML, HTTP, DOM, and JavaScript."
+  },
+  {
+   "type": "h2",
+   "text": "The XML Document Used"
+  },
+  {
+   "type": "p",
+   "text": "In this chapter we will use the XML file called \"cd_catalog.xml\"."
+  },
+  {
+   "type": "h2",
+   "text": "Display XML Data in an HTML Table"
+  },
+  {
+   "type": "p",
+   "text": "This example loops through each <CD> element, and displays the values of the <ARTIST> and the\n<TITLE> elements in an HTML table:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<table id=\"demo\"></table>\n\n<script>\n\nfunction loadXMLDoc() {\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onload = function() {\n\n    const xmlDoc = xhttp.responseXML;\n\n    const cd = xmlDoc.getElementsByTagName(\"CD\");\n\n    myFunction(cd);\n\n  }\n\n  xhttp.open(\"GET\", \"cd_catalog.xml\");\n\nxhttp.send();\n\n}\n\nfunction myFunction(cd) {\n\n  let table=\"<tr><th>Artist</th><th>Title</th></tr>\";\n\n  for (let i = 0; i < cd.length; i++) {\n\n    table += \"<tr><td>\" +\n    cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue\n +\n    \"</td><td>\" +\n    cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue\n +\n    \"</td></tr>\";\n  }\n\n document.getElementById(\"demo\").innerHTML = table;\n}\n</script>\n\n</body>\n\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_display_table"
+  },
+  {
+   "type": "p",
+   "text": "For more information about using JavaScript and the XML DOM, go to\nDOM Intro."
+  },
+  {
+   "type": "h2",
+   "text": "Display the First CD in an HTML div Element"
+  },
+  {
+   "type": "p",
+   "text": "This example uses a function to display the first CD element in an HTML element with id=\"showCD\":"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const xhttp = new XMLHttpRequest();\n\nxhttp.onload = function() {\n\n  const xmlDoc = xhttp.responseXML;\n\n  const cd = xmlDoc.getElementsByTagName(\"CD\");\n\n  myFunction(cd, 0);\n\n}\n\nxhttp.open(\"GET\", \"cd_catalog.xml\");\n\nxhttp.send();\n\nfunction myFunction(cd, i) {\n\n  document.getElementById(\"showCD\").innerHTML =\n\n  \"Artist: \" +\n\n  cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue +\n\n  \"<br>Title: \" +\n\n  cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue +\n\n  \"<br>Year: \" +\n\n  cd[i].getElementsByTagName(\"YEAR\")[0].childNodes[0].nodeValue;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app_first"
+  },
+  {
+   "type": "h2",
+   "text": "Navigate Between the CDs"
+  },
+  {
+   "type": "p",
+   "text": "To navigate between the CDs in the example above, create a\nnext() and previous() function:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function next()\n{\n  // display the next CD, unless you are on the last CD\n\nif (i < len-1) {\n\n    i++;\n\n    displayCD(i);\n\n  }\n\n}\n\nfunction previous()\n{\n  // display the previous CD, unless you are on the first CD\n\nif (i > 0) {\n\n    i--;\n\n    displayCD(i);\n\n  }\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app_navigate"
+  },
+  {
+   "type": "h2",
+   "text": "Show Album Information When Clicking On a CD"
+  },
+  {
+   "type": "p",
+   "text": "The last example shows how you can show album information when the user clicks on a CD:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function displayCD(i) {\n\n  document.getElementById(\"showCD\").innerHTML =\n\n   \"Artist: \" +\n\n  cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue +\n\n  \"<br>Title: \" +\n\n  cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue +\n\n  \"<br>Year: \" +\n\n  cd[i].getElementsByTagName(\"YEAR\")[0].childNodes[0].nodeValue;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app"
+  }
+ ]
+}

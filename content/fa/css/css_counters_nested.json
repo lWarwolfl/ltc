@@ -1,0 +1,172 @@
+{
+ "slug": "css_counters_nested",
+ "course": "css",
+ "order": 102,
+ "url": "/css/css_counters_nested.asp",
+ "title": "شمارنده‌های تودرتو در CSS",
+ "summary": "برای شماره‌گذاری چندسطحی مثل ۱.۲.۳ به چند شمارندهٔ هم‌زمان نیاز دارید. در این درس دو شمارنده می‌سازید، آن‌ها را با تابع counters() ترکیب می‌کنید و جدول خصوصیت‌ها را مرور می‌کنید.",
+ "objectives": [
+  "برای هر سطح شماره‌گذاری یک شمارنده بسازید",
+  "شمارندهٔ سطح پایین‌تر را در هر بخش بازنشانی کنید",
+  "با counters() شماره‌گذاری چندسطحی بسازید",
+  "تفاوت counter() و counters() را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "شمارنده‌های تودرتو در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از دو شمارنده در CSS"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید برای سطح‌های مختلف شماره‌گذاری چند شمارنده بسازید. مثال زیر یک شمارنده برای صفحه (به نام «section») و یک شمارنده برای هر عنصر <h1> (به نام «subsection») می‌سازد:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "body {\n  counter-reset: section;\n}\n\nh1 {\n\ncounter-reset: subsection;\n}\n\nh1::before {\n  counter-increment:\nsection;\n  content: \"Section \" counter(section) \". \";\n\n}\n\nh2::before {\n\ncounter-increment: subsection;\n  content:\ncounter(section) \".\" counter(subsection) \" \";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_counters2"
+  },
+  {
+   "type": "h2",
+   "text": "تابع counters() در CSS"
+  },
+  {
+   "type": "p",
+   "text": "تابع counters() مقدار فعلی شمارنده‌های نامدار و تودرتو را به‌صورت یک رشته برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "اینجا از تابع counters() استفاده می‌کنیم تا بین سطح‌های مختلف شمارنده‌های تودرتو یک رشته درج شود:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "ol {\n  counter-reset: section;\n\nlist-style-type: none;\n}\n\nli::before {\n  counter-increment: section;\n\ncontent: counters(section,\".\") \" \";\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_counters3"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های شمارنده در CSS"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خصوصیت",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "content",
+     "همراه با شبه‌عنصرهای ::before و ::after برای درج محتوای تولیدشده به کار می‌رود"
+    ],
+    [
+     "counter-increment",
+     "مقدار یک یا چند شمارنده را زیاد می‌کند"
+    ],
+    [
+     "counter-reset",
+     "یک یا چند شمارنده می‌سازد یا بازنشانی می‌کند"
+    ],
+    [
+     "counter()",
+     "مقدار فعلی شمارندهٔ نامدار را برمی‌گرداند"
+    ],
+    [
+     "counters()",
+     "مقدار فعلی شمارنده‌های نامدار و تودرتو را برمی‌گرداند"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل nested.html بسازید و در body یک شمارنده به نام section و در h1 یک شمارنده به نام subsection بسازید.",
+   "hint": "هر دو شمارنده با counter-reset در همان انتخابگر ساخته می‌شوند؛ نام‌ها دلخواه‌اند."
+  },
+  {
+   "prompt": "با content: counter(section) \".\" counter(subsection); سرتیترها را به شکل ۱.۱ و ۱.۲ شماره‌گذاری کنید.",
+   "hint": "دو تابع counter() را می‌توانید در یک content کنار هم بگذارید و بینشان یک رشته مثل نقطه بگذارید."
+  },
+  {
+   "prompt": "شمارندهٔ subsection را در هر h1 دوباره بازنشانی کنید تا با شروع هر بخش از یک شروع شود.",
+   "hint": "counter-reset: subsection; را داخل قاعدهٔ h1 بگذارید تا هر سرتیتر تازه شمارش را صفر کند."
+  },
+  {
+   "prompt": "با تابع counters() و جداکنندهٔ نقطه، شماره‌ها را به شکل چندسطحی مثل ۱.۲.۳ دربیاورید.",
+   "hint": "تابع counters() همهٔ سطح‌های تودرتو را یک‌جا برمی‌گرداند؛ پارامتر دوم جداکنندهٔ بین سطح‌ها است."
+  },
+  {
+   "prompt": "جدول خصوصیت‌های شمارنده در پایین درس را نگاه کنید و بگویید تفاوت counter() و counters() در چیست.",
+   "hint": "یکی مقدار یک شمارنده را می‌دهد و دیگری مقدار شمارنده‌های نامدار و تودرتو را."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام تابع مقدار شمارنده‌های نامدار و تودرتو را برمی‌گرداند؟",
+   "options": [
+    "counter()",
+    "counters()",
+    "counter-increment",
+    "content()"
+   ],
+   "answer": 1,
+   "explanation": "تابع counters() برای شمارنده‌های تودرتو است و مقدارشان را به‌صورت یک رشته برمی‌گرداند؛ counter() فقط یک شمارنده را می‌دهد."
+  },
+  {
+   "question": "در جدول درس، کار خصوصیت counter-reset چیست؟",
+   "options": [
+    "یک یا چند شمارنده می‌سازد یا بازنشانی می‌کند",
+    "مقدار شمارنده را زیاد می‌کند",
+    "مقدار شمارنده را نشان می‌دهد",
+    "محتوای تولیدشده درج می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "counter-reset وظیفهٔ ساخت و بازنشانی شمارنده را دارد؛ کم و زیادکردن کار counter-increment و نمایش کار counter() و content است."
+  },
+  {
+   "question": "با چه چیزی می‌توانید بین سطح‌های شمارندهٔ تودرتو یک رشته مثل نقطه درج کنید؟",
+   "options": [
+    "با تابع counters() و جداکنندهٔ آن",
+    "با خصوصیت border",
+    "با counter-increment",
+    "با تگ <br>"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید از تابع counters() برای درج یک رشته بین سطح‌های مختلف شمارنده‌های تودرتو استفاده می‌کنیم."
+  },
+  {
+   "question": "برای شماره‌گذاری دو سطحی مثل «۱.۱»، معمولاً چند شمارنده می‌سازیم؟",
+   "options": [
+    "یک شمارنده",
+    "دو شمارنده",
+    "سه شمارنده",
+    "بدون شمارنده"
+   ],
+   "answer": 1,
+   "explanation": "در مثال درس یک شمارنده برای صفحه (section) و یکی برای هر <h1> (subsection) ساخته می‌شود؛ به همین ترتیب هر سطح تازه یک شمارندهٔ جدا می‌خواهد."
+  },
+  {
+   "question": "خصوصیت content در شمارنده‌ها با کدام شبه‌عنصرها به کار می‌رود؟",
+   "options": [
+    "‏::first-line و ::first-letter",
+    "‏::before و ::after",
+    "‏::marker و ::backdrop",
+    "‏::selection"
+   ],
+   "answer": 1,
+   "explanation": "در جدول درس آمده که content همراه ::before و ::after برای درج محتوای تولیدشده استفاده می‌شود؛ همان جایی که مقدار شمارنده نوشته می‌شود."
+  }
+ ]
+}

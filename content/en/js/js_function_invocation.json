@@ -1,0 +1,293 @@
+{
+ "slug": "js_function_invocation",
+ "course": "js",
+ "order": 38,
+ "url": "/js/js_function_invocation.asp",
+ "title": "Invoking JavaScript Functions",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Invoking JavaScript Functions"
+  },
+  {
+   "type": "h2",
+   "text": "Calling a Function"
+  },
+  {
+   "type": "p",
+   "text": "A JavaScript function runs when it is called."
+  },
+  {
+   "type": "p",
+   "text": "To call a function, write the name followed by parentheses like name()."
+  },
+  {
+   "type": "h2",
+   "text": "Function Invocation"
+  },
+  {
+   "type": "p",
+   "text": "The code inside a function is NOT executed when the function is defined."
+  },
+  {
+   "type": "p",
+   "text": "The code inside a function will execute when \"something\" invokes the function:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "When it is called from JavaScript code",
+    "When an event occurs (a user clicks a button)",
+    "Automatically (self invoked)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "It is common to use the term invoke, because a function can be invoked without being called."
+  },
+  {
+   "type": "p",
+   "text": "It is also common to use say:"
+  },
+  {
+   "type": "h2",
+   "text": "Examples"
+  },
+  {
+   "type": "p",
+   "text": "The function below returns the text \"Hello World\"."
+  },
+  {
+   "type": "p",
+   "text": "But it will not run before you call it."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sayHello() {\n\n  return \"Hello World\";\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_sayhello_alone"
+  },
+  {
+   "type": "p",
+   "text": "The code below calls the function."
+  },
+  {
+   "type": "p",
+   "text": "But it does not use the result."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sayHello() {\n\n  return \"Hello World\";\n\n}\n\nsayHello();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_sayhello_no"
+  },
+  {
+   "type": "p",
+   "text": "To use the returned value, you can store it in a variable or display it."
+  },
+  {
+   "type": "h2",
+   "text": "Using the Returned Value"
+  },
+  {
+   "type": "p",
+   "text": "When a function returns a value, you can store the value in a variable."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sayHello() {\n\n  return \"Hello World\";\n\n}\n\nlet greeting = sayHello();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_sayhello"
+  },
+  {
+   "type": "h2",
+   "text": "Displaying the Result"
+  },
+  {
+   "type": "p",
+   "text": "You can display the returned value in many ways, for example using console.log() or HTML."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sayHello() {\n\n  return \"Hello World\";\n\n}\n\nconsole.log(sayHello());",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<p id=\"demo\"></p>\n\n<script>\n\nfunction sayHello() {\n\n  return \"Hello World\";\n\n}\n\ndocument.getElementById(\"demo\").innerHTML = sayHello();\n\n</script>",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_sayhello_log"
+  },
+  {
+   "type": "h2",
+   "text": "Calling a Function Many Times"
+  },
+  {
+   "type": "p",
+   "text": "You can call the same function whenever you need it."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sayHello() {\n\n  return \"Hello World\";\n\n}\n\nlet a = sayHello();\n\nlet b = sayHello();\n\nlet c = sayHello();",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Functions are Invoked with ()"
+  },
+  {
+   "type": "p",
+   "text": "The () operator invokes a function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Convert Fahrenheit to Celsius:\n\nfunction toCelsius(fahrenheit) {\n\n    return (5/9) * (fahrenheit-32);\n\n}\n\n// Call the toCelcius() function\n\nlet value = toCelsius(77);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_farenheit_to_celsius"
+  },
+  {
+   "type": "p",
+   "text": "Accessing a function without () returns the function itself and not the result:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function toCelsius(fahrenheit) {\n\n    return (5/9) * (fahrenheit-32);\n\n}\n\nlet value = toCelsius;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_farenheit_to_celsius_2"
+  },
+  {
+   "type": "p",
+   "text": "In the example above"
+  },
+  {
+   "type": "p",
+   "text": "toCelsius refers to the function itself."
+  },
+  {
+   "type": "p",
+   "text": "toCelsius(77) refers to the function result."
+  },
+  {
+   "type": "h2",
+   "text": "Calling vs Referencing a Function"
+  },
+  {
+   "type": "p",
+   "text": "This is an important difference:"
+  },
+  {
+   "type": "p",
+   "text": "sayHello refers to the function itself. It returns the function."
+  },
+  {
+   "type": "p",
+   "text": "sayHello() refers to the function result. It returns the result."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sayHello() {\n\n  return \"Hello World\";\n\n}\n\nlet text = sayHello;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_itself"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, text returns the function itself like:"
+  },
+  {
+   "type": "p",
+   "text": "function sayHello() { return \"Hello World\"; }"
+  },
+  {
+   "type": "h2",
+   "text": "Functions Can Be Called from Anywhere"
+  },
+  {
+   "type": "p",
+   "text": "You can call functions from other functions, from events, or from any code block."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sayHello() {\n\n  return \"Hello World\";\n\n}\n\nfunction showHello() {\n\n  document.getElementById(\"demo\").innerHTML = sayHello();\n\n}",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<p id=\"demo\"></p>\n\n<button onclick=\"showHello()\">Click Me</button>\n\n<script>\n\nfunction sayHello() {\n\n  return \"Hello World\";\n\n}\n\nfunction showHello() {\n\n  document.getElementById(\"demo\").innerHTML = sayHello();\n\n}\n\n</script>",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_from_function"
+  },
+  {
+   "type": "h2",
+   "text": "Common Mistakes"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Forgetting Parentheses ()\n  sayHello does not run the function.You must use sayHello().",
+    "Expecting Return\n  Some functions do not return a value.",
+    "Expecting Output\n  If a function returns a value, you must display it to see it."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Quiz"
+  },
+  {
+   "type": "p",
+   "text": "What is the difference between sayHello and sayHello() ?"
+  },
+  {
+   "type": "h2",
+   "text": "Next Chapter"
+  },
+  {
+   "type": "p",
+   "text": "Function Parameters"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Parameters allow you to send values to a function",
+    "Parameters are listed in parentheses in the function definition"
+   ]
+  }
+ ]
+}

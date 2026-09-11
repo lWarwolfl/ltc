@@ -1,0 +1,414 @@
+{
+ "slug": "js_object_properties",
+ "course": "js",
+ "order": 47,
+ "url": "/js/js_object_properties.asp",
+ "title": "خصوصیت‌های شیء در JavaScript",
+ "summary": "خصوصیت‌ها جفت‌های key:value هستند که می‌توان آن‌ها را عوض کرد، اضافه کرد یا حذف کرد. در این درس دسترسی با نقطه‌گذاری و براکت‌گذاری، حذف با delete، بررسی وجود خصوصیت با in و شیءهای تودرتو را یاد می‌گیرید.",
+ "objectives": [
+  "به خصوصیت‌های شیء با نقطه‌گذاری و براکت‌گذاری دسترسی پیدا کنید",
+  "بگویید چه زمانی براکت‌گذاری لازم است",
+  "خصوصیت را اضافه، تغییر و حذف کنید",
+  "با عملگر in وجود یک خصوصیت را بررسی کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "خصوصیت‌های شیء در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌ها جفت‌های key:value هستند"
+  },
+  {
+   "type": "p",
+   "text": "شیء JavaScript مجموعه‌ای از خصوصیت‌ها است."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌ها را می‌توان تغییر داد، اضافه کرد و حذف کرد."
+  },
+  {
+   "type": "h2",
+   "text": "دسترسی به خصوصیت‌های JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید به این شکل‌ها به خصوصیت‌های شیء دسترسی پیدا کنید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "نقطه‌گذاری (dot notation)",
+    "براکت‌گذاری (bracket notation)",
+    "عبارت"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// objectName.property\n\nlet age = person.age;",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//objectName[\"property\"]\n\nlet age = person[\"age\"];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//objectName[expression]\n\nlet age = person[x];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "objectName.propertyName",
+   "caption": "نقطه‌گذاری"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person.firstname + \" is \" + person.age;",
+   "caption": "نقطه‌گذاری"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties1"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "objectName[\"propertyName\"]",
+   "caption": "براکت‌گذاری"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person[\"firstname\"] + \" is \" + person[\"age\"];",
+   "caption": "براکت‌گذاری"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties2"
+  },
+  {
+   "type": "p",
+   "text": "به‌طور کلی برای خوانایی و سادگی، نقطه‌گذاری ترجیح داده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "براکت‌گذاری در بعضی حالت‌ها لازم است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "نام خصوصیت در یک متغیر ذخیره شده باشد:\nperson[myVariable]",
+    "نام خصوصیت یک شناسهٔ معتبر نباشد:\nperson[\"last-name\"]"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "براکت‌گذاری وقتی مفید است که نام خصوصیت در یک متغیر ذخیره شده باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let n1 = \"firstName\";\n\nlet n2 = \"lastName\";\n\nlet name = person[n1] + \" \" + person[n2];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties7"
+  },
+  {
+   "type": "h2",
+   "text": "تغییر خصوصیت‌ها"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید مقدار یک خصوصیت را عوض کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person.age = 10;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties8"
+  },
+  {
+   "type": "h2",
+   "text": "اضافه کردن خصوصیت جدید"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با دادن یک مقدار به یک نام، خصوصیت جدید اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person.nationality = \"English\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties3"
+  },
+  {
+   "type": "h2",
+   "text": "حذف خصوصیت‌ها"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ delete یک خصوصیت را از شیء حذف می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n};\n\ndelete person.age;",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n};\n\ndelete person[\"age\"];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties4"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ delete هم مقدار و هم خود خصوصیت را حذف می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "بعد از حذف، خصوصیت دیگر وجود ندارد و دسترسی به آن مقدار undefined برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "بررسی وجود یک خصوصیت"
+  },
+  {
+   "type": "p",
+   "text": "برای بررسی وجود یک خصوصیت در شیء از عملگر in استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\"\n\n};\n\nlet result = (\"firstName\" in person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties9"
+  },
+  {
+   "type": "h2",
+   "text": "شیءهای تودرتو"
+  },
+  {
+   "type": "p",
+   "text": "مقدار خصوصیت‌های یک شیء می‌تواند شیء دیگری باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myObj = {\n\n  name:\"John\",\n  age:30,\n\n  myCars: {\n    car1:\"Ford\",\n\n  car2:\"BMW\",\n    car3:\"Fiat\"\n\n    }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با نقطه‌گذاری یا براکت‌گذاری به شیءهای تودرتو دسترسی پیدا کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myObj.myCars.car2;",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myObj.myCars[\"car2\"];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myObj[\"myCars\"][\"car2\"];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let p1 = \"myCars\";\n\nlet p2 = \"car2\";\n\nmyObj[p1][p2];",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_nested"
+  },
+  {
+   "type": "h2",
+   "text": "خلاصهٔ بخش"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خصوصیت‌های شیء جفت‌های key:value هستند",
+    "به خصوصیت‌ها با نقطه‌گذاری یا براکت‌گذاری دسترسی پیدا کنید",
+    "خصوصیت‌ها را با تخصیص و delete اضافه، تغییر و حذف کنید",
+    "برای بررسی وجود خصوصیت از عملگر in استفاده کنید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای JavaScript چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "متدهای شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "this در شیءها چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "روش نمایش شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ شیء (object constructor) چیست؟"
+  },
+  {
+   "type": "h2",
+   "text": "فصل‌های پیشرفته:"
+  },
+  {
+   "type": "p",
+   "text": "تعریف شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "this پیشرفته در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "محافظت از شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتوتایپ‌های شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع شیء در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "شیء person با خصوصیت‌های name و age بسازید و هر دو خصوصیت را یک بار با نقطه‌گذاری و یک بار با براکت‌گذاری بخوانید.",
+   "hint": "person.name و person[\"name\"] هر دو یک مقدار می‌دهند."
+  },
+  {
+   "prompt": "نام یک خصوصیت را در متغیری بگذارید و با person[myVar] مقدارش را بخوانید.",
+   "hint": "براکت‌گذاری همان جایی لازم است که نام خصوصیت در متغیر ذخیره شده."
+  },
+  {
+   "prompt": "در شیء خود یک خصوصیت را عوض کنید، یک خصوصیت جدید اضافه کنید و یک خصوصیت را با delete حذف کنید؛ بعد همه را در کنسول ببینید.",
+   "hint": "برای حذف، delete person.age را بنویسید و بعد همان خصوصیت را بخوانید تا undefined ببینید."
+  },
+  {
+   "prompt": "با عملگر in بررسی کنید که یک خصوصیت وجود دارد یا نه؛ یک بار برای خصوصیتی که هست و یک بار برای خصوصیتی که نیست.",
+   "hint": "\"age\" in person مقدار true یا false برمی‌گرداند."
+  },
+  {
+   "prompt": "شیئی بسازید که یکی از خصوصیت‌هایش خودش یک شیء باشد و مقدار خصوصیت داخلی را بخوانید.",
+   "hint": "برای شیء تودرتو زنجیره را ادامه دهید؛ مثل person.address.city."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "براکت‌گذاری در چه حالتی ضروری است؟",
+   "options": [
+    "وقتی نام خصوصیت در یک متغیر ذخیره شده باشد یا شناسهٔ معتبر نباشد",
+    "وقتی شیء خالی باشد",
+    "وقتی خصوصیت حذف شده باشد",
+    "وقتی نام خصوصیت با حرف بزرگ شروع شود"
+   ],
+   "answer": 0,
+   "explanation": "اگر نام خصوصیت در متغیری باشد یا کاراکترهایی مثل خط تیره داشته باشد، نقطه‌گذاری کار نمی‌کند و باید از براکت استفاده کرد؛ مثل person[myVar] یا person[\"last-name\"]."
+  },
+  {
+   "question": "کلیدواژهٔ delete یک خصوصیت، چه چیزی را حذف می‌کند؟",
+   "options": [
+    "فقط مقدار خصوصیت و خود خصوصیت باقی می‌ماند",
+    "هم مقدار و هم خود خصوصیت",
+    "فقط خصوصیت و مقدارش می‌ماند",
+    "کل شیء را حذف می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "delete هم مقدار و هم خود خصوصیت را حذف می‌کند؛ بعد از حذف، دسترسی به آن نام مقدار undefined برمی‌گرداند."
+  },
+  {
+   "question": "برای بررسی اینکه یک خصوصیت در شیء وجود دارد از چه چیزی استفاده می‌کنیم؟",
+   "options": [
+    "عملگر typeof",
+    "متد has()",
+    "عملگر in",
+    "کلیدواژهٔ delete"
+   ],
+   "answer": 2,
+   "explanation": "عملگر in می‌گوید خصوصیت در شیء وجود دارد یا نه؛ مثل \"age\" in person. delete برای حذف است و typeof نوع را برمی‌گرداند."
+  },
+  {
+   "question": "چرا نقطه‌گذاری معمولاً ترجیح داده می‌شود؟",
+   "options": [
+    "چون سریع‌تر اجرا می‌شود",
+    "چون فقط با آن می‌توان خصوصیت اضافه کرد",
+    "چون برای خوانایی و سادگی بهتر است",
+    "چون براکت‌گذاری اشتباه است"
+   ],
+   "answer": 2,
+   "explanation": "نقطه‌گذاری کوتاه‌تر و خواناتر است، پس به‌طور کلی ترجیح داده می‌شود؛ براکت‌گذاری اشتباه نیست و در حالت‌های ذکرشده لازم می‌شود."
+  },
+  {
+   "question": "کدام جمله دربارهٔ شیءهای تودرتو درست است؟",
+   "options": [
+    "مقدار خصوصیت یک شیء می‌تواند خودش شیء باشد",
+    "شیء تودرتو فقط داخل آرایه ساخته می‌شود",
+    "برای خواندن شیء تودرتو فقط براکت‌گذاری کار می‌کند",
+    "شیء تودرتو مقدار خصوصیت‌های خود را گم می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "مقدار یک خصوصیت می‌تواند شیء دیگری باشد و برای رسیدن به خصوصیت داخلی، با نقطه یا براکت زنجیره را ادامه می‌دهیم؛ مثل person.address.city."
+  }
+ ]
+}

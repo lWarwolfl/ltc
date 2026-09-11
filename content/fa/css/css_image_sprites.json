@@ -1,0 +1,251 @@
+{
+ "slug": "css_image_sprites",
+ "course": "css",
+ "order": 94,
+ "url": "/css/css_image_sprites.asp",
+ "title": "اسپرایت تصویر در CSS",
+ "summary": "اسپرایت تصویر فایل‌های تصویری سایت شما را ادغام می‌کند تا مرورگر درخواست کمتری بفرستد. در این درس می‌بینید چگونه با background-image و background-position هر بخش از تصویر را جدا نمایش دهید و افکت hover بسازید.",
+ "objectives": [
+  "توضیح دهید اسپرایت تصویر چه مشکلی را حل می‌کند",
+  "با background-position بخش دلخواه تصویر را نشان دهید",
+  "اسپرایت را داخل یک فهرست ناوبری به کار ببرید",
+  "با یک تصویر اسپرایت افکت hover بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "اسپرایت تصویر در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "اسپرایت تصویر در CSS"
+  },
+  {
+   "type": "p",
+   "text": "تصویر اسپرایت مجموعهای از تصویرهای کوچک مختلف است که در یک فایل تصویر بزرگتر به نام «تصویر اسپرایت» قرار داده شدهاند."
+  },
+  {
+   "type": "p",
+   "text": "تصویر اسپرایت معمولاً به شکل شبکهای چیده میشود، مثل این:"
+  },
+  {
+   "type": "p",
+   "text": "صفحهای که چند تصویر دارد دیرتر بار میشود و چندین درخواست به سرور فرستاده میشود."
+  },
+  {
+   "type": "p",
+   "text": "پس بهجای دانلود جداگانهٔ هر تصویر، مرورگر همان یک فایل تصویر اسپرایت را دانلود میکند. این کار تعداد درخواستهای سرور و پهنای باند مصرفی را کم میکند."
+  },
+  {
+   "type": "h2",
+   "text": "مثال اسپرایت تصویر در CSS"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیتهای کلیدی CSS که برای اسپرایت تصویر به کار میروند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "background-image",
+    "background-position"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "اینجا کد CSS تعیین میکند کدام بخش از تصویر اسپرایت («img_navsprites.gif») برای هر یک از آیتمهای ناوبری (home، next و previous) نمایش داده شود:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n<head>\n<style>\n#home {\n  width: 46px;\n\n  height: 44px;\n  background-image: url(img_navsprites.gif);\n\n  background-position: 0 0; /* Top-left corner of the sprite */\n}\n\n#prev {\n  width: 43px;\n  height: 44px;\n\n  background-image: url('img_navsprites.gif');\n  background-position:\n  -47px 0; /* 47px to the left of the sprite's top-left */\n}\n\n#next\n  {\n  width: 43px;\n  height: 44px;\n  background-image:\n  url('img_navsprites.gif');\n  background-position: -91px 0; /* 91px to\n  the left of the sprite's top-left */\n}\n</style>\n\n  </head>\n<body>\n\n<img id=\"home\" src=\"img_trans.gif\" width=\"1\"\n  height=\"1\">\n<img id=\"prev\" src=\"img_trans.gif\" width=\"1\" height=\"1\">\n<img id=\"next\"\n  src=\"img_trans.gif\" width=\"1\" height=\"1\">\n\n</body>\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_img"
+  },
+  {
+   "type": "h2",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "width, height - پهنای و ارتفاع هر بخش تصویر را تعیین میکند",
+    "background-image: url(img_navsprites.gif); - نشانی تصویر اسپرایت را تعیین میکند",
+    "background-position - تصویر پسزمینه را داخل هر عنصر جابهجا میکند تا فقط بخش موردنظر از تصویر اسپرایت دیده شود",
+    "<img id=\"home\" src=\"img_trans.gif\"> - هر تصویر با یک تصویر کوچک شفاف شروع میشود، چون ویژگی src نمیتواند خالی باشد (تصویری که دیده میشود همان تصویر پسزمینهای است که در CSS تعیین میکنیم)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "اسپرایت تصویر در یک فهرست ناوبری"
+  },
+  {
+   "type": "p",
+   "text": "اینجا از تصویر اسپرایت («img_navsprites.gif») داخل یک فهرست ناوبری استفاده میکنیم. برای فهرست ناوبری از یک فهرست HTML (<ul> و <li>) بهره میبریم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "#navlist {\n  position: relative;\n}\n\n#navlist li {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  position: absolute;\n\n    top: 0;\n}\n\n#navlist li, #navlist a {\n  height: 44px;\n  display: block;\n}\n\n#home {\n  left: 0px;\n  width: 46px;\n  background: url('img_navsprites.gif')\n0 0;\n}\n\n#prev {\n  left: 60px;\n  width: 43px;\n  background: url('img_navsprites.gif') -47px 0;\n}\n\n#next {\n  left: 120px;\n  width: 43px;\n  background: url('img_navsprites.gif')\n-91px 0;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_nav"
+  },
+  {
+   "type": "h2",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "#navlist {position:relative;} - مقدار position نسبی است تا بتوان داخل آن جایگذاری مطلق انجام داد",
+    "#navlist li - حاشیهٔ بیرونی و داخلی صفر میشود، گلولهها حذف میشوند و همهٔ <li>ها جایگذاری مطلق دارند",
+    "#navlist li, #navlist a - ارتفاع همهٔ تصویرها 44px میشود و بهصورت بلوکی نمایش داده میشوند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "حالا هر آیتم ناوبری را جایگذاری و استایل کنید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "#home {left:0px;width:46px;} - کاملاً به چپ میچسبد و پهنای تصویر 46px است",
+    "#home {background:url(img_navsprites.gif) 0 0;} - تصویر پسزمینه و موقعیت آن را تعیین میکند (چپ 0px، بالا 0px)",
+    "#prev {left:60px;} - 60px به راست جایگذاری میشود (پهنای 46px برای #home بهعلاوهٔ کمی فاصله بین آیتمها)",
+    "#prev {background:url('img_navsprites.gif') -47px 0;} - تصویر پسزمینه را 47px به راست میبرد (پهنای 46px برای #home بهعلاوهٔ 1px خط جداکننده)",
+    "#next {left:120px;} - 120px به راست جایگذاری میشود (شروع #prev در 60px بهعلاوهٔ پهنای 43px آن بهعلاوهٔ کمی فاصله)",
+    "#next {background:url('img_navsprites.gif') -91px 0;} - تصویر پسزمینه را 91px به راست میبرد (پهنای 46px برای #home بهعلاوهٔ 1px خط جداکننده بهعلاوهٔ پهنای 43px برای #prev بهعلاوهٔ 1px خط جداکننده)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "اسپرایت تصویر: افکت hover"
+  },
+  {
+   "type": "p",
+   "text": "حالا میخواهیم یک افکت hover به فهرست ناوبری اضافه کنیم."
+  },
+  {
+   "type": "p",
+   "text": "تصویر جدید ما («img_navsprites_hover.gif») شامل سه تصویر ناوبری و سه تصویر برای افکت hover است:"
+  },
+  {
+   "type": "p",
+   "text": "چون این یک تصویر واحد است و نه شش فایل جداگانه، وقتی کاربر نشانگر ماوس را روی تصویر میبرد هیچ تأخیری در بارگذاری پیش نمیآید."
+  },
+  {
+   "type": "p",
+   "text": "برای افزودن افکت hover فقط سه خط کد اضافه میکنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "#home a:hover {\n  background: url('img_navsprites_hover.gif') 0 -45px;\n}\n\n#prev a:hover {\n  background: url('img_navsprites_hover.gif') -47px\n-45px;\n}\n\n#next a:hover {\n  background: url('img_navsprites_hover.gif') -91px\n-45px;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_hover_nav"
+  },
+  {
+   "type": "h2",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "#home a:hover {background: url('img_navsprites_hover.gif') 0 -45px;} - برای هر سه تصویر hover موقعیت پسزمینهٔ یکسانی تعیین میکنیم که فقط 45px پایینتر است"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "بگویید چرا صفحه‌ای با شش تصویر کوچک جداگانه دیرتر از صفحه‌ای با یک تصویر اسپرایت بار می‌شود.",
+   "hint": "هر تصویر جداگانه یک درخواست به سرور می‌فرستد؛ همین تعداد درخواست‌ها زمان بارگذاری را زیاد می‌کند."
+  },
+  {
+   "prompt": "یک فایل HTML بسازید، به یک <a> با پهنا و ارتفاع مشخص تصویر اسپرایت را به‌عنوان background-image بدهید و با background-position بخش اول تصویر را نشان دهید.",
+   "hint": "مقدار 0 0 گوشهٔ بالا سمت چپ تصویر را نشان می‌دهد."
+  },
+  {
+   "prompt": "روی همان عنصر با background-position مقداری منفی مثل -47px 0 بگذارید و ببینید کدام بخش تصویر نمایان می‌شود.",
+   "hint": "مقدار افقی منفی تصویر را به چپ می‌لغزاند، پس بخش سمت راست‌تر تصویر داخل کادر می‌افتد."
+  },
+  {
+   "prompt": "یک <ul> با سه <li> بسازید و هر <li> را مثل آیتم‌های ناوبری معمولی با left و background مخصوص خودش جای‌گذاری کنید.",
+   "hint": "سر <li>ها position: absolute; و به والدشان position: relative; بدهید تا جای‌گذاری نسبت به فهرست باشد."
+  },
+  {
+   "prompt": "افکت hover را اضافه کنید و بگویید چرا با تصویر اسپرایت هنگام hover تأخیر بارگذاری نداشتیم.",
+   "hint": "تصویر hover از قبل در همان فایل واحد دانلود شده است، پس چیزی برای بارگیری مجدد نمانده."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تصویر اسپرایت چیست؟",
+   "options": [
+    "یک تصویر متحرک با انیمیشن CSS",
+    "مجموعه‌ای از تصویرهای کوچک داخل یک تصویر بزرگ",
+    "تصویری که با گرادیان ساخته می‌شود",
+    "تصویری که فقط در نوار ناوبری استفاده می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "تصویر اسپرایت یک فایل تصویر بزرگ است که چند تصویر کوچک در آن جا گرفته‌اند و معمولاً به شکل شبکه چیده می‌شود."
+  },
+  {
+   "question": "مزیت اصلی تصویر اسپرایت چیست؟",
+   "options": [
+    "کیفیت تصویرها بالاتر می‌رود",
+    "تعداد درخواست‌های سرور و پهنای باند کم می‌شود",
+    "حجم هر تصویر کوچک‌تر می‌شود",
+    "بارگذاری تصویرها کاملاً غیرفعال می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "مرورگر به‌جای چند درخواست جداگانه فقط یک فایل دانلود می‌کند؛ همین دو مورد کم می‌شود، ولی کیفیت تصویر تغییر نمی‌کند."
+  },
+  {
+   "question": "کدام دو خصوصیت کلیدی در اسپرایت تصویر به کار می‌روند؟",
+   "options": [
+    "background-image و background-position",
+    "display و position",
+    "float و clear",
+    "border و outline"
+   ],
+   "answer": 0,
+   "explanation": "با background-image فایل اسپرایت معرفی می‌شود و با background-position بخش موردنظر آن داخل کادر نشان داده می‌شود."
+  },
+  {
+   "question": "چرا در مثال، <img> یک تصویر کوچک شفاف به‌عنوان src می‌گیرد؟",
+   "options": [
+    "برای اینکه ویژگی src نمی‌تواند خالی بماند",
+    "برای بارگذاری سریع‌تر",
+    "برای اینکه تصویر کش شود",
+    "برای اینکه ارتفاع عنصر محاسبه شود"
+   ],
+   "answer": 0,
+   "explanation": "تصویری که نمایش داده می‌شود پس‌زمینهٔ CSS است، ولی ویژگی src باید مقداری داشته باشد؛ پس یک تصویر شفاف کوچک می‌گذاریم."
+  },
+  {
+   "question": "با background-position منفی، کدام بخش تصویر اسپرایت داخل کادر دیده می‌شود؟",
+   "options": [
+    "بخش چپ‌تر تصویر",
+    "بخش راست‌تر و پایین‌تر تصویر",
+    "کل تصویر",
+    "تصویر تغییر نمی‌کند"
+   ],
+   "answer": 1,
+   "explanation": "مقدار منفی، پس‌زمینه را به سمت چپ و بالا می‌لغزاند، پس بخش‌های جلوتر تصویر داخل کادر می‌آیند؛ مثال‌های #prev و #next همین کار را می‌کنند."
+  }
+ ]
+}

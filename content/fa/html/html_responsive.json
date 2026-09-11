@@ -1,0 +1,422 @@
+{
+ "slug": "html_responsive",
+ "course": "html",
+ "order": 47,
+ "url": "/html/html_responsive.asp",
+ "title": "طراحی واکنش‌گرای وب در HTML",
+ "summary": "صفحهٔ واکنش‌گرا روی هر دستگاهی خوب دیده می‌شود. در این درس تگ meta مربوط به viewport را می‌گذارید، تصویرها را با max-width واکنش‌گرا می‌کنید، اندازهٔ متن را با واحد vw می‌سازید و با media query چیدمان را برای صفحه‌های کوچک عوض می‌کنید.",
+ "objectives": [
+  "تگ meta مربوط به viewport را در صفحه بگذارید",
+  "تفاوت width و max-width برای تصویر را توضیح دهید",
+  "برای اندازهٔ متن از واحد vw استفاده کنید",
+  "با media query چیدمان را برای اندازه‌های مختلف مرورگر عوض کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "طراحی واکنش‌گرای وب در HTML"
+  },
+  {
+   "type": "p",
+   "text": "طراحی واکنش‌گرای وب یعنی ساختن صفحه‌هایی که روی همهٔ دستگاه‌ها خوب دیده می‌شوند!"
+  },
+  {
+   "type": "p",
+   "text": "یک طراحی واکنش‌گرا خودش را با اندازه‌های مختلف صفحه و viewportها تنظیم می‌کند."
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/css/img_temp_band.jpg",
+   "alt": "Responsive Web Design"
+  },
+  {
+   "type": "h2",
+   "text": "طراحی واکنش‌گرای وب چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "طراحی واکنش‌گرای وب یعنی با HTML و CSS کاری کنیم که وب‌سایت خودش اندازه‌اش را عوض کند، پنهان شود، کوچک یا بزرگ شود تا روی همهٔ دستگاه‌ها (دسکتاپ، تبلت و گوشی) خوب دیده شود:"
+  },
+  {
+   "type": "p",
+   "text": "خودتان امتحان کنید »"
+  },
+  {
+   "type": "h2",
+   "text": "تنظیم viewport"
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن یک وب‌سایت واکنش‌گرا، این تگ <meta> را به همهٔ صفحه‌های وب خود اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_responsive_viewport"
+  },
+  {
+   "type": "p",
+   "text": "این تگ viewport صفحهٔ شما را تنظیم می‌کند و به مرورگر می‌گوید ابعاد و مقیاس صفحه را چطور کنترل کند."
+  },
+  {
+   "type": "p",
+   "text": "در ادامه نمونهای از یک صفحهٔ وب بدون تگ meta مربوط به viewport و همان صفحه با آن تگ را میبینید:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اگر این صفحه را با گوشی یا تبلت می‌بینید، می‌توانید روی دو پیوند بالا کلیک کنید تا تفاوت را ببینید."
+  },
+  {
+   "type": "h2",
+   "text": "تصویرهای واکنش‌گرا"
+  },
+  {
+   "type": "p",
+   "text": "تصویرهای واکنش‌گرا تصویرهایی هستند که با هر اندازهٔ مرورگر خوب کنار می‌آیند و اندازه‌شان را تنظیم می‌کنند."
+  },
+  {
+   "type": "h3",
+   "text": "استفاده از خصوصیت width"
+  },
+  {
+   "type": "p",
+   "text": "اگر خصوصیت width در CSS روی ۱۰۰٪ گذاشته شود، تصویر واکنش‌گرا می‌شود و هم بزرگ و هم کوچک می‌شود:"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_girl.jpg",
+   "alt": ""
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<img\n  src=\"img_girl.jpg\" style=\"width:100%;\">",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_responsive_image"
+  },
+  {
+   "type": "p",
+   "text": "توجه کنید که در مثال بالا تصویر می‌تواند از اندازهٔ اصلی خودش هم بزرگ‌تر شود. در بسیاری از حالت‌ها راه بهتر این است که به‌جایش از خصوصیت max-width استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از خصوصیت max-width"
+  },
+  {
+   "type": "p",
+   "text": "اگر خصوصیت max-width روی ۱۰۰٪ گذاشته شود، تصویر در صورت نیاز کوچک می‌شود، اما هرگز از اندازهٔ اصلی خودش بزرگ‌تر نمی‌شود:"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_girl.jpg",
+   "alt": ""
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<img\n  src=\"img_girl.jpg\" style=\"max-width:100%;height:auto;\">",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_responsive_image_maxwidth"
+  },
+  {
+   "type": "h2",
+   "text": "نمایش تصویرهای متفاوت بر اساس عرض مرورگر"
+  },
+  {
+   "type": "p",
+   "text": "عنصر <picture> در HTML به شما اجازه می‌دهد برای اندازه‌های مختلف پنجرهٔ مرورگر تصویرهای متفاوتی تعیین کنید."
+  },
+  {
+   "type": "p",
+   "text": "اندازهٔ پنجرهٔ مرورگر را عوض کنید تا ببینید تصویر زیر با تغییر عرض چطور عوض می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<picture>\n  <source srcset=\"img_smallflower.jpg\" media=\"(max-width:\n  600px)\">\n  <source srcset=\"img_flowers.jpg\" media=\"(max-width:\n  1500px)\">\n  <source srcset=\"flowers.jpg\">\n  <img src=\"img_smallflower.jpg\"\n  alt=\"Flowers\">\n</picture>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_responsive_picture"
+  },
+  {
+   "type": "h2",
+   "text": "اندازهٔ واکنش‌گرای متن"
+  },
+  {
+   "type": "p",
+   "text": "اندازهٔ متن را می‌توان با واحد \"vw\" تعیین کرد که یعنی \"عرض viewport\"."
+  },
+  {
+   "type": "p",
+   "text": "این‌طوری اندازهٔ متن با اندازهٔ پنجرهٔ مرورگر تغییر می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<h1 style=\"font-size:10vw\">Hello World</h1>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_responsive_text"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "viewport اندازهٔ پنجرهٔ مرورگر است. 1vw برابر ۱٪ عرض viewport است. اگر عرض viewport ۵۰ سانتی‌متر باشد، 1vw می‌شود 0.5cm."
+  },
+  {
+   "type": "h2",
+   "text": "media queryها"
+  },
+  {
+   "type": "p",
+   "text": "علاوه بر تغییر اندازهٔ متن و تصویر، استفاده از media queryها در صفحه‌های واکنش‌گرا هم رایج است."
+  },
+  {
+   "type": "p",
+   "text": "با media queryها می‌توانید برای اندازه‌های مختلف مرورگر شیوه‌های کاملاً متفاوتی تعریف کنید."
+  },
+  {
+   "type": "p",
+   "text": "مثال: اندازهٔ پنجرهٔ مرورگر را عوض کنید تا ببینید سه عنصر div زیر روی صفحه‌های بزرگ افقی و روی صفحه‌های کوچک زیر هم قرار می‌گیرند:"
+  },
+  {
+   "type": "p",
+   "text": "منوی چپ"
+  },
+  {
+   "type": "p",
+   "text": "محتوای اصلی"
+  },
+  {
+   "type": "p",
+   "text": "محتوای راست"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<style>\n.left, .right {\n  float: left;\n\n  width: 20%; /* The width is 20%, by default */\n}\n\n.main {\n  float: left;\n  width: 60%; /* The width is 60%, by default */\n}\n\n/* Use a media query to\n  add a breakpoint at 800px: */\n@media screen and (max-width: 800px) {\n  .left,\n  .main, .right {\n\n  width: 100%; /* The width is 100%, when the viewport is 800px or smaller */\n\n  }\n}\n</style>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_responsive_media_query"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "برای یادگیری بیشتر دربارهٔ media queryها و طراحی واکنش‌گرای وب، درس طراحی واکنش‌گرای وب ما را بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "صفحهٔ وب واکنش‌گرا: نمونهٔ کامل"
+  },
+  {
+   "type": "p",
+   "text": "یک صفحهٔ وب واکنش‌گرا باید هم روی نمایشگرهای بزرگ دسکتاپ و هم روی گوشی‌های کوچک خوب دیده شود."
+  },
+  {
+   "type": "p",
+   "text": "خودتان امتحان کنید »"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "تا حالا اسم W3Schools Spaces را شنیدهاید؟ آنجا میتوانید وبسایتتان را از صفر بسازید یا از یک قالب آماده استفاده کنید. رایگان شروع کنید ❯"
+  },
+  {
+   "type": "h2",
+   "text": "طراحی واکنش‌گرای وب: چارچوب‌ها"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ چارچوب‌های پرطرفدار CSS طراحی واکنش‌گرا دارند."
+  },
+  {
+   "type": "p",
+   "text": "رایگان‌اند و استفاده از آن‌ها آسان است."
+  },
+  {
+   "type": "h2",
+   "text": "چارچوب W3.CSS"
+  },
+  {
+   "type": "p",
+   "text": "W3.CSS یک چارچوب مدرن CSS است که بهطور پیشفرض از طراحی دسکتاپ، تبلت و موبایل پشتیبانی میکند."
+  },
+  {
+   "type": "p",
+   "text": "W3.CSS از چارچوبهای مشابه کوچکتر و سریعتر است."
+  },
+  {
+   "type": "p",
+   "text": "W3.CSS طوری طراحی شده که به jQuery یا هیچ کتابخانهٔ JavaScript دیگری وابسته نباشد."
+  },
+  {
+   "type": "h2",
+   "text": "لندن"
+  },
+  {
+   "type": "p",
+   "text": "لندن پایتخت انگلستان است."
+  },
+  {
+   "type": "p",
+   "text": "پرجمعیت‌ترین شهر بریتانیا است و منطقهٔ کلان‌شهری‌اش بیش از ۱۳ میلیون نفر جمعیت دارد."
+  },
+  {
+   "type": "h2",
+   "text": "پاریس"
+  },
+  {
+   "type": "p",
+   "text": "پاریس پایتخت فرانسه است."
+  },
+  {
+   "type": "p",
+   "text": "منطقهٔ پاریس یکی از بزرگ‌ترین مراکز جمعیتی اروپا است و بیش از ۱۲ میلیون نفر جمعیت دارد."
+  },
+  {
+   "type": "h2",
+   "text": "توکیو"
+  },
+  {
+   "type": "p",
+   "text": "توکیو پایتخت ژاپن است."
+  },
+  {
+   "type": "p",
+   "text": "مرکز منطقهٔ توکیوی بزرگ و پرجمعیت‌ترین منطقهٔ کلان‌شهری جهان است."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n<head>\n<title>W3.CSS</title>\n<meta name=\"viewport\"\n content=\"width=device-width, initial-scale=1\">\n<link rel=\"stylesheet\"\n href=\"https://www.w3schools.com/w3css/4/w3.css\">\n</head>\n<body>\n\n<div\n class=\"w3-container w3-green\">\n  <h1>W3Schools Demo</h1>\n\n <p>Resize this responsive page!</p>\n</div>\n\n<div\n class=\"w3-row-padding\">\n  <div class=\"w3-third\">\n    <h2>London</h2>\n    <p>London is the capital city of England.</p>\n    <p>It is the most populous city in the United Kingdom,\n    with a\n metropolitan area of over 13 million inhabitants.</p>\n  </div>\n\n  <div\n class=\"w3-third\">\n    <h2>Paris</h2>\n    <p>Paris is\n the capital of France.</p>\n    <p>The Paris area is one of the largest\n population centers in Europe,\n    with more than 12 million\n inhabitants.</p>\n  </div>\n\n  <div class=\"w3-third\">\n\n <h2>Tokyo</h2>\n    <p>Tokyo is the capital of Japan.</p>\n    <p>It\n is the center of the Greater Tokyo Area,\n    and the most populous\n metropolitan area in the world.</p>\n  </div>\n</div>\n\n</body>\n\n </html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_responsive_w3css"
+  },
+  {
+   "type": "p",
+   "text": "برای یادگیری بیشتر دربارهٔ W3.CSS، درس W3.CSS ما را بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "چارچوب Bootstrap"
+  },
+  {
+   "type": "p",
+   "text": "یکی دیگر از چارچوب‌های پرطرفدار CSS، Bootstrap است:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<title>Bootstrap 5\n  Example</title>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\"\n  content=\"width=device-width, initial-scale=1\">\n<link\n  href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\"\n  rel=\"stylesheet\">\n<script\n  src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>\n\n  </head>\n<body>\n\n<div class=\"container-fluid p-5 bg-primary text-white\n  text-center\">\n  <h1>My First Bootstrap Page</h1>\n  <p>Resize\n  this responsive page to see the effect!</p>\n</div>\n\n<div\n  class=\"container mt-5\">\n  <div class=\"row\">\n    <div\n  class=\"col-sm-4\">\n      <h3>Column 1</h3>\n\n  <p>Lorem ipsum...</p>\n    </div>\n    <div\n  class=\"col-sm-4\">\n      <h3>Column 2</h3>\n\n  <p>Lorem ipsum...</p>\n    </div>\n    <div\n  class=\"col-sm-4\">\n      <h3>Column 3</h3>\n\n  <p>Lorem ipsum...</p>\n    </div>\n  </div>\n</div>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml_responsive_bootstrap"
+  },
+  {
+   "type": "p",
+   "text": "برای یادگیری بیشتر دربارهٔ Bootstrap به درس Bootstrap ما بروید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل responsive.html بسازید و تگ meta مربوط به viewport را در بخش head بگذارید. بعد صفحه را روی گوشی یا حالت موبایل مرورگر باز کنید.",
+   "hint": "بدون این تگ صفحه روی گوشی کوچک‌نمایی می‌شود و مطالعه‌اش سخت است."
+  },
+  {
+   "prompt": "یک تصویر با style=\"width:100%\" بگذارید و بعد همان را به max-width:100% عوض کنید. تفاوت را با بزرگ کردن پنجره ببینید.",
+   "hint": "width:100% تصویر را از اندازهٔ اصلی هم بزرگ‌تر می‌کند، اما max-width نه."
+  },
+  {
+   "prompt": "با واحد vw اندازهٔ متن یک سرتیتر را تنظیم کنید و پنجره را عوض کنید تا اندازهٔ متن تغییر کند.",
+   "hint": "1vw برابر ۱٪ عرض viewport است."
+  },
+  {
+   "prompt": "سه عنصر div کنار هم بسازید و با یک media query کاری کنید که زیر عرض ۶۰۰ پیکسل زیر هم بیفتند.",
+   "hint": "با display:flex شروع کنید و داخل media query، flex-direction را column کنید."
+  },
+  {
+   "prompt": "با عنصر <picture> دو تصویر مختلف برای صفحهٔ بزرگ و کوچک تعیین کنید.",
+   "hint": "داخل <picture> از <source media=\"(min-width:650px)\" srcset=\"...\"> استفاده کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "طراحی واکنش‌گرا یعنی چه؟",
+   "options": [
+    "صفحه‌ای که فقط روی دسکتاپ خوب است",
+    "صفحه‌ای که خودش را با اندازه‌های مختلف صفحه و دستگاه‌ها تنظیم می‌کند",
+    "صفحه‌ای که سریع‌تر بار می‌شود",
+    "صفحه‌ای که فقط با JavaScript کار می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "واکنش‌گرایی یعنی صفحه خودش را با اندازه‌های مختلف نمایشگر هماهنگ کند تا روی دسکتاپ، تبلت و گوشی خوب دیده شود."
+  },
+  {
+   "question": "برای واکنش‌گرا شدن تصویر کدام خصوصیت در بیشتر حالت‌ها راه بهتری است؟",
+   "options": [
+    "width:100%",
+    "max-width:100%",
+    "height:100px",
+    "border:1px solid"
+   ],
+   "answer": 1,
+   "explanation": "max-width:100% تصویر را در بزرگ کردن پنجره از اندازهٔ اصلی فراتر نمی‌برد؛ width:100% در صفحه‌های بزرگ تصویر را بیش از حد بزرگ می‌کند."
+  },
+  {
+   "question": "واحد vw در CSS یعنی چه؟",
+   "options": [
+    "یک درصد از عرض viewport",
+    "یک درصد از ارتفاع صفحه",
+    "اندازهٔ ثابت پیکسل",
+    "اندازهٔ قلم پیش‌فرض"
+   ],
+   "answer": 0,
+   "explanation": "vw کوتاه‌شدهٔ viewport width است؛ یعنی ۱vw برابر ۱٪ عرض ناحیهٔ دیدنی صفحه."
+  },
+  {
+   "question": "media query به چه کاری می‌آید؟",
+   "options": [
+    "بارگذاری سریع‌تر تصویر",
+    "تعریف شیوه‌های متفاوت برای اندازه‌های مختلف مرورگر",
+    "حذف تگ‌های اضافی",
+    "تبدیل HTML به CSS"
+   ],
+   "answer": 1,
+   "explanation": "با media query برای عرض‌های مختلف صفحه شیوه‌های متفاوتی تعریف می‌کنید؛ مثلاً ستون‌ها روی صفحهٔ کوچک زیر هم بیایند."
+  },
+  {
+   "question": "کدام عنصر به شما اجازه می‌دهد برای اندازه‌های مختلف پنجرهٔ مرورگر تصویرهای متفاوتی تعیین کنید؟",
+   "options": [
+    "<img>",
+    "<picture>",
+    "<figure>",
+    "<source>"
+   ],
+   "answer": 1,
+   "explanation": "عنصر <picture> ظرف تعریف تصویرهای متفاوت است و با <source> و media انتخاب می‌کند کدام تصویر بار شود. <source> به‌تنهایی این کار را نمی‌کند."
+  }
+ ]
+}

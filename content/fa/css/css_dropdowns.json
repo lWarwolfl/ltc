@@ -1,0 +1,220 @@
+{
+ "slug": "css_dropdowns",
+ "course": "css",
+ "order": 91,
+ "url": "/css/css_dropdowns.asp",
+ "title": "بازشوهای CSS (dropdown)",
+ "summary": "بازشو به کاربر اجازه می‌دهد با یک کلیک یا بردن نشانگر ماوس، فهرستی از گزینه‌ها یا محتوای پنهان را ببیند. در این درس یک بازشوی متنی و یک منوی کامل می‌سازید و نقش position را در آن می‌بینید.",
+ "objectives": [
+  "ساختار یک بازشو با عنصر راه‌انداز و ظرف محتوا را بگویید",
+  "با :hover محتوای پنهان را نمایش دهید",
+  "نقش position: relative; و position: absolute; را توضیح دهید",
+  "با min-width و box-shadow ظاهر بازشو را کنترل کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "بازشوهای CSS (dropdown)"
+  },
+  {
+   "type": "h2",
+   "text": "بازشوهای CSS (dropdown)"
+  },
+  {
+   "type": "p",
+   "text": "بازشوهای CSS برای نمایش فهرستی از گزینه‌ها یا محتوا به کار می‌روند، وقتی کاربر روی عنصری مثل یک دکمه یا پیوند ناوبری کلیک می‌کند یا نشانگر ماوس را روی آن می‌برد."
+  },
+  {
+   "type": "p",
+   "text": "یک بازشوی CSS از یک عنصر راه‌انداز تشکیل می‌شود (مثل <div>، <button>، <p>، <a> و غیره)."
+  },
+  {
+   "type": "p",
+   "text": "وقتی روی عنصر راه‌انداز کلیک شود یا نشانگر ماوس روی آن برود، محتوای بازشو نمایش داده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "محتوای بازشو یک عنصر ظرف (مثلاً <div>) است که محتوای پنهان را نگه می‌دارد (می‌تواند متن، پیوند، تصویر و غیره باشد)."
+  },
+  {
+   "type": "p",
+   "text": "نشانگر ماوس را روی سه نمونهٔ بازشوی CSS زیر ببرید:"
+  },
+  {
+   "type": "p",
+   "text": "بازشوی متنی"
+  },
+  {
+   "type": "p",
+   "text": "سلام دنیا!"
+  },
+  {
+   "type": "p",
+   "text": "منوی بازشو"
+  },
+  {
+   "type": "p",
+   "text": "پیوند ۱\n    پیوند ۲\n    پیوند ۳"
+  },
+  {
+   "type": "p",
+   "text": "سایر:"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_5terre.jpg",
+   "alt": "Cinque Terre"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_5terre.jpg",
+   "alt": "Cinque Terre"
+  },
+  {
+   "type": "p",
+   "text": "زیبایی‌های Cinque Terre"
+  },
+  {
+   "type": "h2",
+   "text": "جعبهٔ بازشو با متن در CSS"
+  },
+  {
+   "type": "p",
+   "text": "اینجا یک جعبهٔ بازشو با مقداری متن می‌سازیم که وقتی نشانگر ماوس روی عنصر <div> می‌رود ظاهر می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<style>\n.dropdown {\n  position: relative;\n}\n\n.dropdown-content {\n  display:\nnone;\n  position: absolute;\n\nbackground-color: #f9f9f9;\n  min-width: 130px;\n  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n\n    padding:\n12px 16px;\n}\n\n.dropdown:hover\n.dropdown-content {\n  display: block;\n}\n</style>\n\n<div class=\"dropdown\">Mouse over me!\n\n<div class=\"dropdown-content\">Hello World!</div>\n</div>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_dropdown_text"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کلاس .dropdown از position:relative استفاده می‌کند؛ این لازم است تا محتوای بازشو دقیقاً زیر عنصر راه‌انداز قرار بگیرد (محتوای بازشو از position:absolute استفاده خواهد کرد).",
+    "کلاس .dropdown-content محتوای بازشو را نگه می‌دارد. این محتوا به‌طور پیش‌فرض پنهان است و با hover نمایش داده می‌شود.",
+    "خصوصیت min-width روی 130px تنظیم شده است. راحت عوضش کنید! اگر می‌خواهید پهنای محتوای بازشو به‌اندازهٔ عنصر راه‌انداز باشد، width را روی 100% و overflow:auto را تنظیم کنید تا در صفحه‌های کوچک نوار اسکرول فعال شود.",
+    "به‌جای border از خصوصیت box-shadow استفاده می‌کنیم تا محتوای بازشو شبیه یک «کارت» به نظر برسد.",
+    "انتخابگر :hover باعث می‌شود وقتی نشانگر ماوس روی عنصر <div class=\"dropdown\"> می‌رود محتوای بازشو نمایش داده شود."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "منوی بازشو در CSS"
+  },
+  {
+   "type": "p",
+   "text": "منوی بازشویی بسازید که به کاربر اجازه می‌دهد از فهرست یکی از گزینه‌ها را انتخاب کند:"
+  },
+  {
+   "type": "p",
+   "text": "منوی بازشو"
+  },
+  {
+   "type": "p",
+   "text": "پیوند ۱\n    پیوند ۲\n    پیوند ۳"
+  },
+  {
+   "type": "p",
+   "text": "این مثال مثل قبلی است، فقط داخل جعبهٔ بازشو یک دکمه و چند پیوند اضافه می‌کنیم و طوری استایلشان می‌دهیم که با دکمهٔ بازشو جور در بیایند:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<style>\n.dropdown {\n\n    position: relative;\n}\n\n/* Style the dropdown button */\n.dropbtn {\n\nbackground-color: #4CAF50;\n  color: white;\n\npadding: 16px;\n  font-size: 16px;\n\nborder: none;\n  cursor: pointer;\n}\n\n/* Dropdown content */\n\n.dropdown-content {\n  display: none;\n  position:\nabsolute;\n  background-color: #f9f9f9;\n\nmin-width: 200px;\n  box-shadow:\n0px 8px 16px 0px rgba(0,0,0,0.2);\n}\n\n/* Links inside dropdown content */\n\n.dropdown-content a {\n  color: black;\n  padding: 12px 16px;\n  text-decoration: none;\n\ndisplay: block;\n}\n\n/* Change color of dropdown links on hover */\n\n.dropdown-content a:hover {\n  background-color: #f1f1f1\n}\n\n/* Show the\ndropdown content on hover */\n.dropdown:hover .dropdown-content {\n\ndisplay: block;\n}\n\n/* Change background color of dropdown\nbutton on hover */\n.dropdown:hover .dropbtn {\n  background-color: #3e8e41;\n}\n</style>\n\n<div class=\"dropdown\">\n  <button class=\"dropbtn\">Dropdown\n  Menu</button>\n\n<div class=\"dropdown-content\">\n    <a href=\"#\">Link\n1</a>\n\n<a href=\"#\">Link 2</a>\n    <a href=\"#\">Link 3</a>\n  </div>\n</div>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_dropdown_button"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل dropdown.html بسازید، یک <div class=\"dropdown\"> با یک دکمهٔ راه‌انداز و یک <div class=\"dropdown-content\"> بنویسید و کارکرد بازشو را با hover امتحان کنید.",
+   "hint": "به .dropdown خصوصیت position: relative; و به .dropdown-content خصوصیت position: absolute; بدهید."
+  },
+  {
+   "prompt": "محتوای بازشو را به‌طور پیش‌فرض با display: none; پنهان کنید و با .dropdown:hover .dropdown-content آن را نمایش دهید.",
+   "hint": "نشانگر ماوس باید روی والد باشد تا فرزند باز شود؛ به همین دلیل از نسل‌دار استفاده می‌کنیم."
+  },
+  {
+   "prompt": "به .dropdown-content یک box-shadow بدهید و ببینید چه تفاوتی با border ایجاد می‌کند.",
+   "hint": "با box-shadow می‌توانید لبه را نرم و شبیه کارت کنید؛ مثلاً 0px 8px 16px 0px rgba(0,0,0,0.2)."
+  },
+  {
+   "prompt": "با min-width روی 130px پهنای بازشو را تعیین کنید و بعد 160px امتحان کنید و تفاوت را ببینید.",
+   "hint": "اگر محتوا کوتاه باشد، min-width جلوی جمع‌شدن بیش‌ازحد جعبه را می‌گیرد."
+  },
+  {
+   "prompt": "در همان بازشو چند <a> بگذارید و آن‌ها را با display: block; و رنگ hover شبیه یک منوی واقعی دربیاورید.",
+   "hint": "پیوندها وقتی بلوکی شوند تمام پهنای جعبه را می‌گیرند و کلیک روی آن‌ها راحت‌تر می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "بازشوی CSS از چه دو بخش اصلی ساخته می‌شود؟",
+   "options": [
+    "یک تصویر و یک جدول",
+    "یک عنصر راه‌انداز و یک ظرف محتوا",
+    "دو دکمهٔ جداگانه",
+    "یک <form> و یک <input>"
+   ],
+   "answer": 1,
+   "explanation": "یک عنصر راه‌انداز مثل <div> یا <button> بازشو را فعال می‌کند و یک ظرف مثل <div> محتوای پنهان را نگه می‌دارد."
+  },
+  {
+   "question": "کدام انتخابگر بازشوی متنی را در درس نمایش می‌دهد؟",
+   "options": [
+    ".dropdown:hover .dropdown-content",
+    ".dropdown-content:hover",
+    ":hover.dropdown-content",
+    "div > :hover"
+   ],
+   "answer": 0,
+   "explanation": "محتوا باید وقتی نمایش داده شود که نشانگر روی والد باشد، پس انتخابگر نسل‌دار .dropdown:hover .dropdown-content روی فرزند اثر می‌گذارد."
+  },
+  {
+   "question": "در مثال، محتوای بازشو به‌طور پیش‌فرض چه وضعیتی دارد؟",
+   "options": [
+    "نمایش داده می‌شود ولی شفاف است",
+    "پنهان است و با hover نمایش داده می‌شود",
+    "نصف پهنای جعبه را می‌گیرد",
+    "با کلیک باز می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "کلاس .dropdown-content تا زمانی که نشانگر ماوس روی والد نباشد پنهان می‌ماند؛ پس نه شفاف است و نه نیمه‌باز."
+  },
+  {
+   "question": "چرا والد بازشو خصوصیت position: relative; می‌گیرد؟",
+   "options": [
+    "برای اینکه محتوای بازشو نسبت به آن جای‌گذاری مطلق شود",
+    "برای بزرگ‌ترکردن ناحیهٔ کلیک",
+    "برای وسط‌چین‌کردن متن",
+    "برای حذف نوار اسکرول"
+   ],
+   "answer": 0,
+   "explanation": "محتوای بازشو position: absolute; دارد و نسبت به نزدیک‌ترین والد جای‌گذاری‌شده تنظیم می‌شود؛ همان والد همین .dropdown است."
+  },
+  {
+   "question": "برای اینکه محتوای بازشو روی صفحه‌های کوچک قابل اسکرول باشد، در درس چه ترکیبی پیشنهاد شده است؟",
+   "options": [
+    "width: 100% و overflow: auto",
+    "height: 100% و overflow: hidden",
+    "min-width: 130px و overflow: visible",
+    "box-shadow و text-align: center"
+   ],
+   "answer": 0,
+   "explanation": "در درس آمده اگر می‌خواهید پهنای محتوا به‌اندازهٔ عنصر راه‌انداز باشد، width را 100% و overflow را auto بگذارید تا در صفحه‌های کوچک اسکرول فعال شود."
+  }
+ ]
+}

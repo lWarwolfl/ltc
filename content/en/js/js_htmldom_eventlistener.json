@@ -1,0 +1,248 @@
+{
+ "slug": "js_htmldom_eventlistener",
+ "course": "js",
+ "order": 154,
+ "url": "/js/js_htmldom_eventlistener.asp",
+ "title": "JavaScript EventListener",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript EventListener"
+  },
+  {
+   "type": "h2",
+   "text": "The addEventListener() method"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.getElementById(\"myBtn\").addEventListener(\"click\", displayDate);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_displaydate"
+  },
+  {
+   "type": "p",
+   "text": "The addEventListener() method attaches an event handler to the specified element."
+  },
+  {
+   "type": "p",
+   "text": "The addEventListener() method attaches an event handler to an element without overwriting existing event handlers."
+  },
+  {
+   "type": "p",
+   "text": "You can add many event handlers to one element."
+  },
+  {
+   "type": "p",
+   "text": "You can add many event handlers of the same type to one element, i.e two \"click\" events."
+  },
+  {
+   "type": "p",
+   "text": "You can add event listeners to any DOM object not only HTML elements. i.e the window object."
+  },
+  {
+   "type": "p",
+   "text": "The addEventListener() method makes it easier to control how the event reacts to bubbling."
+  },
+  {
+   "type": "p",
+   "text": "When using the addEventListener() method, the JavaScript is separated from the HTML markup, for better readability\nand allows you to add event listeners even when you do not control the HTML markup."
+  },
+  {
+   "type": "p",
+   "text": "You can easily remove an event listener by using the removeEventListener() method."
+  },
+  {
+   "type": "h2",
+   "text": "Syntax"
+  },
+  {
+   "type": "p",
+   "text": "element.addEventListener(event, function, useCapture);"
+  },
+  {
+   "type": "p",
+   "text": "The first parameter is the type of the event (like \"click\" or \"mousedown\"\nor any other HTML DOM Event.)"
+  },
+  {
+   "type": "p",
+   "text": "The second parameter is the function we want to call when the event occurs."
+  },
+  {
+   "type": "p",
+   "text": "The third parameter is a boolean value specifying whether to use event bubbling or event capturing. This parameter is optional."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Note that you don't use the\n\"on\" prefix for the event; use \"click\" instead of \"onclick\"."
+  },
+  {
+   "type": "h2",
+   "text": "Add an Event Handler to an Element"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"click\", function(){ alert(\"Hello World!\"); });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_add"
+  },
+  {
+   "type": "p",
+   "text": "You can also refer to an external \"named\" function:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"click\",  myFunction);\n\nfunction myFunction() {\n  alert (\"Hello World!\");\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_add2"
+  },
+  {
+   "type": "h2",
+   "text": "Add Many Event Handlers to the Same Element"
+  },
+  {
+   "type": "p",
+   "text": "The addEventListener() method allows you to add many events to the same\nelement, without overwriting existing events:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"click\", myFunction);\n\n element.addEventListener(\"click\", mySecondFunction);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_add_many"
+  },
+  {
+   "type": "p",
+   "text": "You can add events of different types to the same element:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"mouseover\", myFunction);\n\nelement.addEventListener(\"click\", mySecondFunction);\n\nelement.addEventListener(\"mouseout\", myThirdFunction);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_add_many2"
+  },
+  {
+   "type": "h2",
+   "text": "Add an Event Handler to the window Object"
+  },
+  {
+   "type": "p",
+   "text": "The addEventListener() method allows you to add event listeners on any HTML\nDOM object such as HTML elements, the HTML document, the window object, or other\nobjects that support events, like the xmlHttpRequest object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "window.addEventListener(\"resize\", function(){\n\n  document.getElementById(\"demo\").innerHTML = sometext;\n\n});",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_dom"
+  },
+  {
+   "type": "h2",
+   "text": "Passing Parameters"
+  },
+  {
+   "type": "p",
+   "text": "When passing parameter values, use\nan \"anonymous function\" that calls the specified function with the parameters:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"click\", function(){ myFunction(p1, p2); });",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_parameters"
+  },
+  {
+   "type": "h2",
+   "text": "Event Bubbling or Event Capturing?"
+  },
+  {
+   "type": "p",
+   "text": "There are two ways of event propagation in the HTML DOM, bubbling and capturing."
+  },
+  {
+   "type": "p",
+   "text": "Event propagation is a way of defining the element order when an event occurs.\nIf you have a <p> element inside a <div> element, and the user clicks on the <p> element, which element's\n\"click\" event should be handled first?"
+  },
+  {
+   "type": "p",
+   "text": "In bubbling the inner most element's event is handled first and then the outer:\nthe <p> element's click event is handled first, then the <div> element's click event."
+  },
+  {
+   "type": "p",
+   "text": "In capturing the outer most element's event is handled first and then the inner:\nthe <div> element's click event will be handled first, then the <p> element's click event."
+  },
+  {
+   "type": "p",
+   "text": "With the addEventListener() method you can specify the propagation type by using the \"useCapture\" parameter:"
+  },
+  {
+   "type": "p",
+   "text": "addEventListener(event, function, useCapture);"
+  },
+  {
+   "type": "p",
+   "text": "The default value is false, which will use the bubbling propagation, when the value is set to true, the event uses the capturing propagation."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.getElementById(\"myP\").addEventListener(\"click\", myFunction, true);\n\ndocument.getElementById(\"myDiv\").addEventListener(\"click\", myFunction, true);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_usecapture"
+  },
+  {
+   "type": "h2",
+   "text": "The removeEventListener() method"
+  },
+  {
+   "type": "p",
+   "text": "The removeEventListener() method removes event handlers that have been\nattached with the addEventListener() method:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.removeEventListener(\"mousemove\", myFunction);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_remove"
+  },
+  {
+   "type": "h2",
+   "text": "HTML DOM Event Object Reference"
+  },
+  {
+   "type": "p",
+   "text": "For a list of all HTML DOM events, look at our complete HTML DOM Event Object Reference."
+  }
+ ]
+}

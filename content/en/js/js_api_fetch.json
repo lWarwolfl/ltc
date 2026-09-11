@@ -1,0 +1,358 @@
+{
+ "slug": "js_api_fetch",
+ "course": "js",
+ "order": 166,
+ "url": "/js/js_api_fetch.asp",
+ "title": "JavaScript Fetch API",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Fetch API"
+  },
+  {
+   "type": "p",
+   "text": "The Fetch API interface lets you download (fetch) data from a web server."
+  },
+  {
+   "type": "p",
+   "text": "await fetch() is the modern API for fetching data from an HTTP server."
+  },
+  {
+   "type": "p",
+   "text": "XMLHttpRequest() was the old legacy API for fetching data from an HTTP server."
+  },
+  {
+   "type": "h2",
+   "text": "What is Fetch API"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Fetch API is a modern browser interface used to make asynchronous network requests\nto web servers."
+  },
+  {
+   "type": "p",
+   "text": "Fetch is an easier and more powerful replacement for the older XMLHttpRequest object."
+  },
+  {
+   "type": "p",
+   "text": "Fetch is uses standard JavaScript Promises for cleaner asynchronous code."
+  },
+  {
+   "type": "h2",
+   "text": "Fetching a Text File"
+  },
+  {
+   "type": "p",
+   "text": "The simplest way to demonstrate fetch() is to download a text file."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Fetch a file\n\nfetch(file)\n\n  .then(function(response) {\n\n      return response.text();\n\n  })\n\n  .then(function(data) {\n\n    myDisplayer(data);\n\n  });",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Fetch a file\n\nfetch(file)\n\n  .then(response => response.text())\n\n  .then(data => myDisplayer(data));",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch"
+  },
+  {
+   "type": "p",
+   "text": "Note that .then() expects a function as its argument, so you must write .then(...), not .then {...}."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to fetch a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(await response.text());\n\n}",
+   "caption": "Using an Asynchronous Function"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_async"
+  },
+  {
+   "type": "h2",
+   "text": "Learn More..."
+  },
+  {
+   "type": "p",
+   "text": "Learn more about fetch() and asynchronous programming:"
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous Fetch."
+  },
+  {
+   "type": "h2",
+   "text": "The Response Object"
+  },
+  {
+   "type": "p",
+   "text": "The fetch() method returns a Promise that resolves to a Response object."
+  },
+  {
+   "type": "p",
+   "text": "The Response object contains information (properties) about the server response."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Property",
+     "Description"
+    ],
+    [
+     "ok",
+     "True if the request succeeded"
+    ],
+    [
+     "status",
+     "The HTTP status code"
+    ],
+    [
+     "statusText",
+     "The HTTP status message"
+    ],
+    [
+     "url",
+     "The HTTP url address"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_return"
+  },
+  {
+   "type": "h2",
+   "text": "The ok Property"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.ok);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_return_ok"
+  },
+  {
+   "type": "h2",
+   "text": "The status Property"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.status);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_return_status"
+  },
+  {
+   "type": "h2",
+   "text": "The url Property"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.url);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_return_url"
+  },
+  {
+   "type": "h2",
+   "text": "Asynchrounous Output"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript can continue running while waiting for the server to respond."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.url);\n\n}\n\nloadText(\"fetch.txt\");\n\nmyDisplayer(\"JavaScript continues.\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_continue"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "\"JavaScript continues.\" is displayed first."
+  },
+  {
+   "type": "p",
+   "text": "It is displayed while loadText() waits for fetch() to resolve."
+  },
+  {
+   "type": "h2",
+   "text": "Response Object Methods"
+  },
+  {
+   "type": "p",
+   "text": "The Response object has methods to read the server response."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Method",
+     "Description"
+    ],
+    [
+     "text()",
+     "Reads the response as text"
+    ],
+    [
+     "json()",
+     "Reads the response as JSON"
+    ],
+    [
+     "blob()",
+     "Reads the response as binary data"
+    ],
+    [
+     "bytes()",
+     "Reads the response as bytes"
+    ],
+    [
+     "arrayBuffer()",
+     "Reads the response as an ArrayBuffer"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Learn More..."
+  },
+  {
+   "type": "p",
+   "text": "Learn how to use fetch() to request JSON files:"
+  },
+  {
+   "type": "p",
+   "text": "JSON Fetch Tutorial."
+  },
+  {
+   "type": "h2",
+   "text": "Checking for HTTP Errors"
+  },
+  {
+   "type": "p",
+   "text": "fetch() resolves when the server responds."
+  },
+  {
+   "type": "p",
+   "text": "A common beginner mistake is expecting fetch() to fail on Http errors."
+  },
+  {
+   "type": "p",
+   "text": "An HTTP error such as 404 Not Found does not reject the Promise."
+  },
+  {
+   "type": "p",
+   "text": "Fetch only rejects on network errors."
+  },
+  {
+   "type": "p",
+   "text": "A 404 response is not a rejected promise."
+  },
+  {
+   "type": "p",
+   "text": "You should always check the ok property."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadText(file) {\n\n  const response = await fetch(file);\n\n  if (!response.ok) {\n\n    myDisplayer(response.status + \" \" + response.statusText);\n\n    return;\n\n  }\n\n  myDisplayer(await response.text());\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_error"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "Most fetch errors are not JavaScript errors."
+  },
+  {
+   "type": "p",
+   "text": "They are most often path and response problems."
+  },
+  {
+   "type": "p",
+   "text": "If fetch is not working, check the console."
+  },
+  {
+   "type": "p",
+   "text": "Then check the Network tab."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Is the file name correct?",
+    "Is the file path correct?",
+    "Is the status code 200?"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Fetch API vs. XMLHttpRequest (XHR)"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "Fetch",
+     "XHR"
+    ],
+    [
+     "Syntax",
+     "Promise-based",
+     "Callback-based"
+    ],
+    [
+     "Error Handling",
+     "Rejects on network failure",
+     "Needs manual checking"
+    ],
+    [
+     "Streams",
+     "Supports streams",
+     "Does not support streams"
+    ]
+   ]
+  }
+ ]
+}

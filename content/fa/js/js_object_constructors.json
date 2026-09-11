@@ -1,0 +1,404 @@
+{
+ "slug": "js_object_constructors",
+ "course": "js",
+ "order": 51,
+ "url": "/js/js_object_constructors.asp",
+ "title": "سازنده‌های شیء در JavaScript",
+ "summary": "تابع سازنده برای ساختن شیءهای زیادی از یک نوع به کار می‌رود و نامش را با حرف بزرگ می‌نویسیم. در این درس new، مقدار پیش‌فرض خصوصیت‌ها، اضافه کردن خصوصیت و متد به نمونه و به prototype، و سازنده‌های درون‌ساخت را یاد می‌گیرید.",
+ "objectives": [
+  "با تابع سازنده و کلیدواژهٔ new شیء بسازید",
+  "تفاوت اضافه کردن خصوصیت به نمونه و به prototype را تشخیص دهید",
+  "مقدار پیش‌فرض خصوصیت را در سازنده تعیین کنید",
+  "بگویید به‌جای new Object و new Array چه بنویسیم"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "سازنده‌های شیء در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "تابع سازندهٔ شیء"
+  },
+  {
+   "type": "p",
+   "text": "گاهی لازم است شیءهای زیادی از یک نوع بسازیم."
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن یک نوع شیء از تابع سازندهٔ شیء استفاده می‌کنیم."
+  },
+  {
+   "type": "p",
+   "text": "روش خوب این است که نام تابع سازنده با حرف بزرگ شروع شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function Person(first, last, age, eye) {\n\n  this.firstName = first;\n\n  this.lastName = last;\n\n  this.age = age;\n\n  this.eyeColor = eye;\n\n}",
+   "caption": "نوع شیء Person"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "در تابع سازنده، this مقداری ندارد. مقدار this وقتی شیء جدید ساخته شود، همان شیء جدید می‌شود.\nبیشتر بخوانید:\nthis در شیءهای JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "حالا می‌توانیم با new Person() شیءهای Person زیادی بسازیم:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myFather = new Person(\"John\", \"Doe\", 50, \"blue\");\n\nconst myMother = new Person(\"Sally\", \"Rally\", 48, \"green\");\n\nconst mySister = new Person(\"Anna\", \"Rally\", 18, \"green\");\n\nconst mySelf = new Person(\"Johnny\", \"Rally\", 22, \"green\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor1"
+  },
+  {
+   "type": "h2",
+   "text": "مقدار پیش‌فرض خصوصیت"
+  },
+  {
+   "type": "p",
+   "text": "مقداری که به یک خصوصیت می‌دهید، مقدار پیش‌فرض همهٔ شیءهایی می‌شود که این سازنده می‌سازد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function Person(first, last, age, eyecolor) {\n\nthis.firstName = first;\n\nthis.lastName = last;\n\nthis.age = age;\n\n  this.eyeColor = eyecolor;\n  this.nationality = \"English\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor5"
+  },
+  {
+   "type": "h2",
+   "text": "اضافه کردن خصوصیت به یک شیء"
+  },
+  {
+   "type": "p",
+   "text": "اضافه کردن خصوصیت به شیء ساخته‌شده آسان است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myFather.nationality = \"English\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor2"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت جدید به myFather اضافه می‌شود، نه به بقیهٔ شیءهای Person."
+  },
+  {
+   "type": "h2",
+   "text": "اضافه کردن خصوصیت به سازنده"
+  },
+  {
+   "type": "p",
+   "text": "نمی‌توانید خصوصیت جدیدی به تابع سازندهٔ شیء اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Person.nationality = \"English\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor4"
+  },
+  {
+   "type": "p",
+   "text": "برای اضافه کردن خصوصیت جدید باید آن را به prototype تابع سازنده اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Person.prototype.nationality = \"English\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor8"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای تابع سازنده"
+  },
+  {
+   "type": "p",
+   "text": "تابع سازنده می‌تواند متد هم داشته باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function Person(first, last, age, eyecolor) {\n\nthis.firstName = first;\n\nthis.lastName = last;\n\nthis.age = age;\n\nthis.eyeColor = eyecolor;\n  this.fullName = function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n  };\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor6"
+  },
+  {
+   "type": "h2",
+   "text": "اضافه کردن متد به یک شیء"
+  },
+  {
+   "type": "p",
+   "text": "اضافه کردن متد به شیء ساخته‌شده آسان است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myMother.changeName = function (name) {\n\n  this.lastName = name;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor3"
+  },
+  {
+   "type": "p",
+   "text": "متد جدید به myMother اضافه می‌شود، نه به بقیهٔ شیءهای Person."
+  },
+  {
+   "type": "h2",
+   "text": "اضافه کردن متد به سازنده"
+  },
+  {
+   "type": "p",
+   "text": "نمی‌توانید متد جدیدی به تابع سازندهٔ شیء اضافه کنید."
+  },
+  {
+   "type": "p",
+   "text": "این کد خطای TypeError می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Person.changeName = function (name) {\n\n  this.lastName = name;\n\n}\n\nmyMother.changeName(\"Doe\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "اضافه کردن متد جدید به سازنده باید روی prototype تابع سازنده انجام شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Person.prototype.changeName = function (name) {\n\n  this.lastName = name;\n\n}\n\nmyMother.changeName(\"Doe\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor7"
+  },
+  {
+   "type": "p",
+   "text": "تابع changeName() مقدار name را به خصوصیت lastName شخص نسبت می‌دهد و this را با myMother جایگزین می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "سازنده‌های درون‌ساخت JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript برای همهٔ شیءهای بومی سازندهٔ درون‌ساخت دارد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "new Object()   // A new Object object\n\nnew Array()    // A new Array object\n\nnew Map()      // A new Map object\n\nnew Set()      // A new Set object\n\nnew Date()     // A new Date object\n\nnew RegExp()   // A new RegExp object\n\nnew Function() // A new Function object",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor_builtin"
+  },
+  {
+   "type": "p",
+   "text": "شیء Math() در این فهرست نیست. Math یک شیء سراسری است و نمی‌توان روی آن از کلیدواژهٔ new استفاده کرد."
+  },
+  {
+   "type": "h2",
+   "text": "آیا می‌دانستید؟"
+  },
+  {
+   "type": "p",
+   "text": "به‌جای new Object() از شیء متنی {} استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "به‌جای new Array() از آرایهٔ متنی [] استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "به‌جای new RegExp() از الگوی متنی /()/ استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "به‌جای new Function() از عبارت تابع () {} استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"\";           // primitive string\n\n0;            // primitive number\n\nfalse;        // primitive boolean\n\n{};           // object object\n\n[];           // array object\n\n/()/          // regexp object\n\nfunction(){}; // function",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_constructor_builtin1"
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای JavaScript چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "متدهای شیء چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "this در شیءها چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "روش نمایش شیءها"
+  },
+  {
+   "type": "h2",
+   "text": "فصل‌های پیشرفته:"
+  },
+  {
+   "type": "p",
+   "text": "تعریف شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "this پیشرفته در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "محافظت از شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتوتایپ‌های شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع شیء در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "تابع سازندهٔ Person(name, age) بسازید که this.name و this.age را مقدار بدهد و با new Person(\"John\", 50) دو شیء مختلف بسازید.",
+   "hint": "نام تابع سازنده را با حرف بزرگ شروع کنید."
+  },
+  {
+   "prompt": "به یکی از شیءهای ساخته‌شده خصوصیت جدیدی اضافه کنید و ببینید فقط همان شیء آن را دارد.",
+   "hint": "خصوصیت اضافه‌شده به بقیهٔ شیءهای همان نوع اضافه نمی‌شود."
+  },
+  {
+   "prompt": "متدی به prototype سازنده اضافه کنید و آن را روی همهٔ شیءهای ساخته‌شده صدا بزنید.",
+   "hint": "Person.prototype.method = function() { ... }; برای همهٔ نمونه‌ها کار می‌کند."
+  },
+  {
+   "prompt": "داخل سازنده یک خصوصیت با Person.newProp = ... اضافه کنید و رفتار غیرمنتظره را ببینید؛ بعد همان کار را روی prototype انجام دهید.",
+   "hint": "اضافه کردن خصوصیت به خود تابع سازنده به نمونه‌ها نمی‌رسد؛ باید به prototype اضافه شود."
+  },
+  {
+   "prompt": "در کنسول new Date() و new Array() را امتحان کنید و بگویید به‌جای این دو بهتر است چه بنویسید.",
+   "hint": "توصیهٔ درس: از [] و {} و /()/ به‌جای سازنده با new استفاده کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای ساختن شیءهای زیادی از یک نوع از چه چیزی استفاده می‌کنیم؟",
+   "options": [
+    "از تابع سازنده",
+    "از حلقهٔ for..in",
+    "از JSON.stringify()",
+    "از عملگر in"
+   ],
+   "answer": 0,
+   "explanation": "تابع سازنده قالب یک نوع شیء را می‌سازد و با new می‌توان نمونه‌های زیادی از آن ساخت."
+  },
+  {
+   "question": "چرا نام تابع سازنده را با حرف بزرگ شروع می‌کنیم؟",
+   "options": [
+    "چون JavaScript آن را الزام کرده است",
+    "چون روش خوبی برای جدا کردن سازنده از تابع معمولی است",
+    "چون بدون آن new کار نمی‌کند",
+    "چون فقط با حرف بزرگ hoist می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "حرف بزرگ الزام زبان نیست؛ یک عرف خوب است که چشم خواننده را از تابع معمولی جدا می‌کند."
+  },
+  {
+   "question": "اگر بخواهید متد جدیدی به همهٔ شیءهای یک نوع اضافه کنید، آن را کجا می‌نویسید؟",
+   "options": [
+    "روی خود تابع سازنده",
+    "روی یکی از نمونه‌ها",
+    "روی prototype تابع سازنده",
+    "داخل یک متغیر سراسری"
+   ],
+   "answer": 2,
+   "explanation": "اضافه کردن به خود تابع سازنده به نمونه‌ها نمی‌رسد؛ باید متد را به Person.prototype اضافه کرد تا همهٔ نمونه‌ها آن را داشته باشند."
+  },
+  {
+   "question": "کدام جمله دربارهٔ کلیدواژهٔ new درست است؟",
+   "options": [
+    "روی همهٔ شیءها از جمله Math کار می‌کند",
+    "فقط برای آرایه‌ها به کار می‌رود",
+    "در تابع سازنده، this با شیء جدید ساخته‌شده جایگزین می‌شود",
+    "new فقط با شیءهای متنی کار می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "در تابع سازنده، this در آغاز مقداری ندارد و با new همان شیء جدید می‌شود که خصوصیت‌ها روی آن نوشته می‌شوند. همچنین new روی Math کار نمی‌کند، چون Math شیء سراسری است."
+  },
+  {
+   "question": "توصیهٔ درس به‌جای new Object() و new Array() چیست؟",
+   "options": [
+    "استفاده از {} و []",
+    "استفاده از JSON.parse",
+    "استفاده از Object.create",
+    "استفاده از تابع سازنده"
+   ],
+   "answer": 0,
+   "explanation": "درس توصیه می‌کند برای خوانایی، سادگی و سرعت از شیء متنی {} و آرایهٔ متنی [] و الگوی متنی /()/ به‌جای سازنده‌های new استفاده کنید."
+  }
+ ]
+}

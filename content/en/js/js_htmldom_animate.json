@@ -1,0 +1,103 @@
+{
+ "slug": "js_htmldom_animate",
+ "course": "js",
+ "order": 146,
+ "url": "/js/js_htmldom_animate.asp",
+ "title": "HTML DOM Animation",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "HTML DOM Animation"
+  },
+  {
+   "type": "p",
+   "text": "Learn to create HTML animations using JavaScript."
+  },
+  {
+   "type": "h2",
+   "text": "A Basic Web Page"
+  },
+  {
+   "type": "p",
+   "text": "To demonstrate how to create HTML animations with JavaScript, we will use a simple\nweb page:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>My First\n JavaScript Animation</h1>\n\n<div id=\"animation\">My animation will go here</div>\n\n</body>\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Create an Animation Container"
+  },
+  {
+   "type": "p",
+   "text": "All animations should be relative to a container element."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<div id =\"container\">\n  <div id =\"animate\">My\n animation will go here</div>\n</div>",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Style the Elements"
+  },
+  {
+   "type": "p",
+   "text": "The container element should be created with style = \"position: relative\"."
+  },
+  {
+   "type": "p",
+   "text": "The animation element should be created with style = \"position: absolute\"."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "#container {\n  width: 400px;\n  height:\n 400px;\n  position: relative;\n\n background: yellow;\n\n }\n#animate {\n  width: 50px;\n  height:\n 50px;\n  position: absolute;\n\n background: red;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_animate_2"
+  },
+  {
+   "type": "h2",
+   "text": "Animation Code"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript animations are done by programming gradual changes in an element's\nstyle."
+  },
+  {
+   "type": "p",
+   "text": "The changes are called by a timer. When the timer interval is small, the\nanimation looks continuous."
+  },
+  {
+   "type": "p",
+   "text": "The basic code is:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "id = setInterval(frame, 5);\n\nfunction frame() {\n  if (/*\n test for finished */) {\n    clearInterval(id);\n  } else {\n\n /* code to change the element style */\n  }\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Create the Full Animation Using JavaScript"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myMove() {\n\n  let id = null;\n\n  const elem = document.getElementById(\"animate\");\n\n  let pos = 0;\n\n  clearInterval(id);\n  id = setInterval(frame, 5);\n\n function frame() {\n    if (pos ==\n 350) {\n\n clearInterval(id);\n    } else {\n\n pos++;\n      elem.style.top = pos + 'px';\n      elem.style.left = pos + 'px';\n\n      }\n  }\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_animate_3"
+  }
+ ]
+}

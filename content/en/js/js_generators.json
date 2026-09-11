@@ -1,0 +1,190 @@
+{
+ "slug": "js_generators",
+ "course": "js",
+ "order": 78,
+ "url": "/js/js_generators.asp",
+ "title": "JavaScript Generators",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Generators"
+  },
+  {
+   "type": "p",
+   "text": "A JavaScript Function can only return one value."
+  },
+  {
+   "type": "p",
+   "text": "A JavaScript Generator can return multiple values, one by one."
+  },
+  {
+   "type": "p",
+   "text": "A JavaScript Generator can yield a stream of data."
+  },
+  {
+   "type": "p",
+   "text": "A JavaScript Generator can be paused and resumed."
+  },
+  {
+   "type": "h2",
+   "text": "Generator Functions"
+  },
+  {
+   "type": "p",
+   "text": "A Generator Function is defined using the function* syntax:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function* myGenerator() {}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "When called, a generator function returns a Generator Object, not a direct value:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{value:1, done:false}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Generator Objects"
+  },
+  {
+   "type": "p",
+   "text": "A Generator Object is returned by the generator function."
+  },
+  {
+   "type": "p",
+   "text": "It conforms to both the iterable and iterator protocols,\nmeaning it can be iterated over using for...of loops."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function* myStream() {\n\n// return {value:1, done:false}\n\nyield 1;\n\n// return {value:2, done:false}\n\nyield 2;\n\n// return {value:3, done:true}\n\nreturn 3;\n\n}\n\n// Create a Generator\n\nlet myGenerator = myStream();\n\n// Iterate over the Generator\n\nfor (let value of myGenerator) { // code }",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_generator"
+  },
+  {
+   "type": "h2",
+   "text": "The yield Keyword"
+  },
+  {
+   "type": "p",
+   "text": "The yield keyword pauses execution and yield a value back to the caller."
+  },
+  {
+   "type": "p",
+   "text": "The generator's state is preserved, and can be resumed from the point of the yield\nwhen next() is called."
+  },
+  {
+   "type": "p",
+   "text": "Generators maintain their internal state between yield calls,\nallowing them to continue execution from where they left off."
+  },
+  {
+   "type": "p",
+   "text": "The code example above returns 1 and 2. Not 3!"
+  },
+  {
+   "type": "p",
+   "text": "The for..of loop exits when done:true."
+  },
+  {
+   "type": "p",
+   "text": "To get all the values, return them with yield."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function* myStream() {\n\n// return {value:1, done:false}\n\nyield 1;\n\n// return {value:2, done:false}\n\nyield 2;\n\n// return {value:3, done:false}\n\nyeald 3;\n\n}\n\n// Create a Generator\n\nlet myGenerator = myStream();\n\n// Iterate over the Generator\n\nfor (let value of myGenerator) { // code }",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_generator_2"
+  },
+  {
+   "type": "h2",
+   "text": "Generator Object Methods"
+  },
+  {
+   "type": "p",
+   "text": "A Generator Object conforms to the iterable and iterator protocols."
+  },
+  {
+   "type": "p",
+   "text": "It can be iterated over with for...of loops."
+  },
+  {
+   "type": "p",
+   "text": "It also has methods:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "Method",
+    "Description"
+   ],
+   "rows": [
+    [
+     "next()",
+     "Resumes the next execution of a generator function"
+    ],
+    [
+     "return()",
+     "Finishes this execution and returns a given value"
+    ],
+    [
+     "throw()",
+     "Throws an exeption in this execution"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The next() Method"
+  },
+  {
+   "type": "p",
+   "text": "When called on the Generator object it resumes execution of the generator function."
+  },
+  {
+   "type": "p",
+   "text": "It returns an object with and value and a boolean, indicating if the generator has finished:"
+  },
+  {
+   "type": "p",
+   "text": "{ value: value, done: true|false}"
+  },
+  {
+   "type": "h2",
+   "text": "Custom Iterators"
+  },
+  {
+   "type": "p",
+   "text": "Generators simplify the creation of custom iterators for complex data structures or sequences."
+  },
+  {
+   "type": "p",
+   "text": "They can efficiently generate values on demand, making them suitable for potentially\ninfinite data streams."
+  },
+  {
+   "type": "p",
+   "text": "They can pause and resume execution, which can be useful for fine-grained control over program flow."
+  },
+  {
+   "type": "p",
+   "text": "Before async/await, generators were used with Promises to manage asynchronous\noperations in a more sequential-looking manner."
+  },
+  {
+   "type": "p",
+   "text": "Generators bring the iteration concept directly into the core JavaScript language\nand provide a mechanism for customizing the behavior of for...of."
+  }
+ ]
+}

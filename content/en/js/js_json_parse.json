@@ -1,0 +1,350 @@
+{
+ "slug": "js_json_parse",
+ "course": "js",
+ "order": 170,
+ "url": "/js/js_json_parse.asp",
+ "title": "JavaScript JSON Parse",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript JSON Parse"
+  },
+  {
+   "type": "h2",
+   "text": "The JSON.parse() Method"
+  },
+  {
+   "type": "p",
+   "text": "The JSON.parse() method converts JSON text into a JavaScript value."
+  },
+  {
+   "type": "p",
+   "text": "After parsing, the value can be used like any other JavaScript value."
+  },
+  {
+   "type": "h2",
+   "text": "JSON is text"
+  },
+  {
+   "type": "p",
+   "text": "JSON.parse() converts JSON text into a JavaScript value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "JSON.parse(text, reviver)",
+   "caption": "Syntax"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Parameter",
+     "Description"
+    ],
+    [
+     "text",
+     "The JSON text to parse."
+    ],
+    [
+     "reviver",
+     "An optional function that transforms parsed values."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Parsing a JSON Object"
+  },
+  {
+   "type": "p",
+   "text": "Convert a JSON text into a JavaScript object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\nlet name= person.name;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_object"
+  },
+  {
+   "type": "p",
+   "text": "After parsing, object properties can be accessed with normal JavaScript syntax."
+  },
+  {
+   "type": "h2",
+   "text": "Parsing a JSON Array"
+  },
+  {
+   "type": "p",
+   "text": "Convert a JSON text into a JavaScript array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nlet name= cars[0];",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_array"
+  },
+  {
+   "type": "p",
+   "text": "After parsing, you can use normal JavaScript array methods."
+  },
+  {
+   "type": "h2",
+   "text": "Parsing Other JSON Values"
+  },
+  {
+   "type": "p",
+   "text": "JSON.parse() can parse any valid JSON value."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "JSON Text",
+     "JavaScript Value"
+    ],
+    [
+     "\"John\"",
+     "String"
+    ],
+    [
+     "42",
+     "Number"
+    ],
+    [
+     "true",
+     "Boolean"
+    ],
+    [
+     "null",
+     "null"
+    ],
+    [
+     "[1,2,3]",
+     "Array"
+    ],
+    [
+     "{\"x\":1}",
+     "Object"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let value;\n\nvalue = JSON.parse('\"John\"');\n\nvalue = JSON.parse('42');\n\nvalue = JSON.parse('true');\n\nvalue = JSON.parse('null');",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_all"
+  },
+  {
+   "type": "h2",
+   "text": "Common Use of JSON"
+  },
+  {
+   "type": "p",
+   "text": "A common use of JSON is to exchange data to/from a web server."
+  },
+  {
+   "type": "p",
+   "text": "When receiving data from a web server, the data is a string:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "'{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}'",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Use JSON.parse() to convert text string into a JavaScript object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const text = '{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}';\n\nconst person = JSON.parse(text);",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Use data from the the object on your page:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<p id=\"demo\"></p>\n\n<script>\n\n// Display it in your HTML page\n\ndocument.getElementById(\"demo\").innerHTML = person.name;\n\n</script>",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parser"
+  },
+  {
+   "type": "h2",
+   "text": "The Reviver Function"
+  },
+  {
+   "type": "p",
+   "text": "The optional reviver argument is a callback function used to transform the parsed data."
+  },
+  {
+   "type": "p",
+   "text": "It accepts two arguments: a property key and its value."
+  },
+  {
+   "type": "p",
+   "text": "The return value replaces the original value:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Transform a value: Return the transformed value.",
+    "Leave unchanged: Return the original value.",
+    "Delete a value: Return undefined."
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const text = '{\"name\":\"John\",\"age\":\"30\"}';\n\nconst person = JSON.parse(text, function(key, value) {\n\n// Convert the age to a number\n\n  if (key == \"age\") {\n\n    return Number(value);\n\n  }\n\n// Return other keys/values unchanged\n\n  return value;\n\n});\n\ntypeof person.age; // number",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_reviver"
+  },
+  {
+   "type": "p",
+   "text": "JSON does not support Date objects, so they are serialized as strings.\nA reviver can be used to convert date strings back into actual JavaScript Date instances upon parsing:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = '{\"event\": \"Conference\", \"date\": \"2026-07-22T11:28:00.000Z\"}';\n\nconst myObject = JSON.parse(text, (key, value) => {\n\n// Convert date string to a Date object\n\n  if (key === \"date\") {\n\n    return new Date(value); // Converts the string back to a Date object\n\n  }\n\n// Return other keys/values unchanged\n\n  return value;\n\n});\n\ntypeof myObject.date; // object",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_reviver_2"
+  },
+  {
+   "type": "h2",
+   "text": "Invalid JSON"
+  },
+  {
+   "type": "p",
+   "text": "If the JSON text is not valid, JSON.parse() throws a SyntaxError."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const text = \"{name:'John'}\";\n\nJSON.parse(text);",
+   "caption": "Invalid JSON"
+  },
+  {
+   "type": "p",
+   "text": "The example above is invalid because of 2 reasons:"
+  },
+  {
+   "type": "p",
+   "text": "Property names are not enclosed in double quotes."
+  },
+  {
+   "type": "p",
+   "text": "Strings cannot use single quotes."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\"name\":\"John\"}",
+   "caption": "Valid"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "{'name':\"John\"}\n\n{\"name\":'John'}\n\n{name:\"John\"}\n\n{\"name\":John}",
+   "caption": "Valid"
+  },
+  {
+   "type": "h2",
+   "text": "Handling Parse Errors"
+  },
+  {
+   "type": "p",
+   "text": "Use try...catch to handle invalid JSON."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const text = \"{name:'John'}\";\n\ntry {\n\n  const person = JSON.parse(text);\n\n}\n\ncatch(err) {\n\n  myDisplayer(err);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_try_catch"
+  },
+  {
+   "type": "h2",
+   "text": "Common Parsing Mistakes"
+  },
+  {
+   "type": "h3",
+   "text": "Parsing a JavaScript Object"
+  },
+  {
+   "type": "p",
+   "text": "JSON.parse() expects JSON text, not a JavaScript object."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {name: \"John\"};\n\nconst result = JSON.parse(person);",
+   "caption": "Wrong"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const text = '{\"name\":\"John\"}';\n\nconst person = JSON.parse(text);",
+   "caption": "Wrong"
+  },
+  {
+   "type": "h3",
+   "text": "Parsing JSON Twice"
+  },
+  {
+   "type": "p",
+   "text": "After JSON has been parsed, the result is already a JavaScript value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = JSON.parse('{\"name\":\"John\"}');\n\nconst result = JSON.parse(person);",
+   "caption": "Wrong"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "Call JSON.parse() only when the value is a JSON text."
+  },
+  {
+   "type": "p",
+   "text": "Make sure the text is in JSON format, or else you will get a syntax error."
+  }
+ ]
+}

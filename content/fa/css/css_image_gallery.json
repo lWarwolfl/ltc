@@ -1,0 +1,182 @@
+{
+ "slug": "css_image_gallery",
+ "course": "css",
+ "order": 93,
+ "url": "/css/css_image_gallery.asp",
+ "title": "گالری تصویر در CSS",
+ "summary": "گالری تصویر یکی از تمرین‌های کلاسیک چیدمان است. در این درس آن را با flexbox می‌سازید و با media query طوری تنظیم می‌کنید که در صفحه‌های کوچک و بزرگ مرتب بماند.",
+ "objectives": [
+  "ساختار HTML یک گالری تصویر را بسازید",
+  "گالری را با flexbox بچینید",
+  "با media query تعداد تصویرهای هر سطر را تغییر دهید",
+  "رفتار گالری را در سه اندازهٔ مختلف صفحه توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "گالری تصویر در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "گالری تصویر در CSS"
+  },
+  {
+   "type": "p",
+   "text": "گالری تصویر در CSS مجموعه‌ای از تصویرهاست که به‌صورت منظم و اغلب واکنش‌گرا در یک صفحهٔ وب نمایش داده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "اینجا با CSS یک گالری تصویر می‌سازیم:"
+  },
+  {
+   "type": "p",
+   "text": "Cinque Terre"
+  },
+  {
+   "type": "p",
+   "text": "جنگل سبز"
+  },
+  {
+   "type": "p",
+   "text": "شفق شمالی"
+  },
+  {
+   "type": "p",
+   "text": "کوه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "ساختار HTML یک گالری تصویر این است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "یک عنصر ظرف که کل گالری را در بر می‌گیرد (مثل یک <div> با class=\"gallery\").",
+    "یک عنصر ظرف دیگر برای هر تصویر (مثل یک <div> با class=\"gallery-item\") که تگ <img> و احتمالاً یک توضیح را در خود دارد."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "کد HTML و CSS آن این است:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<head>\n\n<style>\ndiv.gallery {\n  display: flex;\n  flex-wrap:\n  wrap;\n  justify-content: flex-start;\n}\n\n  div.gallery-item {\n  margin: 5px;\n  border: 1px solid #ccc;\n\n  width: 180px;\n}\n\ndiv.gallery-item:hover {\n  border: 1px solid #777;\n}\n\n  div.gallery-item img {\n  width: 100%;\n  height: auto;\n}\n\n  div.gallery-item div.desc {\n  padding: 15px;\n  text-align:\n  center;\n}\n\n</style>\n\n</head>\n\n<body>\n\n  <div class=\"gallery\">\n\n<div class=\"gallery-item\">\n  <a\n  target=\"_blank\" href=\"img_5terre.jpg\">\n    <img\n  src=\"img_5terre.jpg\" alt=\"Cinque Terre\" width=\"600\" height=\"400\">\n\n  </a>\n  <div class=\"desc\">Cinque Terre</div>\n</div>\n\n<div\n  class=\"gallery-item\">\n  <a target=\"_blank\" href=\"img_forest.jpg\">\n\n  <img src=\"img_forest.jpg\" alt=\"Forest\" width=\"600\" height=\"400\">\n\n  </a>\n  <div class=\"desc\">Green Forest</div>\n</div>\n\n<div class=\"gallery-item\">\n\n  <a target=\"_blank\" href=\"img_lights.jpg\">\n    <img\n  src=\"img_lights.jpg\" alt=\"Northern Lights\" width=\"600\" height=\"400\">\n\n  </a>\n  <div class=\"desc\">Northern Lights</div>\n</div>\n\n<div class=\"gallery-item\">\n\n  <a target=\"_blank\" href=\"img_mountains.jpg\">\n    <img\n  src=\"img_mountains.jpg\" alt=\"Mountains\" width=\"600\" height=\"400\">\n\n  </a>\n  <div class=\"desc\">Mountains</div>\n</div>\n\n</div>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_image_gallery"
+  },
+  {
+   "type": "p",
+   "text": "نکته: برای گالری تصویر بالا از display: flex; استفاده کرده‌ایم. این ماژول چیدمان برای چیدن تصویرها در سطر یا ستون مؤثر است. بعداً در دورهٔ CSS ما دربارهٔ flexbox بیشتر یاد می‌گیرید."
+  },
+  {
+   "type": "h2",
+   "text": "گالری تصویر واکنش‌گرا در CSS"
+  },
+  {
+   "type": "p",
+   "text": "اینجا با media queryهای CSS تصویرها را در اندازه‌های مختلف صفحه بازچینی می‌کنیم:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "اگر پهنای صفحه بیشتر از 768px باشد، چهار تصویر کنار هم نمایش داده می‌شود",
+    "اگر پهنای صفحه کمتر از 768px باشد، دو تصویر کنار هم نمایش داده می‌شود",
+    "اگر پهنای صفحه کمتر از 480px باشد، تصویرها زیر هم می‌آیند (width: 100%)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "نکته: در ادامهٔ دورهٔ CSS دربارهٔ media queryها بیشتر یاد می‌گیرید."
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_image_gallery_responsive"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل gallery.html بسازید، یک <div class=\"gallery\"> با چهار <div class=\"gallery-item\"> بنویسید و در هر کدام یک <img> و یک توضیح کوتاه بگذارید.",
+   "hint": "ظرف بیرونی کل گالری را می‌گیرد و ظرف‌های درونی هر تصویر را جدا نگه می‌دارند."
+  },
+  {
+   "prompt": "با display: flex; و flex-wrap: wrap; روی .gallery تصویرها را در چند سطر بچینید.",
+   "hint": "بدون flex-wrap همهٔ تصویرها در یک سطر فشرده می‌شوند و به هم می‌چسبند."
+  },
+  {
+   "prompt": "با یک media query اندازهٔ 768px، تعداد تصویرهای هر سطر را از چهار به دو کم کنید و پنجرهٔ مرورگر را کوچک و بزرگ کنید.",
+   "hint": "پهنای هر .gallery-item را داخل media query عوض کنید؛ مثلاً به 49% برسانید."
+  },
+  {
+   "prompt": "یک media query دیگر برای 480px بنویسید که هر تصویر تمام پهنای صفحه را بگیرد (width: 100%).",
+   "hint": "در این حالت تصویرها زیر هم می‌آیند و گالری تک‌ستونی می‌شود."
+  },
+  {
+   "prompt": "در ابزار بازرس اندازهٔ هر تصویر را در سه حالت مختلف صفحه بخوانید و بگویید کدام قاعده در هر حالت فعال است.",
+   "hint": "با تغییر اندازهٔ پنجره، ابزار بازرس نشان می‌دهد کدام media query برنده شده است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "ساختار پیشنهادی HTML برای یک گالری تصویر چیست؟",
+   "options": [
+    "یک <div> برای هر تصویر بدون ظرف والد",
+    "یک ظرف برای کل گالری و یک ظرف برای هر تصویر",
+    "یک <table> با یک سلول برای هر تصویر",
+    "چند <img> پشت سر هم بدون ظرف"
+   ],
+   "answer": 1,
+   "explanation": "درس یک ظرف والد مثل div.gallery برای کل گالری و یک ظرف مثل div.gallery-item برای هر تصویر و توضیحش پیشنهاد می‌کند."
+  },
+  {
+   "question": "در گالری واکنش‌گرای درس، وقتی صفحه کمتر از 768px است چند تصویر کنار هم دیده می‌شود؟",
+   "options": [
+    "یک تصویر",
+    "دو تصویر",
+    "سه تصویر",
+    "چهار تصویر"
+   ],
+   "answer": 1,
+   "explanation": "درس سه حالت دارد: بالای 768px چهار تصویر، زیر 768px دو تصویر و زیر 480px یک تصویر در هر سطر."
+  },
+  {
+   "question": "در گالری واکنش‌گرا از چه ابزاری برای تغییر چیدمان بین اندازه‌های صفحه استفاده شده است؟",
+   "options": [
+    "media query",
+    "position: fixed;",
+    "کلاس active",
+    "float: left;"
+   ],
+   "answer": 0,
+   "explanation": "media query اجازه می‌دهد قواعد CSS فقط در بازهٔ مشخصی از پهنای صفحه اعمال شوند؛ به همین دلیل چیدمان با اندازهٔ صفحه عوض می‌شود."
+  },
+  {
+   "question": "در گالری نمونه، نمایش تصویرها با کدام روش چیدمان انجام شده است؟",
+   "options": [
+    "float",
+    "table",
+    "flexbox",
+    "position: absolute;"
+   ],
+   "answer": 2,
+   "explanation": "درس می‌گوید برای گالری از display: flex; استفاده شده و این ماژول برای چیدن تصویر در سطر یا ستون مناسب است."
+  },
+  {
+   "question": "وقتی پهنای صفحه کمتر از 480px است، تصویرها چه پهنایی می‌گیرند؟",
+   "options": [
+    "width: 25%",
+    "width: 49%",
+    "width: 100%",
+    "پهنای ثابت 200px"
+   ],
+   "answer": 2,
+   "explanation": "در این حالت تصویرها زیر هم می‌آیند و هر کدام تمام پهنای ظرف را می‌گیرد؛ همان width: 100% که در فهرست درس آمده است."
+  }
+ ]
+}

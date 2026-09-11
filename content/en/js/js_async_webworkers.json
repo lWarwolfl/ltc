@@ -1,0 +1,946 @@
+{
+ "slug": "js_async_webworkers",
+ "course": "js",
+ "order": 232,
+ "url": "/js/js_async_webworkers.asp",
+ "title": "JavaScript Web Workers",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Web Workers"
+  },
+  {
+   "type": "p",
+   "text": "Until now, all examples in this tutorial run on the browser's main thread."
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous programming keeps applications responsive while waiting for:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Timers",
+    "User input",
+    "Network requests"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "However, long-running calculations can still block the main thread and make a page unresponsive."
+  },
+  {
+   "type": "p",
+   "text": "Web Workers solve this by running JavaScript in a separate thread."
+  },
+  {
+   "type": "h2",
+   "text": "Why Web Workers?"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript normally executes one task at a time."
+  },
+  {
+   "type": "p",
+   "text": "If a task takes a long time to finish, the browser cannot respond to user input until the task has completed."
+  },
+  {
+   "type": "p",
+   "text": "This can make a page appear frozen."
+  },
+  {
+   "type": "p",
+   "text": "The page becomes unresponsive until the calculation finishes."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function calculate() {\n\n  let total = 0;\n\n  for (let i = 0; i < 5e9; i++) {\n\n    total += i;\n\n  }\n\n  return total;\n\n}\n\nmyDisplayer(\"Calculating...\");\n\nlet result = calculate();\n\nmyDisplayer(result);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_webworker_freeze"
+  },
+  {
+   "type": "h2",
+   "text": "Can Asynchronous Programming Help?"
+  },
+  {
+   "type": "p",
+   "text": "Timers, Promises, and async/await do not solve this problem."
+  },
+  {
+   "type": "p",
+   "text": "They all execute JavaScript on the same main thread."
+  },
+  {
+   "type": "p",
+   "text": "If the thread is busy performing calculations, the browser must still wait."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Start\");\n\nsetTimeout(function () {\n\n  myDisplayer(\"Timer\")}, 1000);\n\nlet i = 5e9;\n\nwhile (--i > 0);\n\nmyDisplayer(\"Finished\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_webworker_timer"
+  },
+  {
+   "type": "h2",
+   "text": "What Is a Web Worker?"
+  },
+  {
+   "type": "p",
+   "text": "A Web Worker runs JavaScript in a separate thread."
+  },
+  {
+   "type": "p",
+   "text": "While the worker performs calculations, the browser's main thread remains free to respond to user input."
+  },
+  {
+   "type": "p",
+   "text": "The main thread and the worker communicate by sending messages."
+  },
+  {
+   "type": "h2",
+   "text": "Browser Support"
+  },
+  {
+   "type": "p",
+   "text": "Before creating a worker, check whether the browser supports Web Workers."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (typeof(Worker) !== \"undefined\") {\n\n  myDisplayer(\"Web Workers are supported.\");\n\n} else {\n\n  myDisplayer(\"Web Workers are not supported.\");\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_webworker_support"
+  },
+  {
+   "type": "h2",
+   "text": "Creating a Worker"
+  },
+  {
+   "type": "p",
+   "text": "Create a worker with the new Worker() constructor."
+  },
+  {
+   "type": "p",
+   "text": "const worker = new Worker(\"worker.js\");"
+  },
+  {
+   "type": "p",
+   "text": "The file passed to the constructor contains the code that will run in the worker thread."
+  },
+  {
+   "type": "h2",
+   "text": "Receiving Messages"
+  },
+  {
+   "type": "p",
+   "text": "The main thread receives messages with the onmessage event."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.onmessage = function(event) {\n\n  myDisplayer(event.data);\n\n};",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_webworker_support"
+  },
+  {
+   "type": "h2",
+   "text": "Sending Messages"
+  },
+  {
+   "type": "p",
+   "text": "The main thread sends data to the worker with postMessage()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.postMessage(25);",
+   "caption": "Main page:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  postMessage(event.data * event.data);\n\n}",
+   "caption": "Main page:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "625",
+   "caption": "Main page:"
+  },
+  {
+   "type": "h2",
+   "text": "Complete Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.onmessage = function(event) {\n\n  myDisplayer(event.data);\n\n};\n\nworker.postMessage(1000000);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  let sum = 0;\n\n  for (let i = 0; i <= event.data; i++) {\n\n    sum += i;\n\n  }\n\n  postMessage(sum);\n\n};",
+   "caption": "Example"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "The calculation happens in the worker."
+  },
+  {
+   "type": "p",
+   "text": "The page remains responsive."
+  },
+  {
+   "type": "h2",
+   "text": "Part 1 Summary"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Web Workers run JavaScript in a separate thread.",
+    "Workers keep the main thread responsive during long-running calculations.",
+    "Create a worker with new Worker().",
+    "Workers communicate using postMessage().",
+    "Receive messages with the onmessage event."
+   ]
+  },
+  {
+   "type": "h1",
+   "text": "Web Workers Part 2"
+  },
+  {
+   "type": "h2",
+   "text": "Passing Data to a Worker"
+  },
+  {
+   "type": "p",
+   "text": "The postMessage() method can send numbers, strings, arrays, and objects."
+  },
+  {
+   "type": "p",
+   "text": "The browser copies the data and sends the copy to the worker."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nworker.postMessage(person);\n\nworker.onmessage = function(event) {\n\n  document.getElementById(\"demo\").innerHTML = event.data;\n\n};",
+   "caption": "Main page:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  const person = event.data;\n\n  const message = person.name + \" is \" + person.age + \" years old.\";\n\n  postMessage(message);\n\n};",
+   "caption": "Main page:"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "The worker receives the object through event.data."
+  },
+  {
+   "type": "h2",
+   "text": "Worker Progress Messages"
+  },
+  {
+   "type": "p",
+   "text": "A worker can send more than one message."
+  },
+  {
+   "type": "p",
+   "text": "This makes it possible to report progress while a long calculation is running."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.onmessage = function(event) {\n\n  document.getElementById(\"demo\").innerHTML = event.data;\n\n};\n\nworker.postMessage(100000000);",
+   "caption": "Main page:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  const limit = event.data;\n\n  let total = 0;\n\n  for (let i = 0; i <= limit; i++) {\n\n    total += i;\n\n    if (i % 10000000 === 0) {\n\n      postMessage(\"Progress: \" + Math.round(i / limit * 100) + \"%\");\n\n    }\n\n  }\n\n  postMessage(\"Result: \" + total);\n\n};",
+   "caption": "Main page:"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "The worker sends progress messages without blocking the main page."
+  },
+  {
+   "type": "p",
+   "text": "The main thread can still respond to buttons, scrolling, and other user actions while the worker is running."
+  },
+  {
+   "type": "h2",
+   "text": "Starting a Worker"
+  },
+  {
+   "type": "p",
+   "text": "A worker can be created when the user starts a task."
+  },
+  {
+   "type": "p",
+   "text": "Saving the worker in a variable makes it possible to stop or reuse the reference later."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let worker;\n\nfunction startWorker() {\n\n  worker = new Worker(\"worker.js\");\n\n  worker.onmessage = function(event) {\n\n    document.getElementById(\"demo\").innerHTML = event.data;\n\n  };\n\n  worker.postMessage(100000000);\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Stopping a Worker"
+  },
+  {
+   "type": "p",
+   "text": "Use the terminate() method to stop a worker immediately."
+  },
+  {
+   "type": "p",
+   "text": "worker.terminate();"
+  },
+  {
+   "type": "h3",
+   "text": "Note"
+  },
+  {
+   "type": "p",
+   "text": "After a worker has been terminated, it cannot be started again."
+  },
+  {
+   "type": "p",
+   "text": "Create a new worker if the task must run again."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let worker;\n\nfunction startWorker() {\n\n  if (worker) {\n\n    return;\n\n  }\n\n  worker = new Worker(\"worker.js\");\n\n  worker.onmessage = function(event) {\n\n    document.getElementById(\"demo\").innerHTML = event.data;\n\n  };\n\n  worker.postMessage(100000000);\n\n}\n\nfunction stopWorker() {\n\n  if (worker) {\n\n    worker.terminate();\n\n    worker = undefined;\n\n    document.getElementById(\"demo\").innerHTML = \"Worker stopped\";\n\n  }\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Complete Start and Stop Example"
+  },
+  {
+   "type": "p",
+   "text": "This example starts a long calculation in a worker."
+  },
+  {
+   "type": "p",
+   "text": "The worker reports progress and can be stopped before it finishes."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"startWorker()\">Start Worker</button>\n\n<button onclick=\"stopWorker()\">Stop Worker</button>\n\nReady",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let worker;\n\nfunction startWorker() {\n\n  if (worker) {\n\n    return;\n\n  }\n\n  document.getElementById(\"demo\").innerHTML = \"Starting...\";\n\n  worker = new Worker(\"worker.js\");\n\n  worker.onmessage = function(event) {\n\n    document.getElementById(\"demo\").innerHTML = event.data;\n\n    if (event.data.startsWith(\"Result:\")) {\n\n      worker.terminate();\n\n      worker = undefined;\n\n    }\n\n  };\n\n  worker.postMessage(100000000);\n\n}\n\nfunction stopWorker() {\n\n  if (worker) {\n\n    worker.terminate();\n\n    worker = undefined;\n\n    document.getElementById(\"demo\").innerHTML = \"Worker stopped\";\n\n  }\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  const limit = event.data;\n\n  let total = 0;\n\n  for (let i = 0; i <= limit; i++) {\n\n    total += i;\n\n    if (i % 10000000 === 0) {\n\n      const percent = Math.round(i / limit * 100);\n\n      postMessage(\"Progress: \" + percent + \"%\");\n\n    }\n\n  }\n\n  postMessage(\"Result: \" + total);\n\n};",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Worker Errors"
+  },
+  {
+   "type": "p",
+   "text": "Use the onerror event to handle errors from a worker."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.onerror = function(error) {\n\n  document.getElementById(\"demo\").innerHTML =\n\n  \"Error: \" + error.message;\n\n};",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The error object can contain information such as the message, filename, and line number."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Property",
+     "Description"
+    ],
+    [
+     "message",
+     "The error message."
+    ],
+    [
+     "filename",
+     "The file where the error occurred."
+    ],
+    [
+     "lineno",
+     "The line number where the error occurred."
+    ],
+    [
+     "colno",
+     "The column number where the error occurred."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Handling Errors Inside a Worker"
+  },
+  {
+   "type": "p",
+   "text": "A worker can also catch its own errors and send a message to the main thread."
+  },
+  {
+   "type": "h3",
+   "text": "Main page:"
+  },
+  {
+   "type": "p",
+   "text": "worker.onmessage = function(event) {\n  if (event.data.error) {\n    document.getElementById(\"demo\").innerHTML = event.data.error;\n  } else {\n    document.getElementById(\"demo\").innerHTML = event.data.result;\n  }\n};"
+  },
+  {
+   "type": "h3",
+   "text": "worker.js:"
+  },
+  {
+   "type": "p",
+   "text": "onmessage = function(event) {\n  try {\n    const result = calculate(event.data);\n    postMessage({result: result});\n  } catch(error) {\n    postMessage({error: error.message});\n  }\n};"
+  },
+  {
+   "type": "h2",
+   "text": "Closing a Worker from Inside"
+  },
+  {
+   "type": "p",
+   "text": "A worker can stop itself by calling close()."
+  },
+  {
+   "type": "p",
+   "text": "postMessage(\"Finished\");\nclose();"
+  },
+  {
+   "type": "p",
+   "text": "The close() function stops the worker after the current code finishes."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Method",
+     "Called From",
+     "Description"
+    ],
+    [
+     "worker.terminate()",
+     "Main thread",
+     "Stops the worker immediately."
+    ],
+    [
+     "close()",
+     "Worker thread",
+     "Lets the worker stop itself."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Creating a New Worker"
+  },
+  {
+   "type": "p",
+   "text": "A terminated worker cannot be restarted."
+  },
+  {
+   "type": "p",
+   "text": "Create a new Worker object to run the task again."
+  },
+  {
+   "type": "p",
+   "text": "worker = new Worker(\"worker.js\");"
+  },
+  {
+   "type": "p",
+   "text": "Set the worker variable to undefined or null after termination."
+  },
+  {
+   "type": "p",
+   "text": "This makes it easier to know whether a worker is currently running."
+  },
+  {
+   "type": "h2",
+   "text": "One Worker or Many Workers?"
+  },
+  {
+   "type": "p",
+   "text": "A page can create more than one worker."
+  },
+  {
+   "type": "p",
+   "text": "const worker1 = new Worker(\"worker1.js\");\nconst worker2 = new Worker(\"worker2.js\");"
+  },
+  {
+   "type": "p",
+   "text": "Each worker runs in a separate thread."
+  },
+  {
+   "type": "p",
+   "text": "However, creating many workers can use significant memory and processing power."
+  },
+  {
+   "type": "p",
+   "text": "Use workers only for tasks that benefit from running in a separate thread."
+  },
+  {
+   "type": "p",
+   "text": "Do not create a new worker for every small calculation."
+  },
+  {
+   "type": "h2",
+   "text": "Worker Lifecycle"
+  },
+  {
+   "type": "p",
+   "text": "A Web Worker normally follows these steps:"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "The main page creates the worker.",
+    "The main page sends data with postMessage().",
+    "The worker receives the data.",
+    "The worker performs its task.",
+    "The worker sends results back.",
+    "The main page uses the result.",
+    "The worker is terminated when it is no longer needed."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Create Worker\n      |\n      |\n      v\nSend Data\n      |\n      |\n      v\nWorker Calculates\n      |\n      |\n      v\nSend Result\n      |\n      |\n      v\nStop Worker"
+  },
+  {
+   "type": "h2",
+   "text": "Part 2 Summary"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Workers can receive strings, numbers, arrays, and objects.",
+    "A worker can send multiple messages to report progress.",
+    "Use terminate() to stop a worker from the main thread.",
+    "Use close() to stop a worker from inside the worker.",
+    "Use onerror to handle worker errors.",
+    "A terminated worker cannot be restarted.",
+    "Create a new Worker object to run the task again."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "What Can a Worker Do?"
+  },
+  {
+   "type": "p",
+   "text": "A Web Worker runs JavaScript just like the main thread."
+  },
+  {
+   "type": "p",
+   "text": "It can perform calculations, use timers, make network requests, and work with JavaScript objects."
+  },
+  {
+   "type": "p",
+   "text": "This makes workers useful for CPU-intensive tasks that would otherwise block the page."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Task",
+     "Supported"
+    ],
+    [
+     "JavaScript calculations",
+     "Yes"
+    ],
+    [
+     "Loops",
+     "Yes"
+    ],
+    [
+     "Functions",
+     "Yes"
+    ],
+    [
+     "Arrays and Objects",
+     "Yes"
+    ],
+    [
+     "Promises",
+     "Yes"
+    ],
+    [
+     "fetch()",
+     "Yes"
+    ],
+    [
+     "setTimeout()",
+     "Yes"
+    ],
+    [
+     "setInterval()",
+     "Yes"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "What Can't a Worker Do?"
+  },
+  {
+   "type": "p",
+   "text": "A worker cannot access the web page."
+  },
+  {
+   "type": "p",
+   "text": "Only the main thread can modify the DOM."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Feature",
+     "Available"
+    ],
+    [
+     "document",
+     "No"
+    ],
+    [
+     "window",
+     "No"
+    ],
+    [
+     "HTML elements",
+     "No"
+    ],
+    [
+     "DOM events",
+     "No"
+    ],
+    [
+     "alert()",
+     "No"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "A worker performs calculations."
+  },
+  {
+   "type": "p",
+   "text": "The main thread updates the user interface."
+  },
+  {
+   "type": "h2",
+   "text": "Updating the Page"
+  },
+  {
+   "type": "p",
+   "text": "A worker cannot update HTML directly."
+  },
+  {
+   "type": "p",
+   "text": "Instead, it sends the result back to the main thread."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "postMessage(\"Finished\");",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "worker.onmessage = function(event) {\n\n  document.getElementById(\"demo\").innerHTML = event.data;\n\n};",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Using fetch() Inside a Worker"
+  },
+  {
+   "type": "p",
+   "text": "A worker can download data from a server."
+  },
+  {
+   "type": "p",
+   "text": "The downloaded data can then be sent back to the main thread."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadData() {\n\n  const response = await fetch(\"data.txt\");\n\n  const text = await response.text();\n\n  postMessage(text);\n\n}\n\nloadData();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_worker_fetch"
+  },
+  {
+   "type": "h2",
+   "text": "Using Timers"
+  },
+  {
+   "type": "p",
+   "text": "Workers support JavaScript timers."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setInterval(function() {\n\n  postMessage(new Date().toLocaleTimeString());\n\n}, 1000);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "When Should You Use a Worker?"
+  },
+  {
+   "type": "p",
+   "text": "Workers are useful for long-running JavaScript tasks."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Good Uses"
+    ],
+    [
+     "Large mathematical calculations"
+    ],
+    [
+     "Image processing"
+    ],
+    [
+     "Video processing"
+    ],
+    [
+     "Searching large datasets"
+    ],
+    [
+     "Compression and decompression"
+    ],
+    [
+     "Encryption"
+    ],
+    [
+     "Artificial Intelligence"
+    ],
+    [
+     "Scientific calculations"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "When Should You Not Use a Worker?"
+  },
+  {
+   "type": "p",
+   "text": "Workers are not needed for small tasks."
+  },
+  {
+   "type": "p",
+   "text": "Creating a worker takes time and uses memory."
+  },
+  {
+   "type": "p",
+   "text": "Simple calculations often run faster on the main thread."
+  },
+  {
+   "type": "p",
+   "text": "Do not create a worker unless the task is large enough to benefit from another thread."
+  },
+  {
+   "type": "h2",
+   "text": "Asynchronous Programming vs Web Workers"
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous programming and Web Workers solve different problems."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Asynchronous Programming",
+     "Web Workers"
+    ],
+    [
+     "One JavaScript thread",
+     "Multiple JavaScript threads"
+    ],
+    [
+     "Good for waiting",
+     "Good for calculating"
+    ],
+    [
+     "Uses Promises and async/await",
+     "Uses Worker objects"
+    ],
+    [
+     "Network requests",
+     "CPU-intensive tasks"
+    ],
+    [
+     "Does not block while waiting",
+     "Does not block while calculating"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Asynchronous programming keeps JavaScript busy while waiting."
+  },
+  {
+   "type": "p",
+   "text": "Web Workers keep the browser responsive while JavaScript is calculating."
+  },
+  {
+   "type": "h2",
+   "text": "Common Mistakes"
+  },
+  {
+   "type": "h3",
+   "text": "Trying to Access the DOM"
+  },
+  {
+   "type": "p",
+   "text": "This will fail:"
+  },
+  {
+   "type": "p",
+   "text": "document.getElementById(\"demo\").innerHTML = \"Hello\";"
+  },
+  {
+   "type": "p",
+   "text": "Workers must use postMessage() instead."
+  },
+  {
+   "type": "h3",
+   "text": "Creating Too Many Workers"
+  },
+  {
+   "type": "p",
+   "text": "Workers consume memory and CPU resources."
+  },
+  {
+   "type": "p",
+   "text": "Create only the workers you need."
+  },
+  {
+   "type": "h3",
+   "text": "Forgetting to Stop Workers"
+  },
+  {
+   "type": "p",
+   "text": "Terminate workers when they are no longer needed."
+  },
+  {
+   "type": "p",
+   "text": "worker.terminate();"
+  },
+  {
+   "type": "h2",
+   "text": "Summary"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Web Workers run JavaScript on a separate thread.",
+    "Workers keep the main thread responsive during long calculations.",
+    "Workers communicate with the main thread using postMessage().",
+    "Workers cannot access the DOM.",
+    "Workers support Promises, fetch(), and timers.",
+    "Use workers for CPU-intensive tasks.",
+    "Use asynchronous programming for waiting on operations such as timers and network requests."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Congratulations!"
+  },
+  {
+   "type": "p",
+   "text": "You have completed the JavaScript Asynchronous Programming tutorial."
+  },
+  {
+   "type": "p",
+   "text": "You have learned how JavaScript handles asynchronous operations using:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Callbacks",
+    "Promises",
+    "async / await",
+    "The Event Loop",
+    "Timers",
+    "Fetch API",
+    "AbortController",
+    "Web Workers"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "You are now ready to build responsive JavaScript applications that can perform asynchronous operations and long-running calculations efficiently."
+  }
+ ]
+}

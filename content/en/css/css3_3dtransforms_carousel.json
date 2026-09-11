@@ -1,0 +1,129 @@
+{
+ "slug": "css3_3dtransforms_carousel",
+ "course": "css",
+ "order": 135,
+ "url": "/css/css3_3dtransforms_carousel.asp",
+ "title": "CSS 3D Transforms - 3D Carousel",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "CSS 3D Transforms - 3D Carousel"
+  },
+  {
+   "type": "h2",
+   "text": "CSS - A Rotating 3D Carousel"
+  },
+  {
+   "type": "p",
+   "text": "Here we demonstrate how to make another classic 3D object: A rotating\ncarousel."
+  },
+  {
+   "type": "h2",
+   "text": "The HTML Structure"
+  },
+  {
+   "type": "p",
+   "text": "Let's start with the basic HTML structure:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<div class=\"container\">\n  <div class=\"carousel\">\n\n  <div class=\"card\" style=\"--index:0;\">1</div>\n    <div\n  class=\"card\" style=\"--index:1;\">2</div>\n    <div\n  class=\"card\" style=\"--index:2;\">3</div>\n    <div\n  class=\"card\" style=\"--index:3;\">4</div>\n    <div\n  class=\"card\" style=\"--index:4;\">5</div>\n    <div\n  class=\"card\" style=\"--index:5;\">6</div>\n  </div>\n</div>",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "The container element will house the 3D\nspace. The carousel element acts as the 3D object.\nSix separate card elements are used for the\nsix items of the carousel."
+  },
+  {
+   "type": "h2",
+   "text": "The CSS Styling"
+  },
+  {
+   "type": "p",
+   "text": "First, we define some variables in the :root\nelement. We create some custom variables for width, height, and total items.\nHere, the carousel will have six card items. We also have to calculate the radius."
+  },
+  {
+   "type": "p",
+   "text": "The radius has the following formula: radius = (width / 2) / tan(360 / quantity / 2)."
+  },
+  {
+   "type": "p",
+   "text": "For 6 card items of 200px width: (200 / 2) / tan(360 / 6 / 2) = 100 / 0.577 = ~173px.\nWe set --radius to 173px;"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ":root {\n  --card-width: 200px;\n  --card-height: 300px;\n\n  --total-items: 6;\n  --radius: 173px; /* Calculated radius for 6 cards\n  */\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Next, we define the 3D container box: Apply perspective, along with height,\nwidth and margin:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".container {\n  width:\n  var(--card-width);\n  height: var(--card-height);\n  margin:\n  80px auto;\n  perspective: 1000px;\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Now the carousel element can be transformed in its container's 3D space.\nWe add width: 100%; and height: 100%;. The position: relative is used to position\nthe cards absolutely.\nThe transform-style: preserve-3d is essential here. It forces child elements\ninto 3D space. Without this, the cards flatten into a 2D sheet.\nWe also add a CSS animation, to trigger continuous rotation of the carousel:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".carousel {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 20s infinite linear;\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Then, we add some base styling for all six cards.\nTo position the cards in 3D space, we will need to reset their positions in 2D with position: absolute:.\nThen we use rotateY() to rotate each card, and translateZ() to push it out to\nform the cylinder edge:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".card {\n  position:\n  absolute;\n  width: 100%;\n  height: 100%;\n  left: 0;\n\n  top: 0;\n  background: linear-gradient(to bottom, red, yellow);\n\n  color: white;\n  font-size: 2rem;\n  display: flex;\n\n  align-items: center;\n  justify-content: center;\n\n  border-radius: 10px;\n\n  transform:\n    rotateY(calc(var(--index) * (360deg /\n  var(--total-items))))\n    translateZ(var(--radius));\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Then, we create the keyframe animation to rotate the carousel:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "@keyframes spin {\n  from\n  { transform: rotateY(0deg); }\n  to { transform: rotateY(360deg); }\n\n  }",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "At the end, we create a pause on hover for easier viewing:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".carousel:hover {\n\n  animation-play-state: paused;\n}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Full Example of Rotating 3D Carousel"
+  },
+  {
+   "type": "p",
+   "text": "Here is the full example of the rotating 3D carousel:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ":root {\n  --card-width: 200px;\n  --card-height: 200px;\n\n  --total-items: 6;\n  --radius: 173px; /* Calculated radius for 6 cards\n  */\n}\n\n.container {\n\n  width: var(--card-width);\n  height: var(--card-height);\n\n  margin: 80px auto;\n  perspective: 1000px;\n}\n\n.carousel {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 20s infinite linear;\n}\n\n.card {\n  position: absolute;\n\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n\n  background: linear-gradient(to bottom, red, yellow);\n  color: white;\n\n  font-size: 2rem;\n  display: flex;\n  align-items: center;\n\n  justify-content: center;\n  border-radius: 10px;\n  transform:\n\n    rotateY(calc(var(--index) * (360deg /\n  var(--total-items))))\n    translateZ(var(--radius));\n}\n\n@keyframes spin {\n  from {\n  transform: rotateY(0deg); }\n  to { transform: rotateY(360deg); }\n}\n\n  .carousel:hover {\n  animation-play-state: paused;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_carousel"
+  }
+ ]
+}

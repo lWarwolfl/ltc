@@ -1,0 +1,171 @@
+{
+ "slug": "css_grid_item_name",
+ "course": "css",
+ "order": 183,
+ "url": "/css/css_grid_item_name.asp",
+ "title": "نام‌گذاری آیتم‌های Grid در CSS",
+ "summary": "به‌جای شمردن شمارهٔ خط‌ها می‌توانید با grid-area به آیتم‌های grid نام بدهید و با grid-template-areas ناحیه‌ها را روی یک نقشهٔ متنی بچینید. این درس با همین روش یک قالب صفحهٔ وب کامل می‌سازد.",
+ "objectives": [
+  "با grid-area به آیتم grid نام بدهید",
+  "با grid-template-areas ناحیه‌های چیدمان را روی نقشه بچینید",
+  "خانه‌های خالی را با نقطه علامت بزنید",
+  "یک قالب سه‌سطری آمادهٔ صفحهٔ وب بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "نام‌گذاری آیتم‌های Grid در CSS"
+  },
+  {
+   "type": "h2",
+   "text": "نام‌گذاری آیتم‌های grid با grid-area"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت grid-template-areas یک خصوصیت ظرف grid است و ناحیه‌های داخل چیدمان grid را تعیین می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با خصوصیت grid-area به آیتم‌های grid نام بدهید و بعد در خصوصیت grid-template-areas به همان نام ارجاع بدهید."
+  },
+  {
+   "type": "p",
+   "text": "هر ناحیه داخل آپستروف نوشته می‌شود. آیتم‌های نام‌دار هر ناحیه هم داخل همان آپستروف و جدا شده با فاصله می‌آیند."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".container {\n  display: grid;\n  grid-template-areas: 'myHeader\n  myHeader myHeader myHeader myHeader';\n}\n\n.item1 {\n  grid-area:\n  myHeader;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-area_named"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانیم با نقطه (.) به خانه‌ای بدون آیتم نام‌دار اشاره کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".container {\n  display: grid;\n  grid-template-areas: 'myHeader\n  myHeader myHeader . .';\n}\n\n.item1 {\n  grid-area:\n  myHeader;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-area_named1"
+  },
+  {
+   "type": "p",
+   "text": "برای تعریف دو سطر (دو ناحیه)، سطر دوم را داخل یک جفت آپستروف دیگر بنویسید:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".container {\n  display: grid;\n  grid-template-areas:\n    'myHeader\n  myHeader\n  . . .'\n    'myHeader myHeader . . .';\n}\n\n.item1 {\n  grid-area:\n  myHeader;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-area_named2"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت یک قالب آمادهٔ صفحهٔ وب"
+  },
+  {
+   "type": "p",
+   "text": "در اینجا به همهٔ آیتم‌های grid نام می‌دهیم تا یک قالب آمادهٔ صفحهٔ وب بسازیم:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".item1 { grid-area: header; }\n.item2 { grid-area: menu; }\n.item3 {\n  grid-area: main; }\n.item4 { grid-area: right; }\n.item5 { grid-area:\n  footer; }\n\n.container {\n  display: grid;\n  grid-template-areas:\n\n  'header header header header header header'\n    'menu main\n  main main main right'\n    'menu footer footer footer footer\n  footer';\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-area_named3"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل gname.html بسازید، ظرفی با display: grid و یک div با کلاس item1 داخلش بگذارید و به آن grid-area: myHeader; بدهید.",
+   "hint": "نامی که در grid-area می‌گذارید همان نامی است که در grid-template-areas به کار می‌برید."
+  },
+  {
+   "prompt": "برای ظرف بنویسید grid-template-areas: 'myHeader myHeader myHeader myHeader myHeader'; و ببینید آیتم تمام سطر را می‌گیرد.",
+   "hint": "تعداد نام‌های هر سطر همان تعداد ستون‌های آن سطر است."
+  },
+  {
+   "prompt": "دو خانهٔ آخر سطر را با نقطه خالی کنید: 'myHeader myHeader myHeader . .' و نتیجه را ببینید.",
+   "hint": "نقطه یعنی این خانه آیتم نام‌دار ندارد."
+  },
+  {
+   "prompt": "سطر دومی با آپستروف جدا اضافه کنید و ناحیهٔ myHeader را در چند سطر تکرار کنید.",
+   "hint": "هر سطر یک جفت آپستروف جدا دارد و تعداد نام‌های هر سطر باید برابر باشد."
+  },
+  {
+   "prompt": "با الگوی درس یک قالب صفحهٔ وب بسازید: پنج آیتم با نام‌های header و menu و main و right و footer و یک grid-template-areas سه‌سطری که آن‌ها را می‌چیند.",
+   "hint": "در الگوی درس، menu دو سطر می‌گیرد و footer در سطر آخر کشیده می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "با کدام خصوصیت به یک آیتم grid نام می‌دهید؟",
+   "options": [
+    "grid-template-areas",
+    "grid-area",
+    "grid-column",
+    "grid-name"
+   ],
+   "answer": 1,
+   "explanation": "نام روی خود آیتم با grid-area تعیین می‌شود و بعد در ظرف با grid-template-areas به آن ارجاع می‌دهید."
+  },
+  {
+   "question": "در grid-template-areas علامت نقطه (.) چه معنایی دارد؟",
+   "options": [
+    "خانه‌ای بدون آیتم نام‌دار",
+    "شروع سطر جدید",
+    "جداکنندهٔ نام‌ها",
+    "یک ستون پنهان"
+   ],
+   "answer": 0,
+   "explanation": "نقطه یعنی آن خانه خالی می‌ماند و آیتم نام‌داری در آن قرار نمی‌گیرد."
+  },
+  {
+   "question": "برای تعریف سطر دوم ناحیه‌ها چه می‌کنید؟",
+   "options": [
+    "یک خط جدید بدون آپستروف می‌نویسید",
+    "از کاما استفاده می‌کنید",
+    "سطر را داخل یک جفت آپستروف جدید می‌نویسید",
+    "در هر سطر فقط یک نام می‌گذارید"
+   ],
+   "answer": 2,
+   "explanation": "هر سطر ناحیه‌ها داخل آپستروف خودش نوشته می‌شود؛ دو سطر یعنی دو جفت آپستروف."
+  },
+  {
+   "question": "اگر در یک سطر آپستروف ۴ نام بنویسید، آن سطر چند ستون دارد؟",
+   "options": [
+    "۲",
+    "۴",
+    "۶",
+    "بستگی به تعداد سطرهای دیگر دارد"
+   ],
+   "answer": 1,
+   "explanation": "تعداد نام‌های داخل آپستروف یک سطر، همان تعداد ستون‌های آن سطر است؛ در همهٔ سطرها باید برابر باشد."
+  },
+  {
+   "question": "کدام ترتیب کار درست است؟",
+   "options": [
+    "اول grid-template-areas را در آیتم بنویسید، بعد grid-area را در ظرف",
+    "اول با grid-area به آیتم نام بدهید، بعد در grid-template-areas به آن نام ارجاع بدهید",
+    "هر دو در یک جای واحد نوشته می‌شوند",
+    "هیچ‌کدام لازم نیست؛ grid خودش نام می‌سازد"
+   ],
+   "answer": 1,
+   "explanation": "grid-area روی آیتم است و grid-template-areas روی ظرف؛ نامی که در یکی تعریف می‌شود در دیگری به کار می‌رود."
+  }
+ ]
+}

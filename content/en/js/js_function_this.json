@@ -1,0 +1,483 @@
+{
+ "slug": "js_function_this",
+ "course": "js",
+ "order": 204,
+ "url": "/js/js_function_this.asp",
+ "title": "The JavaScript this Keyword",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "The JavaScript this Keyword"
+  },
+  {
+   "type": "h2",
+   "text": "What is this?"
+  },
+  {
+   "type": "p",
+   "text": "When the this keyword is used in a function, it refers to an Object."
+  },
+  {
+   "type": "p",
+   "text": "Which Object, is not decided when the function is written."
+  },
+  {
+   "type": "p",
+   "text": "The value of this is decided when the function is called."
+  },
+  {
+   "type": "p",
+   "text": "This chapter contains an advanced topic."
+  },
+  {
+   "type": "p",
+   "text": "Make sure you understand basic JavaScript functions before continuing."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Functions Tutorial"
+  },
+  {
+   "type": "h2",
+   "text": "Functions are Object Methods"
+  },
+  {
+   "type": "p",
+   "text": "All JavaScript functions are object methods."
+  },
+  {
+   "type": "p",
+   "text": "A function can be:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "A method of a JavaScript object",
+    "A method of the global object"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "this in an Object Method"
+  },
+  {
+   "type": "p",
+   "text": "When a function is an object method:"
+  },
+  {
+   "type": "p",
+   "text": "this refers to the object that owns the method."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  fullName: function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n  }\n\n};\n\nperson.fullName();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_object"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, this refers to the person object."
+  },
+  {
+   "type": "p",
+   "text": "this.firstName means the firstName property of person."
+  },
+  {
+   "type": "p",
+   "text": "this.firstName is the same as person.firstName."
+  },
+  {
+   "type": "h2",
+   "text": "this in a Function (Default)"
+  },
+  {
+   "type": "p",
+   "text": "By default, when this is used in a regular function,\nthis refers to the global object."
+  },
+  {
+   "type": "p",
+   "text": "In a browser window, the global object is [object Window]:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction() {\n\n    return this;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_function"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, this is the global object."
+  },
+  {
+   "type": "h2",
+   "text": "this in a Function (Strict Mode)"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript strict mode does not allow default binding."
+  },
+  {
+   "type": "p",
+   "text": "In strict mode, this used inside a function is undefined."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\nfunction myFunction() {\n\n  return this;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_strict"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, this is undefined."
+  },
+  {
+   "type": "h2",
+   "text": "this Alone"
+  },
+  {
+   "type": "p",
+   "text": "When used outside a function, this always refers to the global object."
+  },
+  {
+   "type": "p",
+   "text": "In a browser window the global object is [object Window]:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = this;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this"
+  },
+  {
+   "type": "p",
+   "text": "In a regular function in strict mode, when used outside a function, this also refers to the global object:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nlet x = this;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_alone"
+  },
+  {
+   "type": "p",
+   "text": "In both the examples above, this is the global object."
+  },
+  {
+   "type": "p",
+   "text": "It is so because , this is in the global scope."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript globalThis"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript, globalThis is a special built-in object that provides a standard way to access the global object,\nregardless of the environment your code runs in - whether it is a browser, Node.js, a Web Worker,\nor another JS runtime."
+  },
+  {
+   "type": "p",
+   "text": "The global object is the top-level object in a JavaScript environment:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "In browsers, it is window.",
+    "In Node.js, it is global.",
+    "In Web Workers, it is self."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Each environment used to have its own name for this object.\nThis caused compatibility issues for code meant to run everywhere."
+  },
+  {
+   "type": "p",
+   "text": "globalThis was introduced in ECMAScript 2020\n(ES11) to solve that problem. It is a unified reference to the global object, no matter the environment."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "globalThis === window; // true in browsers\n\nglobalThis === global; // true in Node.js",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_globalthis"
+  },
+  {
+   "type": "h2",
+   "text": "this in Event Handlers"
+  },
+  {
+   "type": "p",
+   "text": "In HTML event handlers, this refers to the HTML element that received the\nevent:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"this.innerHTML='Clicked!'\">Click Me</button>",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"this.style.display='none'\">\n  Click to\nRemove Me!\n</button>",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_click"
+  },
+  {
+   "type": "h2",
+   "text": "this in Arrow Functions"
+  },
+  {
+   "type": "p",
+   "text": "Arrow functions do not have their own this.\nThey inherit this from the surrounding scope."
+  },
+  {
+   "type": "p",
+   "text": "In regular functions the this keyword represents the object that called the\nfunction, which could be the window, the document, a button or whatever."
+  },
+  {
+   "type": "p",
+   "text": "With arrow functions the this keyword always represents the\nobject that defined the arrow function."
+  },
+  {
+   "type": "h2",
+   "text": "What is this?"
+  },
+  {
+   "type": "p",
+   "text": "In JavaScript, the this keyword refers to an object."
+  },
+  {
+   "type": "p",
+   "text": "The this keyword refers to different objects depending on how it is used:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Alone, this refers to the global object."
+    ],
+    [
+     "In a function, this refers to the global object."
+    ],
+    [
+     "In a function, in strict mode, this is undefined."
+    ],
+    [
+     "In an object method, this refers to the object."
+    ],
+    [
+     "In an event, this refers to the element that received the event."
+    ],
+    [
+     "In methods like call(), apply()\nand bind(), this can refer to any object."
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "this is not a variable."
+  },
+  {
+   "type": "p",
+   "text": "this is a keyword."
+  },
+  {
+   "type": "p",
+   "text": "You cannot change the value of this."
+  },
+  {
+   "type": "h2",
+   "text": "This Precedence"
+  },
+  {
+   "type": "p",
+   "text": "Use the following precedence of order to determine which object this refers to:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Order",
+     "Object",
+     "Because"
+    ],
+    [
+     "1",
+     "bind()",
+     "this is in a function being called using bind()"
+    ],
+    [
+     "2",
+     "apply()",
+     "this is in a function being called using apply()"
+    ],
+    [
+     "2",
+     "call()",
+     "this is in a function being called using call()"
+    ],
+    [
+     "3",
+     "Object method",
+     "this is in an object function (method)"
+    ],
+    [
+     "4",
+     "Global scope",
+     "this is in a function in the global scope"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Examples to Understand"
+  },
+  {
+   "type": "p",
+   "text": "Below are two examples that call the same method twice:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "When the page loads",
+    "When the user clicks a button"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The first example uses a regular function, and the second example uses an arrow function."
+  },
+  {
+   "type": "p",
+   "text": "The result shows that the first example returns two different objects (window and button),\nand the\nsecond example returns the window object twice, because the window object is the\n\"owner\" of the function."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Regular Function:\nhello = function() {\n  document.getElementById(\"demo\").innerHTML\n  += this;\n}\n\n// The window object calls the function:\n\n  window.addEventListener(\"load\", hello);\n\n// A button object calls the\n  function:\ndocument.getElementById(\"btn\").addEventListener(\"click\", hello);",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Arrow Function:\nhello = () => {\n  document.getElementById(\"demo\").innerHTML\n  += this;\n}\n\n// The window object calls the function:\n\n  window.addEventListener(\"load\", hello);\n\n// A button object calls the\n  function:\ndocument.getElementById(\"btn\").addEventListener(\"click\", hello);",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arrow_function6"
+  },
+  {
+   "type": "h2",
+   "text": "Arrow Functions in Methods"
+  },
+  {
+   "type": "p",
+   "text": "With arrow functions there are no binding of\nthis."
+  },
+  {
+   "type": "p",
+   "text": "They are not well suited for defining object methods."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n      firstName: \"John\",\n\n      sayHello: () => {\n\n        return this.firstName;\n\n      }\n\n    };\n\n    person.sayHello();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_arrow"
+  },
+  {
+   "type": "p",
+   "text": "The example above does not work as expected because thisdoes not refer to the person object."
+  },
+  {
+   "type": "p",
+   "text": "Arrow functions can be useful inside methods when you want to keep the same\n this value."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n      firstName: \"John\",\n\n      sayHello: function() {\n\n        return () => this.firstName;\n\n      }\n\n    };\n\n    let hello = person.sayHello();\n\n    hello();",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Quiz"
+  },
+  {
+   "type": "p",
+   "text": "What does this refer to inside an object method?"
+  },
+  {
+   "type": "h2",
+   "text": "Common Mistakes"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Arrow Functions as Object Methods\nArrow functions do not bind their own this.",
+    "Assuming this Refers to an Object\nThe value of this depends on how the function is called.",
+    "Forgetting Strict Mode Behavior\nIn strict mode, this can be undefined."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "What's Next?"
+  },
+  {
+   "type": "p",
+   "text": "Now you understand how this works naturally."
+  },
+  {
+   "type": "p",
+   "text": "Are you ready to learn how to control it manually?"
+  },
+  {
+   "type": "p",
+   "text": "The JavaScript call() Function"
+  },
+  {
+   "type": "p",
+   "text": "The JavaScript apply() Function"
+  },
+  {
+   "type": "p",
+   "text": "The JavaScript bind() Function"
+  }
+ ]
+}

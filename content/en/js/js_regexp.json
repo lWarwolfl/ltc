@@ -1,0 +1,641 @@
+{
+ "slug": "js_regexp",
+ "course": "js",
+ "order": 81,
+ "url": "/js/js_regexp.asp",
+ "title": "JavaScript RegExp",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript RegExp"
+  },
+  {
+   "type": "h2",
+   "text": "Regular Expressions"
+  },
+  {
+   "type": "p",
+   "text": "A Regular Expression is a sequence of characters that forms a search pattern."
+  },
+  {
+   "type": "p",
+   "text": "Regex is a common shorthand for a regular expression."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp is an Object for handling Regular Expressions."
+  },
+  {
+   "type": "p",
+   "text": "RegExp are be used for:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Text searching",
+    "Text replacing",
+    "Text validation"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Visit W3Schools\";\n\nlet n = text.search(/w3schools/i);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_string_search"
+  },
+  {
+   "type": "p",
+   "text": "Example explained:"
+  },
+  {
+   "type": "p",
+   "text": "/w3schools/i  is a regular expression."
+  },
+  {
+   "type": "p",
+   "text": "w3schools  is a pattern (to be used in a search)."
+  },
+  {
+   "type": "p",
+   "text": "i  is a modifier (modifies the search to be case-insensitive)."
+  },
+  {
+   "type": "h2",
+   "text": "Regular Expression Syntax"
+  },
+  {
+   "type": "p",
+   "text": "/pattern/modifier flags"
+  },
+  {
+   "type": "h2",
+   "text": "Using String Methods"
+  },
+  {
+   "type": "p",
+   "text": "Regular expressions are often used with the string methods:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Method",
+     "Description"
+    ],
+    [
+     "match(regex)",
+     "Returns an Array of results"
+    ],
+    [
+     "replace(regex)",
+     "Returns a new String"
+    ],
+    [
+     "search(regex)",
+     "Returns the index of the first match"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Using String match()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Visit W3Schools\";\n\nlet n = text.match(/W3schools/);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_match"
+  },
+  {
+   "type": "h2",
+   "text": "Using String replace()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Visit Microsoft!\";\n\nlet result = text.replace(/Microsoft/i, \"W3Schools\");",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_replace"
+  },
+  {
+   "type": "h2",
+   "text": "Using String search()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Visit W3Schools\";\n\nlet n = text.search(/W3Schools/);",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_search"
+  },
+  {
+   "type": "h2",
+   "text": "RexExp Alternation (OR)"
+  },
+  {
+   "type": "p",
+   "text": "In a regular expression an alternation is denoted with a vertical line character |."
+  },
+  {
+   "type": "p",
+   "text": "An alternation matches any of the alternatives separated with |."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Black, white, red, green, blue, yellow.\";\n\nlet result = text.match(/red|green|blue/g);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_xy"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Regex Flags"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "/pattern/flags",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Regular expression flags are parameters that can modify how a pattern is used,\nsuch as making it case-insensitive or global."
+  },
+  {
+   "type": "p",
+   "text": "These are the most common:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Flag",
+     "Description"
+    ],
+    [
+     "/g",
+     "Performs a global match (find all)"
+    ],
+    [
+     "/i",
+     "Performs case-insensitive matching"
+    ],
+    [
+     "/u",
+     "Enables Unicode support (new 2015)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The /g Flag (Global)"
+  },
+  {
+   "type": "p",
+   "text": "The /g flag matches all occurrences of the pattern, rather than just the first one."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Is this all there is?\";\n\nconst pattern = /is/g;\n\nlet result = text.match(pattern);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_g"
+  },
+  {
+   "type": "h2",
+   "text": "The /i Flag (Insensitive)"
+  },
+  {
+   "type": "p",
+   "text": "The /i flag makes a match case-insensitive: /abc/i matches \"abc\", \"AbC\", \"ABC\"."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Visit W3Schools\";\n\nconst pattern = /w3schools/i;\n\nlet result = text.match(pattern);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_i"
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Flags"
+  },
+  {
+   "type": "h2",
+   "text": "RexExp Metacharacters"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Match words\n\nconst pattern = /\\w/;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Metacharacters are characters with a special meaning."
+  },
+  {
+   "type": "p",
+   "text": "They can be used to match digits, words, spaces, and more."
+  },
+  {
+   "type": "p",
+   "text": "These are the most common:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Meta",
+     "Description"
+    ],
+    [
+     "\\d",
+     "Matches Digits"
+    ],
+    [
+     "\\w",
+     "Matches Words"
+    ],
+    [
+     "\\s",
+     "Matches Spaces"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "RegExp \\d (digits) Metacharacter"
+  },
+  {
+   "type": "p",
+   "text": "The \\d metacharacter matches digits."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\d/g;\n\nlet result = text.match(pattern);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_d"
+  },
+  {
+   "type": "h2",
+   "text": "RegExp \\w (word) Metacharacter"
+  },
+  {
+   "type": "p",
+   "text": "The \\w metacharacter matches word characters."
+  },
+  {
+   "type": "p",
+   "text": "A word character is a character a-z, A-Z, 0-9, including _ (underscore)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\w/g;\n\nlet result = text.match(pattern);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_wordchar"
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Metacharacters"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript RegExp Quantifiers"
+  },
+  {
+   "type": "p",
+   "text": "Quantifiers define the numbers of characters or expressions to match."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /lo+/;",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The + means \"one or more\". The pattern matches:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "lo",
+    "loo",
+    "looo"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "These are the most common quantifiers:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Quantifier",
+     "Description"
+    ],
+    [
+     "x+",
+     "Matches any string with at least one occurrences of x"
+    ],
+    [
+     "x*",
+     "Matches any string with zero or more occurrences of x"
+    ],
+    [
+     "x?",
+     "Matches any string with zero or one occurrences of x"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The ? Quantifier"
+  },
+  {
+   "type": "p",
+   "text": "x? matches zero or one occurrences of x."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"1, 100 or 1000?\";\n\nconst pattern = /10?/g;\n\nlet result = text.match(pattern);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n3"
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Quantifiers"
+  },
+  {
+   "type": "h2",
+   "text": "Regular Expression Assertions"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Match beginning of string\n\nconst pattern = /^W3Schools/;\n\n// Match end of string\n\nconst pattern = /W3Schools$/;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Assertions matches Boundaries and Lookarounds:"
+  },
+  {
+   "type": "p",
+   "text": "String Boundaries and Word Boundaries."
+  },
+  {
+   "type": "p",
+   "text": "Lookarounds: Lookaheads and Lookbehinds."
+  },
+  {
+   "type": "p",
+   "text": "These are the most common:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Syntax",
+     "Name",
+     "Description"
+    ],
+    [
+     "^",
+     "String boundary",
+     "Matches the beginning of a string"
+    ],
+    [
+     "$",
+     "String boundary",
+     "Matches the end of a string"
+    ],
+    [
+     "\\b",
+     "Word boundary",
+     "Matches the beginning or end of a word"
+    ],
+    [
+     "(?=...)",
+     "Lookahead",
+     "Matches the subsequent string"
+    ],
+    [
+     "(?<=...)",
+     "Lookbehind",
+     "Matches the previous string"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "RegExp ^ Metacharacter"
+  },
+  {
+   "type": "p",
+   "text": "The ^ metacharacter matches the beginning of a string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /^W3Schools/;\n\nlet text = \"W3Schools Tutorial\";\n\nlet result = pattern.test(text); // true",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /^W3Schools/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // false",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_hat"
+  },
+  {
+   "type": "h2",
+   "text": "RegExp $ Metacharacter"
+  },
+  {
+   "type": "p",
+   "text": "The $ metacharacter matches the end of a string."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools$/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // true",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools$/;\n\nlet text = \"W3Schools tutorial\";\n\nlet result = pattern.test(text); // false",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_dollar"
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Assertions"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript RegExp Character Classes"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Match Digits\n\nconst pattern = /[0-9]/;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Character Classes are characters enclosed in square brackets []."
+  },
+  {
+   "type": "p",
+   "text": "A character class matches any character from a set within brackets."
+  },
+  {
+   "type": "p",
+   "text": "These are the most common:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Class",
+     "Description"
+    ],
+    [
+     "[a]",
+     "Matches the character between the brackets"
+    ],
+    [
+     "[abc]",
+     "Matches all characters between the brackets"
+    ],
+    [
+     "[a-z]",
+     "Matches all characters in the range from a to z"
+    ],
+    [
+     "[0-9]",
+     "Matches all characters in the range from 0 to 9"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"More than 1000 times\";\n\nconst pattern = /[0-9]/g;\n\nlet result = text.match(pattern);",
+   "caption": "Example [0-9]"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_0-9_1"
+  },
+  {
+   "type": "h2",
+   "text": "Learn More:"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Flags"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Character Classes"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Meta Characters"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Assertions"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Groups"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Quantifiers"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Patterns"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Objects"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript RegExp Methods"
+  }
+ ]
+}

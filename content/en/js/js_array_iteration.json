@@ -1,0 +1,733 @@
+{
+ "slug": "js_array_iteration",
+ "course": "js",
+ "order": 66,
+ "url": "/js/js_array_iteration.asp",
+ "title": "JavaScript Array Iterations",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Array Iterations"
+  },
+  {
+   "type": "h2",
+   "text": "Array Iteration Methods"
+  },
+  {
+   "type": "p",
+   "text": "Array iteration methods operate on every array item."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "Array for...of\nArray for...in\nArray forEach()\nArray map()\nArray flatMap()\nArray filter()\nArray reduce()\nArray reduceRight()\nArray every()",
+     "Array some()\nArray from()\nArray keys()\nArray entries()\nArray with()\nArray Spread (...)\nArray Rest (...)"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Complete JavaScript Array Reference"
+  },
+  {
+   "type": "h2",
+   "text": "Looping Array Values"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript provides 3 simple statements for looping over each array items:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "for ... of (loops over entries)",
+    "for ... in (loops over indexes)",
+    "forEach (myFunction)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "The for...of Loop (Recommended)"
+  },
+  {
+   "type": "p",
+   "text": "The for...of statements hands you the array values."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst cars = ['BMW', 'Volvo', 'Mini'];\n\n// Iterate over the Array values\n\nlet text = \"\";\n\nfor (let x of cars) {\n\n  text += x + \",\";\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_loop_array_for_of"
+  },
+  {
+   "type": "h2",
+   "text": "The for...in Loop (Not Recommended)"
+  },
+  {
+   "type": "p",
+   "text": "The for...in statements hands you the array indexes."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst cars = ['BMW', 'Volvo', 'Mini'];\n\n// Iterate over the Array values\n\nlet text = \"\";\n\nfor (let x in cars) {\n\n  text += x + \",\";\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_loop_array_for_in"
+  },
+  {
+   "type": "p",
+   "text": "To make it return the elements you must use [x]."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst cars = ['BMW', 'Volvo', 'Mini'];\n\n// Iterate over the Array values\n\nlet text = \"\";\n\nfor (let x in cars) {\n\n  text += cars[x] + \"\n\";\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_loop_array_for_in_2"
+  },
+  {
+   "type": "p",
+   "text": "Even though it works, using for...in for arrays is generally a bad idea."
+  },
+  {
+   "type": "p",
+   "text": "for...in was created to inspect Object properties (like: name, age, height), not Arrays."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array forEach()"
+  },
+  {
+   "type": "p",
+   "text": "The forEach() method calls a function (a callback function) for each array element."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet txt = \"\";\n\nnumbers.forEach(myFunction);\n\nfunction myFunction(value, index, array) {\n\ntxt += value + \"<br>\";\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach"
+  },
+  {
+   "type": "p",
+   "text": "Note that the function takes 3 arguments:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The item value",
+    "The item index",
+    "The array itself"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The example above uses only the value parameter. The example can be rewritten\nto:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet txt = \"\";\n\nnumbers.forEach(myFunction);\n\nfunction myFunction(value) {\n\ntxt += value + \"<br>\";\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach_2"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array map()"
+  },
+  {
+   "type": "p",
+   "text": "The map() method creates a new array by performing a function on each array element."
+  },
+  {
+   "type": "p",
+   "text": "The map() method does not execute the function for array\nelements without values."
+  },
+  {
+   "type": "p",
+   "text": "The map() method does not change the original array."
+  },
+  {
+   "type": "p",
+   "text": "This example multiplies each array value by 2:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return value * 2;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map"
+  },
+  {
+   "type": "p",
+   "text": "Note that the function takes 3 arguments:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The item value",
+    "The item index",
+    "The array itself"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "When a callback function uses only the value parameter, the index and array\nparameters can be omitted:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value) {\n\n    return value * 2;\n\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map_2"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array flatMap()"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 added the Array flatMap() method to JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "The flatMap() method first maps all elements of an array\nand then creates a new array by flattening the array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [1, 2, 3, 4, 5, 6];\n\nconst newArr = myArr.flatMap(x => [x, x * 10]);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_flatmap"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array filter()"
+  },
+  {
+   "type": "p",
+   "text": "The filter() method creates a new array with array elements that pass a test."
+  },
+  {
+   "type": "p",
+   "text": "This example creates a new array from elements with a value larger than 18:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nconst over18 = numbers.filter(myFunction);\n\nfunction myFunction(value, index, array) {\n  return value > 18;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_filter"
+  },
+  {
+   "type": "p",
+   "text": "Note that the function takes 3 arguments:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The item value",
+    "The item index",
+    "The array itself"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "In the example above, the callback function does not use the index and array\nparameters, so they can be omitted:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nconst over18 =\n  numbers.filter(myFunction);\n\nfunction myFunction(value) {\n  return value > 18;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_filter_2"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array reduce()"
+  },
+  {
+   "type": "p",
+   "text": "The reduce() method runs a function on each array element to produce a single value."
+  },
+  {
+   "type": "p",
+   "text": "The reduce() method works from left-to-right in the array. See also reduceRight()."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The reduce() method does not reduce the original array."
+  },
+  {
+   "type": "p",
+   "text": "This example finds the sum of all numbers in an array:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduce(myFunction);\n\nfunction myFunction(total, value, index, array) {\n\n  return total + value;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce"
+  },
+  {
+   "type": "p",
+   "text": "Note that the function takes 4 arguments:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The total (the initial value / previously returned value)",
+    "The item value",
+    "The item index",
+    "The array itself"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Since the example above does not use the index and array parameters, it can be\nrewritten to:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduce(myFunction);\n\nfunction myFunction(total, value) {\n\n  return total + value;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_2"
+  },
+  {
+   "type": "p",
+   "text": "The reduce() method can accept an initial value:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduce(myFunction,\n  100);\n\nfunction myFunction(total, value) {\n  return total + value;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_initial"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array reduceRight()"
+  },
+  {
+   "type": "p",
+   "text": "The reduceRight() method runs a function on each array element to produce a single value."
+  },
+  {
+   "type": "p",
+   "text": "The reduceRight() works from right-to-left in the array. See also reduce()."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The reduceRight() method does not reduce the original array."
+  },
+  {
+   "type": "p",
+   "text": "This example finds the sum of all numbers in an array:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduceRight(myFunction);\n\nfunction myFunction(total, value, index, array) {\n\n  return total + value;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_right"
+  },
+  {
+   "type": "p",
+   "text": "Note that the function takes 4 arguments:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The total (the initial value / previously returned value)",
+    "The item value",
+    "The item index",
+    "The array itself"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The example above does not use the index and array parameters. It can be\nrewritten to:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduceRight(myFunction);\n\nfunction myFunction(total, value) {\n  return total + value;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_right_2"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array every()"
+  },
+  {
+   "type": "p",
+   "text": "The every() method checks if all array values pass a test."
+  },
+  {
+   "type": "p",
+   "text": "This example checks if all array values are larger than 18:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet allOver18 =\n  numbers.every(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_every"
+  },
+  {
+   "type": "p",
+   "text": "Note that the function takes 3 arguments:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The item value",
+    "The item index",
+    "The array itself"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "When a callback function uses the first parameter only (value), the other\nparameters can be omitted:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet allOver18 =\n  numbers.every(myFunction);\n\nfunction myFunction(value) {\n  return\n  value > 18;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_every_2"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array some()"
+  },
+  {
+   "type": "p",
+   "text": "The some() method checks if some array values pass a test."
+  },
+  {
+   "type": "p",
+   "text": "This example checks if some array values are larger than 18:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet someOver18 = numbers.some(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_some"
+  },
+  {
+   "type": "p",
+   "text": "Note that the function takes 3 arguments:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The item value",
+    "The item index",
+    "The array itself"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array.from()"
+  },
+  {
+   "type": "p",
+   "text": "The Array.from() method returns an Array object from:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Any iterable object",
+    "Any object with a length property"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"ABCDEFG\";\n\nArray.from(text);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_from"
+  },
+  {
+   "type": "p",
+   "text": "Array.from() has an optional parameter which allows you to execute a function\non each element of the new array:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myNumbers = [1,2,3,4];\n\nconst myArr = Array.from(myNumbers, (x) => x * 2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_from_array"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array keys()"
+  },
+  {
+   "type": "p",
+   "text": "The Array.keys() method returns an Array Iterator object with the keys of an array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nconst keys = fruits.keys();\n\nfor (let x of keys) {\n\n  text += x + \"<br>\";\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_keys"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array entries()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nconst f = fruits.entries();\n\nfor (let x of f) {\n\n  document.getElementById(\"demo\").innerHTML += x;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_entries"
+  },
+  {
+   "type": "p",
+   "text": "The entries() method returns an Array Iterator object with key/value pairs:"
+  },
+  {
+   "type": "p",
+   "text": "[0, \"Banana\"][1, \"Orange\"][2, \"Apple\"][3, \"Mango\"]"
+  },
+  {
+   "type": "p",
+   "text": "The entries() method does not change the original array."
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array with() Method"
+  },
+  {
+   "type": "p",
+   "text": "ES2023 added the Array with() method as a safe way to update elements in an array without altering the original array."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const months = [\"Januar\", \"Februar\", \"Mar\", \"April\"];\n\nconst myMonths = months.with(2, \"March\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_with"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array Spread (...)"
+  },
+  {
+   "type": "p",
+   "text": "The ... operator expands an array into individual elements."
+  },
+  {
+   "type": "p",
+   "text": "This can be used join arrays:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const arr1 = [1, 2, 3];\n\nconst arr2 = [4, 5, 6];\n\nconst arr3 = [...arr1, ...arr2];",
+   "caption": "Example 1"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, ...arr1 expands arr1 into single elements, ...arr2 expands arr2 into single elements,\nand arr3 is constructed using ...arr1 and ...arr2."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const q1 = [\"Jan\", \"Feb\", \"Mar\"];\n\nconst q2 = [\"Apr\", \"May\", \"Jun\"];\n\nconst q3 = [\"Jul\", \"Aug\", \"Sep\"];\n\nconst q4 = [\"Oct\", \"Nov\", \"Des\"];\n\nconst year = [...q1, ...q2, ...q3, ...q4];",
+   "caption": "Example 2"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_year"
+  },
+  {
+   "type": "p",
+   "text": "The spread operator (...) can be used to copy an array:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const arr1 = [1, 2, 3];\n\nconst arr2 = [...arr1];",
+   "caption": "Example 3"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_copy_array"
+  },
+  {
+   "type": "p",
+   "text": "The spread operator (...) can be used to pass arguments to a function:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [23,55,21,87,56];\n\nlet minValue = Math.min(...numbers);\n\nlet maxValue = Math.max(...numbers);",
+   "caption": "Example 4"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_arguments"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript Array Rest (...)"
+  },
+  {
+   "type": "p",
+   "text": "The rest operator (...) allows us to destruct an array and collect the leftovers:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let a, rest;\n\nconst arr1 = [1,2,3,4,5,6,7,8];\n\n[a, ...rest] = arr1;",
+   "caption": "Examples"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let a, b, rest;\n\nconst arr1 = [1,2,3,4,5,6,7,8];\n\n[a, b, ...rest] = arr1;",
+   "caption": "Examples"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_rest1"
+  },
+  {
+   "type": "h2",
+   "text": "See Also:"
+  },
+  {
+   "type": "p",
+   "text": "Array Tutorial"
+  },
+  {
+   "type": "p",
+   "text": "Array Constructor"
+  },
+  {
+   "type": "p",
+   "text": "Array Basic Methods"
+  },
+  {
+   "type": "p",
+   "text": "Array Search Methods"
+  },
+  {
+   "type": "p",
+   "text": "Array Sort Methods"
+  },
+  {
+   "type": "p",
+   "text": "Array Reference"
+  },
+  {
+   "type": "h2",
+   "text": "Complete JavaScript Reference"
+  },
+  {
+   "type": "p",
+   "text": "For a complete reference to all JavaScript properties and methods, with full descriptions and many examples, go to:"
+  },
+  {
+   "type": "p",
+   "text": "W3Schools' Full JavaScript Reference."
+  },
+  {
+   "type": "p",
+   "text": "The reference inludes all JavaScript updates from 1999 to 2025."
+  }
+ ]
+}
