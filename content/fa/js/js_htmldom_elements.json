@@ -1,0 +1,306 @@
+{
+ "slug": "js_htmldom_elements",
+ "course": "js",
+ "order": 142,
+ "url": "/js/js_htmldom_elements.asp",
+ "title": "انتخاب عنصرهای DOM",
+ "summary": "قبل از تغییر هر چیزی در صفحه، باید عنصر مورد نظر را پیدا کنید. این درس راه‌های پیدا کردن عنصر با شناسه، نام تگ، نام کلاس، انتخابگر CSS و مجموعه‌های شیء را نشان می‌دهد و اشتباه‌های رایج را گوشزد می‌کند.",
+ "objectives": [
+  "پنج راه پیدا کردن عنصر در DOM را نام ببرید",
+  "با getElementById و getElementsByTagName عنصرها را انتخاب کنید",
+  "با querySelector و querySelectorAll بر پایهٔ انتخابگر CSS جست‌وجو کنید",
+  "تشخیص دهید چرا استفاده از # در getElementById خطاست"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "انتخاب عنصرهای DOM"
+  },
+  {
+   "type": "h2",
+   "text": "پیدا کردن عنصرهای HTML"
+  },
+  {
+   "type": "p",
+   "text": "خیلی وقت‌ها می‌خواهید با JavaScript عنصرهای HTML را دست‌کاری کنید."
+  },
+  {
+   "type": "p",
+   "text": "برای این کار نخست باید عنصرها را پیدا کنید. چند راه برای این کار وجود دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "پیدا کردن عنصرهای HTML با شناسه",
+    "پیدا کردن عنصرهای HTML با نام تگ",
+    "پیدا کردن عنصرهای HTML با نام کلاس",
+    "پیدا کردن عنصرهای HTML با انتخابگرهای CSS",
+    "پیدا کردن عنصرهای HTML با مجموعه‌های شیء HTML"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پیدا کردن عنصر با شناسه"
+  },
+  {
+   "type": "p",
+   "text": "ساده‌ترین راه پیدا کردن یک عنصر HTML در DOM، استفاده از شناسهٔ عنصر است."
+  },
+  {
+   "type": "p",
+   "text": "این مثال عنصر با id=\"intro\" را پیدا می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const element = document.getElementById(\"intro\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementbyid"
+  },
+  {
+   "type": "p",
+   "text": "اگر عنصر پیدا شود، متد آن را به‌صورت یک شیء برمی‌گرداند (در element)."
+  },
+  {
+   "type": "p",
+   "text": "اگر عنصر پیدا نشود، element مقدار null می‌گیرد."
+  },
+  {
+   "type": "h2",
+   "text": "پیدا کردن عنصرها با نام تگ"
+  },
+  {
+   "type": "p",
+   "text": "این مثال همهٔ عنصرهای <p> را پیدا می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const element = document.getElementsByTagName(\"p\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbytagname2"
+  },
+  {
+   "type": "p",
+   "text": "این مثال عنصر با id=\"main\" را پیدا می‌کند و بعد همهٔ عنصرهای <p> داخل \"main\" را می‌یابد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const x = document.getElementById(\"main\");\n\nconst y = x.getElementsByTagName(\"p\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbytagname"
+  },
+  {
+   "type": "h2",
+   "text": "پیدا کردن عنصرها با نام کلاس"
+  },
+  {
+   "type": "p",
+   "text": "اگر می‌خواهید همهٔ عنصرهای HTML با یک نام کلاس را پیدا کنید، از getElementsByClassName() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "این مثال فهرستی از همهٔ عنصرهای با class=\"intro\" برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const x = document.getElementsByClassName(\"intro\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbyclassname"
+  },
+  {
+   "type": "h2",
+   "text": "پیدا کردن عنصرها با انتخابگرهای CSS"
+  },
+  {
+   "type": "h2",
+   "text": "متد querySelector()"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<p class=\"demo\"></p>\n\n<script>\n\n// Access a paragraph Element\n\nconst myPara = document.querySelector(\".demo\");\n\n// Change the content of the Element\n\nmyPara.innerHTML = \"Hello World!\";\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselector"
+  },
+  {
+   "type": "h2",
+   "text": "متد querySelectorAll()"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<p class=\"demo\">One</p>\n\n<p class=\"demo\">Two</p>\n\n<script>\n\n// Access a paragraph Element\n\nconst myItems = document.querySelectorAll(\".demo\");\n\n// Change the content of the Element\n\nmyItems[0].innerHTML = \"First\";\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselector_all"
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه‌های رایج"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "استفاده از علامت `#` در getElementById(): اشتباه: \"#demo\"",
+    "فراموش کردن اینکه querySelector() فقط نخستین تطابق را برمی‌گرداند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "اگر می‌خواهید همهٔ عنصرهای HTML را پیدا کنید که با یک انتخابگر CSS مشخص مطابق‌اند (شناسه، نام کلاس‌ها، نوع‌ها، ویژگی‌ها، مقدار ویژگی‌ها و ...)، از متد querySelectorAll() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "این مثال فهرستی از همهٔ عنصرهای <p> با class=\"intro\" برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const x = document.querySelectorAll(\"p.intro\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselectorall"
+  },
+  {
+   "type": "h2",
+   "text": "پیدا کردن عنصرها با مجموعه‌های شیء HTML"
+  },
+  {
+   "type": "p",
+   "text": "این مثال عنصر form با id=\"frm1\" را در مجموعهٔ forms پیدا می‌کند و همهٔ مقدارهای عنصرها را نشان می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const x = document.forms[\"frm1\"];\n\nlet text = \"\";\n\nfor (let i = 0; i < x.length; i++) {\n  text += x.elements[i].value + \"<br>\";\n}\ndocument.getElementById(\"demo\").innerHTML = text;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_form_elements"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای HTML زیر (و مجموعه‌های شیء) هم در دسترس هستند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "document.anchors",
+    "document.body",
+    "document.documentElement",
+    "document.embeds",
+    "document.forms",
+    "document.head",
+    "document.images",
+    "document.links",
+    "document.scripts",
+    "document.title"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل find.html بسازید که سه پاراگراف داشته باشد؛ دو پاراگراف با class=\"intro\" و یکی با id=\"intro\". هر سه را با روش مناسب پیدا کنید و در کنسول چاپ کنید.",
+   "hint": "برای شناسه getElementById و برای کلاس getElementsByClassName را به کار ببرید؛ یادتان باشد نتیجهٔ دومی یک مجموعه است."
+  },
+  {
+   "prompt": "با querySelectorAll(\"p.intro\") تعداد پاراگراف‌های کلاس intro را بشمارید و طول مجموعه را چاپ کنید.",
+   "hint": "این متد یک NodeList می‌دهد، پس با length تعداد را بخوانید."
+  },
+  {
+   "prompt": "یک عنصر با شناسهٔ ناموجود را با getElementById بگیرید و ببینید چه مقداری برمی‌گردد.",
+   "hint": "وقتی عنصر پیدا نشود، متد null برمی‌گرداند؛ همین منبع بسیاری از خطاهای بعدی است."
+  },
+  {
+   "prompt": "یک عنصر والد با id=\"main\" بسازید که چند پاراگراف داخلش باشد و فقط پاراگراف‌های داخل آن را بگیرید.",
+   "hint": "نخست والد را با getElementById بگیرید و بعد getElementsByTagName را روی همان عنصر صدا بزنید، نه روی document."
+  },
+  {
+   "prompt": "اشتباه رایج درس را بازتولید کنید: getElementById(\"#demo\") را امتحان کنید و بعد درستش کنید.",
+   "hint": "getElementById شناسه را بدون # می‌گیرد؛ علامت # مخصوص انتخابگرهای CSS است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای پیدا کردن عنصری با شناسهٔ intro کدام دستور درست است؟",
+   "options": [
+    "getElementById(\"#intro\")",
+    "getElementById(\"intro\")",
+    "getElementsByClassName(\"intro\")",
+    "querySelector(\"intro\")"
+   ],
+   "answer": 1,
+   "explanation": "getElementById شناسه را بدون علامت # می‌گیرد؛ نوشتن #demo اشتباه رایجی است که عنصر را پیدا نمی‌کند."
+  },
+  {
+   "question": "اگر عنصری با شناسهٔ داده‌شده وجود نداشته باشد، getElementById چه برمی‌گرداند؟",
+   "options": [
+    "یک رشتهٔ خالی",
+    "undefined",
+    "null",
+    "خطا پرتاب می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "وقتی عنصر پیدا نشود مقدار null برمی‌گردد؛ اگر بعد روی آن خصوصیتی بخوانید خطای اجرا می‌گیرید."
+  },
+  {
+   "question": "تفاوت querySelector و querySelectorAll چیست؟",
+   "options": [
+    "اولی فقط نخستین تطابق را می‌دهد و دومی همهٔ تطابق‌ها را",
+    "اولی با شناسه کار می‌کند و دومی با کلاس",
+    "اولی کندتر است",
+    "هیچ تفاوتی ندارند"
+   ],
+   "answer": 0,
+   "explanation": "querySelector تنها نخستین تطابق را برمی‌گرداند، پس انتخابگرهای چندتایی را نقص می‌کند؛ querySelectorAll همهٔ تطابق‌ها را در یک NodeList می‌دهد."
+  },
+  {
+   "question": "کدام روش مخصوص پیدا کردن عنصرها با نام تگ است؟",
+   "options": [
+    "getElementById",
+    "getElementsByTagName",
+    "createElement",
+    "setAttribute"
+   ],
+   "answer": 1,
+   "explanation": "getElementsByTagName همهٔ عنصرهای یک نام تگ را در یک مجموعه می‌دهد؛ می‌توانید آن را روی یک عنصر والد هم صدا بزنید تا جست‌وجو محدود شود."
+  },
+  {
+   "question": "کدام مورد یکی از مجموعه‌های شیء قابل دسترسی روی document است؟",
+   "options": [
+    "document.forms",
+    "document.getElementById",
+    "document.createElement",
+    "document.querySelectorAll"
+   ],
+   "answer": 0,
+   "explanation": "document.forms یک مجموعهٔ شیء است که همهٔ عنصرهای form سند را دارد. سه مورد دیگر متد هستند، نه مجموعه."
+  }
+ ]
+}

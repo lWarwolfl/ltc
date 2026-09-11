@@ -1,0 +1,231 @@
+{
+ "slug": "js_api_intro",
+ "course": "js",
+ "order": 175,
+ "url": "/js/js_api_intro.asp",
+ "title": "Web APIها، مقدمه",
+ "summary": "API رابطی است که برنامه‌نویس با آن با بخشی از سیستم حرف می‌زند؛ Web API همین رابط برای مرورگر و وب است. در این درس می‌بینید APIهای مرورگری چه هستند، چهار API مهم DOM و Fetch و Web Storage و History چه کاری می‌کنند و APIهای بیرونی چه تفاوتی دارند.",
+ "objectives": [
+  "بگویید Web API چیست و چه تفاوتی با API سرور دارد",
+  "کار APIهای DOM، Fetch، Web Storage و History را توضیح دهید",
+  "تشخیص دهید یک API درونی مرورگر است یا بیرونی"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Web APIها، مقدمه"
+  },
+  {
+   "type": "p",
+   "text": "Web API آرزوی هر برنامه‌نویس است."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "می‌تواند توانایی‌های مرورگر را گسترش دهد",
+    "می‌تواند کارهای پیچیده را بسیار ساده کند",
+    "می‌تواند برای کد پیچیده نحو ساده‌ای فراهم کند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Web API چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "API مخفف Application Programming Interface است."
+  },
+  {
+   "type": "p",
+   "text": "Web API یک رابط برنامه‌نویسی برای وب است."
+  },
+  {
+   "type": "p",
+   "text": "Browser API می‌تواند توانایی‌های مرورگر وب را گسترش دهد."
+  },
+  {
+   "type": "p",
+   "text": "Server API می‌تواند توانایی‌های سرور وب را گسترش دهد."
+  },
+  {
+   "type": "h2",
+   "text": "APIهای مرورگر"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ مرورگرها مجموعه‌ای از Web APIهای درونی دارند تا عملیات پیچیده را پشتیبانی کنند و دسترسی به داده را ساده‌تر کنند."
+  },
+  {
+   "type": "p",
+   "text": "مثلاً Geolocation API می‌تواند مختصات محل قرار گرفتن مرورگر را برگرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myElement = document.getElementById(\"demo\");\n\nfunction getLocation() {\n\n  if (navigator.geolocation) {\n\n    navigator.geolocation.getCurrentPosition(showPosition);\n\n  } else {\n    myElement.innerHTML = \"Geolocation is not supported by this browser.\";\n\n  }\n\n}\n\nfunction showPosition(position) {\n\n  myElement.innerHTML = \"Latitude: \" + position.coords.latitude +\n\n  \"<br>Longitude: \" + position.coords.longitude;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_api_geo_coordinates"
+  },
+  {
+   "type": "h2",
+   "text": "مهم‌ترین APIها"
+  },
+  {
+   "type": "p",
+   "text": "مهم‌ترین APIها در توسعهٔ HTML و JavaScript اینها هستند."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "DOM API برای سندهای HTML و XML",
+    "Fetch API برای شبکه",
+    "Web Storage API برای داده‌های سمت کاربر"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "این APIها پایهٔ تقریباً همهٔ توسعهٔ وب مدرن هستند."
+  },
+  {
+   "type": "h2",
+   "text": "DOM API"
+  },
+  {
+   "type": "p",
+   "text": "DOM یا Document Object Model هستهٔ API برای سندهای HTML و XML است. نمایشی ساخت‌یافته از صفحهٔ وب می‌دهد و به JavaScript اجازه می‌دهد عنصرها، ویژگی‌ها و محتوا را پویا بخواند و تغییر دهد و رابط کاربری تعاملی بسازد."
+  },
+  {
+   "type": "h2",
+   "text": "Fetch API"
+  },
+  {
+   "type": "p",
+   "text": "استاندارد مدرن برای فرستادن درخواست شبکه به سرورها و گرفتن منابع (مثل داده از یک پایگاه داده یا سرویس بیرونی) است. جایگزینی محکم‌تر و منعطف‌تر برای روش‌های قدیمی مثل XMLHttpRequest است."
+  },
+  {
+   "type": "h2",
+   "text": "نگهداری داده در مرورگر (Web Storage API)"
+  },
+  {
+   "type": "p",
+   "text": "سازوکارهایی مثل localStorage و sessionStorage برای ذخیرهٔ جفت‌های کلید و مقدار در مرورگر عرضه می‌کند که از کوکی ساده‌ترند و باعث می‌شوند داده بین نشست‌ها یا پس از بارگذاری دوبارهٔ صفحه باقی بماند."
+  },
+  {
+   "type": "h2",
+   "text": "تاریخچهٔ مرورگر (History API)"
+  },
+  {
+   "type": "p",
+   "text": "دستکاری تاریخچهٔ نشست مرورگر را ممکن می‌کند و به برنامه‌های تک‌صفحه‌ای یا SPA اجازه می‌دهد URL را تغییر دهند و بدون بارگذاری کامل صفحه، تجربهٔ جابه‌جایی یکدستی بسازند."
+  },
+  {
+   "type": "h2",
+   "text": "APIهای بیرونی"
+  },
+  {
+   "type": "p",
+   "text": "APIهای بیرونی در مرورگر شما درونی نیستند."
+  },
+  {
+   "type": "p",
+   "text": "برای استفاده از این APIها باید کد آن‌ها را از وب دانلود کنید."
+  },
+  {
+   "type": "p",
+   "text": "مثال‌ها:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "YouTube API، امکان نمایش ویدیو در یک وب‌سایت را می‌دهد.",
+    "Twitter API، امکان نمایش توییت‌ها در یک وب‌سایت را می‌دهد.",
+    "Facebook API، امکان نمایش اطلاعات Facebook در یک وب‌سایت را می‌دهد."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل apis.html بسازید و با یک Web API مرورگری مثل navigator.geolocation بررسی کنید مرورگر شما آن را پشتیبانی می‌کند یا نه و نتیجه را در کنسول چاپ کنید.",
+   "hint": "پشتیبانی را با یک شرط if (navigator.geolocation) بررسی کنید؛ همین الگو در مثال درس هم آمده است."
+  },
+  {
+   "prompt": "با DOM API یک عنصر <div> در صفحه بگیرید و متنش را با innerHTML عوض کنید.",
+   "hint": "متد document.getElementById برای گرفتن عنصر و خصوصیت innerHTML برای نوشتن داخل آن است."
+  },
+  {
+   "prompt": "با localStorage یک مقدار مثل نام خودتان را ذخیره کنید، بعد صفحه را دوباره بارگذاری کنید و همان مقدار را بخوانید.",
+   "hint": "localStorage.setItem برای ذخیره و localStorage.getItem برای خواندن است؛ چون داده بین بارگذاری‌ها می‌ماند، بعد از refresh هم پیدا می‌شود."
+  },
+  {
+   "prompt": "با History API یک ورودی تازه به تاریخچه اضافه کنید و ببینید URL تغییر می‌کند بدون آنکه صفحه کامل دوباره بارگذاری شود.",
+   "hint": "history.pushState همین کار را می‌کند؛ ابزار اصلی برنامه‌های تک‌صفحه‌ای است."
+  },
+  {
+   "prompt": "دو API زیر را از هم جدا کنید و برای هرکدام یک خط بنویسید که درونی است یا بیرونی: Web Storage API و YouTube API.",
+   "hint": "APIهای بیرونی در مرورگر ساخته نشده‌اند و برای استفاده باید کدشان را از وب بیاورید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "API مخفف چه عبارتی است؟",
+   "options": [
+    "Application Programming Interface",
+    "Automatic Program Installer",
+    "Applied Web Interface",
+    "Advanced Programming Instruction"
+   ],
+   "answer": 0,
+   "explanation": "API مخفف Application Programming Interface است، یعنی رابط برنامه‌نویسی. بقیهٔ گزینه‌ها ساخته شده‌اند و در درس نیامده‌اند."
+  },
+  {
+   "question": "کدام API برای گرفتن منابع از سرور و درخواست شبکه معرفی شده است؟",
+   "options": [
+    "DOM API",
+    "Fetch API",
+    "History API",
+    "Web Storage API"
+   ],
+   "answer": 1,
+   "explanation": "Fetch API استاندارد مدرن درخواست شبکه است و جایگزین روش‌های قدیمی مثل XMLHttpRequest شده. DOM برای سند، History برای تاریخچه و Web Storage برای ذخیره‌سازی است."
+  },
+  {
+   "question": "localStorage و sessionStorage به کدام API تعلق دارند؟",
+   "options": [
+    "History API",
+    "Fetch API",
+    "Web Storage API",
+    "DOM API"
+   ],
+   "answer": 2,
+   "explanation": "درس Web Storage API را سازوکار ذخیرهٔ جفت کلید و مقدار در مرورگر با localStorage و sessionStorage معرفی می‌کند که از کوکی ساده‌تر است."
+  },
+  {
+   "question": "دربارهٔ APIهای بیرونی (Third Party) کدام جمله درست است؟",
+   "options": [
+    "در مرورگر ساخته شده‌اند و کار اضافه‌ای لازم ندارند",
+    "در مرورگر ساخته نشده‌اند و باید کدشان را از وب دانلود کنید",
+    "فقط با History API کار می‌کنند",
+    "فقط در سرور قابل استفاده‌اند"
+   ],
+   "answer": 1,
+   "explanation": "درس صریحاً می‌گوید APIهای بیرونی در مرورگر شما ساخته نشده‌اند و برای استفاده باید کد آن‌ها را دانلود کنید؛ مثال‌هایش YouTube و Twitter و Facebook است."
+  },
+  {
+   "question": "History API چه چیزی را ممکن می‌کند؟",
+   "options": [
+    "ذخیرهٔ داده در حافظهٔ مرورگر",
+    "تغییر URL و جابه‌جایی بدون بارگذاری کامل صفحه در برنامه‌های تک‌صفحه‌ای",
+    "گرفتن موقعیت جغرافیایی کاربر",
+    "تجزیهٔ JSON از سرور"
+   ],
+   "answer": 1,
+   "explanation": "History API تاریخچهٔ نشست مرورگر را دستکاری می‌کند تا SPAها بتوانند URL را عوض کنند بدون بارگذاری دوبارهٔ کل صفحه."
+  }
+ ]
+}

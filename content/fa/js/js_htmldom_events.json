@@ -1,0 +1,338 @@
+{
+ "slug": "js_htmldom_events",
+ "course": "js",
+ "order": 153,
+ "url": "/js/js_htmldom_events.asp",
+ "title": "رویدادهای DOM در JavaScript",
+ "summary": "این درس نشان می‌دهد چگونه با ویژگی‌های رویداد و با DOM به کلیک کاربر واکنش دهید. رویدادهای onload، onunload، oninput، onchange، onmouseover و ترتیب اجرای onmousedown، onmouseup و onclick را یاد می‌گیرید.",
+ "objectives": [
+  "با ویژگی onclick کد یا تابعی را به عنصر وصل کنید",
+  "رویداد را از طریق DOM به عنصر با id نسبت دهید",
+  "ترتیب اجرای رویدادهای یک کلیک ماوس را توضیح دهید",
+  "کاربرد onload، oninput و onchange را با مثال تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "رویدادهای DOM در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "واکنش به رویدادها"
+  },
+  {
+   "type": "p",
+   "text": "وقتی رویدادی رخ دهد می‌توان کد JavaScript را اجرا کرد، مثلاً وقتی کاربر روی یک عنصر HTML کلیک می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "برای اجرای کد هنگام کلیک کاربر روی عنصر، کد JavaScript را در یک ویژگی رویداد HTML بنویسید:"
+  },
+  {
+   "type": "p",
+   "text": "onclick=JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "نمونه‌هایی از رویدادهای HTML:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "وقتی کاربر ماوس را کلیک می‌کند",
+    "وقتی یک صفحهٔ وب بارگذاری شده است",
+    "وقتی تصویری بارگذاری شده است",
+    "وقتی ماوس روی عنصری حرکت می‌کند",
+    "وقتی یک فیلد ورودی تغییر می‌کند",
+    "وقتی یک فرم HTML ارسال می‌شود",
+    "وقتی کاربر کلیدی را می‌زند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "در این مثال محتوای عنصر <h1> وقتی کاربر روی آن کلیک می‌کند تغییر می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1 onclick=\"this.innerHTML = 'Ooops!'\">Click on this text!</h1>\n\n</body>\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_onclick2"
+  },
+  {
+   "type": "p",
+   "text": "در این مثال از event handler یک تابع صدا زده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n<body>\n\n<h1 onclick=\"changeText(this)\">Click on this text!</h1>\n\n<script>\n\nfunction changeText(id) {\n\n  id.innerHTML = \"Ooops!\";\n\n}\n\n</script>\n\n</body>\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_onclick3"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های رویداد HTML"
+  },
+  {
+   "type": "p",
+   "text": "برای نسبت دادن رویداد به عنصرهای HTML می‌توانید از ویژگی‌های رویداد استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"displayDate()\">Try it</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events1"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، هنگام کلیک روی دکمه تابعی به نام displayDate اجرا می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "نسبت دادن رویداد با DOM"
+  },
+  {
+   "type": "p",
+   "text": "DOM به شما اجازه می‌دهد با JavaScript رویداد را به عنصرهای HTML نسبت دهید:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script>\n\ndocument.getElementById(\"myBtn\").onclick = displayDate;\n\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events2"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، تابعی به نام displayDate به عنصر با id=\"myBtn\" نسبت داده شده است."
+  },
+  {
+   "type": "p",
+   "text": "این تابع هنگام کلیک روی دکمه اجرا می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "رویدادهای onload و onunload"
+  },
+  {
+   "type": "p",
+   "text": "رویدادهای onload و onunload وقتی اجرا می‌شوند که کاربر وارد صفحه شود یا از آن خارج شود."
+  },
+  {
+   "type": "p",
+   "text": "از رویداد onload می‌توان برای تشخیص نوع و نسخهٔ مرورگر بازدیدکننده استفاده کرد و بعد بر پایهٔ همان اطلاعات نسخهٔ مناسب صفحه را بارگذاری کرد."
+  },
+  {
+   "type": "p",
+   "text": "رویدادهای onload و onunload برای کار با کوکی‌ها هم به کار می‌روند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<body onload=\"checkCookies()\">",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_onload"
+  },
+  {
+   "type": "h2",
+   "text": "رویداد oninput"
+  },
+  {
+   "type": "p",
+   "text": "رویداد oninput غالباً برای انجام کاری هنگام وارد کردن داده توسط کاربر به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "در ادامه مثالی می‌بینید که با oninput محتوای یک فیلد ورودی را تغییر می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<input type=\"text\" id=\"fname\"\noninput=\"upperCase()\">",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_oninput"
+  },
+  {
+   "type": "h2",
+   "text": "رویداد onchange"
+  },
+  {
+   "type": "p",
+   "text": "رویداد onchange غالباً همراه با اعتبارسنجی فیلدهای ورودی به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "در ادامه مثالی از onchange می‌بینید. وقتی کاربر محتوای یک فیلد ورودی را تغییر دهد، تابع upperCase() صدا زده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<input type=\"text\" id=\"fname\"\nonchange=\"upperCase()\">",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_onchange"
+  },
+  {
+   "type": "h2",
+   "text": "رویدادهای onmouseover و onmouseout"
+  },
+  {
+   "type": "p",
+   "text": "رویدادهای onmouseover و onmouseout می‌توانند وقتی ماوس کاربر وارد عنصر HTML می‌شود یا از آن خارج می‌شود تابعی را اجرا کنند:"
+  },
+  {
+   "type": "p",
+   "text": "ماوس را روی من ببر"
+  },
+  {
+   "type": "p",
+   "text": "خودتان امتحان کنید »"
+  },
+  {
+   "type": "h2",
+   "text": "رویدادهای onmousedown، onmouseup و onclick"
+  },
+  {
+   "type": "p",
+   "text": "رویدادهای onmousedown، onmouseup و onclick هر سه بخش‌هایی از یک کلیک ماوس‌اند. نخست با فشردن دکمهٔ ماوس رویداد onmousedown اجرا می‌شود، بعد با رها شدن دکمه رویداد onmouseup، و در پایان با کامل شدن کلیک رویداد onclick اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "روی من کلیک کن"
+  },
+  {
+   "type": "p",
+   "text": "خودتان امتحان کنید »"
+  },
+  {
+   "type": "h2",
+   "text": "مثال‌های بیشتر"
+  },
+  {
+   "type": "p",
+   "text": "onmousedown و onmouseup: وقتی کاربر دکمهٔ ماوس را پایین نگه می‌دارد تصویر را عوض کنید."
+  },
+  {
+   "type": "p",
+   "text": "onload: وقتی بارگذاری صفحه تمام شد یک جعبهٔ هشدار نشان دهید."
+  },
+  {
+   "type": "p",
+   "text": "onfocus: وقتی فیلد ورودی فوکوس گرفت پس‌زمینهٔ آن را عوض کنید."
+  },
+  {
+   "type": "p",
+   "text": "رویدادهای ماوس: وقتی مکان‌نما روی عنصری می‌رود رنگ آن را عوض کنید."
+  },
+  {
+   "type": "h2",
+   "text": "مرجع شیء رویداد در DOM"
+  },
+  {
+   "type": "p",
+   "text": "برای دیدن فهرست همهٔ رویدادهای DOM به مرجع کامل شیء رویداد در DOM نگاه کنید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل domEvents.html بسازید که یک سرتیتر h1 داشته باشد؛ با ویژگی onclick محتوای خودش را عوض کنید.",
+   "hint": "داخل ویژگی رویداد از this.innerHTML استفاده کنید تا همان عنصر تغییر کند."
+  },
+  {
+   "prompt": "یک تابع به نام displayDate بسازید که تاریخ را در یک عنصر نشان دهد و آن را از ویژگی onclick دکمه صدا بزنید.",
+   "hint": "برای گرفتن تاریخ از new Date() استفاده کنید و نتیجه را در innerHTML یک عنصر بگذارید."
+  },
+  {
+   "prompt": "همان تابع را این بار با document.getElementById(\"myBtn\").onclick به عنصر نسبت دهید، نه با ویژگی HTML.",
+   "hint": "در این روش دیگر کدی داخل HTML نیست و همه چیز در JavaScript می‌ماند."
+  },
+  {
+   "prompt": "یک پیوند یا عنصر بسازید که با onmouseover رنگش عوض شود و با onmouseout به حالت اول برگردد.",
+   "hint": "برای تغییر رنگ از style.color یا style.backgroundColor استفاده کنید."
+  },
+  {
+   "prompt": "با یک دکمه سه پیام در کنسول ثبت کنید تا ترتیب onmousedown، onmouseup و onclick را ببینید.",
+   "hint": "دکمه را نگه دارید و بعد رها کنید تا معلوم شود هر رویداد در چه لحظه‌ای اجرا می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام رویداد وقتی کاربر ماوس را از عنصر خارج می‌کند اجرا می‌شود؟",
+   "options": [
+    "onmouseover",
+    "onmouseout",
+    "onclick",
+    "onchange"
+   ],
+   "answer": 1,
+   "explanation": "onmouseout با خارج شدن ماوس از عنصر اجرا می‌شود، در حالی که onmouseover با ورود ماوس روی عنصر رخ می‌دهد."
+  },
+  {
+   "question": "ترتیب درست رویدادهای یک کلیک ماوس کدام است؟",
+   "options": [
+    "onclick، onmouseup، onmousedown",
+    "onmousedown، onmouseup، onclick",
+    "onmouseup، onmousedown، onclick",
+    "onclick، onmousedown، onmouseup"
+   ],
+   "answer": 1,
+   "explanation": "نخست دکمه فشار داده می‌شود (onmousedown)، بعد رها می‌شود (onmouseup) و در پایان کلیک کامل می‌شود (onclick)."
+  },
+  {
+   "question": "رویدادهای onload و onunload چه زمانی اجرا می‌شوند؟",
+   "options": [
+    "وقتی کاربر وارد صفحه می‌شود یا آن را ترک می‌کند",
+    "وقتی کاربر روی دکمه کلیک می‌کند",
+    "وقتی فیلد ورودی تغییر می‌کند",
+    "وقتی ماوس روی عنصر می‌رود"
+   ],
+   "answer": 0,
+   "explanation": "onload با ورود کاربر به صفحه و onunload با ترک کردن آن اجرا می‌شود؛ همین دو برای کارهایی مثل بررسی نوع مرورگر یا کار با کوکی به کار می‌روند."
+  },
+  {
+   "question": "رویداد oninput چه زمانی مناسب است؟",
+   "options": [
+    "وقتی کاربر در حال وارد کردن داده است",
+    "وقتی فرم ارسال می‌شود",
+    "وقتی تصویر بارگذاری می‌شود",
+    "وقتی ماوس از عنصر خارج می‌شود"
+   ],
+   "answer": 0,
+   "explanation": "oninput هنگام وارد کردن داده توسط کاربر اجرا می‌شود و برای واکنش زنده به تغییر مقدار فیلد مناسب است؛ onchange پس از تأیید و تغییر نهایی مقدار اجرا می‌شود."
+  },
+  {
+   "question": "روش نسبت دادن رویداد با DOM چه تفاوتی با ویژگی HTML دارد؟",
+   "options": [
+    "کد JavaScript در فایل اسکریپت می‌ماند و از HTML جدا می‌شود",
+    "رویداد در HTML نوشته می‌شود، ولی سریع‌تر اجرا می‌شود",
+    "امکان استفاده از تابع را از بین می‌برد",
+    "فقط روی دکمه‌ها کار می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "با گرفتن عنصر و مقداردهی خصوصیت رویداد آن (مثل عنصر.onclick) کد در JavaScript می‌ماند و ساختار HTML تمیز می‌شود."
+  }
+ ]
+}

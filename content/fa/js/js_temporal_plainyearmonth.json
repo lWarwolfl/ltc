@@ -1,0 +1,462 @@
+{
+ "slug": "js_temporal_plainyearmonth",
+ "course": "js",
+ "order": 188,
+ "url": "/js/js_temporal_plainyearmonth.asp",
+ "title": "PlainYearMonth در JavaScript",
+ "summary": "شیء Temporal.PlainYearMonth سال و ماه را بدون روز و ساعت نگه می‌دارد. در این درس می‌آموزید آن را با سازنده و متد from بسازید، ماه اضافه یا کم کنید و به تاریخ کامل تبدیل کنید.",
+ "objectives": [
+  "شیء PlainYearMonth را با عدد و رشته بسازید",
+  "با add و subtract ماه‌ها را جابه‌جا کنید",
+  "با with فیلدهای سال و ماه را تغییر دهید",
+  "توضیح دهید چرا تبدیل به PlainDate به مقدار روز نیاز دارد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "PlainYearMonth در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء Temporal.PlainYearMonth"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.PlainYearMonth یک شیء سال و ماه است."
+  },
+  {
+   "type": "p",
+   "text": "این شیء سال و ماه تقویم ISO 8601 را بدون روز و ساعت نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "مثال: 2026-05."
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/js/img_temporal.svg",
+   "alt": "Temporal Map"
+  },
+  {
+   "type": "h2",
+   "text": "روش ساخت شیء PlainYearMonth"
+  },
+  {
+   "type": "p",
+   "text": "شیء PlainYearMonth را به روش‌های مختلف می‌توان ساخت:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "از",
+     "کد"
+    ],
+    [
+     "پارامترها",
+     "new Temporal.PlainYearMonth(param)"
+    ],
+    [
+     "شیء",
+     "Temporal.PlainYearMonth.from(object)"
+    ],
+    [
+     "ISO / RFC 9557",
+     "Temporal.PlainYearMonth.from(RFC 9557)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainYearMonth با new"
+  },
+  {
+   "type": "p",
+   "text": "سازندهٔ new PlainYearMonth() یک شیء PlainYearMonth تازه با پارامترهای عدد صحیح می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainYearMonth object\n\nconst date = new Temporal.PlainYearMonth(2026, 5);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainYearMonth از شیء"
+  },
+  {
+   "type": "p",
+   "text": "متد from() یک شیء PlainYearMonth تازه می‌سازد و یک شیء به‌عنوان پارامتر ورودی می‌گیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainYearMonth object\n\nconst date = new Temporal.PlainYearMonth({year:2026, month:5});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_from"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainYearMonth از (RFC 9557)"
+  },
+  {
+   "type": "p",
+   "text": "متد from() یک شیء PlainYearMonth تازه می‌سازد و یک رشتهٔ ISO / RFC 9557 به‌عنوان پارامتر ورودی می‌گیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2025-05\");",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2025-05-17\");",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_from_iso"
+  },
+  {
+   "type": "p",
+   "text": "توجه کنید که در مثال آخر ورودی روز نادیده گرفته می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های Temporal.PlainYearMonth"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Temporal.PlainYearMonth(2026, 5);",
+   "caption": "نمایش همهٔ خصوصیت‌های PlainYearMonth"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_prop"
+  },
+  {
+   "type": "h2",
+   "text": "تبدیل به PlainTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const yearMonth = new Temporal.PlainYearMonth(2026, 5);\n\nconst date = yearMonth.toPlainDate({ day: 17 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای add() و subtract() در PlainYearMonth"
+  },
+  {
+   "type": "p",
+   "text": "متد add() یک شیء duration را به‌عنوان ورودی می‌پذیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new PlainYearMonth object\n\nconst d1 = Temporal.PlainYearMonth.from(\"2026-05\");\n\n// Add a duration\n\nconst d2 = d1.add({years:2, months:2})",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_add"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد add() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.add(duration)",
+    "instant.add(duration)",
+    "plaindate.add(duration)",
+    "plaintime.add(duration)",
+    "plainyearmonth.add(duration)",
+    "plainmonthday.add(duration)",
+    "plaindatetime.add(duration)",
+    "zoneddatetime.add(duration)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد subtract() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.subtract(duration)",
+    "instant.subtract(duration)",
+    "plaindate.subtract(duration)",
+    "plaintime.subtract(duration)",
+    "plainyearmonth.subtract(duration)",
+    "plainmonthday.subtract(duration)",
+    "plaindatetime.subtract(duration)",
+    "zoneddatetime.subtract(duration)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "محاسبات در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "متد with()"
+  },
+  {
+   "type": "p",
+   "text": "متد with() یک شیء PlainYearMonth تازه برمی‌گرداند که فیلدهای تعیین‌شده در آن جانشین شده‌اند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2026-05\");\n\n// Replace month\n\nconst newDate = date.with({ month:12 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_with"
+  },
+  {
+   "type": "h2",
+   "text": "همهٔ متدهای PlainYearMonth"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ساخت",
+     "توضیح"
+    ],
+    [
+     "from()",
+     "یک شیء PlainYearMonth از یک شیء یا رشته می‌سازد"
+    ],
+    [
+     "new (سازنده)",
+     "یک شیء PlainYearMonth از پارامترهای عدد صحیح می‌سازد"
+    ],
+    [
+     "حساب",
+     ""
+    ],
+    [
+     "add()",
+     "یک PlainYearMonth تازه با مدت افزوده‌شده برمی‌گرداند"
+    ],
+    [
+     "subtract()",
+     "یک PlainYearMonth تازه با مدت کم‌شده برمی‌گرداند"
+    ],
+    [
+     "مقایسه",
+     ""
+    ],
+    [
+     "compare()",
+     "با مقایسهٔ دو تاریخ مقدار -1، 0 یا 1 را برمی‌گرداند"
+    ],
+    [
+     "equals()",
+     "اگر دو تاریخ یکسان باشند true برمی‌گرداند"
+    ],
+    [
+     "since()",
+     "اختلاف از تاریخ دیگر تا اینجا را برمی‌گرداند"
+    ],
+    [
+     "until()",
+     "اختلاف تا تاریخ دیگر را برمی‌گرداند"
+    ],
+    [
+     "تبدیل",
+     ""
+    ],
+    [
+     "toPlainDate()",
+     "یک شیء PlainDate تازه برمی‌گرداند"
+    ],
+    [
+     "with()",
+     "یک PlainYearMonth تازه با فیلدهای تغییر‌یافته برمی‌گرداند"
+    ],
+    [
+     "قالب‌بندی",
+     ""
+    ],
+    [
+     "toJSON()",
+     "یک رشته با قالب RFC 9557 برای سریال‌سازی JSON برمی‌گرداند"
+    ],
+    [
+     "toLocaleString()",
+     "نمایشی از تاریخ بر پایهٔ زبان و منطقهٔ کاربر برمی‌گرداند"
+    ],
+    [
+     "toString()",
+     "یک رشتهٔ نمایشی با قالب RFC 9557 برمی‌گرداند"
+    ],
+    [
+     "valueOf()",
+     "TypeError (شیءهای Temporal را نمی‌توان به مقدار اولیه تبدیل کرد)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همهٔ خصوصیت‌های PlainYearMonth"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیح"
+    ],
+    [
+     "calendarID",
+     "شناسهٔ سیستم تقویم (\"iso8601\")"
+    ],
+    [
+     "daysInMonth",
+     "شمار کل روزهای آن ماه"
+    ],
+    [
+     "daysInYear",
+     "شمار کل روزهای آن سال"
+    ],
+    [
+     "era",
+     "نام مبدأ تقویم، در صورت وجود (\"gregory\")"
+    ],
+    [
+     "eraYear",
+     "سال در مبدأ تقویم، در صورت وجود"
+    ],
+    [
+     "inLeapYear",
+     "مقدار بولی که نشان می‌دهد تاریخ در سال کبیسه است"
+    ],
+    [
+     "month",
+     "ماه به‌صورت عدد صحیح (1-12)"
+    ],
+    [
+     "monthCode",
+     "کد رشته‌ای مخصوص تقویم برای ماه (\"M01\")"
+    ],
+    [
+     "monthsInYear",
+     "شمار کل ماه‌های آن سال"
+    ],
+    [
+     "year",
+     "سال به‌صورت عدد صحیح"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل plainyearmonth.html بسازید و با new Temporal.PlainYearMonth(2026, 5) یک شیء سال و ماه بسازید و چاپش کنید.",
+   "hint": "سازنده سال و ماه را عددی می‌گیرد و روز و ساعت در آن وجود ندارد."
+  },
+  {
+   "prompt": "با Temporal.PlainYearMonth.from(\"2026-05\") همان مقدار را از رشته بسازید.",
+   "hint": "قالب رشته سال-ماه است و روز در آن نوشته نمی‌شود."
+  },
+  {
+   "prompt": "به شیء خود یک ماه با add({ months: 1 }) اضافه کنید و خروجی را چاپ کنید.",
+   "hint": "add یک شیء تازه برمی‌گرداند و شیء اصلی را تغییر نمی‌دهد."
+  },
+  {
+   "prompt": "یک PlainYearMonth را با with({ month: 12 }) تغییر دهید و ببینید خروجی چه ماهی است.",
+   "hint": "with فیلدهای تعیین‌شده را جانشین می‌کند و شیء تازه می‌دهد."
+  },
+  {
+   "prompt": "یک PlainYearMonth را با toPlainDate({ day: 15 }) به تاریخ کامل تبدیل کنید.",
+   "hint": "برای تبدیل به PlainDate باید روز را هم بدهید، چون در PlainYearMonth روز وجود ندارد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "شیء PlainYearMonth چه اطلاعاتی را نگه می‌دارد؟",
+   "options": [
+    "سال، ماه و روز",
+    "سال و ماه بدون روز و ساعت",
+    "ماه و روز بدون سال",
+    "فقط سال"
+   ],
+   "answer": 1,
+   "explanation": "PlainYearMonth فقط سال و ماه را نگه می‌دارد. حالت سال، ماه و روز همان PlainDate است و ماه و روز بدون سال کار PlainMonthDay."
+  },
+  {
+   "question": "برای تبدیل یک PlainYearMonth به PlainDate چه چیزی لازم است؟",
+   "options": [
+    "فقط منطقهٔ زمانی",
+    "روز، چون در PlainYearMonth وجود ندارد",
+    "متدی به نام toPlainDate وجود ندارد",
+    "تبدیل خودکار انجام می‌شود و ورودی نمی‌خواهد"
+   ],
+   "answer": 1,
+   "explanation": "متد toPlainDate() وجود دارد و باید روز را به آن بدهید؛ بدون روز تاریخ کامل معنا ندارد."
+  },
+  {
+   "question": "متد add({ months: 1 }) روی PlainYearMonth چه چیزی برمی‌گرداند؟",
+   "options": [
+    "یک شیء PlainYearMonth تازه با یک ماه بیشتر",
+    "همان شیء با ماه تغییر‌یافته",
+    "یک رشته",
+    "یک PlainDate"
+   ],
+   "answer": 0,
+   "explanation": "شیءهای Temporal تغییرناپذیرند؛ add یک نمونهٔ تازه برمی‌گرداند و مقدار اصلی دست‌نخورده می‌ماند. add روی ماه یک PlainDate نمی‌سازد."
+  },
+  {
+   "question": "در تبدیل PlainYearMonth به PlainDate، کدام ورودی نادیده گرفته می‌شود؟",
+   "options": [
+    "مقدار روز",
+    "مقدار ماه",
+    "مقدار سال",
+    "هیچ ورودی‌ای"
+   ],
+   "answer": 0,
+   "explanation": "خود PlainYearMonth روز ندارد؛ اگر روز به‌عنوان ورودی داده شود بی‌اثر است."
+  },
+  {
+   "question": "پارامترهای سازندهٔ new PlainYearMonth() چه نوعی دارند؟",
+   "options": [
+    "رشته",
+    "عدد صحیح",
+    "شیء",
+    "بولین"
+   ],
+   "answer": 1,
+   "explanation": "این سازنده عدد صحیح سال و ماه می‌گیرد؛ برای ورودی رشته یا شیء از متد from() استفاده کنید."
+  }
+ ]
+}

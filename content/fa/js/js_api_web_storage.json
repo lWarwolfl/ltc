@@ -1,0 +1,315 @@
+{
+ "slug": "js_api_web_storage",
+ "course": "js",
+ "order": 178,
+ "url": "/js/js_api_web_storage.asp",
+ "title": "Web Storage API",
+ "summary": "Web Storage API داده را با نحو سادهٔ کلید و مقدار داخل مرورگر ذخیره می‌کند؛ یا با localStorage که پاک نمی‌شود، یا با sessionStorage که با بستن مرورگر پاک می‌شود. در این درس setItem() و getItem() را یاد می‌گیرید و بقیهٔ خصوصیت‌ها و متدهای Storage را می‌شناسید.",
+ "objectives": [
+  "حافظهٔ محلی با localStorage.setItem() و localStorage.getItem() بسازید و بخوانید",
+  "تفاوت localStorage و sessionStorage را از نظر عمر داده توضیح دهید",
+  "برای پیدا کردن نام و مقدار کلیدها از key(n) و length استفاده کنید",
+  "با removeItem() و clear() داده‌های حافظه را پاک کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Web Storage API"
+  },
+  {
+   "type": "p",
+   "text": "Web Storage API نحو ساده‌ای برای ذخیره و خواندن داده در مرورگر است. کار با آن خیلی راحت است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "localStorage.setItem(\"name\", \"John Doe\");\n\nlocalStorage.getItem(\"name\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_api_storage_example"
+  },
+  {
+   "type": "p",
+   "text": "Web Storage API در همهٔ مرورگرها پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome",
+     "IE/Edge",
+     "Firefox",
+     "Safari",
+     "Opera"
+    ],
+    [
+     "بله",
+     "بله",
+     "بله",
+     "بله",
+     "بله"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "شیء localStorage"
+  },
+  {
+   "type": "p",
+   "text": "شیء localStorage دسترسی به یک حافظهٔ محلی برای یک وب‌سایت مشخص می‌دهد. به کمک آن می‌توانید برای آن دامنه داده ذخیره کنید، بخوانید، اضافه کنید، تغییر دهید و پاک کنید."
+  },
+  {
+   "type": "p",
+   "text": "داده بدون تاریخ انقضا ذخیره می‌شود و با بستن مرورگر پاک نمی‌شود."
+  },
+  {
+   "type": "p",
+   "text": "داده روزها، هفته‌ها و سال‌ها در دسترس می‌ماند."
+  },
+  {
+   "type": "h2",
+   "text": "متد setItem()"
+  },
+  {
+   "type": "p",
+   "text": "متد localStorage.setItem() یک داده را در حافظه ذخیره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "یک نام و یک مقدار به‌عنوان پارامتر می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "localStorage.setItem(\"name\", \"John Doe\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "متد getItem()"
+  },
+  {
+   "type": "p",
+   "text": "متد localStorage.getItem() یک داده را از حافظه می‌خواند."
+  },
+  {
+   "type": "p",
+   "text": "یک نام به‌عنوان پارامتر می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "localStorage.getItem(\"name\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "شیء sessionStorage"
+  },
+  {
+   "type": "p",
+   "text": "شیء sessionStorage با شیء localStorage یکسان است."
+  },
+  {
+   "type": "p",
+   "text": "تفاوت این است که شیء sessionStorage داده را برای یک نشست ذخیره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "داده با بستن مرورگر پاک می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "sessionStorage.getItem(\"name\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_api_storage_example2"
+  },
+  {
+   "type": "h2",
+   "text": "متد setItem()"
+  },
+  {
+   "type": "p",
+   "text": "متد sessionStorage.setItem() یک داده را در حافظه ذخیره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "یک نام و یک مقدار به‌عنوان پارامتر می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "sessionStorage.setItem(\"name\", \"John Doe\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "متد getItem()"
+  },
+  {
+   "type": "p",
+   "text": "متد sessionStorage.getItem() یک داده را از حافظه می‌خواند."
+  },
+  {
+   "type": "p",
+   "text": "یک نام به‌عنوان پارامتر می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "sessionStorage.getItem(\"name\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌ها و متدهای شیء Storage"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خصوصیت یا متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "key(n)",
+     "نام کلید nاُم را در حافظه برمی‌گرداند"
+    ],
+    [
+     "length",
+     "تعداد داده‌های ذخیره‌شده در شیء Storage را برمی‌گرداند"
+    ],
+    [
+     "getItem(keyname)",
+     "مقدار نام کلید داده‌شده را برمی‌گرداند"
+    ],
+    [
+     "setItem(keyname, value)",
+     "یک کلید به حافظه اضافه می‌کند، یا اگر کلید از قبل باشد مقدارش را به‌روز می‌کند"
+    ],
+    [
+     "removeItem(keyname)",
+     "همان کلید را از حافظه حذف می‌کند"
+    ],
+    [
+     "clear()",
+     "همهٔ کلیدها را از حافظه خالی می‌کند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "صفحه‌های مرتبط با Web Storage API"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خصوصیت",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "window.localStorage",
+     "ذخیرهٔ جفت‌های کلید و مقدار را در مرورگر ممکن می‌کند. داده را بدون تاریخ انقضا نگه می‌دارد"
+    ],
+    [
+     "window.sessionStorage",
+     "ذخیرهٔ جفت‌های کلید و مقدار را در مرورگر ممکن می‌کند. داده را برای یک نشست نگه می‌دارد"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل storage.html بسازید و با localStorage.setItem(\"name\", \"Ali\") یک مقدار ذخیره کنید، بعد آن را با localStorage.getItem(\"name\") در صفحه نمایش دهید.",
+   "hint": "setItem دو پارامتر می‌گیرد: نام و مقدار؛ getItem فقط نام را می‌گیرد."
+  },
+  {
+   "prompt": "صفحه را رفرش کنید و همان مقدار را دوباره بخوانید؛ بعد مرورگر را کامل ببندید و باز کنید و نتیجه را بگویید.",
+   "hint": "دادهٔ localStorage تاریخ انقضا ندارد و با بستن مرورگر پاک نمی‌شود."
+  },
+  {
+   "prompt": "همان نام را این بار با sessionStorage.setItem() ذخیره کنید، صفحه را رفرش کنید و بعد یک تب تازه باز کنید و تفاوت را ببینید.",
+   "hint": "sessionStorage داده را فقط برای یک نشست نگه می‌دارد؛ با بستن مرورگر پاک می‌شود."
+  },
+  {
+   "prompt": "طول حافظه را با localStorage.length ببینید، با localStorage.key(0) نام اولین کلید را بگیرید و بعد با removeItem() همان کلید را پاک کنید.",
+   "hint": "key(n) نام کلید nاُم را می‌دهد و length تعداد داده‌های ذخیره‌شده را؛ در کنسول امتحان کنید."
+  },
+  {
+   "prompt": "چند کلید در localStorage بسازید و سپس با یک دستور همه را پاک کنید.",
+   "hint": "متد clear() همهٔ کلیدها را از حافظه خالی می‌کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "دادهٔ localStorage چه زمانی پاک می‌شود؟",
+   "options": [
+    "با بستن مرورگر",
+    "با رفرش صفحه",
+    "تاریخ انقضا ندارد و با بستن مرورگر پاک نمی‌شود",
+    "با هر بار خاموش شدن سیستم"
+   ],
+   "answer": 2,
+   "explanation": "درس می‌گوید دادهٔ localStorage تاریخ انقضا ندارد و با بستن مرورگر حذف نمی‌شود و روزها و هفته‌ها و سال‌ها در دسترس می‌ماند؛ در حالی که sessionStorage داده را فقط برای یک نشست نگه می‌دارد."
+  },
+  {
+   "question": "کدام متد یک داده را در حافظه ذخیره می‌کند؟",
+   "options": [
+    "getItem()",
+    "setItem()",
+    "removeItem()",
+    "clear()"
+   ],
+   "answer": 1,
+   "explanation": "setItem دو پارامتر نام و مقدار می‌گیرد و داده را ذخیره می‌کند؛ getItem می‌خواند، removeItem حذف می‌کند و clear همهچیز را خالی می‌کند."
+  },
+  {
+   "question": "متد clear() چه کاری انجام می‌دهد؟",
+   "options": [
+    "یک کلید مشخص را حذف می‌کند",
+    "همهٔ کلیدها را از حافظه خالی می‌کند",
+    "تعداد داده‌ها را برمی‌گرداند",
+    "نام کلید nاُم را می‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "جدول درس clear() را «خالی کردن همهٔ کلیدها از حافظه» معرفی می‌کند. حذف یک کلید مشخص کار removeItem(keyname) است."
+  },
+  {
+   "question": "تفاوت sessionStorage با localStorage چیست؟",
+   "options": [
+    "sessionStorage داده را برای یک نشست نگه می‌دارد و با بستن مرورگر پاک می‌شود",
+    "sessionStorage تاریخ انقضای طولانی‌تری دارد",
+    "sessionStorage فقط در سرور کار می‌کند",
+    "هیچ تفاوتی ندارند"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید sessionStorage با localStorage یکسان است، تنها تفاوت این است که داده را برای یک نشست نگه می‌دارد و با بستن مرورگر پاک می‌شود."
+  },
+  {
+   "question": "برای گرفتن تعداد داده‌های ذخیره‌شده در شیء Storage از چه چیزی استفاده می‌کنید؟",
+   "options": [
+    "key(n)",
+    "length",
+    "getItem(keyname)",
+    "setItem(keyname, value)"
+   ],
+   "answer": 1,
+   "explanation": "خصوصیت length تعداد داده‌های ذخیره‌شده را برمی‌گرداند. key(n) نام کلید nاُم را می‌دهد نه تعداد را."
+  }
+ ]
+}

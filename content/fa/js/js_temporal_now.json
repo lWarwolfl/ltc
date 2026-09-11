@@ -1,0 +1,343 @@
+{
+ "slug": "js_temporal_now",
+ "course": "js",
+ "order": 192,
+ "url": "/js/js_temporal_now.asp",
+ "title": "شیء Now در Temporal جاوااسکریپت",
+ "summary": "شیء Temporal.Now پنج متد برای گرفتن تاریخ و ساعت جاری سیستم دارد. در این درس می‌آموزید هر متد چه نوعی برمی‌گرداند و چرا Temporal.Now ایستاست و با new ساخته نمی‌شود.",
+ "objectives": [
+  "پنج متد Temporal.Now را نام ببرید و کار هرکدام را بگویید",
+  "تاریخ و ساعت جاری را با متد مناسب همان نوع بگیرید",
+  "منطقهٔ زمانی سیستم را با timeZoneId() بخوانید",
+  "توضیح دهید چرا Temporal.Now ایستاست و نمونه‌پذیر نیست"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "شیء Now در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "شیء Temporal.Now"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.Now پنج متد برای گرفتن تاریخ و ساعت سیستم دارد."
+  },
+  {
+   "type": "p",
+   "text": "برای هر شیء تاریخ یک متد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal.Now.instant()",
+    "Temporal.Now.plainDateISO()",
+    "Temporal.Now.plainTimeISO()",
+    "Temporal.Now.plainDateTimeISO()",
+    "Temporal.Now.zonedDateTimeISO()"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "و یک متد برای گرفتن منطقهٔ زمانی سیستم:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal.Now.timeZoneId()"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Now چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "Temporal.Now یک شیء Namespace است. مثل شیء Math، فقط ظرفی برای متدهاست."
+  },
+  {
+   "type": "p",
+   "text": "این متدها زمان جاری را در قالب‌های مختلف (Instant، ZonedDateTime، PlainDateTime و…) با دقت نانوثانیه برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "Temporal.Now ایستاست و نمی‌توان از آن نمونه ساخت. با کلیدواژهٔ new نمی‌توانید Temporal.Now بسازید؛ new Temporal.Now() خطا می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "در عوض متدها را مستقیم روی خود Namespace صدا می‌زنید، مثل Temporal.Now.instant()."
+  },
+  {
+   "type": "p",
+   "text": "Temporal.Now جانشین متد قدیمی Date.now() شده است."
+  },
+  {
+   "type": "h2",
+   "text": "ساخت شیء Temporal.Instant"
+  },
+  {
+   "type": "p",
+   "text": "متد Temporal.Now.instant() یک شیء Temporal.Instant برمی‌گرداند که تاریخ و ساعت جاری را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "شیء Instant یک لحظهٔ دقیق در زمان (UTC) را نشان می‌دهد و شبیه timestamp است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let now = Temporal.Now.instant();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_instant"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت شیء Temporal.PlainDate"
+  },
+  {
+   "type": "p",
+   "text": "از متد Temporal.Now.plainDateISO() برای گرفتن تاریخ جاری استفاده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "یک شیء PlainDate با (سال، ماه، روز) در تقویم ISO 8601 برمی‌گرداند و منطقهٔ زمانی و ساعت را نادیده می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "شیء PlainDate برای برنامه‌های تقویمی مثل تولدها، سالگردها و زمان‌بندی مناسب است، جاهایی که ساعت روز اهمیتی ندارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let today = Temporal.Now.plainDateISO();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت شیء Temporal.PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "برای ساعت تنها از متد plainTimeISO() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "یک شیء PlainTime با ساعت جاری در تقویم ISO برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let today = Temporal.Now.plainTimeISO();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_plaintime"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت شیء Temporal.PlainDateTime"
+  },
+  {
+   "type": "p",
+   "text": "برای تاریخ و ساعت تنها از plainDateTimeISO() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "یک شیء PlainDateTime در تقویم ISO 8601 برمی‌گرداند و منطقه‌های زمانی را نادیده می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "شیء PlainDateTime وقتی به کار می‌آید که تاریخ و ساعت برای زمان‌بندی محلی، عناصر تقویمی و محاسبهٔ تاریخ و ساعت لازم باشد و منطقهٔ زمانی اهمیت نداشته باشد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let dateTime = Temporal.Now.plainDateTimeISO();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_plaindatetime"
+  },
+  {
+   "type": "p",
+   "text": "شیء Date در JavaScript یک متد برای گرفتن زمان جاری دارد."
+  },
+  {
+   "type": "p",
+   "text": "Temporal.Now پنج متد برای پنج شیء تاریخ مختلف دارد."
+  },
+  {
+   "type": "h2",
+   "text": "ساخت شیء Temporal.ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "وقتی هم تاریخ و هم منطقهٔ زمانی را لازم دارید از متد zonedDateTimeISO() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "یک شیء Temporal.ZonedDateTime برمی‌گرداند که منطقهٔ زمانی سیستم شما را در خود دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let zoned = Temporal.Now.zonedDateTimeISO();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_zoneddatetime"
+  },
+  {
+   "type": "h2",
+   "text": "گرفتن منطقهٔ زمانی جاری"
+  },
+  {
+   "type": "p",
+   "text": "متد timeZoneId() شناسه‌ای از منطقهٔ زمانی برمی‌گرداند که منطقهٔ زمانی جاری سیستم را نشان می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = Temporal.Now.timeZoneId();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_timezoneid"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای Temporal.Now"
+  },
+  {
+   "type": "h3",
+   "text": "بازنگری: مارس ۲۰۲۶"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "توضیح"
+    ],
+    [
+     "instant()",
+     "زمان جاری را به‌صورت یک شیء Temporal.Instant برمی‌گرداند"
+    ],
+    [
+     "plainDateISO()",
+     "تاریخ جاری را به‌صورت یک شیء Temporal.PlainDate برمی‌گرداند"
+    ],
+    [
+     "plainDateTimeISO()",
+     "تاریخ و ساعت جاری را به‌صورت یک شیء Temporal.PlainDateTime برمی‌گرداند"
+    ],
+    [
+     "plainTimeISO()",
+     "زمان جاری را به‌صورت یک شیء Temporal.PlainTime برمی‌گرداند"
+    ],
+    [
+     "timeZoneId",
+     "منطقهٔ زمانی سیستم را به‌صورت شناسهٔ منطقهٔ زمانی برمی‌گرداند"
+    ],
+    [
+     "zonedDateTimeISO()",
+     "تاریخ و ساعت جاری را به‌صورت یک شیء Temporal.ZonedDateTime برمی‌گرداند"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل now.html بسازید و تاریخ و ساعت جاری را با Temporal.Now.instant() بگیرید و در کنسول چاپ کنید.",
+   "hint": "instant() یک لحظهٔ دقیق در UTC می‌دهد، شبیه timestamp."
+  },
+  {
+   "prompt": "با Temporal.Now.plainDateISO()، Temporal.Now.plainTimeISO() و Temporal.Now.plainDateTimeISO() هر سه مقدار را بگیرید و تفاوتشان را روی صفحه بگویید.",
+   "hint": "هر متد یک نوع متفاوت برمی‌گرداند: تاریخ، ساعت و تاریخ‌وساعت."
+  },
+  {
+   "prompt": "با Temporal.Now.timeZoneId() منطقهٔ زمانی سیستم خود را چاپ کنید.",
+   "hint": "این متد شناسهٔ منطقهٔ زمانی را به‌صورت رشته برمی‌گرداند."
+  },
+  {
+   "prompt": "تعداد متدهای Temporal.Now را با تعداد متدهای گرفتن زمان جاری در Date مقایسه کنید و نتیجه را بنویسید.",
+   "hint": "Date فقط یک متد دارد، اما Temporal.Now پنج متد برای پنج نوع مختلف دارد."
+  },
+  {
+   "prompt": "تعداد پنج متد Temporal.Now را روی صفحه بنویسید و برای هرکدام نوع خروجی را مشخص کنید.",
+   "hint": "instant، plainDateISO، plainTimeISO، plainDateTimeISO و zonedDateTimeISO."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "شیء Temporal.Now چند متد برای گرفتن تاریخ و ساعت سیستم دارد؟",
+   "options": [
+    "۱",
+    "۳",
+    "۵",
+    "۷"
+   ],
+   "answer": 2,
+   "explanation": "Temporal.Now پنج متد دارد: برای Instant، PlainDate، PlainTime، PlainDateTime و ZonedDateTime. شیء Date فقط یک متد داشت."
+  },
+  {
+   "question": "برای گرفتن تاریخ جاری کدام متد به کار می‌رود؟",
+   "options": [
+    "Temporal.Now.instant()",
+    "Temporal.Now.plainDateISO()",
+    "Temporal.Now.timeZoneId()",
+    "Temporal.Now.zonedDateTimeISO()"
+   ],
+   "answer": 1,
+   "explanation": "plainDateISO() یک PlainDate با سال، ماه و روز برمی‌گرداند. instant() لحظهٔ UTC، timeZoneId() شناسهٔ منطقهٔ زمانی و zonedDateTimeISO() تاریخ و ساعت همراه منطقهٔ زمانی می‌دهد."
+  },
+  {
+   "question": "چرا نوشتن new Temporal.Now() خطا می‌دهد؟",
+   "options": [
+    "چون Temporal.Now ایستاست و نمونه‌پذیر نیست",
+    "چون new در Temporal معنی ندارد",
+    "چون Temporal.Now تابع نیست",
+    "چون اول باید منطقهٔ زمانی بدهیم"
+   ],
+   "answer": 0,
+   "explanation": "Temporal.Now مانند Math یک شیء Namespace ایستاست و از آن نمونه ساخته نمی‌شود؛ متدها را مستقیم روی خود آن صدا می‌زنید."
+  },
+  {
+   "question": "کدام متد منطقهٔ زمانی سیستم را برمی‌گرداند؟",
+   "options": [
+    "Temporal.Now.timeZoneId()",
+    "Temporal.Now.zonedDateTimeISO()",
+    "Temporal.Now.instant()",
+    "Temporal.Now.plainTimeISO()"
+   ],
+   "answer": 0,
+   "explanation": "timeZoneId() شناسهٔ منطقهٔ زمانی را برمی‌گرداند. zonedDateTimeISO() تاریخ و ساعتی همراه منطقهٔ زمانی می‌دهد و سه متد دیگر به‌تنهایی منطقهٔ زمانی نمی‌دهند."
+  },
+  {
+   "question": "خروجی Temporal.Now.instant() چه نوعی دارد؟",
+   "options": [
+    "یک رشته",
+    "یک شیء Temporal.Instant",
+    "یک عدد صحیح",
+    "یک شیء PlainDate"
+   ],
+   "answer": 1,
+   "explanation": "این متد یک شیء Temporal.Instant برمی‌گرداند که لحظهٔ دقیق در UTC را نشان می‌دهد و شبیه timestamp است."
+  }
+ ]
+}

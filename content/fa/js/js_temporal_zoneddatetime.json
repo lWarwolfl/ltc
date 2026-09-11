@@ -1,0 +1,683 @@
+{
+ "slug": "js_temporal_zoneddatetime",
+ "course": "js",
+ "order": 191,
+ "url": "/js/js_temporal_zoneddatetime.asp",
+ "title": "ZonedDateTime در JavaScript",
+ "summary": "شیء Temporal.ZonedDateTime تاریخ و ساعت را همراه منطقهٔ زمانی نگه می‌دارد و ایمن‌ترین راه محاسبهٔ تاریخ بین‌المللی است. در این درس می‌آموزید آن را بسازید، بین منطقه‌های زمانی تبدیل کنید و از باگ‌های ساعت تابستانی دور بمانید.",
+ "objectives": [
+  "شیء ZonedDateTime را از رشته و از Temporal.Now بسازید",
+  "ساختار رشتهٔ ISO 8601 را با نام منطقهٔ زمانی توضیح دهید",
+  "یک ZonedDateTime را به منطقهٔ زمانی دیگری تبدیل کنید",
+  "تشخیص دهید چرا DST با Date باگ می‌سازد اما با ZonedDateTime نه",
+  "برای هر کاربرد مشخص، نوع مناسب Temporal را انتخاب کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ZonedDateTime در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "کار درست با منطقه‌های زمانی"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.ZonedDateTime یک تاریخ و ساعت همراه با منطقهٔ زمانی را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "ایمن‌ترین راه برای محاسبهٔ تاریخ و ساعت بین‌المللی است."
+  },
+  {
+   "type": "p",
+   "text": "جلوی باگ‌های رایج ساعت تابستانی (DST) را می‌گیرد و تبدیل منطقهٔ زمانی را روشن و قابل پیش‌بینی می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "آنچه یاد می‌گیرید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "روش استفاده از Temporal.ZonedDateTime در JavaScript",
+    "روش کار درست با منطقه‌های زمانی",
+    "روش جمع و تفریق تاریخ",
+    "روش دوری از باگ‌های ساعت تابستانی (DST)",
+    "روش تبدیل ایمن بین منطقه‌های زمانی"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "چرا ZonedDateTime مهم است"
+  },
+  {
+   "type": "p",
+   "text": "منطقه‌های زمانی و ساعت تابستانی (DST) هنگام کار با Date در JavaScript می‌توانند باگ‌های جدی بسازند."
+  },
+  {
+   "type": "p",
+   "text": "ZonedDateTime با نگه‌داشتن همیشگی منطقهٔ زمانی همراه تاریخ و ساعت، این مشکل را حل می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "یک Temporal.ZonedDateTime شیء تاریخ و ساعتی است که منطقهٔ زمانی و تقویم را می‌شناسد و یک رویداد واقعی زمان را از دید یک منطقهٔ خاص از زمین نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.ZonedDateTime برای مواردی بهینه شده است که به منطقهٔ زمانی، محاسبهٔ ایمن نسبت به DST و کارکرد دوطرفه با تقویم RFC 5545 نیاز دارند."
+  },
+  {
+   "type": "p",
+   "text": "مثال: ۷ دسامبر ۱۹۹۵ ساعت ۳:۲۴ بامداد به وقت اقیانوس آرام آمریکا (در تقویم میلادی)."
+  },
+  {
+   "type": "h2",
+   "text": "ساخت ZonedDateTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zonedDate = Temporal.ZonedDateTime.from({\n\n  timeZone: 'Europe/Oslo',\n\n  year: 2026,\n\n  month: 5,\n\n  day: 17,\n\n  hour: 14,\n\n  minute: 30,\n\n  second: 0,\n\n  millisecond: 0,\n\n  microsecond: 0,\n\n  nanosecond: 500\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned"
+  },
+  {
+   "type": "p",
+   "text": "همچنین می‌توانید یک ZonedDateTime را از رشته‌ای بسازید که منطقهٔ زمانی را در خود دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zdt = Temporal.ZonedDateTime.from\n\n(\"2026-02-17T14:30:00[Europe/Oslo]\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_2"
+  },
+  {
+   "type": "p",
+   "text": "نام منطقهٔ زمانی داخل کروشه نوشته می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "گرفتن تاریخ و ساعت جاری همراه منطقهٔ زمانی"
+  },
+  {
+   "type": "p",
+   "text": "متد Temporal.Now.zonedDateTimeISO() تاریخ، ساعت و منطقهٔ زمانی جاری سیستم شما را به‌صورت یک شیء Temporal.ZonedDateTime برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const now = Temporal.Now.zonedDateTimeISO();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_system_time"
+  },
+  {
+   "type": "p",
+   "text": "زمان جاری در قالب ISO 8601 برگردانده می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "قالب ISO 8601"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "2026-03-02: تاریخ تقویمی (سال-ماه-روز).",
+    "T10:36:00: ساعت روز (T-ساعت:دقیقه:ثانیه).",
+    "+01:00: اختلاف با UTC (زمان هماهنگ جهانی).",
+    "[Europe/Oslo]: نام منطقهٔ زمانی IANA که در این مثال همان منطقهٔ زمانی محلی سیستم است."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "تبدیل بین منطقه‌های زمانی"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک ZonedDateTime را به منطقهٔ زمانی دیگری تبدیل کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const oslo = Temporal.ZonedDateTime.from\n\n(\"2026-05-17T14:30:00+01:00[Europe/Oslo]\");\n\nconst newYork = oslo.withTimeZone(\"America/New_York\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_now"
+  },
+  {
+   "type": "p",
+   "text": "لحظهٔ دقیق ثابت می‌ماند، اما ساعت محلی تغییر می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "جمع کردن زمان به‌شکل ایمن (مصون از DST)"
+  },
+  {
+   "type": "p",
+   "text": "افزودن روز در گذر از تغییر ساعت تابستانی با Date جاوااسکریپت می‌تواند خراب شود."
+  },
+  {
+   "type": "p",
+   "text": "Temporal.ZonedDateTime این مورد را درست مدیریت می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.ZonedDateTime.from\n\n(\"2026-03-29T00:00:00+01:00[Europe/Oslo]\");\n\nconst nextDay = start.add({ days: 1 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_add"
+  },
+  {
+   "type": "p",
+   "text": "اگر تغییر ساعت تابستانی رخ دهد، Temporal خودش تنظیم می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد since() در ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "متد since() مدت‌زمان بین دو تاریخ Temporal را حساب می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T09:00:00+01:00[Europe/Oslo]\");\n\nconst end = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T17:30:00+01:00[Europe/Oslo]\");\n\nconst duration = end.since(start);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since2"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای since() و until() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای تاریخ Temporal متد since() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "plaindate.since(plaindate)",
+    "plaintime.since(plaintime)",
+    "plainyearmonth.since(plainyearmonth)",
+    "plainmonthday.since(plainmonthday)",
+    "plaindatetime.since(plaindatetime)",
+    "zoneddatetime.since(zoneddatetime)",
+    "instant.since(instant)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد until() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "plaindate.until(plaindate)",
+    "plaintime.until(plaintime)",
+    "plainyearmonth.until(plainyearmonth)",
+    "plainmonthday.until(plainmonthday)",
+    "plaindatetime.until(plaindatetime)",
+    "zoneddatetime.until(zoneddatetime)",
+    "instant.until(instant)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "متدهای since() و until() در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "متد with()"
+  },
+  {
+   "type": "p",
+   "text": "متد with() یک تاریخ و ساعت منطقه‌دار تازه می‌سازد که فیلدهای تعیین‌شده در آن جانشین شده‌اند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a ZonedDateTime\n\nconst date = Temporal.ZonedDateTimr.from(\"2026-05-17T14:30:00[Europe/Oslo]\");\n\n// Replace month and day\n\nconst customDate = date.with({ month:12, day:25 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_width"
+  },
+  {
+   "type": "h2",
+   "text": "تبدیل از Instant"
+  },
+  {
+   "type": "p",
+   "text": "شیء Instant یک لحظه در UTC را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید آن را به یک ZonedDateTime در منطقهٔ زمانی مشخص تبدیل کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Now.instant();\n\nconst zoned = instant.toZonedDateTimeISO(\"Europe/Oslo\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_from_instant"
+  },
+  {
+   "type": "h2",
+   "text": "ZonedDateTime در برابر PlainDateTime"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نوع",
+     "معنا"
+    ],
+    [
+     "Instant",
+     "لحظهٔ دقیق در زمان UTC"
+    ],
+    [
+     "PlainDateTime",
+     "تاریخ و ساعت ساده (بدون منطقهٔ زمانی)"
+    ],
+    [
+     "ZonedDateTime",
+     "تاریخ و ساعت محلی (+ منطقهٔ زمانی)"
+    ]
+   ]
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/js/img_temporal.svg",
+   "alt": "Temporal Map"
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از ZonedDateTime استفاده کنیم؟"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "برنامه‌های بین‌المللی.",
+    "سیستم‌های رزرو.",
+    "سیستم‌های پرواز و سفر.",
+    "برنامه‌هایی که باید ساعت تابستانی (DST) را درست مدیریت کنند.",
+    "هر سیستمی که منطقهٔ زمانی در آن مهم است."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متدهای Temporal.ZonedDateTime"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ساخت",
+     "توضیح"
+    ],
+    [
+     "new",
+     "یک شیء ZonedDateTime می‌سازد"
+    ],
+    [
+     "from()",
+     "یک شیء ZonedDateTime از یک شیء یا رشته می‌سازد"
+    ],
+    [
+     "تبدیل",
+     ""
+    ],
+    [
+     "getTimeZoneTransition()",
+     "یک شیء ZonedDateTime برمی‌گرداند که نزدیک‌ترین لحظه پس یا پیش از این Instant است"
+    ],
+    [
+     "toInstant()",
+     "یک شیء Instant برمی‌گرداند که این تاریخ و ساعت را نشان می‌دهد"
+    ],
+    [
+     "toPlainDate()",
+     "یک شیء PlainDate برمی‌گرداند که این تاریخ و ساعت را نشان می‌دهد"
+    ],
+    [
+     "toPlainDateTime()",
+     "یک شیء PlainDateTime برمی‌گرداند که این تاریخ و ساعت را نشان می‌دهد"
+    ],
+    [
+     "toPlainTime()",
+     "یک شیء PlainTime برمی‌گرداند که این تاریخ و ساعت را نشان می‌دهد"
+    ],
+    [
+     "startOfDay()",
+     "یک ZonedDateTime برمی‌گرداند که نخستین لحظهٔ این تاریخ است"
+    ],
+    [
+     "به‌روزرسانی",
+     ""
+    ],
+    [
+     "with()",
+     "یک ZonedDateTime با فیلدهای تعیین‌شدهٔ تغییر‌یافته برمی‌گرداند"
+    ],
+    [
+     "withCalendar()",
+     "یک ZonedDateTime با سیستم تقویم دیگر برمی‌گرداند"
+    ],
+    [
+     "withPlainTime()",
+     "یک ZonedDateTime برمی‌گرداند که بخش ساعت آن با ساعت تازه‌ای جانشین شده است"
+    ],
+    [
+     "withTimeZone()",
+     "یک ZonedDateTime برمی‌گرداند که این تاریخ را در منطقهٔ زمانی تازه نشان می‌دهد"
+    ],
+    [
+     "حساب",
+     ""
+    ],
+    [
+     "add()",
+     "یک ZonedDateTime با مدت افزوده‌شده برمی‌گرداند"
+    ],
+    [
+     "subtract()",
+     "یک ZonedDateTime با مدت کم‌شده برمی‌گرداند"
+    ],
+    [
+     "round()",
+     "یک ZonedDateTime گردشده به واحد داده‌شده برمی‌گرداند"
+    ],
+    [
+     "مقایسه",
+     ""
+    ],
+    [
+     "compare()",
+     "با مقایسهٔ دو تاریخ مقدار -1، 0 یا 1 را برمی‌گرداند"
+    ],
+    [
+     "equals()",
+     "اگر دو شیء ZonedDateTime یکسان باشند true برمی‌گرداند"
+    ],
+    [
+     "since()",
+     "اختلاف با تاریخ دیگر را برمی‌گرداند"
+    ],
+    [
+     "until()",
+     "اختلاف تا تاریخ دیگر را برمی‌گرداند"
+    ],
+    [
+     "قالب‌بندی",
+     ""
+    ],
+    [
+     "toJSON()",
+     "یک رشتهٔ ISO 8601 برای سریال‌سازی JSON برمی‌گرداند"
+    ],
+    [
+     "toLocaleString()",
+     "نمایشی از تاریخ بر پایهٔ زبان و منطقهٔ کاربر برمی‌گرداند"
+    ],
+    [
+     "toString()",
+     "یک رشتهٔ نمایشی با قالب ISO 8601 برمی‌گرداند"
+    ],
+    [
+     "valueOf()",
+     "یک TypeError می‌دهد (نمی‌گذارد شیءهای Temporal به مقدار اولیه تبدیل شوند)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های Temporal.ZonedDateTime"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیح"
+    ],
+    [
+     "calendarID",
+     "شناسهٔ سیستم تقویم (\"iso8601\")"
+    ],
+    [
+     "day",
+     "روز به‌صورت عدد صحیح (1-31)"
+    ],
+    [
+     "dayOfWeek",
+     "روز هفته به‌صورت عدد صحیح (1 = دوشنبه)"
+    ],
+    [
+     "dayOfYear",
+     "شمارهٔ ترتیبی روز در سال"
+    ],
+    [
+     "daysInMonth",
+     "شمار کل روزهای آن ماه"
+    ],
+    [
+     "daysInWeek",
+     "شمار کل روزهای آن هفته"
+    ],
+    [
+     "daysInYear",
+     "شمار کل روزهای آن سال"
+    ],
+    [
+     "epochMilliseconds",
+     "شمار میلی‌ثانیه از مبدأ یونیکس"
+    ],
+    [
+     "epochNanoseconds",
+     "شمار نانوثانیه از مبدأ یونیکس"
+    ],
+    [
+     "era",
+     "نام مبدأ تقویم، در صورت وجود (\"gregory\")"
+    ],
+    [
+     "eraYear",
+     "سال در مبدأ تقویم، در صورت وجود"
+    ],
+    [
+     "hour",
+     "ساعت به‌صورت عدد صحیح (0-23)"
+    ],
+    [
+     "hoursInDay",
+     "شمار ساعت‌های این روز در این منطقهٔ زمانی (0-25)"
+    ],
+    [
+     "inLeapYear",
+     "مقدار بولی که نشان می‌دهد تاریخ در سال کبیسه است"
+    ],
+    [
+     "microsecond",
+     "میکروثانیه به‌صورت عدد صحیح (0-999)"
+    ],
+    [
+     "millisecond",
+     "میلی‌ثانیه به‌صورت عدد صحیح (0-999)"
+    ],
+    [
+     "minute",
+     "دقیقه به‌صورت عدد صحیح (0-59)"
+    ],
+    [
+     "month",
+     "ماه به‌صورت عدد صحیح (1-12)"
+    ],
+    [
+     "monthCode",
+     "کد رشته‌ای مخصوص تقویم برای ماه (\"M01\")"
+    ],
+    [
+     "monthsInYear",
+     "شمار کل ماه‌های آن سال"
+    ],
+    [
+     "nanosecond",
+     "نانوثانیه به‌صورت عدد صحیح (0-999)"
+    ],
+    [
+     "offset",
+     "اختلاف زمانی به کار رفته برای تفسیر این لحظه (+HH:mm:ss.sssssssss)"
+    ],
+    [
+     "offsetNanoseconds",
+     "اختلاف زمانی به کار رفته برای تفسیر این لحظه بر حسب نانوثانیه"
+    ],
+    [
+     "second",
+     "ثانیه به‌صورت عدد صحیح (0-59)"
+    ],
+    [
+     "timeZoneId",
+     "شناسهٔ منطقهٔ زمانی به کار رفته برای تفسیر این لحظه"
+    ],
+    [
+     "weekOfYear",
+     "شمارهٔ هفته در سال"
+    ],
+    [
+     "year",
+     "سال به‌صورت عدد صحیح"
+    ],
+    [
+     "yearOfWeek",
+     "سالی که هفته به آن تعلق دارد"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00[Europe/Oslo]\");",
+   "caption": "نمایش همهٔ خصوصیت‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_prop"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل zoned.html بسازید و با Temporal.ZonedDateTime.from(\"2026-03-02T10:36:00+01:00[Europe/Oslo]\") یک شیء بسازید و آن را چاپ کنید.",
+   "hint": "منطقهٔ زمانی داخل کروشه و به‌شکل IANA نوشته می‌شود."
+  },
+  {
+   "prompt": "با Temporal.Now.zonedDateTimeISO() تاریخ، ساعت و منطقهٔ زمانی سیستم خود را بگیرید و چاپ کنید.",
+   "hint": "این متد هر سه اطلاعات را یک‌جا برمی‌گرداند."
+  },
+  {
+   "prompt": "شیء خود را با withTimeZone(\"Asia/Tehran\") به منطقهٔ زمانی تهران تبدیل کنید و لحظهٔ زمانی را با حالت اولیه مقایسه کنید.",
+   "hint": "لحظهٔ دقیق ثابت می‌ماند و فقط ساعت محلی تغییر می‌کند."
+  },
+  {
+   "prompt": "یک روز به تاریخ خود اضافه کنید و نتیجه را با همان محاسبه روی Date مقایسه کنید.",
+   "hint": "Temporal.ZonedDateTime در گذر از تغییر ساعت تابستانی خودش تنظیم می‌کند."
+  },
+  {
+   "prompt": "با startOfDay() ابتدای روز را بگیرید و سپس با toInstant() لحظهٔ مطلق را چاپ کنید.",
+   "hint": "startOfDay یک ZonedDateTime می‌دهد و toInstant همان لحظه را در UTC نشان می‌دهد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "شیء ZonedDateTime چه چیزی را کنار هم نگه می‌دارد؟",
+   "options": [
+    "فقط تاریخ",
+    "تاریخ و ساعت همراه با منطقهٔ زمانی",
+    "تاریخ و ساعت بدون منطقهٔ زمانی",
+    "فقط لحظهٔ UTC"
+   ],
+   "answer": 1,
+   "explanation": "ZonedDateTime تاریخ، ساعت و منطقهٔ زمانی را با هم نگه می‌دارد؛ همین آن را برای تبدیل بین منطقه‌ها ایمن می‌کند."
+  },
+  {
+   "question": "منطقهٔ زمانی در رشتهٔ ZonedDateTime کجا نوشته می‌شود؟",
+   "options": [
+    "داخل کروشه",
+    "داخل پرانتز",
+    "بعد از علامت T",
+    "در ابتدای رشته"
+   ],
+   "answer": 0,
+   "explanation": "نام منطقهٔ زمانی IANA داخل کروشه می‌آید، مثل [Europe/Oslo]؛ T فقط تاریخ را از ساعت جدا می‌کند."
+  },
+  {
+   "question": "وقتی یک ZonedDateTime را به منطقهٔ زمانی دیگری تبدیل می‌کنیم چه چیزی تغییر می‌کند؟",
+   "options": [
+    "لحظهٔ دقیق تغییر می‌کند",
+    "ساعت محلی تغییر می‌کند و لحظهٔ دقیق ثابت می‌ماند",
+    "تاریخ حذف می‌شود",
+    "هیچ‌چیز تغییر نمی‌کند و خروجی یکسان است"
+   ],
+   "answer": 1,
+   "explanation": "تبدیل منطقهٔ زمانی همان لحظهٔ واقعی را در منطقهٔ تازه نشان می‌دهد؛ پس فقط ساعت محلی عوض می‌شود."
+  },
+  {
+   "question": "چرا استفاده از Date برای افزودن روز در گذر از تغییر ساعت تابستانی خطرناک است؟",
+   "options": [
+    "چون Date سریع‌تر است",
+    "چون Date منطقهٔ زمانی را جدا از تاریخ نگه نمی‌دارد و نتیجه می‌تواند جابه‌جا شود",
+    "چون Date واحد روز ندارد",
+    "چون Date فقط برای UTC ساخته شده است"
+   ],
+   "answer": 1,
+   "explanation": "ZonedDateTime منطقهٔ زمانی را همراه تاریخ و ساعت ذخیره می‌کند و در تغییر DST خودش تنظیم می‌کند؛ Date این اطلاعات را یک‌جا نگه نمی‌دارد."
+  },
+  {
+   "question": "کدام گزینه یک کاربرد درست برای ZonedDateTime است؟",
+   "options": [
+    "ساعت زنگ هشدار بدون تاریخ",
+    "سیستم رزرو بلیت در چند کشور",
+    "سال و ماه صورتحساب",
+    "ماه و روز تولد"
+   ],
+   "answer": 1,
+   "explanation": "ZonedDateTime برای برنامه‌های بین‌المللی مثل رزرو و پرواز است. ساعت زنگ هشدار کار PlainTime، سال و ماه کار PlainYearMonth و تولد کار PlainMonthDay است."
+  }
+ ]
+}

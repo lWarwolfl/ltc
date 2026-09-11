@@ -1,0 +1,268 @@
+{
+ "slug": "js_htmldom_html",
+ "course": "js",
+ "order": 143,
+ "url": "/js/js_htmldom_html.asp",
+ "title": "DOM در HTML: تغییر HTML",
+ "summary": "با DOM می‌توانید متن و محتوای عنصرها را تغییر دهید. این درس خصوصیت innerHTML برای خواندن و نوشتن محتوا، تغییر ویژگی‌ها مثل src و خطر استفاده از document.write() بعد از بارگذاری سند را نشان می‌دهد.",
+ "objectives": [
+  "با innerHTML محتوای یک عنصر را بخوانید و تغییر دهید",
+  "اشتباه‌های رایج مثل دسترسی به عنصر ناموجود را تشخیص دهید",
+  "مقدار یک ویژگی HTML را با JavaScript عوض کنید",
+  "بگویید چرا document.write() بعد از بارگذاری سند خطرناک است"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "DOM در HTML: تغییر HTML"
+  },
+  {
+   "type": "h2",
+   "text": "تغییر محتوای HTML"
+  },
+  {
+   "type": "p",
+   "text": "DOM به JavaScript اجازه می‌دهد هم متن و هم محتوای عنصرهای HTML را تغییر دهد."
+  },
+  {
+   "type": "p",
+   "text": "ساده‌ترین راه تغییر محتوا استفاده از خصوصیت innerHTML است:"
+  },
+  {
+   "type": "p",
+   "text": "document.getElementById(id).innerHTML = new HTML"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت innerHTML"
+  },
+  {
+   "type": "p",
+   "text": "ساده‌ترین راه گرفتن محتوای یک عنصر استفاده از خصوصیت innerHTML است."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت innerHTML برای گرفتن یا جایگزین کردن محتوای عنصرهای HTML سودمند است."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت innerHTML را می‌توان برای گرفتن یا تغییر هر عنصر HTML به کار برد، از جمله <html> و <body>."
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه‌های رایج"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "دسترسی به عنصر DOM پیش از آنکه وجود داشته باشد",
+    "فراموش کردن کوتیشن در شناسه‌ای مثل \"demo\""
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<p id=\"p1\">Hello World!</p>\n\n<script>\n\ndocument.getElementById(\"p1\").innerHTML = \"New text!\";\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_change_innerhtml"
+  },
+  {
+   "type": "p",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "سند HTML بالا یک عنصر <p> با id=\"p1\" دارد",
+    "با DOM عنصر با id=\"p1\" را می‌گیریم",
+    "JavaScript محتوای (innerHTML) آن عنصر را به \"New text!\" تغییر می‌دهد"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1 id=\"id01\">Old Heading</h1>\n\n<script>\n\nconst element = document.getElementById(\"id01\");\nelement.innerHTML = \"New Heading\";\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_innerhtml"
+  },
+  {
+   "type": "p",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "سند HTML بالا یک عنصر <h1> با id=\"id01\" دارد",
+    "با DOM عنصر با id=\"id01\" را می‌گیریم",
+    "JavaScript محتوای (innerHTML) آن عنصر را به \"New Heading\" تغییر می‌دهد"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "تغییر یک ویژگی"
+  },
+  {
+   "type": "p",
+   "text": "برای تغییر مقدار یک ویژگی HTML از این ساختار استفاده کنید:"
+  },
+  {
+   "type": "p",
+   "text": "document.getElementById(id).attribute = new value"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<img id=\"myImage\" src=\"smiley.gif\">\n\n<script>\n\ndocument.getElementById(\"myImage\").src = \"landscape.jpg\";\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_image"
+  },
+  {
+   "type": "p",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "سند HTML بالا یک عنصر <img> با id=\"myImage\" دارد",
+    "با DOM عنصر با id=\"myImage\" را می‌گیریم",
+    "JavaScript ویژگی src آن عنصر را از \"smiley.gif\" به \"landscape.jpg\" تغییر می‌دهد"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "محتوای پویا در HTML"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript می‌تواند محتوای پویا بسازد:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = \"Date : \" + Date();\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_date"
+  },
+  {
+   "type": "h2",
+   "text": "متد document.write()"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript می‌توان از document.write() برای نوشتن مستقیم در جریان خروجی HTML استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<p>Bla bla bla</p>\n\n<script>\n\ndocument.write(Date());\n\n</script>\n\n<p>Bla bla bla</p>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_write"
+  },
+  {
+   "type": "h2",
+   "text": "هشدار!"
+  },
+  {
+   "type": "p",
+   "text": "هرگز بعد از بارگذاری سند از document.write() استفاده نکنید؛ کل سند را بازنویسی می‌کند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل changing.html بسازید که یک پاراگراف با id=\"p1\" داشته باشد؛ با innerHTML متنش را به «New text!» تغییر دهید.",
+   "hint": "اسکریپت را بعد از عنصر یا در انتهای body بگذارید تا عنصر پیش از اجرای کد وجود داشته باشد."
+  },
+  {
+   "prompt": "یک سرتیتر با id=\"id01\" بسازید و محتوایش را به «New Heading» تغییر دهید.",
+   "hint": "همان الگو را برای h1 هم می‌توانید به کار ببرید؛ innerHTML روی هر عنصر HTML کار می‌کند."
+  },
+  {
+   "prompt": "یک تصویر با id=\"myImage\" در صفحه بگذارید و با JavaScript مقدار src آن را عوض کنید.",
+   "hint": "document.getElementById(\"myImage\").src = \"landscape.jpg\" ویژگی را مستقیم تغییر می‌دهد."
+  },
+  {
+   "prompt": "اشتباه «دسترسی پیش از وجود عنصر» را بازتولید کنید: عنصر را بعد از اسکریپت بگذارید و خطای کنسول را بخوانید؛ بعد ترتیب را درست کنید.",
+   "hint": "خطای null یعنی getElementById عنصر را پیدا نکرده، چون هنوز ساخته نشده است."
+  },
+  {
+   "prompt": "با مستندسازی درست، تفاوت innerHTML و document.write را ببینید: یک دکمه بسازید که با کلیک، محتوای یک عنصر را با innerHTML عوض کند.",
+   "hint": "innerHTML فقط همان عنصر را تغییر می‌دهد، ولی document.write بعد از بارگذاری کل سند را از بین می‌برد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام خصوصیت برای خواندن یا جایگزینی محتوای یک عنصر ساده‌ترین راه است؟",
+   "options": [
+    "textContent",
+    "innerHTML",
+    "src",
+    "document.title"
+   ],
+   "answer": 1,
+   "explanation": "innerHTML هم محتوا را می‌خواند و هم آن را جایگزین می‌کند و روی هر عنصر HTML از جمله body کار می‌کند."
+  },
+  {
+   "question": "برای تغییر مقدار ویژگی src یک تصویر کدام ساختار درست است؟",
+   "options": [
+    "document.getElementById(id).attribute = new value",
+    "document.write(src)",
+    "img.getAttribute(\"new\")",
+    "document.style(src)"
+   ],
+   "answer": 0,
+   "explanation": "با گرفتن عنصر و مقداردهی مستقیم به ویژگی (مثل عنصر.src = \"landscape.jpg\") مقدار ویژگی عوض می‌شود."
+  },
+  {
+   "question": "اگر اسکریپت پیش از ساخته شدن عنصر اجرا شود چه اتفاقی می‌افتد؟",
+   "options": [
+    "عنصر خودبه‌خود ساخته می‌شود",
+    "متد null برمی‌گرداند و کد خطا می‌دهد",
+    "مرورگر اسکریپت را دو بار اجرا می‌کند",
+    "هیچ اتفاقی نمی‌افتد"
+   ],
+   "answer": 1,
+   "explanation": "getElementById برای عنصر ناموجود null می‌دهد و دسترسی به خصوصیت آن خطا می‌سازد؛ راه‌حل گذاشتن اسکریپت بعد از عنصر است."
+  },
+  {
+   "question": "چرا استفاده از document.write() بعد از بارگذاری سند ممنوع است؟",
+   "options": [
+    "چون کل سند را بازنویسی می‌کند",
+    "چون فقط روی موبایل کار می‌کند",
+    "چون کند است",
+    "چون نیاز به مجوز مرورگر دارد"
+   ],
+   "answer": 0,
+   "explanation": "document.write بعد از بارگذاری سند، خروجی را باز می‌کند و محتوای موجود صفحه را پاک می‌کند."
+  },
+  {
+   "question": "کدام مورد در جدول اشتباه‌های رایج این درس آمده است؟",
+   "options": [
+    "استفاده از let به‌جای const",
+    "فراموش کردن کوتیشن در شناسه‌ای مثل \"demo\"",
+    "ننوشتن نقطه‌ویرگول در پایان سطر",
+    "استفاده از console.log"
+   ],
+   "answer": 1,
+   "explanation": "در این درس دو اشتباه رایج معرفی شده: دسترسی به عنصر پیش از وجود آن و فراموش کردن کوتیشن در شناسه."
+  }
+ ]
+}

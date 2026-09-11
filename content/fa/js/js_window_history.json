@@ -1,0 +1,599 @@
+{
+ "slug": "js_window_history",
+ "course": "js",
+ "order": 162,
+ "url": "/js/js_window_history.asp",
+ "title": "History API در JavaScript",
+ "summary": "History API به JavaScript امکان می‌دهد با تاریخچهٔ نشست مرورگر کار کند: جابه‌جایی بین صفحه‌ها، افزودن ورودی جدید بدون بارگذاری دوباره، و واکنش به دکمه‌های Back و Forward. بعد از این درس می‌توانید متدهای back، forward، go، pushState و replaceState را به کار ببرید.",
+ "objectives": [
+  "شیء history و متدهای اصلی آن را توضیح دهید",
+  "بین history.back() و history.go(-1) رابطه برقرار کنید",
+  "با pushState() ورودی جدید تاریخچه بسازید و تفاوتش با replaceState() را بگویید",
+  "رویداد popstate را تشخیص دهید و برایش listener بنویسید",
+  "مقدارهای history.length و history.state را بررسی کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "History API در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "History API به شما امکان کار با تاریخچهٔ نشست (session history) مرورگر را می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "با آن می‌توانید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "به عقب برگردید",
+    "به جلو بروید",
+    "ورودی‌های جدید به تاریخچه اضافه کنید",
+    "ورودی جاری را تغییر دهید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "شیء History"
+  },
+  {
+   "type": "p",
+   "text": "به History API از طریق شیء window.history دسترسی پیدا می‌کنید."
+  },
+  {
+   "type": "p",
+   "text": "شیء history را می‌توان بدون پیشوند window نوشت."
+  },
+  {
+   "type": "p",
+   "text": "رایج‌ترین متدها اینها هستند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "history.back()؛ مثل کلیک روی دکمهٔ Back مرورگر",
+    "history.forward()؛ مثل کلیک روی دکمهٔ Forward مرورگر"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متدهای شیء History"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "توضیحات"
+    ],
+    [
+     "back()",
+     "ورودی قبلی تاریخچهٔ نشست را بارگذاری می‌کند"
+    ],
+    [
+     "forward()",
+     "ورودی بعدی تاریخچهٔ نشست را بارگذاری می‌کند"
+    ],
+    [
+     "go()",
+     "ورودی‌ای نسبت به ورودی جاری بارگذاری می‌کند"
+    ],
+    [
+     "pushState()",
+     "ورودی جدیدی به تاریخچهٔ نشست اضافه می‌کند"
+    ],
+    [
+     "replaceState()",
+     "ورودی جاری تاریخچه را تغییر می‌دهد"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برای پیمایش در تاریخچهٔ نشست از back()، forward() و go() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن ورودی جدید تاریخچه بدون بارگذاری صفحهٔ جدید از pushState() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "برای تغییر ورودی جاری بدون بارگذاری صفحهٔ جدید از replaceState() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "برای تشخیص جابه‌جایی کاربر به ورودی دیگر تاریخچه از رویداد popstate استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های شیء History"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیحات"
+    ],
+    [
+     "length",
+     "تعداد ورودی‌های تاریخچه را برمی‌گرداند"
+    ],
+    [
+     "state",
+     "وضعیت (state) ورودی جاری تاریخچه را برمی‌گرداند"
+    ],
+    [
+     "scrollRestoration",
+     "رفتار بازگردانی اسکرول را می‌گیرد یا تعیین می‌کند"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "توجه!"
+  },
+  {
+   "type": "p",
+   "text": "برای حفاظت از حریم خصوصی کاربر، دسترسی JavaScript به شیء history محدودیت دارد."
+  },
+  {
+   "type": "p",
+   "text": "به دلایل حریم خصوصی، JavaScript نمی‌تواند آدرس‌های URL ذخیره‌شده در تاریخچهٔ مرورگر را بخواند."
+  },
+  {
+   "type": "h2",
+   "text": "متد history.back()"
+  },
+  {
+   "type": "p",
+   "text": "متد history.back() صفحهٔ قبلی در تاریخچهٔ نشست را بارگذاری می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این کار همان کلیک روی دکمهٔ Back مرورگر است."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"window.history.back()\">Go Back</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"history.back()\">Go Back</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_back"
+  },
+  {
+   "type": "h2",
+   "text": "متد history.forward()"
+  },
+  {
+   "type": "p",
+   "text": "متد history.forward() صفحهٔ بعدی در تاریخچهٔ نشست را بارگذاری می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این کار همان کلیک روی دکمهٔ Forward مرورگر است."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"history.forward()\">Go Forward</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_forward"
+  },
+  {
+   "type": "h2",
+   "text": "متد history.go()"
+  },
+  {
+   "type": "p",
+   "text": "متد history.go() صفحهٔ مشخصی را از تاریخچهٔ نشست بارگذاری می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان آن به مرورگر می‌گوید چند گام از صفحهٔ جاری جابه‌جا شود."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"history.go(-2)\">Go Back</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_go"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"history.go(1)\">Go Forward</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_go_2"
+  },
+  {
+   "type": "p",
+   "text": "عددهای منفی به عقب می‌روند."
+  },
+  {
+   "type": "p",
+   "text": "عددهای مثبت به جلو می‌روند."
+  },
+  {
+   "type": "p",
+   "text": "دستور history.go(0) صفحهٔ جاری را دوباره بارگذاری می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "دستور history.back() معادل history.go(-1) است."
+  },
+  {
+   "type": "p",
+   "text": "دستور history.forward() معادل history.go(1) است."
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت history.length"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت history.length تعداد ورودی‌های تاریخچهٔ نشست را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let length = window.history.length;",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let length = history.length;",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_length"
+  },
+  {
+   "type": "p",
+   "text": "صفحهٔ جاری هم در این شمارش حساب می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت history.state"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت history.state دادهٔ وضعیت مرتبط با ورودی جاری تاریخچه را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let state = history.state;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state"
+  },
+  {
+   "type": "p",
+   "text": "مقدار history.state تا وقتی history.pushState() یا history.replaceState() را صدا نزنید null است."
+  },
+  {
+   "type": "h2",
+   "text": "تغییر تاریخچهٔ مرورگر"
+  },
+  {
+   "type": "p",
+   "text": "History API می‌تواند ورودی‌های تاریخچهٔ مرورگر را هم اضافه یا جایگزین کند."
+  },
+  {
+   "type": "p",
+   "text": "این برای برنامه‌هایی مفید است که محتوای صفحه را بدون بارگذاری سند کاملاً جدید عوض می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "این دو متد عبارت‌اند از:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "history.pushState()؛ ورودی جدیدی به تاریخچه اضافه می‌کند",
+    "history.replaceState()؛ ورودی جاری تاریخچه را جایگزین می‌کند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد history.pushState()"
+  },
+  {
+   "type": "p",
+   "text": "متد history.pushState() ورودی جدیدی به تاریخچهٔ نشست اضافه می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "history.pushState(state, \"\", url)",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let state = {name:\"example\", page: 2};\n\nlet url = \"page2.html\";\n\nhistory.pushState(state, \"\", url);",
+   "caption": "نحو"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_2"
+  },
+  {
+   "type": "p",
+   "text": "این مثال URL را به page2.html تغییر می‌دهد و ورودی جدیدی به تاریخچه اضافه می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "اما فایل page2.html را از سرور بارگذاری نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در آرگومان state می‌توانید هر داده‌ای مرتبط با آن ورودی را ذخیره کنید."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان دوم (\"\") به دلایل تاریخی وجود دارد و معمولاً خالی است."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان اختیاری url باید هم‌مبدأ با صفحهٔ جاری باشد."
+  },
+  {
+   "type": "h3",
+   "text": "صفحهٔ جدیدی بارگذاری نمی‌کند"
+  },
+  {
+   "type": "p",
+   "text": "متد history.pushState() صفحهٔ جدیدی بارگذاری نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "فقط ورودی جدیدی به تاریخچهٔ مرورگر اضافه می‌کند که شامل URL و شیء state است."
+  },
+  {
+   "type": "p",
+   "text": "اگر قرار است محتوای صفحه عوض شود، JavaScript باید جداگانه آن را تغییر دهد؛ مثلاً با دستوری مثل location.href = \"page2.html\";"
+  },
+  {
+   "type": "h2",
+   "text": "متد history.replaceState()"
+  },
+  {
+   "type": "p",
+   "text": "متد history.replaceState() ورودی جاری تاریخچه را تغییر می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "برخلاف history.pushState() ورودی جدیدی به تاریخچه اضافه نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این کار URL جاری را بدون افزودن ورودی دیگر به تاریخچهٔ مرورگر عوض می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "history.replaceState(state, \"\", url)",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let state = {name:\"example\", page: 2};\n\nlet url = \"page2.html\";\n\nhistory.replaceState(state, \"\", url);",
+   "caption": "نحو"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_3"
+  },
+  {
+   "type": "h3",
+   "text": "صفحهٔ جدیدی بارگذاری نمی‌کند"
+  },
+  {
+   "type": "p",
+   "text": "متد history.replaceState() صفحهٔ جدیدی بارگذاری نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "فقط ورودی جاری تاریخچه را تغییر می‌دهد، شامل URL و شیء state."
+  },
+  {
+   "type": "p",
+   "text": "اگر قرار است محتوای صفحه عوض شود، JavaScript باید جداگانه آن را تغییر دهد؛ مثلاً با دستوری مثل location.href = \"page2.html\";"
+  },
+  {
+   "type": "h2",
+   "text": "رویداد popstate"
+  },
+  {
+   "type": "p",
+   "text": "رویداد popstate وقتی رخ می‌دهد که ورودی فعال تاریخچه عوض شود."
+  },
+  {
+   "type": "p",
+   "text": "این معمولاً وقتی اتفاق می‌افتد که کاربر دکمهٔ Back یا Forward مرورگر را بزند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "window.addEventListener(\"popstate\", function(event) {\n\n  myDisplayer(\"Page changed\");\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "اگر ورودی تاریخچه دادهٔ state داشته باشد، از event.state در دسترس است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "window.addEventListener(\"popstate\", function(event) {\n\n  if (event.state) {\n\n    myDisplayer(event.state.page);\n\n  }\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "صدا زدن pushState() یا replaceState() رویداد popstate را فعال نمی‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "یک مثال ساده از History API"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر URL را بدون بارگذاری صفحهٔ جدید عوض می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "همچنین وقتی کاربر Back یا Forward را می‌زند، محتوای نمایش‌داده‌شده را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"showPage('home')\">Home</button>\n\n<button onclick=\"showPage('about')\">About</button>\n\n<p id=\"demo\">Home</p>\n\n<script>\n\nfunction showPage(page) {\n\n  myDisplayer(page);\n\n  history.pushState({page: page}, \"\", \"?page=\" + page);\n\n}\n\nwindow.addEventListener(\"popstate\", function(event) {\n\n  if (event.state) {\n\n    myDisplayer(event.state.page);\n\n  }\n\n});\n\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_4"
+  },
+  {
+   "type": "h2",
+   "text": "بازگردانی اسکرول"
+  },
+  {
+   "type": "p",
+   "text": "مرورگرها معمولاً وقتی کاربر به عقب یا جلو می‌رود، موقعیت اسکرول را برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت history.scrollRestoration این رفتار را کنترل می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "history.scrollRestoration = \"manual\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "مقدارهای ممکن اینها هستند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "\"auto\"؛ مرورگر موقعیت اسکرول را برمی‌گرداند",
+    "\"manual\"؛ خود برنامه موقعیت اسکرول را کنترل می‌کند"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "دو فایل page1.html و page2.html بسازید که هرکدام پیوندی به دیگری داشته باشد، سپس در صفحهٔ دوم دکمهٔ Back مرورگر را بزنید و ببینید به صفحهٔ اول برمی‌گردید.",
+   "hint": "دکمهٔ Back مرورگر همان کار history.back() را می‌کند؛ می‌توانید دکمه‌ای هم بسازید که در onclick همین متد را صدا بزند."
+  },
+  {
+   "prompt": "در کنسول مقدار history.length را چاپ کنید، بعد یک صفحهٔ دیگر باز کنید و دوباره چاپش کنید.",
+   "hint": "صفحهٔ جاری هم در این شمارش حساب می‌شود، پس عدد حداقل ۱ است."
+  },
+  {
+   "prompt": "یک ورودی تازه با history.pushState({page:1}, \"\", \"page1.html\") اضافه کنید، سپس دکمهٔ Back مرورگر را بزنید و ببینید URL عوض می‌شود بدون اینکه صفحه دوباره بارگذاری شود.",
+   "hint": "این متد صفحهٔ جدیدی از سرور نمی‌گیرد؛ فقط URL و state را در تاریخچه ثبت می‌کند."
+  },
+  {
+   "prompt": "دو دکمه بسازید؛ یکی با history.go(-1) به صفحهٔ قبلی برگردد و دیگری با history.go(1) جلو برود.",
+   "hint": "عدد منفی یعنی عقب و عدد مثبت یعنی جلو؛ history.go(0) صفحه را دوباره بارگذاری می‌کند."
+  },
+  {
+   "prompt": "یک listener برای رویداد popstate اضافه کنید که در کنسول event.state را چاپ کند، بعد Back و Forward را بزنید.",
+   "hint": "صدا زدن pushState() یا replaceState() خودش popstate را فعال نمی‌کند؛ فقط جابه‌جایی واقعی بین ورودی‌ها آن را می‌سازد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام متد صفحهٔ قبلی در تاریخچهٔ نشست را بارگذاری می‌کند؟",
+   "options": [
+    "history.forward()",
+    "history.back()",
+    "history.pushState()",
+    "history.replaceState()"
+   ],
+   "answer": 1,
+   "explanation": "history.back() ورودی قبلی را بارگذاری می‌کند و معادل history.go(-1) است. forward() جلو می‌رود و pushState() و replaceState() ورودی می‌سازند یا عوض می‌کنند، نه اینکه در تاریخچه جابه‌جا شوند."
+  },
+  {
+   "question": "دستور history.go(-2) چه کاری می‌کند؟",
+   "options": [
+    "دو ورودی به جلو می‌رود",
+    "صفحهٔ جاری را دوباره بارگذاری می‌کند",
+    "دو ورودی به عقب برمی‌گردد",
+    "ورودی جاری را از تاریخچه حذف می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "در history.go عدد منفی یعنی به عقب و عدد مثبت یعنی به جلو؛ پس 2- دو ورودی عقب می‌رود. بارگذاری دوبارهٔ صفحه کار history.go(0) است و این متد چیزی حذف نمی‌کند."
+  },
+  {
+   "question": "کدام جمله دربارهٔ history.pushState() درست است؟",
+   "options": [
+    "صفحهٔ جدیدی را از سرور بارگذاری می‌کند",
+    "ورودی جدیدی به تاریخچه اضافه می‌کند بدون بارگذاری صفحه",
+    "رویداد popstate را فعال می‌کند",
+    "URL جاری را تغییر نمی‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "pushState() فقط ورودی جدید (URL و state) به تاریخچه اضافه می‌کند و هیچ درخواستی به سرور نمی‌فرستد؛ پس محتوا اگر باید عوض شود، JavaScript باید جداگانه آن را تغییر دهد. این متد popstate را هم فعال نمی‌کند."
+  },
+  {
+   "question": "چرا JavaScript نمی‌تواند آدرس‌های ذخیره‌شده در تاریخچهٔ مرورگر را بخواند؟",
+   "options": [
+    "چون تاریخچه رمزنگاری شده است",
+    "به دلایل حریم خصوصی کاربر",
+    "چون فقط سرور به تاریخچه دسترسی دارد",
+    "چون تاریخچه فقط عدد نگه می‌دارد"
+   ],
+   "answer": 1,
+   "explanation": "مرورگر برای حفاظت از حریم خصوصی اجازه نمی‌دهد JavaScript آدرس‌های تاریخیچه را بخواند؛ فقط می‌توان در تاریخچه حرکت کرد یا ورودی اضافه کرد. رمزنگاری و دسترسی سرور موضوع درس نیستند."
+  },
+  {
+   "question": "مقدار history.state تا وقتی pushState() را صدا نزده باشید چیست؟",
+   "options": [
+    "undefined",
+    "0",
+    "null",
+    "رشتهٔ خالی"
+   ],
+   "answer": 2,
+   "explanation": "تا وقتی history.pushState() یا history.replaceState() فراخوانی نشده باشد، تاریخچهٔ ورودی جاری هیچ دادهٔ state ندارد و history.state مقدار null برمی‌گرداند."
+  }
+ ]
+}

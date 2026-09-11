@@ -1,0 +1,592 @@
+{
+ "slug": "js_temporal_plaintime",
+ "course": "js",
+ "order": 190,
+ "url": "/js/js_temporal_plaintime.asp",
+ "title": "PlainTime در JavaScript",
+ "summary": "شیء Temporal.PlainTime یک ساعت بدون تاریخ و منطقهٔ زمانی است. در این درس می‌آموزید آن را از رشته و عدد بسازید، بخش‌های ساعت را بخوانید، ساعت جمع و کم کنید و اختلاف دو ساعت را حساب کنید.",
+ "objectives": [
+  "شیء PlainTime را از رشته و از عدد بسازید",
+  "ساعت جاری را با Temporal.Now.plainTimeISO() بگیرید",
+  "با add و subtract ساعت را جابه‌جا کنید و رفتار گذر از نیمه‌شب را توضیح دهید",
+  "دو ساعت را با compare و equals مقایسه کنید",
+  "کاربردهای مناسب PlainTime را تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "PlainTime در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.PlainTime یک شیء ساعت بدون تاریخ است."
+  },
+  {
+   "type": "p",
+   "text": "این شیء یک ساعت دیواری در قالب ISO 8601 را بدون تاریخ و منطقهٔ زمانی نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "مثال: 10:30:00."
+  },
+  {
+   "type": "p",
+   "text": "برای ساعت کاری، زنگ هشدار و هر مقداری که فقط ساعت است به کار می‌آید."
+  },
+  {
+   "type": "h2",
+   "text": "شیء Temporal.PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.PlainTime یک شیء ساعت بدون تاریخ است."
+  },
+  {
+   "type": "p",
+   "text": "این شیء یک ساعت دیواری در قالب ISO 8601 را بدون تاریخ و منطقهٔ زمانی نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "مثال: 14:30:00."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Temporal.PlainTime(14, 30);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک PlainTime را از یک رشته بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_from"
+  },
+  {
+   "type": "p",
+   "text": "همچنین می‌توانید PlainTime را با مقدارهای عددی بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = new Temporal.PlainTime(14, 30);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime"
+  },
+  {
+   "type": "p",
+   "text": "پارامترها عبارت‌اند از: hour، minute، second، millisecond، microsecond، nanosecond."
+  },
+  {
+   "type": "h2",
+   "text": "گرفتن ساعت جاری"
+  },
+  {
+   "type": "p",
+   "text": "با Temporal.Now.plainTimeISO() می‌توانید ساعت محلی جاری را بگیرید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const now = Temporal.Now.plainTimeISO();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_now"
+  },
+  {
+   "type": "h2",
+   "text": "گرفتن بخش‌های ساعت"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید بخش‌های مختلف یک مقدار PlainTime را بخوانید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30:15.123\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_from2"
+  },
+  {
+   "type": "h2",
+   "text": "جمع و تفریق PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "برای محاسبهٔ ساعت از add() و subtract() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "PlainTime تغییرناپذیر است، پس مقدار اصلی تغییر نمی‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30\");\n\nconst later = time.add({ minutes: 45 });\n\nconst earlier = time.subtract({ hours: 2 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_add"
+  },
+  {
+   "type": "p",
+   "text": "اگر ساعت از نیمه‌شب بگذرد، به ابتدای روز برمی‌گردد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"23:30\");\n\nconst result = time.add({ minutes: 90 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_add_2"
+  },
+  {
+   "type": "h2",
+   "text": "محاسبهٔ اختلاف ساعت‌ها"
+  },
+  {
+   "type": "p",
+   "text": "برای محاسبهٔ اختلاف دو ساعت از since() و until() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "هر دو متد یک شیء Temporal.Duration برمی‌گردانند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainTime objects\n\nconst start = Temporal.PlainTime.from(\"09:00\");\n\nconst end = Temporal.PlainTime.from(\"17:30\");\n\n// Calculate the difference\n\nconst diff = start.since(end);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainTime objects\n\nconst start = Temporal.PlainTime.from(\"09:00\");\n\nconst end = Temporal.PlainTime.from(\"17:30\");\n\n// Calculate the difference\n\nconst diff = start.until(end);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_since"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای since() و until() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای تاریخ Temporal متد since() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "plaindate.since(plaindate)",
+    "plaintime.since(plaintime)",
+    "plainyearmonth.since(plainyearmonth)",
+    "plainmonthday.since(plainmonthday)",
+    "plaindatetime.since(plaindatetime)",
+    "zoneddatetime.since(zoneddatetime)",
+    "instant.since(instant)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد until() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "plaindate.until(plaindate)",
+    "plaintime.until(plaintime)",
+    "plainyearmonth.until(plainyearmonth)",
+    "plainmonthday.until(plainmonthday)",
+    "plaindatetime.until(plaindatetime)",
+    "zoneddatetime.until(zoneddatetime)",
+    "instant.until(instant)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش since() و until() در Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "متد compare() در PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "برای مقایسهٔ ساعت‌ها از Temporal.PlainTime.compare() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainTime objects\n\nconst a = Temporal.PlainTime.from(\"08:30\");\n\nconst b = Temporal.PlainTime.from(\"14:30\");\n\n// Compare the two objects\n\nresult = Temporal.PlainTime.compare(a, b));",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_compare"
+  },
+  {
+   "type": "p",
+   "text": "نتیجه این است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "-1 اگر ساعت اول زودتر باشد",
+    "0 اگر برابر باشند",
+    "1 اگر ساعت اول دیرتر باشد"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برای مقایسهٔ ساعت‌های Temporal از =، < یا > استفاده نکنید."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد compare() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal.Instant.compare(instant1, instant2)",
+    "Temporal.PlainDate.compare(plaindate1, plaindate2)",
+    "Temporal.PlainTime.compare(plaintime1, plaintime2)",
+    "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
+    "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
+    "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
+    "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
+    "Temporal.Duration.compare(duration1, duration2)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش مقایسه در Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "متد equals() در PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "برای بررسی یکسان بودن دو ساعت از equals() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainTime objects\n\nconst a = Temporal.PlainTime.from(\"14:30\");\n\nconst b = Temporal.PlainTime.from(\"14:30\");\n\n// Compare the two objects\n\nresult = a.equals(b);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_equals"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر شیءهای Temporal متد equals() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "instant.equals(instant)",
+    "plaindate.equals(plaindate)",
+    "plaintime.equals(plaintime)",
+    "plainyearmonth.equals(plainyearmonth)",
+    "plainmonthday.equals(plainmonthday)",
+    "plaindateTime.equals(plaindatetime)",
+    "zoneddateTime.equals(zoneddtatime)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "(*) شیء Duration این متد را ندارد."
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش equals() در Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از PlainTime استفاده کنیم؟"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "ساعت کاری (برای نمونه: 09:00 تا 17:00).",
+    "ساعت زنگ هشدار.",
+    "برنامه‌های تکرارشوندهٔ روزانه.",
+    "فیلدهای ورودی ساعت (بدون تاریخ و منطقهٔ زمانی)."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "اگر تاریخ هم لازم دارید، از PlainDateTime استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "متدهای Temporal.PlainTime"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ساخت",
+     "توضیح"
+    ],
+    [
+     "from()",
+     "یک شیء PlainTime تازه از یک شیء یا رشته می‌سازد"
+    ],
+    [
+     "new",
+     "یک شیء PlainTime تازه از پارامترهای عدد صحیح می‌سازد"
+    ],
+    [
+     "حساب",
+     ""
+    ],
+    [
+     "add()",
+     "یک PlainTime تازه با مدت افزوده‌شده برمی‌گرداند"
+    ],
+    [
+     "subtract()",
+     "یک PlainTime تازه با مدت کم‌شده برمی‌گرداند"
+    ],
+    [
+     "round()",
+     "یک PlainTime تازه گردشده به واحد داده‌شده برمی‌گرداند"
+    ],
+    [
+     "مقایسه",
+     ""
+    ],
+    [
+     "compare()",
+     "با مقایسهٔ دو ساعت مقدار -1، 0 یا 1 را برمی‌گرداند"
+    ],
+    [
+     "equals()",
+     "اگر دو شیء PlainTime یکسان باشند true برمی‌گرداند"
+    ],
+    [
+     "since()",
+     "اختلاف از ساعت دیگر تا اینجا را برمی‌گرداند"
+    ],
+    [
+     "until()",
+     "اختلاف تا ساعت دیگر را برمی‌گرداند"
+    ],
+    [
+     "تغییر",
+     ""
+    ],
+    [
+     "with()",
+     "یک PlainTime تازه با فیلدهای تعیین‌شدهٔ تغییر‌یافته برمی‌گرداند"
+    ],
+    [
+     "قالب‌بندی",
+     ""
+    ],
+    [
+     "toJSON()",
+     "یک رشته با قالب RFC 9557 برای سریال‌سازی JSON برمی‌گرداند"
+    ],
+    [
+     "toLocaleString()",
+     "نمایشی از ساعت بر پایهٔ زبان و منطقهٔ کاربر برمی‌گرداند"
+    ],
+    [
+     "toString()",
+     "یک نمایش از ساعت با قالب RFC 9557 برمی‌گرداند"
+    ],
+    [
+     "valueOf()",
+     "یک TypeError می‌دهد\nنمی‌گذارد شیءهای Temporal به مقدار اولیه تبدیل شوند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های Temporal.PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.PlainTime ۶ خصوصیت اطلاعات ساعت دارد."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیح"
+    ],
+    [
+     "hour",
+     "ساعت به‌صورت عدد صحیح (0-23)"
+    ],
+    [
+     "microsecond",
+     "میکروثانیه به‌صورت عدد صحیح (0-999)"
+    ],
+    [
+     "millisecond",
+     "میلی‌ثانیه به‌صورت عدد صحیح (0-999)"
+    ],
+    [
+     "minute",
+     "دقیقه به‌صورت عدد صحیح (0-59)"
+    ],
+    [
+     "nanosecond",
+     "نانوثانیه به‌صورت عدد صحیح (0-999)"
+    ],
+    [
+     "second",
+     "ثانیه به‌صورت عدد صحیح (0-59)"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Temporal.PlainTime(14, 30);",
+   "caption": "نمایش همهٔ خصوصیت‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaintime_prop"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل plaintime.html بسازید و با Temporal.PlainTime.from(\"14:30:00\") یک ساعت بسازید و در کنسول چاپ کنید.",
+   "hint": "قالب رشته ساعت-دقیقه-ثانیه است و در آن تاریخ وجود ندارد."
+  },
+  {
+   "prompt": "با new Temporal.PlainTime(9, 15, 0) همان ساعت را از عدد بسازید و مقدار hour را چاپ کنید.",
+   "hint": "پارامترها به ترتیب hour، minute، second، millisecond، microsecond و nanosecond هستند."
+  },
+  {
+   "prompt": "به ساعت خود ۴۵ دقیقه اضافه کنید و نتیجه را با حالت اولیه مقایسه کنید.",
+   "hint": "add یک شیء تازه برمی‌گرداند؛ ساعت اصلی تغییر نمی‌کند."
+  },
+  {
+   "prompt": "ساعتی بسازید که با جمع زمان از نیمه‌شب بگذرد، مثلاً 23:30 به‌علاوهٔ ۲ ساعت، و خروجی را ببینید.",
+   "hint": "اگر از نیمه‌شب بگذرد، مقدار به ابتدای روز می‌چرخد."
+  },
+  {
+   "prompt": "دو ساعت را با Temporal.PlainTime.compare مقایسه کنید و سپس با equals() بررسی کنید برابرند یا نه.",
+   "hint": "compare مقدار -1، 0 یا 1 می‌دهد و equals مقدار true یا false."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "شیء PlainTime چه چیزی را نگه می‌دارد؟",
+   "options": [
+    "تاریخ و ساعت و منطقهٔ زمانی",
+    "فقط ساعت بدون تاریخ و منطقهٔ زمانی",
+    "فقط تاریخ",
+    "ساعت همراه با منطقهٔ زمانی"
+   ],
+   "answer": 1,
+   "explanation": "PlainTime فقط ساعت است. تاریخ و منطقهٔ زمانی در PlainDate و ZonedDateTime نگه‌داری می‌شوند."
+  },
+  {
+   "question": "برای گرفتن ساعت محلی جاری کدام متد به کار می‌رود؟",
+   "options": [
+    "Temporal.Now.plainDateISO()",
+    "Temporal.Now.plainTimeISO()",
+    "Temporal.Now.zonedDateTimeISO()",
+    "Temporal.Now.instant()"
+   ],
+   "answer": 1,
+   "explanation": "متد plainTimeISO() یک شیء PlainTime با ساعت جاری برمی‌گرداند. سه متد دیگر نوع‌های دیگری می‌سازند."
+  },
+  {
+   "question": "اگر به ساعت 23:30 دو ساعت اضافه کنیم چه اتفاقی می‌افتد؟",
+   "options": [
+    "خطا می‌گیریم",
+    "ساعت به 01:30 برمی‌گردد",
+    "ساعت 25:30 می‌شود",
+    "خروجی نامعتبر می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "ساعت بدون تاریخ نمی‌تواند بیش از ۲۴ ساعت را نشان دهد، پس بعد از نیمه‌شب به ابتدای روز می‌چرخد و نتیجه 01:30 است."
+  },
+  {
+   "question": "کدام روش برای مقایسهٔ دو PlainTime درست است؟",
+   "options": [
+    "a < b",
+    "a == b",
+    "Temporal.PlainTime.compare(a, b)",
+    "a - b"
+   ],
+   "answer": 2,
+   "explanation": "شیءهای Temporal را با عملگرهای مقایسه نمی‌سنجند؛ باید از متدهای compare() یا equals() استفاده کنید."
+  },
+  {
+   "question": "مقدار بازگشتی since() و until() روی PlainTime چه نوعی دارد؟",
+   "options": [
+    "یک عدد",
+    "یک رشته",
+    "یک شیء Temporal.Duration",
+    "یک شیء PlainTime"
+   ],
+   "answer": 2,
+   "explanation": "هر دو متد اختلاف را به‌صورت یک شیء Temporal.Duration برمی‌گردانند که واحدهای زمانی را نگه می‌دارد."
+  }
+ ]
+}

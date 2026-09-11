@@ -1,0 +1,328 @@
+{
+ "slug": "js_api_geolocation",
+ "course": "js",
+ "order": 176,
+ "url": "/js/js_api_geolocation.asp",
+ "title": "Geolocation API در وب",
+ "summary": "Geolocation API موقعیت جغرافیایی کاربر را به شما می‌دهد، اما فقط با اجازهٔ خودش و روی بافت امن مثل HTTPS. در این درس با getCurrentPosition() موقعیت را می‌گیرید، خطاهای احتمالی را مدیریت می‌کنید و با watchPosition() جابه‌جایی کاربر را دنبال می‌کنید.",
+ "objectives": [
+  "با getCurrentPosition() موقعیت کاربر را بگیرید و نمایش دهید",
+  "خصوصیت‌های شیء coordinates و تفاوت خصوصیت همیشه‌برگشتی با اختیاری را تشخیص دهید",
+  "خطاهای PERMISSION_DENIED و POSITION_UNAVAILABLE و TIMEOUT را مدیریت کنید",
+  "فرق getCurrentPosition() و watchPosition() را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Geolocation API در وب"
+  },
+  {
+   "type": "h2",
+   "text": "موقعیت کاربر را پیدا کنید"
+  },
+  {
+   "type": "p",
+   "text": "Geolocation API در HTML برای گرفتن موقعیت جغرافیایی کاربر به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "چون این کار می‌تواند به حریم خصوصی آسیب بزند، موقعیت تا وقتی کاربر اجازه نداده باشد در دسترس نیست."
+  },
+  {
+   "type": "p",
+   "text": "امتحان کنید"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Geolocation روی دستگاه‌هایی که GPS دارند، مثل گوشی هوشمند، دقیق‌ترین نتیجه را می‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "Geolocation API در همهٔ مرورگرها پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "بله",
+     "بله",
+     "بله",
+     "بله",
+     "بله"
+    ]
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Geolocation API فقط در بافت‌های امن مثل HTTPS کار می‌کند. اگر سایت شما روی منشأ ناامن (مثل HTTP) میزبانی شود، درخواست‌های گرفتن موقعیت کاربر دیگر کار نمی‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از Geolocation API"
+  },
+  {
+   "type": "p",
+   "text": "متد getCurrentPosition() برای برگرداندن موقعیت کاربر به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر عرض و طول جغرافیایی موقعیت کاربر را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script>\nconst x = document.getElementById(\"demo\");\nfunction getLocation() {\n  if (navigator.geolocation) {\n\n      navigator.geolocation.getCurrentPosition(showPosition);\n  } else {\n\n      x.innerHTML = \"Geolocation is not supported by this browser.\";\n\n    }\n}\n\n function showPosition(position) {\n  x.innerHTML = \"Latitude: \" + position.coords.latitude +\n  \"<br>Longitude: \" + position.coords.longitude;\n\n }\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_api_geolocation"
+  },
+  {
+   "type": "p",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "بررسی کنید Geolocation پشتیبانی می‌شود یا نه",
+    "اگر پشتیبانی می‌شد، متد getCurrentPosition() را اجرا کنید؛ اگر نه، پیامی به کاربر نشان دهید",
+    "اگر متد getCurrentPosition() موفق شود، یک شیء coordinates به تابعی که در پارامتر داده‌اید (showPosition) برمی‌گرداند",
+    "تابع showPosition() عرض و طول جغرافیایی را نشان می‌دهد"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مثال بالا یک اسکریپت Geolocation خیلی ساده و بدون مدیریت خطاست."
+  },
+  {
+   "type": "h2",
+   "text": "مدیریت خطاها و رد شدن درخواست"
+  },
+  {
+   "type": "p",
+   "text": "پارامتر دوم متد getCurrentPosition() برای مدیریت خطاهاست. تابعی را تعیین می‌کند که اگر گرفتن موقعیت کاربر شکست خورد اجرا شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function showError(error) {\n  switch(error.code) {\n    case error.PERMISSION_DENIED:\n\n        x.innerHTML = \"User denied the request for Geolocation.\"\n\n        break;\n    case error.POSITION_UNAVAILABLE:\n\n        x.innerHTML = \"Location information is unavailable.\"\n      break;\n    case error.TIMEOUT:\n\n        x.innerHTML = \"The request to get user location timed out.\"\n\n        break;\n    case error.UNKNOWN_ERROR:\n      x.innerHTML = \"An unknown error occurred.\"\n      break;\n\n    }\n\n }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_api_geolocation_error"
+  },
+  {
+   "type": "h2",
+   "text": "نمایش نتیجه روی نقشه"
+  },
+  {
+   "type": "p",
+   "text": "برای نمایش نتیجه روی نقشه به یک سرویس نقشه مثل Google Maps نیاز دارید."
+  },
+  {
+   "type": "p",
+   "text": "در مثال زیر از عرض و طول جغرافیایی برگشته استفاده می‌شود تا موقعیت روی یک Google Map (با تصویر ایستا) نشان داده شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function showPosition(position) {\n  let latlon = position.coords.latitude + \",\" + position.coords.longitude;\n\n   let img_url = \"https://maps.googleapis.com/maps/api/staticmap?center=\n\n   \"+latlon+\"&zoom=14&size=400x300&sensor=false&key=YOUR_KEY\";\n\n   document.getElementById(\"mapholder\").innerHTML = \"<img src='\"+img_url+\"'>\";\n\n }",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "اطلاعات مخصوص مکان"
+  },
+  {
+   "type": "p",
+   "text": "این صفحه نشان داد که چگونه موقعیت کاربر را روی نقشه نمایش دهیم."
+  },
+  {
+   "type": "p",
+   "text": "Geolocation برای اطلاعات وابسته به مکان هم بسیار مفید است، مثل:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "اطلاعات محلی و به‌روز",
+    "نمایش نقاط دیدنی نزدیک کاربر",
+    "مسیریابی مرحله‌به‌مرحله (GPS)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد getCurrentPosition(): داده‌ای که برمی‌گرداند"
+  },
+  {
+   "type": "p",
+   "text": "متد getCurrentPosition() در صورت موفقیت یک شیء برمی‌گرداند. خصوصیت‌های latitude، longitude و accuracy همیشه برگردانده می‌شوند؛ بقیهٔ خصوصیت‌ها اگر در دسترس باشند:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خصوصیت",
+    "خروجی"
+   ],
+   "rows": [
+    [
+     "coords.latitude",
+     "عرض جغرافیایی به‌صورت عدد اعشاری (همیشه برگردانده می‌شود)"
+    ],
+    [
+     "coords.longitude",
+     "طول جغرافیایی به‌صورت عدد اعشاری (همیشه برگردانده می‌شود)"
+    ],
+    [
+     "coords.accuracy",
+     "دقت موقعیت (همیشه برگردانده می‌شود)"
+    ],
+    [
+     "coords.altitude",
+     "ارتفاع از سطح میانگین دریا به متر (اگر در دسترس باشد برمی‌گردد)"
+    ],
+    [
+     "coords.altitudeAccuracy",
+     "دقت ارتفاع موقعیت (اگر در دسترس باشد برمی‌گردد)"
+    ],
+    [
+     "coords.heading",
+     "جهت حرکت به‌صورت درجه، در جهت عقربه‌های ساعت از شمال (اگر در دسترس باشد برمی‌گردد)"
+    ],
+    [
+     "coords.speed",
+     "سرعت به متر بر ثانیه (اگر در دسترس باشد برمی‌گردد)"
+    ],
+    [
+     "timestamp",
+     "تاریخ و زمان پاسخ (اگر در دسترس باشد برمی‌گردد)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "شیء Geolocation و متدهای جالب دیگر"
+  },
+  {
+   "type": "p",
+   "text": "شیء Geolocation متدهای جالب دیگری هم دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "متد watchPosition(): موقعیت فعلی کاربر را برمی‌گرداند و تا وقتی کاربر جابه‌جا می‌شود موقعیت به‌روز را ادامه می‌دهد (مثل GPS داخل خودرو).",
+    "متد clearWatch(): متد watchPosition() را متوقف می‌کند."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر متد watchPosition() را نشان می‌دهد. برای آزمایش آن به دستگاه GPS دقیق نیاز دارید (مثل گوشی هوشمند):"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script>\nconst x = document.getElementById(\"demo\");\nfunction getLocation() {\n\n    if (navigator.geolocation) {\n    navigator.geolocation.watchPosition(showPosition);\n  } else {\n\n      x.innerHTML = \"Geolocation is not supported by this browser.\";\n\n    }\n}\n\n function showPosition(position) {\n  x.innerHTML = \"Latitude: \" + position.coords.latitude +\n  \"<br>Longitude: \" + position.coords.longitude;\n\n }\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_api_geolocation_watchposition"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل geo.html بسازید، یک <p id=\"demo\"> بگذارید و با getCurrentPosition() عرض و طول جغرافیایی را داخل آن بنویسید.",
+   "hint": "متد getCurrentPosition(showPosition) تابع شما را با یک شیء position صدا می‌زند و مقادیر داخل position.coords هستند."
+  },
+  {
+   "prompt": "قبل از درخواست موقعیت، با if (navigator.geolocation) بررسی کنید مرورگر پشتیبانی می‌کند؛ در حالت پشتیبانی‌نشدن پیام مناسبی در صفحه بنویسید.",
+   "hint": "همین الگو در مثال درس آمده است؛ پیام را با innerHTML داخل عنصر بگذارید."
+  },
+  {
+   "prompt": "پارامتر دوم getCurrentPosition() را به یک تابع showError بدهید که با switch روی error.code پیام مناسبی برای PERMISSION_DENIED، POSITION_UNAVAILABLE و TIMEOUT نشان دهد.",
+   "hint": "درخواست را رد کنید (Block) تا شاخهٔ PERMISSION_DENIED اجرا شود و پیام خطا را ببینید."
+  },
+  {
+   "prompt": "پروژه را با اجرای مستقیم فایل باز کنید، بعد همان را روی یک آدرس http ناامن امتحان کنید و بگویید چه تفاوتی دیدید.",
+   "hint": "Geolocation روی منشأ ناامن کار نمی‌کند؛ فقط بافت امن مثل HTTPS پاسخ می‌دهد."
+  },
+  {
+   "prompt": "watchPosition() را جای getCurrentPosition() بگذارید و مقدار اعداد را چند ثانیه تماشا کنید؛ بعد با clearWatch() متوقفش کنید.",
+   "hint": "watchPosition شناسه‌ای برمی‌گرداند که باید به clearWatch بدهید؛ برای دیدن تغییر واقعی به دستگاه با GPS دقیق نیاز دارید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "موقعیت کاربر چه زمانی از Geolocation API در دسترس است؟",
+   "options": [
+    "همیشه و بدون هیچ اجازه‌ای",
+    "فقط وقتی کاربر اجازه بدهد و صفحه روی بافت امن مثل HTTPS باشد",
+    "فقط وقتی کاربر GPS روشن داشته باشد و مهم نیست صفحه امن است یا نه",
+    "فقط وقتی مرورگر Firefox باشد"
+   ],
+   "answer": 1,
+   "explanation": "درس دو شرط می‌گذارد: چون موقعیت به حریم خصوصی مربوط است تا اجازهٔ کاربر در دسترس نیست، و API فقط در بافت امن مثل HTTPS کار می‌کند و روی HTTP از کار می‌افتد."
+  },
+  {
+   "question": "کدام سه خصوصیت شیء coords همیشه برگردانده می‌شوند؟",
+   "options": [
+    "latitude، longitude و accuracy",
+    "altitude، heading و speed",
+    "timestamp، speed و accuracy",
+    "heading، altitude و altitudeAccuracy"
+   ],
+   "answer": 0,
+   "explanation": "جدول درس می‌گوید latitude و longitude و accuracy همیشه برمی‌گردند؛ بقیه مثل altitude و heading و speed و timestamp فقط اگر در دسترس باشند."
+  },
+  {
+   "question": "پارامتر دوم متد getCurrentPosition() چه کاری می‌کند؟",
+   "options": [
+    "دقت موقعیت را تعیین می‌کند",
+    "تابعی برای مدیریت خطا تعیین می‌کند که در صورت شکست اجرا شود",
+    "موقعیت را روی نقشه نشان می‌دهد",
+    "درخواست موقعیت را لغو می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "پارامتر دوم تابع مدیریت خطاست و اگر گرفتن موقعیت شکست بخورد اجرا می‌شود؛ مثال درس با switch روی error.code پیام مناسب هر خطا را نمایش می‌دهد."
+  },
+  {
+   "question": "تفاوت getCurrentPosition() و watchPosition() چیست؟",
+   "options": [
+    "watchPosition فقط یک‌بار موقعیت را می‌دهد",
+    "getCurrentPosition موقعیت فعلی را می‌دهد و watchPosition با جابه‌جایی کاربر موقعیت را به‌روز ادامه می‌دهد",
+    "هیچ تفاوتی ندارند",
+    "watchPosition فقط روی دسکتاپ کار می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "watchPosition() موقعیت فعلی را برمی‌گرداند و تا وقتی کاربر جابه‌جا می‌شود ادامه می‌دهد، مثل GPS خودرو؛ و با clearWatch() متوقف می‌شود."
+  },
+  {
+   "question": "برای نشان دادن موقعیت روی نقشه در مثال درس چه چیزی لازم است؟",
+   "options": [
+    "فقط Geolocation API کافی است",
+    "دسترسی به یک سرویس نقشه مثل Google Maps",
+    "یک سرور HTTPS شخصی",
+    "GPS دقیق داخل لپ‌تاپ"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید برای نمایش نتیجه روی نقشه به یک سرویس نقشه مثل Google Maps نیاز دارید؛ در مثال از یک تصویر ایستای نقشه استفاده می‌شود."
+  }
+ ]
+}

@@ -1,0 +1,334 @@
+{
+ "slug": "js_htmldom_eventlistener",
+ "course": "js",
+ "order": 154,
+ "url": "/js/js_htmldom_eventlistener.asp",
+ "title": "EventListener در JavaScript",
+ "summary": "addEventListener() روش استاندارد وصل کردن رویداد به عناصر است. این درس نحو آن، افزودن چند listener به یک عنصر، وصل کردن listener به شیء window، فرستادن پارامتر به تابع و تفاوت bubbling با capturing را توضیح می‌دهد.",
+ "objectives": [
+  "با addEventListener یک رویداد را به عنصر وصل کنید",
+  "توضیح دهید چرا این متد رویدادهای موجود را پاک نمی‌کند",
+  "پارامترها را با تابع بی‌نام به تابع رویداد بفرستید",
+  "تفاوت bubbling و capturing را تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "EventListener در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متد addEventListener()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.getElementById(\"myBtn\").addEventListener(\"click\", displayDate);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_displaydate"
+  },
+  {
+   "type": "p",
+   "text": "متد addEventListener() یک event handler به عنصر داده‌شده می‌چسباند."
+  },
+  {
+   "type": "p",
+   "text": "متد addEventListener() یک event handler به عنصر اضافه می‌کند بی‌آنکه event handlerهای موجود را پاک کند."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید چند event handler به یک عنصر اضافه کنید."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید چند event handler از یک نوع را به یک عنصر اضافه کنید، مثلاً دو رویداد \"click\"."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید event listener را به هر شیء DOM اضافه کنید، نه فقط عنصرهای HTML؛ مثلاً به شیء window."
+  },
+  {
+   "type": "p",
+   "text": "متد addEventListener() کنترل رفتار رویداد در برابر bubbling را ساده‌تر می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "با متد addEventListener() کد JavaScript از نشانه‌گذاری HTML جدا می‌ماند؛ این کار خوانایی را بهتر می‌کند و به شما اجازه می‌دهد حتی وقتی نشانه‌گذاری HTML در کنترل شما نیست listener اضافه کنید."
+  },
+  {
+   "type": "p",
+   "text": "با متد removeEventListener() می‌توانید به‌سادگی یک event listener را حذف کنید."
+  },
+  {
+   "type": "h2",
+   "text": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "element.addEventListener(event, function, useCapture);"
+  },
+  {
+   "type": "p",
+   "text": "پارامتر اول نوع رویداد است (مثل \"click\" یا \"mousedown\" یا هر رویداد دیگر DOM)."
+  },
+  {
+   "type": "p",
+   "text": "پارامتر دوم تابعی است که می‌خواهیم هنگام رخ دادن رویداد صدا زده شود."
+  },
+  {
+   "type": "p",
+   "text": "پارامتر سوم یک مقدار بولی است که تعیین می‌کند از bubbling یا از capturing استفاده شود. این پارامتر اختیاری است."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "توجه کنید که برای نام رویداد از پیشوند \"on\" استفاده نمی‌کنید؛ به‌جای \"onclick\" بنویسید \"click\"."
+  },
+  {
+   "type": "h2",
+   "text": "افزودن event handler به یک عنصر"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"click\", function(){ alert(\"Hello World!\"); });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_add"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید به یک تابع نام‌دار بیرونی هم ارجاع دهید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"click\",  myFunction);\n\nfunction myFunction() {\n  alert (\"Hello World!\");\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_add2"
+  },
+  {
+   "type": "h2",
+   "text": "افزودن چند event handler به یک عنصر"
+  },
+  {
+   "type": "p",
+   "text": "متد addEventListener() اجازه می‌دهد چند رویداد به یک عنصر اضافه کنید، بی‌آنکه رویدادهای موجود پاک شوند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"click\", myFunction);\n\n element.addEventListener(\"click\", mySecondFunction);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_add_many"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید رویدادهایی از نوع‌های متفاوت را به یک عنصر اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"mouseover\", myFunction);\n\nelement.addEventListener(\"click\", mySecondFunction);\n\nelement.addEventListener(\"mouseout\", myThirdFunction);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_add_many2"
+  },
+  {
+   "type": "h2",
+   "text": "افزودن event handler به شیء window"
+  },
+  {
+   "type": "p",
+   "text": "متد addEventListener() اجازه می‌دهد event listener را روی هر شیء DOM اضافه کنید: عنصرهای HTML، سند HTML، شیء window یا شیءهای دیگری که از رویداد پشتیبانی می‌کنند مثل شیء xmlHttpRequest."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "window.addEventListener(\"resize\", function(){\n\n  document.getElementById(\"demo\").innerHTML = sometext;\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_dom"
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن پارامترها"
+  },
+  {
+   "type": "p",
+   "text": "وقتی می‌خواهید مقدار پارامتر بفرستید، از یک «تابع بی‌نام» استفاده کنید که آن تابع مورد نظر را با پارامترها صدا بزند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.addEventListener(\"click\", function(){ myFunction(p1, p2); });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_parameters"
+  },
+  {
+   "type": "h2",
+   "text": "bubbling رویداد یا capturing رویداد؟"
+  },
+  {
+   "type": "p",
+   "text": "در DOM دو راه برای انتشار رویداد وجود دارد: bubbling و capturing."
+  },
+  {
+   "type": "p",
+   "text": "انتشار رویداد راهی برای تعیین ترتیب عنصرها هنگام رخ دادن رویداد است. اگر یک عنصر <p> داخل عنصر <div> باشد و کاربر روی <p> کلیک کند، رویداد \"click\" کدام عنصر باید اول مدیریت شود؟"
+  },
+  {
+   "type": "p",
+   "text": "در bubbling رویداد درونی‌ترین عنصر اول مدیریت می‌شود و بعد عنصر بیرونی: ابتدا رویداد click عنصر <p> و بعد رویداد click عنصر <div>."
+  },
+  {
+   "type": "p",
+   "text": "در capturing رویداد بیرونی‌ترین عنصر اول مدیریت می‌شود و بعد عنصر درونی: ابتدا رویداد click عنصر <div> و بعد رویداد click عنصر <p>."
+  },
+  {
+   "type": "p",
+   "text": "با متد addEventListener() می‌توانید نوع انتشار را با پارامتر \"useCapture\" تعیین کنید:"
+  },
+  {
+   "type": "p",
+   "text": "addEventListener(event, function, useCapture);"
+  },
+  {
+   "type": "p",
+   "text": "مقدار پیش‌فرض false است که انتشار از نوع bubbling را به کار می‌برد؛ وقتی مقدار را true بگذارید، رویداد از انتشار capturing استفاده می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.getElementById(\"myP\").addEventListener(\"click\", myFunction, true);\n\ndocument.getElementById(\"myDiv\").addEventListener(\"click\", myFunction, true);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_usecapture"
+  },
+  {
+   "type": "h2",
+   "text": "متد removeEventListener()"
+  },
+  {
+   "type": "p",
+   "text": "متد removeEventListener() event handlerهایی را حذف می‌کند که با متد addEventListener() چسبانده شده‌اند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "element.removeEventListener(\"mousemove\", myFunction);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_addeventlistener_remove"
+  },
+  {
+   "type": "h2",
+   "text": "مرجع شیء رویداد در DOM"
+  },
+  {
+   "type": "p",
+   "text": "برای دیدن فهرست همهٔ رویدادهای DOM به مرجع کامل شیء رویداد در DOM نگاه کنید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل listener.html بسازید که یک دکمه داشته باشد؛ با addEventListener رویداد \"click\" را وصل کنید و در هر کلیک پیامی در کنسول چاپ کنید.",
+   "hint": "برای رویداد از نام \"click\" استفاده کنید، نه \"onclick\"."
+  },
+  {
+   "prompt": "دو listener از نوع click به همان دکمه اضافه کنید و ببینید هر دو با یک کلیک اجرا می‌شوند.",
+   "hint": "برخلاف ویژگی onclick، متد addEventListener رویدادهای قبلی را بازنویسی نمی‌کند."
+  },
+  {
+   "prompt": "یک listener به شیء window وصل کنید که با تغییر اندازهٔ پنجره ابعاد تازه را نشان دهد.",
+   "hint": "برای رویداد تغییر اندازه از \"resize\" استفاده کنید و window.innerWidth و window.innerHeight را بخوانید."
+  },
+  {
+   "prompt": "یک listener بنویسید که با وارد شدن ماوس روی عنصر، پیامی دربارهٔ مقدار سیاههٔ لیست نمایش دهد؛ پارامتر را با تابع بی‌نام بفرستید.",
+   "hint": "تابع مستقیم را در addEventListener نگذارید؛ آن را داخل تابع بی‌نام با پارامترهای خودتان صدا بزنید."
+  },
+  {
+   "prompt": "با تغییر پارامتر سوم از false به true رفتار رویدادهای تودرتو را ببینید و بگویید کدام عنصر اول پاسخ می‌دهد.",
+   "hint": "با false رویداد عنصر درونی اول اجرا می‌شود (bubbling) و با true رویداد عنصر بیرونی (capturing)."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای افزودن رویداد کلیک با addEventListener کدام نام رویداد درست است؟",
+   "options": [
+    "\"onclick\"",
+    "\"click\"",
+    "\"onClick\"",
+    "\"clickEvent\""
+   ],
+   "answer": 1,
+   "explanation": "در addEventListener نام رویداد بدون پیشوند \"on\" نوشته می‌شود؛ پس \"click\" درست است و \"onclick\" مربوط به ویژگی HTML است."
+  },
+  {
+   "question": "اگر دو listener از نوع click به یک عنصر اضافه کنید چه اتفاقی می‌افتد؟",
+   "options": [
+    "هر دو با یک کلیک اجرا می‌شوند",
+    "دومی اولی را پاک می‌کند",
+    "مرورگر خطا می‌دهد",
+    "فقط اولی اجرا می‌شود"
+   ],
+   "answer": 0,
+   "explanation": "addEventListener رویدادهای موجود را بازنویسی نمی‌کند، پس هر دو listener روی یک کلیک اجرا می‌شوند؛ همین تفاوت اصلی آن با ویژگی onclick است."
+  },
+  {
+   "question": "پارامتر سوم addEventListener چه چیزی را تعیین می‌کند؟",
+   "options": [
+    "نوع رویداد",
+    "تابعی که اجرا می‌شود",
+    "استفاده از bubbling یا capturing",
+    "رنگ عنصر"
+   ],
+   "answer": 2,
+   "explanation": "پارامتر سوم یک مقدار بولی اختیاری است؛ مقدار پیش‌فرض false یعنی bubbling و مقدار true یعنی capturing."
+  },
+  {
+   "question": "وقتی می‌خواهید پارامتر به تابع رویداد بفرستید از چه چیزی استفاده می‌کنید؟",
+   "options": [
+    "از یک تابع بی‌نام که تابع مورد نظر را با پارامتر صدا می‌زند",
+    "از پارامتر چهارم addEventListener",
+    "از document.write",
+    "از ویژگی onclick در HTML"
+   ],
+   "answer": 0,
+   "explanation": "addEventListener فقط تابع را اجرا می‌کند و آرگومان دلخواه نمی‌پذیرد؛ پس تابع را داخل یک تابع بی‌نام می‌گذارید و پارامترها را همان‌جا می‌دهید."
+  },
+  {
+   "question": "در حالت bubbling کدام عنصر رویداد کلیک را اول مدیریت می‌کند؟",
+   "options": [
+    "عنصر درونی‌تر، مثل <p>",
+    "عنصر بیرونی‌تر، مثل <div>",
+    "هر دو همزمان",
+    "صفهٔ صفحه"
+   ],
+   "answer": 0,
+   "explanation": "‏bubbling از درون به بیرون پیش می‌رود: ابتدا رویداد عنصر درونی‌تر مدیریت می‌شود و بعد عنصر بیرونی؛ در capturing ترتیب برعکس است."
+  }
+ ]
+}

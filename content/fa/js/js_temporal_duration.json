@@ -1,0 +1,769 @@
+{
+ "slug": "js_temporal_duration",
+ "course": "js",
+ "order": 184,
+ "url": "/js/js_temporal_duration.asp",
+ "title": "مدت زمان در Temporal",
+ "summary": "شیء Temporal.Duration یک بازهٔ زمانی مثل ۷ روز و ۱ ساعت را نگه می‌دارد و حساب تاریخ را ایمن و خوانا می‌کند. در این درس Duration را با سازنده، با شیء لیترال و با رشتهٔ ISO می‌سازید، خصوصیت‌هایش را می‌بینید و می‌فهمید چرا متد equals() ندارد و باید از compare() استفاده کرد.",
+ "objectives": [
+  "با سه روش سازنده، شیء لیترال و رشتهٔ ISO یک Duration بسازید",
+  "کدهای بازهٔ زمانی ISO 8601 را بخوانید و بنویسید",
+  "با add() و subtract() و with() روی Duration کار کنید",
+  "توضیح دهید چرا Duration متد equals() ندارد و RangeError چه زمانی رخ می‌دهد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مدت زمان در Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "شیء Temporal.Duration"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.Duration یک بازهٔ زمانی را نمایش می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "مثال: ۷ روز و ۱ ساعت."
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.Duration این خصوصیت‌ها را در خود دارد:"
+  },
+  {
+   "type": "p",
+   "text": "years، months، weeks، days، hours، minutes، seconds، milliseconds، microseconds و nanoseconds."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration object\n\nconst duration = Temporal.Duration.from({days:7, hours:2});",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "P7DT2H",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_2"
+  },
+  {
+   "type": "h2",
+   "text": "کدهای بازهٔ زمانی در ISO 8601"
+  },
+  {
+   "type": "p",
+   "text": "بازهٔ زمانی ISO 8601 طول‌های زمان را نمایش می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "از یک قالب استاندارد شروع می‌شود: ±P به معنی Period و بعد ساختار nYnMnDTnHnMnS می‌آید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "+P nY nM nW nD T nH nM nS",
+   "caption": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "شامل سال nY، ماه nM، هفته nW، روز nD و یک T پیش از ساعت nH و دقیقه nM و ثانیه nS است."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "P3Y6M4DT12H30M5S",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "مثال‌های بیشتر"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "بازهٔ زمانی",
+     "کد"
+    ],
+    [
+     "۱ روز",
+     "P1D"
+    ],
+    [
+     "۴۵ دقیقه",
+     "PT45M"
+    ],
+    [
+     "۱ سال، ۲ ماه، ۳ روز",
+     "P1Y2M3D"
+    ],
+    [
+     "۴ ساعت، ۵ دقیقه، ۶ ثانیه",
+     "PT4H5M6S"
+    ],
+    [
+     "۲.۵ ساعت",
+     "PT2H30M"
+    ],
+    [
+     "۵ هفته",
+     "P5W"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "استانداردهای Temporal در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "چگونه یک Temporal.Duration بسازید"
+  },
+  {
+   "type": "p",
+   "text": "یک Duration را می‌توان به چند روش مختلف ساخت:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "از",
+     "کد"
+    ],
+    [
+     "با سازنده",
+     "new Temporal.Duration()"
+    ],
+    [
+     "از یک شیء",
+     "Temporal.Duration.from()"
+    ],
+    [
+     "از رشتهٔ ISO",
+     "Temporal.Duration.from()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ساختن Duration با new"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک شیء Temporal.Duration را با سازندهٔ new و پارامترهای عدد صحیح بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration object\n\nconst duration = new Temporal.Duration(0, 0, 0, 7, 2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_1"
+  },
+  {
+   "type": "p",
+   "text": "پارامترها باید به این ترتیب باشند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "سال‌ها",
+    "ماه‌ها",
+    "هفته‌ها",
+    "روزها",
+    "ساعت‌ها",
+    "دقیقه‌ها",
+    "ثانیه‌ها",
+    "میلی‌ثانیه‌ها",
+    "میکروثانیه‌ها",
+    "نانوثانیه‌ها"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ساختن Duration با یک شیء"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با متد from() و یک پارامتر شیء لیترال مثل {days:7, hours: 2} شیء Duration بسازید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration object\n\nconst duration = Temporal.Duration.from({days:7, hours:2});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_2"
+  },
+  {
+   "type": "p",
+   "text": "شیء لیترال رایج‌ترین روش ساختن شیء در JavaScript است."
+  },
+  {
+   "type": "p",
+   "text": "شیء را با نوشتن محتوایش به شکل جفت‌های key:value داخل آکولاد { } می‌سازید."
+  },
+  {
+   "type": "h2",
+   "text": "ساختن Duration با یک رشتهٔ ISO"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با متد from() و یک رشتهٔ بازهٔ زمانی ISO به‌عنوان پارامتر، شیء Duration بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration\n\nconst duration = Temporal.Duration.from(\"P7DT2H\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_3"
+  },
+  {
+   "type": "h3",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "رشته‌های بازهٔ زمانی ISO"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های Temporal.Duration"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.Duration دوازده خصوصیت اطلاعات زمانی دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//Create a Duration\n\nconst duration = new Temporal.Duration(0, 0, 0, 7, 2, 0);\n\n// List the Properties\n\nlet text =\n\n\"blank: \" + duration.blank + \" \" +\n\n\"sign: \" + duration.sign + \" \" +\n\n\"years: \" + duration.years + \" \" +\n\n\"months: \" + duration.months + \" \" +\n\n\"weeks: \" + duration.weeks + \" \" +\n\n\"days: \" + duration.days + \" \" +\n\n\"hour: \" + duration.hours  + \" \" +\n\n\"minutes: \" + duration.minutes  + \" \" +\n\n\"seconds: \" + duration.seconds  + \" \" +\n\n\"milliseconds: \" + duration.milliseconds  + \" \" +\n\n\"microseconds: \" + duration.microseconds  + \" \" +\n\n\"nanoseconds: \" + duration.nanoseconds;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_prop"
+  },
+  {
+   "type": "h2",
+   "text": "متد with()"
+  },
+  {
+   "type": "p",
+   "text": "متد with() یک Duration تازه برمی‌گرداند که خصوصیت‌های مشخصی (یکاهای زمان) در آن جابه‌جا شده‌اند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration\n\nconst duration = Temporal.Duration.from({hours:10, minutes:30});\n\n// Create a new duration with the minutes changed to 45\n\nconst newDuration = duration.with({minutes:45});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_with"
+  },
+  {
+   "type": "h2",
+   "text": "حساب ایمن تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "شیء Duration حساب تاریخ و زمان را ایمن و روشن می‌کند و از مشکلات مربوط به ساعت تابستانی (DST) و تغییر منطقهٔ زمانی جلوگیری می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "شیء Duration می‌تواند زمان را با یکاهای مختلف مدیریت کند: سال، ماه، هفته، روز، ساعت، دقیقه، ثانیه، میلی‌ثانیه، میکروثانیه و نانوثانیه."
+  },
+  {
+   "type": "p",
+   "text": "شیء Duration حساب تاریخ را روشن، خوانا و ایمن‌تر از محاسبات دستی میلی‌ثانیه‌ای می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد add() در Duration"
+  },
+  {
+   "type": "p",
+   "text": "متد add() یک Duration تازه برمی‌گرداند که یک بازهٔ زمانی به آن اضافه شده است."
+  },
+  {
+   "type": "p",
+   "text": "متد add() مقدار اصلی Duration را عوض نمی‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration\n\nconst d1 = Temporal.Duration.from({ hours:2, minutes:30 });\n\n// Add a Duration\n\nconst d2 = d1.add({ hours:1, minutes:30 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_add"
+  },
+  {
+   "type": "h2",
+   "text": "متد subtract() در Duration"
+  },
+  {
+   "type": "p",
+   "text": "متد subtract() یک Duration تازه برمی‌گرداند که یک بازهٔ زمانی از آن کم شده است."
+  },
+  {
+   "type": "p",
+   "text": "متد subtract() مقدار اصلی Duration را عوض نمی‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Duration\n\nconst d1 = Temporal.Duration.from({ hours:2, minutes:30 });\n\n// Subtract a Duration\n\nconst d2 = d1.subtract({ hours:1, minutes:30 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_subtract"
+  },
+  {
+   "type": "h2",
+   "text": "تغییرناپذیری"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای Temporal تغییرناپذیرند؛ یعنی عملیاتی مثل add() یا subtract() یک نمونهٔ تازهٔ Temporal.Duration برمی‌گردانند و مقدار اصلی دست‌نخورده می‌ماند."
+  },
+  {
+   "type": "h2",
+   "text": "متدهای add() و subtract() در Temporal"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد add() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.add(duration)",
+    "instant.add(duration)",
+    "plaindate.add(duration)",
+    "plaintime.add(duration)",
+    "plainyearmonth.add(duration)",
+    "plainmonthday.add(duration)",
+    "plaindatetime.add(duration)",
+    "zoneddatetime.add(duration)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد subtract() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.subtract(duration)",
+    "instant.subtract(duration)",
+    "plaindate.subtract(duration)",
+    "plaintime.subtract(duration)",
+    "plainyearmonth.subtract(duration)",
+    "plainmonthday.subtract(duration)",
+    "plaindatetime.subtract(duration)",
+    "zoneddatetime.subtract(duration)"
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "حساب با Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "متد compare()"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.Duration متد equals() ندارد، چون مدیریت نمایش‌های مختلف یک بازهٔ یکسان پیچیده است."
+  },
+  {
+   "type": "p",
+   "text": "به‌جای آن، برابری با متد ایستای Temporal.Duration.compare() بررسی می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "این متد اگر بازهٔ اول کوتاه‌تر باشد -1 برمی‌گرداند، اگر برابر باشد 0 و اگر بلندتر باشد 1."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ minutes:90 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ hours:1, minutes:30 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_compare"
+  },
+  {
+   "type": "p",
+   "text": "توجه کنید که هر دو مثال برای حالت برابر 0 برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "۹۰ دقیقه همان بازهٔ ۱ ساعت و ۳۰ دقیقه است."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد compare() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal.Instant.compare(instant1, instant2)",
+    "Temporal.PlainDate.compare(plaindate1, plaindate2)",
+    "Temporal.PlainTime.compare(plaintime1, plaintime2)",
+    "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
+    "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
+    "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
+    "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
+    "Temporal.Duration.compare(duration1, duration2)"
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "مقایسه در Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای بازه (RangeError)"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ days:30 });\n\nconst d2 = Temporal.Duration.from({ months: 1 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "کد بالا شکست می‌خورد و RangeError می‌دهد، چون d2 یک یکای تقویمی (ماه) دارد که طولش نامنظم و متغیر است."
+  },
+  {
+   "type": "p",
+   "text": "بدون یک نقطهٔ شروع مشخص در تقویم، محیط اجرای JavaScript نمی‌تواند بفهمد «۱ ماه» دقیقاً چند روز است تا مقایسه را انجام دهد."
+  },
+  {
+   "type": "p",
+   "text": "مثلاً ۱ ماه که از فوریه شروع شود می‌تواند ۲۸ یا ۲۹ روز باشد، در حالی که ۱ ماه از ژانویه ۳۱ روز است."
+  },
+  {
+   "type": "h2",
+   "text": "چرا متد equals() وجود ندارد"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.Duration متد equals() ندارد، چون بازه‌های زمانی را می‌توان به چند شکل «نامتوازن» نشان داد که از نظر ریاضی برابرند اما ساختارشان فرق دارد."
+  },
+  {
+   "type": "p",
+   "text": "مثلاً بازهٔ ۹۰ ثانیه منطقاً با ۱ دقیقه و ۳۰ ثانیه برابر است، اما درون شیء Temporal.Duration به شکل مجموعه‌خصوصیت‌های جداگانه ذخیره می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "یکاهای نامتوازن: به‌طور پیش‌فرض Temporal.Duration یکاها را دقیقاً همان‌طور که تعریف شده‌اند نگه می‌دارد. چون «60 minutes» و «1 hour» دو نمایش درونی متفاوت‌اند، یک متد equals() معمولی مبهم می‌شد؛ آیا باید خصوصیت‌های یکسان را بسنجد یا طول زمانی یکسان را؟"
+  },
+  {
+   "type": "p",
+   "text": "طول متغیر یکاها: یکاهایی مثل روز و ماه و سال طول ثابت ندارند. یک «ماه» بسته به تقویم و تاریخ مرجع می‌تواند ۲۸ یا ۳۰ یا ۳۱ روز باشد."
+  },
+  {
+   "type": "p",
+   "text": "نیاز به بافت: برای مقایسهٔ درست دو بازهٔ زمانی که یکای تقویمی دارند (سال، ماه، هفته) باید گزینهٔ relativeTo یعنی یک نقطهٔ شروع مشخص بدهید. بدون این مرجع، API نمی‌تواند بگوید دو بازهٔ تقویمی واقعاً «برابر» هستند یا نه."
+  },
+  {
+   "type": "p",
+   "text": "پیشنهاد Temporal از کمیتهٔ TC39 به‌جای یک متد سادهٔ equals() از برنامه‌نویس می‌خواهد که از متد ایستای Temporal.Duration.compare() استفاده کند."
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از Duration استفاده کنیم"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "جمع یا تفریق زمان",
+    "محاسبهٔ سن",
+    "محاسبهٔ تفاوت بین تاریخ‌ها",
+    "محاسبهٔ بازه‌های زمانی (ساعت، روز، ماه)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متدهای Temporal.Duration"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ساخت",
+     "توضیح"
+    ],
+    [
+     "from()",
+     "یک شیء Duration تازه از یک شیء یا یک رشتهٔ ISO برمی‌گرداند"
+    ],
+    [
+     "new()",
+     "یک شیء Duration تازه از پارامترهای عدد صحیح برمی‌گرداند"
+    ],
+    [
+     "محاسبات",
+     ""
+    ],
+    [
+     "abs()",
+     "یک Duration تازه با قدر مطلق این بازه برمی‌گرداند"
+    ],
+    [
+     "add()",
+     "یک Duration تازه برمی‌گرداند که یک بازه به آن اضافه شده است"
+    ],
+    [
+     "negated()",
+     "یک Duration تازه برمی‌گرداند که منفی این بازه است"
+    ],
+    [
+     "round()",
+     "یک Duration تازه برمی‌گرداند که گرد شده است"
+    ],
+    [
+     "subtract()",
+     "یک Duration تازه برمی‌گرداند که یک بازه از آن کم شده است"
+    ],
+    [
+     "مقایسه",
+     ""
+    ],
+    [
+     "compare()",
+     "دو بازهٔ زمانی را مقایسه می‌کند (خروجی -1 یا 0 یا 1)"
+    ],
+    [
+     "تبدیل",
+     ""
+    ],
+    [
+     "with()",
+     "یک Duration تازه برمی‌گرداند که فیلدهای داده‌شده در آن تغییر کرده‌اند"
+    ],
+    [
+     "قالب‌بندی",
+     ""
+    ],
+    [
+     "total()",
+     "عددی برمی‌گرداند که این بازه را با یکای داده‌شده نشان می‌دهد"
+    ],
+    [
+     "toJSON()",
+     "رشته‌ای در قالب RFC 9557 برای سریال کردن JSON برمی‌گرداند"
+    ],
+    [
+     "toLocaleString()",
+     "نمایش وابسته به زبان زمان را برمی‌گرداند"
+    ],
+    [
+     "toString()",
+     "رشته‌ای در قالب RFC 9557 برمی‌گرداند"
+    ],
+    [
+     "valueOf()",
+     "یک TypeError می‌دهد و نمی‌گذارد شیءهای Temporal به مقدار ساده تبدیل شوند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های Temporal.Duration"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیح"
+    ],
+    [
+     "blank",
+     "اگر این بازه صفر باشد، بولی true"
+    ],
+    [
+     "days",
+     "روزها به‌صورت عدد صحیح (۱ تا ۳۱)"
+    ],
+    [
+     "hours",
+     "ساعت‌ها به‌صورت عدد صحیح (۰ تا ۲۳)"
+    ],
+    [
+     "microseconds",
+     "میکروثانیه‌ها به‌صورت عدد صحیح (۰ تا ۹۹۹)"
+    ],
+    [
+     "milliseconds",
+     "میلی‌ثانیه‌ها به‌صورت عدد صحیح (۰ تا ۹۹۹)"
+    ],
+    [
+     "minutes",
+     "دقیقه‌ها به‌صورت عدد صحیح (۰ تا ۵۹)"
+    ],
+    [
+     "months",
+     "ماه‌ها به‌صورت عدد صحیح (۱ تا ۱۲)"
+    ],
+    [
+     "nanoseconds",
+     "نانوثانیه‌ها به‌صورت عدد صحیح (۰ تا ۹۹۹)"
+    ],
+    [
+     "seconds",
+     "ثانیه‌ها به‌صورت عدد صحیح (۰ تا ۵۹)"
+    ],
+    [
+     "sign",
+     "1 مثبت، -1 منفی"
+    ],
+    [
+     "weeks",
+     "هفته‌ها به‌صورت عدد صحیح"
+    ],
+    [
+     "years",
+     "سال‌ها به‌صورت عدد صحیح"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//Create a Duration\n\nconst duration = new Temporal.Duration(0, 0, 0, 7, 2, 0);\n\n// List the Properties\n\nlet text =\n\n\"blank: \" + duration.blank + \" \" +\n\n\"sign: \" + duration.sign + \" \" +\n\n\"years: \" + duration.years + \" \" +\n\n\"months: \" + duration.months + \" \" +\n\n\"weeks: \" + duration.weeks + \" \" +\n\n\"days: \" + duration.days + \" \" +\n\n\"hour: \" + duration.hours  + \" \" +\n\n\"minutes: \" + duration.minutes  + \" \" +\n\n\"seconds: \" + duration.seconds  + \" \" +\n\n\"milliseconds: \" + duration.milliseconds  + \" \" +\n\n\"microseconds: \" + duration.microseconds  + \" \" +\n\n\"nanoseconds: \" + duration.nanoseconds;",
+   "caption": "نمایش همهٔ خصوصیت‌های Duration"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_prop"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل duration.html بسازید و یک Duration با Temporal.Duration.from({days:7, hours:2}) بسازید؛ بعد با همان مقدار به شکل رشتهٔ ISO، یعنی\"P7DT2H\"، هم بسازید و نتیجه‌ها را مقایسه کنید.",
+   "hint": "مسیر از رشته هم با همان متد from() است؛ فقط ورودی رشتهٔ ISO می‌شود."
+  },
+  {
+   "prompt": "یک Duration با new Temporal.Duration(0, 0, 0, 7, 2) بسازید و ترتیب پارامترها را روی کاغذ بنویسید.",
+   "hint": "ترتیب پارامترها: سال، ماه، هفته، روز، ساعت، دقیقه، ثانیه، میلی‌ثانیه، میکروثانیه، نانوثانیه."
+  },
+  {
+   "prompt": "همهٔ خصوصیت‌های یک Duration را با یک رشتهٔ کنسولی چاپ کنید: blank، sign، years، months، weeks، days، hours، minutes، seconds، milliseconds، microseconds و nanoseconds.",
+   "hint": "هر خصوصیت یک عدد یا بولی برمی‌گرداند؛ مثلاً sign برای بازهٔ مثبت ۱ و برای منفی منفی یک است."
+  },
+  {
+   "prompt": "یک Duration بسازید و با متد with() مقدار minutes را عوض کنید؛ سپس مقدار اصلی را چاپ کنید تا ببینید عوض نشده است.",
+   "hint": "with() یک Duration تازه برمی‌گرداند و شیء اولیه تغییرناپذیر است."
+  },
+  {
+   "prompt": "دو بازه بسازید: یکی از {days:30} و یکی از {months:1}؛ آن‌ها را با Temporal.Duration.compare مقایسه کنید و خطای RangeError را توضیح دهید.",
+   "hint": "یکای تقویمی مثل ماه طول ثابت ندارد، پس بدون relativeTo مقایسه ممکن نیست."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کد ISO کدام بازهٔ زمانی، ۴ ساعت و ۵ دقیقه و ۶ ثانیه است؟",
+   "options": [
+    "P4H5M6S",
+    "PT4H5M6S",
+    "P4DT5M6S",
+    "T4H5M6S"
+   ],
+   "answer": 1,
+   "explanation": "قسمت ساعت و دقیقه و ثانیه بعد از حرف T می‌آید، چون T جداکنندهٔ بخش تاریخ و بخش زمان است؛ پس PT4H5M6S درست است و بدون T یعنی این‌ها بخش تاریخ‌اند."
+  },
+  {
+   "question": "در سازندهٔ new Temporal.Duration، ترتیب پارامترها از چپ به راست چیست؟",
+   "options": [
+    "روز، ساعت، ماه، سال",
+    "سال، ماه، هفته، روز، ساعت، دقیقه، ثانیه، میلی‌ثانیه، میکروثانیه، نانوثانیه",
+    "نانوثانیه تا سال",
+    "هر ترتیبی مجاز است"
+   ],
+   "answer": 1,
+   "explanation": "درس ترتیب را دقیق می‌دهد: از بزرگ به کوچک، سال و ماه و هفته و روز و بعد ساعت و دقیقه و ثانیه و میلی‌ثانیه و میکروثانیه و نانوثانیه."
+  },
+  {
+   "question": "متد add() روی یک Duration چه اثری روی مقدار اصلی دارد؟",
+   "options": [
+    "مقدار اصلی را تغییر می‌دهد",
+    "هیچ اثری ندارد و اصلی دست‌نخورده می‌ماند، چون یک Duration تازه برمی‌گرداند",
+    "مقدار اصلی را پاک می‌کند",
+    "فقط وقتی const نباشد کار می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "شیءهای Temporal تغییرناپذیرند؛ add() و subtract() نمونهٔ تازه برمی‌گردانند و مقدار اصلی عوض نمی‌شود."
+  },
+  {
+   "question": "چرا Temporal.Duration متد equals() ندارد؟",
+   "options": [
+    "چون بازه‌ها را می‌توان به شکل‌های نامتوازن متفاوت نمایش داد و یکای تقویمی طول ثابت ندارد",
+    "چون پیاده‌سازی آن فراموش شده است",
+    "چون فقط Instant متد دارد",
+    "چون equals() فقط برای رشته‌هاست"
+   ],
+   "answer": 0,
+   "explanation": "درس دو دلیل می‌آورد: نمایش‌های نامتوازن مثل ۹۰ ثانیه در برابر ۱ دقیقه و ۳۰ ثانیه، و طول متغیر یکاهایی مثل ماه؛ به همین دلیل باید از Temporal.Duration.compare() استفاده کرد."
+  },
+  {
+   "question": "مقایسهٔ Duration از {days:30} با Duration از {months:1} چرا RangeError می‌دهد؟",
+   "options": [
+    "چون اعداد بزرگ‌تر از ۱۰ نپذیرفته می‌شوند",
+    "چون ماه یکای تقویمی با طول متغیر است و بدون نقطهٔ شروع مشخص نمی‌شود چند روز است",
+    "چون Duration فقط با رشته کار می‌کند",
+    "چون باید اول از add استفاده کرد"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید بدون relativeTo، محیط اجرا نمی‌تواند بفهمد یک ماه چند روز است؛ مثلاً ۱ ماه از فوریه ۲۸ یا ۲۹ روز و از ژانویه ۳۱ روز است."
+  }
+ ]
+}

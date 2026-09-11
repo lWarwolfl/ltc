@@ -1,0 +1,327 @@
+{
+ "slug": "js_temporal_differences",
+ "course": "js",
+ "order": 194,
+ "url": "/js/js_temporal_differences.asp",
+ "title": "اختلاف زمان‌ها در Temporal جاوااسکریپت",
+ "summary": "متدهای since() و until() اختلاف دو مقدار Temporal را به‌صورت یک شیء Duration برمی‌گردانند. در این درس می‌آموزید این دو متد معکوس هم را بشناسید و با گزینهٔ largestUnit نتیجه را به واحدهای دلخواه بشکنید.",
+ "objectives": [
+  "با since() و until() اختلاف دو تاریخ یا ساعت را حساب کنید",
+  "تشخیص دهید کدام متد گذشته را می‌دهد و کدام آینده را",
+  "با largestUnit نتیجه را به سال و ماه بشکنید",
+  "توضیح دهید چرا خروجی این متدها یک شیء Duration است"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "اختلاف زمان‌ها در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای since() و until() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد since() مدت «از» بین دو تاریخ را حساب می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متد until() مدت «تا» بین دو تاریخ را حساب می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متدهای since() و until() در واقع معکوس یکدیگرند."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای تاریخ Temporal متد since() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "plaindate.since(plaindate)",
+    "plaintime.since(plaintime)",
+    "plainyearmonth.since(plainyearmonth)",
+    "plainmonthday.since(plainmonthday)",
+    "plaindatetime.since(plaindatetime)",
+    "zoneddatetime.since(zoneddatetime)",
+    "instant.since(instant)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد until() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "plaindate.until(plaindate)",
+    "plaintime.until(plaintime)",
+    "plainyearmonth.until(plainyearmonth)",
+    "plainmonthday.until(plainmonthday)",
+    "plaindatetime.until(plaindatetime)",
+    "zoneddatetime.until(zoneddatetime)",
+    "instant.until(instant)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد since() در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "p",
+   "text": "متد since() مدت‌زمان بین دو تاریخ Temporal را حساب می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "t1.since(t2, options)",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = start.since(end);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_since"
+  },
+  {
+   "type": "p",
+   "text": "متد since() یک شیء Temporal.Duration برمی‌گرداند که زمان سپری‌شده را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "اگر تاریخ «دیگر» در گذشته باشد، مدت مثبت است."
+  },
+  {
+   "type": "p",
+   "text": "اگر تاریخ «دیگر» در آینده باشد، مدت منفی است."
+  },
+  {
+   "type": "h2",
+   "text": "متد until() در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "p",
+   "text": "متد until() مدت‌زمان بین دو تاریخ Temporal را حساب می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متد until() در واقع معکوس متد since() است."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "t1.until(t2, options)",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = start.until(end);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_until"
+  },
+  {
+   "type": "h2",
+   "text": "مقایسهٔ since() و until() در Temporal"
+  },
+  {
+   "type": "p",
+   "text": "این دو متد عکس هم هستند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "معنا"
+    ],
+    [
+     "a.since(b)",
+     "زمان از b به a"
+    ],
+    [
+     "a.until(b)",
+     "زمان از a به b"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration1 = start.since(end);\n\nconst duration2 = start.until(end);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_until3"
+  },
+  {
+   "type": "p",
+   "text": "به این شکل فکر کنید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "since = گذشته (از دیروز)",
+    "until = آینده (تا فردا)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پارامترهای options"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const wedding = Temporal.PlainDate.from(\"2000-05-17\");\n\nconst today = Temporal.Now.plainDateISO();\n\nconst duration = today.since(wedding);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since3"
+  },
+  {
+   "type": "p",
+   "text": "متد since() شمار کل روزها را برمی‌گرداند، اما با گزینهٔ largestUnit می‌توانید آن را به سال و ماه بشکنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const wedding = Temporal.PlainDate.from(\"2000-05-17\");\n\nconst today = Temporal.Now.plainDateISO();\n\nconst duration = today.since(wedding, {largestUnit:'years'});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since4"
+  },
+  {
+   "type": "h2",
+   "text": "متد since() در PlainTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.PlainTime.from(\"09:00\");\n\nconst end = Temporal.PlainTime.from(\"17:30\");\n\nconst duration = end.since(start);",
+   "caption": "مثال: PlainTime"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since1"
+  },
+  {
+   "type": "h2",
+   "text": "متد since() در ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "متد since() مدت‌زمان بین دو تاریخ Temporal را حساب می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "t1.since(t2, options)",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T09:00:00+01:00[Europe/Oslo]\");\n\nconst end = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T17:30:00+01:00[Europe/Oslo]\");\n\nconst duration = end.since(start);",
+   "caption": "مثال: ZonedDateTime"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since2"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل since-until.html بسازید، دو PlainDate بسازید و با since() و until() اختلافشان را در دو جهت حساب کنید.",
+   "hint": "since از تاریخ دیگر تا اینجا را می‌دهد و until از اینجا تا تاریخ دیگر."
+  },
+  {
+   "prompt": "خروجی هر دو متد را با هم مقایسه کنید و بگویید چرا علامت‌شان برعکس است.",
+   "hint": "این دو متد معکوس یکدیگرند؛ به همین دلیل مقدار یکی منفی دیگری می‌شود."
+  },
+  {
+   "prompt": "همان اختلاف را با گزینهٔ largestUnit: \"year\" بگیرید و نتیجه را با حالت پیش‌فرض مقایسه کنید.",
+   "hint": "پیش‌فرض شمار کل روزها است و largestUnit آن را به سال و ماه می‌شکند."
+  },
+  {
+   "prompt": "اختلاف دو PlainTime را با since() حساب کنید و خروجی را چاپ کنید.",
+   "hint": "خروجی یک شیء Temporal.Duration است، نه یک عدد."
+  },
+  {
+   "prompt": "روی یک ZonedDateTime اختلاف زمانی با منطقهٔ زمانی دیگر را حساب کنید و بگویید خروجی چه واحدهایی دارد.",
+   "hint": "وقتی منطقهٔ زمانی در کار باشد، نتیجه می‌تواند ساعت و دقیقه هم داشته باشد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "متد since() چه چیزی را حساب می‌کند؟",
+   "options": [
+    "مدت‌زمان از یک تاریخ دیگر تا اینجا",
+    "مدت‌زمان از اینجا تا تاریخ دیگر",
+    "جمع دو تاریخ",
+    "مقایسهٔ دو تاریخ با -1 و 0 و 1"
+   ],
+   "answer": 0,
+   "explanation": "since() مدت سپری‌شده از تاریخ دیگر تا این لحظه را می‌دهد. حالت برعکس آن کار until() است و مقایسهٔ دو تاریخ کار compare()."
+  },
+  {
+   "question": "رابطهٔ since() و until() چیست؟",
+   "options": [
+    "کاملاً یکسان‌اند",
+    "معکوس یکدیگرند و علامت نتیجه برعکس می‌شود",
+    "until فقط برای ساعت است",
+    "هیچ ربطی به هم ندارند"
+   ],
+   "answer": 1,
+   "explanation": "این دو متد عکس هم هستند؛ اگر since مقدار مثبت بدهد، until همان مقدار را منفی می‌دهد و برعکس."
+  },
+  {
+   "question": "خروجی since() و until() چه نوعی دارد؟",
+   "options": [
+    "عدد",
+    "رشته",
+    "شیء Temporal.Duration",
+    "شیء PlainDate"
+   ],
+   "answer": 2,
+   "explanation": "این متدها اختلاف را به‌صورت شیء Temporal.Duration برمی‌گردانند که واحدهای مختلف مانند سال، ماه، روز و ساعت را نگه می‌دارد."
+  },
+  {
+   "question": "گزینهٔ largestUnit در since() چه کاری می‌کند؟",
+   "options": [
+    "بزرگ‌ترین واحد را در نتیجه به کار می‌برد",
+    "بزرگ‌ترین تاریخ را انتخاب می‌کند",
+    "نتیجه را به بزرگ‌ترین عدد صحیح گرد می‌کند",
+    "منطقهٔ زمانی را تعیین می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "پیش‌فرض since() شمار کل روزها است؛ با largestUnit می‌توانید نتیجه را به واحدهای بزرگ‌تر مثل سال و ماه بشکنید."
+  },
+  {
+   "question": "روش درست فکر کردن به این دو متد کدام است؟",
+   "options": [
+    "since برای گذشته است و until برای آینده",
+    "since برای آینده است و until برای گذشته",
+    "هر دو فقط برای ساعت به کار می‌روند",
+    "هر دو فقط برای تاریخ به کار می‌روند"
+   ],
+   "answer": 0,
+   "explanation": "since یعنی از دیروز تا حالا (گذشته) و until یعنی از حالا تا فردا (آینده)؛ همین معنا تفاوت اصلی آن‌ها را روشن می‌کند."
+  }
+ ]
+}

@@ -1,0 +1,555 @@
+{
+ "slug": "js_temporal_conversion",
+ "course": "js",
+ "order": 196,
+ "url": "/js/js_temporal_conversion.asp",
+ "title": "تبدیل نوع‌ها در Temporal جاوااسکریپت",
+ "summary": "نوع‌های Temporal با متدهایی مثل toPlainDate()، toPlainTime()، toZonedDateTime() و toInstant() به هم تبدیل می‌شوند. در این درس می‌آموزید چه تبدیلی امکان دارد، چه تبدیلی به دادهٔ اضافی نیاز دارد و چرا Instant متد toZonedDateTime() ندارد.",
+ "objectives": [
+  "تاریخ و ساعت را با toPlainDateTime() ترکیب کنید",
+  "بخش تاریخ و ساعت را با toPlainDate() و toPlainTime() جدا کنید",
+  "ZonedDateTime را به Instant و برعکس تبدیل کنید",
+  "بگویید کدام تبدیل‌ها به دادهٔ جاافتاده مثل روز یا منطقهٔ زمانی نیاز دارند"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "تبدیل نوع‌ها در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "قواعد تبدیل در Temporal"
+  },
+  {
+   "type": "p",
+   "text": "جدول زیر نشان می‌دهد نوع‌های Temporal چگونه به هم تبدیل می‌شوند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "از",
+     "PlainDate",
+     "PlainTime",
+     "PlainDateTime",
+     "ZonedDateTime",
+     "Instant"
+    ],
+    [
+     "PlainDate",
+     "",
+     "خیر",
+     "بله",
+     "خیر",
+     "خیر"
+    ],
+    [
+     "PlainTime",
+     "خیر",
+     "",
+     "خیر",
+     "خیر",
+     "خیر"
+    ],
+    [
+     "PlainDateTime",
+     "بله",
+     "بله",
+     "",
+     "بله",
+     "خیر"
+    ],
+    [
+     "ZonedDateTime",
+     "بله",
+     "بله",
+     "بله",
+     "",
+     "بله"
+    ],
+    [
+     "Instant",
+     "خیر",
+     "خیر",
+     "خیر",
+     "بله",
+     ""
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متدهای تبدیل"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "از",
+     "به",
+     "متد"
+    ],
+    [
+     "تاریخ",
+     "Instant",
+     "date.toTemporalInstant()"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "PlainDate",
+     "PlainTime",
+     "هیچ‌کدام"
+    ],
+    [
+     "PlainDate",
+     "PlainDateTime",
+     "date.toPlainDateTime()"
+    ],
+    [
+     "PlainDate",
+     "ZonedTime",
+     "هیچ‌کدام"
+    ],
+    [
+     "PlainDate",
+     "Instant",
+     "هیچ‌کدام"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "PlainYearMonth",
+     "PlainDate",
+     "yearmonth.toPlainDate()"
+    ],
+    [
+     "PlainMonthDay",
+     "PlainDate",
+     "monthday.toPlainDate()"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "PlainDateTime",
+     "PlainDate",
+     "datetime.toPlainDate()"
+    ],
+    [
+     "PlainDateTime",
+     "PlainTime",
+     "datetime.toPlainTime()"
+    ],
+    [
+     "PlainDateTime",
+     "ZonedDateTime",
+     "datetime.toZonedDateTime()"
+    ],
+    [
+     "PlainDateTime",
+     "Instant",
+     "هیچ‌کدام"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "ZonedDateTime",
+     "PlainDate",
+     "zoned.toPlainDate()"
+    ],
+    [
+     "ZonedDateTime",
+     "PlainDateTime",
+     "zoned.toPlainDateTime()"
+    ],
+    [
+     "ZonedDateTime",
+     "PlainTime",
+     "zoned.toPlainTime()"
+    ],
+    [
+     "ZonedDateTime",
+     "Instant",
+     "zoned.toInstant()"
+    ],
+    [
+     "",
+     "",
+     ""
+    ],
+    [
+     "Instant",
+     "ZonedDateTime",
+     "zoned.toZonedDateTimeISO()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "از Date قدیمی به Instant"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const legacyDate = new Date();\n\nconst instant = legacyDate.toTemporalInstant();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_to_temporal"
+  },
+  {
+   "type": "h2",
+   "text": "از PlainDate به PlainDateTime"
+  },
+  {
+   "type": "p",
+   "text": "شاید بخواهید یک ساعت هم اضافه کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst dateTime = date.toPlainDateTime();",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst dateTime = date.toPlainDateTime(\"14:30\");",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_to_plaindatetime"
+  },
+  {
+   "type": "h2",
+   "text": "ترکیب تاریخ و ساعت"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید PlainDate و PlainTime را برای ساخت یک شیء PlainDateTime ترکیب کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Create a PlainTime object\n\nconst time = Temporal.PlainTime.from(\"14:30\");\n\n// Convert into a PlainDateTime object\n\nconst dateTime = date.toPlainDateTime(time);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_1"
+  },
+  {
+   "type": "h2",
+   "text": "از PlainDateTime به PlainDate"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nconst date = dateTime.toPlainDate();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "از PlainDateTime به PlainTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nconst time = dateTime.toPlainTime();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_to_plaintime"
+  },
+  {
+   "type": "h2",
+   "text": "از PlainDateTime به ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "PlainDateTime منطقهٔ زمانی ندارد."
+  },
+  {
+   "type": "p",
+   "text": "برای ساخت ZonedDateTime باید منطقهٔ زمانی بدهید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nconst zoned = dateTime.toZonedDateTime();",
+   "caption": "نادرست"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nconst zoned = dateTime.toZonedDateTime(\"Europe/Oslo\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_to_zoneddatetime"
+  },
+  {
+   "type": "h2",
+   "text": "از ZonedDateTime به PlainDateTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");\n\nconst dateTime = zoned.toPlainDateTime();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoneddatetime_to_plaindatetime"
+  },
+  {
+   "type": "h2",
+   "text": "از ZonedDateTime به PlainDate"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");\n\nconst date = zoned.toPlainDate();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoneddatetime_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "از ZonedDateTime به PlainTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");\n\nconst time = zoned.toPlainTime();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoneddatetime_to_plaintime"
+  },
+  {
+   "type": "h2",
+   "text": "از ZonedDateTime به Instant"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");\n\nconst instant = zoned.toInstant();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoneddatetime_to_instant"
+  },
+  {
+   "type": "h2",
+   "text": "از Instant به ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "شیء Instant متد toZonedDateTime() ندارد."
+  },
+  {
+   "type": "p",
+   "text": "اول باید آن را به یک منطقهٔ زمانی ISO تبدیل کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T12:30:00Z\");\n\nconst zoned = instant.toZonedDateTime(\"Europe/Oslo\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T12:30:00Z\");\n\nconst zoned = instant.toZonedDateTimeISO(\"Europe/Oslo\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_to_zoneddatetime"
+  },
+  {
+   "type": "h2",
+   "text": "نوع‌های ویژهٔ Temporal"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "از",
+     "toPlainDate()",
+     "toPlainDateTime()",
+     "toZonedDateTime()"
+    ],
+    [
+     "PlainYearMonth",
+     "نیاز به مقدار روز",
+     "خیر",
+     "خیر"
+    ],
+    [
+     "PlainMonthDay",
+     "نیاز به مقدار سال",
+     "خیر",
+     "خیر"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "PlainMonthDay و PlainYearMonth پیش از تبدیل شدن به تاریخ کامل، به بخش‌های جاافتاده نیاز دارند."
+  },
+  {
+   "type": "h2",
+   "text": "از PlainYearMonth به PlainDate"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const yearMonth = new Temporal.PlainYearMonth(2026, 5);\n\nconst date = yearMonth.toPlainDate({ day: 17 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "از PlainMonthDay به PlainDate"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const monthDay = new Temporal.PlainYearMonth(2026, 5);\n\nconst date = monthDay.toPlainDate({ year: 2026 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainmonthday_to_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "تبدیل منطقهٔ زمانی"
+  },
+  {
+   "type": "p",
+   "text": "تبدیل زمان از منطقهٔ زمانی دیگر با متد withTimeZone() در ZonedDateTime انجام می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zdtOslo = Temporal.Now.zonedDateTimeISO('Europe/Oslo');\n\nconst zdtTokyo = zdtOslo.withTimeZone('Asia/Tokyo');",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zone_to_zone"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل conversion.html بسازید، یک PlainDate و یک PlainTime بسازید و با toPlainDateTime یک PlainDateTime از آن‌ها بسازید.",
+   "hint": "ترکیب تاریخ و ساعت یک PlainDateTime می‌دهد."
+  },
+  {
+   "prompt": "یک PlainDateTime بسازید و با toPlainDate() و toPlainTime() بخش تاریخ و ساعت آن را جدا کنید.",
+   "hint": "هر دو متد بخشی از مقدار را جدا برمی‌گردانند."
+  },
+  {
+   "prompt": "یک ZonedDateTime بسازید و با toInstant() آن را به لحظهٔ UTC تبدیل کنید.",
+   "hint": "برای Instant متدی به نام toZonedDateTime وجود ندارد."
+  },
+  {
+   "prompt": "یک Instant بسازید و ببینید چگونه با دادن منطقهٔ زمانی به ZonedDateTime تبدیل می‌شود.",
+   "hint": "Instant بدون منطقهٔ زمانی نمی‌داند ساعت محلی چند است."
+  },
+  {
+   "prompt": "یک PlainYearMonth بسازید و با toPlainDate روز مورد نظر را به آن بدهید تا تاریخ کامل شود.",
+   "hint": "PlainYearMonth و PlainMonthDay برای تبدیل به تاریخ کامل به بخش جاافتاده نیاز دارند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای ترکیب PlainDate و PlainTime و ساختن PlainDateTime کدام متد به کار می‌رود؟",
+   "options": [
+    "toPlainDate()",
+    "toPlainDateTime()",
+    "toZonedDateTime()",
+    "toInstant()"
+   ],
+   "answer": 1,
+   "explanation": "toPlainDateTime() تاریخ و ساعت را با هم ترکیب می‌کند. toPlainDate و toPlainTime برعکس، بخشی از یک تاریخ‌وساعت را جدا می‌کنند."
+  },
+  {
+   "question": "برای تبدیل PlainDateTime به ZonedDateTime چه چیزی لازم است؟",
+   "options": [
+    "فقط متد toInstant()",
+    "منطقهٔ زمانی، چون PlainDateTime منطقهٔ زمانی ندارد",
+    "هیچ چیز اضافه‌ای لازم نیست",
+    "یک شیء Date"
+   ],
+   "answer": 1,
+   "explanation": "PlainDateTime منطقهٔ زمانی را در خود ندارد؛ برای تبدیل باید منطقهٔ زمانی بدهید."
+  },
+  {
+   "question": "چرا Instant متد toZonedDateTime() ندارد؟",
+   "options": [
+    "چون باید با متد withTimeZone() و تبدیل مستقیم انجام شود",
+    "چون Instant تاریخ ندارد",
+    "چون متد حذف شده است",
+    "چون Instant فقط ساعت را نگه می‌دارد"
+   ],
+   "answer": 0,
+   "explanation": "برای تبدیل Instant به زمان منطقه‌دار باید منطقهٔ زمانی مشخص شود؛ این کار با toZonedDateTimeISO() و withTimeZone() انجام می‌شود."
+  },
+  {
+   "question": "برای تبدیل PlainMonthDay به PlainDate چه چیزی لازم است؟",
+   "options": [
+    "سال",
+    "منطقهٔ زمانی",
+    "مقدار روز",
+    "هیچ‌چیز"
+   ],
+   "answer": 0,
+   "explanation": "PlainMonthDay سال ندارد؛ برای تاریخ کامل شدن باید سال را بدهید. مقدار روز از قبل در خود شیء هست."
+  },
+  {
+   "question": "تبدیل زمان از یک منطقهٔ زمانی به منطقهٔ دیگر با کدام متد انجام می‌شود؟",
+   "options": [
+    "toPlainTime()",
+    "withTimeZone()",
+    "toInstant()",
+    "toJSON()"
+   ],
+   "answer": 1,
+   "explanation": "متد withTimeZone() روی ZonedDateTime همان لحظه را در منطقهٔ زمانی تازه نشان می‌دهد."
+  }
+ ]
+}

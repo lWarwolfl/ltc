@@ -1,0 +1,391 @@
+{
+ "slug": "js_temporal_compare",
+ "course": "js",
+ "order": 195,
+ "url": "/js/js_temporal_compare.asp",
+ "title": "مقایسه در Temporal جاوااسکریپت",
+ "summary": "شیءهای Temporal را نمی‌توان با عملگرهای <، > یا == مقایسه کرد. در این درس می‌آموزید با متدهای compare() و equals() مقایسهٔ درست انجام دهید، آرایه‌ها را مرتب کنید و مشکل relativeTo را در durationهای تقویمی حل کنید.",
+ "objectives": [
+  "با compare() و equals() مقدارهای Temporal را مقایسه کنید",
+  "توضیح دهید چرا عملگرهای مقایسه روی شیءهای Temporal کار نمی‌کنند",
+  "آرایه‌ای از تاریخ‌ها را با Array.sort و compare مرتب کنید",
+  "نقش گزینهٔ relativeTo را در Temporal.Duration.compare توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مقایسه در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "مقایسهٔ تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript نمی‌توان شیءها را با عملگرهایی مثل <، >، == یا === مقایسه کرد."
+  },
+  {
+   "type": "p",
+   "text": "همیشه به‌جای عملگرهای برابری معمول از متدهای equals() یا compare() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد compare() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Temporal.Instant.compare(instant1, instant2)",
+    "Temporal.PlainDate.compare(plaindate1, plaindate2)",
+    "Temporal.PlainTime.compare(plaintime1, plaintime2)",
+    "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
+    "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
+    "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
+    "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
+    "Temporal.Duration.compare(duration1, duration2)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد compare()"
+  },
+  {
+   "type": "p",
+   "text": "متد compare() این مقادیر را برمی‌گرداند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "-1 اگر تاریخ اول زودتر باشد",
+    "1 اگر تاریخ اول دیرتر باشد",
+    "0 اگر برابر باشند:"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst date2 = Temporal.PlainDate.from(\"2024-12-25\");\n\n// Compare the dates\n\nresult = Temporal.PlainDate.compare(date1, date2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare_1"
+  },
+  {
+   "type": "h2",
+   "text": "چرا عملگرهای < و > کار نمی‌کنند"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای Temporal در واقع شیء هستند، نه عدد اولیه."
+  },
+  {
+   "type": "p",
+   "text": "وقتی (a < b) می‌نویسید، JavaScript تلاش می‌کند هر دو شیء را به مقدار اولیه تبدیل کند."
+  },
+  {
+   "type": "p",
+   "text": "برای شیءهای Temporal این کار برخلاف Date یک timestamp عددی تولید نمی‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Temporal objects\n\nconst a = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst b = Temporal.PlainDate.from(\"2026-03-01\");\n\n// Compare the dates\n\nconsole.log(a < b);  // ❌ Error",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Duration.compare()"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.Duration متد equals() ندارد، چون مدیریت نمایش‌های مختلف یک duration یکسان پیچیده است."
+  },
+  {
+   "type": "p",
+   "text": "Temporal.Duration.compare()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ minutes:90 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ hours:1, minutes:30 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_compare"
+  },
+  {
+   "type": "p",
+   "text": "توجه کنید که هر دو مثال بالا برای مقدارهای برابر 0 برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "۹۰ دقیقه همان مدتی است که ۱ ساعت و ۳۰ دقیقه."
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای RangeError"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ days:30 });\n\nconst d2 = Temporal.Duration.from({ months: 1 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "کد بالا شکست می‌خورد و RangeError می‌دهد، چون d2 یک واحد تقویمی (ماه) دارد که طولش نایکنواخت و متغیر است."
+  },
+  {
+   "type": "p",
+   "text": "بدون یک نقطهٔ شروع مشخص در تقویم، محیط اجرای JavaScript نمی‌تواند دقیقاً تعیین کند «۱ ماه» چند روز است تا مقایسه را انجام دهد."
+  },
+  {
+   "type": "p",
+   "text": "برای نمونه، یک ماه که از فوریه شروع شود ۲۸ یا ۲۹ روز است، در حالی که یک ماه از ژانویه ۳۱ روز است."
+  },
+  {
+   "type": "p",
+   "text": "برای حل این مشکل باید گزینهٔ relativeTo را به‌عنوان آرگومان سوم به Temporal.Duration.compare() بدهید. این گزینه بستر تاریخی مشخصی می‌دهد تا طول دقیق محاسبه شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d1 = Temporal.Duration.from({ days: 30 });\n\nconst d2 = Temporal.Duration.from({ months: 1 });\n\n// Provide a start date (e.g., January 1st, 2026)\n\nconst startPoint = Temporal.PlainDate.from(\"2026-01-01\");\n\n// Compare the Durations using the reference date\n\nlet result = Temporal.Duration.compare(d1, d2, { relativeTo: startPoint });\n\n// Returns -1 (January has 31 days. 30 days is SHORTER than 1 month.)",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "با تغییر نقطهٔ مرجع relativeTo، بستر اجرا نتایج متفاوتی می‌دهد:"
+  },
+  {
+   "type": "p",
+   "text": "شروع از یکم فوریه: d1 (۳۰ روز) از d2 (۱ ماه / ۲۸ روز) بزرگ‌تر است، پس 1 برمی‌گردد."
+  },
+  {
+   "type": "p",
+   "text": "شروع از یکم آوریل: d1 (۳۰ روز) دقیقاً برابر d2 (۱ ماه / ۳۰ روز) است، پس 0 برمی‌گردد."
+  },
+  {
+   "type": "p",
+   "text": "شروع از یکم ژانویه: d1 (۳۰ روز) از d2 (۱ ماه / ۳۱ روز) کوتاه‌تر است، پس -1 برمی‌گردد."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Instant.compare()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// compare()\n\nlet x1 = Temporal.Instant.compare(i1, i2));\n\nlet x2 = Temporal.Instant.compare(i1, i3));\n\nlet x3 = Temporal.Instant.compare(i3, i1));",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_compare"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.PlainDate.compare()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst date2 = Temporal.PlainDate.from(\"2024-12-25\");\n\n// Compare the dates\n\nresult = Temporal.PlainDate.compare(date1, date2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare_1"
+  },
+  {
+   "type": "h2",
+   "text": "مرتب‌سازی با Temporal"
+  },
+  {
+   "type": "p",
+   "text": "متد compare() طوری طراحی شده است که مستقیم به متد Array.sort() در JavaScript داده شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array of dates\n\nconst dates = [\n\n  Temporal.PlainDate.from(\"2026-05-17\"),\n\n  Temporal.PlainDate.from(\"2022-01-01\"),\n\n  Temporal.PlainDate.from(\"2024-12-25\")\n\n];\n\n// Sort chronologically\n\ndates.sort(Temporal.PlainDate.compare);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare"
+  },
+  {
+   "type": "h2",
+   "text": "مقایسهٔ تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "همیشه به‌جای عملگرهای برابری معمول از متدهای compare() یا equals() استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "متد equals() در Temporal"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر شیءهای Temporal متد equals() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "instant.equals(instant)",
+    "plaindate.equals(plaindate)",
+    "plaintime.equals(plaintime)",
+    "plainyearmonth.equals(plainyearmonth)",
+    "plainmonthday.equals(plainmonthday)",
+    "plaindateTime.equals(plaindatetime)",
+    "zoneddateTime.equals(zoneddtatime)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "(*) شیء Duration این متد را ندارد."
+  },
+  {
+   "type": "p",
+   "text": "متد equals() اگر دو تاریخ برابر باشند true برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.Instant equals()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// equals()\n\nlet x1 = i1.equals(i2); // true\n\nlet x2 = i1.equals(i3); // false",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_equals"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.PlainDate equals()"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from('2026-05-17');\n\nconst date2 = Temporal.PlainDate.from('2026-05-17');\n\nlet result = date1.equals(date2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_equals"
+  },
+  {
+   "type": "h2",
+   "text": "Temporal.PlainDateTime equals()"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید مقدارهای PlainDateTime را با متد equals() مقایسه کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d1 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nlet result = d1.equals(d2)",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_5"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل compare.html بسازید، دو PlainDate بسازید و با Temporal.PlainDate.compare مقایسه کنید و عدد خروجی را ببینید.",
+   "hint": "خروجی -1، 0 یا 1 است و تعداد روزهای اختلاف را نمی‌دهد."
+  },
+  {
+   "prompt": "دو تاریخ برابر بسازید و ببینید هم compare مقدار 0 می‌دهد و هم equals مقدار true.",
+   "hint": "برای برابری هر دو راه کار می‌کند، اما equals خروجی بولی می‌دهد."
+  },
+  {
+   "prompt": "سعی کنید دو PlainDate را با عملگر < مقایسه کنید و نتیجه را در کنسول ببینید، بعد توضیح دهید چرا جواب درست نیست.",
+   "hint": "شیءها با عملگرهای مقایسه به مقدار اولیه تبدیل می‌شوند و نتیجهٔ قابل اعتماد نمی‌دهند."
+  },
+  {
+   "prompt": "یک آرایه از تاریخ‌ها بسازید و با dates.sort(Temporal.PlainDate.compare) آن را مرتب کنید.",
+   "hint": "متد compare برای دادن مستقیم به Array.sort() طراحی شده است."
+  },
+  {
+   "prompt": "دو duration بسازید، یکی ۳۰ روز و یکی ۱ ماه، و با Temporal.Duration.compare مقایسه کنید؛ سپس خطای RangeError را با افزودن relativeTo برطرف کنید.",
+   "hint": "بدون relativeTo معلوم نیست یک ماه چند روز است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "چرا نمی‌توان دو شیء Temporal را با عملگرهای < و > مقایسه کرد؟",
+   "options": [
+    "چون Temporal از عملگر پشتیبانی نمی‌کند و به مقدار اولیه تبدیل می‌شود",
+    "چون Temporal سریع‌تر از Date است",
+    "چون عملگر < فقط روی رشته کار می‌کند",
+    "چون Temporal تاریخ ندارد"
+   ],
+   "answer": 0,
+   "explanation": "شیءهای Temporal شیء هستند نه عدد اولیه؛ با عملگر مقایسه، JavaScript تلاش می‌کند آن‌ها را تبدیل کند و نتیجهٔ قایل اعتماد به دست نمی‌آید."
+  },
+  {
+   "question": "خروجی متد compare(a, b) چه زمانی 1- می‌شود؟",
+   "options": [
+    "وقتی تاریخ اول دیرتر باشد",
+    "وقتی دو تاریخ برابر باشند",
+    "وقتی تاریخ اول زودتر باشد",
+    "وقتی تاریخ نامعتبر باشد"
+   ],
+   "answer": 2,
+   "explanation": "compare برای تاریخ زودتر -1، برای برابر 0 و برای تاریخ دیرتر 1 برمی‌گرداند."
+  },
+  {
+   "question": "چرا Temporal.Duration.compare() بدون گزینهٔ relativeTo ممکن است RangeError بدهد؟",
+   "options": [
+    "چون duration نمی‌تواند ماه داشته باشد",
+    "چون طول ماه ثابت نیست و بدون تاریخ شروع مشخص نمی‌شود چند روز است",
+    "چون مقایسه فقط روی تاریخ کار می‌کند",
+    "چون duration تغییرناپذیر است"
+   ],
+   "answer": 1,
+   "explanation": "یک ماه می‌تواند ۲۸، ۲۹، ۳۰ یا ۳۱ روز باشد؛ relativeTo تاریخ شروع را مشخص می‌کند تا طول دقیق محاسبه شود."
+  },
+  {
+   "question": "چرا شیء Temporal.Duration متد equals() ندارد؟",
+   "options": [
+    "چون جا افتاده است",
+    "چون نمایش‌های مختلف یک مدت یکسان را نمی‌توان ساده مقایسه کرد",
+    "چون فقط compare دارد و بس",
+    "چون duration عددی است"
+   ],
+   "answer": 1,
+   "explanation": "یک مدت یکسان را می‌توان به شکل‌های مختلف نوشت، مثلاً ۹۰ دقیقه و ۱ ساعت و ۳۰ دقیقه؛ همین کار را برای equals() پیچیده می‌کند."
+  },
+  {
+   "question": "متد compare() برای چه کاری طراحی شده است؟",
+   "options": [
+    "تبدیل تاریخ به رشته",
+    "دادن مستقیم به Array.sort()",
+    "جمع دو تاریخ",
+    "گرفتن تاریخ جاری"
+   ],
+   "answer": 1,
+   "explanation": "compare طوری ساخته شده که مستقیم به Array.sort() داده شود و آرایه را بر اساس ترتیب زمانی مرتب کند."
+  }
+ ]
+}

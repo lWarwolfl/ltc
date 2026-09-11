@@ -1,0 +1,189 @@
+{
+ "slug": "js_htmldom_animate",
+ "course": "js",
+ "order": 146,
+ "url": "/js/js_htmldom_animate.asp",
+ "title": "انیمیشن با DOM",
+ "summary": "انیمیشن در JavaScript یعنی تغییر تدریجی استایل یک عنصر با تایمر. این درس ساخت محفظه، آماده‌سازی موقعیت نسبی و مطلق، و کد پایهٔ انیمیشن را قدم به قدم نشان می‌دهد.",
+ "objectives": [
+  "برای انیمیشن یک محفظهٔ درست بسازید",
+  "تفاوت position: relative و position: absolute را در انیمیشن توضیح دهید",
+  "با تایمر تغییرهای تدریجی استایل را برنامه‌ریزی کنید",
+  "توضیح دهید چرا فاصلهٔ کوچک تایمر انیمیشن را پیوسته نشان می‌دهد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "انیمیشن با DOM"
+  },
+  {
+   "type": "p",
+   "text": "بیاموزید چگونه با JavaScript انیمیشن HTML بسازید."
+  },
+  {
+   "type": "h2",
+   "text": "یک صفحهٔ وب ساده"
+  },
+  {
+   "type": "p",
+   "text": "برای نشان دادن ساخت انیمیشن HTML با JavaScript از یک صفحهٔ وب ساده استفاده می‌کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>My First\n JavaScript Animation</h1>\n\n<div id=\"animation\">My animation will go here</div>\n\n</body>\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "ساختن محفظهٔ انیمیشن"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ انیمیشن‌ها باید نسبت به یک عنصر محفظه ساخته شوند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<div id =\"container\">\n  <div id =\"animate\">My\n animation will go here</div>\n</div>",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "استایل دادن به عنصرها"
+  },
+  {
+   "type": "p",
+   "text": "عنصر محفظه باید با style = \"position: relative\" ساخته شود."
+  },
+  {
+   "type": "p",
+   "text": "عنصر انیمیشن باید با style = \"position: absolute\" ساخته شود."
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": "#container {\n  width: 400px;\n  height:\n 400px;\n  position: relative;\n\n background: yellow;\n\n }\n#animate {\n  width: 50px;\n  height:\n 50px;\n  position: absolute;\n\n background: red;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_animate_2"
+  },
+  {
+   "type": "h2",
+   "text": "کد انیمیشن"
+  },
+  {
+   "type": "p",
+   "text": "انیمیشن‌های JavaScript با برنامه‌ریزی تغییرهای تدریجی در استایل یک عنصر ساخته می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "این تغییرها با یک تایمر فراخوانی می‌شوند. وقتی فاصلهٔ تایمر کوچک باشد، انیمیشن پیوسته به نظر می‌رسد."
+  },
+  {
+   "type": "p",
+   "text": "کد پایه این است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "id = setInterval(frame, 5);\n\nfunction frame() {\n  if (/*\n test for finished */) {\n    clearInterval(id);\n  } else {\n\n /* code to change the element style */\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "ساختن انیمیشن کامل با JavaScript"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myMove() {\n\n  let id = null;\n\n  const elem = document.getElementById(\"animate\");\n\n  let pos = 0;\n\n  clearInterval(id);\n  id = setInterval(frame, 5);\n\n function frame() {\n    if (pos ==\n 350) {\n\n clearInterval(id);\n    } else {\n\n pos++;\n      elem.style.top = pos + 'px';\n      elem.style.left = pos + 'px';\n\n      }\n  }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_animate_3"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل animate.html بسازید که یک محفظه با style=\"position: relative\" و یک عنصر متحرک با style=\"position: absolute\" داشته باشد.",
+   "hint": "عنصر انیمیشن باید داخل محفظه باشد؛ در غیر این صورت مختصات مطلق به کل صفحه حساب می‌شود."
+  },
+  {
+   "prompt": "با setInterval هر ۲۰ میلی‌ثانیه مقدار چپ عنصر را یک پیکسل جلو ببرید تا به لبهٔ محفظه برسد.",
+   "hint": "مقدار فعلی را با parseInt(element.style.left) بخوانید و بعد با یک پیکسل جمع کنید."
+  },
+  {
+   "prompt": "وقتی عنصر به لبهٔ محفظه رسید، تایمر را با clearInterval متوقف کنید.",
+   "hint": "شناسهٔ بازگشتی setInterval را در یک متغیر نگه دارید تا بعداً بتوانید متوقفش کنید."
+  },
+  {
+   "prompt": "فاصلهٔ تایمر را از ۲۰ میلی‌ثانیه به ۲۰۰ میلی‌ثانیه تغییر دهید و تفاوت را در روانی حرکت ببینید.",
+   "hint": "فاصلهٔ کوچک‌تر یعنی تعداد گام‌های بیشتر در ثانیه و حرکت نرم‌تر."
+  },
+  {
+   "prompt": "با یک دکمه، انیمیشن را از ابتدا شروع کنید و بنویسید کدام بخش کد مسئول هر گام حرکت است.",
+   "hint": "بخش مسئول هر گام همان تابعی است که setInterval صدا می‌زند؛ با هر فراخوانی یک گام حرکت می‌کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "عنصر محفظه در انیمیشن چه موقعیتی باید داشته باشد؟",
+   "options": [
+    "position: absolute",
+    "position: relative",
+    "position: fixed",
+    "position: static"
+   ],
+   "answer": 1,
+   "explanation": "محفظه با position: relative مرجع مختصات می‌شود؛ عنصر متحرک با position: absolute داخل آن نسبت به همین محفظه جابه‌جا می‌شود."
+  },
+  {
+   "question": "انیمیشن JavaScript چگونه ساخته می‌شود؟",
+   "options": [
+    "با تغییر تدریجی استایل عنصر توسط یک تایمر",
+    "با فشرده کردن تصویرها",
+    "با بارگذاری دوبارهٔ صفحه",
+    "با CSS تنها"
+   ],
+   "answer": 0,
+   "explanation": "انیمیشن JavaScript از تغییرهای تدریجی در استایل یک عنصر ساخته می‌شود که تایمر آن‌ها را پشت سر هم فراخوانی می‌کند."
+  },
+  {
+   "question": "چرا فاصلهٔ کوچک تایمر باعث پیوسته دیده شدن انیمیشن می‌شود؟",
+   "options": [
+    "چون تعداد گام‌های تغییر در ثانیه بیشتر می‌شود",
+    "چون رنگ عنصر عوض می‌شود",
+    "چون مرورگر انیمیشن را ذخیره می‌کند",
+    "چون تایمر خودش استایل را عوض می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "فاصلهٔ کوتاه‌تر یعنی فراخوانی‌های بیشتر در واحد زمان و گام‌های ریزتر، پس چشم حرکت را پیوسته می‌بیند."
+  },
+  {
+   "question": "برای توقف یک انیمیشن تایمری کدام متد را صدا می‌زنیم؟",
+   "options": [
+    "clearInterval",
+    "setTimeout",
+    "stopAnimation",
+    "close()"
+   ],
+   "answer": 0,
+   "explanation": "شناسه‌ای که setInterval برمی‌گرداند را به clearInterval می‌دهید تا تایمر متوقف شود؛ setTimeout فقط یک بار اجرا می‌شود."
+  },
+  {
+   "question": "اگر عنصر متحرک داخل محفظه نباشد چه مشکلی پیش می‌آید؟",
+   "options": [
+    "مختصات مطلق نسبت به کل صفحه حساب می‌شود",
+    "انیمیشن اجرا نمی‌شود",
+    "استایل element.style کار نمی‌کند",
+    "تایمر متوقف می‌شود"
+   ],
+   "answer": 0,
+   "explanation": "عنصر absolute نسبت به نزدیک‌ترین والد غیر static جابه‌جا می‌شود؛ بدون محفظه، مرجع مختصات کل صفحه است و انیمیشن جای درستی حرکت نمی‌کند."
+  }
+ ]
+}

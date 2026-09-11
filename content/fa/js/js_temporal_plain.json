@@ -1,0 +1,853 @@
+{
+ "slug": "js_temporal_plain",
+ "course": "js",
+ "order": 187,
+ "url": "/js/js_temporal_plain.asp",
+ "title": "PlainDate در JavaScript",
+ "summary": "شیء Temporal.PlainDate فقط یک تاریخ تقویمی بدون ساعت و منطقهٔ زمانی است. در این درس می‌آموزید چگونه آن را از عدد، رشته، شیء و زمان جاری بسازید، روز اضافه یا کم کنید و تقویم دلخواه را انتخاب کنید.",
+ "objectives": [
+  "شیء PlainDate را به چهار روش مختلف بسازید",
+  "با add و subtract روزها را جابه‌جا کنید",
+  "دو تاریخ را با compare و equals مقایسه کنید",
+  "تقویم‌های معتبر Temporal را از هم تشخیص دهید",
+  "توضیح دهید چرا PlainDate برای تولدها و تعطیلات از Date مناسب‌تر است"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "PlainDate در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء Temporal.PlainDate"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.PlainDate یک تاریخ تقویمی را بدون ساعت نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "یک Temporal.PlainDate معمولاً در قالب ISO 8601 نوشته می‌شود (2026-05-01)."
+  },
+  {
+   "type": "p",
+   "text": "برای تاریخ‌هایی که مستقل از منطقهٔ زمانی ثابت‌اند، مثل تولدها و تعطیلات، استفاده از آن آسان‌تر و مقایسه‌اش ایمن‌تر از شیءهای DateTime است."
+  },
+  {
+   "type": "h2",
+   "text": "روش ساخت شیء PlainDate"
+  },
+  {
+   "type": "p",
+   "text": "شیء PlainDateTime را به چند روش مختلف می‌توان ساخت:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "از",
+     "کد"
+    ],
+    [
+     "سازنده (new)",
+     "new Temporal.PlainDate()"
+    ],
+    [
+     "رشتهٔ ISO",
+     "Temporal.PlainDate.from()"
+    ],
+    [
+     "اکنون (زمان جاری)",
+     "Temporal.Now.plainDateISO()"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainDate با new"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک شیء PlainDate را با سازندهٔ new بسازید."
+  },
+  {
+   "type": "p",
+   "text": "این سازنده پارامترهای year، month و day را می‌گیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = new Temporal.PlainDate(2026, 5, 17);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate"
+  },
+  {
+   "type": "p",
+   "text": "متد Temporal.PlainDate() بالا:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "از فراخوانی سازنده استفاده می‌کند",
+    "آرگومان‌های عددی می‌خواهد (سال، ماه، روز).",
+    "یک تاریخ تقویمی بدون ساعت مثل 2026-05-17 برمی‌گرداند."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برخلاف Date در JavaScript، ماه‌ها در Temporal از ۱ شروع می‌شوند."
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainDate از رشته"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک شیء PlainDate را از یک رشتهٔ ISO 8601 / RFC 9557 بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_from"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "ورودی با قواعد تجزیهٔ ISO 8601 خوانده می‌شود",
+    "ISO 8601 رشته‌هایی مثل \"2026-05-01\" را می‌پذیرد"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "تجزیه یعنی اعتبارسنجی به‌علاوهٔ تبدیل خودکار."
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainDate از شیء"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک شیء PlainDate را از یک شیء بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from({year:2026, month:5, day:1});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_object"
+  },
+  {
+   "type": "p",
+   "text": "از مثال بالا می‌توان نتیجه گرفت که متد from() هم شیءهای نوشتاری و هم شیءهای PlainDate را می‌پذیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst d1 = Temporal.PlainDate.from({year:2026, month:5, day:1});\n\n// Create another PlainDate object\n\nconst d2 = Temporal.PlainDate.from(d1);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_object_2"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت شیء PlainDate از زمان اکنون"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.Now متدی برای گرفتن تاریخ جاری دارد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let today = Temporal.Now.plainDateISO();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_plaindate"
+  },
+  {
+   "type": "p",
+   "text": "از متد Temporal.Now.plainDateISO() برای گرفتن تاریخ جاری استفاده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "یک شیء PlainDate با (سال، ماه، روز) در تقویم ISO 8601 برمی‌گرداند و منطقهٔ زمانی و ساعت را نادیده می‌گیرد."
+  },
+  {
+   "type": "h2",
+   "text": "کدام را کجا به کار ببریم؟"
+  },
+  {
+   "type": "h2",
+   "text": "از new Temporal.PlainDate() استفاده کنید وقتی:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مقدارهای عددی مورد اعتماد دارید",
+    "سرعت برایتان مهم است",
+    "ساخت قابل پیش‌بینی می‌خواهید",
+    "روی تاریخ محاسبه انجام می‌دهید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "از Temporal.PlainDate.from() استفاده کنید وقتی:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "ورودی کاربر (رشته) را پردازش می‌کنید",
+    "دادهٔ بیرونی (JSON) را پردازش می‌کنید",
+    "بیشترین انعطاف را می‌خواهید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "از Temporal.Now.plainDateISO() استفاده کنید وقتی:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "تاریخ جاری را لازم دارید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "جمع و تفریق روزها"
+  },
+  {
+   "type": "p",
+   "text": "برای افزودن زمان از متد add() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet nextWeek = date.add({ days: 7 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_add"
+  },
+  {
+   "type": "p",
+   "text": "برای کم کردن زمان از متد subtract() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet previousWeek = date.subtract({ days: 7 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_subtract"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد add() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.add(duration)",
+    "instant.add(duration)",
+    "plaindate.add(duration)",
+    "plaintime.add(duration)",
+    "plainyearmonth.add(duration)",
+    "plainmonthday.add(duration)",
+    "plaindatetime.add(duration)",
+    "zoneddatetime.add(duration)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "همهٔ شیءهای Temporal متد subtract() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "duration.subtract(duration)",
+    "instant.subtract(duration)",
+    "plaindate.subtract(duration)",
+    "plaintime.subtract(duration)",
+    "plainyearmonth.subtract(duration)",
+    "plainmonthday.subtract(duration)",
+    "plaindatetime.subtract(duration)",
+    "zoneddatetime.subtract(duration)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "محاسبات در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "Duration در برابر محاسبهٔ تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "با Date در JavaScript، اغلب باید اختلاف زمان‌ها را دستی و با میلی‌ثانیه حساب کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = new Date(\"2026-05-01\");\n\nconst end = new Date(\"2026-05-17\");\n\nlet diff = end - start;",
+   "caption": "مثال با Date"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_2"
+  },
+  {
+   "type": "p",
+   "text": "Temporal متدهایی می‌دهد که روشن‌تر و ایمن‌تر از متدهای Date در JavaScript هستند."
+  },
+  {
+   "type": "h2",
+   "text": "متد since() در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "p",
+   "text": "متد since() مدت‌زمان بین دو تاریخ Temporal را حساب می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "t1.since(t2, options)",
+   "caption": "نحو"
+  },
+  {
+   "type": "h2",
+   "text": "معنا:"
+  },
+  {
+   "type": "p",
+   "text": "در زمان t1 چه مدت از زمان t2 گذشته است؟"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = end.since(start);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since"
+  },
+  {
+   "type": "p",
+   "text": "متد since() یک شیء Temporal.Duration برمی‌گرداند که زمان سپری‌شده را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "اگر تاریخ «دیگر» در گذشته باشد، مدت مثبت است."
+  },
+  {
+   "type": "p",
+   "text": "اگر تاریخ «دیگر» در آینده باشد، مدت منفی است."
+  },
+  {
+   "type": "h2",
+   "text": "متد with()"
+  },
+  {
+   "type": "p",
+   "text": "متد with() یک شیء PlainDate تازه می‌سازد که فیلد مشخصی در آن جانشین شده است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Replace month and day\n\nconst customDate = date.with({ month:12, day:25 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_with"
+  },
+  {
+   "type": "h2",
+   "text": "مقایسهٔ تاریخ‌ها"
+  },
+  {
+   "type": "p",
+   "text": "متد compare(date1, date2) مقدار -1، 0 یا 1 برمی‌گرداند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "-1 اگر date1 پیش از date2 باشد",
+    "0 اگر برابر باشند",
+    "1 اگر date1 پس از date2 باشد"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst date2 = Temporal.PlainDate.from(\"2026-03-01\");\n\n// Compare the dates\n\nlet result = Temporal.PlainDate.compare(date1, date2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare_1"
+  },
+  {
+   "type": "p",
+   "text": "از equals() هم می‌توانید برای بررسی یکسان بودن دو تاریخ استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two Temporal objects\n\nconst a = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst b = Temporal.PlainDate.from(\"2026-02-17\");\n\n// Compare the dates\n\nlet result = (a.equals(b));",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_equals"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های Temporal.PlainDate"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.PlainDate ۱۶ خصوصیت اطلاعات تاریخ تقویمی دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = new Temporal.PlainDate(2026, 5, 17);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_prop"
+  },
+  {
+   "type": "h2",
+   "text": "تقویم‌ها در Temporal"
+  },
+  {
+   "type": "p",
+   "text": "Temporal.PlainDate به‌طور پیش‌فرض از تقویم ISO 8601 استفاده می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "اگر تقویم مشخصی می‌خواهید، می‌توانید پارامتر تقویم را اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "new Temporal.PlainDate(2026, 5, 17, \"gregory\")",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_gregory"
+  },
+  {
+   "type": "p",
+   "text": "متد from() تقویم‌ها را با نحو [u-ca=calendar] یا خصوصیت calendar در شیءها پشتیبانی می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.PlainDate.from(\"2026-05-17[u-ca=chinese]\")",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.PlainDate.from({year:2026, month:5, day:17, calendar:\"hebrew\"})",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_japanese"
+  },
+  {
+   "type": "p",
+   "text": "شناسه‌های معتبر تقویم (calendar_id) برای شیءهای Temporal:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "iso8601 - تقویم پیش‌فرض ISO",
+    "gregory - تقویم میلادی",
+    "buddhist - تقویم بودایی",
+    "chinese - تقویم چینی",
+    "coptic - تقویم قبطی",
+    "dangi - تقویم کره‌ای دانگی",
+    "ethioaa - تقویم اتیوپیایی امته عالم",
+    "ethiopic - تقویم اتیوپیایی",
+    "hebrew - تقویم عبری",
+    "indian - تقویم هندی (ساکا)",
+    "islamic - تقویم اسلامی",
+    "islamic-civil - تقویم اسلامی مدنی",
+    "islamic-rgsa - تقویم اسلامی (عربستان سعودی)",
+    "islamic-tbla - تقویم اسلامی جدولی",
+    "islamic-umalqura - تقویم ام‌القری",
+    "japanese - تقویم امپراتوری ژاپن",
+    "persian - تقویم هجری شمسی",
+    "roc - تقویم جمهوری چین"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید مقدارهای پشتیبانی‌شده در محیط خود را با این دستور فهرست کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Intl.supportedValuesOf(\"calendar\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_calendars"
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از PlainDate استفاده کنیم؟"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "هر تاریخی بدون ساعت",
+    "تولدها",
+    "مهلت‌ها",
+    "تعطیلات",
+    "تاریخ‌های رزرو"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "جانشین Date برای مقدارهای فقط‌تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "با Date همیشه ساعت و منطقهٔ زمانی هم به دست می‌آورید."
+  },
+  {
+   "type": "p",
+   "text": "این موضوع وقتی فقط یک تاریخ تقویمی لازم دارید گیج‌کننده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let d = new Date(\"2026-05-17\");",
+   "caption": "مثال با Date"
+  },
+  {
+   "type": "p",
+   "text": "PlainDate با نگه‌داشتن فقط سال، ماه و روز از این مشکل دوری می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متدهای Temporal.PlainDate"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ساخت",
+     "توضیح"
+    ],
+    [
+     "from()",
+     "یک شیء PlainDate تازه از یک شیء یا رشته می‌سازد"
+    ],
+    [
+     "new",
+     "یک شیء PlainDate تازه از (سال، ماه، روز) می‌سازد"
+    ],
+    [
+     "حساب",
+     ""
+    ],
+    [
+     "add()",
+     "یک PlainDate تازه با مدت افزوده‌شده برمی‌گرداند"
+    ],
+    [
+     "subtract()",
+     "یک PlainDate تازه با مدت کم‌شده برمی‌گرداند"
+    ],
+    [
+     "مقایسه",
+     ""
+    ],
+    [
+     "compare()",
+     "با مقایسهٔ دو تاریخ مقدار -1، 0 یا 1 را برمی‌گرداند"
+    ],
+    [
+     "equals()",
+     "اگر دو شیء PlainDate یکسان باشند true برمی‌گرداند"
+    ],
+    [
+     "since()",
+     "اختلاف از تاریخ دیگر تا اینجا را برمی‌گرداند"
+    ],
+    [
+     "until()",
+     "اختلاف تا تاریخ دیگر را برمی‌گرداند"
+    ],
+    [
+     "تبدیل",
+     ""
+    ],
+    [
+     "toPlainDateTime()",
+     "یک شیء PlainDateTime تازه برمی‌گرداند"
+    ],
+    [
+     "toPlainMonthDay()",
+     "یک شیء PlainMonthDay تازه برمی‌گرداند"
+    ],
+    [
+     "toPlainYearMonth()",
+     "یک شیء PlainYearMonth تازه برمی‌گرداند"
+    ],
+    [
+     "toZonedDateTime()",
+     "یک شیء ZonedDateTime تازه برمی‌گرداند"
+    ],
+    [
+     "with()",
+     "یک PlainDate تازه با فیلدهای تعیین‌شدهٔ تغییر‌یافته برمی‌گرداند"
+    ],
+    [
+     "withCalendar()",
+     "یک PlainDate تازه با سیستم تقویم دیگر برمی‌گرداند"
+    ],
+    [
+     "قالب‌بندی",
+     ""
+    ],
+    [
+     "toJSON()",
+     "یک رشته با قالب RFC 9557 برای سریال‌سازی JSON برمی‌گرداند"
+    ],
+    [
+     "toLocaleString()",
+     "نمایشی از تاریخ بر پایهٔ زبان و منطقهٔ کاربر برمی‌گرداند"
+    ],
+    [
+     "toString()",
+     "یک رشتهٔ نمایشی با قالب RFC 9557 برمی‌گرداند"
+    ],
+    [
+     "valueOf()",
+     "یک TypeError می‌دهد (نباید به مقدار اولیه تبدیل شود)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های Temporal.PlainDate"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیح"
+    ],
+    [
+     "calendarID",
+     "شناسهٔ سیستم تقویم (\"iso8601\")"
+    ],
+    [
+     "day",
+     "روز به‌صورت عدد صحیح (1-31)"
+    ],
+    [
+     "dayOfWeek",
+     "روز هفته به‌صورت عدد صحیح (1 = دوشنبه)"
+    ],
+    [
+     "dayOfYear",
+     "شمارهٔ ترتیبی روز در سال"
+    ],
+    [
+     "daysInMonth",
+     "شمار کل روزهای آن ماه"
+    ],
+    [
+     "daysInWeek",
+     "شمار کل روزهای آن هفته"
+    ],
+    [
+     "daysInYear",
+     "شمار کل روزهای آن سال"
+    ],
+    [
+     "era",
+     "نام مبدأ تقویم، در صورت وجود"
+    ],
+    [
+     "eraYear",
+     "سال در مبدأ تقویم، در صورت وجود"
+    ],
+    [
+     "inLeapYear",
+     "مقدار بولی که نشان می‌دهد سال کبیسه است"
+    ],
+    [
+     "month",
+     "ماه به‌صورت عدد صحیح (1-12)"
+    ],
+    [
+     "monthCode",
+     "کد رشته‌ای برای ماه (\"M01\")"
+    ],
+    [
+     "monthsInYear",
+     "شمار کل ماه‌های آن سال"
+    ],
+    [
+     "weekOfYear",
+     "شمارهٔ هفته در سال"
+    ],
+    [
+     "year",
+     "سال به‌صورت عدد صحیح"
+    ],
+    [
+     "yearOfWeek",
+     "سالی که هفته به آن تعلق دارد"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Temporal.PlainDate(2026, 5, 17);",
+   "caption": "نمایش همهٔ خصوصیت‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_prop"
+  },
+  {
+   "type": "p",
+   "text": "شیء PlainDate در واقع بخش تاریخِ شیء Temporal.PlainDateTime است که اطلاعات ساعت از آن حذف شده است."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل plaindate.html بسازید، با Temporal.PlainDate.from(\"2026-05-17\") یک تاریخ بسازید و آن را در کنسول چاپ کنید.",
+   "hint": "رشته را به شکل سال-ماه-روز بنویسید؛ این قالب ISO 8601 است."
+  },
+  {
+   "prompt": "با new Temporal.PlainDate(2026, 5, 17) شیء بسازید و مقدار month آن را چاپ کنید و با حالت Date مقایسه کنید.",
+   "hint": "در Temporal ماه از ۱ شروع می‌شود، اما در Date از ۰."
+  },
+  {
+   "prompt": "با add({ days: 7 }) و subtract({ days: 7 }) دو تاریخ بسازید و مقدار اصلی را هم چاپ کنید.",
+   "hint": "این متدها شیء اصلی را تغییر نمی‌دهند و شیء تازه برمی‌گردانند."
+  },
+  {
+   "prompt": "دو PlainDate بسازید و یک‌بار با Temporal.PlainDate.compare و یک‌بار با equals() مقایسه کنید.",
+   "hint": "compare مقدار -1، 0 یا 1 می‌دهد و equals مقدار true یا false."
+  },
+  {
+   "prompt": "یک PlainDate با تقویم persian بسازید و تقویم آن را با calendarID چاپ کنید.",
+   "hint": "پارامتر تقویم را در سازنده یا با [u-ca=persian] در رشته بدهید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام روش برای ساختن PlainDate از مقدارهای عددی درست است؟",
+   "options": [
+    "new Temporal.PlainDate(2026, 5, 17)",
+    "Temporal.PlainDate(\"2026-05-17\")",
+    "Temporal.PlainDate.from(2026, 5, 17)",
+    "new Temporal.PlainDate(\"17-05-2026\")"
+   ],
+   "answer": 0,
+   "explanation": "سازنده با new پارامترهای عددی سال، ماه و روز را می‌گیرد. فراخوانی بدون new خطا می‌دهد و from() یک ورودی می‌گیرد نه سه ورودی."
+  },
+  {
+   "question": "مقدار بازگشتی Temporal.PlainDate.compare(date1, date2) چه زمانی 1- است؟",
+   "options": [
+    "وقتی date1 پس از date2 باشد",
+    "وقتی دو تاریخ برابر باشند",
+    "وقتی date1 پیش از date2 باشد",
+    "وقتی تاریخ نامعتبر باشد"
+   ],
+   "answer": 2,
+   "explanation": "compare برای تاریخ کوچک‌تر -1، برای برابر 0 و برای تاریخ بزرگ‌تر 1 برمی‌گرداند؛ پس -1 یعنی تاریخ اول زودتر است."
+  },
+  {
+   "question": "PlainDate در مقایسه با Date چه مزیتی برای تاریخ‌های فقط‌تاریخ دارد؟",
+   "options": [
+    "سریع‌تر از Date است",
+    "فقط سال، ماه و روز را نگه می‌دارد و ساعت و منطقهٔ زمانی ندارد",
+    "به کتابخانهٔ بیرونی نیاز ندارد",
+    "می‌تواند تقویم شمسی را به‌طور خودکار انتخاب کند"
+   ],
+   "answer": 1,
+   "explanation": "PlainDate فقط سال، ماه و روز را ذخیره می‌کند؛ همین باعث می‌شود برای تولد و تعطیلات گیج‌کننده نباشد. بقیهٔ گزینه‌ها ادعای اضافی‌اند."
+  },
+  {
+   "question": "برای تبدیل یک PlainDate به زمان باید از کدام متد استفاده کرد؟",
+   "options": [
+    "toPlainTime()",
+    "toZonedDateTime()",
+    "toPlainDateTime()",
+    "toInstant()"
+   ],
+   "answer": 2,
+   "explanation": "متد toPlainDateTime() تاریخ را با یک ساعت ترکیب می‌کند. PlainDate متد toPlainTime یا toInstant ندارد و toZonedDateTime نیاز به منطقهٔ زمانی و ساعت دارد."
+  },
+  {
+   "question": "در جدول تقویم‌های معتبر Temporal، شناسهٔ تقویم هجری شمسی چیست؟",
+   "options": [
+    "gregory",
+    "persian",
+    "iso8601",
+    "islamic"
+   ],
+   "answer": 1,
+   "explanation": "شناسهٔ persian تقویم هجری شمسی است. gregory تقویم میلادی، islamic تقویم اسلامی و iso8601 تقویم پیش‌فرض است."
+  }
+ ]
+}

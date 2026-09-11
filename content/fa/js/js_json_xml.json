@@ -1,0 +1,585 @@
+{
+ "slug": "js_json_xml",
+ "course": "js",
+ "order": 174,
+ "url": "/js/js_json_xml.asp",
+ "title": "JavaScript، JSON در برابر XML",
+ "summary": "JSON و XML دو قالب متنی برای ذخیره و تبادل دادهٔ ساخت‌یافته هستند، اما ساختار و کاربردشان فرق دارد. در این درس می‌بینید هر قالب چگونه ساخته می‌شود، در JavaScript چطور تجزیه می‌شود و کدام‌یک برای چه کاری مناسب‌تر است.",
+ "objectives": [
+  "توضیح دهید JSON و XML چه شباهت‌ها و تفاوت‌هایی دارند",
+  "بگویید چرا JSON به شیءها و آرایه‌های JavaScript مستقیم نگاشت می‌شود",
+  "روش تجزیهٔ JSON با JSON.parse() و تجزیهٔ XML با DOMParser() را توضیح دهید",
+  "تشخیص دهید برای یک پروژه کدام قالب مناسب‌تر است"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript، JSON در برابر XML"
+  },
+  {
+   "type": "p",
+   "text": "JSON و XML قالب‌هایی متنی برای ذخیره و تبادل اطلاعات ساخت‌یافته هستند."
+  },
+  {
+   "type": "p",
+   "text": "JSON معمولاً برای تبادل داده در برنامه‌های وب به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "XML معمولاً برای سندها، فایل‌های پیکربندی و قالب‌های داده‌ای تثبیت‌شده به کار می‌رود."
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "JSON و XML بعضی از یک مسئله‌ها را حل می‌کنند، اما ساختارهای متفاوتی دارند."
+  },
+  {
+   "type": "p",
+   "text": "هیچ‌کدام از این دو قالب برای همهٔ موقعیت‌ها بهترین نیست."
+  },
+  {
+   "type": "h2",
+   "text": "مثال JSON"
+  },
+  {
+   "type": "p",
+   "text": "JSON زیر سه کارمند را توصیف می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\n\n  \"employees\": [\n\n    {\"firstName\":\"John\", \"lastName\":\"Doe\"},\n\n    {\"firstName\":\"Anna\", \"lastName\":\"Smith\"},\n\n    {\"firstName\":\"Peter\", \"lastName\":\"Jones\"}\n\n  ]\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "مثال XML"
+  },
+  {
+   "type": "p",
+   "text": "XML زیر همان کارمندها را توصیف می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<employees>\n\n  <employee>\n\n    <firstName>John</firstName>\n\n    <lastName>Doe</lastName>\n\n  </employee>\n\n  <employee>\n\n    <firstName>Anna</firstName>\n\n    <lastName>Smith</lastName>\n\n  </employee>\n\n  <employee>\n\n    <firstName>Peter</firstName>\n\n    <lastName>Jones</lastName>\n\n  </employee>\n\n</employees>",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "شباهت‌های JSON و XML"
+  },
+  {
+   "type": "p",
+   "text": "JSON و XML چند شباهت دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "هر دو قالب متنی هستند.",
+    "هر دو می‌توانند اطلاعات ساخت‌یافته را نمایش دهند.",
+    "هر دو می‌توانند داده‌های تودرتو را نمایش دهند.",
+    "هر دو را می‌توان در فایل ذخیره کرد.",
+    "هر دو را می‌توان بین برنامه‌ها فرستاد.",
+    "هر دو در بسیاری از زبان‌های برنامه‌نویسی پشتیبانی می‌شوند."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "تفاوت‌های JSON و XML"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "JSON",
+     "XML"
+    ],
+    [
+     "از شیءها، آرایه‌ها و مقدارهای نوع‌دار استفاده می‌کند",
+     "از عنصرهای متنی و ویژگی‌های متنی استفاده می‌کند"
+    ],
+    [
+     "نوع‌های درونی مثل شیء و آرایه دارد",
+     "محتوای عنصر فقط متن است"
+    ],
+    [
+     "نحو کوچک و ثابتی دارد",
+     "نام‌های دلخواه برای عنصر و ویژگی مجاز است"
+    ],
+    [
+     "از توضیح‌ها پشتیبانی نمی‌کند",
+     "از توضیح‌ها پشتیبانی می‌کند"
+    ],
+    [
+     "از فضاهای نام پشتیبانی نمی‌کند",
+     "از فضاهای نام پشتیبانی می‌کند"
+    ],
+    [
+     "معمولاً برای داده‌های برنامه به کار می‌رود",
+     "معمولاً برای سندها و داده‌های ساخت‌یافته به کار می‌رود"
+    ],
+    [
+     "مستقیماً به مقدارهای JavaScript نگاشت می‌شود",
+     "باید به مقدارهای JavaScript تبدیل شود"
+    ],
+    [
+     "در JavaScript با JSON.parse() تجزیه می‌شود",
+     "در JavaScript با DOMParser() تجزیه می‌شود"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "JSON از شیءها و آرایه‌ها استفاده می‌کند"
+  },
+  {
+   "type": "p",
+   "text": "JSON اطلاعات را با شیءها و آرایه‌ها سازمان می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\n\n  \"name\": \"John\",\n\n  \"skills\": [\"HTML\", \"CSS\", \"JavaScript\"]\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "این ساختار به‌طور طبیعی به شیءها و آرایه‌های JavaScript نگاشت می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "XML از عنصرها استفاده می‌کند"
+  },
+  {
+   "type": "p",
+   "text": "XML اطلاعات را با عنصرها و ویژگی‌ها سازمان می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<person id=\"101\">\n\n  <name>John</name>\n\n  <skills>\n\n    <skill>HTML</skill>\n\n    <skill>CSS</skill>\n\n    <skill>JavaScript</skill>\n\n  </skills>\n\n</person>",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "XML شامل عنصرهایی با متن، ویژگی و عنصرهای دیگر است."
+  },
+  {
+   "type": "h2",
+   "text": "کار با JSON در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript متدهای درونی برای کار با JSON دارد."
+  },
+  {
+   "type": "p",
+   "text": "متد JSON.parse() متن JSON را به یک مقدار JavaScript تبدیل می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// JSON text\n\nconst text = '{\"name\":\"John\",\"age\":30}';\n\n// Parse the JSON text\n\nconst person = JSON.parse(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parser_2"
+  },
+  {
+   "type": "p",
+   "text": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// JavaScript Object\n\nconst person = {name: \"John\", age: 30};\n\n// Convert the object to JSON\n\nconst text = JSON.stringify(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify"
+  },
+  {
+   "type": "h2",
+   "text": "کار با XML در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript می‌تواند متن XML را با شیء DOMParser تجزیه کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// XML text\n\nconst text = \"<person><name>John</name></person>\";\n\n// Parse the XML text\n\nconst parser = new DOMParser();\n\nconst xmlDoc = parser.parseFromString(text, \"text/xml\");\n\n// Extract name using DOM method\n\nconst name = xmlDoc.getElementsByTagName(\"name\")[0].textContent;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_xml_domparser"
+  },
+  {
+   "type": "p",
+   "text": "XML تجزیه‌شده به سندی تبدیل می‌شود که با متدهای DOM قابل دسترسی است."
+  },
+  {
+   "type": "h2",
+   "text": "JSON جمع‌وجورتر است"
+  },
+  {
+   "type": "p",
+   "text": "JSON برای نمایش همان داده اغلب به نویسه‌های کمتری از XML نیاز دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\"name\":\"John\",\"age\":30}",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<person>\n\n  <name>John</name>\n\n  <age>30</age>\n\n</person>",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "حجم فایل به ساختار و محتوا بستگی دارد."
+  },
+  {
+   "type": "p",
+   "text": "JSON همیشه از XML کوچک‌تر نیست."
+  },
+  {
+   "type": "p",
+   "text": "دادهٔ جمع‌وجور وقتی اطلاعات مرتب بین برنامه‌ها جابه‌جا می‌شود می‌تواند مفید باشد."
+  },
+  {
+   "type": "h2",
+   "text": "XML می‌تواند سندها را نمایش دهد"
+  },
+  {
+   "type": "p",
+   "text": "XML می‌تواند اطلاعاتی را نمایش دهد که متن و نشانه‌گذاری در آن‌ها با هم می‌آیند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<message>\n\n  Please read the <important>safety instructions</important>\n\n  before continuing.\n\n</message>",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "به این حالت محتوای ترکیبی می‌گویند."
+  },
+  {
+   "type": "p",
+   "text": "محتوای ترکیبی XML را برای بسیاری از قالب‌های سند مناسب می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "JSON معمولاً برای ساختارهای داده‌ای که از مقدار، شیء و آرایه ساخته می‌شوند مناسب‌تر است."
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های XML"
+  },
+  {
+   "type": "p",
+   "text": "XML می‌تواند اطلاعات را هم در عنصرها و هم در ویژگی‌ها نگه دارد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<product id=\"101\" currency=\"USD\">\n\n  <name>Laptop</name>\n\n  <price>899</price>\n\n</product>",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "JSON بین ویژگی‌ها و بقیهٔ خصوصیت‌ها تفاوتی نمی‌گذارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\n\n  \"id\": 101,\n\n  \"currency\": \"USD\",\n\n  \"name\": \"Laptop\",\n\n  \"price\": 899\n\n}",
+   "caption": "JSON معادل"
+  },
+  {
+   "type": "h2",
+   "text": "فضاهای نام در XML"
+  },
+  {
+   "type": "p",
+   "text": "فضاهای نام XML می‌توانند عنصرهایی را که نام یکسان ولی معنای متفاوت دارند از هم جدا کنند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<root\n\n  xmlns:h=\"http://www.w3.org/TR/html4/\"\n\n  xmlns:f=\"https://example.com/furniture\">\n\n  <h:table>...</h:table>\n\n  <f:table>...</f:table>\n\n</root>",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "جدول HTML با میز مبل یکی نیست."
+  },
+  {
+   "type": "p",
+   "text": "JSON سیستم فضای نام درونی ندارد."
+  },
+  {
+   "type": "h2",
+   "text": "اعتبارسنجی"
+  },
+  {
+   "type": "p",
+   "text": "دادهٔ هر دو قالب JSON و XML را می‌توان با قاعده‌ها بررسی کرد."
+  },
+  {
+   "type": "p",
+   "text": "سندهای XML را می‌توان با قالب‌هایی مثل DTD و XML Schema اعتبارسنجی کرد."
+  },
+  {
+   "type": "p",
+   "text": "سندهای JSON را می‌توان با JSON Schema اعتبارسنجی کرد."
+  },
+  {
+   "type": "p",
+   "text": "اعتبارسنجی وقتی مفید است که برنامه‌ها باید روی ساختار لازم و مقدارهای مجاز توافق داشته باشند."
+  },
+  {
+   "type": "h2",
+   "text": "JSON یا XML؟"
+  },
+  {
+   "type": "p",
+   "text": "قالبی را به کار ببرید که با داده و سیستم‌های مبادله‌کنندهٔ آن هم‌خوان باشد."
+  },
+  {
+   "type": "p",
+   "text": "JSON برای داده‌ای که مستقیم در برنامه‌های JavaScript به کار می‌رود اغلب ساده‌تر است."
+  },
+  {
+   "type": "p",
+   "text": "XML قابلیت‌هایی دارد که برای سندها و سیستم‌های نشانه‌گذاری پیچیده‌تر مفید است."
+  },
+  {
+   "type": "p",
+   "text": "قالبی را فقط به‌خاطر جدیدتر یا محبوب‌تر بودن انتخاب نکنید."
+  },
+  {
+   "type": "p",
+   "text": "قالبی را انتخاب کنید که بهتر از همه با برنامه سازگار است."
+  },
+  {
+   "type": "h2",
+   "text": "دادهٔ سرور"
+  },
+  {
+   "type": "p",
+   "text": "از هر دو قالب JSON و XML می‌توان برای گرفتن داده از سرور وب استفاده کرد."
+  },
+  {
+   "type": "p",
+   "text": "مثال‌های JSON و XML زیر هر دو یک شیء employees با ۳ کارمند تعریف می‌کنند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\"employees\":[\n\n  { \"firstName\":\"John\", \"lastName\":\"Doe\" },\n\n  { \"firstName\":\"Anna\", \"lastName\":\"Smith\" },\n\n  { \"firstName\":\"Peter\", \"lastName\":\"Jones\" }\n\n]}",
+   "caption": "مثال JSON"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<employees>\n\n  <employee>\n\n    <firstName>John</firstName>\n\n    <lastName>Doe</lastName>\n\n  </employee>\n\n  <employee>\n\n    <firstName>Anna</firstName>\n\n    <lastName>Smith</lastName>\n\n  </employee>\n\n  <employee>\n\n    <firstName>Peter</firstName>\n\n    <lastName>Jones</lastName>\n\n  </employee>\n\n</employees>",
+   "caption": "مثال JSON"
+  },
+  {
+   "type": "p",
+   "text": "وقتی داده را از سرور می‌گیرید، باید قالب آن و روش استفاده‌اش را بدانید."
+  },
+  {
+   "type": "h2",
+   "text": "شباهت‌های JSON و XML"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "هر دو قالب‌هایی متنی برای اطلاعات ساخت‌یافته هستند.",
+    "هر دو خودتوصیف‌اند (برای انسان خوانا)",
+    "هر دو سلسله‌مراتبی‌اند (مقدار داخل مقدار)",
+    "هر دو مستقل از زبان برنامه‌نویسی‌اند",
+    "هر دو با یک تجزیه‌کننده قابل تجزیه‌اند",
+    "هر دو را می‌توان از سرور گرفت"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "آیا JSON از XML بهتر است؟"
+  },
+  {
+   "type": "p",
+   "text": "برای عملیات Fetch، JSON سریع‌تر و ساده‌تر از XML است:"
+  },
+  {
+   "type": "p",
+   "text": "با JSON"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "یک رشتهٔ JSON را با Fetch بگیرید",
+    "با JSON.parse() مستقیم به مقدارهای JavaScript تبدیل کنید"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "با XML"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "یک سند XML را با Fetch بگیرید",
+    "با XML DOM روی سند حلقه بزنید",
+    "مقدارها را بیرون بکشید و در متغیرها ذخیره کنید"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "JSON مستقیماً به شیء JavaScript نگاشت می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "تجزیهٔ XML سخت‌تر است."
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از JSON استفاده کنیم"
+  },
+  {
+   "type": "p",
+   "text": "JSON گزینهٔ خوبی است برای:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Web APIها",
+    "فرستادن داده‌های برنامه",
+    "فایل‌های پیکربندی",
+    "داده‌ای که برنامه‌های JavaScript ذخیره می‌کند",
+    "ساختارهای داده‌ای بر پایهٔ شیء و آرایه"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از XML استفاده کنیم"
+  },
+  {
+   "type": "p",
+   "text": "XML گزینهٔ خوبی است برای:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "محتوایی که هم متن و هم نشانه‌گذاری دارد",
+    "سیستم‌های بر پایهٔ شمای XML و فضاهای نام",
+    "برنامه‌های موجودی که همین حالا از XML استفاده می‌کنند",
+    "سیستم‌های ذخیره‌سازی تثبیت‌شدهٔ مبتنی بر XML"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل jsonxml.html بسازید و متن JSON زیر را در یک متغیر رشته‌ای بگذارید، سپس با JSON.parse() آن را به شیء تبدیل کنید و firstName کارمند دوم را در کنسول چاپ کنید: {\"employees\":[{\"firstName\":\"John\"},{\"firstName\":\"Anna\"},{\"firstName\":\"Peter\"}]}",
+   "hint": "JSON.parse() یک رشته می‌گیرد و شیء برمی‌گرداند؛ بعد می‌توانید بنویسید obj.employees[1].firstName."
+  },
+  {
+   "prompt": "همان داده را این بار با JSON.stringify() به متن تبدیل کنید و نتیجه را در کنسول ببینید.",
+   "hint": "stringify عکس parse است: ورودی شیء و خروجی رشتهٔ JSON."
+  },
+  {
+   "prompt": "یک سند XML کوتاه با ریشهٔ <person> و دو عنصر <name> و <age> بسازید و آن را با DOMParser و parseFromString(text, \"text/xml\") تجزیه کنید؛ بعد مقدار name را با getElementsByTagName بیرون بکشید.",
+   "hint": "نتیجهٔ parseFromString یک سند است و متدهای DOM مثل getElementsByTagName روی آن کار می‌کنند؛ از [0].textContent برای خواندن متن استفاده کنید."
+  },
+  {
+   "prompt": "هر دو نمایش زیر را کنار هم بگذارید و بشمارید کدام نویسه‌های بیشتری دارد: {\"name\":\"John\",\"age\":30} و <person><name>John</name><age>30</age></person>",
+   "hint": "اینکه JSON جمع‌وجورتر است همیشه درست نیست؛ باگ را در متن خود داده بسنجید نه در حدس."
+  },
+  {
+   "prompt": "برای هر یک از این سه مورد بنویسید JSON بهتر است یا XML و دلیل بیاورید: رزومه‌ای که داخلش متن و تگ دارد، پاسخ یک Web API، و فایل تنظیمات یک برنامهٔ قدیمی که از قبل XML است.",
+   "hint": "محتوای ترکیبی (متن همراه نشانه‌گذاری) به XML می‌خورد، دادهٔ برنامه به JSON."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام گزینه درست است دربارهٔ نگاشت JSON به JavaScript؟",
+   "options": [
+    "JSON مستقیم به مقدارهای JavaScript نگاشت می‌شود و با JSON.parse() تجزیه می‌شود",
+    "JSON باید ابتدا با DOMParser() به شیء تبدیل شود",
+    "JSON فقط داخل مرورگر قابل خواندن است و در JavaScript تجزیه نمی‌شود",
+    "JSON برای تجزیه نیاز به کتابخانهٔ بیرونی دارد"
+   ],
+   "answer": 0,
+   "explanation": "JSON.parse() متن را مستقیم به شیء و آرایه‌های JavaScript تبدیل می‌کند. DOMParser() ابزار تجزیهٔ XML است و JSON کتابخانهٔ بیرونی لازم ندارد."
+  },
+  {
+   "question": "کدام قابلیت فقط در XML وجود دارد و JSON ندارد؟",
+   "options": [
+    "آرایه",
+    "شیء تودرتو",
+    "فضای نام (namespace)",
+    "رشتهٔ متنی"
+   ],
+   "answer": 2,
+   "explanation": "جدول تفاوت‌ها می‌گوید JSON از فضاهای نام پشتیبانی نمی‌کند، در حالی که XML با xmlns عنصرهای هم‌نام با معنای متفاوت را جدا می‌کند. آرایه و شیء و رشته در هر دو هست."
+  },
+  {
+   "question": "برای نمایش اطلاعاتی که متن و نشانه‌گذاری با هم در آن می‌آید (محتوای ترکیبی) کدام قالب مناسب‌تر است؟",
+   "options": [
+    "JSON",
+    "XML",
+    "هیچ‌کدام",
+    "فقط XML Schema"
+   ],
+   "answer": 1,
+   "explanation": "XML می‌تواند متن و تگ را با هم نگه دارد؛ مثلاً درسی که داخلش <important>safety instructions</important> آمده است. JSON برای ساختارهای ساخته‌شده از مقدار و شیء و آرایه بهتر است."
+  },
+  {
+   "question": "کدام جمله دربارهٔ حجم JSON و XML درست است؟",
+   "options": [
+    "JSON همیشه کوچک‌تر از XML است",
+    "XML همیشه کوچک‌تر از JSON است",
+    "JSON اغلب نویسه‌های کمتری می‌خواهد، اما همیشه کوچک‌تر نیست",
+    "حجم این دو هیچ ربطی به ساختار داده ندارد"
+   ],
+   "answer": 2,
+   "explanation": "درس صریحاً می‌گوید JSON معمولاً جمع‌وجورتر است، اما حجم فایل به ساختار و محتوا بستگی دارد و JSON همیشه کوچک‌تر نیست."
+  },
+  {
+   "question": "سندهای XML با چه چیزی می‌توانند اعتبارسنجی شوند؟",
+   "options": [
+    "JSON Schema",
+    "DTD و XML Schema",
+    "JSON.parse()",
+    "DOMParser()"
+   ],
+   "answer": 1,
+   "explanation": "اعتبارسنجی XML با قالب‌هایی مثل DTD و XML Schema انجام می‌شود، در حالی که JSON با JSON Schema اعتبارسنجی می‌شود."
+  }
+ ]
+}

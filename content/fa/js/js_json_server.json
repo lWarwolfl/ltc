@@ -1,0 +1,394 @@
+{
+ "slug": "js_json_server",
+ "course": "js",
+ "order": 172,
+ "url": "/js/js_json_server.asp",
+ "title": "بارگذاری JSON در JavaScript",
+ "summary": "فایل‌های JSON را با fetch() از سرور یا دیسک می‌خوانید و با response.json() به مقدار JavaScript تبدیل می‌کنید. در این درس بررسی خطا با ok و status، بارگذاری موازی چند فایل و فرستادن JSON با متد POST و سرآیند Content-Type را یاد می‌گیرید.",
+ "objectives": [
+  "فایل JSON را با fetch() بارگذاری و با response.json() بخوانید",
+  "پیش از خواندن پاسخ، ok و status را بررسی کنید",
+  "چند فایل JSON را هم‌زمان بارگذاری کنید",
+  "با POST، سرآیند Content-Type و بدنهٔ متنی، JSON بفرستید",
+  "خطاهای درخواست و پاسخ را با try...catch مدیریت کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "بارگذاری JSON در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متد fetch()"
+  },
+  {
+   "type": "p",
+   "text": "‏JSON اغلب در فایل‌ها ذخیره می‌شود یا از فراخوانی وب‌سرورها برمی‌گردد."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript می‌تواند JSON را بارگذاری کند و آن را به مقدارهای JavaScript تبدیل کند."
+  },
+  {
+   "type": "p",
+   "text": "راه مدرن بارگذاری JSON استفاده از متد fetch() است."
+  },
+  {
+   "type": "p",
+   "text": "این بخش فرض می‌کند که با fetch() آشنا هستید."
+  },
+  {
+   "type": "p",
+   "text": "اگر نه، آموزش Fetch API در JavaScript را ببینید."
+  },
+  {
+   "type": "h2",
+   "text": "یک فایل JSON"
+  },
+  {
+   "type": "p",
+   "text": "فایل‌های JSON معمولاً پسوند .json دارند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "{\n\n  \"id\": 101,\n\n  \"name\": \"John Doe\",\n\n  \"city\": \"New York\",\n\n  \"member\": true\n\n}",
+   "caption": "customer.json"
+  },
+  {
+   "type": "h2",
+   "text": "بارگذاری JSON"
+  },
+  {
+   "type": "p",
+   "text": "برای درخواست فایل JSON از متد fetch() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "متد response.json() متن JSON را پارس می‌کند و یک مقدار JavaScript برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadJSON() {\n\n  const response = await fetch(\"customer.json\");\n\n  const customer = await response.json();\n\n  myDisplayer(customer.name);\n\n}\n\nloadJSON();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_fetch_object"
+  },
+  {
+   "type": "h2",
+   "text": "بارگذاری یک آرایهٔ JSON"
+  },
+  {
+   "type": "p",
+   "text": "اگر فایل یک آرایهٔ JSON داشته باشد، response.json() یک آرایهٔ JavaScript برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]",
+   "caption": "products.json"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadProducts() {\n\n  const response = await fetch(\"products.json\");\n\n  const products = await response.json();\n\n   myDisplayer(products[0].name);\n\n   myDisplayer(products[0].price);\n\n}\n\nloadProducts();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_fetch_array"
+  },
+  {
+   "type": "h2",
+   "text": "بررسی خطاها"
+  },
+  {
+   "type": "p",
+   "text": "متد fetch() برای خطاهای HTTP مثل 404 خطا پرتاب نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "پیش از خواندن فایل JSON خصوصیت‌های ok و status را بررسی کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadJSON(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.ok);\n\n  myDisplayer(response.status);\n\n  const customer = await response.json();\n\n  myDisplayer(customer.name);\n\n}\n\nloadJSON(\"customer.json\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_fetch_array_error"
+  },
+  {
+   "type": "h2",
+   "text": "مدیریت خطاها"
+  },
+  {
+   "type": "p",
+   "text": "برای مدیریت خطاهای بارگذاری از try...catch استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadJSON(file) {\n\n  try {\n\n    const response = await fetch(file);\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const customer = await response.json();\n\n    myDisplayer(customer.name);\n\n  }\n\n  catch(err) {myDisplayer(err.message)}\n\n}\n\nloadJSON(\"customer.json\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_fetch_array_try"
+  },
+  {
+   "type": "h2",
+   "text": "بارگذاری چند فایل JSON"
+  },
+  {
+   "type": "p",
+   "text": "دانلودهای مستقل می‌توانند هم‌زمان اجرا شوند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download files\n\nasync function loadData() {\n\n  const [customerResponse, productsResponse, newsResponse] = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n  const customer = await customerResponse.json();\n\n  const products = await productsResponse.json();\n\n  const news = await newsResponse.json();\n\n  myDisplayer(\"Custome name: \" + customer.name);\n\n  myDisplayer(products.length + \" products\");\n\n  myDisplayer(news.length + \" news items\");\n\n}\n\n// Call the async function\n\nloadData();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_parallel"
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن JSON"
+  },
+  {
+   "type": "p",
+   "text": "متد fetch() می‌تواند JSON را هم به وب‌سرور بفرستد."
+  },
+  {
+   "type": "p",
+   "text": "برای فرستادن دادهٔ جدید از متد POST استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "شیء JavaScript را با JSON.stringify() به متن JSON تبدیل کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nconst response = await fetch(\"/api/person\", {\n\n  method: \"POST\",\n\n  headers: {\n\n    \"Content-Type\": \"application/json\"\n\n  },\n\n  body: JSON.stringify(person)\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "گزینه‌های درخواست"
+  },
+  {
+   "type": "p",
+   "text": "آرگومان دوم fetch() گزینه‌های درخواست را نگه می‌دارد."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "گزینه",
+     "توضیحات"
+    ],
+    [
+     "method",
+     "متد درخواست HTTP، مثل POST."
+    ],
+    [
+     "headers",
+     "اطلاعات بیشتر دربارهٔ درخواست."
+    ],
+    [
+     "body",
+     "دادهٔ فرستاده‌شده همراه درخواست."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "سرآیند Content-Type"
+  },
+  {
+   "type": "p",
+   "text": "سرآیند Content-Type به سرور می‌گوید چه نوع داده‌ای فرستاده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "headers: {\n\n  \"Content-Type\": \"application/json\"\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "مقدار application/json به سرور می‌گوید بدنهٔ درخواست JSON است."
+  },
+  {
+   "type": "h2",
+   "text": "بدنهٔ درخواست"
+  },
+  {
+   "type": "p",
+   "text": "بدنهٔ درخواست باید متن باشد، نه شیء JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "برای تبدیل شیء به متن JSON از JSON.stringify() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "body: JSON.stringify(person)",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "خواندن پاسخ سرور"
+  },
+  {
+   "type": "p",
+   "text": "سرور می‌تواند بعد از دریافت درخواست، JSON برگرداند."
+  },
+  {
+   "type": "p",
+   "text": "برای خواندن JSON برگشتی از response.json() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nconst response = await fetch(\"/api/person\", {\n\n  method: \"POST\",\n\n  headers: {\n\n    \"Content-Type\": \"application/json\"\n\n  },\n\n  body: JSON.stringify(person)\n\n});\n\nconst result = await response.json();\n\ndocument.getElementById(\"demo\").textContent = result.message;",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "بررسی پاسخ"
+  },
+  {
+   "type": "p",
+   "text": "متد fetch() برای خطاهای HTTP مثل 404 یا 500 پرامیس خود را reject نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "پیش از خواندن پاسخ، خصوصیت response.ok را بررسی کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const response = await fetch(\"/api/person\", {\n\n  method: \"POST\",\n\n  headers: {\n\n    \"Content-Type\": \"application/json\"\n\n  },\n\n  body: JSON.stringify(person)\n\n});\n\nif (!response.ok) {\n\n  throw new Error(\"HTTP error \" + response.status);\n\n}\n\nconst result = await response.json();",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن JSON همراه با مدیریت خطا"
+  },
+  {
+   "type": "p",
+   "text": "برای مدیریت خطاهای درخواست و پاسخ از try...catch استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function sendPerson() {\n\n  const person = {\n\n    name: \"John\",\n\n    age: 30\n\n  };\n\n  try {\n\n    const response = await fetch(\"/api/person\", {\n\n      method: \"POST\",\n\n      headers: {\n\n          \"Content-Type\": \"application/json\"\n\n      },\n\n      body: JSON.stringify(person)\n\n    });\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const result = await response.json();\n\n    document.getElementById(\"demo\").textContent =\n\n    result.message;\n\n  }\n\n  catch (error) {\n\n    document.getElementById(\"demo\").textContent =\n\n    error.message;\n\n  }\n\n}\n\nsendPerson();",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "مثال کامل"
+  },
+  {
+   "type": "p",
+   "text": "این مثال دادهٔ یک فرم را به‌صورت JSON به سرور می‌فرستد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<input id=\"name\" value=\"John\">\n\n<input id=\"age\" type=\"number\" value=\"30\">\n\n<button onclick=\"sendPerson()\">Send</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nasync function sendPerson() {\n\n  const person = {\n\n    name: document.getElementById(\"name\").value,\n\n    age: Number(document.getElementById(\"age\").value)\n\n  };\n\n  try {\n\n    const response = await fetch(\"/api/person\", {\n\n      method: \"POST\",\n\n      headers: {\n\n        \"Content-Type\": \"application/json\"\n\n      },\n\n      body: JSON.stringify(person)\n\n    });\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const result = await response.json();\n\n    document.getElementById(\"demo\").textContent =\n\n    result.message;\n\n  }\n\n  catch (error) {\n\n    document.getElementById(\"demo\").textContent =\n\n    error.message;\n\n  }\n\n}\n\n</script>",
+   "caption": "مثال"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل customer.json با چند خصوصیت بسازید و آن را با fetch() و response.json() بخوانید و نتیجه را در کنسول چاپ کنید.",
+   "hint": "پسوند فایل باید .json باشد؛ response.json() خودش متن را پارس می‌کند."
+  },
+  {
+   "prompt": "پیش از خواندن پاسخ، response.ok و response.status را بررسی کنید و اگر فایل پیدا نشد پیام خطای مناسبی نشان دهید.",
+   "hint": "‏fetch() روی خطای HTTP پرامیس را reject نمی‌کند، پس باید ok را دستی چک کنید."
+  },
+  {
+   "prompt": "یک فایل products.json بسازید که آرایه‌ای از شیءها باشد و نام همهٔ محصول‌ها را با یک حلقه چاپ کنید.",
+   "hint": "اگر محتوای فایل آرایه باشد، response.json() یک آرایهٔ JavaScript برمی‌گرداند."
+  },
+  {
+   "prompt": "دو فایل JSON مستقل را هم‌زمان با Promise.all بارگذاری کنید و هر دو نتیجه را با هم چاپ کنید.",
+   "hint": "دانلودهای مستقل می‌توانند در موازی هم اجرا شوند."
+  },
+  {
+   "prompt": "یک شیء JavaScript را با fetch() و متد POST و سرآیند Content-Type: application/json به یک سرور آزمایشی بفرستید.",
+   "hint": "بدنهٔ درخواست باید متن باشد، پس شیء را با JSON.stringify() تبدیل کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "بعد از fetch یک فایل JSON، با چه چیزی محتوا را می‌خوانید؟",
+   "options": [
+    "response.text() و بعد JSON.parse()",
+    "response.json() که خودش پارس می‌کند",
+    "JSON.stringify()",
+    "response.bytes()"
+   ],
+   "answer": 1,
+   "explanation": "متد response.json() متن JSON پاسخ را پارس می‌کند و مقدار JavaScript برمی‌گرداند؛ با آن نیازی به JSON.parse() دستی نیست."
+  },
+  {
+   "question": "بدنهٔ درخواست fetch باید چه چیزی باشد؟",
+   "options": [
+    "شیء JavaScript",
+    "آرایه",
+    "متن",
+    "عدد"
+   ],
+   "answer": 2,
+   "explanation": "بدنهٔ درخواست باید متن باشد؛ به همین دلیل شیء را با JSON.stringify() به متن JSON تبدیل می‌کنید و در body می‌گذارید."
+  },
+  {
+   "question": "برای فرستادن JSON با متد POST کدام سرآیند لازم است؟",
+   "options": [
+    "Content-Type: application/json",
+    "Accept: text/html",
+    "Content-Type: text/plain",
+    "‏JSON: true"
+   ],
+   "answer": 0,
+   "explanation": "سرآیند Content-Type: application/json به سرور می‌گوید بدنهٔ درخواست JSON است، پس سرور می‌تواند آن را درست تفسیر کند."
+  },
+  {
+   "question": "اگر سرور پاسخ 500 برگرداند، پرامیس fetch چه می‌شود؟",
+   "options": [
+    "reject می‌شود",
+    "با موفقیت تمام می‌شود و باید response.ok را بررسی کنید",
+    "خطای TypeError می‌دهد",
+    "خودش درخواست را دوباره می‌فرستد"
+   ],
+   "answer": 1,
+   "explanation": "‏fetch() فقط روی خطاهای شبکه reject می‌شود؛ پاسخ‌های 404 و 500 پرامیس را رد نمی‌کنند و همین دلیل درس برای بررسی response.ok است."
+  },
+  {
+   "question": "کدام راه برای بارگذاری دو فایل مستقل JSON درست‌تر است؟",
+   "options": [
+    "یکی را داخل دیگری بارگذاری کنیم",
+    "آن‌ها را با Promise.all هم‌زمان بارگذاری کنیم",
+    "هر دو باید در یک فایل باشند",
+    "یکی را با XMLHttpRequest و دیگری را با fetch بگیریم"
+   ],
+   "answer": 1,
+   "explanation": "دانلودهای مستقل را می‌توان هم‌زمان اجرا کرد؛ Promise.all این کار را ساده می‌کند و لازم نیست منتظر تمام شدن یکی، دیگری را شروع کنیم."
+  }
+ ]
+}

@@ -1,0 +1,382 @@
+{
+ "slug": "js_temporal_formats",
+ "course": "js",
+ "order": 197,
+ "url": "/js/js_temporal_formats.asp",
+ "title": "قالب‌های نمایش در Temporal",
+ "summary": "مقدارهای Temporal را با toString()، toLocaleString()، toJSON() و Intl.DateTimeFormat می‌توان به رشته تبدیل کرد. در این درس می‌آموزید کدام متد برای چه کاری مناسب است و چرا نمی‌توان ZonedDateTime را مستقیم به قالب‌بند داد.",
+ "objectives": [
+  "خروجی استاندارد ISO را با toString() بگیرید",
+  "خروجی وابسته به زبان کاربر را با toLocaleString() بسازید",
+  "با Intl.DateTimeFormat خروجی سفارشی بسازید",
+  "دلیل نپذیرفتن ZonedDateTime را در Intl.DateTimeFormat توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "قالب‌های نمایش در Temporal"
+  },
+  {
+   "type": "p",
+   "text": "تاریخ‌های Temporal را به روش‌های مختلف می‌توان به رشته تبدیل کرد:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "توضیح"
+    ],
+    [
+     "toString()",
+     "به رشتهٔ تاریخ در قالب RFC 9557 / ISO 8601."
+    ],
+    [
+     "toLocaleString()",
+     "به رشتهٔ وابسته به زبان و منطقه، مثل \"en-US\"."
+    ],
+    [
+     "Intl.DateTimeFormat()",
+     "وقتی به کنترل بیشتری روی خروجی نیاز دارید."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد toString() در PlainDate"
+  },
+  {
+   "type": "p",
+   "text": "متد toString() یک رشتهٔ استاندارد ISO برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet text = date.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "2026-05-17",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "متد toString() در PlainTime"
+  },
+  {
+   "type": "p",
+   "text": "مقدار PlainTime به‌صورت یک رشتهٔ ساعت قالب‌بندی می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30:15\");\n\nlet text = time.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "14:30:15",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaintime"
+  },
+  {
+   "type": "h2",
+   "text": "متد toString() در PlainDateTime"
+  },
+  {
+   "type": "p",
+   "text": "مقدار PlainDateTime هم تاریخ و هم ساعت را در خود دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30:15\");\n\nlet text = dateTime.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "2026-05-17T14:30:15",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindatetime"
+  },
+  {
+   "type": "h2",
+   "text": "متد toString() در ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "رشتهٔ ZonedDateTime هم اختلاف زمانی و هم منطقهٔ زمانی را در خود دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15[Europe/Oslo]\");\n\nlet text = zoned.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "2026-05-17T14:30:15+01:00[Europe/Oslo]\n\nor:\n\n2026-05-17T14:30:15+02:00[Europe/Oslo]",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime"
+  },
+  {
+   "type": "h2",
+   "text": "حذف واحدهای زمانی کوچک‌تر"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید تعیین کنید چه مقدار جزئیات در خروجی بیاید."
+  },
+  {
+   "type": "p",
+   "text": "برای نمونه، می‌توانید ثانیه یا میلی‌ثانیه را پنهان کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30:15.123\");\n\nlet text = time.toString({ smallestUnit: \"minute\" });",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "14:30",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "کنترل ارقام اعشاری"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید انتخاب کنید چند رقم اعشاری در خروجی بیاید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const time = Temporal.PlainTime.from(\"14:30:15.123456789\");\n\nlet text = time.toString({ fractionalSecondDigits: 3 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "14:30:15.123",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "متد toLocaleString() در PlainDate"
+  },
+  {
+   "type": "p",
+   "text": "برای قالب‌بندی مقدار بر پایهٔ زبان و منطقهٔ کاربر از toLocaleString() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet text_us = date.toLocaleString(\"en-US\");\n\nlet text_de = date.toLocaleString(\"de-DE\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate_locale"
+  },
+  {
+   "type": "p",
+   "text": "خروجی به زبان و منطقهٔ انتخاب‌شده بستگی دارد."
+  },
+  {
+   "type": "h2",
+   "text": "متد toLocaleString() در ZonedDateTime"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15+01:00[Europe/Oslo]\");\n\nlet text = zoned.toLocaleString(\"en-US\", {\n\n  dateStyle: \"full\",\n\n  timeStyle: \"short\"\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime_locale"
+  },
+  {
+   "type": "h2",
+   "text": "قالب‌بندی با Intl.DateTimeFormat"
+  },
+  {
+   "type": "p",
+   "text": "وقتی کنترل بیشتری روی خروجی می‌خواهید از Intl.DateTimeFormat استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst formatter = new Intl.DateTimeFormat(\"en-US\", {\n\n  year: \"numeric\",\n\n  month: \"long\",\n\n  day: \"numeric\"\n\n});\n\nlet text = formatter.format(date);",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "February 17, 2026",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate_intl"
+  },
+  {
+   "type": "h2",
+   "text": "قالب‌بندی هم‌زمان تاریخ و ساعت"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک PlainDateTime را با گزینه‌های تاریخ و ساعت با هم قالب‌بندی کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30:15\");\n\nconst formatter = new Intl.DateTimeFormat(\"en-GB\", {\n\n  year: \"numeric\",\n\n  month: \"short\",\n\n  day: \"numeric\",\n\n  hour: \"2-digit\",\n\n  minute: \"2-digit\"\n\n});\n\nlet text = formatter.format(dateTime);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindatetime_intl"
+  },
+  {
+   "type": "h2",
+   "text": "متد toLocaleString() در ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "متد Intl.DateTimeFormat() یک شیء Temporal.ZonedDateTime را به‌عنوان ورودی نمی‌پذیرد."
+  },
+  {
+   "type": "p",
+   "text": "این انتخاب طراحی جلوی تضاد بین منطقهٔ زمانی داخل ZonedDateTime و منطقهٔ زمانی تعریف‌شده در قالب‌بند را می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "بهترین راه این است که به‌جای آن از toLocaleString() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15+01:00[Europe/Oslo]\");\n\nlet text = zoned.toLocaleString(\"en-US\", {\n\n  dateStyle: \"full\",\n\n  timeStyle: \"short\"\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime_locale"
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از هر متد استفاده کنیم؟"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "برای خروجی استاندارد ISO از toString() استفاده کنید.",
+    "برای قالب‌بندی محلی ساده از toLocaleString() استفاده کنید.",
+    "برای قالب‌بندی سفارشی از Intl.DateTimeFormat استفاده کنید."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل formats.html بسازید، یک PlainDate بسازید و آن را با toString() و toLocaleString(\"fa-IR\") چاپ کنید.",
+   "hint": "toString خروجی استاندارد ISO می‌دهد و toLocaleString خروجی وابسته به زبان و منطقه."
+  },
+  {
+   "prompt": "یک PlainTime بسازید و با گزینه‌های toString مقداری از جزئیات را حذف کنید و تفاوت را ببینید.",
+   "hint": "با گزینه‌های کوچک‌کردن واحد می‌توانید ثانیه و میلی‌ثانیه را حذف کنید."
+  },
+  {
+   "prompt": "یک PlainDateTime را با Intl.DateTimeFormat و گزینه‌های تاریخ و ساعت با هم قالب‌بندی کنید.",
+   "hint": "گزینه‌های dateStyle و timeStyle یا ترکیب گزینه‌های جداگانه به کار می‌آید."
+  },
+  {
+   "prompt": "تلاش کنید یک ZonedDateTime را مستقیم به Intl.DateTimeFormat بدهید و خطا را ببینید؛ بعد با toLocaleString حلش کنید.",
+   "hint": "قالب‌بند شیء ZonedDateTime را به‌عنوان ورودی نمی‌پذیرد."
+  },
+  {
+   "prompt": "خروجی toJSON() را برای یک PlainDateTime چاپ کنید و بگویید چه تفاوتی با toString() دارد.",
+   "hint": "toJSON همان قالب RFC 9557 را برای سریال‌سازی JSON می‌دهد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "خروجی متد toString() روی یک شیء Temporal چه شکلی است؟",
+   "options": [
+    "یک رشتهٔ استاندارد ISO",
+    "یک شیء Date",
+    "یک عدد timestamp",
+    "یک رشتهٔ وابسته به زبان کاربر"
+   ],
+   "answer": 0,
+   "explanation": "toString() همیشه خروجی استاندارد ISO می‌دهد؛ خروجی وابسته به زبان و منطقه کار toLocaleString() است."
+  },
+  {
+   "question": "برای قالب‌بندی مقدار بر پایهٔ زبان و منطقهٔ کاربر کدام متد مناسب است؟",
+   "options": [
+    "toString()",
+    "toJSON()",
+    "toLocaleString()",
+    "valueOf()"
+   ],
+   "answer": 2,
+   "explanation": "toLocaleString() خروجی را بر اساس locale می‌سازد. toString() خروجی ISO و toJSON() خروجی RFC 9557 می‌دهد."
+  },
+  {
+   "question": "چرا نمی‌توان یک ZonedDateTime را مستقیم به Intl.DateTimeFormat داد؟",
+   "options": [
+    "چون قالب‌بند از منطقهٔ زمانی خودش استفاده می‌کند و این با منطقهٔ زمانی شیء تضاد پیدا می‌کند",
+    "چون ZonedDateTime رشته نیست",
+    "چون Intl در مرورگر پشتیبانی نمی‌شود",
+    "چون ZonedDateTime فقط تاریخ دارد"
+   ],
+   "answer": 0,
+   "explanation": "قالب‌بند منطقهٔ زمانی خودش را دارد و دادن شیء ZonedDateTime تضاد می‌سازد؛ راه بهتر استفاده از toLocaleString() است."
+  },
+  {
+   "question": "رشتهٔ خروجی ZonedDateTime علاوه بر تاریخ و ساعت چه چیزی دارد؟",
+   "options": [
+    "فقط نام تقویم",
+    "اختلاف زمانی و نام منطقهٔ زمانی",
+    "فقط تعداد میلی‌ثانیه",
+    "هیچ چیز اضافه‌ای"
+   ],
+   "answer": 1,
+   "explanation": "رشتهٔ ZonedDateTime هم اختلاف با UTC و هم نام منطقهٔ زمانی را در خود دارد؛ همین آن را از PlainDateTime جدا می‌کند."
+  },
+  {
+   "question": "برای پنهان کردن ثانیه و میلی‌ثانیه در خروجی متد toString چه کاری می‌کنیم؟",
+   "options": [
+    "از گزینه‌های کوچک‌کردن واحد استفاده می‌کنیم",
+    "خروجی را با slice برش می‌دهیم",
+    "از valueOf() استفاده می‌کنیم",
+    "چنین کاری ممکن نیست"
+   ],
+   "answer": 0,
+   "explanation": "متد toString گزینه‌هایی می‌پذیرد که با آن‌ها واحدهای کوچک‌تر را حذف و ارقام اعشاری را کنترل می‌کنید."
+  }
+ ]
+}

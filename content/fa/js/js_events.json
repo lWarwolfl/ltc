@@ -1,0 +1,336 @@
+{
+ "slug": "js_events",
+ "course": "js",
+ "order": 148,
+ "url": "/js/js_events.asp",
+ "title": "رویدادهای JavaScript",
+ "summary": "رویداد یعنی هر اتفاقی که برای عنصرهای HTML می‌افتد: کلیک، بارگذاری صفحه، حرکت ماوس یا فشردن کلید. این درس نشان می‌دهد چگونه با ویژگی‌های رویداد کد اجرا کنید، تابع صدا بزنید و چرا addEventListener() راه توصیه‌شده است.",
+ "objectives": [
+  "رویداد را تعریف کنید و چند نمونهٔ آن را نام ببرید",
+  "با ویژگی onclick کد یا تابع را به یک عنصر وصل کنید",
+  "تفاوت this.innerHTML با گرفتن عنصر با id را توضیح دهید",
+  "بگویید چرا addEventListener() بر ویژگی‌های رویداد ترجیح دارد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "رویدادهای JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "رویدادهای HTML"
+  },
+  {
+   "type": "p",
+   "text": "رویدادهای HTML کارهایی هستند که برای عنصرهای HTML رخ می‌دهند."
+  },
+  {
+   "type": "p",
+   "text": "نمونه‌هایی از رویدادها:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "روی یک دکمهٔ HTML کلیک شود",
+    "بارگذاری یک صفحهٔ وب تمام شود",
+    "ماوس روی یک عنصر حرکت کند",
+    "کلیدی از صفحه‌کلید فشرده شود",
+    "مقدار یک فیلد ورودی HTML تغییر کند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "DOM به JavaScript اجازه می‌دهد به رویدادهای HTML واکنش نشان دهد:"
+  },
+  {
+   "type": "h2",
+   "text": "رویدادهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "غالباً وقتی رویدادی رخ می‌دهد می‌خواهید کاری انجام دهید."
+  },
+  {
+   "type": "p",
+   "text": "وقتی JavaScript در صفحه‌های HTML به کار می‌رود، می‌تواند به رویدادها واکنش نشان دهد."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript به شما اجازه می‌دهد وقتی رویدادی شناسایی می‌شود کد اجرا کنید."
+  },
+  {
+   "type": "p",
+   "text": "HTML اجازه می‌دهد ویژگی‌های event handler، همراه با کد JavaScript، به عنصرهای HTML اضافه شوند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<element\nevent='some JavaScript'>",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<element\nevent=\"some JavaScript\">",
+   "caption": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "در مثال زیر یک ویژگی onclick (همراه با کد) به عنصر <button> اضافه شده است:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"document.getElementById('demo').innerHTML = Date()\">The time is?</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_onclick1"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، کد JavaScript محتوای عنصر با id=\"demo\" را تغییر می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "در مثال بعدی، کد محتوای عنصر خودش را با this.innerHTML تغییر می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"this.innerHTML = Date()\">The time is?</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_onclick"
+  },
+  {
+   "type": "h2",
+   "text": "صدا زدن یک تابع JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "کد JavaScript غالباً چند سطر طول می‌کشد."
+  },
+  {
+   "type": "p",
+   "text": "رایج‌تر این است که با ویژگی رویداد یک تابع را صدا بزنید:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"displayDate()\">The time is?</button>\n\n<script>\n\nfunction displayDate() {\n\n  document.getElementById(\"demo\").innerHTML = Date();\n\n}\n\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events1"
+  },
+  {
+   "type": "h2",
+   "text": "رویدادهای رایج HTML"
+  },
+  {
+   "type": "p",
+   "text": "فهرست چند رویداد رایج HTML این است:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "رویداد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "onchange",
+     "یک عنصر HTML تغییر کرده است"
+    ],
+    [
+     "onclick",
+     "کاربر روی یک عنصر HTML کلیک می‌کند"
+    ],
+    [
+     "onmouseover",
+     "کاربر ماوس را روی یک عنصر HTML می‌برد"
+    ],
+    [
+     "onmouseout",
+     "کاربر ماوس را از یک عنصر HTML دور می‌کند"
+    ],
+    [
+     "onkeydown",
+     "کاربر کلیدی از صفحه‌کلید را فشار می‌دهد"
+    ],
+    [
+     "onload",
+     "مرورگر بارگذاری صفحه را تمام کرده است"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "این فهرست بسیار طولانی‌تر است: مرجع رویدادهای DOM در JavaScript از W3Schools."
+  },
+  {
+   "type": "h2",
+   "text": "event handler در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "event handler کد JavaScript است که وقتی رویدادی رخ می‌دهد اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "از event handlerها می‌توان برای مدیریت و بررسی ورودی کاربر، کارهای کاربر و کارهای مرورگر استفاده کرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کارهایی که باید هر بار بارگذاری صفحه انجام شوند",
+    "کارهایی که باید هنگام بسته شدن صفحه انجام شوند",
+    "کاری که باید وقتی کاربر روی دکمه‌ای کلیک می‌کند انجام شود",
+    "محتوایی که باید وقتی کاربر داده وارد می‌کند بررسی شود",
+    "و بیشتر ..."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برای کار JavaScript با رویدادها می‌توان از روش‌های گوناگون استفاده کرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "ویژگی‌های رویداد HTML می‌توانند کد JavaScript را مستقیم اجرا کنند",
+    "ویژگی‌های رویداد HTML می‌توانند تابع‌های JavaScript را صدا بزنند",
+    "می‌توانید تابع‌های event handler خودتان را به عنصرهای HTML نسبت دهید",
+    "می‌توانید جلوی فرستاده شدن یا مدیریت شدن رویدادها را بگیرید",
+    "و بیشتر ..."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از event listener"
+  },
+  {
+   "type": "p",
+   "text": "استفاده از ویژگی‌های رویداد مثل onclick ساده است."
+  },
+  {
+   "type": "p",
+   "text": "با این حال، راه توصیه‌شده برای مدیریت رویدادها استفاده از addEventListener() است."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"displayDate()\">Time is?</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\n// Function to display date\n\nfunction displayDate() {\n\n  document.getElementById(\"demo\").innerHTML = Date();\n\n}\n\n</script>",
+   "caption": "توصیه نمی‌شود"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_attribute"
+  },
+  {
+   "type": "p",
+   "text": "متد addEventListener() زبان HTML و JavaScript را از هم جدا نگه می‌دارد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button id=\"myBtn\">Click me</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst btn = document.getElementById(\"myBtn\");\n\n// Add EventListener to btn\n\nbtn.addEventListener(\"click\", function () {\n\n  document.getElementById(\"demo\").innerHTML = Date();\n\n});\n\n</script>",
+   "caption": "کاملاً توصیه می‌شود"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_eventlistener"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "در بخش‌های DOM دربارهٔ رویدادها و event handlerها بسیار بیشتر یاد می‌گیرید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل events.html بسازید که یک دکمه داشته باشد؛ با ویژگی onclick متن یک پاراگراف با id=\"demo\" را عوض کنید.",
+   "hint": "در کد داخل onclick از document.getElementById(\"demo\").innerHTML استفاده کنید."
+  },
+  {
+   "prompt": "همان کار را با this.innerHTML انجام دهید تا عنصر خودِ دکمه تغییر کند و تفاوت را ببینید.",
+   "hint": "داخل ویژگی رویداد، this به همان عنصر اشاره دارد."
+  },
+  {
+   "prompt": "یک تابع به نام changeText بنویسید و از onclick همان دکمه صدایش بزنید.",
+   "hint": "وقتی کد چند سطر است، بهتر است تابع بسازید و فقط نامش را در ویژگی رویداد بنویسید."
+  },
+  {
+   "prompt": "رویداد onmouseover را روی یک عنصر امتحان کنید تا وقتی ماوس روی آن می‌رود متنش عوض شود.",
+   "hint": "برای برگشتن به حالت اول می‌توانید رویداد onmouseout را هم اضافه کنید."
+  },
+  {
+   "prompt": "همان دکمه را یک بار با onclick و یک بار با addEventListener بنویسید و بگویید کدام روش خواناتر است.",
+   "hint": "به این فکر کنید که با addEventListener منطق JavaScript از ساختار HTML جدا می‌ماند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام مورد نمونه‌ای از رویداد HTML است؟",
+   "options": [
+    "کلیک روی یک دکمه",
+    "تعریف متغیر با let",
+    "نوشتن انتخابگر CSS",
+    "ذخیرهٔ فایل HTML"
+   ],
+   "answer": 0,
+   "explanation": "رویداد یعنی اتفاقی که برای عنصر HTML می‌افتد: کلیک، بارگذاری صفحه، حرکت ماوس، فشردن کلید یا تغییر فیلد ورودی."
+  },
+  {
+   "question": "در خاصیت onclick، کلمهٔ this به چه چیزی اشاره دارد؟",
+   "options": [
+    "به شیء window",
+    "به خود عنصری که رویداد روی آن رخ داده",
+    "به شیء document",
+    "به پاراگراف اول صفحه"
+   ],
+   "answer": 1,
+   "explanation": "داخل ویژگی رویداد یک عنصر، this همان عنصر است؛ پس this.innerHTML محتوای خود دکمه را تغییر می‌دهد."
+  },
+  {
+   "question": "کدام روش برای مدیریت رویدادها توصیه شده است؟",
+   "options": [
+    "نوشتن کد داخل ویژگی onclick",
+    "استفاده از addEventListener()",
+    "استفاده از document.write()",
+    "نوشتن کد در تگ style"
+   ],
+   "answer": 1,
+   "explanation": "addEventListener() توصیه می‌شود چون HTML و JavaScript را از هم جدا نگه می‌دارد و اجازه می‌دهد چند listener روی یک عنصر بگذارید."
+  },
+  {
+   "question": "رویداد onmouseout چه زمانی اجرا می‌شود؟",
+   "options": [
+    "وقتی ماوس از عنصر دور می‌شود",
+    "وقتی روی عنصر کلیک شود",
+    "وقتی صفحه بارگذاری شود",
+    "وقتی کلیدی فشرده شود"
+   ],
+   "answer": 0,
+   "explanation": "onmouseout وقتی ماوس از عنصر خارج می‌شود اجرا می‌شود؛ آمدن ماوس روی عنصر رویداد onmouseover را می‌سازد."
+  },
+  {
+   "question": "در فهرست رویدادهای رایج، onload چه زمانی رخ می‌دهد؟",
+   "options": [
+    "وقتی کاربر فرم را پاک می‌کند",
+    "وقتی مرورگر بارگذاری صفحه را تمام کند",
+    "وقتی روی پیوندی کلیک شود",
+    "وقتی متن انتخاب شود"
+   ],
+   "answer": 1,
+   "explanation": "onload پس از تمام شدن بارگذاری صفحه اجرا می‌شود و برای کارهایی مناسب است که به آماده بودن کل صفحه نیاز دارند."
+  }
+ ]
+}

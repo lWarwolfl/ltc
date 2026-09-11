@@ -1,0 +1,373 @@
+{
+ "slug": "js_temporal_plainmonthday",
+ "course": "js",
+ "order": 189,
+ "url": "/js/js_temporal_plainmonthday.asp",
+ "title": "PlainMonthDay در JavaScript",
+ "summary": "شیء Temporal.PlainMonthDay فقط ماه و روز را نگه می‌دارد و برای تاریخ‌هایی مثل تولدها مناسب است. در این درس می‌آموزید آن را با سازنده و متد from بسازید و ببینید چرا سال و خصوصیت month در آن وجود ندارد.",
+ "objectives": [
+  "شیء PlainMonthDay را با عدد و رشتهٔ RFC 9557 بسازید",
+  "توضیح دهید چرا ورودی سال در این نوع نادیده گرفته می‌شود",
+  "دلیل نبودن خصوصیت month را در PlainMonthDay توضیح دهید",
+  "دو PlainMonthDay را با equals مقایسه کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "PlainMonthDay در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء Temporal.PlainMonthDay"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.PlainMonthDay یک شیء ماه و روز است."
+  },
+  {
+   "type": "p",
+   "text": "این شیء ماه و روز تقویم ISO 8601 را بدون سال و ساعت نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "مثال: 05-17."
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/js/img_temporal.svg",
+   "alt": "Temporal Map"
+  },
+  {
+   "type": "h2",
+   "text": "روش ساخت شیء PlainMonthDay"
+  },
+  {
+   "type": "p",
+   "text": "شیء PlainMonthDay را به چند روش مختلف می‌توان ساخت:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "از",
+     "کد"
+    ],
+    [
+     "پارامترها",
+     "new Temporal.PlainMonthDay(param)"
+    ],
+    [
+     "شیء",
+     "Temporal.PlainMonthDay.from(object)"
+    ],
+    [
+     "ISO/RFC 9557",
+     "Temporal.PlainMonthDay.from(RFC9557)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainMonthDay با new"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new PlainMonthDay object\n\nconst date = new Temporal.PlainMonthDay(5, 17);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainmonthday"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainMonthDay از شیء"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new PlainMonthDay object\n\nconst date = Temporal.PlainMonthDay.from({month:5, day:17});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainmonthday_from"
+  },
+  {
+   "type": "h2",
+   "text": "ساخت PlainMonthDay از (RFC 9557)"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new PlainMonthDay object\n\nconst date = Temporal.PlainMonthDay.from(\"05-17\");",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new PlainMonthDay object\n\nconst date = Temporal.PlainMonthDay.from(\"2026-05-17\");",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainmonthday_from_iso"
+  },
+  {
+   "type": "p",
+   "text": "توجه کنید که اگر سال به‌عنوان ورودی داده شود، نادیده گرفته می‌شود"
+  },
+  {
+   "type": "h2",
+   "text": "متد equals() در PlainMonthDay"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create two PlainMonthDay objects\n\nconst date1 = Temporal.PlainMonthDay.from(\"05-17\");\n\nconst date2 = Temporal.PlainMonthDay.from(\"07-19\");\n\n// Compare\n\nlet result = date1.equals(date2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainmonthday_equals"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر شیءهای Temporal متد equals() خودشان را دارند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "instant.equals(instant)",
+    "plaindate.equals(plaindate)",
+    "plaintime.equals(plaintime)",
+    "plainyearmonth.equals(plainyearmonth)",
+    "plainmonthday.equals(plainmonthday)",
+    "plaindateTime.equals(plaindatetime)",
+    "zoneddateTime.equals(zoneddtatime)"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "(*) شیء Duration این متد را ندارد."
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بخوانید:"
+  },
+  {
+   "type": "p",
+   "text": "مقایسه در Temporal جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "متد with()"
+  },
+  {
+   "type": "p",
+   "text": "متد with() یک شیء PlainMonthDay تازه برمی‌گرداند که فیلدهای تعیین‌شده در آن جانشین شده‌اند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a PlainMonthDay object\n\nconst date = Temporal.PlainMonthDay.from(\"05-17\");\n\n// Replace month\n\nconst newDate = date.with({ month:12 });",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainmonthday_with"
+  },
+  {
+   "type": "h2",
+   "text": "همهٔ متدهای PlainMonthDay"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ساخت",
+     "توضیح"
+    ],
+    [
+     "from()",
+     "یک شیء PlainMonthDay از یک شیء یا رشته می‌سازد"
+    ],
+    [
+     "new (سازنده)",
+     "یک شیء PlainMonthDay از پارامترهای عدد صحیح می‌سازد"
+    ],
+    [
+     "مقایسه",
+     ""
+    ],
+    [
+     "equals()",
+     "اگر دو شیء PlainMonthDay یکسان باشند true برمی‌گرداند"
+    ],
+    [
+     "تبدیل",
+     ""
+    ],
+    [
+     "toPlainDate()",
+     "یک شیء PlainDate تازه برمی‌گرداند"
+    ],
+    [
+     "with()",
+     "یک PlainMonthDay تازه با فیلدهای تعیین‌شدهٔ تغییر‌یافته برمی‌گرداند"
+    ],
+    [
+     "قالب‌بندی",
+     ""
+    ],
+    [
+     "toJSON()",
+     "یک رشته با قالب RFC 9557 برای سریال‌سازی JSON برمی‌گرداند"
+    ],
+    [
+     "toLocaleString()",
+     "نمایشی از تاریخ بر پایهٔ زبان و منطقهٔ کاربر برمی‌گرداند"
+    ],
+    [
+     "toString()",
+     "یک رشتهٔ نمایشی از تاریخ با قالب RFC 9557 برمی‌گرداند"
+    ],
+    [
+     "valueOf()",
+     "TypeError (شیءهای Temporal را نمی‌توان به مقدار اولیه تبدیل کرد)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همهٔ خصوصیت‌های PlainMonthDay"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیح"
+    ],
+    [
+     "calendarID",
+     "شناسهٔ سیستم تقویم (\"iso8601\")"
+    ],
+    [
+     "day",
+     "روز به‌صورت عدد صحیح (1-31)"
+    ],
+    [
+     "monthCode",
+     "کد رشته‌ای مخصوص تقویم برای ماه (\"M01\")"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "شیء Temporal.PlainMonthDay خصوصیت month ندارد."
+  },
+  {
+   "type": "p",
+   "text": "دلیلش این است که تقویم‌های غیر ISO (عبری، چینی) می‌توانند ماه کبیسه داشته باشند. ماهی با نام یکسان ممکن است هر سال شمارهٔ (month) متفاوتی بگیرد و بدون سال، مقدار عددی ماه مبهم می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = new Temporal.PlainMonthDay(5, 17);",
+   "caption": "نمایش همهٔ خصوصیت‌های PlainMonthDay"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainmonthday_prop"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل plainmonthday.html بسازید و با new Temporal.PlainMonthDay(12, 25) یک ماه و روز بسازید و چاپش کنید.",
+   "hint": "پارامترها ماه و روز هستند؛ سالی در این شیء وجود ندارد."
+  },
+  {
+   "prompt": "همان ماه و روز را با Temporal.PlainMonthDay.from(\"--12-25\") از رشته بسازید.",
+   "hint": "در قالب رشتهٔ RFC 9557 جای سال خالی می‌ماند و با دو خط تیره نشان داده می‌شود."
+  },
+  {
+   "prompt": "رشته‌ای با سال بنویسید، مثل --12-25[year] یا ورودی سال‌دار، و ببینید سال نادیده گرفته می‌شود.",
+   "hint": "شیء PlainMonthDay خصوصیت سال ندارد؛ ورودی سال بی‌اثر است."
+  },
+  {
+   "prompt": "دو PlainMonthDay با ماه و روز یکسان بسازید و با equals() مقایسه کنید.",
+   "hint": "equals() فقط ماه و روز را مقایسه می‌کند، چون سالی در کار نیست."
+  },
+  {
+   "prompt": "یک PlainMonthDay بسازید و خصوصیت month آن را بخوانید و بگویید چه چیزی می‌گیرید.",
+   "hint": "در شیء PlainMonthDay خصوصیتی به نام month وجود ندارد، چون بدون سال مبهم می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "شیء PlainMonthDay چه اطلاعاتی را نگه می‌دارد؟",
+   "options": [
+    "سال، ماه و روز",
+    "ماه و روز بدون سال و ساعت",
+    "فقط ماه",
+    "سال و ماه"
+   ],
+   "answer": 1,
+   "explanation": "PlainMonthDay فقط ماه و روز را نگه می‌دارد؛ سال در آن نیست، چون تاریخ‌هایی مثل تولدها هر سال تکرار می‌شوند."
+  },
+  {
+   "question": "چرا شیء PlainMonthDay خصوصیت month ندارد؟",
+   "options": [
+    "چون جا افتاده و به‌زودی اضافه می‌شود",
+    "چون تقویم‌های غیر ISO ماه کبیسه دارند و بدون سال عدد ماه مبهم می‌شود",
+    "چون فقط روز را نگه می‌دارد",
+    "چون باید با متد getMonth() خوانده شود"
+   ],
+   "answer": 1,
+   "explanation": "در تقویم‌های غیر ISO مثل عبری و چینی ماه‌های کبیسه وجود دارد و شمارهٔ ماه بدون سال قابل تعیین نیست؛ پس خصوصیت month معنا ندارد."
+  },
+  {
+   "question": "برای ساختن PlainMonthDay از رشتهٔ RFC 9557 کدام ورودی درست است؟",
+   "options": [
+    "\"2026-12-25\"",
+    "\"--12-25\"",
+    "\"12-25-2026\"",
+    "\"2026-12\""
+   ],
+   "answer": 1,
+   "explanation": "در PlainMonthDay سال جایی ندارد و در قالب RFC 9557 با دو خط تیره خالی گذاشته می‌شود؛ بقیهٔ گزینه‌ها قالب‌های تاریخ، ماه‌روز معکوس و سال‌ماه هستند."
+  },
+  {
+   "question": "اگر سال را به‌عنوان ورودی به PlainMonthDay بدهیم چه می‌شود؟",
+   "options": [
+    "خطا می‌گیریم",
+    "سال ذخیره و چاپ می‌شود",
+    "سال نادیده گرفته می‌شود",
+    "شیء به PlainDate تبدیل می‌شود"
+   ],
+   "answer": 2,
+   "explanation": "سال در این نوع ذخیره نمی‌شود و به‌سادگی نادیده گرفته می‌شود؛ خطایی هم داده نمی‌شود."
+  },
+  {
+   "question": "متد equals() روی دو PlainMonthDay با ماه و روز یکسان چه برمی‌گرداند؟",
+   "options": [
+    "true",
+    "false",
+    "0",
+    "-1"
+   ],
+   "answer": 0,
+   "explanation": "equals() برای یکسان بودن مقدارها مقدار بولی true برمی‌گرداند. اعداد 0 و -1 خروجی متد compare() هستند."
+  }
+ ]
+}
