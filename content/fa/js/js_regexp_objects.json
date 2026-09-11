@@ -1,0 +1,269 @@
+{
+ "slug": "js_regexp_objects",
+ "course": "js",
+ "order": 89,
+ "url": "/js/js_regexp_objects.asp",
+ "title": "شیءهای RegExp در JavaScript",
+ "summary": "RegExp یک شیء است، نه فقط یک الگو؛ پس متدها و خصوصیت‌های مخصوص خود را دارد. در این درس test() و exec() را می‌بینید و با متد تازهٔ RegExp.escape() و پشتیبانی مرورگرها آشنا می‌شوید.",
+ "objectives": [
+  "با test() وجود الگو را بررسی کنید",
+  "با exec() متن تطبیق‌شده را بیرون بکشید",
+  "نقش RegExp.escape() را توضیح دهید",
+  "پشتیبانی مرورگرها از ویژگی‌های تازه را بررسی کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "شیءهای RegExp در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء RegExp"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، RegExp یک شیء عبارت باقاعده است که خصوصیت‌ها و متدهای از پیش تعریف‌شده دارد."
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از test()"
+  },
+  {
+   "type": "p",
+   "text": "متد test() یکی از متدهای عبارت RegExp است."
+  },
+  {
+   "type": "p",
+   "text": "رشته را برای یافتن الگویی جست‌وجو می‌کند و بسته به نتیجه، true یا false برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر رشته را برای یافتن نویسهٔ «e» جست‌وجو می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /e/;\n\npattern.test(\"The best things in life are free!\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_test"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "/e/.test(\"The best things in life are free!\");",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از exec()"
+  },
+  {
+   "type": "p",
+   "text": "متد exec() یکی از متدهای عبارت RegExp است."
+  },
+  {
+   "type": "p",
+   "text": "رشته را برای الگویی مشخص جست‌وجو می‌کند و متن پیدا‌شده را به‌صورت یک شیء برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "اگر تطبیقی پیدا نشود، یک شیء خالی (null) برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر رشته را برای یافتن نویسهٔ «e» جست‌وجو می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "/e/.exec(\"The best things in life are free!\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_exec"
+  },
+  {
+   "type": "h2",
+   "text": "متد RegExp.escape()"
+  },
+  {
+   "type": "p",
+   "text": "متد RegExp.escape() رشته‌ای برمی‌گرداند که در آن نویسه‌های متعلق به نحو عبارت باقاعده escape شده‌اند."
+  },
+  {
+   "type": "p",
+   "text": "این کار امکان می‌دهد نویسه‌هایی مانند +، *، ?، ^، $، (، )، [، ]، {، }، | و \\ را تحت‌اللفظی در نظر بگیرید، نه بخشی از عبارت باقاعده."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Escape a text for to use as a regular expression\n\nconst safe = RegExp.escape(\"[*]\";\n\n// Build a new reglar expression\n\nconst regex = new RegExp(safe);\n\n// Text to replace within\n\nconst oldText = \"[*] is a web school.\";\n\n// Perform the replace\n\nconst newText = oldText.replace(regex, \"W3Schools\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_escape"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "RegExp.escape() یک ویژگی ECMAScript 2025 است."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2025 از ماه مه ۲۰۲۵ در همهٔ مرورگرهای مدرن به‌طور کامل پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome136",
+     "Edge136",
+     "Firefox129",
+     "Safari18.2",
+     "Opera120"
+    ],
+    [
+     "آوریل ۲۰۲۵",
+     "آوریل ۲۰۲۵",
+     "اوت ۲۰۲۴",
+     "دسامبر ۲۰۲۴",
+     "مه ۲۰۲۵"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پرچم‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "کلاس‌های نویسه در RegExp"
+  },
+  {
+   "type": "p",
+   "text": "متانویسه‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Assertions در RegExp"
+  },
+  {
+   "type": "p",
+   "text": "گروه‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "کمیت‌سنج‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "الگوهای RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متدهای RegExp در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل regex-object.html بسازید و با /e/.test(\"Hello\") نتیجه را در کنسول چاپ کنید.",
+   "hint": "متد test() مقدار true یا false برمی‌گرداند."
+  },
+  {
+   "prompt": "همان الگو را با exec() اجرا کنید و آرایهٔ نتیجه را کامل ببینید.",
+   "hint": "exec() متن پیدا‌شده را در قالب یک شیء برمی‌گرداند."
+  },
+  {
+   "prompt": "با الگویی که در رشته وجود ندارد exec() را صدا بزنید و مقدار برگشتی را در کنسول ببینید.",
+   "hint": "وقتی تطبیقی پیدا نشود، exec() مقدار null برمی‌گرداند."
+  },
+  {
+   "prompt": "با RegExp.escape() رشته‌ای مانند \"a+b?\" را escape کنید و سپس همان را به RegExp بدهید.",
+   "hint": "escape نویسه‌های نحوی مثل +، ? و * را تحت‌اللفظی می‌کند تا معنای ویژه نداشته باشند."
+  },
+  {
+   "prompt": "در کنسول مرورگر خودتان بررسی کنید آیا RegExp.escape وجود دارد یا نه.",
+   "hint": "این متد ویژگی ECMAScript 2025 است و از مه ۲۰۲۵ در مرورگرهای مدرن پشتیبانی می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "متد test() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "آرایهٔ نتیجه‌ها",
+    "true یا false",
+    "شمارهٔ اندیس",
+    "شیء null"
+   ],
+   "answer": 1,
+   "explanation": "test() فقط می‌گوید تطبیق هست یا نه. آرایهٔ نتیجه کار exec() است و اندیس نخستین تطبیق را متد search() می‌دهد."
+  },
+  {
+   "question": "اگر متد exec() تطبیقی پیدا نکند چه برمی‌گرداند؟",
+   "options": [
+    "undefined",
+    "رشتهٔ خالی",
+    "null",
+    "عدد 0"
+   ],
+   "answer": 2,
+   "explanation": "در متن درس آمده که exec() در نبود تطبیق یک شیء خالی (null) برمی‌گرداند، نه رشتهٔ خالی و نه undefined."
+  },
+  {
+   "question": "RegExp.escape() چه کاری انجام می‌دهد؟",
+   "options": [
+    "الگو را کامپایل می‌کند",
+    "نویسه‌های نحوی را escape می‌کند تا تحت‌اللفظی شوند",
+    "همهٔ تطبیق‌ها را برمی‌گرداند",
+    "فهرست پرچم‌ها را می‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "escape باعث می‌شود نویسه‌هایی مانند + و * و ? معنای ویژهٔ خود را از دست بدهند و به‌صورت نویسهٔ ساده به کار روند. کامپایل کار compile() بود."
+  },
+  {
+   "question": "RegExp.escape() از کدام نسخهٔ ECMAScript است؟",
+   "options": [
+    "ECMAScript 2015",
+    "ECMAScript 2022",
+    "ECMAScript 2025",
+    "ECMAScript 5"
+   ],
+   "answer": 2,
+   "explanation": "این متد یک ویژگی ECMAScript 2025 است که از مه ۲۰۲۵ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود."
+  },
+  {
+   "question": "در JavaScript، RegExp چیست؟",
+   "options": [
+    "یک تابع ساده",
+    "یک شیء با خصوصیت‌ها و متدهای از پیش تعریف‌شده",
+    "یک نوع عددی",
+    "یک انتخابگر CSS"
+   ],
+   "answer": 1,
+   "explanation": "درس با همین جمله شروع می‌شود: RegExp یک شیء عبارت باقاعده با خصوصیت‌ها و متدهای از پیش تعریف‌شده است."
+  }
+ ]
+}

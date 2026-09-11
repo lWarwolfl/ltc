@@ -1,0 +1,305 @@
+{
+ "slug": "js_errors",
+ "course": "js",
+ "order": 105,
+ "url": "/js/js_errors.asp",
+ "title": "دستورهای خطا در JavaScript",
+ "summary": "این درس دستورهای مدیریت خطا در JavaScript را معرفی می‌کند: try برای نگه‌داشتن کد خطرناک، catch برای گرفتن خطا، finally برای کد همیشه‌اجرا و throw برای ساختن خطای سفارشی. با این ابزارها می‌توانید جریان برنامه را کنترل کنید و به کاربر پیام روشن بدهید.",
+ "objectives": [
+  "بلوک try را برای کد مشکوک به خطا بنویسید",
+  "با catch خطا را بگیرید و پیام آن را نمایش دهید",
+  "با finally کد پاک‌سازی همیشه‌اجرا بنویسید",
+  "با throw خطای سفارشی بسازید",
+  "یک فرم ساده را با اعتبارسنجی ورودی بررسی کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "دستورهای خطا در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "دستور try"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، دستور try برای مدیریت خطاها (که استثنا هم نامیده می‌شوند) که ممکن است هنگام اجرای کد رخ دهند به کار می‌رود، بدون آنکه کل برنامه متوقف شود."
+  },
+  {
+   "type": "p",
+   "text": "دستور try با catch کار می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "گاهی با finally کار می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "و گاهی با throw کار می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "بلوک try"
+  },
+  {
+   "type": "p",
+   "text": "بلوک try کدی را در خود دارد که ممکن است خطا بیندازد."
+  },
+  {
+   "type": "p",
+   "text": "اگر خطایی رخ ندهد، بلوک catch رد می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  // Code that may cause an error\n\n} catch (error) {\n\n  // Code to handle the error\n\n}",
+   "caption": "نحو"
+  },
+  {
+   "type": "h2",
+   "text": "بلوک catch"
+  },
+  {
+   "type": "p",
+   "text": "بلوک catch فقط وقتی اجرا می‌شود که در بلوک try خطایی رخ دهد."
+  },
+  {
+   "type": "p",
+   "text": "شیء خطا جزئیات آنچه اشتباه شده است را فراهم می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  // Code that may cause an error\n\n} catch (error) {\n\n  // Code to handle the error\n\n}",
+   "caption": "نحو"
+  },
+  {
+   "type": "h2",
+   "text": "بلوک finally (اختیاری)"
+  },
+  {
+   "type": "p",
+   "text": "بلوک finally بعد از بلوک‌های try و catch اجرا می‌شود، چه خطایی رخ داده باشد چه نه."
+  },
+  {
+   "type": "p",
+   "text": "معمولاً برای کارهای پاک‌سازی به کار می‌رود (مثلاً بستن فایل‌ها، متوقف کردن نشانگرهای بارگذاری و مانند آن)."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  // Code that may cause an error\n\n} catch (error) {\n\n  // Code to handle the error\n\n} finally {\n\n  // Code that always runs, no matter what\n\n}",
+   "caption": "نحو"
+  },
+  {
+   "type": "h2",
+   "text": "JavaScript خطا می‌اندازد"
+  },
+  {
+   "type": "p",
+   "text": "وقتی خطایی رخ می‌دهد، JavaScript معمولاً متوقف می‌شود و پیام خطا تولید می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "اصطلاح فنی این کار چنین است: JavaScript یک استثنا می‌اندازد (خطا می‌اندازد)."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JavaScript در واقع یک شیء Error با دو خصوصیت می‌سازد: name و message."
+  },
+  {
+   "type": "h2",
+   "text": "دستور throw"
+  },
+  {
+   "type": "p",
+   "text": "دستور throw به شما اجازه می‌دهد خطایی سفارشی بسازید."
+  },
+  {
+   "type": "p",
+   "text": "از نظر فنی می‌توانید یک استثنا بیندازید (خطا بیندازید)."
+  },
+  {
+   "type": "p",
+   "text": "استثنا می‌تواند یک رشته، عدد، بولی یا شیء JavaScript باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "throw \"Too big\";    // throw a text\n\nthrow 500;          // throw a number",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "اگر throw را همراه try و catch به کار ببرید، می‌توانید جریان برنامه را کنترل کنید و پیام‌های خطای سفارشی بسازید."
+  },
+  {
+   "type": "h2",
+   "text": "مثال اعتبارسنجی ورودی"
+  },
+  {
+   "type": "p",
+   "text": "این مثال ورودی را بررسی می‌کند. اگر مقدار نادرست باشد، استثنایی (err) انداخته می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "استثنا (err) توسط دستور catch گرفته می‌شود و پیام خطای سفارشی نمایش داده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n<body>\n\n<p>Please input a number between\n5 and 10:</p>\n\n<input id=\"demo\" type=\"text\">\n<button type=\"button\"\nonclick=\"myFunction()\">Test Input</button>\n<p id=\"p01\"></p>\n\n<script>\nfunction myFunction() {\n  const message =\ndocument.getElementById(\"p01\");\n  message.innerHTML = \"\";\n\n  let x =\ndocument.getElementById(\"demo\").value;\n\ntry {\n    if(x.trim() == \"\") throw \"empty\";\n\n if(isNaN(x)) throw \"not a number\";\n\n x = Number(x);\n    if(x < 5) throw\n \"too low\";\n    if(x > 10) throw \"too\n high\";\n  } catch(err) {\n    message.innerHTML =\n\"Input is \" + err;\n  }\n}\n</script>\n\n</body>\n</html>",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_throw_error"
+  },
+  {
+   "type": "h2",
+   "text": "اعتبارسنجی HTML"
+  },
+  {
+   "type": "p",
+   "text": "کد بالا فقط یک مثال است."
+  },
+  {
+   "type": "p",
+   "text": "مرورگرهای امروزی اغلب ترکیبی از JavaScript و اعتبارسنجی داخلی HTML را با قواعد اعتبارسنجی از پیش تعریف‌شده در ویژگی‌های HTML به کار می‌برند:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<input id=\"demo\" type=\"number\" min=\"5\" max=\"10\" step=\"1\">",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "دربارهٔ اعتبارسنجی فرم‌ها می‌توانید در فصل‌های بعدی این آموزش بیشتر بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "مثال finally"
+  },
+  {
+   "type": "p",
+   "text": "دستور finally اجازه می‌دهد کد را بعد از try و catch و مستقل از نتیجه اجرا کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n    Block of code to try\n\n} catch(err) {\n\n    Block of code to handle errors\n\n} finally {\n  Block of code to be executed regardless of the try / catch result\n\n}",
+   "caption": "نحو"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction() {\n  const message =\ndocument.getElementById(\"p01\");\n  message.innerHTML = \"\";\n\n  let x =\ndocument.getElementById(\"demo\").value;\n\ntry {\n\nif(x.trim() == \"\") throw \"is empty\";\n    if(isNaN(x))\nthrow \"is not a number\";\n\n    x = Number(x);\n    if(x >\n10) throw \"is too high\";\n    if(x <\n5) throw \"is too low\";\n  } catch(err)\n{\n    message.innerHTML = \"Error: \" +\nerr + \".\";\n  } finally {\n    document.getElementById(\"demo\").value = \"\";\n\n    }\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_finally_error"
+  },
+  {
+   "type": "h2",
+   "text": "ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "خطاهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "خطاهای بی‌صدا در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "شیء خطا در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "اشکال‌زدایی JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "کدی بنویسید که داخل try یک متغیر تعریف‌نشده را صدا بزند و در catch پیام خطا را با console.log چاپ کند.",
+   "hint": "بلوک catch فقط وقتی اجرا می‌شود که در بلوک try خطایی رخ دهد؛ اگر خطایی نباشد، catch رد می‌شود."
+  },
+  {
+   "prompt": "با throw یک خطای سفارشی رشته‌ای بیندازید، مثل throw \"Too big\"، و آن را در catch بگیرید و نمایش دهید.",
+   "hint": "استثنا می‌تواند رشته، عدد، بولی یا شیء باشد."
+  },
+  {
+   "prompt": "یک فیلد ورودی و یک دکمه بسازید که عددی بین ۵ و ۱۰ بگیرد و اگر مقدار نادرست بود پیام خطای سفارشی نشان دهد.",
+   "hint": "با isNaN بررسی کنید مقدار عدد است یا نه و در صورت خارج بودن از بازه با throw خطا بیندازید."
+  },
+  {
+   "prompt": "به مثال قبلی یک بلوک finally اضافه کنید که مقدار فیلد ورودی را پاک کند.",
+   "hint": "بلوک finally چه خطا رخ دهد و چه نه، همیشه اجرا می‌شود."
+  },
+  {
+   "prompt": "فرم خود را یک بار با ویژگی‌های HTML مثل type=\"number\" min=\"5\" max=\"10\" هم آزمایش کنید.",
+   "hint": "مرورگرهای امروزی ترکیبی از اعتبارسنجی HTML و JavaScript را به کار می‌برند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "بلوک catch چه زمانی اجرا می‌شود؟",
+   "options": [
+    "همیشه، مستقل از نتیجهٔ try",
+    "فقط اگر در بلوک try خطایی رخ دهد",
+    "فقط اگر بلوک finally وجود داشته باشد",
+    "فقط وقتی از throw استفاده کرده باشید"
+   ],
+   "answer": 1,
+   "explanation": "catch فقط در صورت رخ دادن خطا در try اجرا می‌شود؛ اگر خطایی نباشد، این بلوک رد می‌شود."
+  },
+  {
+   "question": "بلوک finally چه زمانی اجرا می‌شود؟",
+   "options": [
+    "فقط وقتی خطایی رخ نداده باشد",
+    "بعد از try و catch و در هر حال",
+    "هیچ‌وقت، مگر با throw",
+    "فقط وقتی خطایی رخ داده باشد"
+   ],
+   "answer": 3,
+   "explanation": "finally بعد از try و catch و مستقل از نتیجه اجرا می‌شود؛ به همین دلیل برای کارهای پاک‌سازی مناسب است."
+  },
+  {
+   "question": "شیء Error به‌طور معمول چه خصوصیت‌هایی دارد؟",
+   "options": [
+    "line و column",
+    "code و text",
+    "name و message",
+    "type و value"
+   ],
+   "answer": 2,
+   "explanation": "جاوااسکریپت هنگام خطا یک شیء Error با خصوصیت‌های name (نام خطا) و message (پیام خطا) می‌سازد."
+  },
+  {
+   "question": "با دستور throw چه چیزی می‌توان انداخت؟",
+   "options": [
+    "فقط عدد",
+    "فقط شیء Error",
+    "فقط رشته",
+    "رشته، عدد، بولی یا شیء"
+   ],
+   "answer": 1,
+   "explanation": "استثنا می‌تواند رشته، عدد، بولی یا شیء باشد؛ هرچند در عمل انداختن شیء Error رایج‌تر و مفیدتر است."
+  },
+  {
+   "question": "در مرورگرهای امروزی اعتبارسنجی فرم‌ها چگونه انجام می‌شود؟",
+   "options": [
+    "فقط با JavaScript",
+    "فقط با ویژگی‌های HTML",
+    "ترکیبی از JavaScript و قواعد اعتبارسنجی HTML",
+    "فقط در سمت سرور"
+   ],
+   "answer": 2,
+   "explanation": "مرورگرهای تازه اغلب قواعد از پیش تعریف‌شده در ویژگی‌های HTML را با JavaScript ترکیب می‌کنند؛ مثال درس هم یک نمونهٔ سادهٔ JavaScript بود."
+  }
+ ]
+}

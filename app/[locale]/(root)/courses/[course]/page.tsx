@@ -84,9 +84,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
             <BookOpen className="text-primary size-5" />
             {t('lessons')}
           </CardTitle>
-          <CardDescription>
-            {sections.length} {t('sections')}
-          </CardDescription>
+          <CardDescription>{t('lessons-count', { count: sections.length })}</CardDescription>
         </CardHeader>
 
         <CardContent>

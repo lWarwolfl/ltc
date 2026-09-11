@@ -1,0 +1,277 @@
+{
+ "slug": "js_2021",
+ "course": "js",
+ "order": 129,
+ "url": "/js/js_2021.asp",
+ "title": "ECMAScript 2021",
+ "summary": "در این درس سه ویژگی تازهٔ JavaScript در سال ۲۰۲۱ را می‌بینید: Promise.any() برای گرفتن اولین نتیجهٔ موفق، متد replaceAll() برای جایگزینی همهٔ رخدادها و جداکنندهٔ عددی (_) برای خواناتر نوشتن عددها. بعد از این درس می‌توانید این سه ابزار را در کد خودتان به کار ببرید و محدودیت‌هایشان را توضیح دهید.",
+ "objectives": [
+  "Promise.any() را با چند پرامیس امتحان کنید",
+  "متد replaceAll() را با رشته و با عبارت باقاعده به کار ببرید",
+  "دلیل الزامی بودن فلگ g را در replaceAll() توضیح دهید",
+  "جداکنندهٔ عددی را درست به کار ببرید و بدانید کجا مجاز نیست"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ECMAScript 2021"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های جدید در JavaScript 2021"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ویژگی",
+     "توضیح",
+     "",
+     ""
+    ],
+    [
+     "Promise.any()",
+     "پرامیس‌ها را به‌عنوان ورودی می‌گیرد و یک پرامیس برمی‌گرداند",
+     ""
+    ],
+    [
+     "متد replaceAll() رشته",
+     "همهٔ رخدادهای یک زیررشته را در یک رشته جایگزین می‌کند",
+     "",
+     ""
+    ],
+    [
+     "جداکنندهٔ عددی",
+     "جداکنندهٔ عددی جدید (_) خواندن عددها را آسان‌تر می‌کند",
+     ""
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2021 از آوریل ۲۰۲۱ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome85",
+     "Edge85",
+     "Firefox79",
+     "Safari14.1",
+     "Opera71"
+    ],
+    [
+     "اوت ۲۰۲۰",
+     "اوت ۲۰۲۰",
+     "جولای ۲۰۲۰",
+     "آوریل ۲۰۲۱",
+     "سپتامبر ۲۰۲۰"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Promise.any() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Promise.any() یک متد ایستا در JavaScript است که یک iterable از پرامیس‌ها را به‌عنوان ورودی می‌گیرد و یک پرامیس برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Promise\n\nconst myPromise1 = new Promise((resolve, reject) => {\n\n  setTimeout(resolve, 200, \"King\");\n\n});\n\n// Create another Promise\n\nconst myPromise2 = new Promise((resolve, reject) => {\n\n  setTimeout(resolve, 100, \"Queen\");\n\n});\n\n// Run when any promise fulfill\n\nPromise.any([myPromise1, myPromise2]).then((x) => {\n\n  myDisplay(x);\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_any"
+  },
+  {
+   "type": "h2",
+   "text": "متد replaceAll() رشته در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ES2021 متد رشته‌ای replaceAll() را معرفی کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "text = text.replaceAll(\"Cats\",\"Dogs\");\n\ntext = text.replaceAll(\"cats\",\"dogs\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replaceall"
+  },
+  {
+   "type": "p",
+   "text": "متد replaceAll() اجازه می‌دهد به‌جای رشته‌ای که باید جایگزین شود، یک عبارت باقاعده (regular expression) مشخص کنید."
+  },
+  {
+   "type": "p",
+   "text": "اگر پارامتر یک عبارت باقاعده باشد، باید فلگ global یعنی g تنظیم شده باشد؛ در غیر این صورت خطای TypeError پرتاب می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "text = text.replaceAll(/Cats/g,\"Dogs\");\n\ntext = text.replaceAll(/cats/g,\"dogs\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replaceall2"
+  },
+  {
+   "type": "p",
+   "text": "ES2020 متد رشته‌ای matchAll() را معرفی کرد."
+  },
+  {
+   "type": "h2",
+   "text": "جداکنندهٔ عددی (_) در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ES2021 جداکنندهٔ عددی (_) را معرفی کرد تا خواندن عددها آسان‌تر شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const num = 1_000_000_000;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numeric_separator"
+  },
+  {
+   "type": "p",
+   "text": "جداکنندهٔ عددی فقط جنبهٔ ظاهری دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const num1 = 1_000_000_000;\n\nconst num2 = 1000000000;\n\n(num1 === num2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numeric_separator2"
+  },
+  {
+   "type": "p",
+   "text": "جداکنندهٔ عددی را می‌توانید هر جای عدد قرار دهید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const num1 = 1_2_3_4_5;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numeric_separator3"
+  },
+  {
+   "type": "p",
+   "text": "گذاشتن جداکنندهٔ عددی در ابتدا یا انتهای عدد مجاز نیست."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript فقط نام متغیرها می‌توانند با _ شروع شوند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل any.html بسازید و دو پرامیس با setTimeout بسازید که یکی بعد از ۲۰۰ میلی‌ثانیه و دیگری بعد از ۱۰۰ میلی‌ثانیه resolve شود، سپس با Promise.any نتیجه را در کنسول چاپ کنید.",
+   "hint": "Promise.any اولین پرامیسی را برمی‌گرداند که با موفقیت کامل شود؛ پرامیسی با زمان کمتر زودتر تمام می‌شود."
+  },
+  {
+   "prompt": "یک رشته با چند رخداد کلمهٔ Cats بسازید و با replaceAll همه را به Dogs تغییر دهید و نتیجه را چاپ کنید.",
+   "hint": "replaceAll برخلاف replace همهٔ رخدادها را جایگزین می‌کند، نه فقط رخداد اول را."
+  },
+  {
+   "prompt": "همان جایگزینی را با یک عبارت باقاعده انجام دهید و ببینید اگر فلگ g را نگذارید چه خطایی می‌گیرید.",
+   "hint": "برای الگوی /Cats/g اگر g را بردارید، TypeError پرتاب می‌شود."
+  },
+  {
+   "prompt": "دو متغیر بسازید، یکی با عدد 1000000000 و دیگری با 1_000_000_000 و با === مقایسه کنید.",
+   "hint": "جداکنندهٔ عددی فقط ظاهری است؛ مقدار عدد تغییر نمی‌کند."
+  },
+  {
+   "prompt": "جداکننده را یک‌بار ابتدای عدد و یک‌بار انتهای عدد بگذارید و خطای نحو را در کنسول ببینید.",
+   "hint": "جداکنندهٔ عددی نه در ابتدا و نه در انتهای عدد مجاز نیست."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "Promise.any() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "یک پرامیس که با اولین پرامیس موفق کامل می‌شود",
+    "یک پرامیس که با اولین پرامیس ردشده رد می‌شود",
+    "آرایه‌ای از همهٔ نتیجه‌ها",
+    "همیشه undefined"
+   ],
+   "answer": 0,
+   "explanation": "Promise.any() یک iterable از پرامیس‌ها می‌گیرد و یک پرامیس برمی‌گرداند که با اولین پرامیس کامل‌شده کامل می‌شود. گزینهٔ دوم کار Promise.race با شکست است و هیچ‌کدام آرایه یا undefined برنمی‌گردانند."
+  },
+  {
+   "question": "کدام متد همهٔ رخدادهای یک زیررشته را در یک رشته جایگزین می‌کند؟",
+   "options": [
+    "replace()",
+    "replaceAll()",
+    "matchAll()",
+    "search()"
+   ],
+   "answer": 1,
+   "explanation": "replaceAll() که در ES2021 اضافه شد همهٔ رخدادها را جایگزین می‌کند. replace() فقط رخداد اول را عوض می‌کند، matchAll() نتیجه را پیدا می‌کند و search() جای اندیس را برمی‌گرداند."
+  },
+  {
+   "question": "اگر پارامتر replaceAll() یک عبارت باقاعده باشد، چه شرطی لازم است؟",
+   "options": [
+    "باید فلگ i تنظیم شود",
+    "باید فلگ g تنظیم شود",
+    "هیچ فلگی لازم نیست",
+    "باید الگو داخل کوتیشن نوشته شود"
+   ],
+   "answer": 1,
+   "explanation": "برای عبارت باقاعده باید فلگ global یعنی g تنظیم شده باشد، وگرنه خطای TypeError پرتاب می‌شود. فلگ i فقط جست‌وجو را به بزرگی و کوچکی حروف حساس‌نمی‌کند."
+  },
+  {
+   "question": "جداکنندهٔ عددی (_) چه کاری انجام می‌دهد؟",
+   "options": [
+    "مقدار عدد را تغییر می‌دهد",
+    "عدد را به رشته تبدیل می‌کند",
+    "فقط خوانایی عدد را بهتر می‌کند",
+    "عدد را رُند می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "جداکنندهٔ عددی فقط برای خوانایی ظاهری است؛ 1_000_000_000 و 1000000000 دقیقاً یک مقدار دارند و با === برابرند."
+  },
+  {
+   "question": "جداکنندهٔ عددی کجا مجاز نیست؟",
+   "options": [
+    "بین دو رقم وسط عدد",
+    "در ابتدا یا انتهای عدد",
+    "بعد از ممیز",
+    "کلاً در هیچ‌جا"
+   ],
+   "answer": 1,
+   "explanation": "جداکننده را می‌توان هر جای عدد گذاشت، جز ابتدا یا انتهای آن. پس نمی‌توانید عدد را با _ شروع یا تمام کنید."
+  }
+ ]
+}

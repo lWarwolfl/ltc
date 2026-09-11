@@ -1,0 +1,665 @@
+{
+ "slug": "js_2020",
+ "course": "js",
+ "order": 130,
+ "url": "/js/js_2020.asp",
+ "title": "ECMAScript 2020",
+ "summary": "در این درس ویژگی‌های ES 2020 را می‌بینید: BigInt برای عددهای بسیار بزرگ، matchAll() برای یافتن همهٔ رخدادها، عملگرهای ??، ?.، &&=، ||= و ??=، و مفاهیمی مثل import پویا، globalThis، import.meta و خروجی namespace. در پایان می‌توانید مقادیر پیش‌فرض و دسترسی امن به خصوصیت‌ها را با نحو تازه بنویسید.",
+ "objectives": [
+  "تفاوت عملگر ?? با || را توضیح دهید",
+  "با optional chaining از خطای خصوصیت ناموجود جلوگیری کنید",
+  "BigInt را بسازید و نوعش را با typeof بررسی کنید",
+  "کاربرد Promise.allSettled() و import پویا را بگویید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ECMAScript 2020"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های جدید در JavaScript 2020"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ویژگی",
+     "توضیح"
+    ],
+    [
+     "BigInt",
+     "مقدارهایی را نگه می‌دارد که برای عدد JavaScript بیش از حد بزرگ‌اند"
+    ],
+    [
+     "متد matchAll() رشته",
+     "همهٔ رخدادهای یک رشته را در یک رشته جست‌وجو می‌کند"
+    ],
+    [
+     "Promise.allSettled()",
+     "پرامیس‌ها را به‌عنوان ورودی می‌گیرد و یک پرامیس برمی‌گرداند"
+    ],
+    [
+     "Import پویا",
+     "ماژول‌های JavaScript را در زمان اجرا بارگذاری می‌کند"
+    ],
+    [
+     "globalThis",
+     "بدون توجه به محیط اجرای کد، به شیء global اشاره می‌کند"
+    ],
+    [
+     "import.meta",
+     "شیئی برمی‌گرداند که نشانی پایهٔ یک ماژول را نشان می‌دهد"
+    ],
+    [
+     "خروجی namespace",
+     "یک namespace کامل را بدون import کردن قبلی از ماژول بیرون می‌دهد"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "عملگرهای جدید JavaScript در ۲۰۲۰"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "عملگر",
+     "توضیح",
+     ""
+    ],
+    [
+     "??",
+     "عملگر nullish coalescing اولین آرگومانی را برمی‌گرداند که nullish نباشد",
+     ""
+    ],
+    [
+     "?.",
+     "اگر شیء undefined یا null باشد، optional chaining مقدار undefined برمی‌گرداند",
+     ""
+    ],
+    [
+     "&&=",
+     "تخصیص AND منطقی اگر مقدار اول درست باشد، مقدار دوم را نسبت می‌دهد",
+     ""
+    ],
+    [
+     "||=",
+     "تخصیص OR منطقی اگر مقدار اول نادرست باشد، مقدار دوم را نسبت می‌دهد",
+     ""
+    ],
+    [
+     "??=",
+     "تخصیص nullish coalescing اگر مقدار اول undefined یا null باشد، مقدار دوم را نسبت می‌دهد",
+     ""
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2020 از آوریل ۲۰۲۱ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome80",
+     "Edge80",
+     "Firefox80",
+     "Safari14.1",
+     "Opera67"
+    ],
+    [
+     "فوریه ۲۰۲۰",
+     "فوریه ۲۰۲۰",
+     "اوت ۲۰۲۰",
+     "آوریل ۲۰۲۱",
+     "مارس ۲۰۲۰"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "BigInt در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متغیرهای BigInt برای نگه‌داری عددهای صحیح بزرگی به کار می‌روند که یک Number معمولی JavaScript نمی‌تواند آن‌ها را نمایش دهد."
+  },
+  {
+   "type": "p",
+   "text": "عددهای صحیح JavaScript فقط تا حدود ۱۵ رقم دقیق هستند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 999999999999999;\n\nlet y = 9999999999999999; // too big",
+   "caption": "مثال عدد صحیح"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 9999999999999999;\n\nlet y = 9999999999999999n;",
+   "caption": "مثال عدد صحیح"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن BigInt، به انتهای عدد صحیح یک n اضافه کنید یا BigInt() را صدا بزنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 1234567890123456789012345n;\n\nlet y = BigInt(1234567890123456789012345)",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_create"
+  },
+  {
+   "type": "p",
+   "text": "نتیجهٔ typeof برای BigInt مقدار \"bigint\" است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = BigInt(999999999999999);\n\nlet type = typeof x;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_typeof"
+  },
+  {
+   "type": "h2",
+   "text": "متد matchAll() رشته در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیش از ES2020 هیچ متد رشته‌ای نبود که بتوان با آن همهٔ رخدادهای یک رشته را در یک رشته جست‌وجو کرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const iterator = text.matchAll(\"Cats\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall"
+  },
+  {
+   "type": "p",
+   "text": "اگر پارامتر یک عبارت باقاعده باشد، باید فلگ global یعنی g تنظیم شده باشد؛ در غیر این صورت خطای TypeError پرتاب می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const iterator = text.matchAll(/Cats/g);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall2"
+  },
+  {
+   "type": "p",
+   "text": "اگر می‌خواهید جست‌وجو به بزرگی و کوچکی حروف حساس نباشد، باید فلگ i تنظیم شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const iterator = text.matchAll(/Cats/gi);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall3"
+  },
+  {
+   "type": "p",
+   "text": "ES2021 متد رشته‌ای replaceAll() را معرفی کرد."
+  },
+  {
+   "type": "h2",
+   "text": "عملگر nullish coalescing (??)"
+  },
+  {
+   "type": "p",
+   "text": "عملگر ?? اگر عملوند اول nullish نباشد آن را برمی‌گرداند، وگرنه عملوند دوم را."
+  },
+  {
+   "type": "p",
+   "text": "اگر عملوند اول nullish باشد، عملگر ?? عملوند دوم را برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "nullish واژه‌ای برای توصیف null یا undefined است."
+  },
+  {
+   "type": "p",
+   "text": "عملگر ?? برای دادن مقدار پیش‌فرض به کار می‌رود و با عملگر OR منطقی یعنی || فرق دارد، چون فقط null و undefined را nullish می‌داند و مقدارهای falsy دیگر مثل 0 یا رشتهٔ خالی را نادیده می‌گیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let name = null;\n\nlet text = \"missing\";\n\nlet result = name ?? text;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nullish"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر optional chaining (?.)"
+  },
+  {
+   "type": "p",
+   "text": "عملگر optional chaining اگر خصوصیت شیء undefined یا null باشد، به‌جای پرتاب خطا مقدار undefined برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\nlet name = car?.name;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_optional_chaining"
+  },
+  {
+   "type": "p",
+   "text": "optional chaining فقط روی خصوصیت‌های شیء کار نمی‌کند؛ روی فراخوانی تابع و آرایه‌ها هم کار می‌کند."
+  },
+  {
+   "type": "h3",
+   "text": "فراخوانی تابع"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "کاربرد",
+     "نحو",
+     "رفتار"
+    ],
+    [
+     "فراخوانی امن تابع",
+     "obj.method?.()",
+     "اگر متد وجود نداشته باشد undefined برمی‌گرداند"
+    ],
+    [
+     "مدیریت مقدار برگشتی",
+     "let x = fn?.()",
+     "اگر fn وجود نداشته باشد، x مقدار undefined می‌گیرد"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "آرایه‌ها"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "کاربرد",
+     "نحو",
+     "خروجی"
+    ],
+    [
+     "دسترسی امن به عنصر",
+     "arr?.[2]",
+     "اگر arr مقدار null یا undefined داشته باشد، undefined"
+    ],
+    [
+     "دسترسی امن به خصوصیت عنصر",
+     "arr?.[1]?.name",
+     "با خیال راحت undefined برمی‌گرداند"
+    ],
+    [
+     "فراخوانی امن متد",
+     "arr?.map(fn)",
+     "اگر arr وجود نداشته باشد undefined برمی‌گرداند"
+    ],
+    [
+     "مقدار پیش‌فرض جایگزین",
+     "arr?.[0] ?? \"N/A\"",
+     "اگر arr یا عنصر وجود نداشته باشد، مقدار \"N/A\" برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "عملگر &&="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص AND منطقی بین دو مقدار به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "اگر مقدار اول درست باشد، مقدار دوم نسبت داده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nx &&= 5;",
+   "caption": "مثال تخصیص AND منطقی"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_logical_and_and"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر ||="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص OR منطقی بین دو مقدار به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "اگر مقدار اول نادرست باشد، مقدار دوم نسبت داده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nx ||= 5;",
+   "caption": "مثال تخصیص OR منطقی"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_logical_or_or"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر ??="
+  },
+  {
+   "type": "p",
+   "text": "عملگر تخصیص nullish coalescing بین دو مقدار به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "اگر مقدار اول undefined یا null باشد، مقدار دوم نسبت داده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x;\n\nx ??= 10;",
+   "caption": "مثال تخصیص nullish coalescing"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_nullish"
+  },
+  {
+   "type": "h2",
+   "text": "Promise.allSettled() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد Promise.allSettled() از فهرستی از پرامیس‌ها یک پرامیس برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Promise\n\nconst myPromise1 = new Promise((resolve, reject) => {\n\n  setTimeout(resolve, 200, \"King\");\n\n});\n\n// Create another Promise\n\nconst myPromise2 = new Promise((resolve, reject) => {\n\n  setTimeout(resolve, 100, \"Queen\");\n\n});\n\n// Settle All\n\nPromise.allSettled([myPromise1, myPromise2]).then((results) =>\n\n  results.forEach((x) => myDisplay(x.status)),\n\n);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_allsettled"
+  },
+  {
+   "type": "p",
+   "text": "Promise.allSettled() یعنی «همهٔ پرامیس‌ها را اجرا کن؛ به نتیجه‌ها کاری ندارم»."
+  },
+  {
+   "type": "h2",
+   "text": "Import پویا در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Import پویا راهی برای بارگذاری ماژول‌های JavaScript در زمان اجراست، نه در ابتدای برنامه."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import(\"./module.js\")",
+   "caption": "نحو"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "آرگومان باید رشته یا عبارتی باشد که به یک مسیر تبدیل شود",
+    "باید import را داخل یک اسکریپت ماژول (<script type=\"module\">) اجرا کنید"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برخلاف importهای ایستا (که باید در ابتدای فایل بیایند)، importهای پویا هر جایی قابل استفاده‌اند: داخل تابع‌ها، شرط‌ها، رویدادگردان‌ها و غیره."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نوع",
+     "مثال",
+     "زمان بارگذاری"
+    ],
+    [
+     "ایستا",
+     "import { add } from './math.js';",
+     "هنگام بارگذاری"
+    ],
+    [
+     "پویا",
+     "const math = await import('./math.js');",
+     "هنگام نیاز"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "globalThis در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "globalThis روشی استاندارد برای دسترسی به شیء global فراهم می‌کند، بدون توجه به محیطی که کد در آن اجرا می‌شود: مرورگر، Node.js، Web Worker یا هر محیط اجرای دیگری."
+  },
+  {
+   "type": "p",
+   "text": "شیء global بالاترین شیء در یک محیط JavaScript است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "در مرورگرها، همان window است.",
+    "در Node.js، همان global است.",
+    "در Web Workerها، همان self است."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "بسیاری از محیط‌ها نام خودشان را برای شیء this دارند. همین موضوع برای کدی که قرار بود همه‌جا اجرا شود، مشکل سازگاری می‌ساخت."
+  },
+  {
+   "type": "p",
+   "text": "globalThis در ECMAScript 2020 (ES11) برای حل همین مشکل معرفی شد. این یک ارجاع یکپارچه به شیء global است، در هر محیطی که باشید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "globalThis === window); // true in browsers\n\nglobalThis === global); // true in Node.js",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "globalThis.appName = \"W3Schools Demo\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_globalthis"
+  },
+  {
+   "type": "p",
+   "text": "پیش‌تر، برنامه‌نویسان مجبور بودند از راه‌حل‌های موقتی مثل این استفاده کنند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const getGlobal = function() {\n\n  if (typeof self !== 'undefined') return self;\n\n  if (typeof window !== 'undefined') return window;\n\n  if (typeof global !== 'undefined') return global;\n\n  throw new Error('Cannot find global object');\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "با globalThis دیگر به آن نیازی نیست."
+  },
+  {
+   "type": "h2",
+   "text": "import.meta در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "import.meta شیئی برمی‌گرداند که نشانی پایهٔ یک ماژول را در خود دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myObject = import.meta;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_importmeta"
+  },
+  {
+   "type": "h2",
+   "text": "خروجی namespace در ماژول"
+  },
+  {
+   "type": "p",
+   "text": "با خروجی namespace در ماژول می‌توانید یک namespace کامل را بدون import کردن قبلی، از ماژول خودتان دوباره بیرون بدهید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// re-export all named exports directly\n\nexport * from \"./utils.js\";\n\n// consumers can use:\n\nimport { add } from \"./math.js\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// re-export all as a namespace\n\nexport * as utils from \"./utils.js\";\n\n// consumers can use:\n\nimport { utils } from \"./math.js\";",
+   "caption": "مثال"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایلی به نام nullish.html بسازید و متغیری با مقدار null تعریف کنید، سپس با عملگر ?? یک مقدار پیش‌فرض به آن بدهید و نتیجه را چاپ کنید.",
+   "hint": "?? فقط وقتی عملوند اول null یا undefined باشد، سراغ عملوند دوم می‌رود."
+  },
+  {
+   "prompt": "همان کد را با 0 و رشتهٔ خالی به‌جای null امتحان کنید و ببینید ?? با || چه تفاوتی دارد.",
+   "hint": "|| مقدارهای falsy مثل 0 و \"\" را هم رد می‌کند، اما ?? فقط null و undefined را."
+  },
+  {
+   "prompt": "یک شیء car بدون خصوصیت name بسازید و با car?.name ببینید چه چیزی برمی‌گردد، بعد همان خط را بدون ?. بنویسید و خطای برنامه را ببینید.",
+   "hint": "optional chaining به‌جای پرتاب خطا مقدار undefined برمی‌گرداند."
+  },
+  {
+   "prompt": "دو عدد بزرگ بسازید، یکی بزرگ‌تر از ۱۵ رقم، و مقدارهایشان را با BigInt بسازید تا تفاوت را ببینید.",
+   "hint": "به انتهای عدد یک n اضافه کنید یا از BigInt() استفاده کنید؛ typeof نتیجه \"bigint\" است."
+  },
+  {
+   "prompt": "سه پرامیس بسازید که یکی از آن‌ها reject شود و با Promise.allSettled وضعیت هر سه را در کنسول چاپ کنید.",
+   "hint": "allSettled هم نتیجهٔ موفق و هم شکست‌خورده را برمی‌گرداند و به شکست یکی، بقیه را متوقف نمی‌کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "عملگر ?? چه زمانی سراغ عملوند دوم می‌رود؟",
+   "options": [
+    "وقتی عملوند اول false باشد",
+    "وقتی عملوند اول null یا undefined باشد",
+    "همیشه",
+    "وقتی عملوند اول صفر باشد"
+   ],
+   "answer": 1,
+   "explanation": "?? فقط null و undefined را nullish می‌داند؛ پس برای 0 یا رشتهٔ خالی سراغ عملوند دوم نمی‌رود. تشخیص false و صفر کار عملگر || است."
+  },
+  {
+   "question": "نتیجهٔ car?.name برای شیئی که خصوصیت name ندارد چیست؟",
+   "options": [
+    "یک خطای TypeError",
+    "مقدار null",
+    "مقدار undefined",
+    "رشتهٔ خالی"
+   ],
+   "answer": 2,
+   "explanation": "optional chaining روی خصوصیت ناموجود به‌جای خطا مقدار undefined برمی‌گرداند. گزینهٔ اول رفتار حالت بدون ?. است."
+  },
+  {
+   "question": "تفاوت Promise.allSettled() با تأخیر یکی از پرامیس‌ها چیست؟",
+   "options": [
+    "با شکست یکی از پرامیس‌ها متوقف می‌شود",
+    "همهٔ پرامیس‌ها را اجرا می‌کند و نتیجهٔ هر کدام را جدا گزارش می‌دهد",
+    "فقط پرامیس اول را اجرا می‌کند",
+    "پرامیس ردشده را دوباره تلاش می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "allSettled یعنی «همهٔ پرامیس‌ها را اجرا کن»؛ وضعیت موفق یا ناموفق هر پرامیس را جدا برمی‌گرداند و به نتیجهٔ بقیه کاری ندارد."
+  },
+  {
+   "question": "عملگر &&= مقدار دوم را چه زمانی نسبت می‌دهد؟",
+   "options": [
+    "وقتی مقدار اول درست باشد",
+    "وقتی مقدار اول نادرست باشد",
+    "وقتی مقدار اول null باشد",
+    "هیچ‌وقت"
+   ],
+   "answer": 0,
+   "explanation": "&&= تخصیص AND منطقی است و فقط وقتی مقدار اول درست باشد مقدار دوم را می‌گذارد. نسبت دادن در حالت نادرست کار ||= است."
+  },
+  {
+   "question": "چرا globalThis ساخته شد؟",
+   "options": [
+    "برای حذف شیء window",
+    "برای یکپارچه کردن دسترسی به شیء global در همهٔ محیط‌ها",
+    "برای سریع‌تر شدن اجرای کد",
+    "برای جایگزینی Object.assign"
+   ],
+   "answer": 1,
+   "explanation": "شیء global در هر محیط نام دیگری داشت (window، global، self) و همین مشکل سازگاری می‌ساخت؛ globalThis یک ارجاع یکپارچه است."
+  }
+ ]
+}

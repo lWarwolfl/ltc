@@ -1,0 +1,481 @@
+{
+ "slug": "js_typeof",
+ "course": "js",
+ "order": 95,
+ "url": "/js/js_typeof.asp",
+ "title": "typeof در JavaScript",
+ "summary": "عملگر typeof نوع دادهٔ یک متغیر یا عبارت را برمی‌گرداند. در این درس می‌بینید typeof برای انواع اولیه و پیچیده چه می‌دهد، چرا برای null و آرایه گمراه‌کننده است و چه راه‌های دقیق‌تری مثل Array.isArray و instanceof وجود دارد.",
+ "objectives": [
+  "نوع دادهٔ متغیر را با typeof تشخیص دهید",
+  "هفت نوع دادهٔ اولیه را نام ببرید",
+  "اشکال typeof برای null و آرایه را توضیح دهید",
+  "آرایه و نوع شیء را با Array.isArray و instanceof بررسی کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "typeof در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر typeof"
+  },
+  {
+   "type": "p",
+   "text": "عملگر typeof نوع دادهٔ یک متغیر JavaScript را برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "انواع دادهٔ اولیه"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، مقدار اولیه یک مقدار تک است که خصوصیت یا متدی ندارد."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript هفت نوع دادهٔ اولیه دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "string",
+    "number",
+    "boolean",
+    "bigint",
+    "symbol",
+    "null",
+    "undefined"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "عملگر typeof نوع یک متغیر یا عبارت را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof \"John\"\n// Returns string\n\ntypeof (\"John\"+\"Doe\")\n// Returns string\n\ntypeof 3.14\n// Returns number\n\ntypeof 33\n// Returns number\n\ntypeof (33 + 66)\n// Returns number\n\ntypeof true\n// Returns boolean\n\ntypeof false\n// Returns boolean\n\ntypeof 1234n\n// Returns bigint\n\ntypeof Symbol()\n// Returns symbol\n\ntypeof x\n// Returns undefined",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof null\n// Returns object",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof_primitives"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، null یک مقدار اولیه است."
+  },
+  {
+   "type": "p",
+   "text": "با این حال typeof مقدار object برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "این یک باگ شناخته‌شده در JavaScript است و دلایل تاریخی دارد."
+  },
+  {
+   "type": "h2",
+   "text": "انواع دادهٔ پیچیده"
+  },
+  {
+   "type": "p",
+   "text": "نوع دادهٔ پیچیده می‌تواند چند مقدار و/یا چند نوع دادهٔ مختلف را با هم نگه دارد."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript یک نوع دادهٔ پیچیده دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "object"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "بقیهٔ انواع پیچیده مانند آرایه‌ها، تابع‌ها، setها و mapها صرفاً گونه‌های مختلفی از شیء هستند."
+  },
+  {
+   "type": "p",
+   "text": "عملگر typeof فقط دو نوع برمی‌گرداند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "object",
+    "function"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof {name:'John'}   // Returns object\n\ntypeof [1,2,3,4]\n// Returns object\n\ntypeof new Map()\n// Returns object\n\ntypeof new Set()\n// Returns object\n\ntypeof function (){}   // Returns function",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_typeof_complex"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "عملگر typeof برای همهٔ انواع شیء مقدار object را برمی‌گرداند:\n\nشیءها\nآرایه‌ها\nتاریخ‌ها\nsetها\nmapها\n\nنمی‌توانید با typeof تشخیص دهید یک شیء JavaScript آرایه است یا تاریخ."
+  },
+  {
+   "type": "h2",
+   "text": "چگونه آرایه را تشخیص دهیم"
+  },
+  {
+   "type": "p",
+   "text": "چگونه بفهمیم یک متغیر آرایه است؟"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 5 (سال ۲۰۰۹) متد تازه‌ای برای این کار تعریف کرد: Array.isArray():"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst fruits = [\"apples\", \"bananas\", \"oranges\"];\n\nArray.isArray(fruits);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_isarray_method"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر instanceof"
+  },
+  {
+   "type": "p",
+   "text": "عملگر instanceof اگر یک شیء نمونه‌ای از نوع شیء مشخصی باشد مقدار true برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Date\n\nconst time = new Date();\n\n(time instanceof Date);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst fruits = [\"apples\", \"bananas\", \"oranges\"];\n\n(fruits instanceof Array);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Map\n\nconst fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);\n\n(fruits instanceof Map);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a Set\n\nconst fruits = new Set([\"apples\", \"bananas\", \"oranges\"]);\n\n(fruits instanceof Set);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_instanceof_date"
+  },
+  {
+   "type": "h2",
+   "text": "متغیرهای undefined"
+  },
+  {
+   "type": "p",
+   "text": "نوع (typeof) یک متغیر تعریف‌نشده undefined است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof car;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof_undefined"
+  },
+  {
+   "type": "p",
+   "text": "نوع متغیری که مقدار ندارد undefined است و مقدار آن هم undefined است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let car;\n\ntypeof car;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof_undefined_4"
+  },
+  {
+   "type": "p",
+   "text": "هر متغیری را می‌توان با نسبت دادن مقدار undefined خالی کرد."
+  },
+  {
+   "type": "p",
+   "text": "نوع آن هم undefined می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let car = \"Volvo\";\n\ncar = undefined;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_undefined_2"
+  },
+  {
+   "type": "h2",
+   "text": "مقدارهای خالی"
+  },
+  {
+   "type": "p",
+   "text": "مقدار خالی هیچ ربطی به undefined ندارد."
+  },
+  {
+   "type": "p",
+   "text": "رشتهٔ خالی هم مقدار معتبر دارد و هم نوع."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let car = \"\";\n\ntypeof car;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_empty"
+  },
+  {
+   "type": "h2",
+   "text": "مقدار null"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، null یعنی «هیچ». قرار است نمایندهٔ چیزی باشد که وجود ندارد."
+  },
+  {
+   "type": "p",
+   "text": "متأسفانه در JavaScript نوع دادهٔ null یک شیء است."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک شیء را با نسبت دادن null خالی کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nlet person = {firstName:\"John\", lastName:\"Doe\", age:50, eyeColor:\"blue\"};\n\nperson = null;\n\n// Now value is null, but type is still an object",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_null"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک شیء را با نسبت دادن undefined هم خالی کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let person = {firstName:\"John\", lastName:\"Doe\", age:50, eyeColor:\"blue\"};\n\nperson = undefined;\n\n// Now both value and type is undefined",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_undefined_1"
+  },
+  {
+   "type": "h2",
+   "text": "تفاوت undefined و null"
+  },
+  {
+   "type": "p",
+   "text": "undefined و null از نظر مقدار برابرند اما نوعشان فرق دارد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof undefined\n    // undefined\ntypeof null\n    // object\n\nnull === undefined\n    // false\nnull == undefined\n    // true",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_undefined_3"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت constructor"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت constructor تابع سازندهٔ همهٔ متغیرهای JavaScript را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Returns function Object() {[native code]}:\n\n{name:'John',age:34}.constructor\n\n// Returns function Array() {[native code]}:\n\n[1,2,3,4].constructor\n\n// Returns function Date() {[native code]}:\n\nnew Date().constructor\n\n// Returns function Set() {[native code]}:\n\nnew Set().constructor\n\n// Returns function Map() {[native code]}:\n\nnew Map().constructor\n\n// Returns function Function() {[native code]}:\n\nfunction () {}.constructor",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_constructor_all"
+  },
+  {
+   "type": "p",
+   "text": "با constructor می‌توانید بررسی کنید یک شیء آرایه است یا نه:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "(myArray.constructor === Array);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof_array"
+  },
+  {
+   "type": "p",
+   "text": "با constructor می‌توانید بررسی کنید یک شیء Date است یا نه:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "(myDate.constructor === Date);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof_date"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "typeof \"John\"\n// Returns \"string\"\n\ntypeof (\"John\"+\"Doe\")\n// Returns \"string\"\n\ntypeof 3.14\n// Returns \"number\"\n\ntypeof (33 + 66)\n// Returns \"number\"\n\ntypeof NaN\n// Returns \"number\"\n\ntypeof 1234n\n// Returns \"bigint\"\n\ntypeof true\n// Returns \"boolean\"\n\ntypeof false\n// Returns \"boolean\"\n\ntypeof {name:'John'}\n// Returns \"object\"\n\ntypeof [1,2,3,4]\n// Returns \"object\"\n\ntypeof {}\n// Returns \"object\"\n\ntypeof []\n// Returns \"object\"\n\ntypeof new Object()\n// Returns \"object\"\n\ntypeof new Array()\n// Returns \"object\"\n\ntypeof new Date()\n// Returns \"object\"\n\ntypeof new Set()\n// Returns \"object\"\n\ntypeof new Map()\n// Returns \"object\"\n\ntypeof function () {}\n// Returns \"function\"\n\ntypeof x\n// Returns \"undefined\"\n\ntypeof null\n// Returns \"object\"",
+   "caption": "همه با هم"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof_all"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "نوع دادهٔ NaN (Not a Number) برابر number است!"
+  },
+  {
+   "type": "h2",
+   "text": "عملگر void"
+  },
+  {
+   "type": "p",
+   "text": "عملگر void یک عبارت را ارزیابی می‌کند و مقدار undefined برمی‌گرداند. این عملگر اغلب برای گرفتن مقدار اولیهٔ undefined با «void(0)» به کار می‌رود؛ یعنی وقتی عبارتی را ارزیابی می‌کنید و به مقدار برگشتی نیازی ندارید."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<a href=\"javascript:void(0);\">\n  Useless link\n</a>\n\n<a href=\"javascript:void(document.body.style.backgroundColor='red');\">\n  Click me to change the background color of body to red\n</a>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_void"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل typeof.html بسازید و typeof یک رشته، یک عدد و یک مقدار بولی را در کنسول چاپ کنید.",
+   "hint": "خروجی typeof رشته‌هایی مثل \"string\"، \"number\" و \"boolean\" است."
+  },
+  {
+   "prompt": "typeof یک تابع و typeof یک آرایه را با هم مقایسه کنید.",
+   "hint": "typeof برای تابع \"function\" و برای آرایه \"object\" برمی‌گرداند."
+  },
+  {
+   "prompt": "یک متغیر تعریف‌نشده و یک متغیر تعریف‌شدهٔ بدون مقدار بسازید و typeof هر دو را ببینید.",
+   "hint": "هر دو \"undefined\" می‌دهند؛ توجه کنید که typeof روی متغیر تعریف‌نشده خطا نمی‌دهد."
+  },
+  {
+   "prompt": "با Array.isArray() بررسی کنید یک متغیر آرایه است یا نه.",
+   "hint": "چون typeof برای آرایه object می‌دهد، برای تشخیص آرایه از Array.isArray استفاده می‌کنیم."
+  },
+  {
+   "prompt": "با instanceof بررسی کنید یک شیء از نوع Date است یا نه.",
+   "hint": "instanceof وقتی true می‌دهد که شیء نمونه‌ای از نوع مشخص باشد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "typeof برای null چه برمی‌گرداند؟",
+   "options": [
+    "\"null\"",
+    "\"object\"",
+    "\"undefined\"",
+    "\"number\""
+   ],
+   "answer": 1,
+   "explanation": "null یک مقدار اولیه است اما typeof برای آن object می‌دهد. درس این را یک باگ شناخته‌شده با دلایل تاریخی می‌داند."
+  },
+  {
+   "question": "typeof برای یک آرایه چه برمی‌گرداند؟",
+   "options": [
+    "\"array\"",
+    "\"object\"",
+    "\"function\"",
+    "\"undefined\""
+   ],
+   "answer": 1,
+   "explanation": "آرایه نوعی شیء است و typeof برای همهٔ انواع شیء object می‌دهد؛ پس با typeof نمی‌توان آرایه را از شیء تشخیص داد."
+  },
+  {
+   "question": "برای تشخیص این‌که یک متغیر آرایه است، کدام کار درست است؟",
+   "options": [
+    "typeof x",
+    "Array.isArray(x)",
+    "String(x)",
+    "x.length"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید ECMAScript 5 متد Array.isArray() را برای همین کار تعریف کرد؛ typeof فقط \"object\" می‌دهد و طول را هر رشته یا شیء دیگری هم ممکن است داشته باشد."
+  },
+  {
+   "question": "typeof برای یک تابع چه برمی‌گرداند؟",
+   "options": [
+    "\"object\"",
+    "\"function\"",
+    "\"method\"",
+    "\"undefined\""
+   ],
+   "answer": 1,
+   "explanation": "typeof برای شیءها فقط دو خروجی دارد: \"object\" و \"function\". تابع \"function\" می‌دهد و بقیهٔ انواع پیچیده \"object\"."
+  },
+  {
+   "question": "typeof برای متغیری که هرگز تعریف نشده چیست؟",
+   "options": [
+    "\"null\"",
+    "\"object\"",
+    "\"undefined\"",
+    "خطا"
+   ],
+   "answer": 2,
+   "explanation": "نوع متغیر تعریف‌نشده undefined است و خودِ typeof هم برای چنین متغیری خطا نمی‌دهد؛ همین یکی از کاربردهای رایج typeof است."
+  }
+ ]
+}

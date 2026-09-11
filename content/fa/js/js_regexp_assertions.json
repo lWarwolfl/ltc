@@ -1,0 +1,454 @@
+{
+ "slug": "js_regexp_assertions",
+ "course": "js",
+ "order": 85,
+ "url": "/js/js_regexp_assertions.asp",
+ "title": "Assertions در عبارت باقاعده",
+ "summary": "Assertions موقعیت تطبیق را بررسی می‌کنند، نه خودِ نویسه‌ها. در این درس با مرزهای رشته و واژه (^، $ و \\b) و با Lookahead و Lookbehind مثبت و منفی آشنا می‌شوید.",
+ "objectives": [
+  "نقش ^ و $ را در ابتدا و انتهای رشته توضیح دهید",
+  "با \\b مرز واژه را تطبیق دهید",
+  "Lookahead مثبت و منفی را تشخیص دهید",
+  "Lookbehind را بنویسید و کاربردش را بگویید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Assertions در عبارت باقاعده"
+  },
+  {
+   "type": "h2",
+   "text": "Assertions در RegExp"
+  },
+  {
+   "type": "p",
+   "text": "Assertions دو دستهٔ مرزها (Boundaries) و نگاه‌ها (Lookarounds) را پوشش می‌دهند:"
+  },
+  {
+   "type": "p",
+   "text": "مرزهای رشته و مرزهای واژه."
+  },
+  {
+   "type": "p",
+   "text": "Lookaroundها: Lookahead و Lookbehind."
+  },
+  {
+   "type": "p",
+   "text": "// تطبیق آغاز رشته\nconst pattern = /^W3Schools/;\n\n// تطبیق پایان رشته\nconst pattern = /W3Schools$/;"
+  },
+  {
+   "type": "h2",
+   "text": "Assertions در RegExp JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "ویرایش‌شده در جولای ۲۰۲۵"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو",
+     "نام",
+     "توضیح"
+    ],
+    [
+     "^",
+     "مرز رشته",
+     "آغاز رشته را تطبیق می‌دهد"
+    ],
+    [
+     "$",
+     "مرز رشته",
+     "پایان رشته را تطبیق می‌دهد"
+    ],
+    [
+     "\\b",
+     "مرز واژه",
+     "آغاز یا پایان واژه را تطبیق می‌دهد"
+    ],
+    [
+     "\\B",
+     "مرز واژه",
+     "آغاز یا پایان واژه را تطبیق نمی‌دهد"
+    ],
+    [
+     "(?=...)",
+     "نگاه به جلو (Lookahead)",
+     "رشتهٔ بعدی را تطبیق می‌دهد"
+    ],
+    [
+     "(?!...)",
+     "نگاه به جلو (Lookahead)",
+     "رشتهٔ بعدی را تطبیق نمی‌دهد"
+    ],
+    [
+     "(?<=...)",
+     "نگاه به عقب (Lookbehind)",
+     "رشتهٔ قبلی را تطبیق می‌دهد"
+    ],
+    [
+     "(?<!...)",
+     "نگاه به عقب (Lookbehind)",
+     "رشتهٔ قبلی را تطبیق نمی‌دهد"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متانویسهٔ ^ در RegExp"
+  },
+  {
+   "type": "p",
+   "text": "متانویسهٔ ^ آغاز رشته را تطبیق می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /^W3Schools/;\n\nlet text = \"W3Schools Tutorial\";\n\nlet result = pattern.test(text); // true",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /^W3Schools/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // false",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_hat"
+  },
+  {
+   "type": "h2",
+   "text": "متانویسهٔ $ در RegExp"
+  },
+  {
+   "type": "p",
+   "text": "متانویسهٔ $ پایان رشته را تطبیق می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools$/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // true",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const pattern = /W3Schools$/;\n\nlet text = \"W3Schools tutorial\";\n\nlet result = pattern.test(text); // false",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_dollar"
+  },
+  {
+   "type": "h2",
+   "text": "متانویسهٔ \\b"
+  },
+  {
+   "type": "p",
+   "text": "متانویسهٔ \\b آغاز یا پایان یک واژه را تطبیق می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"HELLO, LOOK AT YOU!\";\n\nlet result = text.search(/\\bLO/);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"HELLO, LOOK AT YOU!\";\n\nlet result = text.search(/LO\\b/);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_b"
+  },
+  {
+   "type": "h2",
+   "text": "Lookahead در RegExp: x(?=y)"
+  },
+  {
+   "type": "p",
+   "text": "x(?=y) الگوی «x» را وقتی تطبیق می‌دهد که بعد از آن «y» بیاید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"W3Schools Tutorials\";\n\nlet pattern = /W3Schools(?= Tutorials)/;\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_lookahead"
+  },
+  {
+   "type": "h2",
+   "text": "Lookahead منفی: x(?!y)"
+  },
+  {
+   "type": "p",
+   "text": "x(?!y) الگوی «x» را وقتی تطبیق می‌دهد که بعد از آن «y» نیاید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"W3Schools Tutorials\";\n\nlet pattern = /W3Schools(?! Tutorials)/;\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_negative_lookahead"
+  },
+  {
+   "type": "p",
+   "text": "توضیح"
+  },
+  {
+   "type": "p",
+   "text": "بخش W3Schools واژهٔ تحت‌اللفظی را تطبیق می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "بخش (?! Tutorials) اظهار می‌کند که آنچه در ادامه می‌آید « Tutorials» نیست."
+  },
+  {
+   "type": "p",
+   "text": "اگر text برابر «W3Schools Tutorials» باشد، test مقدار false برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "اگر text برابر «W3Schools Website» باشد، test مقدار true برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "Lookbehind در RegExp: (?<=y)x"
+  },
+  {
+   "type": "p",
+   "text": "(?<=y)x الگوی «x» را وقتی تطبیق می‌دهد که پیش از آن «y» آمده باشد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<=Hello )W3Schools/;\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_lookbehind"
+  },
+  {
+   "type": "h2",
+   "text": "Lookbehind منفی: (?<!y)x"
+  },
+  {
+   "type": "p",
+   "text": "(?<!y)x الگوی «x» را فقط وقتی تطبیق می‌دهد که پیش از آن «y» نیامده باشد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<!Hello )W3Schools/;\n\nlet result = pattern.test(text);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_negative_lookbehind"
+  },
+  {
+   "type": "h2",
+   "text": "همچنین ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "آموزش RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پرچم‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "کلاس‌های نویسه در RegExp"
+  },
+  {
+   "type": "p",
+   "text": "متانویسه‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گروه‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "کمیت‌سنج‌های RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "الگوهای RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای RegExp در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متدهای RegExp در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای عبارت باقاعده"
+  },
+  {
+   "type": "p",
+   "text": "جست‌وجو و جایگزینی با عبارت باقاعده را می‌توان با متدهای مختلفی انجام داد."
+  },
+  {
+   "type": "p",
+   "text": "این‌ها رایج‌ترین‌شان هستند:"
+  },
+  {
+   "type": "h3",
+   "text": "متدهای رشته"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "توضیح"
+    ],
+    [
+     "match(regex)",
+     "یک آرایه از نتیجه‌ها برمی‌گرداند"
+    ],
+    [
+     "matchAll(regex)",
+     "یک iterator از نتیجه‌ها برمی‌گرداند"
+    ],
+    [
+     "replace(regex)",
+     "یک رشتهٔ جدید برمی‌گرداند"
+    ],
+    [
+     "replaceAll(regex)",
+     "یک رشتهٔ جدید برمی‌گرداند"
+    ],
+    [
+     "search(regex)",
+     "اندیس نخستین تطبیق را برمی‌گرداند"
+    ],
+    [
+     "split(regex)",
+     "یک آرایه از نتیجه‌ها برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "متدهای RegExp"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "توضیح"
+    ],
+    [
+     "regex.exec()",
+     "یک iterator از نتیجه‌ها برمی‌گرداند"
+    ],
+    [
+     "regex.test()",
+     "true یا false برمی‌گرداند"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل regex-assert.html بسازید و با /^W3Schools/ بررسی کنید کدام رشته‌ها با W3Schools شروع می‌شوند.",
+   "hint": "^ آغاز رشته را تطبیق می‌دهد؛ با متد test() نتیجهٔ true یا false را ببینید."
+  },
+  {
+   "prompt": "همان آزمایش را با /W3Schools$/ برای پایان رشته تکرار کنید و خروجی test() را مقایسه کنید.",
+   "hint": "$ پایان رشته را تطبیق می‌دهد؛ پس رشته باید با W3Schools تمام شود."
+  },
+  {
+   "prompt": "با /\\bcat\\b/ واژهٔ cat را در رشتهٔ \"cat category\" پیدا کنید و ببینید کدام بخش تطبیق می‌خورد.",
+   "hint": "\\b مرز واژه است؛ در category پایان واژه وجود ندارد و تطبیق نمی‌خورد."
+  },
+  {
+   "prompt": "الگوی /W3Schools(?! Tutorials)/ را روی دو رشتهٔ \"W3Schools Tutorials\" و \"W3Schools Website\" امتحان کنید.",
+   "hint": "Lookahead منفی وقتی true می‌دهد که بعد از الگو، آن رشتهٔ مشخص نیاید."
+  },
+  {
+   "prompt": "با /(?<=W3)Schools/ رشتهٔ \"W3Schools\" را امتحان کنید و بعد رشته‌ای بنویسید که این شرط را رد کند.",
+   "hint": "Lookbehind پیش از تطبیق بررسی می‌کند که الگوی قبلی وجود دارد یا نه."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام اظهار آغاز رشته را تطبیق می‌دهد؟",
+   "options": [
+    "$",
+    "^",
+    "\\b",
+    "\\B"
+   ],
+   "answer": 1,
+   "explanation": "علامت ^ آغاز رشته را تطبیق می‌دهد و $ پایان رشته را. \\b و \\B به مرز واژه مربوط‌اند نه به مرز رشته."
+  },
+  {
+   "question": "\\b چه چیزی را تطبیق می‌دهد؟",
+   "options": [
+    "آغاز یا پایان یک واژه",
+    "آغاز رشته",
+    "پایان رشته",
+    "هر نویسهٔ فاصله"
+   ],
+   "answer": 0,
+   "explanation": "\\b مرز واژه است و ابتدا یا انتهای واژه را تطبیق می‌دهد. آغاز و پایان رشته کار ^ و $ است و فاصله‌ها را \\s می‌گیرد."
+  },
+  {
+   "question": "x(?=y) چه زمانی تطبیق می‌دهد؟",
+   "options": [
+    "وقتی بعد از x، الگوی y بیاید",
+    "وقتی بعد از x، الگوی y نیاید",
+    "وقتی پیش از x، الگوی y آمده باشد",
+    "در همهٔ حالت‌ها"
+   ],
+   "answer": 0,
+   "explanation": "این Lookahead مثبت است و فقط زمانی x را می‌گیرد که ادامهٔ رشته با y بخواند. حالت منفی آن (?!y) است و حالت «پیش از x» به Lookbehind مربوط می‌شود."
+  },
+  {
+   "question": "اگر text = \"W3Schools Tutorials\" باشد، /W3Schools(?! Tutorials)/ چه برمی‌گرداند؟",
+   "options": [
+    "true",
+    "false",
+    "undefined",
+    "خطای نحو"
+   ],
+   "answer": 1,
+   "explanation": "Lookahead منفی وجود « Tutorials» را رد می‌کند؛ چون این رشته در ادامه آمده، آزمون false می‌شود. تنها با رشته‌ای مثل «W3Schools Website» نتیجه true است."
+  },
+  {
+   "question": "(?<!y)x چه معنایی دارد؟",
+   "options": [
+    "x وقتی پیش از آن y آمده باشد",
+    "x وقتی پیش از آن y نیامده باشد",
+    "x وقتی بعد از آن y نیاید",
+    "x وقتی بعد از آن y بیاید"
+   ],
+   "answer": 1,
+   "explanation": "این Lookbehind منفی است: پیش از x نباید y آمده باشد. گزینهٔ اول Lookbehind مثبت (?<=y)x و گزینه‌های بعدی به Lookahead مربوط‌اند."
+  }
+ ]
+}

@@ -1,0 +1,455 @@
+{
+ "slug": "js_datatypes_symbol",
+ "course": "js",
+ "order": 94,
+ "url": "/js/js_datatypes_symbol.asp",
+ "title": "Symbol در JavaScript",
+ "summary": "Symbol یک نوع دادهٔ اولیه برای ساختن شناسه‌های منحصربه‌فرد است. در این درس Symbol می‌سازید، به‌عنوان کلید شیء به کار می‌برید و می‌بینید چرا در حلقه‌ها و JSON پنهان می‌ماند.",
+ "objectives": [
+  "با ()Symbol یک Symbol بسازید",
+  "توضیح Symbol را از یکتایی آن جدا کنید",
+  "Symbol را به‌عنوان کلید خصوصیت شیء به کار ببرید",
+  "بگویید چه زمانی نباید از Symbol استفاده کرد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Symbol در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "مقدارهای یکتا"
+  },
+  {
+   "type": "p",
+   "text": "Symbol یک شناسهٔ یکتا را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "هر مقدار Symbol یکتاست، حتی اگر توضیح یکسانی داشته باشند."
+  },
+  {
+   "type": "p",
+   "text": "Symbol یک شناسهٔ پنهان است که هیچ کدی نمی‌تواند به‌طور تصادفی به آن دسترسی پیدا کند."
+  },
+  {
+   "type": "h2",
+   "text": "ساختن Symbol"
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن Symbol از ()Symbol استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id1 = Symbol();\n\nconst id2 = Symbol();",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "این دو Symbol با هم فرق دارند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id1 = Symbol();\n\nconst id2 = Symbol();\n\nlet result = (id1 === id2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol"
+  },
+  {
+   "type": "p",
+   "text": "نتیجه false است."
+  },
+  {
+   "type": "p",
+   "text": "هر Symbol مقدار یکتایی دارد."
+  },
+  {
+   "type": "h2",
+   "text": "توضیح Symbol"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید به یک Symbol توضیح اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "توضیح فقط برای اشکال‌زدایی و خوانایی است."
+  },
+  {
+   "type": "p",
+   "text": "توضیح باعث یکتا شدن Symbol نمی‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id1 = Symbol(\"id\");\n\nconst id2 = Symbol(\"id\");\n\nlet result = (id1 === id2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbols"
+  },
+  {
+   "type": "p",
+   "text": "نتیجه همچنان false است."
+  },
+  {
+   "type": "p",
+   "text": "Symbolها همیشه یکتا هستند."
+  },
+  {
+   "type": "p",
+   "text": "اگر دو Symbol با توضیح یکسان بسازید، مقدارهای متفاوتی خواهند داشت:"
+  },
+  {
+   "type": "p",
+   "text": "Symbol(\"id\") == Symbol(\"id\"); // نتیجه: false"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از Symbol به‌عنوان کلید شیء"
+  },
+  {
+   "type": "p",
+   "text": "Symbolها اغلب به‌عنوان کلید خصوصیت شیء به کار می‌روند."
+  },
+  {
+   "type": "p",
+   "text": "این به شما امکان می‌دهد خصوصیت‌های پنهان یا یکتا بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\"\n\n};\n\nperson[id] = 123;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_objectkey"
+  },
+  {
+   "type": "h2",
+   "text": "نوع Symbol"
+  },
+  {
+   "type": "p",
+   "text": "Symbol در JavaScript یک نوع دادهٔ اولیه است، درست مانند Number، String یا Boolean."
+  },
+  {
+   "type": "p",
+   "text": "نوع JavaScript یک Symbol برابر symbol است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");\n\nlet type = typeof id;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_typeof"
+  },
+  {
+   "type": "h2",
+   "text": "شناسه‌های پنهان"
+  },
+  {
+   "type": "p",
+   "text": "Symbol یک شناسهٔ «پنهان» یکتا را نشان می‌دهد که هیچ کدی نمی‌تواند تصادفی به آن دسترسی پیدا کند."
+  },
+  {
+   "type": "p",
+   "text": "برای نمونه، اگر برنامه‌نویسان مختلف بخواهند خصوصیت person.id را به شیء person متعلق به کد شخص سومی اضافه کنند، ممکن است مقدارهای یکدیگر را با هم قاطی کنند."
+  },
+  {
+   "type": "p",
+   "text": "استفاده از ()Symbol برای ساختن شناسه‌های یکتا این مشکل را حل می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\nlet id = Symbol('id');\n\nperson[id] = 140353;\n\n// Now person[id] = 140353\n\n// but person.id is still undefined",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_symbol"
+  },
+  {
+   "type": "h2",
+   "text": "Symbolها در for...in نمی‌آیند"
+  },
+  {
+   "type": "p",
+   "text": "حلقه‌های for...in خصوصیت‌های Symbol را نادیده می‌گیرند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\"\n\n};\n\nperson[id] = 123;\n\nlet text = \"\";\n\nfor (let x in person) {\n\n  text += x + \"<br>\";\n\n}\n\n// Display text",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_forin"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت Symbol نمایش داده نمی‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "Symbolها در JSON نمی‌آیند"
+  },
+  {
+   "type": "p",
+   "text": "JSON.stringify() خصوصیت‌های Symbol را نادیده می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id = Symbol(\"id\");\n\nconst person = {\n\n  name: \"John\"\n\n};\n\nperson[id] = 123;\n\nlet text = JSON.stringify(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_json"
+  },
+  {
+   "type": "h2",
+   "text": "Symbolهای سراسری"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript یک دفترخانهٔ سراسری برای Symbol دارد."
+  },
+  {
+   "type": "p",
+   "text": "برای ساختن یا استفادهٔ دوباره از یک Symbol سراسری از Symbol.for() استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const id1 = Symbol.for(\"id\");\n\nconst id2 = Symbol.for(\"id\");\n\nlet result = (id1 === id2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_global"
+  },
+  {
+   "type": "p",
+   "text": "نتیجه true است."
+  },
+  {
+   "type": "h2",
+   "text": "Symbolهای شناخته‌شده"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Symbolهایی توکار به نام Symbolهای شناخته‌شده فراهم می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این Symbolها رفتارهای JavaScript را کنترل می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "مثال‌ها:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Symbol.iterator (پیمایش)",
+    "Symbol.asyncIterator (پیمایش ناهمگام)",
+    "Symbol.toStringTag (برچسب رشته)",
+    "Symbol.toPrimitive (تبدیل به نوع اولیه)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Symbol.iterator (پیمایش)"
+  },
+  {
+   "type": "p",
+   "text": "Symbol.iterator یک شیء پیمایش‌پذیر (iterable) تعریف می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این باعث می‌شود شیءها با حلقه‌هایی مانند for...of کار کنند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myObject = {\n\n  data: [\"A\", \"B\", \"C\"],\n\n  [Symbol.iterator]() {\n\n    let index = 0;\n\n    let data = this.data;\n\n    return {\n\n      next() {\n\n        if (index < data.length) {\n\n          return {value:data[index++], done:false};\n\n        } else {\n\n          return {done:true};\n\n        }\n\n      }\n\n    };\n\n  }\n\n};\n\nlet text = \"\";\n\nfor (const x of myObject) {\n\n  text += x + \"<br>\";\n\n}\n\n// Display text",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_symbol_iterator"
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از Symbol استفاده کنیم"
+  },
+  {
+   "type": "p",
+   "text": "از Symbol استفاده کنید وقتی به این‌ها نیاز دارید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "نام‌های یکتا برای خصوصیت‌های شیء",
+    "خصوصیت‌های پنهان شیء",
+    "شیءهای پیمایش‌پذیر سفارشی",
+    "رفتار ویژهٔ شیء"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از Symbol استفاده نکنیم"
+  },
+  {
+   "type": "p",
+   "text": "Symbolها در کد روزمرهٔ JavaScript رایج نیستند."
+  },
+  {
+   "type": "p",
+   "text": "از Symbol استفاده نکنید، مگر به کلیدهای یکتا یا رفتار پیشرفتهٔ شیء نیاز داشته باشید."
+  },
+  {
+   "type": "p",
+   "text": "برای خصوصیت‌های عادی شیء، به‌جایش از نام‌های رشته‌ای استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "Symbol یک ویژگی ES6 است."
+  },
+  {
+   "type": "p",
+   "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن به‌طور کامل پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome51",
+     "Edge15",
+     "Firefox54",
+     "Safari10",
+     "Opera38"
+    ],
+    [
+     "مه ۲۰۱۶",
+     "آوریل ۲۰۱۷",
+     "ژوئن ۲۰۱۷",
+     "سپتامبر ۲۰۱۶",
+     "ژوئن ۲۰۱۶"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل symbols.html بسازید و با Symbol(\"id\") دو Symbol هم‌نام بسازید و ببینید مقایسه‌شان false است.",
+   "hint": "هر Symbol حتی با توضیح یکسان، مقدار یکتا و متفاوتی دارد."
+  },
+  {
+   "prompt": "یک Symbol را به‌عنوان کلید خصوصیت یک شیء به کار ببرید و مقدارش را بخوانید.",
+   "hint": "برای دسترسی باید همان متغیر Symbol را داشته باشید، چون کلید پنهان است."
+  },
+  {
+   "prompt": "شیئی با یک خصوصیت Symbol بسازید، در حلقهٔ for...in آن را پیمایش کنید و ببینید نمایش داده نمی‌شود.",
+   "hint": "for...in خصوصیت‌های Symbol را نادیده می‌گیرد."
+  },
+  {
+   "prompt": "همان شیء را با JSON.stringify() به رشته تبدیل کنید و ببینید خصوصیت Symbol در خروجی نیست.",
+   "hint": "JSON.stringify هم خصوصیت‌های Symbol را در نظر نمی‌گیرد."
+  },
+  {
+   "prompt": "با Symbol.for(\"app.id\") دو بار یک Symbol سراسری بگیرید و بررسی کنید که برابرند.",
+   "hint": "Symbol.for از دفترخانهٔ سراسری Symbol استفاده می‌کند و نمونٔه یکسان برمی‌گرداند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "اگر دو Symbol با توضیح یکسان بسازید، نتیجهٔ مقایسهٔ آن‌ها چیست؟",
+   "options": [
+    "true",
+    "false",
+    "undefined",
+    "خطا"
+   ],
+   "answer": 1,
+   "explanation": "توضیح فقط برای اشکال‌زدایی و خوانایی است و Symbol را یکتا نمی‌کند؛ پس هر Symbol مستقل مقدار یکتایی دارد و مقایسه false می‌شود."
+  },
+  {
+   "question": "نوع دادهٔ یک Symbol چیست؟",
+   "options": [
+    "\"object\"",
+    "\"symbol\"",
+    "\"string\"",
+    "\"undefined\""
+   ],
+   "answer": 1,
+   "explanation": "Symbol یک نوع دادهٔ اولیه است، درست مانند Number و String؛ پس typeof برای آن \"symbol\" می‌دهد، نه \"object\"."
+  },
+  {
+   "question": "کدام حلقه خصوصیت‌های Symbol یک شیء را نمایش می‌دهد؟",
+   "options": [
+    "for...in",
+    "هیچ‌کدام؛ Symbolها در for...in نمی‌آیند",
+    "while",
+    "foreach"
+   ],
+   "answer": 1,
+   "explanation": "در درس آمده که حلقه‌های for...in خصوصیت‌های Symbol را نادیده می‌گیرند؛ همین باعث پنهان ماندن آن‌ها می‌شود."
+  },
+  {
+   "question": "کدام متد یک Symbol سراسری می‌سازد یا برمی‌گرداند؟",
+   "options": [
+    "Symbol()",
+    "Symbol.for()",
+    "Symbol.iterator",
+    "Symbol.create()"
+   ],
+   "answer": 1,
+   "explanation": "Symbol.for از دفترخانهٔ سراسری استفاده می‌کند و برای یک کلید، همیشه همان Symbol را برمی‌گرداند. Symbol() هر بار یک Symbol تازه می‌سازد."
+  },
+  {
+   "question": "درس چه توصیه‌ای دربارهٔ استفاده از Symbol در کد روزمره دارد؟",
+   "options": [
+    "همه‌جا از Symbol استفاده کنید",
+    "تا وقتی به کلیدهای یکتا یا رفتار پیشرفتهٔ شیء نیاز ندارید، از Symbol استفاده نکنید",
+    "فقط در حلقه‌ها از Symbol استفاده کنید",
+    "به‌جای رشته از Symbol استفاده کنید"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید Symbol در کد روزمره رایج نیست و باید فقط برای کلیدهای یکتا یا رفتار پیشرفتهٔ شیء به کار رود؛ برای خصوصیت‌های عادی نام رشته‌ای بهتر است."
+  }
+ ]
+}

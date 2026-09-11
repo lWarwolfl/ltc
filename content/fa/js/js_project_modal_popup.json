@@ -1,0 +1,349 @@
+{
+ "slug": "js_project_modal_popup",
+ "course": "js",
+ "order": 121,
+ "url": "/js/js_project_modal_popup.asp",
+ "title": "پروژه: پنجرهٔ مودال",
+ "summary": "در این پروژه یک پنجرهٔ مودال می‌سازید که با دکمهٔ بستن، کلیک بیرون از مودال و کلید Escape بسته می‌شود. با کلاس‌های CSS از JavaScript، رویدادهای click و keydown و تشخیص کلیک بیرون یک عنصر کار می‌کنید.",
+ "objectives": [
+  "ساختار HTML و CSS یک مودال با پوشش و جعبهٔ محتوا بسازید",
+  "مودال را با کلاس show نمایش دهید و پنهان کنید",
+  "تابع‌های openModal و closeModal را با addEventListener به دکمه‌ها وصل کنید",
+  "کلیک بیرون از جعبه را با شرط event.target === modal تشخیص دهید",
+  "مودال را با کلید Escape ببندید و اشتباه‌های رایج را بشناسید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پروژه: پنجرهٔ مودال"
+  },
+  {
+   "type": "h2",
+   "text": "پنجرهٔ مودال"
+  },
+  {
+   "type": "p",
+   "text": "مودال یک پنجرهٔ بازشو است که روی صفحه ظاهر می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "در این پروژه مودالی می‌سازید که به سه شکل بسته می‌شود:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کلیک روی دکمهٔ بستن (x)",
+    "کلیک بیرون از مودال",
+    "فشردن کلید Escape"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "باز کردن مودال"
+  },
+  {
+   "type": "h3",
+   "text": "سلام!"
+  },
+  {
+   "type": "p",
+   "text": "این یک پنجرهٔ مودال است."
+  },
+  {
+   "type": "h2",
+   "text": "چه یاد می‌گیرید"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "چگونه عنصرها را نشان دهید و پنهان کنید",
+    "چگونه کلاس‌های CSS را با JavaScript به کار ببرید",
+    "چگونه رویدادهای click و keydown را مدیریت کنید",
+    "چگونه کلیک بیرون یک عنصر را تشخیص دهید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "اول: ساخت HTML"
+  },
+  {
+   "type": "p",
+   "text": "اول صفحهٔ HTML را بسازید"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "یک دکمه با id=\"openBth\" اضافه کنید",
+    "ساختار مودال را اضافه کنید:"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n\n<html>\n\n<style>\n\n/* CSS will go here */\n\n</style>\n\n<body>\n\n<h2>Modal Popup</h2>\n\n<button id=\"openBtn\">Open Modal</button>\n\n<div id=\"modal\" class=\"modal-overlay\">\n\n  <div class=\"modal-box\">\n\n    <button id=\"closeBtn\" class=\"modal-close\">×</button>\n\n    <h3>Hello!</h3>\n\n    <p>This is a modal popup.</p>\n\n  </div>\n\n</div>\n\n<script>\n\n// JavaScript will go here\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "مودال دو بخش دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "پوشش (overlay) یا پس‌زمینه",
+    "جعبهٔ مودال (محتوا)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "سپس: ساخت CSS"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<style>\n\n/* The overlay (background) */\n\n.modal-overlay {\n\n  display: none;\n\n  position: fixed;\n\n  left: 0;\n\n  top: 0;\n\n  width: 100%;\n\n  height: 100%;\n\n  background: rgba(0, 0, 0, 0.5);\n\n}\n\n/* Show the modal */\n\n.modal-overlay.show {\n\n  display: block;\n\n}\n\n/* The modal box */\n\n.modal-box {\n\n  background: white;\n\n  width: 90%;\n\n  max-width: 400px;\n\n  margin: 100px auto;\n\n  padding: 20px;\n\n  border-radius: 10px;\n\n  position: relative;\n\n}\n\n/* Close button */\n\n.modal-close {\n\n  position: absolute;\n\n  right: 12px;\n\n  top: 8px;\n\n  font-size: 24px;\n\n  border: none;\n\n  background: none;\n\n  cursor: pointer;\n\n}\n\n</style>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_popup_1"
+  },
+  {
+   "type": "h2",
+   "text": "توضیح CSS"
+  },
+  {
+   "type": "h2",
+   "text": "پنهان کردن مودال به‌صورت پیش‌فرض:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".modal-overlay {\n  display: none;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "نمایش مودال با یک کلاس:"
+  },
+  {
+   "type": "code",
+   "lang": "css",
+   "text": ".modal-overlay.show {\n  display: block;\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript کلاس show را اضافه و حذف می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function openModal() {\n\n  modal.classList.add(\"show\");\n\n}\n\nfunction closeModal() {\n\n  modal.classList.remove(\"show\");\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "سپس: ساخت JavaScript"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const modal = document.getElementById(\"modal\");\n\nconst openBtn = document.getElementById(\"openBtn\");\n\nconst closeBtn = document.getElementById(\"closeBtn\");\n\nfunction openModal() {\n\n  modal.classList.add(\"show\");\n\n}\n\nfunction closeModal() {\n\n  modal.classList.remove(\"show\");\n\n}\n\nopenBtn.addEventListener(\"click\", openModal);\n\ncloseBtn.addEventListener(\"click\", closeModal);\n\n/* Close when clicking outside the modal box */\n\nmodal.addEventListener(\"click\", function (event) {\n\n  if (event.target === modal) {\n\n    closeModal();\n\n  }\n\n});\n\n/* Close when pressing Escape */\n\ndocument.addEventListener(\"keydown\", function (event) {\n\n  if (event.key === \"Escape\") {\n\n    closeModal();\n\n  }\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_popup"
+  },
+  {
+   "type": "h2",
+   "text": "توضیح JavaScript"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "دکمهٔ باز کردن را به تابع openModal() وصل کنید",
+    "دکمهٔ بستن را به تابع closeModal() وصل کنید",
+    "کلیک بیرون مودال را به تابع closeModal() وصل کنید",
+    "کلید Escape را به تابع closeModal() وصل کنید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "وصل کردن تابع‌ها به دکمه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "دکمهٔ باز کردن را با addEventListener() به تابع openModal() وصل کنید."
+  },
+  {
+   "type": "p",
+   "text": "دکمهٔ بستن را با addEventListener() به تابع closeModal() وصل کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "openBtn.addEventListener(\"click\", openModal);\n\ncloseBtn.addEventListener(\"click\", closeModal);",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "وصل کردن تابع به کلیک بیرون از مودال."
+  },
+  {
+   "type": "p",
+   "text": "بررسی کنید که کلیک روی پوشش انجام شده است. آن را به closeModal() وصل کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "modal.addEventListener(\"click\", function (event) {\n\n  if (event.target === modal) {\n\n    closeModal();\n\n  }\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "یعنی event.target === modal: کاربر روی پوشش کلیک کرده است، نه داخل جعبهٔ مودال."
+  },
+  {
+   "type": "h2",
+   "text": "وصل کردن تابع به کلید Escape"
+  },
+  {
+   "type": "p",
+   "text": "به فشردن کلید Escape گوش دهید و آن را به closeModal() وصل کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.addEventListener(\"keydown\", function (event) {\n\n  if (event.key === \"Escape\") {\n\n    closeModal();\n\n  }\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه‌های رایج"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مودال با کلیک بیرون هیچ‌وقت بسته نمی‌شود: مطمئن شوید شرط event.target === modal را بررسی کرده‌اید.",
+    "کلید Escape حتی وقتی مودال پنهان است آن را می‌بندد: این خودش اشکالی ندارد، اما می‌توانید شرطی بگذارید که فقط مودال باز را ببندد.",
+    "استفادهٔ هم‌زمان از display: none با انیمیشن: اگر افکت محو شدن می‌خواهید، به‌جای آن از opacity استفاده کنید (چالش امتیازی)."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "چالش‌های امتیازی (یک سطح بالاتر)"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "با CSS افکت ظاهر شدن و محو شدن تدریجی اضافه کنید",
+    "هنگام باز شدن مودال، فوکوس را به آن ببرید (دسترس‌پذیری)",
+    "فوکوس را داخل مودال نگه دارید (پیشرفته)",
+    "وقتی دکمه‌ای فوکوس دارد، مودال با کلید Enter بسته شود"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پروژه‌های JavaScript"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "شمارندهٔ JavaScript\nپروژهٔ شمارنده با ذخیره و بازیابی در localStorage.",
+    "شنوندهٔ رویداد JavaScript\nهمان پروژهٔ شمارنده، این بار با شنوندهٔ رویداد (event listener) به‌جای onclick.",
+    "فهرست کارهای روزانه\nفهرست کارهایی که در یک آرایه در localStorage ذخیره می‌شود.",
+    "پنجرهٔ مودال\nیک پنجرهٔ مودال که روی صفحه ظاهر می‌شود.",
+    "اعتبارسنجی فرم\nیک فرم HTML همراه با اعتبارسنجی فرم."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل modal.html بسازید: یک دکمهٔ باز کردن و یک ساختار مودال با پوشش (overlay) و جعبهٔ مودال که دکمهٔ بستن و یک متن کوتاه دارد.",
+   "hint": "برای پوشش یک عنصر با کلاس overlay و برای محتوا یک عنصر با کلاس modal-box بسازید."
+  },
+  {
+   "prompt": "با CSS کاری کنید مودال به‌صورت پیش‌فرض پنهان باشد و با افزودن کلاس show نمایش داده شود.",
+   "hint": "می‌توانید از display: none و display: flex استفاده کنید؛ JavaScript فقط کلاس show را اضافه و حذف می‌کند."
+  },
+  {
+   "prompt": "تابع‌های openModal() و closeModal() را بنویسید و دکمه‌های باز و بستن را با addEventListener به آن‌ها وصل کنید.",
+   "hint": "openModal کلاس show را اضافه می‌کند و closeModal آن را حذف می‌کند؛ برای بستن با کلیک بیرون هم رویداد کلیک روی پوشش را بشنوید."
+  },
+  {
+   "prompt": "با شرط event.target === modal کاری کنید کلیک روی پوشش مودال را ببندد، اما کلیک داخل جعبهٔ مودال آن را نبندد.",
+   "hint": "اگر روی خود پوشش کلیک شده باشد event.target همان پوشش است؛ کلیک داخل جعبه هدف دیگری دارد."
+  },
+  {
+   "prompt": "با رویداد keydown کاری کنید کلید Escape مودال را ببندد و صفحه را تست کنید.",
+   "hint": "داخل کلید شونده مقدار event.key را با \"Escape\" مقایسه کنید و بعد closeModal() را صدا بزنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "مودال چطور نمایش داده می‌شود؟",
+   "options": [
+    "با تغییر src",
+    "با localStorage",
+    "با حذف تگ از HTML",
+    "با افزودن کلاس show به عنصر"
+   ],
+   "answer": 3,
+   "explanation": "کد JavaScript با افزودن کلاس show آن را نمایش می‌دهد و با حذف همین کلاس پنهان می‌کند؛ خود CSS رفتار هر حالت را تعیین می‌کند."
+  },
+  {
+   "question": "شرط event.target === modal یعنی چه؟",
+   "options": [
+    "کاربر بیرون از جعبهٔ مودال (روی پوشش) کلیک کرده است",
+    "کاربر داخل جعبهٔ مودال کلیک کرده است",
+    "مودال بسته شده است",
+    "کلید Escape فشرده شده است"
+   ],
+   "answer": 0,
+   "explanation": "اگر هدف کلیک خود پوشش باشد یعنی کلیک بیرون از جعبهٔ مودال رخ داده است؛ در این حالت مودال بسته می‌شود."
+  },
+  {
+   "question": "برای بستن مودال با کلید Escape کدام رویداد را می‌شنویم؟",
+   "options": [
+    "click",
+    "keydown با بررسی event.key برابر \"Escape\"",
+    "submit",
+    "change"
+   ],
+   "answer": 1,
+   "explanation": "رویداد keydown هنگام فشردن کلید اجرا می‌شود؛ با مقایسهٔ event.key با \"Escape\" می‌فهمیم کاربر همان کلید را زده است."
+  },
+  {
+   "question": "اگر شرط event.target === modal را نگذاریم چه مشکلی پیش می‌آید؟",
+   "options": [
+    "مودال با کلیک بیرون هیچ‌وقت بسته نمی‌شود",
+    "مودال هرگز باز نمی‌شود",
+    "کلید Escape کار نمی‌کند",
+    "صفحه دوباره بارگذاری می‌شود"
+   ],
+   "answer": 0,
+   "explanation": "این شرط تعیین می‌کند که کلیک باید روی پوشش باشد؛ بدون آن هر کلیکی (حتی داخل جعبه) مودال را می‌بندد یا هیچ‌وقت بسته نمی‌شود."
+  },
+  {
+   "question": "در این پروژه از چه راهی دکمه‌ها به تابع‌ها وصل می‌شوند؟",
+   "options": [
+    "با localStorage",
+    "با ویژگی onclick در HTML",
+    "با addEventListener در JavaScript",
+    "با فرم HTML"
+   ],
+   "answer": 2,
+   "explanation": "در این پروژه از addEventListener استفاده می‌شود تا HTML و JavaScript جدا بمانند و امکان وصل کردن چند رویداد فراهم شود."
+  }
+ ]
+}

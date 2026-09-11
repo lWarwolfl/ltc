@@ -1,0 +1,468 @@
+{
+ "slug": "js_errors_intro",
+ "course": "js",
+ "order": 103,
+ "url": "/js/js_errors_intro.asp",
+ "title": "خطاهای JavaScript",
+ "summary": "این درس انواع خطاهای JavaScript را معرفی می‌کند: خطاهای مرجع، نوع، بازه، URI، نحو و Eval. می‌بینید try و catch چگونه کار می‌کنند و چرا خطاهای نحوی پیش از اجرا رخ می‌دهند و با try...catch گرفته نمی‌شوند.",
+ "objectives": [
+  "انواع خطای JavaScript را نام ببرید",
+  "با try و catch خطا را بگیرید و نام آن را بخوانید",
+  "برای هر نوع خطا یک مثال بزنید",
+  "توضیح دهید چرا خطاهای نحوی با try...catch گرفته نمی‌شوند",
+  "بگویید چرا EvalError دیگر به کار نمی‌رود"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "خطاهای JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "خطاها رخ می‌دهند!"
+  },
+  {
+   "type": "p",
+   "text": "هنگام اجرای کد JavaScript، خطاهای گوناگونی ممکن است رخ دهد."
+  },
+  {
+   "type": "p",
+   "text": "خطاها می‌توانند اشتباه برنامه‌نویس در کدنویسی باشند، یا از ورودی نادرست بیایند، و یا از چیزهای پیش‌بینی‌نشدهٔ دیگر:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خطاهای مرجع (Reference)",
+    "خطاهای نوع (Type)",
+    "خطاهای بازه (Range)",
+    "خطاهای URI",
+    "خطاهای نحو (Syntax)",
+    "خطای Eval (منسوخ)",
+    "خطاهای بی‌صدا (فصل بعد)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "چگونه خطاهای JavaScript را مدیریت کنیم"
+  },
+  {
+   "type": "p",
+   "text": "دستور try به شما اجازه می‌دهد بلوکی از کد را تعریف کنید که هنگام اجرا از نظر خطا آزمایش شود."
+  },
+  {
+   "type": "p",
+   "text": "دستور catch به شما اجازه می‌دهد بلوکی از کد را تعریف کنید که اگر در بلوک try خطایی رخ داد اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "دستورهای try و catch در JavaScript همیشه جفتی می‌آیند:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "try {\n\n    Block of code to try\n\n} catch(err) {\n\n    Block of code to handle errors\n\n}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای مرجع (Reference)"
+  },
+  {
+   "type": "p",
+   "text": "خطای ReferenceError وقتی رخ می‌دهد که متغیری را به کار ببرید (به آن ارجاع دهید) که وجود ندارد."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "نوع خطا",
+    "مثال",
+    "خطا"
+   ],
+   "rows": [
+    [
+     "ReferenceError",
+     "fname = foo;",
+     "foo is not defined"
+    ],
+    [
+     "ReferenceError",
+     "let x = y;let y = 5;",
+     "Cannot access y before initialization"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 5;\n\ntry {\n\n  x = y + 1;\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  let x = y;\n\n  let y = 5;\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_referenceerror"
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای نوع در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "خطای نوع وقتی رخ می‌دهد که مقدار از نوع نادرست باشد یا عملیاتی روی آن نوع معتبر نباشد."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خطا",
+     "مثال",
+     "پیام خطا"
+    ],
+    [
+     "TypeError",
+     "anna(5);",
+     "anna is not a function"
+    ],
+    [
+     "خطای نوع",
+     "let num = 1;num.toUpperCase();",
+     "num.toUpperCase is not a function"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let anna = 5;\n\ntry {\n\n  anna(5);\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let num = 1;\n\ntry {\n\n  num.toUpperCase();\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_typeerror2"
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای بازه در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "خطای RangeError وقتی رخ می‌دهد که مقدار بیرون از بازهٔ مجاز خود باشد."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نوع خطا",
+     "مثال",
+     "پیام خطا"
+    ],
+    [
+     "RangeError",
+     "new Array(-1);",
+     "Invalid array length"
+    ],
+    [
+     "RangeError",
+     "num.toPrecision(500);",
+     "toPrecision() argument must be between 1 and 100"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  new Array(-1);\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let num = 1;\n\ntry {\n\n    num.toPrecision(500);   // A number cannot have 500\n significant digits\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_rangeerror2"
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای URI در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "(خطاهای شناسهٔ یکتای منبع)"
+  },
+  {
+   "type": "p",
+   "text": "خطای URIError وقتی رخ می‌دهد که در تابعی مربوط به URI از نویسه‌های غیرمجاز استفاده کنید:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نوع خطا",
+     "مثال",
+     "پیام خطا"
+    ],
+    [
+     "URIError",
+     "decodeURI(\"%%%\");",
+     "URI malformed"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n    decodeURI(\"%%%\");   // You cannot URI decode\n  percent signs\n\n} catch(err) {\n\n  document.getElementById(\"demo\").innerHTML = err.name;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_urierror"
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای نحو در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "خطای نحو وقتی رخ می‌دهد که کد قواعد دستور زبان JavaScript را نقض کند."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خطا",
+    "مثال",
+    "خطا"
+   ],
+   "rows": [
+    [
+     "SyntaxError",
+     "fname = \"John);",
+     "Invalid or unexpected token )"
+    ],
+    [
+     "SyntaxError",
+     "Math.round(4.6;",
+     "Missing ) after argument list"
+    ]
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "// This line cannot be parsed by JavaScript\n\nlet fName = \"John);\n\n// Execution stops here",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_parse1"
+  },
+  {
+   "type": "p",
+   "text": "دستور بالا این خطا را تولید می‌کند: Invalid or unexpected token"
+  },
+  {
+   "type": "p",
+   "text": "اجرای برنامه متوقف می‌شود!"
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای نحو گرفته نمی‌شوند"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "خطاهای نحو با try...catch گرفته نمی‌شوند",
+    "خطاهای نحو پیش از زمان اجرا رخ می‌دهند"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "try {\n\n  let x = Math.round(4.6;)\n\n} catch(err) {\n\n  let text = err.name + \" \" + err.description;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_syntax1"
+  },
+  {
+   "type": "h2",
+   "text": "یک مشکل نحوی"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "Math.round(4.6;)",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "سطر بالا JavaScript نحواً نامعتبر است: یک نقطه‌ویرگول اضافی داخل پرانتزها هست. نحو درست باید این باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "Math.round(4.6);",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "چرا"
+  },
+  {
+   "type": "p",
+   "text": "نکته این است که مرورگر خطاهای نحو را چگونه مدیریت می‌کند:"
+  },
+  {
+   "type": "p",
+   "text": "موتور JavaScript پیش از اجرای اسکریپت یک SyntaxError می‌اندازد."
+  },
+  {
+   "type": "p",
+   "text": "خطاهای نحو پیش از اجرای بلوک try...catch تشخیص داده می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "یعنی بلوک try هرگز شروع نمی‌شود و اسکریپت اصلاً اجرا نمی‌شود (خط let text = update هرگز رخ نمی‌دهد)."
+  },
+  {
+   "type": "p",
+   "text": "کنسول مرورگر (F12 → زبانهٔ Console) چیزی شبیه این نشان می‌دهد:"
+  },
+  {
+   "type": "p",
+   "text": "خطای نگرفتهٔ SyntaxError: پرانتز بستهٔ ) بعد از فهرست آرگومان‌ها جا افتاده است."
+  },
+  {
+   "type": "h2",
+   "text": "خطای Eval در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "خطای EvalError نشان‌دهندهٔ خطا در تابع eval() است."
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "نسخه‌های جدیدتر JavaScript خطای EvalError را نمی‌اندازند. به جای آن از SyntaxError استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "ببینید:"
+  },
+  {
+   "type": "p",
+   "text": "خطاهای بی‌صدا در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "دستورهای خطا در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "شیء خطا در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "اشکال‌زدایی JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل errors.html بسازید و در آن try { x = y + 1; } catch(err) { console.log(err.name); } را اجرا کنید و نام خطا را در کنسول ببینید.",
+   "hint": "err.name نوع خطا را به‌صورت رشته برمی‌گرداند، مثل ReferenceError."
+  },
+  {
+   "prompt": "کد let num = 1; num.toUpperCase(); را داخل try بنویسید و در catch نام خطا را چاپ کنید.",
+   "hint": "عدد متد toUpperCase ندارد، پس TypeError می‌گیرید."
+  },
+  {
+   "prompt": "با new Array(-1) خطا ایجاد کنید و در catch نام خطا را نمایش دهید.",
+   "hint": "طول آرایه نمی‌تواند منفی باشد، پس RangeError می‌گیرید."
+  },
+  {
+   "prompt": "تابع decodeURI(\"%%%\") را در try...catch صدا بزنید و پیام خطا را در کنسول ببینید.",
+   "hint": "نویسه‌های غیرمجاز در توابع URI خطای URIError می‌دهند."
+  },
+  {
+   "prompt": "یک خطای نحوی عمدی مثل Math.round(4.6;) بنویسید و ببینید try...catch آن را نمی‌گیرد.",
+   "hint": "خطاهای نحو پیش از اجرا و توسط موتور JavaScript تشخیص داده می‌شوند، پس بلوک try هرگز شروع نمی‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "دستورهای try و catch چگونه به کار می‌روند؟",
+   "options": [
+    "هر یک مستقل از دیگری به کار می‌رود",
+    "همیشه جفت و با هم می‌آیند",
+    "فقط catch برای مدیریت خطا کافی است",
+    "فقط داخل توابع async کار می‌کنند"
+   ],
+   "answer": 1,
+   "explanation": "try بلوک آزمایش‌شونده را تعریف می‌کند و catch بلوکی است که در صورت خطا اجرا می‌شود؛ این دو در JavaScript همیشه با هم به کار می‌روند."
+  },
+  {
+   "question": "استفاده از متغیری که وجود ندارد چه خطایی می‌دهد؟",
+   "options": [
+    "RangeError",
+    "ReferenceError",
+    "URIError",
+    "TypeError"
+   ],
+   "answer": 3,
+   "explanation": "ارجاع به متغیر ناموجود ReferenceError می‌دهد. TypeError مربوط به نوع نادرست مقدار، RangeError مربوط به بیرون بودن مقدار از بازه، و URIError مربوط به توابع URI است."
+  },
+  {
+   "question": "اجرای num.toUpperCase() روی یک عدد چه خطایی می‌دهد؟",
+   "options": [
+    "SyntaxError",
+    "RangeError",
+    "TypeError",
+    "ReferenceError"
+   ],
+   "answer": 2,
+   "explanation": "عدد متد toUpperCase ندارد، پس عملیات روی آن نوع نامعتبر است و TypeError رخ می‌دهد؛ متغیر تعریف شده است، پس ReferenceError نیست."
+  },
+  {
+   "question": "کدام خطا با try...catch گرفته نمی‌شود؟",
+   "options": [
+    "RangeError",
+    "ReferenceError",
+    "TypeError",
+    "SyntaxError"
+   ],
+   "answer": 1,
+   "explanation": "خطاهای نحو پیش از اجرا و توسط موتور JavaScript تشخیص داده می‌شوند، پس بلوک try هیچ‌وقت شروع نمی‌شود و catch اجرا نمی‌شود."
+  },
+  {
+   "question": "خطای EvalError در نسخه‌های جدید JavaScript چه وضعی دارد؟",
+   "options": [
+    "جای SyntaxError را گرفته است",
+    "منسوخ شده و به جای آن SyntaxError به کار می‌رود",
+    "هرگز رخ نمی‌دهد و بی‌استفاده است",
+    "فقط در فایرفاکس پشتیبانی می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "نسخه‌های تازهٔ JavaScript دیگر EvalError نمی‌اندازند و توصیه شده به جای آن SyntaxError به کار ببرید."
+  }
+ ]
+}

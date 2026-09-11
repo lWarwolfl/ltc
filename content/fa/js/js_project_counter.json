@@ -1,0 +1,371 @@
+{
+ "slug": "js_project_counter",
+ "course": "js",
+ "order": 118,
+ "url": "/js/js_project_counter.asp",
+ "title": "پروژه: شمارنده با localStorage",
+ "summary": "در این پروژه یک شمارندهٔ کامل با دکمه‌های افزایش، کاهش، ریست، ذخیره و بارگذاری می‌سازید. با متغیرها، تابع‌ها، رویدادهای دکمه و localStorage کار می‌کنید و مقدار شمارنده را بین بازدیدهای مختلف نگه می‌دارید.",
+ "objectives": [
+  "یک شمارنده با عنصر <p> و دکمه‌های onclick بسازید",
+  "تابع‌های افزایش، کاهش، ریست و به‌روزرسانی را بنویسید",
+  "مقدار شمارنده را با localStorage.setItem ذخیره کنید",
+  "مقدار ذخیره‌شده را با localStorage.getItem بخوانید و به عدد تبدیل کنید",
+  "پروژه را با تمرین‌های شروع از ۱۰ و جلوگیری از منفی شدن کامل کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پروژه: شمارنده با localStorage"
+  },
+  {
+   "type": "h2",
+   "text": "یک شمارنده با ریست و ذخیره"
+  },
+  {
+   "type": "p",
+   "text": "در این پروژه یک شمارنده می‌سازید که دکمه‌هایی برای این کارها دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "افزایش شمارنده",
+    "کاهش شمارنده",
+    "ریست کردن شمارنده",
+    "ذخیرهٔ شمارنده",
+    "بارگذاری شمارنده"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "0"
+  },
+  {
+   "type": "p",
+   "text": "ریست"
+  },
+  {
+   "type": "p",
+   "text": "ذخیره"
+  },
+  {
+   "type": "p",
+   "text": "بارگذاری"
+  },
+  {
+   "type": "h2",
+   "text": "مهارت‌های این پروژه"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "متغیرهای JavaScript",
+    "تابع‌های JavaScript",
+    "HTML DOM در JavaScript",
+    "رویدادهای JavaScript (ویژگی‌های onclick)",
+    "localStorage در JavaScript (برای ذخیره و بازیابی شمارنده)"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button onclick=\"increaseCount()\">+</button>\n\n<button onclick=\"decreaseCount()\">-</button>\n\n<button onclick=\"resetCount()\">Reset</button>\n\n<button onclick=\"saveCount()\">Save</button>\n\n<button onclick=\"loadCount()\">Load</button>\n\n<script>\n\n// JavaScript code. See below.\n\n</script>",
+   "caption": "کد HTML"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Declare the counter\n\nlet count = 0;\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  count--;\n\n  updateCount();\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n  }\n\n  updateCount();\n\n}",
+   "caption": "کد HTML"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter"
+  },
+  {
+   "type": "h2",
+   "text": "۱. ساخت HTML"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "یک عنصر سرتیتر <h2> اضافه کنید",
+    "یک عنصر <p> که یک عدد را نمایش می‌دهد اضافه کنید",
+    "پنج عنصر <button> اضافه کنید",
+    "به هر دکمه یک ویژگی onclick اضافه کنید"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button onclick=\"increaseCount()\">+</button>\n\n<button onclick=\"decreaseCount()\">-</button>\n\n<button onclick=\"resetCount()\">Reset</button>\n\n<button onclick=\"saveCount()\">Save</button>\n\n<button onclick=\"loadCount()\">Load</button>",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "۲. ساخت اسکریپت"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "let count = 0 یک شمارنده تعریف می‌کند",
+    "Function updateCount() {} تابعی برای به‌روزرسانی شمارنده می‌سازد",
+    "document.getElementById().innerHTML شمارنده را نمایش می‌دهد"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script>\n\n// Declare a counter\n\nlet count = 0;\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "۳: افزودن تابع افزایش شمارنده"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Function increaseCount() {} تابع افزایش را می‌سازد",
+    "count++ شمارنده را افزایش می‌دهد",
+    "updateCount() شمارنده را نمایش می‌دهد"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "۴: افزودن تابع کاهش شمارنده"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Function decreaseCount() {} تابع کاهش را می‌سازد",
+    "count-- شمارنده را کاهش می‌دهد",
+    "updateCount() شمارنده را نمایش می‌دهد"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  count--;\n\n  updateCount();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "۵: افزودن تابع ریست شمارنده"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Function resetCount() {} تابع ریست را می‌سازد",
+    "count = 0 شمارنده را ریست می‌کند",
+    "updateCount() شمارنده را نمایش می‌دهد"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "۶: ساخت تابع ذخیرهٔ شمارنده"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Function saveCount() {} تابع ذخیره را می‌سازد",
+    "localStorage.setItem() مقدار را ذخیره می‌کند."
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "۷: ساخت تابع بارگذاری شمارنده"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Function loadCount() {} تابع بارگذاری را می‌سازد",
+    "localStorage.getItem() مقدار را می‌خواند",
+    "Number(saved) مقدار saved را به عدد تبدیل می‌کند و مقدار را نمایش می‌دهد.",
+    "updateCount() مقدار را نمایش می‌دهد."
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n  }\n\n  updateCount();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "چه چیزهایی یاد گرفتید؟"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "چگونه HTML را با JavaScript به‌روزرسانی کنید",
+    "چگونه از رویدادهای دکمه (onclick) استفاده کنید",
+    "چگونه مقدارها را در localStorage ذخیره و بارگذاری کنید",
+    "چگونه کد خود را با تابع‌ها سازماندهی کنید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "تمرین‌ها"
+  },
+  {
+   "type": "h3",
+   "text": "تمرین ۱"
+  },
+  {
+   "type": "p",
+   "text": "کاری کنید شمارنده به‌جای ۰ از ۱۰ شروع شود."
+  },
+  {
+   "type": "h3",
+   "text": "تمرین ۲"
+  },
+  {
+   "type": "p",
+   "text": "کاری کنید شمارنده از ۰ کمتر نشود."
+  },
+  {
+   "type": "h3",
+   "text": "تمرین ۳"
+  },
+  {
+   "type": "p",
+   "text": "هنگام باز شدن صفحه، مقدار ذخیره‌شدهٔ شمارنده خودکار بارگذاری شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Declare the counter\n\nlet count = 10;\n\n// Load the counter when the page opens\n\nloadCount();\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  if (count > 0) {\n\n    count--;\n\n    updateCount();\n\n  }\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 10;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n  }\n\n  updateCount();\n\n}",
+   "caption": "راه‌حل‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_ex"
+  },
+  {
+   "type": "p",
+   "text": "مقدار را ذخیره کنید، صفحه را دوباره بارگذاری کنید و ببینید خودکار بارگذاری می‌شود یا نه."
+  },
+  {
+   "type": "h2",
+   "text": "پروژه‌های JavaScript"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "شمارندهٔ JavaScript\nپروژهٔ شمارنده با ذخیره و بازیابی در localStorage.",
+    "شنوندهٔ رویداد JavaScript\nهمان پروژهٔ شمارنده، این بار با شنوندهٔ رویداد (event listener) به‌جای onclick.",
+    "فهرست کارهای روزانه\nفهرست کارهایی که در یک آرایه در localStorage ذخیره می‌شود.",
+    "پنجرهٔ مودال\nیک پنجرهٔ مودال که روی صفحه ظاهر می‌شود.",
+    "اعتبارسنجی فرم\nیک فرم HTML همراه با اعتبارسنجی فرم."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل counter.html بسازید و یک عنصر <p> با شناسهٔ count و چهار دکمه با ویژگی onclick بسازید که به ترتیب increaseCount، decreaseCount، resetCount و saveCount را صدا بزنند.",
+   "hint": "هر دکمه یک ویژگی onclick با نام تابع و پرانتز می‌گیرد، مثل onclick=\"increaseCount()\"."
+  },
+  {
+   "prompt": "تابع updateCount() را بسازید که مقدار متغیر count را با document.getElementById(\"count\").innerHTML نمایش دهد و آن را در همهٔ تابع‌ها صدا بزنید.",
+   "hint": "برای اینکه عدد جدید فوراً دیده شود، بعد از هر تغییر count یک بار updateCount() را صدا بزنید."
+  },
+  {
+   "prompt": "دو تابع saveCount() و loadCount() بنویسید که مقدار را با localStorage.setItem و localStorage.getItem ذخیره و بخوانند و با Number به عدد تبدیل کنند.",
+   "hint": "مقدار خوانده‌شده از localStorage رشته است؛ Number(saved) آن را به عدد تبدیل می‌کند."
+  },
+  {
+   "prompt": "تمرین‌های پایان درس را انجام دهید: شمارنده از ۱۰ شروع شود، هیچ‌وقت منفی نشود، و هنگام باز شدن صفحه مقدار ذخیره‌شده خودکار بارگذاری شود.",
+   "hint": "برای شروع از ۱۰ کافی است let count = 10 بنویسید؛ برای جلوگیری از منفی شدن در decreaseCount شرط if (count > 0) بگذارید."
+  },
+  {
+   "prompt": "صفحه را رفرش کنید و بررسی کنید که مقدار ذخیره‌شده بعد از تازه‌سازی صفحه باقی می‌ماند.",
+   "hint": "localStorage داده را در مرورگر نگه می‌دارد، پس بعد از رفرش هم در دسترس است؛ در حالت خصوصی مرورگر ممکن است پاک شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای نمایش مقدار شمارنده داخل عنصر <p> از کدام خصوصیت استفاده می‌کنیم؟",
+   "options": [
+    "innerHTML",
+    "value",
+    "text",
+    "count"
+   ],
+   "answer": 0,
+   "explanation": "برای گذاشتن محتوا داخل یک عنصر HTML از innerHTML استفاده می‌کنیم، مثل document.getElementById(\"count\").innerHTML = count."
+  },
+  {
+   "question": "کدام دستور مقدار شمارنده را در مرورگر ذخیره می‌کند؟",
+   "options": [
+    "localStorage.getItem(\"count\", count)",
+    "localStorage.setItem(\"count\", count)",
+    "localStorage.save(\"count\", count)",
+    "document.saveItem(count)"
+   ],
+   "answer": 1,
+   "explanation": "setItem مقدار را ذخیره می‌کند و getItem آن را می‌خواند؛ هر دو روی localStorage کار می‌کنند."
+  },
+  {
+   "question": "چرا مقدار خوانده‌شده از localStorage را با Number تبدیل می‌کنیم؟",
+   "options": [
+    "چون localStorage فقط عدد ذخیره می‌کند",
+    "چون در غیر این صورت خطا پرتاب می‌شود",
+    "چون localStorage همیشه مقدار را رشته نگه می‌دارد",
+    "چون Number سرعت را زیاد می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "localStorage همه چیز را به‌صورت رشتهٔ متنی نگه می‌دارد؛ Number(saved) آن را دوباره به عدد قابل محاسبه تبدیل می‌کند."
+  },
+  {
+   "question": "تابع decreaseCount چه کاری انجام می‌دهد؟",
+   "options": [
+    "شمارنده را صفر می‌کند",
+    "مقدار را ذخیره می‌کند",
+    "شمارنده را دو برابر می‌کند",
+    "مقدار count را یک واحد کم و بعد شمارنده را به‌روزرسانی می‌کند"
+   ],
+   "answer": 3,
+   "explanation": "count-- مقدار را یک واحد کم می‌کند و بعد updateCount() عدد جدید را روی صفحه نمایش می‌دهد."
+  },
+  {
+   "question": "برای صفر کردن شمارنده کدام تابع را با onclick صدا می‌زنیم؟",
+   "options": [
+    "resetCount()",
+    "increaseCount()",
+    "updateCount()",
+    "loadCount()"
+   ],
+   "answer": 0,
+   "explanation": "resetCount مقدار count را برابر ۰ می‌گذارد و بعد صفحه را به‌روزرسانی می‌کند؛ بقیه تابع‌ها کارهای دیگری می‌کنند."
+  }
+ ]
+}

@@ -37,7 +37,7 @@ export function CourseCard({ id, title, description, accent, slugs, firstSlug }:
         <CardTitle className="flex items-center justify-between gap-3">
           <span>{title}</span>
           <Badge variant="secondary">
-            {stats.total} {t('sections')}
+            {t('lessons-count', { count: stats.total })}
           </Badge>
         </CardTitle>
         <CardDescription>{description}</CardDescription>

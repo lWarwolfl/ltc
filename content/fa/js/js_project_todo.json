@@ -1,0 +1,323 @@
+{
+ "slug": "js_project_todo",
+ "course": "js",
+ "order": 120,
+ "url": "/js/js_project_todo.asp",
+ "title": "پروژه: فهرست کارها",
+ "summary": "در این پروژه یک فهرست کارها می‌سازید: کار اضافه می‌کنید، کار حذف می‌کنید و همه را پاک می‌کنید. کارها در یک آرایه ذخیره می‌شوند و با JSON.stringify و JSON.parse در localStorage نگه داشته می‌شوند تا بعد از رفرش هم باقی بمانند.",
+ "objectives": [
+  "صفحهٔ HTML فهرست کارها را با ورودی، دکمه و فهرست بسازید",
+  "کارها را در یک آرایه ذخیره کنید و با تابع نمایش روی صفحه بیاورید",
+  "کار را با splice(i, 1) از آرایه حذف کنید",
+  "آرایه را با JSON.stringify در localStorage ذخیره و با JSON.parse بارگذاری کنید",
+  "پروژه را با افزودن کلید Enter و پیام ذخیره کامل کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پروژه: فهرست کارها"
+  },
+  {
+   "type": "h2",
+   "text": "فهرست کارها"
+  },
+  {
+   "type": "p",
+   "text": "افزودن"
+  },
+  {
+   "type": "p",
+   "text": "پاک کردن همه"
+  },
+  {
+   "type": "p",
+   "text": "در این پروژه یک فهرست کارها می‌سازید."
+  },
+  {
+   "type": "p",
+   "text": "کار اضافه می‌کنید، کار حذف می‌کنید و همهٔ کارها را پاک می‌کنید."
+  },
+  {
+   "type": "p",
+   "text": "کارها در یک آرایه در localStorage ذخیره می‌شوند."
+  },
+  {
+   "type": "h2",
+   "text": "چه یاد می‌گیرید"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "چگونه آیتم‌ها را در یک آرایه ذخیره کنید",
+    "چگونه آیتم‌ها را از آرایه حذف کنید",
+    "چگونه یک فهرست را با JavaScript نمایش دهید",
+    "چگونه داده را با localStorage ذخیره و بارگذاری کنید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "اول: ساخت HTML"
+  },
+  {
+   "type": "p",
+   "text": "اول یک صفحهٔ HTML بسازید که این‌ها را داشته باشد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "یک فیلد ورودی با id=\"task\"",
+    "یک دکمه برای فراخوانی addTask()",
+    "یک فهرست نشانه‌دار (ul) با id=\"list\"",
+    "یک دکمه برای فراخوانی clearAll()"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>To-Do List</h2>\n\n<input id=\"task\" placeholder=\"New task\">\n\n<button onclick=\"addTask()\">Add</button>\n\n<ul id=\"list\"></ul>\n\n<button onclick=\"clearAll()\">Clear All</button>\n\n<script>\n\n// Create a task Array\n\nlet tasks = [];\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_todo_1"
+  },
+  {
+   "type": "h2",
+   "text": "افزودن تابع نمایش"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Function to display the list\n\nfunction displayTasks() {\n\n  let html = \"\";\n\n  for (let i = 0; i < tasks.length; i++) {\n\n    html += \"<li>\" + tasks[i] +\n\n    \" <button onclick='removeTask(\" + i + \")'>x</button></li>\";\n\n  }\n\n  document.getElementById(\"list\").innerHTML = html;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "تابع displayTasks() باید هر بار که فهرست تغییر می‌کند فراخوانی شود."
+  },
+  {
+   "type": "h2",
+   "text": "افزودن تابع افزودن کار"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Function to Add a task\n\nfunction addTask() {\n\n  let taskInput = document.getElementById(\"task\");\n\n  let text = taskInput.value;\n\n  if (text === \"\") {\n\n    return;\n\n  }\n\n  tasks.push(text);\n\n  taskInput.value = \"\";\n\n  saveTasks();\n\n  displayTasks();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "افزودن تابع حذف کار"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Function to Remove a task\n\nfunction removeTask(i) {\n\n  tasks.splice(i, 1);\n\n  saveTasks();\n\n  displayTasks();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "متد splice(i, 1) روی آرایه یک آیتم را در موقعیت i حذف می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "افزودن تابع پاک کردن همه"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Function to Clear all tasks\n\nfunction clearAll() {\n\n  tasks = [];\n\n  saveTasks();\n\n  displayTasks();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "تابع ذخیرهٔ کارها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Function to Save tasks\n\nfunction saveTasks() {\n\n  localStorage.setItem(\"tasks\", JSON.stringify(tasks));\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "برای ذخیرهٔ آرایه در localStorage، آن را با JSON.stringify() به متن تبدیل می‌کنیم."
+  },
+  {
+   "type": "h2",
+   "text": "تابع بارگذاری کارها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function loadTasks() {\n\n  let saved = localStorage.getItem(\"tasks\");\n\n  if (saved !== null) {\n\n    tasks = JSON.parse(saved);\n\n  }\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "برای بارگذاری آرایه، آن را با JSON.parse() به حالت اول برمی‌گردانیم."
+  },
+  {
+   "type": "h2",
+   "text": "پروژهٔ نهایی"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>To-Do List</h2>\n\n<input id=\"task\" placeholder=\"New task\">\n\n<button onclick=\"addTask()\">Add</button>\n\n<ul id=\"list\"></ul>\n\n<button onclick=\"clearAll()\">Clear All</button>\n\n<script>\n\n// JavaScript goes here\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "HTML نهایی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a task Array\n\nlet tasks = [];\n\n// Function to Display tasks\n\nfunction displayTasks() {\n\n  let html = \"\";\n\n  for (let i = 0; i < tasks.length; i++) {\n\n    html += \"<li>\" + tasks[i] +\n\n    \" <button onclick='removeTask(\" + i + \")'>x</button></li>\";\n\n  }\n\n  document.getElementById(\"list\").innerHTML = html;\n\n}\n\n// Function to Add a task\n\nfunction addTask() {\n\n  let taskInput = document.getElementById(\"task\");\n\n  let text = taskInput.value;\n\n  if (text === \"\") {\n\n    return;\n\n  }\n\n  tasks.push(text);\n\n  taskInput.value = \"\";\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Remove a task\n\nfunction removeTask(i) {\n\n  tasks.splice(i, 1);\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Clear all tasks\n\nfunction clearAll() {\n\n  tasks = [];\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Save tasks\n\nfunction saveTasks() {\n\n  localStorage.setItem(\"tasks\", JSON.stringify(tasks));\n\n}\n\n// Function to Load tasks\n\nfunction loadTasks() {\n\n  let saved = localStorage.getItem(\"tasks\");\n\n  if (saved !== null) {\n\n    tasks = JSON.parse(saved);\n\n  }\n\n}\n\n// Load and display tasks when page loads\n\nloadTasks();\n\ndisplayTasks()",
+   "caption": "HTML نهایی"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_todo"
+  },
+  {
+   "type": "h2",
+   "text": "تمرین‌ها"
+  },
+  {
+   "type": "h3",
+   "text": "تمرین ۱"
+  },
+  {
+   "type": "h3",
+   "text": "تمرین ۲"
+  },
+  {
+   "type": "p",
+   "text": "کاری کنید کاربر بتواند با زدن کلید Enter کار جدید اضافه کند."
+  },
+  {
+   "type": "h3",
+   "text": "تمرین ۳"
+  },
+  {
+   "type": "p",
+   "text": "کارها بعد از هر تغییر خودکار ذخیره شوند (این کار انجام شده است)."
+  },
+  {
+   "type": "p",
+   "text": "پیام «Saved!» را اضافه کنید تا هنگام ذخیره نمایش داده شود."
+  },
+  {
+   "type": "h3",
+   "text": "چالش‌های امتیازی (یک سطح بالاتر)"
+  },
+  {
+   "type": "p",
+   "text": "بکوشید پروژه را بهتر کنید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کارها را انجام‌شده علامت بزنید (✔)",
+    "کارها را فیلتر کنید: همه / در جریان / انجام‌شده",
+    "قابلیت «ویرایش کار» را اضافه کنید",
+    "کارها را بر اساس حروف الفبا مرتب کنید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پروژه‌های JavaScript"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "شمارندهٔ JavaScript\nپروژهٔ شمارنده با ذخیره و بازیابی در localStorage.",
+    "شنوندهٔ رویداد JavaScript\nهمان پروژهٔ شمارنده، این بار با شنوندهٔ رویداد (event listener) به‌جای onclick.",
+    "فهرست کارهای روزانه\nفهرست کارهایی که در یک آرایه در localStorage ذخیره می‌شود.",
+    "پنجرهٔ مودال\nیک پنجرهٔ مودال که روی صفحه ظاهر می‌شود.",
+    "اعتبارسنجی فرم\nیک فرم HTML همراه با اعتبارسنجی فرم."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "صفحهٔ todo.html را با فیلد ورودی id=\"task\"، دکمهٔ افزودن، فهرست id=\"list\" و دکمهٔ پاک کردن بسازید.",
+   "hint": "برای نمایش آیتم‌ها از یک عنصر ul با شناسهٔ list استفاده کنید و آیتم‌ها را درون li بریزید."
+  },
+  {
+   "prompt": "آرایهٔ tasks و تابع displayTasks() را بسازید که آرایه را پیمایش کند و هر کار را در یک li با دکمهٔ حذف نمایش دهد.",
+   "hint": "داخل حلقه برای هر کار یک li بسازید و با innerHTML یا createElement به فهرست اضافه کنید."
+  },
+  {
+   "prompt": "تابع addTask() را بنویسید که متن ورودی را بچسباند، ورودی را خالی کند و بعد displayTasks() و ذخیره را صدا بزند.",
+   "hint": "برای جلوگیری از کار خالی، شرط if (value.trim() === \"\") بگذارید."
+  },
+  {
+   "prompt": "دو تابع حذف و پاک کردن همه بنویسید؛ در حذف از splice(i, 1) استفاده کنید.",
+   "hint": "شمارهٔ کار را به دکمهٔ حذف بدهید تا بدانید کدام آیتم را از آرایه بردارید؛ برای پاک کردن همه هم tasks = [] کافی است."
+  },
+  {
+   "prompt": "ذخیره و بارگذاری را با JSON.stringify و JSON.parse پیاده کنید و بعد از رفرش صفحه، کارها را بررسی کنید.",
+   "hint": "localStorage فقط متن نگه می‌دارد؛ آرایه را با JSON.stringify به رشته و با JSON.parse دوباره به آرایه تبدیل کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "چرا آرایهٔ تسک‌ها را قبل از ذخیره در localStorage با JSON.stringify تبدیل می‌کنیم؟",
+   "options": [
+    "چون بدون آن آرایه حذف می‌شود",
+    "چون localStorage از آرایهٔ عددی پشتیبانی نمی‌کند",
+    "چون localStorage فقط متن ذخیره می‌کند",
+    "چون JSON سریع‌تر از آرایه است"
+   ],
+   "answer": 2,
+   "explanation": "localStorage فقط رشتهٔ متنی نگه می‌دارد؛ JSON.stringify آرایه را به متن تبدیل می‌کند و JSON.parse هنگام بارگذاری آن را دوباره آرایه می‌کند."
+  },
+  {
+   "question": "متد splice(i, 1) روی آرایه چه کاری می‌کند؟",
+   "options": [
+    "یک آیتم جدید در موقعیت i اضافه می‌کند",
+    "کل آرایه را پاک می‌کند",
+    "آرایه را مرتب می‌کند",
+    "یک آیتم در موقعیت i را حذف می‌کند"
+   ],
+   "answer": 3,
+   "explanation": "آرگومان اول موقعیت شروع و آرگومان دوم تعداد آیتم‌های حذفی است؛ پس splice(i, 1) یک آیتم در موقعیت i را برمی‌دارد."
+  },
+  {
+   "question": "تابع displayTasks() وظیفه‌اش چیست؟",
+   "options": [
+    "نمایش دوبارهٔ کل آرایهٔ کارها روی صفحه",
+    "حذف همهٔ کارها",
+    "مرتب کردن کارها",
+    "ذخیرهٔ کارها در localStorage"
+   ],
+   "answer": 0,
+   "explanation": "displayTasks آرایه را پیمایش می‌کند و فهرست را از نو می‌سازد؛ باید هر بار که آرایه تغییر می‌کند فراخوانی شود."
+  },
+  {
+   "question": "برای پاک کردن همهٔ کارها کدام روش درست است؟",
+   "options": [
+    "tasks.splice(0, 1)",
+    "tasks = [] و بعد نمایش دوباره",
+    "tasks.deleteAll()",
+    "localStorage.clearItem()"
+   ],
+   "answer": 1,
+   "explanation": "با خالی کردن آرایه (tasks = []) و بعد به‌روزرسانی نمایش، همهٔ کارها پاک می‌شوند؛ بقیهٔ گزینه‌ها متد معتبری نیستند."
+  },
+  {
+   "question": "چرا هنگام ساخت li برای هر کار، برای دکمهٔ حذف شمارهٔ کار را هم نگه می‌داریم؟",
+   "options": [
+    "تا کارها مرتب شوند",
+    "چون localStorage شماره لازم دارد",
+    "تا بتوانیم همان آیتم مشخص را با splice پیدا و حذف کنیم",
+    "چون در HTML شماره لازم است"
+   ],
+   "answer": 2,
+   "explanation": "با دانستن شمارهٔ کار می‌توان همان آیتم را از آرایه برداشت؛ در غیر این صورت نمی‌دانیم کدام کار باید حذف شود."
+  }
+ ]
+}

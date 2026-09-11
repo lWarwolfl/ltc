@@ -1,0 +1,466 @@
+{
+ "slug": "js_2019",
+ "course": "js",
+ "order": 131,
+ "url": "/js/js_2019.asp",
+ "title": "ECMAScript 2019",
+ "summary": "این درس ویژگی‌های ES 2019 را مرور می‌کند: trimStart() و trimEnd() روی رشته‌ها، Object.fromEntries، catch بدون پارامتر، متدهای flat() و flatMap() روی آرایه‌ها، مرتب‌سازی پایدار و بازنگری JSON.stringify() و Function.toString(). بعد از این درس می‌توانید این متدها را به کار ببرید و بگویید کدام رفتار پیش از ۲۰۱۹ درست کار نمی‌کرد.",
+ "objectives": [
+  "رشته را با trimStart() و trimEnd() کوتاه کنید",
+  "با Object.fromEntries از جفت‌های کلید/مقدار شیء بسازید",
+  "آرایهٔ تودرتو را با flat() و flatMap() تخت کنید",
+  "معنی مرتب‌سازی پایدار را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ECMAScript 2019"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های جدید در JavaScript 2019"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ویژگی",
+     "توضیح",
+     ""
+    ],
+    [
+     "متد trimStart() رشته",
+     "فاصله‌های خالی را از ابتدای رشته حذف می‌کند",
+     ""
+    ],
+    [
+     "متد trimEnd() رشته",
+     "فاصله‌های خالی را از انتهای رشته حذف می‌کند",
+     ""
+    ],
+    [
+     "متد Object.fromEntries",
+     "از جفت‌های کلید/مقدار یک شیء می‌سازد",
+     ""
+    ],
+    [
+     "catch بدون پارامتر",
+     "اگر به پارامتر catch نیازی نباشد، اجازه می‌دهد آن را ننویسید",
+     ""
+    ],
+    [
+     "متد flat() آرایه",
+     "با تخت کردن یک آرایهٔ تودرتو، آرایهٔ تازه‌ای می‌سازد",
+     ""
+    ],
+    [
+     "متد flatMap() آرایه",
+     "روی همهٔ عنصرهای آرایه نقشه اعمال می‌کند و با تخت کردن آرایه، آرایهٔ تازه‌ای می‌سازد",
+     ""
+    ],
+    [
+     "متد بازنگری‌شدهٔ sort() آرایه",
+     "مرورگرها از این پس باید از الگوریتم مرتب‌سازی پایدار استفاده کنند",
+     ""
+    ],
+    [
+     "بازنگری JSON.stringify()",
+     "رشته‌های دارای code pointهای UTF-8 دیگر بی‌خطر تبدیل می‌شوند",
+     ""
+    ],
+    [
+     "نویسه‌های جداکننده در رشته‌ها",
+     "جداکننده‌های خط و پاراگراف (\\u2028 و \\u2029) از این پس در رشته‌ها مجازند",
+     ""
+    ],
+    [
+     "متد بازنگری‌شدهٔ Function.toString()",
+     "اکنون کد منبع را همراه با توضیح‌ها، فاصله‌ها و جزئیات نحو برمی‌گرداند",
+     ""
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2019 از ژانویه ۲۰۲۰ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome66",
+     "Edge79",
+     "Firefox61",
+     "Safari12",
+     "Opera50"
+    ],
+    [
+     "آوریل ۲۰۱۸",
+     "ژانویه ۲۰۲۰",
+     "ژوئن ۲۰۱۸",
+     "سپتامبر ۲۰۱۸",
+     "می ۲۰۱۸"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد trimStart() رشته در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد رشته‌ای trimStart() را به JavaScript اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد trimStart() مثل trim() کار می‌کند، اما فاصله‌های خالی را فقط از ابتدای رشته حذف می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text1 = \"     Hello World!     \";\n\nlet text2 = text1.trimStart();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trimstart"
+  },
+  {
+   "type": "h2",
+   "text": "متد trimEnd() رشته در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد رشته‌ای trimEnd() را به JavaScript اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد trimEnd() مثل trim() کار می‌کند، اما فاصله‌های خالی را فقط از انتهای رشته حذف می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text1 = \"     Hello World!     \";\n\nlet text2 = text1.trimEnd();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trimend"
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.fromEntries() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد fromEntries() را به Object اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد fromEntries() از جفت‌های کلید/مقدار قابل‌پیمایش یک شیء می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\n\n[\"apples\", 300],\n\n[\"pears\", 900],\n\n[\"bananas\", 500]\n\n];\n\nconst myObj = Object.fromEntries(fruits);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_fromentries"
+  },
+  {
+   "type": "h2",
+   "text": "catch بدون پارامتر"
+  },
+  {
+   "type": "p",
+   "text": "از ES2019 به بعد می‌توانید پارامتر catch را اگر لازم ندارید ننویسید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  // code\n\n} catch (err) {\n\n  // code\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "try {\n\n  // code\n\n} catch {\n\n  // code\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "متد flat() آرایه در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد flat() را به آرایه‌ها اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد flat() با تخت کردن یک آرایهٔ تودرتو، آرایهٔ تازه‌ای می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [[1,2],[3,4],[5,6]];\n\nconst newArr = myArr.flat();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_flat"
+  },
+  {
+   "type": "h2",
+   "text": "متد flatMap() آرایه در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد flatMap() را به آرایه‌ها اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد flatMap() اول روی همهٔ عنصرهای آرایه نقشه اعمال می‌کند و بعد با تخت کردن آرایه، آرایهٔ تازه‌ای می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [1, 2, 3, 4, 5, 6];\n\nconst newArr = myArr.flatMap(x => [x, x * 10]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_flatmap"
+  },
+  {
+   "type": "h2",
+   "text": "مرتب‌سازی پایدار در sort() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد sort() آرایه را بازنگری کرد."
+  },
+  {
+   "type": "p",
+   "text": "پیش از ۲۰۱۹، مشخصات زبان الگوریتم‌های مرتب‌سازی ناپایدار مثل QuickSort را مجاز می‌دانست."
+  },
+  {
+   "type": "p",
+   "text": "پس از ES2019، مرورگرها باید از الگوریتم مرتب‌سازی پایدار استفاده کنند:"
+  },
+  {
+   "type": "p",
+   "text": "وقتی عنصرها را بر اساس یک مقدار مرتب می‌کنید، هر عنصر باید موقعیت نسبی خود را نسبت به عنصرهای هم‌مقدار حفظ کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myArr = [\n\n  {name:\"X00\",price:100 },\n\n  {name:\"X01\",price:100 },\n\n  {name:\"X02\",price:100 },\n\n  {name:\"X03\",price:100 },\n\n  {name:\"X04\",price:110 },\n\n  {name:\"X05\",price:110 },\n\n  {name:\"X06\",price:110 },\n\n  {name:\"X07\",price:110 }\n\n];",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_stable_sort"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، وقتی بر اساس price مرتب می‌کنید، نتیجه نباید ترتیب نسبی نام‌ها را عوض کند؛ مثل این حالت:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "X01 100\n\nX03 100\n\nX00 100\n\nX03 100\n\nX05 110\n\nX04 110\n\nX06 110\n\nX07 110",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "بازنگری JSON.stringify()"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد stringify() را بازنگری کرد."
+  },
+  {
+   "type": "p",
+   "text": "پیش از ۲۰۱۹، JSON نمی‌توانست کاراکتری را که با \\ کدگذاری شده باشد به رشته تبدیل کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let text = JSON.stringify(\"\\u26D4\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_2019"
+  },
+  {
+   "type": "p",
+   "text": "پیش از ES2019، استفاده از JSON.stringify() روی code pointهای UTF-8 (از U+D800 تا U+DFFF) کاراکترهای خراب یونیکد مثل ��� برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "پس از این بازنگری، رشته‌های دارای code pointهای UTF-8 با JSON.stringify() بی‌خطر تبدیل می‌شوند و با JSON.parse() به حالت اصلی برمی‌گردند."
+  },
+  {
+   "type": "h2",
+   "text": "نویسه‌های جداکننده"
+  },
+  {
+   "type": "p",
+   "text": "نویسه‌های جداکنندهٔ خط و پاراگراف (\\u2028 و \\u2029) از این پس در رشته‌های نوشتاری مجازند."
+  },
+  {
+   "type": "p",
+   "text": "پیش از ۲۰۱۹ این‌ها به‌عنوان پایان خط در نظر گرفته می‌شدند و به خطا منجر می‌شدند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// This is valid in ES2019:\n\nlet text = \"\\u2028\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_newline"
+  },
+  {
+   "type": "p",
+   "text": "حالا JavaScript و JSON قواعد یکسانی دارند."
+  },
+  {
+   "type": "p",
+   "text": "پیش از ES2019:"
+  },
+  {
+   "type": "p",
+   "text": "دستور text = JSON.parse('\"\\u2028\"') به رشتهٔ خالی تجزیه می‌شد."
+  },
+  {
+   "type": "p",
+   "text": "دستور text = '\"\\u2028\"' خطای نحو می‌داد."
+  },
+  {
+   "type": "h2",
+   "text": "بازنگری Function.toString()"
+  },
+  {
+   "type": "p",
+   "text": "ES2019 متد toString() تابع را بازنگری کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد toString() رشته‌ای برمی‌گرداند که کد منبع یک تابع را نشان می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "از ۲۰۱۹ به بعد، toString() باید کد منبع تابع را همراه با توضیح‌ها، فاصله‌ها و جزئیات نحو برگرداند."
+  },
+  {
+   "type": "p",
+   "text": "پیش از ۲۰۱۹ مرورگرهای مختلف گونه‌های متفاوتی از تابع را برمی‌گرداندند (مثلاً بدون توضیح‌ها و فاصله‌ها). از ۲۰۱۹ تابع باید دقیقاً همان‌طور که نوشته شده برگردانده شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(p1, p2) {\n\n    return p1 * p2;\n\n}\n\nlet text = myFunction.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_tostring"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "رشته‌ای با فاصله‌های خالی در ابتدا و انتها بسازید و یک‌بار trimStart و یک‌بار trimEnd را روی آن امتحان کنید و طول نتیجه را چاپ کنید.",
+   "hint": "trimStart فقط ابتدا و trimEnd فقط انتها را کوتاه می‌کند؛ trim هر دو طرف را."
+  },
+  {
+   "prompt": "آرایه‌ای از جفت‌های کلید/مقدار بسازید و با Object.fromEntries از آن یک شیء بسازید و اعضای شیء را چاپ کنید.",
+   "hint": "هر عضو آرایه باید خودش یک آرایهٔ دوعنصری [کلید, مقدار] باشد."
+  },
+  {
+   "prompt": "یک بلوک try...catch بنویسید که پارامتر catch را ننویسد و ببینید کد بدون خطا اجرا می‌شود.",
+   "hint": "از ES2019 نوشتن catch { } بدون پرانتز پارامتر مجاز است."
+  },
+  {
+   "prompt": "آرایه‌ای تودرتو مثل [[1,2],[3,4]] بسازید و با flat آن را تخت کنید، بعد همان را با flatMap و تابع x => [x, x*10] امتحان کنید.",
+   "hint": "flat فقط تخت می‌کند؛ flatMap اول نقشه اعمال می‌کند و بعد تخت می‌کند."
+  },
+  {
+   "prompt": "آرایه‌ای از شیءهای هم‌مقدار درست کنید (مثل چند شیء با price یکسان) و با sort روی price مرتب کنید و ببینید ترتیب نام‌ها حفظ می‌شود.",
+   "hint": "از ES2019 مرتب‌سازی آرایه پایدار است، پس عنصرهای هم‌مقدار ترتیب نسبی خود را نگه می‌دارند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تفاوت trimStart() با trim() چیست؟",
+   "options": [
+    "trimStart فقط فاصله‌های ابتدای رشته را حذف می‌کند",
+    "trimStart فاصله‌ها را از هر دو طرف حذف می‌کند",
+    "trimStart کاراکترها را به عدد تبدیل می‌کند",
+    "trimStart آرایه‌ای از کاراکترها می‌سازد"
+   ],
+   "answer": 0,
+   "explanation": "trim() فاصله‌های خالی را از هر دو طرف رشته حذف می‌کند اما trimStart() فقط از ابتدا و trimEnd() فقط از انتها."
+  },
+  {
+   "question": "Object.fromEntries() چه چیزی می‌سازد؟",
+   "options": [
+    "از یک شیء یک آرایه می‌سازد",
+    "از جفت‌های کلید/مقدار یک شیء می‌سازد",
+    "یک Map می‌سازد",
+    "کلیدهای شیء را حذف می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "fromEntries از iterable جفت‌های کلید/مقدار یک شیء می‌سازد؛ کارش تا حدی عکس Object.entries() است."
+  },
+  {
+   "question": "بعد از ES2019، sort() آرایه از چه الگوریتمی استفاده می‌کند؟",
+   "options": [
+    "هر الگوریتمی که مرورگر بخواهد",
+    "الگوریتم ناپایدار مثل QuickSort",
+    "الگوریتم مرتب‌سازی پایدار",
+    "الگوریتم تصادفی"
+   ],
+   "answer": 2,
+   "explanation": "پیش از ۲۰۱۹ الگوریتم‌های ناپایدار مجاز بودند، اما از ES2019 مرورگرها باید از مرتب‌سازی پایدار استفاده کنند تا عنصرهای هم‌مقدار ترتیب خود را از دست ندهند."
+  },
+  {
+   "question": "\"catch بدون پارامتر\" یعنی چه؟",
+   "options": [
+    "پارامتر catch را می‌توان حذف کرد اگر لازم نیست",
+    "بلوک catch را می‌توان حذف کرد",
+    "try را می‌توان حذف کرد",
+    "catch دیگر خطا نمی‌گیرد"
+   ],
+   "answer": 0,
+   "explanation": "از ES2019 اگر به شیء خطا نیازی ندارید می‌توانید بنویسید catch { } و پارامتر را ننویسید. حذف خود بلوک catch معنا ندارد."
+  },
+  {
+   "question": "کدام گزینه دربارهٔ toString() تابع پس از ES2019 درست است؟",
+   "options": [
+    "فقط نام تابع را برمی‌گرداند",
+    "کد منبع را بدون توضیح‌ها و فاصله‌ها برمی‌گرداند",
+    "کد منبع را دقیقاً همان‌طور که نوشته شده، همراه با توضیح‌ها و فاصله‌ها برمی‌گرداند",
+    "کد منبع را به بایت دودویی تبدیل می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "از ۲۰۱۹ تابع باید دقیقاً همان‌طور که نوشته شده برگردانده شود، با توضیح‌ها و فاصله‌ها و جزئیات نحو. پیش از ۲۰۱۹ مرورگرها گونه‌های مختلفی برمی‌گرداندند."
+  }
+ ]
+}

@@ -1,0 +1,1065 @@
+{
+ "slug": "js_es5",
+ "course": "js",
+ "order": 136,
+ "url": "/js/js_es5.asp",
+ "title": "JavaScript 2009 (ES5)",
+ "summary": "ES5 اولین بازنگری مهم JavaScript است و ابزارهایی آورد که هر روز به کار می‌برید: حالت strict، دسترسی به کاراکتر رشته، trim()، متدهای آرایه مثل forEach و map و filter و reduce و every و some، JSON.parse و JSON.stringify، getter و setter، Object.create و bind. این درس همهٔ این ویژگی‌ها را با مثال معرفی می‌کند.",
+ "objectives": [
+  "حالت strict را در اسکریپت فعال کنید",
+  "با متدهای آرایه مثل map و filter و reduce روی آرایه کار کنید",
+  "با getter و setter خواندن و نوشتن خصوصیت را کنترل کنید",
+  "با bind متد یک شیء را به شیء دیگری قرض دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript 2009 (ES5)"
+  },
+  {
+   "type": "h2",
+   "text": "نسخهٔ ECMAScript 2009"
+  },
+  {
+   "type": "p",
+   "text": "اولین بازنگری مهم JavaScript."
+  },
+  {
+   "type": "p",
+   "text": "ECMAScript 2009 با نام ES5 هم شناخته می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های ES5"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ویژگی",
+     "توضیح"
+    ],
+    [
+     "\"use strict\"",
+     "اجازه می‌دهد کد در حالت strict اجرا شود"
+    ],
+    [
+     "دسترسی [] روی رشته",
+     "کاراکتر موجود در اندیس مشخصی از رشته را برمی‌گرداند"
+    ],
+    [
+     "رشته‌های چندخطی",
+     "اگر با \\ فرار داده شود، رشته را در چند خط مجاز می‌کند"
+    ],
+    [
+     "متد String.trim()",
+     "فاصله‌های خالی را از هر دو طرف رشته حذف می‌کند"
+    ],
+    [
+     "متد Array.isArray()",
+     "اگر متغیر آرایه باشد true برمی‌گرداند"
+    ],
+    [
+     "متد forEach() آرایه",
+     "برای هر عنصر آرایه یک بار یک تابع را صدا می‌زند"
+    ],
+    [
+     "متد map() آرایه",
+     "با اجرای یک تابع روی هر عنصر، آرایهٔ تازه‌ای می‌سازد"
+    ],
+    [
+     "متد filter() آرایه",
+     "از عنصرهایی که یک شرط را رد کنند، آرایه می‌سازد"
+    ],
+    [
+     "متد reduce() آرایه",
+     "آرایه را (از چپ) به یک مقدار تک کاهش می‌دهد"
+    ],
+    [
+     "متد reduceRight() آرایه",
+     "آرایه را (از راست) به یک مقدار تک کاهش می‌دهد"
+    ],
+    [
+     "متد every() آرایه",
+     "بررسی می‌کند که همهٔ مقدارهای آرایه شرط را رد کنند"
+    ],
+    [
+     "متد some() آرایه",
+     "بررسی می‌کند که بعضی مقدارها شرط را رد کنند"
+    ],
+    [
+     "متد indexOf() آرایه",
+     "مقدار یک عنصر را جست‌وجو می‌کند و موقعیتش را برمی‌گرداند"
+    ],
+    [
+     "متد lastIndexOf() آرایه",
+     "مقدار یک عنصر را جست‌وجو می‌کند و موقعیتش را برمی‌گرداند"
+    ],
+    [
+     "متد JSON.parse()",
+     "JSON را به شیء JavaScript تبدیل می‌کند"
+    ],
+    [
+     "متد JSON.stringify()",
+     "JSON را به رشته تبدیل می‌کند"
+    ],
+    [
+     "متد Date.now()",
+     "تعداد میلی‌ثانیه از تاریخ صفر را برمی‌گرداند"
+    ],
+    [
+     "متد toISOString() تاریخ",
+     "شیء تاریخ را به رشتهٔ ISO تبدیل می‌کند"
+    ],
+    [
+     "متد toJSON() تاریخ",
+     "شیء تاریخ را به رشتهٔ JSON تبدیل می‌کند"
+    ],
+    [
+     "getterهای خصوصیت",
+     "اجازه می‌دهد تعریف کنید مقدار خصوصیت چگونه خوانده شود"
+    ],
+    [
+     "setterهای خصوصیت",
+     "اجازه می‌دهد تعریف کنید مقدار خصوصیت چگونه نوشته شود"
+    ],
+    [
+     "نام‌های رزروشده",
+     "نام‌های رزروشده را به‌عنوان نام خصوصیت مجاز می‌کند"
+    ],
+    [
+     "متد Object.create()",
+     "از یک شیء موجود، شیء تازه‌ای می‌سازد"
+    ],
+    [
+     "متد Object.keys()",
+     "آرایه‌ای از کلیدهای یک شیء برمی‌گرداند"
+    ],
+    [
+     "مدیریت شیء",
+     "متدهای مدیریت شیء"
+    ],
+    [
+     "محافظت از شیء",
+     "متدهای محافظت از شیء"
+    ],
+    [
+     "متد Object.defineProperty()",
+     "اجازه می‌دهد خصوصیت‌های شیء را تعریف یا تغییر دهید"
+    ],
+    [
+     "متد bind() تابع",
+     "اجازه می‌دهد شیءها متد از شیءهای دیگر قرض بگیرند"
+    ],
+    [
+     "کامای انتهایی",
+     "کامای انتهایی را در تعریف شیء و آرایه مجاز می‌کند:"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript 2009 از جولای ۲۰۱۳ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome23",
+     "IE/Edge10",
+     "Firefox21",
+     "Safari6",
+     "Opera15"
+    ],
+    [
+     "سپتامبر ۲۰۱۲",
+     "سپتامبر ۲۰۱۲",
+     "آوریل ۲۰۱۳",
+     "جولای ۲۰۱۲",
+     "جولای ۲۰۱۳"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "دستور \"use strict\""
+  },
+  {
+   "type": "p",
+   "text": "\"use strict\" تعیین می‌کند که کد JavaScript باید در حالت strict اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "در حالت strict مثلاً نمی‌توانید از متغیرهای تعریف‌نشده استفاده کنید."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "می‌توانید در همهٔ برنامه‌هایتان از حالت strict استفاده کنید. کمکتان می‌کند کد تمیزتری بنویسید، مثلاً نمی‌گذارد از متغیرهای تعریف‌نشده استفاده کنید. \"use strict\" فقط یک عبارت رشته‌ای است. مرورگرهای قدیمی اگر آن را نفهمند خطا نمی‌دهند. بیشتر بدانید ..."
+  },
+  {
+   "type": "h2",
+   "text": "دسترسی به خصوصیت روی رشته‌ها"
+  },
+  {
+   "type": "p",
+   "text": "متد charAt() کاراکتر موجود در اندیس (موقعیت) مشخصی از رشته را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let str = \"HELLO WORLD\";\n\nstr.charAt(0);     // returns H",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es5_string_charat"
+  },
+  {
+   "type": "p",
+   "text": "ES5 دسترسی به خصوصیت روی رشته‌ها را مجاز می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let str = \"HELLO WORLD\";\n\nstr[0];           // returns H",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es5_string_prop"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "دسترسی به خصوصیت روی رشته ممکن است کمی غیرقابل پیش‌بینی باشد. بیشتر در بخش متدهای رشتهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "رشته‌ها در چند خط"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"Hello \\\nDolly!\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_break"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "متد \\ شاید همه‌جا پشتیبانی نشود. مرورگرهای قدیمی‌تر ممکن است فاصله‌های اطراف بک‌اسلش را متفاوت ببینند. بعضی مرورگرهای قدیمی فاصله بعد از کاراکتر \\ را مجاز نمی‌دانند."
+  },
+  {
+   "type": "p",
+   "text": "راه امن‌تر برای شکستن یک رشتهٔ نوشتاری، استفاده از جمع رشته‌هاست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"Hello \" +\n\"Dolly!\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_break_ok"
+  },
+  {
+   "type": "h2",
+   "text": "کلمه‌های رزروشده به‌عنوان نام خصوصیت"
+  },
+  {
+   "type": "p",
+   "text": "ES5 نام‌های رزروشده را به‌عنوان نام خصوصیت مجاز می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var obj = {name: \"John\", new: \"yes\"}",
+   "caption": "مثال شیء"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es5_property"
+  },
+  {
+   "type": "h2",
+   "text": "متد trim() رشته"
+  },
+  {
+   "type": "p",
+   "text": "متد trim() فاصله‌های خالی را از هر دو طرف رشته حذف می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var str = \"       Hello World!        \";\nalert(str.trim());",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trim"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای رشتهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد Array.isArray()"
+  },
+  {
+   "type": "p",
+   "text": "متد isArray() بررسی می‌کند که یک شیء آرایه هست یا نه."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nresult = Array.isArray(fruits);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_is"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد forEach() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد forEach() برای هر عنصر آرایه یک بار یک تابع را صدا می‌زند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nnumbers.forEach(myFunction);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای پیمایش آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد map() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد map() با اجرای یک تابع روی هر عنصر آرایه، آرایهٔ تازه‌ای می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value) {\n\n  return value * 2;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای پیمایش آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد filter() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد filter() از عنصرهایی که یک شرط را رد کنند، آرایهٔ تازه‌ای می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nconst over18 = numbers.filter(myFunction);\n\nfunction myFunction(value) {\n\n  return value > 18;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_filter"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای پیمایش آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد reduce() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد reduce() آرایه را به یک مقدار تک کاهش می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet sum = numbers.reduce(myFunction);\n\nfunction myFunction(total, value) {\n\n  return total + value;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای پیمایش آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد reduceRight() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد reduceRight() آرایه را (از راست به چپ) به یک مقدار تک کاهش می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nlet sum = numbers1.reduceRight(myFunction);\n\nfunction myFunction(total, value) {\n\n  return total + value;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_reduce_right"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای پیمایش آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد every() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد every() بررسی می‌کند که همهٔ مقدارهای آرایه یک شرط را رد کنند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet allOver18 = numbers.every(myFunction);\n\nfunction myFunction(value) {\n\n  return value > 18;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_every"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای پیمایش آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد some() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد some() بررسی می‌کند که بعضی از مقدارهای آرایه یک شرط را رد کنند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet allOver18 = numbers.some(myFunction);\n\nfunction myFunction(value) {\n\n  return value > 18;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_some"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای پیمایش آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد indexOf() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "متد indexOf() مقدار یک عنصر را جست‌وجو می‌کند و موقعیت آن را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Apple\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet position = fruits.indexOf(\"Apple\") + 1;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_indexof"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای جست‌وجو در آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد lastIndexOf() آرایه"
+  },
+  {
+   "type": "p",
+   "text": "lastIndexOf() مثل indexOf() است، اما از انتهای آرایه جست‌وجو می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\"Apple\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet position = fruits.lastIndexOf(\"Apple\") + 1;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_lastindexof"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای جست‌وجو در آرایهٔ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد JSON.parse()"
+  },
+  {
+   "type": "p",
+   "text": "یکی از کاربردهای رایج JSON دریافت داده از یک وب‌سرور است."
+  },
+  {
+   "type": "p",
+   "text": "فرض کنید این رشتهٔ متنی را از یک وب‌سرور گرفته باشید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "'{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}'",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "تابع JSON.parse() در JavaScript برای تبدیل این متن به یک شیء JavaScript به کار می‌رود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const txt = '{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}'\n\nconst myObj = JSON.parse(txt);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjson_parse"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در آموزش JSON ما بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد JSON.stringify()"
+  },
+  {
+   "type": "p",
+   "text": "یکی از کاربردهای رایج JSON فرستادن داده به یک وب‌سرور است."
+  },
+  {
+   "type": "p",
+   "text": "وقتی داده را به وب‌سرور می‌فرستید، داده باید رشته باشد."
+  },
+  {
+   "type": "p",
+   "text": "فرض کنید این شیء را در JavaScript داریم:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myObj = {name:\"John\", age:30, city:\"New York\"};",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "از تابع JSON.stringify() در JavaScript استفاده کنید تا آن را به رشته تبدیل کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myJSON = JSON.stringify(myObj);",
+   "caption": null
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "نتیجه رشته‌ای خواهد بود که از نحو JSON پیروی می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "myJSON حالا یک رشته است و آمادهٔ فرستادن به سرور:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myObj = {name:\"John\", age:30, city:\"New York\"};\n\nconst myJSON = JSON.stringify(myObj);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjson_stringify"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در آموزش JSON ما بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد Date.now()"
+  },
+  {
+   "type": "p",
+   "text": "Date.now() تعداد میلی‌ثانیه از تاریخ صفر (۱ ژانویهٔ ۱۹۷۰، ساعت ۰۰:۰۰:۰۰ UTC) را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "var timInMSs = Date.now();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es5_date_now"
+  },
+  {
+   "type": "p",
+   "text": "Date.now() همان چیزی را برمی‌گرداند که getTime() روی یک شیء Date برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای تاریخ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد toISOString() تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "متد toISOString() شیء Date را با قالب استاندارد ISO به رشته تبدیل می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\ndocument.getElementById(\"demo\").innerHTML = d.toISOString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_toisostring"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای تاریخ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد toJSON() تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "toJSON() شیء Date را به رشته‌ای با قالب تاریخ JSON تبدیل می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "تاریخ‌های JSON همان قالب استاندارد ISO-8601 را دارند: YYYY-MM-DDTHH:mm:ss.sssZ:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "d = new Date();\n\ndocument.getElementById(\"demo\").innerHTML = d.toJSON();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es5_date_tojson"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش متدهای تاریخ JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "getter خصوصیت"
+  },
+  {
+   "type": "p",
+   "text": "getter خصوصیت متدی است که اجازه می‌دهد تعریف کنید مقدار خصوصیت هنگام خوانده شدن چگونه بازیابی شود."
+  },
+  {
+   "type": "p",
+   "text": "این مثال برای خصوصیتی به نام fullName یک getter می‌سازد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an object:\nconst Person = {\n  firstName:\n  \"John\",\n  lastName : \"Doe\",\n  get\n  fullName() {\n\n  return this.firstName + \" \" + this.lastName;\n  }\n};\n\n// Display data from the\n  object using a getter:\ndocument.getElementById(\"demo\").innerHTML =\n  Person.fullName;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es5_setter1"
+  },
+  {
+   "type": "p",
+   "text": "دربارهٔ getterها و setterها در بخش accessorهای شیء در JS بیشتر بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "setter خصوصیت"
+  },
+  {
+   "type": "p",
+   "text": "setter خصوصیت متدی است که اجازه می‌دهد تعریف کنید مقدار خصوصیت چگونه نوشته شود."
+  },
+  {
+   "type": "p",
+   "text": "این مثال از یک setter استفاده می‌کند تا به‌روزرسانی زبان همیشه با حروف بزرگ انجام شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const Person = {\n  firstName: \"John\",\n\n  lastName : \"Doe\",\n  language : \"NO\",\n  set lang(value) {\n\n  this.language = value.toUpperCase();\n  }\n};\n\n// Set an object\n  property using a setter:\nperson.lang = \"en\";\n\n// Display data from the\n  object:\ndocument.getElementById(\"demo\").innerHTML =\n  Person.language;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es5_setter2"
+  },
+  {
+   "type": "p",
+   "text": "این مثال برای خصوصیت language هم setter و هم getter می‌سازد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const Person = {\n  firstName: \"John\",\n\n  lastName : \"Doe\",\n  language : \"NO\",\n\n  get lang() {\n    return this.language;\n  },\n  set lang(value) {\n\n  this.language = value;\n  }\n};\n\n// Set an object\n  property using a setter:\nperson.lang = \"en\";\n\n// Display data from the\n  object using a getter:\ndocument.getElementById(\"demo\").innerHTML =\n  Person.lang;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es5_setter"
+  },
+  {
+   "type": "p",
+   "text": "دربارهٔ getterها و setterها در بخش accessorهای شیء در JS بیشتر بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.defineProperty()"
+  },
+  {
+   "type": "p",
+   "text": "Object.defineProperty() یک متد تازهٔ Object در ES5 است."
+  },
+  {
+   "type": "p",
+   "text": "اجازه می‌دهد یک خصوصیت شیء را تعریف کنید و/یا مقدار و ابرداده‌های یک خصوصیت را تغییر دهید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object:\nconst person = {\n  firstName:\n  \"John\",\n  lastName : \"Doe\",\n  language : \"NO\",\n};\n\n  // Change a Property:\nObject.defineProperty(person, \"language\", {\n\n  value: \"EN\",\n  writable : true,\n  enumerable : true,\n  configurable : true\n});\n\n//\n  Enumerate Properties\nlet txt = \"\";\nfor (let x in person) {\n\n  txt += person[x] + \"<br>\";\n}\n\n// Display Properties\n\ndocument.getElementById(\"demo\").innerHTML =\n  txt;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_defineproperty"
+  },
+  {
+   "type": "p",
+   "text": "مثال بعدی همان کد است، با این تفاوت که خصوصیت language را از پیمایش پنهان می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object:\nconst person = {\n  firstName:\n  \"John\",\n  lastName : \"Doe\",\n  language : \"NO\",\n};\n\n  // Change a Property:\nObject.defineProperty(person, \"language\", {\n\n  value: \"EN\",\n  writable : true,\n  enumerable : false,\n  configurable : true\n});\n\n//\n  Enumerate Properties\nlet txt = \"\";\nfor (let x in person) {\n\n  txt += person[x] + \"<br>\";\n}\ndocument.getElementById(\"demo\").innerHTML =\n  txt;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_defineproperty2"
+  },
+  {
+   "type": "p",
+   "text": "این مثال یک setter و یک getter می‌سازد تا به‌روزرسانی زبان همیشه با حروف بزرگ انجام شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object:\nconst person = {\n  firstName: \"John\",\n\n    lastName :\n  \"Doe\",\n  language : \"NO\"\n};\n\n// Change a Property:\n\n  Object.defineProperty(person, \"language\", {\n  get : function() { return\n  language },\n  set : function(value) { language = value.toUpperCase()}\n});\n\n  // Change Language\nperson.language = \"en\";\n\n// Display Language\n\n  document.getElementById(\"demo\").innerHTML = person.language;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_defineproperty3"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید:"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیء"
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.create()"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.create() از یک شیء موجود، شیء تازه‌ای می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\"\n\n};\n\n// Create new Object\n\nconst man = Object.create(person);\n\nman.firstName = \"Peter\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_met_create"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش تعریف شیء در JS بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.keys()"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.keys() آرایه‌ای از کلیدهای یک شیء برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Get the Keys\n\nconst keys = Object.keys(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_keys2"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید:"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیءها در JS"
+  },
+  {
+   "type": "h2",
+   "text": "مدیریت شیء"
+  },
+  {
+   "type": "p",
+   "text": "ES5 متدهای تازهٔ مدیریت شیء را به JavaScript اضافه کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Adding or changing an object property\n\nObject.defineProperty(object, property, descriptor)\n\n// Adding or changing object properties\n\nObject.defineProperties(object, descriptors)\n\n// Accessing a Property\n\nObject.getOwnPropertyDescriptor(object, property)\n\n// Accessing Properties\n\nObject.getOwnPropertyDescriptors(object)\n\n// Returns all properties as an array\n\nObject.getOwnPropertyNames(object)\n\n// Accessing the prototype\n\nObject.getPrototypeOf(object)",
+   "caption": "مدیریت شیءها"
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید:"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیء"
+  },
+  {
+   "type": "h2",
+   "text": "محافظت از شیء"
+  },
+  {
+   "type": "p",
+   "text": "ES5 متدهای محافظت از شیء را به JavaScript اضافه کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Prevents adding properties to an object\n\nObject.preventExtensions(object)\n\n// Returns true if properties can be added to an object\n\nObject.isExtensible(object)\n\n// Prevents changes of object properties (not values)\n\nObject.seal(object)\n\n// Returns true if object is sealed\n\nObject.isSealed(object)\n\n// Prevents any changes to an object\n\nObject.freeze(object)\n\n// Returns true if object is frozen\n\nObject.isFrozen(object)",
+   "caption": "محافظت از شیءها"
+  },
+  {
+   "type": "h2",
+   "text": "متد bind() تابع"
+  },
+  {
+   "type": "p",
+   "text": "با متد bind() یک شیء می‌تواند متدی را از شیء دیگری قرض بگیرد."
+  },
+  {
+   "type": "p",
+   "text": "این مثال دو شیء می‌سازد (person و member)."
+  },
+  {
+   "type": "p",
+   "text": "شیء member متد fullname را از شیء person قرض می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    fullName: function () {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nconst member = {\n\n  firstName:\"Hege\",\n\n  lastName: \"Nilsen\",\n\n}\n\nlet fullName = person.fullName.bind(member);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_borrow"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر در بخش bind() تابع بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "کامای انتهایی"
+  },
+  {
+   "type": "p",
+   "text": "ES5 کامای انتهایی را در تعریف شیء و آرایه مجاز می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person = {\n\n  firstName: \"John\",\n\n  lastName: \"\nDoe\",\n\nage: 46,\n\n}",
+   "caption": "مثال شیء"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "points = [\n\n  1,\n\n  5,\n\n  10,\n\n  25,\n\n  40,\n\n  100,\n\n];",
+   "caption": "مثال آرایه"
+  },
+  {
+   "type": "h2",
+   "text": "هشدار"
+  },
+  {
+   "type": "p",
+   "text": "JSON کامای انتهایی را مجاز نمی‌داند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//\n  Allowed:\nvar person = '{\"firstName\":\"John\", \"lastName\":\"Doe\",\n  \"age\":46}'\nJSON.parse(person)\n\n// Not allowed:\nvar person = '{\"firstName\":\"John\",\n  \"lastName\":\"Doe\", \"age\":46,}'\nJSON.parse(person)",
+   "caption": "شیءهای JSON:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//\n    Allowed:\npoints = [40, 100, 1, 5, 25, 10]\n\n// Not allowed:\npoints =\n    [40, 100, 1, 5, 25, 10,]",
+   "caption": "شیءهای JSON:"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایلی به نام strict.html بسازید و در ابتدای اسکریپت \"use strict\" بنویسید، بعد متغیری بدون let تعریف کنید و خطا را در کنسول ببینید.",
+   "hint": "در حالت strict استفاده از متغیر تعریف‌نشده خطا می‌دهد؛ همین باعث می‌شود باگ‌ها زودتر پیدا شوند."
+  },
+  {
+   "prompt": "رشته‌ای با فاصله‌های خالی در دو طرف بسازید و با trim() آن را تمیز کنید و طول قبل و بعد را چاپ کنید.",
+   "hint": "trim فقط فاصله‌های ابتدا و انتها را حذف می‌کند، نه فاصله‌های وسط رشته."
+  },
+  {
+   "prompt": "آرایه‌ای از عددها بسازید و با forEach یک‌بار و با map یک‌بار روی آن کار کنید و بگویید تفاوت خروجی چیست.",
+   "hint": "forEach برای هر عنصر تابع را صدا می‌زند و چیزی برنمی‌گرداند، اما map آرایهٔ تازه می‌سازد."
+  },
+  {
+   "prompt": "با reduce جمع عددهای آرایه را حساب کنید، بعد همان را با reduceRight انجام دهید.",
+   "hint": "reduce از چپ به راست و reduceRight از راست به چپ آرایه را به یک مقدار کاهش می‌دهند."
+  },
+  {
+   "prompt": "دو شیء بسازید و با bind متد fullName را از یکی به دیگری قرض بگیرید و نتیجه را چاپ کنید.",
+   "hint": "bind تابع را طوری می‌چسباند که this آن به شیء مقصد اشاره کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "حالت strict در ES5 چه چیزی را ممنوع می‌کند؟",
+   "options": [
+    "استفاده از const",
+    "استفاده از متغیرهای تعریف‌نشده",
+    "نوشتن تابع",
+    "استفاده از رشته‌ها"
+   ],
+   "answer": 1,
+   "explanation": "با \"use strict\" نمی‌توانید از متغیرهای تعریف‌نشده استفاده کنید. \"use strict\" خودش فقط یک عبارت رشته‌ای است و مرورگرهای قدیمی هم از آن خطا نمی‌گیرند."
+  },
+  {
+   "question": "تفاوت map() و forEach() در ES5 چیست؟",
+   "options": [
+    "map آرایهٔ تازه می‌سازد اما forEach چیزی برنمی‌گرداند",
+    "forEach آرایهٔ تازه می‌سازد اما map چیزی برنمی‌گرداند",
+    "هیچ تفاوتی ندارند",
+    "map فقط روی رشته کار می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "map با اجرای یک تابع روی هر عنصر، آرایهٔ تازه‌ای می‌سازد؛ forEach فقط برای هر عنصر تابع را صدا می‌زند."
+  },
+  {
+   "question": "reduceRight() آرایه را چگونه به یک مقدار کاهش می‌دهد؟",
+   "options": [
+    "از چپ به راست",
+    "از راست به چپ",
+    "به‌صورت تصادفی",
+    "فقط از وسط"
+   ],
+   "answer": 1,
+   "explanation": "reduceRight از انتهای آرایه شروع می‌کند و به ابتدا می‌آید؛ reduce همین کار را از چپ به راست انجام می‌دهد."
+  },
+  {
+   "question": "کدام متد بررسی می‌کند که یک متغیر آرایه هست یا نه؟",
+   "options": [
+    "Array.isArray()",
+    "Array.of()",
+    "typeof",
+    "Object.keys()"
+   ],
+   "answer": 0,
+   "explanation": "Array.isArray() اگر متغیر آرایه باشد true برمی‌گرداند. typeof برای آرایه هم \"object\" می‌دهد و به کار تشخیص نمی‌آید."
+  },
+  {
+   "question": "کدام گزینه دربارهٔ کامای انتهایی درست است؟",
+   "options": [
+    "هم در JavaScript و هم در JSON مجاز است",
+    "در JavaScript مجاز است اما JSON کامای انتهایی را نمی‌پذیرد",
+    "در JSON مجاز است اما در JavaScript نه",
+    "در هیچ‌کدام مجاز نیست"
+   ],
+   "answer": 1,
+   "explanation": "درس صریحاً هشدار می‌دهد که JSON کامای انتهایی را مجاز نمی‌داند؛ JSON.parse برای چنین رشته‌ای خطا می‌دهد."
+  }
+ ]
+}

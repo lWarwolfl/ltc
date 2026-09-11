@@ -1,0 +1,663 @@
+{
+ "slug": "js_mistakes",
+ "course": "js",
+ "order": 114,
+ "url": "/js/js_mistakes.asp",
+ "title": "اشتباهات رایج در JavaScript",
+ "summary": "این درس اشتباه‌هایی را نشان می‌دهد که برنامه‌نویس‌ها در JavaScript زیاد مرتکب می‌شوند: استفادهٔ اشتباهی از = به‌جای ==، فراموش کردن مقایسهٔ سخت‌گیرانه در switch، اشتباه گرفتن جمع و الحاق، دقت عددهای اعشاری، شکستن رشته و دستور return، اندیس نامی آرایه و تفاوت undefined با null.",
+ "objectives": [
+  "تشخیص دهید چرا if با عملگر = همیشه نتیجهٔ غیرمنتظره می‌دهد",
+  "تفاوت مقایسهٔ معمولی و سخت‌گیرانه را در if و switch توضیح دهید",
+  "دلیل خطای دقت در جمع عددهای اعشاری را بگویید و راه‌حل آن را بسازید",
+  "نشان دهید چرا شکستن دستور return به خط بعد مقدار undefined می‌دهد",
+  "تفاوت undefined و null را در آزمودن یک شیء به کار ببرید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "اشتباهات رایج در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "این فصل چند اشتباه رایج در JavaScript را نشان می‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "استفادهٔ تصادفی از عملگر تخصیص"
+  },
+  {
+   "type": "p",
+   "text": "اگر برنامه‌نویس به‌اشتباه در دستور if به‌جای عملگر مقایسه یعنی == از عملگر تخصیص یعنی = استفاده کند، برنامهٔ JavaScript ممکن است نتیجهٔ غیرمنتظره‌ای بدهد."
+  },
+  {
+   "type": "p",
+   "text": "این دستور if مقدار false برمی‌گرداند (همان‌طور که انتظار می‌رود)، چون x برابر ۱۰ نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\nif (x == 10)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_equal_1"
+  },
+  {
+   "type": "p",
+   "text": "این دستور if مقدار true برمی‌گرداند (شاید برخلاف انتظار)، چون ۱۰ درست (true) است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\nif (x = 10)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_equal_2"
+  },
+  {
+   "type": "p",
+   "text": "این دستور if مقدار false برمی‌گرداند (شاید برخلاف انتظار)، چون ۰ نادرست (false) است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0;\nif (x = 0)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_equal_3"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "تخصیص همیشه همان مقدار تخصیص‌یافته را برمی‌گرداند."
+  },
+  {
+   "type": "h2",
+   "text": "انتظار مقایسهٔ سهل‌گیرانه"
+  },
+  {
+   "type": "p",
+   "text": "در مقایسهٔ معمولی، نوع داده اهمیتی ندارد. این دستور if مقدار true برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nlet y = \"10\";\nif (x == y)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_loose_1"
+  },
+  {
+   "type": "p",
+   "text": "در مقایسهٔ سخت‌گیرانه، نوع داده مهم است. این دستور if مقدار false برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nlet y = \"10\";\nif (x === y)",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_loose_2"
+  },
+  {
+   "type": "p",
+   "text": "فراموش کردن این نکته که دستورهای switch از مقایسهٔ سخت‌گیرانه استفاده می‌کنند، اشتباه رایجی است:"
+  },
+  {
+   "type": "p",
+   "text": "این switch در این حالت یک alert نمایش می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nswitch(x) {\n  case 10: alert(\"Hello\");\n\n    }",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_loose_3"
+  },
+  {
+   "type": "p",
+   "text": "این switch در این حالت alert نمایش نمی‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\nswitch(x) {\n  case \"10\": alert(\"Hello\");\n\n    }",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_loose_4"
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه گرفتن جمع و الحاق"
+  },
+  {
+   "type": "p",
+   "text": "جمع دربارهٔ افزودن عددها است."
+  },
+  {
+   "type": "p",
+   "text": "الحاق دربارهٔ چسباندن رشته‌ها است."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript هر دو عمل از یک عملگر + استفاده می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل، جمع یک عدد به‌صورت عدد با جمع همان مقدار به‌صورت رشته نتیجهٔ متفاوتی می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nx = 10 + 5;       //\n    Now x is 15\n\nlet y = 10;\n\ny += \"5\";\n    // Now y is \"105\"",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_add_1"
+  },
+  {
+   "type": "p",
+   "text": "وقتی دو متغیر را جمع می‌کنید، پیش‌بینی نتیجه می‌تواند سخت باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 10;\n\nlet y = 5;\n\nlet z = x + y;     // Now z is 15\n\nlet x = 10;\n\nlet y = \"5\";\n\nlet z = x + y;     // Now z is \"105\"",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_add_2"
+  },
+  {
+   "type": "h2",
+   "text": "درک نادرست عددهای اعشاری"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ عددها در JavaScript به‌صورت عددهای اعشاری ۶۴ بیتی (Floats) ذخیره می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ زبان‌های برنامه‌نویسی، از جمله JavaScript، در دقتِ مقدارهای اعشاری مشکل دارند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = 0.1;\n\nlet y = 0.2;\nlet z = x + y\n    // the result in z will not be 0.3",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_floats"
+  },
+  {
+   "type": "p",
+   "text": "برای حل مشکل بالا، ضرب و بعد تقسیم کردن کمک می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let z = (x * 10 + y * 10) / 10;       // z will be 0.3",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_floats_ok"
+  },
+  {
+   "type": "h2",
+   "text": "شکستن یک رشته در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript اجازه می‌دهد یک دستور را به دو خط بشکنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x =\n\"Hello World!\";",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_string_1"
+  },
+  {
+   "type": "p",
+   "text": "اما شکستن یک دستور در میانهٔ یک رشته کار نمی‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"Hello\nWorld!\";",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_string_2"
+  },
+  {
+   "type": "p",
+   "text": "اگر مجبورید دستور را داخل یک رشته بشکنید، باید از بک‌اسلش (backslash) استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = \"Hello \\\nWorld!\";",
+   "caption": "مثال ۳"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_string_3"
+  },
+  {
+   "type": "h2",
+   "text": "نقطه‌ویرگول در جای اشتباه"
+  },
+  {
+   "type": "p",
+   "text": "به خاطر نقطه‌ویرگولی که در جای اشتباه آمده، این بلوک کد بدون توجه به مقدار x اجرا می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (x == 19);\n{\n\n    // code block\n}",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_semicolon"
+  },
+  {
+   "type": "h2",
+   "text": "شکستن دستور return"
+  },
+  {
+   "type": "p",
+   "text": "رفتار پیش‌فرض JavaScript این است که دستور را خودکار در پایان خط می‌بندد."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل، این دو مثال نتیجهٔ یکسانی برمی‌گردانند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let power = 10\n  return a * power\n}",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_1"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let power = 10;\n  return a * power;\n}",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_2"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript همچنین اجازه می‌دهد یک دستور را به دو خط بشکنید."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل، مثال ۳ هم نتیجهٔ یکسانی برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let\n  power = 10;\n  return a * power;\n}",
+   "caption": "مثال ۳"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_3"
+  },
+  {
+   "type": "p",
+   "text": "اما اگر دستور return را مثل زیر به دو خط بشکنید چه اتفاقی می‌افتد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let\n  power = 10;\n  return\n  a * power;\n}",
+   "caption": "مثال ۴"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_4"
+  },
+  {
+   "type": "p",
+   "text": "تابع مقدار undefined برمی‌گرداند!"
+  },
+  {
+   "type": "p",
+   "text": "چرا؟ چون JavaScript فکر می‌کند منظور شما این بوده است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a) {\n\n    let\n  power = 10;\n  return;\n  a * power;\n}",
+   "caption": "مثال ۵"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_return_5"
+  },
+  {
+   "type": "h2",
+   "text": "توضیح"
+  },
+  {
+   "type": "p",
+   "text": "اگر یک دستور ناتمام باشد، مثل:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "JavaScript می‌کوشد با خواندن خط بعدی، دستور را کامل کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "power = 10;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "اما چون این دستور کامل است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "return",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "JavaScript آن را به‌صورت زیر خودکار می‌بندد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "return;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "این اتفاق می‌افتد چون بستن (پایان دادن به) دستورها با نقطه‌ویرگول در JavaScript اختیاری است."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript دستور return را در پایان خط می‌بندد، چون یک دستور کامل است."
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "هرگز دستور return را نشکنید."
+  },
+  {
+   "type": "h2",
+   "text": "دسترسی به آرایه با اندیس نامی"
+  },
+  {
+   "type": "p",
+   "text": "بسیاری از زبان‌های برنامه‌نویسی از آرایه‌های با اندیس نامی پشتیبانی می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "به آرایه‌های با اندیس نامی، آرایهٔ انجمنی (associative array) یا هش (hash) می‌گویند."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript از آرایه‌های با اندیس نامی پشتیبانی نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، آرایه‌ها از اندیس شماره‌ای استفاده می‌کنند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = [];\n\nperson[0] = \"John\";\n\nperson[1] = \"Doe\";\n\nperson[2] = 46;\nperson.length;\n // person.length will return 3\nperson[0];\n // person[0] will return \"John\"",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_associative_1"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، شیءها از اندیس نامی استفاده می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "اگر هنگام دسترسی به آرایه از اندیس نامی استفاده کنید، JavaScript آرایه را به یک شیء استاندارد تعریف مجدد می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "بعد از این تعریف مجدد خودکار، متدها و خصوصیت‌های آرایه نتیجهٔ undefined یا نادرست می‌دهند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = [];\n\nperson[\"firstName\"] = \"John\";\n\nperson[\"lastName\"] = \"Doe\";\n\nperson[\"age\"] = 46;\nperson.length;      // person.length will\n return 0\nperson[0];\n // person[0] will return undefined",
+   "caption": "مثال:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_associative_2"
+  },
+  {
+   "type": "h2",
+   "text": "پایان دادن تعریف‌ها با کاما"
+  },
+  {
+   "type": "p",
+   "text": "کامای اضافی در پایان تعریف شیء و آرایه در ECMAScript 5 مجاز است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person = {firstName:\"John\", lastName:\"Doe\", age:46,}",
+   "caption": "مثال شیء:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "points = [40, 100, 1, 5, 25, 10,];",
+   "caption": "مثال آرایه:"
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "هشدار!! Internet Explorer 8 از کار می‌افتد. JSON کامای اضافی در پایان را مجاز نمی‌داند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "person = {\"firstName\":\"John\", \"lastName\":\"Doe\", \"age\":46}",
+   "caption": "JSON:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "points = [40, 100, 1, 5, 25, 10];",
+   "caption": "JSON:"
+  },
+  {
+   "type": "h2",
+   "text": "undefined با null یکی نیست"
+  },
+  {
+   "type": "p",
+   "text": "شیءها، متغیرها، خصوصیت‌ها و متدهای JavaScript می‌توانند undefined باشند."
+  },
+  {
+   "type": "p",
+   "text": "به‌علاوه، شیءهای خالی JavaScript می‌توانند مقدار null داشته باشند."
+  },
+  {
+   "type": "p",
+   "text": "این کار آزمودن خالی بودن یک شیء را کمی سخت می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید وجود یک شیء را با آزمودن این که نوعش undefined است بررسی کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (typeof myObj === \"undefined\")",
+   "caption": "مثال:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_object_undefined"
+  },
+  {
+   "type": "p",
+   "text": "اما نمی‌توانید null بودن شیء را بیازمایید، چون اگر شیء undefined باشد خطا پرتاب می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (myObj === null)",
+   "caption": "نادرست:"
+  },
+  {
+   "type": "p",
+   "text": "برای حل این مشکل باید بررسی کنید که شیء هم null نباشد و هم undefined نباشد."
+  },
+  {
+   "type": "p",
+   "text": "اما این هم باز می‌تواند خطا پرتاب کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (myObj !== null && typeof myObj\n  !== \"undefined\")",
+   "caption": "نادرست:"
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل، پیش از بررسی null نبودن باید نبودن undefined را بررسی کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (typeof myObj !== \"undefined\" && myObj !== null)",
+   "caption": "درست:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_mistakes_object_null"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل mistakes.html بسازید و دو دستور if بنویسید: یکی با x = 10 و یکی با x == 10، و نتیجهٔ هر دو را در کنسول چاپ کنید.",
+   "hint": "عملگر = مقدار را تخصیص می‌دهد و همیشه true برمی‌گرداند؛ عملگر == مقایسه می‌کند."
+  },
+  {
+   "prompt": "یک switch بنویسید که روی مقدار رشته‌ای \"10\" بررسی کند و ببینید چرا به case عددی 10 نمی‌خورد.",
+   "hint": "switch از مقایسهٔ سخت‌گیرانه (===) استفاده می‌کند، پس نوع داده مهم است."
+  },
+  {
+   "prompt": "عبارت‌های 10 + 20 و \"10\" + 20 را حساب کنید و تفاوت را در کنسول توضیح دهید.",
+   "hint": "اگر یکی از عملوندها رشته باشد، عملگر + الحاق انجام می‌دهد نه جمع عددی."
+  },
+  {
+   "prompt": "عبارت 0.1 + 0.2 را حساب کنید و نتیجه را ببینید؛ سپس با ضرب و تقسیم روی ۱۰ نتیجهٔ درست را بگیرید.",
+   "hint": "همهٔ عددها در JavaScript اعشاری ۶۴ بیتی‌اند؛ برای دقت بیشتر ضرب کنید، گرد کنید و بعد تقسیم کنید."
+  },
+  {
+   "prompt": "دو تابع بنویسید که هر دو return داشته باشند؛ در یکی کلمهٔ return و مقدار را در دو خط بنویسید و نتیجهٔ undefined را ببینید.",
+   "hint": "JavaScript دستور return را در پایان خط به‌طور خودکار می‌بندد؛ هرگز return را نشکنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "چرا دستور if (x = 10) همیشه true برمی‌گرداند؟",
+   "options": [
+    "چون x مقدار ندارد",
+    "چون ۱۰ عددی زوج است",
+    "چون تخصیص مقدار را برمی‌گرداند و ۱۰ درست (true) است",
+    "چون در JavaScript مقایسهٔ اعداد همیشه true است"
+   ],
+   "answer": 2,
+   "explanation": "عملگر = مقدار تخصیص‌یافته را برمی‌گرداند؛ چون ۱۰ درست (true) است، شرط هم true می‌شود. برای مقایسه باید == یا === نوشت."
+  },
+  {
+   "question": "دستور switch از کدام نوع مقایسه استفاده می‌کند؟",
+   "options": [
+    "مقایسهٔ سهل‌گیرانه با تبدیل نوع",
+    "مقایسهٔ سخت‌گیرانه بدون تبدیل نوع",
+    "فقط مقایسهٔ رشته‌ای",
+    "هیچ مقایسه‌ای انجام نمی‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "switch از مقایسهٔ سخت‌گیرانه (===) استفاده می‌کند، پس case \"10\" با عدد 10 مطابقت ندارد و alert نمایش داده نمی‌شود."
+  },
+  {
+   "question": "نتیجهٔ 10 + \"20\" در JavaScript چیست؟",
+   "options": [
+    "NaN",
+    "undefined",
+    "30",
+    "\"1020\""
+   ],
+   "answer": 3,
+   "explanation": "وقتی یکی از عملوندها رشته باشد، عملگر + الحاق انجام می‌دهد؛ پس عدد ۱۰ به رشته تبدیل می‌شود و نتیجه رشتهٔ \"1020\" است."
+  },
+  {
+   "question": "نتیجهٔ 0.1 + 0.2 در JavaScript چه می‌شود؟",
+   "options": [
+    "0.30000000000000004",
+    "NaN",
+    "0",
+    "دقیقاً 0.3"
+   ],
+   "answer": 0,
+   "explanation": "عددها به‌صورت اعشاری ۶۴ بیتی ذخیره می‌شوند و همهٔ زبان‌ها در دقت اعشاری محدودند؛ راه‌حل ضرب کردن، گرد کردن و بعد تقسیم کردن است."
+  },
+  {
+   "question": "چرا تابعی که return آن به خط بعد شکسته شده مقدار undefined برمی‌گرداند؟",
+   "options": [
+    "چون تابع بدون آرگومان صدا زده شده است",
+    "چون JavaScript دستور return را در پایان خط خودکار می‌بندد",
+    "چون return در JavaScript وجود ندارد",
+    "چون متغیرها تعریف نشده‌اند"
+   ],
+   "answer": 1,
+   "explanation": "JavaScript دستورهای کامل را در پایان خط خودکار می‌بندد؛ پس return تنها اجرا می‌شود و مقدار را برنمی‌گرداند. هرگز return را نشکنید."
+  }
+ ]
+}
