@@ -1,0 +1,206 @@
+{
+ "slug": "js_ajax_intro",
+ "course": "js",
+ "order": 256,
+ "url": "/js/js_ajax_intro.asp",
+ "title": "آشنایی با AJAX",
+ "summary": "AJAX روشی است که صفحهٔ وب بدون بارگذاری دوباره با سرور داده تبادل می‌کند. در این درس می‌بینید AJAX از چه چیزی ساخته شده، مراحل کارش چیست و چرا مرورگرهای مدرن به‌جای XMLHttpRequest از Fetch API استفاده می‌کنند.",
+ "objectives": [
+  "بگویید AJAX چیست و چه مشکلی را حل می‌کند",
+  "اجزای سازندهٔ AJAX را نام ببرید",
+  "مراحل هفت‌گانهٔ کار AJAX را به ترتیب توضیح دهید",
+  "تفاوت XMLHttpRequest و Fetch API را بیان کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "آشنایی با AJAX"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "AJAX آرزوی هر برنامه‌نویس است، چون می‌توانید:\n\nداده را از سرور وب بخوانید (بعد از بارگذاری صفحه)\nصفحهٔ وب را بدون بارگذاری دوباره به‌روز کنید\nداده را در پس‌زمینه به سرور وب بفرستید"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_first"
+  },
+  {
+   "type": "h2",
+   "text": "توضیح مثال AJAX"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<div id=\"demo\">\n  <h2>Let AJAX change this text</h2>\n\n<button type=\"button\" onclick=\"loadDoc()\">Change Content</button>\n\n </div>\n\n</body>\n\n</html>",
+   "caption": "صفحهٔ HTML"
+  },
+  {
+   "type": "p",
+   "text": "این صفحهٔ HTML یک بخش <div> و یک <button> دارد."
+  },
+  {
+   "type": "p",
+   "text": "بخش <div> برای نمایش اطلاعاتی است که از سرور می‌آید."
+  },
+  {
+   "type": "p",
+   "text": "عنصر <button> یک تابع را صدا می‌زند (اگر رویش کلیک شود)."
+  },
+  {
+   "type": "p",
+   "text": "این تابع داده را از سرور وب درخواست می‌کند و آن را نشان می‌دهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function loadDoc() {\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onload = function() {\n\ndocument.getElementById(\"demo\").innerHTML = this.responseText;\n\n    }\n\n  xhttp.open(\"GET\", \"ajax_info.txt\", true);\n\nxhttp.send();\n\n}",
+   "caption": "تابع loadDoc()"
+  },
+  {
+   "type": "h2",
+   "text": "AJAX چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "AJAX یعنی JavaScript و XML ناهم‌زمان (Asynchronous JavaScript And XML)."
+  },
+  {
+   "type": "p",
+   "text": "AJAX یک زبان برنامه‌نویسی نیست."
+  },
+  {
+   "type": "p",
+   "text": "AJAX فقط ترکیبی از اینها را به کار می‌برد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "شیء XMLHttpRequest توکار مرورگر (برای درخواست داده از سرور وب)",
+    "JavaScript و HTML DOM (برای نمایش یا استفاده از داده)"
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "نام AJAX گمراه‌کننده است. برنامه‌های AJAX ممکن است داده را با XML منتقل کنند، اما انتقال داده به‌شکل متن ساده یا JSON هم به همان اندازه رایج است."
+  },
+  {
+   "type": "p",
+   "text": "AJAX می‌گذارد صفحه‌های وب با تبادل داده با سرور، در پشت صحنه و به‌صورت ناهم‌زمان به‌روز شوند. یعنی می‌توان بخشی از یک صفحهٔ وب را بدون بارگذاری دوبارهٔ کل صفحه به‌روز کرد."
+  },
+  {
+   "type": "h2",
+   "text": "AJAX چطور کار می‌کند"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "۱. یک رویداد در صفحهٔ وب رخ می‌دهد (صفحه بارگذاری می‌شود، روی دکمه‌ای کلیک می‌شود)",
+    "۲. یک شیء XMLHttpRequest توسط JavaScript ساخته می‌شود",
+    "۳. شیء XMLHttpRequest درخواستی به سرور وب می‌فرستد",
+    "۴. سرور درخواست را پردازش می‌کند",
+    "۵. سرور پاسخ را به صفحهٔ وب برمی‌گرداند",
+    "۶. پاسخ توسط JavaScript خوانده می‌شود",
+    "۷. اقدام مناسب (مثل به‌روزرسانی صفحه) توسط JavaScript انجام می‌شود"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مرورگرهای مدرن (Fetch API)"
+  },
+  {
+   "type": "p",
+   "text": "مرورگرهای مدرن می‌توانند به‌جای شیء XMLHttpRequest از Fetch API استفاده کنند."
+  },
+  {
+   "type": "p",
+   "text": "رابط Fetch API به مرورگر وب امکان می‌دهد درخواست‌های HTTP به سرورهای وب بفرستد."
+  },
+  {
+   "type": "p",
+   "text": "کارهایی که با شیء XMLHttpRequest انجام می‌دهید، Fetch به شکلی ساده‌تر انجام می‌دهد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک صفحه با یک div و یک دکمه بسازید و با کلیک دکمه، متنی از سرور محلی را در div بگذارید.",
+   "hint": "نخست یک شیء XMLHttpRequest بسازید، بعد onload را تعیین و با open و send درخواست را بفرستید."
+  },
+  {
+   "prompt": "همان کار را با Fetch API انجام دهید و کد را مقایسه کنید.",
+   "hint": "fetch(\"file.txt\").then(r => r.text()).then(t => ...) کوتاه‌تر از XMLHttpRequest است."
+  },
+  {
+   "prompt": "در کنسول بررسی کنید که نوع دادهٔ پاسخ در XMLHttpRequest با خصوصیت responseText چه چیزی است.",
+   "hint": "responseText رشته است؛ دادهٔ XML با responseXML گرفته می‌شود."
+  },
+  {
+   "prompt": "فهرست هفت مرحله‌ای «AJAX چطور کار می‌کند» را از درس بنویسید و در کد خودتان مشخص کنید هر مرحله کجاست.",
+   "hint": "از رخ دادن رویداد تا اجرای اقدام مناسب؛ هر مرحله یکی از خطوط کد است."
+  },
+  {
+   "prompt": "توضیح دهید چرا AJAX می‌تواند فقط بخشی از صفحه را به‌روز کند و کل صفحه را دوباره بارگذاری نمی‌کند.",
+   "hint": "داده در پشت صحنه تبادل می‌شود و JavaScript فقط همان بخش DOM را عوض می‌کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "AJAX مخفف چیست؟",
+   "options": [
+    "Asynchronous JavaScript And XML",
+    "Advanced JavaScript And XHTML",
+    "Automatic JavaScript And XML",
+    "Asynchronous Java And XML"
+   ],
+   "answer": 0,
+   "explanation": "AJAX یعنی JavaScript و XML ناهم‌زمان؛ در درس هم آمده که یک زبان برنامه‌نویسی نیست."
+  },
+  {
+   "question": "AJAX از کدام ترکیب استفاده می‌کند؟",
+   "options": [
+    "فقط JavaScript",
+    "شیء XMLHttpRequest مرورگر و JavaScript و HTML DOM",
+    "فقط CSS و HTML",
+    "پایگاه داده و سرور"
+   ],
+   "answer": 1,
+   "explanation": "درس دو بخش را نام می‌برد: شیء XMLHttpRequest توکار مرورگر برای درخواست، و JavaScript با HTML DOM برای نمایش داده."
+  },
+  {
+   "question": "چرا نام AJAX گمراه‌کننده است؟",
+   "options": [
+    "چون داده همیشه با JSON منتقل می‌شود",
+    "چون XML تنها راه انتقال داده نیست و متن ساده یا JSON هم رایج است",
+    "چون AJAX یک زبان برنامه‌نویسی است",
+    "چون فقط در مرورگرهای قدیمی کار می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید برنامه‌های AJAX ممکن است XML به کار ببرند، اما متن ساده یا JSON هم به همان اندازه رایج است."
+  },
+  {
+   "question": "در مراحل کار AJAX، سرور در کدام مرحله پاسخ را می‌فرستد؟",
+   "options": [
+    "مرحلهٔ ۳",
+    "مرحلهٔ ۴",
+    "مرحلهٔ ۵",
+    "مرحلهٔ ۷"
+   ],
+   "answer": 2,
+   "explanation": "مرحلهٔ ۴ پردازش درخواست در سرور است و در مرحلهٔ ۵ سرور پاسخ را به صفحهٔ وب برمی‌گرداند."
+  },
+  {
+   "question": "کدام جمله دربارهٔ Fetch API درست است؟",
+   "options": [
+    "جانشین شیء XMLHttpRequest است و کار را ساده‌تر می‌کند",
+    "فقط در Node.js کار می‌کند",
+    "نمی‌تواند درخواست HTTP بفرستد",
+    "جای HTML DOM را گرفته است"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید مرورگرهای مدرن می‌توانند به‌جای XMLHttpRequest از Fetch API استفاده کنند و همین کارها را ساده‌تر انجام می‌دهد."
+  }
+ ]
+}

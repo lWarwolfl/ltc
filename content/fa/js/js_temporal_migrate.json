@@ -1,0 +1,353 @@
+{
+ "slug": "js_temporal_migrate",
+ "course": "js",
+ "order": 199,
+ "url": "/js/js_temporal_migrate.asp",
+ "title": "مهاجرت از Date به Temporal",
+ "summary": "شیء Date سال‌ها تنها راه کار با تاریخ در JavaScript بود، ولی منطقهٔ زمانی را قاطی می‌کرد و شیء را تغییر می‌داد. در این درس می‌بینید چطور کد‌های Date را قدمبهقدم به Temporal تبدیل کنید: از ساخت تاریخ و گرفتن زماننگار تا حساب تاریخ و تبدیل Date موجود به Instant.",
+ "objectives": [
+  "کد new Date() و Date.now() را به معادل Temporal تبدیل کنید",
+  "تفاوت روش گرفتن اجزای تاریخ را در Date و Temporal توضیح دهید",
+  "نشان دهید چرا Temporal شیء اصلی را تغییر نمی‌دهد",
+  "تشخیص دهید در چه پروژه‌هایی بهتر است Date باقی بماند"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مهاجرت از Date به Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "چگونه Date را جایگزین کنیم"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript Temporal طوری طراحی شده که جای شیء قدیمی Date را بگیرد."
+  },
+  {
+   "type": "p",
+   "text": "برای پروژه‌های تازهٔ JavaScript، Temporal انتخاب مدرن است."
+  },
+  {
+   "type": "p",
+   "text": "Temporal جایگزین‌های امنتر و خواناتری برای الگو‌های Date می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "Temporal منطقهٔ زمانی را درست مدیریت می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "Temporal از تغییر مقدار‌ها پرهیز می‌کند و حساب تاریخ را سادهتر می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "این فصل نشان می‌دهد چطور کد Date را به کد مدرن Temporal تبدیل کنید."
+  },
+  {
+   "type": "h2",
+   "text": "جایگزینی new Date()"
+  },
+  {
+   "type": "p",
+   "text": "با Date تاریخ را اینطور می‌سازید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();",
+   "caption": "مثال با Date"
+  },
+  {
+   "type": "p",
+   "text": "با Temporal نوعی را که لازم دارید انتخاب کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Now.instant();",
+   "caption": "مثال با Temporal"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_instant"
+  },
+  {
+   "type": "p",
+   "text": "اگر فقط تاریخ می‌خواهید، از PlainDate استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const today = Temporal.Now.plainDateISO();",
+   "caption": "Temporal برای تاریخ تنها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "جایگزینی Date.now()"
+  },
+  {
+   "type": "p",
+   "text": "Date زماننگار (timestamp) را به میلیثانیه می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const timestamp = Date.now();",
+   "caption": "مثال با Date"
+  },
+  {
+   "type": "p",
+   "text": "در Temporal از Instant استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const now = Temporal.Now.instant();\n\nconst timestamp = now.epochMilliseconds;",
+   "caption": "مثال با Temporal"
+  },
+  {
+   "type": "h2",
+   "text": "جایگزینی getFullYear()، getMonth() و getDate()"
+  },
+  {
+   "type": "p",
+   "text": "Date از متد‌های گیرنده (getter) استفاده می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nlet year = d.getFullYear();\n\nlet month = d.getMonth();\n\nlet day = d.getDate();",
+   "caption": "مثال با Date"
+  },
+  {
+   "type": "p",
+   "text": "Temporal خصوصیت‌ها را مستقیم در اختیار می‌گذارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.Now.plainDateISO();\n\nlet year = date.year;\n\nlet month = date.month;\n\nlet day = date.day;",
+   "caption": "مثال با Temporal"
+  },
+  {
+   "type": "p",
+   "text": "ماه‌ها از ۱ شروع می‌شوند، نه از ۰."
+  },
+  {
+   "type": "h2",
+   "text": "جایگزینی setDate() و متد‌های تغییردهندهٔ دیگر"
+  },
+  {
+   "type": "p",
+   "text": "Date خود شیء اصلی را عوض می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date(\"2026-05-17\");\n\nd.setDate(d.getDate() + 7);",
+   "caption": "مثال با Date"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects"
+  },
+  {
+   "type": "p",
+   "text": "Temporal مقدار‌ها را تغییر نمی‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst nextWeek = date.add({ days: 7 });",
+   "caption": "مثال با Temporal"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_9"
+  },
+  {
+   "type": "h2",
+   "text": "جایگزینی حساب تاریخ"
+  },
+  {
+   "type": "p",
+   "text": "Date اغلب محاسبهٔ دستی میلیثانیه لازم دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = new Date(\"2026-05-01\");\n\nconst end = new Date(\"2026-05-17\");\n\nconst duration = end - start;",
+   "caption": "مثال با Date"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_8"
+  },
+  {
+   "type": "p",
+   "text": "Temporal محاسبهٔ مدت را به شکل آماده ارائه می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = start.until(end);",
+   "caption": "مثال با Temporal"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_until_2"
+  },
+  {
+   "type": "h2",
+   "text": "جایگزینی مدیریت منطقهٔ زمانی"
+  },
+  {
+   "type": "p",
+   "text": "Date زمان محلی و UTC را با هم قاطی می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "همین کار مدیریت منطقهٔ زمانی را گیجکننده می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let d = new Date();\n\nlet time1 = d.toString();\n\nlet time2 = d.toUTCString();",
+   "caption": "مثال با Date"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_7"
+  },
+  {
+   "type": "p",
+   "text": "Temporal برای مدیریت روشن منطقهٔ زمانی از ZonedDateTime استفاده می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const zoned = Temporal.Now.zonedDateTimeISO();",
+   "caption": "مثال با Temporal"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_zoneddatetime"
+  },
+  {
+   "type": "h2",
+   "text": "تبدیل Date به Temporal"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید یک Date موجود را به Instant در Temporal تبدیل کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d = new Date();\n\nconst instant = Temporal.Instant.fromEpochMilliseconds(d.getTime());",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_convert_date"
+  },
+  {
+   "type": "h2",
+   "text": "کجا Date را با Temporal جایگزین کنیم"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "برای برنامه‌های تازه از Temporal استفاده کنید.",
+    "وقتی منطقهٔ زمانی مهم است، از Temporal استفاده کنید.",
+    "وقتی روی تاریخ حساب انجام می‌دهید، از Temporal استفاده کنید.",
+    "اگر مجبورید از محیط‌های قدیمی پشتیبانی کنید، از Date استفاده کنید."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل migrate1.js بسازید و تاریخ امروز را یک بار با new Date() و یک بار با Temporal.Now.plainDateISO() بسازید و هر دو را در کنسول چاپ کنید.",
+   "hint": "Temporal.Now چند متد آماده دارد: plainDateISO، instant و zonedDateTimeISO."
+  },
+  {
+   "prompt": "شمارهٔ ماه را با هر دو روش بگیرید و نشان دهید getMonth() از صفر شروع می‌کند ولی خصوصیت month در Temporal از ۱.",
+   "hint": "در Temporal خصوصیت‌ها مستقیم خوانده می‌شوند؛ مثل date.month."
+  },
+  {
+   "prompt": "دو تاریخ بسازید و فاصلهشان را حساب کنید. یک بار با کد Date و تفریق میلی‌ثانیه‌ها، یک بار با متد until().",
+   "hint": "خروجی until() یک شیء Duration است."
+  },
+  {
+   "prompt": "کدی بنویسید که خود شیء را تغییر دهد: با Date و setDate، و همان کار را با add در Temporal انجام دهید. تفاوت را در کنسول ببینید.",
+   "hint": "در Temporal خروجی add را باید در متغیر تازه بگذارید."
+  },
+  {
+   "prompt": "یک Date موجود را با Temporal.Instant.fromEpochMilliseconds() به Instant تبدیل کنید و مقدار epochMilliseconds را چاپ کنید.",
+   "hint": "میلی‌ثانیه‌های Date را با متد getTime() می‌گیرید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در Temporal جای Date.now() چه چیزی می‌آید؟",
+   "options": [
+    "Temporal.Now.instant() و خواندن epochMilliseconds",
+    "Temporal.Now.plainDateISO()",
+    "Temporal.PlainTime.now()",
+    "Temporal.Duration.now()"
+   ],
+   "answer": 0,
+   "explanation": "Date.now() یک زماننگار میلی‌ثانیه‌ای می‌داد؛ در Temporal ابتدا یک Instant می‌گیریم و بعد از خصوصیت epochMilliseconds استفاده می‌کنیم. بقیهٔ گزینه‌ها یا فقط تاریخ می‌دهند یا اصلاً وجود ندارند."
+  },
+  {
+   "question": "چرا می‌گوییم کار با منطقهٔ زمانی در Date گیجکننده است؟",
+   "options": [
+    "چون Date منطقهٔ زمانی ندارد",
+    "چون Date زمان محلی و UTC را با هم قاطی می‌کند",
+    "چون Date فقط UTC را می‌فهمد",
+    "چون Date منطقهٔ زمانی را از سرور می‌گیرد"
+   ],
+   "answer": 1,
+   "explanation": "Date هم زمان محلی دارد (toString) و هم UTC (toUTCString) و همین دوگانگی باعث اشتباه می‌شود؛ به همین دلیل Temporal برای این کار ZonedDateTime را کنار گذاشته است."
+  },
+  {
+   "question": "کدام تفاوت دربارهٔ تغییرپذیری درست است؟",
+   "options": [
+    "هر دو، هم Date و هم Temporal، شیء اصلی را تغییر می‌دهند",
+    "Date شیء اصلی را تغییر می‌دهد، اما متد‌های Temporal مقدار تازه برمی‌گردانند",
+    "Temporal شیء اصلی را تغییر می‌دهد و Date نه",
+    "هیچکدام شیء اصلی را تغییر نمی‌دهند"
+   ],
+   "answer": 1,
+   "explanation": "متد‌هایی مثل setDate روی همان شیء Date اثر می‌گذارند، ولی add و rest در Temporal شیء تازه می‌سازند و مقدار اصلی دستنخورده می‌ماند."
+  },
+  {
+   "question": "اگر پروژه‌ای باید در مرورگر‌های قدیمی هم کار کند، توصیهٔ درس چیست؟",
+   "options": [
+    "در هر حال Temporal را جایگزین کنید",
+    "از Date استفاده کنید",
+    "کد را دو بار بنویسید",
+    "فقط از Instant استفاده کنید"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید برای پشتیبانی از محیط‌های قدیمی Date را نگه دارید و Temporal را برای پروژه‌های تازه و جایی که منطقهٔ زمانی مهم است به کار ببرید."
+  },
+  {
+   "question": "برای تبدیل یک Date موجود به Temporal کدام تبدیل درست است؟",
+   "options": [
+    "Temporal.Instant.fromEpochMilliseconds(d.getTime())",
+    "Temporal.PlainDate.from(d)",
+    "Temporal.Duration.from(d)",
+    "Temporal.Now.instant(d)"
+   ],
+   "answer": 0,
+   "explanation": "Instant را از میلی‌ثانیه‌های epoch می‌سازیم و d.getTime() همان مقدار را می‌دهد. Temporal.PlainDate.from() رشته یا شیء ساده می‌گیرد، نه شیء Date."
+  }
+ ]
+}

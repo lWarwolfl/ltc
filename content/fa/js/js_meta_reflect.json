@@ -1,0 +1,906 @@
+{
+ "slug": "js_meta_reflect",
+ "course": "js",
+ "order": 239,
+ "url": "/js/js_meta_reflect.asp",
+ "title": "Reflect در JavaScript",
+ "summary": "Reflect عملیات‌های شیء را به شکل متدهای تمیز و قابل‌پیش‌بینی در اختیار می‌گذارد: برای خواندن، نوشتن، حذف و بررسی خصوصیت‌ها و حتی صدا زدن تابع و ساختن شیء. در این درس می‌بینید چرا Reflect برای فرابرنامه‌نویسی و برای هدایت trapهای Proxy ضروری است.",
+ "objectives": [
+  "توضیح دهید شیء Reflect چیست و چه عملیات‌هایی را پوشش می‌دهد",
+  "با Reflect.has()، Reflect.get()، Reflect.set() و Reflect.deleteProperty() روی شیءها کار کنید",
+  "تفاوت Reflect.ownKeys() و Object.keys() را تشخیص دهید",
+  "بگویید چرا Reflect برای هدایت عملیات‌ها در trapهای Proxy امن‌تر است"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Reflect در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء Reflect"
+  },
+  {
+   "type": "p",
+   "text": "Reflect یک شیء با متدهایی برای عملیات سطح‌پایین روی شیءهای JavaScript است."
+  },
+  {
+   "type": "p",
+   "text": "با شیء Reflect می‌توانید خصوصیت‌های یک شیء را به شکلی یکدست بخوانید، تنظیم کنید، حذف کنید و بررسی کنید."
+  },
+  {
+   "type": "p",
+   "text": "Reflect در ES6 (سال ۲۰۱۵) به JavaScript اضافه شد."
+  },
+  {
+   "type": "h2",
+   "text": "جعبه‌ابزار شما"
+  },
+  {
+   "type": "p",
+   "text": "Reflect یک جعبه‌ابزار برای کار با شیءها به شکلی امن و یکدست است."
+  },
+  {
+   "type": "h2",
+   "text": "قبل از Reflect"
+  },
+  {
+   "type": "p",
+   "text": "قبل از Reflect، عملیات‌های شیء پراکنده بودند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "استفاده از عملگرهایی مثل in و delete",
+    "استفاده از متدهایی مثل Object.defineProperty",
+    "استفاده از سازوکارهای زبان مثل [[Get]] و [[Set]]"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "بعد از Reflect"
+  },
+  {
+   "type": "p",
+   "text": "Reflect همهٔ عملیات‌های شیء را در متدهایی تمیز جمع می‌کند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "متدهای Reflect عملیات‌های شیء را یکدست می‌کنند",
+    "متدهای Reflect از عملگرها (in/delete) قابل‌پیش‌بینی‌ترند",
+    "متدهای Reflect به‌جای خطا، مقدار بازگشتی استاندارد می‌دهند",
+    "متدهای Reflect برای فرابرنامه‌نویسی تمیزتر و امن‌ترند",
+    "متدهای Reflect برای شیء Proxy ساخته شده‌اند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مثال‌ها"
+  },
+  {
+   "type": "p",
+   "text": "با Reflect.has() عملگر in را به شکل یک تابع در اختیار دارید."
+  },
+  {
+   "type": "p",
+   "text": "با Reflect.delete() عملگر delete را به شکل یک تابع در اختیار دارید."
+  },
+  {
+   "type": "h3",
+   "text": "چرا Reflect"
+  },
+  {
+   "type": "p",
+   "text": "Reflect امن و انعطاف‌پذیر است، به‌ویژه وقتی داخل یک Proxy به کار می‌رود."
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.has()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.has() بررسی می‌کند که یک شیء خصوصیت مشخصی دارد یا نه."
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.has() شبیه عملگر in است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {name: \"John\", lastname: \"Doe\"};\n\nlet answer = Reflect.has(person, \"name\");",
+   "caption": "بررسی وجود خصوصیت"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let answer = \"name\" in person;",
+   "caption": "بررسی وجود خصوصیت"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_has"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.has(obj, prop)"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "obj: شیء هدف\nprop: خصوصیتی که باید بررسی شود"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     "true اگر وجود داشته باشد\nfalse اگر نداشته باشد"
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر obj یک شیء نباشد، TypeError پرتاب میشود"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.deleteProperty()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.deleteProperty() یک خصوصیت را از شیء حذف می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.deleteProperty() شبیه عملگر delete است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {name: \"John\", lastname: \"Doe\"};\n\nReflect.deleteProperty(person, \"name\");",
+   "caption": "حذف یک خصوصیت"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "delete person.name;",
+   "caption": "حذف یک خصوصیت"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_delete"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.deleteProperty(obj, prop)"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "obj: شیء هدف\nprop: خصوصیتی که باید حذف شود"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     "true اگر وجود داشته باشد\nfalse اگر نداشته باشد"
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر obj یک شیء نباشد، TypeError پرتاب میشود"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.get()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.get() مقدار یک خصوصیت را می‌خواند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\nlet age = Reflect.get(user, \"age\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let age = user.age;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_get"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.get(obj, prop [,receiver])"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "obj: شیء هدف\nprop: خصوصیتی که باید خوانده شود\nreceiver: مقدار this در صورتی که خصوصیت یک getter باشد"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     "مقدار آن خصوصیت"
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر obj یک شیء نباشد، TypeError پرتاب میشود"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.set()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.set() مقدار یک خصوصیت را تنظیم می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\nReflect.set(user, \"age\", 41);\n\nlet age = Reflect.set(user, \"age\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "user.age = 41;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_set"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.set(obj, prop, value [,receiver])"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "obj: شیء هدف\nprop: خصوصیتی که باید تنظیم شود\nvalue: مقداری که باید تنظیم شود\nreceiver: مقدار this در صورتی که خصوصیت یک setter باشد"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     "true در صورت موفقیت\nfalse در غیر این صورت"
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر obj یک شیء نباشد، TypeError پرتاب میشود"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.apply()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.apply() یک تابع را با یک مقدار this و یک آرایهٔ آرگومان صدا می‌زند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function greet(message) {\n\n  return message + \", \" + this.name;\n\n}\n\nconst person = {name: \"Jan\"};\n\nlet msg =  Reflect.apply(greet, person, [\"Hello\"]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let msg = greet.apply(person, [\"Hello\"]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_apply"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.apply(function, this, arguments)"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "function: تابع هدف\nthis: مقدار this هنگام صدا زدن تابع هدف\narguments: شیء آرایه‌گونه‌ای از آرگومان‌های تابع"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     "مقدار بازگشتی تابع"
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر function یک تابع یا arguments یک شیء نباشد، TypeError پرتاب می‌شود"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.apply() را ترجیح دهید وقتی:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "در حال فرابرنامه‌نویسی هستید",
+    "داخل مدیریت‌کنندهٔ Proxy هستید",
+    "رفتار یکدست می‌خواهید (بدون خطاهای خاموش)",
+    "می‌خواهید همان رفتار عملیات‌های داخلی JavaScript را بازتاب دهید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.construct()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.construct() مثل عملگر new رفتار می‌کند و با آرگومان‌های داده‌شده یک نمونهٔ تازه از target می‌سازد. newTarget اجازه می‌دهد مقدار new.target را برای ارث‌بری سفارشی کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new Array\n\nconst colors = Reflect.construct(Array, [\"red\", \"green\", \"blue\"]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a new Array\n\nconst colors = new Array([\"red\", \"green\", \"blue\"]));",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_construct"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.construct(obj, args [, newTarget])"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "obj: شیء سازنده\nargs: شیء آرایه‌گونه‌ای از آرگومان‌هایی که باید داده شوند\nnewTarget: سازنده"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     "یک شیء تازه که از فهرست آرگومان‌ها ساخته شده است"
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر obj یا newTarget سازنده نباشد، یا args یک شیء نباشد، TypeError پرتاب می‌شود"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.defineProperty()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.defineProperty() یک خصوصیت را تعریف یا تغییر می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst user = {};\n\n// Add a Property\n\nReflect.defineProperty(user, \"id\", {\n\n  value: 123,\n\n  writable: false\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Add a Property\n\nObject.defineProperty(user, \"id\", {\n\n  value: 123,\n\n  writable: false\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_defineproperty"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.defineProperty(obj, prop, attributes)"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "obj: شیء هدف\nprop: خصوصیتی که باید تعریف شود\nattributes: شیء آرایه‌گونه‌ای از ویژگی‌های خصوصیت"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     ""
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر obj یک شیء نباشد یا attributes یک شیء نباشد، TypeError پرتاب می‌شود"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "Reflect.defineProperty() داخل Proxy"
+  },
+  {
+   "type": "p",
+   "text": "داخل Proxy باید از Reflect.defineProperty() استفاده کنید"
+  },
+  {
+   "type": "p",
+   "text": "اگر داخل Proxy به کار برود، trap مربوط به defineProperty باید true یا false برگرداند."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "متد Object.defineProperty() شیء هدف را برمی‌گرداند",
+    "متد Reflect.defineProperty() مقدار true یا false برمی‌گرداند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.ownKeys()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.ownKeys(obj) آرایه‌ای از کلیدهای خصوصیت‌های خودِ شیء (رشته‌ای و Symbol) برمی‌گرداند؛ شبیه ترکیب Object.getOwnPropertyNames() و Object.getOwnPropertySymbols()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const sym = Symbol(\"secret\");\n\nconst obj = { a: 1, [sym]: 2 };\n\nlet keys = Reflect.ownKeys(obj);",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let keys = Object.keys(obj);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_ownkeys"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.ownKeys(obj)"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "obj: شیء هدف"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     "آرایه‌ای از کلیدهای خصوصیت‌های خودِ شیء، شامل رشته‌ها و symbolها"
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر obj یک شیء نباشد، TypeError پرتاب میشود"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "چرا از Reflect استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.ownKeys() نمادها (symbol) را هم برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "اما Object.keys() این کار را نمی‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد Reflect.isExtensible()"
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.isExtensible() بررسی می‌کند که شیء قابل گسترش باشد (بتوان خصوصیت تازه به آن اضافه کرد)؛ شبیه Object.isExtensible()."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let answer = Reflect.isExtensible(obj);",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let answer = Object.isExtensible(obj);",
+   "caption": "مثال"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو"
+    ],
+    [
+     "Reflect.isExtensible(obj)"
+    ],
+    [
+     "پارامترها"
+    ],
+    [
+     "obj: شیء هدف"
+    ],
+    [
+     "مقدار بازگشتی"
+    ],
+    [
+     "true یعنی قابل گسترش است\nfalse یعنی نیست"
+    ],
+    [
+     "خطاها"
+    ],
+    [
+     "اگر obj یک شیء نباشد، TypeError پرتاب میشود"
+    ]
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "چرا از Reflect استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.isExtensible() یک متد کاربری است، نه بخشی از سازوکار trapهای داخلی."
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.isExtensible() مستقیم به متد داخلی [[IsExtensible]] نگاشته می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "متد Reflect.isExtensible() مقدارهای اولیه را هم درست مدیریت می‌کند و همین هنگام استفادهٔ Proxy اهمیت دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Reflect.isExtensible(1); // TypeError\n\nObject.isExtensible(1);  // false (does not throw)",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از Reflect استفاده کنیم؟"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "حالت",
+     "استفاده",
+     "دلیل"
+    ],
+    [
+     "خواندن و تنظیم مقدار",
+     "بله",
+     "اگر به مقدار بازگشتی یکدست نیاز دارید"
+    ],
+    [
+     "ساختن شیء تازه",
+     "بله",
+     "چون Reflect.construct() با Proxy کار می‌کند"
+    ],
+    [
+     "صدا زدن تابع با context",
+     "بله",
+     "چون Reflect.apply() از func.apply() تمیزتر است"
+    ],
+    [
+     "فرابرنامه‌نویسی",
+     "بله",
+     "برای کارهای سطح‌پایین طراحی شده است"
+    ],
+    [
+     "کارهای سادهٔ شیء",
+     "خیر",
+     "از نحو معمولی JS استفاده کنید"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Reflect همراه با Proxy (بسیار رایج)"
+  },
+  {
+   "type": "p",
+   "text": "Proxy اجازه می‌دهد عملیات‌های روی شیءها را رهگیری کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  set(target, property, value) {\n\n    log(property + \": \" + value);\n\n    // safe forwarding\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_proxy"
+  },
+  {
+   "type": "p",
+   "text": "Reflect می‌تواند هدایت امن و یکدست فراخوانی‌ها را فراهم کند."
+  },
+  {
+   "type": "p",
+   "text": "Reflect تضمین می‌کند Proxy مثل یک شیء معمولی رفتار کند."
+  },
+  {
+   "type": "h2",
+   "text": "Proxy و Reflect"
+  },
+  {
+   "type": "p",
+   "text": "اول Proxy طراحی شد و بعد Reflect."
+  },
+  {
+   "type": "p",
+   "text": "Proxy طراحی شد تا به برنامه‌نویسان JavaScript اجازه دهد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "دسترسی به خصوصیت‌ها را رهگیری کنند",
+    "رفتار پیش‌فرض خصوصیت‌ها را بازنویسی کنند",
+    "داده را اعتبارسنجی کنند",
+    "تابع‌ها را بپیچند",
+    "شیءهای مجازی بسازند",
+    "شیءهای واکنش‌گرا بسازند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "ایدهٔ Proxy در مرحلهٔ طراحی ES6 (سال ۲۰۱۵) و پیش از وجود Reflect شکل گرفت."
+  },
+  {
+   "type": "p",
+   "text": "اما Proxy یک مشکل بزرگ داشت:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "«چطور یک عملیات رهگیری‌شده را به شکل امن هدایت کنیم؟»"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript برای خیلی از عملیات‌ها معادل تابعی نداشت."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل Reflect ساخته شد."
+  },
+  {
+   "type": "h2",
+   "text": "تاریخچهٔ Reflect در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Reflect معرفی شد چون Proxy به آن نیاز داشت."
+  },
+  {
+   "type": "p",
+   "text": "قبل از Reflect:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "delete، in و new عملگر بودند",
+    "بعضی عملیات‌ها خطا پرتاب می‌کردند",
+    "عملیات‌های شیء مقدارهای ناهمگون برمی‌گرداندند",
+    "نسخهٔ عمومی‌ای برای دسترسی به خصوصیت وجود نداشت",
+    "راهی برای هدایت فراخوانی سازنده نبود"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "همین پیاده‌سازی امن Proxy را ناممکن می‌کرد."
+  },
+  {
+   "type": "p",
+   "text": "پس ES6 (سال ۲۰۱۵) برای این کارها Reflect را اضافه کرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "ارائهٔ نسخهٔ تابعی و تمیز از هر عملیات داخلی",
+    "برگرداندن بولی‌های قابل‌پیش‌بینی به‌جای شیءها",
+    "پرهیز از خطاهای غیرلازم",
+    "بازتاب دادن رفتار موتور JavaScript",
+    "دادن یک مسیر هدایت قابل‌اعتماد به trapهای Proxy"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "بیشتر بدانید"
+  },
+  {
+   "type": "p",
+   "text": "فرابرنامه‌نویسی در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "آموزش Proxy در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع Meta در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک شیء ساده بسازید و هم با عملگر in و هم با Reflect.has() بررسی کنید که خصوصیتی دارد یا نه؛ نتیجهٔ هر دو را در کنسول مقایسه کنید.",
+   "hint": "Reflect.has(obj, prop) همان کار عملگر in را به شکل تابع انجام می‌دهد."
+  },
+  {
+   "prompt": "با Reflect.set() یک خصوصیت را روی شیء تنظیم کنید و مقدار بازگشتی‌اش را چاپ کنید، بعد همین کار را با Reflect.deleteProperty() و Reflect.get() تکرار کنید.",
+   "hint": "این متدها به‌جای خطا یا شیء، مقدار بازگشتی قابل‌پیش‌بینی مثل true و false و مقدار خصوصیت می‌دهند."
+  },
+  {
+   "prompt": "یک تابع با آرگومان‌های مختلف یک بار با توابع معمولی و یک بار با Reflect.apply() صدا بزنید و بگویید کدام خواناتر است.",
+   "hint": "Reflect.apply(func, thisValue, [args]) آرگومان‌ها را در یک آرایه می‌گیرد."
+  },
+  {
+   "prompt": "روی یک شیء از Reflect.ownKeys() و Object.keys() استفاده کنید؛ تفاوت خروجی را برای خصوصیت Symbol توضیح دهید.",
+   "hint": "Reflect.ownKeys نمادها (symbol) را هم برمی‌گرداند، اما Object.keys نه."
+  },
+  {
+   "prompt": "در یک handler مربوط به Proxy، عملیات خواندن را با Reflect.get() هدایت کنید و توضیح دهید چرا هدایت با Reflect از مقداردهی دستی امن‌تر است.",
+   "hint": "Reflect دقیقاً همان رفتار داخلی موتور را انجام می‌دهد، پس Proxy مثل شیء معمولی کار می‌کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "شیء Reflect برای چه ساخته شد؟",
+   "options": [
+    "برای ساختن شیءهای تازه به‌جای new",
+    "برای رهگیری عملیات‌های خصوصیت در places مثل Proxy",
+    "برای خواندن فایل‌های متنی",
+    "برای اجرای کد در رشتهٔ جدا"
+   ],
+   "answer": 1,
+   "explanation": "Proxy برای هدایت امن عملیات‌های رهگیری‌شده به نسخهٔ تابعی همان عملیات‌ها نیاز داشت و Reflect با همین هدف اضافه شد."
+  },
+  {
+   "question": "Reflect.has(obj, prop) معادل کدام چیز است؟",
+   "options": [
+    "obj.hasOwnProperty(prop)",
+    "عملگر in",
+    "عملگر typeof",
+    "Array.isArray(obj)"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید Reflect.has() همان عملگر in است، اما به شکل تابع و با مقدار بازگشتی بولی."
+  },
+  {
+   "question": "تفاوت Reflect.ownKeys() با Object.keys() چیست؟",
+   "options": [
+    "Reflect.ownKeys سریع‌تر است",
+    "Reflect.ownKeys نمادها (symbol) را هم برمی‌گرداند",
+    "Object.keys نمادها را هم می‌آورد",
+    "هر دو دقیقاً یکسان‌اند"
+   ],
+   "answer": 1,
+   "explanation": "Reflect.ownKeys کلیدهای رشتهای و symbol را با هم برمی‌گرداند، اما Object.keys فقط کلیدهای رشتهای را می‌دهد."
+  },
+  {
+   "question": "کدام مورد دربارهٔ مقدار بازگشتی Reflect.defineProperty() درست است؟",
+   "options": [
+    "شیء هدف را برمی‌گرداند",
+    "true یا false برمی‌گرداند",
+    "هیچ چیزی برنمی‌گرداند",
+    "یک توصیفگر برمی‌گرداند"
+   ],
+   "answer": 1,
+   "explanation": "در Proxy، trap مربوط به defineProperty باید true یا false برگرداند؛ همین رفتار را Reflect.defineProperty() دارد، برخلاف Object.defineProperty که شیء برمی‌گرداند."
+  },
+  {
+   "question": "بر اساس جدول «When to Use Reflect»، برای کارهای سادهٔ شیء چه توصیه‌ای شده است؟",
+   "options": [
+    "استفاده از Reflect",
+    "استفاده از نحو معمولی JS",
+    "استفاده از Proxy",
+    "استفاده از Object.keys"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید Reflect برای کارهای سطح‌پایین و فرابرنامه‌نویسی است؛ در کارهای روزمره از نحو معمولی JavaScript استفاده کنید."
+  }
+ ]
+}

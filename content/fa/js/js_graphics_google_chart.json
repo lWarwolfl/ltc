@@ -1,0 +1,208 @@
+{
+ "slug": "js_graphics_google_chart",
+ "course": "js",
+ "order": 254,
+ "url": "/js/js_graphics_google_chart.asp",
+ "title": "Google Chart",
+ "summary": "Google Chart گالری بزرگی از نوع‌های نمودار آمادهٔ استفاده است که از نمودار خطی ساده تا نقشهٔ درختی پیچیده را پوشش می‌دهد. در این درس کتابخانه را بارگذاری می‌کنید، نمودار میله‌ای، دایره‌ای، سه‌بعدی، خطی و پراکندگی می‌سازید و می‌بینید تبدیل نوع نمودار فقط چند کلمه تغییر می‌خواهد.",
+ "objectives": [
+  "Google Chart را در صفحه بارگذاری کنید",
+  "داده را با arrayToDataTable بسازید و نمودار رسم کنید",
+  "نوع نمودار را با تغییر کلاس ویزوالیزیشن عوض کنید",
+  "نمودار دایره‌ای سه‌بعدی و نمودار پراکندگی بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Google Chart"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "از نمودارهای خطی ساده تا نقشه‌های درختی سلسله‌مراتبی پیچیده،\nگالری Google Chart شمار زیادی نوع نمودار آمادهٔ استفاده فراهم می‌کند:\n\nنمودار پراکندگی\nنمودار خطی\nنمودار میله‌ای / ستونی\nنمودار ناحیه‌ای\nنمودار دایره‌ای\nنمودار دونات\nنمودار سازمانی\nنقشه / نمودار جغرافیایی"
+  },
+  {
+   "type": "h2",
+   "text": "چگونه از Google Chart استفاده کنیم؟"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<div id=\"myChart\" style=\"max-width:700px; height:400px\"></div>",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script src=\"https://www.gstatic.com/charts/loader.js\"></script>",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script>\n\ngoogle.charts.load('current',{packages:['corechart']});\n\ngoogle.charts.setOnLoadCallback(drawChart);\n\n// Your Function\n\nfunction drawChart() {\n\n...\n\n}\n\n</script>",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "نمودارهای میله‌ای"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function drawChart() {\n\n// Set Data\n\nconst data = google.visualization.arrayToDataTable([\n\n  ['Contry', 'Mhl'],\n\n  ['Italy', 55],\n\n  ['France', 49],\n\n  ['Spain', 44],\n\n  ['USA', 24],\n\n  ['Argentina', 15]\n\n]);\n\n// Set Options\n\nconst options = {\n\n  title: 'World Wide Wine Production'\n\n};\n\n// Draw\n\nconst chart = new google.visualization.BarChart(document.getElementById('myChart'));\n\nchart.draw(data, options);\n\n}",
+   "caption": "کد منبع"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_bar"
+  },
+  {
+   "type": "h2",
+   "text": "نمودارهای دایره‌ای"
+  },
+  {
+   "type": "p",
+   "text": "برای تبدیل نمودار میله‌ای به نمودار دایره‌ای، فقط این را جایگزین کنید:\ngoogle.visualization.BarChart\nبا:\ngoogle.visualization.PieChart"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const chart = new google.visualization.PieChart(document.getElementById('myChart'));",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_pie"
+  },
+  {
+   "type": "h2",
+   "text": "نمودار دایره‌ای سه‌بعدی"
+  },
+  {
+   "type": "p",
+   "text": "برای نمایش نمودار دایره‌ای به‌شکل سه‌بعدی، فقط is3D: true را به options اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const options = {\n\n  title: 'World Wide Wine Production',\n\n  is3D: true\n\n};",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_pie3d"
+  },
+  {
+   "type": "h2",
+   "text": "نمودار خطی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function drawChart() {\n\n// Set Data\n\nconst data = google.visualization.arrayToDataTable([\n\n  ['Price', 'Size'],\n\n  [50,7],[60,8],[70,8],[80,9],[90,9],[100,9],\n\n  [110,10],[120,11],[130,14],[140,14],[150,15]\n\n  ]);\n\n// Set Options\n\nconst options = {\n\n  title: 'House Prices vs Size',\n\n  hAxis: {title: 'Square Meters'},\n\n  vAxis: {title: 'Price in Millions'},\n\n  legend: 'none'\n\n};\n\n// Draw Chart\n\nconst chart = new google.visualization.LineChart(document.getElementById('myChart'));\n\nchart.draw(data, options);\n\n}",
+   "caption": "کد منبع"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_line"
+  },
+  {
+   "type": "h2",
+   "text": "نمودارهای پراکندگی"
+  },
+  {
+   "type": "p",
+   "text": "برای رسم همان داده به‌شکل پراکندگی، google.visualization را به ScatterChart تغییر دهید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const chart = new google.visualization.ScatterChart(document.getElementById('myChart'));",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=trygoogle_chart_scatter"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک صفحه با یک div به نام myChart بسازید و اسکریپت loader گوگل را اضافه کنید؛ بعد با google.charts.load و setOnLoadCallback یک تابع drawChart بسازید.",
+   "hint": "packages را ['corechart'] بگذارید و تابع را پیش از فراخوانی setOnLoadCallback تعریف کنید."
+  },
+  {
+   "prompt": "در drawChart یک نمودار BarChart از دادهٔ شراب بسازید و chart.draw را با options صدا بزنید.",
+   "hint": "داده با google.visualization.arrayToDataTable و آرایهٔ دوبعدی ساخته می‌شود."
+  },
+  {
+   "prompt": "همان نمودار را به PieChart تبدیل کنید و ببینید چند خط کد عوض می‌شود.",
+   "hint": "فقط نام سازنده ویزوالیزیشن عوض می‌شود؛ بقیهٔ کد دست‌نخورده می‌ماند."
+  },
+  {
+   "prompt": "نمودار دایره‌ای را سه‌بعدی کنید.",
+   "hint": "is3D: true را در options بگذارید."
+  },
+  {
+   "prompt": "همان داده را با ScatterChart رسم کنید و عنوان دو محور را با hAxis و vAxis بگذارید.",
+   "hint": "برای نمودار پراکندگی فقط نام کلاس ویزوالیزیشن را به ScatterChart تغییر دهید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در Google Chart، کتابخانه با کدام متد بارگذاری می‌شود؟",
+   "options": [
+    "google.charts.load()",
+    "chart.ready()",
+    "google.load()",
+    "new Chart()"
+   ],
+   "answer": 0,
+   "explanation": "با google.charts.load('current', {packages:['corechart']}) بارگذاری انجام می‌شود و بعد setOnLoadCallback تابع رسم را صدا می‌زند."
+  },
+  {
+   "question": "برای تبدیل نمودار میله‌ای به نمودار دایره‌ای چه چیزی را عوض می‌کنیم؟",
+   "options": [
+    "همهٔ داده را از نو می‌نویسیم",
+    "فقط BarChart را به PieChart تغییر می‌دهیم",
+    "options را حذف می‌کنیم",
+    "تابع drawChart را عوض می‌کنیم"
+   ],
+   "answer": 1,
+   "explanation": "در درس آمده که با جایگزین کردن google.visualization.BarChart با PieChart نمودار دایره‌ای می‌شود؛ داده و options همان می‌مانند."
+  },
+  {
+   "question": "سه‌بعدی کردن نمودار دایره‌ای در Google Chart با کدام گزینه انجام می‌شود؟",
+   "options": [
+    "is3D: true در options",
+    "type: \"3d\"",
+    "orientation: \"h\"",
+    "chart3D()"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید برای نمایش سه‌بعدی کافی است is3D: true را به options اضافه کنید."
+  },
+  {
+   "question": "دادهٔ نمودار در Google Chart چگونه ساخته می‌شود؟",
+   "options": [
+    "با new Chart()",
+    "با google.visualization.arrayToDataTable",
+    "با JSON.parse",
+    "با document.createElement"
+   ],
+   "answer": 1,
+   "explanation": "در مثال‌های درس داده با arrayToDataTable از یک آرایهٔ دوبعدی ساخته می‌شود؛ سطر اول نام ستون‌ها است."
+  },
+  {
+   "question": "برای رسم همان داده به‌شکل پراکندگی، کلاس ویزوالیزیشن را به چه چیزی تغییر می‌دهیم؟",
+   "options": [
+    "LineChart",
+    "ScatterChart",
+    "AreaChart",
+    "GeoChart"
+   ],
+   "answer": 1,
+   "explanation": "درس برای نمودار پراکندگی همان داده را با ScatterChart رسم می‌کند؛ LineChart خط و باقی نوع‌های دیگری می‌سازند."
+  }
+ ]
+}

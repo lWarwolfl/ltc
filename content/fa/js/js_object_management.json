@@ -1,0 +1,437 @@
+{
+ "slug": "js_object_management",
+ "course": "js",
+ "order": 215,
+ "url": "/js/js_object_management.asp",
+ "title": "مدیریت شیءها در JavaScript",
+ "summary": "متدهای مدیریت شیء به شما اجازه می‌دهند خصوصیت‌ها را دقیق‌تر تعریف کنید: افزودن خصوصیت جدید، تغییر مقدار، تغییر فراداده و ساختن گیرنده و تنظیم‌کننده با Object.defineProperty(). در این درس این متد را همراه با Object.keys() و Object.getOwnPropertyNames() می‌آموزید.",
+ "objectives": [
+  "با Object.defineProperty() خصوصیت جدید بسازید یا مقدار خصوصیت موجود را عوض کنید",
+  "ویژگی‌های خصوصیت (writable، enumerable، configurable) را توضیح دهید",
+  "فرق Object.keys() و Object.getOwnPropertyNames() را تشخیص دهید",
+  "با getter و setter یک خصوصیت محاسباتی بسازید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مدیریت شیءها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای مدیریت خصوصیت‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Adding or changing an object property\n\nObject.defineProperty(object, property, descriptor)\n\n// Adding or changing object properties\n\nObject.defineProperties(object, descriptors)\n\n// Accessing a Property\n\nObject.getOwnPropertyDescriptor(object, property)\n\n// Accessing Properties\n\nObject.getOwnPropertyDescriptors(object)\n\n// Returns all properties as an array\n\nObject.getOwnPropertyNames(object)\n\n// Accessing the prototype\n\nObject.getPrototypeOf(object)",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Object.defineProperty() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "از متد Object.defineProperty() می‌توان برای این کارها استفاده کرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "افزودن خصوصیت جدید به یک شیء",
+    "تغییر مقدار خصوصیت‌ها",
+    "تغییر فراداده (metadata) خصوصیت‌ها",
+    "تغییر گیرنده‌ها و تنظیم‌کننده‌های شیء"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "نحو:"
+  },
+  {
+   "type": "p",
+   "text": "نحو: Object.defineProperty(object, property, descriptor)"
+  },
+  {
+   "type": "h2",
+   "text": "افزودن خصوصیت جدید"
+  },
+  {
+   "type": "p",
+   "text": "این مثال یک خصوصیت جدید به شیء اضافه می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object:\nconst person = {\n  firstName: \"John\",\n  lastName :\n  \"Doe\",\n  language : \"EN\"\n};\n\n// Add a Property\nObject.defineProperty(person, \"year\",\n  {value:\"2008\"});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_defineproperty_1"
+  },
+  {
+   "type": "h2",
+   "text": "تغییر مقدار یک خصوصیت"
+  },
+  {
+   "type": "p",
+   "text": "این مثال مقدار یک خصوصیت را عوض می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object:\n\nconst person = {\n  firstName: \"John\",\n\n  lastName : \"Doe\",\n  language : \"EN\"\n};\n\n// Change a Property\nObject.defineProperty(person, \"language\",\n  {value : \"NO\"});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_defineproperty_3"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های خصوصیت"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ خصوصیت‌ها یک نام دارند. علاوه بر آن یک مقدار هم دارند."
+  },
+  {
+   "type": "p",
+   "text": "مقدار، خودش یکی از ویژگی‌های خصوصیت است."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های دیگر عبارت‌اند از enumerable، configurable و writable."
+  },
+  {
+   "type": "p",
+   "text": "این ویژگی‌ها تعیین می‌کنند چگونه می‌توان به خصوصیت دسترسی داشت (خواندنی است؟ نوشتنی است؟)"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript همهٔ ویژگی‌ها خوانده می‌شوند، اما فقط ویژگی مقدار قابل تغییر است (و آن هم تنها وقتی خصوصیت writable باشد)."
+  },
+  {
+   "type": "p",
+   "text": "(ECMAScript 5 برای خواندن و نوشتن همهٔ ویژگی‌های خصوصیت متد دارد)"
+  },
+  {
+   "type": "h2",
+   "text": "تغییر فراداده"
+  },
+  {
+   "type": "p",
+   "text": "فرادادهٔ زیر برای خصوصیت‌ها قابل تغییر است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "writable : true      // Property value can be changed\n\nenumerable : true    // Property can be enumerated\n\nconfigurable : true  // Property can be reconfigured",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "writable : false     // Property value can not be changed\n\nenumerable : false   // Property can be not enumerated\n\nconfigurable : false // Property can be not reconfigured",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها هم قابل تغییرند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Defining a getter\n\nget: function() { return language }\n\n// Defining a setter\n\nset: function(value) { language = value }",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "این مثال خصوصیت language را فقط‌خواندنی می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Object.defineProperty(person, \"language\", {writable:false});",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "این مثال language را غیرقابل‌شمارش می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Object.defineProperty(person, \"language\", {enumerable:false});",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "getOwnPropertyNames() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.getOwnPropertyNames() می‌تواند این کار را بکند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "فهرست کردن خصوصیت‌های شیء"
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "نحو: Object.getOwnPropertyNames(object)"
+  },
+  {
+   "type": "h2",
+   "text": "فهرست کردن همهٔ خصوصیت‌های شیء"
+  },
+  {
+   "type": "p",
+   "text": "این مثال همهٔ خصوصیت‌های یک شیء را می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName : \"Doe\",\n\n  language : \"EN\"\n\n};\n\n// Get all Properties\n\nObject.getOwnPropertyNames(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_getownpropertynames_1"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.getOwnPropertyNames() خصوصیت‌هایی را هم فهرست می‌کند که قابل‌شمارش نیستند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName : \"Doe\",\n\n  language : \"EN\"\n\n};\n\n// Set the language Property not enumerable\n\nObject.defineProperty(person, \"language\", {enumerable:false});\n\n// Get all Properties\n\nObject.getOwnPropertyNames(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_getownpropertynames_2"
+  },
+  {
+   "type": "h2",
+   "text": "Object.keys() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.keys() می‌تواند این کار را بکند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "فهرست کردن خصوصیت‌های قابل‌شمارش شیء"
+   ]
+  },
+  {
+   "type": "h3",
+   "text": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "نحو: Object.keys(object)"
+  },
+  {
+   "type": "h2",
+   "text": "نمایش فهرست خصوصیت‌های قابل‌شمارش شیء"
+  },
+  {
+   "type": "p",
+   "text": "این مثال به‌جای Object.getOwnPropertyNames() از Object.keys() استفاده می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName : \"Doe\",\n\n  language : \"EN\"\n\n};\n\n// Change the \"language\" Property\n\nObject.defineProperty(person, \"language\", {enumerable:false});\n\n// Get all Enumerable Properties\n\nObject.keys(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_keys_4"
+  },
+  {
+   "type": "p",
+   "text": "متد getOwnPropertyNames() همهٔ خصوصیت‌ها را برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "متد Object.keys() همهٔ خصوصیت‌های قابل‌شمارش را برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "اگر خصوصیت‌های شیء را بدون enumerable:false تعریف کنید، این دو متد نتیجهٔ یکسان می‌دهند."
+  },
+  {
+   "type": "h2",
+   "text": "افزودن گیرنده و تنظیم‌کننده"
+  },
+  {
+   "type": "p",
+   "text": "از متد Object.defineProperty() می‌توان برای افزودن گیرنده و تنظیم‌کننده هم استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "//Create an object\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Define a getter\nObject.defineProperty(person, \"fullName\", {\n  get:\nfunction () {return this.firstName + \" \" + this.lastName;}\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_es5_6"
+  },
+  {
+   "type": "h2",
+   "text": "یک مثال شمارنده"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Define object\n\nconst obj = {counter:0};\n\n// Define setters\n\nObject.defineProperty(obj, \"reset\", {\n\n  get : function () {this.counter = 0;}\n});\n\nObject.defineProperty(obj, \"increment\", {\n\n  get : function () {this.counter++;}\n});\n\nObject.defineProperty(obj, \"decrement\", {\n\n  get : function () {this.counter--;}\n});\n\nObject.defineProperty(obj, \"add\", {\n\n  set : function (value) {this.counter += value;}\n});\n\nObject.defineProperty(obj, \"subtract\", {\n\n  set : function (i) {this.counter -= i;}\n});\n\n// Play with the counter:\n\nobj.reset;\n\nobj.add = 5;\n\nobj.subtract = 1;\n\nobj.increment;\n\nobj.decrement;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_defineproperty_5"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های پروتوتایپ"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای JavaScript خصوصیت‌های پروتوتایپ خود را به ارث می‌برند."
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ delete خصوصیت‌های ارثی را حذف نمی‌کند، اما اگر خصوصیتی را از پروتوتایپ حذف کنید، روی همهٔ شیءهایی که از آن پروتوتایپ ارث برده‌اند اثر می‌گذارد."
+  },
+  {
+   "type": "h2",
+   "text": "فصل‌های پیشرفته:"
+  },
+  {
+   "type": "p",
+   "text": "تعریف شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "this پیشرفته در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "محافظت از شیءها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتوتایپ‌های شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع شیء در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل define-property.html بسازید و با Object.defineProperty() یک خصوصیت جدید به شیء person اضافه کنید، بعد نام خصوصیت‌ها را در کنسول چاپ کنید.",
+   "hint": "ترتیب آرگومان‌ها این است: خود شیء، نام خصوصیت، و شرح‌دهنده (descriptor) مثل {value: 5}."
+  },
+  {
+   "prompt": "خصوصیت language را با Object.defineProperty() و writable:false اضافه کنید، بعد مقدارش را عوض کنید و ببینید در کنسول چه می‌شود.",
+   "hint": "برای دیدن خطا در ابتدای اسکریپت \"use strict\" بگذارید؛ بدون آن تغییر بی‌صدا نادیده گرفته می‌شود."
+  },
+  {
+   "prompt": "یک شیء با سه خصوصیت بسازید و نتیجهٔ Object.keys() و Object.getOwnPropertyNames() را در کنسول مقایسه کنید.",
+   "hint": "برای دیدن تفاوت، یکی از خصوصیت‌ها را با enumerable:false تعریف کنید."
+  },
+  {
+   "prompt": "با Object.defineProperty() یک گیرنده (getter) بسازید که مقدار خصوصیت را با متن اضافه برگرداند و در کنسول چاپش کنید.",
+   "hint": "در شرح‌دهنده از get: function() { ... } استفاده کنید."
+  },
+  {
+   "prompt": "یک شمارنده بسازید که با تنظیم‌کننده (setter) مقدار را بگیرد و دو برابرش را ذخیره کند؛ نتیجه را چاپ کنید.",
+   "hint": "شرح‌دهنده با set: function(value) { ... } نوشته می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای تغییر فرادادهٔ یک خصوصیت (مثل writable یا enumerable) از کدام متد استفاده می‌کنیم؟",
+   "options": [
+    "Object.keys()",
+    "Object.defineProperty()",
+    "Object.getOwnPropertyNames()",
+    "Object.freeze()"
+   ],
+   "answer": 1,
+   "explanation": "شرح‌دهندهٔ (descriptor) متد Object.defineProperty() همان جایی است که writable، enumerable و configurable را تعیین می‌کنید. Object.keys فقط نام خصوصیت‌های قابل‌شمارش را برمی‌گرداند و بقیهٔ گزینه‌ها فراداده را عوض نمی‌کنند."
+  },
+  {
+   "question": "تفاوت اصلی Object.keys() و Object.getOwnPropertyNames() در چیست؟",
+   "options": [
+    "هر دو دقیقاً یک نتیجه می‌دهند",
+    "Object.keys() فقط خصوصیت‌های قابل‌شمارش را می‌دهد ولی getOwnPropertyNames() همه را، حتی غیرقابل‌شمارش‌ها",
+    "Object.getOwnPropertyNames() فقط خصوصیت‌های قابل‌شمارش را می‌دهد",
+    "Object.keys() روی آرایه کار نمی‌کند"
+   ],
+   "answer": 1,
+   "explanation": "getOwnPropertyNames() همهٔ خصوصیت‌ها را فهرست می‌کند، اما Object.keys() فقط آن‌هایی را که enumerable هستند. اگر هیچ خصوصیتی را با enumerable:false نساخته باشید، نتیجهٔ هر دو یکی است."
+  },
+  {
+   "question": "اگر خصوصیتی با writable:false تعریف شده باشد، تلاش برای تغییر مقدارش چه نتیجه‌ای دارد؟",
+   "options": [
+    "مقدار عوض می‌شود ولی خطا هم می‌گیرید",
+    "در حالت strict خطا می‌گیرید و در حالت غیرstrict بی‌صدا نادیده گرفته می‌شود",
+    "خصوصیت حذف می‌شود",
+    "بلافاصله خطای نحوی می‌گیرید"
+   ],
+   "answer": 1,
+   "explanation": "writable:false یعنی مقدار قابل نوشتن نیست. در حالت strict خطا پرتاب می‌شود و در غیرstrict تغییر بی‌صدا شکست می‌خورد؛ برای همین دیدن خطا در اشکال‌زدایی مفید است."
+  },
+  {
+   "question": "گیرنده (getter) در Object.defineProperty() چه کاری می‌کند؟",
+   "options": [
+    "مقدار را هنگام خواندن خصوصیت محاسبه و برگردانده می‌کند",
+    "مقدار را قبل از ذخیره پاک می‌کند",
+    "خصوصیت را قابل‌شمارش می‌کند",
+    "خصوصیت را از پروتوتایپ حذف می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "گیرنده تابعی است که هر بار خصوصیت خوانده می‌شود اجرا می‌شود و مقدار برگشتی‌اش همان مقدار خصوصیت به‌نظر می‌رسد؛ تنظیم‌کننده هم وظیفهٔ نوشتن مقدار را دارد."
+  },
+  {
+   "question": "کلیدواژهٔ delete روی خصوصیت‌های ارثی شیء چه اثری دارد؟",
+   "options": [
+    "آن‌ها را از خود شیء حذف می‌کند",
+    "آن‌ها را حذف نمی‌کند؛ فقط خصوصیت‌های خود شیء حذف می‌شوند",
+    "پروتوتایپ را کامل پاک می‌کند",
+    "همهٔ شیءهای دیگر را خراب می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "delete فقط خصوصیت‌های مستقیم خود شیء را حذف می‌کند. اما اگر خصوصیتی را از پروتوتایپ حذف کنید، روی همهٔ شیءهایی که از آن پروتوتایپ ارث برده‌اند اثر می‌گذارد."
+  }
+ ]
+}

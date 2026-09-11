@@ -1,0 +1,307 @@
+{
+ "slug": "js_modules_namespace",
+ "course": "js",
+ "order": 236,
+ "url": "/js/js_modules_namespace.asp",
+ "title": "namespace ماژول در JavaScript",
+ "summary": "با import * as name همهٔ exportهای یک ماژول در یک شیء namespace جمع می‌شوند. در این درس می‌بینید این شیء چیست، چرا فقط‌خواندنی و بدون پروتوتایپ است و با export * as name از من، namespace یک ماژول دیگر را چطور دوباره بیرون بدهید.",
+ "objectives": [
+  "توضیح دهید شیء namespace ماژول چیست و چه چیزی در آن نگه داشته می‌شود",
+  "با import * as name همهٔ exportهای یک ماژول را در یک شیء جمع کنید",
+  "بگویید چرا namespace فقط‌خواندنی است و اتصال زنده چه معنایی دارد",
+  "با نحو export * as name یک namespace را از ماژول خودتان re-export کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "namespace ماژول در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء namespace ماژول"
+  },
+  {
+   "type": "p",
+   "text": "وقتی از این نحو استفاده می‌کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as name from \"module\";",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "JavaScript یک شیء namespace ماژول می‌سازد."
+  },
+  {
+   "type": "p",
+   "text": "این یک شیء تغییرناپذیر است که همهٔ اتصال‌های exportشده از آن ماژول را نگه می‌دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// math_module.js\n\nexport const PI = 3.14159;\n\nexport function add(a, b) {\n\n  return a + b;\n\n}\n\nexport function multiply(a, b) {\n\n  return a * b;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as math from \"./math_module.js\";\n\n// Now you can use the math namespace object:\n\nlet myPi = math.PI\n\nlet result1 = math.add(2, 3));\n\nlet result2 = math.multiply(2, 3));",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_namespace_2"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی namespace ماژول"
+  },
+  {
+   "type": "p",
+   "text": "پشتیبانی namespace ماژول به سازوکاری اشاره دارد که اجازه می‌دهد همهٔ exportهای یک ماژول را در یک شیء namespace واحد import کنید."
+  },
+  {
+   "type": "p",
+   "text": "ویژگی namespace ماژول بخشی از ES Modules است که در ECMAScript 2015 معرفی شد تا سازماندهی و دسترسی به ماژول‌ها یکدست باشد."
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های namespace ماژول"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ویژگی",
+     "توضیح"
+    ],
+    [
+     "Namespace",
+     "یک شیء ویژه که همهٔ exportهای یک ماژول را نگه می‌دارد"
+    ],
+    [
+     "نحو",
+     "import * as name from module"
+    ],
+    [
+     "هدف",
+     "سازماندهی، دسترسی و ارجاع امن به exportهای ماژول"
+    ],
+    [
+     "فقط‌خواندنی",
+     "به exportها دسترسی دارید، اما نمی‌توانید مقداردهی دوباره کنید"
+    ],
+    [
+     "اتصال زنده",
+     "اگر مقدار exportشده در ماژول تغییر کند، namespace خودکار همان تغییر را نشان می‌دهد"
+    ],
+    [
+     "قابل شمارش",
+     "خصوصیت‌های آن قابل شمارش‌اند و با named exportها متناظرند"
+    ],
+    [
+     "پروتوتایپ",
+     "namespace یک شیء سادهٔ بدون پروتوتایپ است (Object.getPrototypeOf(math) === null)."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "نحوهای مرتبط"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { add } from \"./math_module.js\";",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import math from \"./math_module.js\";",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as math from \"./math_module.js\";",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "export کردن namespace ماژول"
+  },
+  {
+   "type": "p",
+   "text": "export کردن namespace ماژول یعنی بیرون دادن کل شیء namespace یک ماژول importشده از ماژول دیگر."
+  },
+  {
+   "type": "h2",
+   "text": "export namespace"
+  },
+  {
+   "type": "p",
+   "text": "معمولاً همهٔ exportهای یک ماژول را این‌طور در یک شیء namespace می‌آورید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as math from \"./math_module.js\";\n\nlet myPi = math.PI;\n\nlet result = math.add(2, 3);",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// math_module.js\n\nexport const PI = 3.14159;\n\nexport function add(a, b) {\n\n  return a + b;\n\n}\n\nexport function multiply(a, b) {\n\n  return a * b;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_namespace_2"
+  },
+  {
+   "type": "p",
+   "text": "با export کردن namespace ماژول می‌توانید همان کل namespace را از ماژول خودتان دوباره بیرون بدهید، بدون اینکه اول importش کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "export * from \"./math_module.js\";",
+   "caption": "utilities.js"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import * as math from \"./utilities.js\";",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_export_2"
+  },
+  {
+   "type": "p",
+   "text": "نحو export * as name from \"module\" در ECMAScript 2020 اضافه شد."
+  },
+  {
+   "type": "h2",
+   "text": "مرور نحوها"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نحو",
+     "نتیجه"
+    ],
+    [
+     "export * from \"module\"",
+     "همهٔ named exportها را جداگانه دوباره بیرون می‌دهد (نه به‌صورت namespace)"
+    ],
+    [
+     "export * as name from \"module\"",
+     "همهٔ exportها را گروه‌شده زیر یک namespace واحد دوباره بیرون می‌دهد"
+    ],
+    [
+     "export { name } from \"module\"",
+     "exportهای مشخصی را دوباره بیرون می‌دهد"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "اسکریپت‌های جمع‌کننده (aggregator)"
+  },
+  {
+   "type": "p",
+   "text": "اسکریپت جمع‌کننده اسکریپتی است که فقط برای import و re-export کردن موردها از ماژول‌های دیگر به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "به‌جای پر کردن ماژول اصلی با ده‌ها دستور import، می‌توانید همه را با یک اسکریپت جمع‌کننده انجام دهید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک ماژول math.js با چند export بسازید و در فایل دیگر همهٔ آن‌ها را با import * as m وارد کنید؛ بعد m.add و m.sub را صدا بزنید و نتیجه را در کنسول ببینید.",
+   "hint": "با * همهٔ named exportها زیر یک شیء جمع می‌شوند و با نقطه به آن‌ها می‌رسید."
+  },
+  {
+   "prompt": "شیء namespace را در کنسول چاپ کنید، با Object.keys آن را بشمارید و بگویید چند خصوصیت دارد.",
+   "hint": "خصوصیت‌های namespace با named exportها متناظرند و قابل شمارش‌اند."
+  },
+  {
+   "prompt": "سعی کنید یک خصوصیت namespace را مقداردهی دوباره کنید، مثلاً m.add = 5، و خطای گرفته‌شده را بخوانید.",
+   "hint": "namespace فقطخواندنی است؛ به exportها دسترسی دارید، اما نمی‌توانید آن‌ها را عوض کنید."
+  },
+  {
+   "prompt": "یک اسکریپت جمع‌کننده بسازید که با export * as utils from \"./utils.js\" کل namespace را دوباره بیرون بدهد و بعد از فایل اصلی importش کنید.",
+   "hint": "این نحو در ECMAScript 2020 اضافه شده و اجازه می‌دهد بدون import کردن اولیه، namespace را re-export کنید."
+  },
+  {
+   "prompt": "دو ماژول بسازید و در فایل سوم با import * as a و import * as b هر دو را بیاورید؛ بعد بنویسید چرا این روش نام‌ها را خواناتر می‌کند.",
+   "hint": "a.add و b.add تقابل را روشن می‌کند و جلوی تداخل نام‌ها را می‌گیرد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "عبارت import * as m from \"./math.js\" چه چیزی می‌سازد؟",
+   "options": [
+    "یک تابع که همهٔ exportها را برمی‌گرداند",
+    "یک شیء namespace که همهٔ exportهای ماژول را نگه می‌دارد",
+    "یک آرایه از نام تابع‌ها",
+    "یک ماژول تازه روی سرور"
+   ],
+   "answer": 1,
+   "explanation": "JavaScript یک شیء namespace می‌سازد که همهٔ اتصال‌های exportشده را در خود دارد و با م.add به آن‌ها می‌رسید."
+  },
+  {
+   "question": "دربارهٔ namespace ماژول کدام جمله درست است؟",
+   "options": [
+    "می‌توانید exportها را بازنویسی کنید",
+    "فقط‌خواندنی است و فقط دسترسی می‌دهد",
+    "فقط برای default export کار می‌کند",
+    "یک آرایه است"
+   ],
+   "answer": 1,
+   "explanation": "namespace یک شیء تغییرناپذیر و فقط‌خواندنی است؛ می‌توانید exportها را بخوانید اما نمی‌توانید آن‌ها را دوباره مقداردهی کنید."
+  },
+  {
+   "question": "نحو export * as name from \"module\" چه کاری می‌کند؟",
+   "options": [
+    "همهٔ exportها را جداگانه re-export می‌کند",
+    "همهٔ exportها را زیر یک namespace واحد re-export می‌کند",
+    "یک default export تازه می‌سازد",
+    "یک ماژول را حذف می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "این نحو که در ECMAScript 2020 اضافه شد، کل namespace ماژول را زیر یک نام دوباره بیرون می‌دهد، بدون نیاز به import اولیه."
+  },
+  {
+   "question": "اسکریپت جمع‌کننده (aggregator) چه کاربردی دارد؟",
+   "options": [
+    "محاسبات سنگین را اجرا می‌کند",
+    "فقط برای re-export کردن موردها از ماژول‌های دیگر است",
+    "کد را فشرده می‌کند",
+    "ماژول‌ها را روی سرور می‌گذارد"
+   ],
+   "answer": 1,
+   "explanation": "جمع‌کننده یک اسکریپت واسط است تا ماژول اصلی شما به‌جای ده‌ها دستور import، فقط یک منبع داشته باشد."
+  },
+  {
+   "question": "خصوصیت‌های شیء namespace چه ویژگی‌ای دارند؟",
+   "options": [
+    "قابل شمارش‌اند و با named exportها متناظرند",
+    "همیشه غیرقابل شمارشاند",
+    "فقط برای default export ساخته می‌شوند",
+    "پروتوتایپ Object را دارند"
+   ],
+   "answer": 0,
+   "explanation": "بنا بر جدول درس، خصوصیت‌های namespace قابل شمارش‌اند و با named exportها متناظرند؛ شیء هم بدون پروتوتایپ است."
+  }
+ ]
+}

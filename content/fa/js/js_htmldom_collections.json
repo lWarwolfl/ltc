@@ -1,0 +1,172 @@
+{
+ "slug": "js_htmldom_collections",
+ "course": "js",
+ "order": 248,
+ "url": "/js/js_htmldom_collections.asp",
+ "title": "مجموعه‌های HTML DOM در JavaScript",
+ "summary": "متد getElementsByTagName() یک HTMLCollection برمی‌گرداند که فهرستی شبیه آرایه از عنصرها است. در این درس با طول مجموعه و اندیس‌ها کار می‌کنید، با حلقه روی عنصرها می‌گردید و می‌بینید چرا HTMLCollection آرایه نیست.",
+ "objectives": [
+  "با getElementsByTagName یک HTMLCollection بگیرید",
+  "تعداد عنصرهای مجموعه را با length بخوانید",
+  "با حلقه روی عنصرهای مجموعه حرکت کنید",
+  "تفاوت HTMLCollection و آرایه را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مجموعه‌های HTML DOM در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "شیء HTMLCollection"
+  },
+  {
+   "type": "p",
+   "text": "متد getElementsByTagName() یک شیء HTMLCollection برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "شیء HTMLCollection یک فهرست (مجموعهٔ) شبیه آرایه از عنصرهای HTML است."
+  },
+  {
+   "type": "p",
+   "text": "کد زیر همهٔ عنصرهای <p> یک سند را انتخاب می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myCollection = document.getElementsByTagName(\"p\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myCollection[1]",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_htmlcollection"
+  },
+  {
+   "type": "p",
+   "text": "توجه: اندیس از ۰ شروع می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "طول HTMLCollection"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت length تعداد عنصرهای یک HTMLCollection را مشخص می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myCollection.length",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_htmlcollection_length"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت length وقتی می‌خواهید روی عنصرهای یک مجموعه حلقه بزنید به کار می‌آید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myCollection = document.getElementsByTagName(\"p\");\n\nfor (let i = 0; i < myCollection.length; i++) {\n\n  myCollection[i].style.color = \"red\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_htmlcollection_loop"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "HTMLCollection یک آرایه نیست! HTMLCollection ممکن است شبیه آرایه به نظر برسد، اما آرایه نیست. می‌توانید روی فهرست حلقه بزنید و با شماره به عنصرها دسترسی داشته باشید (درست مثل آرایه). ولی نمی‌توانید متدهای آرایه مثل valueOf()، pop()، push() یا join() را روی HTMLCollection به کار ببرید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک صفحه با سه پاراگراف بسازید و با getElementsByTagName همهٔ آن‌ها را بگیرید و در کنسول چاپ کنید.",
+   "hint": "خروجی یک HTMLCollection است؛ در کنسول طول و نوع آن را هم ببینید."
+  },
+  {
+   "prompt": "روی همان صفحه length مجموعهٔ پاراگراف‌ها را چاپ کنید و بعد با یک حلقهٔ for همهٔ پاراگراف‌ها را پیمایش کنید.",
+   "hint": "اندیس از ۰ شروع می‌شود، پس شرط حلقه i < paragraphs.length است."
+  },
+  {
+   "prompt": "در حلقه، متن هر پاراگراف را با innerHTML عوض کنید و ببینید نتیجه روی صفحه چه می‌شود.",
+   "hint": "paras[i].innerHTML = ... روی همان عنصر واقعی صفحه کار می‌کند."
+  },
+  {
+   "prompt": "با متد join() روی یک HTMLCollection کار کنید و خطای کنسول را بخوانید و علتش را توضیح دهید.",
+   "hint": "HTMLCollection متدهای آرایه را ندارد؛ برای تبدیلش می‌توانید از Array.from استفاده کنید."
+  },
+  {
+   "prompt": "یک div با یک پاراگراف بسازید، مجموعهٔ پاراگراف‌ها را بگیرید و با appendChild یک پاراگراف جدید به صفحه اضافه کنید؛ بعد length مجموعهٔ قدیمی را دوباره چاپ کنید.",
+   "hint": "HTMLCollection زنده (live) است و به‌طور خودکار به‌روز می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "getElementsByTagName() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "یک آرایهٔ معمولی",
+    "یک شیء HTMLCollection",
+    "یک گرهٔ متن",
+    "یک شماره"
+   ],
+   "answer": 1,
+   "explanation": "خروجی این متد یک HTMLCollection است؛ شیئی شبیه آرایه که با اندیس به عنصرهایش دسترسی دارید، اما آرایه نیست."
+  },
+  {
+   "question": "کدام جمله دربارهٔ HTMLCollection درست است؟",
+   "options": [
+    "یک آرایه است و متدهای آرایه را دارد",
+    "شبیه آرایه است ولی متدهای آرایه را ندارد",
+    "فقط یک عنصر را نگه می‌دارد",
+    "با اندیس نمی‌توان به آن دسترسی داشت"
+   ],
+   "answer": 1,
+   "explanation": "می‌توان با اندیس و length روی HTMLCollection کار کرد، اما متدهایی مثل push()، pop() یا join() روی آن وجود ندارد."
+  },
+  {
+   "question": "اندیس نخستین عنصر یک HTMLCollection چه عددی است؟",
+   "options": [
+    "۰",
+    "۱",
+    "۲",
+    "به مرورگر بستگی دارد"
+   ],
+   "answer": 0,
+   "explanation": "در HTMLCollection و NodeList اندیس‌ها از ۰ شروع می‌شوند؛ پس آخرین اندیس length - ۱ است."
+  },
+  {
+   "question": "برای شمردن عنصرهای یک HTMLCollection از چه خصوصیتی استفاده می‌کنیم؟",
+   "options": [
+    "size",
+    "count",
+    "length",
+    "total"
+   ],
+   "answer": 2,
+   "explanation": "خصوصیت length تعداد عنصرهای مجموعه را می‌دهد و همان چیزی است که در شرط حلقه به کار می‌آید."
+  },
+  {
+   "question": "چرا استفاده از حلقهٔ for روی HTMLCollection رایج است؟",
+   "options": [
+    "چون برای هر عنصر متدی مثل forEach ندارد که همهٔ مرورگرها پشتیبانی کنند",
+    "چون length ندارد",
+    "چون اندیس‌ها از ۱ شروع می‌شوند",
+    "چون فقط در کنسول کار می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "HTMLCollection متد forEach ندارد و پیمایشش با حلقهٔ شمارنده و length انجام می‌شود؛ متد از/for of هم راه‌های دیگرند."
+  }
+ ]
+}

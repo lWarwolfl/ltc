@@ -1,0 +1,221 @@
+{
+ "slug": "js_ajax_http_response",
+ "course": "js",
+ "order": 259,
+ "url": "/js/js_ajax_http_response.asp",
+ "title": "پاسخ سرور در AJAX",
+ "summary": "پس از فرستادن درخواست باید بدانید پاسخ را چگونه بخوانید. در این درس با responseText و responseXML پاسخ را به‌شکل رشته و شیء XML DOM می‌گیرید و با getResponseHeader و getAllResponseHeaders به سرایندهای پاسخ سرور دسترسی پیدا می‌کنید.",
+ "objectives": [
+  "پاسخ سرور را با responseText و responseXML بخوانید",
+  "تفاوت دادهٔ رشته‌ای و XML را تشخیص دهید",
+  "یک سرایند مشخص را با getResponseHeader بخوانید",
+  "همهٔ سرایندهای پاسخ را با getAllResponseHeaders ببینید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "AJAX و پاسخ سرور"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های پاسخ سرور"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خصوصیت",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "responseText",
+     "دادهٔ پاسخ را به‌شکل رشته می‌گیرد"
+    ],
+    [
+     "responseXML",
+     "دادهٔ پاسخ را به‌شکل دادهٔ XML می‌گیرد"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت responseText"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت responseText پاسخ سرور را به‌شکل یک رشتهٔ JavaScript برمی‌گرداند و می‌توانید همان‌طور از آن استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.getElementById(\"demo\").innerHTML = xhttp.responseText;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_first"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت responseXML"
+  },
+  {
+   "type": "p",
+   "text": "شیء XMLHttpRequest یک تحلیل‌گر XML توکار دارد."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت responseXML پاسخ سرور را به‌شکل یک شیء XML DOM برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "با این خصوصیت می‌توانید پاسخ را به‌شکل یک شیء XML DOM تحلیل کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const xmlDoc = xhttp.responseXML;\n\nconst x = xmlDoc.getElementsByTagName(\"ARTIST\");\n\nlet txt = \"\";\n\nfor (let i = 0; i < x.length; i++) {\n\n  txt += x[i].childNodes[0].nodeValue + \"<br>\";\n\n  }\n\ndocument.getElementById(\"demo\").innerHTML = txt;\n\nxhttp.open(\"GET\",\n \"cd_catalog.xml\");\nxhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_responsexml"
+  },
+  {
+   "type": "h2",
+   "text": "متدهای پاسخ سرور"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "getResponseHeader()",
+     "اطلاعات یک سرایند مشخص را از منبع سرور برمی‌گرداند"
+    ],
+    [
+     "getAllResponseHeaders()",
+     "همهٔ اطلاعات سرایندها را از منبع سرور برمی‌گرداند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "متد getAllResponseHeaders()"
+  },
+  {
+   "type": "p",
+   "text": "متد getAllResponseHeaders() همهٔ اطلاعات سرایندها را از پاسخ سرور برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const xhttp = new XMLHttpRequest();\n\nxhttp.onload = function() {\n\n    document.getElementById(\"demo\").innerHTML =\n\n    this.getAllResponseHeaders();\n\n}\n\nxhttp.open(\"GET\", \"ajax_info.txt\");\n\nxhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_header"
+  },
+  {
+   "type": "h2",
+   "text": "متد getResponseHeader()"
+  },
+  {
+   "type": "p",
+   "text": "متد getResponseHeader() اطلاعات یک سرایند مشخص را از پاسخ سرور برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const xhttp = new XMLHttpRequest();\n\nxhttp.onload = function() {\n\n    document.getElementById(\"demo\").innerHTML =\n\n    this.getResponseHeader(\"Last-Modified\");\n\n}\n\nxhttp.open(\"GET\", \"ajax_info.txt\");\n\nxhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_lastmodified"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک درخواست بفرستید و با responseText پاسخ را در کنسول چاپ کنید و نوع داده‌اش را بگویید.",
+   "hint": "responseText همیشه رشته است؛ می‌توانید با responseText.length طولش را ببینید."
+  },
+  {
+   "prompt": "responseText را با JSON.parse به یک شیء تبدیل کنید و یکی از فیلدهایش را چاپ کنید.",
+   "hint": "فقط وقتی JSON.parse کار می‌کند که پاسخ واقعاً JSON معتبر باشد."
+  },
+  {
+   "prompt": "همان آدرس را با responseXML باز کنید و یکی از عنصرهای XML را با متدهای DOM پیدا کنید.",
+   "hint": "responseXML یک شیء XML DOM می‌دهد و با همان متدهای DOM مثل getElementsByTagName رویش کار می‌کنید."
+  },
+  {
+   "prompt": "با getAllResponseHeaders همهٔ سرایندهای پاسخ را چاپ کنید و بگویید چه اطلاعاتی در آن‌ها هست.",
+   "hint": "خروجی یک رشته است که هر سرایند در یک خط آمده."
+  },
+  {
+   "prompt": "با getResponseHeader مقدار سرایند Content-Type را بگیرید و بگویید چه چیزی برمی‌گرداند.",
+   "hint": "نام سرایند را به‌صورت رشته به متد بدهید؛ خروجی رشته است، نه شیء."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "responseText پاسخ سرور را به چه شکلی برمی‌گرداند؟",
+   "options": [
+    "شیء XML DOM",
+    "رشتهٔ JavaScript",
+    "آرایه",
+    "عدد"
+   ],
+   "answer": 1,
+   "explanation": "responseText همیشه رشته است؛ برای دادهٔ XML از responseXML استفاده می‌کنیم."
+  },
+  {
+   "question": "کدام خصوصیت پاسخ را به‌شکل شیء XML DOM می‌دهد؟",
+   "options": [
+    "responseText",
+    "responseXML",
+    "statusText",
+    "readyState"
+   ],
+   "answer": 1,
+   "explanation": "responseXML از تحلیل‌گر توکار XMLHttpRequest استفاده می‌کند و یک شیء XML DOM برمی‌گرداند."
+  },
+  {
+   "question": "تفاوت getResponseHeader و getAllResponseHeaders چیست؟",
+   "options": [
+    "اولی یک سرایند مشخص و دومی همهٔ سرایندها را برمی‌گرداند",
+    "اولی همه و دومی یکی را برمی‌گرداند",
+    "هیچ تفاوتی ندارند",
+    "اولی برای POST و دومی برای GET است"
+   ],
+   "answer": 0,
+   "explanation": "getResponseHeader نام یک سرایند را می‌گیرد و مقدارش را می‌دهد؛ getAllResponseHeaders همهٔ سرایندهای پاسخ را به‌شکل رشته برمی‌گرداند."
+  },
+  {
+   "question": "اگر پاسخ سرور XML معتبر نباشد، responseXML چه می‌شود؟",
+   "options": [
+    "رشتهٔ خالی",
+    "null یا خطای تحلیل",
+    "همان متن XML",
+    "همیشه یک شیء معتبر"
+   ],
+   "answer": 1,
+   "explanation": "responseXML فقط برای پاسخ‌های XML معتبر شیء می‌سازد؛ در غیر این صورت null می‌شود یا خطای تحلیل می‌دهد، پس در کد باید بررسی شود."
+  },
+  {
+   "question": "برای خواندن طول متن پاسخ از کدام گزینه استفاده می‌کنیم؟",
+   "options": [
+    "responseXML.length",
+    "responseText.length",
+    "status.length",
+    "readyState.length"
+   ],
+   "answer": 1,
+   "explanation": "responseText یک رشته است و خصوصیت length دارد؛ responseXML شیء است و length رشته‌ای ندارد."
+  }
+ ]
+}

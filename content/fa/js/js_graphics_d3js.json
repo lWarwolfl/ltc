@@ -1,0 +1,146 @@
+{
+ "slug": "js_graphics_d3js",
+ "course": "js",
+ "order": 255,
+ "url": "/js/js_graphics_d3js.asp",
+ "title": "D3.js",
+ "summary": "D3.js کتابخانه‌ای است که با انتخاب عنصرهای صفحه و مقیاس‌ها، داده را به شکل نمودار در HTML می‌آورد. در این درس D3 را به صفحه اضافه می‌کنید، با select و append عنصر می‌سازید و یک نمودار پراکندگی با محور و نقاط تصادفی رسم می‌کنید.",
+ "objectives": [
+  "D3.js را به صفحه اضافه کنید و با select و append عنصر بسازید",
+  "با مقیاس‌ها داده را به مختصات پیکسلی تبدیل کنید",
+  "محور افقی و عمودی با d3.axis رسم کنید",
+  "نقاط داده را روی نمودار اضافه کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "D3.js"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "D3.js یک کتابخانهٔ JavaScript برای دستکاری داده در HTML است.\nکار با D3.js آسان است."
+  },
+  {
+   "type": "h2",
+   "text": "چگونه از D3.js استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "برای استفاده از D3.js در صفحهٔ وب خود، پیوندی به کتابخانه اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script src=\"//d3js.org/d3.v3.min.js\"></script>",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "این اسکریپت عنصر body را انتخاب می‌کند و یک پاراگراف با متن \"سلام دنیا!\" به آن اضافه می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "d3.select(\"body\").append(\"p\").text(\"Hello World!\");",
+   "caption": null
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_d3js_element"
+  },
+  {
+   "type": "h2",
+   "text": "نمودار پراکندگی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Set Dimensions\n\nconst xSize = 500;\n\nconst ySize = 500;\n\nconst margin = 40;\n\nconst xMax = xSize - margin*2;\n\nconst yMax = ySize - margin*2;\n\n// Create Random Points\n\nconst numPoints = 100;\n\nconst data = [];\n\nfor (let i = 0; i < numPoints; i++) {\n\n  data.push([Math.random() * xMax, Math.random() * yMax]);\n\n}\n\n// Append SVG Object to the Page\n\nconst svg = d3.select(\"#myPlot\")\n\n  .append(\"svg\")\n\n  .append(\"g\")\n\n  .attr(\"transform\",\"translate(\" + margin + \",\" + margin + \")\");\n\n// X Axis\n\nconst x = d3.scaleLinear()\n\n  .domain([0, 500])\n\n  .range([0, xMax]);\n\nsvg.append(\"g\")\n\n  .attr(\"transform\", \"translate(0,\" + yMax + \")\")\n\n  .call(d3.axisBottom(x));\n\n// Y Axis\n\nconst y = d3.scaleLinear()\n\n  .domain([0, 500])\n\n  .range([ yMax, 0]);\n\nsvg.append(\"g\")\n\n  .call(d3.axisLeft(y));\n\n// Dots\n\nsvg.append('g')\n\n  .selectAll(\"dot\")\n\n  .data(data).enter()\n\n  .append(\"circle\")\n\n  .attr(\"cx\", function (d) { return d[0] } )\n\n  .attr(\"cy\", function (d) { return d[1] } )\n\n  .attr(\"r\", 3)\n\n  .style(\"fill\", \"Red\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_d3js_scatterplot"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک صفحهٔ HTML بسازید و D3.js را با تگ script اضافه کنید؛ بعد با d3.select یک پاراگراف با متن دلخواه به body اضافه کنید.",
+   "hint": "زنجیرهٔ .select(\"body\").append(\"p\").text(\"...\") یک پاراگراف می‌سازد."
+  },
+  {
+   "prompt": "صد نقطهٔ تصادفی بسازید و با D3 یک svg با دو محور رسم کنید.",
+   "hint": "با d3.scaleLinear دامنهٔ داده را به بازهٔ پیکسلی نگاشت کنید و محورها را با d3.axisBottom و d3.axisLeft بکشید."
+  },
+  {
+   "prompt": "نقاط را با circle یا همان dot به نمودار اضافه کنید و رنگشان را تغییر دهید.",
+   "hint": "پس از selectAll(\"circle\") و data، با enter و append شکل‌ها ساخته می‌شوند."
+  },
+  {
+   "prompt": "حاشیهٔ نمودار را با یک متغیر margin تنظیم کنید و ببینید محورها چطور جابه‌جا می‌شوند.",
+   "hint": "با attr(\"transform\", \"translate(...)\") روی گروه (g) فاصله ایجاد می‌شود."
+  },
+  {
+   "prompt": "مقدار numPoints را زیاد کنید و توضیح دهید کدام بخش کد بیشترین زمان را می‌گیرد.",
+   "hint": "حلقهٔ ساخت داده و افزودن نقطه‌ها خطی رشد می‌کنند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "D3.js در این درس چه کاری انجام می‌دهد؟",
+   "options": [
+    "داده را در HTML دستکاری می‌کند",
+    "پایگاه داده می‌سازد",
+    "سرور راه می‌اندازد",
+    "فقط رنگ صفحه را عوض می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "درس D3.js را کتابخانه‌ای JavaScript برای دستکاری داده در HTML معرفی می‌کند."
+  },
+  {
+   "question": "کد d3.select(\"body\").append(\"p\").text(\"Hello World!\") چه می‌کند؟",
+   "options": [
+    "یک بند متن به body اضافه می‌کند",
+    "صفحه را بازنشانی می‌کند",
+    "جدول می‌سازد",
+    "فایل بارگذاری می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "با select عنصر body انتخاب می‌شود، با append یک p ساخته می‌شود و text متن آن را می‌گذارد."
+  },
+  {
+   "question": "برای تبدیل داده به مختصات پیکسلی در نمودار D3 از چه چیزی استفاده می‌شود؟",
+   "options": [
+    "d3.scaleLinear",
+    "d3.select",
+    "d3.axisBottom",
+    "Math.random"
+   ],
+   "answer": 0,
+   "explanation": "مقیاس‌ها دامنهٔ داده را به بازهٔ پیکسلی نگاشت می‌کنند؛ محورها بعداً با همین مقیاس‌ها رسم می‌شوند."
+  },
+  {
+   "question": "در مثال درس، نقاط تصادفی چگونه ساخته می‌شوند؟",
+   "options": [
+    "با یک حلقه و Math.random در دو جهت",
+    "با فایل خارجی",
+    "با fetch",
+    "با localStorage"
+   ],
+   "answer": 0,
+   "explanation": "حلقه به تعداد numPoints اجرا می‌شود و هر بار یک زوج مختصات تصادفی درون بازهٔ نمودار می‌سازد."
+  },
+  {
+   "question": "برای رسم محور افقی در D3 از کدام متد استفاده می‌شود؟",
+   "options": [
+    "d3.axisBottom",
+    "d3.axisLeft",
+    "d3.axisTop",
+    "d3.axisRight"
+   ],
+   "answer": 0,
+   "explanation": "محور افقی با d3.axisBottom و محور عمودی با d3.axisLeft رسم می‌شود؛ در مثال هر دو به کار رفته‌اند."
+  }
+ ]
+}

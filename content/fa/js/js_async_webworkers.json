@@ -1,0 +1,1044 @@
+{
+ "slug": "js_async_webworkers",
+ "course": "js",
+ "order": 232,
+ "url": "/js/js_async_webworkers.asp",
+ "title": "Web Workerها در JavaScript",
+ "summary": "محاسبه‌های طولانی می‌توانند رشتهٔ اصلی مرورگر را قفل کنند و صفحه را بی‌پاسخ بگذارند؛ تایمرها و async/await هم این مشکل را حل نمی‌کنند. در این درس با Web Worker کد را در رشتهٔ جدا اجرا می‌کنید، با postMessage() و onmessage پیام می‌فرستید و می‌گیرید، پیشرفت کار را گزارش می‌دهید و Worker را با terminate() یا close() متوقف می‌کنید.",
+ "objectives": [
+  "توضیح دهید Web Worker چه مشکلی را حل می‌کند و چرا async/await کافی نیست",
+  "یک Worker بسازید و با postMessage() و onmessage با آن پیام رد و بدل کنید",
+  "پیام‌های پیشرفت را از Worker بگیرید و صفحه را به‌روز کنید",
+  "Worker را با terminate() یا close() متوقف کنید و خطاهای آن را با onerror بگیرید",
+  "بگویید Worker به کدام چیزها مثل DOM دسترسی ندارد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Web Workerها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "تا اینجا همهٔ مثال‌های این آموزش روی رشتهٔ اصلی (main thread) مرورگر اجرا می‌شدند."
+  },
+  {
+   "type": "p",
+   "text": "برنامه‌نویسی ناهمگام برنامه را هنگام انتظار برای این موارد پاسخگو نگه می‌دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "تایمرها",
+    "ورودی کاربر",
+    "درخواست‌های شبکه"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "اما محاسبه‌های زمان‌بر همچنان می‌توانند رشتهٔ اصلی را قفل کنند و صفحه را بی‌پاسخ بگذارند."
+  },
+  {
+   "type": "p",
+   "text": "Web Workerها این مشکل را با اجرای JavaScript در یک رشتهٔ جدا حل می‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "چرا Web Worker؟"
+  },
+  {
+   "type": "p",
+   "text": "JavaScript معمولاً هر بار یک کار را اجرا می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "اگر یک کار دیر تمام شود، مرورگر تا پایان آن نمی‌تواند به ورودی کاربر پاسخ دهد."
+  },
+  {
+   "type": "p",
+   "text": "همین باعث می‌شود صفحه یخ‌زده به نظر برسد."
+  },
+  {
+   "type": "p",
+   "text": "صفحه تا تمام شدن محاسبه بی‌پاسخ می‌ماند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function calculate() {\n\n  let total = 0;\n\n  for (let i = 0; i < 5e9; i++) {\n\n    total += i;\n\n  }\n\n  return total;\n\n}\n\nmyDisplayer(\"Calculating...\");\n\nlet result = calculate();\n\nmyDisplayer(result);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_webworker_freeze"
+  },
+  {
+   "type": "h2",
+   "text": "آیا برنامه‌نویسی ناهمگام کمکی می‌کند؟"
+  },
+  {
+   "type": "p",
+   "text": "تایمرها، پرامیس‌ها و async/await این مشکل را حل نمی‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ آن‌ها JavaScript را روی همان رشتهٔ اصلی اجرا می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "اگر رشته مشغول محاسبه باشد، مرورگر همچنان باید صبر کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Start\");\n\nsetTimeout(function () {\n\n  myDisplayer(\"Timer\")}, 1000);\n\nlet i = 5e9;\n\nwhile (--i > 0);\n\nmyDisplayer(\"Finished\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_webworker_timer"
+  },
+  {
+   "type": "h2",
+   "text": "Web Worker چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "Web Worker کد JavaScript را در یک رشتهٔ جدا اجرا می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "تا وقتی Worker محاسبه می‌کند، رشتهٔ اصلی مرورگر آزاد است تا به ورودی کاربر پاسخ دهد."
+  },
+  {
+   "type": "p",
+   "text": "رشتهٔ اصلی و Worker با فرستادن پیام با هم گفت‌وگو می‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگرها"
+  },
+  {
+   "type": "p",
+   "text": "قبل از ساختن Worker بررسی کنید مرورگر از Web Worker پشتیبانی می‌کند یا نه."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "if (typeof(Worker) !== \"undefined\") {\n\n  myDisplayer(\"Web Workers are supported.\");\n\n} else {\n\n  myDisplayer(\"Web Workers are not supported.\");\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_webworker_support"
+  },
+  {
+   "type": "h2",
+   "text": "ساختن Worker"
+  },
+  {
+   "type": "p",
+   "text": "Worker را با سازندهٔ new Worker() بسازید."
+  },
+  {
+   "type": "p",
+   "text": "const worker = new Worker(\"worker.js\");"
+  },
+  {
+   "type": "p",
+   "text": "فایلی که به سازنده داده می‌شود، کدی را نگه می‌دارد که در رشتهٔ Worker اجرا می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "گرفتن پیام‌ها"
+  },
+  {
+   "type": "p",
+   "text": "رشتهٔ اصلی با رویداد onmessage پیام‌ها را می‌گیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.onmessage = function(event) {\n\n  myDisplayer(event.data);\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_webworker_support"
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن پیام‌ها"
+  },
+  {
+   "type": "p",
+   "text": "رشتهٔ اصلی با postMessage() داده را برای Worker می‌فرستد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.postMessage(25);",
+   "caption": "صفحهٔ اصلی:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  postMessage(event.data * event.data);\n\n}",
+   "caption": "صفحهٔ اصلی:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "625",
+   "caption": "صفحهٔ اصلی:"
+  },
+  {
+   "type": "h2",
+   "text": "مثال کامل"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.onmessage = function(event) {\n\n  myDisplayer(event.data);\n\n};\n\nworker.postMessage(1000000);",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  let sum = 0;\n\n  for (let i = 0; i <= event.data; i++) {\n\n    sum += i;\n\n  }\n\n  postMessage(sum);\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "محاسبه در Worker انجام می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "صفحه پاسخگو می‌ماند."
+  },
+  {
+   "type": "h2",
+   "text": "خلاصهٔ بخش ۱"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Web Workerها JavaScript را در یک رشتهٔ جدا اجرا می‌کنند.",
+    "Workerها هنگام محاسبه‌های زمان‌بر، رشتهٔ اصلی را پاسخگو نگه می‌دارند.",
+    "با new Worker() یک Worker بسازید.",
+    "Workerها با postMessage() پیام رد و بدل می‌کنند.",
+    "پیام‌ها را با رویداد onmessage بگیرید."
+   ]
+  },
+  {
+   "type": "h1",
+   "text": "Web Workerها، بخش ۲"
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن داده به Worker"
+  },
+  {
+   "type": "p",
+   "text": "متد postMessage() می‌تواند عدد، رشته، آرایه و شیء بفرستد."
+  },
+  {
+   "type": "p",
+   "text": "مرورگر داده را کپی می‌کند و کپی را برای Worker می‌فرستد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nworker.postMessage(person);\n\nworker.onmessage = function(event) {\n\n  document.getElementById(\"demo\").innerHTML = event.data;\n\n};",
+   "caption": "صفحهٔ اصلی:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  const person = event.data;\n\n  const message = person.name + \" is \" + person.age + \" years old.\";\n\n  postMessage(message);\n\n};",
+   "caption": "صفحهٔ اصلی:"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "Worker شیء را از راه event.data می‌گیرد."
+  },
+  {
+   "type": "h2",
+   "text": "پیام‌های پیشرفت Worker"
+  },
+  {
+   "type": "p",
+   "text": "یک Worker می‌تواند بیش از یک پیام بفرستد."
+  },
+  {
+   "type": "p",
+   "text": "این کار گزارش پیشرفت در میانهٔ یک محاسبهٔ طولانی را ممکن می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.onmessage = function(event) {\n\n  document.getElementById(\"demo\").innerHTML = event.data;\n\n};\n\nworker.postMessage(100000000);",
+   "caption": "صفحهٔ اصلی:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  const limit = event.data;\n\n  let total = 0;\n\n  for (let i = 0; i <= limit; i++) {\n\n    total += i;\n\n    if (i % 10000000 === 0) {\n\n      postMessage(\"Progress: \" + Math.round(i / limit * 100) + \"%\");\n\n    }\n\n  }\n\n  postMessage(\"Result: \" + total);\n\n};",
+   "caption": "صفحهٔ اصلی:"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "Worker پیام‌های پیشرفت را می‌فرستد، بدون اینکه صفحهٔ اصلی قفل شود."
+  },
+  {
+   "type": "p",
+   "text": "تا وقتی Worker در حال اجراست، رشتهٔ اصلی همچنان به دکمه‌ها، اسکرول و دیگر کارهای کاربر پاسخ می‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "شروع Worker"
+  },
+  {
+   "type": "p",
+   "text": "Worker را می‌توان وقتی کاربر کاری را شروع می‌کند ساخت."
+  },
+  {
+   "type": "p",
+   "text": "نگه داشتن Worker در یک متغیر باعث می‌شود بعداً بتوانید آن را متوقف کنید یا دوباره به کار ببرید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let worker;\n\nfunction startWorker() {\n\n  worker = new Worker(\"worker.js\");\n\n  worker.onmessage = function(event) {\n\n    document.getElementById(\"demo\").innerHTML = event.data;\n\n  };\n\n  worker.postMessage(100000000);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "متوقف کردن Worker"
+  },
+  {
+   "type": "p",
+   "text": "برای متوقف کردن فوری Worker از متد terminate() استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "worker.terminate();"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "بعد از terminate شدن Worker دیگر نمی‌توان آن را دوباره شروع کرد."
+  },
+  {
+   "type": "p",
+   "text": "اگر کار باید دوباره اجرا شود، Worker تازه بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let worker;\n\nfunction startWorker() {\n\n  if (worker) {\n\n    return;\n\n  }\n\n  worker = new Worker(\"worker.js\");\n\n  worker.onmessage = function(event) {\n\n    document.getElementById(\"demo\").innerHTML = event.data;\n\n  };\n\n  worker.postMessage(100000000);\n\n}\n\nfunction stopWorker() {\n\n  if (worker) {\n\n    worker.terminate();\n\n    worker = undefined;\n\n    document.getElementById(\"demo\").innerHTML = \"Worker stopped\";\n\n  }\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "مثال کامل شروع و توقف"
+  },
+  {
+   "type": "p",
+   "text": "این مثال یک محاسبهٔ طولانی را در Worker شروع می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "Worker پیشرفت را گزارش می‌دهد و می‌توان پیش از پایان آن را متوقف کرد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"startWorker()\">Start Worker</button>\n\n<button onclick=\"stopWorker()\">Stop Worker</button>\n\nReady",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let worker;\n\nfunction startWorker() {\n\n  if (worker) {\n\n    return;\n\n  }\n\n  document.getElementById(\"demo\").innerHTML = \"Starting...\";\n\n  worker = new Worker(\"worker.js\");\n\n  worker.onmessage = function(event) {\n\n    document.getElementById(\"demo\").innerHTML = event.data;\n\n    if (event.data.startsWith(\"Result:\")) {\n\n      worker.terminate();\n\n      worker = undefined;\n\n    }\n\n  };\n\n  worker.postMessage(100000000);\n\n}\n\nfunction stopWorker() {\n\n  if (worker) {\n\n    worker.terminate();\n\n    worker = undefined;\n\n    document.getElementById(\"demo\").innerHTML = \"Worker stopped\";\n\n  }\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "onmessage = function(event) {\n\n  const limit = event.data;\n\n  let total = 0;\n\n  for (let i = 0; i <= limit; i++) {\n\n    total += i;\n\n    if (i % 10000000 === 0) {\n\n      const percent = Math.round(i / limit * 100);\n\n      postMessage(\"Progress: \" + percent + \"%\");\n\n    }\n\n  }\n\n  postMessage(\"Result: \" + total);\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای Worker"
+  },
+  {
+   "type": "p",
+   "text": "برای مدیریت خطاهای Worker از رویداد onerror استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const worker = new Worker(\"worker.js\");\n\nworker.onerror = function(error) {\n\n  document.getElementById(\"demo\").innerHTML =\n\n  \"Error: \" + error.message;\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "شیء خطا می‌تواند اطلاعاتی مثل پیام، نام فایل و شمارهٔ خط داشته باشد."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت",
+     "توضیح"
+    ],
+    [
+     "message",
+     "پیام خطا."
+    ],
+    [
+     "filename",
+     "فایلی که خطا در آن رخ داده است."
+    ],
+    [
+     "lineno",
+     "شمارهٔ خطی که خطا در آن رخ داده است."
+    ],
+    [
+     "colno",
+     "شمارهٔ ستونی که خطا در آن رخ داده است."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مدیریت خطاها داخل Worker"
+  },
+  {
+   "type": "p",
+   "text": "Worker می‌تواند خطاهای خودش را هم بگیرد و پیامی به رشتهٔ اصلی بفرستد."
+  },
+  {
+   "type": "h3",
+   "text": "صفحهٔ اصلی:"
+  },
+  {
+   "type": "p",
+   "text": "worker.onmessage = function(event) {\n  if (event.data.error) {\n    document.getElementById(\"demo\").innerHTML = event.data.error;\n  } else {\n    document.getElementById(\"demo\").innerHTML = event.data.result;\n  }\n};"
+  },
+  {
+   "type": "h3",
+   "text": "worker.js:"
+  },
+  {
+   "type": "p",
+   "text": "onmessage = function(event) {\n  try {\n    const result = calculate(event.data);\n    postMessage({result: result});\n  } catch(error) {\n    postMessage({error: error.message});\n  }\n};"
+  },
+  {
+   "type": "h2",
+   "text": "بستن Worker از داخل خودش"
+  },
+  {
+   "type": "p",
+   "text": "Worker می‌تواند با صدا زدن close() خودش را متوقف کند."
+  },
+  {
+   "type": "p",
+   "text": "postMessage(\"Finished\");\nclose();"
+  },
+  {
+   "type": "p",
+   "text": "تابع close() بعد از تمام شدن کد جاری، Worker را متوقف می‌کند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "از کجا صدا زده می‌شود",
+     "توضیح"
+    ],
+    [
+     "worker.terminate()",
+     "رشتهٔ اصلی",
+     "Worker را بی‌درنگ متوقف می‌کند."
+    ],
+    [
+     "close()",
+     "رشتهٔ Worker",
+     "به Worker اجازه می‌دهد خودش را متوقف کند."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "ساختن Worker تازه"
+  },
+  {
+   "type": "p",
+   "text": "Worker متوقف‌شده دوباره راه‌اندازی نمی‌شود."
+  },
+  {
+   "type": "p",
+   "text": "برای اجرای دوبارهٔ کار یک شیء Worker تازه بسازید."
+  },
+  {
+   "type": "p",
+   "text": "worker = new Worker(\"worker.js\");"
+  },
+  {
+   "type": "p",
+   "text": "بعد از terminate، متغیر worker را برابر undefined یا null بگذارید."
+  },
+  {
+   "type": "p",
+   "text": "این کار تشخیص اینکه Worker الان در حال اجراست یا نه را ساده‌تر می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "یک Worker یا چند Worker؟"
+  },
+  {
+   "type": "p",
+   "text": "یک صفحه می‌تواند بیش از یک Worker بسازد."
+  },
+  {
+   "type": "p",
+   "text": "const worker1 = new Worker(\"worker1.js\");\nconst worker2 = new Worker(\"worker2.js\");"
+  },
+  {
+   "type": "p",
+   "text": "هر Worker در یک رشتهٔ جدا اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "اما ساختن Workerهای زیاد می‌تواند حافظه و توان پردازشی چشمگیری مصرف کند."
+  },
+  {
+   "type": "p",
+   "text": "Worker را فقط برای کارهایی به کار ببرید که اجرا در رشتهٔ جدا برایشان سود دارد."
+  },
+  {
+   "type": "p",
+   "text": "برای هر محاسبهٔ کوچک Worker تازه نسازید."
+  },
+  {
+   "type": "h2",
+   "text": "چرخهٔ عمر Worker"
+  },
+  {
+   "type": "p",
+   "text": "یک Web Worker معمولاً این مرحله‌ها را طی می‌کند:"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "صفحهٔ اصلی Worker را می‌سازد.",
+    "صفحهٔ اصلی با postMessage() داده می‌فرستد.",
+    "Worker داده را می‌گیرد.",
+    "Worker کارش را انجام می‌دهد.",
+    "Worker نتیجه‌ها را برمی‌گرداند.",
+    "صفحهٔ اصلی از نتیجه استفاده می‌کند.",
+    "وقتی دیگر به Worker نیازی نبود، متوقف می‌شود."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "ساخت Worker\n      |\n      |\n      v\nفرستادن داده\n      |\n      |\n      v\nمحاسبه در Worker\n      |\n      |\n      v\nفرستادن نتیجه\n      |\n      |\n      v\nتوقف Worker"
+  },
+  {
+   "type": "h2",
+   "text": "خلاصهٔ بخش ۲"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Workerها می‌توانند رشته، عدد، آرایه و شیء بگیرند.",
+    "Worker می‌تواند چند پیام برای گزارش پیشرفت بفرستد.",
+    "برای متوقف کردن Worker از رشتهٔ اصلی از terminate() استفاده کنید.",
+    "برای متوقف کردن Worker از داخل خودش از close() استفاده کنید.",
+    "برای مدیریت خطاهای Worker از onerror استفاده کنید.",
+    "Worker متوقف‌شده دوباره راه‌اندازی نمی‌شود.",
+    "برای اجرای دوبارهٔ کار یک شیء Worker تازه بسازید."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Worker چه کارهایی می‌تواند بکند؟"
+  },
+  {
+   "type": "p",
+   "text": "Web Worker هم مثل رشتهٔ اصلی JavaScript اجرا می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "می‌تواند محاسبه کند، از تایمرها استفاده کند، درخواست شبکه بفرستد و با شیءهای JavaScript کار کند."
+  },
+  {
+   "type": "p",
+   "text": "همین Workerها را برای کارهای پرمصرف CPU که در غیر این صورت صفحه را قفل می‌کنند مفید می‌کند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "کار",
+     "پشتیبانی"
+    ],
+    [
+     "محاسبه‌های JavaScript",
+     "بله"
+    ],
+    [
+     "حلقه‌ها",
+     "بله"
+    ],
+    [
+     "تابع‌ها",
+     "بله"
+    ],
+    [
+     "آرایه‌ها و شیءها",
+     "بله"
+    ],
+    [
+     "پرامیس‌ها",
+     "بله"
+    ],
+    [
+     "fetch()",
+     "بله"
+    ],
+    [
+     "setTimeout()",
+     "بله"
+    ],
+    [
+     "setInterval()",
+     "بله"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Worker چه کارهایی نمی‌تواند بکند؟"
+  },
+  {
+   "type": "p",
+   "text": "Worker به صفحهٔ وب دسترسی ندارد."
+  },
+  {
+   "type": "p",
+   "text": "فقط رشتهٔ اصلی می‌تواند DOM را تغییر دهد."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "قابلیت",
+     "در دسترس"
+    ],
+    [
+     "document",
+     "خیر"
+    ],
+    [
+     "window",
+     "خیر"
+    ],
+    [
+     "عنصرهای HTML",
+     "خیر"
+    ],
+    [
+     "رویدادهای DOM",
+     "خیر"
+    ],
+    [
+     "alert()",
+     "خیر"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Worker محاسبه می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "رشتهٔ اصلی واسط کاربری را به‌روز می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "به‌روز کردن صفحه"
+  },
+  {
+   "type": "p",
+   "text": "Worker نمی‌تواند مستقیماً HTML را به‌روز کند."
+  },
+  {
+   "type": "p",
+   "text": "به‌جایش نتیجه را به رشتهٔ اصلی برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "postMessage(\"Finished\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "worker.onmessage = function(event) {\n\n  document.getElementById(\"demo\").innerHTML = event.data;\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از fetch() داخل Worker"
+  },
+  {
+   "type": "p",
+   "text": "Worker می‌تواند داده را از یک سرور دانلود کند."
+  },
+  {
+   "type": "p",
+   "text": "بعد دادهٔ دانلودشده را می‌توان به رشتهٔ اصلی فرستاد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadData() {\n\n  const response = await fetch(\"data.txt\");\n\n  const text = await response.text();\n\n  postMessage(text);\n\n}\n\nloadData();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_worker_fetch"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از تایمرها"
+  },
+  {
+   "type": "p",
+   "text": "Workerها از تایمرهای JavaScript پشتیبانی می‌کنند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "setInterval(function() {\n\n  postMessage(new Date().toLocaleTimeString());\n\n}, 1000);",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از Worker استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "Workerها برای کارهای زمان‌بر JavaScript مفیدند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "کاربردهای خوب"
+    ],
+    [
+     "محاسبه‌های ریاضی بزرگ"
+    ],
+    [
+     "پردازش تصویر"
+    ],
+    [
+     "پردازش ویدیو"
+    ],
+    [
+     "جست‌وجو در مجموعه‌داده‌های بزرگ"
+    ],
+    [
+     "فشرده‌سازی و بازکردن فشرده"
+    ],
+    [
+     "رمزنگاری"
+    ],
+    [
+     "هوش مصنوعی"
+    ],
+    [
+     "محاسبه‌های علمی"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی نباید از Worker استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "برای کارهای کوچک نیازی به Worker نیست."
+  },
+  {
+   "type": "p",
+   "text": "ساختن Worker زمان می‌برد و حافظه مصرف می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "محاسبه‌های ساده اغلب روی رشتهٔ اصلی سریع‌تر اجرا می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "Worker نسازید، مگر آنکه کار به‌قدری بزرگ باشد که از یک رشتهٔ دیگر سود ببرد."
+  },
+  {
+   "type": "h2",
+   "text": "برنامه‌نویسی ناهمگام در برابر Web Worker"
+  },
+  {
+   "type": "p",
+   "text": "برنامه‌نویسی ناهمگام و Web Worker دو مسئلهٔ متفاوت را حل می‌کنند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "برنامه‌نویسی ناهمگام",
+     "Web Workerها"
+    ],
+    [
+     "یک رشتهٔ JavaScript",
+     "چند رشتهٔ JavaScript"
+    ],
+    [
+     "مناسب انتظار",
+     "مناسب محاسبه"
+    ],
+    [
+     "از پرامیس‌ها و async/await استفاده می‌کند",
+     "از شیءهای Worker استفاده می‌کند"
+    ],
+    [
+     "درخواست‌های شبکه",
+     "کارهای پرمصرف CPU"
+    ],
+    [
+     "هنگام انتظار قفل نمی‌کند",
+     "هنگام محاسبه قفل نمی‌کند"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برنامه‌نویسی ناهمگام JavaScript را هنگام انتظار مشغول نگه می‌دارد."
+  },
+  {
+   "type": "p",
+   "text": "Web Workerها هنگام محاسبهٔ JavaScript مرورگر را پاسخگو نگه می‌دارند."
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه‌های رایج"
+  },
+  {
+   "type": "h3",
+   "text": "تلاش برای دسترسی به DOM"
+  },
+  {
+   "type": "p",
+   "text": "این کد شکست می‌خورد:"
+  },
+  {
+   "type": "p",
+   "text": "document.getElementById(\"demo\").innerHTML = \"Hello\";"
+  },
+  {
+   "type": "p",
+   "text": "Workerها باید به‌جای آن از postMessage() استفاده کنند."
+  },
+  {
+   "type": "h3",
+   "text": "ساختن Workerهای بیش از حد"
+  },
+  {
+   "type": "p",
+   "text": "Workerها حافظه و منابع CPU مصرف می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "فقط Workerهایی را بسازید که لازم دارید."
+  },
+  {
+   "type": "h3",
+   "text": "فراموش کردن متوقف کردن Workerها"
+  },
+  {
+   "type": "p",
+   "text": "وقتی Workerها دیگر لازم نیستند، متوقفشان کنید."
+  },
+  {
+   "type": "p",
+   "text": "worker.terminate();"
+  },
+  {
+   "type": "h2",
+   "text": "خلاصه"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Web Workerها JavaScript را روی یک رشتهٔ جدا اجرا می‌کنند.",
+    "Workerها هنگام محاسبه‌های طولانی، رشتهٔ اصلی را پاسخگو نگه می‌دارند.",
+    "Workerها با postMessage() با رشتهٔ اصلی گفت‌وگو می‌کنند.",
+    "Workerها به DOM دسترسی ندارند.",
+    "Workerها از پرامیس‌ها، fetch() و تایمرها پشتیبانی می‌کنند.",
+    "برای کارهای پرمصرف CPU از Worker استفاده کنید.",
+    "برای انتظار روی عملیاتی مثل تایمرها و درخواست‌های شبکه از برنامه‌نویسی ناهمگام استفاده کنید."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "تبریک!"
+  },
+  {
+   "type": "p",
+   "text": "آموزش برنامه‌نویسی ناهمگام JavaScript را تمام کردید."
+  },
+  {
+   "type": "p",
+   "text": "یاد گرفتید JavaScript عملیات‌های ناهمگام را چطور با این ابزارها مدیریت می‌کند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کالبک‌ها",
+    "پرامیس‌ها",
+    "async / await",
+    "حلقهٔ رویداد (Event Loop)",
+    "تایمرها",
+    "Fetch API",
+    "AbortController",
+    "Web Workerها"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "حالا آماده‌اید برنامه‌های واکنشگرای JavaScript بسازید که عملیات‌های ناهمگام و محاسبه‌های زمان‌بر را کارآمد انجام دهند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل worker.js بسازید که با onmessage عددی را بگیرد و مجموع اعداد از ۱ تا آن عدد را با postMessage() برگرداند. بعد در صفحهٔ اصلی با new Worker(\"worker.js\") آن را صدا بزنید و نتیجه را در یک <p> بنویسید.",
+   "hint": "در فایل Worker نیازی به document نیست؛ فقط با onmessage بگیرید و با postMessage() بفرستید."
+  },
+  {
+   "prompt": "یک صفحهٔ HTML بسازید که یک حلقهٔ بسیار سنگین را مستقیم روی رشتهٔ اصلی اجرا کند و کنارش یک دکمهٔ ساده بگذارید؛ ببینید تا پایان حلقه هیچ واکنشی به کلیک ندارید.",
+   "hint": "همین کد را بعداً داخل Worker ببرید تا ببینید صفحه هنگام محاسبه پاسخگو می‌ماند."
+  },
+  {
+   "prompt": "همان محاسبه را در Worker ببرید، به‌جای یک پیام، هر ده میلیون تکرار یک پیام «Progress: ...%» با postMessage() بفرستید و نتیجه را در صفحه به‌روز کنید.",
+   "hint": "Worker می‌تواند چند پیام بفرستد؛ در onmessage هر پیام را با innerHTML در صفحه بنویسید."
+  },
+  {
+   "prompt": "دو دکمهٔ «شروع» و «توقف» بسازید؛ شروع یک Worker تازه بسازد و شروع دوباره اگر Worker در حال اجراست کاری نکند، و توقف با terminate() آن را ببندد و متغیر را undefined کند.",
+   "hint": "با if (worker) return; جلوی ساختن Worker تکراری را بگیرید و بعد از terminate حتماً worker = undefined بگذارید."
+  },
+  {
+   "prompt": "در فایل Worker عمداً یک خطای نحوی یا فراخوانی متغیر تعریف‌نشده بگذارید و در صفحهٔ اصلی با worker.onerror متن error.message را نشان دهید.",
+   "hint": "شیء خطا خصوصیت‌های message، filename و lineno را دارد که به تشخیص محل خطا کمک می‌کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "Web Worker چه چیزی را حل می‌کند که تایمرها و async/await حل نمی‌کنند؟",
+   "options": [
+    "خطاهای شبکه را",
+    "قفل شدن رشتهٔ اصلی در محاسبه‌های طولانی را",
+    "سرعت دانلود فایل‌ها را",
+    "نیاز به پرامیس را"
+   ],
+   "answer": 1,
+   "explanation": "تایمرها، پرامیس‌ها و async/await همه روی همان رشتهٔ اصلی اجرا می‌شوند؛ فقط Worker است که کد را در یک رشتهٔ جدا اجرا می‌کند و صفحه را پاسخگو نگه می‌دارد."
+  },
+  {
+   "question": "ارتباط بین صفحهٔ اصلی و Worker چگونه انجام می‌شود؟",
+   "options": [
+    "با فراخوانی مستقیم تابع‌های Worker",
+    "با postMessage() و رویداد onmessage",
+    "با دسترسی مشترک به DOM",
+    "با متغیرهای سراسری"
+   ],
+   "answer": 1,
+   "explanation": "دو رشته حافظهٔ مشترک ندارند؛ داده را با postMessage() می‌فرستید و در طرف دیگر با onmessage از event.data می‌خوانید."
+  },
+  {
+   "question": "کدام مورد را یک Worker نمی‌تواند انجام دهد؟",
+   "options": [
+    "اجرای یک حلقهٔ سنگین",
+    "استفاده از fetch()",
+    "تغییر DOM صفحه",
+    "استفاده از setTimeout()"
+   ],
+   "answer": 2,
+   "explanation": "دسترسی به document، window و عنصرهای HTML فقط برای رشتهٔ اصلی است؛ Worker باید نتیجه را با postMessage() بفرستد تا صفحه به‌روز شود."
+  },
+  {
+   "question": "برای متوقف کردن Worker از داخل خودش کدام متد به کار می‌رود؟",
+   "options": [
+    "close()",
+    "worker.terminate()",
+    "abort()",
+    "postMessage(\"stop\")"
+   ],
+   "answer": 0,
+   "explanation": "close() را از داخل رشتهٔ Worker صدازید می‌کنید تا خودش را ببندد، اما terminate() از رشتهٔ اصلی صدا زده می‌شود."
+  },
+  {
+   "question": "بعد از اینکه یک Worker را terminate کردید، برای اجرای دوبارهٔ کار چه باید بکنید؟",
+   "options": [
+    "همان Worker را با start() دوباره راه بیندازید",
+    "همان متغیر را با postMessage تازه بیدار کنید",
+    "یک Worker تازه با new Worker() بسازید",
+    "فقط کافی است متغیر را undefined کنید"
+   ],
+   "answer": 2,
+   "explanation": "Worker متوقف‌شده دیگر قابل راه‌اندازی نیست؛ باید یک شیء Worker تازه بسازید و متغیر را هم undefined یا null بگذارید."
+  },
+  {
+   "question": "بر اساس جدول مقایسه، برنامه‌نویسی ناهمگام برای چه کاری مناسب‌تر است؟",
+   "options": [
+    "محاسبه‌های پرمصرف CPU",
+    "انتظار برای تایمرها و درخواست‌های شبکه",
+    "پردازش تصویر",
+    "رمزنگاری"
+   ],
+   "answer": 1,
+   "explanation": "برنامه‌نویسی ناهمگام برای انتظار ساخته شده و جای کارهای محاسباتی سنگین، Worker است که کار را به رشتهٔ جدا می‌برد."
+  }
+ ]
+}

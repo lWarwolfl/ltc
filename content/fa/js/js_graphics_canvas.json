@@ -1,0 +1,146 @@
+{
+ "slug": "js_graphics_canvas",
+ "course": "js",
+ "order": 251,
+ "url": "/js/js_graphics_canvas.asp",
+ "title": "بوم HTML (Canvas)",
+ "summary": "با بوم HTML می‌توان بی‌واسطهٔ کتابخانه، نمودار پراکندگی و خطی رسم کرد. در این درس نقاط را با ellipse و خط را با moveTo و lineTo می‌کشید، مقیاس داده‌ها را با اندازهٔ بوم هم‌آهنگ می‌کنید و هر دو را در یک نمودار ترکیب می‌کنید.",
+ "objectives": [
+  "روی بوم نقطه‌های پراکندگی را رسم کنید",
+  "با moveTo و lineTo یک خط بکشید",
+  "داده‌ها را با اندازهٔ بوم مقیاس کنید",
+  "نقاط و خط را در یک بوم ترکیب کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "بوم HTML (Canvas)"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "HTML Canvas برای نمودارهای پراکندگی عالی است\nHTML Canvas برای نمودارهای خطی عالی است\nHTML Canvas برای ترکیب پراکندگی و خط عالی است"
+  },
+  {
+   "type": "h2",
+   "text": "نمودارهای پراکندگی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Plot Scatter\n\nctx.fillStyle = \"red\";\n\nfor (let i = 0; i < xArray.length-1; i++) {\n\n  let x = xArray[i]*400/150;\n\n  let y = yArray[i]*400/15;\n\n  ctx.beginPath();\n\n  ctx.ellipse(x, y, 2, 3, 0, 0, Math.PI * 2);\n\n  ctx.fill();\n\n}",
+   "caption": "کد منبع"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_canvas_scatter"
+  },
+  {
+   "type": "h2",
+   "text": "نمودارهای خطی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let xMax = canvas.height;\n\nlet slope = 1.2;\n\nlet intercept = 70;\n\n// Plot Scatter\n\nctx.moveTo(0, intercept);\n\nctx.lineTo(xMax, f(xMax));\n\nctx.strokeStyle = \"black\";\n\nctx.stroke();\n\n// Line Function\n\nfunction f(x) {\n\n  return x * slope + intercept;\n\n}",
+   "caption": "کد منبع"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_canvas_line"
+  },
+  {
+   "type": "h2",
+   "text": "ترکیبی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let xMax = canvas.height;\n\nlet yMax = canvas.width;\n\nlet slope = 1.2;\n\nlet intercept = 70;\n\nconst xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Plot Scatter\n\nctx.fillStyle = \"red\";\n\nfor (let i = 0; i < xArray.length-1; i++) {\n\n  let x = xArray[i]*400/150;\n\n  let y = yArray[i]*400/15;\n\n  ctx.beginPath();\n\n  ctx.ellipse(x, y, 2, 3, 0, 0, Math.PI * 2);\n\n  ctx.fill();\n\n}\n\n// Plot Line\n\nctx.moveTo(0, intercept);\n\nctx.lineTo(xMax, f(xMax));\n\nctx.strokeStyle = \"black\";\n\nctx.stroke();\n\n// Line Function\n\nfunction f(x) {\n\n  return x * slope + intercept;\n\n}",
+   "caption": "کد منبع"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryai_canvas_combined"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک بوم ۴۰۰ در ۴۰۰ بسازید و با یک حلقه، نقاط پراکندگی را با ctx.ellipse و ctx.fill رسم کنید.",
+   "hint": "نخست ctx.beginPath()، بعد ellipse و در پایان fill؛ رنگ را با fillStyle بگذارید."
+  },
+  {
+   "prompt": "یک خط با شیب ۱٫۲ و عرض از مبدأ ۷۰ روی همان بوم رسم کنید.",
+   "hint": "با moveTo و lineTo خط را بکشید و در پایان ctx.stroke() را صدا بزنید."
+  },
+  {
+   "prompt": "در یک صفحه هم نقاط و هم خط را روی یک بوم رسم کنید و بررسی کنید هر دو دیده می‌شوند.",
+   "hint": "ترتیب رسم مهم است؛ چیزی که بعدتر رسم شود روی قبلی‌ها می‌نشیند."
+  },
+  {
+   "prompt": "مختصات نقطه‌ها را با ضرب در مقیاس مناسب به اندازهٔ بوم برگردانید و بگویید اگر این کار را نکنید چه می‌شود.",
+   "hint": "داده‌های نمونه تا ۱۵۰ می‌روند اما بوم ۴۰۰ پیکسل است؛ بدون مقیاس بخشی از نمودار بیرون کادر می‌افتد."
+  },
+  {
+   "prompt": "یک تابع f(x) = slope * x + intercept بنویسید و برای دو مقدار مختلف slope خروجی را در کنسول مقایسه کنید.",
+   "hint": "شیب خط را همان slope تعیین می‌کند؛ با slope بزرگ‌تر خط تندتر بالا می‌رود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای رسم نقطه روی بوم از کدام متد استفاده می‌شود؟",
+   "options": [
+    "ctx.lineTo()",
+    "ctx.ellipse()",
+    "ctx.stroke()",
+    "ctx.moveTo()"
+   ],
+   "answer": 1,
+   "explanation": "نقطه‌های پراکندگی با ellipse (دایره) رسم می‌شوند؛ lineTo و stroke برای خط به کار می‌روند."
+  },
+  {
+   "question": "پیش از تغییر رنگ رسم با fillStyle چه باید کرد؟",
+   "options": [
+    "هیچ کار خاصی لازم نیست",
+    "باید بوم را پاک کرد",
+    "باید مسیر جدید با beginPath() باز کرد",
+    "باید stroke را صدا زد"
+   ],
+   "answer": 2,
+   "explanation": "با beginPath() مسیر تازه باز می‌شود تا شکل قبلی با رنگ جدید دوباره پر نشود."
+  },
+  {
+   "question": "در مثال خطی درس، نقش intercept چیست؟",
+   "options": [
+    "شیب خط",
+    "نقطهٔ برخورد خط با محور عمودی",
+    "ضخامت خط",
+    "رنگ خط"
+   ],
+   "answer": 1,
+   "explanation": "در تابع y = slope * x + intercept مقدار intercept همان عرض از مبدأ است، یعنی جایی که خط محور y را قطع می‌کند."
+  },
+  {
+   "question": "برای رسم خط پس از moveTo و lineTo کدام متد لازم است؟",
+   "options": [
+    "ctx.fill()",
+    "ctx.stroke()",
+    "ctx.beginPath()",
+    "ctx.text()"
+   ],
+   "answer": 1,
+   "explanation": "مسیر با moveTo و lineTo تعریف می‌شود و برای دیده شدن باید با stroke() کشیده شود؛ fill برای پر کردن شکل بسته است."
+  },
+  {
+   "question": "کدام جمله دربارهٔ Canvas در این درس درست است؟",
+   "options": [
+    "فقط برای نمودار دایره‌ای خوب است",
+    "برای پراکندگی و خطی و ترکیب هر دو مناسب است",
+    "بدون کتابخانه نمی‌توان با آن چیزی رسم کرد",
+    "فقط تصویر نشان می‌دهد و رسم نمی‌کند"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید Canvas برای نمودار پراکندگی، نمودار خطی و ترکیب پراکندگی و خط عالی است."
+  }
+ ]
+}

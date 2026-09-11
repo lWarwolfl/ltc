@@ -1,0 +1,342 @@
+{
+ "slug": "js_this",
+ "course": "js",
+ "order": 212,
+ "url": "/js/js_this.asp",
+ "title": "‏this در شیء‌های JavaScript",
+ "summary": "داخل متد یک شیء، this به خود آن شیء اشاره می‌کند و همین پایهٔ کار با شیء‌هاست. در این درس اتصال متد به شیء، اتصال صریح با call و apply، قرض گرفتن تابع با bind و ترتیب اولویت this را می‌بینید.",
+ "objectives": [
+  "بگویید this در متد شیء به چه چیزی اشاره می‌کند",
+  "با call متدی را با شیء دیگری اجرا کنید",
+  "با bind تابعی گره‌خورده به شیء بسازید",
+  "ترتیب اولویت this را از جدول بخوانید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "‏this در شیء‌های JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "‏this در متد شیء"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    firstName: \"John\",\n\n  lastName : \"Doe\",\n\n    id       : 5566,\n\n    fullName : function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_method"
+  },
+  {
+   "type": "p",
+   "text": "وقتی در متد شیء به کار برود، this به خود شیء اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، this به شیء person اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "چون متد fullName متدی از شیء person است."
+  },
+  {
+   "type": "h2",
+   "text": "اتصال در متد شیء"
+  },
+  {
+   "type": "p",
+   "text": "در این مثال‌ها، this همان شیء person است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    firstName  : \"John\",\n\n    lastName   : \"Doe\",\n\n    id         : 5566,\n\n    myFunction : function() {\n\n    return this;\n  }\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_object"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    firstName: \"John\",\n\n    lastName : \"Doe\",\n\n    id       : 5566,\n\n    fullName : function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_method"
+  },
+  {
+   "type": "p",
+   "text": "یعنی this.firstName همان خصوصیت firstName در this است؛ همان شیء person."
+  },
+  {
+   "type": "h2",
+   "text": "اتصال صریح تابع"
+  },
+  {
+   "type": "p",
+   "text": "متد‌های call() و apply() از متد‌های آمادهٔ JavaScript هستند."
+  },
+  {
+   "type": "p",
+   "text": "هر دو می‌توانند متد یک شیء را با شیء دیگری به عنوان آرگومان صدا بزنند."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "همچنین ببینید:\nمتد call()\nمتد apply()\nمتد bind()"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر person1.fullName را با person2 به عنوان آرگومان صدا می‌زند و اینجا this به person2 اشاره می‌کند، هرچند fullName متدی از person1 است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person1 = {\n\n    fullName: function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\nconst person2 = {\n\n    firstName:\"John\",\n\n    lastName: \"Doe\",\n\n}\n\n// Return \"John Doe\":\n\nperson1.fullName.call(person2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_call"
+  },
+  {
+   "type": "h2",
+   "text": "قرض گرفتن تابع"
+  },
+  {
+   "type": "p",
+   "text": "با متد bind()، یک شیء می‌تواند متدی را از شیء دیگری قرض بگیرد."
+  },
+  {
+   "type": "p",
+   "text": "این مثال دو شیء می‌سازد: person و member."
+  },
+  {
+   "type": "p",
+   "text": "شیء member متد fullname را از شیء person قرض می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    fullName: function () {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nconst member = {\n\n  firstName:\"Hege\",\n\n  lastName: \"Nilsen\",\n\n}\n\nlet fullName = person.fullName.bind(member);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_borrow"
+  },
+  {
+   "type": "h2",
+   "text": "‏this چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، کلیدواژهٔ this به یک شیء اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this بسته به نحوهٔ استفاده به شیء‌های مختلفی اشاره می‌کند:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "به تنهایی، this به شیء global اشاره می‌کند."
+    ],
+    [
+     "داخل تابع، this به شیء global اشاره می‌کند."
+    ],
+    [
+     "داخل تابع و در حالت سخت‌گیرانه، this مقدار undefined دارد."
+    ],
+    [
+     "در متد شیء، this به خود شیء اشاره می‌کند."
+    ],
+    [
+     "در رویداد، this به عنصری اشاره می‌کند که رویداد را دریافت کرده است."
+    ],
+    [
+     "در متد‌هایی مثل call()، apply() و bind()، this می‌تواند به هر شیئی اشاره کند."
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "‏this متغیر نیست."
+  },
+  {
+   "type": "p",
+   "text": "‏this یک کلیدواژه است."
+  },
+  {
+   "type": "p",
+   "text": "نمی‌توانید مقدار this را عوض کنید."
+  },
+  {
+   "type": "h2",
+   "text": "ترتیب اولویت this"
+  },
+  {
+   "type": "p",
+   "text": "برای اینکه بفهمید this به کدام شیء اشاره می‌کند، این ترتیب اولویت را به کار ببرید:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ترتیب",
+     "شیء",
+     "دلیل"
+    ],
+    [
+     "۱",
+     "bind()",
+     "‏this داخل تابعی است که با bind() صدا زده شده"
+    ],
+    [
+     "۲",
+     "apply()",
+     "‏this داخل تابعی است که با apply() صدا زده شده"
+    ],
+    [
+     "۲",
+     "call()",
+     "‏this داخل تابعی است که با call() صدا زده شده"
+    ],
+    [
+     "۳",
+     "متد شیء",
+     "‏this داخل تابع یک شیء (متد) است"
+    ],
+    [
+     "۴",
+     "دامنهٔ global",
+     "‏this داخل تابعی در دامنهٔ global است"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "فصل‌های پیشرفته:"
+  },
+  {
+   "type": "p",
+   "text": "تعریف شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "‏this پیشرفته در شیء‌های JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیء‌ها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیء‌های JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیء‌ها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "محافظت از شیء‌ها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتوتایپ‌های شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع شیء در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل thisobj.js بسازید و شیء person را با خصوصیت‌های firstName و lastName و متد fullName بنویسید. متد را صدا بزنید و نتیجه را ببینید.",
+   "hint": "داخل متد، this به خود شیء person اشاره می‌کند."
+  },
+  {
+   "prompt": "یک متد بنویسید که خود this را برگرداند و با سه روش چاپش کنید: از راه متد شیء، از راه call و از راه bind.",
+   "hint": "در حالت عادی this همان شیء است."
+  },
+  {
+   "prompt": "یک شیء بسازید که متد fullName را ندارد، اما با call همان متد را از شیء دیگر قرض بگیرد.",
+   "hint": "اولین آرگومان call تعیین می‌کند this چه باشد."
+  },
+  {
+   "prompt": "با bind تابعی بسازید که به شیء member گره خورده باشد و بعد صدایش بزنید.",
+   "hint": "تابع bind شده را باید خودتان صدا بزنید."
+  },
+  {
+   "prompt": "جدول ترتیب اولویت this را به ترتیب در یک فایل متنی بنویسید و برای هر سطر یک مثال کوچک بنویسید.",
+   "hint": "ترتیب از bind شروع می‌شود و به دامنهٔ global می‌رسد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "‏this در متد یک شیء به چه چیزی اشاره می‌کند؟",
+   "options": [
+    "به شیء global",
+    "به خود شیئی که متد مال آن است",
+    "به مقدار undefined",
+    "به آرگومان‌های متد"
+   ],
+   "answer": 1,
+   "explanation": "وقتی تابع متد یک شیء باشد، this همان شیء صاحب متد است؛ برای همین this.firstName همان person.firstName می‌شود."
+  },
+  {
+   "question": "اگر متدی را از شیء A با call روی شیء B اجرا کنیم، this به چه چیزی اشاره می‌کند؟",
+   "options": [
+    "به A",
+    "به B",
+    "به undefined",
+    "به window"
+   ],
+   "answer": 1,
+   "explanation": "در call اولین آرگومان تعیین‌کنندهٔ this است، پس با اینکه متد مال A است، مقدار this شیء B می‌شود."
+  },
+  {
+   "question": "متد bind برای قرض گرفتن متد چه کاری می‌کند؟",
+   "options": [
+    "متد را فوری اجرا می‌کند",
+    "تابع تازه‌ای می‌سازد که به شیء مقصد گره خورده است",
+    "متد را از شیء حذف می‌کند",
+    "‏this را حذف می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "‏bind تابع تازه می‌سازد و مقدار this را ثابت نگه می‌دارد؛ اجرای فوری کار call است."
+  },
+  {
+   "question": "‏this متغیر است؟",
+   "options": [
+    "بله، می‌توان مقدارش را عوض کرد",
+    "نه، کلیدواژه است و مقدارش قابل تغییر نیست",
+    "بله، ولی فقط در حالت سخت‌گیرانه",
+    "فقط در رویداد‌ها متغیر است"
+   ],
+   "answer": 1,
+   "explanation": "درس صریح می‌گوید this یک کلیدواژه است، نه متغیر، و نمی‌توانید مقدارش را عوض کنید."
+  },
+  {
+   "question": "برای دسترسی به مقدار خصوصیت language از راه خصوصیت lang در مثال درس، از چه چیزی استفاده شده است؟",
+   "options": [
+    "از متد call",
+    "از گیرنده با کلیدواژهٔ get",
+    "از حلقهٔ for...in",
+    "از Object.keys"
+   ],
+   "answer": 1,
+   "explanation": "در مثال دسترسیگر‌ها، با کلیدواژهٔ get خصوصیت lang تعریف می‌شود و مقدار language را برمی‌گرداند؛ بقیهٔ گزینه‌ها ربطی به این دسترسی ندارند."
+  }
+ ]
+}

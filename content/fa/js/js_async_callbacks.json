@@ -1,0 +1,549 @@
+{
+ "slug": "js_async_callbacks",
+ "course": "js",
+ "order": 223,
+ "url": "/js/js_async_callbacks.asp",
+ "title": "کالبک‌های ناهمگام",
+ "summary": "کالبک تابعی است که به تابع دیگری داده می‌شود و آن تابع تصمیم می‌گیرد کِی صدا بزنش. در این درس کالبک‌های هم‌زمان مثل forEach و map را از کالبک‌های ناهمگام مثل setTimeout جدا می‌کنید و می‌بینید چرا زنجیرهٔ کالبک‌ها به کد سخت‌خوان می‌رسد.",
+ "objectives": [
+  "کالبک را تعریف کنید و بگویید چه کسی زمان اجرایش را تعیین می‌کند",
+  "کالبک هم‌زمان را از کالبک ناهمگام تشخیص دهید",
+  "در کد ناهمگام، مقدار را با کالبک تحویل بگیرید",
+  "توضیح دهید چرا زنجیرهٔ کالبک‌های تودرتو اشکال‌زدایی را سخت می‌کند"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "کالبک‌های ناهمگام"
+  },
+  {
+   "type": "h2",
+   "text": "«بعداً خبرت می‌کنم!»"
+  },
+  {
+   "type": "p",
+   "text": "کالبک تابعی است که به‌عنوان آرگومان به تابع دیگری فرستاده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "تابعی که کالبک را می‌گیرد تصمیم می‌گیرد چه زمانی آن را صدا بزند."
+  },
+  {
+   "type": "p",
+   "text": "کالبک می‌تواند فوراً، بعداً، یک بار یا چند بار صدا زده شود."
+  },
+  {
+   "type": "p",
+   "text": "کالبک به خودی خود نه هم‌زمان است و نه ناهمگام."
+  },
+  {
+   "type": "p",
+   "text": "کالبک فقط راهی است که یک تابع، تابع دیگری را اجرا کند."
+  },
+  {
+   "type": "h2",
+   "text": "چرا از کالبک استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "کالبک‌ها تابع‌ها را انعطاف‌پذیرتر می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "تابع به‌جای اینکه کار بعدی را از پیش داخل خودش ثابت کند، می‌تواند تصمیم را به فراخواننده بسپارد و از او کالبک بگیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// A Greet Function\n\nfunction greet(name, callback) {\n\n  callback(\"Hello \" + name);\n\n}\n\n// A Display Function\n\nfunction display(message) {\n\n  document.getElementById(\"demo\").innerHTML = message;\n\n}\n\n// Call greet() with a callback function (display)\n\ngreet(\"John\", display);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback_simple"
+  },
+  {
+   "type": "p",
+   "text": "تابع display همان کالبک است."
+  },
+  {
+   "type": "p",
+   "text": "تابع greet() تصمیم می‌گیرد چه زمانی آن را صدا بزند."
+  },
+  {
+   "type": "h2",
+   "text": "کالبک‌های هم‌زمان"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر کالبک‌ها بلافاصله اجرا می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "به این‌ها کالبک هم‌زمان می‌گویند، چون پیش از برگشتن تابع جاری اجرا می‌شوند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Calculate Function\n\nfunction calculate(x, y, operation) {\n\n  return operation(x, y);\n\n}\n\n// Add Function\n\nfunction add(a, b) {\n\n  return a + b;\n\n}\n\n// Call calculate() with add as callback\n\nlet result = calculate(5, 3, add);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback_sync"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "کالبک همان لحظه و در حین اجرای calculate() اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "هیچ رفتار ناهمگامی در میان نیست."
+  },
+  {
+   "type": "h2",
+   "text": "کالبک‌های هم‌زمان درونی"
+  },
+  {
+   "type": "p",
+   "text": "بسیاری از متدهای JavaScript از کالبک هم‌زمان استفاده می‌کنند."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "زمان فراخوانی کالبک",
+     "ناهمگام؟"
+    ],
+    [
+     "forEach()",
+     "یک بار برای هر عضو",
+     "خیر"
+    ],
+    [
+     "map()",
+     "یک بار برای هر عضو",
+     "خیر"
+    ],
+    [
+     "filter()",
+     "یک بار برای هر عضو",
+     "خیر"
+    ],
+    [
+     "reduce()",
+     "برای هر عضو",
+     "خیر"
+    ],
+    [
+     "sort()",
+     "برای مقایسهٔ مقدارها",
+     "خیر"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مشکل زمان‌بندی"
+  },
+  {
+   "type": "p",
+   "text": "نتیجه را پیش از محاسبه شدن نمی‌توانید ببینید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let result;\n\nsetTimeout(function() {\n\n  result = 5;\n\n}, 1000);\n\n// What is result here?",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_timeout"
+  },
+  {
+   "type": "p",
+   "text": "مقدار result برابر undefined است، چون کد ناهمگام هنوز تمام نشده است."
+  },
+  {
+   "type": "h2",
+   "text": "ایدهٔ کالبک"
+  },
+  {
+   "type": "p",
+   "text": "راه‌حل مشکل بالا این است که به JavaScript یک تابع کالبک بدهیم تا وقتی نتیجه آماده شد آن را صدا بزند."
+  },
+  {
+   "type": "p",
+   "text": "کالبک تابعی است که به‌عنوان آرگومان به تابع دیگری فرستاده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "این تکنیک به یک تابع اجازه می‌دهد تابع دیگری را صدا بزند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function done(value) {\n\n  myDisplayer(value);\n\n}\n\nsetTimeout(function() {\n\n  done(5);\n\n}, 1000);\n\n// What is result here?",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback_timeout"
+  },
+  {
+   "type": "p",
+   "text": "مقدار داخل خود کالبک به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "این کار جواب می‌دهد چون کالبک بعداً اجرا می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "کالبک‌های ناهمگام"
+  },
+  {
+   "type": "p",
+   "text": "کالبک‌ها با APIهای ناهمگام هم خیلی رایج‌اند."
+  },
+  {
+   "type": "p",
+   "text": "در این حالت‌ها کالبک بعد از تمام شدن عملیات ناهمگام اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "این کالبک نیست که عملیات را ناهمگام می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "API ناهمگام تصمیم می‌گیرد چه زمانی کالبک را صدا بزند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Set a Timeout\n\nsetTimeout(function () {myDisplayer(\"Finished!\")}, 3000);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback_timed"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا:"
+  },
+  {
+   "type": "p",
+   "text": "myDisplayer تابع کالبکی است که به‌عنوان آرگومان به setTimeout() فرستاده شده است."
+  },
+  {
+   "type": "p",
+   "text": "عدد 3000 تعداد میلی‌ثانیه‌های پیش از فراخوانی myDisplayer است."
+  },
+  {
+   "type": "p",
+   "text": "مرورگر سه ثانیه صبر می‌کند و بعد کالبک را صدا می‌زند."
+  },
+  {
+   "type": "p",
+   "text": "این تأخیر را setTimeout() می‌سازد، نه خود کالبک."
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "وقتی تابعی را به‌عنوان آرگومان می‌فرستید، یادتان باشد پرانتز نگذارید."
+  },
+  {
+   "type": "p",
+   "text": "درست: setTimeout(myFunction, 3000)"
+  },
+  {
+   "type": "p",
+   "text": "نادرست: setTimeout(myFunction(), 3000)"
+  },
+  {
+   "type": "h2",
+   "text": "مدیریت رویداد"
+  },
+  {
+   "type": "p",
+   "text": "کالبک‌ها در JavaScript زیاد به کار می‌روند، به‌ویژه در مدیریت رویداد:"
+  },
+  {
+   "type": "p",
+   "text": "تعامل‌های کاربر مثل کلیک دکمه یا فشردن کلید را می‌توان با دادن یک تابع کالبک به شنوندهٔ رویداد مدیریت کرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "document.getElementById(\"myButton\").addEventListener(\"click\", displayDate);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_handler"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا displayDate تابع کالبکی است که به‌عنوان آرگومان به متد addEventListener() داده شده است."
+  },
+  {
+   "type": "p",
+   "text": "displayDate وقتی صدا زده می‌شود که کاربر روی دکمهٔ با id=\"myButton\" کلیک کند."
+  },
+  {
+   "type": "h2",
+   "text": "کنترل ترتیب اجرا"
+  },
+  {
+   "type": "p",
+   "text": "گاهی می‌خواهید کنترل بیشتری روی زمان اجرای یک تابع داشته باشید."
+  },
+  {
+   "type": "p",
+   "text": "فرض کنید می‌خواهید یک محاسبه انجام دهید و بعد نتیجه را نمایش دهید."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید اول تابع محاسبه‌گر myCalculator را صدا بزنید و بعد تابع نمایش myDisplayer را:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n\n  document.getElementById(\"demo\").innerHTML = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  return sum;\n\n}\n\n// Call the calculator\n\nlet result = myCalculator(5, 5);\n\n// Call the displayer\n\nmyDisplayer(result);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback3"
+  },
+  {
+   "type": "p",
+   "text": "یا اینکه تابع محاسبه‌گر myCalculator را صدا بزنید و بگذارید خودش تابع نمایش myDisplayer را صدا بزند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  myDisplayer(sum);\n}\n\n// Call the calculator\n\nmyCalculator(5, 5);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback8"
+  },
+  {
+   "type": "p",
+   "text": "مشکل مثال اول این است که برای نمایش نتیجه باید دو تابع را صدا بزنید."
+  },
+  {
+   "type": "p",
+   "text": "مشکل مثال دوم این است که نمی‌توانید جلوی تابع محاسبه‌گر را بگیرید تا نتیجه را نمایش ندهد."
+  },
+  {
+   "type": "p",
+   "text": "حالا وقت آوردن کالبک است."
+  },
+  {
+   "type": "p",
+   "text": "با کالبک می‌توانید تابع محاسبه‌گر (myCalculator) را همراه با یک کالبک (myCallback) صدا بزنید و بگذارید بعد از تمام شدن محاسبه، خودش کالبک را اجرا کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\nfunction myCalculator(num1, num2, myCallback) {\n\n  let sum = num1 + num2;\n\n  myCallback(sum);\n}\n\nmyCalculator(5, 5, myDisplayer);",
+   "caption": "مثال (کالبک‌ها)"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback4"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا myDisplayer به‌عنوان تابع کالبک به کار رفته است."
+  },
+  {
+   "type": "p",
+   "text": "این تابع به‌عنوان آرگومان به myCalculator() داده شده است."
+  },
+  {
+   "type": "h2",
+   "text": "زنجیرهٔ کالبک‌ها"
+  },
+  {
+   "type": "p",
+   "text": "گاهی یک کالبک عملیات دیگری را شروع می‌کند که آن هم کالبک دیگری می‌خواهد."
+  },
+  {
+   "type": "p",
+   "text": "این کار می‌تواند به کدی تودرتو، پیچیده و سخت‌خوان منتهی شود."
+  },
+  {
+   "type": "p",
+   "text": "وقتی کالبک‌ها تودرتو می‌شوند، اشکال‌زدایی سخت می‌شود؛ منطق کد به‌سمت راست می‌رود و دنبال کردنش دشوار می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "به این وضعیت «جهنم کالبک» (callback hell) یا «هرم شوم» (pyramid of doom) می‌گویند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "step1(function(result1) {\n\n  step2(result1, function(result2) {\n\n    step3(result2, function(result3) {\n\n      display(result3);\n\n    });\n\n  });\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "پرامیس‌ها و async/await آمدند تا خواندن و نگهداری کد ناهمگام آسان‌تر شود."
+  },
+  {
+   "type": "h2",
+   "text": "خلاصه"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کالبک تابعی است که به تابع دیگری فرستاده می‌شود.",
+    "کالبک‌ها می‌توانند هم‌زمان یا ناهمگام باشند.",
+    "خود کالبک کد را ناهمگام نمی‌کند.",
+    "بسیاری از متدهای JavaScript از کالبک هم‌زمان استفاده می‌کنند.",
+    "APIهای ناهمگام اغلب برای مدیریت نتیجه از کالبک استفاده می‌کنند.",
+    "پرامیس‌ها و async/await روی همین ایده ساخته شده‌اند، با این تفاوت که نوشتن کد ناهمگام را آسان‌تر می‌کنند."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "کالبک ناهمگام نیست"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کالبک فقط یک تابع است.",
+    "ممکن است بلافاصله صدا زده شود (مثل map() یا sort()).",
+    "ممکن است بعداً توسط یک API ناهمگام صدا زده شود (مثل setTimeout() یا fetch()).",
+    "این API است (نه کالبک) که رفتار ناهمگام را وارد کار می‌کند."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "جایگزین‌های کالبک"
+  },
+  {
+   "type": "p",
+   "text": "راه‌حل‌های ناهمگام مبتنی بر کالبک، نوشتن و اشکال‌زدایی سختی دارند."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل، JavaScript ناهمگام مدرن از کالبک استفاده نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript مدرن برای مدیریت عملیات ناهمگام جایگزین‌های بهتری دارد: پرامیس‌ها و نحو async/await که جریان تمیزتر و مدیریت خطای بهتری فراهم می‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "چه زمانی از کالبک استفاده کنیم؟"
+  },
+  {
+   "type": "p",
+   "text": "درک کالبک‌ها هنوز مهم است."
+  },
+  {
+   "type": "p",
+   "text": "کالبک‌ها آنجا واقعاً می‌درخشند که یک تابع ناهمگام باید منتظر تابع دیگری بماند (مثل انتظار برای بارگذاری یک فایل)."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل callback.html بسازید و تابعی به نام greet(name, callback) بنویسید که پیش از برگشتن، کالبک را با پیام خوش‌آمد صدا بزند؛ بعد با یک تابع display صدایش بزنید.",
+   "hint": "اسم تابع را بدون پرانتز به‌عنوان آرگومان بفرستید: greet(\"Ali\", display)."
+  },
+  {
+   "prompt": "با setTimeout یک متغیر را بعد از ۳ ثانیه مقدار بدهید و بلافاصله همان متغیر را چاپ کنید؛ ببینید چه چیزی چاپ می‌شود.",
+   "hint": "مقدار undefined می‌گیرید، چون کد ناهمگام هنوز تمام نشده است."
+  },
+  {
+   "prompt": "همان مثال را با کالبک بنویسید؛ این بار بعد از رسیدن مقدار، کدی که خودتان داده‌اید اجرا شود و مقدار را چاپ کند.",
+   "hint": "تابع done را بسازید و آن را به‌عنوان آرگومان به کالبتایمر بدهید تا وقتی مقدار آماده شد صدا زده شود."
+  },
+  {
+   "prompt": "با addEventListener یک کالبک به کلیک یک دکمه وصل کنید و متن صفحه را در همان کالبک عوض کنید.",
+   "hint": "تابع را بدون پرانتز به addEventListener بدهید: (\"click\", displayDate)."
+  },
+  {
+   "prompt": "سه عملیات تودرتو با کالبک بنویسید (هر کالبک عملیات بعدی را شروع کند) و توضیح دهید چرا این کد سخت‌خوان می‌شود.",
+   "hint": "این الگو را «جهنم کالبک» می‌گویند؛ کد از چپ به راست پیش می‌رود و دنبال کردنش سخت می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کالبک چیست؟",
+   "options": [
+    "تابعی که بدون آرگومان اجرا می‌شود",
+    "تابعی که به‌عنوان آرگومان به تابع دیگری فرستاده می‌شود",
+    "نوعی متد کار با آرایه",
+    "کلیدواژه‌ای برای توقف اجرای کد"
+   ],
+   "answer": 1,
+   "explanation": "کالبک فقط یک تابع است که آن را به تابع دیگری می‌دهید و آن تابع تصمیم می‌گیرد چه زمانی صدا زده شود."
+  },
+  {
+   "question": "کدام جمله دربارهٔ کالبک‌ها درست است؟",
+   "options": [
+    "هر کالبکی ناهمگام است",
+    "خود کالبک نه هم‌زمان است و نه ناهمگام؛ این API است که رفتار ناهمگام را می‌سازد",
+    "کالبک‌ها فقط در رویدادها به کار می‌روند",
+    "کالبک همیشه یک بار اجرا می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "کالبک می‌تواند بلافاصله اجرا شود (مثل map() و sort()) یا بعداً توسط API ناهمگام مثل setTimeout() فراخوانی شود؛ ناهمگامی از خود API می‌آید."
+  },
+  {
+   "question": "در setTimeout(myFunction, 3000) چه چیزی باعث تأخیر می‌شود؟",
+   "options": [
+    "خود تابع myFunction",
+    "متد setTimeout()",
+    "کالبکی که به myFunction داده شده",
+    "مرورگر که تا بارگذاری صفحه صبر می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "تأخیر را setTimeout() می‌سازد؛ کالبک فقط تابعی است که بعد از سه ثانیه صدا زده می‌شود."
+  },
+  {
+   "question": "کدام شکل فراخوانی درست است؟",
+   "options": [
+    "setTimeout(myFunction(), 3000)",
+    "setTimeout(myFunction, 3000)",
+    "setTimeout(myFunction; 3000)",
+    "setTimeout(\"myFunction()\", 3000)"
+   ],
+   "answer": 1,
+   "explanation": "وقتی تابع را به‌عنوان آرگومان می‌فرستید پرانتز نمی‌گذارید؛ با پرانتز، تابع همان‌جا اجرا می‌شود و نتیجه‌اش به‌جای خود تابع پاس داده می‌شود."
+  },
+  {
+   "question": "مشکل اصلی زنجیرهٔ کالبک‌های تودرتو چیست؟",
+   "options": [
+    "کد اجرا نمی‌شود",
+    "کد عمیق و سخت‌خوان می‌شود و اشکال‌زدایی سخت است",
+    "کالبک‌ها هم‌زمان اجرا می‌شوند",
+    "مرورگر آن را نادیده می‌گیرد"
+   ],
+   "answer": 1,
+   "explanation": "تودرتو شدن کالبک‌ها به «جهنم کالبک» می‌انجامد: منطق به‌سمت راست می‌رود، خواندن و اشکال‌زدایی سخت می‌شود و به همین دلیل پرامیس‌ها و async/await آمدند."
+  }
+ ]
+}

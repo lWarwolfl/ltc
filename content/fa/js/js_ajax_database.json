@@ -1,0 +1,160 @@
+{
+ "slug": "js_ajax_database",
+ "course": "js",
+ "order": 263,
+ "url": "/js/js_ajax_database.asp",
+ "title": "مثال پایگاه داده با AJAX",
+ "summary": "AJAX می‌تواند بدون بارگذاری دوباره اطلاعات یک مشتری را از پایگاه داده بیاورد. در این درس تابع showCustomer() را با رویداد onchange وصل می‌کنید، شناسهٔ مشتری را به فایل PHP می‌فرستید و نتیجه را به‌شکل جدول HTML می‌گیرید.",
+ "objectives": [
+  "با رویداد onchange تابع درخواست به سرور را اجرا کنید",
+  "شناسهٔ انتخاب‌شده را به‌عنوان پارامتر به صفحهٔ سرور بفرستید",
+  "پاسخ سرور را به‌شکل جدول HTML نمایش دهید",
+  "اهمیت کوئری پارامتری در امنیت را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "مثال پایگاه داده با AJAX"
+  },
+  {
+   "type": "p",
+   "text": "AJAX می‌تواند برای ارتباط تعاملی با یک پایگاه داده به کار برود."
+  },
+  {
+   "type": "h2",
+   "text": "مثال پایگاه داده با AJAX"
+  },
+  {
+   "type": "p",
+   "text": "مثال زیر نشان می‌دهد یک صفحهٔ وب چگونه با AJAX اطلاعاتی را از یک پایگاه داده می‌گیرد:"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_database"
+  },
+  {
+   "type": "h2",
+   "text": "توضیح مثال: تابع showCustomer()"
+  },
+  {
+   "type": "p",
+   "text": "وقتی کاربر در فهرست کشویی بالا مشتری‌ای را انتخاب می‌کند، تابعی به نام showCustomer() اجرا می‌شود. این تابع با رویداد onchange فعال می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function showCustomer(str) {\n\n  if (str == \"\") {\n\n    document.getElementById(\"txtHint\").innerHTML = \"\";\n\n    return;\n\n  }\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onload = function() {\n\n    document.getElementById(\"txtHint\").innerHTML = this.responseText;\n\n  }\n\n  xhttp.open(\"GET\", \"getcustomer.php?q=\"+str);\n\n  xhttp.send();\n\n}",
+   "caption": "showCustomer"
+  },
+  {
+   "type": "p",
+   "text": "تابع showCustomer() این کارها را انجام می‌دهد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "بررسی می‌کند که مشتری‌ای انتخاب شده است یا نه",
+    "یک شیء XMLHttpRequest می‌سازد",
+    "تابعی می‌سازد که وقتی پاسخ سرور آماده شد اجرا شود",
+    "درخواست را به فایلی روی سرور می‌فرستد",
+    "توجه کنید که پارامتری (q) به آدرس اضافه شده است (با محتوای فهرست کشویی)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "صفحهٔ سرور AJAX"
+  },
+  {
+   "type": "p",
+   "text": "صفحه‌ای روی سرور که JavaScript بالا صدا می‌زند، یک فایل PHP به نام \"getcustomer.php\" است."
+  },
+  {
+   "type": "p",
+   "text": "کد منبع \"getcustomer.php\" یک کوئری روی پایگاه داده اجرا می‌کند و نتیجه را در یک جدول HTML برمی‌گرداند:"
+  },
+  {
+   "type": "p",
+   "text": "<?php$mysqli = new mysqli(\"servername\", \"username\",\n  \"password\", \"dbname\");if($mysqli->connect_error) {\n  exit('Could not connect');}$sql = \"SELECT customerid, companyname,\n  contactname, address, city, postalcode, countryFROM customers WHERE\n  customerid = ?\";$stmt = $mysqli->prepare($sql);\n  $stmt->bind_param(\"s\", $_GET['q']);\n  $stmt->execute();$stmt->store_result();$stmt->bind_result($cid,\n  $cname, $name, $adr, $city, $pcode, $country);$stmt->fetch();$stmt->close();\n  echo \"<table>\";echo \"<tr>\";echo \"<th>CustomerID</th>\";echo\n  \"<td>\" . $cid . \"</td>\";echo \"<th>CompanyName</th>\";echo \"<td>\" . $cname\n  . \"</td>\";echo \"<th>ContactName</th>\";echo \"<td>\" . $name . \"</td>\";\n  echo \"<th>Address</th>\";echo \"<td>\" .\n  $adr . \"</td>\";echo \"<th>City</th>\";\n  echo \"<td>\" . $city . \"</td>\";echo \"<th>PostalCode</th>\";echo \"<td>\" .\n  $pcode . \"</td>\";echo \"<th>Country</th>\";echo \"<td>\" . $country .\n  \"</td>\";echo \"</tr>\";echo \"</table>\";?>"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فهرست کشویی با چند مشتری بسازید و با رویداد onchange تابع showCustomer() را صدا بزنید.",
+   "hint": "مقدار انتخاب‌شده با this.value به تابع می‌رسد."
+  },
+  {
+   "prompt": "در تابع، شناسهٔ مشتری را به‌عنوان پارامتر q به فایل سرور بفرستید و پاسخ را در یک div بگذارید.",
+   "hint": "آدرس به شکل getcustomer.php?q= + مقدار انتخاب‌شده ساخته می‌شود."
+  },
+  {
+   "prompt": "در کد سرور، کوئری را با یک پارامتر آماده (prepared) بنویسید و توضیح دهید چرا جایگزینی مستقیم مقدار در متن کوئری خطرناک است.",
+   "hint": "با bind_param مقدار ورودی از متن کوئری جدا می‌ماند و جلوی تزریق SQL گرفته می‌شود."
+  },
+  {
+   "prompt": "خروجی سرور را به‌شکل یک جدول HTML برگردانید و آن را در صفحه نمایش دهید.",
+   "hint": "فایل سرور خودش تگ‌های table و tr و td را با echo می‌سازد."
+  },
+  {
+   "prompt": "اگر مشتری‌ای انتخاب نشده باشد، تابع باید چه کند؟ پیاده‌سازی کنید.",
+   "hint": "پیش از فرستادن درخواست، مقدار فهرست را بررسی کنید و در صورت خالی بودن از تابع بیرون بیایید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تابع showCustomer() با کدام رویداد اجرا می‌شود؟",
+   "options": [
+    "onclick",
+    "onkeyup",
+    "onchange",
+    "onload"
+   ],
+   "answer": 2,
+   "explanation": "درس می‌گوید با انتخاب یک مشتری در فهرست کشویی، رویداد onchange تابع showCustomer() را فعال می‌کند."
+  },
+  {
+   "question": "شناسهٔ مشتری انتخاب‌شده چگونه به صفحهٔ سرور می‌رسد؟",
+   "options": [
+    "با کوکی",
+    "به‌عنوان پارامتر q در آدرس",
+    "با POST بدون پارامتر",
+    "با فایل ذخیره‌شده در مرورگر"
+   ],
+   "answer": 1,
+   "explanation": "در فهرست کارهای تابع آمده که پارامتر q به همراه محتوای فهرست کشویی به URL اضافه می‌شود."
+  },
+  {
+   "question": "کد سرور در این مثال چه چیزی برمی‌گرداند؟",
+   "options": [
+    "یک فایل XML",
+    "یک جدول HTML",
+    "یک تصویر",
+    "فقط یک عدد"
+   ],
+   "answer": 1,
+   "explanation": "کد \"getcustomer.php\" کوئری می‌زند و نتیجه را در یک جدول HTML برمی‌گرداند تا در صفحه نشان داده شود."
+  },
+  {
+   "question": "چرا در کد سرور از کوئری پارامتری (prepare و bind_param) استفاده شده است؟",
+   "options": [
+    "چون سریع‌تر از کوئری معمولی است",
+    "چون ورودی کاربر را از متن کوئری جدا می‌کند و امن است",
+    "چون بدون آن PHP اجرا نمی‌شود",
+    "چون فقط با MySQL کار می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "با پارامتری کردن کوئری، مقدار ورودی به‌جای چسبیدن به متن SQL جدا فرستاده می‌شود و جلوی تزریق SQL گرفته می‌شود؛ مسیر دیگر خطرناک است."
+  },
+  {
+   "question": "اگر اتصال به پایگاه داده ناموفق باشد، کد سرور چه می‌کند؟",
+   "options": [
+    "خطا را نادیده می‌گیرد",
+    "با exit از اجرا بیرون می‌آید",
+    "دوباره تلاش می‌کند",
+    "به صفحهٔ دیگری می‌رود"
+   ],
+   "answer": 1,
+   "explanation": "در کد آمده که اگر connect_error صفر نباشد، با exit('Could not connect') اجرا متوقف می‌شود و ادامه نمی‌دهد."
+  }
+ ]
+}

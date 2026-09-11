@@ -1,0 +1,569 @@
+{
+ "slug": "js_function_this",
+ "course": "js",
+ "order": 204,
+ "url": "/js/js_function_this.asp",
+ "title": "کلیدواژهٔ this در JavaScript",
+ "summary": "مقدار this هنگام نوشتن تابع تعیین نمی‌شود، بلکه هنگام فراخوانی مشخص می‌گردد. در این درس this را در متد شیء، تابع معمولی، حالت سخت‌گیرانه، رویداد‌ها و تابع‌های پیکانی می‌بینید و ترتیب اولویت آن را یاد می‌گیرید.",
+ "objectives": [
+  "بگویید مقدار this چه زمانی تعیین می‌شود",
+  "رفتار this را در تابع معمولی و حالت سخت‌گیرانه مقایسه کنید",
+  "تشخیص دهید چرا تابع پیکانی برای متد شیء مناسب نیست",
+  "ترتیب اولویت this را از جدول بخوانید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "کلیدواژهٔ this در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "this چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "وقتی کلیدواژهٔ this در یک تابع به کار می‌رود، به یک شیء اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "اینکه کدام شیء باشد، هنگام نوشتن تابع معلوم نمی‌شود."
+  },
+  {
+   "type": "p",
+   "text": "مقدار this وقتی تعیین می‌شود که تابع فراخوانی شود."
+  },
+  {
+   "type": "p",
+   "text": "این فصل یک مبحث پیشرفته است."
+  },
+  {
+   "type": "p",
+   "text": "قبل از ادامه مطمئن شوید تابع‌های پایهٔ JavaScript را می‌دانید."
+  },
+  {
+   "type": "p",
+   "text": "آموزش تابع‌ها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "تابع‌ها متد شیء هستند"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ تابع‌های JavaScript متد یک شیء هستند."
+  },
+  {
+   "type": "p",
+   "text": "یک تابع می‌تواند این باشد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "متدی از یک شیء JavaScript",
+    "متدی از شیء global"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "this در متد شیء"
+  },
+  {
+   "type": "p",
+   "text": "وقتی تابع متد یک شیء باشد:"
+  },
+  {
+   "type": "p",
+   "text": "this به شیئی اشاره می‌کند که صاحب متد است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  fullName: function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n  }\n\n};\n\nperson.fullName();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_object"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، this به شیء person اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "‏this.firstName یعنی خصوصیت firstName در person."
+  },
+  {
+   "type": "p",
+   "text": "‏this.firstName با person.firstName یکی است."
+  },
+  {
+   "type": "h2",
+   "text": "this در یک تابع معمولی (حالت پیش‌فرض)"
+  },
+  {
+   "type": "p",
+   "text": "به طور پیش‌فرض، وقتی this در یک تابع معمولی به کار می‌رود، به شیء global اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در پنجرهٔ مرورگر، شیء global همان [object Window] است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction() {\n\n    return this;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_function"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، this همان شیء global است."
+  },
+  {
+   "type": "h2",
+   "text": "this در یک تابع (حالت سخت‌گیرانه)"
+  },
+  {
+   "type": "p",
+   "text": "حالت سخت‌گیرانهٔ JavaScript اتصال پیش‌فرض را اجازه نمی‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "در حالت سخت‌گیرانه، this داخل تابع مقدار undefined دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\n\nfunction myFunction() {\n\n  return this;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_strict"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا، this همان undefined است."
+  },
+  {
+   "type": "h2",
+   "text": "this به تنهایی"
+  },
+  {
+   "type": "p",
+   "text": "وقتی بیرون از تابع به کار برود، this همیشه به شیء global اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "در پنجرهٔ مرورگر، شیء global همان [object Window] است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = this;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this"
+  },
+  {
+   "type": "p",
+   "text": "در حالت سخت‌گیرانه هم، وقتی this بیرون از تابع به کار برود، باز به شیء global اشاره می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "\"use strict\";\nlet x = this;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_alone"
+  },
+  {
+   "type": "p",
+   "text": "در هر دو مثال بالا، this همان شیء global است."
+  },
+  {
+   "type": "p",
+   "text": "دلیلش این است که this در دامنهٔ global قرار دارد."
+  },
+  {
+   "type": "h2",
+   "text": "شیء globalThis در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، شیء globalThis یک شیء آماده و ویژه است که راهی استاندارد برای دسترسی به شیء global می‌دهد، بی‌توجه به محیطی که کدتان در آن اجرا می‌شود؛ چه مرورگر باشد، چه Node.js، چه Web Worker یا هر محیط اجرای دیگری."
+  },
+  {
+   "type": "p",
+   "text": "شیء global بالاترین شیء در هر محیط JavaScript است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "در مرورگر‌ها همان window است.",
+    "در Node.js همان global است.",
+    "در Web Workers همان self است."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "هر محیط قبلاً نام خودش را برای این شیء داشت و همین برای کدی که باید همه‌جا اجرا شود مشکل سازگاری می‌ساخت."
+  },
+  {
+   "type": "p",
+   "text": "‏globalThis در ECMAScript 2020 (ES11) برای حل همین مشکل اضافه شد. این یک ارجاع یکپارچه به شیء global است، در هر محیطی که باشید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "globalThis === window; // true in browsers\n\nglobalThis === global; // true in Node.js",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_globalthis"
+  },
+  {
+   "type": "h2",
+   "text": "this در رویدادگردان‌ها"
+  },
+  {
+   "type": "p",
+   "text": "در رویدادگردان‌های HTML، this به عنصر HTMLی اشاره می‌کند که رویداد را دریافت کرده است:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"this.innerHTML='Clicked!'\">Click Me</button>",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<button onclick=\"this.style.display='none'\">\n  Click to\nRemove Me!\n</button>",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_click"
+  },
+  {
+   "type": "h2",
+   "text": "this در تابع‌های پیکانی"
+  },
+  {
+   "type": "p",
+   "text": "تابع‌های پیکانی this مخصوص خودشان را ندارند و this را از دامنهٔ اطراف به ارث می‌برند."
+  },
+  {
+   "type": "p",
+   "text": "در تابع‌های معمولی کلیدواژهٔ this همان شیئی است که تابع را صدا زده؛ می‌تواند window باشد، document، یک دکمه یا هر چیز دیگر."
+  },
+  {
+   "type": "p",
+   "text": "در تابع‌های پیکانی، کلیدواژهٔ this همیشه همان شیئی است که تابع پیکانی را تعریف کرده است."
+  },
+  {
+   "type": "h2",
+   "text": "this چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "در JavaScript، کلیدواژهٔ this به یک شیء اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this بسته به اینکه چطور به کار برود، به شیء‌های مختلفی اشاره می‌کند:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "به تنهایی، this به شیء global اشاره می‌کند."
+    ],
+    [
+     "داخل تابع، this به شیء global اشاره می‌کند."
+    ],
+    [
+     "داخل تابع و در حالت سخت‌گیرانه، this مقدار undefined دارد."
+    ],
+    [
+     "در متد شیء، this به خود شیء اشاره می‌کند."
+    ],
+    [
+     "در رویداد، this به عنصری اشاره می‌کند که رویداد را دریافت کرده است."
+    ],
+    [
+     "در متد‌هایی مثل call()، apply() و bind()، this می‌تواند به هر شیئی اشاره کند."
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "‏this متغیر نیست."
+  },
+  {
+   "type": "p",
+   "text": "‏this یک کلیدواژه است."
+  },
+  {
+   "type": "p",
+   "text": "نمی‌توانید مقدار this را عوض کنید."
+  },
+  {
+   "type": "h2",
+   "text": "ترتیب اولویت this"
+  },
+  {
+   "type": "p",
+   "text": "برای اینکه بفهمید this به کدام شیء اشاره می‌کند، این ترتیب اولویت را به کار ببرید:"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ترتیب",
+     "شیء",
+     "دلیل"
+    ],
+    [
+     "۱",
+     "bind()",
+     "‏this داخل تابعی است که با bind() صدا زده شده"
+    ],
+    [
+     "۲",
+     "apply()",
+     "‏this داخل تابعی است که با apply() صدا زده شده"
+    ],
+    [
+     "۲",
+     "call()",
+     "‏this داخل تابعی است که با call() صدا زده شده"
+    ],
+    [
+     "۳",
+     "متد شیء",
+     "‏this داخل تابع یک شیء (متد) است"
+    ],
+    [
+     "۴",
+     "دامنهٔ global",
+     "‏this داخل تابعی در دامنهٔ global است"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مثال‌هایی برای درک بهتر"
+  },
+  {
+   "type": "p",
+   "text": "در ادامه دو مثال می‌بینید که یک متد را دو بار صدا می‌زنند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "وقتی صفحه لود می‌شود",
+    "وقتی کاربر روی دکمه‌ای کلیک می‌کند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "مثال اول از تابع معمولی استفاده می‌کند و مثال دوم از تابع پیکانی."
+  },
+  {
+   "type": "p",
+   "text": "نتیجه نشان می‌دهد مثال اول دو شیء متفاوت برمی‌گرداند (window و دکمه)، اما مثال دوم دو بار شیء window را برمی‌گرداند، چون شیء window «صاحب» آن تابع است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Regular Function:\nhello = function() {\n  document.getElementById(\"demo\").innerHTML\n  += this;\n}\n\n// The window object calls the function:\n\n  window.addEventListener(\"load\", hello);\n\n// A button object calls the\n  function:\ndocument.getElementById(\"btn\").addEventListener(\"click\", hello);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Arrow Function:\nhello = () => {\n  document.getElementById(\"demo\").innerHTML\n  += this;\n}\n\n// The window object calls the function:\n\n  window.addEventListener(\"load\", hello);\n\n// A button object calls the\n  function:\ndocument.getElementById(\"btn\").addEventListener(\"click\", hello);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arrow_function6"
+  },
+  {
+   "type": "h2",
+   "text": "تابع‌های پیکانی در متد‌ها"
+  },
+  {
+   "type": "p",
+   "text": "در تابع‌های پیکانی هیچ اتصالی برای this وجود ندارد."
+  },
+  {
+   "type": "p",
+   "text": "به همین دلیل برای تعریف متد‌های شیء مناسب نیستند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n      firstName: \"John\",\n\n      sayHello: () => {\n\n        return this.firstName;\n\n      }\n\n    };\n\n    person.sayHello();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_arrow"
+  },
+  {
+   "type": "p",
+   "text": "مثال بالا آن‌طور که انتظار داریم کار نمی‌کند، چون this به شیء person اشاره نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "تابع‌های پیکانی داخل متد‌ها وقتی مفیدند که بخواهید مقدار this حفظ شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n      firstName: \"John\",\n\n      sayHello: function() {\n\n        return () => this.firstName;\n\n      }\n\n    };\n\n    let hello = person.sayHello();\n\n    hello();",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "آزمون"
+  },
+  {
+   "type": "p",
+   "text": "‏this داخل متد شیء به چه چیزی اشاره می‌کند؟"
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه‌های رایج"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "استفاده از تابع پیکانی به عنوان متد شیء\nتابع‌های پیکانی this مخصوص خودشان را اتصال نمی‌دهند.",
+    "تصور اینکه this همیشه همان شیء است\nمقدار this بسته به نحوهٔ فراخوانی تابع تعیین می‌شود.",
+    "فراموش کردن رفتار حالت سخت‌گیرانه\nدر حالت سخت‌گیرانه، this می‌تواند undefined باشد."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "قدم بعدی چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "حالا فهمیدید this به طور طبیعی چطور کار می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "آماده‌اید یاد بگیرید چطور آن را دستی کنترل کنید؟"
+  },
+  {
+   "type": "p",
+   "text": "متد call() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد apply() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد bind() در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل this1.js بسازید و یک شیء person با متد fullName بنویسید که با this نام و نام خانوادگی را برگرداند. متد را صدا بزنید و نتیجه را در کنسول ببینید.",
+   "hint": "داخل متد شیء، this به خود آن شیء اشاره می‌کند."
+  },
+  {
+   "prompt": "یک تابع معمولی بنویسید که this را برگرداند و آن را از دامنهٔ global صدا بزنید. بعد همان فایل را با \"use strict\" اجرا کنید و تفاوت را ببینید.",
+   "hint": "در حالت سخت‌گیرانه مقدار this داخل تابع undefined است."
+  },
+  {
+   "prompt": "یک دکمه در HTML بگذارید که با onclick مقدار this.innerHTML را عوض کند و روی آن کلیک کنید.",
+   "hint": "در رویدادگردان، this همان عنصری است که رویداد را گرفته."
+  },
+  {
+   "prompt": "یک شیء بسازید که هم متد معمولی داشته باشد و هم متد پیکانی، و هر دو را صدا بزنید. ببینید کدام یکی به شیء اشاره نمی‌کند.",
+   "hint": "تابع پیکانی this را از دامنهٔ بیرون می‌گیرد، پس در متد شیء درست کار نمی‌کند."
+  },
+  {
+   "prompt": "در مرورگر بررسی کنید که globalThis === window چه مقدار برمی‌گرداند و نتیجه را در کنسول چاپ کنید.",
+   "hint": "globalThis یک ارجاع یکپارچه به شیء global است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "مقدار this در تابع معمولی، وقتی تابع از دامنهٔ global صدا زده شود (بدون strict mode)، چیست؟",
+   "options": [
+    "undefined",
+    "شیء global مثل window",
+    "شیء document",
+    "همان تابع"
+   ],
+   "answer": 1,
+   "explanation": "به طور پیش‌فرض this در تابع معمولی به شیء global اشاره می‌کند؛ در مرورگر همان window. در حالت سخت‌گیرانه مقدار undefined می‌شود که گزینهٔ اول است."
+  },
+  {
+   "question": "در حالت سخت‌گیرانه، this داخل تابع معمولی چه مقداری دارد؟",
+   "options": [
+    "window",
+    "undefined",
+    "global",
+    "null"
+   ],
+   "answer": 1,
+   "explanation": "حالت سخت‌گیرانه اتصال پیش‌فرض را نمی‌پذیرد، پس this داخل تابع undefined است."
+  },
+  {
+   "question": "دربارهٔ تابع‌های پیکانی کدام جمله درست است؟",
+   "options": [
+    "this مخصوص خودشان را دارند",
+    "this را از دامنهٔ اطراف به ارث می‌برند و برای متد شیء مناسب نیستند",
+    "همیشه this برابر undefined است",
+    "فقط در رویداد‌ها کار می‌کنند"
+   ],
+   "answer": 1,
+   "explanation": "تابع پیکانی this خودش را نمی‌سازد و همان this دامنهٔ اطراف را می‌گیرد؛ به همین دلیل برای متد شیء توصیه نمی‌شود."
+  },
+  {
+   "question": "ترتیب اولویت در جدول این درس، کدام مورد را بالاتر از متد شیء می‌گذارد؟",
+   "options": [
+    "دامنهٔ global",
+    "bind() و call() و apply()",
+    "رویداد",
+    "هیچ‌کدام"
+   ],
+   "answer": 1,
+   "explanation": "جدول اولویت اول را bind و بعد apply و call می‌داند و متد شیء در جای سوم و دامنهٔ global در جای چهارم است."
+  },
+  {
+   "question": "در HTML، وقتی داخل onclick از this استفاده می‌کنیم، این this به چه چیزی اشاره می‌کند؟",
+   "options": [
+    "به شیء window",
+    "به عنصری که رویداد را دریافت کرده",
+    "به document",
+    "به undefined"
+   ],
+   "answer": 1,
+   "explanation": "در رویدادگردان‌های HTML، this همان عنصر HTMLی است که رویداد را گرفته؛ مثلاً با this.innerHTML می‌توانید متن همان دکمه را عوض کنید."
+  }
+ ]
+}

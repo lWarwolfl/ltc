@@ -1,0 +1,470 @@
+{
+ "slug": "js_htmldom_navigation",
+ "course": "js",
+ "order": 246,
+ "url": "/js/js_htmldom_navigation.asp",
+ "title": "پیمایش DOM در JavaScript",
+ "summary": "در HTML DOM همه‌چیز یک گره است و گره‌ها با رابطهٔ والد، فرزند و خواهر و برادر به هم وصل می‌شوند. در این درس با خصوصیت‌های parentNode، childNodes، firstChild و nextSibling در درخت حرکت می‌کنید و nodeName، nodeValue و nodeType را می‌خوانید.",
+ "objectives": [
+  "انواع گره‌های DOM را نام ببرید",
+  "رابطهٔ والد و فرزند و خواهر و برادر را تشخیص دهید",
+  "با خصوصیت‌های پیمایش بین گره‌ها حرکت کنید",
+  "مقدار nodeName و nodeValue و nodeType را بخوانید و توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پیمایش DOM در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "با HTML DOM می‌توانید با استفاده از رابطه‌های بین گره‌ها در درخت گره‌ها حرکت کنید."
+  },
+  {
+   "type": "h2",
+   "text": "گره‌های DOM"
+  },
+  {
+   "type": "p",
+   "text": "بر اساس استاندارد W3C HTML DOM، همه‌چیز در یک سند HTML یک گره است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کل سند یک گرهٔ سند (document node) است",
+    "هر عنصر HTML یک گرهٔ عنصر (element node) است",
+    "متن داخل عنصرهای HTML گرهٔ متن (text node) است",
+    "هر ویژگی HTML یک گرهٔ ویژگی (attribute node) است (منسوخ شده)",
+    "همهٔ توضیح‌ها گرهٔ توضیح (comment node) هستند"
+   ]
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/pic_htmltree.gif",
+   "alt": "DOM HTML tree"
+  },
+  {
+   "type": "p",
+   "text": "با HTML DOM، همهٔ گره‌های درخت گره‌ها از JavaScript قابل دسترسی هستند."
+  },
+  {
+   "type": "p",
+   "text": "می‌توان گرهٔ جدید ساخت و همهٔ گره‌ها را تغییر داد یا حذف کرد."
+  },
+  {
+   "type": "h2",
+   "text": "رابطه‌های بین گره‌ها"
+  },
+  {
+   "type": "p",
+   "text": "گره‌های درخت گره‌ها رابطه‌ای سلسله‌مراتبی با هم دارند."
+  },
+  {
+   "type": "p",
+   "text": "برای توصیف این رابطه‌ها از اصطلاح‌های والد، فرزند و خواهر و برادر (sibling) استفاده می‌شود."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "در درخت گره‌ها، گرهٔ بالایی ریشه (یا گرهٔ ریشه) نام دارد",
+    "هر گره دقیقاً یک والد دارد، جز ریشه که والد ندارد",
+    "یک گره می‌تواند چند فرزند داشته باشد",
+    "گره‌های خواهر و برادر (sibling) گره‌هایی با والد یکسان هستند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "<html> <head> <title>آموزش DOM</title> </head> <body> <h1>درس اول DOM</h1> <p>سلام دنیا!</p> </body> </html>"
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/pic_navigate.gif",
+   "alt": "Node tree"
+  },
+  {
+   "type": "p",
+   "text": "از HTML بالا می‌توانید اینها را بخوانید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "<html> گرهٔ ریشه است",
+    "<html> والد ندارد",
+    "<html> والد <head> و <body> است",
+    "<head> اولین فرزند <html> است",
+    "<body> آخرین فرزند <html> است"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "و همچنین:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "<head> یک فرزند دارد: <title>",
+    "<title> یک فرزند دارد (یک گرهٔ متن): \"آموزش DOM\"",
+    "<body> دو فرزند دارد: <h1> و <p>",
+    "<h1> یک فرزند دارد: \"درس اول DOM\"",
+    "<p> یک فرزند دارد: \"سلام دنیا!\"",
+    "<h1> و <p> خواهر و برادر هستند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "حرکت بین گره‌ها"
+  },
+  {
+   "type": "p",
+   "text": "برای حرکت بین گره‌ها در JavaScript می‌توانید از خصوصیت‌های زیر استفاده کنید:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "parentNode",
+    "childNodes[nodenumber]",
+    "firstChild",
+    "lastChild",
+    "nextSibling",
+    "previousSibling"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "گره‌های فرزند و مقدار گره‌ها"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "یک خطای رایج در کار با DOM این است که انتظار داشته باشیم گرهٔ عنصر خودش متن داشته باشد."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<title\n id=\"demo\">DOM Tutorial</title>",
+   "caption": "مثال:"
+  },
+  {
+   "type": "p",
+   "text": "گرهٔ عنصر <title> (در مثال بالا) متن ندارد."
+  },
+  {
+   "type": "p",
+   "text": "این گره یک گرهٔ متن با مقدار \"آموزش DOM\" در خود دارد."
+  },
+  {
+   "type": "p",
+   "text": "به مقدار گرهٔ متن می‌توان از راه خصوصیت innerHTML همان گره دسترسی داشت:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myTitle = document.getElementById(\"demo\").innerHTML;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "دسترسی به خصوصیت innerHTML همان دسترسی به nodeValue نخستین فرزند است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myTitle = document.getElementById(\"demo\").firstChild.nodeValue;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "دسترسی به نخستین فرزند این‌طور هم ممکن است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myTitle = document.getElementById(\"demo\").childNodes[0].nodeValue;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "هر سه مثال زیر متن یک عنصر <h1> را می‌گیرند و آن را در یک عنصر <p> کپی می‌کنند:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h1 id=\"id01\">My First Page</h1>\n<p id=\"id02\"></p>\n\n<script>\n\n document.getElementById(\"id02\").innerHTML\n = document.getElementById(\"id01\").innerHTML;\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_innerhtml1"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h1 id=\"id01\">My First Page</h1>\n<p id=\"id02\"></p>\n\n<script>\n\n document.getElementById(\"id02\").innerHTML = document.getElementById(\"id01\").firstChild.nodeValue;\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_innerhtml2"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h1 id=\"id01\">My First Page</h1>\n<p id=\"id02\">Hello!</p>\n\n<script>\n\n document.getElementById(\"id02\").innerHTML = document.getElementById(\"id01\").childNodes[0].nodeValue;\n\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_innerhtml3"
+  },
+  {
+   "type": "h2",
+   "text": "innerHTML"
+  },
+  {
+   "type": "p",
+   "text": "در این آموزش برای گرفتن محتوای یک عنصر HTML از خصوصیت innerHTML استفاده می‌کنیم."
+  },
+  {
+   "type": "p",
+   "text": "با این حال، یادگیری روش‌های دیگر بالا برای فهم ساختار درختی و پیمایش DOM مفید است."
+  },
+  {
+   "type": "h2",
+   "text": "گره‌های ریشهٔ DOM"
+  },
+  {
+   "type": "p",
+   "text": "دو خصوصیت ویژه دسترسی به کل سند را ممکن می‌کنند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "document.body: بدنهٔ سند",
+    "document.documentElement: کل سند"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h2>JavaScript HTMLDOM</h2>\n<p>Displaying document.body</p>\n\n<p\nid=\"demo\"></p>\n\n<script>\ndocument.getElementById(\"demo\").innerHTML\n= document.body.innerHTML;\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_body"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<html>\n\n<body>\n\n<h2>JavaScript HTMLDOM</h2>\n<p>Displaying document.documentElement</p>\n\n<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\ndocument.documentElement.innerHTML;\n</script>\n\n</body>\n\n</html>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_document"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت nodeName"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت nodeName نام یک گره را مشخص می‌کند."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "nodeName فقط خواندنی است",
+    "nodeName یک گرهٔ عنصر همان نام تگ است",
+    "nodeName یک گرهٔ ویژگی همان نام ویژگی است",
+    "nodeName یک گرهٔ متن همیشه #text است",
+    "nodeName یک گرهٔ سند همیشه #document است"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<h1 id=\"id01\">My First Page</h1>\n\n <p id=\"id02\"></p>\n\n<script>\ndocument.getElementById(\"id02\").innerHTML\n = document.getElementById(\"id01\").nodeName;\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_nodename"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "nodeName همیشه نام تگ را با حروف بزرگ برای عنصر HTML نگه می‌دارد."
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت nodeValue"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت nodeValue مقدار یک گره را مشخص می‌کند."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "nodeValue برای گره‌های عنصر null است",
+    "nodeValue برای گره‌های متن خودِ متن است",
+    "nodeValue برای گره‌های ویژگی مقدار همان ویژگی است"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت nodeType"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت nodeType فقط خواندنی است و نوع یک گره را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<h1 id=\"id01\">My First Page</h1>\n\n <p id=\"id02\"></p>\n\n<script>\ndocument.getElementById(\"id02\").innerHTML\n = document.getElementById(\"id01\").nodeType;\n</script>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nav_nodetype"
+  },
+  {
+   "type": "p",
+   "text": "مهم‌ترین مقدارهای nodeType اینها هستند:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "گره",
+    "نوع",
+    "مثال"
+   ],
+   "rows": [
+    [
+     "ELEMENT_NODE",
+     "1",
+     "<h1 class=\"heading\">W3Schools</h1>"
+    ],
+    [
+     "ATTRIBUTE_NODE",
+     "2",
+     "class = \"heading\" (منسوخ شده)"
+    ],
+    [
+     "TEXT_NODE",
+     "3",
+     "W3Schools"
+    ],
+    [
+     "COMMENT_NODE",
+     "8",
+     "<!-- این یک توضیح است -->"
+    ],
+    [
+     "DOCUMENT_NODE",
+     "9",
+     "خودِ سند HTML (والد <html>)"
+    ],
+    [
+     "DOCUMENT_TYPE_NODE",
+     "10",
+     "<!Doctype html>"
+    ]
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "نوع ۲ در HTML DOM منسوخ شده است (اما کار می‌کند). در XML DOM منسوخ نشده است."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل nav.html با ساختار html، head، title، body و یک h1 بسازید؛ در کنسول document.documentElement.firstChild.firstChild.nodeName را چاپ کنید.",
+   "hint": "documentElement همان <html> است؛ با firstChild و nodeName در درخت پایین بروید."
+  },
+  {
+   "prompt": "روی یک عنصر <p> در کنسول هم innerHTML و هم firstChild.nodeValue را چاپ کنید و توضیح دهید چرا هر دو یک متن می‌دهند.",
+   "hint": "متن هر عنصر در یک گرهٔ متن جداگانه است و innerHTML همان مقدار آن گره را می‌دهد."
+  },
+  {
+   "prompt": "برای <body> و یکی از فرزندانش مقدار parentNode و nextSibling را چاپ کنید.",
+   "hint": "هیچ گرهی بیش از یک والد ندارد؛ اگر فرزند آخری را بگیرید nextSibling برابر null است."
+  },
+  {
+   "prompt": "nodeType و nodeName یک عنصر، یک متن و یک کامنت را چاپ کنید و با جدول درس مقایسه کنید.",
+   "hint": "برای عنصر ۱، برای متن ۳ و برای کامنت ۸؛ نام گره‌های متن همیشه #text است."
+  },
+  {
+   "prompt": "با document.body.textContent متن داخل بدنه را بخوانید و بعد با document.body.innerHTML.tagName بررسی کنید که خروجی چه نوع داده‌ای است.",
+   "hint": "textContent فقط متن می‌دهد؛ innerHTML رشته‌ای از تگ‌ها و متن است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در درخت DOM، گرهٔ <html> چه نام دارد؟",
+   "options": [
+    "گرهٔ فرزند",
+    "گرهٔ خواهر",
+    "گرهٔ ریشه",
+    "گرهٔ ویژگی"
+   ],
+   "answer": 2,
+   "explanation": "<html> بالاترین گره درخت است، والدی ندارد و به آن گرهٔ ریشه (root node) می‌گویند."
+  },
+  {
+   "question": "مقدار nodeValue برای یک گرهٔ متن چیست؟",
+   "options": [
+    "null",
+    "خودِ متن",
+    "نام تگ",
+    "مقدار ویژگی"
+   ],
+   "answer": 1,
+   "explanation": "برای گرهٔ متن، nodeValue همان متن است؛ برای گرهٔ عنصر null و برای گرهٔ ویژگی مقدار همان ویژگی است."
+  },
+  {
+   "question": "nodeName یک گرهٔ متن چه چیزی برمی‌گرداند؟",
+   "options": [
+    "#text",
+    "#document",
+    "نام والد آن",
+    "null"
+   ],
+   "answer": 0,
+   "explanation": "نام هر گرهٔ متن همیشه #text است و نام گرهٔ سند همیشه #document."
+  },
+  {
+   "question": "innerHTML روی یک عنصر <title> چه چیزی برمی‌گرداند؟",
+   "options": [
+    "null",
+    "متن داخل title",
+    "خود تگ title",
+    "true"
+   ],
+   "answer": 1,
+   "explanation": "عنصر <title> خودش متن ندارد؛ یک گرهٔ متن داخلش است و innerHTML مقدار همان گرهٔ متن را برمی‌گرداند."
+  },
+  {
+   "question": "کدام خصوصیت به کل سند دسترسی می‌دهد؟",
+   "options": [
+    "document.body",
+    "document.documentElement",
+    "document.title",
+    "document.head.firstChild"
+   ],
+   "answer": 1,
+   "explanation": "document.documentElement همان گرهٔ <html> و نمایندهٔ کل سند است؛ document.body فقط بدنهٔ سند را می‌دهد."
+  }
+ ]
+}

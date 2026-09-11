@@ -1,0 +1,336 @@
+{
+ "slug": "js_ajax_http_send",
+ "course": "js",
+ "order": 258,
+ "url": "/js/js_ajax_http_send.asp",
+ "title": "فرستادن درخواست با XMLHttpRequest",
+ "summary": "برای گرفتن داده از سرور باید بدانید متد open و send چه آرگومان‌هایی می‌گیرند و کدام روش درخواست برای کار شما مناسب است. در این درس درخواست GET و POST می‌فرستید، پارامتر async را تنظیم می‌کنید و می‌بینید چرا درخواست هم‌زمان توصیه نمی‌شود.",
+ "objectives": [
+  "آرگومان‌های متد open را توضیح دهید",
+  "یک درخواست GET ساده بفرستید و مشکل حافظهٔ موقت را حل کنید",
+  "داده را با POST و setRequestHeader بفرستید",
+  "دلیل توصیه نشدن درخواست هم‌زمان را بیان کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "AJAX و XMLHttpRequest"
+  },
+  {
+   "type": "p",
+   "text": "شیء XMLHttpRequest برای درخواست داده از سرور به کار می‌رود."
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن درخواست به سرور"
+  },
+  {
+   "type": "p",
+   "text": "برای فرستادن درخواست به سرور از متدهای open() و send() شیء XMLHttpRequest استفاده می‌کنیم:"
+  },
+  {
+   "type": "p",
+   "text": "xhttp.open(\"GET\", \"ajax_info.txt\", true);\n xhttp.send();"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "open(method, url, async)",
+     "نوع درخواست را مشخص می‌کند\nmethod: نوع درخواست، GET یا POST\nurl: محل فایل روی سرور\nasync: true (ناهم‌زمان) یا false (هم‌زمان)"
+    ],
+    [
+     "send()",
+     "درخواست را به سرور می‌فرستد (برای GET)"
+    ],
+    [
+     "send(string)",
+     "درخواست را به سرور می‌فرستد (برای POST)"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "آرگومان url: فایلی روی سرور"
+  },
+  {
+   "type": "p",
+   "text": "پارامتر url در متد open() نشانی فایلی روی سرور است:"
+  },
+  {
+   "type": "p",
+   "text": "xhttp.open(\"GET\", \"ajax_test.asp\", true);"
+  },
+  {
+   "type": "p",
+   "text": "این فایل می‌تواند هر نوعی باشد، مثل .txt و .xml، یا فایل‌های اسکریپتی سرور مثل .asp و .php (که می‌توانند پیش از فرستادن پاسخ، کارهایی روی سرور انجام دهند)."
+  },
+  {
+   "type": "h2",
+   "text": "ناهم‌زمان: true یا false؟"
+  },
+  {
+   "type": "p",
+   "text": "درخواست‌های سرور باید ناهم‌زمان فرستاده شوند."
+  },
+  {
+   "type": "p",
+   "text": "پارامتر async در متد open() باید true باشد:"
+  },
+  {
+   "type": "p",
+   "text": "xhttp.open(\"GET\", \"ajax_test.asp\", true);"
+  },
+  {
+   "type": "p",
+   "text": "با فرستادن ناهم‌زمان، JavaScript لازم نیست منتظر پاسخ سرور بماند و می‌تواند در این فاصله:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "در انتظار پاسخ سرور، اسکریپت‌های دیگر را اجرا کند",
+    "وقتی پاسخ آماده شد، به آن رسیدگی کند"
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "مقدار پیش‌فرض پارامتر async برابر true است.\nمی‌توانید پارامتر سوم را با خیال راحت از کد حذف کنید.\nXMLHttpRequest هم‌زمان (async = false) توصیه نمی‌شود، چون JavaScript تا آماده شدن پاسخ سرور از اجرا می‌ایستد. اگر سرور مشغول یا کند باشد، برنامه معلق می‌ماند یا از کار می‌افتد."
+  },
+  {
+   "type": "h2",
+   "text": "GET یا POST؟"
+  },
+  {
+   "type": "p",
+   "text": "GET ساده‌تر و سریع‌تر از POST است و در بیشتر موارد به کار می‌آید."
+  },
+  {
+   "type": "p",
+   "text": "با این حال، همیشه از درخواست POST استفاده کنید وقتی:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "فایل حافظهٔ موقت (cache) گزینهٔ مناسبی نیست (به‌روزرسانی فایل یا پایگاه داده روی سرور).",
+    "حجم زیادی داده به سرور می‌فرستید (POST محدودیت اندازه ندارد).",
+    "ورودی کاربر را می‌فرستید (که می‌تواند نویسه‌های ناشناخته داشته باشد)؛ POST محکم‌تر و امن‌تر از GET است."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "درخواست‌های GET"
+  },
+  {
+   "type": "p",
+   "text": "یک درخواست GET ساده:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "xhttp.open(\"GET\", \"demo_get.asp\");\n\n xhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا ممکن است نتیجهٔ حافظهٔ موقت را بگیرید. برای پرهیز از این کار، یک شناسهٔ یکتا به URL اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "xhttp.open(\"GET\", \"demo_get.asp?t=\" + Math.random());\n\n xhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get_unique"
+  },
+  {
+   "type": "p",
+   "text": "اگر می‌خواهید با متد GET اطلاعاتی بفرستید، آن اطلاعات را به URL اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "xhttp.open(\"GET\", \"demo_get2.asp?fname=Henry&lname=Ford\");\n\n xhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get2"
+  },
+  {
+   "type": "p",
+   "text": "این‌که سرور از این ورودی چگونه استفاده می‌کند و به درخواست چه پاسخی می‌دهد، در فصل‌های بعدی توضیح داده می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "درخواست‌های POST"
+  },
+  {
+   "type": "p",
+   "text": "یک درخواست POST ساده:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "xhttp.open(\"POST\", \"demo_post.asp\");\n\n xhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_post"
+  },
+  {
+   "type": "p",
+   "text": "برای فرستادن داده به‌شکل یک فرم HTML، با setRequestHeader() یک سرایند HTTP اضافه کنید و داده را در متد send() مشخص کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "xhttp.open(\"POST\", \"ajax_test.asp\");\n\n xhttp.setRequestHeader(\"Content-type\", \"application/x-www-form-urlencoded\");\n\n xhttp.send(\"fname=Henry&lname=Ford\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_post2"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "setRequestHeader(header, value)",
+     "سرایندهای HTTP را به درخواست اضافه می‌کند\nheader: نام سرایند را مشخص می‌کند\nvalue: مقدار سرایند را مشخص می‌کند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "درخواست هم‌زمان"
+  },
+  {
+   "type": "p",
+   "text": "برای اجرای یک درخواست هم‌زمان، پارامتر سوم متد open() را false کنید:"
+  },
+  {
+   "type": "p",
+   "text": "xhttp.open(\"GET\", \"ajax_info.txt\", false);"
+  },
+  {
+   "type": "p",
+   "text": "گاهی async = false برای آزمون سریع به کار می‌رود. در کدهای قدیمی‌تر JavaScript هم درخواست‌های هم‌زمان پیدا می‌کنید."
+  },
+  {
+   "type": "p",
+   "text": "چون کد منتظر تمام شدن کار سرور می‌ماند، نیازی به تابع onreadystatechange نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "xhttp.open(\"GET\", \"ajax_info.txt\", false);\n\nxhttp.send();\n\ndocument.getElementById(\"demo\").innerHTML = xhttp.responseText;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_asyncfalse"
+  },
+  {
+   "type": "note",
+   "variant": "warning",
+   "text": "XMLHttpRequest هم‌زمان (async = false) توصیه نمی‌شود، چون JavaScript تا آماده شدن پاسخ سرور از اجرا می‌ایستد. اگر سرور مشغول یا کند باشد، برنامه معلق می‌ماند یا از کار می‌افتد.\nابزارهای توسعهٔ مدرن تشویق می‌شوند دربارهٔ استفاده از درخواست‌های هم‌زمان هشدار بدهند و ممکن است در این حالت استثنای InvalidAccessError پرت کنند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک درخواست GET ساده به یک فایل متنی محلی بفرستید و پاسخ را در یک div بگذارید.",
+   "hint": "xhttp.open(\"GET\", \"ajax_info.txt\", true) و بعد xhttp.send()."
+  },
+  {
+   "prompt": "همان درخواست را با یک شناسهٔ یکتا در URL بفرستید تا نتیجهٔ حافظهٔ موقت نگیرید.",
+   "hint": "چیزی مثل \"?t=\" + Math.random() به انتهای URL اضافه کنید."
+  },
+  {
+   "prompt": "با متد GET اطلاعاتی را همراه URL بفرستید و در سمت سرور (یا با echo در کنسول) بررسی کنید که رسیده است.",
+   "hint": "اطلاعات را با علامت ? و & به URL می‌چسبانید: file.asp?name=Ali."
+  },
+  {
+   "prompt": "یک درخواست POST بسازید و با setRequestHeader سرایند Content-type را اضافه کنید.",
+   "hint": "سرایند را پیش از send() اضافه کنید و داده را داخل send(string) بگذارید."
+  },
+  {
+   "prompt": "یک درخواست هم‌زمان با پارامتر سوم false بسازید و بگویید چرا درس آن را توصیه نمی‌کند.",
+   "hint": "در این حالت JavaScript تا پاسخ سرور از اجرا می‌ایستد و اگر سرور کند باشد صفحه قفل می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در معنی آرگومان‌های open، پارامتر async چه چیزی را تعیین می‌کند؟",
+   "options": [
+    "نوع درخواست",
+    "ناهم‌زمان بودن درخواست",
+    "محل فایل",
+    "نام سرایند"
+   ],
+   "answer": 1,
+   "explanation": "async با true یعنی درخواست ناهم‌زمان است و با false یعنی هم‌زمان، که درس آن را توصیه نمی‌کند."
+  },
+  {
+   "question": "مقدار پیش‌فرض پارامتر async چیست؟",
+   "options": [
+    "true",
+    "false",
+    "0",
+    "مقدار پیش‌فرضی ندارد"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید پیش‌فرض async = true است و می‌توانید پارامتر سوم را از کد حذف کنید."
+  },
+  {
+   "question": "کدام مورد از دلایل استفاده از POST به‌جای GET در درس نیست؟",
+   "options": [
+    "به‌روزرسانی فایل یا پایگاه داده روی سرور",
+    "فرستادن حجم زیادی داده",
+    "فرستادن ورودی کاربر با نویسه‌های ناشناخته",
+    "خواندن یک فایل متنی ساده"
+   ],
+   "answer": 3,
+   "explanation": "خواندن سادهٔ یک فایل همان کاری است که GET برای آن ساده‌تر و سریع‌تر است؛ سه مورد دیگر دلایل انتخاب POST هستند."
+  },
+  {
+   "question": "چرا ممکن است یک درخواست GET نتیجهٔ قدیمی برگرداند و راه‌حل چیست؟",
+   "options": [
+    "چون مرورگر پاسخ را در حافظهٔ موقت نگه می‌دارد؛ با افزودن شناسهٔ یکتا به URL حل می‌شود",
+    "چون سرور اشتباه می‌کند؛ با POST حل می‌شود",
+    "چون async را false گذاشته‌ایم؛ با true حل می‌شود",
+    "چون setRequestHeader را ننوشته‌ایم"
+   ],
+   "answer": 0,
+   "explanation": "درس برای پرهیز از پاسخ cache‌شده پیشنهاد می‌کند شناسهٔ یکتایی به URL اضافه کنید تا آدرس هر بار تازه باشد."
+  },
+  {
+   "question": "برای فرستادن داده مثل یک فرم HTML کدام‌ها لازم است؟",
+   "options": [
+    "فقط send(string)",
+    "setRequestHeader برای سرایند و send(string) برای داده",
+    "فقط open",
+    "abort و getAllResponseHeaders"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید سرایند HTTP را با setRequestHeader اضافه کنید و داده را در متد send() مشخص کنید."
+  }
+ ]
+}

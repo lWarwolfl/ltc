@@ -1,0 +1,406 @@
+{
+ "slug": "js_temporal_mistakes",
+ "course": "js",
+ "order": 198,
+ "url": "/js/js_temporal_mistakes.asp",
+ "title": "اشتباه‌های رایج Temporal در JavaScript",
+ "summary": "Temporal یک API تازه و قدرتمند برای کار با تاریخ و زمان است، اما چند دام دارد. در این درس اشتباه‌های پرتکرار مثل جا افتادن Z در Instant، قاطی کردن PlainDateTime با منطقهٔ زمانی، مقایسهٔ شیء‌ها با عملگر‌های ریاضی و انتظار تغییر در شیء را می‌بینید و یاد می‌گیرید چطور از آن‌ها دوری کنید.",
+ "objectives": [
+  "تشخیص دهید چرا Instant بدون Z خطا می‌دهد",
+  "توضیح دهید چرا شیء‌های Temporal تغییرناپذیرند",
+  "برای هر کار نوع درست Temporal را انتخاب کنید",
+  "مقایسهٔ شیء‌های Temporal را با compare() انجام دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "اشتباه‌های رایج Temporal در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "Temporal یک API قدرتمند است، اما در شروع ممکن است گیجکننده باشد."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "یادتان باشد نوع درست Temporal را به کار ببرید",
+    "از تبدیل‌های ضمنی پرهیز کنید",
+    "همیشه منطقهٔ زمانی را درست مدیریت کنید",
+    "به جای < و > از compare() استفاده کنید",
+    "یادتان باشد شیء‌های Temporal تغییرناپذیرند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "در ادامه چند اشتباه رایج و راه پرهیز از آن‌ها را می‌بینید."
+  },
+  {
+   "type": "h2",
+   "text": "جا افتادن UTC (حرف Z) در Instant"
+  },
+  {
+   "type": "p",
+   "text": "Instant همیشه باید UTC را همراه داشته باشد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_instant"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از PlainDateTime همراه با منطقهٔ زمانی"
+  },
+  {
+   "type": "p",
+   "text": "PlainDateTime از منطقهٔ زمانی پشتیبانی نمی‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00Z\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_plaindatetime"
+  },
+  {
+   "type": "h2",
+   "text": "مقایسهٔ نوع‌های مختلف"
+  },
+  {
+   "type": "p",
+   "text": "وقتی نوع‌های مختلف Temporal را مقایسه کنید، نتیجه اشتباه می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.Instant.from(\"2026-05-17T14:30Z\");\n\nTemporal.PlainDate.compare(d1, d2);",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_compare"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nTemporal.PlainDate.compare(d1, d2);",
+   "caption": "درست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_compare_ok"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از equals() با نوع‌های مختلف"
+  },
+  {
+   "type": "p",
+   "text": "وقتی نوع‌های مختلف Temporal را مقایسه کنید، نتیجه اشتباه می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.Instant.from(\"2026-05-17T14:30Z\");\n\nd1.equals(d2);",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_equals"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nd1.equals(d2.toPlainDate());",
+   "caption": "درست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_equals_ok"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از ==، < یا > برای مقایسه"
+  },
+  {
+   "type": "p",
+   "text": "شیء‌های Temporal را نمی‌توان با ==، ===، < یا > مقایسه کرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDate.from(\"2026-05-17\");\n\nd1 === d2; // False\n\nd1 == d2;  // False\n\nd1 < d2;   // TypeError\n\nd1 > d2;   // TypeError",
+   "caption": "نادرست"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDate.from(\"2026-05-17\");\n\nTemporal.PlainDate.compare(d1, d2);",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_less_than"
+  },
+  {
+   "type": "h2",
+   "text": "انتظار تغییر یافتن شیء"
+  },
+  {
+   "type": "p",
+   "text": "شیء‌های Temporal تغییرناپذیرند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\ndate.add({ months: 1 });",
+   "caption": "نادرست"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst next = d.add({ months: 1 });",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_mutation"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از valueOf()"
+  },
+  {
+   "type": "p",
+   "text": "شیء‌های Temporal به عدد تبدیل نمی‌شوند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\ntry {\n\n  text = date.valueOf();\n\n} catch (err) {\n\n  text = err.name;\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_valueof"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از Instant برای زمان محلی"
+  },
+  {
+   "type": "p",
+   "text": "Instant همیشه UTC است، نه زمان محلی."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.Now.instant(); // not local time",
+   "caption": "نادرست"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.Now.zonedDateTimeISO();",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_local"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از PlainDate برای زمان"
+  },
+  {
+   "type": "p",
+   "text": "PlainDate ساعت ندارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.PlainDate.from(\"2026-05-17T14:30\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.PlainDateTime.from(\"2026-05-17T14:30\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_plaindate"
+  },
+  {
+   "type": "h2",
+   "text": "فراموش کردن منطقهٔ زمانی در ZonedDateTime"
+  },
+  {
+   "type": "p",
+   "text": "ZonedDateTime به منطقهٔ زمانی نیاز دارد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00\");",
+   "caption": "نادرست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_zoned"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");",
+   "caption": "درست"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_zoned_ok"
+  },
+  {
+   "type": "h2",
+   "text": "انتخاب نکردن نوع درست"
+  },
+  {
+   "type": "p",
+   "text": "هر نوع Temporal کاربرد مشخصی دارد."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "نوع",
+     "کاربرد"
+    ],
+    [
+     "Instant",
+     "لحظهٔ دقیق (UTC)"
+    ],
+    [
+     "PlainDate",
+     "فقط تاریخ"
+    ],
+    [
+     "PlainTime",
+     "فقط ساعت"
+    ],
+    [
+     "PlainDateTime",
+     "تاریخ و ساعت بدون منطقهٔ زمانی"
+    ],
+    [
+     "ZonedDateTime",
+     "تاریخ و ساعت همراه منطقهٔ زمانی"
+    ],
+    [
+     "Duration",
+     "فقط طول زمان"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل temporal1.js بسازید و یک Instant هم بدون Z و هم با Z بسازید. هر دو را در کنسول چاپ کنید و ببینید کدام یکی خطا می‌دهد.",
+   "hint": "Instant همیشه زمان UTC می‌خواهد؛ همان حرف Z انتهای رشته است."
+  },
+  {
+   "prompt": "دو PlainDate بسازید و آن‌ها را هم با عملگر < و هم با compare() مقایسه کنید. نتیجهٔ هر دو را در کنسول ببینید.",
+   "hint": "خروجی compare() یک عدد است: منفی، صفر یا مثبت."
+  },
+  {
+   "prompt": "یک PlainDate بسازید، روی آن add({ months: 1 }) بزنید و مقدار متغیر اصلی را قبل و بعد از آن چاپ کنید.",
+   "hint": "شیء Temporal تغییرناپذیر است؛ خروجی add باید در متغیر تازه ذخیره شود."
+  },
+  {
+   "prompt": "کدی بنویسید که تاریخ محلی و لحظهٔ دقیق را جدا کند: یکی با Instant و یکی با zonedDateTimeISO. تفاوتشان را در کنسول توضیح دهید.",
+   "hint": "Instant زمان UTC است و هیچ منطقهٔ زمانی ندارد."
+  },
+  {
+   "prompt": "از جدول نوع‌ها الگوبرداری کنید و برای سه کار مختلف (فقط تاریخ، تاریخ و ساعت، طول زمان) نوع درست Temporal را انتخاب کنید و در کنسول بنویسید.",
+   "hint": "Duration برای طول زمان است، نه برای یک لحظهٔ مشخص."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "چرا Temporal.Instant.from(\"2026-05-17T14:30:00\") خطا می‌دهد؟",
+   "options": [
+    "چون سال باید دو رقمی نوشته شود",
+    "چون Instant همیشه باید UTC را با حرف Z همراه داشته باشد",
+    "چون ساعت باید به شکل ۱۲ ساعته باشد",
+    "چون رشته باید داخل آرایه باشد"
+   ],
+   "answer": 1,
+   "explanation": "Instant یک لحظهٔ دقیق در UTC است، پس رشته باید به Z ختم شود؛ شکل درست \"2026-05-17T14:30:00Z\" است. بقیهٔ گزینه‌ها هیچ ارتباطی با خطای Instant ندارند."
+  },
+  {
+   "question": "برای مقایسهٔ دو شیء Temporal کدام راه درست است؟",
+   "options": [
+    "استفاده از عملگر <",
+    "استفاده از compare()",
+    "استفاده از ==",
+    "استفاده از typeof"
+   ],
+   "answer": 1,
+   "explanation": "Temporal.PlainDate.compare() یک عدد برمی‌گرداند و نتیجهٔ مقایسه را روشن می‌گوید. عملگر‌های ==، ===، < و > روی شیء‌های Temporal کار نمی‌کنند."
+  },
+  {
+   "question": "وقتی می‌خواهیم یک ماه به یک PlainDate اضافه کنیم، کدام کد درست است؟",
+   "options": [
+    "date.add({ months: 1 }) و بعد استفاده از خود date",
+    "const next = date.add({ months: 1 })",
+    "date = date.add({ months: 1 })",
+    "date.months = date.months + 1"
+   ],
+   "answer": 1,
+   "explanation": "شیء‌های Temporal تغییرناپذیرند، پس add مقدار شیء اصلی را عوض نمی‌کند و باید خروجی را در متغیر تازه گرفت. دو گزینهٔ دیگر روی تغییر خود شیء حساب باز کرده‌اند."
+  },
+  {
+   "question": "کدام نوع Temporal هم تاریخ، هم ساعت و هم منطقهٔ زمانی را نگه می‌دارد؟",
+   "options": [
+    "PlainDateTime",
+    "Instant",
+    "ZonedDateTime",
+    "Duration"
+   ],
+   "answer": 2,
+   "explanation": "ZonedDateTime هر سه را دارد و همین آن را برای کار با منطقهٔ زمانی مناسب می‌کند. PlainDateTime منطقهٔ زمانی ندارد و Instant فقط لحظهٔ UTC است."
+  },
+  {
+   "question": "کدام جمله دربارهٔ valueOf() روی شیء‌های Temporal درست است؟",
+   "options": [
+    "شیء را به میلیثانیه تبدیل می‌کند",
+    "شیء را به رشته تبدیل می‌کند",
+    "شیء‌های Temporal به عدد تبدیل نمی‌شوند و valueOf() کار نمی‌کند",
+    "فقط روی Instant کار می‌کند"
+   ],
+   "answer": 2,
+   "explanation": "شیء‌های Temporal عمداً به عدد تبدیل نمی‌شوند تا مقایسه‌های اشتباه رخ ندهد؛ به همین دلیل valueOf() روی آن‌ها نتیجه نمی‌دهد."
+  }
+ ]
+}

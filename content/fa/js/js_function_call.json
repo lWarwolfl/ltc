@@ -1,0 +1,311 @@
+{
+ "slug": "js_function_call",
+ "course": "js",
+ "order": 205,
+ "url": "/js/js_function_call.asp",
+ "title": "متد call() در JavaScript",
+ "summary": "متد call() تابع را همان لحظه با یک this مشخص اجرا می‌کند و به شما اجازه می‌دهد متد یک شیء را روی شیء دیگری به کار ببرید. در این درس نحو پایه، تعیین this، قرض گرفتن متد، آرگومان‌ها و تفاوت call() با فراخوانی معمولی را می‌بینید.",
+ "objectives": [
+  "نحو call() را بنویسید",
+  "با call() مقدار this را تعیین کنید",
+  "متد یک شیء را روی شیء دیگر اجرا کنید",
+  "توضیح دهید چرا call() تابع تازه نمی‌سازد"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متد call() در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متد call() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد call() برای صدا زدن تابعی با یک this مشخص به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "متد call() باعث می‌شود یک شیء از متدی که مال شیء دیگری است استفاده کند."
+  },
+  {
+   "type": "p",
+   "text": "به این ترتیب همان متد روی شیء‌های مختلف به کار می‌آید."
+  },
+  {
+   "type": "p",
+   "text": "‏call() یک مبحث پیشرفته است."
+  },
+  {
+   "type": "p",
+   "text": "قبل از ادامه مطمئن شوید این مفهوم را می‌دانید:"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this"
+  },
+  {
+   "type": "h2",
+   "text": "نحو پایهٔ call()"
+  },
+  {
+   "type": "p",
+   "text": "متد call() تابع را با یک شیء به عنوان آرگومان صدا می‌زند."
+  },
+  {
+   "type": "p",
+   "text": "متد call() اولین آرگومانش همان this است."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان‌های بعدی به شکل فهرستی جدا شده با کاما داده می‌شوند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "functionName.call(this, arg1, arg2, ...);",
+   "caption": "نحو"
+  },
+  {
+   "type": "h2",
+   "text": "تعیین this با call()"
+  },
+  {
+   "type": "p",
+   "text": "با call() خودتان تصمیم می‌گیرید this به چه چیزی اشاره کند."
+  },
+  {
+   "type": "p",
+   "text": "در مثال زیر، تابع greet یک سلام به همراه this.name برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "با call() تصمیم می‌گیرید this همان شیء person3 باشد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person1 = { name: \"John\" };\n\nconst person2 = { name: \"Paul\" };\n\nconst person3 = { name: \"Ringo\" };\n\nfunction greet(greeting) {\n\n  return greeting + \" \" + this.name;\n\n}\n\ngreet.call(person3, \"Hello\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_greeting"
+  },
+  {
+   "type": "h2",
+   "text": "قرض گرفتن متد از شیء دیگر"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با call() متدی را از شیء دیگری قرض بگیرید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    fullName: function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\nconst person1 = {\n\n  firstName:\"John\",\n\n    lastName: \"Doe\"\n\n  }\n\nconst person2 = {\n\n  firstName:\"Mary\",\n\n    lastName: \"Doe\"\n}\n\n// This will return \"John Doe\":\n\n  person.fullName.call(person1);",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_call"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    fullName: function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\nconst person1 = {\n\n  firstName:\"John\",\n\n    lastName: \"Doe\"\n\n  }\n\nconst person2 = {\n\n    firstName:\"Mary\",\n\n    lastName: \"Doe\"\n}\n\n// This will return \"Mary Doe\"\n\n  person.fullName.call(person2);",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_call2"
+  },
+  {
+   "type": "h2",
+   "text": "متد call() با آرگومان‌ها"
+  },
+  {
+   "type": "p",
+   "text": "متد call() آرگومان هم می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان‌ها به شکل معمول و جدا شده با کاما داده می‌شوند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    fullName: function(city, country) {\n\n    return this.firstName + \" \" + this.lastName\n  + \",\" + city + \",\" + country;\n\n    }\n}\n\nconst person1 = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\"\n\n}\n\nperson.fullName.call(person1, \"Oslo\", \"Norway\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_arguments"
+  },
+  {
+   "type": "h2",
+   "text": "‏call() در برابر فراخوانی معمولی تابع"
+  },
+  {
+   "type": "p",
+   "text": "فراخوانی معمولی تابع را با فراخوانی از راه call() مقایسه کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function showName() {\n\n      return this.name;\n\n    }\n\n    const person = { name: \"John\" };\n\n    showName();\n\n    showName.call(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "بدون call()، مقدار this شیء person نیست."
+  },
+  {
+   "type": "p",
+   "text": "با call() مقدار this صریح تعیین می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "‏call() تابع تازه نمی‌سازد"
+  },
+  {
+   "type": "p",
+   "text": "متد call() تابع را همان لحظه اجرا می‌کند و تابع تازه‌ای برنمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sayHello() {\n\n      return \"Hello \" + this.name;\n\n    }\n\n    const person = { name: \"John\" };\n\n    sayHello.call(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "اگر تابع تازه‌ای می‌خواهید که this را به یاد داشته باشد، از bind() استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه‌های رایج"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "فراموش کردن اینکه call() فوری اجرا می‌شود\n‏call() تابعی برای استفادهٔ دوباره برنمی‌گرداند.",
+    "دادن آرگومان‌ها به شکل آرایه\n‏call() آرگومان‌ها را یکی‌یکی می‌خواهد؛ برای آرایه از apply() استفاده کنید.",
+    "استفاده از call() بدون درک this\nهمیشه بدانید this باید به چه چیزی اشاره کند."
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "آزمون\nتفاوت اصلی call() با فراخوانی معمولی تابع چیست؟"
+  },
+  {
+   "type": "h2",
+   "text": "فصل بعد"
+  },
+  {
+   "type": "p",
+   "text": "متد apply() در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "مبحث‌های مرتبط با this"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this"
+  },
+  {
+   "type": "p",
+   "text": "متد call()"
+  },
+  {
+   "type": "p",
+   "text": "متد apply()"
+  },
+  {
+   "type": "p",
+   "text": "متد bind()"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل call1.js بسازید و دو شیء با خصوصیت name بسازید. تابع greet را یک بار معمولی و یک بار با call() روی شیء دوم صدا بزنید.",
+   "hint": "در call() اولین آرگومان تعیین می‌کند this چه باشد."
+  },
+  {
+   "prompt": "از یک شیء دیگر متدی را قرض بگیرید: تابع fullName را روی شیء دیگری با call() اجرا کنید و ببینید خروجی چیست.",
+   "hint": "شیء دوم فقط باید خصوصیت‌هایی را داشته باشد که متد استفاده می‌کند."
+  },
+  {
+   "prompt": "به همان متد دو آرگومان دیگر هم بدهید؛ مثلاً شهر و کشور. این بار آرگومان‌ها را بعد از شیء، جدا جدا و با کاما بنویسید.",
+   "hint": "برخلاف apply()، اینجا آرایه نمی‌دهیم."
+  },
+  {
+   "prompt": "یک تابع بنویسید که this.name را برگرداند، یک بار بدون call() و یک بار با call() صدا بزنید و تفاوت خروجی را در کنسول ببینید.",
+   "hint": "بدون call() مقدار this شیء global است، پس این مقدار name وجود ندارد."
+  },
+  {
+   "prompt": "نتیجهٔ صدا زدن call() را در متغیری بریزید و بعد آن متغیر را مثل تابع صدا بزنید تا خطا را ببینید.",
+   "hint": "call() فوری اجرا می‌شود و تابع تازه نمی‌سازد؛ برای آن کار باید از bind() استفاده کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "متد call() چه کاری می‌کند؟",
+   "options": [
+    "تابع را همان لحظه با یک this مشخص اجرا می‌کند",
+    "تابع تازه‌ای می‌سازد که this را یادش می‌ماند",
+    "یک شیء تازه می‌سازد",
+    "آرگومان‌ها را به آرایه تبدیل می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "call() فوری اجرا می‌شود و خروجی تابع را می‌دهد. ساختن تابع تازه با همان this کار bind() است."
+  },
+  {
+   "question": "شکل درست فراخوانی با آرگومان‌ها کدام است؟",
+   "options": [
+    "person.fullName.call(person1, \"Oslo\", \"Norway\")",
+    "person.fullName.call(person1, [\"Oslo\", \"Norway\"])",
+    "person.fullName.call([person1, \"Oslo\"])",
+    "person.fullName.call(\"Oslo\", person1)"
+   ],
+   "answer": 0,
+   "explanation": "call() بعد از شیء، آرگومان‌ها را یکی‌یکی و با کاما می‌گیرد؛ دادن آرایه کار apply() است و دو گزینهٔ دیگر ترتیب را به هم می‌زنند."
+  },
+  {
+   "question": "تفاوت اصلی call() با فراخوانی معمولی تابع چیست؟",
+   "options": [
+    "call() کندتر است",
+    "در call() خودتان تعیین می‌کنید this به چه چیزی اشاره کند",
+    "call() فقط روی آرایه‌ها کار می‌کند",
+    "هیچ تفاوتی ندارند"
+   ],
+   "answer": 1,
+   "explanation": "در فراخوانی معمولی this را موتور JavaScript تعیین می‌کند، ولی در call() اولین آرگومان همان this است؛ به همین دلیل می‌توان متد یک شیء را روی شیء دیگری اجرا کرد."
+  },
+  {
+   "question": "اگر مقدار برگشتی call() را در متغیری بریزیم و بعد مثل تابع صدایش بزنیم چه می‌شود؟",
+   "options": [
+    "کار می‌کند",
+    "خطا می‌گیریم، چون call() تابع تازه نمی‌سازد",
+    "‏this از دست می‌رود ولی کار می‌کند",
+    "به آرایه تبدیل می‌شود"
+   ],
+   "answer": 1,
+   "explanation": "call() تابع را فوری اجرا می‌کند و مقدار برگشتی متد است، نه یک تابع؛ برای گرفتن تابع قابل استفادهٔ دوباره باید از bind() استفاده کنید."
+  },
+  {
+   "question": "برای اینکه یک شیء از متد شیء دیگری استفاده کند، کدام راه درست است؟",
+   "options": [
+    "const f = obj.method; f()",
+    "obj2.method.call(obj1)",
+    "obj2.method = obj1.method",
+    "obj1.method.call(obj2)"
+   ],
+   "answer": 3,
+   "explanation": "متد را از روی شیء صاحبش با call و با آرگومان شیء مقصد صدا می‌زنیم؛ یعنی obj1.method.call(obj2). جدا کردن متد از شیء و صدا زدنش this را از دست می‌دهد."
+  }
+ ]
+}

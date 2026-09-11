@@ -1,0 +1,309 @@
+{
+ "slug": "js_modules_import",
+ "course": "js",
+ "order": 235,
+ "url": "/js/js_modules_import.asp",
+ "title": "import در ماژول‌های JavaScript",
+ "summary": "برای استفاده از هر ماژول باید آن را import کنید. در این درس named import را با آکولاد می‌نویسید، default import را با نام دلخواه می‌آورید، با as نام‌ها را عوض می‌کنید و همهٔ exportهای یک ماژول را با * as زیر یک شیء جمع می‌کنید.",
+ "objectives": [
+  "با named import چند تابع را از یک ماژول بیاورید",
+  "با default import مقدار اصلی ماژول را با نام دلخواه بیاورید",
+  "با as نام یک import را عوض کنید",
+  "همهٔ exportهای یک ماژول را با * as در یک شیء بگیرید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "import در ماژول‌های JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "import"
+  },
+  {
+   "type": "p",
+   "text": "ماژول‌ها را به دو شکل می‌توانید import کنید، بسته به اینکه named export باشند یا default export."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { name, age } from \"./person.js\";",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import message from \"./message.js\";",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "named importها"
+  },
+  {
+   "type": "p",
+   "text": "named importها با named exportهای ماژول هم‌خوانی دارند."
+  },
+  {
+   "type": "p",
+   "text": "با آن‌ها می‌توانید یک یا چند متغیر یا تابع نام‌دار را از یک ماژول import کنید."
+  },
+  {
+   "type": "p",
+   "text": "باید نام‌ها را دقیقاً و داخل آکولاد { } بنویسید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { name, age } from \"./person.js\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "import { add, subtract, PI } from './math.js';",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
+  },
+  {
+   "type": "h2",
+   "text": "قواعد named import"
+  },
+  {
+   "type": "p",
+   "text": "نام‌های import باید با نام‌های export یکی باشند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { addd } from './math.js'; // ❌ Error (name mismatch)",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید چند مورد را یک‌باره import کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { add, PI } from './math.js';",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با as نامشان را عوض کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import { add as addition } from './math.js';",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "default import"
+  },
+  {
+   "type": "p",
+   "text": "default import راه import کردن مقدار اصلی بیرون‌داده‌شده از یک ماژول است، همان که با export default export شده."
+  },
+  {
+   "type": "p",
+   "text": "default importها همتای default exportها هستند."
+  },
+  {
+   "type": "p",
+   "text": "هنگام import می‌توانید به یک default export هر نامی بدهید، بدون آکولاد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import text from \"./message.js\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import message from \"./message.js\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_import"
+  },
+  {
+   "type": "h2",
+   "text": "قواعد default import"
+  },
+  {
+   "type": "p",
+   "text": "default import یک default export تکی را import می‌کند"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import message from \"./message.js\";",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "نام خاصی لازم نیست و تغییر نام آزاد است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import text from \"./message.js\";",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "default و named با هم"
+  },
+  {
+   "type": "p",
+   "text": "یک ماژول می‌تواند یک تابع اصلی و چند تابع کمکی بدهد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "export default function parse() { ... }\n\nexport function validate() { ... }\n\nexport function format() { ... }",
+   "caption": "فایل ماژول"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "import parse, { validate, format } from './parser.js';",
+   "caption": "فایل ماژول"
+  },
+  {
+   "type": "h2",
+   "text": "import کردن همه"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید همهٔ named exportهای یک ماژول را با نحو * و به‌صورت یک شیء import کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Import all named exports from person.js\n\nimport * as person from \"./person.js\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Import all named exports from math.js\n\nimport * as math from \"./math.js\";",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules4"
+  },
+  {
+   "type": "h2",
+   "text": "default import در برابر named import"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "ویژگی",
+     "default import",
+     "named import"
+    ],
+    [
+     "کاربرد معمول",
+     "یک ویژگی اصلی در هر ماژول",
+     "چند ویژگی"
+    ],
+    [
+     "نامش با export یکی است؟",
+     "خیر (خودتان انتخاب می‌کنید)",
+     "بله (باید یکی باشد)"
+    ],
+    [
+     "تغییر نام آزاد است؟",
+     "همیشه",
+     "فقط با as"
+    ],
+    [
+     "تعداد export",
+     "فقط یک default export مجاز است",
+     "چندین export مجاز است"
+    ]
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک ماژول با دو تابع exportشده بسازید و هر دو را با یک دستور import داخل { } بیاورید؛ بعد هر تابع را صدا بزنید و نتیجه را در صفحه بنویسید.",
+   "hint": "الگو: import {add, sub} from \"./math.js\"; و بعد add(2,3) را صدا بزنید."
+  },
+  {
+   "prompt": "همان import را با as بنویسید و نام یکی از تابع‌ها را در فایل خودتان عوض کنید.",
+   "hint": "import {add as sum} from \"./math.js\"; و از این به بعد در فایل شما نام sum معتبر است."
+  },
+  {
+   "prompt": "یک ماژول با export default بسازید و آن را دو بار، یک بار با نام calc و یک بار با نام ماشین‌حساب، import کنید؛ ببینید هر دو کار می‌کنند.",
+   "hint": "برای default export آکولاد نمی‌گذارید و نام را آزادانه انتخاب می‌کنید."
+  },
+  {
+   "prompt": "همهٔ exportهای یک ماژول را با * as وارد کنید، بعد یکی از تابع‌ها را با نقطه صدا بزنید و بگویید چرا این شکل برای جعبه‌ابزار مفید است.",
+   "hint": "وقتی همه چیز زیر یک شیء جمع می‌شود، حلقهٔ نام‌ها با نام ماژول روشن می‌ماند."
+  },
+  {
+   "prompt": "یک ماژول بسازید که هم default دارد و هم named؛ در یک خط هر دو را import کنید و در کنسول تحویز بگیرید.",
+   "hint": "ترتیب مهم است: اول نام دلخواه برای default، بعد داخل { } نام‌های named."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای import کردن یک named export، نام باید چه شود؟",
+   "options": [
+    "هر نامی که بخواهید",
+    "دقیقاً همان نام export",
+    "همیشه با حرف بزرگ",
+    "با پیشوند ماژول"
+   ],
+   "answer": 1,
+   "explanation": "named import با نام export گره خورده است؛ برای تغییر نام باید از as استفاده کنید."
+  },
+  {
+   "question": "کدام عبارت یک default export را import می‌کند؟",
+   "options": [
+    "import {calc} from \"./math.js\";",
+    "import calc from \"./math.js\";",
+    "import * as calc from \"./math.js\";",
+    "import default calc from \"./math.js\";"
+   ],
+   "answer": 1,
+   "explanation": "default export بدون آکولاد import می‌شود و نامش آزاد است؛ حالت اول برای named export است و حالت سوم همهٔ exportها را زیر یک شیء می‌آورد."
+  },
+  {
+   "question": "نحو * در import چه کاری می‌کند؟",
+   "options": [
+    "همهٔ named exportها را زیر یک شیء جمع می‌کند",
+    "فقط default export را می‌گیرد",
+    "همهٔ ماژول‌های پروژه را بار می‌کند",
+    "نام‌ها را به‌طور خودکار تغییر می‌دهد"
+   ],
+   "answer": 0,
+   "explanation": "import * as name کاربردش جمع کردن همهٔ named exportها در یک شیء namespace است تا با نقطه به آن‌ها دسترسی داشته باشید."
+  },
+  {
+   "question": "بر اساس جدول درس، تغییر نام در named import چگونه ممکن است؟",
+   "options": [
+    "مثل default همیشه آزاد است",
+    "فقط با as",
+    "فقط با تغییر نام export",
+    "هیچ‌وقت ممکن نیست"
+   ],
+   "answer": 1,
+   "explanation": "نام در named import باید یکی باشد؛ برای تغییر آن باید as به کار ببرید، برخلاف default import که نامش همیشه آزاد است."
+  }
+ ]
+}

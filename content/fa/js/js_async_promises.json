@@ -1,0 +1,654 @@
+{
+ "slug": "js_async_promises",
+ "course": "js",
+ "order": 224,
+ "url": "/js/js_async_promises.asp",
+ "title": "پرامیس‌های ناهمگام",
+ "summary": "پرامیس جانشین نتیجهٔ آیندهٔ یک عملیات ناهمگام است و سه وضعیت دارد: در انتظار، تحقق یافته و رد شده. در این درس با then، catch و finally کار می‌کنید، پرامیس خودتان را می‌سازید و می‌بینید چرا هر then یک پرامیس جدید برمی‌گرداند.",
+ "objectives": [
+  "بگویید پرامیس چیست و چه وضعیت‌هایی دارد",
+  "با then، catch و finally نتیجه و خطا را مدیریت کنید",
+  "زنجیرهٔ پرامیس بسازید و دلیل return کردن پرامیس را توضیح دهید",
+  "خطاهای رایج پرامیس را تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پرامیس‌های ناهمگام"
+  },
+  {
+   "type": "h2",
+   "text": "«قول یک نتیجه می‌دهم!»"
+  },
+  {
+   "type": "p",
+   "text": "پرامیس نمایندهٔ نتیجهٔ آیندهٔ یک عملیات ناهمگام است."
+  },
+  {
+   "type": "p",
+   "text": "نقش جانشین مقداری را دارد که هنوز در دسترس نیست."
+  },
+  {
+   "type": "p",
+   "text": "وقتی عملیات تمام شد، پرامیس یا با یک مقدار تحقق می‌یابد (fulfilled) یا با یک خطا رد می‌شود (rejected)."
+  },
+  {
+   "type": "h2",
+   "text": "چرا پرامیس؟"
+  },
+  {
+   "type": "p",
+   "text": "کالبک‌ها برای عملیات ناهمگام ساده خوب کار می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "اما چند کالبک وابسته به هم می‌توانند خواندن کد را سخت کنند."
+  },
+  {
+   "type": "p",
+   "text": "پرامیس‌ها راه تمیزتر و خواناتری برای سازمان دادن کد ناهمگام می‌دهند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "step1(function(result1) {\n\n  step2(result1, function(result2) {\n\n    step3(result2, function(result3) {\n\n      display(result3);\n\n    });\n\n  });\n\n});",
+   "caption": "مثال با کالبک"
+  },
+  {
+   "type": "p",
+   "text": "به این سبک معمولاً جهنم کالبک (callback hell) می‌گویند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "step1()\n\n  .then(step2)\n\n  .then(step3)\n\n  .then(display);",
+   "caption": "همان جریان با پرامیس"
+  },
+  {
+   "type": "p",
+   "text": "کد تخت‌تر و خواناتر می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "وضعیت‌های پرامیس"
+  },
+  {
+   "type": "p",
+   "text": "هر پرامیس همیشه در یکی از سه وضعیت است."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "وضعیت",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "در انتظار (Pending)",
+     "عملیات شروع شده اما هنوز تمام نشده است."
+    ],
+    [
+     "تحقق یافته (Fulfilled)",
+     "عملیات با موفقیت تمام شد."
+    ],
+    [
+     "رد شده (Rejected)",
+     "عملیات شکست خورد."
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "در انتظار │ ├────────► تحقق یافته │ └────────► رد شده"
+  },
+  {
+   "type": "p",
+   "text": "پرامیس وقتی تحقق یابد یا رد شود، تعیین‌تکلیف‌شده (settled) است."
+  },
+  {
+   "type": "h2",
+   "text": "پرامیس‌هایی که APIهای JavaScript برمی‌گردانند"
+  },
+  {
+   "type": "p",
+   "text": "بسیاری از APIهای JavaScript پرامیس برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "متد fetch() یکی از این نمونه‌هاست."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_fetch"
+  },
+  {
+   "type": "p",
+   "text": "متد fetch() بلافاصله یک پرامیس برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "دانلود در پس‌زمینه ادامه پیدا می‌کند و JavaScript در همان حال کدهای دیگر را اجرا می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد then() چطور کار می‌کند"
+  },
+  {
+   "type": "p",
+   "text": "متد then() بلافاصله فراخوانی می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "تابعی را ثبت می‌کند که JavaScript بعد از تحقق پرامیس صدا می‌زند."
+  },
+  {
+   "type": "p",
+   "text": "تابع ثبت‌شده بعداً و وقتی پرامیس نتیجه داشته باشد اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "هر فراخوانی then() یک پرامیس جدید برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "خود متد then() منتظر نمی‌ماند."
+  },
+  {
+   "type": "p",
+   "text": "یک کالبک ثبت می‌کند و بلافاصله پرامیس جدیدی برمی‌گرداند."
+  },
+  {
+   "type": "h3",
+   "text": "جریان پرامیس"
+  },
+  {
+   "type": "p",
+   "text": "fetch() ⮯ یک پرامیس برمی‌گرداند ⮯ then() یک کالبک ثبت می‌کند ⮯ JavaScript ادامه می‌دهد ⮯ پرامیس تحقق می‌یابد ⮯ کالبک اجرا می‌شود"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let promise = fetch(\"fetch.txt\");\n\npromise.then(function(response) {\n\n  return response.text();\n\n});\n\nmyDisplayer(\"JavaScript continues...\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_flow"
+  },
+  {
+   "type": "p",
+   "text": "کالبکی که به then() داده می‌شود، مقدار تحقق پرامیس را می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "برای fetch() این مقدار یک شیء Response است."
+  },
+  {
+   "type": "p",
+   "text": "در بخش بعد یاد می‌گیرید پرامیس خودتان را بسازید."
+  },
+  {
+   "type": "h2",
+   "text": "ساختن پرامیس"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر وقت‌ها از پرامیس‌هایی استفاده می‌کنید که APIهای JavaScript مثل fetch() برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "گاهی لازم است پرامیس خودتان را بسازید."
+  },
+  {
+   "type": "p",
+   "text": "پرامیس را با سازندهٔ Promise() بسازید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const promise = new Promise(function(resolve, reject) {\n\n  // Asynchronous work\n\n  if (success) {\n\n    resolve(value);\n\n  } else {\n\n    reject(error);\n\n  }\n\n});",
+   "caption": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "این سازنده تابعی با دو پارامتر می‌گیرد."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "پارامتر",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "resolve",
+     "پرامیس را با یک مقدار تحقق می‌بخشد."
+    ],
+    [
+     "reject",
+     "پرامیس را با یک خطا رد می‌کند."
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "یکی از resolve() یا reject() را صدا بزنید."
+  },
+  {
+   "type": "p",
+   "text": "پرامیس فقط یک بار تعیین‌تکلیف می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const promise = new Promise(function(resolve, reject) {\n\n  const success = true;\n\n if (success) {\n\n    resolve(\"Operation completed\");\n\n } else {\n\n    reject(\"Operation failed\");\n\n  }\n\n});\n\npromise.then(function(value) {\n\n  myDisplayer(value);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
+   "caption": "ساختن و استفاده از یک پرامیس"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_then"
+  },
+  {
+   "type": "h2",
+   "text": "متد then()"
+  },
+  {
+   "type": "p",
+   "text": "متد then() تابعی را ثبت می‌کند که پرامیس تحقق‌یافته را مدیریت می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "تابع ثبت‌شده مقدار تحقق را می‌گیرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_then"
+  },
+  {
+   "type": "p",
+   "text": "هر فراخوانی then() یک پرامیس جدید برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "همین، زنجیره‌سازی پرامیس (Promise chaining) را ممکن می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد catch()"
+  },
+  {
+   "type": "p",
+   "text": "متد catch() تابعی را ثبت می‌کند که پرامیس ردشده را مدیریت می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fetch(\"missing.txt\")\n\n.then(function(response) {\n\n  if (!response.ok) {\n\n    throw new Error(response.statusText);\n\n  }\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_catch"
+  },
+  {
+   "type": "p",
+   "text": "یک catch() می‌تواند خطاهای همهٔ مرحله‌های پیشین زنجیرهٔ پرامیس را مدیریت کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد finally()"
+  },
+  {
+   "type": "p",
+   "text": "متد finally() تابعی را ثبت می‌کند که وقتی پرامیس تعیین‌تکلیف شد اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "این تابع چه پرامیس تحقق یابد و چه رد شود، اجرا می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n})\n\n.finally(function() {\n\n  myDisplayer(\"Finished\");\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_finally"
+  },
+  {
+   "type": "h2",
+   "text": "زنجیره‌سازی پرامیس"
+  },
+  {
+   "type": "p",
+   "text": "چون then() یک پرامیس جدید برمی‌گرداند، می‌توان چند عملیات ناهمگام را به هم زنجیر کرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function step1() {\n\n  return Promise.resolve(\"A\");\n\n}\n\nfunction step2(value) {\n\n  return Promise.resolve(value + \"B\");\n\n}\n\nfunction step3(value) {\n\n  return Promise.resolve(value + \"C\");\n\n}\n\nstep1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  return step3(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_steps"
+  },
+  {
+   "type": "p",
+   "text": "هر مرحله منتظر پرامیسی می‌ماند که مرحلهٔ قبلی برگردانده است."
+  },
+  {
+   "type": "h2",
+   "text": "برگرداندن پرامیس"
+  },
+  {
+   "type": "p",
+   "text": "اگر کالبک then() عملیات ناهمگام دیگری را شروع می‌کند، پرامیس آن را return کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "step1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
+   "caption": "درست"
+  },
+  {
+   "type": "p",
+   "text": "اگر return کردن پرامیس را فراموش کنید، مرحلهٔ بعدی زنجیره ممکن است پیش از تمام شدن عملیات ناهمگام اجرا شود."
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای رایج با پرامیس"
+  },
+  {
+   "type": "h3",
+   "text": "فراموش کردن return پرامیس"
+  },
+  {
+   "type": "p",
+   "text": "اگر کالبک then() عملیات ناهمگام دیگری را شروع می‌کند، پرامیس آن را return کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "step1()\n\n.then(function(value) {\n\n  step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
+   "caption": "نادرست"
+  },
+  {
+   "type": "p",
+   "text": "ممکن است then() دوم پیش از تمام شدن step2() اجرا شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "step1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
+   "caption": "درست"
+  },
+  {
+   "type": "p",
+   "text": "return کردن پرامیس، ترتیب زنجیره را درست نگه می‌دارد."
+  },
+  {
+   "type": "h3",
+   "text": "فراموش کردن مدیریت خطاها"
+  },
+  {
+   "type": "p",
+   "text": "رد شدن‌های مدیریت‌نشدهٔ پرامیس، اشکال‌زدایی را سخت می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "برای مدیریت خطاها از catch() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "fetch(\"missing.txt\")\n\n.then(function(response) {\n\n  if (!response.ok) {\n\n    throw new Error(response.statusText);\n\n  }\n\n  return response.text();\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n});",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_error"
+  },
+  {
+   "type": "h3",
+   "text": "توقع اینکه پرامیس JavaScript را قفل کند"
+  },
+  {
+   "type": "p",
+   "text": "ساختن پرامیس، JavaScript را متوقف نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "تا وقتی عملیات ناهمگام در جریان است، JavaScript به اجرای خود ادامه می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "myDisplayer(\"Start\");\n\nfetch(\"fetch.txt\")\n\n.then(function() {\n\n  myDisplayer(\"Finished\");\n\n});\n\nmyDisplayer(\"JavaScript continues\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_order"
+  },
+  {
+   "type": "p",
+   "text": "خروجی این است:"
+  },
+  {
+   "type": "p",
+   "text": "Start، بعد JavaScript continues و در آخر Finished"
+  },
+  {
+   "type": "p",
+   "text": "پرامیس‌ها نمایندهٔ عملیات ناهمگام‌اند."
+  },
+  {
+   "type": "p",
+   "text": "جلوی اجرای کدهای دیگر توسط JavaScript را نمی‌گیرند."
+  },
+  {
+   "type": "h2",
+   "text": "پرامیس و برنامه‌نویسی ناهمگام"
+  },
+  {
+   "type": "p",
+   "text": "پرامیس نمایندهٔ نتیجهٔ یک عملیات ناهمگام است."
+  },
+  {
+   "type": "p",
+   "text": "کار ناهمگام معمولاً توسط یک API مرورگر مثل fetch() یا setTimeout() انجام می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "پرامیس راه تمیزی می‌دهد تا وقتی آن عملیات تمام شد، نتیجه را دریافت کنید."
+  },
+  {
+   "type": "p",
+   "text": "پرامیس کد را ناهمگام نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "پرامیس نمایندهٔ نتیجهٔ یک عملیات ناهمگام است."
+  },
+  {
+   "type": "h2",
+   "text": "پرامیس و حلقهٔ رویداد"
+  },
+  {
+   "type": "p",
+   "text": "کالبک‌های پرامیس بلافاصله اجرا نمی‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "آن‌ها برای اجرا پس از تمام شدن کار جاری JavaScript زمان‌بندی می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "حلقهٔ رویداد JavaScript مسئول اجرای این کالبک‌هاست."
+  },
+  {
+   "type": "p",
+   "text": "در فصل حلقهٔ رویداد JavaScript بیشتر دربارهٔ این موضوع یاد می‌گیرید."
+  },
+  {
+   "type": "h2",
+   "text": "پرامیس در برابر کالبک"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "کالبک‌ها",
+     "پرامیس‌ها"
+    ],
+    [
+     "می‌توانند عمیقاً تودرتو شوند.",
+     "می‌توان آن‌ها را زنجیر کرد."
+    ],
+    [
+     "مدیریت خطا اغلب در سراسر کد پخش می‌شود.",
+     "یک catch() می‌تواند خطای کل زنجیره را مدیریت کند."
+    ],
+    [
+     "برای عملیات پیچیده سخت‌خوان‌تر است.",
+     "برای چند مرحلهٔ ناهمگام خواناتر است."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خلاصه"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "پرامیس نمایندهٔ نتیجهٔ آیندهٔ یک عملیات ناهمگام است.",
+    "هر پرامیس یا در انتظار است، یا تحقق یافته، یا رد شده.",
+    "then() مدیریت‌کننده‌های تحقق را ثبت می‌کند.",
+    "catch() مدیریت‌کننده‌های رد شدن را ثبت می‌کند.",
+    "finally() مدیریت‌کننده‌ای ثبت می‌کند که وقتی پرامیس تعیین‌تکلیف شد اجرا می‌شود.",
+    "از then() پرامیس return کنید تا ترتیب زنجیرهٔ پرامیس درست بماند.",
+    "بیشتر APIهای JavaScript، از جمله fetch()، پرامیس برمی‌گردانند."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "گام بعدی"
+  },
+  {
+   "type": "p",
+   "text": "پرامیس‌ها سازمان دادن کد ناهمگام را آسان‌تر می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript کلیدواژه‌های async و await را هم دارد که به شما اجازه می‌دهند کد مبتنی بر پرامیس را به سبکی بنویسید که شبیه JavaScript هم‌زمان به نظر برسد."
+  },
+  {
+   "type": "p",
+   "text": "برای یادگیری async و await فصل بعدی را ادامه دهید."
+  },
+  {
+   "type": "p",
+   "text": "Async/Await در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل promise.html بسازید و با سازندهٔ Promise یک پرامیس بسازید که بعد از ۲ ثانیه با resolve مقدار بدهد؛ نتیجه را در then چاپ کنید.",
+   "hint": "تابع داخل سازنده دو پارامتر می‌گیرد: resolve و reject. یکی از آن‌ها را صدا بزنید."
+  },
+  {
+   "prompt": "پرامیس را روی یک شرط به reject ببرید و با catch خطا را در کنسول ببینید.",
+   "hint": "هر پرامیس یک بار تعیین‌تکلیف می‌شود؛ اگر reject صدا زده شد، resolve بی‌اثر است."
+  },
+  {
+   "prompt": "با fetch یک فایل متنی بگیرید و در زنجیرهٔ then اول response.text() را return کنید و بعد متن را چاپ کنید.",
+   "hint": "return کردن پرامیس مرحلهٔ بعد، ترتیب زنجیره را درست نگه می‌دارد."
+  },
+  {
+   "prompt": "در همان زنجیره return را از جلوی مرحلهٔ دوم بردارید و تفاوت ترتیب خروجی را با حالت قبل مقایسه کنید.",
+   "hint": "بدون return، مرحلهٔ بعدی ممکن است پیش از تمام شدن عملیات ناهمگام اجرا شود."
+  },
+  {
+   "prompt": "یک finally به زنجیره اضافه کنید و هم مسیر موفق و هم مسیر خطا را امتحان کنید تا ببینید کدام حالت‌ها را می‌گیرد.",
+   "hint": "finally چه پرامیس تحقق یابد و چه رد شود اجرا می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "پرامیس در JavaScript نمایندهٔ چیست؟",
+   "options": [
+    "یک عدد ثابت",
+    "نتیجهٔ آیندهٔ یک عملیات ناهمگام",
+    "یک آرایه از کالبک‌ها",
+    "یک رویداد ماوس"
+   ],
+   "answer": 1,
+   "explanation": "پرامیس جانشین مقداری است که هنوز آماده نیست؛ وقتی عملیات تمام شد یا با مقدار تحقق می‌یابد یا با خطا رد می‌شود."
+  },
+  {
+   "question": "پرامیس چند وضعیت دارد؟",
+   "options": [
+    "دو وضعیت: موفق و ناموفق",
+    "سه وضعیت: در انتظار، تحقق یافته و رد شده",
+    "چهار وضعیت",
+    "وضعیت ندارد و فقط نتیجه دارد"
+   ],
+   "answer": 1,
+   "explanation": "هر پرامیس یا pending است یا fulfilled یا rejected؛ وقتی به یکی از دو حالت آخر برسد، می‌گویند تعیین‌تکلیف (settled) شده است."
+  },
+  {
+   "question": "خروجی then() چه چیزی است؟",
+   "options": [
+    "مقدار نهایی عملیات",
+    "یک پرامیس جدید",
+    "هیچ؛ then مقدار برنمی‌گرداند",
+    "یک کالبک تازه"
+   ],
+   "answer": 1,
+   "explanation": "هر فراخوانی then() یک پرامیس جدید برمی‌گرداند و همین امکان زنجیره‌سازی مراحل ناهمگام را می‌دهد."
+  },
+  {
+   "question": "چرا در کالبک then() باید پرامیس عملیات بعدی را return کنید؟",
+   "options": [
+    "چون بدون return کد اجرا نمی‌شود",
+    "تا مرحلهٔ بعدی زنجیره پس از تمام شدن عملیات ناهمگام اجرا شود",
+    "چون return سرعت دانلود را بیشتر می‌کند",
+    "چون مرورگر پرامیس‌های return نشده را حذف می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "بدون return، زنجیره منتظر آن عملیات نمی‌ماند و مرحلهٔ بعدی زودتر اجرا می‌شود؛ با return، ترتیب مراحل درست حفظ می‌شود."
+  },
+  {
+   "question": "کدام جمله درست است؟",
+   "options": [
+    "ساختن پرامیس JavaScript را متوقف می‌کند تا نتیجه برسد",
+    "پرامیس کد را متوقف نمی‌کند و JavaScript به اجرای کدهای دیگر ادامه می‌دهد",
+    "پرامیس فقط با fetch ساخته می‌شود",
+    "catch فقط خطای مرحلهٔ آخر را می‌گیرد"
+   ],
+   "answer": 1,
+   "explanation": "پرامیس جریان اجرا را قفل نمی‌کند؛ فقط نتیجهٔ یک عملیات ناهمگام را نمایندگی می‌کند. یک catch هم می‌تواند خطای هر مرحلهٔ قبلی زنجیره را بگیرد."
+  }
+ ]
+}

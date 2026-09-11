@@ -1,0 +1,396 @@
+{
+ "slug": "js_function_definition",
+ "course": "js",
+ "order": 202,
+ "url": "/js/js_function_definition.asp",
+ "title": "تعریف تابع در JavaScript",
+ "summary": "در این درس می‌بینید تعریف تابع یک اصطلاح کلی است و اعلان تابع، عبارت تابعی و تابع پیکانی نمونه‌هایی از آن هستند. تفاوت بالارفتن اعلان‌ها، تفاوت شکل نوشتن در جدول، سازندهٔ Function() و این نکته که تابع‌ها شیء هستند را هم یاد می‌گیرید.",
+ "objectives": [
+  "تعریف تابع را از اعلان تابع جدا کنید",
+  "شش شکل تعریف تابع را نام ببرید",
+  "توضیح دهید چرا اعلان تابع بالا برده می‌شود و عبارت تابعی نه",
+  "از خصوصیت arguments.length و متد toString() استفاده کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "تعریف تابع در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "تفاوت تعریف تابع با اعلان تابع"
+  },
+  {
+   "type": "p",
+   "text": "تعریف تابع (function definition) اصطلاحی کلی برای ساختن تابع است."
+  },
+  {
+   "type": "p",
+   "text": "اعلان تابع (function declaration) یکی از راه‌های مشخص تعریف تابع است."
+  },
+  {
+   "type": "p",
+   "text": "نمونه‌های تعریف تابع این‌ها هستند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "اعلان تابع",
+    "عبارت‌های تابعی",
+    "تابع‌های پیکانی"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Function Declaration\n\nfunction myFunction(x, y) {\n\n  return x * y;\n\n}\n\n// Function Expression (Named)\n\nconst myFunction = function name(x, y) {\n\n  return x * y;\n\n};\n\n// Function Expression (Anonymous)\n\nconst myFunction = function (x, y) {\n\n  return x * y;\n\n};\n\n// Arrow Function\n\nconst myFunction = (x, y) => x * y;\n\n// Function Constructor\n\nconst myFunction = new Function(\"x\", \"y\", \"return x * y\");\n\n// Object Method\n\nconst obj = {\n\n  myFunction(x, y) {\n\n    return x * y;\n\n  },\n\n};",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "اعلان تابع (Function Declarations)"
+  },
+  {
+   "type": "p",
+   "text": "پیشتر در همین آموزش دیدید که تابع با این نحو اعلان می‌شود:"
+  },
+  {
+   "type": "p",
+   "text": "function functionName(parameters) {\n  // کدی که باید اجرا شود\n}"
+  },
+  {
+   "type": "p",
+   "text": "اعلان تابع از کلیدواژهٔ function و یک نام تابع استفاده می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a, b) {return a * b}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a, b) {\n\n  return a * b;\n\n}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_return1"
+  },
+  {
+   "type": "p",
+   "text": "تابعی که اعلان می‌شود بلافاصله اجرا نمی‌شود؛ «برای استفادهٔ بعدی نگه داشته می‌شود» و بعداً، وقتی فراخوانی شود، اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید تابع را در کد هم قبل و هم بعد از اعلانش فراخوانی کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let x = myFunction(4, 3);\n\nfunction myFunction(a, b) {\n\n  return a * b;\n\n}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a, b) {\n\n  return a * b;\n\n}\n\nlet x = myFunction(4, 3);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_return4"
+  },
+  {
+   "type": "h2",
+   "text": "عبارت‌های تابعی (Function Expressions)"
+  },
+  {
+   "type": "p",
+   "text": "عبارت تابعی، تابع را داخل یک متغیر نگه می‌دارد."
+  },
+  {
+   "type": "p",
+   "text": "تابع می‌تواند بی‌نام باشد، یعنی بدون نام."
+  },
+  {
+   "type": "p",
+   "text": "عبارت‌های تابعی فقط وقتی اجرا می‌شوند که اجرای کد به آن‌ها برسد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const x = function (a, b) {return a * b};",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_expression"
+  },
+  {
+   "type": "p",
+   "text": "بعد از اینکه عبارت تابعی در متغیری ذخیره شد، آن متغیر مثل تابع به کار می‌آید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const x = function (a, b) {return a * b};\n\nlet z = x(4, 3);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_expression_variable"
+  },
+  {
+   "type": "h2",
+   "text": "بالا بردن اعلان‌ها (Hoisting)"
+  },
+  {
+   "type": "p",
+   "text": "اعلان تابع‌ها به بالای دامنهشان بالا برده می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "عبارت‌های تابعی به همان شکل بالا برده نمی‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "اعلان تابع‌ها را می‌توان قبل از تعریفشان فراخوانی کرد."
+  },
+  {
+   "type": "p",
+   "text": "عبارت‌های تابعی را نمی‌توان قبل از تعریفشان فراخوانی کرد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const sum = add(2, 3); // Will work\n\nfunction add(a, b) {return a + b;}",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const sum = add(2, 3); // ⛔ Will generate error\n\nconst add = function (a, b) {return a + b;};",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "h2",
+   "text": "تفاوت‌های کلیدی"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "اعلان تابع",
+     "عبارت تابعی"
+    ],
+    [
+     "نحو:\nدستوری که با کلیدواژهٔ function شروع می‌شود و بعد از آن نام اجباری می‌آید.",
+     "نحو:\nبخشی از یک عبارت یا انتساب است و می‌تواند بی‌نام باشد، یعنی بدون نام."
+    ],
+    [
+     "Hoisting:\nتابع پیش از اجرای کد به بالای دامنهاش منتقل می‌شود، پس می‌توانید آن را از هر جای آن دامنه، حتی قبل از تعریف، صدا بزنید.",
+     "Hoisting:\nممکن است متغیر نگهدارندهٔ تابع بالا برده شود، بسته به var یا let یا const، اما خود انتساب تابع بالا برده نمی‌شود. فقط بعد از تعریف آن در دامنهٔ کد می‌توانید صدایش بزنید."
+    ],
+    [
+     "انعطافپذیری:\nبیشتر برای تابع‌های عمومی به کار می‌رود که باید در کل برنامه یا در دامنه‌ای مشخص در دسترس باشند.",
+     "انعطافپذیری:\nدر جا‌های مختلفی به کار می‌آید؛ مثل آرگومان دادن به تابع دیگر (کالبک)، عبارت‌های تابعی خودفراخوان و انتساب به خصوصیت‌های شیء."
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "تابع‌های ذخیرهشده در متغیر"
+  },
+  {
+   "type": "p",
+   "text": "تابعی که در متغیر ذخیره شده، مثل هر مقدار دیگری به کار می‌آید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a, b) {\n  return a * b;\n}\n\nlet x = myFunction(4, 3);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_value"
+  },
+  {
+   "type": "p",
+   "text": "از تابع‌های JavaScript می‌توان در عبارت‌های محاسباتی استفاده کرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunction(a, b) {\n  return a * b;\n}\n\nlet x = myFunction(4, 3) * 2;",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_value2"
+  },
+  {
+   "type": "h2",
+   "text": "سازندهٔ Function()"
+  },
+  {
+   "type": "p",
+   "text": "تابع را می‌توان با سازندهٔ Function() در JavaScript هم تعریف کرد، اما این کار کم پیش می‌آید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myFunction = new Function(\"a\", \"b\", \"return a * b\");\n\nlet x = myFunction(4, 3);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_constructor"
+  },
+  {
+   "type": "p",
+   "text": "در واقع لازم نیست از سازندهٔ تابع استفاده کنید؛ مثال بالا با این کد یکی است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const myFunction = function (a, b) {return a * b};\n\nlet x = myFunction(4, 3);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_constructor2"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر وقت‌ها می‌توانید در JavaScript از به کار بردن کلیدواژهٔ new صرفنظر کنید."
+  },
+  {
+   "type": "h2",
+   "text": "تابع‌ها شیء هستند"
+  },
+  {
+   "type": "p",
+   "text": "عملگر typeof در JavaScript برای تابع‌ها مقدار function برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "اما بهترین توصیف تابع‌های JavaScript این است که شیءاند."
+  },
+  {
+   "type": "p",
+   "text": "تابع‌های JavaScript هم خصوصیت دارند و هم متد."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت arguments.length تعداد آرگومان‌هایی را برمی‌گرداند که تابع دریافت کرده است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function multiply(a, b) {\n  return arguments.length;\n\n}\n\n// Returns 0\n\nmultiply();\n\n// Returns 2\n\nmultiply(a, b);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_length"
+  },
+  {
+   "type": "p",
+   "text": "متد toString() تابع را به شکل رشته برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function multiply(a, b) {\n  return a * b;\n}\n\nlet text = multiply.toString();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_tostring"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل def.js بسازید و شش شکل تعریف تابع را در آن بنویسید: اعلان تابع، عبارت تابعی نامدار، عبارت تابعی بی‌نام، تابع پیکانی، سازندهٔ Function و متد داخل شیء.",
+   "hint": "همه را طوری بنویسید که ضرب دو عدد را برگردانند تا مقایسهشان ساده باشد."
+  },
+  {
+   "prompt": "تابعی بنویسید که قبل از خط تعریفش صدا زده شود و ببینید کار می‌کند. همان کار را با یک عبارت تابعی تکرار کنید و خطا را در کنسول ببینید.",
+   "hint": "اعلان تابع بالا برده می‌شود ولی انتساب عبارت تابعی نه."
+  },
+  {
+   "prompt": "یک تابع بسازید و با arguments.length تعداد آرگومان‌های دریافتی را بگیرید. یک بار با صفر و یک بار با دو آرگومان صدایش بزنید.",
+   "hint": "arguments.length به تعداد مقدار‌هایی است که واقعاً داده شده، نه تعداد پارامتر‌ها."
+  },
+  {
+   "prompt": "روی یک تابع متد toString() را صدا بزنید و متن برگشتی را در کنسول ببینید. سپس همان تابع را با سازندهٔ Function بسازید.",
+   "hint": "سازندهٔ Function دو رشته می‌گیرد: نام پارامتر و بدنه."
+  },
+  {
+   "prompt": "مقدار برگشتی یک تابع را داخل یک عبارت ریاضی به کار ببرید؛ مثلاً نتیجهٔ ضرب را در ۲ ضرب کنید و در کنسول چاپ کنید.",
+   "hint": "تابع را مثل متغیر در عبارت بنویسید: myFunction(4, 3) * 2."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تفاوت اعلان تابع با عبارت تابعی در چیست؟",
+   "options": [
+    "اعلان تابع نام اجباری دارد و بالا برده می‌شود، عبارت تابعی بخشی از یک عبارت است و می‌تواند بی‌نام باشد",
+    "عبارت تابعی پارامتر نمی‌گیرد",
+    "اعلان تابع فقط داخل شیء کار می‌کند",
+    "هیچ تفاوتی ندارند"
+   ],
+   "answer": 0,
+   "explanation": "اعلان تابع یک دستور مستقل با نام اجباری است و همهجای دامنه در دسترس است؛ عبارت تابعی داخل یک انتساب می‌آید، می‌تواند بی‌نام باشد و فقط بعد از تعریف صدا زده می‌شود."
+  },
+  {
+   "question": "کدام کد خطا می‌دهد؟",
+   "options": [
+    "const sum = add(2, 3); function add(a, b) {return a + b;}",
+    "const sum = add(2, 3); const add = function (a, b) {return a + b;};",
+    "function add(a, b) {return a + b;} const sum = add(2, 3);",
+    "const add = function (a, b) {return a + b;}; const sum = add(2, 3);"
+   ],
+   "answer": 1,
+   "explanation": "در گزینهٔ دوم تابع در متغیری با const ذخیره شده و انتساب آن بالا برده نمی‌شود، پس صدا زدن قبل از تعریف خطا می‌دهد. بقیهٔ گزینه‌ها ترتیب درستی دارند."
+  },
+  {
+   "question": "typeof یک تابع در JavaScript چه برمی‌گرداند؟",
+   "options": [
+    "object",
+    "function",
+    "method",
+    "undefined"
+   ],
+   "answer": 1,
+   "explanation": "عملگر typeof برای تابع‌ها مقدار function می‌دهد، هرچند در واقع تابع‌ها شیء هستند و خصوصیت و متد دارند."
+  },
+  {
+   "question": "خصوصیت arguments.length چه چیزی را برمی‌گرداند؟",
+   "options": [
+    "تعداد پارامتر‌های نوشتهشده در تعریف تابع",
+    "تعداد آرگومان‌هایی که تابع دریافت کرده است",
+    "طول بدنهٔ تابع",
+    "نام تابع"
+   ],
+   "answer": 1,
+   "explanation": "arguments.length تعداد مقدار‌هایی است که واقعاً به تابع داده شده؛ اگر تابع را بدون آرگومان صدا بزنید صفر برمی‌گرداند، حتی اگر دو پارامتر داشته باشد."
+  },
+  {
+   "question": "درس دربارهٔ سازندهٔ Function() چه می‌گوید؟",
+   "options": [
+    "بهترین راه تعریف تابع است",
+    "کم پیش می‌آید که لازم شود و بیشتر وقت‌ها می‌توان از new صرفنظر کرد",
+    "فقط در Node.js کار می‌کند",
+    "جایگزین تابع پیکانی است"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید سازندهٔ Function() بهندرت به کار می‌آید و همان کار با یک عبارت تابعی سادهتر انجام می‌شود."
+  }
+ ]
+}

@@ -1,0 +1,408 @@
+{
+ "slug": "js_function_apply",
+ "course": "js",
+ "order": 206,
+ "url": "/js/js_function_apply.asp",
+ "title": "متد apply() در JavaScript",
+ "summary": "متد apply() هم مثل call() تابع را با یک this مشخص اجرا می‌کند، با این تفاوت که آرگومان‌ها را داخل آرایه می‌گیرد. در این درس نحو آن، تفاوتش با call()، شبیه‌سازی Math.max روی آرایه و رفتار آن در حالت سخت‌گیرانه را می‌بینید.",
+ "objectives": [
+  "تفاوت apply() و call() را توضیح دهید",
+  "آرگومان‌ها را به شکل آرایه به تابع بدهید",
+  "با apply() متد یک شیء را روی شیء دیگر اجرا کنید",
+  "روی آرایه از تابع‌های Math استفاده کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متد apply() در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "استفادهٔ دوباره از متد"
+  },
+  {
+   "type": "p",
+   "text": "متد apply() اجازه می‌دهد متدی بنویسید که روی شیء‌های مختلف به کار بیاید."
+  },
+  {
+   "type": "p",
+   "text": "متد apply() برای صدا زدن تابعی با یک this مشخص به کار می‌رود."
+  },
+  {
+   "type": "p",
+   "text": "متد apply() شبیه call() است، اما آرگومان‌ها را داخل آرایه می‌فرستد."
+  },
+  {
+   "type": "p",
+   "text": "‏apply() یک مبحث پیشرفته است."
+  },
+  {
+   "type": "p",
+   "text": "قبل از ادامه مطمئن شوید این مفهوم و call() را می‌دانید."
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this"
+  },
+  {
+   "type": "p",
+   "text": "متد call()"
+  },
+  {
+   "type": "h2",
+   "text": "نحو پایهٔ apply()"
+  },
+  {
+   "type": "p",
+   "text": "متد apply() تابع را با یک شیء به عنوان آرگومان صدا می‌زند."
+  },
+  {
+   "type": "p",
+   "text": "متد apply() اولین آرگومانش همان this است."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان دوم آرایه‌ای از مقدار‌هاست که به تابع داده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "متد apply() شبیه متد call() در فصل قبل است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "functionName.apply(this, [arg1, arg2, ...]);",
+   "caption": "نحو"
+  },
+  {
+   "type": "h2",
+   "text": "تعیین this با apply()"
+  },
+  {
+   "type": "p",
+   "text": "با apply() خودتان تصمیم می‌گیرید this به چه چیزی اشاره کند."
+  },
+  {
+   "type": "p",
+   "text": "در مثال زیر، تابع greet یک سلام به همراه this.name برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "با apply() تصمیم می‌گیرید this همان شیء person3 باشد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person1 = { name: \"John\" };\n\nconst person2 = { name: \"Paul\" };\n\nconst person3 = { name: \"Ringo\" };\n\nfunction greet(greeting) {\n\n  return greeting + \" \" + this.name;\n\n}\n\ngreet.apply(person3, [\"Hello\"]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_apply_greeting"
+  },
+  {
+   "type": "h2",
+   "text": "تفاوت call() و apply()"
+  },
+  {
+   "type": "p",
+   "text": "تنها تفاوت apply() و call() در نحوهٔ فرستادن آرگومان‌هاست."
+  },
+  {
+   "type": "p",
+   "text": "متد call() آرگومان‌ها را جدا جدا می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "متد apply() آرگومان‌ها را به شکل آرایه می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "وقتی آرگومان‌ها از قبل داخل آرایه‌اند، از apply() استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "greet.call(person, \"Hello\");\n\ngreet.apply(person, [\"Hello\"]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "قرض گرفتن متد از شیء دیگر"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با apply() متدی را از شیء دیگری قرض بگیرید:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a person Object\n\nconst person = {\n\n    fullName: function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\n// Create a person1 Object\n\nconst person1 = {\n\n  firstName:\"John\",\n\n    lastName: \"Doe\"\n\n  }\n\n// Create a person2 Object\n\nconst person2 = {\n\n  firstName:\"Mary\",\n\n    lastName: \"Doe\"\n}\n\n// This will return \"John Doe\":\n\n  person.fullName.apply(person1);",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_apply"
+  },
+  {
+   "type": "p",
+   "text": "در این دو مثال، متد apply() دقیقاً مثل متد call() رفتار می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create a person Object\n\nconst person = {\n\n    fullName: function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\n// Create a person1 Object\n\nconst person1 = {\n\n  firstName:\"John\",\n\n    lastName: \"Doe\"\n\n  }\n\n// Create a person2 Object\n\nconst person2 = {\n\n    firstName:\"Mary\",\n\n    lastName: \"Doe\"\n}\n\n// This will return \"Mary Doe\"\n\n  person.fullName.call(person2);",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_apply2"
+  },
+  {
+   "type": "h2",
+   "text": "متد apply() با آرگومان‌ها"
+  },
+  {
+   "type": "p",
+   "text": "متد apply() آرگومان‌ها را در یک آرایه می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ آرگومان‌ها باید داخل یک آرایه و به ترتیب درست قرار بگیرند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n    fullName: function(city, country) {\n\n    return this.firstName + \" \" + this.lastName\n  + \",\" + city + \",\" + country;\n\n    }\n}\n\nconst person1 = {\n\n  firstName:\"John\",\n\n    lastName: \"Doe\"\n\n}\n\nperson.fullName.apply(person1, [\"Oslo\", \"Norway\"]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_apply_arguments"
+  },
+  {
+   "type": "p",
+   "text": "در مقایسه با متد call():"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  fullName: function(city, country) {\n\n    return this.firstName + \" \" + this.lastName\n  + \",\" + city + \",\" + country;\n\n    }\n}\n\nconst person1 = {\n\n    firstName:\"John\",\n\n    lastName: \"Doe\"\n\n}\n\nperson.fullName.call(person1, \"Oslo\", \"Norway\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_arguments"
+  },
+  {
+   "type": "h2",
+   "text": "شبیه‌سازی متد‌های آرایه با apply()"
+  },
+  {
+   "type": "p",
+   "text": "یکی از کاربرد‌های رایج apply() استفاده از تابع‌های Math روی آرایه‌هاست."
+  },
+  {
+   "type": "p",
+   "text": "متد Math.max() بزرگ‌ترین عدد را از فهرست آرگومان‌های عددی برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Math.max(4, 8, 5, 1);  // Will return 8",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_math"
+  },
+  {
+   "type": "p",
+   "text": "آرایه‌های JavaScript متد max() ندارند، اما می‌توانید آن را با متد apply شبیه‌سازی کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const numbers = [4, 8, 5, 1];\n\nMath.max.apply(null, numbers);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_math_apply"
+  },
+  {
+   "type": "p",
+   "text": "در مثال بالا null به عنوان this داده شده، چون Math.max() به مقدار this نیازی ندارد."
+  },
+  {
+   "type": "p",
+   "text": "این مثال‌ها نتیجهٔ یکسان می‌دهند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Math.max.apply(\" \", numbers);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "Math.max.apply(0, numbers);",
+   "caption": "مثال‌ها"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_call_math_apply2"
+  },
+  {
+   "type": "h2",
+   "text": "حالت سخت‌گیرانه در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "در حالت سخت‌گیرانهٔ JavaScript، اگر آرگومان اول متد apply() یک شیء نباشد، خودش صاحب (شیء) تابع فراخوانی‌شده می‌شود. در حالت غیرسخت‌گیرانه، شیء global صاحب تابع می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "‏apply() تابع تازه نمی‌سازد"
+  },
+  {
+   "type": "p",
+   "text": "متد call() و متد apply() تابع را همان لحظه اجرا می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "این دو تابع تازه‌ای برنمی‌گردانند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function sum(a, b) {\n\n      return a + b;\n\n    }\n\n    sum.apply(null, [4, 5]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "اگر تابعی می‌خواهید که بعداً با همان this صدا زده شود، از bind() استفاده کنید."
+  },
+  {
+   "type": "h2",
+   "text": "اشتباه‌های رایج"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "فراموش کردن آرایه\nآرگومان دوم apply() باید آرایه باشد.",
+    "قاطی کردن apply() با bind()\n‏apply() فوری اجرا می‌شود، اما bind() تابع تازه‌ای برمی‌گرداند.",
+    "استفاده از apply() وقتی call() ساده‌تر است\nاگر آرایه ندارید، call() معمولاً خواناتر است."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مبحث‌های مرتبط با this"
+  },
+  {
+   "type": "p",
+   "text": "کلیدواژهٔ this"
+  },
+  {
+   "type": "p",
+   "text": "متد call()"
+  },
+  {
+   "type": "p",
+   "text": "متد apply()"
+  },
+  {
+   "type": "p",
+   "text": "متد bind()"
+  },
+  {
+   "type": "h2",
+   "text": "فصل بعد"
+  },
+  {
+   "type": "p",
+   "text": "متد bind() در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل apply1.js بسازید و تابعی بسازید که آرگومان‌ها را جمع کند. یک بار با call و یک بار با apply صدا بزنید و ببینید تفاوت فقط در شکل آرگومان‌هاست.",
+   "hint": "در apply آرایه می‌دهیم: sum.apply(null, [4, 5])."
+  },
+  {
+   "prompt": "با Math.max بزرگ‌ترین عدد آرایهٔ [4, 8, 5, 1] را بگیرید. اول مستقیم و بعد با apply، چون این متد آرایه نمی‌گیرد.",
+   "hint": "Math.max.apply(null, numbers) همان کار Math.max(4, 8, 5, 1) را می‌کند."
+  },
+  {
+   "prompt": "یک تابع با پارامتر بگذارید و آرگومان‌ها را اشتباه و بدون آرایه به apply بدهید تا خطا را در کنسول ببینید.",
+   "hint": "آرگومان دوم apply همیشه باید آرایه باشد."
+  },
+  {
+   "prompt": "متدی از یک شیء را با apply روی شیء دیگری اجرا کنید و نتیجه را ببینید. بعد همان کار را با call انجام دهید و خروجی‌ها را مقایسه کنید.",
+   "hint": "چون متد بدون آرگومان است، این دو خروجی باید یکی باشند."
+  },
+  {
+   "prompt": "مقدار برگشتی apply را در متغیری بریزید و بعد آن را مثل تابع صدا بزنید تا تفاوت apply با bind را در عمل ببینید.",
+   "hint": "apply فوری اجرا می‌شود؛ برای تابع قابل استفادهٔ دوباره باید از bind استفاده کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تنها تفاوت apply() و call() چیست؟",
+   "options": [
+    "نحوهٔ فرستادن آرگومان‌ها؛ apply آرایه می‌گیرد و call آرگومان‌ها را جدا جدا",
+    "apply تابع را اجرا نمی‌کند",
+    "call فقط روی شیء‌ها کار می‌کند",
+    "apply مقدار this را نادیده می‌گیرد"
+   ],
+   "answer": 0,
+   "explanation": "هر دو تابع را با یک this مشخص فوری اجرا می‌کنند؛ تنها تفاوت این است که آرگومان‌های apply داخل یک آرایه می‌آیند."
+  },
+  {
+   "question": "کدام کد با Math.max بزرگ‌ترین عدد آرایه را می‌دهد؟",
+   "options": [
+    "Math.max(numbers)",
+    "Math.max.apply(null, numbers)",
+    "numbers.max()",
+    "Math.max(numbers, null)"
+   ],
+   "answer": 1,
+   "explanation": "Math.max آرگومان‌های جدا جدا می‌خواهد و آرایه را نمی‌فهمد؛ apply آرایه را باز می‌کند و به آن می‌دهد. آرایهٔ JavaScript متد max() ندارد."
+  },
+  {
+   "question": "چرا در مثال Math.max.apply(null, numbers) از null استفاده شده است؟",
+   "options": [
+    "چون آرایه باید null باشد",
+    "چون Math.max به مقدار this نیازی ندارد",
+    "چون در حالت سخت‌گیرانه الزامی است",
+    "چون به جای آرایه می‌نشیند"
+   ],
+   "answer": 1,
+   "explanation": "تابع Math از شیء خاصی استفاده نمی‌کند، پس اولین آرگومان که جای this است می‌تواند null باشد."
+  },
+  {
+   "question": "کدام جمله دربارهٔ apply() درست است؟",
+   "options": [
+    "تابع تازه‌ای برمی‌گرداند",
+    "تابع را همان لحظه اجرا می‌کند",
+    "فقط روی آرایه‌ها کار می‌کند",
+    "بدون آرگومان اول کار نمی‌کند و خطا می‌دهد"
+   ],
+   "answer": 1,
+   "explanation": "apply() فوری اجرا می‌شود و تابع تازه‌ای نمی‌سازد؛ برای آن کار bind() وجود دارد."
+  },
+  {
+   "question": "اگر نداشته باشیم چه زمانی apply بهتر از call است؟",
+   "options": [
+    "وقتی آرگومان‌ها در آرایه هستند",
+    "وقتی تابع پارامتر ندارد",
+    "وقتی در حالت سخت‌گیرانه هستیم",
+    "هیچ‌وقت، همیشه call بهتر است"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید وقتی آرگومان‌ها از قبل داخل آرایه‌اند apply راحت‌تر است؛ اگر آرایه‌ای در کار نیست call خواناتر است."
+  }
+ ]
+}

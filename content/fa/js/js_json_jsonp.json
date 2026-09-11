@@ -1,0 +1,277 @@
+{
+ "slug": "js_json_jsonp",
+ "course": "js",
+ "order": 269,
+ "url": "/js/js_json_jsonp.asp",
+ "title": "JSONP",
+ "summary": "JSONP روشی قدیمی برای گرفتن داده از دامنه‌ای دیگر بدون شیء XMLHttpRequest است که به‌جای آن از تگ script استفاده می‌کند. در این درس می‌بینید چرا این روش کار می‌کند، فایل سرور نتیجه را چگونه داخل تابع می‌پیچد و چرا امروز fetch با CORS جانشین آن شده است.",
+ "objectives": [
+  "توضیح دهید JSONP چیست و از چه چیزی استفاده می‌کند",
+  "نقش تگ script و تابع کالبک در JSONP را بگویید",
+  "تگ script را به‌صورت پویا بسازید",
+  "دلیل قدیمی بودن JSONP و خطر امنیتی آن را بیان کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JSONP"
+  },
+  {
+   "type": "h2",
+   "text": "JSONP یک روش قدیمی (legacy) است."
+  },
+  {
+   "type": "p",
+   "text": "برنامه‌های مدرن معمولاً به‌جای آن از fetch() همراه با CORS استفاده می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "JSONP دادهٔ برگشتی را به‌عنوان JavaScript اجرا می‌کند و باید فقط با سرورهای مورد اعتماد به کار برود."
+  },
+  {
+   "type": "h2",
+   "text": "آشنایی با JSONP"
+  },
+  {
+   "type": "p",
+   "text": "JSONP روشی برای فرستادن دادهٔ JSON بدون درگیر شدن با مشکل بین دامنه‌ها است."
+  },
+  {
+   "type": "p",
+   "text": "JSONP از شیء XMLHttpRequest استفاده نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "به‌جایش از تگ <script> استفاده می‌کند."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JSONP مخفف JSON with Padding است."
+  },
+  {
+   "type": "p",
+   "text": "درخواست فایل از دامنه‌ای دیگر به‌خاطر سیاست بین دامنه‌ها می‌تواند مشکل ایجاد کند."
+  },
+  {
+   "type": "p",
+   "text": "درخواست یک اسکریپت بیرونی از دامنه‌ای دیگر این مشکل را ندارد."
+  },
+  {
+   "type": "p",
+   "text": "JSONP از همین مزیت استفاده می‌کند و فایل‌ها را با تگ script به‌جای شیء XMLHttpRequest درخواست می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<script src=\"demo_jsonp.php\">",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "فایل سرور"
+  },
+  {
+   "type": "p",
+   "text": "فایل روی سرور نتیجه را داخل یک فراخوانی تابع می‌پیچد:"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<?php\n$myJSON = '{ \"name\":\"John\", \"age\":30, \"city\":\"New York\" }';\n\necho \"myFunc(\".$myJSON.\");\";\n\n  ?>",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "نتیجه یک فراخوانی به تابعی به نام \"myFunc\" برمی‌گرداند که دادهٔ JSON را به‌عنوان پارامتر می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "مطمئن شوید که این تابع در سمت کلاینت وجود دارد."
+  },
+  {
+   "type": "h2",
+   "text": "تابع JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "تابعی به نام \"myFunc\" در سمت کلاینت قرار دارد و آمادهٔ کار با دادهٔ JSON است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function myFunc(myObj)\n  {\n  document.getElementById(\"demo\").innerHTML =\n  myObj.name;\n\n  }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjson_jsonp"
+  },
+  {
+   "type": "h2",
+   "text": "ساختن تگ script پویا"
+  },
+  {
+   "type": "p",
+   "text": "مثال بالا تابع \"myFunc\" را هنگام بارگذاری صفحه اجرا می‌کند، بسته به جایی که تگ script را گذاشته‌اید؛ که رضایت‌بخش نیست."
+  },
+  {
+   "type": "p",
+   "text": "تگ script باید فقط وقتی لازم است ساخته شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function clickButton() {\n  let s = document.createElement(\"script\");\n  s.src = \"demo_jsonp.php\";\n  document.body.appendChild(s);\n\n  }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjson_jsonp_create"
+  },
+  {
+   "type": "h2",
+   "text": "نتیجهٔ پویا در JSONP"
+  },
+  {
+   "type": "p",
+   "text": "مثال‌های بالا هنوز خیلی ایستا هستند."
+  },
+  {
+   "type": "p",
+   "text": "مثال را پویا کنید: JSON را به فایل php بفرستید و بگذارید فایل php بر اساس اطلاعاتی که می‌گیرد یک شیء JSON برگرداند."
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<?php\nheader(\"Content-Type: application/json; charset=UTF-8\");\n$obj =\n  json_decode($_GET[\"x\"], false);\n\n$conn = new mysqli(\"myServer\", \"myUser\", \"myPassword\", \"Northwind\");\n\n  $result = $conn->query(\"SELECT name FROM\n  \".$obj->$table.\" LIMIT \".$obj->$limit);\n$outp = array();\n\n  $outp = $result->fetch_all(MYSQLI_ASSOC);\n\necho \"myFunc(\".json_encode($outp).\")\";\n?>",
+   "caption": "فایل PHP"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح فایل PHP:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "درخواست را با تابع json_decode() در PHP به یک شیء تبدیل کنید.",
+    "به پایگاه داده دسترسی بگیرید و آرایه‌ای را با دادهٔ درخواستی پر کنید.",
+    "آرایه را به یک شیء اضافه کنید.",
+    "آرایه را با تابع json_encode() به JSON تبدیل کنید.",
+    "شیء برگشتی را داخل \"myFunc()\" بپیچید."
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const obj = { table: \"products\", limit: 10 };\n\nlet s = document.createElement(\"script\");\n\ns.src = \"jsonp_demo_db.php?x=\" + JSON.stringify(obj);\n\ndocument.body.appendChild(s);\n\nfunction myFunc(myObj) {\n\n  let txt = \"\";\n  for (let x in myObj)\n  {\n    txt += myObj[x].name + \"<br>\";\n\n  }\n  document.getElementById(\"demo\").innerHTML = txt;\n}",
+   "caption": "مثال JavaScript"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjson_jsonp_php"
+  },
+  {
+   "type": "h2",
+   "text": "تابع کالبک"
+  },
+  {
+   "type": "p",
+   "text": "وقتی روی فایل سرور کنترلی ندارید، چگونه کاری می‌کنید که فایل سرور تابع درست را صدا بزند؟"
+  },
+  {
+   "type": "p",
+   "text": "گاهی فایل سرور نام تابع کالبک را به‌عنوان پارامتر می‌پذیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let s = document.createElement(\"script\");\n\ns.src = \"jsonp_demo_db.php?callback=myDisplayFunction\";\n\ndocument.body.appendChild(s);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjson_jsonp_callback"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل php بسازید که خروجی‌اش myFunc({...}) باشد و آن را با تگ script در صفحه بارگذاری کنید.",
+   "hint": "فایل سرور باید داده را داخل فراخوانی تابع بپیچد، نه فقط JSON خام برگرداند."
+  },
+  {
+   "prompt": "تابع myFunc را در سمت کلاینت بسازید که داده را در یک عنصر نشان دهد و ببینید با بارگذاری صفحه اجرا می‌شود.",
+   "hint": "خروجی سرور، تابع سمت کلاینت را با دادهٔ JSON صدا می‌زند."
+  },
+  {
+   "prompt": "تگ script را با document.createElement بسازید و src آن را به فایل بدهید؛ ببینید چه تفاوتی با حالت ثابت دارد.",
+   "hint": "تگ پویا فقط وقتی ساخته می‌شود که به داده نیاز داشته باشید."
+  },
+  {
+   "prompt": "پارامتری به آدرس اضافه کنید که نام تابع کالبک را بفرستد و فایل سرور همان نام را در خروجی به کار ببرد.",
+   "hint": "مثلاً ?callback=myDisplayFunction؛ سرور باید نام دریافتی را جای myFunc بگذارد."
+  },
+  {
+   "prompt": "توضیح دهید چرا درس JSONP را روشی قدیمی می‌داند و چه جایگزینی پیشنهاد می‌کند.",
+   "hint": "چون داده را اجرا می‌کند و امنیتش به اعتماد به سرور وابسته است؛ fetch با CORS جایگزین مدرن است."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "JSONP به‌جای شیء XMLHttpRequest از چه چیزی استفاده می‌کند؟",
+   "options": [
+    "تگ <script>",
+    "تگ <img>",
+    "تگ <iframe>",
+    "localStorage"
+   ],
+   "answer": 0,
+   "explanation": "درس می‌گوید JSONP از XMLHttpRequest استفاده نمی‌کند و به‌جایش تگ <script> را به کار می‌برد."
+  },
+  {
+   "question": "JSONP بر چه پایه‌ای کار می‌کند؟",
+   "options": [
+    "درخواست فایل از دامنهٔ دیگر مشکل بین دامنه ندارد، ولی درخواست اسکریپت بیرونی این محدودیت را ندارد",
+    "مرورگر اجازهٔ درخواست از همهٔ دامنه‌ها را می‌دهد",
+    "JSONP محدودیت بین دامنه را دور می‌زند",
+    "JSONP فقط روی یک دامنه کار می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "درس توضیح می‌دهد درخواست اسکریپت بیرونی محدودیت بین دامنه را ندارد و JSONP از همین مزیت استفاده می‌کند."
+  },
+  {
+   "question": "فایل سرور JSONP نتیجه را چگونه برمی‌گرداند؟",
+   "options": [
+    "JSON خام",
+    "داخل یک فراخوانی تابع مثل myFunc(...)",
+    "به‌شکل HTML",
+    "به‌شکل یک فایل تصویری"
+   ],
+   "answer": 1,
+   "explanation": "درس می‌گوید فایل سرور نتیجه را داخل یک فراخوانی تابع می‌پیچد و نتیجه، صدا زدن تابع myFunc با دادهٔ JSON است."
+  },
+  {
+   "question": "چرا تگ script پویا بهتر از تگ ثابت در صفحه است؟",
+   "options": [
+    "چون فقط وقتی لازم است ساخته می‌شود",
+    "چون سریع‌تر دانلود می‌شود",
+    "چون محدودیت بین دامنه را دور می‌زند",
+    "چون داده را امن می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "با تگ ثابت، تابع هنگام بارگذاری صفحه اجرا می‌شود؛ تگ پویا را با createElement و appendChild در لحظهٔ نیاز می‌سازید."
+  },
+  {
+   "question": "برای پویا کردن درخواست JSONP چه پارامتری به سرور فرستاده می‌شود؟",
+   "options": [
+    "نام تابع کالبک",
+    "شناسهٔ کاربر",
+    "نام پایگاه داده",
+    "پسورد سرور"
+   ],
+   "answer": 0,
+   "explanation": "درس توضیح می‌دهد گاهی فایل سرور نام تابع کالبک را به‌عنوان پارامتر می‌گیرد و همان تابع را در خروجی صدا می‌زند."
+  }
+ ]
+}

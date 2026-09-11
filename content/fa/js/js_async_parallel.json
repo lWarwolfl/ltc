@@ -1,0 +1,409 @@
+{
+ "slug": "js_async_parallel",
+ "course": "js",
+ "order": 226,
+ "url": "/js/js_async_parallel.asp",
+ "title": "اجرای موازی کارهای ناهمگام",
+ "summary": "awaitها پشت سر هم اجرا می‌شوند، اما عملیات مستقل را می‌توان هم‌زمان شروع کرد. در این درس با Promise.all، allSettled، any و race آشنا می‌شوید، تفاوت شکست خوردن آن‌ها را می‌بینید و یاد می‌گیرید چرا fetch برای خطای 404 پرامیس را رد نمی‌کند.",
+ "objectives": [
+  "تشخیص دهید چه زمانی عملیات را پشت سر هم و چه زمانی موازی اجرا کنید",
+  "با Promise.all() چند عملیات مستقل را با هم اجرا کنید",
+  "فرق all، allSettled، any و race را توضیح دهید",
+  "دلیل رد نشدن پرامیس fetch روی خطای HTTP را بگویید و آن را مدیریت کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "اجرای موازی کارهای ناهمگام"
+  },
+  {
+   "type": "p",
+   "text": "دستور await تا تعیین‌تکلیف یک پرامیس صبر می‌کند و بعد ادامه می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "اگر چند عملیات ناهمگام به هم وابسته نباشند، انتظار یکی‌یکی برای آن‌ها ممکن است بیش از لازم کند باشد."
+  },
+  {
+   "type": "p",
+   "text": "به‌جای آن می‌توانید همهٔ عملیات را هم‌زمان شروع کنید و با هم منتظرشان بمانید."
+  },
+  {
+   "type": "h2",
+   "text": "عملیات پشت سر هم"
+  },
+  {
+   "type": "p",
+   "text": "وقتی هر عملیات به عملیات قبلی وابسته است، از چند دستور await استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// async function to load data\n\nasync function loadData() {\n\n  let response1 = await fetch(\"customer.json\");\n\n  let customer = await response1.json();\n\n  let response2 = await fetch(\"products.json\");\n\n  let products = await response2.json();\n\n  let text = \"\";\n\n  text += JSON.stringify(customer);\n\n  text += JSON.stringify(products);\n\n}\n\n// Call the async load function\n\nloadData();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_sequential"
+  },
+  {
+   "type": "h2",
+   "text": "متد response.json()"
+  },
+  {
+   "type": "p",
+   "text": "متد response.json() یکی از متدهای درونی Fetch API است."
+  },
+  {
+   "type": "p",
+   "text": "جریان خام پاسخ HTTP را می‌خواند، متن JSON را تجزیه می‌کند و در پایان یک شیء یا آرایهٔ کامل JavaScript تحویل می‌دهد که واقعاً در کدتان قابل استفاده است."
+  },
+  {
+   "type": "h2",
+   "text": "عملیات مستقل"
+  },
+  {
+   "type": "p",
+   "text": "اگر عملیات ناهمگام مستقل باشند، می‌توانند هم‌زمان شروع شوند."
+  },
+  {
+   "type": "p",
+   "text": "به این کار، اجرای موازی کارها می‌گویند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// async function to load data\n\nasync function loadData() {\n\n  let customerPromise = fetch(\"customer.json\");\n\n  let productsPromise = fetch(\"products.json\");\n\n  let customer = await customerPromise;\n\n  let products = await productsPromise;\n\n  let text = \"\";\n\n  text += JSON.stringify(customer);\n\n  text += JSON.stringify(products);\n\n}\n\n// Call the async load function\n\nloadData();",
+   "caption": "مثال ۱"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_parallel_1"
+  },
+  {
+   "type": "p",
+   "text": "هر سه دانلود بلافاصله شروع می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "دستورهای await فقط وقتی منتظر می‌مانند که به نتیجه نیاز باشد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// async function to load data\n\nasync function loadData() {\n\n  let customerPromise = fetch(\"customer.json\");\n\n  let productsPromise = fetch(\"products.json\");\n\n  let customer = await customerPromise;\n\n  let products = await productsPromise;\n\n  let text =\n\n  \"<h3>Customer</h3>\" +\n\n  customer.name + \", \" +\n\n  customer.city +\n\n  \"<h3>Products</h3>\" +\n\n  products[0].name + \", \" +\n\n  products[1].name + \", \" +\n\n  products[2].name;\n\n}\n\n// Call the async load function\n\nloadData();",
+   "caption": "مثال ۲"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_parallel_2"
+  },
+  {
+   "type": "h2",
+   "text": "متد Promise.all()"
+  },
+  {
+   "type": "p",
+   "text": "متد Promise.all() منتظر می‌ماند تا چند پرامیس تمام شوند."
+  },
+  {
+   "type": "p",
+   "text": "یک پرامیس واحد برمی‌گرداند که وقتی همهٔ پرامیس‌ها تحقق یافتند حل می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// async function to load data\n\nasync function loadData() {\n\n  let responses = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n}\n\n// Call the async load function\n\nloadData();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all"
+  },
+  {
+   "type": "h2",
+   "text": "خواندن پاسخ‌های JSON"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید Promise.all() را با response.json() ترکیب کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// async function to load data\n\nasync function loadData() {\n\n  let responses = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n  let data = await Promise.all(\n\n    responses.map(response => response.json())\n\n  );\n\n}\n\n// Call the async load function\n\nloadData();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_json"
+  },
+  {
+   "type": "h2",
+   "text": "خطاها در Promise.all()"
+  },
+  {
+   "type": "p",
+   "text": "اگر یکی از پرامیس‌ها رد شود، پرامیسی که Promise.all() برمی‌گرداند هم رد می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// async function to load data\n\nasync function loadData() {\n\n  try {\n\n    let data = await Promise.all([\n\n    fetch(\"missing1\"),\n\n    fetch(\"missing2\"),\n\n    fetch(\"missing3\")\n\n    ]);\n\n  }\n\n  catch(err) {\n\n    myDisplayer(err.message);\n\n  }\n\n}\n\n// Call the async load function\n\nloadData();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_error_1"
+  },
+  {
+   "type": "h3",
+   "text": "نکته"
+  },
+  {
+   "type": "p",
+   "text": "متد fetch() برای خطاهای HTTP مثل 404 Not Found پرامیس خود را رد نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "بلکه با یک شیء Response حل می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "برای اینکه Promise.all() روی خطاهای HTTP رد شود، مقدار response.ok را بررسی کنید و خودتان خطا پرتاب کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// async function to get file\n\nasync function getFile(url) {\n\n  const response = await fetch(url);\n\n  if (!response.ok) {\n\n    throw new Error(response.status + \" \" + response.statusText);\n\n  }\n\n  return response.text();\n\n}\n\n// async function to load data\n\nasync function loadData() {\n\n  try {\n\n    let data = await Promise.all([\n\n    getFile(\"missing1\"),\n\n    getFile(\"missing2\"),\n\n    getFile(\"missing3\")\n\n    ]);\n\n  }\n\n  catch(err) {\n\n    myDisplayer(err.message);\n\n  }\n\n}\n\n// Call the async load function\n\nloadData();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_error_2"
+  },
+  {
+   "type": "p",
+   "text": "مثال بالا هم Promise.all() و هم مدیریت خطای درست را نشان می‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "متد Promise.allSettled()"
+  },
+  {
+   "type": "p",
+   "text": "متد Promise.allSettled() صبر می‌کند تا همهٔ پرامیس‌ها تمام شوند."
+  },
+  {
+   "type": "p",
+   "text": "برخلاف Promise.all()، وقتی یک پرامیس رد شود متوقف نمی‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let results = await Promise.allSettled([\n\n  fetch(\"a.txt\"),\n\n  fetch(\"b.txt\"),\n\n  fetch(\"missing.txt\")\n]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "هر نتیجه یک وضعیت دارد: fulfilled یا rejected."
+  },
+  {
+   "type": "h2",
+   "text": "متد Promise.any()"
+  },
+  {
+   "type": "p",
+   "text": "متد Promise.any() اولین پرامیس تحقق‌یافته را برمی‌گرداند."
+  },
+  {
+   "type": "p",
+   "text": "پرامیس‌های ردشده نادیده گرفته می‌شوند، مگر اینکه همهٔ پرامیس‌ها رد شوند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let fastest = await Promise.any([\n\n  fetch(\"server1/data\"),\n\n  fetch(\"server2/data\"),\n\n  fetch(\"server3/data\")\n\n]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "متد Promise.race()"
+  },
+  {
+   "type": "p",
+   "text": "متد Promise.race() اولین پرامیسی را برمی‌گرداند که تعیین‌تکلیف شود."
+  },
+  {
+   "type": "p",
+   "text": "آن پرامیس اول می‌تواند تحقق یافته یا رد شده باشد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "let result = await Promise.race([\n\n  fetch(\"server1/data\"),\n\n  fetch(\"server2/data\")\n\n]);",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "کدام متد را به کار ببریم؟"
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "منتظر چه می‌ماند",
+     "کاربرد معمول"
+    ],
+    [
+     "متد Promise.all()",
+     "همه تحقق یابند",
+     "بارگذاری همه چیز"
+    ],
+    [
+     "متد Promise.allSettled()",
+     "همه تعیین‌تکلیف شوند",
+     "پذیرفتن شکست‌ها"
+    ],
+    [
+     "متد Promise.any()",
+     "اولین تحقق",
+     "سریع‌ترین پاسخ موفق"
+    ],
+    [
+     "متد Promise.race()",
+     "اولین تعیین‌تکلیف",
+     "تایم‌اوت و مسابقه"
+    ]
+   ]
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "متد",
+     "اگر یکی رد شود شکست می‌خورد؟",
+     "خروجی"
+    ],
+    [
+     "متد Promise.all()",
+     "بله",
+     "آرایه‌ای از مقدارها"
+    ],
+    [
+     "متد Promise.allSettled()",
+     "خیر",
+     "آرایه‌ای از شیءهای نتیجه"
+    ],
+    [
+     "متد Promise.any()",
+     "فقط اگر همه رد شوند",
+     "مقدار اولین پرامیس تحقق‌یافته"
+    ],
+    [
+     "متد Promise.race()",
+     "اگر اولین با رد شدن تعیین‌تکلیف شود",
+     "نتیجهٔ اولین پرامیس تعیین‌تکلیف‌شده"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خلاصه"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "وقتی یک عملیات به دیگری وابسته است، از awaitهای پشت سر هم استفاده کنید.",
+    "عملیات ناهمگام مستقل را هر وقت ممکن بود با هم شروع کنید.",
+    "وقتی همهٔ عملیات باید موفق شوند، از Promise.all() استفاده کنید.",
+    "وقتی همهٔ نتیجه‌ها را می‌خواهید، حتی اگر بعضی شکست بخورند، از Promise.allSettled() استفاده کنید.",
+    "وقتی به اولین نتیجهٔ موفق نیاز دارید، از Promise.any() استفاده کنید.",
+    "وقتی به اولین پرامیس تعیین‌تکلیف‌شده نیاز دارید، از Promise.race() استفاده کنید."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل parallel.html بسازید و دو درخواست مستقل fetch را هم‌زمان (بدون await پشت سر هم) شروع کنید و بعد نتیجه‌ها را با await بگیرید.",
+   "hint": "پرامیس‌ها را در متغیرهای جدا نگه دارید و بعد await کنید تا هر دو درخواست هم‌زمان شروع شده باشند."
+  },
+  {
+   "prompt": "همان دو درخواست را با دو await پشت سر هم بنویسید و زمان اجرای هر دو نسخه را در کنسول مقایسه کنید.",
+   "hint": "در نسخهٔ پشت سر هم، درخواست دوم تا تمام شدن اولی شروع نمی‌شود."
+  },
+  {
+   "prompt": "همان دو درخواست را با Promise.all() اجرا کنید و نتیجه‌ها را در یک آرایه چاپ کنید.",
+   "hint": "Promise.all() آرایه‌ای از پرامیس‌ها می‌گیرد و آرایه‌ای از نتیجه‌ها برمی‌گرداند."
+  },
+  {
+   "prompt": "یکی از آدرس‌های fetch را غلط بدهید و ببینید Promise.all() چه پرتاب می‌کند؛ بعد همان مثال را با Promise.allSettled() بنویسید.",
+   "hint": "allSettled وقتی همهٔ پرامیس‌ها تمام شوند برمی‌گردد و هر نتیجه وضعیت fulfilled یا rejected دارد."
+  },
+  {
+   "prompt": "یکی از دو آدرس را طوری انتخاب کنید که سریع‌تر پاسخ دهد و با Promise.race() ببینید کدام نتیجه اول می‌رسد.",
+   "hint": "race اولین پرامیسی را برمی‌گرداند که تعیین‌تکلیف شود؛ می‌تواند رد شده باشد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام متد وقتی شکست می‌خورد که تنها یکی از پرامیس‌ها رد شود؟",
+   "options": [
+    "Promise.allSettled()",
+    "Promise.any()",
+    "Promise.all()",
+    "Promise.race()"
+   ],
+   "answer": 2,
+   "explanation": "Promise.all() وقتی یک پرامیس رد شود بلافاصله رد می‌شود؛ allSettled منتظر همه می‌ماند و any فقط وقتی رد می‌شود که همه رد شوند."
+  },
+  {
+   "question": "برای گرفتن اولین نتیجهٔ موفق کدام متد مناسب است؟",
+   "options": [
+    "Promise.race()",
+    "Promise.any()",
+    "Promise.all()",
+    "Promise.allSettled()"
+   ],
+   "answer": 1,
+   "explanation": "Promise.any() اولین پرامیس تحقق‌یافته را برمی‌گرداند و پرامیس‌های ردشده را نادیده می‌گیرد؛ race اولین پرامیس تعیین‌تکلیف‌شده را می‌دهد و ممکن است رد شده باشد."
+  },
+  {
+   "question": "وقتی عملیات‌ها به هم وابسته نیستند، بهترین کار چیست؟",
+   "options": [
+    "استفاده از چند await پشت سر هم",
+    "شروع هم‌زمان آن‌ها و انتظار با هم",
+    "اجرای آن‌ها با حلقه",
+    "لغو کردن آن‌ها"
+   ],
+   "answer": 1,
+   "explanation": "عملیات مستقل را می‌توان هم‌زمان شروع کرد و با هم منتظرشان ماند؛ اجرای پشت سر هم فقط وقتی لازم است که هر مرحله به نتیجهٔ مرحلهٔ قبل نیاز داشته باشد."
+  },
+  {
+   "question": "متد fetch() برای خطای HTTP مثل 404 Not Found چه می‌کند؟",
+   "options": [
+    "پرامیس را رد می‌کند",
+    "پرامیس را با یک شیء Response حل می‌کند",
+    "خطای نحوی می‌دهد",
+    "درخواست را دوباره می‌فرستد"
+   ],
+   "answer": 1,
+   "explanation": "fetch() برای خطاهای HTTP پرامیس را رد نمی‌کند و با شیء Response حل می‌شود؛ برای رد شدن باید خودتان response.ok را بررسی کنید و خطا پرتاب کنید."
+  },
+  {
+   "question": "Promise.allSettled() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "تنها مقدار اولین پرامیس موفق",
+    "آرایه‌ای از نتیجه‌ها که هر کدام وضعیت fulfilled یا rejected دارد",
+    "هیچ مقداری",
+    "شیء Response بدون وضعیت"
+   ],
+   "answer": 1,
+   "explanation": "allSettled صبر می‌کند تا همهٔ پرامیس‌ها تمام شوند و برای هر کدام نتیجه‌ای با وضعیت مشخص برمی‌گرداند؛ به همین دلیل وقتی می‌خواهید شکست‌ها را هم بپذیرید مناسب است."
+  }
+ ]
+}

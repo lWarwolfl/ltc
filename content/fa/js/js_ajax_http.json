@@ -1,0 +1,389 @@
+{
+ "slug": "js_ajax_http",
+ "course": "js",
+ "order": 257,
+ "url": "/js/js_ajax_http.asp",
+ "title": "AJAX و شیء XMLHttpRequest",
+ "summary": "XMLHttpRequest شیء اصلی AJAX است که در پشت صحنه با سرور داده تبادل می‌کند. در این درس شیء را می‌سازید، تابع کالبک تعریف می‌کنید، با open و send درخواست می‌فرستید و با onload و onreadystatechange پاسخ را می‌خوانید.",
+ "objectives": [
+  "چهار گام اصلی کار با XMLHttpRequest را به ترتیب نام ببرید",
+  "یک شیء XMLHttpRequest بسازید و درخواست GET و POST بفرستید",
+  "با onload و onreadystatechange پاسخ را مدیریت کنید",
+  "معنای readyState و status را تشخیص دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "AJAX و شیء XMLHttpRequest"
+  },
+  {
+   "type": "p",
+   "text": "سنگ بنای AJAX شیء XMLHttpRequest است."
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "یک شیء XMLHttpRequest بسازید",
+    "یک تابع کالبک تعریف کنید",
+    "شیء XMLHttpRequest را باز کنید",
+    "درخواستی به سرور بفرستید"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "شیء XMLHttpRequest"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ مرورگرهای مدرن از شیء XMLHttpRequest پشتیبانی می‌کنند."
+  },
+  {
+   "type": "p",
+   "text": "شیء XMLHttpRequest می‌تواند در پشت صحنه با سرور وب داده تبادل کند. یعنی می‌توان بخشی از یک صفحهٔ وب را بدون بارگذاری دوبارهٔ کل صفحه به‌روز کرد."
+  },
+  {
+   "type": "h2",
+   "text": "ساختن یک شیء XMLHttpRequest"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ مرورگرهای مدرن (Chrome، Firefox، IE، Edge، Safari، Opera) شیء XMLHttpRequest توکار دارند."
+  },
+  {
+   "type": "p",
+   "text": "نحو ساختن یک شیء XMLHttpRequest:"
+  },
+  {
+   "type": "p",
+   "text": "variable = new XMLHttpRequest();"
+  },
+  {
+   "type": "h2",
+   "text": "تعریف تابع کالبک"
+  },
+  {
+   "type": "p",
+   "text": "تابع کالبک تابعی است که به‌عنوان پارامتر به تابعی دیگر داده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "در این حالت، تابع کالبک باید کدی داشته باشد که وقتی پاسخ آماده شد اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "xhttp.onload = function() {\n   // وقتی پاسخ آماده شد چه کار کنیم\n}"
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن درخواست"
+  },
+  {
+   "type": "p",
+   "text": "برای فرستادن درخواست به سرور می‌توانید از متدهای open() و send() شیء XMLHttpRequest استفاده کنید:"
+  },
+  {
+   "type": "p",
+   "text": "xhttp.open(\"GET\", \"ajax_info.txt\");\nxhttp.send();"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an XMLHttpRequest object\n\nconst xhttp = new XMLHttpRequest();\n\n// Define a callback function\n\nxhttp.onload = function() {\n\n  // Here you can use the Data\n\n}\n\n// Send a request\n\nxhttp.open(\"GET\", \"ajax_info.txt\");\n\nxhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_xmlhttp"
+  },
+  {
+   "type": "h2",
+   "text": "دسترسی بین دامنه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "به دلایل امنیتی، مرورگرهای مدرن دسترسی بین دامنه‌ها را مجاز نمی‌دانند."
+  },
+  {
+   "type": "p",
+   "text": "یعنی هم صفحهٔ وب و هم فایل XMLی که می‌خواهد بارگذاری کند باید روی یک سرور باشند."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ مثال‌های W3Schools فایل‌های XMLی را باز می‌کنند که روی دامنهٔ W3Schools قرار دارند."
+  },
+  {
+   "type": "p",
+   "text": "اگر می‌خواهید مثال بالا را در یکی از صفحه‌های خودتان به کار ببرید، فایل‌های XMLی که بارگذاری می‌کنید باید روی سرور خودتان باشند."
+  },
+  {
+   "type": "h2",
+   "text": "متدهای شیء XMLHttpRequest"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "متد",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "new XMLHttpRequest()",
+     "یک شیء XMLHttpRequest جدید می‌سازد"
+    ],
+    [
+     "abort()",
+     "درخواست جاری را لغو می‌کند"
+    ],
+    [
+     "getAllResponseHeaders()",
+     "اطلاعات سرایندها را برمی‌گرداند"
+    ],
+    [
+     "getResponseHeader()",
+     "اطلاعات یک سرایند مشخص را برمی‌گرداند"
+    ],
+    [
+     "open(method, url, async, user, psw)",
+     "مشخصات درخواست را تعیین می‌کند\nmethod: نوع درخواست، GET یا POST\nurl: محل فایل\nasync: true (ناهم‌زمان) یا false (هم‌زمان)\nuser: نام کاربری اختیاری\npsw: گذرواژهٔ اختیاری"
+    ],
+    [
+     "send()",
+     "درخواست را به سرور می‌فرستد؛ برای درخواست‌های GET به کار می‌رود"
+    ],
+    [
+     "send(string)",
+     "درخواست را به سرور می‌فرستد؛ برای درخواست‌های POST به کار می‌رود"
+    ],
+    [
+     "setRequestHeader()",
+     "یک جفت نام/مقدار به سرایندهای ارسالی اضافه می‌کند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت‌های شیء XMLHttpRequest"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خصوصیت",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "onload",
+     "تابعی را تعریف می‌کند که وقتی درخواست دریافت (بارگذاری) شد صدا زده شود"
+    ],
+    [
+     "onreadystatechange",
+     "تابعی را تعریف می‌کند که وقتی مقدار readyState تغییر کند صدا زده شود"
+    ],
+    [
+     "readyState",
+     "وضعیت XMLHttpRequest را نگه می‌دارد.\n۰: درخواست آغاز نشده\n۱: ارتباط با سرور برقرار شده\n۲: درخواست دریافت شده\n۳: درخواست در حال پردازش است\n۴: درخواست تمام شده و پاسخ آماده است"
+    ],
+    [
+     "responseText",
+     "دادهٔ پاسخ را به‌شکل رشته برمی‌گرداند"
+    ],
+    [
+     "responseXML",
+     "دادهٔ پاسخ را به‌شکل دادهٔ XML برمی‌گرداند"
+    ],
+    [
+     "status",
+     "شمارهٔ وضعیت یک درخواست را برمی‌گرداند\n۲۰۰: \"OK\"؛ ۴۰۳: \"Forbidden\"؛ ۴۰۴: \"Not Found\"\nبرای فهرست کامل به مرجع Http Messages بروید"
+    ],
+    [
+     "statusText",
+     "متن وضعیت را برمی‌گرداند (مثلاً \"OK\" یا \"Not Found\")"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت onload"
+  },
+  {
+   "type": "p",
+   "text": "با شیء XMLHttpRequest می‌توانید تابع کالبکی تعریف کنید که وقتی درخواست پاسخ گرفت اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "این تابع در خصوصیت onload شیء XMLHttpRequest تعریف می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "xhttp.onload = function() {\n\n  document.getElementById(\"demo\").innerHTML = this.responseText;\n\n }\n\n xhttp.open(\"GET\", \"ajax_info.txt\");\n\n xhttp.send();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_first"
+  },
+  {
+   "type": "h2",
+   "text": "چند تابع کالبک"
+  },
+  {
+   "type": "p",
+   "text": "اگر در یک وب‌سایت بیش از یک کار AJAX دارید، بهتر است یک تابع برای اجرای شیء XMLHttpRequest بسازید و برای هر کار AJAX یک تابع کالبک جدا."
+  },
+  {
+   "type": "p",
+   "text": "فراخوانی تابع باید شامل آدرس URL و نام تابعی باشد که وقتی پاسخ آماده شد صدا زده شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "loadDoc(\"url-1\", myFunction1);\n\nloadDoc(\"url-2\", myFunction2);\n\nfunction loadDoc(url, cFunction) {\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onload = function() {cFunction(this);}\n\n  xhttp.open(\"GET\", url);\n\n  xhttp.send();\n\n}\n\nfunction myFunction1(xhttp) {\n\n  // action goes here\n\n}\n\nfunction myFunction2(xhttp) {\n\n  // action goes here\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت onreadystatechange"
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت readyState وضعیت XMLHttpRequest را نگه می‌دارد."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت onreadystatechange تابع کالبکی را تعریف می‌کند که وقتی readyState تغییر کند اجرا شود."
+  },
+  {
+   "type": "p",
+   "text": "خصوصیت‌های status و statusText وضعیت شیء XMLHttpRequest را نگه می‌دارند."
+  },
+  {
+   "type": "table",
+   "headers": [
+    "خصوصیت",
+    "توضیح"
+   ],
+   "rows": [
+    [
+     "onreadystatechange",
+     "تابعی را تعریف می‌کند که وقتی مقدار readyState تغییر کند صدا زده شود"
+    ],
+    [
+     "readyState",
+     "وضعیت XMLHttpRequest را نگه می‌دارد.\n۰: درخواست آغاز نشده\n۱: ارتباط با سرور برقرار شده\n۲: درخواست دریافت شده\n۳: درخواست در حال پردازش است\n۴: درخواست تمام شده و پاسخ آماده است"
+    ],
+    [
+     "status",
+     "۲۰۰: \"OK\"؛ ۴۰۳: \"Forbidden\"؛ ۴۰۴: \"Page not found\"\nبرای فهرست کامل به مرجع Http Messages بروید"
+    ],
+    [
+     "statusText",
+     "متن وضعیت را برمی‌گرداند (مثلاً \"OK\" یا \"Not Found\")"
+    ]
+   ]
+  },
+  {
+   "type": "p",
+   "text": "تابع onreadystatechange هر بار که readyState تغییر کند صدا زده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "وقتی readyState برابر ۴ و status برابر ۲۰۰ باشد، پاسخ آماده است:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "function loadDoc() {\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onreadystatechange = function() {\n\n    if (this.readyState == 4 && this.status == 200) {\n\n        document.getElementById(\"demo\").innerHTML =\n\n        this.responseText;\n\n      }\n\n  };\n\n  xhttp.open(\"GET\", \"ajax_info.txt\");\n\n  xhttp.send();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_onreadystage"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "رویداد onreadystatechange چهار بار (۱ تا ۴) فعال می‌شود، یک بار برای هر تغییر readyState."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل ajax.html بسازید، یک شیء XMLHttpRequest بسازید و با open و send یک فایل متنی محلی را بخوانید و محتوایش را در یک div بگذارید.",
+   "hint": "متد open سه آرگومان اصلی دارد: نوع درخواست، آدرس فایل و async؛ بعد send را صدا بزنید."
+  },
+  {
+   "prompt": "به‌جای onload از onreadystatechange استفاده کنید و پاسخ را فقط وقتی readyState برابر ۴ و status برابر ۲۰۰ است نمایش دهید.",
+   "hint": "onreadystatechange در هر تغییر readyState صدا زده می‌شود، پس باید هر دو شرط را بررسی کنید."
+  },
+  {
+   "prompt": "یک تابع loadDoc با پارامتر url بسازید که هم آدرس و هم تابع کالبک را بگیرد و دو بخش مختلف صفحه را با آن پر کنید.",
+   "hint": "یک تابع مشترک برای ساخت درخواست و برای هر کار AJAX یک تابع کالبک جدا."
+  },
+  {
+   "prompt": "آدرس فایلی از یک دامنهٔ دیگر را امتحان کنید و خطای کنسول را دربارهٔ دسترسی بین دامنه‌ها بخوانید.",
+   "hint": "مرورگر اجازه نمی‌دهد صفحه و فایل بارگذاری‌شده روی دو دامنهٔ مختلف باشند."
+  },
+  {
+   "prompt": "روی یک شیء XMLHttpRequest متد abort را وسط درخواست صدا بزنید و نتیجه را ببینید.",
+   "hint": "abort درخواست جاری را لغو می‌کند و کالبک دیگر با پاسخ کامل اجرا نمی‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "ترتیب درست کار با XMLHttpRequest کدام است؟",
+   "options": [
+    "send، open، ساختن شیء",
+    "ساختن شیء، تعریف کالبک، open، send",
+    "open، send، تعریف کالبک، ساختن شیء",
+    "تعریف کالبک، send، ساختن شیء، open"
+   ],
+   "answer": 1,
+   "explanation": "فهرست درس همین ترتیب است: ساختن شیء، تعریف تابع کالبک، باز کردن با open و فرستادن با send."
+  },
+  {
+   "question": "برای درخواست POST کدام متد و با چه آرگومانی به کار می‌رود؟",
+   "options": [
+    "send() بدون آرگومان",
+    "send(string) با داده",
+    "open() تنها",
+    "setRequestHeader() تنها"
+   ],
+   "answer": 1,
+   "explanation": "send() برای GET است و send(string) برای POST، چون داده را باید همراه درخواست بفرستید."
+  },
+  {
+   "question": "مقدار readyState برابر ۴ چه معنایی دارد؟",
+   "options": [
+    "ارتباط با سرور برقرار شده",
+    "درخواست دریافت شده",
+    "درخواست تمام شده و پاسخ آماده است",
+    "درخواست آغاز نشده"
+   ],
+   "answer": 2,
+   "explanation": "روی جدول درس: ۰ آغاز نشده، ۱ ارتباط برقرار، ۲ دریافت، ۳ در حال پردازش و ۴ تمام‌شده با پاسخ آماده."
+  },
+  {
+   "question": "کالبک onload چه زمانی اجرا می‌شود؟",
+   "options": [
+    "وقتی درخواست ساخته می‌شود",
+    "وقتی پاسخ درخواست دریافت می‌شود",
+    "وقتی open صدا زده می‌شود",
+    "هر بار تغییر readyState"
+   ],
+   "answer": 1,
+   "explanation": "onload مخصوص لحظهٔ دریافت پاسخ است؛ برای هر تغییر readyState باید onreadystatechange را به کار برد."
+  },
+  {
+   "question": "چرا مثال‌های درس فقط فایل‌های روی دامنهٔ خودشان را باز می‌کنند؟",
+   "options": [
+    "چون مرورگرها به دلایل امنیتی دسترسی بین دامنه‌ها را نمی‌دهند",
+    "چون XML فقط روی یک دامنه کار می‌کند",
+    "چون XMLHttpRequest در دامنه‌های دیگر خطا می‌دهد و پشتیبانی نمی‌شود",
+    "چون سرور W3Schools اجازه نمی‌دهد"
+   ],
+   "answer": 0,
+   "explanation": "هم صفحهٔ وب و هم فایل XML باید روی یک سرور باشند؛ این محدودیت امنیتی مرورگر برای دسترسی بین دامنه‌ها است."
+  }
+ ]
+}

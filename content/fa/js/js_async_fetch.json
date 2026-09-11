@@ -1,0 +1,443 @@
+{
+ "slug": "js_async_fetch",
+ "course": "js",
+ "order": 228,
+ "url": "/js/js_async_fetch.asp",
+ "title": "Fetch API ناهمگام",
+ "summary": "Fetch API به JavaScript اجازه می‌دهد منابع را از سرور دانلود کند و دانلود در پس‌زمینه پیش می‌رود. در این درس فایل متنی و JSON می‌گیرید، خصوصیت‌های ok، status و url را می‌خوانید و یاد می‌گیرید چرا خطای 404 پرامیس را رد نمی‌کند.",
+ "objectives": [
+  "با fetch() فایل متنی و JSON را ناهمگام بگیرید",
+  "خصوصیت‌های ok، status و url را در شیء Response بررسی کنید",
+  "چند منبع مستقل را موازی دانلود کنید",
+  "دلیل رد نشدن پرامیس fetch روی خطاهای HTTP را توضیح دهید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Fetch API ناهمگام"
+  },
+  {
+   "type": "p",
+   "text": "Fetch API به JavaScript اجازه می‌دهد منابع را از یک وب‌سرور دانلود کند."
+  },
+  {
+   "type": "p",
+   "text": "با آن می‌توان فایل‌های متنی، دادهٔ JSON، تصویرها و بسیاری از انواع دیگر منابع را بارگذاری کرد."
+  },
+  {
+   "type": "p",
+   "text": "این دانلود ناهمگام است."
+  },
+  {
+   "type": "p",
+   "text": "JavaScript می‌تواند در حین انتظار برای پاسخ سرور به اجرا ادامه دهد."
+  },
+  {
+   "type": "p",
+   "text": "متد fetch() پرامیسی برمی‌گرداند که با یک شیء Response حل می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "گرفتن یک فایل متنی"
+  },
+  {
+   "type": "p",
+   "text": "ساده‌ترین استفاده از fetch() دانلود یک فایل متنی است."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(await response.text());\n\n}\n\n// Call the async function\n\nloadText(\"demo.txt\");",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "html",
+   "text": "<p>The Fetch API interface allows web browser to make HTTP requests to web servers.</p>\n<p>If you use the XMLHttpRequest Object, Fetch can do the same in a simpler way.</p>",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_text"
+  },
+  {
+   "type": "h2",
+   "text": "شیء Response"
+  },
+  {
+   "type": "p",
+   "text": "متد fetch() پرامیسی برمی‌گرداند که با یک شیء Response حل می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_return"
+  },
+  {
+   "type": "p",
+   "text": "شیء Response اطلاعاتی دربارهٔ پاسخ سرور در خود دارد."
+  },
+  {
+   "type": "table",
+   "headers": [],
+   "rows": [
+    [
+     "خصوصیت / متد",
+     "توضیح"
+    ],
+    [
+     "ok",
+     "اگر درخواست موفق باشد، true."
+    ],
+    [
+     "status",
+     "کد وضعیت HTTP."
+    ],
+    [
+     "statusText",
+     "پیام وضعیت HTTP."
+    ],
+    [
+     "text()",
+     "پاسخ را به شکل متن می‌خواند."
+    ],
+    [
+     "json()",
+     "پاسخ را به شکل JSON می‌خواند."
+    ],
+    [
+     "blob()",
+     "پاسخ را به شکل دادهٔ دودویی می‌خواند."
+    ],
+    [
+     "bytes()",
+     "پاسخ را به شکل بایت می‌خواند."
+    ],
+    [
+     "arrayBuffer()",
+     "پاسخ را به شکل ArrayBuffer می‌خواند"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت ok"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.ok);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_return_ok"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت status"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.status);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_return_status"
+  },
+  {
+   "type": "h2",
+   "text": "خصوصیت url"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response.url);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_return_url"
+  },
+  {
+   "type": "h2",
+   "text": "گرفتن JSON"
+  },
+  {
+   "type": "p",
+   "text": "متد json() پاسخ JSON را به یک شیء JavaScript تبدیل می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadCustomer() {\n\n  const response = await fetch(\"customer.json\");\n\n  const customer = await response.json();\n\n  myDisplayer(customer.name);\n\n}\n\n// Call the async function\n\nloadCustomer();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_json"
+  },
+  {
+   "type": "h2",
+   "text": "بارگذاری چند فایل"
+  },
+  {
+   "type": "p",
+   "text": "دانلودهای مستقل می‌توانند موازی اجرا شوند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download files\n\nasync function loadData() {\n\n  const [customerResponse, productsResponse, newsResponse] = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n  const customer = await customerResponse.json();\n\n  const products = await productsResponse.json();\n\n  const news = await newsResponse.json();\n\n  myDisplayer(\"Custome name: \" + customer.name);\n\n  myDisplayer(products.length + \" products\");\n\n  myDisplayer(news.length + \" news items\");\n\n}\n\n// Call the async function\n\nloadData();",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_parallel"
+  },
+  {
+   "type": "h2",
+   "text": "بررسی خطاها"
+  },
+  {
+   "type": "p",
+   "text": "fetch() وقتی سرور پاسخ دهد حل می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "خطای HTTP مثل 404 (Not Found) پرامیس را رد نمی‌کند."
+  },
+  {
+   "type": "p",
+   "text": "به‌جای آن، خصوصیت ok را بررسی کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  if (!response.ok) {\n\n    throw new Error(response.status + \" \" + response.statusText);\n\n  }\n\n  return await response.text();\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_errors"
+  },
+  {
+   "type": "h2",
+   "text": "مدیریت خطاها"
+  },
+  {
+   "type": "p",
+   "text": "برای مدیریت خطاها از try ... catch استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  try {\n\n    const response = await fetch(file);\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP Error \" + response.status);;\n\n    }\n\n    myDisplayer(await response.text();\n\n  } catch(err) {\n\n    myDisplayer(err.message);\n\n  }\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Call the async function\n\nloadText(\"fetch.txt\");",
+   "caption": "امتحان بدون خطا"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_try_catch"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Call the async function\n\nloadText(\"missing.txt\");",
+   "caption": "امتحان با خطا"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_fetch_try_catch_error"
+  },
+  {
+   "type": "h2",
+   "text": "مهم: خطاهای HTTP"
+  },
+  {
+   "type": "p",
+   "text": "یک اشتباه رایج تازه‌کارها این است که انتظار دارند fetch روی خطاهای HTTP مثل 404 یا 500 شکست بخورد."
+  },
+  {
+   "type": "p",
+   "text": "fetch فقط روی خطاهای شبکه رد می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "پاسخ 404 یک پرامیس ردشده نیست."
+  },
+  {
+   "type": "p",
+   "text": "باید response.ok را بررسی کنید."
+  },
+  {
+   "type": "p",
+   "text": "مثال بالا خطاهای HTTP را درست مدیریت می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "خلاصه"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "متد fetch() منابع را از یک سرور دانلود می‌کند.",
+    "fetch() پرامیسی برمی‌گرداند که با یک شیء Response حل می‌شود.",
+    "برای خواندن پاسخ‌های متنی از text() استفاده کنید.",
+    "برای خواندن پاسخ‌های JSON از json() استفاده کنید.",
+    "برای دانلود موازی چند منبع از Promise.all() استفاده کنید.",
+    "برای تشخیص خطاهای HTTP، response.ok را بررسی کنید.",
+    "برای مدیریت خطاها از try...catch استفاده کنید."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "خطاهای رایج در fetch"
+  },
+  {
+   "type": "p",
+   "text": "فراموش کردن await به شما به‌جای داده، یک پرامیس می‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = response.json();\n\n  myDisplayer(data);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "p",
+   "text": "این کد یک پرامیس را چاپ می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "برای گرفتن JSON باید از await استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  myDisplayer(data);\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "h2",
+   "text": "نکتهٔ اشکال‌زدایی"
+  },
+  {
+   "type": "p",
+   "text": "بیشتر باگ‌های fetch، باگ JavaScript نیستند."
+  },
+  {
+   "type": "p",
+   "text": "مشکل مسیر و پاسخ‌اند."
+  },
+  {
+   "type": "p",
+   "text": "اگر fetch کار نمی‌کند، اول کنسول را ببینید."
+  },
+  {
+   "type": "p",
+   "text": "بعد تب Network را بررسی کنید."
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "آیا مسیر فایل درست است.",
+    "آیا کد وضعیت 200 است.",
+    "آیا پاسخ JSON است."
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک فایل متنی کوچک بسازید و با یک تابع async و await fetch آن را بخوانید؛ متن را در کنسول چاپ کنید.",
+   "hint": "بعد از await fetch باید await response.text() هم بنویسید تا متن بگیرید."
+  },
+  {
+   "prompt": "در همان کد مقدار response.ok و response.status و response.url را چاپ کنید و برای یک فایل ناموجود ببینید چه مقادیری می‌گیرید.",
+   "hint": "برای فایل ناموجود ok برابر false و status برابر 404 می‌شود، ولی خطا پرتاب نمی‌شود."
+  },
+  {
+   "prompt": "یک فایل JSON بسازید و با json() آن را به شیء JavaScript تبدیل کنید؛ یکی از خصوصیت‌هایش را در صفحه نمایش دهید.",
+   "hint": "متد json() پاسخ JSON را به شیء JavaScript تبدیل می‌کند."
+  },
+  {
+   "prompt": "دو فایل مستقل را با Promise.all() موازی بگیرید و نتیجه‌ها را با هم چاپ کنید.",
+   "hint": "Promise.all() آرایه‌ای از پرامیس‌ها می‌گیرد و بعد از تمام شدن همه، آرایه‌ای از نتیجه‌ها می‌دهد."
+  },
+  {
+   "prompt": "در کد خود await را از جلوی fetch بردارید و خروجی کنسول را ببینید؛ توضیح دهید چرا پرامیس چاپ می‌شود.",
+   "hint": "بدون await، خود پرامیس به متغیر می‌رود و دادهٔ دانلودشده به دست نمی‌آید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "متد fetch() چه چیزی برمی‌گرداند؟",
+   "options": [
+    "متن پاسخ به شکل رشته",
+    "پرامیسی که با یک شیء Response حل می‌شود",
+    "کد وضعیت HTTP",
+    "هیچ مقداری تا پایان دانلود"
+   ],
+   "answer": 1,
+   "explanation": "fetch() بلافاصله یک پرامیس برمی‌گرداند؛ وقتی سرور پاسخ داد این پرامیس با یک شیء Response حل می‌شود که کد وضعیت و متدهای خواندن پاسخ را در خود دارد."
+  },
+  {
+   "question": "برای خواندن پاسخ JSON از کدام متد استفاده می‌کنیم؟",
+   "options": [
+    "text()",
+    "json()",
+    "blob()",
+    "status"
+   ],
+   "answer": 1,
+   "explanation": "متد json() پاسخ را می‌خواند و به شیء یا آرایهٔ JavaScript تبدیل می‌کند؛ text() فقط رشته می‌دهد و status کد وضعیت است."
+  },
+  {
+   "question": "fetch() روی خطای HTTP مثل 404 چه می‌کند؟",
+   "options": [
+    "پرامیس را رد می‌کند",
+    "کد را متوقف می‌کند",
+    "پرامیس را با یک شیء Response حل می‌کند و باید ok را بررسی کنید",
+    "درخواست را دوباره می‌فرستد"
+   ],
+   "answer": 2,
+   "explanation": "fetch فقط روی خطاهای شبکه رد می‌شود؛ خطای HTTP مثل 404 یک پاسخ معتبر است، پس باید response.ok را بررسی کنید و خودتان خطا پرتاب کنید."
+  },
+  {
+   "question": "اگر await را از جلوی fetch فراموش کنیم چه اتفاقی می‌افتد؟",
+   "options": [
+    "کد خطای نحوی می‌دهد",
+    "به‌جای داده، مقدار پرامیس را می‌گیریم و چاپ می‌کنیم",
+    "مرورگر خودش await را اضافه می‌کند",
+    "پاسخ خالی برمی‌گردد"
+   ],
+   "answer": 1,
+   "explanation": "fetch پرامیس برمی‌گرداند؛ بدون await آن پرامیس در متغیر می‌ماند و در کنسول هم به‌جای داده یک Promise چاپ می‌شود."
+  },
+  {
+   "question": "برای دانلود موازی چند فایل مستقل کدام راه درست است؟",
+   "options": [
+    "چند await پشت سر هم",
+    "استفاده از Promise.all() روی پرامیس‌های fetch",
+    "استفاده از forEach با await",
+    "افزودن setTimeout بین درخواست‌ها"
+   ],
+   "answer": 1,
+   "explanation": "Promise.all() همهٔ پرامیس‌ها را هم‌زمان شروع می‌کند و منتظر نتیجهٔ همه می‌ماند؛ awaitهای پشت سر هم درخواست‌ها را یکی‌یکی و کند اجرا می‌کنند."
+  }
+ ]
+}

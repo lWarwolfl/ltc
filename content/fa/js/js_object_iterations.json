@@ -1,0 +1,401 @@
+{
+ "slug": "js_object_iterations",
+ "course": "js",
+ "order": 213,
+ "url": "/js/js_object_iterations.asp",
+ "title": "پیمایش شیء‌ها در JavaScript",
+ "summary": "برای پیمایش شیء‌ها چند متد آماده داریم: Object.keys و Object.values و Object.entries و Object.fromEntries و Object.groupBy. در این درس هر کدام را می‌بینید، یاد می‌گیرید شیء را به Map تبدیل کنید و با حلقهٔ for...in روی خصوصیت‌ها بگردید.",
+ "objectives": [
+  "کلید‌ها و مقدار‌ها و جفت‌های یک شیء را بگیرید",
+  "با Object.entries روی شیء حلقه بزنید",
+  "شیء را به Map تبدیل کنید",
+  "با Object.groupBy عنصر‌ها را گروه‌بندی کنید"
+ ],
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پیمایش شیء‌ها در JavaScript"
+  },
+  {
+   "type": "h2",
+   "text": "متد‌های کلی"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Copies properties from a source object to a target object\n\nObject.assign(target, source)\n\n// Creates an object from an existing object\n\nObject.create(object)\n\n// Returns an array of the key/value pairs of an object\n\nObject.entries(object)\n\n// Creates an object from a list of keys/values\n\nObject.fromEntries()\n\n// Returns an array of the keys of an object\n\nObject.keys(object)\n\n// Returns an array of the property values of an object\n\nObject.values(object)\n\n// Groups object elements according to a function\n\nObject.groupBy(object, callback)",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.assign() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.assign() خصوصیت‌ها را از یک یا چند شیء مبدأ به یک شیء مقصد کپی می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create Target Object\n\nconst person1 = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Create Source Object\n\nconst person2 = {firstName: \"Anne\",lastName: \"Smith\"};\n\n// Assign Source to Target\n\nObject.assign(person1, person2);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_assign"
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.entries() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "‏ECMAScript 2017 متد Object.entries() را به شیء‌ها اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد Object.entries() آرایه‌ای از جفت‌های کلید و مقدار یک شیء برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.entries(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries"
+  },
+  {
+   "type": "p",
+   "text": "با Object.entries() استفاده از شیء‌ها در حلقه ساده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nlet text = \"\";\n\nfor (let [fruit, value] of Object.entries(fruits)) {\n\n  text += fruit + \": \" + value + \"<br>\";\n\n}",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_loop"
+  },
+  {
+   "type": "p",
+   "text": "با Object.entries() تبدیل شیء به Map هم ساده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nconst myMap = new Map(Object.entries(fruits));",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_map"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.entries() از مارس ۲۰۱۷ در همهٔ مرورگر‌های مدرن پشتیبانی می‌شود:"
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.fromEntries() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد fromEntries() از فهرستی از جفت‌های کلید و مقدار یک شیء می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const fruits = [\n\n  [\"apples\", 300],\n\n  [\"pears\", 900],\n\n  [\"bananas\", 500]\n\n];\n\nconst myObj = Object.fromEntries(fruits);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_fromentries"
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.values() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.values() شبیه Object.entries() است، اما آرایه‌ای یک‌بعدی از مقدار‌های شیء برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.values(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_values"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.values() از مارس ۲۰۱۷ در همهٔ مرورگر‌های مدرن پشتیبانی می‌شود:"
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.groupBy() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "‏ES2024 متد Object.groupBy() را به JavaScript اضافه کرد."
+  },
+  {
+   "type": "p",
+   "text": "متد Object.groupBy() عنصر‌ها را بر اساس مقدار‌های رشته‌ای که از تابع کالبک برمی‌گردند گروه‌بندی می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متد Object.groupBy() شیء اصلی را تغییر نمی‌دهد."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Array\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Object.groupBy(fruits, myCallback);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_groupby"
+  },
+  {
+   "type": "h2",
+   "text": "پشتیبانی مرورگر‌ها"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.groupBy() یکی از ویژگی‌های ECMAScript 2024 است."
+  },
+  {
+   "type": "p",
+   "text": "‏JavaScript 2024 از مارس ۲۰۲۴ در مرورگر‌های تازه پشتیبانی می‌شود:"
+  },
+  {
+   "type": "table",
+   "headers": [
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "rows": [
+    [
+     "Chrome 117",
+     "Edge 117",
+     "Firefox 119",
+     "Safari 17.4",
+     "Opera 103"
+    ],
+    [
+     "سپتامبر ۲۰۲۳",
+     "سپتامبر ۲۰۲۳",
+     "اکتبر ۲۰۲۳",
+     "اکتبر ۲۰۲۴",
+     "مهٔ ۲۰۲۳"
+    ]
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "هشدار"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های ES2024 نسبتاً تازه‌اند."
+  },
+  {
+   "type": "p",
+   "text": "مرورگر‌های قدیمی ممکن است به کد جانشین (Polyfill) نیاز داشته باشند."
+  },
+  {
+   "type": "h2",
+   "text": "‏Object.groupBy() در برابر Map.groupBy()"
+  },
+  {
+   "type": "p",
+   "text": "تفاوت Object.groupBy() و Map.groupBy() این است:"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.groupBy() عنصر‌ها را در یک شیء JavaScript گروه‌بندی می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "متد Map.groupBy() عنصر‌ها را در یک شیء Map گروه‌بندی می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "متد Object.keys() در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "متد Object.keys() آرایه‌ای از کلید‌های یک شیء برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Get the Keys\n\nconst keys = Object.keys(person);",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_keys2"
+  },
+  {
+   "type": "h2",
+   "text": "حلقهٔ for...in در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "دستور for...in در JavaScript روی خصوصیت‌های یک شیء می‌گردد."
+  },
+  {
+   "type": "h3",
+   "text": "نحو"
+  },
+  {
+   "type": "p",
+   "text": "for (let variable in object) {\n      // کدی که باید اجرا شود\n }"
+  },
+  {
+   "type": "p",
+   "text": "بلوک کد داخل حلقهٔ for...in برای هر خصوصیت یک بار اجرا می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "گردش روی خصوصیت‌های یک شیء:"
+  },
+  {
+   "type": "code",
+   "lang": "js",
+   "text": "const person = {\n\n  fname:\" John\",\n\n  lname:\" Doe\",\n\n  age: 25\n\n};\n\nfor (let x in person) {\n\n    txt += person[x];\n\n }",
+   "caption": "مثال"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties_for_in"
+  },
+  {
+   "type": "h2",
+   "text": "فصل‌های پیشرفته:"
+  },
+  {
+   "type": "p",
+   "text": "تعریف شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "‏this پیشرفته در شیء‌های JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پیمایش شیء‌ها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیء‌های JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مدیریت شیء‌ها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "محافظت از شیء‌ها در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "پروتوتایپ‌های شیء در JavaScript"
+  },
+  {
+   "type": "p",
+   "text": "مرجع شیء در JavaScript"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل iter1.js بسازید و یک شیء با چهار خصوصیت بنویسید. کلید‌ها، مقدار‌ها و جفت‌های کلید و مقدار را با keys و values و entries در کنسول چاپ کنید.",
+   "hint": "هر سه متد آرایه برمی‌گردانند."
+  },
+  {
+   "prompt": "با Object.entries و حلقهٔ for...of روی شیء بگردید و هر جفت را به شکل «کلید: مقدار» چاپ کنید.",
+   "hint": "در for...of می‌توانید بنویسید for (let [key, value] of Object.entries(obj))."
+  },
+  {
+   "prompt": "یک Map از روی همان شیء بسازید: new Map(Object.entries(obj)).",
+   "hint": "سازندهٔ Map یک فهرست از جفت‌های کلید و مقدار می‌گیرد."
+  },
+  {
+   "prompt": "یک آرایه از جفت‌های کلید و مقدار بسازید و با Object.fromEntries دوباره به شیء تبدیلش کنید.",
+   "hint": "این متد برعکس Object.entries() عمل می‌کند."
+  },
+  {
+   "prompt": "با Object.groupBy یک آرایه از شیء‌ها را بر اساس مقدارشان گروه‌بندی کنید و نتیجه را در کنسول ببینید.",
+   "hint": "توجه کنید که ES2024 است و مرورگر‌های قدیمی به Polyfill نیاز دارند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کدام متد آرایه‌ای از جفت‌های کلید و مقدار برمی‌گرداند؟",
+   "options": [
+    "Object.keys()",
+    "Object.values()",
+    "Object.entries()",
+    "Object.assign()"
+   ],
+   "answer": 2,
+   "explanation": "Object.entries() جفت‌های کلید و مقدار را می‌دهد، در حالی که keys فقط کلید‌ها و values فقط مقدار‌ها را برمی‌گرداند و assign کپی می‌کند."
+  },
+  {
+   "question": "کدام متد آرایه‌ای یک‌بعدی از مقدار‌های شیء می‌دهد؟",
+   "options": [
+    "Object.values()",
+    "Object.entries()",
+    "Object.keys()",
+    "Object.fromEntries()"
+   ],
+   "answer": 0,
+   "explanation": "Object.values() فقط مقدار‌ها را در یک آرایه می‌دهد؛ entries آرایه‌ای دوبعدی از جفت‌ها می‌سازد."
+  },
+  {
+   "question": "Object.fromEntries() برعکس کدام متد عمل می‌کند؟",
+   "options": [
+    "Object.keys()",
+    "Object.entries()",
+    "Object.assign()",
+    "Object.create()"
+   ],
+   "answer": 1,
+   "explanation": "entries شیء را به فهرستی از جفت‌ها تبدیل می‌کند و fromEntries از همان فهرست دوباره شیء می‌سازد."
+  },
+  {
+   "question": "دو تفاوت Object.groupBy() و Map.groupBy() چیست؟",
+   "options": [
+    "هیچ تفاوتی ندارند",
+    "یکی خروجی شیء می‌دهد و دیگری خروجی Map، و هیچ‌کدام شیء اصلی را تغییر نمی‌دهند",
+    "یکی آرایه می‌دهد و دیگری رشته",
+    "یکی فقط روی رشته‌ها کار می‌کند"
+   ],
+   "answer": 1,
+   "explanation": "Object.groupBy() نتیجه را در یک شیء می‌ریزد و Map.groupBy() در یک Map؛ درس هم تأکید می‌کند که گروه‌بندی شیء اصلی را تغییر نمی‌دهد."
+  },
+  {
+   "question": "حلقهٔ for...in روی چه چیزی می‌گردد؟",
+   "options": [
+    "روی مقدار‌های آرایه",
+    "روی خصوصیت‌های یک شیء",
+    "روی کلید‌های Map",
+    "روی نود‌های DOM"
+   ],
+   "answer": 1,
+   "explanation": "for...in خصوصیت‌های شیء را پیمایش می‌کند و برای هر خصوصیت یک بار بدنهٔ حلقه را اجرا می‌کند؛ برای مقدار‌ها از for...of و entries استفاده می‌کنیم."
+  }
+ ]
+}
