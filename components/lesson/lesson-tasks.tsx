@@ -3,6 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import { bidiText } from '@/lib/content/bidi'
 import type { Task } from '@/lib/content/types'
 import { useLessonProgress, useProgressStore } from '@/lib/store/progress.store'
 import { useTranslations } from 'next-intl'
@@ -55,11 +56,11 @@ export function LessonTasks({ course, slug, tasks }: LessonTasksProps) {
               />
               <div className="flex flex-col gap-1">
                 <Label htmlFor={id} className="leading-6 font-normal">
-                  {task.prompt}
+                  {bidiText(task.prompt)}
                 </Label>
                 {task.hint ? (
                   <span className="text-muted-foreground text-sm">
-                    {t('hint')}: {task.hint}
+                    {t('hint')}: {bidiText(task.hint)}
                   </span>
                 ) : null}
               </div>

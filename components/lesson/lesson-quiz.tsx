@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { cn } from '@/lib/utils'
+import { bidiText } from '@/lib/content/bidi'
 import type { QuizQuestion } from '@/lib/content/types'
 import { useLessonProgress, useProgressStore } from '@/lib/store/progress.store'
 import { Check, X } from 'lucide-react'
@@ -78,7 +79,7 @@ export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
           return (
             <div key={questionIndex} className="flex flex-col gap-3">
               <p className="text-sm font-medium">
-                {questionIndex + 1}. {question.question}
+                {questionIndex + 1}. {bidiText(question.question)}
               </p>
 
               <RadioGroup
@@ -106,7 +107,7 @@ export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
                     >
                       <RadioGroupItem value={String(optionIndex)} id={`${slug}-${questionIndex}-${optionIndex}`} />
                       <label htmlFor={`${slug}-${questionIndex}-${optionIndex}`} className="flex-1 text-sm">
-                        {option}
+                        {bidiText(option)}
                       </label>
                       {isCorrect ? <Check className="text-primary size-4" /> : null}
                       {isWrong ? <X className="text-destructive size-4" /> : null}
@@ -120,11 +121,11 @@ export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
                   <AlertDescription className="flex flex-col gap-1">
                     <span className="text-foreground">
                       {chosen === correctAnswer ? t('correct') : t('incorrect')} — {t('answer')}:{' '}
-                      {question.options[correctAnswer]}
+                      {bidiText(question.options[correctAnswer])}
                     </span>
                     {question.explanation ? (
                       <span>
-                        {t('explanation')}: {question.explanation}
+                        {t('explanation')}: {bidiText(question.explanation)}
                       </span>
                     ) : null}
                   </AlertDescription>
