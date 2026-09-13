@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { locales } from '@/i18n/i18n-configs'
 import { getStandalone } from '@/lib/content'
+import { bidiText } from '@/lib/content/bidi'
 import { getLocaleWithProps } from '@/i18n/i18n-configs'
 import { BookOpen, Check, Download, FolderOpen, Play, Settings2 } from 'lucide-react'
 import type { Metadata } from 'next'
@@ -34,9 +35,11 @@ export default async function SetupPage() {
           <Settings2 className="size-4" />
           {t('source')}: {source?.name}
         </span>
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{lesson.title}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+          {bidiText(lesson.title)}
+        </h1>
         {lesson.summary ? (
-          <p className="text-muted-foreground max-w-3xl leading-7">{lesson.summary}</p>
+          <p className="text-muted-foreground max-w-3xl leading-7">{bidiText(lesson.summary)}</p>
         ) : null}
       </div>
 

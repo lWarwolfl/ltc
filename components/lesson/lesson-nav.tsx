@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { bidiText } from '@/lib/content/bidi'
 import { cn } from '@/lib/utils'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
@@ -23,7 +24,7 @@ export default async function LessonNav({ course, previous, next }: LessonNavPro
             <ArrowLeft className="size-4 rtl:rotate-180" />
             <span className="flex flex-col items-start text-start">
               <span className="text-muted-foreground text-[11px]">{t('previous')}</span>
-              <span className="max-w-60 truncate">{previous.title}</span>
+              <span className="max-w-60 truncate">{bidiText(previous.title)}</span>
             </span>
           </Link>
         </Button>
@@ -40,7 +41,7 @@ export default async function LessonNav({ course, previous, next }: LessonNavPro
           <Link href={`/courses/${course}/${next.slug}`}>
             <span className="flex flex-col items-end text-end">
               <span className="text-muted-foreground text-[11px]">{t('next')}</span>
-              <span className="max-w-60 truncate">{next.title}</span>
+              <span className="max-w-60 truncate">{bidiText(next.title)}</span>
             </span>
             <ArrowRight className="size-4 rtl:rotate-180" />
           </Link>

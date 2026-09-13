@@ -5,6 +5,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { useTranslations } from 'next-intl'
 import { lessonKey, useProgressStore } from '@/lib/store/progress.store'
 import type { SectionMeta } from '@/lib/content/types'
+import { bidiText } from '@/lib/content/bidi'
 import { cn } from '@/lib/utils'
 import { Check } from 'lucide-react'
 import Link from 'next/link'
@@ -55,7 +56,7 @@ export function SectionList({
               >
                 {progress?.completed ? <Check className="size-3" /> : index + 1}
               </span>
-              <span className="flex-1">{section.title}</span>
+              <span className="flex-1">{bidiText(section.title)}</span>
               {section.translated === false ? (
                 <span className="text-muted-foreground text-[11px]">{t('source')}</span>
               ) : null}

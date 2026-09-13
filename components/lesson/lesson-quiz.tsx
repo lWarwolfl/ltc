@@ -4,6 +4,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { useLocaleWithProps } from '@/i18n/i18n-configs'
 import { cn } from '@/lib/utils'
 import { bidiText } from '@/lib/content/bidi'
 import type { QuizQuestion } from '@/lib/content/types'
@@ -21,6 +22,7 @@ export type LessonQuizProps = {
 
 export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
   const t = useTranslations('quiz')
+  const { direction } = useLocaleWithProps()
   const progress = useLessonProgress(course, slug)
   const saveQuiz = useProgressStore((state) => state.saveQuiz)
 
@@ -86,6 +88,7 @@ export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
               </p>
 
               <RadioGroup
+                dir={direction}
                 value={chosen >= 0 ? String(chosen) : ''}
                 onValueChange={(value) =>
                   setAnswers((current) =>

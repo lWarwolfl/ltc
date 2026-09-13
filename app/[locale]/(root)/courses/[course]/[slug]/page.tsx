@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { getLocaleWithProps, locales } from '@/i18n/i18n-configs'
+import { bidiText } from '@/lib/content/bidi'
 import {
   getCourse,
   getCourses,
@@ -93,7 +94,9 @@ export default async function LessonPage({ params }: LessonPageProps) {
             </Link>
           </div>
 
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{lesson.title}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            {bidiText(lesson.title)}
+          </h1>
 
           <div className="flex flex-wrap items-center gap-2">
             {index >= 0 ? (
@@ -123,7 +126,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
               <span className="text-sm font-medium">{t('objectives')}</span>
               <ul className="text-muted-foreground flex list-disc flex-col gap-1 ps-5 text-sm">
                 {lesson.objectives.map((objective) => (
-                  <li key={objective}>{objective}</li>
+                  <li key={objective}>{bidiText(objective)}</li>
                 ))}
               </ul>
             </CardContent>
