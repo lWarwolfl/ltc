@@ -1,250 +1,238 @@
 {
- "slug": "js_ajax_http_send",
- "course": "js",
- "order": 258,
- "url": "/js/js_ajax_http_send.asp",
- "title": "AJAX - XMLHttpRequest",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "AJAX - XMLHttpRequest"
-  },
-  {
-   "type": "p",
-   "text": "The XMLHttpRequest object is used to request data from a server."
-  },
-  {
-   "type": "h2",
-   "text": "Send a Request To a Server"
-  },
-  {
-   "type": "p",
-   "text": "To send a request to a server, we use the open() and send() methods of the XMLHttpRequest object:"
-  },
-  {
-   "type": "p",
-   "text": "xhttp.open(\"GET\", \"ajax_info.txt\", true);\n xhttp.send();"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Method",
-    "Description"
-   ],
-   "rows": [
-    [
-     "open(method, url, async)",
-     "Specifies the type of request\n method: the type of request: GET or POST\n url: the server (file) location\n async: true (asynchronous) or false (synchronous)"
-    ],
-    [
-     "send()",
-     "Sends the request to the server (used for GET)"
-    ],
-    [
-     "send(string)",
-     "Sends the request to the server (used for POST)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The url - A File On a Server"
-  },
-  {
-   "type": "p",
-   "text": "The url parameter of the open() method, is an address to a file on a server:"
-  },
-  {
-   "type": "p",
-   "text": "xhttp.open(\"GET\", \"ajax_test.asp\", true);"
-  },
-  {
-   "type": "p",
-   "text": "The file can be any kind of file, like .txt and\n.xml, or server scripting files like .asp and .php (which can perform\nactions on the server before sending the response back)."
-  },
-  {
-   "type": "h2",
-   "text": "Asynchronous - True or False?"
-  },
-  {
-   "type": "p",
-   "text": "Server requests should be sent asynchronously."
-  },
-  {
-   "type": "p",
-   "text": "The async parameter of the open()\nmethod should be set to true:"
-  },
-  {
-   "type": "p",
-   "text": "xhttp.open(\"GET\", \"ajax_test.asp\", true);"
-  },
-  {
-   "type": "p",
-   "text": "By sending asynchronously, the\nJavaScript does not have to wait for the server response, but can instead:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "execute other scripts while waiting for server response",
-    "deal with the response after the response is ready"
-   ]
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "The default value for the async parameter is async = true.\nYou can safely remove the third parameter from your code.\nSynchronous XMLHttpRequest (async = false) is not recommended because the JavaScript will\nstop executing until the server response is ready. If the server is busy or slow, the\napplication will hang or stop."
-  },
-  {
-   "type": "h2",
-   "text": "GET or POST?"
-  },
-  {
-   "type": "p",
-   "text": "GET is simpler and faster than POST, and can be used in most cases."
-  },
-  {
-   "type": "p",
-   "text": "However, always use POST requests when:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "A cached file is not an option (update a file or database on the server).",
-    "Sending a large amount of data to the server (POST has no size limitations).",
-    "Sending user input (which can contain unknown characters), POST is more robust and secure than GET."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "GET Requests"
-  },
-  {
-   "type": "p",
-   "text": "A simple GET request:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "xhttp.open(\"GET\", \"demo_get.asp\");\n\n xhttp.send();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get"
-  },
-  {
-   "type": "p",
-   "text": "In the example above, you may get a cached result. To avoid this, add a unique ID to the URL:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "xhttp.open(\"GET\", \"demo_get.asp?t=\" + Math.random());\n\n xhttp.send();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get_unique"
-  },
-  {
-   "type": "p",
-   "text": "If you want to send information with the GET method, add the information to the URL:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "xhttp.open(\"GET\", \"demo_get2.asp?fname=Henry&lname=Ford\");\n\n xhttp.send();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get2"
-  },
-  {
-   "type": "p",
-   "text": "How the server uses the input and how the server responds to a request, is explained in a later chapter."
-  },
-  {
-   "type": "h2",
-   "text": "POST Requests"
-  },
-  {
-   "type": "p",
-   "text": "A simple POST request:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "xhttp.open(\"POST\", \"demo_post.asp\");\n\n xhttp.send();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_post"
-  },
-  {
-   "type": "p",
-   "text": "To POST data like an HTML form, add an HTTP header with setRequestHeader().\nSpecify the data you want to send in the send() method:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "xhttp.open(\"POST\", \"ajax_test.asp\");\n\n xhttp.setRequestHeader(\"Content-type\", \"application/x-www-form-urlencoded\");\n\n xhttp.send(\"fname=Henry&lname=Ford\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_post2"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Method",
-    "Description"
-   ],
-   "rows": [
-    [
-     "setRequestHeader(header, value)",
-     "Adds HTTP headers to the request\n header: specifies the header name\n value: specifies the header value"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Synchronous Request"
-  },
-  {
-   "type": "p",
-   "text": "To execute a synchronous request, change the third parameter in the open() method to false:"
-  },
-  {
-   "type": "p",
-   "text": "xhttp.open(\"GET\", \"ajax_info.txt\", false);"
-  },
-  {
-   "type": "p",
-   "text": "Sometimes async = false are used for quick testing. You will also find\nsynchronous requests in older JavaScript code."
-  },
-  {
-   "type": "p",
-   "text": "Since the code will wait for server completion, there is no need for an onreadystatechange\nfunction:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "xhttp.open(\"GET\", \"ajax_info.txt\", false);\n\nxhttp.send();\n\ndocument.getElementById(\"demo\").innerHTML = xhttp.responseText;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_asyncfalse"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "Synchronous XMLHttpRequest (async = false) is not recommended because the JavaScript will\nstop executing until the server response is ready. If the server is busy or slow, the\napplication will hang or stop.\nModern developer tools are encouraged to warn about using\nsynchronous requests and may throw an InvalidAccessError exception when it occurs."
-  }
- ]
+  "slug": "js_ajax_http_send",
+  "course": "js",
+  "order": 258,
+  "url": "/js/js_ajax_http_send.asp",
+  "title": "AJAX - XMLHttpRequest",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "AJAX - XMLHttpRequest"
+    },
+    {
+      "type": "p",
+      "text": "The XMLHttpRequest object is used to request data from a server."
+    },
+    {
+      "type": "h2",
+      "text": "Send a Request To a Server"
+    },
+    {
+      "type": "p",
+      "text": "To send a request to a server, we use the open() and send() methods of the XMLHttpRequest object:"
+    },
+    {
+      "type": "p",
+      "text": "xhttp.open(\"GET\", \"ajax_info.txt\", true);\n xhttp.send();"
+    },
+    {
+      "type": "table",
+      "headers": ["Method", "Description"],
+      "rows": [
+        [
+          "open(method, url, async)",
+          "Specifies the type of request\n method: the type of request: GET or POST\n url: the server (file) location\n async: true (asynchronous) or false (synchronous)"
+        ],
+        ["send()", "Sends the request to the server (used for GET)"],
+        ["send(string)", "Sends the request to the server (used for POST)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The url - A File On a Server"
+    },
+    {
+      "type": "p",
+      "text": "The url parameter of the open() method, is an address to a file on a server:"
+    },
+    {
+      "type": "p",
+      "text": "xhttp.open(\"GET\", \"ajax_test.asp\", true);"
+    },
+    {
+      "type": "p",
+      "text": "The file can be any kind of file, like .txt and\n.xml, or server scripting files like .asp and .php (which can perform\nactions on the server before sending the response back)."
+    },
+    {
+      "type": "h2",
+      "text": "Asynchronous - True or False?"
+    },
+    {
+      "type": "p",
+      "text": "Server requests should be sent asynchronously."
+    },
+    {
+      "type": "p",
+      "text": "The async parameter of the open()\nmethod should be set to true:"
+    },
+    {
+      "type": "p",
+      "text": "xhttp.open(\"GET\", \"ajax_test.asp\", true);"
+    },
+    {
+      "type": "p",
+      "text": "By sending asynchronously, the\nJavaScript does not have to wait for the server response, but can instead:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "execute other scripts while waiting for server response",
+        "deal with the response after the response is ready"
+      ]
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "The default value for the async parameter is async = true.\nYou can safely remove the third parameter from your code.\nSynchronous XMLHttpRequest (async = false) is not recommended because the JavaScript will\nstop executing until the server response is ready. If the server is busy or slow, the\napplication will hang or stop."
+    },
+    {
+      "type": "h2",
+      "text": "GET or POST?"
+    },
+    {
+      "type": "p",
+      "text": "GET is simpler and faster than POST, and can be used in most cases."
+    },
+    {
+      "type": "p",
+      "text": "However, always use POST requests when:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A cached file is not an option (update a file or database on the server).",
+        "Sending a large amount of data to the server (POST has no size limitations).",
+        "Sending user input (which can contain unknown characters), POST is more robust and secure than GET."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "GET Requests"
+    },
+    {
+      "type": "p",
+      "text": "A simple GET request:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "xhttp.open(\"GET\", \"demo_get.asp\");\n\n xhttp.send();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get"
+    },
+    {
+      "type": "p",
+      "text": "In the example above, you may get a cached result. To avoid this, add a unique ID to the URL:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "xhttp.open(\"GET\", \"demo_get.asp?t=\" + Math.random());\n\n xhttp.send();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get_unique"
+    },
+    {
+      "type": "p",
+      "text": "If you want to send information with the GET method, add the information to the URL:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "xhttp.open(\"GET\", \"demo_get2.asp?fname=Henry&lname=Ford\");\n\n xhttp.send();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_get2"
+    },
+    {
+      "type": "p",
+      "text": "How the server uses the input and how the server responds to a request, is explained in a later chapter."
+    },
+    {
+      "type": "h2",
+      "text": "POST Requests"
+    },
+    {
+      "type": "p",
+      "text": "A simple POST request:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "xhttp.open(\"POST\", \"demo_post.asp\");\n\n xhttp.send();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_post"
+    },
+    {
+      "type": "p",
+      "text": "To POST data like an HTML form, add an HTTP header with setRequestHeader().\nSpecify the data you want to send in the send() method:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "xhttp.open(\"POST\", \"ajax_test.asp\");\n\n xhttp.setRequestHeader(\"Content-type\", \"application/x-www-form-urlencoded\");\n\n xhttp.send(\"fname=Henry&lname=Ford\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_post2"
+    },
+    {
+      "type": "table",
+      "headers": ["Method", "Description"],
+      "rows": [
+        [
+          "setRequestHeader(header, value)",
+          "Adds HTTP headers to the request\n header: specifies the header name\n value: specifies the header value"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Synchronous Request"
+    },
+    {
+      "type": "p",
+      "text": "To execute a synchronous request, change the third parameter in the open() method to false:"
+    },
+    {
+      "type": "p",
+      "text": "xhttp.open(\"GET\", \"ajax_info.txt\", false);"
+    },
+    {
+      "type": "p",
+      "text": "Sometimes async = false are used for quick testing. You will also find\nsynchronous requests in older JavaScript code."
+    },
+    {
+      "type": "p",
+      "text": "Since the code will wait for server completion, there is no need for an onreadystatechange\nfunction:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "xhttp.open(\"GET\", \"ajax_info.txt\", false);\n\nxhttp.send();\n\ndocument.getElementById(\"demo\").innerHTML = xhttp.responseText;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_asyncfalse"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "Synchronous XMLHttpRequest (async = false) is not recommended because the JavaScript will\nstop executing until the server response is ready. If the server is busy or slow, the\napplication will hang or stop.\nModern developer tools are encouraged to warn about using\nsynchronous requests and may throw an InvalidAccessError exception when it occurs."
+    }
+  ]
 }

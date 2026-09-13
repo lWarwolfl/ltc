@@ -1,335 +1,281 @@
 {
- "slug": "js_regexp_groups",
- "course": "js",
- "order": 86,
- "url": "/js/js_regexp_groups.asp",
- "title": "Regular Expression Groups",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Regular Expression Groups"
-  },
-  {
-   "type": "h2",
-   "text": "RegExp Groups"
-  },
-  {
-   "type": "p",
-   "text": "Regular Expression Groups allow you to treat multiple characters as a single unit,\nextract specific parts of a match, or reference captured text later."
-  },
-  {
-   "type": "h2",
-   "text": "Group Syntaxes"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Type",
-     "Syntax",
-     "Description"
-    ],
-    [
-     "Capturing",
-     "(x)",
-     "Matches x and remembers the match for extraction or backreferences"
-    ],
-    [
-     "Named Capturing",
-     "(?<name>x)",
-     "Matches x and stores it under a specific name in the groups property"
-    ],
-    [
-     "Non-Capturing",
-     "(?:x)",
-     "Groups x logically (e.g., for quantifiers) without remembering the match"
-    ],
-    [
-     "Lookahead",
-     "(?=x)",
-     "Matches only if the pattern is followed by x"
-    ],
-    [
-     "Lookbehind",
-     "(?<=x)",
-     "Matches only if the pattern is preceded by x"
-    ],
-    [
-     "Flag",
-     "(?flag:x)",
-     "Enables flag(s) for x"
-    ],
-    [
-     "Flag",
-     "(?flag-flag:x)",
-     "Disables flag(s) for x"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "RegExp Capturing Groups (x)"
-  },
-  {
-   "type": "p",
-   "text": "RegExp Capturing Groups are the most common groups. They group patterns together and \"remember\"\nthe matched text for later use."
-  },
-  {
-   "type": "p",
-   "text": "Capturing groups are created by wrapping a part of a regexp pattern in parentheses (x)."
-  },
-  {
-   "type": "p",
-   "text": "You can access the found patterns in the result array of pattern.exec(text) or\ntext.match(pattern)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Alice loves Bob-\";\n\nconst pattern = /(\\w+) loves (\\w+)/;\n\nlet result = text.match(pattern);",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Alice loves Bob-\";\n\nconst pattern = /(\\w+) loves (\\w+)/;\n\nlet result = pattern.exec(text);",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_capturing_groups_1"
-  },
-  {
-   "type": "h2",
-   "text": "Explained"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "(\\w+) captures a word",
-    "text.match(pattern) returns an array of results",
-    "pattern.exec(text) also returns an array of results",
-    "The full match is at index 0, and captured groups follow at index 1, 2, ...."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The Result Array"
-  },
-  {
-   "type": "p",
-   "text": "When you use a method like text.match(regex) in JavaScript, it returns an array of results."
-  },
-  {
-   "type": "p",
-   "text": "In JavaScript arrays, items are ordered by numerical positions called indices, starting at 0.\nJavaScript automatically organizes the array so that the whole matched text sits at the very first position ([0]),\nand the text from your parenthesis groups follows right after ([1], [2], [3])."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const regex = /(\\d{4})-(\\d{2})-(\\d{2})/;\n\nconst text = \"2026-05-21\";\n\nconst match = text.match(regex);\n\n// This is what the 'match' array actually contains:\n\n[\n\n  \"2026-05-21\", // Index 0: The entire string that matched the whole regex\n\n  \"2026\",       // Index 1: The text caught by the 1st set of parentheses\n\n  \"05\",         // Index 2: The text caught by the 2nd set of parentheses\n\n  \"21\"          // Index 3: The text caught by the 3rd set of parentheses\n\n]",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Named Capturing Groups (?<n>)"
-  },
-  {
-   "type": "p",
-   "text": "Named capturing groups was introduced in ES2018)."
-  },
-  {
-   "type": "p",
-   "text": "Named capturing groups allow you to assign a name to a group instead of indexes."
-  },
-  {
-   "type": "p",
-   "text": "When using capturing groups, the String method match()\nand the RegExp method exec(), return a match object with a groups property.\nThis property holds the names and the values of the groups."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = \"Name: John Doe\";\n\n// Using named capturing groups\n\nconst regex = /(?<firstName>\\w+) (?<lastName>\\w+)/;\n\nconst match = text.match(regex);\n\nlet fName = match.groups.firstName;\n\nlet lName = match.groups.lastName;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_named_groups"
-  },
-  {
-   "type": "h2",
-   "text": "Explained"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "(?<firstName>\\w+) captures a word and labels it firstName",
-    "(?<lastName>\\w+) does the same for lastName",
-    "text.match() returns an array with a groups property",
-    "match.groups() returns an object:\n{firstName:\"John\", lastName:\"Doe\" }"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Non-Capturing Groups (?:...)"
-  },
-  {
-   "type": "p",
-   "text": "Non-capturing groups are patterns for logical operations (like applying a quantifier to multiple characters)\nbut do not store the matched text."
-  },
-  {
-   "type": "p",
-   "text": "The benefits are: They are more performant and keep the capturing group indices clean if you only need\nthe grouping behavior, not the extracted data."
-  },
-  {
-   "type": "p",
-   "text": "Example: /(?:ha)+/ matches \"haha\" but won't create a separate capture for \"ha\"."
-  },
-  {
-   "type": "h2",
-   "text": "RegExp Group Modifiers (?flag)"
-  },
-  {
-   "type": "p",
-   "text": "The (?flag) syntax is a group modifier (inline flag modifier)."
-  },
-  {
-   "type": "p",
-   "text": "It allows for modifying flags in a part of a pattern, rather than to the entire pattern."
-  },
-  {
-   "type": "p",
-   "text": "(?flags:pattern) enables the flags only for the pattern in the group."
-  },
-  {
-   "type": "p",
-   "text": "Only the i, m, and s flags can be used in a group modifier."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"W3Schools tutorials.\";\n\nconst pattern = /(?i:W3Schools) tutorials/;\n\n// Returns true:\n\nlet result = pattern.test(text);",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"W3Schools Tutorials.\";\n\nconst pattern = /(?i:W3Schools) tutorials/;\n\n// Returns false:\n\nlet result = pattern.test(text);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_groups_modifier"
-  },
-  {
-   "type": "h2",
-   "text": "See Also:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Tutorial"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Flags"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Character Classes"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Meta Characters"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Quantifiers"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Patterns"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Objects"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Methods"
-  },
-  {
-   "type": "h2",
-   "text": "Regular Expression Methods"
-  },
-  {
-   "type": "p",
-   "text": "Regular Expression Search and Replace can be done with different methods."
-  },
-  {
-   "type": "p",
-   "text": "These are the most common:"
-  },
-  {
-   "type": "h3",
-   "text": "String Methods"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Description"
-    ],
-    [
-     "match(regex)",
-     "Returns an Array of results"
-    ],
-    [
-     "matchAll(regex)",
-     "Returns an Iterator of results"
-    ],
-    [
-     "replace(regex)",
-     "Returns a new String"
-    ],
-    [
-     "replaceAll(regex)",
-     "Returns a new String"
-    ],
-    [
-     "search(regex)",
-     "Returns the index of the first match"
-    ],
-    [
-     "split(regex)",
-     "Returns an Array of results"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "RegExp Methods"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Description"
-    ],
-    [
-     "regex.exec()",
-     "Returns an Iterator of results"
-    ],
-    [
-     "regex.test()",
-     "Returns true or false"
-    ]
-   ]
-  }
- ]
+  "slug": "js_regexp_groups",
+  "course": "js",
+  "order": 86,
+  "url": "/js/js_regexp_groups.asp",
+  "title": "Regular Expression Groups",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Regular Expression Groups"
+    },
+    {
+      "type": "h2",
+      "text": "RegExp Groups"
+    },
+    {
+      "type": "p",
+      "text": "Regular Expression Groups allow you to treat multiple characters as a single unit,\nextract specific parts of a match, or reference captured text later."
+    },
+    {
+      "type": "h2",
+      "text": "Group Syntaxes"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Type", "Syntax", "Description"],
+        ["Capturing", "(x)", "Matches x and remembers the match for extraction or backreferences"],
+        [
+          "Named Capturing",
+          "(?<name>x)",
+          "Matches x and stores it under a specific name in the groups property"
+        ],
+        [
+          "Non-Capturing",
+          "(?:x)",
+          "Groups x logically (e.g., for quantifiers) without remembering the match"
+        ],
+        ["Lookahead", "(?=x)", "Matches only if the pattern is followed by x"],
+        ["Lookbehind", "(?<=x)", "Matches only if the pattern is preceded by x"],
+        ["Flag", "(?flag:x)", "Enables flag(s) for x"],
+        ["Flag", "(?flag-flag:x)", "Disables flag(s) for x"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "RegExp Capturing Groups (x)"
+    },
+    {
+      "type": "p",
+      "text": "RegExp Capturing Groups are the most common groups. They group patterns together and \"remember\"\nthe matched text for later use."
+    },
+    {
+      "type": "p",
+      "text": "Capturing groups are created by wrapping a part of a regexp pattern in parentheses (x)."
+    },
+    {
+      "type": "p",
+      "text": "You can access the found patterns in the result array of pattern.exec(text) or\ntext.match(pattern)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Alice loves Bob-\";\n\nconst pattern = /(\\w+) loves (\\w+)/;\n\nlet result = text.match(pattern);",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Alice loves Bob-\";\n\nconst pattern = /(\\w+) loves (\\w+)/;\n\nlet result = pattern.exec(text);",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_capturing_groups_1"
+    },
+    {
+      "type": "h2",
+      "text": "Explained"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "(\\w+) captures a word",
+        "text.match(pattern) returns an array of results",
+        "pattern.exec(text) also returns an array of results",
+        "The full match is at index 0, and captured groups follow at index 1, 2, ...."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The Result Array"
+    },
+    {
+      "type": "p",
+      "text": "When you use a method like text.match(regex) in JavaScript, it returns an array of results."
+    },
+    {
+      "type": "p",
+      "text": "In JavaScript arrays, items are ordered by numerical positions called indices, starting at 0.\nJavaScript automatically organizes the array so that the whole matched text sits at the very first position ([0]),\nand the text from your parenthesis groups follows right after ([1], [2], [3])."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const regex = /(\\d{4})-(\\d{2})-(\\d{2})/;\n\nconst text = \"2026-05-21\";\n\nconst match = text.match(regex);\n\n// This is what the 'match' array actually contains:\n\n[\n\n  \"2026-05-21\", // Index 0: The entire string that matched the whole regex\n\n  \"2026\",       // Index 1: The text caught by the 1st set of parentheses\n\n  \"05\",         // Index 2: The text caught by the 2nd set of parentheses\n\n  \"21\"          // Index 3: The text caught by the 3rd set of parentheses\n\n]",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Named Capturing Groups (?<n>)"
+    },
+    {
+      "type": "p",
+      "text": "Named capturing groups was introduced in ES2018)."
+    },
+    {
+      "type": "p",
+      "text": "Named capturing groups allow you to assign a name to a group instead of indexes."
+    },
+    {
+      "type": "p",
+      "text": "When using capturing groups, the String method match()\nand the RegExp method exec(), return a match object with a groups property.\nThis property holds the names and the values of the groups."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = \"Name: John Doe\";\n\n// Using named capturing groups\n\nconst regex = /(?<firstName>\\w+) (?<lastName>\\w+)/;\n\nconst match = text.match(regex);\n\nlet fName = match.groups.firstName;\n\nlet lName = match.groups.lastName;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_named_groups"
+    },
+    {
+      "type": "h2",
+      "text": "Explained"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "(?<firstName>\\w+) captures a word and labels it firstName",
+        "(?<lastName>\\w+) does the same for lastName",
+        "text.match() returns an array with a groups property",
+        "match.groups() returns an object:\n{firstName:\"John\", lastName:\"Doe\" }"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Non-Capturing Groups (?:...)"
+    },
+    {
+      "type": "p",
+      "text": "Non-capturing groups are patterns for logical operations (like applying a quantifier to multiple characters)\nbut do not store the matched text."
+    },
+    {
+      "type": "p",
+      "text": "The benefits are: They are more performant and keep the capturing group indices clean if you only need\nthe grouping behavior, not the extracted data."
+    },
+    {
+      "type": "p",
+      "text": "Example: /(?:ha)+/ matches \"haha\" but won't create a separate capture for \"ha\"."
+    },
+    {
+      "type": "h2",
+      "text": "RegExp Group Modifiers (?flag)"
+    },
+    {
+      "type": "p",
+      "text": "The (?flag) syntax is a group modifier (inline flag modifier)."
+    },
+    {
+      "type": "p",
+      "text": "It allows for modifying flags in a part of a pattern, rather than to the entire pattern."
+    },
+    {
+      "type": "p",
+      "text": "(?flags:pattern) enables the flags only for the pattern in the group."
+    },
+    {
+      "type": "p",
+      "text": "Only the i, m, and s flags can be used in a group modifier."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"W3Schools tutorials.\";\n\nconst pattern = /(?i:W3Schools) tutorials/;\n\n// Returns true:\n\nlet result = pattern.test(text);",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"W3Schools Tutorials.\";\n\nconst pattern = /(?i:W3Schools) tutorials/;\n\n// Returns false:\n\nlet result = pattern.test(text);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_groups_modifier"
+    },
+    {
+      "type": "h2",
+      "text": "See Also:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Tutorial"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Flags"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Character Classes"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Meta Characters"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Quantifiers"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Patterns"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Objects"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Methods"
+    },
+    {
+      "type": "h2",
+      "text": "Regular Expression Methods"
+    },
+    {
+      "type": "p",
+      "text": "Regular Expression Search and Replace can be done with different methods."
+    },
+    {
+      "type": "p",
+      "text": "These are the most common:"
+    },
+    {
+      "type": "h3",
+      "text": "String Methods"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Description"],
+        ["match(regex)", "Returns an Array of results"],
+        ["matchAll(regex)", "Returns an Iterator of results"],
+        ["replace(regex)", "Returns a new String"],
+        ["replaceAll(regex)", "Returns a new String"],
+        ["search(regex)", "Returns the index of the first match"],
+        ["split(regex)", "Returns an Array of results"]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "RegExp Methods"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Description"],
+        ["regex.exec()", "Returns an Iterator of results"],
+        ["regex.test()", "Returns true or false"]
+      ]
+    }
+  ]
 }

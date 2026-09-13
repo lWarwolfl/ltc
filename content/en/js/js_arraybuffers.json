@@ -1,374 +1,315 @@
 {
- "slug": "js_arraybuffers",
- "course": "js",
- "order": 243,
- "url": "/js/js_arraybuffers.asp",
- "title": "JavaScript ArrayBuffer",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "An ArrayBuffer is fixed a block of memory,\noften used to store typed arrays."
-  },
-  {
-   "type": "p",
-   "text": "On top of this block, you can create different\nviews that interpret the bits as numbers, bytes, or other data types."
-  },
-  {
-   "type": "h2",
-   "text": "Creating an ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "Use new ArrayBuffer() to create a new ArrayBuffer."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(16);\n\n// Get the length in bytes\n\nlet len = myBuf.byteLength;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_create"
-  },
-  {
-   "type": "p",
-   "text": "The size of an ArrayBuffer is specified in bytes."
-  },
-  {
-   "type": "p",
-   "text": "The byteLength property represents the size."
-  },
-  {
-   "type": "p",
-   "text": "Once created, the size can not be changed."
-  },
-  {
-   "type": "h2",
-   "text": "Accessing an ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "The ArrayBuffer does not have methods to read and write data."
-  },
-  {
-   "type": "p",
-   "text": "You must always use a view to access the data."
-  },
-  {
-   "type": "p",
-   "text": "Typed Arrays and DataViews provide a way to read and write numeric values to an\nArrayBuffer."
-  },
-  {
-   "type": "p",
-   "text": "Common typed arrays are:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Uint8Array - 8-bit unsigned integers",
-    "Int16Array - 16-bit signed integers",
-    "Int32Array - 32-bit signed integers",
-    "Float32Array - 32-bit floating point numbers",
-    "Float64Array - 64-bit floating point numbers"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Using an Uint8Array"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a Uint8Array view\n\nconst view = new Uint8Array(myBuf);\n\n// Write max 8 values\n\nview[0] = 10;\n\nview[2] = 128;\n\nview[1] = 255;\n\n// Read values\n\nlet v0 = view[0];\n\nlet v1 = view[1];\n\nlet v2 = view[2];",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_unit8"
-  },
-  {
-   "type": "h2",
-   "text": "Using an Int32Array"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(12);\n\n// Create an Int32Array view\n\nconst view = new Int32Array(myBuf);\n\n// 12 bytes = max 3 Int32 values\n\nview[0] = 100000;\n\nview[1] = 200000;\n\nview[2] = 300000;\n\n// Read values\n\nlet v0 = view[0];\n\nlet v1 = view[1];\n\nlet v2 = view[2];",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_int32"
-  },
-  {
-   "type": "h2",
-   "text": "Using a DataView"
-  },
-  {
-   "type": "p",
-   "text": "A DataView is a more flexible view for an ArrayBuffer."
-  },
-  {
-   "type": "p",
-   "text": "A DataView lets you read and write values of different types (Int8, Uint16, Float32, etc.)."
-  },
-  {
-   "type": "p",
-   "text": "A DataView also lets you read and write values at any byte offset."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a DataView\n\nconst view = new DataView(myBuf);\n\n// Write a 32-bit integer at byte offset 0\n\nview.setInt32(0, 123456);\n\n// Write a 16-bit integer at byte offset 4\n\nview.setInt16(4, 32000);\n\n// Read the values\n\nlet v1 view.getInt32(0);\n\nlet v2 = view.getInt16(4);",
-   "caption": "Example: Reading and Writing with DataView"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_dataview"
-  },
-  {
-   "type": "p",
-   "text": "The DataView methods have an optional littleEndian parameter (true/false)\nto control the byte order."
-  },
-  {
-   "type": "h2",
-   "text": "Slicing an ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "You can make a copy of a part of an ArrayBuffer using\nthe slice() method. It returns a new ArrayBuffer\nwith bytes from the specified range."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a Uint8Array\n\nconst view = new Uint8Array(myBuf);\n\n// Fill with values 0 to 7\n\nfor (let i = 0; i < view.length; i++) {\n\n  view[i] = i;\n\n}\n\n// Create a copy of bytes from 2 to 5 (not including 5)\n\nconst sliced = myBuf.slice(2, 5);\n\nconst slicedView = new Uint8Array(sliced);",
-   "caption": "Example: ArrayBuffer.slice()"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_slice"
-  },
-  {
-   "type": "p",
-   "text": "The slice() method creates a new buffer."
-  },
-  {
-   "type": "p",
-   "text": "The slice() method does not share memory with the original buffer."
-  },
-  {
-   "type": "h2",
-   "text": "Converting Strings"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function stringToArrayBuffer(str) {\n\n  const encoder = new TextEncoder();\n\n  return encoder.encode(str).buffer;\n\n}\n\nconst myBuf = stringToArrayBuffer(\"Hello\");\n\nlet len1 = myBuf.byteLength;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_stringtoarr"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function arrayBufferToString(buffer) {\n\n  const decoder = new TextDecoder();\n\n  return decoder.decode(new Uint8Array(buffer));\n\n}\n\nconst encoder = new TextEncoder();\n\nconst myBuf = encoder.encode(\"Hello ArrayBuffer\").buffer;\n\nlet text = arrayBufferToString(myBuf);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_arrtostring"
-  },
-  {
-   "type": "h2",
-   "text": "Sharing ArrayBuffer (SharedArrayBuffer)"
-  },
-  {
-   "type": "p",
-   "text": "An ArrayBuffer is not shared between threads by default."
-  },
-  {
-   "type": "p",
-   "text": "To share memory between workers, JavaScript provides SharedArrayBuffer."
-  },
-  {
-   "type": "p",
-   "text": "It behaves like ArrayBuffer, but its contents can be shared and\nused with Atomics."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "if (Window.crossOriginIsolated) {\n\n  buffer = new SharedArrayBuffer(16);\n\n} else {\n\n  buffer = new ArrayBuffer(16);\n\n}\n\nconst sharedView = new Int32Array(buffer);\n\nbuffer[0] = 42;\n\nlet numb = sharedView[0];",
-   "caption": "Example: Creating a SharedArrayBuffer"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_shared"
-  },
-  {
-   "type": "p",
-   "text": "Browsers may require special security headers to enable\nSharedArrayBuffer (COOP/COEP)."
-  },
-  {
-   "type": "h2",
-   "text": "Summary"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "ArrayBuffer is a low-level object representing a fixed-size block of memory",
-    "You cannot read or write directly to an ArrayBuffer",
-    "You use views (typed arrays or DataView) to access an ArrayBuffer",
-    "Typed arrays are good for uniform numeric data",
-    "DataView is good for mixed or structured data",
-    "Use slice() to copy parts of an ArrayBuffer",
-    "Use a SharedArrayBuffer and Atomics for shared-memory concurrency"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Common Use Cases"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Working with binary data from files (e.g., images, videos, audio).",
-    "Handling binary network protocols (WebSockets, WebRTC, etc.).",
-    "Performing performance-critical numeric computations.",
-    "Interoperability with WebAssembly or other low-level APIs."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ArrayBuffer Reference"
-  },
-  {
-   "type": "h2",
-   "text": "Revised December 2025"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Property / Method",
-     "Description"
-    ],
-    [
-     "new ArrayBuffer()",
-     "Creates a new ArrayBuffer"
-    ],
-    [
-     "arrayBuffer.byteLength",
-     "The length of the buffer in bytes"
-    ],
-    [
-     "arrayBuffer.slice()",
-     "Returns a new ArrayBuffer as a copy of a portion of this buffer"
-    ],
-    [
-     "ArrayBuffer.isView()",
-     "Returns true if argument is a view on an ArrayBuffer"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "Common Views"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "View",
-     "Description",
-     "Bytes"
-    ],
-    [
-     "Int8Array",
-     "8-bit signed integer",
-     "1"
-    ],
-    [
-     "Uint8Array",
-     "8-bit unsigned integer",
-     "1"
-    ],
-    [
-     "Uint8ClampedArray",
-     "8-bit clamped integer",
-     "1"
-    ],
-    [
-     "Int16Array",
-     "16-bit signed integer",
-     "2"
-    ],
-    [
-     "Uint16Array",
-     "16-bit unsigned integer",
-     "2"
-    ],
-    [
-     "Int32Array",
-     "32-bit signed integer",
-     "4"
-    ],
-    [
-     "Uint32Array",
-     "32-bit unsigned integer",
-     "4"
-    ],
-    [
-     "Float32Array",
-     "32-bit floating point",
-     "4"
-    ],
-    [
-     "Float64Array",
-     "64-bit floating point",
-     "8"
-    ],
-    [
-     "DataView",
-     "Generic view (all types)",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Learn More:"
-  },
-  {
-   "type": "p",
-   "text": "Typed Array Tutorial"
-  },
-  {
-   "type": "p",
-   "text": "Typed Array Methods"
-  },
-  {
-   "type": "p",
-   "text": "Typed Array Reference"
-  },
-  {
-   "type": "p",
-   "text": "DataViews"
-  },
-  {
-   "type": "p",
-   "text": "Atomics"
-  }
- ]
+  "slug": "js_arraybuffers",
+  "course": "js",
+  "order": 243,
+  "url": "/js/js_arraybuffers.asp",
+  "title": "JavaScript ArrayBuffer",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "An ArrayBuffer is fixed a block of memory,\noften used to store typed arrays."
+    },
+    {
+      "type": "p",
+      "text": "On top of this block, you can create different\nviews that interpret the bits as numbers, bytes, or other data types."
+    },
+    {
+      "type": "h2",
+      "text": "Creating an ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "Use new ArrayBuffer() to create a new ArrayBuffer."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(16);\n\n// Get the length in bytes\n\nlet len = myBuf.byteLength;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_create"
+    },
+    {
+      "type": "p",
+      "text": "The size of an ArrayBuffer is specified in bytes."
+    },
+    {
+      "type": "p",
+      "text": "The byteLength property represents the size."
+    },
+    {
+      "type": "p",
+      "text": "Once created, the size can not be changed."
+    },
+    {
+      "type": "h2",
+      "text": "Accessing an ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "The ArrayBuffer does not have methods to read and write data."
+    },
+    {
+      "type": "p",
+      "text": "You must always use a view to access the data."
+    },
+    {
+      "type": "p",
+      "text": "Typed Arrays and DataViews provide a way to read and write numeric values to an\nArrayBuffer."
+    },
+    {
+      "type": "p",
+      "text": "Common typed arrays are:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Uint8Array - 8-bit unsigned integers",
+        "Int16Array - 16-bit signed integers",
+        "Int32Array - 32-bit signed integers",
+        "Float32Array - 32-bit floating point numbers",
+        "Float64Array - 64-bit floating point numbers"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Using an Uint8Array"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a Uint8Array view\n\nconst view = new Uint8Array(myBuf);\n\n// Write max 8 values\n\nview[0] = 10;\n\nview[2] = 128;\n\nview[1] = 255;\n\n// Read values\n\nlet v0 = view[0];\n\nlet v1 = view[1];\n\nlet v2 = view[2];",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_unit8"
+    },
+    {
+      "type": "h2",
+      "text": "Using an Int32Array"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(12);\n\n// Create an Int32Array view\n\nconst view = new Int32Array(myBuf);\n\n// 12 bytes = max 3 Int32 values\n\nview[0] = 100000;\n\nview[1] = 200000;\n\nview[2] = 300000;\n\n// Read values\n\nlet v0 = view[0];\n\nlet v1 = view[1];\n\nlet v2 = view[2];",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_int32"
+    },
+    {
+      "type": "h2",
+      "text": "Using a DataView"
+    },
+    {
+      "type": "p",
+      "text": "A DataView is a more flexible view for an ArrayBuffer."
+    },
+    {
+      "type": "p",
+      "text": "A DataView lets you read and write values of different types (Int8, Uint16, Float32, etc.)."
+    },
+    {
+      "type": "p",
+      "text": "A DataView also lets you read and write values at any byte offset."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a DataView\n\nconst view = new DataView(myBuf);\n\n// Write a 32-bit integer at byte offset 0\n\nview.setInt32(0, 123456);\n\n// Write a 16-bit integer at byte offset 4\n\nview.setInt16(4, 32000);\n\n// Read the values\n\nlet v1 view.getInt32(0);\n\nlet v2 = view.getInt16(4);",
+      "caption": "Example: Reading and Writing with DataView"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_dataview"
+    },
+    {
+      "type": "p",
+      "text": "The DataView methods have an optional littleEndian parameter (true/false)\nto control the byte order."
+    },
+    {
+      "type": "h2",
+      "text": "Slicing an ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "You can make a copy of a part of an ArrayBuffer using\nthe slice() method. It returns a new ArrayBuffer\nwith bytes from the specified range."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a Uint8Array\n\nconst view = new Uint8Array(myBuf);\n\n// Fill with values 0 to 7\n\nfor (let i = 0; i < view.length; i++) {\n\n  view[i] = i;\n\n}\n\n// Create a copy of bytes from 2 to 5 (not including 5)\n\nconst sliced = myBuf.slice(2, 5);\n\nconst slicedView = new Uint8Array(sliced);",
+      "caption": "Example: ArrayBuffer.slice()"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_slice"
+    },
+    {
+      "type": "p",
+      "text": "The slice() method creates a new buffer."
+    },
+    {
+      "type": "p",
+      "text": "The slice() method does not share memory with the original buffer."
+    },
+    {
+      "type": "h2",
+      "text": "Converting Strings"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function stringToArrayBuffer(str) {\n\n  const encoder = new TextEncoder();\n\n  return encoder.encode(str).buffer;\n\n}\n\nconst myBuf = stringToArrayBuffer(\"Hello\");\n\nlet len1 = myBuf.byteLength;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_stringtoarr"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function arrayBufferToString(buffer) {\n\n  const decoder = new TextDecoder();\n\n  return decoder.decode(new Uint8Array(buffer));\n\n}\n\nconst encoder = new TextEncoder();\n\nconst myBuf = encoder.encode(\"Hello ArrayBuffer\").buffer;\n\nlet text = arrayBufferToString(myBuf);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_arrtostring"
+    },
+    {
+      "type": "h2",
+      "text": "Sharing ArrayBuffer (SharedArrayBuffer)"
+    },
+    {
+      "type": "p",
+      "text": "An ArrayBuffer is not shared between threads by default."
+    },
+    {
+      "type": "p",
+      "text": "To share memory between workers, JavaScript provides SharedArrayBuffer."
+    },
+    {
+      "type": "p",
+      "text": "It behaves like ArrayBuffer, but its contents can be shared and\nused with Atomics."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "if (Window.crossOriginIsolated) {\n\n  buffer = new SharedArrayBuffer(16);\n\n} else {\n\n  buffer = new ArrayBuffer(16);\n\n}\n\nconst sharedView = new Int32Array(buffer);\n\nbuffer[0] = 42;\n\nlet numb = sharedView[0];",
+      "caption": "Example: Creating a SharedArrayBuffer"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_shared"
+    },
+    {
+      "type": "p",
+      "text": "Browsers may require special security headers to enable\nSharedArrayBuffer (COOP/COEP)."
+    },
+    {
+      "type": "h2",
+      "text": "Summary"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "ArrayBuffer is a low-level object representing a fixed-size block of memory",
+        "You cannot read or write directly to an ArrayBuffer",
+        "You use views (typed arrays or DataView) to access an ArrayBuffer",
+        "Typed arrays are good for uniform numeric data",
+        "DataView is good for mixed or structured data",
+        "Use slice() to copy parts of an ArrayBuffer",
+        "Use a SharedArrayBuffer and Atomics for shared-memory concurrency"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Common Use Cases"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Working with binary data from files (e.g., images, videos, audio).",
+        "Handling binary network protocols (WebSockets, WebRTC, etc.).",
+        "Performing performance-critical numeric computations.",
+        "Interoperability with WebAssembly or other low-level APIs."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ArrayBuffer Reference"
+    },
+    {
+      "type": "h2",
+      "text": "Revised December 2025"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Property / Method", "Description"],
+        ["new ArrayBuffer()", "Creates a new ArrayBuffer"],
+        ["arrayBuffer.byteLength", "The length of the buffer in bytes"],
+        ["arrayBuffer.slice()", "Returns a new ArrayBuffer as a copy of a portion of this buffer"],
+        ["ArrayBuffer.isView()", "Returns true if argument is a view on an ArrayBuffer"]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Common Views"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["View", "Description", "Bytes"],
+        ["Int8Array", "8-bit signed integer", "1"],
+        ["Uint8Array", "8-bit unsigned integer", "1"],
+        ["Uint8ClampedArray", "8-bit clamped integer", "1"],
+        ["Int16Array", "16-bit signed integer", "2"],
+        ["Uint16Array", "16-bit unsigned integer", "2"],
+        ["Int32Array", "32-bit signed integer", "4"],
+        ["Uint32Array", "32-bit unsigned integer", "4"],
+        ["Float32Array", "32-bit floating point", "4"],
+        ["Float64Array", "64-bit floating point", "8"],
+        ["DataView", "Generic view (all types)", ""]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Learn More:"
+    },
+    {
+      "type": "p",
+      "text": "Typed Array Tutorial"
+    },
+    {
+      "type": "p",
+      "text": "Typed Array Methods"
+    },
+    {
+      "type": "p",
+      "text": "Typed Array Reference"
+    },
+    {
+      "type": "p",
+      "text": "DataViews"
+    },
+    {
+      "type": "p",
+      "text": "Atomics"
+    }
+  ]
 }

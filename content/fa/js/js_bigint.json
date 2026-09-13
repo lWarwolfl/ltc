@@ -1,606 +1,562 @@
 {
- "slug": "js_bigint",
- "course": "js",
- "order": 35,
- "url": "/js/js_bigint.asp",
- "title": "BigInt در JavaScript",
- "summary": "BigInt نوع دادهٔ جدید JavaScript برای عددهای صحیح بسیار بزرگ است. در این درس می‌بینید چرا عددهای معمولی فقط تا ۱۵ رقم دقیق هستند، BigInt را چگونه می‌سازیم، چرا ترکیب BigInt و Number در حساب خطا می‌دهد و BigInt در چه کارهایی مثل رمزنگاری و شناسه‌ها به کار می‌رود.",
- "objectives": [
-  "BigInt را با پسوند n و با سازندهٔ BigInt() بسازید",
-  "محدودیت دقت عددهای معمولی را توضیح دهید",
-  "خطای ترکیب BigInt و Number را تشخیص دهید",
-  "بگویید BigInt برای چه کارهایی مناسب است و برای چه کارهایی نیست"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "BigInt در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "BigInt در JavaScript چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "BigInt یک نوع دادهٔ JavaScript برای نگهداری و کار با عددهای صحیح بزرگ است."
-  },
-  {
-   "type": "p",
-   "text": "BigInt به شما امکان می‌دهد با عددهای صحیحی بزرگ‌تر از محدودیت Number کار کنید."
-  },
-  {
-   "type": "p",
-   "text": "BigInt می‌تواند عدد صحیحی با هر اندازه را نمایش دهد؛ تنها محدودیتش حافظهٔ در دسترس است."
-  },
-  {
-   "type": "h2",
-   "text": "دقت عددها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "عددهای JavaScript فقط تا ۱۵ رقم دقیق هستند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// 15 digits:\n\nlet x = 999999999999999;\n\n// 16 digits:\n\nlet y = 9999999999999999;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
-  },
-  {
-   "type": "h2",
-   "text": "عددها ممیز شناور 64 بیتی هستند"
-  },
-  {
-   "type": "p",
-   "text": "همهٔ عددهای JavaScript در قالب ممیز شناور 64 بیتی (استاندارد IEEE 754) ذخیره می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "با این استاندارد، عددهای بزرگ نمی‌توانند دقیقاً نمایش داده شوند و گِرد می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript فقط می‌تواند عددهای صحیح را تا 253-1 (9007199254740991) به طور ایمن نمایش دهد."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript فقط می‌تواند عددهای صحیح را تا -253-1 (-9007199254740991) به طور ایمن نمایش دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// MAX = 9007199254740991\n\nlet x = Number.MAX_SAFE_INTEGER;\n\n// MIN = -9007199254740991\n\nlet y = Number.MIN_SAFE_INTEGER;",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Max (accurate)\n\nlet x = 9007199254740991;\n\n// Max + 10 (inaccurate)\n\nlet y = x + 10;",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Min (accurate)\n\nlet x = -9007199254740991;\n\n// Min - 10 (inaccurate)\n\nlet y = x - 10;",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate5"
-  },
-  {
-   "type": "p",
-   "text": "چیزی به نام عدد صحیح (Integer) در JavaScript وجود ندارد."
-  },
-  {
-   "type": "p",
-   "text": "همهٔ عددهای JavaScript ممیز شناور 64 بیتی هستند."
-  },
-  {
-   "type": "h2",
-   "text": "چگونه BigInt بسازیم"
-  },
-  {
-   "type": "p",
-   "text": "BigInt را به دو روش می‌توانید بسازید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "با یک literal عدد صحیح که پسوند n دارد",
-    "با سازندهٔ BigInt() و یک رشته"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Using an integer literal with an n suffix:\n\nlet x = 999999999999999n;\n\n// Using the BigInt() constructor with a string:\n\nlet y = BigInt(\"999999999999999\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 12345678901234567890n;\n\nlet y = BigInt(\"12345678901234567890\")",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint2"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید BigInt را با سازندهٔ BigInt() و یک Number هم بسازید."
-  },
-  {
-   "type": "p",
-   "text": "هشدار !! عددها فقط تا ۱۵ رقم دقیق هستند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = BigInt(9999999999999999);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint3"
-  },
-  {
-   "type": "h2",
-   "text": "BigInt یک نوع دادهٔ JavaScript است"
-  },
-  {
-   "type": "p",
-   "text": "خروجی typeof برای یک BigInt برابر \"bigint\" است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = BigInt(999999999999999);\n\nlet type = typeof x;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_typeof"
-  },
-  {
-   "type": "p",
-   "text": "BigInt دومین نوع دادهٔ عددی در JavaScript است (پس از Number)."
-  },
-  {
-   "type": "p",
-   "text": "با BigInt، تعداد کل نوع‌های دادهٔ پشتیبانی‌شده در JavaScript به ۸ می‌رسد:"
-  },
-  {
-   "type": "p",
-   "text": "۱. String\n۲. Number\n۳. Bigint\n۴. Boolean\n۵. Undefined\n۶. Null\n۷. Symbol\n۸. Object"
-  },
-  {
-   "type": "h2",
-   "text": "عملگرهای حساب"
-  },
-  {
-   "type": "p",
-   "text": "BigInt از عملگرهای حساب استاندارد JavaScript پشتیبانی می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "عملگرهای حساب: (+, -, ++, --, *, /, %, **)"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 9007199254740995n;\n\nlet y = 9007199254740995n;\n\nlet z = x * y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_multiply"
-  },
-  {
-   "type": "h2",
-   "text": "ترکیب BigInt و Number"
-  },
-  {
-   "type": "p",
-   "text": "انجام حساب بین یک BigInt و یک Number مجاز نیست (باعث خطای TypeError می‌شود)."
-  },
-  {
-   "type": "p",
-   "text": "باید نخست تبدیل صریح انجام شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10n;\n\nlet y = 5;\n\nlet z = x + y; // ❌ TypeError",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10n;\n\nlet y = 5;\n\nlet z = Number(x) + y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_mix"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل BigInt و Number"
-  },
-  {
-   "type": "p",
-   "text": "BigInt به Number: از سازندهٔ Number() استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "Number به BigInt: از سازندهٔ BigInt() استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a BigInt\n\nlet largeNumber = BigInt(\"12345678901234567890\");\n\n// Conversions\n\nlet num = Number(largeNumber);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_conversion"
-  },
-  {
-   "type": "p",
-   "text": "BigIntهای بزرگ هنگام تبدیل به number ممکن است Infinity شوند یا دقتشان از دست برود."
-  },
-  {
-   "type": "h2",
-   "text": "اعشار در BigInt"
-  },
-  {
-   "type": "p",
-   "text": "BigInt نمی‌تواند اعشار داشته باشد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 1.5n; // ❌ TypeError",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 5n;\n\nlet y = x / 2;\n\n//  ❌ Error: Cannot mix BigInt and other types, use explicit conversion.",
-   "caption": "مثال تقسیم BigInt"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 5n;\n\nlet y = Number(x) / 2;",
-   "caption": "مثال تقسیم BigInt"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_divide"
-  },
-  {
-   "type": "p",
-   "text": "تبدیل عددی که بخش کسری دارد به BigInt خطا می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "عملگرهای مقایسه"
-  },
-  {
-   "type": "p",
-   "text": "BigInt از عملگرهای مقایسهٔ استاندارد JavaScript پشتیبانی می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "عملگرهای مقایسه: (<, > ==, ===, !==, <=, >=)"
-  },
-  {
-   "type": "p",
-   "text": "BigIntها را می‌توان با عملگرهای مقایسهٔ استاندارد با Numberها هم مقایسه کرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// true\n\nlet x = (10n > 5n);\n\n// false (different types)\n\nlet y = (10n === 10);\n\n// true (loose equality)\n\nlet z = (10n == 10);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_compare"
-  },
-  {
-   "type": "p",
-   "text": "برابری سخت‌گیرانه (===) بین یک BigInt و یک Number همیشه false است، چون نوعشان متفاوت است."
-  },
-  {
-   "type": "h2",
-   "text": "عملگرهای بیتی"
-  },
-  {
-   "type": "p",
-   "text": "BigInt از عملیات بیتی پشتیبانی می‌کند، اما فقط با BigIntهای دیگر (نه Numberها):"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "& (AND)",
-    "| (OR)",
-    "^ (XOR)",
-    "~ (NOT)"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let a = 5n;   // 0101\n\nlet b = 3n;   // 0011\n\nlet x = (a & b); // 1n   (0001)\n\nlet y = (a | b); // 7n   (0111)\n\nlet z = (a ^ b); // 6n   (0110)\n\nlet n = (~a);    // -6n",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_bitwise"
-  },
-  {
-   "type": "h2",
-   "text": "عملگرهای شیفت بیتی"
-  },
-  {
-   "type": "p",
-   "text": "BigInt فقط از دو عملگر شیفت پشتیبانی می‌کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "<< (left shift)",
-    ">> (signed right shift)"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let big = 10n; // binary: 1010\n\nlet x = (big << 2n); // 40n  (101000)\n\nlet y = (big >> 1n); // 5n   (0101)",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_shift"
-  },
-  {
-   "type": "p",
-   "text": "قوانین مهم:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "هر دو عملوند باید BigInt باشند",
-    "مقدار شیفت باید نامنفی باشد",
-    "شیفت راست برای مقدارهای منفی بیت علامت را نگه می‌دارد"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "شیفت راست بدون علامت (>>>) با BigIntها مجاز نیست."
-  },
-  {
-   "type": "h2",
-   "text": "BigInt در مبنای ۱۶، ۸ و ۲"
-  },
-  {
-   "type": "p",
-   "text": "BigInt را می‌توان با نماد مبنای ۱۶، ۸ یا ۲ هم نوشت:"
-  },
-  {
-   "type": "p",
-   "text": "مانند عددها، literalهای bigint از چند مبنا پشتیبانی می‌کنند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "معمولی: 256n",
-    "مبنای ۸: 0o400n",
-    "مبنای ۱۶: 0x100n",
-    "مبنای ۲: 0b100000000n"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 256n;\n\nlet oct = 0o400n;\n\nlet hex = 0x100n;\n\nlet bin = 0b100000000n;",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let hex = 0x20000000000003n;\n\nlet oct = 0o400000000000000003n;\n\nlet bin = 0b100000000000000000000000000000000000000000000000000011n;",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_octal_2"
-  },
-  {
-   "type": "h2",
-   "text": "نکتهٔ جالب دربارهٔ دقت"
-  },
-  {
-   "type": "p",
-   "text": "بیشترین عدد صحیح ایمن در JavaScript برابر 9007199254740991 است."
-  },
-  {
-   "type": "p",
-   "text": "گِرد کردن می‌تواند امنیت برنامه را به خطر بیندازد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "9007199254740992 === 9007199254740993; // is true !!!",
-   "caption": "مثال‌های MAX_SAFE_INTEGER"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "9007199254740992n === 9007199254740993n; // is false !!!",
-   "caption": "مثال‌های MAX_SAFE_INTEGER"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_max_safe_error"
-  },
-  {
-   "type": "h2",
-   "text": "خلاصه"
-  },
-  {
-   "type": "p",
-   "text": "BigInt عددهای صحیح با دقت دلخواه را ممکن می‌کند"
-  },
-  {
-   "type": "p",
-   "text": "عددهای BigInt می‌توانند تا هر اندازه که حافظه‌تان اجازه دهد بزرگ (یا کوچک) باشند."
-  },
-  {
-   "type": "p",
-   "text": "BigInt برای عددهای صحیح بسیار بزرگ به کار می‌رود (رمزنگاری، شناسه‌ها، زمان‌نماها و مانند آن‌ها)."
-  },
-  {
-   "type": "p",
-   "text": "BigInt برای اعشار مناسب نیست، فقط برای عددهای صحیح."
-  },
-  {
-   "type": "p",
-   "text": "تابع‌های Math (مثل Math.sqrt()) با BigIntها کار نمی‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "JSON.stringify() نمی‌تواند BigIntها را مدیریت کند و خطا می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "BigInt() یکی از ویژگی‌های ES2020 است."
-  },
-  {
-   "type": "p",
-   "text": "ES2020 از سپتامبر 2020 در همهٔ مرورگرهای مدرن به طور کامل پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome85",
-     "Edge85",
-     "Firefox79",
-     "Safari14",
-     "Opera71"
-    ],
-    [
-     "Aug 2020",
-     "Aug 2020",
-     "Mar 2020",
-     "Sep 2020",
-     "Sep 2020"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "در کنسول let x = 999999999999999n; و let y = BigInt(\"999999999999999\"); را بسازید و typeof هر دو را چاپ کنید.",
-   "hint": "خروجی typeof برای BigInt برابر \"bigint\" است و پسوند n فقط برای literalهای عدد صحیح کار می‌کند."
-  },
-  {
-   "prompt": "let x = 9007199254740995n; let y = 9007199254740995n; let z = x * y; را اجرا کنید و نتیجه را ببینید. سپس همین ضرب را با عددهای معمولی (بدون n) تکرار کنید و تفاوت را توضیح دهید.",
-   "hint": "عددهای معمولی بالاتر از MAX_SAFE_INTEGER گِرد می‌شوند و دقتشان از دست می‌رود."
-  },
-  {
-   "prompt": "let x = 10n; let y = 5; let z = x + y; را اجرا کنید و متن خطا را بخوانید. بعد با let z = Number(x) + y; همان کار را درست انجام دهید.",
-   "hint": "ترکیب BigInt و Number در حساب مجاز نیست و خطای TypeError می‌دهد؛ اول باید تبدیل صریح انجام شود."
-  },
-  {
-   "prompt": "با مقایسه‌ها کار کنید: let a = (10n > 5n); let b = (10n === 10); let c = (10n == 10); را چاپ کنید و توضیح دهید چرا b و c نتیجهٔ متفاوتی دارند.",
-   "hint": "=== هم نوع را بررسی می‌کند و چون BigInt و Number دو نوع متفاوت‌اند همیشه false می‌دهد، اما == فقط مقدار را می‌سنجد."
-  },
-  {
-   "prompt": "یک BigInt با مبنای دیگر بسازید: let hex = 0x100n; let bin = 0b100000000n; و مقدارشان را چاپ کنید. سپس let x = 5n; let y = Number(x) / 2; را امتحان کنید.",
-   "hint": "BigInt اعشار ندارد؛ برای تقسیم اعشاری نخست با Number() تبدیل کنید."
-  }
- ],
- "quiz": [
-  {
-   "question": "BigInt را کدام‌یک از این دو روش می‌توان ساخت؟",
-   "options": [
-    "با literal عدد صحیح و پسوند n یا با سازندهٔ BigInt() و یک رشته",
-    "فقط با سازندهٔ Number()",
-    "فقط با تابع ()Math.round",
-    "با نوشتن عدد داخل کوتیشن دوتایی"
-   ],
-   "answer": 0,
-   "explanation": "هر دو روش درست است: 999999999999999n یا BigInt(\"999999999999999\"). ساخت با Number() نتیجهٔ BigInt نمی‌دهد."
-  },
-  {
-   "question": "let x = 10n; let y = 5; let z = x + y; چه نتیجه‌ای دارد؟",
-   "options": [
-    "15n",
-    "15",
-    "NaN",
-    "خطای TypeError"
-   ],
-   "answer": 3,
-   "explanation": "حساب بین BigInt و Number مجاز نیست و TypeError می‌دهد؛ باید اول با Number(x) یا BigInt(y) تبدیل صریح انجام شود."
-  },
-  {
-   "question": "مقدار (10n === 10) چیست؟",
-   "options": [
-    "true",
-    "false، چون نوع دو طرف متفاوت است",
-    "undefined",
-    "خطا می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "=== برابری سخت‌گیرانه است و نوع را هم می‌سنجد؛ BigInt و Number دو نوع متفاوت‌اند، پس نتیجه false است. با == نتیجه true می‌شود."
-  },
-  {
-   "question": "چرا 9007199254740992 === 9007199254740993 مقدار true می‌دهد ولی با BigInt این برابری false است؟",
-   "options": [
-    "چون عددهای معمولی بالاتر از MAX_SAFE_INTEGER دقیق نیستند و گِرد می‌شوند، اما BigInt دقت دلخواه دارد",
-    "چون BigInt کوچک‌تر از Number است",
-    "چون === فقط برای رشته‌ها کار می‌کند",
-    "چون BigInt فقط با n مقایسه می‌شود"
-   ],
-   "answer": 0,
-   "explanation": "عددهای JavaScript ممیز شناور 64 بیتی‌اند و بالاتر از 9007199254740991 نمی‌توانند هر عدد صحیح را دقیق نگه دارند، پس دو عدد متمایز یکسان دیده می‌شوند؛ BigInt این محدودیت را ندارد."
-  },
-  {
-   "question": "کدام جمله دربارهٔ BigInt درست است؟",
-   "options": [
-    "BigInt می‌تواند اعشار داشته باشد",
-    "تابع‌های Math مثل Math.sqrt() با BigInt کار می‌کنند",
-    "BigInt فقط عدد صحیح می‌پذیرد و JSON.stringify() نمی‌تواند آن را مدیریت کند",
-    "BigInt به عددهای کوچک‌تر از MAX_SAFE_INTEGER محدود است"
-   ],
-   "answer": 2,
-   "explanation": "BigInt فقط عدد صحیح است، تابع‌های Math با آن کار نمی‌کنند و JSON.stringify() با BigInt خطا می‌دهد."
-  }
- ]
+  "slug": "js_bigint",
+  "course": "js",
+  "order": 35,
+  "url": "/js/js_bigint.asp",
+  "title": "BigInt در JavaScript",
+  "summary": "BigInt نوع دادهٔ جدید JavaScript برای عددهای صحیح بسیار بزرگ است. در این درس می‌بینید چرا عددهای معمولی فقط تا ۱۵ رقم دقیق هستند، BigInt را چگونه می‌سازیم، چرا ترکیب BigInt و Number در حساب خطا می‌دهد و BigInt در چه کارهایی مثل رمزنگاری و شناسه‌ها به کار می‌رود.",
+  "objectives": [
+    "BigInt را با پسوند n و با سازندهٔ BigInt() بسازید",
+    "محدودیت دقت عددهای معمولی را توضیح دهید",
+    "خطای ترکیب BigInt و Number را تشخیص دهید",
+    "بگویید BigInt برای چه کارهایی مناسب است و برای چه کارهایی نیست"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "BigInt در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "BigInt در JavaScript چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "BigInt یک نوع دادهٔ JavaScript برای نگهداری و کار با عددهای صحیح بزرگ است."
+    },
+    {
+      "type": "p",
+      "text": "BigInt به شما امکان می‌دهد با عددهای صحیحی بزرگ‌تر از محدودیت Number کار کنید."
+    },
+    {
+      "type": "p",
+      "text": "BigInt می‌تواند عدد صحیحی با هر اندازه را نمایش دهد؛ تنها محدودیتش حافظهٔ در دسترس است."
+    },
+    {
+      "type": "h2",
+      "text": "دقت عددها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "عددهای JavaScript فقط تا ۱۵ رقم دقیق هستند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// 15 digits:\n\nlet x = 999999999999999;\n\n// 16 digits:\n\nlet y = 9999999999999999;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
+    },
+    {
+      "type": "h2",
+      "text": "عددها ممیز شناور 64 بیتی هستند"
+    },
+    {
+      "type": "p",
+      "text": "همهٔ عددهای JavaScript در قالب ممیز شناور 64 بیتی (استاندارد IEEE 754) ذخیره می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "با این استاندارد، عددهای بزرگ نمی‌توانند دقیقاً نمایش داده شوند و گِرد می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript فقط می‌تواند عددهای صحیح را تا 253-1 (9007199254740991) به طور ایمن نمایش دهد."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript فقط می‌تواند عددهای صحیح را تا -253-1 (-9007199254740991) به طور ایمن نمایش دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// MAX = 9007199254740991\n\nlet x = Number.MAX_SAFE_INTEGER;\n\n// MIN = -9007199254740991\n\nlet y = Number.MIN_SAFE_INTEGER;",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Max (accurate)\n\nlet x = 9007199254740991;\n\n// Max + 10 (inaccurate)\n\nlet y = x + 10;",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Min (accurate)\n\nlet x = -9007199254740991;\n\n// Min - 10 (inaccurate)\n\nlet y = x - 10;",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate5"
+    },
+    {
+      "type": "p",
+      "text": "چیزی به نام عدد صحیح (Integer) در JavaScript وجود ندارد."
+    },
+    {
+      "type": "p",
+      "text": "همهٔ عددهای JavaScript ممیز شناور 64 بیتی هستند."
+    },
+    {
+      "type": "h2",
+      "text": "چگونه BigInt بسازیم"
+    },
+    {
+      "type": "p",
+      "text": "BigInt را به دو روش می‌توانید بسازید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["با یک literal عدد صحیح که پسوند n دارد", "با سازندهٔ BigInt() و یک رشته"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Using an integer literal with an n suffix:\n\nlet x = 999999999999999n;\n\n// Using the BigInt() constructor with a string:\n\nlet y = BigInt(\"999999999999999\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 12345678901234567890n;\n\nlet y = BigInt(\"12345678901234567890\")",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint2"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید BigInt را با سازندهٔ BigInt() و یک Number هم بسازید."
+    },
+    {
+      "type": "p",
+      "text": "هشدار !! عددها فقط تا ۱۵ رقم دقیق هستند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = BigInt(9999999999999999);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint3"
+    },
+    {
+      "type": "h2",
+      "text": "BigInt یک نوع دادهٔ JavaScript است"
+    },
+    {
+      "type": "p",
+      "text": "خروجی typeof برای یک BigInt برابر \"bigint\" است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = BigInt(999999999999999);\n\nlet type = typeof x;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_typeof"
+    },
+    {
+      "type": "p",
+      "text": "BigInt دومین نوع دادهٔ عددی در JavaScript است (پس از Number)."
+    },
+    {
+      "type": "p",
+      "text": "با BigInt، تعداد کل نوع‌های دادهٔ پشتیبانی‌شده در JavaScript به ۸ می‌رسد:"
+    },
+    {
+      "type": "p",
+      "text": "۱. String\n۲. Number\n۳. Bigint\n۴. Boolean\n۵. Undefined\n۶. Null\n۷. Symbol\n۸. Object"
+    },
+    {
+      "type": "h2",
+      "text": "عملگرهای حساب"
+    },
+    {
+      "type": "p",
+      "text": "BigInt از عملگرهای حساب استاندارد JavaScript پشتیبانی می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "عملگرهای حساب: (+, -, ++, --, *, /, %, **)"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 9007199254740995n;\n\nlet y = 9007199254740995n;\n\nlet z = x * y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_multiply"
+    },
+    {
+      "type": "h2",
+      "text": "ترکیب BigInt و Number"
+    },
+    {
+      "type": "p",
+      "text": "انجام حساب بین یک BigInt و یک Number مجاز نیست (باعث خطای TypeError می‌شود)."
+    },
+    {
+      "type": "p",
+      "text": "باید نخست تبدیل صریح انجام شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10n;\n\nlet y = 5;\n\nlet z = x + y; // ❌ TypeError",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10n;\n\nlet y = 5;\n\nlet z = Number(x) + y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_mix"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل BigInt و Number"
+    },
+    {
+      "type": "p",
+      "text": "BigInt به Number: از سازندهٔ Number() استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "Number به BigInt: از سازندهٔ BigInt() استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a BigInt\n\nlet largeNumber = BigInt(\"12345678901234567890\");\n\n// Conversions\n\nlet num = Number(largeNumber);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_conversion"
+    },
+    {
+      "type": "p",
+      "text": "BigIntهای بزرگ هنگام تبدیل به number ممکن است Infinity شوند یا دقتشان از دست برود."
+    },
+    {
+      "type": "h2",
+      "text": "اعشار در BigInt"
+    },
+    {
+      "type": "p",
+      "text": "BigInt نمی‌تواند اعشار داشته باشد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 1.5n; // ❌ TypeError",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 5n;\n\nlet y = x / 2;\n\n//  ❌ Error: Cannot mix BigInt and other types, use explicit conversion.",
+      "caption": "مثال تقسیم BigInt"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 5n;\n\nlet y = Number(x) / 2;",
+      "caption": "مثال تقسیم BigInt"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_divide"
+    },
+    {
+      "type": "p",
+      "text": "تبدیل عددی که بخش کسری دارد به BigInt خطا می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "عملگرهای مقایسه"
+    },
+    {
+      "type": "p",
+      "text": "BigInt از عملگرهای مقایسهٔ استاندارد JavaScript پشتیبانی می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "عملگرهای مقایسه: (<, > ==, ===, !==, <=, >=)"
+    },
+    {
+      "type": "p",
+      "text": "BigIntها را می‌توان با عملگرهای مقایسهٔ استاندارد با Numberها هم مقایسه کرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// true\n\nlet x = (10n > 5n);\n\n// false (different types)\n\nlet y = (10n === 10);\n\n// true (loose equality)\n\nlet z = (10n == 10);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_compare"
+    },
+    {
+      "type": "p",
+      "text": "برابری سخت‌گیرانه (===) بین یک BigInt و یک Number همیشه false است، چون نوعشان متفاوت است."
+    },
+    {
+      "type": "h2",
+      "text": "عملگرهای بیتی"
+    },
+    {
+      "type": "p",
+      "text": "BigInt از عملیات بیتی پشتیبانی می‌کند، اما فقط با BigIntهای دیگر (نه Numberها):"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["& (AND)", "| (OR)", "^ (XOR)", "~ (NOT)"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let a = 5n;   // 0101\n\nlet b = 3n;   // 0011\n\nlet x = (a & b); // 1n   (0001)\n\nlet y = (a | b); // 7n   (0111)\n\nlet z = (a ^ b); // 6n   (0110)\n\nlet n = (~a);    // -6n",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_bitwise"
+    },
+    {
+      "type": "h2",
+      "text": "عملگرهای شیفت بیتی"
+    },
+    {
+      "type": "p",
+      "text": "BigInt فقط از دو عملگر شیفت پشتیبانی می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["<< (left shift)", ">> (signed right shift)"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let big = 10n; // binary: 1010\n\nlet x = (big << 2n); // 40n  (101000)\n\nlet y = (big >> 1n); // 5n   (0101)",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_shift"
+    },
+    {
+      "type": "p",
+      "text": "قوانین مهم:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "هر دو عملوند باید BigInt باشند",
+        "مقدار شیفت باید نامنفی باشد",
+        "شیفت راست برای مقدارهای منفی بیت علامت را نگه می‌دارد"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "شیفت راست بدون علامت (>>>) با BigIntها مجاز نیست."
+    },
+    {
+      "type": "h2",
+      "text": "BigInt در مبنای ۱۶، ۸ و ۲"
+    },
+    {
+      "type": "p",
+      "text": "BigInt را می‌توان با نماد مبنای ۱۶، ۸ یا ۲ هم نوشت:"
+    },
+    {
+      "type": "p",
+      "text": "مانند عددها، literalهای bigint از چند مبنا پشتیبانی می‌کنند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["معمولی: 256n", "مبنای ۸: 0o400n", "مبنای ۱۶: 0x100n", "مبنای ۲: 0b100000000n"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 256n;\n\nlet oct = 0o400n;\n\nlet hex = 0x100n;\n\nlet bin = 0b100000000n;",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let hex = 0x20000000000003n;\n\nlet oct = 0o400000000000000003n;\n\nlet bin = 0b100000000000000000000000000000000000000000000000000011n;",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_octal_2"
+    },
+    {
+      "type": "h2",
+      "text": "نکتهٔ جالب دربارهٔ دقت"
+    },
+    {
+      "type": "p",
+      "text": "بیشترین عدد صحیح ایمن در JavaScript برابر 9007199254740991 است."
+    },
+    {
+      "type": "p",
+      "text": "گِرد کردن می‌تواند امنیت برنامه را به خطر بیندازد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "9007199254740992 === 9007199254740993; // is true !!!",
+      "caption": "مثال‌های MAX_SAFE_INTEGER"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "9007199254740992n === 9007199254740993n; // is false !!!",
+      "caption": "مثال‌های MAX_SAFE_INTEGER"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_max_safe_error"
+    },
+    {
+      "type": "h2",
+      "text": "خلاصه"
+    },
+    {
+      "type": "p",
+      "text": "BigInt عددهای صحیح با دقت دلخواه را ممکن می‌کند"
+    },
+    {
+      "type": "p",
+      "text": "عددهای BigInt می‌توانند تا هر اندازه که حافظه‌تان اجازه دهد بزرگ (یا کوچک) باشند."
+    },
+    {
+      "type": "p",
+      "text": "BigInt برای عددهای صحیح بسیار بزرگ به کار می‌رود (رمزنگاری، شناسه‌ها، زمان‌نماها و مانند آن‌ها)."
+    },
+    {
+      "type": "p",
+      "text": "BigInt برای اعشار مناسب نیست، فقط برای عددهای صحیح."
+    },
+    {
+      "type": "p",
+      "text": "تابع‌های Math (مثل Math.sqrt()) با BigIntها کار نمی‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "JSON.stringify() نمی‌تواند BigIntها را مدیریت کند و خطا می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "BigInt() یکی از ویژگی‌های ES2020 است."
+    },
+    {
+      "type": "p",
+      "text": "ES2020 از سپتامبر 2020 در همهٔ مرورگرهای مدرن به طور کامل پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome85", "Edge85", "Firefox79", "Safari14", "Opera71"],
+        ["Aug 2020", "Aug 2020", "Mar 2020", "Sep 2020", "Sep 2020"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در کنسول let x = 999999999999999n; و let y = BigInt(\"999999999999999\"); را بسازید و typeof هر دو را چاپ کنید.",
+      "hint": "خروجی typeof برای BigInt برابر \"bigint\" است و پسوند n فقط برای literalهای عدد صحیح کار می‌کند."
+    },
+    {
+      "prompt": "let x = 9007199254740995n; let y = 9007199254740995n; let z = x * y; را اجرا کنید و نتیجه را ببینید. سپس همین ضرب را با عددهای معمولی (بدون n) تکرار کنید و تفاوت را توضیح دهید.",
+      "hint": "عددهای معمولی بالاتر از MAX_SAFE_INTEGER گِرد می‌شوند و دقتشان از دست می‌رود."
+    },
+    {
+      "prompt": "let x = 10n; let y = 5; let z = x + y; را اجرا کنید و متن خطا را بخوانید. بعد با let z = Number(x) + y; همان کار را درست انجام دهید.",
+      "hint": "ترکیب BigInt و Number در حساب مجاز نیست و خطای TypeError می‌دهد؛ اول باید تبدیل صریح انجام شود."
+    },
+    {
+      "prompt": "با مقایسه‌ها کار کنید: let a = (10n > 5n); let b = (10n === 10); let c = (10n == 10); را چاپ کنید و توضیح دهید چرا b و c نتیجهٔ متفاوتی دارند.",
+      "hint": "=== هم نوع را بررسی می‌کند و چون BigInt و Number دو نوع متفاوت‌اند همیشه false می‌دهد، اما == فقط مقدار را می‌سنجد."
+    },
+    {
+      "prompt": "یک BigInt با مبنای دیگر بسازید: let hex = 0x100n; let bin = 0b100000000n; و مقدارشان را چاپ کنید. سپس let x = 5n; let y = Number(x) / 2; را امتحان کنید.",
+      "hint": "BigInt اعشار ندارد؛ برای تقسیم اعشاری نخست با Number() تبدیل کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "BigInt را کدام‌یک از این دو روش می‌توان ساخت؟",
+      "options": [
+        "با literal عدد صحیح و پسوند n یا با سازندهٔ BigInt() و یک رشته",
+        "فقط با سازندهٔ Number()",
+        "فقط با تابع ()Math.round",
+        "با نوشتن عدد داخل کوتیشن دوتایی"
+      ],
+      "answer": 0,
+      "explanation": "هر دو روش درست است: 999999999999999n یا BigInt(\"999999999999999\"). ساخت با Number() نتیجهٔ BigInt نمی‌دهد."
+    },
+    {
+      "question": "let x = 10n; let y = 5; let z = x + y; چه نتیجه‌ای دارد؟",
+      "options": ["15n", "15", "NaN", "خطای TypeError"],
+      "answer": 3,
+      "explanation": "حساب بین BigInt و Number مجاز نیست و TypeError می‌دهد؛ باید اول با Number(x) یا BigInt(y) تبدیل صریح انجام شود."
+    },
+    {
+      "question": "مقدار (10n === 10) چیست؟",
+      "options": ["true", "false، چون نوع دو طرف متفاوت است", "undefined", "خطا می‌دهد"],
+      "answer": 1,
+      "explanation": "=== برابری سخت‌گیرانه است و نوع را هم می‌سنجد؛ BigInt و Number دو نوع متفاوت‌اند، پس نتیجه false است. با == نتیجه true می‌شود."
+    },
+    {
+      "question": "چرا 9007199254740992 === 9007199254740993 مقدار true می‌دهد ولی با BigInt این برابری false است؟",
+      "options": [
+        "چون عددهای معمولی بالاتر از MAX_SAFE_INTEGER دقیق نیستند و گِرد می‌شوند، اما BigInt دقت دلخواه دارد",
+        "چون BigInt کوچک‌تر از Number است",
+        "چون === فقط برای رشته‌ها کار می‌کند",
+        "چون BigInt فقط با n مقایسه می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "عددهای JavaScript ممیز شناور 64 بیتی‌اند و بالاتر از 9007199254740991 نمی‌توانند هر عدد صحیح را دقیق نگه دارند، پس دو عدد متمایز یکسان دیده می‌شوند؛ BigInt این محدودیت را ندارد."
+    },
+    {
+      "question": "کدام جمله دربارهٔ BigInt درست است؟",
+      "options": [
+        "BigInt می‌تواند اعشار داشته باشد",
+        "تابع‌های Math مثل Math.sqrt() با BigInt کار می‌کنند",
+        "BigInt فقط عدد صحیح می‌پذیرد و JSON.stringify() نمی‌تواند آن را مدیریت کند",
+        "BigInt به عددهای کوچک‌تر از MAX_SAFE_INTEGER محدود است"
+      ],
+      "answer": 2,
+      "explanation": "BigInt فقط عدد صحیح است، تابع‌های Math با آن کار نمی‌کنند و JSON.stringify() با BigInt خطا می‌دهد."
+    }
+  ]
 }

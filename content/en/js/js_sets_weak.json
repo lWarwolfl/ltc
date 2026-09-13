@@ -1,275 +1,245 @@
 {
- "slug": "js_sets_weak",
- "course": "js",
- "order": 71,
- "url": "/js/js_sets_weak.asp",
- "title": "JavaScript WeakSet",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript WeakSet"
-  },
-  {
-   "type": "h2",
-   "text": "The WeakSet Object"
-  },
-  {
-   "type": "p",
-   "text": "A JavaScript WeakSet is a collection of values where the\nvalues must be objects."
-  },
-  {
-   "type": "p",
-   "text": "A WeakSet holds weak references to its values."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Do I have myObj in the mySet?\n\nlet answer = mySet.has(myObj);",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Delete the Object\n\nmySet.delete(myObj);\n\n// Do I have myObj in the mySet?\n\nlet answer = mySet.has(myObj);",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakset"
-  },
-  {
-   "type": "h2",
-   "text": "Garbage Collection"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript employs a memory management mechanism known as Garbage Collection."
-  },
-  {
-   "type": "p",
-   "text": "The primary functions are:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Ensuring efficient use of memory resources",
-    "Reclaim memory occupied by variables that are no longer in use",
-    "Preventing memory leaks"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Weak References"
-  },
-  {
-   "type": "p",
-   "text": "Unlike a regular Set, a WeakSet does not prevent its values from being garbage collected."
-  },
-  {
-   "type": "p",
-   "text": "If a value (an object) has no references in a program, it becomes eligible for garbage collection."
-  },
-  {
-   "type": "p",
-   "text": "When the value is garbage collected, its is removed from the WeakSet."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Remove the Object from memory\n\nmyObj = null;\n\n// Now myObj in mySet will be garbage collected",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Values Must Be Objects"
-  },
-  {
-   "type": "p",
-   "text": "Primitive values cannot be values in a WeakSet."
-  },
-  {
-   "type": "p",
-   "text": "The values must be objects."
-  },
-  {
-   "type": "p",
-   "text": "This restriction is tied to the garbage collection mechanism;\nprimitives are not garbage collected in the same way as objects."
-  },
-  {
-   "type": "h2",
-   "text": "Tracking Objects"
-  },
-  {
-   "type": "p",
-   "text": "A WeakSet is similar to a Set, but it only stores objects,\nand holds them weakly. If there are no other references to an object,\nit gets garbage collected automatically."
-  },
-  {
-   "type": "p",
-   "text": "This makes it handy for tracking objects without storing extra data (like counts)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"\";\n\n// Create a WeakSet to track persons\n\nconst persons = new WeakSet();\n\n// Visitor Objects\n\nconst John = {name:\"John\", age:40};\n\nconst Paul = {name:\"Paul\", age:41};\n\nconst Ringo = {name:\"Ringo\", age:42};\n\nconst George = {name:\"George\", age:43};\n\n// Track visits\n\ntrack(Paul);\n\ntrack(Ringo);\n\ntrack(Paul);\n\n// Function to track visitors\n\nfunction track(visitor) {\n\n  if (persons.has(visitor)) {\n\n    text += visitor.name + \" is visiting again.<br>\";\n\n  } else {\n\n    persons.add(visitor);\n\n    text += visitor.name + \", age\" + visitor.age +\", is visiting for the first time<br>\";\n\n  }\n\n}",
-   "caption": "Tracking Visitors:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakset_visitors"
-  },
-  {
-   "type": "p",
-   "text": "If you want to count the visits as well:"
-  },
-  {
-   "type": "p",
-   "text": "Try to use a WeakMap instead."
-  },
-  {
-   "type": "h2",
-   "text": "Automatic Cleanup"
-  },
-  {
-   "type": "p",
-   "text": "If you remove all references to a visitor object:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "John = null;\n\n// The entry for John is now removed from the WeakMap (persons)",
-   "caption": "Tracking Visitors:"
-  },
-  {
-   "type": "h2",
-   "text": "Not Iterable"
-  },
-  {
-   "type": "p",
-   "text": "WeakSets are not enumerable."
-  },
-  {
-   "type": "p",
-   "text": "You cannot iterate over the values with for loops, forEach(), or values()."
-  },
-  {
-   "type": "p",
-   "text": "You cannot access the size. WeakSets have no size property."
-  },
-  {
-   "type": "h2",
-   "text": "Limited Methods"
-  },
-  {
-   "type": "p",
-   "text": "A WeakSet is minimal, memory-safe, and purpose-built for tracking objects privately and efficiently."
-  },
-  {
-   "type": "p",
-   "text": "WeakSet provides a limited set of methods:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "new WeakSet()",
-     "Creates a new WeakSet object"
-    ],
-    [
-     "add(object)",
-     "Adds an Object to a WeakSet"
-    ],
-    [
-     "delete(object)",
-     "Removes a WeakSet object"
-    ],
-    [
-     "has(object)",
-     "Returns true if an object exists in a WeakSet"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "WeakSet does not have:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "A size property",
-    "A spread operator (...)",
-    "A clear() method",
-    "Any logic methods (union, difference, intersection)",
-    "Any iteration methods (forEach, keys, values, entries)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "The above is by design: Objects may disappear in garbage collection,\nit makes no sense to iterate over or count them."
-  },
-  {
-   "type": "h2",
-   "text": "Learn More:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Sets"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Set Methods"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Set Logic"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Set Reference"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Maps"
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "WeakSet is an ES6  feature."
-  },
-  {
-   "type": "p",
-   "text": "ES6 is fully supported in all modern browsers since June 2017:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome51",
-     "Edge15",
-     "Firefox54",
-     "Safari10",
-     "Opera38"
-    ],
-    [
-     "May 2016",
-     "Apr 2017",
-     "Jun 2017",
-     "Sep 2016",
-     "Jun 2016"
-    ]
-   ]
-  }
- ]
+  "slug": "js_sets_weak",
+  "course": "js",
+  "order": 71,
+  "url": "/js/js_sets_weak.asp",
+  "title": "JavaScript WeakSet",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript WeakSet"
+    },
+    {
+      "type": "h2",
+      "text": "The WeakSet Object"
+    },
+    {
+      "type": "p",
+      "text": "A JavaScript WeakSet is a collection of values where the\nvalues must be objects."
+    },
+    {
+      "type": "p",
+      "text": "A WeakSet holds weak references to its values."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Do I have myObj in the mySet?\n\nlet answer = mySet.has(myObj);",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Delete the Object\n\nmySet.delete(myObj);\n\n// Do I have myObj in the mySet?\n\nlet answer = mySet.has(myObj);",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakset"
+    },
+    {
+      "type": "h2",
+      "text": "Garbage Collection"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript employs a memory management mechanism known as Garbage Collection."
+    },
+    {
+      "type": "p",
+      "text": "The primary functions are:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Ensuring efficient use of memory resources",
+        "Reclaim memory occupied by variables that are no longer in use",
+        "Preventing memory leaks"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Weak References"
+    },
+    {
+      "type": "p",
+      "text": "Unlike a regular Set, a WeakSet does not prevent its values from being garbage collected."
+    },
+    {
+      "type": "p",
+      "text": "If a value (an object) has no references in a program, it becomes eligible for garbage collection."
+    },
+    {
+      "type": "p",
+      "text": "When the value is garbage collected, its is removed from the WeakSet."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Remove the Object from memory\n\nmyObj = null;\n\n// Now myObj in mySet will be garbage collected",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Values Must Be Objects"
+    },
+    {
+      "type": "p",
+      "text": "Primitive values cannot be values in a WeakSet."
+    },
+    {
+      "type": "p",
+      "text": "The values must be objects."
+    },
+    {
+      "type": "p",
+      "text": "This restriction is tied to the garbage collection mechanism;\nprimitives are not garbage collected in the same way as objects."
+    },
+    {
+      "type": "h2",
+      "text": "Tracking Objects"
+    },
+    {
+      "type": "p",
+      "text": "A WeakSet is similar to a Set, but it only stores objects,\nand holds them weakly. If there are no other references to an object,\nit gets garbage collected automatically."
+    },
+    {
+      "type": "p",
+      "text": "This makes it handy for tracking objects without storing extra data (like counts)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"\";\n\n// Create a WeakSet to track persons\n\nconst persons = new WeakSet();\n\n// Visitor Objects\n\nconst John = {name:\"John\", age:40};\n\nconst Paul = {name:\"Paul\", age:41};\n\nconst Ringo = {name:\"Ringo\", age:42};\n\nconst George = {name:\"George\", age:43};\n\n// Track visits\n\ntrack(Paul);\n\ntrack(Ringo);\n\ntrack(Paul);\n\n// Function to track visitors\n\nfunction track(visitor) {\n\n  if (persons.has(visitor)) {\n\n    text += visitor.name + \" is visiting again.<br>\";\n\n  } else {\n\n    persons.add(visitor);\n\n    text += visitor.name + \", age\" + visitor.age +\", is visiting for the first time<br>\";\n\n  }\n\n}",
+      "caption": "Tracking Visitors:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakset_visitors"
+    },
+    {
+      "type": "p",
+      "text": "If you want to count the visits as well:"
+    },
+    {
+      "type": "p",
+      "text": "Try to use a WeakMap instead."
+    },
+    {
+      "type": "h2",
+      "text": "Automatic Cleanup"
+    },
+    {
+      "type": "p",
+      "text": "If you remove all references to a visitor object:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "John = null;\n\n// The entry for John is now removed from the WeakMap (persons)",
+      "caption": "Tracking Visitors:"
+    },
+    {
+      "type": "h2",
+      "text": "Not Iterable"
+    },
+    {
+      "type": "p",
+      "text": "WeakSets are not enumerable."
+    },
+    {
+      "type": "p",
+      "text": "You cannot iterate over the values with for loops, forEach(), or values()."
+    },
+    {
+      "type": "p",
+      "text": "You cannot access the size. WeakSets have no size property."
+    },
+    {
+      "type": "h2",
+      "text": "Limited Methods"
+    },
+    {
+      "type": "p",
+      "text": "A WeakSet is minimal, memory-safe, and purpose-built for tracking objects privately and efficiently."
+    },
+    {
+      "type": "p",
+      "text": "WeakSet provides a limited set of methods:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["new WeakSet()", "Creates a new WeakSet object"],
+        ["add(object)", "Adds an Object to a WeakSet"],
+        ["delete(object)", "Removes a WeakSet object"],
+        ["has(object)", "Returns true if an object exists in a WeakSet"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "WeakSet does not have:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A size property",
+        "A spread operator (...)",
+        "A clear() method",
+        "Any logic methods (union, difference, intersection)",
+        "Any iteration methods (forEach, keys, values, entries)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The above is by design: Objects may disappear in garbage collection,\nit makes no sense to iterate over or count them."
+    },
+    {
+      "type": "h2",
+      "text": "Learn More:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Sets"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Set Methods"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Set Logic"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Set Reference"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Maps"
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "WeakSet is an ES6  feature."
+    },
+    {
+      "type": "p",
+      "text": "ES6 is fully supported in all modern browsers since June 2017:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome51", "Edge15", "Firefox54", "Safari10", "Opera38"],
+        ["May 2016", "Apr 2017", "Jun 2017", "Sep 2016", "Jun 2016"]
+      ]
+    }
+  ]
 }

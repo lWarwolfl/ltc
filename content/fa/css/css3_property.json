@@ -1,277 +1,274 @@
 {
- "slug": "css3_property",
- "course": "css",
- "order": 167,
- "url": "/css/css3_property.asp",
- "title": "قاعدهٔ @property در CSS",
- "summary": "قاعدهٔ @property خصوصیت‌های سفارشی را با نوع داده، مقدار پیش‌فرض و رفتار ارث‌بری تعریف می‌کند. در این درس این قاعده را می‌نویسید، جلو خطای مقدار نامعتبر را می‌گیرید و گرادیان را انیمیت می‌کنید.",
- "objectives": [
-  "یک خصوصیت سفارشی با @property تعریف کنید",
-  "نوع داده و مقدار پیش‌فرض آن را تعیین کنید",
-  "رفتار ارث‌بری را با inherits کنترل کنید",
-  "بگویید مقدار نامعتبر چطور با مقدار جانشین جبران می‌شود"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "قاعدهٔ @property در CSS"
-  },
-  {
-   "type": "h2",
-   "text": "قاعدهٔ @property در CSS"
-  },
-  {
-   "type": "p",
-   "text": "قاعدهٔ @property برای تعریف خصوصیت‌های سفارشی CSS (همان متغیرهای CSS) مستقیماً داخل شیوه‌نامه به کار می‌رود، بدون نیاز به اجرای JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "قاعدهٔ @property بررسی و محدودسازی نوع داده دارد، یک مقدار پیش‌فرض تعیین می‌کند و رفتار ارث‌بری را مشخص می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "تعریف زیر یک خصوصیت سفارشی به نام ‎--myColor‎ می‌سازد، آن را از نوع رنگ اعلام می‌کند، می‌گوید مقدارها را از عنصرهای والد به ارث می‌برد و مقدار پیش‌فرضش lightgray است."
-  },
-  {
-   "type": "h3",
-   "text": "نحوهٔ نوشتن @property"
-  },
-  {
-   "type": "p",
-   "text": "@property --myColor {  syntax: \"<color>\";  inherits: true;\n  initial-value: lightgray;}"
-  },
-  {
-   "type": "h3",
-   "text": "به کار بردن خصوصیت سفارشی"
-  },
-  {
-   "type": "p",
-   "text": "تابع var() در CSS برای درج خصوصیت سفارشی به کار می‌رود:"
-  },
-  {
-   "type": "p",
-   "text": "body {  background-color: var(--myColor);}"
-  },
-  {
-   "type": "h2",
-   "text": "مزیت‌های استفاده از @property"
-  },
-  {
-   "type": "p",
-   "text": "مزیت‌های استفاده از @property این‌ها هستند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "بررسی نوع داده: باید نوع دادهٔ خصوصیت سفارشی را تعیین کنید، مثل <number>، <color>، <length> و... . این کار جلوی خطاها را می‌گیرد و مطمئن می‌شوید خصوصیت درست به کار رفته است",
-    "تعیین مقدار پیش‌فرض: باید یک مقدار پیش‌فرض برای خصوصیت سفارشی بگذارید. این کار باعث می‌شود اگر بعداً مقدار نامعتبری داده شد، مرورگر همان مقدار پیش‌فرض را به‌عنوان جانشین به کار ببرد",
-    "تعیین رفتار ارث‌بری: باید مشخص کنید خصوصیت سفارشی مقدارها را از عنصرهای والد به ارث می‌برد یا نه. این کار کنترل کامل روی ارث‌بری را به شما می‌دهد"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مثال @property در CSS"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر دو خصوصیت سفارشی تعریف می‌کند: ‎my-bg-color‎ و ‎my-txt-color‎."
-  },
-  {
-   "type": "p",
-   "text": "سپس عنصر div از این خصوصیت‌های سفارشی در خصوصیت‌های background-color و color استفاده می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\n@property --my-txt-color {\n\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: darkblue;\n\n  }\n\ndiv {\n  width: 300px;\n  height: 150px;\n\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  color: var(--my-txt-color);\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property"
-  },
-  {
-   "type": "h2",
-   "text": "مثال دیگری از @property"
-  },
-  {
-   "type": "p",
-   "text": "در مثال زیر از مقدار پیش‌فرض خصوصیت سفارشی روی عنصر <div> استفاده می‌کنیم. بعد این خصوصیت را در کلاس ‎.fresh‎ و کلاس ‎.nature‎ بازنویسی می‌کنیم (با گذاشتن رنگ‌های دیگر) و همه‌چیز درست کار می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\ndiv {\n  width: 300px;\n\n  height: 150px;\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  }\n\n.fresh {\n  --my-bg-color: #ff6347;\n}\n\n.nature {\n  --my-bg-color: rgb(120,\n  180, 30);\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property2"
-  },
-  {
-   "type": "h2",
-   "text": "جلوگیری از خطا با بررسی نوع و مقدار جانشین"
-  },
-  {
-   "type": "p",
-   "text": "در مثال زیر خصوصیت سفارشی کلاس ‎.nature‎ را یک عدد صحیح می‌گذاریم. این مقدار معتبر نیست و مرورگر رنگ جانشین را به کار می‌برد که در خصوصیت initial-value تعریف شده است (lightgray):"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\ndiv {\n  width: 300px;\n\n  height: 150px;\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  }\n\n.fresh {\n  --my-bg-color: #ff6347;\n}\n\n.nature {\n  --my-bg-color:\n  2;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property3"
-  },
-  {
-   "type": "h2",
-   "text": "کاربرد مقدار inherits"
-  },
-  {
-   "type": "p",
-   "text": "در مثال زیر مقدار inherits را false می‌گذاریم. یعنی خصوصیت سفارشی مقدارها را از عنصرهای والد به ارث نمی‌برد. نتیجه را ببینید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  false;\n  initial-value: lightgray;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property4"
-  },
-  {
-   "type": "p",
-   "text": "مثال بعدی مقدار inherits را true می‌گذارد. یعنی خصوصیت سفارشی مقدارها را از عنصرهای والد به ارث می‌برد. نتیجه را ببینید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property5"
-  },
-  {
-   "type": "h2",
-   "text": "ساختن انیمیشن نرم با @property"
-  },
-  {
-   "type": "p",
-   "text": "فرصت کاملاً تازه‌ای که قاعدهٔ @property در اختیارتان می‌گذارد این است که چیزی را انیمیت کنید که پیش‌تر قابل انیمیت نبود: گرادیان‌ها. مثال زیر را ببینید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --startColor {\n  syntax: \"<color>\";\n\n    initial-value: #EADEDB;\n  inherits: false;\n}\n\n@property --endColor {\n  syntax:\n    \"<color>\";\n  initial-value: #BC70A4;\n  inherits: false;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property6"
-  },
-  {
-   "type": "h2",
-   "text": "قاعدهٔ @property در CSS"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "خصوصیت",
-    "توضیحات"
-   ],
-   "rows": [
-    [
-     "@property",
-     "تعریف خصوصیت‌های سفارشی CSS مستقیماً داخل شیوه‌نامه، بدون نیاز به اجرای JavaScript"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل property.html بسازید و با قاعدهٔ @property یک خصوصیت سفارشی ‎--myColor‎ از نوع <color>، با inherits: true; و initial-value: lightgray; تعریف کنید.",
-   "hint": "هر سه خط syntax، inherits و initial-value داخل همان قاعده لازم است."
-  },
-  {
-   "prompt": "پس‌زمینهٔ body را با var(--myColor) به آن خصوصیت وصل کنید و بعد با JavaScript مقدارش را عوض کنید.",
-   "hint": "خصوصیت سفارشی مثل متغیر خوانده می‌شود؛ وجود @property فقط نوع و پیش‌فرضش را تعیین می‌کند."
-  },
-  {
-   "prompt": "یک کلاس ‎.nature‎ بسازید که ‎--myColor‎ را بازنویسی کند و ببیند کدام رنگ نمایش داده می‌شود.",
-   "hint": "مقدار بازنویسی‌شدهٔ همان بخش، مقدار پیش‌فرض را کنار می‌زند."
-  },
-  {
-   "prompt": "داخل همان کلاس یک مقدار نامعتبر (مثلاً یک عدد) بگذارید و بگویید مرورگر چه رنگی نشان می‌دهد.",
-   "hint": "با بررسی نوع، مقدار نامعتبر رد می‌شود و رنگ جانشین lightgray می‌آید."
-  },
-  {
-   "prompt": "مقدار inherits را false کنید و ببینید رنگ به عنصرهای فرزند ارث می‌رسد یا نه.",
-   "hint": "با false، ارث‌بری متوقف می‌شود و هر عنصر باید خودش مقدار داشته باشد."
-  }
- ],
- "quiz": [
-  {
-   "question": "قاعدهٔ @property چه کاری می‌کند؟",
-   "options": [
-    "خصوصیت سفارشی CSS را داخل شیوه‌نامه تعریف می‌کند، بدون JavaScript",
-    "کد JavaScript اجرا می‌کند",
-    "متن را انیمیت می‌کند",
-    "فایل CSS را فشرده می‌کند"
-   ],
-   "answer": 0,
-   "explanation": "همین هدف اصلی @property است: تعریف خصوصیت سفارشی با نوع داده و مقدار پیش‌فرض، بدون وابستگی به JavaScript."
-  },
-  {
-   "question": "کدام مورد از مزیت‌های @property نیست؟",
-   "options": [
-    "بررسی نوع داده",
-    "تعیین مقدار پیش‌فرض",
-    "تعیین رفتار ارث‌بری",
-    "افزایش خودکار سرعت رندر"
-   ],
-   "answer": 3,
-   "explanation": "مزیت‌های نام‌شده بررسی نوع، مقدار پیش‌فرض و کنترل ارث‌بری‌اند؛ ادعای افزایش سرعت رندر در این درس نیست."
-  },
-  {
-   "question": "اگر برای خصوصیت سفارشی مقدار نامعتبری بدهیم، با @property چه اتفاقی می‌افتد؟",
-   "options": [
-    "صفحه از کار می‌افتد",
-    "مرورگر مقدار پیش‌فرض initial-value را به کار می‌برد",
-    "خصوصیت حذف می‌شود",
-    "مقدار به صفر تغییر می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "بررسی نوع مقدار نامعتبر را رد می‌کند و همان مقدار پیش‌فرض تعریف‌شده جای آن می‌نشیند."
-  },
-  {
-   "question": "مقدار inherits: false; یعنی چه؟",
-   "options": [
-    "خصوصیت مقداری از والدها به ارث نمی‌برد",
-    "خصوصیت پاک می‌شود",
-    "خصوصیت فقط در ‎:root‎ کار می‌کند",
-    "خصوصیت به همهٔ فرزندها ارث می‌رسد"
-   ],
-   "answer": 0,
-   "explanation": "با false، زنجیرهٔ ارث‌بری قطع می‌شود و عنصرهای فرزند مقدار والد را نمی‌گیرند."
-  },
-  {
-   "question": "با @property کدام چیز تازه ممکن می‌شود که پیش‌تر ممکن نبود؟",
-   "options": [
-    "انیمیت کردن گرادیان‌ها",
-    "استفاده از جدول در CSS",
-    "تعریف کلاس",
-    "استفاده از media query"
-   ],
-   "answer": 0,
-   "explanation": "با مشخص‌کردن نوع داده، مرورگر می‌تواند مقدار را در طول زمان تغییر دهد و گرادیان‌ها را هم انیمیت کند."
-  }
- ]
+  "slug": "css3_property",
+  "course": "css",
+  "order": 167,
+  "url": "/css/css3_property.asp",
+  "title": "قاعدهٔ @property در CSS",
+  "summary": "قاعدهٔ @property خصوصیت‌های سفارشی را با نوع داده، مقدار پیش‌فرض و رفتار ارث‌بری تعریف می‌کند. در این درس این قاعده را می‌نویسید، جلو خطای مقدار نامعتبر را می‌گیرید و گرادیان را انیمیت می‌کنید.",
+  "objectives": [
+    "یک خصوصیت سفارشی با @property تعریف کنید",
+    "نوع داده و مقدار پیش‌فرض آن را تعیین کنید",
+    "رفتار ارث‌بری را با inherits کنترل کنید",
+    "بگویید مقدار نامعتبر چطور با مقدار جانشین جبران می‌شود"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "قاعدهٔ @property در CSS"
+    },
+    {
+      "type": "h2",
+      "text": "قاعدهٔ @property در CSS"
+    },
+    {
+      "type": "p",
+      "text": "قاعدهٔ @property برای تعریف خصوصیت‌های سفارشی CSS (همان متغیرهای CSS) مستقیماً داخل شیوه‌نامه به کار می‌رود، بدون نیاز به اجرای JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "قاعدهٔ @property بررسی و محدودسازی نوع داده دارد، یک مقدار پیش‌فرض تعیین می‌کند و رفتار ارث‌بری را مشخص می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "تعریف زیر یک خصوصیت سفارشی به نام ‎--myColor‎ می‌سازد، آن را از نوع رنگ اعلام می‌کند، می‌گوید مقدارها را از عنصرهای والد به ارث می‌برد و مقدار پیش‌فرضش lightgray است."
+    },
+    {
+      "type": "h3",
+      "text": "نحوهٔ نوشتن @property"
+    },
+    {
+      "type": "p",
+      "text": "@property --myColor {  syntax: \"<color>\";  inherits: true;\n  initial-value: lightgray;}"
+    },
+    {
+      "type": "h3",
+      "text": "به کار بردن خصوصیت سفارشی"
+    },
+    {
+      "type": "p",
+      "text": "تابع var() در CSS برای درج خصوصیت سفارشی به کار می‌رود:"
+    },
+    {
+      "type": "p",
+      "text": "body {  background-color: var(--myColor);}"
+    },
+    {
+      "type": "h2",
+      "text": "مزیت‌های استفاده از @property"
+    },
+    {
+      "type": "p",
+      "text": "مزیت‌های استفاده از @property این‌ها هستند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "بررسی نوع داده: باید نوع دادهٔ خصوصیت سفارشی را تعیین کنید، مثل <number>، <color>، <length> و... . این کار جلوی خطاها را می‌گیرد و مطمئن می‌شوید خصوصیت درست به کار رفته است",
+        "تعیین مقدار پیش‌فرض: باید یک مقدار پیش‌فرض برای خصوصیت سفارشی بگذارید. این کار باعث می‌شود اگر بعداً مقدار نامعتبری داده شد، مرورگر همان مقدار پیش‌فرض را به‌عنوان جانشین به کار ببرد",
+        "تعیین رفتار ارث‌بری: باید مشخص کنید خصوصیت سفارشی مقدارها را از عنصرهای والد به ارث می‌برد یا نه. این کار کنترل کامل روی ارث‌بری را به شما می‌دهد"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مثال @property در CSS"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر دو خصوصیت سفارشی تعریف می‌کند: ‎my-bg-color‎ و ‎my-txt-color‎."
+    },
+    {
+      "type": "p",
+      "text": "سپس عنصر div از این خصوصیت‌های سفارشی در خصوصیت‌های background-color و color استفاده می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\n@property --my-txt-color {\n\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: darkblue;\n\n  }\n\ndiv {\n  width: 300px;\n  height: 150px;\n\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  color: var(--my-txt-color);\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property"
+    },
+    {
+      "type": "h2",
+      "text": "مثال دیگری از @property"
+    },
+    {
+      "type": "p",
+      "text": "در مثال زیر از مقدار پیش‌فرض خصوصیت سفارشی روی عنصر <div> استفاده می‌کنیم. بعد این خصوصیت را در کلاس ‎.fresh‎ و کلاس ‎.nature‎ بازنویسی می‌کنیم (با گذاشتن رنگ‌های دیگر) و همه‌چیز درست کار می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\ndiv {\n  width: 300px;\n\n  height: 150px;\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  }\n\n.fresh {\n  --my-bg-color: #ff6347;\n}\n\n.nature {\n  --my-bg-color: rgb(120,\n  180, 30);\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property2"
+    },
+    {
+      "type": "h2",
+      "text": "جلوگیری از خطا با بررسی نوع و مقدار جانشین"
+    },
+    {
+      "type": "p",
+      "text": "در مثال زیر خصوصیت سفارشی کلاس ‎.nature‎ را یک عدد صحیح می‌گذاریم. این مقدار معتبر نیست و مرورگر رنگ جانشین را به کار می‌برد که در خصوصیت initial-value تعریف شده است (lightgray):"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\ndiv {\n  width: 300px;\n\n  height: 150px;\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  }\n\n.fresh {\n  --my-bg-color: #ff6347;\n}\n\n.nature {\n  --my-bg-color:\n  2;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property3"
+    },
+    {
+      "type": "h2",
+      "text": "کاربرد مقدار inherits"
+    },
+    {
+      "type": "p",
+      "text": "در مثال زیر مقدار inherits را false می‌گذاریم. یعنی خصوصیت سفارشی مقدارها را از عنصرهای والد به ارث نمی‌برد. نتیجه را ببینید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  false;\n  initial-value: lightgray;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property4"
+    },
+    {
+      "type": "p",
+      "text": "مثال بعدی مقدار inherits را true می‌گذارد. یعنی خصوصیت سفارشی مقدارها را از عنصرهای والد به ارث می‌برد. نتیجه را ببینید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property5"
+    },
+    {
+      "type": "h2",
+      "text": "ساختن انیمیشن نرم با @property"
+    },
+    {
+      "type": "p",
+      "text": "فرصت کاملاً تازه‌ای که قاعدهٔ @property در اختیارتان می‌گذارد این است که چیزی را انیمیت کنید که پیش‌تر قابل انیمیت نبود: گرادیان‌ها. مثال زیر را ببینید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --startColor {\n  syntax: \"<color>\";\n\n    initial-value: #EADEDB;\n  inherits: false;\n}\n\n@property --endColor {\n  syntax:\n    \"<color>\";\n  initial-value: #BC70A4;\n  inherits: false;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property6"
+    },
+    {
+      "type": "h2",
+      "text": "قاعدهٔ @property در CSS"
+    },
+    {
+      "type": "table",
+      "headers": ["خصوصیت", "توضیحات"],
+      "rows": [
+        [
+          "@property",
+          "تعریف خصوصیت‌های سفارشی CSS مستقیماً داخل شیوه‌نامه، بدون نیاز به اجرای JavaScript"
+        ]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل property.html بسازید و با قاعدهٔ @property یک خصوصیت سفارشی ‎--myColor‎ از نوع <color>، با inherits: true; و initial-value: lightgray; تعریف کنید.",
+      "hint": "هر سه خط syntax، inherits و initial-value داخل همان قاعده لازم است."
+    },
+    {
+      "prompt": "پس‌زمینهٔ body را با var(--myColor) به آن خصوصیت وصل کنید و بعد با JavaScript مقدارش را عوض کنید.",
+      "hint": "خصوصیت سفارشی مثل متغیر خوانده می‌شود؛ وجود @property فقط نوع و پیش‌فرضش را تعیین می‌کند."
+    },
+    {
+      "prompt": "یک کلاس ‎.nature‎ بسازید که ‎--myColor‎ را بازنویسی کند و ببیند کدام رنگ نمایش داده می‌شود.",
+      "hint": "مقدار بازنویسی‌شدهٔ همان بخش، مقدار پیش‌فرض را کنار می‌زند."
+    },
+    {
+      "prompt": "داخل همان کلاس یک مقدار نامعتبر (مثلاً یک عدد) بگذارید و بگویید مرورگر چه رنگی نشان می‌دهد.",
+      "hint": "با بررسی نوع، مقدار نامعتبر رد می‌شود و رنگ جانشین lightgray می‌آید."
+    },
+    {
+      "prompt": "مقدار inherits را false کنید و ببینید رنگ به عنصرهای فرزند ارث می‌رسد یا نه.",
+      "hint": "با false، ارث‌بری متوقف می‌شود و هر عنصر باید خودش مقدار داشته باشد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "قاعدهٔ @property چه کاری می‌کند؟",
+      "options": [
+        "خصوصیت سفارشی CSS را داخل شیوه‌نامه تعریف می‌کند، بدون JavaScript",
+        "کد JavaScript اجرا می‌کند",
+        "متن را انیمیت می‌کند",
+        "فایل CSS را فشرده می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "همین هدف اصلی @property است: تعریف خصوصیت سفارشی با نوع داده و مقدار پیش‌فرض، بدون وابستگی به JavaScript."
+    },
+    {
+      "question": "کدام مورد از مزیت‌های @property نیست؟",
+      "options": [
+        "بررسی نوع داده",
+        "تعیین مقدار پیش‌فرض",
+        "تعیین رفتار ارث‌بری",
+        "افزایش خودکار سرعت رندر"
+      ],
+      "answer": 3,
+      "explanation": "مزیت‌های نام‌شده بررسی نوع، مقدار پیش‌فرض و کنترل ارث‌بری‌اند؛ ادعای افزایش سرعت رندر در این درس نیست."
+    },
+    {
+      "question": "اگر برای خصوصیت سفارشی مقدار نامعتبری بدهیم، با @property چه اتفاقی می‌افتد؟",
+      "options": [
+        "صفحه از کار می‌افتد",
+        "مرورگر مقدار پیش‌فرض initial-value را به کار می‌برد",
+        "خصوصیت حذف می‌شود",
+        "مقدار به صفر تغییر می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "بررسی نوع مقدار نامعتبر را رد می‌کند و همان مقدار پیش‌فرض تعریف‌شده جای آن می‌نشیند."
+    },
+    {
+      "question": "مقدار inherits: false; یعنی چه؟",
+      "options": [
+        "خصوصیت مقداری از والدها به ارث نمی‌برد",
+        "خصوصیت پاک می‌شود",
+        "خصوصیت فقط در ‎:root‎ کار می‌کند",
+        "خصوصیت به همهٔ فرزندها ارث می‌رسد"
+      ],
+      "answer": 0,
+      "explanation": "با false، زنجیرهٔ ارث‌بری قطع می‌شود و عنصرهای فرزند مقدار والد را نمی‌گیرند."
+    },
+    {
+      "question": "با @property کدام چیز تازه ممکن می‌شود که پیش‌تر ممکن نبود؟",
+      "options": [
+        "انیمیت کردن گرادیان‌ها",
+        "استفاده از جدول در CSS",
+        "تعریف کلاس",
+        "استفاده از media query"
+      ],
+      "answer": 0,
+      "explanation": "با مشخص‌کردن نوع داده، مرورگر می‌تواند مقدار را در طول زمان تغییر دهد و گرادیان‌ها را هم انیمیت کند."
+    }
+  ]
 }

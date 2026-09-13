@@ -1,172 +1,157 @@
 {
- "slug": "css_rwd_grid",
- "course": "css",
- "order": 190,
- "url": "/css/css_rwd_grid.asp",
- "title": "طراحی وب واکنش‌گرا، ساخت grid view",
- "summary": "بسیاری از صفحه‌های وب بر پایهٔ grid view ساخته می‌شوند؛ یعنی تقسیم صفحه به سطر و ستون. این درس با box-sizing: border-box شروع می‌کند و بعد یک ظرف grid با پنج بخش و ناحیه‌های نام‌دار می‌سازد.",
- "objectives": [
-  "بگویید grid view چیست و معمولاً چند ستون دارد",
-  "نقش box-sizing: border-box را توضیح دهید",
-  "یک ظرف grid با پنج بخش صفحه بسازید",
-  "بخش‌ها را با grid-template-areas در حالت موبایل بچینید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "طراحی وب واکنش‌گرا، ساخت grid view"
-  },
-  {
-   "type": "h2",
-   "text": "grid view چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "بسیاری از صفحه‌های وب بر پایهٔ grid view ساخته می‌شوند؛ یعنی صفحه به سطرها و ستون‌ها تقسیم می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "یک grid view واکنش‌گرا معمولاً ۶ یا ۱۲ ستون دارد و با تغییر اندازهٔ پنجرهٔ مرورگر جمع و باز می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "ساخت یک grid view"
-  },
-  {
-   "type": "p",
-   "text": "بیایید ساخت یک grid view را شروع کنیم."
-  },
-  {
-   "type": "p",
-   "text": "اول مطمئن شوید خصوصیت box-sizing همهٔ عنصرهای HTML روی border-box است. این کار تضمین می‌کند حاشیهٔ داخلی و حاشیه در پهنای کل و ارتفاع کل عنصرها حساب شوند."
-  },
-  {
-   "type": "p",
-   "text": "این را بالای CSS خود اضافه کنید:"
-  },
-  {
-   "type": "p",
-   "text": "* {  box-sizing: border-box;}"
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ خصوصیت box-sizing در درس Box Sizing در CSS بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "HTML"
-  },
-  {
-   "type": "p",
-   "text": "یک ظرف grid با پنج آیتم grid می‌سازیم (header، menu، content، facts و footer):"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div class=\"grid-container\">\n\n<div class=\"header\"><h1>Chania</h1></div>\n\n<div class=\"menu\">\n  <ul>\n    <li>The\n  Flight</li>\n    <li>The City</li>\n\n  <li>The Island</li>\n    <li>The Food</li>\n  </ul>\n\n  </div>\n\n<div class=\"content\">\n  <h1>The City</h1>\n\n  <p>Chania is the capital of the Chania region on the island of Crete.</p>\n\n  <p>The city can be divided in two parts, the old town and the modern city. The\n  old town is situated next to the old harbour and is the matrix around which\n  the whole urban area was developed.</p>\n  <p>Chania lies along the\n  north west coast of the island Crete.</p>\n</div>\n\n<div\n  class=\"facts\">\n  <h2>Facts:</h2>\n  <ul>\n\n  <li>Chania is a city on the island of Crete</li>\n\n  <li>Crete is a Greek island in the Mediterranean Sea</li>\n  </ul>\n\n  </div>\n\n<div class=\"footer\"><p>A footer.</p></div>\n\n</div>",
-   "caption": "HTML"
-  },
-  {
-   "type": "h2",
-   "text": "CSS"
-  },
-  {
-   "type": "p",
-   "text": "چند شیوه و رنگ اضافه کنید تا بهتر دیده شود:"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "برای افزودن media query و نقطهٔ شکست بر اساس اندازهٔ صفحه، درس بعدی را ببینید!"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "* {\n  box-sizing: border-box;\n}\n\nbody {\n\n  font-family: \"Lucida Sans\", sans-serif;\n  font-size: 17px;\n}\n\n.grid-container {\n  display: grid;\n  grid-template-areas:\n\n  'header'\n  'menu'\n  'main'\n  'facts'\n\n  'footer';\n  background-color: white;\n  gap: 10px;\n}\n\n.header {\n  grid-area: header;\n  background-color: purple;\n\n  text-align: center;\n  color: #ffffff;\n}\n\n.header > h1 {\n\n  font-size: 40px;\n}\n\n.menu {\n  grid-area: menu;\n}\n\n  .menu ul {\n  list-style-type: none;\n  margin: 0;\n\n  padding: 0;\n}\n\n.menu li {\n  padding: 8px;\n\n  margin-bottom: 7px;\n  background-color: #33b5e5;\n  color:\n  #ffffff;\n}\n\n.menu li:hover {\n  background-color: #0099cc;\n\n  }\n\n.content {\n  grid-area: main;\n}\n\n.content > h1 {\n\n  font-size: 30px;\n  margin-bottom: 7px;\n}\n\n.content > p {\n\n  margin-bottom: 7px;\n}\n\n.facts {\n  grid-area: facts;\n\n  border: 1px solid #0099cc;\n  background-color: beige;\n\n  padding: 10px;\n}\n\n.facts > h2 {\n  font-size: 20px;\n}\n\n.facts li {\n  margin-bottom: 5px;\n}\n\n.footer {\n\n  grid-area: footer;\n  background-color: #0099cc;\n  color:\n  #ffffff;\n  text-align: center;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryresponsive_styles"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل rwdgrid.html بسازید و بالای CSS خود بنویسید * { box-sizing: border-box; }. بعد به یک div پهنای ۵۰ درصد و حاشیهٔ داخلی ۲۰ پیکسل بدهید.",
-   "hint": "با border-box پهنای حاشیهٔ داخلی و حاشیه از خود پهنای ۵۰ درصد کم می‌شود، نه اینکه به آن اضافه شود."
-  },
-  {
-   "prompt": "همان کار را بدون box-sizing امتحان کنید و ببینید عرض واقعی عنصر از پهنای پنجره بیشتر می‌شود.",
-   "hint": "در حالت پیش‌فرض (content-box) حاشیهٔ داخلی و حاشیه به پهنای تعیین‌شده اضافه می‌شوند."
-  },
-  {
-   "prompt": "ظرفی با display: grid بسازید و پنج بخش header و menu و content و facts و footer داخلش بگذارید.",
-   "hint": "هر بخش یک div با کلاسی هم‌نام خودش باشد."
-  },
-  {
-   "prompt": "با grid-template-areas در حالت موبایل این پنج بخش را زیر هم بچینید و به هر بخش grid-area بدهید.",
-   "hint": "نقشهٔ ناحیه‌ها را در همان ترتیب کد بنویسید تا موبایل ستونی شود."
-  },
-  {
-   "prompt": "برای سرتیتر رنگ پس‌زمینه و تراز متن وسط بگذارید تا صفحه کمی واقعی‌تر شود.",
-   "hint": "می‌توانید رنگ متن را سفید و پس‌زمینه را بنفش بگیرید."
-  }
- ],
- "quiz": [
-  {
-   "question": "یک grid view واکنش‌گرا معمولاً چند ستون دارد؟",
-   "options": [
-    "۲ یا ۳",
-    "۶ یا ۱۲",
-    "۱۰ یا ۲۰",
-    "دقیقاً ۱۶"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید grid view واکنش‌گرا معمولاً ۶ یا ۱۲ ستون دارد و با اندازهٔ پنجره جمع و باز می‌شود."
-  },
-  {
-   "question": "چرا بالای CSS خود box-sizing: border-box; می‌گذاریم؟",
-   "options": [
-    "تا حاشیهٔ داخلی و حاشیه داخل پهنای کل عنصر حساب شوند",
-    "تا فونت صفحه کوچک‌تر شود",
-    "تا همهٔ عنصرها grid شوند",
-    "تا رنگ‌ها تغییر کنند"
-   ],
-   "answer": 0,
-   "explanation": "با border-box پهنای تعیین‌شده شامل حاشیهٔ داخلی و حاشیه هم می‌شود و محاسبهٔ ستون‌ها ساده و قابل پیش‌بینی می‌ماند."
-  },
-  {
-   "question": "در مثال این درس، پنج بخش صفحه چه نام دارند؟",
-   "options": [
-    "top، left، right، bottom، center",
-    "header، menu، content، facts، footer",
-    "nav، main، aside، footer، header",
-    "div1 تا div5"
-   ],
-   "answer": 1,
-   "explanation": "ظرف grid با پنج آیتم ساخته می‌شود: header، menu، content، facts و footer."
-  },
-  {
-   "question": "کلاس بخش داستان در مثال HTML درس چیست؟",
-   "options": [
-    "menu",
-    "content",
-    "facts",
-    "header"
-   ],
-   "answer": 1,
-   "explanation": "بخش داستان کلاس content دارد؛ menu فهرست پیوندهاست و facts و header بخش‌های دیگرند."
-  },
-  {
-   "question": "در این درس برای چیدمان دو‌بعدی بخش‌ها از چه چیزی استفاده می‌شود؟",
-   "options": [
-    "float",
-    "display: grid و grid-template-areas",
-    "table",
-    "position: absolute"
-   ],
-   "answer": 1,
-   "explanation": "ظرف با display: grid ساخته می‌شود و ناحیه‌ها با grid-template-areas چیده می‌شوند؛ درس بعدی برای اندازه‌های بزرگ‌تر نقطهٔ شکست اضافه می‌کند."
-  }
- ]
+  "slug": "css_rwd_grid",
+  "course": "css",
+  "order": 190,
+  "url": "/css/css_rwd_grid.asp",
+  "title": "طراحی وب واکنش‌گرا، ساخت grid view",
+  "summary": "بسیاری از صفحه‌های وب بر پایهٔ grid view ساخته می‌شوند؛ یعنی تقسیم صفحه به سطر و ستون. این درس با box-sizing: border-box شروع می‌کند و بعد یک ظرف grid با پنج بخش و ناحیه‌های نام‌دار می‌سازد.",
+  "objectives": [
+    "بگویید grid view چیست و معمولاً چند ستون دارد",
+    "نقش box-sizing: border-box را توضیح دهید",
+    "یک ظرف grid با پنج بخش صفحه بسازید",
+    "بخش‌ها را با grid-template-areas در حالت موبایل بچینید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "طراحی وب واکنش‌گرا، ساخت grid view"
+    },
+    {
+      "type": "h2",
+      "text": "grid view چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "بسیاری از صفحه‌های وب بر پایهٔ grid view ساخته می‌شوند؛ یعنی صفحه به سطرها و ستون‌ها تقسیم می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "یک grid view واکنش‌گرا معمولاً ۶ یا ۱۲ ستون دارد و با تغییر اندازهٔ پنجرهٔ مرورگر جمع و باز می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "ساخت یک grid view"
+    },
+    {
+      "type": "p",
+      "text": "بیایید ساخت یک grid view را شروع کنیم."
+    },
+    {
+      "type": "p",
+      "text": "اول مطمئن شوید خصوصیت box-sizing همهٔ عنصرهای HTML روی border-box است. این کار تضمین می‌کند حاشیهٔ داخلی و حاشیه در پهنای کل و ارتفاع کل عنصرها حساب شوند."
+    },
+    {
+      "type": "p",
+      "text": "این را بالای CSS خود اضافه کنید:"
+    },
+    {
+      "type": "p",
+      "text": "* {  box-sizing: border-box;}"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ خصوصیت box-sizing در درس Box Sizing در CSS بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "HTML"
+    },
+    {
+      "type": "p",
+      "text": "یک ظرف grid با پنج آیتم grid می‌سازیم (header، menu، content، facts و footer):"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div class=\"grid-container\">\n\n<div class=\"header\"><h1>Chania</h1></div>\n\n<div class=\"menu\">\n  <ul>\n    <li>The\n  Flight</li>\n    <li>The City</li>\n\n  <li>The Island</li>\n    <li>The Food</li>\n  </ul>\n\n  </div>\n\n<div class=\"content\">\n  <h1>The City</h1>\n\n  <p>Chania is the capital of the Chania region on the island of Crete.</p>\n\n  <p>The city can be divided in two parts, the old town and the modern city. The\n  old town is situated next to the old harbour and is the matrix around which\n  the whole urban area was developed.</p>\n  <p>Chania lies along the\n  north west coast of the island Crete.</p>\n</div>\n\n<div\n  class=\"facts\">\n  <h2>Facts:</h2>\n  <ul>\n\n  <li>Chania is a city on the island of Crete</li>\n\n  <li>Crete is a Greek island in the Mediterranean Sea</li>\n  </ul>\n\n  </div>\n\n<div class=\"footer\"><p>A footer.</p></div>\n\n</div>",
+      "caption": "HTML"
+    },
+    {
+      "type": "h2",
+      "text": "CSS"
+    },
+    {
+      "type": "p",
+      "text": "چند شیوه و رنگ اضافه کنید تا بهتر دیده شود:"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برای افزودن media query و نقطهٔ شکست بر اساس اندازهٔ صفحه، درس بعدی را ببینید!"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "* {\n  box-sizing: border-box;\n}\n\nbody {\n\n  font-family: \"Lucida Sans\", sans-serif;\n  font-size: 17px;\n}\n\n.grid-container {\n  display: grid;\n  grid-template-areas:\n\n  'header'\n  'menu'\n  'main'\n  'facts'\n\n  'footer';\n  background-color: white;\n  gap: 10px;\n}\n\n.header {\n  grid-area: header;\n  background-color: purple;\n\n  text-align: center;\n  color: #ffffff;\n}\n\n.header > h1 {\n\n  font-size: 40px;\n}\n\n.menu {\n  grid-area: menu;\n}\n\n  .menu ul {\n  list-style-type: none;\n  margin: 0;\n\n  padding: 0;\n}\n\n.menu li {\n  padding: 8px;\n\n  margin-bottom: 7px;\n  background-color: #33b5e5;\n  color:\n  #ffffff;\n}\n\n.menu li:hover {\n  background-color: #0099cc;\n\n  }\n\n.content {\n  grid-area: main;\n}\n\n.content > h1 {\n\n  font-size: 30px;\n  margin-bottom: 7px;\n}\n\n.content > p {\n\n  margin-bottom: 7px;\n}\n\n.facts {\n  grid-area: facts;\n\n  border: 1px solid #0099cc;\n  background-color: beige;\n\n  padding: 10px;\n}\n\n.facts > h2 {\n  font-size: 20px;\n}\n\n.facts li {\n  margin-bottom: 5px;\n}\n\n.footer {\n\n  grid-area: footer;\n  background-color: #0099cc;\n  color:\n  #ffffff;\n  text-align: center;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryresponsive_styles"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل rwdgrid.html بسازید و بالای CSS خود بنویسید * { box-sizing: border-box; }. بعد به یک div پهنای ۵۰ درصد و حاشیهٔ داخلی ۲۰ پیکسل بدهید.",
+      "hint": "با border-box پهنای حاشیهٔ داخلی و حاشیه از خود پهنای ۵۰ درصد کم می‌شود، نه اینکه به آن اضافه شود."
+    },
+    {
+      "prompt": "همان کار را بدون box-sizing امتحان کنید و ببینید عرض واقعی عنصر از پهنای پنجره بیشتر می‌شود.",
+      "hint": "در حالت پیش‌فرض (content-box) حاشیهٔ داخلی و حاشیه به پهنای تعیین‌شده اضافه می‌شوند."
+    },
+    {
+      "prompt": "ظرفی با display: grid بسازید و پنج بخش header و menu و content و facts و footer داخلش بگذارید.",
+      "hint": "هر بخش یک div با کلاسی هم‌نام خودش باشد."
+    },
+    {
+      "prompt": "با grid-template-areas در حالت موبایل این پنج بخش را زیر هم بچینید و به هر بخش grid-area بدهید.",
+      "hint": "نقشهٔ ناحیه‌ها را در همان ترتیب کد بنویسید تا موبایل ستونی شود."
+    },
+    {
+      "prompt": "برای سرتیتر رنگ پس‌زمینه و تراز متن وسط بگذارید تا صفحه کمی واقعی‌تر شود.",
+      "hint": "می‌توانید رنگ متن را سفید و پس‌زمینه را بنفش بگیرید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "یک grid view واکنش‌گرا معمولاً چند ستون دارد؟",
+      "options": ["۲ یا ۳", "۶ یا ۱۲", "۱۰ یا ۲۰", "دقیقاً ۱۶"],
+      "answer": 1,
+      "explanation": "درس می‌گوید grid view واکنش‌گرا معمولاً ۶ یا ۱۲ ستون دارد و با اندازهٔ پنجره جمع و باز می‌شود."
+    },
+    {
+      "question": "چرا بالای CSS خود box-sizing: border-box; می‌گذاریم؟",
+      "options": [
+        "تا حاشیهٔ داخلی و حاشیه داخل پهنای کل عنصر حساب شوند",
+        "تا فونت صفحه کوچک‌تر شود",
+        "تا همهٔ عنصرها grid شوند",
+        "تا رنگ‌ها تغییر کنند"
+      ],
+      "answer": 0,
+      "explanation": "با border-box پهنای تعیین‌شده شامل حاشیهٔ داخلی و حاشیه هم می‌شود و محاسبهٔ ستون‌ها ساده و قابل پیش‌بینی می‌ماند."
+    },
+    {
+      "question": "در مثال این درس، پنج بخش صفحه چه نام دارند؟",
+      "options": [
+        "top، left، right، bottom، center",
+        "header، menu، content، facts، footer",
+        "nav، main، aside، footer، header",
+        "div1 تا div5"
+      ],
+      "answer": 1,
+      "explanation": "ظرف grid با پنج آیتم ساخته می‌شود: header، menu، content، facts و footer."
+    },
+    {
+      "question": "کلاس بخش داستان در مثال HTML درس چیست؟",
+      "options": ["menu", "content", "facts", "header"],
+      "answer": 1,
+      "explanation": "بخش داستان کلاس content دارد؛ menu فهرست پیوندهاست و facts و header بخش‌های دیگرند."
+    },
+    {
+      "question": "در این درس برای چیدمان دو‌بعدی بخش‌ها از چه چیزی استفاده می‌شود؟",
+      "options": ["float", "display: grid و grid-template-areas", "table", "position: absolute"],
+      "answer": 1,
+      "explanation": "ظرف با display: grid ساخته می‌شود و ناحیه‌ها با grid-template-areas چیده می‌شوند؛ درس بعدی برای اندازه‌های بزرگ‌تر نقطهٔ شکست اضافه می‌کند."
+    }
+  ]
 }

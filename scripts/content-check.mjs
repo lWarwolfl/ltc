@@ -35,7 +35,11 @@ function validate(locale, course, slug) {
 
     for (const [index, question] of (lesson.quiz ?? []).entries()) {
       if (!question.options?.length) problems.push(`${where}: quiz ${index} has no options`)
-      if (typeof question.answer !== 'number' || question.answer < 0 || question.answer >= (question.options?.length ?? 0)) {
+      if (
+        typeof question.answer !== 'number' ||
+        question.answer < 0 ||
+        question.answer >= (question.options?.length ?? 0)
+      ) {
         problems.push(`${where}: quiz ${index} answer index out of range`)
       }
       if (!question.explanation) warnings.push(`${where}: quiz ${index} has no explanation`)

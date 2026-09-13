@@ -1,373 +1,302 @@
 {
- "slug": "js_regexp_quantifiers",
- "course": "js",
- "order": 87,
- "url": "/js/js_regexp_quantifiers.asp",
- "title": "کمیت‌سنج‌ها (Quantifiers) در RegExp",
- "summary": "کمیت‌سنج‌ها تعیین می‌کنند نویسه یا گروه پیش از خود چند بار تکرار شود. در این درس +، *، ?، {n}، {n,m} و {n,} را یاد می‌گیرید و می‌بینید هرکدام چه بازه‌ای را می‌پذیرند.",
- "objectives": [
-  "معنای +، * و ? را توضیح دهید",
-  "با {n} تعداد دقیق تکرار را تعیین کنید",
-  "با {n,m} و {n,} بازهٔ تکرار بسازید",
-  "تشخیص دهید کمیت‌سنج روی چه واحدی اعمال می‌شود"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "کمیت‌سنج‌ها (Quantifiers) در RegExp"
-  },
-  {
-   "type": "h2",
-   "text": "کمیت‌سنج‌ها (Quantifiers) در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "کمیت‌سنج‌ها در عبارت باقاعده (Regex) تعیین می‌کنند نویسه، گروه یا کلاس نویسهٔ پیش از خود چند بار باید در رشته بیاید. آن‌ها مرزهای تطبیق را کنترل می‌کنند و الگو را انعطاف‌پذیر می‌سازند."
-  },
-  {
-   "type": "p",
-   "text": "// تطبیق دست‌کم یک صفر\nconst pattern = /0+/;"
-  },
-  {
-   "type": "h2",
-   "text": "کمیت‌سنج‌های RegExp در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "ویرایش‌شده در جولای ۲۰۲۵"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "کد",
-     "توضیح"
-    ],
-    [
-     "x+",
-     "دست‌کم یک x را تطبیق می‌دهد"
-    ],
-    [
-     "x*",
-     "صفر یا بیشتر تکرار x را تطبیق می‌دهد"
-    ],
-    [
-     "x?",
-     "صفر یا یک تکرار x را تطبیق می‌دهد"
-    ],
-    [
-     "x{n}",
-     "n تکرار x را تطبیق می‌دهد"
-    ],
-    [
-     "x{n,m}",
-     "از n تا m تکرار x را تطبیق می‌دهد"
-    ],
-    [
-     "x{n,}",
-     "n یا بیشتر تکرار x را تطبیق می‌دهد"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "کمیت‌سنج + در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "الگوی x+ دست‌کم یک x را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hellooo World! Hello W3Schools!\";\n\nconst pattern = /o+/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n1"
-  },
-  {
-   "type": "h2",
-   "text": "کمیت‌سنج * در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "الگوی x* صفر یا بیشتر تکرار x را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hellooo World! Hello W3Schools!\";\n\nconst pattern = /lo*/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n2"
-  },
-  {
-   "type": "h2",
-   "text": "کمیت‌سنج ? در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "الگوی x? صفر یا یک تکرار x را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"1, 100 or 1000?\";\n\nconst pattern = /10?/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n3"
-  },
-  {
-   "type": "h2",
-   "text": "کمیت‌سنج {n} در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "الگوی x{n} دقیقاً n تکرار x را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"100, 1000 or 10000?\";\n\nlet pattern = /\\d{4}/g;\n\nlet result = text.match(pattern);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nx"
-  },
-  {
-   "type": "h2",
-   "text": "کمیت‌سنج {n,m} در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "الگوی x{n,m} از n تا m تکرار x را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"100, 1000 or 10000?\";\n\nlet pattern = /\\d{3,4}/g;\n\nlet result = text.match(pattern);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nxy"
-  },
-  {
-   "type": "h2",
-   "text": "کمیت‌سنج {n,} در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "الگوی x{n,} n یا بیشتر تکرار x را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"100, 1000 or 10000?\";\n\nlet pattern = /\\d{3,}/g;\n\nlet result = text.match(pattern);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nxx"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای عبارت باقاعده"
-  },
-  {
-   "type": "p",
-   "text": "جست‌وجو و جایگزینی با عبارت باقاعده را می‌توان با متدهای مختلفی انجام داد."
-  },
-  {
-   "type": "p",
-   "text": "این‌ها رایج‌ترین‌شان هستند:"
-  },
-  {
-   "type": "h3",
-   "text": "متدهای رشته"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "match(regex)",
-     "یک آرایه از نتیجه‌ها برمی‌گرداند"
-    ],
-    [
-     "matchAll(regex)",
-     "یک iterator از نتیجه‌ها برمی‌گرداند"
-    ],
-    [
-     "replace(regex)",
-     "یک رشتهٔ جدید برمی‌گرداند"
-    ],
-    [
-     "replaceAll(regex)",
-     "یک رشتهٔ جدید برمی‌گرداند"
-    ],
-    [
-     "search(regex)",
-     "اندیس نخستین تطبیق را برمی‌گرداند"
-    ],
-    [
-     "split(regex)",
-     "یک آرایه از نتیجه‌ها برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "متدهای RegExp"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "regex.exec()",
-     "یک iterator از نتیجه‌ها برمی‌گرداند"
-    ],
-    [
-     "regex.test()",
-     "true یا false برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "همچنین ببینید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پرچم‌های RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کلاس‌های نویسه در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "متانویسه‌های RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Assertions در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "گروه‌های RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "الگوهای RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "شیءهای RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متدهای RegExp در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل regex-quant.html بسازید و الگوی /0+/ را روی رشتهٔ \"1000 2000\" امتحان کنید و نتیجهٔ match را چاپ کنید.",
-   "hint": "+ یعنی دست‌کم یک تکرار از نویسهٔ قبل؛ پس رشته‌های 000 و 000 جداگانه پیدا می‌شوند."
-  },
-  {
-   "prompt": "همان رشته را یک‌بار با /0*/ و یک‌بار با /0?/ تطبیق دهید و تعداد عضوهای دو آرایه را مقایسه کنید.",
-   "hint": "* صفر یا بیشتر و ? صفر یا یک تکرار را تطبیق می‌دهد."
-  },
-  {
-   "prompt": "با /\\d{4}/ یک عدد چهاررقمی مثل سال را در رشتهٔ \"سال 2025 و ماه 12\" پیدا کنید.",
-   "hint": "{n} دقیقاً n تکرار از الگوی قبل را می‌خواهد."
-  },
-  {
-   "prompt": "با /\\d{2,4}/ روی «123» و روی «12345» آزمایش کنید و تفاوت نتیجه را توضیح دهید.",
-   "hint": "{n,m} بین n و m تکرار را می‌پذیرد و بیشترین تطبیق ممکن را برمی‌گرداند."
-  },
-  {
-   "prompt": "برای شماره‌هایی با حداقل سه رقم الگوی /\\d{3,}/ را بنویسید و روی «12» و «1234» امتحان کنید.",
-   "hint": "{n,} یعنی n تکرار یا بیشتر."
-  }
- ],
- "quiz": [
-  {
-   "question": "کمیت‌سنج + چه چیزی را تطبیق می‌دهد؟",
-   "options": [
-    "صفر یا یک تکرار",
-    "صفر یا بیشتر تکرار",
-    "دست‌کم یک تکرار",
-    "دقیقاً یک تکرار"
-   ],
-   "answer": 2,
-   "explanation": "x+ یعنی الگوی قبل یک بار یا بیشتر بیاید. حالت «صفر یا بیشتر» کار x*، «صفر یا یک» کار x? و «دقیقاً یکی» را با x{n} با n=1 می‌سازیم."
-  },
-  {
-   "question": "کدام کمیت‌سنج صفر یا یک تکرار را تطبیق می‌دهد؟",
-   "options": [
-    "x+",
-    "x*",
-    "x?",
-    "x{n}"
-   ],
-   "answer": 2,
-   "explanation": "x? یعنی الگو ممکن است بیاید یا نیاید. x+ دست‌کم یک و x* صفر یا بیشتر است و x{n} تعداد دقیق را می‌خواهد."
-  },
-  {
-   "question": "الگوی x{2,4} چه رشته‌هایی را می‌پذیرد؟",
-   "options": [
-    "فقط دو تکرار",
-    "فقط چهار تکرار",
-    "بین دو تا چهار تکرار",
-    "دو تکرار یا بیشتر"
-   ],
-   "answer": 2,
-   "explanation": "صورت {n,m} بازهٔ مجاز تکرار را تعیین می‌کند؛ پس 2، 3 یا 4 تکرار پذیرفته می‌شود. حالت «دو یا بیشتر» با x{2,} نوشته می‌شود."
-  },
-  {
-   "question": "کمیت‌سنج روی چه چیزی اعمال می‌شود؟",
-   "options": [
-    "کل رشته",
-    "نویسه، گروه یا کلاس نویسهٔ پیش از خود",
-    "فقط رقم‌ها",
-    "فقط ابتدای رشته"
-   ],
-   "answer": 1,
-   "explanation": "کمیت‌سنج همیشه به واحدی که پیش از آن آمده برمی‌گردد؛ اگر بخواهید چند نویسه را با هم تکرار کنید، اول آن‌ها را در گروه می‌گذارید."
-  },
-  {
-   "question": "الگوی x{3,} چه معنایی دارد؟",
-   "options": [
-    "دقیقاً سه تکرار",
-    "بین سه تا پنج تکرار",
-    "سه تکرار یا بیشتر",
-    "حداکثر سه تکرار"
-   ],
-   "answer": 2,
-   "explanation": "وقتی بعد از کاما عددی نیاید، هیچ سقفی وجود ندارد؛ پس سه تکرار یا بیشتر پذیرفته می‌شود. حالت دقیقاً سه با x{3} و حداکثر سه با x{1,3} نوشته می‌شود."
-  }
- ]
+  "slug": "js_regexp_quantifiers",
+  "course": "js",
+  "order": 87,
+  "url": "/js/js_regexp_quantifiers.asp",
+  "title": "کمیت‌سنج‌ها (Quantifiers) در RegExp",
+  "summary": "کمیت‌سنج‌ها تعیین می‌کنند نویسه یا گروه پیش از خود چند بار تکرار شود. در این درس +، *، ?، {n}، {n,m} و {n,} را یاد می‌گیرید و می‌بینید هرکدام چه بازه‌ای را می‌پذیرند.",
+  "objectives": [
+    "معنای +، * و ? را توضیح دهید",
+    "با {n} تعداد دقیق تکرار را تعیین کنید",
+    "با {n,m} و {n,} بازهٔ تکرار بسازید",
+    "تشخیص دهید کمیت‌سنج روی چه واحدی اعمال می‌شود"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "کمیت‌سنج‌ها (Quantifiers) در RegExp"
+    },
+    {
+      "type": "h2",
+      "text": "کمیت‌سنج‌ها (Quantifiers) در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "کمیت‌سنج‌ها در عبارت باقاعده (Regex) تعیین می‌کنند نویسه، گروه یا کلاس نویسهٔ پیش از خود چند بار باید در رشته بیاید. آن‌ها مرزهای تطبیق را کنترل می‌کنند و الگو را انعطاف‌پذیر می‌سازند."
+    },
+    {
+      "type": "p",
+      "text": "// تطبیق دست‌کم یک صفر\nconst pattern = /0+/;"
+    },
+    {
+      "type": "h2",
+      "text": "کمیت‌سنج‌های RegExp در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "ویرایش‌شده در جولای ۲۰۲۵"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["کد", "توضیح"],
+        ["x+", "دست‌کم یک x را تطبیق می‌دهد"],
+        ["x*", "صفر یا بیشتر تکرار x را تطبیق می‌دهد"],
+        ["x?", "صفر یا یک تکرار x را تطبیق می‌دهد"],
+        ["x{n}", "n تکرار x را تطبیق می‌دهد"],
+        ["x{n,m}", "از n تا m تکرار x را تطبیق می‌دهد"],
+        ["x{n,}", "n یا بیشتر تکرار x را تطبیق می‌دهد"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "کمیت‌سنج + در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "الگوی x+ دست‌کم یک x را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hellooo World! Hello W3Schools!\";\n\nconst pattern = /o+/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n1"
+    },
+    {
+      "type": "h2",
+      "text": "کمیت‌سنج * در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "الگوی x* صفر یا بیشتر تکرار x را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hellooo World! Hello W3Schools!\";\n\nconst pattern = /lo*/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n2"
+    },
+    {
+      "type": "h2",
+      "text": "کمیت‌سنج ? در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "الگوی x? صفر یا یک تکرار x را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"1, 100 or 1000?\";\n\nconst pattern = /10?/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n3"
+    },
+    {
+      "type": "h2",
+      "text": "کمیت‌سنج {n} در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "الگوی x{n} دقیقاً n تکرار x را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"100, 1000 or 10000?\";\n\nlet pattern = /\\d{4}/g;\n\nlet result = text.match(pattern);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nx"
+    },
+    {
+      "type": "h2",
+      "text": "کمیت‌سنج {n,m} در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "الگوی x{n,m} از n تا m تکرار x را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"100, 1000 or 10000?\";\n\nlet pattern = /\\d{3,4}/g;\n\nlet result = text.match(pattern);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nxy"
+    },
+    {
+      "type": "h2",
+      "text": "کمیت‌سنج {n,} در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "الگوی x{n,} n یا بیشتر تکرار x را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"100, 1000 or 10000?\";\n\nlet pattern = /\\d{3,}/g;\n\nlet result = text.match(pattern);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nxx"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای عبارت باقاعده"
+    },
+    {
+      "type": "p",
+      "text": "جست‌وجو و جایگزینی با عبارت باقاعده را می‌توان با متدهای مختلفی انجام داد."
+    },
+    {
+      "type": "p",
+      "text": "این‌ها رایج‌ترین‌شان هستند:"
+    },
+    {
+      "type": "h3",
+      "text": "متدهای رشته"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["match(regex)", "یک آرایه از نتیجه‌ها برمی‌گرداند"],
+        ["matchAll(regex)", "یک iterator از نتیجه‌ها برمی‌گرداند"],
+        ["replace(regex)", "یک رشتهٔ جدید برمی‌گرداند"],
+        ["replaceAll(regex)", "یک رشتهٔ جدید برمی‌گرداند"],
+        ["search(regex)", "اندیس نخستین تطبیق را برمی‌گرداند"],
+        ["split(regex)", "یک آرایه از نتیجه‌ها برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "متدهای RegExp"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["regex.exec()", "یک iterator از نتیجه‌ها برمی‌گرداند"],
+        ["regex.test()", "true یا false برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "همچنین ببینید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پرچم‌های RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کلاس‌های نویسه در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "متانویسه‌های RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Assertions در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "گروه‌های RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "الگوهای RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "شیءهای RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متدهای RegExp در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل regex-quant.html بسازید و الگوی /0+/ را روی رشتهٔ \"1000 2000\" امتحان کنید و نتیجهٔ match را چاپ کنید.",
+      "hint": "+ یعنی دست‌کم یک تکرار از نویسهٔ قبل؛ پس رشته‌های 000 و 000 جداگانه پیدا می‌شوند."
+    },
+    {
+      "prompt": "همان رشته را یک‌بار با /0*/ و یک‌بار با /0?/ تطبیق دهید و تعداد عضوهای دو آرایه را مقایسه کنید.",
+      "hint": "* صفر یا بیشتر و ? صفر یا یک تکرار را تطبیق می‌دهد."
+    },
+    {
+      "prompt": "با /\\d{4}/ یک عدد چهاررقمی مثل سال را در رشتهٔ \"سال 2025 و ماه 12\" پیدا کنید.",
+      "hint": "{n} دقیقاً n تکرار از الگوی قبل را می‌خواهد."
+    },
+    {
+      "prompt": "با /\\d{2,4}/ روی «123» و روی «12345» آزمایش کنید و تفاوت نتیجه را توضیح دهید.",
+      "hint": "{n,m} بین n و m تکرار را می‌پذیرد و بیشترین تطبیق ممکن را برمی‌گرداند."
+    },
+    {
+      "prompt": "برای شماره‌هایی با حداقل سه رقم الگوی /\\d{3,}/ را بنویسید و روی «12» و «1234» امتحان کنید.",
+      "hint": "{n,} یعنی n تکرار یا بیشتر."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کمیت‌سنج + چه چیزی را تطبیق می‌دهد؟",
+      "options": ["صفر یا یک تکرار", "صفر یا بیشتر تکرار", "دست‌کم یک تکرار", "دقیقاً یک تکرار"],
+      "answer": 2,
+      "explanation": "x+ یعنی الگوی قبل یک بار یا بیشتر بیاید. حالت «صفر یا بیشتر» کار x*، «صفر یا یک» کار x? و «دقیقاً یکی» را با x{n} با n=1 می‌سازیم."
+    },
+    {
+      "question": "کدام کمیت‌سنج صفر یا یک تکرار را تطبیق می‌دهد؟",
+      "options": ["x+", "x*", "x?", "x{n}"],
+      "answer": 2,
+      "explanation": "x? یعنی الگو ممکن است بیاید یا نیاید. x+ دست‌کم یک و x* صفر یا بیشتر است و x{n} تعداد دقیق را می‌خواهد."
+    },
+    {
+      "question": "الگوی x{2,4} چه رشته‌هایی را می‌پذیرد؟",
+      "options": ["فقط دو تکرار", "فقط چهار تکرار", "بین دو تا چهار تکرار", "دو تکرار یا بیشتر"],
+      "answer": 2,
+      "explanation": "صورت {n,m} بازهٔ مجاز تکرار را تعیین می‌کند؛ پس 2، 3 یا 4 تکرار پذیرفته می‌شود. حالت «دو یا بیشتر» با x{2,} نوشته می‌شود."
+    },
+    {
+      "question": "کمیت‌سنج روی چه چیزی اعمال می‌شود؟",
+      "options": [
+        "کل رشته",
+        "نویسه، گروه یا کلاس نویسهٔ پیش از خود",
+        "فقط رقم‌ها",
+        "فقط ابتدای رشته"
+      ],
+      "answer": 1,
+      "explanation": "کمیت‌سنج همیشه به واحدی که پیش از آن آمده برمی‌گردد؛ اگر بخواهید چند نویسه را با هم تکرار کنید، اول آن‌ها را در گروه می‌گذارید."
+    },
+    {
+      "question": "الگوی x{3,} چه معنایی دارد؟",
+      "options": ["دقیقاً سه تکرار", "بین سه تا پنج تکرار", "سه تکرار یا بیشتر", "حداکثر سه تکرار"],
+      "answer": 2,
+      "explanation": "وقتی بعد از کاما عددی نیاید، هیچ سقفی وجود ندارد؛ پس سه تکرار یا بیشتر پذیرفته می‌شود. حالت دقیقاً سه با x{3} و حداکثر سه با x{1,3} نوشته می‌شود."
+    }
+  ]
 }

@@ -16,7 +16,11 @@ export function useLinks() {
 
     const socialItems = [
       { name: 'Mail', icon: 'ph:envelope-simple', url: 'mailto:sinakheiri.dev@gmail.com' },
-      { name: 'Linkedin', icon: 'ph:linkedin-logo', url: 'https://www.linkedin.com/in/sinakheiri-dev' },
+      {
+        name: 'Linkedin',
+        icon: 'ph:linkedin-logo',
+        url: 'https://www.linkedin.com/in/sinakheiri-dev',
+      },
       { name: 'Github', icon: 'proicons:github', url: 'https://github.com/lWarwolfl' },
     ] as const
 

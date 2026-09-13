@@ -1,1099 +1,804 @@
 {
- "slug": "js_2025",
- "course": "js",
- "order": 125,
- "url": "/js/js_2025.asp",
- "title": "ECMAScript 2025",
- "summary": "این درس ویژگی‌های ECMAScript 2025 را معرفی می‌کند: متدهای مجموعهٔ Set مثل union، intersection و difference، بررسی رابطهٔ مجموعه‌ها با isSubsetOf و isSupersetOf و isDisjointFrom، کمکی‌ارهای Iterator با ارزیابی تأخیری، تعدیلگر /v و RegExp.escape و Float16Array و Promise.try و ویژگی‌های import.",
- "objectives": [
-  "عمل‌های مجموعه را با متدهای جدید Set انجام دهید",
-  "رابطهٔ دو مجموعه را با isSubsetOf و isSupersetOf و isDisjointFrom بررسی کنید",
-  "کمکی‌ارهای Iterator مثل map و filter و take را زنجیره کنید",
-  "تفاوت تعدیلگر /v با /u و کار RegExp.escape را توضیح دهید",
-  "کاربرد Float16Array و Math.f16round و Promise.try را بگویید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2025"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید در JavaScript 2025"
-  },
-  {
-   "type": "p",
-   "text": "شانزدهمین ویرایش استاندارد ECMAScript که در ژوئن ۲۰۲۵ منتشر شد، چند بهبود برای خواناتر و کارآمدتر شدن JavaScript دارد."
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید Set در ES2025"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript 2025 متدهای ساخته‌شده برای عمل‌های مجموعه دارد، مثل intersection()، union() و difference()، و نیاز به حلقه‌های دستی یا کتابخانه‌های بیرونی را از میان می‌برد."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح",
-     ""
-    ],
-    [
-     "union()",
-     "اجتماع دو مجموعه را برمی‌گرداند",
-     ""
-    ],
-    [
-     "intersection()",
-     "اشتراک دو مجموعه را برمی‌گرداند",
-     ""
-    ],
-    [
-     "difference()",
-     "تفاضل دو مجموعه را برمی‌گرداند",
-     ""
-    ],
-    [
-     "symmetricDifference()",
-     "تفاضل متقارن دو مجموعه را برمی‌گرداند",
-     ""
-    ],
-    [
-     "isSubsetOf()",
-     "اگر این مجموعه زیرمجموعهٔ مجموعهٔ داده‌شده باشد true برمی‌گرداند",
-     ""
-    ],
-    [
-     "isSupersetOf()",
-     "اگر این مجموعه ابرمجموعهٔ مجموعهٔ داده‌شده باشد true برمی‌گرداند",
-     ""
-    ],
-    [
-     "isDisjointFrom()",
-     "اگر این مجموعه هیچ عضو مشترکی با مجموعهٔ داده‌شده نداشته باشد true برمی‌گرداند",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "کمکی‌ارهای جدید Iterator در ES2025"
-  },
-  {
-   "type": "p",
-   "text": "معرفی شیء Iterator رابطی تابعی با ارزیابی تأخیری فراهم می‌کند و به برنامه‌نویس اجازه می‌دهد Iteratorهای مختلف مثل آرایه‌ها را بپوشاند."
-  },
-  {
-   "type": "p",
-   "text": "مجموعهٔ تازه‌ای از عملگرهای تابعی برای Iteratorها (مثل .map()، .filter() و .take()) ارزیابی تأخیری را ممکن می‌کند و کارایی را هنگام پردازش جریان‌های دادهٔ حجیم بهتر می‌کند."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "تابع",
-     "توضیح"
-    ],
-    [
-     "drop()",
-     "Iteratorی برمی‌گرداند که تعداد مشخصی عنصر را رد می‌کند و بعد بقیه را می‌دهد"
-    ],
-    [
-     "every()",
-     "اگر همهٔ عنصرها تابع آزمون را برآورده کنند true برمی‌گرداند"
-    ],
-    [
-     "filter()",
-     "Iteratorی شامل عنصرهایی که تابع صافی را برآورده می‌کنند برمی‌گرداند"
-    ],
-    [
-     "find()",
-     "نخستین عنصری را برمی‌گرداند که تابع آزمون را برآورده می‌کند"
-    ],
-    [
-     "flatMap()",
-     "Iteratorی می‌سازد که هر عنصر را نگاشت می‌کند و بعد نتیجه‌ها را تخت می‌کند"
-    ],
-    [
-     "forEach()",
-     "یک تابع را برای هر عنصر Iterator یک بار اجرا می‌کند."
-    ],
-    [
-     "from()",
-     "از یک شیء قابل‌پیمایش یک شیء Iterator می‌سازد"
-    ],
-    [
-     "map()",
-     "Iteratorی با همهٔ عنصرهای تبدیل‌شده با تابع نگاشت برمی‌گرداند"
-    ],
-    [
-     "reduce()",
-     "تابع کاهش‌دهنده را روی هر عنصر اعمال می‌کند و همه را به یک مقدار می‌رساند"
-    ],
-    [
-     "some()",
-     "اگر حداقل یک عنصر تابع آزمون را برآورده کند true برمی‌گرداند"
-    ],
-    [
-     "take()",
-     "Iteratorی برمی‌گرداند که تعداد مشخصی عنصر می‌دهد"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید دیگر در ES2025"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح",
-     ""
-    ],
-    [
-     "RegExp /v flag",
-     "ارتقایی برای تعدیلگر /u (یونیکد)",
-     ""
-    ],
-    [
-     "RegExp.escape()",
-     "رشته‌ای برمی‌گرداند که در آن نویسه‌های regex فرار داده شده‌اند",
-     ""
-    ],
-    [
-     "Float16Array",
-     "یک آرایهٔ نوع‌دار که عددهای اعشاری ۱۶ بیتی را نگه می‌دارد",
-     ""
-    ],
-    [
-     "Math.f16round()",
-     "نزدیک‌ترین عدد اعشاری ۱۶ بیتی را برمی‌گرداند",
-     ""
-    ],
-    [
-     "Promise.try()",
-     "زنجیرهٔ Promise را برای رسیدگی به رد شدن Promise شروع می‌کند",
-     ""
-    ],
-    [
-     "ویژگی‌های import",
-     "ویژگی‌هایی که در دستورهای import مجاز شده‌اند",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "هشدار"
-  },
-  {
-   "type": "p",
-   "text": "این ویژگی‌ها نسبتاً جدیدند."
-  },
-  {
-   "type": "p",
-   "text": "مرورگرهای قدیمی‌تر ممکن است به کد جایگزین (Polyfill) نیاز داشته باشند."
-  },
-  {
-   "type": "h2",
-   "text": "متد union() روی Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد union() اجتماع دو مجموعه را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد union() مجموعهٔ جدیدی برمی‌گرداند که عنصرهایی را دارد که در این مجموعه، یا در مجموعهٔ آرگومان، یا در هر دو هستند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nconst C = A.union(B);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_union"
-  },
-  {
-   "type": "p",
-   "text": "متد union() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome122",
-     "Edge122",
-     "Firefox127",
-     "Safari17",
-     "Opera108"
-    ],
-    [
-     "Feb 2024",
-     "Feb 2024",
-     "Jun 2024",
-     "Sep 2023",
-     "Mar 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد intersection() روی Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد intersection() اشتراک دو مجموعه را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد intersection() مجموعهٔ جدیدی برمی‌گرداند که عنصرهایی را دارد که هم در این مجموعه و هم در مجموعهٔ آرگومان هستند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nconst C = A.intersection(B);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_intersection"
-  },
-  {
-   "type": "p",
-   "text": "متد intersection() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome122",
-     "Edge122",
-     "Firefox127",
-     "Safari17",
-     "Opera108"
-    ],
-    [
-     "Feb 2024",
-     "Feb 2024",
-     "Jun 2024",
-     "Sep 2023",
-     "Mar 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد difference() روی Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد difference() تفاضل دو مجموعه را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد difference() مجموعهٔ جدیدی برمی‌گرداند که عنصرهایی را دارد که در این مجموعه هستند، اما در مجموعهٔ آرگومان نیستند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nconst C = A.difference(B);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_difference"
-  },
-  {
-   "type": "p",
-   "text": "متد difference() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome122",
-     "Edge122",
-     "Firefox127",
-     "Safari17",
-     "Opera108"
-    ],
-    [
-     "Feb 2024",
-     "Feb 2024",
-     "Jun 2024",
-     "Sep 2023",
-     "Mar 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد symmetricDifference() روی Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد symmetricDifference() تفاضل متقارن دو مجموعه را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد symmetricDifference() مجموعهٔ جدیدی برمی‌گرداند که عنصرهایی را دارد که در این مجموعه یا در مجموعهٔ آرگومان هستند، اما نه در هر دو:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nconst C = A.symmetricDifference(B);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_symmetric_difference"
-  },
-  {
-   "type": "p",
-   "text": "متد symmetricDifference() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome122",
-     "Edge122",
-     "Firefox127",
-     "Safari17",
-     "Opera108"
-    ],
-    [
-     "Feb 2024",
-     "Feb 2024",
-     "Jun 2024",
-     "Sep 2023",
-     "Mar 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد isSubsetOf() روی Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد isSubsetOf() اگر همهٔ عنصرهای این مجموعه عضو مجموعهٔ آرگومان باشند true برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nlet answer = A.isSubsetOf(B);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_is_subset_of"
-  },
-  {
-   "type": "p",
-   "text": "متد isSubsetOf() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome122",
-     "Edge122",
-     "Firefox127",
-     "Safari17",
-     "Opera108"
-    ],
-    [
-     "Feb 2024",
-     "Feb 2024",
-     "Jun 2024",
-     "Sep 2023",
-     "Mar 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد isSupersetOf() روی Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد isSupersetOf() اگر همهٔ عنصرهای مجموعهٔ آرگومان در این مجموعه هم باشند true برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nlet answer = A.isSupersetOf(B);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_is_superset_of"
-  },
-  {
-   "type": "p",
-   "text": "متد isSupersetOf() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome122",
-     "Edge122",
-     "Firefox127",
-     "Safari17",
-     "Opera108"
-    ],
-    [
-     "Feb 2024",
-     "Feb 2024",
-     "Jun 2024",
-     "Sep 2023",
-     "Mar 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد isDisjointFrom() روی Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد isDisjointFrom() اگر این مجموعه هیچ عضو مشترکی با مجموعهٔ آرگومان نداشته باشد true برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nlet answer = A.isDisjointFrom(B);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_is_disjoint_from"
-  },
-  {
-   "type": "p",
-   "text": "متد Set.isDisjointFrom() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome122",
-     "Edge122",
-     "Firefox127",
-     "Safari17",
-     "Opera108"
-    ],
-    [
-     "Feb 2024",
-     "Feb 2024",
-     "Jun 2024",
-     "Sep 2023",
-     "Mar 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Iterator.from()"
-  },
-  {
-   "type": "p",
-   "text": "متد Iterator.from() از یک شیء قابل‌پیمایش یا شیء Iterator موجود، یک شیء Iterator می‌سازد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3]);\n\n// Iterate over the elements\n\nlet text = \"\";\n\nfor (const x of myIterator) {\n\n  text += x;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_from"
-  },
-  {
-   "type": "h2",
-   "text": "متد drop()"
-  },
-  {
-   "type": "p",
-   "text": "متد drop() یک Iterator جدید برمی‌گرداند که تعداد مشخصی عنصر را رد می‌کند و بعد بقیه را می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Remove the first five\n\nconst firstFive = myIterator.drop(5);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_drop"
-  },
-  {
-   "type": "h2",
-   "text": "متد every()"
-  },
-  {
-   "type": "p",
-   "text": "متد every(fn) اگر همهٔ عنصرهای Iterator تابع آزمون داده‌شده را برآورده کنند true برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Is every Element greater than 7?\n\nlet result = myIterator.every(x => x > 7);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_every"
-  },
-  {
-   "type": "h2",
-   "text": "متد filter()"
-  },
-  {
-   "type": "p",
-   "text": "متد filter() یک Iterator جدید شامل عنصرهایی برمی‌گرداند که تابع صافی را برآورده می‌کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([32, 33, 16, 40]);\n\n// Filter the iterator\n\nconst filteredIterator = myIterator.filter(x => x > 18);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_filter"
-  },
-  {
-   "type": "h2",
-   "text": "متد find()"
-  },
-  {
-   "type": "p",
-   "text": "متد find(fn) نخستین عنصری را برمی‌گرداند که تابع آزمون را برآورده می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([3, 10, 18, 30, 20]);\n\n// Find first greater than 18\n\nlet result = myIterator.find(x => x > 18);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_find"
-  },
-  {
-   "type": "h2",
-   "text": "متد flatMap()"
-  },
-  {
-   "type": "p",
-   "text": "متد flatMap() با نگاشت هر عنصر و بعد تخت کردن نتیجه‌ها در یک Iterator، یک Iterator جدید برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Map the Iterator\n\nconst mappedIterator = myIterator.flatMap(x => [x, x * 10]);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_flatmap"
-  },
-  {
-   "type": "h2",
-   "text": "متد forEach()"
-  },
-  {
-   "type": "p",
-   "text": "متد forEach() یک تابع داده‌شده را برای هر عنصر Iterator یک بار اجرا می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Iterate over all elements\n\nlet text = \"\";\n\nmyIterator.forEach (x => text += x);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_foreach"
-  },
-  {
-   "type": "h2",
-   "text": "متد map()"
-  },
-  {
-   "type": "p",
-   "text": "متد map() یک Iterator جدید با همهٔ عنصرهای تبدیل‌شده با تابع نگاشت برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Now you can use the map method\n\nconst mappedIterator = myIterator.map(x => x * 2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_map"
-  },
-  {
-   "type": "h2",
-   "text": "متد reduce()"
-  },
-  {
-   "type": "p",
-   "text": "متد reduce() یک تابع کاهش‌دهنده را روی یک انباره و هر عنصر اعمال می‌کند و همه را به یک مقدار می‌رساند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from([175, 50, 25]);\n\n// Reduce the Iterator\n\nlet result = myIterator.reduce(myFunc);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_reduce"
-  },
-  {
-   "type": "h2",
-   "text": "متد some()"
-  },
-  {
-   "type": "p",
-   "text": "متد some() اگر حداقل یک عنصر Iterator تابع آزمون داده‌شده را برآورده کند true برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Is some Element greater than 7?\n\nlet result = myIterator.some(x => x > 7);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_some"
-  },
-  {
-   "type": "h2",
-   "text": "متد take()"
-  },
-  {
-   "type": "p",
-   "text": "متد take() یک Iterator جدید برمی‌گرداند که حداکثر تعداد مشخصی عنصر می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Take the first five elements\n\nconst firstFive = myIterator.take(5);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_take"
-  },
-  {
-   "type": "h2",
-   "text": "تعدیلگر /v در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "تعدیلگر v ارتقایی برای تعدیلگر u است."
-  },
-  {
-   "type": "p",
-   "text": "تعدیلگر u (یونیکد) پشتیبانی کامل یونیکد را در عبارت‌های باقاعده فعال می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "تعدیلگر v ویژگی‌های بیشتری مربوط به یونیکد را فعال می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "ویژگی‌های جدید این‌ها هستند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "دنبالهٔ فرار \\p با رشته‌ها تطبیق می‌دهد، نه فقط با نویسه‌ها.",
-    "کلاس نویسه ارتقا یافته است تا نحو اشتراک، اجتماع و تفاضل و همچنین تطبیق چند نویسهٔ یونیکد را ممکن کند."
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{RGI_Emoji}/v;\n\nlet result = pattern.test(text);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{RGI_Emoji}/;\n\nlet result = pattern.test(text);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_v"
-  },
-  {
-   "type": "p",
-   "text": "استفادهٔ هم‌زمان از هر دو تعدیلگر (u و v) به خطای نحوی (SyntaxError) منجر می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "/regexp/v از مهٔ ۲۰۲۵ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome136",
-     "Edge136",
-     "Firefox134",
-     "Safari18.2",
-     "Opera121"
-    ],
-    [
-     "Apr 2025",
-     "May 2025",
-     "Jan 2025",
-     "Des 2024",
-     "Jun 2025"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد RegExp.escape()"
-  },
-  {
-   "type": "p",
-   "text": "متد RegExp.escape() رشته‌ای برمی‌گرداند که در آن نویسه‌های متعلق به نحو عبارت باقاعده فرار داده شده‌اند."
-  },
-  {
-   "type": "p",
-   "text": "این کار ممکن می‌کند نویسه‌هایی مثل +، *، ?، ^، $، (، )، [، ]، {، }، | و \\ را تحت‌اللفظی ببینیم، نه بخشی از عبارت باقاعده."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Escape a text for to use as a regular expression\n\nconst safe = RegExp.escape(\"[*]\");\n\n// Build a new reglar expression\n\nconst regex = new RegExp(safe);\n\n// Text to replace within\n\nconst oldText = \"[*] is a web school.\";\n\n// Perform the replace\n\nconst newText = oldText.match(regex, \"W3Schools\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_escape"
-  },
-  {
-   "type": "p",
-   "text": "RegExp.escape() از مهٔ ۲۰۲۵ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome136",
-     "Edge136",
-     "Firefox134",
-     "Safari18.2",
-     "Opera121"
-    ],
-    [
-     "Apr 2025",
-     "May 2025",
-     "Jan 2025",
-     "Des 2024",
-     "Jun 2025"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Float16Array"
-  },
-  {
-   "type": "p",
-   "text": "Float16Array یک آرایهٔ نوع‌دار است که عددهای اعشاری ۱۶ بیتی (نیم‌دقت) را در قالب نیم‌دقت IEEE 754 نگه می‌دارد."
-  },
-  {
-   "type": "p",
-   "text": "Float16Array نصف حافظهٔ Float32Array و یک‌چهارم حافظهٔ Float64Array را می‌خواهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Float16Array([1.5, 2.5, 3.5, 4.5]);\n\nlet bytes = myArr.BYTES_PER_ELEMENT;\n\nlet length = myArr.length;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_float16_array"
-  },
-  {
-   "type": "p",
-   "text": "شیء Float16Array از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome135",
-     "Edge135",
-     "Firefox129",
-     "Safari18.2",
-     "Opera120"
-    ],
-    [
-     "Apr 2025",
-     "Apr 2025",
-     "Aug 2024",
-     "Des 2024",
-     "May 2025"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.f16round"
-  },
-  {
-   "type": "p",
-   "text": "متد ایستای Math.f16round() نزدیک‌ترین نمایش اعشاری ۱۶ بیتی یک عدد را برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let a = Math.f16round(2.60);\n\nlet b = Math.f16round(2.50);\n\nlet c = Math.f16round(2.49);\n\nlet d = Math.f16round(-2.60);\n\nlet e = Math.f16round(-2.50);\n\nlet f = Math.f16round(-2.49);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_f16round"
-  },
-  {
-   "type": "p",
-   "text": "متد Math.f16round() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome135",
-     "Edge135",
-     "Firefox129",
-     "Safari18.2",
-     "Opera120"
-    ],
-    [
-     "Apr 2025",
-     "Apr 2025",
-     "Aug 2024",
-     "Des 2024",
-     "May 2025"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Promise.try()"
-  },
-  {
-   "type": "p",
-   "text": "متد Promise.try() یک زنجیرهٔ Promise را از کد همگامی شروع می‌کند که ممکن است خطا پرتاب کند."
-  },
-  {
-   "type": "p",
-   "text": "این کار تضمین می‌کند استثناها درست به‌عنوان رد شدن Promise مدیریت شوند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function compute() {\n\n  return Promise.try(() => {\n\n    const v = mayThrowSync();\n\n    return asyncFunc(v);\n\n  });\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "ماژول‌ها با ویژگی‌های import"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import {names} from \"module-name\" with {key:\"data\"};",
-   "caption": "نحو"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import config from \"config.json\" with {type:\"json\"};\n\nimport styles from \"styles.css\" with {type:\"css\"};\n\nimport data from \"data.json\" with {type:\"json\"};",
-   "caption": "مثال‌ها"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل es2025.html بسازید و دو Set بسازید؛ با union، intersection و difference نتیجه‌ها را چاپ کنید و بگویید هر کدام چه عضوی دارند.",
-   "hint": "این متدها مجموعهٔ جدید برمی‌گردانند و مجموعه‌های اصلی را تغییر نمی‌دهند."
-  },
-  {
-   "prompt": "با isSubsetOf و isSupersetOf و isDisjointFrom دو مجموعه را بررسی کنید و نتیجهٔ هر سه را توضیح دهید.",
-   "hint": "isSubsetOf و isSupersetOf و isDisjointFrom هر سه مقدار true یا false برمی‌گردانند؛ نامشان رابطه را نشان می‌دهد."
-  },
-  {
-   "prompt": "یک آرایه بسازید، با Iterator.from آن را به Iterator تبدیل کنید و با take و drop بخشی از عنصرها را بگویید.",
-   "hint": "Iterator.from از یک شیء قابل‌پیمایش Iterator می‌سازد؛ take تعداد مشخصی می‌دهد و drop تعداد مشخصی را رد می‌کند."
-  },
-  {
-   "prompt": "با کمکی‌ارهای Iterator یک زنجیره بنویسید که اعداد زوج را فیلتر و به دو برابر تبدیل کند و بعد فقط سه عنصر اول را بگیرد.",
-   "hint": "این عملگرها تأخیری‌اند، پس می‌توانید filter و map و take را پشت سر هم بنویسید."
-  },
-  {
-   "prompt": "با RegExp.escape یک رشتهٔ شامل نویسه‌های ویژهٔ عبارت باقاعده بسازید و آن را در RegExp به کار ببرید و ببینید تحت‌اللفظی تطبیق می‌دهد.",
-   "hint": "تعدیلگر v را نمی‌توان با u هم‌زمان به کار برد؛ استفادهٔ هر دو با هم خطای نحوی می‌دهد."
-  }
- ],
- "quiz": [
-  {
-   "question": "متد union() روی Set چه چیزی برمی‌گرداند؟",
-   "options": [
-    "مجموعهٔ عنصرهایی که در هر دو مجموعه هستند",
-    "مجموعهٔ عنصرهایی که در این مجموعه یا مجموعهٔ آرگومان یا هر دو هستند",
-    "مجموعهٔ عنصرهایی که فقط در این مجموعه هستند",
-    "یک آرایه"
-   ],
-   "answer": 1,
-   "explanation": "union اجتماع دو مجموعه است؛ intersection اشتراک و difference تفاضل را برمی‌گرداند و همه هم مجموعهٔ جدید می‌سازند."
-  },
-  {
-   "question": "کدام متد بررسی می‌کند که دو مجموعه هیچ عضو مشترکی ندارند؟",
-   "options": [
-    "isSubsetOf()",
-    "isSupersetOf()",
-    "isDisjointFrom()",
-    "symmetricDifference()"
-   ],
-   "answer": 2,
-   "explanation": "isDisjointFrom وقتی true برمی‌گرداند که این مجموعه هیچ عضو مشترکی با مجموعهٔ آرگومان نداشته باشد."
-  },
-  {
-   "question": "مزیت اصلی کمکی‌ارهای Iterator در ES2025 چیست؟",
-   "options": [
-    "کار کردن فقط با آرایه",
-    "حذف نیاز به حلقهٔ for",
-    "تبدیل رشته به عدد",
-    "ارزیابی تأخیری و کار با داده‌های بزرگ به‌صورت جریانی"
-   ],
-   "answer": 3,
-   "explanation": "عملگرهای تابعی Iterator مثل map و filter و take با ارزیابی تأخیری کار می‌کنند و هنگام پردازش جریان‌های دادهٔ حجیم کارایی را بهتر می‌کنند."
-  },
-  {
-   "question": "تعدیلگر /v نسبت به /u چه تفاوتی دارد؟",
-   "options": [
-    "ویژگی‌های بیشتری مربوط به یونیکد را فعال می‌کند و ارتقای /u است",
-    "سرعت را بیشتر می‌کند",
-    "حروف بزرگ را نادیده می‌گیرد",
-    "جای /g را می‌گیرد"
-   ],
-   "answer": 0,
-   "explanation": "/v ارتقای /u است و ویژگی‌های یونیکدی بیشتری می‌دهد، مثل تطبیق رشته با \\p و نحو اشتراک و اجتماع در کلاس نویسه."
-  },
-  {
-   "question": "اگر تعدیلگرهای u و v را هم‌زمان به کار ببریم چه می‌شود؟",
-   "options": [
-    "u نادیده گرفته می‌شود",
-    "خطای نحوی (SyntaxError)",
-    "هر دو اعمال می‌شوند",
-    "v نادیده گرفته می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "استفادهٔ هم‌زمان از u و v با هم منجر به SyntaxError می‌شود؛ باید یکی را انتخاب کنید."
-  }
- ]
+  "slug": "js_2025",
+  "course": "js",
+  "order": 125,
+  "url": "/js/js_2025.asp",
+  "title": "ECMAScript 2025",
+  "summary": "این درس ویژگی‌های ECMAScript 2025 را معرفی می‌کند: متدهای مجموعهٔ Set مثل union، intersection و difference، بررسی رابطهٔ مجموعه‌ها با isSubsetOf و isSupersetOf و isDisjointFrom، کمکی‌ارهای Iterator با ارزیابی تأخیری، تعدیلگر /v و RegExp.escape و Float16Array و Promise.try و ویژگی‌های import.",
+  "objectives": [
+    "عمل‌های مجموعه را با متدهای جدید Set انجام دهید",
+    "رابطهٔ دو مجموعه را با isSubsetOf و isSupersetOf و isDisjointFrom بررسی کنید",
+    "کمکی‌ارهای Iterator مثل map و filter و take را زنجیره کنید",
+    "تفاوت تعدیلگر /v با /u و کار RegExp.escape را توضیح دهید",
+    "کاربرد Float16Array و Math.f16round و Promise.try را بگویید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2025"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید در JavaScript 2025"
+    },
+    {
+      "type": "p",
+      "text": "شانزدهمین ویرایش استاندارد ECMAScript که در ژوئن ۲۰۲۵ منتشر شد، چند بهبود برای خواناتر و کارآمدتر شدن JavaScript دارد."
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید Set در ES2025"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript 2025 متدهای ساخته‌شده برای عمل‌های مجموعه دارد، مثل intersection()، union() و difference()، و نیاز به حلقه‌های دستی یا کتابخانه‌های بیرونی را از میان می‌برد."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح", ""],
+        ["union()", "اجتماع دو مجموعه را برمی‌گرداند", ""],
+        ["intersection()", "اشتراک دو مجموعه را برمی‌گرداند", ""],
+        ["difference()", "تفاضل دو مجموعه را برمی‌گرداند", ""],
+        ["symmetricDifference()", "تفاضل متقارن دو مجموعه را برمی‌گرداند", ""],
+        ["isSubsetOf()", "اگر این مجموعه زیرمجموعهٔ مجموعهٔ داده‌شده باشد true برمی‌گرداند", ""],
+        ["isSupersetOf()", "اگر این مجموعه ابرمجموعهٔ مجموعهٔ داده‌شده باشد true برمی‌گرداند", ""],
+        [
+          "isDisjointFrom()",
+          "اگر این مجموعه هیچ عضو مشترکی با مجموعهٔ داده‌شده نداشته باشد true برمی‌گرداند",
+          ""
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "کمکی‌ارهای جدید Iterator در ES2025"
+    },
+    {
+      "type": "p",
+      "text": "معرفی شیء Iterator رابطی تابعی با ارزیابی تأخیری فراهم می‌کند و به برنامه‌نویس اجازه می‌دهد Iteratorهای مختلف مثل آرایه‌ها را بپوشاند."
+    },
+    {
+      "type": "p",
+      "text": "مجموعهٔ تازه‌ای از عملگرهای تابعی برای Iteratorها (مثل .map()، .filter() و .take()) ارزیابی تأخیری را ممکن می‌کند و کارایی را هنگام پردازش جریان‌های دادهٔ حجیم بهتر می‌کند."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["تابع", "توضیح"],
+        ["drop()", "Iteratorی برمی‌گرداند که تعداد مشخصی عنصر را رد می‌کند و بعد بقیه را می‌دهد"],
+        ["every()", "اگر همهٔ عنصرها تابع آزمون را برآورده کنند true برمی‌گرداند"],
+        ["filter()", "Iteratorی شامل عنصرهایی که تابع صافی را برآورده می‌کنند برمی‌گرداند"],
+        ["find()", "نخستین عنصری را برمی‌گرداند که تابع آزمون را برآورده می‌کند"],
+        ["flatMap()", "Iteratorی می‌سازد که هر عنصر را نگاشت می‌کند و بعد نتیجه‌ها را تخت می‌کند"],
+        ["forEach()", "یک تابع را برای هر عنصر Iterator یک بار اجرا می‌کند."],
+        ["from()", "از یک شیء قابل‌پیمایش یک شیء Iterator می‌سازد"],
+        ["map()", "Iteratorی با همهٔ عنصرهای تبدیل‌شده با تابع نگاشت برمی‌گرداند"],
+        ["reduce()", "تابع کاهش‌دهنده را روی هر عنصر اعمال می‌کند و همه را به یک مقدار می‌رساند"],
+        ["some()", "اگر حداقل یک عنصر تابع آزمون را برآورده کند true برمی‌گرداند"],
+        ["take()", "Iteratorی برمی‌گرداند که تعداد مشخصی عنصر می‌دهد"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید دیگر در ES2025"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح", ""],
+        ["RegExp /v flag", "ارتقایی برای تعدیلگر /u (یونیکد)", ""],
+        ["RegExp.escape()", "رشته‌ای برمی‌گرداند که در آن نویسه‌های regex فرار داده شده‌اند", ""],
+        ["Float16Array", "یک آرایهٔ نوع‌دار که عددهای اعشاری ۱۶ بیتی را نگه می‌دارد", ""],
+        ["Math.f16round()", "نزدیک‌ترین عدد اعشاری ۱۶ بیتی را برمی‌گرداند", ""],
+        ["Promise.try()", "زنجیرهٔ Promise را برای رسیدگی به رد شدن Promise شروع می‌کند", ""],
+        ["ویژگی‌های import", "ویژگی‌هایی که در دستورهای import مجاز شده‌اند", ""]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "هشدار"
+    },
+    {
+      "type": "p",
+      "text": "این ویژگی‌ها نسبتاً جدیدند."
+    },
+    {
+      "type": "p",
+      "text": "مرورگرهای قدیمی‌تر ممکن است به کد جایگزین (Polyfill) نیاز داشته باشند."
+    },
+    {
+      "type": "h2",
+      "text": "متد union() روی Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد union() اجتماع دو مجموعه را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد union() مجموعهٔ جدیدی برمی‌گرداند که عنصرهایی را دارد که در این مجموعه، یا در مجموعهٔ آرگومان، یا در هر دو هستند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nconst C = A.union(B);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_union"
+    },
+    {
+      "type": "p",
+      "text": "متد union() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome122", "Edge122", "Firefox127", "Safari17", "Opera108"],
+        ["Feb 2024", "Feb 2024", "Jun 2024", "Sep 2023", "Mar 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد intersection() روی Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد intersection() اشتراک دو مجموعه را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد intersection() مجموعهٔ جدیدی برمی‌گرداند که عنصرهایی را دارد که هم در این مجموعه و هم در مجموعهٔ آرگومان هستند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nconst C = A.intersection(B);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_intersection"
+    },
+    {
+      "type": "p",
+      "text": "متد intersection() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome122", "Edge122", "Firefox127", "Safari17", "Opera108"],
+        ["Feb 2024", "Feb 2024", "Jun 2024", "Sep 2023", "Mar 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد difference() روی Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد difference() تفاضل دو مجموعه را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد difference() مجموعهٔ جدیدی برمی‌گرداند که عنصرهایی را دارد که در این مجموعه هستند، اما در مجموعهٔ آرگومان نیستند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nconst C = A.difference(B);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_difference"
+    },
+    {
+      "type": "p",
+      "text": "متد difference() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome122", "Edge122", "Firefox127", "Safari17", "Opera108"],
+        ["Feb 2024", "Feb 2024", "Jun 2024", "Sep 2023", "Mar 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد symmetricDifference() روی Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد symmetricDifference() تفاضل متقارن دو مجموعه را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد symmetricDifference() مجموعهٔ جدیدی برمی‌گرداند که عنصرهایی را دارد که در این مجموعه یا در مجموعهٔ آرگومان هستند، اما نه در هر دو:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nconst C = A.symmetricDifference(B);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_symmetric_difference"
+    },
+    {
+      "type": "p",
+      "text": "متد symmetricDifference() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome122", "Edge122", "Firefox127", "Safari17", "Opera108"],
+        ["Feb 2024", "Feb 2024", "Jun 2024", "Sep 2023", "Mar 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد isSubsetOf() روی Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد isSubsetOf() اگر همهٔ عنصرهای این مجموعه عضو مجموعهٔ آرگومان باشند true برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nlet answer = A.isSubsetOf(B);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_is_subset_of"
+    },
+    {
+      "type": "p",
+      "text": "متد isSubsetOf() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome122", "Edge122", "Firefox127", "Safari17", "Opera108"],
+        ["Feb 2024", "Feb 2024", "Jun 2024", "Sep 2023", "Mar 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد isSupersetOf() روی Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد isSupersetOf() اگر همهٔ عنصرهای مجموعهٔ آرگومان در این مجموعه هم باشند true برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nlet answer = A.isSupersetOf(B);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_is_superset_of"
+    },
+    {
+      "type": "p",
+      "text": "متد isSupersetOf() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome122", "Edge122", "Firefox127", "Safari17", "Opera108"],
+        ["Feb 2024", "Feb 2024", "Jun 2024", "Sep 2023", "Mar 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد isDisjointFrom() روی Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد isDisjointFrom() اگر این مجموعه هیچ عضو مشترکی با مجموعهٔ آرگومان نداشته باشد true برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const A = new Set(['a','b','c']);\n\nconst B = new Set(['b','c','d']);\n\nlet answer = A.isDisjointFrom(B);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_is_disjoint_from"
+    },
+    {
+      "type": "p",
+      "text": "متد Set.isDisjointFrom() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome122", "Edge122", "Firefox127", "Safari17", "Opera108"],
+        ["Feb 2024", "Feb 2024", "Jun 2024", "Sep 2023", "Mar 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Iterator.from()"
+    },
+    {
+      "type": "p",
+      "text": "متد Iterator.from() از یک شیء قابل‌پیمایش یا شیء Iterator موجود، یک شیء Iterator می‌سازد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3]);\n\n// Iterate over the elements\n\nlet text = \"\";\n\nfor (const x of myIterator) {\n\n  text += x;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_from"
+    },
+    {
+      "type": "h2",
+      "text": "متد drop()"
+    },
+    {
+      "type": "p",
+      "text": "متد drop() یک Iterator جدید برمی‌گرداند که تعداد مشخصی عنصر را رد می‌کند و بعد بقیه را می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Remove the first five\n\nconst firstFive = myIterator.drop(5);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_drop"
+    },
+    {
+      "type": "h2",
+      "text": "متد every()"
+    },
+    {
+      "type": "p",
+      "text": "متد every(fn) اگر همهٔ عنصرهای Iterator تابع آزمون داده‌شده را برآورده کنند true برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Is every Element greater than 7?\n\nlet result = myIterator.every(x => x > 7);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_every"
+    },
+    {
+      "type": "h2",
+      "text": "متد filter()"
+    },
+    {
+      "type": "p",
+      "text": "متد filter() یک Iterator جدید شامل عنصرهایی برمی‌گرداند که تابع صافی را برآورده می‌کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an iterator\n\nconst myIterator = Iterator.from([32, 33, 16, 40]);\n\n// Filter the iterator\n\nconst filteredIterator = myIterator.filter(x => x > 18);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_filter"
+    },
+    {
+      "type": "h2",
+      "text": "متد find()"
+    },
+    {
+      "type": "p",
+      "text": "متد find(fn) نخستین عنصری را برمی‌گرداند که تابع آزمون را برآورده می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an iterator\n\nconst myIterator = Iterator.from([3, 10, 18, 30, 20]);\n\n// Find first greater than 18\n\nlet result = myIterator.find(x => x > 18);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_find"
+    },
+    {
+      "type": "h2",
+      "text": "متد flatMap()"
+    },
+    {
+      "type": "p",
+      "text": "متد flatMap() با نگاشت هر عنصر و بعد تخت کردن نتیجه‌ها در یک Iterator، یک Iterator جدید برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an iterator\n\nconst myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Map the Iterator\n\nconst mappedIterator = myIterator.flatMap(x => [x, x * 10]);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_flatmap"
+    },
+    {
+      "type": "h2",
+      "text": "متد forEach()"
+    },
+    {
+      "type": "p",
+      "text": "متد forEach() یک تابع داده‌شده را برای هر عنصر Iterator یک بار اجرا می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Iterate over all elements\n\nlet text = \"\";\n\nmyIterator.forEach (x => text += x);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_foreach"
+    },
+    {
+      "type": "h2",
+      "text": "متد map()"
+    },
+    {
+      "type": "p",
+      "text": "متد map() یک Iterator جدید با همهٔ عنصرهای تبدیل‌شده با تابع نگاشت برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Now you can use the map method\n\nconst mappedIterator = myIterator.map(x => x * 2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_map"
+    },
+    {
+      "type": "h2",
+      "text": "متد reduce()"
+    },
+    {
+      "type": "p",
+      "text": "متد reduce() یک تابع کاهش‌دهنده را روی یک انباره و هر عنصر اعمال می‌کند و همه را به یک مقدار می‌رساند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Iterator\n\nconst myIterator = Iterator.from([175, 50, 25]);\n\n// Reduce the Iterator\n\nlet result = myIterator.reduce(myFunc);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_reduce"
+    },
+    {
+      "type": "h2",
+      "text": "متد some()"
+    },
+    {
+      "type": "p",
+      "text": "متد some() اگر حداقل یک عنصر Iterator تابع آزمون داده‌شده را برآورده کند true برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Iterator\n\nconst myIterator = Iterator.from(\"123456789\");\n\n// Is some Element greater than 7?\n\nlet result = myIterator.some(x => x > 7);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_some"
+    },
+    {
+      "type": "h2",
+      "text": "متد take()"
+    },
+    {
+      "type": "p",
+      "text": "متد take() یک Iterator جدید برمی‌گرداند که حداکثر تعداد مشخصی عنصر می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myIterator = Iterator.from([1, 2, 3, 4, 5, 6]);\n\n// Take the first five elements\n\nconst firstFive = myIterator.take(5);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterator_take"
+    },
+    {
+      "type": "h2",
+      "text": "تعدیلگر /v در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "تعدیلگر v ارتقایی برای تعدیلگر u است."
+    },
+    {
+      "type": "p",
+      "text": "تعدیلگر u (یونیکد) پشتیبانی کامل یونیکد را در عبارت‌های باقاعده فعال می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "تعدیلگر v ویژگی‌های بیشتری مربوط به یونیکد را فعال می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "ویژگی‌های جدید این‌ها هستند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "دنبالهٔ فرار \\p با رشته‌ها تطبیق می‌دهد، نه فقط با نویسه‌ها.",
+        "کلاس نویسه ارتقا یافته است تا نحو اشتراک، اجتماع و تفاضل و همچنین تطبیق چند نویسهٔ یونیکد را ممکن کند."
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{RGI_Emoji}/v;\n\nlet result = pattern.test(text);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{RGI_Emoji}/;\n\nlet result = pattern.test(text);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_v"
+    },
+    {
+      "type": "p",
+      "text": "استفادهٔ هم‌زمان از هر دو تعدیلگر (u و v) به خطای نحوی (SyntaxError) منجر می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "/regexp/v از مهٔ ۲۰۲۵ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome136", "Edge136", "Firefox134", "Safari18.2", "Opera121"],
+        ["Apr 2025", "May 2025", "Jan 2025", "Des 2024", "Jun 2025"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد RegExp.escape()"
+    },
+    {
+      "type": "p",
+      "text": "متد RegExp.escape() رشته‌ای برمی‌گرداند که در آن نویسه‌های متعلق به نحو عبارت باقاعده فرار داده شده‌اند."
+    },
+    {
+      "type": "p",
+      "text": "این کار ممکن می‌کند نویسه‌هایی مثل +، *، ?، ^، $، (، )، [، ]، {، }، | و \\ را تحت‌اللفظی ببینیم، نه بخشی از عبارت باقاعده."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Escape a text for to use as a regular expression\n\nconst safe = RegExp.escape(\"[*]\");\n\n// Build a new reglar expression\n\nconst regex = new RegExp(safe);\n\n// Text to replace within\n\nconst oldText = \"[*] is a web school.\";\n\n// Perform the replace\n\nconst newText = oldText.match(regex, \"W3Schools\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_escape"
+    },
+    {
+      "type": "p",
+      "text": "RegExp.escape() از مهٔ ۲۰۲۵ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome136", "Edge136", "Firefox134", "Safari18.2", "Opera121"],
+        ["Apr 2025", "May 2025", "Jan 2025", "Des 2024", "Jun 2025"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Float16Array"
+    },
+    {
+      "type": "p",
+      "text": "Float16Array یک آرایهٔ نوع‌دار است که عددهای اعشاری ۱۶ بیتی (نیم‌دقت) را در قالب نیم‌دقت IEEE 754 نگه می‌دارد."
+    },
+    {
+      "type": "p",
+      "text": "Float16Array نصف حافظهٔ Float32Array و یک‌چهارم حافظهٔ Float64Array را می‌خواهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Float16Array([1.5, 2.5, 3.5, 4.5]);\n\nlet bytes = myArr.BYTES_PER_ELEMENT;\n\nlet length = myArr.length;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_float16_array"
+    },
+    {
+      "type": "p",
+      "text": "شیء Float16Array از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome135", "Edge135", "Firefox129", "Safari18.2", "Opera120"],
+        ["Apr 2025", "Apr 2025", "Aug 2024", "Des 2024", "May 2025"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.f16round"
+    },
+    {
+      "type": "p",
+      "text": "متد ایستای Math.f16round() نزدیک‌ترین نمایش اعشاری ۱۶ بیتی یک عدد را برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let a = Math.f16round(2.60);\n\nlet b = Math.f16round(2.50);\n\nlet c = Math.f16round(2.49);\n\nlet d = Math.f16round(-2.60);\n\nlet e = Math.f16round(-2.50);\n\nlet f = Math.f16round(-2.49);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_f16round"
+    },
+    {
+      "type": "p",
+      "text": "متد Math.f16round() از ژوئن ۲۰۲۴ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome135", "Edge135", "Firefox129", "Safari18.2", "Opera120"],
+        ["Apr 2025", "Apr 2025", "Aug 2024", "Des 2024", "May 2025"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Promise.try()"
+    },
+    {
+      "type": "p",
+      "text": "متد Promise.try() یک زنجیرهٔ Promise را از کد همگامی شروع می‌کند که ممکن است خطا پرتاب کند."
+    },
+    {
+      "type": "p",
+      "text": "این کار تضمین می‌کند استثناها درست به‌عنوان رد شدن Promise مدیریت شوند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function compute() {\n\n  return Promise.try(() => {\n\n    const v = mayThrowSync();\n\n    return asyncFunc(v);\n\n  });\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "ماژول‌ها با ویژگی‌های import"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import {names} from \"module-name\" with {key:\"data\"};",
+      "caption": "نحو"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import config from \"config.json\" with {type:\"json\"};\n\nimport styles from \"styles.css\" with {type:\"css\"};\n\nimport data from \"data.json\" with {type:\"json\"};",
+      "caption": "مثال‌ها"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل es2025.html بسازید و دو Set بسازید؛ با union، intersection و difference نتیجه‌ها را چاپ کنید و بگویید هر کدام چه عضوی دارند.",
+      "hint": "این متدها مجموعهٔ جدید برمی‌گردانند و مجموعه‌های اصلی را تغییر نمی‌دهند."
+    },
+    {
+      "prompt": "با isSubsetOf و isSupersetOf و isDisjointFrom دو مجموعه را بررسی کنید و نتیجهٔ هر سه را توضیح دهید.",
+      "hint": "isSubsetOf و isSupersetOf و isDisjointFrom هر سه مقدار true یا false برمی‌گردانند؛ نامشان رابطه را نشان می‌دهد."
+    },
+    {
+      "prompt": "یک آرایه بسازید، با Iterator.from آن را به Iterator تبدیل کنید و با take و drop بخشی از عنصرها را بگویید.",
+      "hint": "Iterator.from از یک شیء قابل‌پیمایش Iterator می‌سازد؛ take تعداد مشخصی می‌دهد و drop تعداد مشخصی را رد می‌کند."
+    },
+    {
+      "prompt": "با کمکی‌ارهای Iterator یک زنجیره بنویسید که اعداد زوج را فیلتر و به دو برابر تبدیل کند و بعد فقط سه عنصر اول را بگیرد.",
+      "hint": "این عملگرها تأخیری‌اند، پس می‌توانید filter و map و take را پشت سر هم بنویسید."
+    },
+    {
+      "prompt": "با RegExp.escape یک رشتهٔ شامل نویسه‌های ویژهٔ عبارت باقاعده بسازید و آن را در RegExp به کار ببرید و ببینید تحت‌اللفظی تطبیق می‌دهد.",
+      "hint": "تعدیلگر v را نمی‌توان با u هم‌زمان به کار برد؛ استفادهٔ هر دو با هم خطای نحوی می‌دهد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "متد union() روی Set چه چیزی برمی‌گرداند؟",
+      "options": [
+        "مجموعهٔ عنصرهایی که در هر دو مجموعه هستند",
+        "مجموعهٔ عنصرهایی که در این مجموعه یا مجموعهٔ آرگومان یا هر دو هستند",
+        "مجموعهٔ عنصرهایی که فقط در این مجموعه هستند",
+        "یک آرایه"
+      ],
+      "answer": 1,
+      "explanation": "union اجتماع دو مجموعه است؛ intersection اشتراک و difference تفاضل را برمی‌گرداند و همه هم مجموعهٔ جدید می‌سازند."
+    },
+    {
+      "question": "کدام متد بررسی می‌کند که دو مجموعه هیچ عضو مشترکی ندارند؟",
+      "options": ["isSubsetOf()", "isSupersetOf()", "isDisjointFrom()", "symmetricDifference()"],
+      "answer": 2,
+      "explanation": "isDisjointFrom وقتی true برمی‌گرداند که این مجموعه هیچ عضو مشترکی با مجموعهٔ آرگومان نداشته باشد."
+    },
+    {
+      "question": "مزیت اصلی کمکی‌ارهای Iterator در ES2025 چیست؟",
+      "options": [
+        "کار کردن فقط با آرایه",
+        "حذف نیاز به حلقهٔ for",
+        "تبدیل رشته به عدد",
+        "ارزیابی تأخیری و کار با داده‌های بزرگ به‌صورت جریانی"
+      ],
+      "answer": 3,
+      "explanation": "عملگرهای تابعی Iterator مثل map و filter و take با ارزیابی تأخیری کار می‌کنند و هنگام پردازش جریان‌های دادهٔ حجیم کارایی را بهتر می‌کنند."
+    },
+    {
+      "question": "تعدیلگر /v نسبت به /u چه تفاوتی دارد؟",
+      "options": [
+        "ویژگی‌های بیشتری مربوط به یونیکد را فعال می‌کند و ارتقای /u است",
+        "سرعت را بیشتر می‌کند",
+        "حروف بزرگ را نادیده می‌گیرد",
+        "جای /g را می‌گیرد"
+      ],
+      "answer": 0,
+      "explanation": "/v ارتقای /u است و ویژگی‌های یونیکدی بیشتری می‌دهد، مثل تطبیق رشته با \\p و نحو اشتراک و اجتماع در کلاس نویسه."
+    },
+    {
+      "question": "اگر تعدیلگرهای u و v را هم‌زمان به کار ببریم چه می‌شود؟",
+      "options": [
+        "u نادیده گرفته می‌شود",
+        "خطای نحوی (SyntaxError)",
+        "هر دو اعمال می‌شوند",
+        "v نادیده گرفته می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "استفادهٔ هم‌زمان از u و v با هم منجر به SyntaxError می‌شود؛ باید یکی را انتخاب کنید."
+    }
+  ]
 }

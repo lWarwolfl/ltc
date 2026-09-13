@@ -1,536 +1,526 @@
 {
- "slug": "js_dates",
- "course": "js",
- "order": 57,
- "url": "/js/js_dates.asp",
- "title": "تاریخ‌ها در JavaScript",
- "summary": "شیءهای Date در JavaScript تاریخ و زمان را نگه می‌دارند و با سازندهٔ new Date() ساخته می‌شوند. در این درس ۹ روش ساختن تاریخ، شمارش ماه‌ها از صفر، رفتار سرریز ماه و روز، ذخیره‌سازی بر پایهٔ میلی‌ثانیه و متدهای نمایش تاریخ را یاد می‌گیرید.",
- "objectives": [
-  "با new Date() شیء تاریخ بسازید و مقدار آن را چاپ کنید",
-  "بگویید چرا ژانویه ماه صفر است",
-  "رفتار سرریز ماه و روز را توضیح دهید",
-  "تاریخ‌ها را با متدهای toString و toDateString و toISOString نمایش دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تاریخ‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "شیءهای Date در JavaScript اجازه می‌دهند با تاریخ کار کنیم:"
-  },
-  {
-   "type": "p",
-   "text": "سال: ماه: روز: ساعت: دقیقه: ثانیه:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"2022-03-25\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_current"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "شیءهای Date ایستا هستند؛ «ساعت» آن‌ها «کار نمی‌کند». ساعت کامپیوتر می‌گذرد، اما شیءهای Date نه."
-  },
-  {
-   "type": "h2",
-   "text": "خروجی Date در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript به‌طور پیش‌فرض از منطقهٔ زمانی مرورگر استفاده می‌کند و تاریخ را به‌صورت یک رشتهٔ متنی کامل نشان می‌دهد:"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "بعداً در همین آموزش دربارهٔ نمایش تاریخ‌ها چیزهای بیشتری یاد می‌گیرید."
-  },
-  {
-   "type": "h2",
-   "text": "ساختن شیء تاریخ"
-  },
-  {
-   "type": "p",
-   "text": "شیءهای Date با سازندهٔ new Date() ساخته می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "۹ روش برای ساختن یک شیء تاریخ جدید وجود دارد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "new Date()\n\nnew Date(date string)\n\nnew Date(year,month)\n\nnew Date(year,month,day)\n\nnew Date(year,month,day,hours)\n\nnew Date(year,month,day,hours,minutes)\n\nnew Date(year,month,day,hours,minutes,seconds)\n\nnew Date(year,month,day,hours,minutes,seconds,ms)\n\nnew Date(milliseconds)",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "new Date() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "new Date() یک شیء تاریخ با تاریخ و زمان جاری می‌سازد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new"
-  },
-  {
-   "type": "h2",
-   "text": "نحو new Date(date string)"
-  },
-  {
-   "type": "p",
-   "text": "new Date(date string) از یک رشتهٔ تاریخ، یک شیء تاریخ می‌سازد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"October 13, 2014 11:13:00\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"2022-03-25\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_string"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "قالب‌های رشتهٔ تاریخ در فصل بعد توضیح داده می‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "نحو new Date(year, month, ...)"
-  },
-  {
-   "type": "p",
-   "text": "new Date(year, month, ...) یک شیء تاریخ با تاریخ و زمان مشخص می‌سازد."
-  },
-  {
-   "type": "p",
-   "text": "۷ عدد به‌ترتیب سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیه را مشخص می‌کنند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 11, 24, 10, 33, 30, 0);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_all"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "JavaScript ماه‌ها را از ۰ تا ۱۱ می‌شمارد: ژانویه = ۰ و دسامبر = ۱۱."
-  },
-  {
-   "type": "p",
-   "text": "اگر ماهی بزرگ‌تر از ۱۱ بدهید خطایی رخ نمی‌دهد، بلکه سرریز به سال بعد اضافه می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 15, 24, 10, 33, 30);",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2019, 3, 24, 10, 33, 30);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_month_11"
-  },
-  {
-   "type": "p",
-   "text": "اگر روزی بیشتر از حداکثر ماه بدهید خطایی رخ نمی‌دهد، بلکه سرریز به ماه بعد اضافه می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 5, 35, 10, 33, 30);",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 6, 5, 10, 33, 30);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_day_35"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از ۶، ۴، ۳ یا ۲ عدد"
-  },
-  {
-   "type": "p",
-   "text": "۶ عدد سال، ماه، روز، ساعت، دقیقه و ثانیه را مشخص می‌کنند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 11, 24, 10, 33, 30);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers6"
-  },
-  {
-   "type": "p",
-   "text": "۵ عدد سال، ماه، روز، ساعت و دقیقه را مشخص می‌کنند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 11, 24, 10, 33);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers5"
-  },
-  {
-   "type": "p",
-   "text": "۴ عدد سال، ماه، روز و ساعت را مشخص می‌کنند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 11, 24, 10);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers4"
-  },
-  {
-   "type": "p",
-   "text": "۳ عدد سال، ماه و روز را مشخص می‌کنند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 11, 24);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers3"
-  },
-  {
-   "type": "p",
-   "text": "۲ عدد سال و ماه را مشخص می‌کنند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018, 11);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers2"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "نمی‌توانید ماه را حذف کنید. اگر فقط یک پارامتر بدهید، به‌عنوان میلی‌ثانیه در نظر گرفته می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(2018);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers1"
-  },
-  {
-   "type": "h2",
-   "text": "قرن گذشته"
-  },
-  {
-   "type": "p",
-   "text": "سال‌های یک‌رقمی و دو‌رقمی به‌صورت 19xx تفسیر می‌شوند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(99, 11, 24);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_two"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(9, 11, 24);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_one"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "JavaScript تاریخ‌ها را به‌صورت میلی‌ثانیه ذخیره می‌کند JavaScript تاریخ‌ها را به‌صورت تعداد میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ ذخیره می‌کند. زمان صفر همان ۱ ژانویهٔ ۱۹۷۰ به ساعت 00:00:00 به وقت UTC است. یک روز (۲۴ ساعت) برابر ۸۶ ۴۰۰ ۰۰۰ میلی‌ثانیه است. الان این زمان است: میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ گذشته است."
-  },
-  {
-   "type": "h2",
-   "text": "نحو new Date(milliseconds)"
-  },
-  {
-   "type": "p",
-   "text": "new Date(milliseconds) یک شیء تاریخ جدید به‌صورت میلی‌ثانیه به‌علاوهٔ زمان صفر می‌سازد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(100000000000);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(-100000000000);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(24 * 60 * 60 * 1000);\n\n// or\n\nconst d = new Date(86400000);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(0);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_millisec"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای Date"
-  },
-  {
-   "type": "p",
-   "text": "وقتی شیء تاریخ ساخته شد، چند متد اجازه می‌دهند روی آن کار کنید."
-  },
-  {
-   "type": "p",
-   "text": "متدهای Date اجازه می‌دهند سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیهٔ شیءهای تاریخ را با زمان محلی یا زمان UTC (جهانی یا GMT) بگیرید و تنظیم کنید."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "متدهای Date و منطقه‌های زمانی در فصل‌های بعد بررسی می‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش تاریخ‌ها"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript به‌طور پیش‌فرض تاریخ‌ها را با متد toString() چاپ می‌کند. این یک نمایش رشته‌ای از تاریخ همراه با منطقهٔ زمانی است و قالب آن در مشخصات ECMAScript تعریف شده است:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_current"
-  },
-  {
-   "type": "p",
-   "text": "وقتی شیء تاریخ را در HTML نمایش می‌دهید، به‌طور خودکار با متد toString() به رشته تبدیل می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date();\n\nd.toString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_tostring"
-  },
-  {
-   "type": "p",
-   "text": "متد toDateString() تاریخ را به قالبی خواناتر تبدیل می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date();\n\nd.toDateString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_todatestring"
-  },
-  {
-   "type": "p",
-   "text": "متد toUTCString() تاریخ را با استاندارد UTC به رشته تبدیل می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date();\n\nd.toUTCString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_toutcstring"
-  },
-  {
-   "type": "p",
-   "text": "متد toISOString() تاریخ را با استاندارد ISO به رشته تبدیل می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date();\n\nd.toISOString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_toisostring"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "قالب‌های تاریخ JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متدهای get در تاریخ JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متدهای set در تاریخ JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع تاریخ JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل dates.html بسازید و با new Date() تاریخ و زمان جاری را بسازید و با console.log چاپ کنید.",
-   "hint": "شیء Date ایستا است؛ مقداری که ذخیره می‌شود همان لحظهٔ ساخت است و بعداً خودش عوض نمی‌شود."
-  },
-  {
-   "prompt": "یک شیء تاریخ با new Date(2018, 11, 24, 10, 33, 30) بسازید و ببینید چه ماهی چاپ می‌شود.",
-   "hint": "JavaScript ماه‌ها را از ۰ می‌شمارد، پس ۱۱ یعنی دسامبر."
-  },
-  {
-   "prompt": "تاریخی با ماه ۱۵ بسازید و نتیجه را با تاریخ ماه ۳ سال بعد مقایسه کنید.",
-   "hint": "سرریز ماه به سال بعد اضافه می‌شود و خطایی رخ نمی‌دهد."
-  },
-  {
-   "prompt": "روزی بیشتر از تعداد روزهای ماه بدهید و ببینید به ماه بعد منتقل می‌شود.",
-   "hint": "سرریز روز به ماه بعد اضافه می‌شود، همان‌طور که برای ماه اتفاق می‌افتاد."
-  },
-  {
-   "prompt": "با new Date(0) و new Date(86400000) دو تاریخ بسازید و تفاوتشان را توضیح دهید.",
-   "hint": "تاریخ‌ها بر پایهٔ میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ ذخیره می‌شوند؛ یک روز برابر ۸۶ ۴۰۰ ۰۰۰ میلی‌ثانیه است."
-  }
- ],
- "quiz": [
-  {
-   "question": "شیءهای Date در JavaScript چگونه ساخته می‌شوند؟",
-   "options": [
-    "با Date.new()",
-    "با new Date() و سازندهٔ آن",
-    "با let date = date()",
-    "با JSON.parse"
-   ],
-   "answer": 1,
-   "explanation": "شیءهای تاریخ با سازندهٔ new Date() ساخته می‌شوند و ۹ روش مختلف برای مقداردهی به آن وجود دارد."
-  },
-  {
-   "question": "ماه ژانویه در سازندهٔ new Date(year, month, ...) با چه عددی نشان داده می‌شود؟",
-   "options": [
-    "۱",
-    "۰",
-    "۱۱",
-    "۱۲"
-   ],
-   "answer": 1,
-   "explanation": "JavaScript ماه‌ها را از ۰ می‌شمارد؛ ژانویه = ۰ و دسامبر = ۱۱."
-  },
-  {
-   "question": "اگر فقط یک پارامتر به new Date() بدهید، آن پارامتر چه چیزی در نظر گرفته می‌شود؟",
-   "options": [
-    "سال",
-    "ماه",
-    "میلی‌ثانیه",
-    "ثانیه"
-   ],
-   "answer": 2,
-   "explanation": "ماه را نمی‌توان حذف کرد؛ اگر یک پارامتر بدهید به‌عنوان میلی‌ثانیه از زمان صفر تفسیر می‌شود."
-  },
-  {
-   "question": "چرا new Date() مقدارش بعد از گذشت زمان عوض نمی‌شود؟",
-   "options": [
-    "چون شیءهای Date ایستا هستند و ساعت آن‌ها کار نمی‌کند",
-    "چون مرورگر مقدار را قفل می‌کند",
-    "چون JavaScript تاریخ‌ها را رشته ذخیره می‌کند",
-    "چون Date فقط خواندنی است"
-   ],
-   "answer": 0,
-   "explanation": "ساعت کامپیوتر می‌گذرد اما شیء Date همان لحظهٔ ساخت را نگه می‌دارد؛ برای زمان تازه باید شیء جدیدی با new Date() بسازید."
-  },
-  {
-   "question": "خروجی پیش‌فرض JavaScript برای یک شیء تاریخ چگونه است؟",
-   "options": [
-    "فقط سال و ماه",
-    "یک رشتهٔ متنی کامل با منطقهٔ زمانی",
-    "یک عدد میلی‌ثانیه",
-    "یک آرایه از هفت عدد"
-   ],
-   "answer": 1,
-   "explanation": "به‌طور پیش‌فرض از متد toString() استفاده می‌شود که نمایش رشته‌ای کامل تاریخ همراه با منطقهٔ زمانی است."
-  }
- ]
+  "slug": "js_dates",
+  "course": "js",
+  "order": 57,
+  "url": "/js/js_dates.asp",
+  "title": "تاریخ‌ها در JavaScript",
+  "summary": "شیءهای Date در JavaScript تاریخ و زمان را نگه می‌دارند و با سازندهٔ new Date() ساخته می‌شوند. در این درس ۹ روش ساختن تاریخ، شمارش ماه‌ها از صفر، رفتار سرریز ماه و روز، ذخیره‌سازی بر پایهٔ میلی‌ثانیه و متدهای نمایش تاریخ را یاد می‌گیرید.",
+  "objectives": [
+    "با new Date() شیء تاریخ بسازید و مقدار آن را چاپ کنید",
+    "بگویید چرا ژانویه ماه صفر است",
+    "رفتار سرریز ماه و روز را توضیح دهید",
+    "تاریخ‌ها را با متدهای toString و toDateString و toISOString نمایش دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تاریخ‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "شیءهای Date در JavaScript اجازه می‌دهند با تاریخ کار کنیم:"
+    },
+    {
+      "type": "p",
+      "text": "سال: ماه: روز: ساعت: دقیقه: ثانیه:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"2022-03-25\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_current"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "شیءهای Date ایستا هستند؛ «ساعت» آن‌ها «کار نمی‌کند». ساعت کامپیوتر می‌گذرد، اما شیءهای Date نه."
+    },
+    {
+      "type": "h2",
+      "text": "خروجی Date در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript به‌طور پیش‌فرض از منطقهٔ زمانی مرورگر استفاده می‌کند و تاریخ را به‌صورت یک رشتهٔ متنی کامل نشان می‌دهد:"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "بعداً در همین آموزش دربارهٔ نمایش تاریخ‌ها چیزهای بیشتری یاد می‌گیرید."
+    },
+    {
+      "type": "h2",
+      "text": "ساختن شیء تاریخ"
+    },
+    {
+      "type": "p",
+      "text": "شیءهای Date با سازندهٔ new Date() ساخته می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "۹ روش برای ساختن یک شیء تاریخ جدید وجود دارد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "new Date()\n\nnew Date(date string)\n\nnew Date(year,month)\n\nnew Date(year,month,day)\n\nnew Date(year,month,day,hours)\n\nnew Date(year,month,day,hours,minutes)\n\nnew Date(year,month,day,hours,minutes,seconds)\n\nnew Date(year,month,day,hours,minutes,seconds,ms)\n\nnew Date(milliseconds)",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "new Date() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "new Date() یک شیء تاریخ با تاریخ و زمان جاری می‌سازد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new"
+    },
+    {
+      "type": "h2",
+      "text": "نحو new Date(date string)"
+    },
+    {
+      "type": "p",
+      "text": "new Date(date string) از یک رشتهٔ تاریخ، یک شیء تاریخ می‌سازد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"October 13, 2014 11:13:00\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"2022-03-25\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_string"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "قالب‌های رشتهٔ تاریخ در فصل بعد توضیح داده می‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "نحو new Date(year, month, ...)"
+    },
+    {
+      "type": "p",
+      "text": "new Date(year, month, ...) یک شیء تاریخ با تاریخ و زمان مشخص می‌سازد."
+    },
+    {
+      "type": "p",
+      "text": "۷ عدد به‌ترتیب سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیه را مشخص می‌کنند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 11, 24, 10, 33, 30, 0);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_all"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "JavaScript ماه‌ها را از ۰ تا ۱۱ می‌شمارد: ژانویه = ۰ و دسامبر = ۱۱."
+    },
+    {
+      "type": "p",
+      "text": "اگر ماهی بزرگ‌تر از ۱۱ بدهید خطایی رخ نمی‌دهد، بلکه سرریز به سال بعد اضافه می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 15, 24, 10, 33, 30);",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2019, 3, 24, 10, 33, 30);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_month_11"
+    },
+    {
+      "type": "p",
+      "text": "اگر روزی بیشتر از حداکثر ماه بدهید خطایی رخ نمی‌دهد، بلکه سرریز به ماه بعد اضافه می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 5, 35, 10, 33, 30);",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 6, 5, 10, 33, 30);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_day_35"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از ۶، ۴، ۳ یا ۲ عدد"
+    },
+    {
+      "type": "p",
+      "text": "۶ عدد سال، ماه، روز، ساعت، دقیقه و ثانیه را مشخص می‌کنند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 11, 24, 10, 33, 30);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers6"
+    },
+    {
+      "type": "p",
+      "text": "۵ عدد سال، ماه، روز، ساعت و دقیقه را مشخص می‌کنند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 11, 24, 10, 33);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers5"
+    },
+    {
+      "type": "p",
+      "text": "۴ عدد سال، ماه، روز و ساعت را مشخص می‌کنند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 11, 24, 10);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers4"
+    },
+    {
+      "type": "p",
+      "text": "۳ عدد سال، ماه و روز را مشخص می‌کنند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 11, 24);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers3"
+    },
+    {
+      "type": "p",
+      "text": "۲ عدد سال و ماه را مشخص می‌کنند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018, 11);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers2"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "نمی‌توانید ماه را حذف کنید. اگر فقط یک پارامتر بدهید، به‌عنوان میلی‌ثانیه در نظر گرفته می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(2018);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_numbers1"
+    },
+    {
+      "type": "h2",
+      "text": "قرن گذشته"
+    },
+    {
+      "type": "p",
+      "text": "سال‌های یک‌رقمی و دو‌رقمی به‌صورت 19xx تفسیر می‌شوند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(99, 11, 24);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_two"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(9, 11, 24);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_one"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "JavaScript تاریخ‌ها را به‌صورت میلی‌ثانیه ذخیره می‌کند JavaScript تاریخ‌ها را به‌صورت تعداد میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ ذخیره می‌کند. زمان صفر همان ۱ ژانویهٔ ۱۹۷۰ به ساعت 00:00:00 به وقت UTC است. یک روز (۲۴ ساعت) برابر ۸۶ ۴۰۰ ۰۰۰ میلی‌ثانیه است. الان این زمان است: میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ گذشته است."
+    },
+    {
+      "type": "h2",
+      "text": "نحو new Date(milliseconds)"
+    },
+    {
+      "type": "p",
+      "text": "new Date(milliseconds) یک شیء تاریخ جدید به‌صورت میلی‌ثانیه به‌علاوهٔ زمان صفر می‌سازد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(100000000000);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(-100000000000);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(24 * 60 * 60 * 1000);\n\n// or\n\nconst d = new Date(86400000);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(0);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_new_millisec"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای Date"
+    },
+    {
+      "type": "p",
+      "text": "وقتی شیء تاریخ ساخته شد، چند متد اجازه می‌دهند روی آن کار کنید."
+    },
+    {
+      "type": "p",
+      "text": "متدهای Date اجازه می‌دهند سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیهٔ شیءهای تاریخ را با زمان محلی یا زمان UTC (جهانی یا GMT) بگیرید و تنظیم کنید."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "متدهای Date و منطقه‌های زمانی در فصل‌های بعد بررسی می‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش تاریخ‌ها"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript به‌طور پیش‌فرض تاریخ‌ها را با متد toString() چاپ می‌کند. این یک نمایش رشته‌ای از تاریخ همراه با منطقهٔ زمانی است و قالب آن در مشخصات ECMAScript تعریف شده است:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_current"
+    },
+    {
+      "type": "p",
+      "text": "وقتی شیء تاریخ را در HTML نمایش می‌دهید، به‌طور خودکار با متد toString() به رشته تبدیل می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date();\n\nd.toString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_tostring"
+    },
+    {
+      "type": "p",
+      "text": "متد toDateString() تاریخ را به قالبی خواناتر تبدیل می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date();\n\nd.toDateString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_todatestring"
+    },
+    {
+      "type": "p",
+      "text": "متد toUTCString() تاریخ را با استاندارد UTC به رشته تبدیل می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date();\n\nd.toUTCString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_toutcstring"
+    },
+    {
+      "type": "p",
+      "text": "متد toISOString() تاریخ را با استاندارد ISO به رشته تبدیل می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date();\n\nd.toISOString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_toisostring"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "قالب‌های تاریخ JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متدهای get در تاریخ JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متدهای set در تاریخ JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع تاریخ JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل dates.html بسازید و با new Date() تاریخ و زمان جاری را بسازید و با console.log چاپ کنید.",
+      "hint": "شیء Date ایستا است؛ مقداری که ذخیره می‌شود همان لحظهٔ ساخت است و بعداً خودش عوض نمی‌شود."
+    },
+    {
+      "prompt": "یک شیء تاریخ با new Date(2018, 11, 24, 10, 33, 30) بسازید و ببینید چه ماهی چاپ می‌شود.",
+      "hint": "JavaScript ماه‌ها را از ۰ می‌شمارد، پس ۱۱ یعنی دسامبر."
+    },
+    {
+      "prompt": "تاریخی با ماه ۱۵ بسازید و نتیجه را با تاریخ ماه ۳ سال بعد مقایسه کنید.",
+      "hint": "سرریز ماه به سال بعد اضافه می‌شود و خطایی رخ نمی‌دهد."
+    },
+    {
+      "prompt": "روزی بیشتر از تعداد روزهای ماه بدهید و ببینید به ماه بعد منتقل می‌شود.",
+      "hint": "سرریز روز به ماه بعد اضافه می‌شود، همان‌طور که برای ماه اتفاق می‌افتاد."
+    },
+    {
+      "prompt": "با new Date(0) و new Date(86400000) دو تاریخ بسازید و تفاوتشان را توضیح دهید.",
+      "hint": "تاریخ‌ها بر پایهٔ میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰ ذخیره می‌شوند؛ یک روز برابر ۸۶ ۴۰۰ ۰۰۰ میلی‌ثانیه است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "شیءهای Date در JavaScript چگونه ساخته می‌شوند؟",
+      "options": [
+        "با Date.new()",
+        "با new Date() و سازندهٔ آن",
+        "با let date = date()",
+        "با JSON.parse"
+      ],
+      "answer": 1,
+      "explanation": "شیءهای تاریخ با سازندهٔ new Date() ساخته می‌شوند و ۹ روش مختلف برای مقداردهی به آن وجود دارد."
+    },
+    {
+      "question": "ماه ژانویه در سازندهٔ new Date(year, month, ...) با چه عددی نشان داده می‌شود؟",
+      "options": ["۱", "۰", "۱۱", "۱۲"],
+      "answer": 1,
+      "explanation": "JavaScript ماه‌ها را از ۰ می‌شمارد؛ ژانویه = ۰ و دسامبر = ۱۱."
+    },
+    {
+      "question": "اگر فقط یک پارامتر به new Date() بدهید، آن پارامتر چه چیزی در نظر گرفته می‌شود؟",
+      "options": ["سال", "ماه", "میلی‌ثانیه", "ثانیه"],
+      "answer": 2,
+      "explanation": "ماه را نمی‌توان حذف کرد؛ اگر یک پارامتر بدهید به‌عنوان میلی‌ثانیه از زمان صفر تفسیر می‌شود."
+    },
+    {
+      "question": "چرا new Date() مقدارش بعد از گذشت زمان عوض نمی‌شود؟",
+      "options": [
+        "چون شیءهای Date ایستا هستند و ساعت آن‌ها کار نمی‌کند",
+        "چون مرورگر مقدار را قفل می‌کند",
+        "چون JavaScript تاریخ‌ها را رشته ذخیره می‌کند",
+        "چون Date فقط خواندنی است"
+      ],
+      "answer": 0,
+      "explanation": "ساعت کامپیوتر می‌گذرد اما شیء Date همان لحظهٔ ساخت را نگه می‌دارد؛ برای زمان تازه باید شیء جدیدی با new Date() بسازید."
+    },
+    {
+      "question": "خروجی پیش‌فرض JavaScript برای یک شیء تاریخ چگونه است؟",
+      "options": [
+        "فقط سال و ماه",
+        "یک رشتهٔ متنی کامل با منطقهٔ زمانی",
+        "یک عدد میلی‌ثانیه",
+        "یک آرایه از هفت عدد"
+      ],
+      "answer": 1,
+      "explanation": "به‌طور پیش‌فرض از متد toString() استفاده می‌شود که نمایش رشته‌ای کامل تاریخ همراه با منطقهٔ زمانی است."
+    }
+  ]
 }

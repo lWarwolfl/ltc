@@ -1,411 +1,388 @@
 {
- "slug": "js_json",
- "course": "js",
- "order": 167,
- "url": "/js/js_json.asp",
- "title": "JSON در JavaScript",
- "summary": "‏JSON قالب متنی سبکی برای فرستادن و ذخیرهٔ داده است و نحو آن از شیءهای JavaScript گرفته شده. در این درس می‌بینید JSON چیست، چه تفاوتی با شیء JavaScript دارد و با JSON.parse() و JSON.stringify() بین متن و مقدار جابه‌جا می‌شوید.",
- "objectives": [
-  "تعریف کنید JSON چیست و چه تفاوتی با شیء JavaScript دارد",
-  "با JSON.parse() متن JSON را به مقدار JavaScript تبدیل کنید",
-  "با JSON.stringify() مقدار JavaScript را به متن JSON تبدیل کنید",
-  "کاربردهای رایج JSON را در تبادل و ذخیرهٔ داده نام ببرید",
-  "تشخیص دهید چرا JSON به زبان خاصی وابسته نیست"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JSON در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "JSON چیست؟"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_json.jpg",
-   "alt": "HTML"
-  },
-  {
-   "type": "p",
-   "text": "JSON"
-  },
-  {
-   "type": "h2",
-   "text": "JSON به چه کار می‌آید؟"
-  },
-  {
-   "type": "p",
-   "text": "از JSON برای فرستادن، گرفتن و ذخیرهٔ داده استفاده می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "‏JSON در JavaScript و بسیاری از زبان‌های برنامه‌نویسی دیگر جای گرفته است."
-  },
-  {
-   "type": "p",
-   "text": "متد JSON.parse() متن JSON را به مقدارهای JavaScript تبدیل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "یک مثال JSON"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "{\n\n  \"name\": \"John\",\n\n  \"age\": 30,\n\n  \"city\": \"New York\"\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "مثال بالا شیئی با ۳ خصوصیت توصیف می‌کند:"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت‌ها به‌صورت جفت‌های نام/مقدار نوشته می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "هر خصوصیت یک نام دارد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "\"name\"",
-    "\"age\"",
-    "\"city\""
-   ]
-  },
-  {
-   "type": "p",
-   "text": "هر خصوصیت یک مقدار دارد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "\"John\"",
-    "30",
-    "\"New York\""
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "چرا از JSON استفاده کنیم؟"
-  },
-  {
-   "type": "p",
-   "text": "رایانه‌ها و برنامه‌ها اغلب باید داده را با هم رد و بدل کنند."
-  },
-  {
-   "type": "p",
-   "text": "‏JSON قالب متنی ساده‌ای فراهم می‌کند که بسیاری از زبان‌های برنامه‌نویسی می‌توانند آن را بخوانند و بسازند."
-  },
-  {
-   "type": "p",
-   "text": "‏JSON معمولاً برای این کارها به کار می‌رود:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "فرستادن داده از وب‌سرور به صفحهٔ وب",
-    "فرستادن داده از صفحهٔ وب به سرور",
-    "ذخیرهٔ دادهٔ تنظیمات",
-    "ذخیرهٔ دادهٔ ساختاریافته در فایل‌ها",
-    "رد و بدل کردن داده بین برنامه‌ها"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "‏JSON و JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "نحو JSON بر پایهٔ نحو شیء در JavaScript است."
-  },
-  {
-   "type": "p",
-   "text": "چون نحو این دو شبیه است، متن JSON اغلب با شیءهای JavaScript اشتباه گرفته می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};",
-   "caption": "شیء JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "{\n\n  \"name\": \"John\",\n\n  \"age\": 30,\n\n  \"city\": \"New York\"\n\n}",
-   "caption": "شیء JavaScript"
-  },
-  {
-   "type": "h3",
-   "text": "‏JSON متن است"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON یک شیء JavaScript نیست."
-  },
-  {
-   "type": "p",
-   "text": "چون قالب JSON از نظر نحوی با JavaScript یکسان است، یک برنامهٔ JavaScript به‌راحتی می‌تواند دادهٔ JSON را به مقدارهای بومی JavaScript تبدیل کند."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript تابعی توکار برای تبدیل رشته‌های JSON به مقدارهای JavaScript دارد:"
-  },
-  {
-   "type": "p",
-   "text": "JSON.parse()"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript همچنین تابعی توکار برای تبدیل مقدارهای JavaScript به رشته‌های JSON دارد:"
-  },
-  {
-   "type": "p",
-   "text": "JSON.stringify()"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل JSON به JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پیش از آنکه JavaScript بتواند با متن JSON کار کند، این متن باید به یک مقدار JavaScript تبدیل شود."
-  },
-  {
-   "type": "p",
-   "text": "متد JSON.parse() متن JSON را به یک مقدار JavaScript تبدیل می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// JSON text\n\nconst text = '{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}';\n\n// Parse the JSON text\n\nconst person = JSON.parse(text);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parser"
-  },
-  {
-   "type": "p",
-   "text": "بعد از parse، خصوصیت‌ها با نحو معمول شیء در JavaScript قابل دسترسی‌اند."
-  },
-  {
-   "type": "p",
-   "text": "متد JSON.parse() همیشه شیء برنمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "بلکه همان مقدار JavaScriptی را برمی‌گرداند که متن JSON نشان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "بعداً در همین آموزش دربارهٔ JSON.stringify() بیشتر یاد می‌گیرید."
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل JavaScript به JSON"
-  },
-  {
-   "type": "p",
-   "text": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nconst text = JSON.stringify(person);\n\ndocument.getElementById(\"demo\").innerHTML = text;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify"
-  },
-  {
-   "type": "p",
-   "text": "بعداً در همین آموزش دربارهٔ JSON.stringify() بیشتر یاد می‌گیرید."
-  },
-  {
-   "type": "h2",
-   "text": "رفت و برگشت JSON"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "متن JSON\n🠇\nJSON.parse()\n🠇\nمقدار JavaScript\n🠇\nJSON.stringify()\n🠇\nمتن JSON"
-  },
-  {
-   "type": "h2",
-   "text": "ذخیرهٔ داده"
-  },
-  {
-   "type": "p",
-   "text": "هنگام ذخیرهٔ داده، داده باید قالب مشخصی داشته باشد."
-  },
-  {
-   "type": "p",
-   "text": "هر جا که داده را ذخیره کنید، متن همیشه قالب راحتی است."
-  },
-  {
-   "type": "p",
-   "text": "‏JSON امکان ذخیرهٔ مقدارهای JavaScript به‌صورت متن را می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید متن خالص را از سرور بگیرید و آن را مثل یک شیء JavaScript به کار ببرید."
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید یک شیء JavaScript را در قالب متن خالص به سرور بفرستید."
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید با داده مثل شیءهای JavaScript کار کنید، بدون parse و تبدیل‌های پیچیده."
-  },
-  {
-   "type": "h2",
-   "text": "فایل‌های JSON"
-  },
-  {
-   "type": "p",
-   "text": "دادهٔ JSON را می‌توان در یک فایل ذخیره کرد."
-  },
-  {
-   "type": "p",
-   "text": "فایل‌های JSON معمولاً پسوند .json دارند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "{\n\n  \"id\": 101,\n\n  \"name\": \"John Doe\",\n\n  \"city\": \"New York\",\n\n  \"member\": true\n\n}",
-   "caption": "customer.json"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "پسوند فایل‌های JSON برابر \".json\" است",
-    "نوع MIME متن JSON برابر \"application/json\" است"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "JavaScript می‌تواند فایل‌های JSON را بارگذاری کند و محتوایشان را به مقدارهای JavaScript تبدیل کند."
-  },
-  {
-   "type": "p",
-   "text": "بعداً در همین آموزش یاد می‌گیرید چطور فایل‌های JSON را بارگذاری کنید."
-  },
-  {
-   "type": "h2",
-   "text": "‏JSON به زبان خاصی وابسته نیست"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON از نحو شیء JavaScript الهام گرفته، اما به JavaScript محدود نیست."
-  },
-  {
-   "type": "p",
-   "text": "کد خواندن و ساختن دادهٔ JSON را می‌توان با هر زبان برنامه‌نویسی نوشت."
-  },
-  {
-   "type": "p",
-   "text": "قالب JSON نخستین بار توسط Douglas Crockford تعریف شد."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "‏JSON فقط متن است و به زبان خاصی وابسته نیست",
-    "‏JSON فرستادن داده بین رایانه‌ها را آسان می‌کند"
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک رشتهٔ JSON در کنسول بسازید که نام، سن و شهر یک نفر را نگه دارد و با JSON.parse() به شیء تبدیلش کنید، بعد person.name را چاپ کنید.",
-   "hint": "‏JSON متن است؛ تا وقتی parse نکنید، name یک رشتهٔ ساده است نه شیء."
-  },
-  {
-   "prompt": "یک شیء JavaScript بسازید و با JSON.stringify() آن را به متن تبدیل کنید و نتیجه را در کنسول ببینید.",
-   "hint": "خروجی یک رشته است، نه شیء؛ به همین دلیل می‌توان آن را به سرور فرستاد یا در فایل ذخیره کرد."
-  },
-  {
-   "prompt": "یک متن JSON نامعتبر (مثلاً بدون کوتیشن دوتایی) به JSON.parse() بدهید و پیام خطا را ببینید.",
-   "hint": "‏JSON نحو سخت‌گیرانه‌ای دارد و parse روی متن نامعتبر خطا می‌دهد."
-  },
-  {
-   "prompt": "یک فایل customer.json بسازید که یک شیء با چند خصوصیت داشته باشد و آن را با fetch() بخوانید و تبدیل کنید.",
-   "hint": "پسوند فایل باید .json باشد و نوع MIME آن application/json است."
-  },
-  {
-   "prompt": "یک مقدار JavaScript را با JSON.stringify() به متن و بعد با JSON.parse() دوباره به مقدار تبدیل کنید و ببینید رفت و برگشت داده درست کار می‌کند.",
-   "hint": "این چرخه را رفت و برگشت JSON می‌نامند: متن JSON، مقدار JavaScript و دوباره متن JSON."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام متد متن JSON را به مقدار JavaScript تبدیل می‌کند؟",
-   "options": [
-    "JSON.stringify()",
-    "JSON.parse()",
-    "JSON.text()",
-    "JSON.object()"
-   ],
-   "answer": 1,
-   "explanation": "‏JSON.parse() متن JSON را می‌خواند و مقدار JavaScript معادل آن را برمی‌گرداند. JSON.stringify() مسیر مخالف را می‌رود و مقدار را به متن تبدیل می‌کند."
-  },
-  {
-   "question": "‏JSON در واقع چیست؟",
-   "options": [
-    "یک شیء JavaScript",
-    "یک قالب متنی برای داده",
-    "یک زبان برنامه‌نویسی",
-    "یک کتابخانهٔ JavaScript"
-   ],
-   "answer": 1,
-   "explanation": "‏JSON یک قالب متنی است، نه شیء و نه زبان. فقط وقتی متن JSON را parse کنید، به شیء JavaScript تبدیل می‌شود؛ به همین دلیل نام‌گذاری «شیء JSON» اشتباه رایجی است."
-  },
-  {
-   "question": "پسوند استاندارد فایل‌های JSON چیست؟",
-   "options": [
-    ".txt",
-    ".json",
-    ".js",
-    ".jso"
-   ],
-   "answer": 1,
-   "explanation": "فایل‌های JSON پسوند .json دارند و نوع MIME متن JSON هم application/json است."
-  },
-  {
-   "question": "کدام گزینه یکی از کاربردهای رایج JSON نیست؟",
-   "options": [
-    "فرستادن داده از وب‌سرور به صفحهٔ وب",
-    "ذخیرهٔ دادهٔ ساختاریافته در فایل",
-    "رد و بدل کردن داده بین برنامه‌ها",
-    "اجرای کد در مرورگر به‌جای JavaScript"
-   ],
-   "answer": 3,
-   "explanation": "‏JSON فقط یک قالب داده است و کد اجرا نمی‌کند؛ تبدیل متن JSON به مقدار JavaScript کار JSON.parse() است. سه گزینهٔ دیگر کاربردهای رایج JSON هستند."
-  },
-  {
-   "question": "برای فرستادن یک شیء JavaScript به سرور از کدام متد استفاده می‌کنید؟",
-   "options": [
-    "JSON.parse()",
-    "JSON.stringify()",
-    "JSON.send()",
-    "JSON.text()"
-   ],
-   "answer": 1,
-   "explanation": "برای فرستادن باید داده به متن تبدیل شود، پس JSON.stringify() به کار می‌رود. JSON.parse() برعکس عمل می‌کند و متن دریافتی را به مقدار JavaScript تبدیل می‌کند."
-  }
- ]
+  "slug": "js_json",
+  "course": "js",
+  "order": 167,
+  "url": "/js/js_json.asp",
+  "title": "JSON در JavaScript",
+  "summary": "‏JSON قالب متنی سبکی برای فرستادن و ذخیرهٔ داده است و نحو آن از شیءهای JavaScript گرفته شده. در این درس می‌بینید JSON چیست، چه تفاوتی با شیء JavaScript دارد و با JSON.parse() و JSON.stringify() بین متن و مقدار جابه‌جا می‌شوید.",
+  "objectives": [
+    "تعریف کنید JSON چیست و چه تفاوتی با شیء JavaScript دارد",
+    "با JSON.parse() متن JSON را به مقدار JavaScript تبدیل کنید",
+    "با JSON.stringify() مقدار JavaScript را به متن JSON تبدیل کنید",
+    "کاربردهای رایج JSON را در تبادل و ذخیرهٔ داده نام ببرید",
+    "تشخیص دهید چرا JSON به زبان خاصی وابسته نیست"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JSON در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "JSON چیست؟"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_json.jpg",
+      "alt": "HTML"
+    },
+    {
+      "type": "p",
+      "text": "JSON"
+    },
+    {
+      "type": "h2",
+      "text": "JSON به چه کار می‌آید؟"
+    },
+    {
+      "type": "p",
+      "text": "از JSON برای فرستادن، گرفتن و ذخیرهٔ داده استفاده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "‏JSON در JavaScript و بسیاری از زبان‌های برنامه‌نویسی دیگر جای گرفته است."
+    },
+    {
+      "type": "p",
+      "text": "متد JSON.parse() متن JSON را به مقدارهای JavaScript تبدیل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "یک مثال JSON"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "{\n\n  \"name\": \"John\",\n\n  \"age\": 30,\n\n  \"city\": \"New York\"\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "مثال بالا شیئی با ۳ خصوصیت توصیف می‌کند:"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت‌ها به‌صورت جفت‌های نام/مقدار نوشته می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "هر خصوصیت یک نام دارد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["\"name\"", "\"age\"", "\"city\""]
+    },
+    {
+      "type": "p",
+      "text": "هر خصوصیت یک مقدار دارد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["\"John\"", "30", "\"New York\""]
+    },
+    {
+      "type": "h2",
+      "text": "چرا از JSON استفاده کنیم؟"
+    },
+    {
+      "type": "p",
+      "text": "رایانه‌ها و برنامه‌ها اغلب باید داده را با هم رد و بدل کنند."
+    },
+    {
+      "type": "p",
+      "text": "‏JSON قالب متنی ساده‌ای فراهم می‌کند که بسیاری از زبان‌های برنامه‌نویسی می‌توانند آن را بخوانند و بسازند."
+    },
+    {
+      "type": "p",
+      "text": "‏JSON معمولاً برای این کارها به کار می‌رود:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "فرستادن داده از وب‌سرور به صفحهٔ وب",
+        "فرستادن داده از صفحهٔ وب به سرور",
+        "ذخیرهٔ دادهٔ تنظیمات",
+        "ذخیرهٔ دادهٔ ساختاریافته در فایل‌ها",
+        "رد و بدل کردن داده بین برنامه‌ها"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "‏JSON و JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "نحو JSON بر پایهٔ نحو شیء در JavaScript است."
+    },
+    {
+      "type": "p",
+      "text": "چون نحو این دو شبیه است، متن JSON اغلب با شیءهای JavaScript اشتباه گرفته می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};",
+      "caption": "شیء JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "{\n\n  \"name\": \"John\",\n\n  \"age\": 30,\n\n  \"city\": \"New York\"\n\n}",
+      "caption": "شیء JavaScript"
+    },
+    {
+      "type": "h3",
+      "text": "‏JSON متن است"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON یک شیء JavaScript نیست."
+    },
+    {
+      "type": "p",
+      "text": "چون قالب JSON از نظر نحوی با JavaScript یکسان است، یک برنامهٔ JavaScript به‌راحتی می‌تواند دادهٔ JSON را به مقدارهای بومی JavaScript تبدیل کند."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript تابعی توکار برای تبدیل رشته‌های JSON به مقدارهای JavaScript دارد:"
+    },
+    {
+      "type": "p",
+      "text": "JSON.parse()"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript همچنین تابعی توکار برای تبدیل مقدارهای JavaScript به رشته‌های JSON دارد:"
+    },
+    {
+      "type": "p",
+      "text": "JSON.stringify()"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل JSON به JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پیش از آنکه JavaScript بتواند با متن JSON کار کند، این متن باید به یک مقدار JavaScript تبدیل شود."
+    },
+    {
+      "type": "p",
+      "text": "متد JSON.parse() متن JSON را به یک مقدار JavaScript تبدیل می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// JSON text\n\nconst text = '{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}';\n\n// Parse the JSON text\n\nconst person = JSON.parse(text);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parser"
+    },
+    {
+      "type": "p",
+      "text": "بعد از parse، خصوصیت‌ها با نحو معمول شیء در JavaScript قابل دسترسی‌اند."
+    },
+    {
+      "type": "p",
+      "text": "متد JSON.parse() همیشه شیء برنمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "بلکه همان مقدار JavaScriptی را برمی‌گرداند که متن JSON نشان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "بعداً در همین آموزش دربارهٔ JSON.stringify() بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل JavaScript به JSON"
+    },
+    {
+      "type": "p",
+      "text": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nconst text = JSON.stringify(person);\n\ndocument.getElementById(\"demo\").innerHTML = text;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify"
+    },
+    {
+      "type": "p",
+      "text": "بعداً در همین آموزش دربارهٔ JSON.stringify() بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "h2",
+      "text": "رفت و برگشت JSON"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "متن JSON\n🠇\nJSON.parse()\n🠇\nمقدار JavaScript\n🠇\nJSON.stringify()\n🠇\nمتن JSON"
+    },
+    {
+      "type": "h2",
+      "text": "ذخیرهٔ داده"
+    },
+    {
+      "type": "p",
+      "text": "هنگام ذخیرهٔ داده، داده باید قالب مشخصی داشته باشد."
+    },
+    {
+      "type": "p",
+      "text": "هر جا که داده را ذخیره کنید، متن همیشه قالب راحتی است."
+    },
+    {
+      "type": "p",
+      "text": "‏JSON امکان ذخیرهٔ مقدارهای JavaScript به‌صورت متن را می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید متن خالص را از سرور بگیرید و آن را مثل یک شیء JavaScript به کار ببرید."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید یک شیء JavaScript را در قالب متن خالص به سرور بفرستید."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید با داده مثل شیءهای JavaScript کار کنید، بدون parse و تبدیل‌های پیچیده."
+    },
+    {
+      "type": "h2",
+      "text": "فایل‌های JSON"
+    },
+    {
+      "type": "p",
+      "text": "دادهٔ JSON را می‌توان در یک فایل ذخیره کرد."
+    },
+    {
+      "type": "p",
+      "text": "فایل‌های JSON معمولاً پسوند .json دارند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "{\n\n  \"id\": 101,\n\n  \"name\": \"John Doe\",\n\n  \"city\": \"New York\",\n\n  \"member\": true\n\n}",
+      "caption": "customer.json"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "پسوند فایل‌های JSON برابر \".json\" است",
+        "نوع MIME متن JSON برابر \"application/json\" است"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "JavaScript می‌تواند فایل‌های JSON را بارگذاری کند و محتوایشان را به مقدارهای JavaScript تبدیل کند."
+    },
+    {
+      "type": "p",
+      "text": "بعداً در همین آموزش یاد می‌گیرید چطور فایل‌های JSON را بارگذاری کنید."
+    },
+    {
+      "type": "h2",
+      "text": "‏JSON به زبان خاصی وابسته نیست"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON از نحو شیء JavaScript الهام گرفته، اما به JavaScript محدود نیست."
+    },
+    {
+      "type": "p",
+      "text": "کد خواندن و ساختن دادهٔ JSON را می‌توان با هر زبان برنامه‌نویسی نوشت."
+    },
+    {
+      "type": "p",
+      "text": "قالب JSON نخستین بار توسط Douglas Crockford تعریف شد."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "‏JSON فقط متن است و به زبان خاصی وابسته نیست",
+        "‏JSON فرستادن داده بین رایانه‌ها را آسان می‌کند"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک رشتهٔ JSON در کنسول بسازید که نام، سن و شهر یک نفر را نگه دارد و با JSON.parse() به شیء تبدیلش کنید، بعد person.name را چاپ کنید.",
+      "hint": "‏JSON متن است؛ تا وقتی parse نکنید، name یک رشتهٔ ساده است نه شیء."
+    },
+    {
+      "prompt": "یک شیء JavaScript بسازید و با JSON.stringify() آن را به متن تبدیل کنید و نتیجه را در کنسول ببینید.",
+      "hint": "خروجی یک رشته است، نه شیء؛ به همین دلیل می‌توان آن را به سرور فرستاد یا در فایل ذخیره کرد."
+    },
+    {
+      "prompt": "یک متن JSON نامعتبر (مثلاً بدون کوتیشن دوتایی) به JSON.parse() بدهید و پیام خطا را ببینید.",
+      "hint": "‏JSON نحو سخت‌گیرانه‌ای دارد و parse روی متن نامعتبر خطا می‌دهد."
+    },
+    {
+      "prompt": "یک فایل customer.json بسازید که یک شیء با چند خصوصیت داشته باشد و آن را با fetch() بخوانید و تبدیل کنید.",
+      "hint": "پسوند فایل باید .json باشد و نوع MIME آن application/json است."
+    },
+    {
+      "prompt": "یک مقدار JavaScript را با JSON.stringify() به متن و بعد با JSON.parse() دوباره به مقدار تبدیل کنید و ببینید رفت و برگشت داده درست کار می‌کند.",
+      "hint": "این چرخه را رفت و برگشت JSON می‌نامند: متن JSON، مقدار JavaScript و دوباره متن JSON."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام متد متن JSON را به مقدار JavaScript تبدیل می‌کند؟",
+      "options": ["JSON.stringify()", "JSON.parse()", "JSON.text()", "JSON.object()"],
+      "answer": 1,
+      "explanation": "‏JSON.parse() متن JSON را می‌خواند و مقدار JavaScript معادل آن را برمی‌گرداند. JSON.stringify() مسیر مخالف را می‌رود و مقدار را به متن تبدیل می‌کند."
+    },
+    {
+      "question": "‏JSON در واقع چیست؟",
+      "options": [
+        "یک شیء JavaScript",
+        "یک قالب متنی برای داده",
+        "یک زبان برنامه‌نویسی",
+        "یک کتابخانهٔ JavaScript"
+      ],
+      "answer": 1,
+      "explanation": "‏JSON یک قالب متنی است، نه شیء و نه زبان. فقط وقتی متن JSON را parse کنید، به شیء JavaScript تبدیل می‌شود؛ به همین دلیل نام‌گذاری «شیء JSON» اشتباه رایجی است."
+    },
+    {
+      "question": "پسوند استاندارد فایل‌های JSON چیست؟",
+      "options": [".txt", ".json", ".js", ".jso"],
+      "answer": 1,
+      "explanation": "فایل‌های JSON پسوند .json دارند و نوع MIME متن JSON هم application/json است."
+    },
+    {
+      "question": "کدام گزینه یکی از کاربردهای رایج JSON نیست؟",
+      "options": [
+        "فرستادن داده از وب‌سرور به صفحهٔ وب",
+        "ذخیرهٔ دادهٔ ساختاریافته در فایل",
+        "رد و بدل کردن داده بین برنامه‌ها",
+        "اجرای کد در مرورگر به‌جای JavaScript"
+      ],
+      "answer": 3,
+      "explanation": "‏JSON فقط یک قالب داده است و کد اجرا نمی‌کند؛ تبدیل متن JSON به مقدار JavaScript کار JSON.parse() است. سه گزینهٔ دیگر کاربردهای رایج JSON هستند."
+    },
+    {
+      "question": "برای فرستادن یک شیء JavaScript به سرور از کدام متد استفاده می‌کنید؟",
+      "options": ["JSON.parse()", "JSON.stringify()", "JSON.send()", "JSON.text()"],
+      "answer": 1,
+      "explanation": "برای فرستادن باید داده به متن تبدیل شود، پس JSON.stringify() به کار می‌رود. JSON.parse() برعکس عمل می‌کند و متن دریافتی را به مقدار JavaScript تبدیل می‌کند."
+    }
+  ]
 }

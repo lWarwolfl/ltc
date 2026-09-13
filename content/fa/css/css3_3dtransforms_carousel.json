@@ -1,215 +1,210 @@
 {
- "slug": "css3_3dtransforms_carousel",
- "course": "css",
- "order": 135,
- "url": "/css/css3_3dtransforms_carousel.asp",
- "title": "تبدیل‌های سه‌بعدی CSS: گردونهٔ سه‌بعدی",
- "summary": "گردونهٔ سه‌بعدی چند کارت را دور یک استوانه می‌چیند و پیوسته می‌چرخاند. در این درس با متغیرهای CSS شعاع را حساب می‌کنید، هر کارت را با rotateY و translateZ جای می‌دهید و با animation-play-state چرخش را روی hover متوقف می‌کنید.",
- "objectives": [
-  "شعاع گردونه را با فرمول حساب کنید",
-  "برای هر کارت با --index و calc زاویه بسازید",
-  "با translateZ کارت‌ها را روی محیط استوانه بچینید",
-  "چرخش را با animation-play-state متوقف کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تبدیل‌های سه‌بعدی CSS: گردونهٔ سه‌بعدی"
-  },
-  {
-   "type": "h2",
-   "text": "CSS: یک گردونهٔ سه‌بعدی چرخان"
-  },
-  {
-   "type": "p",
-   "text": "اینجا نشان می‌دهیم چطور یک شیء سه‌بعدی کلاسیک دیگر بسازیم: یک گردونهٔ چرخان."
-  },
-  {
-   "type": "h2",
-   "text": "ساختار HTML"
-  },
-  {
-   "type": "p",
-   "text": "با ساختار پایهٔ HTML شروع می‌کنیم:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div class=\"container\">\n  <div class=\"carousel\">\n\n  <div class=\"card\" style=\"--index:0;\">1</div>\n    <div\n  class=\"card\" style=\"--index:1;\">2</div>\n    <div\n  class=\"card\" style=\"--index:2;\">3</div>\n    <div\n  class=\"card\" style=\"--index:3;\">4</div>\n    <div\n  class=\"card\" style=\"--index:4;\">5</div>\n    <div\n  class=\"card\" style=\"--index:5;\">6</div>\n  </div>\n</div>",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "عنصر نگه‌دارنده میزبان فضای سه‌بعدی است. عنصر carousel نقش شیء سه‌بعدی را دارد. شش عنصر card جداگانه برای شش آیتم گردونه به کار می‌رود."
-  },
-  {
-   "type": "h2",
-   "text": "استایل‌دهی با CSS"
-  },
-  {
-   "type": "p",
-   "text": "اول چند متغیر در عنصر :root تعریف می‌کنیم. متغیرهای سفارشی برای پهنا، ارتفاع و تعداد کل آیتم‌ها می‌سازیم. اینجا گردونه شش کارت دارد. شعاع را هم باید حساب کنیم."
-  },
-  {
-   "type": "p",
-   "text": "شعاع این فرمول را دارد: radius = (width / 2) / tan(360 / quantity / 2)."
-  },
-  {
-   "type": "p",
-   "text": "برای ۶ کارت با پهنای 200px: (200 / 2) / tan(360 / 6 / 2) = 100 / 0.577 = ~173px. مقدار --radius را 173px می‌گذاریم؛"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ":root {\n  --card-width: 200px;\n  --card-height: 300px;\n\n  --total-items: 6;\n  --radius: 173px; /* Calculated radius for 6 cards\n  */\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "بعد جعبهٔ نگه‌دارندهٔ سه‌بعدی را تعریف می‌کنیم: پرسپکتیو را همراه با ارتفاع، پهنا و حاشیهٔ بیرونی اعمال کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n  width:\n  var(--card-width);\n  height: var(--card-height);\n  margin:\n  80px auto;\n  perspective: 1000px;\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "حالا عنصر carousel می‌تواند در فضای سه‌بعدی نگه‌دارنده‌اش تبدیل شود. width: 100%; و height: 100%; را اضافه می‌کنیم. از position: relative برای موقعیت‌دهی مطلق کارت‌ها استفاده می‌شود. خصوصیت transform-style: preserve-3d اینجا حیاتی است، چون عنصرهای فرزند را به فضای سه‌بعدی می‌کشاند. بدون آن، کارت‌ها به یک ورقهٔ دوبعدی تخت تبدیل می‌شوند. یک انیمیشن CSS هم اضافه می‌کنیم تا چرخش پیوستهٔ گردونه را راه بیندازیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".carousel {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 20s infinite linear;\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "بعد کمی استایل پایه برای هر شش کارت اضافه می‌کنیم. برای موقعیت‌دهی کارت‌ها در فضای سه‌بعدی باید موقعیت دوبعدی آن‌ها را با position: absolute صفر کنیم. سپس با rotateY() هر کارت را می‌چرخانیم و با translateZ() آن را بیرون می‌رانیم تا لبهٔ استوانه ساخته شود:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".card {\n  position:\n  absolute;\n  width: 100%;\n  height: 100%;\n  left: 0;\n\n  top: 0;\n  background: linear-gradient(to bottom, red, yellow);\n\n  color: white;\n  font-size: 2rem;\n  display: flex;\n\n  align-items: center;\n  justify-content: center;\n\n  border-radius: 10px;\n\n  transform:\n    rotateY(calc(var(--index) * (360deg /\n  var(--total-items))))\n    translateZ(var(--radius));\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "بعد انیمیشن keyframe را برای چرخاندن گردونه می‌سازیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@keyframes spin {\n  from\n  { transform: rotateY(0deg); }\n  to { transform: rotateY(360deg); }\n\n  }",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "در پایان، برای دیدن راحت‌تر یک توقف روی حالت hover می‌سازیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".carousel:hover {\n\n  animation-play-state: paused;\n}",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "مثال کامل گردونهٔ سه‌بعدی چرخان"
-  },
-  {
-   "type": "p",
-   "text": "این هم مثال کامل گردونهٔ سه‌بعدی چرخان:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ":root {\n  --card-width: 200px;\n  --card-height: 200px;\n\n  --total-items: 6;\n  --radius: 173px; /* Calculated radius for 6 cards\n  */\n}\n\n.container {\n\n  width: var(--card-width);\n  height: var(--card-height);\n\n  margin: 80px auto;\n  perspective: 1000px;\n}\n\n.carousel {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 20s infinite linear;\n}\n\n.card {\n  position: absolute;\n\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n\n  background: linear-gradient(to bottom, red, yellow);\n  color: white;\n\n  font-size: 2rem;\n  display: flex;\n  align-items: center;\n\n  justify-content: center;\n  border-radius: 10px;\n  transform:\n\n    rotateY(calc(var(--index) * (360deg /\n  var(--total-items))))\n    translateZ(var(--radius));\n}\n\n@keyframes spin {\n  from {\n  transform: rotateY(0deg); }\n  to { transform: rotateY(360deg); }\n}\n\n  .carousel:hover {\n  animation-play-state: paused;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_carousel"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل carousel.html بسازید و شش <div class=\"card\"> با style=\"--index:0;\" تا --index:5; داخل یک .carousel بگذارید.",
-   "hint": "هر کارت یک متغیر --index دارد که در فرمول چرخش استفاده می‌شود."
-  },
-  {
-   "prompt": "در :root متغیرهای --card-width، --card-height، --total-items و --radius را تعریف کنید و برای شش کارت شعاع را حساب کنید.",
-   "hint": "فرمول: radius = (width / 2) / tan(360 / quantity / 2)؛ برای ۲۰۰ پیکسل و ۶ کارت حدود ۱۷۳ پیکسل می‌شود."
-  },
-  {
-   "prompt": "به گردونه transform-style: preserve-3d; و animation: spin 20s infinite linear; بدهید و نگه‌دارنده را با perspective: 1000px; بسازید.",
-   "hint": "پرسپکتیو روی نگه‌دارنده و preserve-3d روی گردونه قرار می‌گیرد."
-  },
-  {
-   "prompt": "هر کارت را با transform: rotateY(calc(var(--index) * (360deg / var(--total-items)))) translateZ(var(--radius)); موقعیت دهید.",
-   "hint": "ترتیب مهم است: اول چرخش حول مرکز و بعد بیرون بردن کارت با translateZ."
-  },
-  {
-   "prompt": "با .carousel:hover { animation-play-state: paused; } چرخش را با بردن ماوس روی گردونه متوقف کنید.",
-   "hint": "مقدار paused انیمیشن را نگه می‌دارد و با رفتن ماوس از سر ادامه می‌دهد."
-  }
- ],
- "quiz": [
-  {
-   "question": "در گردونه، شعاع با کدام فرمول حساب می‌شود؟",
-   "options": [
-    "radius = width / quantity",
-    "radius = (width / 2) / tan(360 / quantity / 2)",
-    "radius = width * quantity",
-    "radius = quantity / width"
-   ],
-   "answer": 1,
-   "explanation": "فرمول درس نصف ضلع تقسیم بر تانژانت نصف زاویهٔ هر کارت است؛ برای ۶ کارت ۲۰۰ پیکسلی حدود ۱۷۳ پیکسل می‌دهد."
-  },
-  {
-   "question": "برای شش کارت ۲۰۰ پیکسلی، مقدار --radius حدوداً چقدر است؟",
-   "options": [
-    "100px",
-    "200px",
-    "173px",
-    "360px"
-   ],
-   "answer": 2,
-   "explanation": "بر پایهٔ محاسبهٔ درس: (200 / 2) / tan(360 / 6 / 2) = 100 / 0.577 که تقریباً ۱۷۳ پیکسل است."
-  },
-  {
-   "question": "متغیر سفارشی هر کارت (--index) در کدام بخش transform به کار می‌رود؟",
-   "options": [
-    "در translateZ",
-    "در زاویهٔ rotateY که با calc حساب می‌شود",
-    "در مقدار perspective",
-    "در مدت انیمیشن"
-   ],
-   "answer": 1,
-   "explanation": "زاویهٔ هر کارت با rotateY(calc(var(--index) * (360deg / var(--total-items)))) ساخته می‌شود تا کارت‌ها دور محیط پخش شوند."
-  },
-  {
-   "question": "چرا در گردونه هم از transform-style: preserve-3d استفاده می‌کنیم؟",
-   "options": [
-    "تا کارت‌ها در یک ورقهٔ دوبعدی تخت نشوند",
-    "تا رنگ کارت‌ها عوض شود",
-    "تا شعاع حذف شود",
-    "تا متن وسط‌چین شود"
-   ],
-   "answer": 0,
-   "explanation": "این خصوصیت فرزندها را در همان فضای سه‌بعدی والد نگه می‌دارد؛ بدون آن کارت‌ها مسطح می‌شوند."
-  },
-  {
-   "question": "بعد از rotateY و translateZ، کدام خصوصیت کارت‌ها را مرتب می‌کند تا همه از یک نقطه شروع کنند؟",
-   "options": [
-    "position: absolute;",
-    "display: flex;",
-    "border-radius: 10px;",
-    "overflow: hidden;"
-   ],
-   "answer": 0,
-   "explanation": "با position: absolute موقعیت دوبعدی کارت‌ها صفر می‌شود و همه از مرکز گردونه شروع می‌کنند، سپس تبدیل سه‌بعدی جای هرکدام را تعیین می‌کند."
-  }
- ]
+  "slug": "css3_3dtransforms_carousel",
+  "course": "css",
+  "order": 135,
+  "url": "/css/css3_3dtransforms_carousel.asp",
+  "title": "تبدیل‌های سه‌بعدی CSS: گردونهٔ سه‌بعدی",
+  "summary": "گردونهٔ سه‌بعدی چند کارت را دور یک استوانه می‌چیند و پیوسته می‌چرخاند. در این درس با متغیرهای CSS شعاع را حساب می‌کنید، هر کارت را با rotateY و translateZ جای می‌دهید و با animation-play-state چرخش را روی hover متوقف می‌کنید.",
+  "objectives": [
+    "شعاع گردونه را با فرمول حساب کنید",
+    "برای هر کارت با --index و calc زاویه بسازید",
+    "با translateZ کارت‌ها را روی محیط استوانه بچینید",
+    "چرخش را با animation-play-state متوقف کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تبدیل‌های سه‌بعدی CSS: گردونهٔ سه‌بعدی"
+    },
+    {
+      "type": "h2",
+      "text": "CSS: یک گردونهٔ سه‌بعدی چرخان"
+    },
+    {
+      "type": "p",
+      "text": "اینجا نشان می‌دهیم چطور یک شیء سه‌بعدی کلاسیک دیگر بسازیم: یک گردونهٔ چرخان."
+    },
+    {
+      "type": "h2",
+      "text": "ساختار HTML"
+    },
+    {
+      "type": "p",
+      "text": "با ساختار پایهٔ HTML شروع می‌کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div class=\"container\">\n  <div class=\"carousel\">\n\n  <div class=\"card\" style=\"--index:0;\">1</div>\n    <div\n  class=\"card\" style=\"--index:1;\">2</div>\n    <div\n  class=\"card\" style=\"--index:2;\">3</div>\n    <div\n  class=\"card\" style=\"--index:3;\">4</div>\n    <div\n  class=\"card\" style=\"--index:4;\">5</div>\n    <div\n  class=\"card\" style=\"--index:5;\">6</div>\n  </div>\n</div>",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "عنصر نگه‌دارنده میزبان فضای سه‌بعدی است. عنصر carousel نقش شیء سه‌بعدی را دارد. شش عنصر card جداگانه برای شش آیتم گردونه به کار می‌رود."
+    },
+    {
+      "type": "h2",
+      "text": "استایل‌دهی با CSS"
+    },
+    {
+      "type": "p",
+      "text": "اول چند متغیر در عنصر :root تعریف می‌کنیم. متغیرهای سفارشی برای پهنا، ارتفاع و تعداد کل آیتم‌ها می‌سازیم. اینجا گردونه شش کارت دارد. شعاع را هم باید حساب کنیم."
+    },
+    {
+      "type": "p",
+      "text": "شعاع این فرمول را دارد: radius = (width / 2) / tan(360 / quantity / 2)."
+    },
+    {
+      "type": "p",
+      "text": "برای ۶ کارت با پهنای 200px: (200 / 2) / tan(360 / 6 / 2) = 100 / 0.577 = ~173px. مقدار --radius را 173px می‌گذاریم؛"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ":root {\n  --card-width: 200px;\n  --card-height: 300px;\n\n  --total-items: 6;\n  --radius: 173px; /* Calculated radius for 6 cards\n  */\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "بعد جعبهٔ نگه‌دارندهٔ سه‌بعدی را تعریف می‌کنیم: پرسپکتیو را همراه با ارتفاع، پهنا و حاشیهٔ بیرونی اعمال کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n  width:\n  var(--card-width);\n  height: var(--card-height);\n  margin:\n  80px auto;\n  perspective: 1000px;\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "حالا عنصر carousel می‌تواند در فضای سه‌بعدی نگه‌دارنده‌اش تبدیل شود. width: 100%; و height: 100%; را اضافه می‌کنیم. از position: relative برای موقعیت‌دهی مطلق کارت‌ها استفاده می‌شود. خصوصیت transform-style: preserve-3d اینجا حیاتی است، چون عنصرهای فرزند را به فضای سه‌بعدی می‌کشاند. بدون آن، کارت‌ها به یک ورقهٔ دوبعدی تخت تبدیل می‌شوند. یک انیمیشن CSS هم اضافه می‌کنیم تا چرخش پیوستهٔ گردونه را راه بیندازیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".carousel {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 20s infinite linear;\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "بعد کمی استایل پایه برای هر شش کارت اضافه می‌کنیم. برای موقعیت‌دهی کارت‌ها در فضای سه‌بعدی باید موقعیت دوبعدی آن‌ها را با position: absolute صفر کنیم. سپس با rotateY() هر کارت را می‌چرخانیم و با translateZ() آن را بیرون می‌رانیم تا لبهٔ استوانه ساخته شود:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".card {\n  position:\n  absolute;\n  width: 100%;\n  height: 100%;\n  left: 0;\n\n  top: 0;\n  background: linear-gradient(to bottom, red, yellow);\n\n  color: white;\n  font-size: 2rem;\n  display: flex;\n\n  align-items: center;\n  justify-content: center;\n\n  border-radius: 10px;\n\n  transform:\n    rotateY(calc(var(--index) * (360deg /\n  var(--total-items))))\n    translateZ(var(--radius));\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "بعد انیمیشن keyframe را برای چرخاندن گردونه می‌سازیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@keyframes spin {\n  from\n  { transform: rotateY(0deg); }\n  to { transform: rotateY(360deg); }\n\n  }",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "در پایان، برای دیدن راحت‌تر یک توقف روی حالت hover می‌سازیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".carousel:hover {\n\n  animation-play-state: paused;\n}",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "مثال کامل گردونهٔ سه‌بعدی چرخان"
+    },
+    {
+      "type": "p",
+      "text": "این هم مثال کامل گردونهٔ سه‌بعدی چرخان:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ":root {\n  --card-width: 200px;\n  --card-height: 200px;\n\n  --total-items: 6;\n  --radius: 173px; /* Calculated radius for 6 cards\n  */\n}\n\n.container {\n\n  width: var(--card-width);\n  height: var(--card-height);\n\n  margin: 80px auto;\n  perspective: 1000px;\n}\n\n.carousel {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 20s infinite linear;\n}\n\n.card {\n  position: absolute;\n\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n\n  background: linear-gradient(to bottom, red, yellow);\n  color: white;\n\n  font-size: 2rem;\n  display: flex;\n  align-items: center;\n\n  justify-content: center;\n  border-radius: 10px;\n  transform:\n\n    rotateY(calc(var(--index) * (360deg /\n  var(--total-items))))\n    translateZ(var(--radius));\n}\n\n@keyframes spin {\n  from {\n  transform: rotateY(0deg); }\n  to { transform: rotateY(360deg); }\n}\n\n  .carousel:hover {\n  animation-play-state: paused;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_carousel"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل carousel.html بسازید و شش <div class=\"card\"> با style=\"--index:0;\" تا --index:5; داخل یک .carousel بگذارید.",
+      "hint": "هر کارت یک متغیر --index دارد که در فرمول چرخش استفاده می‌شود."
+    },
+    {
+      "prompt": "در :root متغیرهای --card-width، --card-height، --total-items و --radius را تعریف کنید و برای شش کارت شعاع را حساب کنید.",
+      "hint": "فرمول: radius = (width / 2) / tan(360 / quantity / 2)؛ برای ۲۰۰ پیکسل و ۶ کارت حدود ۱۷۳ پیکسل می‌شود."
+    },
+    {
+      "prompt": "به گردونه transform-style: preserve-3d; و animation: spin 20s infinite linear; بدهید و نگه‌دارنده را با perspective: 1000px; بسازید.",
+      "hint": "پرسپکتیو روی نگه‌دارنده و preserve-3d روی گردونه قرار می‌گیرد."
+    },
+    {
+      "prompt": "هر کارت را با transform: rotateY(calc(var(--index) * (360deg / var(--total-items)))) translateZ(var(--radius)); موقعیت دهید.",
+      "hint": "ترتیب مهم است: اول چرخش حول مرکز و بعد بیرون بردن کارت با translateZ."
+    },
+    {
+      "prompt": "با .carousel:hover { animation-play-state: paused; } چرخش را با بردن ماوس روی گردونه متوقف کنید.",
+      "hint": "مقدار paused انیمیشن را نگه می‌دارد و با رفتن ماوس از سر ادامه می‌دهد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در گردونه، شعاع با کدام فرمول حساب می‌شود؟",
+      "options": [
+        "radius = width / quantity",
+        "radius = (width / 2) / tan(360 / quantity / 2)",
+        "radius = width * quantity",
+        "radius = quantity / width"
+      ],
+      "answer": 1,
+      "explanation": "فرمول درس نصف ضلع تقسیم بر تانژانت نصف زاویهٔ هر کارت است؛ برای ۶ کارت ۲۰۰ پیکسلی حدود ۱۷۳ پیکسل می‌دهد."
+    },
+    {
+      "question": "برای شش کارت ۲۰۰ پیکسلی، مقدار --radius حدوداً چقدر است؟",
+      "options": ["100px", "200px", "173px", "360px"],
+      "answer": 2,
+      "explanation": "بر پایهٔ محاسبهٔ درس: (200 / 2) / tan(360 / 6 / 2) = 100 / 0.577 که تقریباً ۱۷۳ پیکسل است."
+    },
+    {
+      "question": "متغیر سفارشی هر کارت (--index) در کدام بخش transform به کار می‌رود؟",
+      "options": [
+        "در translateZ",
+        "در زاویهٔ rotateY که با calc حساب می‌شود",
+        "در مقدار perspective",
+        "در مدت انیمیشن"
+      ],
+      "answer": 1,
+      "explanation": "زاویهٔ هر کارت با rotateY(calc(var(--index) * (360deg / var(--total-items)))) ساخته می‌شود تا کارت‌ها دور محیط پخش شوند."
+    },
+    {
+      "question": "چرا در گردونه هم از transform-style: preserve-3d استفاده می‌کنیم؟",
+      "options": [
+        "تا کارت‌ها در یک ورقهٔ دوبعدی تخت نشوند",
+        "تا رنگ کارت‌ها عوض شود",
+        "تا شعاع حذف شود",
+        "تا متن وسط‌چین شود"
+      ],
+      "answer": 0,
+      "explanation": "این خصوصیت فرزندها را در همان فضای سه‌بعدی والد نگه می‌دارد؛ بدون آن کارت‌ها مسطح می‌شوند."
+    },
+    {
+      "question": "بعد از rotateY و translateZ، کدام خصوصیت کارت‌ها را مرتب می‌کند تا همه از یک نقطه شروع کنند؟",
+      "options": [
+        "position: absolute;",
+        "display: flex;",
+        "border-radius: 10px;",
+        "overflow: hidden;"
+      ],
+      "answer": 0,
+      "explanation": "با position: absolute موقعیت دوبعدی کارت‌ها صفر می‌شود و همه از مرکز گردونه شروع می‌کنند، سپس تبدیل سه‌بعدی جای هرکدام را تعیین می‌کند."
+    }
+  ]
 }

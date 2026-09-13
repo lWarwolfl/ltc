@@ -1,334 +1,334 @@
 {
- "slug": "js_async_await",
- "course": "js",
- "order": 225,
- "url": "/js/js_async_await.asp",
- "title": "Asynchronous Functions",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Asynchronous Functions"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript async and await"
-  },
-  {
-   "type": "p",
-   "text": "\"async and await make promises easier\""
-  },
-  {
-   "type": "p",
-   "text": "The async and await keywords make Promise-based code easier to read."
-  },
-  {
-   "type": "p",
-   "text": "They let asynchronous code look much like ordinary synchronous code."
-  },
-  {
-   "type": "p",
-   "text": "Behind the scenes, async and await still use Promises."
-  },
-  {
-   "type": "h2",
-   "text": "The async Keyword"
-  },
-  {
-   "type": "p",
-   "text": "The async keyword before a function makes the function return a promise."
-  },
-  {
-   "type": "p",
-   "text": "This is true even if you return a normal value."
-  },
-  {
-   "type": "p",
-   "text": "If the function returns a value, JavaScript automatically wraps that value in a Promise."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an async function\n\nasync function hello() {\n\n  return \"Hello World!\";\n\n}\n\n// Call the async function\n\nhello().then(function(value) {\n\n  myDisplayer(value);\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_return"
-  },
-  {
-   "type": "h2",
-   "text": "The await Keyword"
-  },
-  {
-   "type": "p",
-   "text": "The await keyword waits for a Promise to settle."
-  },
-  {
-   "type": "p",
-   "text": "It can only be used inside an async function or at the top level of a JavaScript module."
-  },
-  {
-   "type": "p",
-   "text": "While the async function is waiting, the rest of the program can continue running."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an async function\n\nasync function getData() {\n\n  let response = await fetch(\"fetch.txt\");\n\n  let text = await response.text();\n\n  myDisplayer(text);\n\n}\n\n// Call the async function\n\ngetData();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_fetch"
-  },
-  {
-   "type": "h2",
-   "text": "What Happens During await?"
-  },
-  {
-   "type": "p",
-   "text": "The await keyword pauses only the current async function."
-  },
-  {
-   "type": "p",
-   "text": "It does not pause JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "Other code, timers, events, and user interactions can continue while the Promise is pending."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");\n\n// Create an async function\n\nasync function getData() {\n\n  await fetch(\"fetch.txt\");\n\n  myDisplayer(\"Done\");\n\n}\n\n// Call the async function\n\ngetData();\n\nmyDisplayer(\"Continue\");",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Start\n\nContinue\n\nDone",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_pending"
-  },
-  {
-   "type": "h3",
-   "text": "Note"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript do not wait."
-  },
-  {
-   "type": "p",
-   "text": "The async function waits."
-  },
-  {
-   "type": "h2",
-   "text": "Compare Promise and await"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Fetch function\n\nfetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n});",
-   "caption": "Promise Version"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Asyn function\n\nasync function getData() {\n\n  let response = await fetch(\"fetch.txt\");\n\n  let text = await response.text();\n\n  myDisplayer(text);\n\n}\n\n// Call async function\n\ngetData();",
-   "caption": "async/await"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_2"
-  },
-  {
-   "type": "h3",
-   "text": "Note"
-  },
-  {
-   "type": "p",
-   "text": "Both examples do exactly the same work."
-  },
-  {
-   "type": "p",
-   "text": "The second example is easier to read because the statements appear in the order they execute."
-  },
-  {
-   "type": "h2",
-   "text": "Handling Errors"
-  },
-  {
-   "type": "p",
-   "text": "Use try...catch to handle rejected Promises."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function getData() {\n\n  try {\n\n    let response = await fetch(\"fetch.txt\");\n\n    let text = await response.text();\n\n    myDisplayer(text);\n\n  } catch(err) {\n\n    myDisplayer(err);\n\n  }\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_2"
-  },
-  {
-   "type": "h3",
-   "text": "Note"
-  },
-  {
-   "type": "p",
-   "text": "Errors from awaited promises are caught like normal errors."
-  },
-  {
-   "type": "h2",
-   "text": "Multiple await"
-  },
-  {
-   "type": "p",
-   "text": "Many beginners don't realize that awaits run one after another."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let a = await fetch(\"a.txt\");\n\nlet b = await fetch(\"b.txt\");\n\nlet c = await fetch(\"c.txt\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_multiple"
-  },
-  {
-   "type": "p",
-   "text": "Each await waits for the previous operation to finish."
-  },
-  {
-   "type": "p",
-   "text": "If the operations do not depend on each other, running them one after another may be slower than necessary."
-  },
-  {
-   "type": "p",
-   "text": "The next chapter explains how to run asynchronous operations in parallel."
-  },
-  {
-   "type": "h2",
-   "text": "Summary"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "async functions always return Promises.",
-    "await waits for a Promise to settle.",
-    "await pauses the current async function, not all of JavaScript.",
-    "try...catch handles Promise errors.",
-    "async and await make Promise-based code easier to read."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "More Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction() {\n\n  return Promise.resolve(\"Hello\");\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The result is handled with then() because it is a promise:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myFunction().then(\n\n  function(value) { /* code if successful */ },\n\n  function(value) { /* code if some error */ }\n\n);",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}\nmyFunction().then(\n  function(value) {myDisplayer(value);},\n\n  function(value) {myDisplayer(value);}\n);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_1"
-  },
-  {
-   "type": "p",
-   "text": "Or simpler, since you expect a normal value (a normal response, not an error):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}\nmyFunction().then(\n  function(value) {myDisplayer(value);}\n\n);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_2"
-  },
-  {
-   "type": "h2",
-   "text": "Why async and await Exist"
-  },
-  {
-   "type": "p",
-   "text": "Promise chains can become long."
-  },
-  {
-   "type": "p",
-   "text": "async and await were created to reduce nesting and improve readability."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Three functions to run in steps\n\nfunction step1() {\n\n  return Promise.resolve(\"A\");\n\n}\n\nfunction step2(value) {\n\n  return Promise.resolve(value + \"B\");\n\n}\n\nfunction step3(value) {\n\n  return Promise.resolve(value + \"C\");\n\n}\n\n// Run the three functions in steps\n\nstep1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  return step3(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
-   "caption": "Promises Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_steps"
-  },
-  {
-   "type": "p",
-   "text": "The same flow with async and await is easier to read."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to run the three functions in steps\n\nasync function run() {\n\n  let v1 = await step1();\n\n  let v2 = await step2(v1);\n\n  let v3 = await step3(v2);\n\n  myDisplayer(v3);\n\n}\n\nrun();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await"
-  },
-  {
-   "type": "h2",
-   "text": "Common Beginner Mistakes"
-  },
-  {
-   "type": "p",
-   "text": "Using await outside an async function causes an error."
-  },
-  {
-   "type": "p",
-   "text": "Forgetting try...catch can hide async errors."
-  }
- ]
+  "slug": "js_async_await",
+  "course": "js",
+  "order": 225,
+  "url": "/js/js_async_await.asp",
+  "title": "Asynchronous Functions",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Asynchronous Functions"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript async and await"
+    },
+    {
+      "type": "p",
+      "text": "\"async and await make promises easier\""
+    },
+    {
+      "type": "p",
+      "text": "The async and await keywords make Promise-based code easier to read."
+    },
+    {
+      "type": "p",
+      "text": "They let asynchronous code look much like ordinary synchronous code."
+    },
+    {
+      "type": "p",
+      "text": "Behind the scenes, async and await still use Promises."
+    },
+    {
+      "type": "h2",
+      "text": "The async Keyword"
+    },
+    {
+      "type": "p",
+      "text": "The async keyword before a function makes the function return a promise."
+    },
+    {
+      "type": "p",
+      "text": "This is true even if you return a normal value."
+    },
+    {
+      "type": "p",
+      "text": "If the function returns a value, JavaScript automatically wraps that value in a Promise."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an async function\n\nasync function hello() {\n\n  return \"Hello World!\";\n\n}\n\n// Call the async function\n\nhello().then(function(value) {\n\n  myDisplayer(value);\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_return"
+    },
+    {
+      "type": "h2",
+      "text": "The await Keyword"
+    },
+    {
+      "type": "p",
+      "text": "The await keyword waits for a Promise to settle."
+    },
+    {
+      "type": "p",
+      "text": "It can only be used inside an async function or at the top level of a JavaScript module."
+    },
+    {
+      "type": "p",
+      "text": "While the async function is waiting, the rest of the program can continue running."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an async function\n\nasync function getData() {\n\n  let response = await fetch(\"fetch.txt\");\n\n  let text = await response.text();\n\n  myDisplayer(text);\n\n}\n\n// Call the async function\n\ngetData();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_fetch"
+    },
+    {
+      "type": "h2",
+      "text": "What Happens During await?"
+    },
+    {
+      "type": "p",
+      "text": "The await keyword pauses only the current async function."
+    },
+    {
+      "type": "p",
+      "text": "It does not pause JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "Other code, timers, events, and user interactions can continue while the Promise is pending."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");\n\n// Create an async function\n\nasync function getData() {\n\n  await fetch(\"fetch.txt\");\n\n  myDisplayer(\"Done\");\n\n}\n\n// Call the async function\n\ngetData();\n\nmyDisplayer(\"Continue\");",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Start\n\nContinue\n\nDone",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_pending"
+    },
+    {
+      "type": "h3",
+      "text": "Note"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript do not wait."
+    },
+    {
+      "type": "p",
+      "text": "The async function waits."
+    },
+    {
+      "type": "h2",
+      "text": "Compare Promise and await"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Fetch function\n\nfetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n});",
+      "caption": "Promise Version"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Asyn function\n\nasync function getData() {\n\n  let response = await fetch(\"fetch.txt\");\n\n  let text = await response.text();\n\n  myDisplayer(text);\n\n}\n\n// Call async function\n\ngetData();",
+      "caption": "async/await"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_2"
+    },
+    {
+      "type": "h3",
+      "text": "Note"
+    },
+    {
+      "type": "p",
+      "text": "Both examples do exactly the same work."
+    },
+    {
+      "type": "p",
+      "text": "The second example is easier to read because the statements appear in the order they execute."
+    },
+    {
+      "type": "h2",
+      "text": "Handling Errors"
+    },
+    {
+      "type": "p",
+      "text": "Use try...catch to handle rejected Promises."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function getData() {\n\n  try {\n\n    let response = await fetch(\"fetch.txt\");\n\n    let text = await response.text();\n\n    myDisplayer(text);\n\n  } catch(err) {\n\n    myDisplayer(err);\n\n  }\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_2"
+    },
+    {
+      "type": "h3",
+      "text": "Note"
+    },
+    {
+      "type": "p",
+      "text": "Errors from awaited promises are caught like normal errors."
+    },
+    {
+      "type": "h2",
+      "text": "Multiple await"
+    },
+    {
+      "type": "p",
+      "text": "Many beginners don't realize that awaits run one after another."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let a = await fetch(\"a.txt\");\n\nlet b = await fetch(\"b.txt\");\n\nlet c = await fetch(\"c.txt\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_multiple"
+    },
+    {
+      "type": "p",
+      "text": "Each await waits for the previous operation to finish."
+    },
+    {
+      "type": "p",
+      "text": "If the operations do not depend on each other, running them one after another may be slower than necessary."
+    },
+    {
+      "type": "p",
+      "text": "The next chapter explains how to run asynchronous operations in parallel."
+    },
+    {
+      "type": "h2",
+      "text": "Summary"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "async functions always return Promises.",
+        "await waits for a Promise to settle.",
+        "await pauses the current async function, not all of JavaScript.",
+        "try...catch handles Promise errors.",
+        "async and await make Promise-based code easier to read."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "More Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction() {\n\n  return Promise.resolve(\"Hello\");\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The result is handled with then() because it is a promise:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myFunction().then(\n\n  function(value) { /* code if successful */ },\n\n  function(value) { /* code if some error */ }\n\n);",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}\nmyFunction().then(\n  function(value) {myDisplayer(value);},\n\n  function(value) {myDisplayer(value);}\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_1"
+    },
+    {
+      "type": "p",
+      "text": "Or simpler, since you expect a normal value (a normal response, not an error):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}\nmyFunction().then(\n  function(value) {myDisplayer(value);}\n\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_2"
+    },
+    {
+      "type": "h2",
+      "text": "Why async and await Exist"
+    },
+    {
+      "type": "p",
+      "text": "Promise chains can become long."
+    },
+    {
+      "type": "p",
+      "text": "async and await were created to reduce nesting and improve readability."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Three functions to run in steps\n\nfunction step1() {\n\n  return Promise.resolve(\"A\");\n\n}\n\nfunction step2(value) {\n\n  return Promise.resolve(value + \"B\");\n\n}\n\nfunction step3(value) {\n\n  return Promise.resolve(value + \"C\");\n\n}\n\n// Run the three functions in steps\n\nstep1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  return step3(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
+      "caption": "Promises Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_steps"
+    },
+    {
+      "type": "p",
+      "text": "The same flow with async and await is easier to read."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to run the three functions in steps\n\nasync function run() {\n\n  let v1 = await step1();\n\n  let v2 = await step2(v1);\n\n  let v3 = await step3(v2);\n\n  myDisplayer(v3);\n\n}\n\nrun();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await"
+    },
+    {
+      "type": "h2",
+      "text": "Common Beginner Mistakes"
+    },
+    {
+      "type": "p",
+      "text": "Using await outside an async function causes an error."
+    },
+    {
+      "type": "p",
+      "text": "Forgetting try...catch can hide async errors."
+    }
+  ]
 }

@@ -1,324 +1,287 @@
 {
- "slug": "css3_animations_properties",
- "course": "css",
- "order": 140,
- "url": "/css/css3_animations_properties.asp",
- "title": "خصوصیت‌های انیمیشن در CSS",
- "summary": "این درس سه بخش مهم انیمیشن را کامل می‌کند: جهت پخش با animation-direction، سبک عنصر پیش و پس از اجرا با animation-fill-mode و نوشتن همهٔ خصوصیت‌ها در یک خط با خلاصهٔ animation.",
- "objectives": [
-  "جهت پخش انیمیشن را با animation-direction تعیین کنید",
-  "تفاوت forwards، backwards و both را در fill-mode توضیح دهید",
-  "چهار خصوصیت انیمیشن را در یک خط خلاصه بنویسید",
-  "مقدارهای animation-play-state را نام ببرید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "خصوصیت‌های انیمیشن در CSS"
-  },
-  {
-   "type": "p",
-   "text": "این صفحه جهت انیمیشن، حالت پرشدن و خصوصیت خلاصهٔ انیمیشن را در CSS پوشش می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت animation-direction در CSS"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت animation-direction تعیین می‌کند انیمیشن رو به جلو، رو به عقب یا در دورهای متناوب پخش شود."
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت animation-direction می‌تواند مقدارهای زیر را بپذیرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "normal - انیمیشن به‌صورت عادی (رو به جلو) پخش می‌شود. این مقدار پیش‌فرض است",
-    "reverse - انیمیشن در جهت معکوس (رو به عقب) پخش می‌شود",
-    "alternate - انیمیشن اول رو به جلو و بعد رو به عقب پخش می‌شود",
-    "alternate-reverse - انیمیشن اول رو به عقب و بعد رو به جلو پخش می‌شود"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر انیمیشن را در جهت معکوس (رو به عقب) اجرا می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n\nwidth: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n\nanimation-name: myAnimation;\n\nanimation-duration: 4s;\n  animation-direction:\nreverse;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر از مقدار «alternate» استفاده می‌کند تا انیمیشن اول رو به جلو و بعد رو به عقب اجرا شود:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n\nwidth: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n  animation-name:\n  myAnimation;\n  animation-duration: 4s;\n  animation-iteration-count: 2;\n  animation-direction:\nalternate;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction2"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر از مقدار «alternate-reverse» استفاده می‌کند تا انیمیشن اول رو به عقب و بعد رو به جلو اجرا شود:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n  width: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n  animation-name:\n  myAnimation;\n  animation-duration: 4s;\n  animation-iteration-count: 2;\n  animation-direction:\nalternate-reverse;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction3"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت animation-fill-mode در CSS"
-  },
-  {
-   "type": "p",
-   "text": "انیمیشن‌های CSS پیش از اجرای اولین keyframe و پس از اجرای آخرین keyframe روی عنصر اثری ندارند. خصوصیت animation-fill-mode می‌تواند این رفتار را بازنویسی کند."
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت animation-fill-mode سبکی برای عنصر هدف تعیین می‌کند وقتی انیمیشن در حال پخش نیست (پیش از شروع، پس از پایان، یا هر دو)."
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت animation-fill-mode می‌تواند مقدارهای زیر را بپذیرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "none - مقدار پیش‌فرض. انیمیشن پیش و پس از اجرا هیچ سبکی به عنصر اعمال نمی‌کند",
-    "forwards - عنصر مقدارهای سبکی را که آخرین keyframe تعیین کرده حفظ می‌کند (به animation-direction و animation-iteration-count بستگی دارد)",
-    "backwards - عنصر مقدارهای سبکی که اولین keyframe تعیین کرده را می‌گیرد (به animation-direction بستگی دارد) و آن‌ها را در مدت animation-delay نگه می‌دارد",
-    "both - انیمیشن قواعد forwards و backwards را با هم دنبال می‌کند و خصوصیت‌هایش را در هر دو جهت گسترش می‌دهد"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر باعث می‌شود عنصر <div> وقتی انیمیشن تمام می‌شود مقدارهای سبکی آخرین keyframe را حفظ کند:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n  width: 100px;\n  height: 100px;\n  background: red;\n  position: relative;\n  animation-name:\n  myAnimation;\n  animation-duration: 3s;\n\n    animation-fill-mode: forwards;\n\n  }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر باعث می‌شود عنصر <div> پیش از شروع انیمیشن (در مدت animation-delay) مقدارهای سبکی اولین keyframe را بگیرد:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n  width: 100px;\n  height: 100px;\n\n  background: red;\n  position: relative;\n\nanimation-name: myAnimation;\n\nanimation-duration: 3s;\n\nanimation-delay: 2s;\n  animation-fill-mode: backwards;\n\n  }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode2"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر باعث می‌شود عنصر <div> پیش از شروع انیمیشن مقدارهای سبکی اولین keyframe را بگیرد و وقتی انیمیشن تمام شد مقدارهای آخرین keyframe را حفظ کند:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n  width: 100px;\n  height: 100px;\n  background: red;\n\n    position: relative;\n\nanimation-name: myAnimation;\n\nanimation-duration: 3s;\n\nanimation-delay: 2s;\n  animation-fill-mode: both;\n\n  }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode3"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت خلاصهٔ انیمیشن در CSS"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر از شش خصوصیت انیمیشن استفاده می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div\n{\n\nanimation-name: myAnimation;\n\nanimation-duration: 5s;\n\nanimation-timing-function: linear;\n\nanimation-delay: 2s;\n\nanimation-iteration-count: infinite;\n\nanimation-direction: alternate;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation4"
-  },
-  {
-   "type": "p",
-   "text": "همان اثر انیمیشن بالا را می‌توان با خصوصیت خلاصهٔ animation به دست آورد:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div\n{\n\n    animation: myAnimation 5s linear 2s infinite alternate;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation5"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های انیمیشن در CSS"
-  },
-  {
-   "type": "p",
-   "text": "جدول زیر قاعدهٔ @keyframes و همهٔ خصوصیت‌های انیمیشن CSS را فهرست می‌کند:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "خصوصیت",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "@keyframes",
-     "کد انیمیشن را تعیین می‌کند"
-    ],
-    [
-     "animation",
-     "خصوصیت خلاصه‌ای برای تعیین همهٔ خصوصیت‌های انیمیشن"
-    ],
-    [
-     "animation-delay",
-     "تأخیری برای شروع انیمیشن تعیین می‌کند"
-    ],
-    [
-     "animation-direction",
-     "تعیین می‌کند انیمیشن رو به جلو، رو به عقب یا در دورهای متناوب پخش شود"
-    ],
-    [
-     "animation-duration",
-     "تعیین می‌کند یک دور کامل انیمیشن چقدر طول بکشد"
-    ],
-    [
-     "animation-fill-mode",
-     "سبکی برای عنصر تعیین می‌کند وقتی انیمیشن در حال پخش نیست (پیش از شروع، پس از پایان، یا هر دو)"
-    ],
-    [
-     "animation-iteration-count",
-     "تعداد بارهایی که انیمیشن باید پخش شود را تعیین می‌کند"
-    ],
-    [
-     "animation-name",
-     "نام انیمیشن تعریف‌شده در @keyframes را تعیین می‌کند"
-    ],
-    [
-     "animation-play-state",
-     "تعیین می‌کند انیمیشن در حال اجراست یا متوقف"
-    ],
-    [
-     "animation-timing-function",
-     "منحنی سرعت انیمیشن را تعیین می‌کند"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک انیمیشن بسازید و آن را یک بار با animation-direction: reverse; و یک بار با normal اجرا کنید و تفاوت را بگویید.",
-   "hint": "با reverse انیمیشن از پایان به شروع اجرا می‌شود."
-  },
-  {
-   "prompt": "با animation-direction: alternate; و animation-iteration-count: 2; ببینید جهت حرکت در دور دوم برعکس می‌شود یا نه.",
-   "hint": "alternate جهت را در هر دور عوض می‌کند؛ برای دیدن آن به حداقل دو تکرار نیاز دارید."
-  },
-  {
-   "prompt": "یک انیمیشن با animation-fill-mode: forwards; بسازید و بگویید پس از پایان، عنصر روی مقدار کدام keyframe می‌ماند.",
-   "hint": "forwards یعنی عنصر مقدارهای آخرین keyframe را نگه می‌دارد."
-  },
-  {
-   "prompt": "با animation-delay: 2s; و animation-fill-mode: backwards; ببینید در آن دو ثانیهٔ انتظار عنصر چه سبکی دارد.",
-   "hint": "backwards یعنی عنصر پیش از شروع، مقدارهای اولین keyframe را می‌گیرد."
-  },
-  {
-   "prompt": "شش خصوصیت انیمیشن را یکی‌یکی بنویسید و بعد همه را با یک خط animation: myAnimation 5s linear 2s infinite alternate; خلاصه کنید.",
-   "hint": "در خلاصه ترتیب متعارف نام، مدت، منحنی سرعت، تأخیر، تعداد تکرار و جهت است."
-  }
- ],
- "quiz": [
-  {
-   "question": "مقدار پیش‌فرض animation-direction چیست؟",
-   "options": [
-    "normal",
-    "reverse",
-    "alternate",
-    "alternate-reverse"
-   ],
-   "answer": 0,
-   "explanation": "پیش‌فرض normal است و انیمیشن رو به جلو پخش می‌شود؛ بقیه مقدارها باید صریحاً نوشته شوند."
-  },
-  {
-   "question": "animation-direction: alternate; چه رفتاری می‌دهد؟",
-   "options": [
-    "همیشه رو به عقب پخش می‌شود",
-    "اول رو به جلو و بعد رو به عقب پخش می‌شود",
-    "هر بار با سرعت دو برابر پخش می‌شود",
-    "فقط یک دور پخش می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "alternate در هر دور جهت را برعکس می‌کند، پس ابتدا رو به جلو و بعد رو به عقب اجرا می‌شود."
-  },
-  {
-   "question": "animation-fill-mode: forwards; چه اثری دارد؟",
-   "options": [
-    "عنصر پس از پایان، مقدارهای آخرین keyframe را نگه می‌دارد",
-    "عنصر پیش از شروع، مقدارهای اولین keyframe را می‌گیرد",
-    "انیمیشن بی‌پایان تکرار می‌شود",
-    "انیمیشن رو به عقب اجرا می‌شود"
-   ],
-   "answer": 0,
-   "explanation": "forwards یعنی سبک نهایی روی عنصر می‌ماند، پس عنصر به حالت اولیه برنمی‌گردد."
-  },
-  {
-   "question": "کدام مقدار animation-fill-mode باعث می‌شود عنصر در مدت animation-delay سبک اولین keyframe را داشته باشد؟",
-   "options": [
-    "none",
-    "forwards",
-    "backwards",
-    "both"
-   ],
-   "answer": 2,
-   "explanation": "backwards سبک اولین keyframe را پیش از شروع و در طول تأخیر اعمال می‌کند؛ forwards مربوط به پایان کار است."
-  },
-  {
-   "question": "کدام خصوصیت مشخص می‌کند انیمیشن در حال اجراست یا متوقف؟",
-   "options": [
-    "animation-play-state",
-    "animation-direction",
-    "animation-fill-mode",
-    "animation-iteration-count"
-   ],
-   "answer": 0,
-   "explanation": "animation-play-state دو مقدار running و paused دارد؛ بقیه خصوصیت‌ها جهت، حالت پرشدن و تعداد تکرار را کنترل می‌کنند."
-  }
- ]
+  "slug": "css3_animations_properties",
+  "course": "css",
+  "order": 140,
+  "url": "/css/css3_animations_properties.asp",
+  "title": "خصوصیت‌های انیمیشن در CSS",
+  "summary": "این درس سه بخش مهم انیمیشن را کامل می‌کند: جهت پخش با animation-direction، سبک عنصر پیش و پس از اجرا با animation-fill-mode و نوشتن همهٔ خصوصیت‌ها در یک خط با خلاصهٔ animation.",
+  "objectives": [
+    "جهت پخش انیمیشن را با animation-direction تعیین کنید",
+    "تفاوت forwards، backwards و both را در fill-mode توضیح دهید",
+    "چهار خصوصیت انیمیشن را در یک خط خلاصه بنویسید",
+    "مقدارهای animation-play-state را نام ببرید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "خصوصیت‌های انیمیشن در CSS"
+    },
+    {
+      "type": "p",
+      "text": "این صفحه جهت انیمیشن، حالت پرشدن و خصوصیت خلاصهٔ انیمیشن را در CSS پوشش می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت animation-direction در CSS"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت animation-direction تعیین می‌کند انیمیشن رو به جلو، رو به عقب یا در دورهای متناوب پخش شود."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت animation-direction می‌تواند مقدارهای زیر را بپذیرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "normal - انیمیشن به‌صورت عادی (رو به جلو) پخش می‌شود. این مقدار پیش‌فرض است",
+        "reverse - انیمیشن در جهت معکوس (رو به عقب) پخش می‌شود",
+        "alternate - انیمیشن اول رو به جلو و بعد رو به عقب پخش می‌شود",
+        "alternate-reverse - انیمیشن اول رو به عقب و بعد رو به جلو پخش می‌شود"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر انیمیشن را در جهت معکوس (رو به عقب) اجرا می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n\nwidth: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n\nanimation-name: myAnimation;\n\nanimation-duration: 4s;\n  animation-direction:\nreverse;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر از مقدار «alternate» استفاده می‌کند تا انیمیشن اول رو به جلو و بعد رو به عقب اجرا شود:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n\nwidth: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n  animation-name:\n  myAnimation;\n  animation-duration: 4s;\n  animation-iteration-count: 2;\n  animation-direction:\nalternate;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction2"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر از مقدار «alternate-reverse» استفاده می‌کند تا انیمیشن اول رو به عقب و بعد رو به جلو اجرا شود:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n  width: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n  animation-name:\n  myAnimation;\n  animation-duration: 4s;\n  animation-iteration-count: 2;\n  animation-direction:\nalternate-reverse;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction3"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت animation-fill-mode در CSS"
+    },
+    {
+      "type": "p",
+      "text": "انیمیشن‌های CSS پیش از اجرای اولین keyframe و پس از اجرای آخرین keyframe روی عنصر اثری ندارند. خصوصیت animation-fill-mode می‌تواند این رفتار را بازنویسی کند."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت animation-fill-mode سبکی برای عنصر هدف تعیین می‌کند وقتی انیمیشن در حال پخش نیست (پیش از شروع، پس از پایان، یا هر دو)."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت animation-fill-mode می‌تواند مقدارهای زیر را بپذیرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "none - مقدار پیش‌فرض. انیمیشن پیش و پس از اجرا هیچ سبکی به عنصر اعمال نمی‌کند",
+        "forwards - عنصر مقدارهای سبکی را که آخرین keyframe تعیین کرده حفظ می‌کند (به animation-direction و animation-iteration-count بستگی دارد)",
+        "backwards - عنصر مقدارهای سبکی که اولین keyframe تعیین کرده را می‌گیرد (به animation-direction بستگی دارد) و آن‌ها را در مدت animation-delay نگه می‌دارد",
+        "both - انیمیشن قواعد forwards و backwards را با هم دنبال می‌کند و خصوصیت‌هایش را در هر دو جهت گسترش می‌دهد"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر باعث می‌شود عنصر <div> وقتی انیمیشن تمام می‌شود مقدارهای سبکی آخرین keyframe را حفظ کند:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n  width: 100px;\n  height: 100px;\n  background: red;\n  position: relative;\n  animation-name:\n  myAnimation;\n  animation-duration: 3s;\n\n    animation-fill-mode: forwards;\n\n  }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر باعث می‌شود عنصر <div> پیش از شروع انیمیشن (در مدت animation-delay) مقدارهای سبکی اولین keyframe را بگیرد:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n  width: 100px;\n  height: 100px;\n\n  background: red;\n  position: relative;\n\nanimation-name: myAnimation;\n\nanimation-duration: 3s;\n\nanimation-delay: 2s;\n  animation-fill-mode: backwards;\n\n  }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode2"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر باعث می‌شود عنصر <div> پیش از شروع انیمیشن مقدارهای سبکی اولین keyframe را بگیرد و وقتی انیمیشن تمام شد مقدارهای آخرین keyframe را حفظ کند:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n  width: 100px;\n  height: 100px;\n  background: red;\n\n    position: relative;\n\nanimation-name: myAnimation;\n\nanimation-duration: 3s;\n\nanimation-delay: 2s;\n  animation-fill-mode: both;\n\n  }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode3"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت خلاصهٔ انیمیشن در CSS"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر از شش خصوصیت انیمیشن استفاده می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div\n{\n\nanimation-name: myAnimation;\n\nanimation-duration: 5s;\n\nanimation-timing-function: linear;\n\nanimation-delay: 2s;\n\nanimation-iteration-count: infinite;\n\nanimation-direction: alternate;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation4"
+    },
+    {
+      "type": "p",
+      "text": "همان اثر انیمیشن بالا را می‌توان با خصوصیت خلاصهٔ animation به دست آورد:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div\n{\n\n    animation: myAnimation 5s linear 2s infinite alternate;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation5"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های انیمیشن در CSS"
+    },
+    {
+      "type": "p",
+      "text": "جدول زیر قاعدهٔ @keyframes و همهٔ خصوصیت‌های انیمیشن CSS را فهرست می‌کند:"
+    },
+    {
+      "type": "table",
+      "headers": ["خصوصیت", "توضیح"],
+      "rows": [
+        ["@keyframes", "کد انیمیشن را تعیین می‌کند"],
+        ["animation", "خصوصیت خلاصه‌ای برای تعیین همهٔ خصوصیت‌های انیمیشن"],
+        ["animation-delay", "تأخیری برای شروع انیمیشن تعیین می‌کند"],
+        [
+          "animation-direction",
+          "تعیین می‌کند انیمیشن رو به جلو، رو به عقب یا در دورهای متناوب پخش شود"
+        ],
+        ["animation-duration", "تعیین می‌کند یک دور کامل انیمیشن چقدر طول بکشد"],
+        [
+          "animation-fill-mode",
+          "سبکی برای عنصر تعیین می‌کند وقتی انیمیشن در حال پخش نیست (پیش از شروع، پس از پایان، یا هر دو)"
+        ],
+        ["animation-iteration-count", "تعداد بارهایی که انیمیشن باید پخش شود را تعیین می‌کند"],
+        ["animation-name", "نام انیمیشن تعریف‌شده در @keyframes را تعیین می‌کند"],
+        ["animation-play-state", "تعیین می‌کند انیمیشن در حال اجراست یا متوقف"],
+        ["animation-timing-function", "منحنی سرعت انیمیشن را تعیین می‌کند"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک انیمیشن بسازید و آن را یک بار با animation-direction: reverse; و یک بار با normal اجرا کنید و تفاوت را بگویید.",
+      "hint": "با reverse انیمیشن از پایان به شروع اجرا می‌شود."
+    },
+    {
+      "prompt": "با animation-direction: alternate; و animation-iteration-count: 2; ببینید جهت حرکت در دور دوم برعکس می‌شود یا نه.",
+      "hint": "alternate جهت را در هر دور عوض می‌کند؛ برای دیدن آن به حداقل دو تکرار نیاز دارید."
+    },
+    {
+      "prompt": "یک انیمیشن با animation-fill-mode: forwards; بسازید و بگویید پس از پایان، عنصر روی مقدار کدام keyframe می‌ماند.",
+      "hint": "forwards یعنی عنصر مقدارهای آخرین keyframe را نگه می‌دارد."
+    },
+    {
+      "prompt": "با animation-delay: 2s; و animation-fill-mode: backwards; ببینید در آن دو ثانیهٔ انتظار عنصر چه سبکی دارد.",
+      "hint": "backwards یعنی عنصر پیش از شروع، مقدارهای اولین keyframe را می‌گیرد."
+    },
+    {
+      "prompt": "شش خصوصیت انیمیشن را یکی‌یکی بنویسید و بعد همه را با یک خط animation: myAnimation 5s linear 2s infinite alternate; خلاصه کنید.",
+      "hint": "در خلاصه ترتیب متعارف نام، مدت، منحنی سرعت، تأخیر، تعداد تکرار و جهت است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "مقدار پیش‌فرض animation-direction چیست؟",
+      "options": ["normal", "reverse", "alternate", "alternate-reverse"],
+      "answer": 0,
+      "explanation": "پیش‌فرض normal است و انیمیشن رو به جلو پخش می‌شود؛ بقیه مقدارها باید صریحاً نوشته شوند."
+    },
+    {
+      "question": "animation-direction: alternate; چه رفتاری می‌دهد؟",
+      "options": [
+        "همیشه رو به عقب پخش می‌شود",
+        "اول رو به جلو و بعد رو به عقب پخش می‌شود",
+        "هر بار با سرعت دو برابر پخش می‌شود",
+        "فقط یک دور پخش می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "alternate در هر دور جهت را برعکس می‌کند، پس ابتدا رو به جلو و بعد رو به عقب اجرا می‌شود."
+    },
+    {
+      "question": "animation-fill-mode: forwards; چه اثری دارد؟",
+      "options": [
+        "عنصر پس از پایان، مقدارهای آخرین keyframe را نگه می‌دارد",
+        "عنصر پیش از شروع، مقدارهای اولین keyframe را می‌گیرد",
+        "انیمیشن بی‌پایان تکرار می‌شود",
+        "انیمیشن رو به عقب اجرا می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "forwards یعنی سبک نهایی روی عنصر می‌ماند، پس عنصر به حالت اولیه برنمی‌گردد."
+    },
+    {
+      "question": "کدام مقدار animation-fill-mode باعث می‌شود عنصر در مدت animation-delay سبک اولین keyframe را داشته باشد؟",
+      "options": ["none", "forwards", "backwards", "both"],
+      "answer": 2,
+      "explanation": "backwards سبک اولین keyframe را پیش از شروع و در طول تأخیر اعمال می‌کند؛ forwards مربوط به پایان کار است."
+    },
+    {
+      "question": "کدام خصوصیت مشخص می‌کند انیمیشن در حال اجراست یا متوقف؟",
+      "options": [
+        "animation-play-state",
+        "animation-direction",
+        "animation-fill-mode",
+        "animation-iteration-count"
+      ],
+      "answer": 0,
+      "explanation": "animation-play-state دو مقدار running و paused دارد؛ بقیه خصوصیت‌ها جهت، حالت پرشدن و تعداد تکرار را کنترل می‌کنند."
+    }
+  ]
 }

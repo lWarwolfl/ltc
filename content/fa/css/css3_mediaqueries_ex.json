@@ -1,295 +1,275 @@
 {
- "slug": "css3_mediaqueries_ex",
- "course": "css",
- "order": 170,
- "url": "/css/css3_mediaqueries_ex.asp",
- "title": "نمونه‌های media query در CSS",
- "summary": "در این درس چند کاربرد واقعی media query را می‌بینید: چیدمان ستونی انعطاف‌پذیر، منوی واکنش‌گرا، پنهان کردن عنصر، تغییر اندازهٔ قلم و احترام به ترجیح کاربر.",
- "objectives": [
-  "چیدمانی بسازید که تعداد ستون‌هایش با اندازهٔ صفحه عوض شود",
-  "عنصری را در صفحه‌های کوچک پنهان کنید",
-  "اندازهٔ قلم را بر پایهٔ پهنای صفحه تغییر دهید",
-  "برای کاربران حساس به حرکت انیمیشن‌ها را خاموش کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "نمونه‌های media query در CSS"
-  },
-  {
-   "type": "h2",
-   "text": "نمونه‌های media query در CSS"
-  },
-  {
-   "type": "p",
-   "text": "media query روشی پرکاربرد برای رساندن شیوه‌نامهٔ مناسب به دستگاه‌های مختلف است."
-  },
-  {
-   "type": "p",
-   "text": "برای یک مثال ساده، می‌توانیم رنگ پس‌زمینه را برای دستگاه‌های مختلف عوض کنیم:"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/mqcap.JPG",
-   "alt": ""
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "/* Base style for mobile devices */\nbody {\n  background-color:\n  olive;\n  color: white;\n}\n\n/* For devices with a minimum width\n  of 768px (Medium) */\n@media screen and (min-width: 768px) {\n  body\n  {\n    background-color: blue;\n    color:\n  white;\n  }\n}\n\n/* For devices with a minimum width of 992px\n  (Large) */\n@media screen and (min-width: 992px) {\n  body {\n\n  background-color: tan;\n    color: black;\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_ex1"
-  },
-  {
-   "type": "h2",
-   "text": "media query برای ستون‌ها"
-  },
-  {
-   "type": "p",
-   "text": "یکی از کاربردهای رایج media query ساختن چیدمان انعطاف‌پذیر است. در این مثال چیدمانی می‌سازیم که بسته به اندازهٔ صفحه بین چهار ستون، دو ستون و پهنای کامل تغییر می‌کند:"
-  },
-  {
-   "type": "p",
-   "text": "صفحه‌های بزرگ:"
-  },
-  {
-   "type": "p",
-   "text": "صفحه‌های متوسط:"
-  },
-  {
-   "type": "p",
-   "text": "صفحه‌های کوچک:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "* {\nbox-sizing: border-box;\n}\n\n/* Container for flexboxes */\n.container {\n  display: flex;\n\n  flex-wrap: wrap;\n}\n\n/* Create four equal columns */\n.column {\n  flex: 25%;\n\n  padding: 20px;\n}\n\n/* On screens that are 992px wide or less, go from\n  four columns to two columns */\n@media screen and (max-width: 992px) {\n\n  .column {\n    flex: 50%;\n  }\n}\n\n/* On screens that are 600px wide or less, make\n  the columns stack on top of each other instead of next to each other */\n\n  @media screen and (max-width: 600px) {\n  .container {\n\n  flex-direction: column;\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_flex"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "برای یادگیری بیشتر دربارهٔ ماژول Flexible Box Layout، فصل CSS Flexbox ما را بخوانید.\nبرای یادگیری بیشتر دربارهٔ طراحی وب واکنش‌گرا، آموزش طراحی وب واکنش‌گرا را بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "media query برای منوها"
-  },
-  {
-   "type": "p",
-   "text": "در این‌جا با media query یک منوی ناوبری واکنش‌گرا می‌سازیم که در اندازه‌های مختلف صفحه طراحی متفاوتی دارد."
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "ul {\n  list-style-type: none;\n  margin: 0;\n  padding:\n   0;\n  background-color: #333333;\n  display: flex;\n}\n\n   ul li a {\n  display: block;\n  color: white;\n\n   padding: 14px 16px;\n  text-decoration: none;\n}\n\nul li\n   a:hover {\n  background-color: #111111;\n}\n\n/* For viewport\n   width 600px or less, make the menu links stack on top of each other */\n\n   @media screen and (max-width: 600px) {\n  ul {flex-direction: column;}\n\n   }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_navbar"
-  },
-  {
-   "type": "h2",
-   "text": "پنهان کردن عنصرها با media query"
-  },
-  {
-   "type": "p",
-   "text": "در این‌جا با media query یک عنصر را در صفحه‌های کوچک پنهان می‌کنیم:"
-  },
-  {
-   "type": "p",
-   "text": "این متن در صفحه‌های کوچک پنهان می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "/* Hide element if the viewport width is 600px or less */\n@media\n  screen and (max-width: 600px) {\n  #div1 {\n\n  display: none;\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_hide"
-  },
-  {
-   "type": "h2",
-   "text": "تغییر اندازهٔ قلم با media query"
-  },
-  {
-   "type": "p",
-   "text": "در این‌جا با media query اندازهٔ قلم یک عنصر را در پهنای مختلف viewport عوض می‌کنیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "/* If viewport width is 600px or more, set font-size to 80px */\n@media screen and (min-width:\n  600px) {\n  #div1 {\n\n  font-size: 80px;\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_fontsize"
-  },
-  {
-   "type": "h2",
-   "text": "media query برای جهت صفحه"
-  },
-  {
-   "type": "p",
-   "text": "از media query می‌توان برای تغییر چیدمان صفحه بر پایهٔ جهت صفحه هم استفاده کرد."
-  },
-  {
-   "type": "p",
-   "text": "در این‌جا رنگ پس‌زمینهٔ body را عوض می‌کنیم، اگر جهت صفحه افقی (landscape) باشد:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@media only screen and (orientation:\nlandscape) {\n  body {\n\n    background-color: lightblue;\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_orientation"
-  },
-  {
-   "type": "h2",
-   "text": "media query برای ترجیح‌های کاربر"
-  },
-  {
-   "type": "p",
-   "text": "بعضی کاربران به حرکت حساس‌اند و سایت‌هایی با انیمیشن کمتر را ترجیح می‌دهند."
-  },
-  {
-   "type": "p",
-   "text": "ویژگی prefers-reduced-motion اجازه می‌دهد بررسی کنید کاربر درخواست کاهش حرکت کرده است یا نه؛ مثلاً کم‌کردن انیمیشن‌ها و انتقال‌ها. با این ویژگی می‌توانید برای کاربرانی که این تنظیم را روی رایانه‌شان فعال کرده‌اند انیمیشن‌ها و انتقال‌ها را خاموش کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@media (prefers-reduced-motion: reduce) {\n\n  * {\n\n    animation: none !important;\n\n    transition: none !important;\n\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_userpref"
-  },
-  {
-   "type": "h2",
-   "text": "گالری تصویر واکنش‌گرا"
-  },
-  {
-   "type": "p",
-   "text": "در این‌جا از media query همراه با flexbox برای ساختن یک گالری تصویر واکنش‌گرا استفاده می‌کنیم:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_img_gallery"
-  },
-  {
-   "type": "h2",
-   "text": "وب‌سایت واکنش‌گرا"
-  },
-  {
-   "type": "p",
-   "text": "در این‌جا از media query همراه با flexbox برای ساختن یک وب‌سایت واکنش‌گرا استفاده می‌کنیم:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_website"
-  },
-  {
-   "type": "h2",
-   "text": "طراحی وب واکنش‌گرا در CSS"
-  },
-  {
-   "type": "p",
-   "text": "برای یادگیری بیشتر دربارهٔ طراحی وب واکنش‌گرا، آموزش طراحی وب واکنش‌گرا را بخوانید."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل mq-ex.html بسازید و با سه قاعدهٔ ‎@media‎ رنگ پس‌زمینهٔ body را برای صفحه‌های کوچک، متوسط و بزرگ متفاوت کنید.",
-   "hint": "برای بازه‌ها می‌توانید از max-width و min-width استفاده کنید یا هر بازه را با ترکیب and بسازید."
-  },
-  {
-   "prompt": "چیدمانی بسازید که چهار ستون با display: flex; باشد و در پهنای کمتر از 900px به دو ستون بریزد.",
-   "hint": "روی آیتم‌ها flex-basis یا width بگذارید و با flex-wrap: wrap; اجازهٔ شکستن بدهید."
-  },
-  {
-   "prompt": "یک عنصر بسازید که در پهنای کمتر از 600px با display: none; پنهان شود.",
-   "hint": "داخل قاعدهٔ ‎@media (max-width: 600px)‎ همان عنصر را display: none; کنید."
-  },
-  {
-   "prompt": "اندازهٔ قلم یک سرتیتر را در پهنای مختلف صفحه با ‎@media‎ عوض کنید.",
-   "hint": "در هر بازه یک font-size متفاوت بگذارید و با کشیدن پنجره تغییرها را ببینید."
-  },
-  {
-   "prompt": "یک قاعدهٔ ‎@media (prefers-reduced-motion: reduce)‎ بنویسید که انیمیشن‌ها و انتقال‌ها را خاموش کند.",
-   "hint": "داخل این قاعده animation: none; و transition: none; بگذارید."
-  }
- ],
- "quiz": [
-  {
-   "question": "در مثال چیدمان ستون‌ها، تعداد ستون‌ها بر چه پایه‌ای عوض می‌شود؟",
-   "options": [
-    "رنگ پس‌زمینه",
-    "اندازهٔ صفحه",
-    "نوع قلم",
-    "تعداد تصویرها"
-   ],
-   "answer": 1,
-   "explanation": "media query بر پایهٔ پهنا تصمیم می‌گیرد و در مثال بین چهار ستون، دو ستون و پهنای کامل جابه‌جا می‌شود."
-  },
-  {
-   "question": "برای پنهان کردن یک عنصر در صفحه‌های کوچک چه می‌نویسیم؟",
-   "options": [
-    "در قاعدهٔ ‎@media (max-width: 600px)‎ مقدار display: none;",
-    "در قاعدهٔ ‎@media‎ مقدار color: white;",
-    "در قاعدهٔ ‎@media‎ مقدار position: relative;",
-    "هیچ‌چیز، CSS این کار را خودکار می‌کند"
-   ],
-   "answer": 0,
-   "explanation": "پنهان کردن با display: none; داخل قاعدهٔ media انجام می‌شود؛ رنگ سفید فقط عنصر را بی‌رنگ می‌کند."
-  },
-  {
-   "question": "ویژگی prefers-reduced-motion چه چیزی را بررسی می‌کند؟",
-   "options": [
-    "دقت تصویر صفحه",
-    "درخواست کاربر برای کاهش حرکت",
-    "جهت صفحه",
-    "رنگ ترجیحی کاربر"
-   ],
-   "answer": 1,
-   "explanation": "این ویژگی می‌گوید کاربر در تنظیم‌های سیستمش کاهش انیمیشن را خواسته است یا نه."
-  },
-  {
-   "question": "برای تغییر چیدمان بر پایهٔ جهت صفحه از کدام ویژگی استفاده می‌کنیم؟",
-   "options": [
-    "orientation",
-    "resolution",
-    "min-width",
-    "prefers-color-scheme"
-   ],
-   "answer": 0,
-   "explanation": "orientation جهت viewport را می‌دهد، یعنی افقی (landscape) یا عمودی (portrait)."
-  },
-  {
-   "question": "در مثال گالری تصویر واکنش‌گرا، media query با چه چیزی ترکیب می‌شود؟",
-   "options": [
-    "جدول",
-    "flexbox",
-    "فهرست",
-    "فرم"
-   ],
-   "answer": 1,
-   "explanation": "media query تعیین می‌کند چند آیتم در هر ردیف باشند و flexbox چیدمان همان آیتم‌ها را می‌سازد."
-  }
- ]
+  "slug": "css3_mediaqueries_ex",
+  "course": "css",
+  "order": 170,
+  "url": "/css/css3_mediaqueries_ex.asp",
+  "title": "نمونه‌های media query در CSS",
+  "summary": "در این درس چند کاربرد واقعی media query را می‌بینید: چیدمان ستونی انعطاف‌پذیر، منوی واکنش‌گرا، پنهان کردن عنصر، تغییر اندازهٔ قلم و احترام به ترجیح کاربر.",
+  "objectives": [
+    "چیدمانی بسازید که تعداد ستون‌هایش با اندازهٔ صفحه عوض شود",
+    "عنصری را در صفحه‌های کوچک پنهان کنید",
+    "اندازهٔ قلم را بر پایهٔ پهنای صفحه تغییر دهید",
+    "برای کاربران حساس به حرکت انیمیشن‌ها را خاموش کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "نمونه‌های media query در CSS"
+    },
+    {
+      "type": "h2",
+      "text": "نمونه‌های media query در CSS"
+    },
+    {
+      "type": "p",
+      "text": "media query روشی پرکاربرد برای رساندن شیوه‌نامهٔ مناسب به دستگاه‌های مختلف است."
+    },
+    {
+      "type": "p",
+      "text": "برای یک مثال ساده، می‌توانیم رنگ پس‌زمینه را برای دستگاه‌های مختلف عوض کنیم:"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/mqcap.JPG",
+      "alt": ""
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "/* Base style for mobile devices */\nbody {\n  background-color:\n  olive;\n  color: white;\n}\n\n/* For devices with a minimum width\n  of 768px (Medium) */\n@media screen and (min-width: 768px) {\n  body\n  {\n    background-color: blue;\n    color:\n  white;\n  }\n}\n\n/* For devices with a minimum width of 992px\n  (Large) */\n@media screen and (min-width: 992px) {\n  body {\n\n  background-color: tan;\n    color: black;\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_ex1"
+    },
+    {
+      "type": "h2",
+      "text": "media query برای ستون‌ها"
+    },
+    {
+      "type": "p",
+      "text": "یکی از کاربردهای رایج media query ساختن چیدمان انعطاف‌پذیر است. در این مثال چیدمانی می‌سازیم که بسته به اندازهٔ صفحه بین چهار ستون، دو ستون و پهنای کامل تغییر می‌کند:"
+    },
+    {
+      "type": "p",
+      "text": "صفحه‌های بزرگ:"
+    },
+    {
+      "type": "p",
+      "text": "صفحه‌های متوسط:"
+    },
+    {
+      "type": "p",
+      "text": "صفحه‌های کوچک:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "* {\nbox-sizing: border-box;\n}\n\n/* Container for flexboxes */\n.container {\n  display: flex;\n\n  flex-wrap: wrap;\n}\n\n/* Create four equal columns */\n.column {\n  flex: 25%;\n\n  padding: 20px;\n}\n\n/* On screens that are 992px wide or less, go from\n  four columns to two columns */\n@media screen and (max-width: 992px) {\n\n  .column {\n    flex: 50%;\n  }\n}\n\n/* On screens that are 600px wide or less, make\n  the columns stack on top of each other instead of next to each other */\n\n  @media screen and (max-width: 600px) {\n  .container {\n\n  flex-direction: column;\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_flex"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برای یادگیری بیشتر دربارهٔ ماژول Flexible Box Layout، فصل CSS Flexbox ما را بخوانید.\nبرای یادگیری بیشتر دربارهٔ طراحی وب واکنش‌گرا، آموزش طراحی وب واکنش‌گرا را بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "media query برای منوها"
+    },
+    {
+      "type": "p",
+      "text": "در این‌جا با media query یک منوی ناوبری واکنش‌گرا می‌سازیم که در اندازه‌های مختلف صفحه طراحی متفاوتی دارد."
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "ul {\n  list-style-type: none;\n  margin: 0;\n  padding:\n   0;\n  background-color: #333333;\n  display: flex;\n}\n\n   ul li a {\n  display: block;\n  color: white;\n\n   padding: 14px 16px;\n  text-decoration: none;\n}\n\nul li\n   a:hover {\n  background-color: #111111;\n}\n\n/* For viewport\n   width 600px or less, make the menu links stack on top of each other */\n\n   @media screen and (max-width: 600px) {\n  ul {flex-direction: column;}\n\n   }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_navbar"
+    },
+    {
+      "type": "h2",
+      "text": "پنهان کردن عنصرها با media query"
+    },
+    {
+      "type": "p",
+      "text": "در این‌جا با media query یک عنصر را در صفحه‌های کوچک پنهان می‌کنیم:"
+    },
+    {
+      "type": "p",
+      "text": "این متن در صفحه‌های کوچک پنهان می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "/* Hide element if the viewport width is 600px or less */\n@media\n  screen and (max-width: 600px) {\n  #div1 {\n\n  display: none;\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_hide"
+    },
+    {
+      "type": "h2",
+      "text": "تغییر اندازهٔ قلم با media query"
+    },
+    {
+      "type": "p",
+      "text": "در این‌جا با media query اندازهٔ قلم یک عنصر را در پهنای مختلف viewport عوض می‌کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "/* If viewport width is 600px or more, set font-size to 80px */\n@media screen and (min-width:\n  600px) {\n  #div1 {\n\n  font-size: 80px;\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_fontsize"
+    },
+    {
+      "type": "h2",
+      "text": "media query برای جهت صفحه"
+    },
+    {
+      "type": "p",
+      "text": "از media query می‌توان برای تغییر چیدمان صفحه بر پایهٔ جهت صفحه هم استفاده کرد."
+    },
+    {
+      "type": "p",
+      "text": "در این‌جا رنگ پس‌زمینهٔ body را عوض می‌کنیم، اگر جهت صفحه افقی (landscape) باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@media only screen and (orientation:\nlandscape) {\n  body {\n\n    background-color: lightblue;\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_orientation"
+    },
+    {
+      "type": "h2",
+      "text": "media query برای ترجیح‌های کاربر"
+    },
+    {
+      "type": "p",
+      "text": "بعضی کاربران به حرکت حساس‌اند و سایت‌هایی با انیمیشن کمتر را ترجیح می‌دهند."
+    },
+    {
+      "type": "p",
+      "text": "ویژگی prefers-reduced-motion اجازه می‌دهد بررسی کنید کاربر درخواست کاهش حرکت کرده است یا نه؛ مثلاً کم‌کردن انیمیشن‌ها و انتقال‌ها. با این ویژگی می‌توانید برای کاربرانی که این تنظیم را روی رایانه‌شان فعال کرده‌اند انیمیشن‌ها و انتقال‌ها را خاموش کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@media (prefers-reduced-motion: reduce) {\n\n  * {\n\n    animation: none !important;\n\n    transition: none !important;\n\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_userpref"
+    },
+    {
+      "type": "h2",
+      "text": "گالری تصویر واکنش‌گرا"
+    },
+    {
+      "type": "p",
+      "text": "در این‌جا از media query همراه با flexbox برای ساختن یک گالری تصویر واکنش‌گرا استفاده می‌کنیم:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_img_gallery"
+    },
+    {
+      "type": "h2",
+      "text": "وب‌سایت واکنش‌گرا"
+    },
+    {
+      "type": "p",
+      "text": "در این‌جا از media query همراه با flexbox برای ساختن یک وب‌سایت واکنش‌گرا استفاده می‌کنیم:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_mediaqueries_website"
+    },
+    {
+      "type": "h2",
+      "text": "طراحی وب واکنش‌گرا در CSS"
+    },
+    {
+      "type": "p",
+      "text": "برای یادگیری بیشتر دربارهٔ طراحی وب واکنش‌گرا، آموزش طراحی وب واکنش‌گرا را بخوانید."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل mq-ex.html بسازید و با سه قاعدهٔ ‎@media‎ رنگ پس‌زمینهٔ body را برای صفحه‌های کوچک، متوسط و بزرگ متفاوت کنید.",
+      "hint": "برای بازه‌ها می‌توانید از max-width و min-width استفاده کنید یا هر بازه را با ترکیب and بسازید."
+    },
+    {
+      "prompt": "چیدمانی بسازید که چهار ستون با display: flex; باشد و در پهنای کمتر از 900px به دو ستون بریزد.",
+      "hint": "روی آیتم‌ها flex-basis یا width بگذارید و با flex-wrap: wrap; اجازهٔ شکستن بدهید."
+    },
+    {
+      "prompt": "یک عنصر بسازید که در پهنای کمتر از 600px با display: none; پنهان شود.",
+      "hint": "داخل قاعدهٔ ‎@media (max-width: 600px)‎ همان عنصر را display: none; کنید."
+    },
+    {
+      "prompt": "اندازهٔ قلم یک سرتیتر را در پهنای مختلف صفحه با ‎@media‎ عوض کنید.",
+      "hint": "در هر بازه یک font-size متفاوت بگذارید و با کشیدن پنجره تغییرها را ببینید."
+    },
+    {
+      "prompt": "یک قاعدهٔ ‎@media (prefers-reduced-motion: reduce)‎ بنویسید که انیمیشن‌ها و انتقال‌ها را خاموش کند.",
+      "hint": "داخل این قاعده animation: none; و transition: none; بگذارید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در مثال چیدمان ستون‌ها، تعداد ستون‌ها بر چه پایه‌ای عوض می‌شود؟",
+      "options": ["رنگ پس‌زمینه", "اندازهٔ صفحه", "نوع قلم", "تعداد تصویرها"],
+      "answer": 1,
+      "explanation": "media query بر پایهٔ پهنا تصمیم می‌گیرد و در مثال بین چهار ستون، دو ستون و پهنای کامل جابه‌جا می‌شود."
+    },
+    {
+      "question": "برای پنهان کردن یک عنصر در صفحه‌های کوچک چه می‌نویسیم؟",
+      "options": [
+        "در قاعدهٔ ‎@media (max-width: 600px)‎ مقدار display: none;",
+        "در قاعدهٔ ‎@media‎ مقدار color: white;",
+        "در قاعدهٔ ‎@media‎ مقدار position: relative;",
+        "هیچ‌چیز، CSS این کار را خودکار می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "پنهان کردن با display: none; داخل قاعدهٔ media انجام می‌شود؛ رنگ سفید فقط عنصر را بی‌رنگ می‌کند."
+    },
+    {
+      "question": "ویژگی prefers-reduced-motion چه چیزی را بررسی می‌کند؟",
+      "options": ["دقت تصویر صفحه", "درخواست کاربر برای کاهش حرکت", "جهت صفحه", "رنگ ترجیحی کاربر"],
+      "answer": 1,
+      "explanation": "این ویژگی می‌گوید کاربر در تنظیم‌های سیستمش کاهش انیمیشن را خواسته است یا نه."
+    },
+    {
+      "question": "برای تغییر چیدمان بر پایهٔ جهت صفحه از کدام ویژگی استفاده می‌کنیم؟",
+      "options": ["orientation", "resolution", "min-width", "prefers-color-scheme"],
+      "answer": 0,
+      "explanation": "orientation جهت viewport را می‌دهد، یعنی افقی (landscape) یا عمودی (portrait)."
+    },
+    {
+      "question": "در مثال گالری تصویر واکنش‌گرا، media query با چه چیزی ترکیب می‌شود؟",
+      "options": ["جدول", "flexbox", "فهرست", "فرم"],
+      "answer": 1,
+      "explanation": "media query تعیین می‌کند چند آیتم در هر ردیف باشند و flexbox چیدمان همان آیتم‌ها را می‌سازد."
+    }
+  ]
 }

@@ -1,531 +1,369 @@
 {
- "slug": "js_temporal_plaindatetime",
- "course": "js",
- "order": 186,
- "url": "/js/js_temporal_plaindatetime.asp",
- "title": "JavaScript PlainDateTime",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript PlainDateTime"
-  },
-  {
-   "type": "h2",
-   "text": "The Temporal.PlainDateTime Object"
-  },
-  {
-   "type": "p",
-   "text": "The Temporal.PlainDateTime object is a pure date and time object."
-  },
-  {
-   "type": "p",
-   "text": "It represents a calendar date and a wall-clock time with no time zone."
-  },
-  {
-   "type": "p",
-   "text": "Example: 2026-05-07T14:30:00."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDateTime object\n\nconst dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_2"
-  },
-  {
-   "type": "p",
-   "text": "The T is a literal to separate the date from the time."
-  },
-  {
-   "type": "h2",
-   "text": "What You Should Learn:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "How to use JavaScript Temporal.PlainDateTime",
-    "How to work with date and time without a time zone",
-    "How to add and subtract dates",
-    "How to compare dates safely"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "PlainDateTime is useful when you need both date and time, but not time zone."
-  },
-  {
-   "type": "h2",
-   "text": "How to Create a PlainDateTime Object"
-  },
-  {
-   "type": "p",
-   "text": "An PlainDateTime object can be created in several different ways:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "From",
-     "Code"
-    ],
-    [
-     "Constructor (new)",
-     "new Temporal.PlainDateTime()"
-    ],
-    [
-     "ISO String",
-     "Temporal.PlainDateTime.from()"
-    ],
-    [
-     "Now (current time)",
-     "Temporal.Now.plainDateTimeISO()"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Create a PlainDateTime with new"
-  },
-  {
-   "type": "p",
-   "text": "You can create a PlainDateTime object using the new constructor."
-  },
-  {
-   "type": "p",
-   "text": "The constructor takes parameters like year, month, day, hours, and minutes."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDateTime object\n\nconst date = new Temporal.PlainDateTime(2026, 5, 17, 14, 30);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime"
-  },
-  {
-   "type": "p",
-   "text": "In Temporal objects, months start at 1."
-  },
-  {
-   "type": "p",
-   "text": "In the legacy Date object, months start at 0."
-  },
-  {
-   "type": "h2",
-   "text": "Create a PlainDateTime from a String"
-  },
-  {
-   "type": "p",
-   "text": "You can create a PlainDateTime object from an\nISO 8601 / RFC 9557 string."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDateTime object\n\nconst dateTime = Temporal.PlainDateTime.from(\"2026-05-17T10:00:00\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_2"
-  },
-  {
-   "type": "h2",
-   "text": "The T Between Date and Time?"
-  },
-  {
-   "type": "p",
-   "text": "The T is a literal to separate the date from the time."
-  },
-  {
-   "type": "p",
-   "text": "You should read it as an abbreviation for Time."
-  },
-  {
-   "type": "p",
-   "text": "It is the separator required by the\nISO 8601 format."
-  },
-  {
-   "type": "h2",
-   "text": "Create a PlainDateTime from Now"
-  },
-  {
-   "type": "p",
-   "text": "You can create a PlainDateTime object from current time."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const now = Temporal.Now.plainDateTimeISO();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_3"
-  },
-  {
-   "type": "h2",
-   "text": "Add or Subtract PlainDateTime"
-  },
-  {
-   "type": "p",
-   "text": "You can safely add or subtract time."
-  },
-  {
-   "type": "p",
-   "text": "The original value does not change."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDateTime object\n\nconst date = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\n// Add and subtract time\n\nconst earlier = date.subtract({ minutes: 30 });\n\nconst later = date.add({ hours: 2 });",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_4"
-  },
-  {
-   "type": "h2",
-   "text": "When to Use PlainDateTime"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Applications where time zone conversion is not required.",
-    "Local event scheduling.",
-    "Appointments without international time zone handling.",
-    "Forms that collect date and time."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Compare PlainDateTime Values"
-  },
-  {
-   "type": "p",
-   "text": "You can compare PlaneDateTime values using the equals() method."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nlet result = d1.equals(d2)",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_5"
-  },
-  {
-   "type": "p",
-   "text": "Most (*) temporal objects have their own equals() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "instant.equals(instant)",
-    "plaindate.equals(plaindate)",
-    "plaintime.equals(plaintime)",
-    "plainyearmonth.equals(plainyearmonth)",
-    "plainmonthday.equals(plainmonthday)",
-    "plaindateTime.equals(plaindatetime)",
-    "zoneddateTime.equals(zoneddtatime)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "(*) Duration has not."
-  },
-  {
-   "type": "h2",
-   "text": "Learn More:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Temporal Compare"
-  },
-  {
-   "type": "h2",
-   "text": "Convert to ZonedDateTime"
-  },
-  {
-   "type": "p",
-   "text": "A PlainDateTime object does not include time zone information."
-  },
-  {
-   "type": "p",
-   "text": "You can convert it to a ZonedDateTime if needed."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T10:00:00\");\n\nconst zoned = dateTime.toZonedDateTime(\"Europe/Oslo\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_zoned"
-  },
-  {
-   "type": "h2",
-   "text": "Compare PlainDateTime with Other Types"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Type",
-     "Meaning"
-    ],
-    [
-     "Instant",
-     "Exact Moment in UTC time"
-    ],
-    [
-     "PlainDateTime",
-     "Plaind Date and Time (No Timezone)"
-    ],
-    [
-     "ZonedDateTime",
-     "Local Date and Time (+ Time Zone)"
-    ]
-   ]
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/js/img_temporal.svg",
-   "alt": "Temporal Map"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.PlainDateTime Methods"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Constructing",
-     "Description"
-    ],
-    [
-     "from()",
-     "Creates a PlainDateTime object from an object or a string"
-    ],
-    [
-     "new",
-     "Creates a PlainDateTime object from parameters"
-    ],
-    [
-     "Arithmetic",
-     ""
-    ],
-    [
-     "add()",
-     "Returns a PlainDateTime with a duration added"
-    ],
-    [
-     "subtract()",
-     "Returns a PlainDateTime with a duration subtracted"
-    ],
-    [
-     "round()",
-     "Returns a PlainDateTime rounded to a given unit"
-    ],
-    [
-     "Comparing",
-     ""
-    ],
-    [
-     "compare()",
-     "Returns -1, 0, or 1 from comparing two dates"
-    ],
-    [
-     "equals()",
-     "Returns true if two PlainDateTime  objects are identical"
-    ],
-    [
-     "since()",
-     "Returns the difference from another PlainDateTime"
-    ],
-    [
-     "until()",
-     "Returns the difference until another PlainDateTime"
-    ],
-    [
-     "Converting",
-     ""
-    ],
-    [
-     "toPlainDate()",
-     "Returns a PlainDate object with the date from this PlainDateTime"
-    ],
-    [
-     "toPlainTime()",
-     "Returns a PlainTime object with the time from this PlainDateTime"
-    ],
-    [
-     "toZonedDateTime()",
-     "Returns a ZonedDatetime object with this PlainDateTime in a time zone"
-    ],
-    [
-     "with()",
-     "Returns a PlainDateTime with specified fields modified"
-    ],
-    [
-     "withCalendar()",
-     "Returns a PlainDateTime with a different calendar system"
-    ],
-    [
-     "withPlainTime()",
-     "Returns a PlainDateTime with the time part replaced by a new time"
-    ],
-    [
-     "Formatting",
-     ""
-    ],
-    [
-     "toJSON()",
-     "Returns an RFC 9557 format string for JSON serialization"
-    ],
-    [
-     "toLocaleString()",
-     "Returns a language-sensitive representation of the date"
-    ],
-    [
-     "toString()",
-     "Returns an RFC 9557 format string representation of the date"
-    ],
-    [
-     "valueOf()",
-     "Throws an error to prevents temporals from being converted to primitives"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.PlainDateTime Properties"
-  },
-  {
-   "type": "p",
-   "text": "The Temporal.PlainDateTime object has 22 properties of date information."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = new Temporal.PlainDateTime(2026, 5, 1, 14, 30);",
-   "caption": "Display all PlainDateTime PropertiesExample"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_prop"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Property",
-     "Description"
-    ],
-    [
-     "calendarID",
-     "Calendar system identifier (\"iso8601\")"
-    ],
-    [
-     "day",
-     "The day as an integer (1-31)"
-    ],
-    [
-     "dayOfWeek",
-     "The day of the week as an integer (1 = Monday)"
-    ],
-    [
-     "dayOfYear",
-     "The ordinal day of the year"
-    ],
-    [
-     "daysInMonth",
-     "The total number of days in that month"
-    ],
-    [
-     "daysInWeek",
-     "The total number of days in that week"
-    ],
-    [
-     "daysInYear",
-     "The total number of days in that year"
-    ],
-    [
-     "era",
-     "The era name of the calendar, if applicable (\"gregory\")"
-    ],
-    [
-     "eraYear",
-     "The year within the era, if applicable"
-    ],
-    [
-     "hour",
-     "The hour as an integer (0-23"
-    ],
-    [
-     "inLeapYear",
-     "A boolean indicating if the date falls in a leap year"
-    ],
-    [
-     "microsecond",
-     "The microsecond as an integer (0-999)"
-    ],
-    [
-     "millisecond",
-     "The millisecond as an integer (0-999)"
-    ],
-    [
-     "minute",
-     "The minute as an integer (0-59)"
-    ],
-    [
-     "month",
-     "The month as an integer (1-12)"
-    ],
-    [
-     "monthCode",
-     "A calendar-specific string code for the month (\"M01\")"
-    ],
-    [
-     "monthsInYear",
-     "The total number of months in that year"
-    ],
-    [
-     "nanosecond",
-     "The nanosecond as an integer (0-999)"
-    ],
-    [
-     "second",
-     "The second as an integer (0-59)"
-    ],
-    [
-     "weekOfYear",
-     "The week number within the year"
-    ],
-    [
-     "year",
-     "The year as an integer"
-    ],
-    [
-     "yearOfWeek",
-     "The year that the week belongs to"
-    ]
-   ]
-  }
- ]
+  "slug": "js_temporal_plaindatetime",
+  "course": "js",
+  "order": 186,
+  "url": "/js/js_temporal_plaindatetime.asp",
+  "title": "JavaScript PlainDateTime",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript PlainDateTime"
+    },
+    {
+      "type": "h2",
+      "text": "The Temporal.PlainDateTime Object"
+    },
+    {
+      "type": "p",
+      "text": "The Temporal.PlainDateTime object is a pure date and time object."
+    },
+    {
+      "type": "p",
+      "text": "It represents a calendar date and a wall-clock time with no time zone."
+    },
+    {
+      "type": "p",
+      "text": "Example: 2026-05-07T14:30:00."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDateTime object\n\nconst dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_2"
+    },
+    {
+      "type": "p",
+      "text": "The T is a literal to separate the date from the time."
+    },
+    {
+      "type": "h2",
+      "text": "What You Should Learn:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "How to use JavaScript Temporal.PlainDateTime",
+        "How to work with date and time without a time zone",
+        "How to add and subtract dates",
+        "How to compare dates safely"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "PlainDateTime is useful when you need both date and time, but not time zone."
+    },
+    {
+      "type": "h2",
+      "text": "How to Create a PlainDateTime Object"
+    },
+    {
+      "type": "p",
+      "text": "An PlainDateTime object can be created in several different ways:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["From", "Code"],
+        ["Constructor (new)", "new Temporal.PlainDateTime()"],
+        ["ISO String", "Temporal.PlainDateTime.from()"],
+        ["Now (current time)", "Temporal.Now.plainDateTimeISO()"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Create a PlainDateTime with new"
+    },
+    {
+      "type": "p",
+      "text": "You can create a PlainDateTime object using the new constructor."
+    },
+    {
+      "type": "p",
+      "text": "The constructor takes parameters like year, month, day, hours, and minutes."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDateTime object\n\nconst date = new Temporal.PlainDateTime(2026, 5, 17, 14, 30);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime"
+    },
+    {
+      "type": "p",
+      "text": "In Temporal objects, months start at 1."
+    },
+    {
+      "type": "p",
+      "text": "In the legacy Date object, months start at 0."
+    },
+    {
+      "type": "h2",
+      "text": "Create a PlainDateTime from a String"
+    },
+    {
+      "type": "p",
+      "text": "You can create a PlainDateTime object from an\nISO 8601 / RFC 9557 string."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDateTime object\n\nconst dateTime = Temporal.PlainDateTime.from(\"2026-05-17T10:00:00\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_2"
+    },
+    {
+      "type": "h2",
+      "text": "The T Between Date and Time?"
+    },
+    {
+      "type": "p",
+      "text": "The T is a literal to separate the date from the time."
+    },
+    {
+      "type": "p",
+      "text": "You should read it as an abbreviation for Time."
+    },
+    {
+      "type": "p",
+      "text": "It is the separator required by the\nISO 8601 format."
+    },
+    {
+      "type": "h2",
+      "text": "Create a PlainDateTime from Now"
+    },
+    {
+      "type": "p",
+      "text": "You can create a PlainDateTime object from current time."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const now = Temporal.Now.plainDateTimeISO();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_3"
+    },
+    {
+      "type": "h2",
+      "text": "Add or Subtract PlainDateTime"
+    },
+    {
+      "type": "p",
+      "text": "You can safely add or subtract time."
+    },
+    {
+      "type": "p",
+      "text": "The original value does not change."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDateTime object\n\nconst date = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\n// Add and subtract time\n\nconst earlier = date.subtract({ minutes: 30 });\n\nconst later = date.add({ hours: 2 });",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_4"
+    },
+    {
+      "type": "h2",
+      "text": "When to Use PlainDateTime"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Applications where time zone conversion is not required.",
+        "Local event scheduling.",
+        "Appointments without international time zone handling.",
+        "Forms that collect date and time."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Compare PlainDateTime Values"
+    },
+    {
+      "type": "p",
+      "text": "You can compare PlaneDateTime values using the equals() method."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nlet result = d1.equals(d2)",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_5"
+    },
+    {
+      "type": "p",
+      "text": "Most (*) temporal objects have their own equals() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "instant.equals(instant)",
+        "plaindate.equals(plaindate)",
+        "plaintime.equals(plaintime)",
+        "plainyearmonth.equals(plainyearmonth)",
+        "plainmonthday.equals(plainmonthday)",
+        "plaindateTime.equals(plaindatetime)",
+        "zoneddateTime.equals(zoneddtatime)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "(*) Duration has not."
+    },
+    {
+      "type": "h2",
+      "text": "Learn More:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Temporal Compare"
+    },
+    {
+      "type": "h2",
+      "text": "Convert to ZonedDateTime"
+    },
+    {
+      "type": "p",
+      "text": "A PlainDateTime object does not include time zone information."
+    },
+    {
+      "type": "p",
+      "text": "You can convert it to a ZonedDateTime if needed."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T10:00:00\");\n\nconst zoned = dateTime.toZonedDateTime(\"Europe/Oslo\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_zoned"
+    },
+    {
+      "type": "h2",
+      "text": "Compare PlainDateTime with Other Types"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Type", "Meaning"],
+        ["Instant", "Exact Moment in UTC time"],
+        ["PlainDateTime", "Plaind Date and Time (No Timezone)"],
+        ["ZonedDateTime", "Local Date and Time (+ Time Zone)"]
+      ]
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/js/img_temporal.svg",
+      "alt": "Temporal Map"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.PlainDateTime Methods"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Constructing", "Description"],
+        ["from()", "Creates a PlainDateTime object from an object or a string"],
+        ["new", "Creates a PlainDateTime object from parameters"],
+        ["Arithmetic", ""],
+        ["add()", "Returns a PlainDateTime with a duration added"],
+        ["subtract()", "Returns a PlainDateTime with a duration subtracted"],
+        ["round()", "Returns a PlainDateTime rounded to a given unit"],
+        ["Comparing", ""],
+        ["compare()", "Returns -1, 0, or 1 from comparing two dates"],
+        ["equals()", "Returns true if two PlainDateTime  objects are identical"],
+        ["since()", "Returns the difference from another PlainDateTime"],
+        ["until()", "Returns the difference until another PlainDateTime"],
+        ["Converting", ""],
+        ["toPlainDate()", "Returns a PlainDate object with the date from this PlainDateTime"],
+        ["toPlainTime()", "Returns a PlainTime object with the time from this PlainDateTime"],
+        [
+          "toZonedDateTime()",
+          "Returns a ZonedDatetime object with this PlainDateTime in a time zone"
+        ],
+        ["with()", "Returns a PlainDateTime with specified fields modified"],
+        ["withCalendar()", "Returns a PlainDateTime with a different calendar system"],
+        ["withPlainTime()", "Returns a PlainDateTime with the time part replaced by a new time"],
+        ["Formatting", ""],
+        ["toJSON()", "Returns an RFC 9557 format string for JSON serialization"],
+        ["toLocaleString()", "Returns a language-sensitive representation of the date"],
+        ["toString()", "Returns an RFC 9557 format string representation of the date"],
+        ["valueOf()", "Throws an error to prevents temporals from being converted to primitives"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.PlainDateTime Properties"
+    },
+    {
+      "type": "p",
+      "text": "The Temporal.PlainDateTime object has 22 properties of date information."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = new Temporal.PlainDateTime(2026, 5, 1, 14, 30);",
+      "caption": "Display all PlainDateTime PropertiesExample"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_prop"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Property", "Description"],
+        ["calendarID", "Calendar system identifier (\"iso8601\")"],
+        ["day", "The day as an integer (1-31)"],
+        ["dayOfWeek", "The day of the week as an integer (1 = Monday)"],
+        ["dayOfYear", "The ordinal day of the year"],
+        ["daysInMonth", "The total number of days in that month"],
+        ["daysInWeek", "The total number of days in that week"],
+        ["daysInYear", "The total number of days in that year"],
+        ["era", "The era name of the calendar, if applicable (\"gregory\")"],
+        ["eraYear", "The year within the era, if applicable"],
+        ["hour", "The hour as an integer (0-23"],
+        ["inLeapYear", "A boolean indicating if the date falls in a leap year"],
+        ["microsecond", "The microsecond as an integer (0-999)"],
+        ["millisecond", "The millisecond as an integer (0-999)"],
+        ["minute", "The minute as an integer (0-59)"],
+        ["month", "The month as an integer (1-12)"],
+        ["monthCode", "A calendar-specific string code for the month (\"M01\")"],
+        ["monthsInYear", "The total number of months in that year"],
+        ["nanosecond", "The nanosecond as an integer (0-999)"],
+        ["second", "The second as an integer (0-59)"],
+        ["weekOfYear", "The week number within the year"],
+        ["year", "The year as an integer"],
+        ["yearOfWeek", "The year that the week belongs to"]
+      ]
+    }
+  ]
 }

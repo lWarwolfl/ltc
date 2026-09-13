@@ -1,315 +1,297 @@
 {
- "slug": "js_object_iterations",
- "course": "js",
- "order": 213,
- "url": "/js/js_object_iterations.asp",
- "title": "JavaScript Object Iterations",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Object Iterations"
-  },
-  {
-   "type": "h2",
-   "text": "General Methods"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Copies properties from a source object to a target object\n\nObject.assign(target, source)\n\n// Creates an object from an existing object\n\nObject.create(object)\n\n// Returns an array of the key/value pairs of an object\n\nObject.entries(object)\n\n// Creates an object from a list of keys/values\n\nObject.fromEntries()\n\n// Returns an array of the keys of an object\n\nObject.keys(object)\n\n// Returns an array of the property values of an object\n\nObject.values(object)\n\n// Groups object elements according to a function\n\nObject.groupBy(object, callback)",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Object.assign()"
-  },
-  {
-   "type": "p",
-   "text": "The Object.assign() method copies properties from\none or more source objects to a target object."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Target Object\n\nconst person1 = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Create Source Object\n\nconst person2 = {firstName: \"Anne\",lastName: \"Smith\"};\n\n// Assign Source to Target\n\nObject.assign(person1, person2);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_assign"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Object.entries()"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2017 added the Object.entries() method to objects."
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() returns an array of the key/value pairs in an object:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.entries(person);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries"
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() makes it simple to use objects in loops:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nlet text = \"\";\n\nfor (let [fruit, value] of Object.entries(fruits)) {\n\n  text += fruit + \": \" + value + \"<br>\";\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_loop"
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() also makes it simple to convert objects to maps:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nconst myMap = new Map(Object.entries(fruits));",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_map"
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() is supported in all modern browsers since March 2017:"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Object.fromEntries()"
-  },
-  {
-   "type": "p",
-   "text": "The fromEntries() method creates an object from\na list of key/value pairs."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = [\n\n  [\"apples\", 300],\n\n  [\"pears\", 900],\n\n  [\"bananas\", 500]\n\n];\n\nconst myObj = Object.fromEntries(fruits);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_fromentries"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Object.values()"
-  },
-  {
-   "type": "p",
-   "text": "Object.values() is similar to Object.entries(),\nbut returns a single dimension array of the object values:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.values(person);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_values"
-  },
-  {
-   "type": "p",
-   "text": "Object.values() is supported in all modern browsers since March 2017:"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Object.groupBy()"
-  },
-  {
-   "type": "p",
-   "text": "ES2024 added the Object.groupBy() method to JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "The Object.groupBy() method groups elements of an object\naccording to string values returned from a callback function."
-  },
-  {
-   "type": "p",
-   "text": "The Object.groupBy() method does not change the original object."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Array\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Object.groupBy(fruits, myCallback);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_groupby"
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "Object.groupby() is an ECMAScript 2024 feature."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript 2024 is supported in new browsers since\nMarch 2024:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome 117",
-     "Edge 117",
-     "Firefox 119",
-     "Safari 17.4",
-     "Opera 103"
-    ],
-    [
-     "Sep 2023",
-     "Sep 2023",
-     "Oct 2023",
-     "Okt 2024",
-     "May 2023"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Warning"
-  },
-  {
-   "type": "p",
-   "text": "ES2024 features are relatively new."
-  },
-  {
-   "type": "p",
-   "text": "Older browsers may need an alternative code (Polyfill)"
-  },
-  {
-   "type": "h2",
-   "text": "Object.groupBy() vs Map.groupBy()"
-  },
-  {
-   "type": "p",
-   "text": "The difference between Object.groupBy() and Map.groupBy() is:"
-  },
-  {
-   "type": "p",
-   "text": "Object.groupBy() groups elements into a JavaScript object."
-  },
-  {
-   "type": "p",
-   "text": "Map.groupBy() groups elements into a Map object."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Object.keys()"
-  },
-  {
-   "type": "p",
-   "text": "The Object.keys() method returns an array with the keys of an object."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Get the Keys\n\nconst keys = Object.keys(person);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_keys2"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript for...in Loop"
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript for...in statement loops through the properties of an object."
-  },
-  {
-   "type": "h3",
-   "text": "Syntax"
-  },
-  {
-   "type": "p",
-   "text": "for (let variable in object) {\n      // code to be executed\n }"
-  },
-  {
-   "type": "p",
-   "text": "The block of code inside of the for...in loop will be executed once for each property."
-  },
-  {
-   "type": "p",
-   "text": "Looping through the properties of an object:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  fname:\" John\",\n\n  lname:\" Doe\",\n\n  age: 25\n\n};\n\nfor (let x in person) {\n\n    txt += person[x];\n\n }",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties_for_in"
-  },
-  {
-   "type": "h2",
-   "text": "Advanced Chapters:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Definitions"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Advanced this"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Iterations"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Getters & Setters"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Management"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Protection"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Prototypes"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Reference"
-  }
- ]
+  "slug": "js_object_iterations",
+  "course": "js",
+  "order": 213,
+  "url": "/js/js_object_iterations.asp",
+  "title": "JavaScript Object Iterations",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Object Iterations"
+    },
+    {
+      "type": "h2",
+      "text": "General Methods"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Copies properties from a source object to a target object\n\nObject.assign(target, source)\n\n// Creates an object from an existing object\n\nObject.create(object)\n\n// Returns an array of the key/value pairs of an object\n\nObject.entries(object)\n\n// Creates an object from a list of keys/values\n\nObject.fromEntries()\n\n// Returns an array of the keys of an object\n\nObject.keys(object)\n\n// Returns an array of the property values of an object\n\nObject.values(object)\n\n// Groups object elements according to a function\n\nObject.groupBy(object, callback)",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Object.assign()"
+    },
+    {
+      "type": "p",
+      "text": "The Object.assign() method copies properties from\none or more source objects to a target object."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Target Object\n\nconst person1 = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Create Source Object\n\nconst person2 = {firstName: \"Anne\",lastName: \"Smith\"};\n\n// Assign Source to Target\n\nObject.assign(person1, person2);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_assign"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Object.entries()"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2017 added the Object.entries() method to objects."
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() returns an array of the key/value pairs in an object:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.entries(person);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries"
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() makes it simple to use objects in loops:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nlet text = \"\";\n\nfor (let [fruit, value] of Object.entries(fruits)) {\n\n  text += fruit + \": \" + value + \"<br>\";\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_loop"
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() also makes it simple to convert objects to maps:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nconst myMap = new Map(Object.entries(fruits));",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_map"
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() is supported in all modern browsers since March 2017:"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Object.fromEntries()"
+    },
+    {
+      "type": "p",
+      "text": "The fromEntries() method creates an object from\na list of key/value pairs."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = [\n\n  [\"apples\", 300],\n\n  [\"pears\", 900],\n\n  [\"bananas\", 500]\n\n];\n\nconst myObj = Object.fromEntries(fruits);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_fromentries"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Object.values()"
+    },
+    {
+      "type": "p",
+      "text": "Object.values() is similar to Object.entries(),\nbut returns a single dimension array of the object values:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.values(person);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_values"
+    },
+    {
+      "type": "p",
+      "text": "Object.values() is supported in all modern browsers since March 2017:"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Object.groupBy()"
+    },
+    {
+      "type": "p",
+      "text": "ES2024 added the Object.groupBy() method to JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "The Object.groupBy() method groups elements of an object\naccording to string values returned from a callback function."
+    },
+    {
+      "type": "p",
+      "text": "The Object.groupBy() method does not change the original object."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Array\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Object.groupBy(fruits, myCallback);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_groupby"
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "Object.groupby() is an ECMAScript 2024 feature."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript 2024 is supported in new browsers since\nMarch 2024:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome 117", "Edge 117", "Firefox 119", "Safari 17.4", "Opera 103"],
+        ["Sep 2023", "Sep 2023", "Oct 2023", "Okt 2024", "May 2023"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Warning"
+    },
+    {
+      "type": "p",
+      "text": "ES2024 features are relatively new."
+    },
+    {
+      "type": "p",
+      "text": "Older browsers may need an alternative code (Polyfill)"
+    },
+    {
+      "type": "h2",
+      "text": "Object.groupBy() vs Map.groupBy()"
+    },
+    {
+      "type": "p",
+      "text": "The difference between Object.groupBy() and Map.groupBy() is:"
+    },
+    {
+      "type": "p",
+      "text": "Object.groupBy() groups elements into a JavaScript object."
+    },
+    {
+      "type": "p",
+      "text": "Map.groupBy() groups elements into a Map object."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Object.keys()"
+    },
+    {
+      "type": "p",
+      "text": "The Object.keys() method returns an array with the keys of an object."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Get the Keys\n\nconst keys = Object.keys(person);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_keys2"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript for...in Loop"
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript for...in statement loops through the properties of an object."
+    },
+    {
+      "type": "h3",
+      "text": "Syntax"
+    },
+    {
+      "type": "p",
+      "text": "for (let variable in object) {\n      // code to be executed\n }"
+    },
+    {
+      "type": "p",
+      "text": "The block of code inside of the for...in loop will be executed once for each property."
+    },
+    {
+      "type": "p",
+      "text": "Looping through the properties of an object:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  fname:\" John\",\n\n  lname:\" Doe\",\n\n  age: 25\n\n};\n\nfor (let x in person) {\n\n    txt += person[x];\n\n }",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_properties_for_in"
+    },
+    {
+      "type": "h2",
+      "text": "Advanced Chapters:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Definitions"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Advanced this"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Iterations"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Getters & Setters"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Management"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Protection"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Prototypes"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Reference"
+    }
+  ]
 }

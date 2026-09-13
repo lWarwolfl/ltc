@@ -1,413 +1,370 @@
 {
- "slug": "js_modules_export",
- "course": "js",
- "order": 234,
- "url": "/js/js_modules_export.asp",
- "title": "export در ماژول‌های JavaScript",
- "summary": "هر ماژول با کلیدواژهٔ export مقدارها و تابع‌هایش را با فایل‌های دیگر به اشتراک می‌گذارد. در این درس تفاوت named export و default export را می‌بینید، سختگیری نام‌ها را تجربه می‌کنید و یاد می‌گیرید tree-shaking چگونه کد بی‌استفاده را حذف می‌کند.",
- "objectives": [
-  "با named export چند مورد را از یک ماژول بیرون بدهید",
-  "با export default یک مقدار اصلی ماژول را بیرون بدهید",
-  "بگویید در یک فایل چند default export و چند named export می‌تواند باشد",
-  "تشخیص دهید برای هر ماژول named export مناسب‌تر است یا default export"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "export در ماژول‌های JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "کلیدواژهٔ export"
-  },
-  {
-   "type": "p",
-   "text": "ماژول با کلیدواژهٔ export مقدارها را با فایل‌های دیگر به اشتراک می‌گذارد."
-  },
-  {
-   "type": "p",
-   "text": "یک ماژول می‌تواند چندین named export داشته باشد."
-  },
-  {
-   "type": "p",
-   "text": "یک ماژول می‌تواند (به‌صورت اختیاری) یک default export داشته باشد."
-  },
-  {
-   "type": "h2",
-   "text": "named exportها"
-  },
-  {
-   "type": "p",
-   "text": "named export به هر مورد یک نام می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید هر مورد را جداگانه export کنید یا همه را در پایان داخل { } بگذارید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// export name and age\n\nexport const name = \"Jesse\";\n\nexport const age = 40;",
-   "caption": "فایل ماژول \"person.js\""
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"Jesse\";\n\nconst age = 40;\n\n// export name and age\n\nexport { name, age };",
-   "caption": "فایل ماژول \"person.js\""
-  },
-  {
-   "type": "p",
-   "text": "named exportها را با گذاشتن داخل { } import می‌کنید."
-  },
-  {
-   "type": "p",
-   "text": "نام‌ها باید دقیقاً یکی باشند."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\n// Import name and age\n\nimport { name, age } from \"./person.js\";\n\n</script>",
-   "caption": "اسکریپت ماژول"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
-  },
-  {
-   "type": "p",
-   "text": "named exportها نام‌گذاری درست را تحمیل می‌کنند؛ اگر نام را غلط بنویسید خطا می‌گیرید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "export const PI = 3.14159;\n\nexport function add(a, b) {\n\n  return a + b;\n\n}\n\nexport function subtract(a, b) {\n\n  return a - b;\n\n}\n\nexport function multiply(a, b) {\n\n  return a * b;\n\n}\n\nexport function divide(a, b) {\n\n  return a / b;\n\n}",
-   "caption": "فایل ماژول \"math.js\""
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\nimport { add, subtract, PI } from './math.js';\n\n</script>",
-   "caption": "فایل ماژول \"math.js\""
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_math"
-  },
-  {
-   "type": "h2",
-   "text": "سخت‌گیری در نام"
-  },
-  {
-   "type": "p",
-   "text": "در named exportها نام‌های importشده باید دقیقاً یکی باشند."
-  },
-  {
-   "type": "p",
-   "text": "named exportها جلوی اشتباه‌های ناشی از غلط تایپی یا تغییر نام را می‌گیرند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import { calcluate } from './math.js'; // ❌ error thrown",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "ماژول‌های جعبه‌ابزار (توابع کمکی)"
-  },
-  {
-   "type": "p",
-   "text": "ماژول‌های کمکی اگر چند تابع کمکی داشته باشند، با named export بهتر جواب می‌دهند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "math.js",
-    "stringUtils.js",
-    "domHelpers.js",
-    "dateHelpers.js"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "named exportها برای ماژول‌های «جعبه‌ابزاری» که چندین تابع کمکی دارند عالی‌اند."
-  },
-  {
-   "type": "h2",
-   "text": "حذف کد بی‌استفاده (tree-shaking)"
-  },
-  {
-   "type": "p",
-   "text": "named exportها به bundlerها اجازه می‌دهند کد بی‌استفاده را حذف کنند (tree-shaking)."
-  },
-  {
-   "type": "p",
-   "text": "در این مثال PI، subract، multiply و divide حذف می‌شوند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import { add } from './math.js';",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "چه زمانی از named export استفاده کنیم؟"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "حالت‌ها",
-     "دلیل برتری named export"
-    ],
-    [
-     "تابع‌های زیاد",
-     "همهٔ تابع‌ها را شفاف فهرست می‌کند"
-    ],
-    [
-     "نیاز به سخت‌گیری",
-     "جلوی غلط تایپی در نام را می‌گیرد"
-    ],
-    [
-     "پروژه‌های بزرگ",
-     "یکدستی را بهتر می‌کند"
-    ],
-    [
-     "مجموعه‌های توابع کمکی",
-     "با ساختار ماژول هم‌خوان است"
-    ],
-    [
-     "tree-shaking",
-     "کد بی‌استفاده را خودکار حذف می‌کند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "default exportها"
-  },
-  {
-   "type": "p",
-   "text": "default export یک مقدار اصلی از ماژول را بیرون می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "این کار قصد ماژول و کارکرد اصلی‌اش را شفاف نشان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "اگر فایلی قرار است یک تابع، کلاس یا مقدار اصلی را در دسترس بگذارد، default export این را صریح می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "export default function calculateSum() { ... }",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "در هر فایل فقط می‌توانید یک default export داشته باشید."
-  },
-  {
-   "type": "h2",
-   "text": "default انعطاف‌پذیر است"
-  },
-  {
-   "type": "p",
-   "text": "با default export می‌توانید با هر نامی import کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import calc from './calculateSum.js';",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "نام calc لازم نیست با نام اصلی یکی باشد."
-  },
-  {
-   "type": "p",
-   "text": "در مقابل، در named exportها نام باید دقیقاً یکی باشد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import { calculateSum } from './calculateSum.js';",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "خودتان با فایل ماژول message.js امتحان کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const message = () => {\n\n  const name = \"Jesse\";\n\n  const age = 40;\n\n  return name + ' is ' + age + 'years old.';\n\n};\n\nexport default message;",
-   "caption": "فایل ماژول \"message.js\""
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\nimport message from \"./message.js\";\n\n</script>",
-   "caption": "فایل ماژول \"message.js\""
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\nimport text from \"./message.js\";\n\n</script>",
-   "caption": "فایل ماژول \"message.js\""
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules2"
-  },
-  {
-   "type": "h2",
-   "text": "default تمیز است"
-  },
-  {
-   "type": "p",
-   "text": "خیلی از کتابخانه‌ها یک ویژگی را به‌عنوان default در دسترس می‌گذارند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import React from 'react';",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "ترکیب default و named"
-  },
-  {
-   "type": "p",
-   "text": "یک ماژول می‌تواند یک تابع اصلی و چند تابع کمکی بدهد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "export default function parse() { ... }\n\nexport function validate() { ... }\n\nexport function format() { ... }",
-   "caption": "فایل ماژول"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import parse, { validate, format } from './parser.js';",
-   "caption": "فایل ماژول"
-  },
-  {
-   "type": "h2",
-   "text": "چه زمانی از default export استفاده کنیم؟"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "چه زمانی",
-     "چرا"
-    ],
-    [
-     "یک هدف اصلی",
-     "مناسب ماژول‌هایی با یک تابع اصلی"
-    ],
-    [
-     "نام‌گذاری آزاد",
-     "importکننده می‌تواند هر نامی انتخاب کند"
-    ],
-    [
-     "importهای تمیزتر",
-     "نحو کوتاه‌تر و ساده‌تر"
-    ],
-    [
-     "الگوی رایج",
-     "فریمورک‌ها برای API اصلی از آن استفاده می‌کنند"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل person.js بسازید و دو متغیر با نام‌های name و age را با export بیرون بدهید؛ بعد در فایل HTML هر دو را داخل { } import کنید و در کنسول چاپشان کنید.",
-   "hint": "برای چند مورد می‌توانید در یک خط بنویسید: import {name, age} from \"./person.js\"."
-  },
-  {
-   "prompt": "همان ماژول را یک بار دیگر import کنید ولی این بار نام یکی از متغیرها را غلط بنویسید و خطای کنسول را بخوانید.",
-   "hint": "named export نام را جدی می‌گیرد؛ کوچک‌ترین اشتباه در نام باعث خطا می‌شود."
-  },
-  {
-   "prompt": "یک ماژول math.js بسازید که یک تابع را با export default بیرون بدهد؛ آن را با دو نام مختلف import کنید و ببینید هر دو کار می‌کنند.",
-   "hint": "برای default export نام import را خودتان انتخاب می‌کنید و آکولاد لازم نیست."
-  },
-  {
-   "prompt": "یک ماژول بسازید که هم یک export default و هم چند named export داشته باشد و در فایل HTML هر دو را در یک خط import کنید.",
-   "hint": "الگو این است: import mainThing, {helper1, helper2} from \"./mod.js\"."
-  },
-  {
-   "prompt": "برای یک ماژول جعبه‌ابزاری با تابع‌های add و sub و mul همه را با named export بیرون بدهید و بعد بگویید چرا bundler می‌تواند تابع بی‌استفاده را حذف کند.",
-   "hint": "چون هر export یک نام مشخص دارد و bundler می‌داند کدام نام‌ها واقعاً import شده‌اند."
-  }
- ],
- "quiz": [
-  {
-   "question": "در یک فایل چند default export می‌توان داشت؟",
-   "options": [
-    "هیچ محدودیتی نیست",
-    "فقط یکی",
-    "حداکثر دو تا",
-    "بستگی به مرورگر دارد"
-   ],
-   "answer": 1,
-   "explanation": "هر فایل فقط یک default export می‌تواند داشته باشد؛ در عوض تعداد named exportها محدودیتی ندارد."
-  },
-  {
-   "question": "کدام جمله دربارهٔ نام‌گذاری در named export درست است؟",
-   "options": [
-    "نام import می‌تواند هر چیزی باشد",
-    "نام import باید دقیقاً با نام export یکی باشد",
-    "نام‌ها به بزرگی و کوچکی حروف حساس نیستند",
-    "فقط با as می‌توان import کرد"
-   ],
-   "answer": 1,
-   "explanation": "در named export نام‌ها سختگیرانه‌اند و باید یکی باشند، پس غلط تایپی فوراً به خطا تبدیل می‌شود؛ همان چیزی که سازنده‌اش می‌خواهد."
-  },
-  {
-   "question": "tree-shaking چیست و کدام نوع export آن را ممکن می‌کند؟",
-   "options": [
-    "حذف کد بی‌استفاده، با named export",
-    "فشرده‌سازی کد، با default export",
-    "تقسیم کد به فایل‌ها، با import",
-    "کش کردن ماژول‌ها، با export"
-   ],
-   "answer": 0,
-   "explanation": "چون هر named export یک نام مشخص دارد، bundler می‌فهمد کدام تابع‌ها import نشده‌اند و می‌تواند آن‌ها را از بستهٔ نهایی حذف کند."
-  },
-  {
-   "question": "کدام حالت برای default export مناسب‌تر است؟",
-   "options": [
-    "ماژولی با چند تابع کمکی نامرتبط",
-    "ماژولی با یک تابع یا مقدار اصلی",
-    "ماژولی که می‌خواهید نام‌ها دقیقاً کنترل شوند",
-    "ماژولی که فقط عدد export می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "default برای ماژولی است که یک کارکرد اصلی دارد؛ importکننده هم نام را آزادانه انتخاب می‌کند و کد import تمیزتر می‌شود."
-  },
-  {
-   "question": "چرا برای یک فایل پر از تابع‌های کمکی نامرتبط، named export انتخاب بهتری است؟",
-   "options": [
-    "چون کوتاه‌تر نوشته می‌شود",
-    "چون هر تابع نام خودش را دارد و bundler می‌تواند بی‌استفاده‌ها را حذف کند",
-    "چون default export در مرورگر پشتیبانی نمی‌شود",
-    "چون named export در حالت strict کار نمی‌کند"
-   ],
-   "answer": 1,
-   "explanation": "در ماژول‌های جعبه‌ابزاری چندین تابع هم‌ردیف‌اند؛ named export ساختار را با ماژول هم‌خوان می‌کند و امکان tree-shaking را می‌دهد."
-  }
- ]
+  "slug": "js_modules_export",
+  "course": "js",
+  "order": 234,
+  "url": "/js/js_modules_export.asp",
+  "title": "export در ماژول‌های JavaScript",
+  "summary": "هر ماژول با کلیدواژهٔ export مقدارها و تابع‌هایش را با فایل‌های دیگر به اشتراک می‌گذارد. در این درس تفاوت named export و default export را می‌بینید، سختگیری نام‌ها را تجربه می‌کنید و یاد می‌گیرید tree-shaking چگونه کد بی‌استفاده را حذف می‌کند.",
+  "objectives": [
+    "با named export چند مورد را از یک ماژول بیرون بدهید",
+    "با export default یک مقدار اصلی ماژول را بیرون بدهید",
+    "بگویید در یک فایل چند default export و چند named export می‌تواند باشد",
+    "تشخیص دهید برای هر ماژول named export مناسب‌تر است یا default export"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "export در ماژول‌های JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "کلیدواژهٔ export"
+    },
+    {
+      "type": "p",
+      "text": "ماژول با کلیدواژهٔ export مقدارها را با فایل‌های دیگر به اشتراک می‌گذارد."
+    },
+    {
+      "type": "p",
+      "text": "یک ماژول می‌تواند چندین named export داشته باشد."
+    },
+    {
+      "type": "p",
+      "text": "یک ماژول می‌تواند (به‌صورت اختیاری) یک default export داشته باشد."
+    },
+    {
+      "type": "h2",
+      "text": "named exportها"
+    },
+    {
+      "type": "p",
+      "text": "named export به هر مورد یک نام می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید هر مورد را جداگانه export کنید یا همه را در پایان داخل { } بگذارید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// export name and age\n\nexport const name = \"Jesse\";\n\nexport const age = 40;",
+      "caption": "فایل ماژول \"person.js\""
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"Jesse\";\n\nconst age = 40;\n\n// export name and age\n\nexport { name, age };",
+      "caption": "فایل ماژول \"person.js\""
+    },
+    {
+      "type": "p",
+      "text": "named exportها را با گذاشتن داخل { } import می‌کنید."
+    },
+    {
+      "type": "p",
+      "text": "نام‌ها باید دقیقاً یکی باشند."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\n// Import name and age\n\nimport { name, age } from \"./person.js\";\n\n</script>",
+      "caption": "اسکریپت ماژول"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
+    },
+    {
+      "type": "p",
+      "text": "named exportها نام‌گذاری درست را تحمیل می‌کنند؛ اگر نام را غلط بنویسید خطا می‌گیرید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "export const PI = 3.14159;\n\nexport function add(a, b) {\n\n  return a + b;\n\n}\n\nexport function subtract(a, b) {\n\n  return a - b;\n\n}\n\nexport function multiply(a, b) {\n\n  return a * b;\n\n}\n\nexport function divide(a, b) {\n\n  return a / b;\n\n}",
+      "caption": "فایل ماژول \"math.js\""
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\nimport { add, subtract, PI } from './math.js';\n\n</script>",
+      "caption": "فایل ماژول \"math.js\""
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_math"
+    },
+    {
+      "type": "h2",
+      "text": "سخت‌گیری در نام"
+    },
+    {
+      "type": "p",
+      "text": "در named exportها نام‌های importشده باید دقیقاً یکی باشند."
+    },
+    {
+      "type": "p",
+      "text": "named exportها جلوی اشتباه‌های ناشی از غلط تایپی یا تغییر نام را می‌گیرند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import { calcluate } from './math.js'; // ❌ error thrown",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "ماژول‌های جعبه‌ابزار (توابع کمکی)"
+    },
+    {
+      "type": "p",
+      "text": "ماژول‌های کمکی اگر چند تابع کمکی داشته باشند، با named export بهتر جواب می‌دهند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["math.js", "stringUtils.js", "domHelpers.js", "dateHelpers.js"]
+    },
+    {
+      "type": "p",
+      "text": "named exportها برای ماژول‌های «جعبه‌ابزاری» که چندین تابع کمکی دارند عالی‌اند."
+    },
+    {
+      "type": "h2",
+      "text": "حذف کد بی‌استفاده (tree-shaking)"
+    },
+    {
+      "type": "p",
+      "text": "named exportها به bundlerها اجازه می‌دهند کد بی‌استفاده را حذف کنند (tree-shaking)."
+    },
+    {
+      "type": "p",
+      "text": "در این مثال PI، subract، multiply و divide حذف می‌شوند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import { add } from './math.js';",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "چه زمانی از named export استفاده کنیم؟"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["حالت‌ها", "دلیل برتری named export"],
+        ["تابع‌های زیاد", "همهٔ تابع‌ها را شفاف فهرست می‌کند"],
+        ["نیاز به سخت‌گیری", "جلوی غلط تایپی در نام را می‌گیرد"],
+        ["پروژه‌های بزرگ", "یکدستی را بهتر می‌کند"],
+        ["مجموعه‌های توابع کمکی", "با ساختار ماژول هم‌خوان است"],
+        ["tree-shaking", "کد بی‌استفاده را خودکار حذف می‌کند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "default exportها"
+    },
+    {
+      "type": "p",
+      "text": "default export یک مقدار اصلی از ماژول را بیرون می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "این کار قصد ماژول و کارکرد اصلی‌اش را شفاف نشان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "اگر فایلی قرار است یک تابع، کلاس یا مقدار اصلی را در دسترس بگذارد، default export این را صریح می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "export default function calculateSum() { ... }",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "در هر فایل فقط می‌توانید یک default export داشته باشید."
+    },
+    {
+      "type": "h2",
+      "text": "default انعطاف‌پذیر است"
+    },
+    {
+      "type": "p",
+      "text": "با default export می‌توانید با هر نامی import کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import calc from './calculateSum.js';",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "نام calc لازم نیست با نام اصلی یکی باشد."
+    },
+    {
+      "type": "p",
+      "text": "در مقابل، در named exportها نام باید دقیقاً یکی باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import { calculateSum } from './calculateSum.js';",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "خودتان با فایل ماژول message.js امتحان کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const message = () => {\n\n  const name = \"Jesse\";\n\n  const age = 40;\n\n  return name + ' is ' + age + 'years old.';\n\n};\n\nexport default message;",
+      "caption": "فایل ماژول \"message.js\""
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\nimport message from \"./message.js\";\n\n</script>",
+      "caption": "فایل ماژول \"message.js\""
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\nimport text from \"./message.js\";\n\n</script>",
+      "caption": "فایل ماژول \"message.js\""
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules2"
+    },
+    {
+      "type": "h2",
+      "text": "default تمیز است"
+    },
+    {
+      "type": "p",
+      "text": "خیلی از کتابخانه‌ها یک ویژگی را به‌عنوان default در دسترس می‌گذارند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import React from 'react';",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "ترکیب default و named"
+    },
+    {
+      "type": "p",
+      "text": "یک ماژول می‌تواند یک تابع اصلی و چند تابع کمکی بدهد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "export default function parse() { ... }\n\nexport function validate() { ... }\n\nexport function format() { ... }",
+      "caption": "فایل ماژول"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import parse, { validate, format } from './parser.js';",
+      "caption": "فایل ماژول"
+    },
+    {
+      "type": "h2",
+      "text": "چه زمانی از default export استفاده کنیم؟"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["چه زمانی", "چرا"],
+        ["یک هدف اصلی", "مناسب ماژول‌هایی با یک تابع اصلی"],
+        ["نام‌گذاری آزاد", "importکننده می‌تواند هر نامی انتخاب کند"],
+        ["importهای تمیزتر", "نحو کوتاه‌تر و ساده‌تر"],
+        ["الگوی رایج", "فریمورک‌ها برای API اصلی از آن استفاده می‌کنند"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل person.js بسازید و دو متغیر با نام‌های name و age را با export بیرون بدهید؛ بعد در فایل HTML هر دو را داخل { } import کنید و در کنسول چاپشان کنید.",
+      "hint": "برای چند مورد می‌توانید در یک خط بنویسید: import {name, age} from \"./person.js\"."
+    },
+    {
+      "prompt": "همان ماژول را یک بار دیگر import کنید ولی این بار نام یکی از متغیرها را غلط بنویسید و خطای کنسول را بخوانید.",
+      "hint": "named export نام را جدی می‌گیرد؛ کوچک‌ترین اشتباه در نام باعث خطا می‌شود."
+    },
+    {
+      "prompt": "یک ماژول math.js بسازید که یک تابع را با export default بیرون بدهد؛ آن را با دو نام مختلف import کنید و ببینید هر دو کار می‌کنند.",
+      "hint": "برای default export نام import را خودتان انتخاب می‌کنید و آکولاد لازم نیست."
+    },
+    {
+      "prompt": "یک ماژول بسازید که هم یک export default و هم چند named export داشته باشد و در فایل HTML هر دو را در یک خط import کنید.",
+      "hint": "الگو این است: import mainThing, {helper1, helper2} from \"./mod.js\"."
+    },
+    {
+      "prompt": "برای یک ماژول جعبه‌ابزاری با تابع‌های add و sub و mul همه را با named export بیرون بدهید و بعد بگویید چرا bundler می‌تواند تابع بی‌استفاده را حذف کند.",
+      "hint": "چون هر export یک نام مشخص دارد و bundler می‌داند کدام نام‌ها واقعاً import شده‌اند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در یک فایل چند default export می‌توان داشت؟",
+      "options": ["هیچ محدودیتی نیست", "فقط یکی", "حداکثر دو تا", "بستگی به مرورگر دارد"],
+      "answer": 1,
+      "explanation": "هر فایل فقط یک default export می‌تواند داشته باشد؛ در عوض تعداد named exportها محدودیتی ندارد."
+    },
+    {
+      "question": "کدام جمله دربارهٔ نام‌گذاری در named export درست است؟",
+      "options": [
+        "نام import می‌تواند هر چیزی باشد",
+        "نام import باید دقیقاً با نام export یکی باشد",
+        "نام‌ها به بزرگی و کوچکی حروف حساس نیستند",
+        "فقط با as می‌توان import کرد"
+      ],
+      "answer": 1,
+      "explanation": "در named export نام‌ها سختگیرانه‌اند و باید یکی باشند، پس غلط تایپی فوراً به خطا تبدیل می‌شود؛ همان چیزی که سازنده‌اش می‌خواهد."
+    },
+    {
+      "question": "tree-shaking چیست و کدام نوع export آن را ممکن می‌کند؟",
+      "options": [
+        "حذف کد بی‌استفاده، با named export",
+        "فشرده‌سازی کد، با default export",
+        "تقسیم کد به فایل‌ها، با import",
+        "کش کردن ماژول‌ها، با export"
+      ],
+      "answer": 0,
+      "explanation": "چون هر named export یک نام مشخص دارد، bundler می‌فهمد کدام تابع‌ها import نشده‌اند و می‌تواند آن‌ها را از بستهٔ نهایی حذف کند."
+    },
+    {
+      "question": "کدام حالت برای default export مناسب‌تر است؟",
+      "options": [
+        "ماژولی با چند تابع کمکی نامرتبط",
+        "ماژولی با یک تابع یا مقدار اصلی",
+        "ماژولی که می‌خواهید نام‌ها دقیقاً کنترل شوند",
+        "ماژولی که فقط عدد export می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "default برای ماژولی است که یک کارکرد اصلی دارد؛ importکننده هم نام را آزادانه انتخاب می‌کند و کد import تمیزتر می‌شود."
+    },
+    {
+      "question": "چرا برای یک فایل پر از تابع‌های کمکی نامرتبط، named export انتخاب بهتری است؟",
+      "options": [
+        "چون کوتاه‌تر نوشته می‌شود",
+        "چون هر تابع نام خودش را دارد و bundler می‌تواند بی‌استفاده‌ها را حذف کند",
+        "چون default export در مرورگر پشتیبانی نمی‌شود",
+        "چون named export در حالت strict کار نمی‌کند"
+      ],
+      "answer": 1,
+      "explanation": "در ماژول‌های جعبه‌ابزاری چندین تابع هم‌ردیف‌اند؛ named export ساختار را با ماژول هم‌خوان می‌کند و امکان tree-shaking را می‌دهد."
+    }
+  ]
 }

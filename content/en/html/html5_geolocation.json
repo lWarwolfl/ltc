@@ -1,225 +1,185 @@
 {
- "slug": "html5_geolocation",
- "course": "html",
- "order": 71,
- "url": "/html/html5_geolocation.asp",
- "title": "HTML Geolocation API",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "HTML Geolocation API"
-  },
-  {
-   "type": "p",
-   "text": "The Geolocation API is used to get the user's current location."
-  },
-  {
-   "type": "h2",
-   "text": "Locate the User's Position"
-  },
-  {
-   "type": "p",
-   "text": "The Geolocation API is used to access the user's current location."
-  },
-  {
-   "type": "p",
-   "text": "Since this can compromise privacy, the location is not available unless the user approves it."
-  },
-  {
-   "type": "p",
-   "text": "Try It"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "The Geolocation API is only available on secure contexts such as HTTPS.\nTip: The Geolocation API is most accurate for devices with GPS, like smartphones or smartwatches."
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "The numbers in the table specify the first browser version that fully supports\nGeolocation."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "API",
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Geolocation",
-     "5.0",
-     "12.0",
-     "3.5",
-     "5.0",
-     "10.6"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Using HTML Geolocation API"
-  },
-  {
-   "type": "p",
-   "text": "The Geolocation API is accessed via a call to\nnavigator.geolocation. This will cause the browser to ask the user for\npermission to access their location data. If the user accept, the browser will\nsearch for the best available functionality on the device to access this\ninformation (for example GPS)."
-  },
-  {
-   "type": "p",
-   "text": "The getCurrentPosition() method is used to return the user's\ncurrent location."
-  },
-  {
-   "type": "p",
-   "text": "The example below returns the latitude and longitude of the user's current\nlocation:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script>\nconst x = document.getElementById(\"demo\");\n\nfunction getLocation() {\n  if (navigator.geolocation) {\n\n      navigator.geolocation.getCurrentPosition(success, error);\n  } else {\n\n      x.innerHTML = \"Geolocation is not supported by this browser.\";\n\n    }\n}\n\n function success(position) {\n  x.innerHTML = \"Latitude: \" + position.coords.latitude +\n  \"<br>Longitude: \" + position.coords.longitude;\n\n }\n\nfunction error() {\n  alert(\"Sorry, no position available.\");\n\n  }\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_geolocation"
-  },
-  {
-   "type": "p",
-   "text": "Example explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Check if Geolocation is supported",
-    "If Geolocation is supported, run the getCurrentPosition() method. If not, display a message to the user",
-    "The success() function outputs the user's location in latitude and longitude",
-    "The error() function alerts a text if the browser retrieves an error in getCurrentPosition()"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Error Handling and Rejections"
-  },
-  {
-   "type": "p",
-   "text": "The second parameter of the getCurrentPosition() method is used to handle\nerrors. It specifies a function to run if it fails to get the user's location."
-  },
-  {
-   "type": "p",
-   "text": "Here is an example of a more specific error handling:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function error(error) {\n  switch(error.code) {\n    case error.PERMISSION_DENIED:\n\n        x.innerHTML = \"User denied the request for Geolocation.\"\n\n        break;\n    case error.POSITION_UNAVAILABLE:\n\n        x.innerHTML = \"Location information is unavailable.\"\n      break;\n    case error.TIMEOUT:\n\n        x.innerHTML = \"The request to get user location timed out.\"\n\n        break;\n    case error.UNKNOWN_ERROR:\n      x.innerHTML = \"An unknown error occurred.\"\n      break;\n\n    }\n\n }",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_geolocation_error"
-  },
-  {
-   "type": "h2",
-   "text": "Location-specific Information"
-  },
-  {
-   "type": "p",
-   "text": "Geolocation is also very useful for location-specific information, like:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Up-to-date local information",
-    "Showing Points-of-interest near the user",
-    "Turn-by-turn navigation (GPS)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The getCurrentPosition() Method - Return Data"
-  },
-  {
-   "type": "p",
-   "text": "The getCurrentPosition() method returns an object on success. The latitude,\nlongitude and accuracy properties are always returned. The other properties are returned\nif available:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Property",
-    "Returns"
-   ],
-   "rows": [
-    [
-     "coords.latitude",
-     "The latitude as a decimal number (always returned)"
-    ],
-    [
-     "coords.longitude",
-     "The longitude as a decimal number (always returned)"
-    ],
-    [
-     "coords.accuracy",
-     "The accuracy of position (always returned)"
-    ],
-    [
-     "coords.altitude",
-     "The altitude in meters above the mean sea level (returned if available)"
-    ],
-    [
-     "coords.altitudeAccuracy",
-     "The altitude accuracy of position (returned if available)"
-    ],
-    [
-     "coords.heading",
-     "The heading as degrees clockwise from North (returned if available)"
-    ],
-    [
-     "coords.speed",
-     "The speed in meters per second (returned if available)"
-    ],
-    [
-     "timestamp",
-     "The date/time of the response (returned if available)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Geolocation Object - Other interesting Methods"
-  },
-  {
-   "type": "p",
-   "text": "The Geolocation object also has other interesting methods:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "watchPosition() - Returns the current\n  location of the user and continues to\nreturn updated location as the user moves (like the GPS in a car).",
-    "clearWatch() - Stops the watchPosition() method."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "The example below shows the watchPosition() method. You need an accurate GPS device to test this (like\na\nsmartphone):"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script>\nconst x = document.getElementById(\"demo\");\n\nfunction getLocation() {\n\n    if (navigator.geolocation) {\n    navigator.geolocation.watchPosition(success,\n  error);\n  } else {\n\n      x.innerHTML = \"Geolocation is not supported by this browser.\";\n\n    }\n}\n\n function success(position) {\n  x.innerHTML = \"Latitude: \" + position.coords.latitude +\n  \"<br>Longitude: \" + position.coords.longitude;\n\n }\n\nfunction error(error) {\n  switch(error.code) {\n\n  case error.PERMISSION_DENIED:\n      x.innerHTML =\n  \"User denied the request for Geolocation.\"\n\n  break;\n    case error.POSITION_UNAVAILABLE:\n\n  x.innerHTML = \"Location information is unavailable.\"\n\n  break;\n    case error.TIMEOUT:\n\n  x.innerHTML = \"The request to get user location timed out.\"\n\n  break;\n    case error.UNKNOWN_ERROR:\n\n  x.innerHTML = \"An unknown error occurred.\"\n\n  break;\n  }\n}\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_geolocation_watchposition"
-  }
- ]
+  "slug": "html5_geolocation",
+  "course": "html",
+  "order": 71,
+  "url": "/html/html5_geolocation.asp",
+  "title": "HTML Geolocation API",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "HTML Geolocation API"
+    },
+    {
+      "type": "p",
+      "text": "The Geolocation API is used to get the user's current location."
+    },
+    {
+      "type": "h2",
+      "text": "Locate the User's Position"
+    },
+    {
+      "type": "p",
+      "text": "The Geolocation API is used to access the user's current location."
+    },
+    {
+      "type": "p",
+      "text": "Since this can compromise privacy, the location is not available unless the user approves it."
+    },
+    {
+      "type": "p",
+      "text": "Try It"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "The Geolocation API is only available on secure contexts such as HTTPS.\nTip: The Geolocation API is most accurate for devices with GPS, like smartphones or smartwatches."
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "The numbers in the table specify the first browser version that fully supports\nGeolocation."
+    },
+    {
+      "type": "table",
+      "headers": ["API", "", "", "", "", ""],
+      "rows": [["Geolocation", "5.0", "12.0", "3.5", "5.0", "10.6"]]
+    },
+    {
+      "type": "h2",
+      "text": "Using HTML Geolocation API"
+    },
+    {
+      "type": "p",
+      "text": "The Geolocation API is accessed via a call to\nnavigator.geolocation. This will cause the browser to ask the user for\npermission to access their location data. If the user accept, the browser will\nsearch for the best available functionality on the device to access this\ninformation (for example GPS)."
+    },
+    {
+      "type": "p",
+      "text": "The getCurrentPosition() method is used to return the user's\ncurrent location."
+    },
+    {
+      "type": "p",
+      "text": "The example below returns the latitude and longitude of the user's current\nlocation:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script>\nconst x = document.getElementById(\"demo\");\n\nfunction getLocation() {\n  if (navigator.geolocation) {\n\n      navigator.geolocation.getCurrentPosition(success, error);\n  } else {\n\n      x.innerHTML = \"Geolocation is not supported by this browser.\";\n\n    }\n}\n\n function success(position) {\n  x.innerHTML = \"Latitude: \" + position.coords.latitude +\n  \"<br>Longitude: \" + position.coords.longitude;\n\n }\n\nfunction error() {\n  alert(\"Sorry, no position available.\");\n\n  }\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_geolocation"
+    },
+    {
+      "type": "p",
+      "text": "Example explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Check if Geolocation is supported",
+        "If Geolocation is supported, run the getCurrentPosition() method. If not, display a message to the user",
+        "The success() function outputs the user's location in latitude and longitude",
+        "The error() function alerts a text if the browser retrieves an error in getCurrentPosition()"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Error Handling and Rejections"
+    },
+    {
+      "type": "p",
+      "text": "The second parameter of the getCurrentPosition() method is used to handle\nerrors. It specifies a function to run if it fails to get the user's location."
+    },
+    {
+      "type": "p",
+      "text": "Here is an example of a more specific error handling:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function error(error) {\n  switch(error.code) {\n    case error.PERMISSION_DENIED:\n\n        x.innerHTML = \"User denied the request for Geolocation.\"\n\n        break;\n    case error.POSITION_UNAVAILABLE:\n\n        x.innerHTML = \"Location information is unavailable.\"\n      break;\n    case error.TIMEOUT:\n\n        x.innerHTML = \"The request to get user location timed out.\"\n\n        break;\n    case error.UNKNOWN_ERROR:\n      x.innerHTML = \"An unknown error occurred.\"\n      break;\n\n    }\n\n }",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_geolocation_error"
+    },
+    {
+      "type": "h2",
+      "text": "Location-specific Information"
+    },
+    {
+      "type": "p",
+      "text": "Geolocation is also very useful for location-specific information, like:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Up-to-date local information",
+        "Showing Points-of-interest near the user",
+        "Turn-by-turn navigation (GPS)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The getCurrentPosition() Method - Return Data"
+    },
+    {
+      "type": "p",
+      "text": "The getCurrentPosition() method returns an object on success. The latitude,\nlongitude and accuracy properties are always returned. The other properties are returned\nif available:"
+    },
+    {
+      "type": "table",
+      "headers": ["Property", "Returns"],
+      "rows": [
+        ["coords.latitude", "The latitude as a decimal number (always returned)"],
+        ["coords.longitude", "The longitude as a decimal number (always returned)"],
+        ["coords.accuracy", "The accuracy of position (always returned)"],
+        [
+          "coords.altitude",
+          "The altitude in meters above the mean sea level (returned if available)"
+        ],
+        ["coords.altitudeAccuracy", "The altitude accuracy of position (returned if available)"],
+        ["coords.heading", "The heading as degrees clockwise from North (returned if available)"],
+        ["coords.speed", "The speed in meters per second (returned if available)"],
+        ["timestamp", "The date/time of the response (returned if available)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Geolocation Object - Other interesting Methods"
+    },
+    {
+      "type": "p",
+      "text": "The Geolocation object also has other interesting methods:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "watchPosition() - Returns the current\n  location of the user and continues to\nreturn updated location as the user moves (like the GPS in a car).",
+        "clearWatch() - Stops the watchPosition() method."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The example below shows the watchPosition() method. You need an accurate GPS device to test this (like\na\nsmartphone):"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script>\nconst x = document.getElementById(\"demo\");\n\nfunction getLocation() {\n\n    if (navigator.geolocation) {\n    navigator.geolocation.watchPosition(success,\n  error);\n  } else {\n\n      x.innerHTML = \"Geolocation is not supported by this browser.\";\n\n    }\n}\n\n function success(position) {\n  x.innerHTML = \"Latitude: \" + position.coords.latitude +\n  \"<br>Longitude: \" + position.coords.longitude;\n\n }\n\nfunction error(error) {\n  switch(error.code) {\n\n  case error.PERMISSION_DENIED:\n      x.innerHTML =\n  \"User denied the request for Geolocation.\"\n\n  break;\n    case error.POSITION_UNAVAILABLE:\n\n  x.innerHTML = \"Location information is unavailable.\"\n\n  break;\n    case error.TIMEOUT:\n\n  x.innerHTML = \"The request to get user location timed out.\"\n\n  break;\n    case error.UNKNOWN_ERROR:\n\n  x.innerHTML = \"An unknown error occurred.\"\n\n  break;\n  }\n}\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_geolocation_watchposition"
+    }
+  ]
 }

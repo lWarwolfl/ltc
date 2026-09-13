@@ -1,322 +1,317 @@
 {
- "slug": "js_htmldom_nodes",
- "course": "js",
- "order": 247,
- "url": "/js/js_htmldom_nodes.asp",
- "title": "عنصرها (گره‌های) DOM در JavaScript",
- "summary": "برای افزودن محتوای تازه به صفحه باید گره بسازید و آن را در جای درست درخت DOM بگذارید. در این درس با createElement و createTextNode و appendChild گره می‌سازید و با insertBefore، removeChild و replaceChild جای گره‌ها را مدیریت می‌کنید.",
- "objectives": [
-  "یک عنصر و یک گرهٔ متن بسازید و به صفحه اضافه کنید",
-  "تفاوت appendChild و insertBefore را توضیح دهید",
-  "یک عنصر را با remove() یا removeChild() حذف کنید",
-  "یک عنصر را با replaceChild() جایگزین کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "عنصرها (گره‌های) DOM در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "افزودن و حذف گره‌ها (عنصرهای HTML)"
-  },
-  {
-   "type": "h2",
-   "text": "ساختن عنصرهای جدید HTML (گره‌ها)"
-  },
-  {
-   "type": "p",
-   "text": "برای افزودن عنصر جدید به HTML DOM باید نخست خود عنصر (گرهٔ عنصر) را بسازید و بعد آن را به یک عنصر موجود بچسبانید."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div id=\"div1\">\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst para = document.createElement(\"p\");\n\nconst node = document.createTextNode(\"This is new.\");\n\npara.appendChild(node);\n\nconst element = document.getElementById(\"div1\");\n\nelement.appendChild(para);\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementcreate"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "p",
-   "text": "این کد یک عنصر <p> جدید می‌سازد:"
-  },
-  {
-   "type": "p",
-   "text": "const para = document.createElement(\"p\");"
-  },
-  {
-   "type": "p",
-   "text": "برای افزودن متن به عنصر <p> باید نخست یک گرهٔ متن بسازید. این کد یک گرهٔ متن می‌سازد:"
-  },
-  {
-   "type": "p",
-   "text": "const node = document.createTextNode(\"This is a new paragraph.\");"
-  },
-  {
-   "type": "p",
-   "text": "سپس باید گرهٔ متن را به عنصر <p> بچسبانید:"
-  },
-  {
-   "type": "p",
-   "text": "para.appendChild(node);"
-  },
-  {
-   "type": "p",
-   "text": "در پایان باید عنصر جدید را به یک عنصر موجود بچسبانید."
-  },
-  {
-   "type": "p",
-   "text": "این کد یک عنصر موجود را پیدا می‌کند:"
-  },
-  {
-   "type": "p",
-   "text": "const element = document.getElementById(\"div1\");"
-  },
-  {
-   "type": "p",
-   "text": "این کد عنصر جدید را به عنصر موجود می‌چسباند:"
-  },
-  {
-   "type": "p",
-   "text": "element.appendChild(para);"
-  },
-  {
-   "type": "h2",
-   "text": "ساختن عنصرهای جدید HTML با insertBefore()"
-  },
-  {
-   "type": "p",
-   "text": "متد appendChild() در مثال قبلی عنصر جدید را به‌عنوان آخرین فرزند والد اضافه کرد."
-  },
-  {
-   "type": "p",
-   "text": "اگر این را نمی‌خواهید می‌توانید از متد insertBefore() استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div id=\"div1\">\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst para = document.createElement(\"p\");\n\nconst node = document.createTextNode(\"This is new.\");\n\npara.appendChild(node);\n\nconst element = document.getElementById(\"div1\");\n\nconst child = document.getElementById(\"p1\");\nelement.insertBefore(para, child);\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementcreate2"
-  },
-  {
-   "type": "h2",
-   "text": "حذف عنصرهای موجود HTML"
-  },
-  {
-   "type": "p",
-   "text": "برای حذف یک عنصر HTML از متد remove() استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div>\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst elmnt = document.getElementById(\"p1\");\nelmnt.remove();\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementremove"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "p",
-   "text": "این سند HTML یک عنصر <div> با دو گرهٔ فرزند (دو عنصر <p>) دارد:"
-  },
-  {
-   "type": "p",
-   "text": "<div> <p id=\"p1\">این یک پاراگراف است.</p> <p id=\"p2\">این پاراگراف دیگری است.</p> </div>"
-  },
-  {
-   "type": "p",
-   "text": "عنصری را که می‌خواهید حذف کنید پیدا کنید:"
-  },
-  {
-   "type": "p",
-   "text": "const elmnt = document.getElementById(\"p1\");"
-  },
-  {
-   "type": "p",
-   "text": "بعد متد remove() را روی همان عنصر صدا بزنید:"
-  },
-  {
-   "type": "p",
-   "text": "elmnt.remove();"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "متد remove() در مرورگرهای قدیمی کار نمی‌کند؛ در مثال زیر ببینید به‌جایش چگونه از removeChild() استفاده کنید."
-  },
-  {
-   "type": "h2",
-   "text": "حذف یک گرهٔ فرزند"
-  },
-  {
-   "type": "p",
-   "text": "در مرورگرهایی که متد remove() را پشتیبانی نمی‌کنند باید برای حذف یک عنصر گرهٔ والد را پیدا کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div id=\"div1\">\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst parent = document.getElementById(\"div1\");\n\nconst child = document.getElementById(\"p1\");\n\nparent.removeChild(child);\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementremovechild"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "p",
-   "text": "این سند HTML یک عنصر <div> با دو گرهٔ فرزند (دو عنصر <p>) دارد:"
-  },
-  {
-   "type": "p",
-   "text": "<div id=\"div1\"> <p id=\"p1\">این یک پاراگراف است.</p> <p id=\"p2\">این پاراگراف دیگری است.</p> </div>"
-  },
-  {
-   "type": "p",
-   "text": "عنصری با id=\"div1\" را پیدا کنید:"
-  },
-  {
-   "type": "p",
-   "text": "const parent = document.getElementById(\"div1\");"
-  },
-  {
-   "type": "p",
-   "text": "عنصر <p> با id=\"p1\" را پیدا کنید:"
-  },
-  {
-   "type": "p",
-   "text": "const child = document.getElementById(\"p1\");"
-  },
-  {
-   "type": "p",
-   "text": "فرزند را از والد حذف کنید:"
-  },
-  {
-   "type": "p",
-   "text": "parent.removeChild(child);"
-  },
-  {
-   "type": "p",
-   "text": "یک روش رایج دیگر: فرزندی را که می‌خواهید حذف کنید پیدا کنید و با خصوصیت parentNode والدش را به دست آورید:"
-  },
-  {
-   "type": "p",
-   "text": "const child = document.getElementById(\"p1\");child.parentNode.removeChild(child);"
-  },
-  {
-   "type": "h2",
-   "text": "جایگزین کردن عنصرهای HTML"
-  },
-  {
-   "type": "p",
-   "text": "برای جایگزین کردن یک عنصر در HTML DOM از متد replaceChild() استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div id=\"div1\">\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst para = document.createElement(\"p\");\n\nconst node = document.createTextNode(\"This is new.\");\npara.appendChild(node);\n\nconst parent = document.getElementById(\"div1\");\nconst child = document.getElementById(\"p1\");\nparent.replaceChild(para, child);\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementreplace"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل nodes.html با یک div خالی بسازید و با createElement و createTextNode یک پاراگراف بسازید و با appendChild به div اضافه کنید.",
-   "hint": "ترتیب مهم است: نخست گرهٔ متن را درست کنید، بعد آن را به پاراگراف و پاراگراف را به div بچسبانید."
-  },
-  {
-   "prompt": "دو پاراگراف در div بگذارید و با insertBefore عنصر جدید را پیش از فرزند دوم اضافه کنید.",
-   "hint": "آرگومان دوم insertBefore تعیین می‌کند عنصر جدید قبل از کدام فرزند بنشیند."
-  },
-  {
-   "prompt": "یک پاراگراف را با متد remove() حذف کنید و بعد همین کار را با removeChild() روی والد انجام دهید.",
-   "hint": "برای removeChild باید والد را در دست داشته باشید."
-  },
-  {
-   "prompt": "با یک پاراگراف پنهان، فقط با parentNode و بدون getElementById آن را حذف کنید.",
-   "hint": "child.parentNode.removeChild(child) الگوی رایج این کار است."
-  },
-  {
-   "prompt": "یک پاراگراف را با یک سرتیتر h2 جایگزین کنید و نتیجه را در مرورگر ببینید.",
-   "hint": "replaceChild(عنصر جدید, عنصر قدیمی) روی والد صدا زده می‌شود."
-  }
- ],
- "quiz": [
-  {
-   "question": "برای ساختن یک گرهٔ متن از کدام متد استفاده می‌کنیم؟",
-   "options": [
-    "document.createElement()",
-    "document.createTextNode()",
-    "document.getElementById()",
-    "document.appendChild()"
-   ],
-   "answer": 1,
-   "explanation": "createElement فقط عنصر می‌سازد؛ متن با createTextNode ساخته می‌شود و بعد با appendChild به عنصر می‌چسبد."
-  },
-  {
-   "question": "appendChild() عنصر جدید را کجا قرار می‌دهد؟",
-   "options": [
-    "به‌عنوان اولین فرزند",
-    "به‌عنوان آخرین فرزند والد",
-    "پیش از والد",
-    "بیرون از سند"
-   ],
-   "answer": 1,
-   "explanation": "appendChild جدیدترین فرزند را به انتهای فرزندهای والد اضافه می‌کند؛ برای جای دیگر از insertBefore استفاده کنید."
-  },
-  {
-   "question": "برای حذف یک عنصر بدون استفاده از متد remove() چه می‌کنیم؟",
-   "options": [
-    "از والد آن می‌خواهیم با removeChild حذفش کند",
-    "با innerHTML آن را پاک می‌کنیم",
-    "با nodeValue آن را null می‌کنیم",
-    "با createElement جایگزینش می‌کنیم"
-   ],
-   "answer": 0,
-   "explanation": "remove() در مرورگرهای قدیمی پشتیبانی نمی‌شود؛ راه جایگزین parent.removeChild(child) است."
-  },
-  {
-   "question": "کدام متد عنصری را با عنصری دیگر جابه‌جا می‌کند؟",
-   "options": [
-    "insertBefore()",
-    "appendChild()",
-    "replaceChild()",
-    "createTextNode()"
-   ],
-   "answer": 2,
-   "explanation": "replaceChild(جدید, قدیمی) عنصر قدیمی را با عنصر جدید جایگزین می‌کند؛ دو متد دیگر فقط عنصر اضافه می‌کنند."
-  },
-  {
-   "question": "اگر در کدی ابتدا گرهٔ متن ساخته نشود، چه اتفاقی می‌افتد؟",
-   "options": [
-    "خطای نحو می‌گیریم",
-    "عنصر بدون متن ساخته می‌شود و متنی نمایش داده نمی‌شود",
-    "مرورگر خودش متن می‌سازد",
-    "appendChild کار نمی‌کند"
-   ],
-   "answer": 1,
-   "explanation": "متن در DOM همیشه یک گرهٔ جداگانه است؛ بدون createTextNode عنصر خالی می‌ماند."
-  }
- ]
+  "slug": "js_htmldom_nodes",
+  "course": "js",
+  "order": 247,
+  "url": "/js/js_htmldom_nodes.asp",
+  "title": "عنصرها (گره‌های) DOM در JavaScript",
+  "summary": "برای افزودن محتوای تازه به صفحه باید گره بسازید و آن را در جای درست درخت DOM بگذارید. در این درس با createElement و createTextNode و appendChild گره می‌سازید و با insertBefore، removeChild و replaceChild جای گره‌ها را مدیریت می‌کنید.",
+  "objectives": [
+    "یک عنصر و یک گرهٔ متن بسازید و به صفحه اضافه کنید",
+    "تفاوت appendChild و insertBefore را توضیح دهید",
+    "یک عنصر را با remove() یا removeChild() حذف کنید",
+    "یک عنصر را با replaceChild() جایگزین کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "عنصرها (گره‌های) DOM در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "افزودن و حذف گره‌ها (عنصرهای HTML)"
+    },
+    {
+      "type": "h2",
+      "text": "ساختن عنصرهای جدید HTML (گره‌ها)"
+    },
+    {
+      "type": "p",
+      "text": "برای افزودن عنصر جدید به HTML DOM باید نخست خود عنصر (گرهٔ عنصر) را بسازید و بعد آن را به یک عنصر موجود بچسبانید."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div id=\"div1\">\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst para = document.createElement(\"p\");\n\nconst node = document.createTextNode(\"This is new.\");\n\npara.appendChild(node);\n\nconst element = document.getElementById(\"div1\");\n\nelement.appendChild(para);\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementcreate"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "این کد یک عنصر <p> جدید می‌سازد:"
+    },
+    {
+      "type": "p",
+      "text": "const para = document.createElement(\"p\");"
+    },
+    {
+      "type": "p",
+      "text": "برای افزودن متن به عنصر <p> باید نخست یک گرهٔ متن بسازید. این کد یک گرهٔ متن می‌سازد:"
+    },
+    {
+      "type": "p",
+      "text": "const node = document.createTextNode(\"This is a new paragraph.\");"
+    },
+    {
+      "type": "p",
+      "text": "سپس باید گرهٔ متن را به عنصر <p> بچسبانید:"
+    },
+    {
+      "type": "p",
+      "text": "para.appendChild(node);"
+    },
+    {
+      "type": "p",
+      "text": "در پایان باید عنصر جدید را به یک عنصر موجود بچسبانید."
+    },
+    {
+      "type": "p",
+      "text": "این کد یک عنصر موجود را پیدا می‌کند:"
+    },
+    {
+      "type": "p",
+      "text": "const element = document.getElementById(\"div1\");"
+    },
+    {
+      "type": "p",
+      "text": "این کد عنصر جدید را به عنصر موجود می‌چسباند:"
+    },
+    {
+      "type": "p",
+      "text": "element.appendChild(para);"
+    },
+    {
+      "type": "h2",
+      "text": "ساختن عنصرهای جدید HTML با insertBefore()"
+    },
+    {
+      "type": "p",
+      "text": "متد appendChild() در مثال قبلی عنصر جدید را به‌عنوان آخرین فرزند والد اضافه کرد."
+    },
+    {
+      "type": "p",
+      "text": "اگر این را نمی‌خواهید می‌توانید از متد insertBefore() استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div id=\"div1\">\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst para = document.createElement(\"p\");\n\nconst node = document.createTextNode(\"This is new.\");\n\npara.appendChild(node);\n\nconst element = document.getElementById(\"div1\");\n\nconst child = document.getElementById(\"p1\");\nelement.insertBefore(para, child);\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementcreate2"
+    },
+    {
+      "type": "h2",
+      "text": "حذف عنصرهای موجود HTML"
+    },
+    {
+      "type": "p",
+      "text": "برای حذف یک عنصر HTML از متد remove() استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div>\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst elmnt = document.getElementById(\"p1\");\nelmnt.remove();\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementremove"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "این سند HTML یک عنصر <div> با دو گرهٔ فرزند (دو عنصر <p>) دارد:"
+    },
+    {
+      "type": "p",
+      "text": "<div> <p id=\"p1\">این یک پاراگراف است.</p> <p id=\"p2\">این پاراگراف دیگری است.</p> </div>"
+    },
+    {
+      "type": "p",
+      "text": "عنصری را که می‌خواهید حذف کنید پیدا کنید:"
+    },
+    {
+      "type": "p",
+      "text": "const elmnt = document.getElementById(\"p1\");"
+    },
+    {
+      "type": "p",
+      "text": "بعد متد remove() را روی همان عنصر صدا بزنید:"
+    },
+    {
+      "type": "p",
+      "text": "elmnt.remove();"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "متد remove() در مرورگرهای قدیمی کار نمی‌کند؛ در مثال زیر ببینید به‌جایش چگونه از removeChild() استفاده کنید."
+    },
+    {
+      "type": "h2",
+      "text": "حذف یک گرهٔ فرزند"
+    },
+    {
+      "type": "p",
+      "text": "در مرورگرهایی که متد remove() را پشتیبانی نمی‌کنند باید برای حذف یک عنصر گرهٔ والد را پیدا کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div id=\"div1\">\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst parent = document.getElementById(\"div1\");\n\nconst child = document.getElementById(\"p1\");\n\nparent.removeChild(child);\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementremovechild"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "این سند HTML یک عنصر <div> با دو گرهٔ فرزند (دو عنصر <p>) دارد:"
+    },
+    {
+      "type": "p",
+      "text": "<div id=\"div1\"> <p id=\"p1\">این یک پاراگراف است.</p> <p id=\"p2\">این پاراگراف دیگری است.</p> </div>"
+    },
+    {
+      "type": "p",
+      "text": "عنصری با id=\"div1\" را پیدا کنید:"
+    },
+    {
+      "type": "p",
+      "text": "const parent = document.getElementById(\"div1\");"
+    },
+    {
+      "type": "p",
+      "text": "عنصر <p> با id=\"p1\" را پیدا کنید:"
+    },
+    {
+      "type": "p",
+      "text": "const child = document.getElementById(\"p1\");"
+    },
+    {
+      "type": "p",
+      "text": "فرزند را از والد حذف کنید:"
+    },
+    {
+      "type": "p",
+      "text": "parent.removeChild(child);"
+    },
+    {
+      "type": "p",
+      "text": "یک روش رایج دیگر: فرزندی را که می‌خواهید حذف کنید پیدا کنید و با خصوصیت parentNode والدش را به دست آورید:"
+    },
+    {
+      "type": "p",
+      "text": "const child = document.getElementById(\"p1\");child.parentNode.removeChild(child);"
+    },
+    {
+      "type": "h2",
+      "text": "جایگزین کردن عنصرهای HTML"
+    },
+    {
+      "type": "p",
+      "text": "برای جایگزین کردن یک عنصر در HTML DOM از متد replaceChild() استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div id=\"div1\">\n\n<p id=\"p1\">This is a paragraph.</p>\n\n<p id=\"p2\">This is another paragraph.</p>\n\n</div>\n\n<script>\n\nconst para = document.createElement(\"p\");\n\nconst node = document.createTextNode(\"This is new.\");\npara.appendChild(node);\n\nconst parent = document.getElementById(\"div1\");\nconst child = document.getElementById(\"p1\");\nparent.replaceChild(para, child);\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_elementreplace"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل nodes.html با یک div خالی بسازید و با createElement و createTextNode یک پاراگراف بسازید و با appendChild به div اضافه کنید.",
+      "hint": "ترتیب مهم است: نخست گرهٔ متن را درست کنید، بعد آن را به پاراگراف و پاراگراف را به div بچسبانید."
+    },
+    {
+      "prompt": "دو پاراگراف در div بگذارید و با insertBefore عنصر جدید را پیش از فرزند دوم اضافه کنید.",
+      "hint": "آرگومان دوم insertBefore تعیین می‌کند عنصر جدید قبل از کدام فرزند بنشیند."
+    },
+    {
+      "prompt": "یک پاراگراف را با متد remove() حذف کنید و بعد همین کار را با removeChild() روی والد انجام دهید.",
+      "hint": "برای removeChild باید والد را در دست داشته باشید."
+    },
+    {
+      "prompt": "با یک پاراگراف پنهان، فقط با parentNode و بدون getElementById آن را حذف کنید.",
+      "hint": "child.parentNode.removeChild(child) الگوی رایج این کار است."
+    },
+    {
+      "prompt": "یک پاراگراف را با یک سرتیتر h2 جایگزین کنید و نتیجه را در مرورگر ببینید.",
+      "hint": "replaceChild(عنصر جدید, عنصر قدیمی) روی والد صدا زده می‌شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای ساختن یک گرهٔ متن از کدام متد استفاده می‌کنیم؟",
+      "options": [
+        "document.createElement()",
+        "document.createTextNode()",
+        "document.getElementById()",
+        "document.appendChild()"
+      ],
+      "answer": 1,
+      "explanation": "createElement فقط عنصر می‌سازد؛ متن با createTextNode ساخته می‌شود و بعد با appendChild به عنصر می‌چسبد."
+    },
+    {
+      "question": "appendChild() عنصر جدید را کجا قرار می‌دهد؟",
+      "options": [
+        "به‌عنوان اولین فرزند",
+        "به‌عنوان آخرین فرزند والد",
+        "پیش از والد",
+        "بیرون از سند"
+      ],
+      "answer": 1,
+      "explanation": "appendChild جدیدترین فرزند را به انتهای فرزندهای والد اضافه می‌کند؛ برای جای دیگر از insertBefore استفاده کنید."
+    },
+    {
+      "question": "برای حذف یک عنصر بدون استفاده از متد remove() چه می‌کنیم؟",
+      "options": [
+        "از والد آن می‌خواهیم با removeChild حذفش کند",
+        "با innerHTML آن را پاک می‌کنیم",
+        "با nodeValue آن را null می‌کنیم",
+        "با createElement جایگزینش می‌کنیم"
+      ],
+      "answer": 0,
+      "explanation": "remove() در مرورگرهای قدیمی پشتیبانی نمی‌شود؛ راه جایگزین parent.removeChild(child) است."
+    },
+    {
+      "question": "کدام متد عنصری را با عنصری دیگر جابه‌جا می‌کند؟",
+      "options": ["insertBefore()", "appendChild()", "replaceChild()", "createTextNode()"],
+      "answer": 2,
+      "explanation": "replaceChild(جدید, قدیمی) عنصر قدیمی را با عنصر جدید جایگزین می‌کند؛ دو متد دیگر فقط عنصر اضافه می‌کنند."
+    },
+    {
+      "question": "اگر در کدی ابتدا گرهٔ متن ساخته نشود، چه اتفاقی می‌افتد؟",
+      "options": [
+        "خطای نحو می‌گیریم",
+        "عنصر بدون متن ساخته می‌شود و متنی نمایش داده نمی‌شود",
+        "مرورگر خودش متن می‌سازد",
+        "appendChild کار نمی‌کند"
+      ],
+      "answer": 1,
+      "explanation": "متن در DOM همیشه یک گرهٔ جداگانه است؛ بدون createTextNode عنصر خالی می‌ماند."
+    }
+  ]
 }

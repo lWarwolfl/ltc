@@ -1,246 +1,246 @@
 {
- "slug": "js_project_eventlistener",
- "course": "js",
- "order": 119,
- "url": "/js/js_project_eventlistener.asp",
- "title": "پروژه: شنوندهٔ رویداد",
- "summary": "در این پروژه همان شمارندهٔ درس قبل را بازنویسی می‌کنید، اما با addEventListener به‌جای ویژگی‌های onclick. کد JavaScript را به فایل بیرونی counter.js منتقل می‌کنید و یاد می‌گیرید چرا و چگونه از DOMContentLoaded استفاده کنید.",
- "objectives": [
-  "رویداد کلیک را با addEventListener به دکمه‌ها وصل کنید",
-  "کد JavaScript را در فایل بیرونی counter.js سازماندهی کنید",
-  "توضیح دهید چرا از رویداد DOMContentLoaded استفاده می‌شود",
-  "مزیت‌های شنوندهٔ رویداد بر ویژگی onclick را بگویید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "پروژه: شنوندهٔ رویداد"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از شنوندهٔ رویداد"
-  },
-  {
-   "type": "p",
-   "text": "این نسخه، کپی پروژهٔ قبلی است."
-  },
-  {
-   "type": "p",
-   "text": "فقط این بار به‌جای ویژگی‌های onclick از شنونده‌های رویداد (event listener) استفاده می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "0"
-  },
-  {
-   "type": "p",
-   "text": "ریست"
-  },
-  {
-   "type": "p",
-   "text": "ذخیره"
-  },
-  {
-   "type": "p",
-   "text": "بارگذاری"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از شنونده‌های رویداد"
-  },
-  {
-   "type": "p",
-   "text": "استفاده از addEventListener() این کارها را ساده‌تر می‌کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "جدا نگه داشتن HTML و JavaScript",
-    "افزودن چند رویداد به یک عنصر",
-    "نوشتن کد تمیزتر در پروژه‌های بزرگ‌تر"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button id=\"btnPlus\">+</button>\n\n<button id=\"btnMinus\">-</button>\n\n<button id=\"btnReset\">Reset</button>\n\n<button id=\"btnSave\">Save</button>\n\n<button id=\"btnLoad\">Load</button>\n\n<script>\n\n// JavaScript goes here\n\n</script>",
-   "caption": "کد HTML"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Add event listeners\n\ndocument.getElementById(\"btnPlus\").addEventListener(\"click\", increaseCount);\n\ndocument.getElementById(\"btnMinus\").addEventListener(\"click\", decreaseCount);\n\ndocument.getElementById(\"btnReset\").addEventListener(\"click\", resetCount);\n\ndocument.getElementById(\"btnSave\").addEventListener(\"click\", saveCount);\n\ndocument.getElementById(\"btnLoad\").addEventListener(\"click\", loadCount);\n\n// Declare the counter\n\nlet count = 0;\n\n// Load counter when the page opens\n\nloadCount();\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  if (count > 0) {\n\n  count--;\n\n    updateCount();\n\n  }\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n  }\n\n  updateCount();\n\n}",
-   "caption": "کد JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_listen"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "JavaScript به یک فایل بیرونی (counter.js) منتقل شده است",
-    "از DOMContentLoaded استفاده می‌کند تا JavaScript فقط بعد از آماده شدن HTML اجرا شود",
-    "ساختار تمیزتر با تابع‌های کوچک و متغیرهای عنصر",
-    "پیام کوتاه «Saved!» را نشان می‌دهد",
-    "پیام کوتاه «Loaded!» را نشان می‌دهد"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button id=\"btnPlus\">+</button>\n\n<button id=\"btnMinus\">-</button>\n\n<button id=\"btnReset\">Reset</button>\n\n<button id=\"btnSave\">Save</button>\n\n<button id=\"btnLoad\">Load</button>\n\n<script  src=\"counter.js\"></script>\n\n</body>\n\n</html>",
-   "caption": "کد HTML"
-  },
-  {
-   "type": "p",
-   "text": "توجه کنید که تگ <script> در پایین صفحه، پیش از </body> قرار گرفته است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.addEventListener(\"DOMContentLoaded\", function () {\n\n// Declare the counter\n\nlet count = 0;\n\n// Use element variables\n\nconst countEl = document.getElementById(\"count\");\n\nconst msgEl = document.getElementById(\"message\");\n\nconst btnPlus = document.getElementById(\"btnPlus\");\n\nconst btnMinus = document.getElementById(\"btnMinus\");\n\nconst btnReset = document.getElementById(\"btnReset\");\n\nconst btnSave = document.getElementById(\"btnSave\");\n\nconst btnLoad = document.getElementById(\"btnLoad\");\n\n// Add event listeners\n\nbtnPlus.addEventListener(\"click\", increaseCount);\n\nbtnMinus.addEventListener(\"click\", decreaseCount);\n\nbtnReset.addEventListener(\"click\", resetCount);\n\nbtnSave.addEventListener(\"click\", saveCount);\n\nbtnLoad.addEventListener(\"click\", loadCount);\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to diplay message\n\nfunction showMessage(text) {\n\n  msgEl.innerHTML = text;\n\n  setTimeout(function () {\n\n    msgEl.innerHTML = \"\";\n\n  }, 3000);\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  count--;\n\n  updateCount();\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n  showMessage(\"Saved!\");\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n    showMessage(\"Loaded!\");\n\n  }\n\n  updateCount();\n\n}\n\n});",
-   "caption": "counter.js"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_3"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript در فایل بیرونی"
-  },
-  {
-   "type": "p",
-   "text": "استفاده از counter.js پروژهٔ شما را چنین می‌کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "سازمان‌یافته‌تر",
-    "جدا نگه داشتن HTML و JavaScript",
-    "خواندن و استفادهٔ دوباره ساده‌تر",
-    "شبیه‌تر به پروژه‌های واقعی"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "رویداد DOMContentLoaded"
-  },
-  {
-   "type": "p",
-   "text": "چرا از DOMContentLoaded استفاده می‌کنیم؟"
-  },
-  {
-   "type": "p",
-   "text": "وقتی از یک فایل JavaScript بیرونی استفاده می‌کنید، ممکن است مرورگر اسکریپت را پیش از آماده شدن HTML بارگذاری کند. پس از این استفاده می‌کنیم:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.addEventListener(\"DOMContentLoaded\", function() {\n\n// JavaScript code\n\n});",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "یعنی کد JavaScript بعد از پایان بارگذاری HTML صفحه اجرا شود."
-  },
-  {
-   "type": "h2",
-   "text": "پروژه‌های JavaScript"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "شمارندهٔ JavaScript\nپروژهٔ شمارنده با ذخیره و بازیابی در localStorage.",
-    "شنوندهٔ رویداد JavaScript\nهمان پروژهٔ شمارنده، این بار با شنوندهٔ رویداد (event listener) به‌جای onclick.",
-    "فهرست کارهای روزانه\nفهرست کارهایی که در یک آرایه در localStorage ذخیره می‌شود.",
-    "پنجرهٔ مودال\nیک پنجرهٔ مودال که روی صفحه ظاهر می‌شود.",
-    "اعتبارسنجی فرم\nیک فرم HTML همراه با اعتبارسنجی فرم."
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "همان شمارندهٔ درس قبل را بسازید، اما به‌جای ویژگی onclick برای هر دکمه یک شنوندهٔ رویداد با addEventListener(\"click\", ...) اضافه کنید.",
-   "hint": "برای انتخاب دکمه از document.getElementById استفاده کنید و بعد el.addEventListener(\"click\", تابع) بنویسید."
-  },
-  {
-   "prompt": "کد JavaScript را به فایل بیرونی counter.js منتقل کنید و تگ script را در انتهای body با src=\"counter.js\" وصل کنید.",
-   "hint": "تگ script باید پیش از </body> بیاید تا HTML زودتر آماده شود."
-  },
-  {
-   "prompt": "کل کد را داخل document.addEventListener(\"DOMContentLoaded\", function () { ... }) بگذارید و صفحه را تست کنید.",
-   "hint": "این کار تضمین می‌کند JavaScript فقط بعد از آماده شدن HTML اجرا شود."
-  },
-  {
-   "prompt": "به دکمه‌های ذخیره و بارگذاری پیام‌های کوتاه «Saved!» و «Loaded!» اضافه کنید که چند لحظه نمایش داده شوند.",
-   "hint": "می‌توانید متن یک عنصر را تغییر دهید و با setTimeout بعد از چند صد میلی‌ثانیه پاکش کنید."
-  },
-  {
-   "prompt": "با یکی از دکمه‌ها دو شنوندهٔ رویداد مختلف وصل کنید و ببینید هر دو اجرا می‌شوند.",
-   "hint": "یکی از مزیت‌های addEventListener این است که می‌توان چند رویداد را به یک عنصر بست، کاری که با onclick ممکن نیست."
-  }
- ],
- "quiz": [
-  {
-   "question": "مزیت اصلی addEventListener نسبت به ویژگی onclick چیست؟",
-   "options": [
-    "فقط برای دکمه‌ها کار می‌کند",
-    "می‌توان چند شنونده به یک عنصر بست و HTML و JavaScript را جدا نگه داشت",
-    "سرعت اجرا را چند برابر می‌کند",
-    "بدون تگ script کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "با addEventListener می‌توان چند رویداد را به یک عنصر وصل کرد، کد HTML و JavaScript جدا می‌ماند و کد پروژه‌های بزرگ‌تر تمیزتر می‌شود."
-  },
-  {
-   "question": "DOMContentLoaded چه زمانی اجرا می‌شود؟",
-   "options": [
-    "همیشه در پایان اسکریپت",
-    "قبل از بارگذاری HTML",
-    "بعد از پایان بارگذاری و تجزیهٔ HTML صفحه",
-    "فقط در حالت strict"
-   ],
-   "answer": 2,
-   "explanation": "این رویداد بعد از آماده شدن HTML اجرا می‌شود؛ پس اگر فایل JavaScript بیرونی زودتر بارگذاری شود، عنصرهای صفحه در دسترس خواهند بود."
-  },
-  {
-   "question": "چرا تگ <script> را پیش از </body> می‌گذاریم؟",
-   "options": [
-    "چون در head خطا می‌دهد",
-    "تا فایل counter.js سریع‌تر دانلود شود",
-    "چون در غیر این صورت بارگذاری شکست می‌خورد",
-    "تا مرورگر اول HTML را بسازد و بعد اسکریپت را اجرا کند"
-   ],
-   "answer": 3,
-   "explanation": "قرار دادن اسکریپت در پایان body باعث می‌شود مرورگر اول صفحه را بارگذاری کند و عنصرها هنگام اجرای اسکریپت وجود داشته باشند."
-  },
-  {
-   "question": "انتقال JavaScript به فایل بیرونی counter.js چه سودی دارد؟",
-   "options": [
-    "سازمان‌یافته‌تر و جداشده از HTML است و استفادهٔ دوباره‌اش ساده‌تر می‌شود",
-    "اجرای کد را دو برابر سریع می‌کند",
-    "نیاز به تگ script را حذف می‌کند",
-    "خطاها را خودکار اصلاح می‌کند"
-   ],
-   "answer": 0,
-   "explanation": "کد بیرونی منظم‌تر است، از HTML جدا می‌شود، خواندن و استفادهٔ دوباره‌اش ساده‌تر است و به پروژه‌های واقعی نزدیک‌تر می‌شود."
-  },
-  {
-   "question": "چرا در این پروژه به‌جای مستقیماً صدا زدن تابع، از شنوندهٔ رویداد استفاده می‌کنیم؟",
-   "options": [
-    "چون ویژگی onclick در JavaScript وجود ندارد",
-    "چون شنوندهٔ رویداد محدودیت یک رویداد در هر عنصر را برمی‌دارد و کد تمیزتری می‌سازد",
-    "چون شنوندهٔ رویداد اجباری است",
-    "چون onclick فقط در فرم‌ها کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "هر عنصر می‌تواند چند شنوندهٔ رویداد داشته باشد و کد JavaScript از HTML جدا می‌ماند؛ همین کار تمیزتر و قابل توسعه‌تر است."
-  }
- ]
+  "slug": "js_project_eventlistener",
+  "course": "js",
+  "order": 119,
+  "url": "/js/js_project_eventlistener.asp",
+  "title": "پروژه: شنوندهٔ رویداد",
+  "summary": "در این پروژه همان شمارندهٔ درس قبل را بازنویسی می‌کنید، اما با addEventListener به‌جای ویژگی‌های onclick. کد JavaScript را به فایل بیرونی counter.js منتقل می‌کنید و یاد می‌گیرید چرا و چگونه از DOMContentLoaded استفاده کنید.",
+  "objectives": [
+    "رویداد کلیک را با addEventListener به دکمه‌ها وصل کنید",
+    "کد JavaScript را در فایل بیرونی counter.js سازماندهی کنید",
+    "توضیح دهید چرا از رویداد DOMContentLoaded استفاده می‌شود",
+    "مزیت‌های شنوندهٔ رویداد بر ویژگی onclick را بگویید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "پروژه: شنوندهٔ رویداد"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از شنوندهٔ رویداد"
+    },
+    {
+      "type": "p",
+      "text": "این نسخه، کپی پروژهٔ قبلی است."
+    },
+    {
+      "type": "p",
+      "text": "فقط این بار به‌جای ویژگی‌های onclick از شنونده‌های رویداد (event listener) استفاده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "0"
+    },
+    {
+      "type": "p",
+      "text": "ریست"
+    },
+    {
+      "type": "p",
+      "text": "ذخیره"
+    },
+    {
+      "type": "p",
+      "text": "بارگذاری"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از شنونده‌های رویداد"
+    },
+    {
+      "type": "p",
+      "text": "استفاده از addEventListener() این کارها را ساده‌تر می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "جدا نگه داشتن HTML و JavaScript",
+        "افزودن چند رویداد به یک عنصر",
+        "نوشتن کد تمیزتر در پروژه‌های بزرگ‌تر"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button id=\"btnPlus\">+</button>\n\n<button id=\"btnMinus\">-</button>\n\n<button id=\"btnReset\">Reset</button>\n\n<button id=\"btnSave\">Save</button>\n\n<button id=\"btnLoad\">Load</button>\n\n<script>\n\n// JavaScript goes here\n\n</script>",
+      "caption": "کد HTML"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Add event listeners\n\ndocument.getElementById(\"btnPlus\").addEventListener(\"click\", increaseCount);\n\ndocument.getElementById(\"btnMinus\").addEventListener(\"click\", decreaseCount);\n\ndocument.getElementById(\"btnReset\").addEventListener(\"click\", resetCount);\n\ndocument.getElementById(\"btnSave\").addEventListener(\"click\", saveCount);\n\ndocument.getElementById(\"btnLoad\").addEventListener(\"click\", loadCount);\n\n// Declare the counter\n\nlet count = 0;\n\n// Load counter when the page opens\n\nloadCount();\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  if (count > 0) {\n\n  count--;\n\n    updateCount();\n\n  }\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n  }\n\n  updateCount();\n\n}",
+      "caption": "کد JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_listen"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "JavaScript به یک فایل بیرونی (counter.js) منتقل شده است",
+        "از DOMContentLoaded استفاده می‌کند تا JavaScript فقط بعد از آماده شدن HTML اجرا شود",
+        "ساختار تمیزتر با تابع‌های کوچک و متغیرهای عنصر",
+        "پیام کوتاه «Saved!» را نشان می‌دهد",
+        "پیام کوتاه «Loaded!» را نشان می‌دهد"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button id=\"btnPlus\">+</button>\n\n<button id=\"btnMinus\">-</button>\n\n<button id=\"btnReset\">Reset</button>\n\n<button id=\"btnSave\">Save</button>\n\n<button id=\"btnLoad\">Load</button>\n\n<script  src=\"counter.js\"></script>\n\n</body>\n\n</html>",
+      "caption": "کد HTML"
+    },
+    {
+      "type": "p",
+      "text": "توجه کنید که تگ <script> در پایین صفحه، پیش از </body> قرار گرفته است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.addEventListener(\"DOMContentLoaded\", function () {\n\n// Declare the counter\n\nlet count = 0;\n\n// Use element variables\n\nconst countEl = document.getElementById(\"count\");\n\nconst msgEl = document.getElementById(\"message\");\n\nconst btnPlus = document.getElementById(\"btnPlus\");\n\nconst btnMinus = document.getElementById(\"btnMinus\");\n\nconst btnReset = document.getElementById(\"btnReset\");\n\nconst btnSave = document.getElementById(\"btnSave\");\n\nconst btnLoad = document.getElementById(\"btnLoad\");\n\n// Add event listeners\n\nbtnPlus.addEventListener(\"click\", increaseCount);\n\nbtnMinus.addEventListener(\"click\", decreaseCount);\n\nbtnReset.addEventListener(\"click\", resetCount);\n\nbtnSave.addEventListener(\"click\", saveCount);\n\nbtnLoad.addEventListener(\"click\", loadCount);\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to diplay message\n\nfunction showMessage(text) {\n\n  msgEl.innerHTML = text;\n\n  setTimeout(function () {\n\n    msgEl.innerHTML = \"\";\n\n  }, 3000);\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  count--;\n\n  updateCount();\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n  showMessage(\"Saved!\");\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n    showMessage(\"Loaded!\");\n\n  }\n\n  updateCount();\n\n}\n\n});",
+      "caption": "counter.js"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_3"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript در فایل بیرونی"
+    },
+    {
+      "type": "p",
+      "text": "استفاده از counter.js پروژهٔ شما را چنین می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "سازمان‌یافته‌تر",
+        "جدا نگه داشتن HTML و JavaScript",
+        "خواندن و استفادهٔ دوباره ساده‌تر",
+        "شبیه‌تر به پروژه‌های واقعی"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "رویداد DOMContentLoaded"
+    },
+    {
+      "type": "p",
+      "text": "چرا از DOMContentLoaded استفاده می‌کنیم؟"
+    },
+    {
+      "type": "p",
+      "text": "وقتی از یک فایل JavaScript بیرونی استفاده می‌کنید، ممکن است مرورگر اسکریپت را پیش از آماده شدن HTML بارگذاری کند. پس از این استفاده می‌کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.addEventListener(\"DOMContentLoaded\", function() {\n\n// JavaScript code\n\n});",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "یعنی کد JavaScript بعد از پایان بارگذاری HTML صفحه اجرا شود."
+    },
+    {
+      "type": "h2",
+      "text": "پروژه‌های JavaScript"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "شمارندهٔ JavaScript\nپروژهٔ شمارنده با ذخیره و بازیابی در localStorage.",
+        "شنوندهٔ رویداد JavaScript\nهمان پروژهٔ شمارنده، این بار با شنوندهٔ رویداد (event listener) به‌جای onclick.",
+        "فهرست کارهای روزانه\nفهرست کارهایی که در یک آرایه در localStorage ذخیره می‌شود.",
+        "پنجرهٔ مودال\nیک پنجرهٔ مودال که روی صفحه ظاهر می‌شود.",
+        "اعتبارسنجی فرم\nیک فرم HTML همراه با اعتبارسنجی فرم."
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "همان شمارندهٔ درس قبل را بسازید، اما به‌جای ویژگی onclick برای هر دکمه یک شنوندهٔ رویداد با addEventListener(\"click\", ...) اضافه کنید.",
+      "hint": "برای انتخاب دکمه از document.getElementById استفاده کنید و بعد el.addEventListener(\"click\", تابع) بنویسید."
+    },
+    {
+      "prompt": "کد JavaScript را به فایل بیرونی counter.js منتقل کنید و تگ script را در انتهای body با src=\"counter.js\" وصل کنید.",
+      "hint": "تگ script باید پیش از </body> بیاید تا HTML زودتر آماده شود."
+    },
+    {
+      "prompt": "کل کد را داخل document.addEventListener(\"DOMContentLoaded\", function () { ... }) بگذارید و صفحه را تست کنید.",
+      "hint": "این کار تضمین می‌کند JavaScript فقط بعد از آماده شدن HTML اجرا شود."
+    },
+    {
+      "prompt": "به دکمه‌های ذخیره و بارگذاری پیام‌های کوتاه «Saved!» و «Loaded!» اضافه کنید که چند لحظه نمایش داده شوند.",
+      "hint": "می‌توانید متن یک عنصر را تغییر دهید و با setTimeout بعد از چند صد میلی‌ثانیه پاکش کنید."
+    },
+    {
+      "prompt": "با یکی از دکمه‌ها دو شنوندهٔ رویداد مختلف وصل کنید و ببینید هر دو اجرا می‌شوند.",
+      "hint": "یکی از مزیت‌های addEventListener این است که می‌توان چند رویداد را به یک عنصر بست، کاری که با onclick ممکن نیست."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "مزیت اصلی addEventListener نسبت به ویژگی onclick چیست؟",
+      "options": [
+        "فقط برای دکمه‌ها کار می‌کند",
+        "می‌توان چند شنونده به یک عنصر بست و HTML و JavaScript را جدا نگه داشت",
+        "سرعت اجرا را چند برابر می‌کند",
+        "بدون تگ script کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "با addEventListener می‌توان چند رویداد را به یک عنصر وصل کرد، کد HTML و JavaScript جدا می‌ماند و کد پروژه‌های بزرگ‌تر تمیزتر می‌شود."
+    },
+    {
+      "question": "DOMContentLoaded چه زمانی اجرا می‌شود؟",
+      "options": [
+        "همیشه در پایان اسکریپت",
+        "قبل از بارگذاری HTML",
+        "بعد از پایان بارگذاری و تجزیهٔ HTML صفحه",
+        "فقط در حالت strict"
+      ],
+      "answer": 2,
+      "explanation": "این رویداد بعد از آماده شدن HTML اجرا می‌شود؛ پس اگر فایل JavaScript بیرونی زودتر بارگذاری شود، عنصرهای صفحه در دسترس خواهند بود."
+    },
+    {
+      "question": "چرا تگ <script> را پیش از </body> می‌گذاریم؟",
+      "options": [
+        "چون در head خطا می‌دهد",
+        "تا فایل counter.js سریع‌تر دانلود شود",
+        "چون در غیر این صورت بارگذاری شکست می‌خورد",
+        "تا مرورگر اول HTML را بسازد و بعد اسکریپت را اجرا کند"
+      ],
+      "answer": 3,
+      "explanation": "قرار دادن اسکریپت در پایان body باعث می‌شود مرورگر اول صفحه را بارگذاری کند و عنصرها هنگام اجرای اسکریپت وجود داشته باشند."
+    },
+    {
+      "question": "انتقال JavaScript به فایل بیرونی counter.js چه سودی دارد؟",
+      "options": [
+        "سازمان‌یافته‌تر و جداشده از HTML است و استفادهٔ دوباره‌اش ساده‌تر می‌شود",
+        "اجرای کد را دو برابر سریع می‌کند",
+        "نیاز به تگ script را حذف می‌کند",
+        "خطاها را خودکار اصلاح می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "کد بیرونی منظم‌تر است، از HTML جدا می‌شود، خواندن و استفادهٔ دوباره‌اش ساده‌تر است و به پروژه‌های واقعی نزدیک‌تر می‌شود."
+    },
+    {
+      "question": "چرا در این پروژه به‌جای مستقیماً صدا زدن تابع، از شنوندهٔ رویداد استفاده می‌کنیم؟",
+      "options": [
+        "چون ویژگی onclick در JavaScript وجود ندارد",
+        "چون شنوندهٔ رویداد محدودیت یک رویداد در هر عنصر را برمی‌دارد و کد تمیزتری می‌سازد",
+        "چون شنوندهٔ رویداد اجباری است",
+        "چون onclick فقط در فرم‌ها کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "هر عنصر می‌تواند چند شنوندهٔ رویداد داشته باشد و کد JavaScript از HTML جدا می‌ماند؛ همین کار تمیزتر و قابل توسعه‌تر است."
+    }
+  ]
 }

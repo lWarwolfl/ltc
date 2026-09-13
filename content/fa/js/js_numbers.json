@@ -1,689 +1,659 @@
 {
- "slug": "js_numbers",
- "course": "js",
- "order": 31,
- "url": "/js/js_numbers.asp",
- "title": "عددها در JavaScript",
- "summary": "JavaScript فقط یک نوع عدد دارد و همهٔ عددها به صورت ممیز شناور 64 بیتی ذخیره می‌شوند. در این درس با دقت عددهای صحیح و اعشاری، الحاق عدد و رشته، NaN، Infinity، مبنای شانزده و ساخت شیء Number آشنا می‌شوید و می‌بینید چرا بعضی محاسبه‌ها نتیجهٔ غیرمنتظره می‌دهند.",
- "objectives": [
-  "توضیح دهید چرا JavaScript فقط یک نوع عدد دارد",
-  "حاصل جمع یک عدد و یک رشته را پیش‌بینی کنید",
-  "تشخیص دهید چه زمانی نتیجه NaN یا Infinity می‌شود",
-  "عدد را در مبناهای مختلف با toString() نمایش دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "عددها در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "انواع عدد"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript فقط یک نوع عدد دارد."
-  },
-  {
-   "type": "p",
-   "text": "عددها را می‌توان با اعشار یا بدون اعشار نوشت."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 3.14;    // A number with decimals\n\nlet y = 3;       // A number without decimals",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers1"
-  },
-  {
-   "type": "p",
-   "text": "عددهای بسیار بزرگ یا بسیار کوچک را می‌توان با نماد علمی (توان) نوشت:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 123e5;    // 12300000\n\nlet y = 123e-5;   // 0.00123",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers2"
-  },
-  {
-   "type": "h2",
-   "text": "عددهای JavaScript همیشه ممیز شناور 64 بیتی هستند"
-  },
-  {
-   "type": "p",
-   "text": "برخلاف بسیاری از زبان‌های برنامه‌نویسی دیگر، JavaScript نوع‌های مختلف عدد مثل integer، short، long، floating-point و مانند آن‌ها ندارد."
-  },
-  {
-   "type": "p",
-   "text": "عددهای JavaScript همیشه به صورت عدد ممیز شناور با دقت مضاعف و بر پایهٔ استاندارد بین‌المللی IEEE 754 ذخیره می‌شوند. این قالب عدد را در 64 بیت نگه می‌دارد: خود عدد (کسر) در بیت‌های 0 تا 51، توان در بیت‌های 52 تا 62 و علامت در بیت 63:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "مقدار (همان کسر/Mantissa)",
-    "توان",
-    "علامت"
-   ],
-   "rows": [
-    [
-     "۵۲ بیت (۰ تا ۵۱)",
-     "۱۱ بیت (۵۲ تا ۶۲)",
-     "۱ بیت (۶۳)"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر زبان‌های برنامه‌نویسی نوع‌های عددی زیادی دارند:"
-  },
-  {
-   "type": "p",
-   "text": "عددهای صحیح: byte (۸ بیتی)، short (۱۶ بیتی)، int (۳۲ بیتی)، long (۶۴ بیتی)"
-  },
-  {
-   "type": "p",
-   "text": "عددهای حقیقی (ممیز شناور): float (۳۲ بیتی)، double (۶۴ بیتی)."
-  },
-  {
-   "type": "p",
-   "text": "عددهای JavaScript همیشه double هستند (ممیز شناور 64 بیتی)."
-  },
-  {
-   "type": "h2",
-   "text": "دقت عددهای صحیح"
-  },
-  {
-   "type": "p",
-   "text": "عددهای صحیح (عددهای بدون نقطه یا نماد توان) تا ۱۵ رقم دقیق هستند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 999999999999999;   // x will be 999999999999999\n\nlet y = 9999999999999999;  // y will be 10000000000000000",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
-  },
-  {
-   "type": "p",
-   "text": "بیشترین تعداد رقم اعشار ۱۷ است."
-  },
-  {
-   "type": "h2",
-   "text": "دقت عددهای اعشاری"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 0.2 + 0.1;",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate2"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = (0.2 * 10 + 0.1 * 10) / 10;",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate3"
-  },
-  {
-   "type": "h2",
-   "text": "جمع کردن عددها و رشته‌ها"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار !! JavaScript از عملگر + هم برای جمع و هم برای الحاق استفاده می‌کند. عددها جمع می‌شوند و رشته‌ها به هم می‌چسبند."
-  },
-  {
-   "type": "p",
-   "text": "اگر دو عدد را جمع کنید، نتیجه یک عدد است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10;\n\nlet y = 20;\n\nlet z = x + y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add"
-  },
-  {
-   "type": "p",
-   "text": "اگر دو رشته را جمع کنید، نتیجه الحاق دو رشته است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"10\";\n\nlet y = \"20\";\n\nlet z = x + y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings1"
-  },
-  {
-   "type": "p",
-   "text": "اگر یک عدد و یک رشته را جمع کنید، نتیجه الحاق رشته است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10;\n\nlet y = \"20\";\n\nlet z = x + y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings2"
-  },
-  {
-   "type": "p",
-   "text": "اگر یک رشته و یک عدد را جمع کنید، نتیجه الحاق رشته است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"10\";\n\nlet y = 20;\n\nlet z = x + y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings5"
-  },
-  {
-   "type": "p",
-   "text": "اشتباه رایج این است که انتظار داشته باشید این نتیجه 30 باشد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10;\n\nlet y = 20;\n\nlet z = \"The result is: \" + x + y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings3"
-  },
-  {
-   "type": "p",
-   "text": "اشتباه رایج این است که انتظار داشته باشید این نتیجه 102030 باشد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10;\n\nlet y = 20;\n\nlet z = \"30\";\n\nlet result = x + y + z;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings4"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "مفسر JavaScript از چپ به راست کار می‌کند. اول 10 + 20 جمع می‌شود چون x و y هر دو عدد هستند. بعد 30 + \"30\" به هم می‌چسبند چون z یک رشته است."
-  },
-  {
-   "type": "h2",
-   "text": "رشته‌های عددی"
-  },
-  {
-   "type": "p",
-   "text": "رشته‌های JavaScript می‌توانند محتوای عددی داشته باشند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 100;         // x is a number\n\nlet y = \"100\";       // y is a\nstring",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "JavaScript در همهٔ عملیات عددی تلاش می‌کند رشته‌ها را به عدد تبدیل کند:"
-  },
-  {
-   "type": "p",
-   "text": "این کار می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"100\";\n\nlet y = \"10\";\n\nlet z = x / y;",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_string1"
-  },
-  {
-   "type": "p",
-   "text": "این هم کار می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"100\";\n\nlet y = \"10\";\n\nlet z = x * y;",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_string2"
-  },
-  {
-   "type": "p",
-   "text": "و این هم کار می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"100\";\n\nlet y = \"10\";\n\nlet z = x - y;",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_string3"
-  },
-  {
-   "type": "p",
-   "text": "اما این کار نمی‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"100\";\n\nlet y = \"10\";\n\nlet z = x + y;",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_string4"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "در مثال آخر JavaScript از عملگر + برای چسباندن رشته‌ها استفاده می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "NaN، عدد نیست (Not a Number)"
-  },
-  {
-   "type": "p",
-   "text": "NaN یک کلمهٔ رزروشدهٔ JavaScript است و نشان می‌دهد یک عدد، عدد معتبری نیست."
-  },
-  {
-   "type": "p",
-   "text": "اگر بخواهید با یک رشتهٔ غیرعددی حساب انجام دهید، نتیجه NaN (Not a Number) می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 100 / \"Apple\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_divide_string"
-  },
-  {
-   "type": "p",
-   "text": "اما اگر رشته عددی باشد، نتیجه یک عدد است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 100 / \"10\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_divide_number"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید از تابع سراسری isNaN() در JavaScript استفاده کنید تا بفهمید یک مقدار عدد نیست:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 100 / \"Apple\";\nisNaN(x);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_isnan_true"
-  },
-  {
-   "type": "p",
-   "text": "مراقب NaN باشید. اگر NaN را در یک عملیات ریاضی به کار ببرید، نتیجه هم NaN می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = NaN;\n\nlet y = 5;\n\nlet z = x + y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_nan_math"
-  },
-  {
-   "type": "p",
-   "text": "یا ممکن است نتیجه یک الحاق مثل NaN5 باشد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = NaN;\n\nlet y = \"5\";\n\nlet z = x + y;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_nan_concat"
-  },
-  {
-   "type": "p",
-   "text": "NaN یک عدد است: خروجی typeof NaN برابر number است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "typeof NaN;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_nan_typeof"
-  },
-  {
-   "type": "h2",
-   "text": "Infinity (بی‌نهایت)"
-  },
-  {
-   "type": "p",
-   "text": "Infinity (یا -Infinity) مقداری است که JavaScript وقتی عددی بزرگ‌تر از بزرگ‌ترین عدد ممکن حساب کنید برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let myNumber = 2;\n\n// Execute until Infinity\n\nwhile (myNumber != Infinity) {\n\n    myNumber = myNumber * myNumber;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_infinity"
-  },
-  {
-   "type": "p",
-   "text": "تقسیم بر 0 (صفر) هم Infinity تولید می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x =  2 / 0;\n\nlet y = -2 / 0;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_infinity_zero"
-  },
-  {
-   "type": "p",
-   "text": "Infinity یک عدد است: خروجی typeof Infinity برابر number است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "typeof Infinity;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_infinity_typeof"
-  },
-  {
-   "type": "h2",
-   "text": "مبنای شانزده (Hexadecimal)"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript ثابت‌های عددی را اگر با 0x شروع شوند به صورت مبنای شانزده (hexadecimal) تفسیر می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 0xFF;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_hex"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "هرگز عدد را با صفر پیشرو ننویسید (مثل 07). بعضی نسخه‌های JavaScript عددهایی را که با صفر پیشرو نوشته شوند به صورت مبنای هشت (octal) تفسیر می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "به طور پیش‌فرض، JavaScript عددها را در مبنای ۱۰ (اعشاری) نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "اما می‌توانید از متد toString() استفاده کنید تا عددها را در مبنای ۲ تا ۳۶ نمایش دهید."
-  },
-  {
-   "type": "p",
-   "text": "Hexadecimal مبنای ۱۶ است، Decimal مبنای ۱۰، Octal مبنای ۸ و Binary مبنای ۲."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let myNumber = 32;\n\nmyNumber.toString(32);\n\nmyNumber.toString(16);\n\nmyNumber.toString(12);\n\nmyNumber.toString(10);\n\nmyNumber.toString(8);\n\nmyNumber.toString(2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_tostring"
-  },
-  {
-   "type": "h2",
-   "text": "عددهای JavaScript به صورت شیء"
-  },
-  {
-   "type": "p",
-   "text": "به طور معمول عددهای JavaScript مقدارهای اولیه (primitive) هستند که از literal ساخته می‌شوند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 123;",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "اما عددها را می‌توان با کلمهٔ کلیدی new به صورت شیء هم تعریف کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let y = new Number(123);",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 123;\n\nlet y = new Number(123);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "شیء Number نسازید. کلمهٔ کلیدی new کد را پیچیده و سرعت اجرا را کم می‌کند. شیءهای Number می‌توانند نتیجه‌های غیرمنتظره بدهند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 500;\n\nlet y = new Number(500);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 500;\n\nlet y = new Number(500);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object2"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "به تفاوت (x==y) و (x===y) توجه کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = new Number(500);\n\nlet y = new Number(500);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object3"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = new Number(500);\n\nlet y = new Number(500);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object4"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "مقایسهٔ دو شیء JavaScript همیشه false برمی‌گرداند."
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر یاد بگیرید:"
-  },
-  {
-   "type": "p",
-   "text": "متدهای عدد در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت‌های عدد در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع عدد در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "در کنسول مرورگر let x = 0.2 + 0.1; را اجرا کنید و خروجی را ببینید. بعد let y = (0.2 * 10 + 0.1 * 10) / 10; را امتحان کنید و توضیح دهید چرا این یکی 0.3 می‌دهد.",
-   "hint": "ممیز شناور 64 بیتی نمی‌تواند بعضی کسرهای اعشاری را دقیق نگه دارد؛ ضرب در 10 موقتاً خطا را کنار می‌زند."
-  },
-  {
-   "prompt": "با let x = 10; let y = \"20\"; let z = x + y; خروجی را چاپ کنید و بعد typeof z را هم چاپ کنید. سپس همین کار را با y = 20 تکرار کنید.",
-   "hint": "وقتی یکی از دو طرف + رشته باشد، JavaScript به جای جمع، الحاق می‌کند."
-  },
-  {
-   "prompt": "با let z = \"The result is: \" + 10 + 20; نشان دهید چرا نتیجه 30 نمی‌شود. سپس با پرانتز آن را به 30 برسانید.",
-   "hint": "مفسر از چپ به راست کار می‌کند و پرانتز می‌تواند ترتیب را عوض کند."
-  },
-  {
-   "prompt": "خروجیهای let x = 100 / \"Apple\"; و let x = 100 / \"10\"; را چاپ کنید و با isNaN(x) بررسی کنید کدام‌یک عدد معتبر است.",
-   "hint": "رشتهٔ عددی خودکار به عدد تبدیل می‌شود، ولی رشتهٔ غیرعددی نتیجهٔ NaN می‌دهد."
-  },
-  {
-   "prompt": "عدد 32 را با myNumber.toString(2)، toString(8)، toString(16) و toString(32) در مبناهای مختلف چاپ کنید.",
-   "hint": "آرگومان toString مبنای خروجی را تعیین می‌کند و از ۲ تا ۳۶ کار می‌کند."
-  }
- ],
- "quiz": [
-  {
-   "question": "حاصل let x = 10; let y = 20; let z = \"The result is: \" + x + y; چیست؟",
-   "options": [
-    "\"The result is: 30\"",
-    "\"The result is: 1020\"",
-    "30",
-    "NaN"
-   ],
-   "answer": 1,
-   "explanation": "مفسر از چپ به راست کار می‌کند: اول \"The result is: \" با 10 الحاق می‌شود و رشته می‌شود، پس 20 هم به آن می‌چسبد و نتیجه \"The result is: 1020\" است."
-  },
-  {
-   "question": "مقدار typeof NaN در JavaScript چیست؟",
-   "options": [
-    "\"nan\"",
-    "\"undefined\"",
-    "\"number\"",
-    "\"string\""
-   ],
-   "answer": 2,
-   "explanation": "NaN با اینکه عدد معتبری نیست، از نظر نوع داده number است؛ به همین دلیل typeof NaN برابر \"number\" می‌شود."
-  },
-  {
-   "question": "کدام عملیات روی رشته‌های عددی نتیجهٔ عددی نمی‌دهد؟",
-   "options": [
-    "\"100\" / \"10\"",
-    "\"100\" * \"10\"",
-    "\"100\" - \"10\"",
-    "\"100\" + \"10\""
-   ],
-   "answer": 3,
-   "explanation": "عملگر + در JavaScript هم جمع و هم الحاق است؛ با دو رشته الحاق می‌کند و \"10010\" می‌دهد، ولی / و * و - رشته‌های عددی را به عدد تبدیل می‌کنند."
-  },
-  {
-   "question": "خروجی let x = 2 / 0; چه می‌شود؟",
-   "options": [
-    "خطا می‌دهد",
-    "Infinity",
-    "NaN",
-    "0"
-   ],
-   "answer": 1,
-   "explanation": "تقسیم بر صفر در JavaScript خطا نمی‌دهد و Infinity تولید می‌کند؛ برای -2 / 0 نتیجه -Infinity است."
-  },
-  {
-   "question": "چرا نوشتن عدد با صفر پیشرو مثل 07 توصیه نمی‌شود؟",
-   "options": [
-    "چون در مبنای شانزده تفسیر می‌شود",
-    "چون بعضی نسخه‌های JavaScript آن را مبنای هشت (octal) تفسیر می‌کنند",
-    "چون مقدار عدد را NaN می‌کند",
-    "چون سرعت اجرا را کم می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "در بعضی نسخه‌های JavaScript عدد با صفر پیشرو مبنای هشت تفسیر می‌شود، پس عددی مثل 07 معنی متفاوتی پیدا می‌کند."
-  }
- ]
+  "slug": "js_numbers",
+  "course": "js",
+  "order": 31,
+  "url": "/js/js_numbers.asp",
+  "title": "عددها در JavaScript",
+  "summary": "JavaScript فقط یک نوع عدد دارد و همهٔ عددها به صورت ممیز شناور 64 بیتی ذخیره می‌شوند. در این درس با دقت عددهای صحیح و اعشاری، الحاق عدد و رشته، NaN، Infinity، مبنای شانزده و ساخت شیء Number آشنا می‌شوید و می‌بینید چرا بعضی محاسبه‌ها نتیجهٔ غیرمنتظره می‌دهند.",
+  "objectives": [
+    "توضیح دهید چرا JavaScript فقط یک نوع عدد دارد",
+    "حاصل جمع یک عدد و یک رشته را پیش‌بینی کنید",
+    "تشخیص دهید چه زمانی نتیجه NaN یا Infinity می‌شود",
+    "عدد را در مبناهای مختلف با toString() نمایش دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "عددها در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "انواع عدد"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript فقط یک نوع عدد دارد."
+    },
+    {
+      "type": "p",
+      "text": "عددها را می‌توان با اعشار یا بدون اعشار نوشت."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 3.14;    // A number with decimals\n\nlet y = 3;       // A number without decimals",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers1"
+    },
+    {
+      "type": "p",
+      "text": "عددهای بسیار بزرگ یا بسیار کوچک را می‌توان با نماد علمی (توان) نوشت:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 123e5;    // 12300000\n\nlet y = 123e-5;   // 0.00123",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers2"
+    },
+    {
+      "type": "h2",
+      "text": "عددهای JavaScript همیشه ممیز شناور 64 بیتی هستند"
+    },
+    {
+      "type": "p",
+      "text": "برخلاف بسیاری از زبان‌های برنامه‌نویسی دیگر، JavaScript نوع‌های مختلف عدد مثل integer، short، long، floating-point و مانند آن‌ها ندارد."
+    },
+    {
+      "type": "p",
+      "text": "عددهای JavaScript همیشه به صورت عدد ممیز شناور با دقت مضاعف و بر پایهٔ استاندارد بین‌المللی IEEE 754 ذخیره می‌شوند. این قالب عدد را در 64 بیت نگه می‌دارد: خود عدد (کسر) در بیت‌های 0 تا 51، توان در بیت‌های 52 تا 62 و علامت در بیت 63:"
+    },
+    {
+      "type": "table",
+      "headers": ["مقدار (همان کسر/Mantissa)", "توان", "علامت"],
+      "rows": [["۵۲ بیت (۰ تا ۵۱)", "۱۱ بیت (۵۲ تا ۶۲)", "۱ بیت (۶۳)"]]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر زبان‌های برنامه‌نویسی نوع‌های عددی زیادی دارند:"
+    },
+    {
+      "type": "p",
+      "text": "عددهای صحیح: byte (۸ بیتی)، short (۱۶ بیتی)، int (۳۲ بیتی)، long (۶۴ بیتی)"
+    },
+    {
+      "type": "p",
+      "text": "عددهای حقیقی (ممیز شناور): float (۳۲ بیتی)، double (۶۴ بیتی)."
+    },
+    {
+      "type": "p",
+      "text": "عددهای JavaScript همیشه double هستند (ممیز شناور 64 بیتی)."
+    },
+    {
+      "type": "h2",
+      "text": "دقت عددهای صحیح"
+    },
+    {
+      "type": "p",
+      "text": "عددهای صحیح (عددهای بدون نقطه یا نماد توان) تا ۱۵ رقم دقیق هستند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 999999999999999;   // x will be 999999999999999\n\nlet y = 9999999999999999;  // y will be 10000000000000000",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
+    },
+    {
+      "type": "p",
+      "text": "بیشترین تعداد رقم اعشار ۱۷ است."
+    },
+    {
+      "type": "h2",
+      "text": "دقت عددهای اعشاری"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 0.2 + 0.1;",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate2"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = (0.2 * 10 + 0.1 * 10) / 10;",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate3"
+    },
+    {
+      "type": "h2",
+      "text": "جمع کردن عددها و رشته‌ها"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار !! JavaScript از عملگر + هم برای جمع و هم برای الحاق استفاده می‌کند. عددها جمع می‌شوند و رشته‌ها به هم می‌چسبند."
+    },
+    {
+      "type": "p",
+      "text": "اگر دو عدد را جمع کنید، نتیجه یک عدد است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10;\n\nlet y = 20;\n\nlet z = x + y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add"
+    },
+    {
+      "type": "p",
+      "text": "اگر دو رشته را جمع کنید، نتیجه الحاق دو رشته است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"10\";\n\nlet y = \"20\";\n\nlet z = x + y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings1"
+    },
+    {
+      "type": "p",
+      "text": "اگر یک عدد و یک رشته را جمع کنید، نتیجه الحاق رشته است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10;\n\nlet y = \"20\";\n\nlet z = x + y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings2"
+    },
+    {
+      "type": "p",
+      "text": "اگر یک رشته و یک عدد را جمع کنید، نتیجه الحاق رشته است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"10\";\n\nlet y = 20;\n\nlet z = x + y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings5"
+    },
+    {
+      "type": "p",
+      "text": "اشتباه رایج این است که انتظار داشته باشید این نتیجه 30 باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10;\n\nlet y = 20;\n\nlet z = \"The result is: \" + x + y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings3"
+    },
+    {
+      "type": "p",
+      "text": "اشتباه رایج این است که انتظار داشته باشید این نتیجه 102030 باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10;\n\nlet y = 20;\n\nlet z = \"30\";\n\nlet result = x + y + z;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_add_strings4"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "مفسر JavaScript از چپ به راست کار می‌کند. اول 10 + 20 جمع می‌شود چون x و y هر دو عدد هستند. بعد 30 + \"30\" به هم می‌چسبند چون z یک رشته است."
+    },
+    {
+      "type": "h2",
+      "text": "رشته‌های عددی"
+    },
+    {
+      "type": "p",
+      "text": "رشته‌های JavaScript می‌توانند محتوای عددی داشته باشند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 100;         // x is a number\n\nlet y = \"100\";       // y is a\nstring",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "JavaScript در همهٔ عملیات عددی تلاش می‌کند رشته‌ها را به عدد تبدیل کند:"
+    },
+    {
+      "type": "p",
+      "text": "این کار می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"100\";\n\nlet y = \"10\";\n\nlet z = x / y;",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_string1"
+    },
+    {
+      "type": "p",
+      "text": "این هم کار می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"100\";\n\nlet y = \"10\";\n\nlet z = x * y;",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_string2"
+    },
+    {
+      "type": "p",
+      "text": "و این هم کار می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"100\";\n\nlet y = \"10\";\n\nlet z = x - y;",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_string3"
+    },
+    {
+      "type": "p",
+      "text": "اما این کار نمی‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"100\";\n\nlet y = \"10\";\n\nlet z = x + y;",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_string4"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "در مثال آخر JavaScript از عملگر + برای چسباندن رشته‌ها استفاده می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "NaN، عدد نیست (Not a Number)"
+    },
+    {
+      "type": "p",
+      "text": "NaN یک کلمهٔ رزروشدهٔ JavaScript است و نشان می‌دهد یک عدد، عدد معتبری نیست."
+    },
+    {
+      "type": "p",
+      "text": "اگر بخواهید با یک رشتهٔ غیرعددی حساب انجام دهید، نتیجه NaN (Not a Number) می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 100 / \"Apple\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_divide_string"
+    },
+    {
+      "type": "p",
+      "text": "اما اگر رشته عددی باشد، نتیجه یک عدد است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 100 / \"10\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_divide_number"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید از تابع سراسری isNaN() در JavaScript استفاده کنید تا بفهمید یک مقدار عدد نیست:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 100 / \"Apple\";\nisNaN(x);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_isnan_true"
+    },
+    {
+      "type": "p",
+      "text": "مراقب NaN باشید. اگر NaN را در یک عملیات ریاضی به کار ببرید، نتیجه هم NaN می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = NaN;\n\nlet y = 5;\n\nlet z = x + y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_nan_math"
+    },
+    {
+      "type": "p",
+      "text": "یا ممکن است نتیجه یک الحاق مثل NaN5 باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = NaN;\n\nlet y = \"5\";\n\nlet z = x + y;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_nan_concat"
+    },
+    {
+      "type": "p",
+      "text": "NaN یک عدد است: خروجی typeof NaN برابر number است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "typeof NaN;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_nan_typeof"
+    },
+    {
+      "type": "h2",
+      "text": "Infinity (بی‌نهایت)"
+    },
+    {
+      "type": "p",
+      "text": "Infinity (یا -Infinity) مقداری است که JavaScript وقتی عددی بزرگ‌تر از بزرگ‌ترین عدد ممکن حساب کنید برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let myNumber = 2;\n\n// Execute until Infinity\n\nwhile (myNumber != Infinity) {\n\n    myNumber = myNumber * myNumber;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_infinity"
+    },
+    {
+      "type": "p",
+      "text": "تقسیم بر 0 (صفر) هم Infinity تولید می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x =  2 / 0;\n\nlet y = -2 / 0;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_infinity_zero"
+    },
+    {
+      "type": "p",
+      "text": "Infinity یک عدد است: خروجی typeof Infinity برابر number است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "typeof Infinity;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_infinity_typeof"
+    },
+    {
+      "type": "h2",
+      "text": "مبنای شانزده (Hexadecimal)"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript ثابت‌های عددی را اگر با 0x شروع شوند به صورت مبنای شانزده (hexadecimal) تفسیر می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 0xFF;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_hex"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "هرگز عدد را با صفر پیشرو ننویسید (مثل 07). بعضی نسخه‌های JavaScript عددهایی را که با صفر پیشرو نوشته شوند به صورت مبنای هشت (octal) تفسیر می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "به طور پیش‌فرض، JavaScript عددها را در مبنای ۱۰ (اعشاری) نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "اما می‌توانید از متد toString() استفاده کنید تا عددها را در مبنای ۲ تا ۳۶ نمایش دهید."
+    },
+    {
+      "type": "p",
+      "text": "Hexadecimal مبنای ۱۶ است، Decimal مبنای ۱۰، Octal مبنای ۸ و Binary مبنای ۲."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let myNumber = 32;\n\nmyNumber.toString(32);\n\nmyNumber.toString(16);\n\nmyNumber.toString(12);\n\nmyNumber.toString(10);\n\nmyNumber.toString(8);\n\nmyNumber.toString(2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_tostring"
+    },
+    {
+      "type": "h2",
+      "text": "عددهای JavaScript به صورت شیء"
+    },
+    {
+      "type": "p",
+      "text": "به طور معمول عددهای JavaScript مقدارهای اولیه (primitive) هستند که از literal ساخته می‌شوند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 123;",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "اما عددها را می‌توان با کلمهٔ کلیدی new به صورت شیء هم تعریف کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let y = new Number(123);",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 123;\n\nlet y = new Number(123);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "شیء Number نسازید. کلمهٔ کلیدی new کد را پیچیده و سرعت اجرا را کم می‌کند. شیءهای Number می‌توانند نتیجه‌های غیرمنتظره بدهند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 500;\n\nlet y = new Number(500);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 500;\n\nlet y = new Number(500);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object2"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "به تفاوت (x==y) و (x===y) توجه کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = new Number(500);\n\nlet y = new Number(500);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object3"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = new Number(500);\n\nlet y = new Number(500);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_object4"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "مقایسهٔ دو شیء JavaScript همیشه false برمی‌گرداند."
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر یاد بگیرید:"
+    },
+    {
+      "type": "p",
+      "text": "متدهای عدد در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت‌های عدد در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع عدد در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در کنسول مرورگر let x = 0.2 + 0.1; را اجرا کنید و خروجی را ببینید. بعد let y = (0.2 * 10 + 0.1 * 10) / 10; را امتحان کنید و توضیح دهید چرا این یکی 0.3 می‌دهد.",
+      "hint": "ممیز شناور 64 بیتی نمی‌تواند بعضی کسرهای اعشاری را دقیق نگه دارد؛ ضرب در 10 موقتاً خطا را کنار می‌زند."
+    },
+    {
+      "prompt": "با let x = 10; let y = \"20\"; let z = x + y; خروجی را چاپ کنید و بعد typeof z را هم چاپ کنید. سپس همین کار را با y = 20 تکرار کنید.",
+      "hint": "وقتی یکی از دو طرف + رشته باشد، JavaScript به جای جمع، الحاق می‌کند."
+    },
+    {
+      "prompt": "با let z = \"The result is: \" + 10 + 20; نشان دهید چرا نتیجه 30 نمی‌شود. سپس با پرانتز آن را به 30 برسانید.",
+      "hint": "مفسر از چپ به راست کار می‌کند و پرانتز می‌تواند ترتیب را عوض کند."
+    },
+    {
+      "prompt": "خروجیهای let x = 100 / \"Apple\"; و let x = 100 / \"10\"; را چاپ کنید و با isNaN(x) بررسی کنید کدام‌یک عدد معتبر است.",
+      "hint": "رشتهٔ عددی خودکار به عدد تبدیل می‌شود، ولی رشتهٔ غیرعددی نتیجهٔ NaN می‌دهد."
+    },
+    {
+      "prompt": "عدد 32 را با myNumber.toString(2)، toString(8)، toString(16) و toString(32) در مبناهای مختلف چاپ کنید.",
+      "hint": "آرگومان toString مبنای خروجی را تعیین می‌کند و از ۲ تا ۳۶ کار می‌کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "حاصل let x = 10; let y = 20; let z = \"The result is: \" + x + y; چیست؟",
+      "options": ["\"The result is: 30\"", "\"The result is: 1020\"", "30", "NaN"],
+      "answer": 1,
+      "explanation": "مفسر از چپ به راست کار می‌کند: اول \"The result is: \" با 10 الحاق می‌شود و رشته می‌شود، پس 20 هم به آن می‌چسبد و نتیجه \"The result is: 1020\" است."
+    },
+    {
+      "question": "مقدار typeof NaN در JavaScript چیست؟",
+      "options": ["\"nan\"", "\"undefined\"", "\"number\"", "\"string\""],
+      "answer": 2,
+      "explanation": "NaN با اینکه عدد معتبری نیست، از نظر نوع داده number است؛ به همین دلیل typeof NaN برابر \"number\" می‌شود."
+    },
+    {
+      "question": "کدام عملیات روی رشته‌های عددی نتیجهٔ عددی نمی‌دهد؟",
+      "options": ["\"100\" / \"10\"", "\"100\" * \"10\"", "\"100\" - \"10\"", "\"100\" + \"10\""],
+      "answer": 3,
+      "explanation": "عملگر + در JavaScript هم جمع و هم الحاق است؛ با دو رشته الحاق می‌کند و \"10010\" می‌دهد، ولی / و * و - رشته‌های عددی را به عدد تبدیل می‌کنند."
+    },
+    {
+      "question": "خروجی let x = 2 / 0; چه می‌شود؟",
+      "options": ["خطا می‌دهد", "Infinity", "NaN", "0"],
+      "answer": 1,
+      "explanation": "تقسیم بر صفر در JavaScript خطا نمی‌دهد و Infinity تولید می‌کند؛ برای -2 / 0 نتیجه -Infinity است."
+    },
+    {
+      "question": "چرا نوشتن عدد با صفر پیشرو مثل 07 توصیه نمی‌شود؟",
+      "options": [
+        "چون در مبنای شانزده تفسیر می‌شود",
+        "چون بعضی نسخه‌های JavaScript آن را مبنای هشت (octal) تفسیر می‌کنند",
+        "چون مقدار عدد را NaN می‌کند",
+        "چون سرعت اجرا را کم می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "در بعضی نسخه‌های JavaScript عدد با صفر پیشرو مبنای هشت تفسیر می‌شود، پس عددی مثل 07 معنی متفاوتی پیدا می‌کند."
+    }
+  ]
 }

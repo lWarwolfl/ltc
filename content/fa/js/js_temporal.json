@@ -1,694 +1,610 @@
 {
- "slug": "js_temporal",
- "course": "js",
- "order": 181,
- "url": "/js/js_temporal.asp",
- "title": "آموزش Temporal در JavaScript",
- "summary": "Temporal استاندارد تازهٔ تاریخ و زمان در JavaScript است که جای شیء قدیمی Date را می‌گیرد؛ تغییرناپذیر است و منطقهٔ زمانی و ساعت تابستانی و تقویم‌های غیرمیلادی را درجه‌یک پشتیبانی می‌کند. در این درس نوع‌های اصلی Temporal را می‌شناسید و می‌بینید هرکدام برای چه کاری ساخته شده‌اند.",
- "objectives": [
-  "بگویید Temporal چه مسئله‌هایی از Date را حل می‌کند",
-  "نوع‌های Duration و Instant و PlainDate و PlainTime و ZonedDateTime را از هم تشخیص دهید",
-  "توضیح دهید چرا Temporal بخشی از JavaScript 2027 است نه 2026",
-  "با متدهای Temporal.Now و since() و until() کار کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "آموزش Temporal در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal در JavaScript چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "Temporal استاندارد تازهٔ تاریخ و زمان در JavaScript است."
-  },
-  {
-   "type": "p",
-   "text": "شیءهای تازهٔ Temporal طوری طراحی شده‌اند که جای شیء قدیمی Date را بگیرند."
-  },
-  {
-   "type": "p",
-   "text": "برخلاف Date قدیمی، شیءهای Temporal تغییرناپذیرند و پشتیبانی درجه‌یک از منطقه‌های زمانی، ساعت تابستانی، حساب تاریخ و تقویم‌های غیرمیلادی دارند."
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/js/img_temporal.svg",
-   "alt": "نقشهٔ Temporal"
-  },
-  {
-   "type": "h2",
-   "text": "آیا Temporal بخشی از JavaScript 2026 است؟"
-  },
-  {
-   "type": "p",
-   "text": "Temporal در جولای ۲۰۲۶ به مرحلهٔ ۴ کمیتهٔ TC39 رسید."
-  },
-  {
-   "type": "p",
-   "text": "مرحلهٔ ۴ یعنی این قابلیت کامل است و در انتشار بعدی می‌آید. یک نکتهٔ زمانی مهم این است که ECMAScript 2026 از قبل بسته شده بود و Temporal را در خود نداشت."
-  },
-  {
-   "type": "p",
-   "text": "نتیجه: Temporal بخشی از JavaScript 2027 است، نه JavaScript 2026."
-  },
-  {
-   "type": "p",
-   "text": "این موضوع کمی گیج‌کننده است؛ چون Temporal در سال ۲۰۲۶ به مرحلهٔ ۴ رسید و مرورگرها خیلی پیش از انتشار ES2026 پیاده‌سازی آن را شروع کرده بودند."
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "Temporal یک به‌روزرسانی مهم در استاندارد JavaScript است."
-  },
-  {
-   "type": "p",
-   "text": "در حال حاضر در Chrome، Edge، Firefox و Opera پشتیبانی می‌شود و انتظار می‌رود پیش از ۲۰۲۷ در همهٔ مرورگرها کامل در دسترس باشد."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome144",
-     "Edge144",
-     "Firefox139",
-     "Safari",
-     "Opera128"
-    ],
-    [
-     "ژانویه ۲۰۲۶",
-     "ژانویه ۲۰۲۶",
-     "مه ۲۰۲۵",
-     "🚫",
-     "فوریه ۲۰۲۶"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "پیاده‌سازی Safari را می‌توان در Safari Technology Preview و با روشن کردن پرچم زمان اجرای --use-temporal آزمایش کرد."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script\n\nsrc=\"https://cdn.jsdelivr.net/npm/@js-temporal/polyfill/dist/index.umd.js\">\n\n</script>",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "مسیر یادگیری Temporal"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Temporal را به ترتیب درست یاد بگیرید."
-  },
-  {
-   "type": "p",
-   "text": "شروع با Temporal\nحساب با Temporal\nتفاوت‌ها در Temporal\nمقایسه در Temporal\nتبدیل‌ها در Temporal\nقالب‌ها در Temporal\nاشتباه‌های رایج در Temporal\nچگونه به Temporal مهاجرت کنیم\nاستانداردهای Temporal\nمرجع Temporal"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal در برابر Date"
-  },
-  {
-   "type": "p",
-   "text": "Temporal و Date در JavaScript را با هم مقایسه کنید."
-  },
-  {
-   "type": "p",
-   "text": "تفاوت‌های Date و Temporal را یاد بگیرید"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "در Date ماه‌ها از صفر شمرده می‌شوند، در Temporal از یک",
-    "حساب تاریخ در Date دستی است، در Temporal درونی",
-    "Date مقدارها را تغییر می‌دهد، Temporal نه",
-    "Date مبدأ UTC و منطقهٔ زمانی را قاطی می‌کند، Temporal آن‌ها را جدا می‌کند",
-    "حساب Date در برخورد با ساعت تابستانی می‌تواند خطا بدهد، Temporal نمی‌دهد"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "یاد بگیرید چرا Temporal جایگزین مدرن Date است."
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.Duration"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.Duration یک بازهٔ زمانی را نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "مثال: ۷ روز و ۱ ساعت."
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.Duration این خصوصیت‌ها را در خود دارد:"
-  },
-  {
-   "type": "p",
-   "text": "years، months، weeks، days، hours، minutes، seconds، milliseconds و nanoseconds."
-  },
-  {
-   "type": "p",
-   "text": "از شیء Duration برای حساب دقیق تاریخ و زمان (مثلاً جمع و تفریق) استفاده می‌شود، بدون باگ‌ها و پیچیدگی‌هایی که شیء قدیمی Date در JavaScript داشت."
-  },
-  {
-   "type": "h2",
-   "text": "چه چیزی یاد می‌گیرید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "چگونه از Temporal.Duration در JavaScript استفاده کنید",
-    "چگونه بازه‌های زمانی را نمایش دهید و حساب کنید",
-    "چگونه روز و ساعت و ماه را ایمن‌تر جمع و تفریق کنید"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.Instant"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.Instant یک لحظهٔ دقیق در زمان UTC را نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "هیچ منطقهٔ زمانی و هیچ تقویمی ندارد."
-  },
-  {
-   "type": "p",
-   "text": "نانوثانیه‌ها را از ۱ ژانویهٔ ۱۹۷۰ ساعت ۰۰:۰۰:۰۰ (مبدأ یونیکس) نگه می‌دارد."
-  },
-  {
-   "type": "p",
-   "text": "مثال: 2026-05-17T14:30:00Z"
-  },
-  {
-   "type": "h2",
-   "text": "چه چیزی یاد می‌گیرید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "چگونه با لحظه‌های دقیق در زمان کار کنید",
-    "چگونه Instantها را با هم مقایسه کنید",
-    "چگونه از timestampها تبدیل کنید",
-    "چگونه Date.now() را جایگزین کنید"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.PlainDateTime"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.PlainDateTime یک شیء خالص تاریخ و زمان است."
-  },
-  {
-   "type": "p",
-   "text": "یک تاریخ تقویمی و یک زمان ساعتی را بدون منطقهٔ زمانی نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "مثال: 2026-05-07T14:30:00."
-  },
-  {
-   "type": "h2",
-   "text": "چه چیزی یاد می‌گیرید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "چگونه یک Temporal.PlainDateTime در JavaScript بسازید",
-    "چگونه با تاریخ و زمان بدون منطقهٔ زمانی کار کنید",
-    "چگونه تاریخ‌ها را جمع و تفریق کنید",
-    "چگونه تاریخ‌ها را ایمن مقایسه کنید"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.PlainDate"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.PlainDate یک تاریخ تقویمی بدون زمان را نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "Temporal.PlainDate معمولاً در قالب ISO 8601 است (2026-05-01)."
-  },
-  {
-   "type": "p",
-   "text": "برای تاریخ‌هایی که مستقل از منطقهٔ زمانی یکی هستند، مثل تولدها و تعطیلات، استفاده از آن ساده‌تر و مقایسه‌اش ایمن‌تر از شیءهای DateTime است."
-  },
-  {
-   "type": "h2",
-   "text": "چه چیزی یاد می‌گیرید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "چگونه یک Temporal.PlainDate در JavaScript بسازید",
-    "چگونه با تاریخ‌های بدون زمان کار کنید",
-    "چگونه PlainDateها را جمع و تفریق کنید",
-    "چگونه تاریخ‌ها را ایمن مقایسه کنید"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.PlainYearMonth"
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.PlainMontDay"
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.PlainMonthDay"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.PlainMonthDay() یک شیء ماه و روز است."
-  },
-  {
-   "type": "p",
-   "text": "ماه و روز یک تقویم ISO 8601 را بدون سال و زمان نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "مثال: 05-17."
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.PlainTime"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.PlainTime یک شیء زمان بدون تاریخ است."
-  },
-  {
-   "type": "p",
-   "text": "یک زمان ساعتی ISO 8601 را بدون تاریخ و منطقهٔ زمانی نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "مثال: 10:30:00."
-  },
-  {
-   "type": "p",
-   "text": "برای ساعت کاری، زنگ هشدار و هر مقدار فقط‌زمانی مفید است."
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.ZonedDateTime"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.ZonedDateTime یک تاریخ و زمان همراه با منطقهٔ زمانی را نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "امن‌ترین راه برای انجام محاسبات بین‌المللی تاریخ و زمان است."
-  },
-  {
-   "type": "p",
-   "text": "از باگ‌های رایج ساعت تابستانی جلوگیری می‌کند و تبدیل منطقهٔ زمانی را روشن و قابل پیش‌بینی می‌سازد."
-  },
-  {
-   "type": "h2",
-   "text": "چه چیزی یاد می‌گیرید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "چگونه یک Temporal.ZonedDateTime در JavaScript بسازید",
-    "چگونه منطقه‌های زمانی را درست مدیریت کنید",
-    "چگونه ZonedDateTimeها را جمع و تفریق کنید",
-    "چگونه از باگ‌های ساعت تابستانی یا DST دور بمانید",
-    "چگونه بین منطقه‌های زمانی ایمن تبدیل کنید"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.Now"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.Now پنج متد برای گرفتن تاریخ و زمان سیستم دارد."
-  },
-  {
-   "type": "p",
-   "text": "برای هر شیء تاریخ یک متد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Temporal.Now.instant()",
-    "Temporal.Now.plainDateISO()",
-    "Temporal.Now.plainTimeISO()",
-    "Temporal.Now.plainDateTimeISO()",
-    "Temporal.Now.zonedDateTimeISO()"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "حساب با Temporal"
-  },
-  {
-   "type": "p",
-   "text": "Temporal متدهایی برای حساب آسان و قابل اعتماد تاریخ و زمان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "روز و ماه و سال و زمان را جمع و تفریق کنید، بدون اینکه مقدار اصلی عوض شود."
-  },
-  {
-   "type": "p",
-   "text": "حساب تاریخ را بدون باگ‌های ساعت تابستانی و مشکلات منطقهٔ زمانی انجام دهید."
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "متدهای since() و until() در Temporal"
-  },
-  {
-   "type": "h2",
-   "text": "محاسبهٔ تفاوت‌ها در Temporal"
-  },
-  {
-   "type": "p",
-   "text": "متد since() بازهٔ زمانی بین دو تاریخ را از سمت since حساب می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "متد until() بازهٔ زمانی بین دو تاریخ را از سمت until حساب می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "متدهای since() و until() در واقع عکس یکدیگرند."
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "مقایسه در Temporal"
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ تاریخ‌ها"
-  },
-  {
-   "type": "p",
-   "text": "در JavaScript نمی‌توان شیءها را با عملگرهایی مثل <، >، == یا === مقایسه کرد."
-  },
-  {
-   "type": "p",
-   "text": "همیشه از متدهای equals() یا compare() استفاده کنید، نه از عملگرهای برابری معمولی."
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "قواعد تبدیل در Temporal"
-  },
-  {
-   "type": "p",
-   "text": "جدول زیر نشان می‌دهد نوع‌های Temporal چگونه تبدیل می‌شوند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "از",
-     "PlainDate",
-     "PlainTime",
-     "PlainDateTime",
-     "ZonedDateTime",
-     "Instant"
-    ],
-    [
-     "PlainDate",
-     "",
-     "خیر",
-     "بله",
-     "خیر",
-     "خیر"
-    ],
-    [
-     "PlainTime",
-     "خیر",
-     "",
-     "خیر",
-     "خیر",
-     "خیر"
-    ],
-    [
-     "PlainDateTime",
-     "بله",
-     "بله",
-     "",
-     "بله",
-     "خیر"
-    ],
-    [
-     "ZonedDateTime",
-     "بله",
-     "بله",
-     "بله",
-     "",
-     "بله"
-    ],
-    [
-     "Instant",
-     "خیر",
-     "خیر",
-     "خیر",
-     "بله",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "قالب‌های Temporal"
-  },
-  {
-   "type": "p",
-   "text": "تاریخ‌های Temporal را می‌توان به چند شکل به رشته تبدیل کرد:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "toString()",
-     "به رشتهٔ تاریخ در قالب RFC 9557 یا ISO 8601."
-    ],
-    [
-     "toLocaleString()",
-     "به رشتهٔ وابسته به زبان، مثل «en-US»."
-    ],
-    [
-     "Intl.DateTimeFormat()",
-     "وقتی کنترل بیشتری روی خروجی لازم دارید."
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  },
-  {
-   "type": "h2",
-   "text": "استانداردهای Temporal"
-  },
-  {
-   "type": "p",
-   "text": "این‌ها استانداردهای Temporal هستند که باید بشناسید:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نام",
-     "توضیح"
-    ],
-    [
-     "ISO 8601",
-     "استاندارد بین‌المللی"
-    ],
-    [
-     "RFC 3339",
-     "استاندارد اینترنت"
-    ],
-    [
-     "RFC 9557",
-     "استاندارد Temporal"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر بخوانید ..."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل temporal.html بسازید و در کنسول بررسی کنید آیا Temporal در مرورگر شما هست یا نه (typeof Temporal !== \"undefined\") و نتیجه را بنویسید.",
-   "hint": "Temporal هنوز در همهٔ مرورگرها نیست؛ برای پشتیبانی گسترده می‌توانید پولیفیل @js-temporal/polyfill را با تگ script از CDN بار کنید."
-  },
-  {
-   "prompt": "برای هر مورد بنویسید کدام نوع Temporal مناسب‌تر است: یک لحظهٔ دقیق در UTC، ساعت شروع کار یک فروشگاه، تاریخ تولد یک نفر، و یک قرار بین‌المللی که ساعت منطقه در آن مهم است.",
-   "hint": "لحظهٔ خالص Instant است، ساعت تنها PlainTime، تاریخ تنها PlainDate و قرار با منطقهٔ زمانی ZonedDateTime."
-  },
-  {
-   "prompt": "سه بازهٔ زمانی با Temporal.Duration بسازید (مثلاً ۷ روز، ۱ ساعت، ۳۰ دقیقه) و خصوصیت‌هایی که در درس آمده را رویشان ببینید.",
-   "hint": "خصوصیت‌ها years و months و weeks و days و hours و minutes و seconds و milliseconds و nanoseconds هستند."
-  },
-  {
-   "prompt": "دو تاریخ را با متد since() و دوباره با until() مقایسه کنید و بگویید علامت نتیجه چه فرقی می‌کند.",
-   "hint": "since() و until() عکس یکدیگرند؛ جهت بازه بر اساس اینکه کدام تاریخ را روی کدام صدا می‌زنید عوض می‌شود."
-  },
-  {
-   "prompt": "در فایل خودتان جدولی بنویسید که مشخص کند از PlainDate می‌توان به PlainTime تبدیل کرد یا نه و از Instant به ZonedDateTime چطور.",
-   "hint": "جدول تبدیل‌ها در درس است: Instant مستقیماً به PlainDate و PlainTime تبدیل نمی‌شود، اما به ZonedDateTime بله."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام جمله دربارهٔ Temporal و Date درست است؟",
-   "options": [
-    "Temporal می‌تواند مقدار را تغییر دهد ولی Date تغییرناپذیر است",
-    "Temporal تغییرناپذیر است و برخلاف Date از منطقهٔ زمانی و ساعت تابستانی پشتیبانی درجه‌یک دارد",
-    "Temporal فقط تقویم میلادی را می‌شناسد",
-    "Temporal جایگزین CSS است"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید شیءهای Temporal برخلاف Date قدیمی تغییرناپذیرند و پشتیبانی درجه‌یک از منطقه‌های زمانی، ساعت تابستانی، حساب تاریخ و تقویم‌های غیرمیلادی دارند."
-  },
-  {
-   "question": "Temporal در کدام نسخهٔ ECMAScript آمده است؟",
-   "options": [
-    "ECMAScript 2026",
-    "ECMAScript 2027",
-    "ECMAScript 2024",
-    "هیچ‌کدام؛ هنوز نهایی نشده"
-   ],
-   "answer": 1,
-   "explanation": "درس نتیجه می‌گیرد که Temporal بخشی از JavaScript 2027 است، چون ECMAScript 2026 از قبل بسته شده بود و Temporal را در خود نداشت."
-  },
-  {
-   "question": "شیء Temporal.Instant چه چیزی را نگه می‌دارد؟",
-   "options": [
-    "یک تاریخ با منطقهٔ زمانی",
-    "نانوثانیه‌ها از ۱ ژانویه ۱۹۷۰ به‌عنوان یک لحظهٔ دقیق در UTC",
-    "فقط ساعت بدون تاریخ",
-    "یک بازهٔ زمانی مثل ۷ روز و ۱ ساعت"
-   ],
-   "answer": 1,
-   "explanation": "Instant یک لحظهٔ دقیق در UTC است، هیچ منطقهٔ زمانی و تقویمی ندارد و نانوثانیه‌ها را از مبدأ یونیکس نگه می‌دارد. بازهٔ زمانی کار Duration است."
-  },
-  {
-   "question": "برای کار با تاریخ و ساعت یک قرار بین‌المللی که ساعت منطقه در آن مهم است کدام نوع مناسب است؟",
-   "options": [
-    "Temporal.PlainTime",
-    "Temporal.PlainDate",
-    "Temporal.ZonedDateTime",
-    "Temporal.Duration"
-   ],
-   "answer": 2,
-   "explanation": "ZonedDateTime تاریخ و زمان را همراه منطقهٔ زمانی نگه می‌دارد و درس آن را امن‌ترین راه برای محاسبات بین‌المللی می‌داند. PlainTime و PlainDate منطقهٔ زمانی ندارند."
-  },
-  {
-   "question": "دربارهٔ مقایسهٔ شیءهای تاریخ کدام جمله درست است؟",
-   "options": [
-    "با عملگر < و > مقایسه می‌شوند",
-    "باید از متدهای equals() و compare() استفاده کرد، نه عملگرهای برابری",
-    "با == نتیجهٔ درست می‌دهند ولی با === نه",
-    "مقایسهٔ شیءها در JavaScript همیشه رشته‌ای است"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید شیءها با عملگرهایی مثل <، >، == یا === مقایسه نمی‌شوند و همیشه باید از equals() یا compare() استفاده کرد."
-  }
- ]
+  "slug": "js_temporal",
+  "course": "js",
+  "order": 181,
+  "url": "/js/js_temporal.asp",
+  "title": "آموزش Temporal در JavaScript",
+  "summary": "Temporal استاندارد تازهٔ تاریخ و زمان در JavaScript است که جای شیء قدیمی Date را می‌گیرد؛ تغییرناپذیر است و منطقهٔ زمانی و ساعت تابستانی و تقویم‌های غیرمیلادی را درجه‌یک پشتیبانی می‌کند. در این درس نوع‌های اصلی Temporal را می‌شناسید و می‌بینید هرکدام برای چه کاری ساخته شده‌اند.",
+  "objectives": [
+    "بگویید Temporal چه مسئله‌هایی از Date را حل می‌کند",
+    "نوع‌های Duration و Instant و PlainDate و PlainTime و ZonedDateTime را از هم تشخیص دهید",
+    "توضیح دهید چرا Temporal بخشی از JavaScript 2027 است نه 2026",
+    "با متدهای Temporal.Now و since() و until() کار کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "آموزش Temporal در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal در JavaScript چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "Temporal استاندارد تازهٔ تاریخ و زمان در JavaScript است."
+    },
+    {
+      "type": "p",
+      "text": "شیءهای تازهٔ Temporal طوری طراحی شده‌اند که جای شیء قدیمی Date را بگیرند."
+    },
+    {
+      "type": "p",
+      "text": "برخلاف Date قدیمی، شیءهای Temporal تغییرناپذیرند و پشتیبانی درجه‌یک از منطقه‌های زمانی، ساعت تابستانی، حساب تاریخ و تقویم‌های غیرمیلادی دارند."
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/js/img_temporal.svg",
+      "alt": "نقشهٔ Temporal"
+    },
+    {
+      "type": "h2",
+      "text": "آیا Temporal بخشی از JavaScript 2026 است؟"
+    },
+    {
+      "type": "p",
+      "text": "Temporal در جولای ۲۰۲۶ به مرحلهٔ ۴ کمیتهٔ TC39 رسید."
+    },
+    {
+      "type": "p",
+      "text": "مرحلهٔ ۴ یعنی این قابلیت کامل است و در انتشار بعدی می‌آید. یک نکتهٔ زمانی مهم این است که ECMAScript 2026 از قبل بسته شده بود و Temporal را در خود نداشت."
+    },
+    {
+      "type": "p",
+      "text": "نتیجه: Temporal بخشی از JavaScript 2027 است، نه JavaScript 2026."
+    },
+    {
+      "type": "p",
+      "text": "این موضوع کمی گیج‌کننده است؛ چون Temporal در سال ۲۰۲۶ به مرحلهٔ ۴ رسید و مرورگرها خیلی پیش از انتشار ES2026 پیاده‌سازی آن را شروع کرده بودند."
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "Temporal یک به‌روزرسانی مهم در استاندارد JavaScript است."
+    },
+    {
+      "type": "p",
+      "text": "در حال حاضر در Chrome، Edge، Firefox و Opera پشتیبانی می‌شود و انتظار می‌رود پیش از ۲۰۲۷ در همهٔ مرورگرها کامل در دسترس باشد."
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome144", "Edge144", "Firefox139", "Safari", "Opera128"],
+        ["ژانویه ۲۰۲۶", "ژانویه ۲۰۲۶", "مه ۲۰۲۵", "🚫", "فوریه ۲۰۲۶"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "پیاده‌سازی Safari را می‌توان در Safari Technology Preview و با روشن کردن پرچم زمان اجرای --use-temporal آزمایش کرد."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script\n\nsrc=\"https://cdn.jsdelivr.net/npm/@js-temporal/polyfill/dist/index.umd.js\">\n\n</script>",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "مسیر یادگیری Temporal"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Temporal را به ترتیب درست یاد بگیرید."
+    },
+    {
+      "type": "p",
+      "text": "شروع با Temporal\nحساب با Temporal\nتفاوت‌ها در Temporal\nمقایسه در Temporal\nتبدیل‌ها در Temporal\nقالب‌ها در Temporal\nاشتباه‌های رایج در Temporal\nچگونه به Temporal مهاجرت کنیم\nاستانداردهای Temporal\nمرجع Temporal"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal در برابر Date"
+    },
+    {
+      "type": "p",
+      "text": "Temporal و Date در JavaScript را با هم مقایسه کنید."
+    },
+    {
+      "type": "p",
+      "text": "تفاوت‌های Date و Temporal را یاد بگیرید"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "در Date ماه‌ها از صفر شمرده می‌شوند، در Temporal از یک",
+        "حساب تاریخ در Date دستی است، در Temporal درونی",
+        "Date مقدارها را تغییر می‌دهد، Temporal نه",
+        "Date مبدأ UTC و منطقهٔ زمانی را قاطی می‌کند، Temporal آن‌ها را جدا می‌کند",
+        "حساب Date در برخورد با ساعت تابستانی می‌تواند خطا بدهد، Temporal نمی‌دهد"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "یاد بگیرید چرا Temporal جایگزین مدرن Date است."
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.Duration"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.Duration یک بازهٔ زمانی را نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "مثال: ۷ روز و ۱ ساعت."
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.Duration این خصوصیت‌ها را در خود دارد:"
+    },
+    {
+      "type": "p",
+      "text": "years، months، weeks، days، hours، minutes، seconds، milliseconds و nanoseconds."
+    },
+    {
+      "type": "p",
+      "text": "از شیء Duration برای حساب دقیق تاریخ و زمان (مثلاً جمع و تفریق) استفاده می‌شود، بدون باگ‌ها و پیچیدگی‌هایی که شیء قدیمی Date در JavaScript داشت."
+    },
+    {
+      "type": "h2",
+      "text": "چه چیزی یاد می‌گیرید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "چگونه از Temporal.Duration در JavaScript استفاده کنید",
+        "چگونه بازه‌های زمانی را نمایش دهید و حساب کنید",
+        "چگونه روز و ساعت و ماه را ایمن‌تر جمع و تفریق کنید"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.Instant"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.Instant یک لحظهٔ دقیق در زمان UTC را نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "هیچ منطقهٔ زمانی و هیچ تقویمی ندارد."
+    },
+    {
+      "type": "p",
+      "text": "نانوثانیه‌ها را از ۱ ژانویهٔ ۱۹۷۰ ساعت ۰۰:۰۰:۰۰ (مبدأ یونیکس) نگه می‌دارد."
+    },
+    {
+      "type": "p",
+      "text": "مثال: 2026-05-17T14:30:00Z"
+    },
+    {
+      "type": "h2",
+      "text": "چه چیزی یاد می‌گیرید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "چگونه با لحظه‌های دقیق در زمان کار کنید",
+        "چگونه Instantها را با هم مقایسه کنید",
+        "چگونه از timestampها تبدیل کنید",
+        "چگونه Date.now() را جایگزین کنید"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.PlainDateTime"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.PlainDateTime یک شیء خالص تاریخ و زمان است."
+    },
+    {
+      "type": "p",
+      "text": "یک تاریخ تقویمی و یک زمان ساعتی را بدون منطقهٔ زمانی نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "مثال: 2026-05-07T14:30:00."
+    },
+    {
+      "type": "h2",
+      "text": "چه چیزی یاد می‌گیرید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "چگونه یک Temporal.PlainDateTime در JavaScript بسازید",
+        "چگونه با تاریخ و زمان بدون منطقهٔ زمانی کار کنید",
+        "چگونه تاریخ‌ها را جمع و تفریق کنید",
+        "چگونه تاریخ‌ها را ایمن مقایسه کنید"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.PlainDate"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.PlainDate یک تاریخ تقویمی بدون زمان را نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "Temporal.PlainDate معمولاً در قالب ISO 8601 است (2026-05-01)."
+    },
+    {
+      "type": "p",
+      "text": "برای تاریخ‌هایی که مستقل از منطقهٔ زمانی یکی هستند، مثل تولدها و تعطیلات، استفاده از آن ساده‌تر و مقایسه‌اش ایمن‌تر از شیءهای DateTime است."
+    },
+    {
+      "type": "h2",
+      "text": "چه چیزی یاد می‌گیرید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "چگونه یک Temporal.PlainDate در JavaScript بسازید",
+        "چگونه با تاریخ‌های بدون زمان کار کنید",
+        "چگونه PlainDateها را جمع و تفریق کنید",
+        "چگونه تاریخ‌ها را ایمن مقایسه کنید"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.PlainYearMonth"
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.PlainMontDay"
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.PlainMonthDay"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.PlainMonthDay() یک شیء ماه و روز است."
+    },
+    {
+      "type": "p",
+      "text": "ماه و روز یک تقویم ISO 8601 را بدون سال و زمان نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "مثال: 05-17."
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.PlainTime"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.PlainTime یک شیء زمان بدون تاریخ است."
+    },
+    {
+      "type": "p",
+      "text": "یک زمان ساعتی ISO 8601 را بدون تاریخ و منطقهٔ زمانی نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "مثال: 10:30:00."
+    },
+    {
+      "type": "p",
+      "text": "برای ساعت کاری، زنگ هشدار و هر مقدار فقط‌زمانی مفید است."
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.ZonedDateTime"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.ZonedDateTime یک تاریخ و زمان همراه با منطقهٔ زمانی را نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "امن‌ترین راه برای انجام محاسبات بین‌المللی تاریخ و زمان است."
+    },
+    {
+      "type": "p",
+      "text": "از باگ‌های رایج ساعت تابستانی جلوگیری می‌کند و تبدیل منطقهٔ زمانی را روشن و قابل پیش‌بینی می‌سازد."
+    },
+    {
+      "type": "h2",
+      "text": "چه چیزی یاد می‌گیرید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "چگونه یک Temporal.ZonedDateTime در JavaScript بسازید",
+        "چگونه منطقه‌های زمانی را درست مدیریت کنید",
+        "چگونه ZonedDateTimeها را جمع و تفریق کنید",
+        "چگونه از باگ‌های ساعت تابستانی یا DST دور بمانید",
+        "چگونه بین منطقه‌های زمانی ایمن تبدیل کنید"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.Now"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.Now پنج متد برای گرفتن تاریخ و زمان سیستم دارد."
+    },
+    {
+      "type": "p",
+      "text": "برای هر شیء تاریخ یک متد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Temporal.Now.instant()",
+        "Temporal.Now.plainDateISO()",
+        "Temporal.Now.plainTimeISO()",
+        "Temporal.Now.plainDateTimeISO()",
+        "Temporal.Now.zonedDateTimeISO()"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "حساب با Temporal"
+    },
+    {
+      "type": "p",
+      "text": "Temporal متدهایی برای حساب آسان و قابل اعتماد تاریخ و زمان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "روز و ماه و سال و زمان را جمع و تفریق کنید، بدون اینکه مقدار اصلی عوض شود."
+    },
+    {
+      "type": "p",
+      "text": "حساب تاریخ را بدون باگ‌های ساعت تابستانی و مشکلات منطقهٔ زمانی انجام دهید."
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "متدهای since() و until() در Temporal"
+    },
+    {
+      "type": "h2",
+      "text": "محاسبهٔ تفاوت‌ها در Temporal"
+    },
+    {
+      "type": "p",
+      "text": "متد since() بازهٔ زمانی بین دو تاریخ را از سمت since حساب می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "متد until() بازهٔ زمانی بین دو تاریخ را از سمت until حساب می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "متدهای since() و until() در واقع عکس یکدیگرند."
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "مقایسه در Temporal"
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ تاریخ‌ها"
+    },
+    {
+      "type": "p",
+      "text": "در JavaScript نمی‌توان شیءها را با عملگرهایی مثل <، >، == یا === مقایسه کرد."
+    },
+    {
+      "type": "p",
+      "text": "همیشه از متدهای equals() یا compare() استفاده کنید، نه از عملگرهای برابری معمولی."
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "قواعد تبدیل در Temporal"
+    },
+    {
+      "type": "p",
+      "text": "جدول زیر نشان می‌دهد نوع‌های Temporal چگونه تبدیل می‌شوند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["از", "PlainDate", "PlainTime", "PlainDateTime", "ZonedDateTime", "Instant"],
+        ["PlainDate", "", "خیر", "بله", "خیر", "خیر"],
+        ["PlainTime", "خیر", "", "خیر", "خیر", "خیر"],
+        ["PlainDateTime", "بله", "بله", "", "بله", "خیر"],
+        ["ZonedDateTime", "بله", "بله", "بله", "", "بله"],
+        ["Instant", "خیر", "خیر", "خیر", "بله", ""]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "قالب‌های Temporal"
+    },
+    {
+      "type": "p",
+      "text": "تاریخ‌های Temporal را می‌توان به چند شکل به رشته تبدیل کرد:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["toString()", "به رشتهٔ تاریخ در قالب RFC 9557 یا ISO 8601."],
+        ["toLocaleString()", "به رشتهٔ وابسته به زبان، مثل «en-US»."],
+        ["Intl.DateTimeFormat()", "وقتی کنترل بیشتری روی خروجی لازم دارید."]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    },
+    {
+      "type": "h2",
+      "text": "استانداردهای Temporal"
+    },
+    {
+      "type": "p",
+      "text": "این‌ها استانداردهای Temporal هستند که باید بشناسید:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نام", "توضیح"],
+        ["ISO 8601", "استاندارد بین‌المللی"],
+        ["RFC 3339", "استاندارد اینترنت"],
+        ["RFC 9557", "استاندارد Temporal"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر بخوانید ..."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل temporal.html بسازید و در کنسول بررسی کنید آیا Temporal در مرورگر شما هست یا نه (typeof Temporal !== \"undefined\") و نتیجه را بنویسید.",
+      "hint": "Temporal هنوز در همهٔ مرورگرها نیست؛ برای پشتیبانی گسترده می‌توانید پولیفیل @js-temporal/polyfill را با تگ script از CDN بار کنید."
+    },
+    {
+      "prompt": "برای هر مورد بنویسید کدام نوع Temporal مناسب‌تر است: یک لحظهٔ دقیق در UTC، ساعت شروع کار یک فروشگاه، تاریخ تولد یک نفر، و یک قرار بین‌المللی که ساعت منطقه در آن مهم است.",
+      "hint": "لحظهٔ خالص Instant است، ساعت تنها PlainTime، تاریخ تنها PlainDate و قرار با منطقهٔ زمانی ZonedDateTime."
+    },
+    {
+      "prompt": "سه بازهٔ زمانی با Temporal.Duration بسازید (مثلاً ۷ روز، ۱ ساعت، ۳۰ دقیقه) و خصوصیت‌هایی که در درس آمده را رویشان ببینید.",
+      "hint": "خصوصیت‌ها years و months و weeks و days و hours و minutes و seconds و milliseconds و nanoseconds هستند."
+    },
+    {
+      "prompt": "دو تاریخ را با متد since() و دوباره با until() مقایسه کنید و بگویید علامت نتیجه چه فرقی می‌کند.",
+      "hint": "since() و until() عکس یکدیگرند؛ جهت بازه بر اساس اینکه کدام تاریخ را روی کدام صدا می‌زنید عوض می‌شود."
+    },
+    {
+      "prompt": "در فایل خودتان جدولی بنویسید که مشخص کند از PlainDate می‌توان به PlainTime تبدیل کرد یا نه و از Instant به ZonedDateTime چطور.",
+      "hint": "جدول تبدیل‌ها در درس است: Instant مستقیماً به PlainDate و PlainTime تبدیل نمی‌شود، اما به ZonedDateTime بله."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام جمله دربارهٔ Temporal و Date درست است؟",
+      "options": [
+        "Temporal می‌تواند مقدار را تغییر دهد ولی Date تغییرناپذیر است",
+        "Temporal تغییرناپذیر است و برخلاف Date از منطقهٔ زمانی و ساعت تابستانی پشتیبانی درجه‌یک دارد",
+        "Temporal فقط تقویم میلادی را می‌شناسد",
+        "Temporal جایگزین CSS است"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید شیءهای Temporal برخلاف Date قدیمی تغییرناپذیرند و پشتیبانی درجه‌یک از منطقه‌های زمانی، ساعت تابستانی، حساب تاریخ و تقویم‌های غیرمیلادی دارند."
+    },
+    {
+      "question": "Temporal در کدام نسخهٔ ECMAScript آمده است؟",
+      "options": [
+        "ECMAScript 2026",
+        "ECMAScript 2027",
+        "ECMAScript 2024",
+        "هیچ‌کدام؛ هنوز نهایی نشده"
+      ],
+      "answer": 1,
+      "explanation": "درس نتیجه می‌گیرد که Temporal بخشی از JavaScript 2027 است، چون ECMAScript 2026 از قبل بسته شده بود و Temporal را در خود نداشت."
+    },
+    {
+      "question": "شیء Temporal.Instant چه چیزی را نگه می‌دارد؟",
+      "options": [
+        "یک تاریخ با منطقهٔ زمانی",
+        "نانوثانیه‌ها از ۱ ژانویه ۱۹۷۰ به‌عنوان یک لحظهٔ دقیق در UTC",
+        "فقط ساعت بدون تاریخ",
+        "یک بازهٔ زمانی مثل ۷ روز و ۱ ساعت"
+      ],
+      "answer": 1,
+      "explanation": "Instant یک لحظهٔ دقیق در UTC است، هیچ منطقهٔ زمانی و تقویمی ندارد و نانوثانیه‌ها را از مبدأ یونیکس نگه می‌دارد. بازهٔ زمانی کار Duration است."
+    },
+    {
+      "question": "برای کار با تاریخ و ساعت یک قرار بین‌المللی که ساعت منطقه در آن مهم است کدام نوع مناسب است؟",
+      "options": [
+        "Temporal.PlainTime",
+        "Temporal.PlainDate",
+        "Temporal.ZonedDateTime",
+        "Temporal.Duration"
+      ],
+      "answer": 2,
+      "explanation": "ZonedDateTime تاریخ و زمان را همراه منطقهٔ زمانی نگه می‌دارد و درس آن را امن‌ترین راه برای محاسبات بین‌المللی می‌داند. PlainTime و PlainDate منطقهٔ زمانی ندارند."
+    },
+    {
+      "question": "دربارهٔ مقایسهٔ شیءهای تاریخ کدام جمله درست است؟",
+      "options": [
+        "با عملگر < و > مقایسه می‌شوند",
+        "باید از متدهای equals() و compare() استفاده کرد، نه عملگرهای برابری",
+        "با == نتیجهٔ درست می‌دهند ولی با === نه",
+        "مقایسهٔ شیءها در JavaScript همیشه رشته‌ای است"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید شیءها با عملگرهایی مثل <، >، == یا === مقایسه نمی‌شوند و همیشه باید از equals() یا compare() استفاده کرد."
+    }
+  ]
 }

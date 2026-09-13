@@ -1,460 +1,396 @@
 {
- "slug": "js_arraybuffers",
- "course": "js",
- "order": 243,
- "url": "/js/js_arraybuffers.asp",
- "title": "ArrayBuffer در JavaScript",
- "summary": "ArrayBuffer یک بلوک حافظه با اندازهٔ ثابت است که دادهٔ دودویی را نگه می‌دارد. در این درس می‌سازید، با آرایهٔ نوع‌دار و DataView روی آن می‌خوانید و می‌نویسید، با slice() کپی می‌گیرید و با SharedArrayBuffer حافظه را بین workerها به اشتراک می‌گذارید.",
- "objectives": [
-  "یک ArrayBuffer با اندازهٔ بایتی مشخص بسازید",
-  "روی بافر نما بسازید و مقدار بخوانید و بنویسید",
-  "تفاوت DataView و آرایهٔ نوع‌دار را توضیح دهید",
-  "تشخیص دهید چه زمانی به SharedArrayBuffer نیاز دارید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ArrayBuffer در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ArrayBuffer یک بلوک حافظه با اندازهٔ ثابت است که بیشتر برای ذخیرهٔ آرایه‌های نوع‌دار به کار می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "روی این بلوک می‌توانید نماهای (view) مختلفی بسازید که بیت‌ها را به‌شکل عدد، بایت یا نوع‌های دیگر داده تفسیر می‌کنند."
-  },
-  {
-   "type": "h2",
-   "text": "ساختن ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "برای ساختن یک ArrayBuffer جدید از new ArrayBuffer() استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(16);\n\n// Get the length in bytes\n\nlet len = myBuf.byteLength;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_create"
-  },
-  {
-   "type": "p",
-   "text": "اندازهٔ ArrayBuffer بر حسب بایت تعیین می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت byteLength همین اندازه را نشان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "بعد از ساخته شدن، اندازه دیگر قابل تغییر نیست."
-  },
-  {
-   "type": "h2",
-   "text": "دسترسی به ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "ArrayBuffer متدی برای خواندن و نوشتن داده ندارد."
-  },
-  {
-   "type": "p",
-   "text": "برای دسترسی به داده همیشه باید از یک نما (view) استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار و DataView راهی برای خواندن و نوشتن مقدارهای عددی در ArrayBuffer فراهم می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار رایج اینها هستند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Uint8Array: عددهای صحیح بدون علامت ۸ بیتی",
-    "Int16Array: عددهای صحیح علامت‌دار ۱۶ بیتی",
-    "Int32Array: عددهای صحیح علامت‌دار ۳۲ بیتی",
-    "Float32Array: عددهای اعشاری ۳۲ بیتی",
-    "Float64Array: عددهای اعشاری ۶۴ بیتی"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از Uint8Array"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a Uint8Array view\n\nconst view = new Uint8Array(myBuf);\n\n// Write max 8 values\n\nview[0] = 10;\n\nview[2] = 128;\n\nview[1] = 255;\n\n// Read values\n\nlet v0 = view[0];\n\nlet v1 = view[1];\n\nlet v2 = view[2];",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_unit8"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از Int32Array"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(12);\n\n// Create an Int32Array view\n\nconst view = new Int32Array(myBuf);\n\n// 12 bytes = max 3 Int32 values\n\nview[0] = 100000;\n\nview[1] = 200000;\n\nview[2] = 300000;\n\n// Read values\n\nlet v0 = view[0];\n\nlet v1 = view[1];\n\nlet v2 = view[2];",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_int32"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از DataView"
-  },
-  {
-   "type": "p",
-   "text": "DataView یک نمای منعطف‌تر برای ArrayBuffer است."
-  },
-  {
-   "type": "p",
-   "text": "DataView می‌گذارد مقدارهایی با نوع‌های مختلف (Int8، Uint16، Float32 و…) را بخوانید و بنویسید."
-  },
-  {
-   "type": "p",
-   "text": "DataView همچنین اجازه می‌دهد در هر افست بایتی (byteOffset) مقدار بخوانید و بنویسید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a DataView\n\nconst view = new DataView(myBuf);\n\n// Write a 32-bit integer at byte offset 0\n\nview.setInt32(0, 123456);\n\n// Write a 16-bit integer at byte offset 4\n\nview.setInt16(4, 32000);\n\n// Read the values\n\nlet v1 view.getInt32(0);\n\nlet v2 = view.getInt16(4);",
-   "caption": "مثال: خواندن و نوشتن با DataView"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_dataview"
-  },
-  {
-   "type": "p",
-   "text": "متدهای DataView یک پارامتر اختیاری littleEndian (true/false) دارند که ترتیب بایت‌ها را کنترل می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "برش دادن ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "با متد slice() می‌توانید از بخشی از ArrayBuffer کپی بگیرید. این متد یک ArrayBuffer جدید با بایت‌های بازهٔ مشخص‌شده برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a Uint8Array\n\nconst view = new Uint8Array(myBuf);\n\n// Fill with values 0 to 7\n\nfor (let i = 0; i < view.length; i++) {\n\n  view[i] = i;\n\n}\n\n// Create a copy of bytes from 2 to 5 (not including 5)\n\nconst sliced = myBuf.slice(2, 5);\n\nconst slicedView = new Uint8Array(sliced);",
-   "caption": "مثال: ArrayBuffer.slice()"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_slice"
-  },
-  {
-   "type": "p",
-   "text": "متد slice() یک بافر جدید می‌سازد."
-  },
-  {
-   "type": "p",
-   "text": "متد slice() حافظه را با بافر اصلی به اشتراک نمی‌گذارد."
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل رشته‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function stringToArrayBuffer(str) {\n\n  const encoder = new TextEncoder();\n\n  return encoder.encode(str).buffer;\n\n}\n\nconst myBuf = stringToArrayBuffer(\"Hello\");\n\nlet len1 = myBuf.byteLength;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_stringtoarr"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function arrayBufferToString(buffer) {\n\n  const decoder = new TextDecoder();\n\n  return decoder.decode(new Uint8Array(buffer));\n\n}\n\nconst encoder = new TextEncoder();\n\nconst myBuf = encoder.encode(\"Hello ArrayBuffer\").buffer;\n\nlet text = arrayBufferToString(myBuf);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_arrtostring"
-  },
-  {
-   "type": "h2",
-   "text": "اشتراک ArrayBuffer (SharedArrayBuffer)"
-  },
-  {
-   "type": "p",
-   "text": "ArrayBuffer به‌طور پیش‌فرض بین ریسه‌ها (thread) به اشتراک گذاشته نمی‌شود."
-  },
-  {
-   "type": "p",
-   "text": "برای به اشتراک گذاشتن حافظه بین workerها، JavaScript کلاس SharedArrayBuffer را فراهم می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "رفتارش مثل ArrayBuffer است، اما محتوایش می‌تواند به اشتراک گذاشته شود و همراه Atomics به کار برود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "if (Window.crossOriginIsolated) {\n\n  buffer = new SharedArrayBuffer(16);\n\n} else {\n\n  buffer = new ArrayBuffer(16);\n\n}\n\nconst sharedView = new Int32Array(buffer);\n\nbuffer[0] = 42;\n\nlet numb = sharedView[0];",
-   "caption": "مثال: ساختن SharedArrayBuffer"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_shared"
-  },
-  {
-   "type": "p",
-   "text": "مرورگرها برای فعال کردن SharedArrayBuffer ممکن است به سرایندهای امنیتی ویژه (COOP/COEP) نیاز داشته باشند."
-  },
-  {
-   "type": "h2",
-   "text": "خلاصه"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "ArrayBuffer یک شیء سطح‌پایین است که یک بلوک حافظه با اندازهٔ ثابت را نشان می‌دهد",
-    "به‌طور مستقیم نمی‌توانید روی ArrayBuffer بخوانید یا بنویسید",
-    "برای دسترسی به ArrayBuffer از نماها (آرایهٔ نوع‌دار یا DataView) استفاده می‌کنید",
-    "آرایه‌های نوع‌دار برای دادهٔ عددی یکنواخت مناسب‌اند",
-    "DataView برای دادهٔ مخلوط یا ساخت‌یافته مناسب است",
-    "برای کپی گرفتن از بخشی از ArrayBuffer از slice() استفاده کنید",
-    "برای هم‌روندی با حافظهٔ اشتراکی از SharedArrayBuffer و Atomics استفاده کنید"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "کاربردهای رایج"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "کار با دادهٔ دودویی فایل‌ها (مثلاً تصویر، ویدیو، صدا).",
-    "پردازش پروتکل‌های شبکهٔ دودویی (WebSocket، WebRTC و…).",
-    "انجام محاسبه‌های عددی حساس به کارایی.",
-    "هم‌کاری با WebAssembly یا دیگر APIهای سطح‌پایین."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مرجع ArrayBuffer"
-  },
-  {
-   "type": "h2",
-   "text": "بازنگری: دسامبر ۲۰۲۵"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "خصوصیت / متد",
-     "توضیح"
-    ],
-    [
-     "new ArrayBuffer()",
-     "یک ArrayBuffer جدید می‌سازد"
-    ],
-    [
-     "arrayBuffer.byteLength",
-     "طول بافر بر حسب بایت"
-    ],
-    [
-     "arrayBuffer.slice()",
-     "یک ArrayBuffer جدید به‌عنوان کپی بخشی از این بافر برمی‌گرداند"
-    ],
-    [
-     "ArrayBuffer.isView()",
-     "اگر آرگومان نمایی روی ArrayBuffer باشد true برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "نماهای رایج"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نما (View)",
-     "توضیح",
-     "بایت‌ها"
-    ],
-    [
-     "Int8Array",
-     "عدد صحیح علامت‌دار ۸ بیتی",
-     "1"
-    ],
-    [
-     "Uint8Array",
-     "عدد صحیح بدون علامت ۸ بیتی",
-     "1"
-    ],
-    [
-     "Uint8ClampedArray",
-     "عدد صحیح کرانه‌دار ۸ بیتی",
-     "1"
-    ],
-    [
-     "Int16Array",
-     "عدد صحیح علامت‌دار ۱۶ بیتی",
-     "2"
-    ],
-    [
-     "Uint16Array",
-     "عدد صحیح بدون علامت ۱۶ بیتی",
-     "2"
-    ],
-    [
-     "Int32Array",
-     "عدد صحیح علامت‌دار ۳۲ بیتی",
-     "4"
-    ],
-    [
-     "Uint32Array",
-     "عدد صحیح بدون علامت ۳۲ بیتی",
-     "4"
-    ],
-    [
-     "Float32Array",
-     "عدد اعشاری ۳۲ بیتی",
-     "4"
-    ],
-    [
-     "Float64Array",
-     "عدد اعشاری ۶۴ بیتی",
-     "8"
-    ],
-    [
-     "DataView",
-     "نمای عمومی (همهٔ نوع‌ها)",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بیاموزید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "متدهای آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "مرجع آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "DataView"
-  },
-  {
-   "type": "p",
-   "text": "شیء Atomics"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک ArrayBuffer با اندازهٔ ۸ بایت بسازید و byteLength آن را در کنسول چاپ کنید.",
-   "hint": "اندازه را به‌صورت بایت به سازنده بدهید: new ArrayBuffer(8)."
-  },
-  {
-   "prompt": "روی همان بافر یک Uint8Array بسازید، خانهٔ صفر را ۲۵۵ بگذارید و بعد با DataView همان بایت را بخوانید.",
-   "hint": "getUint8(0) برای خواندن و setUint8(0, 255) برای نوشتن به کار می‌رود."
-  },
-  {
-   "prompt": "روی یک بافر ۴ بایتی یک Int32Array بسازید و مقدار ۱۰۰۰ را در آن بگذارید؛ بعد یکی از بایت‌ها را با Uint8Array ببینید.",
-   "hint": "هر دو نما روی حافظهٔ یکسانی نگاه می‌کنند؛ برای همین تغییر یکی در دیگری دیده می‌شود."
-  },
-  {
-   "prompt": "یک ArrayBuffer بسازید، slice() بگیرید و بررسی کنید که تغییر بایت‌های کپی، بافر اصلی را عوض نمی‌کند.",
-   "hint": "slice() حافظه را به اشتراک نمی‌گذارد؛ یک بافر کاملاً جدید می‌سازد."
-  },
-  {
-   "prompt": "با TextEncoder یک رشتهٔ فارسی به Uint8Array تبدیل کنید و طول بایت‌هایش را با طول رشته مقایسه کنید.",
-   "hint": "نویسه‌های فارسی UTF-8 بیش از یک بایت اشغال می‌کنند؛ برای برگشت به رشته از TextDecoder استفاده کنید."
-  }
- ],
- "quiz": [
-  {
-   "question": "چرا نمی‌توان مستقیماً از یک ArrayBuffer مقدار خواند؟",
-   "options": [
-    "چون فقط در workerها قابل استفاده است",
-    "چون ArrayBuffer فقط یک بلوک حافظهٔ خام است و متد خواندن و نوشتن ندارد",
-    "چون خواندنش نیاز به SharedArrayBuffer دارد",
-    "چون فقط برای رشته‌ها ساخته شده است"
-   ],
-   "answer": 1,
-   "explanation": "ArrayBuffer فقط یک بلوک حافظه با طول ثابت است؛ برای تفسیر بایت‌ها باید از نما مثل آرایهٔ نوع‌دار یا DataView استفاده کنید."
-  },
-  {
-   "question": "byteLength یک ArrayBuffer چه چیزی را نشان می‌دهد؟",
-   "options": [
-    "تعداد عنصرهای آن",
-    "اندازهٔ بافر بر حسب بایت",
-    "نوع دادهٔ ذخیره‌شده",
-    "تعداد نماهای ساخته‌شده"
-   ],
-   "answer": 1,
-   "explanation": "اندازهٔ ArrayBuffer همیشه بر حسب بایت بیان می‌شود و byteLength همان مقدار را برمی‌گرداند."
-  },
-  {
-   "question": "کدام گزینه دربارهٔ slice() درست است؟",
-   "options": [
-    "حافظه را با بافر اصلی به اشتراک می‌گذارد",
-    "یک ArrayBuffer جدید با بایت‌های بازهٔ مشخص‌شده برمی‌گرداند",
-    "بافر اصلی را کوچک می‌کند",
-    "فقط روی SharedArrayBuffer کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "slice() یک بافر تازه می‌سازد و حافظه را با بافر اصلی شریک نمی‌شود؛ پس تغییر کپی روی اصل اثر ندارد."
-  },
-  {
-   "question": "برای به اشتراک گذاشتن حافظه بین workerها از چه چیزی استفاده می‌کنیم؟",
-   "options": [
-    "ArrayBuffer معمولی",
-    "SharedArrayBuffer به همراه Atomics",
-    "DataView تنها",
-    "JSON"
-   ],
-   "answer": 1,
-   "explanation": "ArrayBuffer به‌طور پیش‌فرض بین ریسه‌ها مشترک نیست؛ SharedArrayBuffer این اشتراک را ممکن می‌کند و Atomics عملیات امن روی آن می‌دهد."
-  },
-  {
-   "question": "کدام نما برای دادهٔ مخلوط با نوع‌های مختلف در یک بافر مناسب‌تر است؟",
-   "options": [
-    "Uint8Array",
-    "Int32Array",
-    "DataView",
-    "Float64Array"
-   ],
-   "answer": 2,
-   "explanation": "DataView می‌گذارد در هر افست بایتی مقدارهایی با نوع‌های مختلف بخوانید و بنویسید؛ آرایهٔ نوع‌دار برای دادهٔ یکنواخت است."
-  }
- ]
+  "slug": "js_arraybuffers",
+  "course": "js",
+  "order": 243,
+  "url": "/js/js_arraybuffers.asp",
+  "title": "ArrayBuffer در JavaScript",
+  "summary": "ArrayBuffer یک بلوک حافظه با اندازهٔ ثابت است که دادهٔ دودویی را نگه می‌دارد. در این درس می‌سازید، با آرایهٔ نوع‌دار و DataView روی آن می‌خوانید و می‌نویسید، با slice() کپی می‌گیرید و با SharedArrayBuffer حافظه را بین workerها به اشتراک می‌گذارید.",
+  "objectives": [
+    "یک ArrayBuffer با اندازهٔ بایتی مشخص بسازید",
+    "روی بافر نما بسازید و مقدار بخوانید و بنویسید",
+    "تفاوت DataView و آرایهٔ نوع‌دار را توضیح دهید",
+    "تشخیص دهید چه زمانی به SharedArrayBuffer نیاز دارید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ArrayBuffer در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ArrayBuffer یک بلوک حافظه با اندازهٔ ثابت است که بیشتر برای ذخیرهٔ آرایه‌های نوع‌دار به کار می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "روی این بلوک می‌توانید نماهای (view) مختلفی بسازید که بیت‌ها را به‌شکل عدد، بایت یا نوع‌های دیگر داده تفسیر می‌کنند."
+    },
+    {
+      "type": "h2",
+      "text": "ساختن ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "برای ساختن یک ArrayBuffer جدید از new ArrayBuffer() استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(16);\n\n// Get the length in bytes\n\nlet len = myBuf.byteLength;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_create"
+    },
+    {
+      "type": "p",
+      "text": "اندازهٔ ArrayBuffer بر حسب بایت تعیین می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت byteLength همین اندازه را نشان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "بعد از ساخته شدن، اندازه دیگر قابل تغییر نیست."
+    },
+    {
+      "type": "h2",
+      "text": "دسترسی به ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "ArrayBuffer متدی برای خواندن و نوشتن داده ندارد."
+    },
+    {
+      "type": "p",
+      "text": "برای دسترسی به داده همیشه باید از یک نما (view) استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار و DataView راهی برای خواندن و نوشتن مقدارهای عددی در ArrayBuffer فراهم می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار رایج اینها هستند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Uint8Array: عددهای صحیح بدون علامت ۸ بیتی",
+        "Int16Array: عددهای صحیح علامت‌دار ۱۶ بیتی",
+        "Int32Array: عددهای صحیح علامت‌دار ۳۲ بیتی",
+        "Float32Array: عددهای اعشاری ۳۲ بیتی",
+        "Float64Array: عددهای اعشاری ۶۴ بیتی"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از Uint8Array"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a Uint8Array view\n\nconst view = new Uint8Array(myBuf);\n\n// Write max 8 values\n\nview[0] = 10;\n\nview[2] = 128;\n\nview[1] = 255;\n\n// Read values\n\nlet v0 = view[0];\n\nlet v1 = view[1];\n\nlet v2 = view[2];",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_unit8"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از Int32Array"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(12);\n\n// Create an Int32Array view\n\nconst view = new Int32Array(myBuf);\n\n// 12 bytes = max 3 Int32 values\n\nview[0] = 100000;\n\nview[1] = 200000;\n\nview[2] = 300000;\n\n// Read values\n\nlet v0 = view[0];\n\nlet v1 = view[1];\n\nlet v2 = view[2];",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_int32"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از DataView"
+    },
+    {
+      "type": "p",
+      "text": "DataView یک نمای منعطف‌تر برای ArrayBuffer است."
+    },
+    {
+      "type": "p",
+      "text": "DataView می‌گذارد مقدارهایی با نوع‌های مختلف (Int8، Uint16، Float32 و…) را بخوانید و بنویسید."
+    },
+    {
+      "type": "p",
+      "text": "DataView همچنین اجازه می‌دهد در هر افست بایتی (byteOffset) مقدار بخوانید و بنویسید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a DataView\n\nconst view = new DataView(myBuf);\n\n// Write a 32-bit integer at byte offset 0\n\nview.setInt32(0, 123456);\n\n// Write a 16-bit integer at byte offset 4\n\nview.setInt16(4, 32000);\n\n// Read the values\n\nlet v1 view.getInt32(0);\n\nlet v2 = view.getInt16(4);",
+      "caption": "مثال: خواندن و نوشتن با DataView"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_dataview"
+    },
+    {
+      "type": "p",
+      "text": "متدهای DataView یک پارامتر اختیاری littleEndian (true/false) دارند که ترتیب بایت‌ها را کنترل می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "برش دادن ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "با متد slice() می‌توانید از بخشی از ArrayBuffer کپی بگیرید. این متد یک ArrayBuffer جدید با بایت‌های بازهٔ مشخص‌شده برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an ArrayBuffer\n\nconst myBuf = new ArrayBuffer(8);\n\n// Create a Uint8Array\n\nconst view = new Uint8Array(myBuf);\n\n// Fill with values 0 to 7\n\nfor (let i = 0; i < view.length; i++) {\n\n  view[i] = i;\n\n}\n\n// Create a copy of bytes from 2 to 5 (not including 5)\n\nconst sliced = myBuf.slice(2, 5);\n\nconst slicedView = new Uint8Array(sliced);",
+      "caption": "مثال: ArrayBuffer.slice()"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_slice"
+    },
+    {
+      "type": "p",
+      "text": "متد slice() یک بافر جدید می‌سازد."
+    },
+    {
+      "type": "p",
+      "text": "متد slice() حافظه را با بافر اصلی به اشتراک نمی‌گذارد."
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل رشته‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function stringToArrayBuffer(str) {\n\n  const encoder = new TextEncoder();\n\n  return encoder.encode(str).buffer;\n\n}\n\nconst myBuf = stringToArrayBuffer(\"Hello\");\n\nlet len1 = myBuf.byteLength;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_stringtoarr"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function arrayBufferToString(buffer) {\n\n  const decoder = new TextDecoder();\n\n  return decoder.decode(new Uint8Array(buffer));\n\n}\n\nconst encoder = new TextEncoder();\n\nconst myBuf = encoder.encode(\"Hello ArrayBuffer\").buffer;\n\nlet text = arrayBufferToString(myBuf);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_arrtostring"
+    },
+    {
+      "type": "h2",
+      "text": "اشتراک ArrayBuffer (SharedArrayBuffer)"
+    },
+    {
+      "type": "p",
+      "text": "ArrayBuffer به‌طور پیش‌فرض بین ریسه‌ها (thread) به اشتراک گذاشته نمی‌شود."
+    },
+    {
+      "type": "p",
+      "text": "برای به اشتراک گذاشتن حافظه بین workerها، JavaScript کلاس SharedArrayBuffer را فراهم می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "رفتارش مثل ArrayBuffer است، اما محتوایش می‌تواند به اشتراک گذاشته شود و همراه Atomics به کار برود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "if (Window.crossOriginIsolated) {\n\n  buffer = new SharedArrayBuffer(16);\n\n} else {\n\n  buffer = new ArrayBuffer(16);\n\n}\n\nconst sharedView = new Int32Array(buffer);\n\nbuffer[0] = 42;\n\nlet numb = sharedView[0];",
+      "caption": "مثال: ساختن SharedArrayBuffer"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arraybuffer_shared"
+    },
+    {
+      "type": "p",
+      "text": "مرورگرها برای فعال کردن SharedArrayBuffer ممکن است به سرایندهای امنیتی ویژه (COOP/COEP) نیاز داشته باشند."
+    },
+    {
+      "type": "h2",
+      "text": "خلاصه"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "ArrayBuffer یک شیء سطح‌پایین است که یک بلوک حافظه با اندازهٔ ثابت را نشان می‌دهد",
+        "به‌طور مستقیم نمی‌توانید روی ArrayBuffer بخوانید یا بنویسید",
+        "برای دسترسی به ArrayBuffer از نماها (آرایهٔ نوع‌دار یا DataView) استفاده می‌کنید",
+        "آرایه‌های نوع‌دار برای دادهٔ عددی یکنواخت مناسب‌اند",
+        "DataView برای دادهٔ مخلوط یا ساخت‌یافته مناسب است",
+        "برای کپی گرفتن از بخشی از ArrayBuffer از slice() استفاده کنید",
+        "برای هم‌روندی با حافظهٔ اشتراکی از SharedArrayBuffer و Atomics استفاده کنید"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "کاربردهای رایج"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "کار با دادهٔ دودویی فایل‌ها (مثلاً تصویر، ویدیو، صدا).",
+        "پردازش پروتکل‌های شبکهٔ دودویی (WebSocket، WebRTC و…).",
+        "انجام محاسبه‌های عددی حساس به کارایی.",
+        "هم‌کاری با WebAssembly یا دیگر APIهای سطح‌پایین."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مرجع ArrayBuffer"
+    },
+    {
+      "type": "h2",
+      "text": "بازنگری: دسامبر ۲۰۲۵"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["خصوصیت / متد", "توضیح"],
+        ["new ArrayBuffer()", "یک ArrayBuffer جدید می‌سازد"],
+        ["arrayBuffer.byteLength", "طول بافر بر حسب بایت"],
+        ["arrayBuffer.slice()", "یک ArrayBuffer جدید به‌عنوان کپی بخشی از این بافر برمی‌گرداند"],
+        ["ArrayBuffer.isView()", "اگر آرگومان نمایی روی ArrayBuffer باشد true برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "نماهای رایج"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نما (View)", "توضیح", "بایت‌ها"],
+        ["Int8Array", "عدد صحیح علامت‌دار ۸ بیتی", "1"],
+        ["Uint8Array", "عدد صحیح بدون علامت ۸ بیتی", "1"],
+        ["Uint8ClampedArray", "عدد صحیح کرانه‌دار ۸ بیتی", "1"],
+        ["Int16Array", "عدد صحیح علامت‌دار ۱۶ بیتی", "2"],
+        ["Uint16Array", "عدد صحیح بدون علامت ۱۶ بیتی", "2"],
+        ["Int32Array", "عدد صحیح علامت‌دار ۳۲ بیتی", "4"],
+        ["Uint32Array", "عدد صحیح بدون علامت ۳۲ بیتی", "4"],
+        ["Float32Array", "عدد اعشاری ۳۲ بیتی", "4"],
+        ["Float64Array", "عدد اعشاری ۶۴ بیتی", "8"],
+        ["DataView", "نمای عمومی (همهٔ نوع‌ها)", ""]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بیاموزید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "متدهای آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "مرجع آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "DataView"
+    },
+    {
+      "type": "p",
+      "text": "شیء Atomics"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک ArrayBuffer با اندازهٔ ۸ بایت بسازید و byteLength آن را در کنسول چاپ کنید.",
+      "hint": "اندازه را به‌صورت بایت به سازنده بدهید: new ArrayBuffer(8)."
+    },
+    {
+      "prompt": "روی همان بافر یک Uint8Array بسازید، خانهٔ صفر را ۲۵۵ بگذارید و بعد با DataView همان بایت را بخوانید.",
+      "hint": "getUint8(0) برای خواندن و setUint8(0, 255) برای نوشتن به کار می‌رود."
+    },
+    {
+      "prompt": "روی یک بافر ۴ بایتی یک Int32Array بسازید و مقدار ۱۰۰۰ را در آن بگذارید؛ بعد یکی از بایت‌ها را با Uint8Array ببینید.",
+      "hint": "هر دو نما روی حافظهٔ یکسانی نگاه می‌کنند؛ برای همین تغییر یکی در دیگری دیده می‌شود."
+    },
+    {
+      "prompt": "یک ArrayBuffer بسازید، slice() بگیرید و بررسی کنید که تغییر بایت‌های کپی، بافر اصلی را عوض نمی‌کند.",
+      "hint": "slice() حافظه را به اشتراک نمی‌گذارد؛ یک بافر کاملاً جدید می‌سازد."
+    },
+    {
+      "prompt": "با TextEncoder یک رشتهٔ فارسی به Uint8Array تبدیل کنید و طول بایت‌هایش را با طول رشته مقایسه کنید.",
+      "hint": "نویسه‌های فارسی UTF-8 بیش از یک بایت اشغال می‌کنند؛ برای برگشت به رشته از TextDecoder استفاده کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "چرا نمی‌توان مستقیماً از یک ArrayBuffer مقدار خواند؟",
+      "options": [
+        "چون فقط در workerها قابل استفاده است",
+        "چون ArrayBuffer فقط یک بلوک حافظهٔ خام است و متد خواندن و نوشتن ندارد",
+        "چون خواندنش نیاز به SharedArrayBuffer دارد",
+        "چون فقط برای رشته‌ها ساخته شده است"
+      ],
+      "answer": 1,
+      "explanation": "ArrayBuffer فقط یک بلوک حافظه با طول ثابت است؛ برای تفسیر بایت‌ها باید از نما مثل آرایهٔ نوع‌دار یا DataView استفاده کنید."
+    },
+    {
+      "question": "byteLength یک ArrayBuffer چه چیزی را نشان می‌دهد؟",
+      "options": [
+        "تعداد عنصرهای آن",
+        "اندازهٔ بافر بر حسب بایت",
+        "نوع دادهٔ ذخیره‌شده",
+        "تعداد نماهای ساخته‌شده"
+      ],
+      "answer": 1,
+      "explanation": "اندازهٔ ArrayBuffer همیشه بر حسب بایت بیان می‌شود و byteLength همان مقدار را برمی‌گرداند."
+    },
+    {
+      "question": "کدام گزینه دربارهٔ slice() درست است؟",
+      "options": [
+        "حافظه را با بافر اصلی به اشتراک می‌گذارد",
+        "یک ArrayBuffer جدید با بایت‌های بازهٔ مشخص‌شده برمی‌گرداند",
+        "بافر اصلی را کوچک می‌کند",
+        "فقط روی SharedArrayBuffer کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "slice() یک بافر تازه می‌سازد و حافظه را با بافر اصلی شریک نمی‌شود؛ پس تغییر کپی روی اصل اثر ندارد."
+    },
+    {
+      "question": "برای به اشتراک گذاشتن حافظه بین workerها از چه چیزی استفاده می‌کنیم؟",
+      "options": [
+        "ArrayBuffer معمولی",
+        "SharedArrayBuffer به همراه Atomics",
+        "DataView تنها",
+        "JSON"
+      ],
+      "answer": 1,
+      "explanation": "ArrayBuffer به‌طور پیش‌فرض بین ریسه‌ها مشترک نیست؛ SharedArrayBuffer این اشتراک را ممکن می‌کند و Atomics عملیات امن روی آن می‌دهد."
+    },
+    {
+      "question": "کدام نما برای دادهٔ مخلوط با نوع‌های مختلف در یک بافر مناسب‌تر است؟",
+      "options": ["Uint8Array", "Int32Array", "DataView", "Float64Array"],
+      "answer": 2,
+      "explanation": "DataView می‌گذارد در هر افست بایتی مقدارهایی با نوع‌های مختلف بخوانید و بنویسید؛ آرایهٔ نوع‌دار برای دادهٔ یکنواخت است."
+    }
+  ]
 }

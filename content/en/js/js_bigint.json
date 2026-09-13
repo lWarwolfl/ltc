@@ -1,520 +1,489 @@
 {
- "slug": "js_bigint",
- "course": "js",
- "order": 35,
- "url": "/js/js_bigint.asp",
- "title": "JavaScript BigInt",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript BigInt"
-  },
-  {
-   "type": "h2",
-   "text": "What is JavaScript BigInt?"
-  },
-  {
-   "type": "p",
-   "text": "BigInt is a JavaScript data type for handling and storing big integer values."
-  },
-  {
-   "type": "p",
-   "text": "BigInt allows you to work with integers larger than the limit of Numbers."
-  },
-  {
-   "type": "p",
-   "text": "BigInt can represent an integer of any size, limited only by available memory."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Accuracy"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Numbers are only accurate up to 15 digits:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// 15 digits:\n\nlet x = 999999999999999;\n\n// 16 digits:\n\nlet y = 9999999999999999;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
-  },
-  {
-   "type": "h2",
-   "text": "Numbers are 64-bits Floating Point"
-  },
-  {
-   "type": "p",
-   "text": "All JavaScript Numbers are stored in a 64-bit floating-point format (IEEE 754 standard)."
-  },
-  {
-   "type": "p",
-   "text": "With this standard, large numbers cannot be exactly represented, but will be rounded."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript can only safely represent integers up to 253-1 (9007199254740991)."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript can only safely represent integers down to -253-1 (-9007199254740991)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// MAX = 9007199254740991\n\nlet x = Number.MAX_SAFE_INTEGER;\n\n// MIN = -9007199254740991\n\nlet y = Number.MIN_SAFE_INTEGER;",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Max (accurate)\n\nlet x = 9007199254740991;\n\n// Max + 10 (inaccurate)\n\nlet y = x + 10;",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Min (accurate)\n\nlet x = -9007199254740991;\n\n// Min - 10 (inaccurate)\n\nlet y = x - 10;",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate5"
-  },
-  {
-   "type": "p",
-   "text": "There is no such thing as a JavaScript Integer."
-  },
-  {
-   "type": "p",
-   "text": "All JavaScript Numbers are 64-bit floating point."
-  },
-  {
-   "type": "h2",
-   "text": "How to Create a BigInt"
-  },
-  {
-   "type": "p",
-   "text": "You can create a BigInt in two ways:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Using an integer literal with an n suffix",
-    "Using the BigInt() constructor with a string"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Using an integer literal with an n suffix:\n\nlet x = 999999999999999n;\n\n// Using the BigInt() constructor with a string:\n\nlet y = BigInt(\"999999999999999\");",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 12345678901234567890n;\n\nlet y = BigInt(\"12345678901234567890\")",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint2"
-  },
-  {
-   "type": "p",
-   "text": "You can also create a BigInt using the Bigint() constructor with a Number."
-  },
-  {
-   "type": "p",
-   "text": "Warning !! Numbers are only accurate up to 15 digits."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = BigInt(9999999999999999);",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint3"
-  },
-  {
-   "type": "h2",
-   "text": "BigInt is a JavaScript Datatype"
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript typeof a BigInt is \"bigint\":"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = BigInt(999999999999999);\n\nlet type = typeof x;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_typeof"
-  },
-  {
-   "type": "p",
-   "text": "BigInt is the second numeric data type in JavaScript\n(after Number)."
-  },
-  {
-   "type": "p",
-   "text": "With BigInt the total number of supported data types in JavaScript is 8:"
-  },
-  {
-   "type": "p",
-   "text": "1. String\n2. Number\n3. Bigint\n4. Boolean\n5. Undefined\n6. Null\n7. Symbol\n8. Object"
-  },
-  {
-   "type": "h2",
-   "text": "Arithmetic Operators"
-  },
-  {
-   "type": "p",
-   "text": "BigInt supports standard JavaScript arithmetic operators."
-  },
-  {
-   "type": "p",
-   "text": "(+, -, ++, --, *, /, %, **)"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 9007199254740995n;\n\nlet y = 9007199254740995n;\n\nlet z = x * y;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_multiply"
-  },
-  {
-   "type": "h2",
-   "text": "Mixing BigInt and Numbers"
-  },
-  {
-   "type": "p",
-   "text": "Arithmetic between a BigInt\nand a Number is not allowed (will result in a\nTypeError)."
-  },
-  {
-   "type": "p",
-   "text": "Explicit conversion must be done first."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10n;\n\nlet y = 5;\n\nlet z = x + y; // ❌ TypeError",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10n;\n\nlet y = 5;\n\nlet z = Number(x) + y;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_mix"
-  },
-  {
-   "type": "h2",
-   "text": "BigInt / Number Conversions"
-  },
-  {
-   "type": "p",
-   "text": "BigInt to Number: Use the Number() constructor."
-  },
-  {
-   "type": "p",
-   "text": "Number to BigInt: Use the BigInt() constructor."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a BigInt\n\nlet largeNumber = BigInt(\"12345678901234567890\");\n\n// Conversions\n\nlet num = Number(largeNumber);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_conversion"
-  },
-  {
-   "type": "p",
-   "text": "Large BigInts might result in Infinity or loss of precision when converted to number."
-  },
-  {
-   "type": "h2",
-   "text": "BigInt Decimals"
-  },
-  {
-   "type": "p",
-   "text": "A BigInt can not have decimals."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 1.5n; // ❌ TypeError",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 5n;\n\nlet y = x / 2;\n\n//  ❌ Error: Cannot mix BigInt and other types, use explicit conversion.",
-   "caption": "BigInt Division Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 5n;\n\nlet y = Number(x) / 2;",
-   "caption": "BigInt Division Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_divide"
-  },
-  {
-   "type": "p",
-   "text": "Attempting to convert a number with a fractional part to a BigInt will throw an error."
-  },
-  {
-   "type": "h2",
-   "text": "Comparison Operators"
-  },
-  {
-   "type": "p",
-   "text": "Bigint supports standard JavaScript comparison operators."
-  },
-  {
-   "type": "p",
-   "text": "(<, > ==, ===, !==, <=, >=)"
-  },
-  {
-   "type": "p",
-   "text": "BigInts can also be compared with Numbers using standard comparison operators."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// true\n\nlet x = (10n > 5n);\n\n// false (different types)\n\nlet y = (10n === 10);\n\n// true (loose equality)\n\nlet z = (10n == 10);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_compare"
-  },
-  {
-   "type": "p",
-   "text": "Strict equality (===) between a BigInt and a Number will always be false due to different types."
-  },
-  {
-   "type": "h2",
-   "text": "Bitwise Operators"
-  },
-  {
-   "type": "p",
-   "text": "BigInt supports bitwise operations, but only with other BigInts (not Numbers):"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "& (AND)",
-    "| (OR)",
-    "^ (XOR)",
-    "~ (NOT)"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let a = 5n;   // 0101\n\nlet b = 3n;   // 0011\n\nlet x = (a & b); // 1n   (0001)\n\nlet y = (a | b); // 7n   (0111)\n\nlet z = (a ^ b); // 6n   (0110)\n\nlet n = (~a);    // -6n",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_bitwise"
-  },
-  {
-   "type": "h2",
-   "text": "Bitwise Shift Operators"
-  },
-  {
-   "type": "p",
-   "text": "BigInt only supports two shift operators:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "<< (left shift)",
-    ">> (signed right shift)"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let big = 10n; // binary: 1010\n\nlet x = (big << 2n); // 40n  (101000)\n\nlet y = (big >> 1n); // 5n   (0101)",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_shift"
-  },
-  {
-   "type": "p",
-   "text": "Impotant Rules:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Both operands must be BigInt",
-    "Shift amounts must be non-negative",
-    "Right shift keeps the sign bit for negative values"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Unsigned right shift (>>>) is not allowed with BigInts."
-  },
-  {
-   "type": "h2",
-   "text": "BigInt Hex, Octal and Binary"
-  },
-  {
-   "type": "p",
-   "text": "BigInt can also be written in hexadecimal, octal, or binary notation:"
-  },
-  {
-   "type": "p",
-   "text": "Like numbers, bigint literals support several bases:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Normal: 256n",
-    "Octal: 0o400n",
-    "Hexadecimal: 0x100n",
-    "Binary: 0b100000000n"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 256n;\n\nlet oct = 0o400n;\n\nlet hex = 0x100n;\n\nlet bin = 0b100000000n;",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let hex = 0x20000000000003n;\n\nlet oct = 0o400000000000000003n;\n\nlet bin = 0b100000000000000000000000000000000000000000000000000011n;",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_octal_2"
-  },
-  {
-   "type": "h2",
-   "text": "Precision Curiosity"
-  },
-  {
-   "type": "p",
-   "text": "Maximum safe integer in JavaScript is 9007199254740991."
-  },
-  {
-   "type": "p",
-   "text": "Rounding can compromise program security:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "9007199254740992 === 9007199254740993; // is true !!!",
-   "caption": "MAX_SAFE_INTEGER Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "9007199254740992n === 9007199254740993n; // is false !!!",
-   "caption": "MAX_SAFE_INTEGER Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_max_safe_error"
-  },
-  {
-   "type": "h2",
-   "text": "Summary"
-  },
-  {
-   "type": "p",
-   "text": "BigInt allows arbitrary-precision integers"
-  },
-  {
-   "type": "p",
-   "text": "BigInt numbers can be as large (or small) as your memory allows."
-  },
-  {
-   "type": "p",
-   "text": "BigInt are used for very large integers (cryptography, IDs, timestamps, etc)."
-  },
-  {
-   "type": "p",
-   "text": "BigInt is not suitable for decimals - only integers."
-  },
-  {
-   "type": "p",
-   "text": "Math functions (like Math.sqrt()) do not work with BigInts."
-  },
-  {
-   "type": "p",
-   "text": "JSON.stringify() cannot handle BigInts - throws an error."
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "BigInt() is an ES2020 feature."
-  },
-  {
-   "type": "p",
-   "text": "ES2020 is fully supported in all modern browsers since September 2020:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome85",
-     "Edge85",
-     "Firefox79",
-     "Safari14",
-     "Opera71"
-    ],
-    [
-     "Aug 2020",
-     "Aug 2020",
-     "Mar 2020",
-     "Sep 2020",
-     "Sep 2020"
-    ]
-   ]
-  }
- ]
+  "slug": "js_bigint",
+  "course": "js",
+  "order": 35,
+  "url": "/js/js_bigint.asp",
+  "title": "JavaScript BigInt",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript BigInt"
+    },
+    {
+      "type": "h2",
+      "text": "What is JavaScript BigInt?"
+    },
+    {
+      "type": "p",
+      "text": "BigInt is a JavaScript data type for handling and storing big integer values."
+    },
+    {
+      "type": "p",
+      "text": "BigInt allows you to work with integers larger than the limit of Numbers."
+    },
+    {
+      "type": "p",
+      "text": "BigInt can represent an integer of any size, limited only by available memory."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Accuracy"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Numbers are only accurate up to 15 digits:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// 15 digits:\n\nlet x = 999999999999999;\n\n// 16 digits:\n\nlet y = 9999999999999999;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
+    },
+    {
+      "type": "h2",
+      "text": "Numbers are 64-bits Floating Point"
+    },
+    {
+      "type": "p",
+      "text": "All JavaScript Numbers are stored in a 64-bit floating-point format (IEEE 754 standard)."
+    },
+    {
+      "type": "p",
+      "text": "With this standard, large numbers cannot be exactly represented, but will be rounded."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript can only safely represent integers up to 253-1 (9007199254740991)."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript can only safely represent integers down to -253-1 (-9007199254740991)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// MAX = 9007199254740991\n\nlet x = Number.MAX_SAFE_INTEGER;\n\n// MIN = -9007199254740991\n\nlet y = Number.MIN_SAFE_INTEGER;",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Max (accurate)\n\nlet x = 9007199254740991;\n\n// Max + 10 (inaccurate)\n\nlet y = x + 10;",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Min (accurate)\n\nlet x = -9007199254740991;\n\n// Min - 10 (inaccurate)\n\nlet y = x - 10;",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate5"
+    },
+    {
+      "type": "p",
+      "text": "There is no such thing as a JavaScript Integer."
+    },
+    {
+      "type": "p",
+      "text": "All JavaScript Numbers are 64-bit floating point."
+    },
+    {
+      "type": "h2",
+      "text": "How to Create a BigInt"
+    },
+    {
+      "type": "p",
+      "text": "You can create a BigInt in two ways:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Using an integer literal with an n suffix",
+        "Using the BigInt() constructor with a string"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Using an integer literal with an n suffix:\n\nlet x = 999999999999999n;\n\n// Using the BigInt() constructor with a string:\n\nlet y = BigInt(\"999999999999999\");",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 12345678901234567890n;\n\nlet y = BigInt(\"12345678901234567890\")",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint2"
+    },
+    {
+      "type": "p",
+      "text": "You can also create a BigInt using the Bigint() constructor with a Number."
+    },
+    {
+      "type": "p",
+      "text": "Warning !! Numbers are only accurate up to 15 digits."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = BigInt(9999999999999999);",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint3"
+    },
+    {
+      "type": "h2",
+      "text": "BigInt is a JavaScript Datatype"
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript typeof a BigInt is \"bigint\":"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = BigInt(999999999999999);\n\nlet type = typeof x;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_typeof"
+    },
+    {
+      "type": "p",
+      "text": "BigInt is the second numeric data type in JavaScript\n(after Number)."
+    },
+    {
+      "type": "p",
+      "text": "With BigInt the total number of supported data types in JavaScript is 8:"
+    },
+    {
+      "type": "p",
+      "text": "1. String\n2. Number\n3. Bigint\n4. Boolean\n5. Undefined\n6. Null\n7. Symbol\n8. Object"
+    },
+    {
+      "type": "h2",
+      "text": "Arithmetic Operators"
+    },
+    {
+      "type": "p",
+      "text": "BigInt supports standard JavaScript arithmetic operators."
+    },
+    {
+      "type": "p",
+      "text": "(+, -, ++, --, *, /, %, **)"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 9007199254740995n;\n\nlet y = 9007199254740995n;\n\nlet z = x * y;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_multiply"
+    },
+    {
+      "type": "h2",
+      "text": "Mixing BigInt and Numbers"
+    },
+    {
+      "type": "p",
+      "text": "Arithmetic between a BigInt\nand a Number is not allowed (will result in a\nTypeError)."
+    },
+    {
+      "type": "p",
+      "text": "Explicit conversion must be done first."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10n;\n\nlet y = 5;\n\nlet z = x + y; // ❌ TypeError",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10n;\n\nlet y = 5;\n\nlet z = Number(x) + y;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_mix"
+    },
+    {
+      "type": "h2",
+      "text": "BigInt / Number Conversions"
+    },
+    {
+      "type": "p",
+      "text": "BigInt to Number: Use the Number() constructor."
+    },
+    {
+      "type": "p",
+      "text": "Number to BigInt: Use the BigInt() constructor."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a BigInt\n\nlet largeNumber = BigInt(\"12345678901234567890\");\n\n// Conversions\n\nlet num = Number(largeNumber);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_conversion"
+    },
+    {
+      "type": "p",
+      "text": "Large BigInts might result in Infinity or loss of precision when converted to number."
+    },
+    {
+      "type": "h2",
+      "text": "BigInt Decimals"
+    },
+    {
+      "type": "p",
+      "text": "A BigInt can not have decimals."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 1.5n; // ❌ TypeError",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 5n;\n\nlet y = x / 2;\n\n//  ❌ Error: Cannot mix BigInt and other types, use explicit conversion.",
+      "caption": "BigInt Division Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 5n;\n\nlet y = Number(x) / 2;",
+      "caption": "BigInt Division Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_divide"
+    },
+    {
+      "type": "p",
+      "text": "Attempting to convert a number with a fractional part to a BigInt will throw an error."
+    },
+    {
+      "type": "h2",
+      "text": "Comparison Operators"
+    },
+    {
+      "type": "p",
+      "text": "Bigint supports standard JavaScript comparison operators."
+    },
+    {
+      "type": "p",
+      "text": "(<, > ==, ===, !==, <=, >=)"
+    },
+    {
+      "type": "p",
+      "text": "BigInts can also be compared with Numbers using standard comparison operators."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// true\n\nlet x = (10n > 5n);\n\n// false (different types)\n\nlet y = (10n === 10);\n\n// true (loose equality)\n\nlet z = (10n == 10);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_compare"
+    },
+    {
+      "type": "p",
+      "text": "Strict equality (===) between a BigInt and a Number will always be false due to different types."
+    },
+    {
+      "type": "h2",
+      "text": "Bitwise Operators"
+    },
+    {
+      "type": "p",
+      "text": "BigInt supports bitwise operations, but only with other BigInts (not Numbers):"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["& (AND)", "| (OR)", "^ (XOR)", "~ (NOT)"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let a = 5n;   // 0101\n\nlet b = 3n;   // 0011\n\nlet x = (a & b); // 1n   (0001)\n\nlet y = (a | b); // 7n   (0111)\n\nlet z = (a ^ b); // 6n   (0110)\n\nlet n = (~a);    // -6n",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_bitwise"
+    },
+    {
+      "type": "h2",
+      "text": "Bitwise Shift Operators"
+    },
+    {
+      "type": "p",
+      "text": "BigInt only supports two shift operators:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["<< (left shift)", ">> (signed right shift)"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let big = 10n; // binary: 1010\n\nlet x = (big << 2n); // 40n  (101000)\n\nlet y = (big >> 1n); // 5n   (0101)",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_shift"
+    },
+    {
+      "type": "p",
+      "text": "Impotant Rules:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Both operands must be BigInt",
+        "Shift amounts must be non-negative",
+        "Right shift keeps the sign bit for negative values"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Unsigned right shift (>>>) is not allowed with BigInts."
+    },
+    {
+      "type": "h2",
+      "text": "BigInt Hex, Octal and Binary"
+    },
+    {
+      "type": "p",
+      "text": "BigInt can also be written in hexadecimal, octal, or binary notation:"
+    },
+    {
+      "type": "p",
+      "text": "Like numbers, bigint literals support several bases:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Normal: 256n", "Octal: 0o400n", "Hexadecimal: 0x100n", "Binary: 0b100000000n"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 256n;\n\nlet oct = 0o400n;\n\nlet hex = 0x100n;\n\nlet bin = 0b100000000n;",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let hex = 0x20000000000003n;\n\nlet oct = 0o400000000000000003n;\n\nlet bin = 0b100000000000000000000000000000000000000000000000000011n;",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_bigint_octal_2"
+    },
+    {
+      "type": "h2",
+      "text": "Precision Curiosity"
+    },
+    {
+      "type": "p",
+      "text": "Maximum safe integer in JavaScript is 9007199254740991."
+    },
+    {
+      "type": "p",
+      "text": "Rounding can compromise program security:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "9007199254740992 === 9007199254740993; // is true !!!",
+      "caption": "MAX_SAFE_INTEGER Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "9007199254740992n === 9007199254740993n; // is false !!!",
+      "caption": "MAX_SAFE_INTEGER Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_max_safe_error"
+    },
+    {
+      "type": "h2",
+      "text": "Summary"
+    },
+    {
+      "type": "p",
+      "text": "BigInt allows arbitrary-precision integers"
+    },
+    {
+      "type": "p",
+      "text": "BigInt numbers can be as large (or small) as your memory allows."
+    },
+    {
+      "type": "p",
+      "text": "BigInt are used for very large integers (cryptography, IDs, timestamps, etc)."
+    },
+    {
+      "type": "p",
+      "text": "BigInt is not suitable for decimals - only integers."
+    },
+    {
+      "type": "p",
+      "text": "Math functions (like Math.sqrt()) do not work with BigInts."
+    },
+    {
+      "type": "p",
+      "text": "JSON.stringify() cannot handle BigInts - throws an error."
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "BigInt() is an ES2020 feature."
+    },
+    {
+      "type": "p",
+      "text": "ES2020 is fully supported in all modern browsers since September 2020:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome85", "Edge85", "Firefox79", "Safari14", "Opera71"],
+        ["Aug 2020", "Aug 2020", "Mar 2020", "Sep 2020", "Sep 2020"]
+      ]
+    }
+  ]
 }

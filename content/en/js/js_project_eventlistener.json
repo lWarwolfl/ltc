@@ -1,160 +1,160 @@
 {
- "slug": "js_project_eventlistener",
- "course": "js",
- "order": 119,
- "url": "/js/js_project_eventlistener.asp",
- "title": "Project - Event Listener",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Project - Event Listener"
-  },
-  {
-   "type": "h2",
-   "text": "Using an Event Listener"
-  },
-  {
-   "type": "p",
-   "text": "This is a copy of the previous project."
-  },
-  {
-   "type": "p",
-   "text": "Now using Event Listeners instead of Onclick Attributes."
-  },
-  {
-   "type": "p",
-   "text": "0"
-  },
-  {
-   "type": "p",
-   "text": "Reset"
-  },
-  {
-   "type": "p",
-   "text": "Save"
-  },
-  {
-   "type": "p",
-   "text": "Load"
-  },
-  {
-   "type": "h2",
-   "text": "Using Event Listeners"
-  },
-  {
-   "type": "p",
-   "text": "Using addEventListener() makes it easier to:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Keep HTML and JavaScript separated",
-    "Add multiple events to the same element",
-    "Write cleaner code in bigger projects"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button id=\"btnPlus\">+</button>\n\n<button id=\"btnMinus\">-</button>\n\n<button id=\"btnReset\">Reset</button>\n\n<button id=\"btnSave\">Save</button>\n\n<button id=\"btnLoad\">Load</button>\n\n<script>\n\n// JavaScript goes here\n\n</script>",
-   "caption": "HTML Code"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Add event listeners\n\ndocument.getElementById(\"btnPlus\").addEventListener(\"click\", increaseCount);\n\ndocument.getElementById(\"btnMinus\").addEventListener(\"click\", decreaseCount);\n\ndocument.getElementById(\"btnReset\").addEventListener(\"click\", resetCount);\n\ndocument.getElementById(\"btnSave\").addEventListener(\"click\", saveCount);\n\ndocument.getElementById(\"btnLoad\").addEventListener(\"click\", loadCount);\n\n// Declare the counter\n\nlet count = 0;\n\n// Load counter when the page opens\n\nloadCount();\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  if (count > 0) {\n\n  count--;\n\n    updateCount();\n\n  }\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n  }\n\n  updateCount();\n\n}",
-   "caption": "JavaScript Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_listen"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "JavaScript is moved to an external file (counter.js)",
-    "Uses DOMContentLoaded so JavaScript runs only after HTML is ready",
-    "Cleaner structure using small functions + element variables",
-    "Shows a short Saved! message",
-    "Shows a short Loaded! message"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button id=\"btnPlus\">+</button>\n\n<button id=\"btnMinus\">-</button>\n\n<button id=\"btnReset\">Reset</button>\n\n<button id=\"btnSave\">Save</button>\n\n<button id=\"btnLoad\">Load</button>\n\n<script  src=\"counter.js\"></script>\n\n</body>\n\n</html>",
-   "caption": "HTML Code"
-  },
-  {
-   "type": "p",
-   "text": "Notice that the <script> tag is placed at the bottom, before\n</body>."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.addEventListener(\"DOMContentLoaded\", function () {\n\n// Declare the counter\n\nlet count = 0;\n\n// Use element variables\n\nconst countEl = document.getElementById(\"count\");\n\nconst msgEl = document.getElementById(\"message\");\n\nconst btnPlus = document.getElementById(\"btnPlus\");\n\nconst btnMinus = document.getElementById(\"btnMinus\");\n\nconst btnReset = document.getElementById(\"btnReset\");\n\nconst btnSave = document.getElementById(\"btnSave\");\n\nconst btnLoad = document.getElementById(\"btnLoad\");\n\n// Add event listeners\n\nbtnPlus.addEventListener(\"click\", increaseCount);\n\nbtnMinus.addEventListener(\"click\", decreaseCount);\n\nbtnReset.addEventListener(\"click\", resetCount);\n\nbtnSave.addEventListener(\"click\", saveCount);\n\nbtnLoad.addEventListener(\"click\", loadCount);\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to diplay message\n\nfunction showMessage(text) {\n\n  msgEl.innerHTML = text;\n\n  setTimeout(function () {\n\n    msgEl.innerHTML = \"\";\n\n  }, 3000);\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  count--;\n\n  updateCount();\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n  showMessage(\"Saved!\");\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n    showMessage(\"Loaded!\");\n\n  }\n\n  updateCount();\n\n}\n\n});",
-   "caption": "counter.js"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_3"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript in External File"
-  },
-  {
-   "type": "p",
-   "text": "Using counter.js makes your project:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "More Organized",
-    "Keep HTML and JavaScript separated",
-    "Easier to read and to reuse",
-    "More like real-world projects"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "DOMContentLoaded"
-  },
-  {
-   "type": "p",
-   "text": "Why use DOMContentLoaded?"
-  },
-  {
-   "type": "p",
-   "text": "When you use an external JavaScript file, the browser may load the script before the HTML is ready. So we use:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.addEventListener(\"DOMContentLoaded\", function() {\n\n// JavaScript code\n\n});",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "This means: Run the JavaScript code after the page has finished loading the HTML."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Projects"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "JavaScript Counter\nA counter project with restore and save in localStorage.",
-    "JavaScript Event Listener\nThe counter project using event listener instead of onclick.",
-    "JavaScript To-Do List\nA do-do list saved in an array in local storage.",
-    "JavaScript Modal Popup\nA modal popup window that appears on top of the page.",
-    "JavaScript Form Validation\nAn HTML Form with form validation."
-   ]
-  }
- ]
+  "slug": "js_project_eventlistener",
+  "course": "js",
+  "order": 119,
+  "url": "/js/js_project_eventlistener.asp",
+  "title": "Project - Event Listener",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Project - Event Listener"
+    },
+    {
+      "type": "h2",
+      "text": "Using an Event Listener"
+    },
+    {
+      "type": "p",
+      "text": "This is a copy of the previous project."
+    },
+    {
+      "type": "p",
+      "text": "Now using Event Listeners instead of Onclick Attributes."
+    },
+    {
+      "type": "p",
+      "text": "0"
+    },
+    {
+      "type": "p",
+      "text": "Reset"
+    },
+    {
+      "type": "p",
+      "text": "Save"
+    },
+    {
+      "type": "p",
+      "text": "Load"
+    },
+    {
+      "type": "h2",
+      "text": "Using Event Listeners"
+    },
+    {
+      "type": "p",
+      "text": "Using addEventListener() makes it easier to:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Keep HTML and JavaScript separated",
+        "Add multiple events to the same element",
+        "Write cleaner code in bigger projects"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button id=\"btnPlus\">+</button>\n\n<button id=\"btnMinus\">-</button>\n\n<button id=\"btnReset\">Reset</button>\n\n<button id=\"btnSave\">Save</button>\n\n<button id=\"btnLoad\">Load</button>\n\n<script>\n\n// JavaScript goes here\n\n</script>",
+      "caption": "HTML Code"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Add event listeners\n\ndocument.getElementById(\"btnPlus\").addEventListener(\"click\", increaseCount);\n\ndocument.getElementById(\"btnMinus\").addEventListener(\"click\", decreaseCount);\n\ndocument.getElementById(\"btnReset\").addEventListener(\"click\", resetCount);\n\ndocument.getElementById(\"btnSave\").addEventListener(\"click\", saveCount);\n\ndocument.getElementById(\"btnLoad\").addEventListener(\"click\", loadCount);\n\n// Declare the counter\n\nlet count = 0;\n\n// Load counter when the page opens\n\nloadCount();\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  if (count > 0) {\n\n  count--;\n\n    updateCount();\n\n  }\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n  }\n\n  updateCount();\n\n}",
+      "caption": "JavaScript Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_listen"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "JavaScript is moved to an external file (counter.js)",
+        "Uses DOMContentLoaded so JavaScript runs only after HTML is ready",
+        "Cleaner structure using small functions + element variables",
+        "Shows a short Saved! message",
+        "Shows a short Loaded! message"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>Counter</h2>\n\n<p id=\"count\" style=\"font-size:40px;\">0</p>\n\n<button id=\"btnPlus\">+</button>\n\n<button id=\"btnMinus\">-</button>\n\n<button id=\"btnReset\">Reset</button>\n\n<button id=\"btnSave\">Save</button>\n\n<button id=\"btnLoad\">Load</button>\n\n<script  src=\"counter.js\"></script>\n\n</body>\n\n</html>",
+      "caption": "HTML Code"
+    },
+    {
+      "type": "p",
+      "text": "Notice that the <script> tag is placed at the bottom, before\n</body>."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.addEventListener(\"DOMContentLoaded\", function () {\n\n// Declare the counter\n\nlet count = 0;\n\n// Use element variables\n\nconst countEl = document.getElementById(\"count\");\n\nconst msgEl = document.getElementById(\"message\");\n\nconst btnPlus = document.getElementById(\"btnPlus\");\n\nconst btnMinus = document.getElementById(\"btnMinus\");\n\nconst btnReset = document.getElementById(\"btnReset\");\n\nconst btnSave = document.getElementById(\"btnSave\");\n\nconst btnLoad = document.getElementById(\"btnLoad\");\n\n// Add event listeners\n\nbtnPlus.addEventListener(\"click\", increaseCount);\n\nbtnMinus.addEventListener(\"click\", decreaseCount);\n\nbtnReset.addEventListener(\"click\", resetCount);\n\nbtnSave.addEventListener(\"click\", saveCount);\n\nbtnLoad.addEventListener(\"click\", loadCount);\n\n// Function to display the counter\n\nfunction updateCount() {\n\n  document.getElementById(\"count\").innerHTML = count;\n\n}\n\n// Function to diplay message\n\nfunction showMessage(text) {\n\n  msgEl.innerHTML = text;\n\n  setTimeout(function () {\n\n    msgEl.innerHTML = \"\";\n\n  }, 3000);\n\n}\n\n// Function to increase the counter\n\nfunction increaseCount() {\n\n  count++;\n\n  updateCount();\n\n}\n\n// Function to decrease the counter\n\nfunction decreaseCount() {\n\n  count--;\n\n  updateCount();\n\n}\n\n// Function to reset the counter\n\nfunction resetCount() {\n\n  count = 0;\n\n  updateCount();\n\n}\n\n// Function to save the counter\n\nfunction saveCount() {\n\n  localStorage.setItem(\"count\", count);\n\n  showMessage(\"Saved!\");\n\n}\n\n// Function to load the counter\n\nfunction loadCount() {\n\n  let saved = localStorage.getItem(\"count\");\n\n  if (saved !== null) {\n\n    count = Number(saved);\n\n    showMessage(\"Loaded!\");\n\n  }\n\n  updateCount();\n\n}\n\n});",
+      "caption": "counter.js"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_counter_3"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript in External File"
+    },
+    {
+      "type": "p",
+      "text": "Using counter.js makes your project:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "More Organized",
+        "Keep HTML and JavaScript separated",
+        "Easier to read and to reuse",
+        "More like real-world projects"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "DOMContentLoaded"
+    },
+    {
+      "type": "p",
+      "text": "Why use DOMContentLoaded?"
+    },
+    {
+      "type": "p",
+      "text": "When you use an external JavaScript file, the browser may load the script before the HTML is ready. So we use:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.addEventListener(\"DOMContentLoaded\", function() {\n\n// JavaScript code\n\n});",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "This means: Run the JavaScript code after the page has finished loading the HTML."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Projects"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "JavaScript Counter\nA counter project with restore and save in localStorage.",
+        "JavaScript Event Listener\nThe counter project using event listener instead of onclick.",
+        "JavaScript To-Do List\nA do-do list saved in an array in local storage.",
+        "JavaScript Modal Popup\nA modal popup window that appears on top of the page.",
+        "JavaScript Form Validation\nAn HTML Form with form validation."
+      ]
+    }
+  ]
 }

@@ -1,231 +1,201 @@
 {
- "slug": "js_events_load",
- "course": "js",
- "order": 151,
- "url": "/js/js_events_load.asp",
- "title": "رویدادهای بارگذاری در JavaScript",
- "summary": "رویدادهای بارگذاری می‌گویند صفحه یا یک عنصر چه زمانی آماده شده است. این درس تفاوت DOMContentLoaded با load را توضیح می‌دهد، نشان می‌دهد هر کدام برای چه کاری مناسب‌اند و رویدادهای بارگذاری روی تصویر، اسکریپت، استایل و ویدیو را معرفی می‌کند.",
- "objectives": [
-  "تفاوت DOMContentLoaded و load را توضیح دهید",
-  "برای هر رویداد یک کاربرد مناسب انتخاب کنید",
-  "رویداد بارگذاری مربوط به تصویر و اسکریپت را تشخیص دهید",
-  "کدی بنویسید که بعد از آمادگی درخت DOM اجرا شود"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "رویدادهای بارگذاری در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "رویدادهای بارگذاری وقتی رخ می‌دهند که مرورگر بارگذاری یک عنصر را تمام کرده است."
-  },
-  {
-   "type": "p",
-   "text": "دو رویداد بارگذاری مهم‌تر:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "DOMContentLoaded (وقتی HTML آماده است)",
-    "load (منتظر صفحه، تصویرها، CSS و ... می‌ماند)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "رویداد DOMContentLoaded"
-  },
-  {
-   "type": "p",
-   "text": "رویداد DOMContentLoaded وقتی اجرا می‌شود که مرورگر HTML را کاملاً بارگذاری کرده و درخت DOM را ساخته است، اما لزوماً بارگذاری منابع بیرونی مثل تصویرها و شیت‌های استایل تمام نشده است."
-  },
-  {
-   "type": "p",
-   "text": "رویداد DOMContentLoaded برای آماده‌سازی رابط کاربری، وصل کردن event handlerها و کارهایی مناسب است که فقط به آماده بودن DOM نیاز دارند."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\n// Add Event Listener to document\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n\n  document.getElementById(\"demo\").innerHTML = \"HTML is loaded!\";\n\n});\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_downloaded"
-  },
-  {
-   "type": "h2",
-   "text": "رویداد load روی window"
-  },
-  {
-   "type": "p",
-   "text": "رویداد load وقتی اجرا می‌شود که کل صفحه با همهٔ منابع وابسته مثل تصویرها، شیت‌های استایل و زیرقاب‌ها کاملاً بارگذاری شده باشد."
-  },
-  {
-   "type": "p",
-   "text": "رویداد load برای کارهایی مناسب است که به در دسترس بودن همهٔ منابع نیاز دارند، مثل گرفتن ابعاد یک تصویر یا تشخیص نوع مرورگر."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\n// Add Event Listener to window\n\nwindow.addEventListener(\"load\", function () {\n\n  document.getElementById(\"demo\").innerHTML = \"Page is fully loaded!\";\n\n});\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_windowload"
-  },
-  {
-   "type": "h2",
-   "text": "رویدادهای بارگذاری دیگر"
-  },
-  {
-   "type": "p",
-   "text": "رویداد load روی عنصرهای دیگری هم که منابع را می‌گیرند (نه فقط صفحه‌ها) به کار می‌رود:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "تگ",
-     "توضیح"
-    ],
-    [
-     "<img>",
-     "وقتی دانلود یک تصویر تمام می‌شود اجرا می‌شود."
-    ],
-    [
-     "<script>",
-     "وقتی یک اسکریپت با موفقیت بارگذاری و اجرا شود، اجرا می‌شود."
-    ],
-    [
-     "<link>",
-     "وقتی یک شیت استایل کاملاً بارگذاری و تجزیه شود، اجرا می‌شود."
-    ],
-    [
-     "<video>",
-     "چند رویداد بارگذاری مخصوص رسانه را اجرا می‌کند."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ببینید همچنین:"
-  },
-  {
-   "type": "p",
-   "text": "برای جزئیات و مثال‌های بیشتر:"
-  },
-  {
-   "type": "p",
-   "text": "رویداد onload"
-  },
-  {
-   "type": "p",
-   "text": "رویداد onloadeddata"
-  },
-  {
-   "type": "p",
-   "text": "رویداد onloadedmetadata"
-  },
-  {
-   "type": "p",
-   "text": "رویداد onloadstart"
-  },
-  {
-   "type": "h2",
-   "text": "بارگذاری تصویر"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<img id=\"myImg\"\n\nsrc=\"https://www.w3schools.com/images/w3schools_green.jpg\" width=\"120\">\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst img = document.getElementById(\"myImg\");\n\n// Add Event Listener to img\n\nimg.addEventListener(\"load\", function () {\n\n  document.getElementById(\"demo\").innerHTML = \"Image loaded!\";\n\n});\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_imgload"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل loading.html بسازید و همان کد اولیهٔ صفحه را یک بار در listener رویداد DOMContentLoaded و یک بار در listener رویداد load روی window بگذارید؛ ترتیب اجرای پیام‌ها را در کنسول ببینید.",
-   "hint": "DOMContentLoaded پیش‌تر اجرا می‌شود، چون منتظر تصویرها و منابع بیرونی نمی‌ماند."
-  },
-  {
-   "prompt": "درون listener رویداد DOMContentLoaded یک عنصر را با getElementById بگیرید و محتوایش را عوض کنید.",
-   "hint": "در این رویداد عنصرهای HTML ساخته شده‌اند، پس دیگر خطای null نمی‌گیرید."
-  },
-  {
-   "prompt": "یک تصویر با ابعاد مشخص به صفحه اضافه کنید و بعد از بارگذاری کامل، naturalWidth و naturalHeight آن را در کنسول چاپ کنید.",
-   "hint": "تا وقتی رویداد load تصویر اجرا نشده باشد، ممکن است ابعاد واقعی صفر باشند."
-  },
-  {
-   "prompt": "رویداد error را روی یک تصویر با نشانی اشتباه امتحان کنید و بگویید چرا رویدادهای بارگذاری به کارتان می‌آیند.",
-   "hint": "با رویدادهای بارگذاری می‌فهمید منبع آماده شده یا نه؛ همین امکان واکنش درست را می‌دهد."
-  },
-  {
-   "prompt": "در جدول بگردید و بگویید رویداد load روی تگ script چه زمانی اجرا می‌شود.",
-   "hint": "به این فکر کنید که اسکریپت باید هم دانلود و هم اجرا شود."
-  }
- ],
- "quiz": [
-  {
-   "question": "رویداد DOMContentLoaded چه زمانی اجرا می‌شود؟",
-   "options": [
-    "وقتی همهٔ تصویرها و شیت‌های استایل بارگذاری شدند",
-    "وقتی HTML بارگذاری و درخت DOM ساخته شد",
-    "وقتی کاربر صفحه را ببندد",
-    "وقتی اسکریپت با تأخیر بارگذاری شود"
-   ],
-   "answer": 1,
-   "explanation": "DOMContentLoaded تا ساخته شدن درخت DOM صبر می‌کند و منتظر منابع بیرونی مثل تصویرها و شیت‌های استایل نمی‌ماند؛ برای همین برای آماده‌سازی رابط کاربری مناسب است."
-  },
-  {
-   "question": "کدام رویداد منتظر همهٔ منابع وابسته می‌ماند؟",
-   "options": [
-    "DOMContentLoaded",
-    "load",
-    "onloadstart",
-    "onloadeddata"
-   ],
-   "answer": 1,
-   "explanation": "رویداد load بعد از بارگذاری کامل صفحه و همهٔ منابع وابسته مثل تصویرها، شیت‌های استایل و زیرقاب‌ها اجرا می‌شود."
-  },
-  {
-   "question": "برای گرفتن ابعاد واقعی یک تصویر بهتر است از کدام رویداد استفاده کنید؟",
-   "options": [
-    "رویداد load روی تصویر",
-    "DOMContentLoaded",
-    "keydown",
-    "onloadstart"
-   ],
-   "answer": 0,
-   "explanation": "تا وقتی تصویر کاملاً بارگذاری نشده باشد ابعاد واقعی در دسترس نیست؛ رویداد load روی عنصر تصویر پایان دانلود را اعلام می‌کند."
-  },
-  {
-   "question": "رویداد load روی تگ script چه زمانی اجرا می‌شود؟",
-   "options": [
-    "وقتی اسکریپت با موفقیت بارگذاری و اجرا شد",
-    "وقتی فایل ذخیره شد",
-    "وقتی صفحه بسته شد",
-    "وقتی کاربر روی اسکریپت کلیک کند"
-   ],
-   "answer": 0,
-   "explanation": "رویداد load روی script پس از بارگذاری موفق و اجرای اسکریپت اجرا می‌شود؛ روی link هم بعد از بارگذاری و تجزیهٔ کامل شیت استایل."
-  },
-  {
-   "question": "زمان مناسب برای وصل کردن event handlerها به عنصرهای موجود، کدام رویداد است؟",
-   "options": [
-    "DOMContentLoaded",
-    "onloadstart",
-    "onloadedmetadata",
-    "wheel"
-   ],
-   "answer": 0,
-   "explanation": "در زمان DOMContentLoaded درخت DOM آماده است، پس عنصرها وجود دارند و می‌توانید listenerها را به آن‌ها وصل کنید."
-  }
- ]
+  "slug": "js_events_load",
+  "course": "js",
+  "order": 151,
+  "url": "/js/js_events_load.asp",
+  "title": "رویدادهای بارگذاری در JavaScript",
+  "summary": "رویدادهای بارگذاری می‌گویند صفحه یا یک عنصر چه زمانی آماده شده است. این درس تفاوت DOMContentLoaded با load را توضیح می‌دهد، نشان می‌دهد هر کدام برای چه کاری مناسب‌اند و رویدادهای بارگذاری روی تصویر، اسکریپت، استایل و ویدیو را معرفی می‌کند.",
+  "objectives": [
+    "تفاوت DOMContentLoaded و load را توضیح دهید",
+    "برای هر رویداد یک کاربرد مناسب انتخاب کنید",
+    "رویداد بارگذاری مربوط به تصویر و اسکریپت را تشخیص دهید",
+    "کدی بنویسید که بعد از آمادگی درخت DOM اجرا شود"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "رویدادهای بارگذاری در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "رویدادهای بارگذاری وقتی رخ می‌دهند که مرورگر بارگذاری یک عنصر را تمام کرده است."
+    },
+    {
+      "type": "p",
+      "text": "دو رویداد بارگذاری مهم‌تر:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "DOMContentLoaded (وقتی HTML آماده است)",
+        "load (منتظر صفحه، تصویرها، CSS و ... می‌ماند)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "رویداد DOMContentLoaded"
+    },
+    {
+      "type": "p",
+      "text": "رویداد DOMContentLoaded وقتی اجرا می‌شود که مرورگر HTML را کاملاً بارگذاری کرده و درخت DOM را ساخته است، اما لزوماً بارگذاری منابع بیرونی مثل تصویرها و شیت‌های استایل تمام نشده است."
+    },
+    {
+      "type": "p",
+      "text": "رویداد DOMContentLoaded برای آماده‌سازی رابط کاربری، وصل کردن event handlerها و کارهایی مناسب است که فقط به آماده بودن DOM نیاز دارند."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\n// Add Event Listener to document\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n\n  document.getElementById(\"demo\").innerHTML = \"HTML is loaded!\";\n\n});\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_downloaded"
+    },
+    {
+      "type": "h2",
+      "text": "رویداد load روی window"
+    },
+    {
+      "type": "p",
+      "text": "رویداد load وقتی اجرا می‌شود که کل صفحه با همهٔ منابع وابسته مثل تصویرها، شیت‌های استایل و زیرقاب‌ها کاملاً بارگذاری شده باشد."
+    },
+    {
+      "type": "p",
+      "text": "رویداد load برای کارهایی مناسب است که به در دسترس بودن همهٔ منابع نیاز دارند، مثل گرفتن ابعاد یک تصویر یا تشخیص نوع مرورگر."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\n// Add Event Listener to window\n\nwindow.addEventListener(\"load\", function () {\n\n  document.getElementById(\"demo\").innerHTML = \"Page is fully loaded!\";\n\n});\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_windowload"
+    },
+    {
+      "type": "h2",
+      "text": "رویدادهای بارگذاری دیگر"
+    },
+    {
+      "type": "p",
+      "text": "رویداد load روی عنصرهای دیگری هم که منابع را می‌گیرند (نه فقط صفحه‌ها) به کار می‌رود:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["تگ", "توضیح"],
+        ["<img>", "وقتی دانلود یک تصویر تمام می‌شود اجرا می‌شود."],
+        ["<script>", "وقتی یک اسکریپت با موفقیت بارگذاری و اجرا شود، اجرا می‌شود."],
+        ["<link>", "وقتی یک شیت استایل کاملاً بارگذاری و تجزیه شود، اجرا می‌شود."],
+        ["<video>", "چند رویداد بارگذاری مخصوص رسانه را اجرا می‌کند."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ببینید همچنین:"
+    },
+    {
+      "type": "p",
+      "text": "برای جزئیات و مثال‌های بیشتر:"
+    },
+    {
+      "type": "p",
+      "text": "رویداد onload"
+    },
+    {
+      "type": "p",
+      "text": "رویداد onloadeddata"
+    },
+    {
+      "type": "p",
+      "text": "رویداد onloadedmetadata"
+    },
+    {
+      "type": "p",
+      "text": "رویداد onloadstart"
+    },
+    {
+      "type": "h2",
+      "text": "بارگذاری تصویر"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<img id=\"myImg\"\n\nsrc=\"https://www.w3schools.com/images/w3schools_green.jpg\" width=\"120\">\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst img = document.getElementById(\"myImg\");\n\n// Add Event Listener to img\n\nimg.addEventListener(\"load\", function () {\n\n  document.getElementById(\"demo\").innerHTML = \"Image loaded!\";\n\n});\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_imgload"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل loading.html بسازید و همان کد اولیهٔ صفحه را یک بار در listener رویداد DOMContentLoaded و یک بار در listener رویداد load روی window بگذارید؛ ترتیب اجرای پیام‌ها را در کنسول ببینید.",
+      "hint": "DOMContentLoaded پیش‌تر اجرا می‌شود، چون منتظر تصویرها و منابع بیرونی نمی‌ماند."
+    },
+    {
+      "prompt": "درون listener رویداد DOMContentLoaded یک عنصر را با getElementById بگیرید و محتوایش را عوض کنید.",
+      "hint": "در این رویداد عنصرهای HTML ساخته شده‌اند، پس دیگر خطای null نمی‌گیرید."
+    },
+    {
+      "prompt": "یک تصویر با ابعاد مشخص به صفحه اضافه کنید و بعد از بارگذاری کامل، naturalWidth و naturalHeight آن را در کنسول چاپ کنید.",
+      "hint": "تا وقتی رویداد load تصویر اجرا نشده باشد، ممکن است ابعاد واقعی صفر باشند."
+    },
+    {
+      "prompt": "رویداد error را روی یک تصویر با نشانی اشتباه امتحان کنید و بگویید چرا رویدادهای بارگذاری به کارتان می‌آیند.",
+      "hint": "با رویدادهای بارگذاری می‌فهمید منبع آماده شده یا نه؛ همین امکان واکنش درست را می‌دهد."
+    },
+    {
+      "prompt": "در جدول بگردید و بگویید رویداد load روی تگ script چه زمانی اجرا می‌شود.",
+      "hint": "به این فکر کنید که اسکریپت باید هم دانلود و هم اجرا شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "رویداد DOMContentLoaded چه زمانی اجرا می‌شود؟",
+      "options": [
+        "وقتی همهٔ تصویرها و شیت‌های استایل بارگذاری شدند",
+        "وقتی HTML بارگذاری و درخت DOM ساخته شد",
+        "وقتی کاربر صفحه را ببندد",
+        "وقتی اسکریپت با تأخیر بارگذاری شود"
+      ],
+      "answer": 1,
+      "explanation": "DOMContentLoaded تا ساخته شدن درخت DOM صبر می‌کند و منتظر منابع بیرونی مثل تصویرها و شیت‌های استایل نمی‌ماند؛ برای همین برای آماده‌سازی رابط کاربری مناسب است."
+    },
+    {
+      "question": "کدام رویداد منتظر همهٔ منابع وابسته می‌ماند؟",
+      "options": ["DOMContentLoaded", "load", "onloadstart", "onloadeddata"],
+      "answer": 1,
+      "explanation": "رویداد load بعد از بارگذاری کامل صفحه و همهٔ منابع وابسته مثل تصویرها، شیت‌های استایل و زیرقاب‌ها اجرا می‌شود."
+    },
+    {
+      "question": "برای گرفتن ابعاد واقعی یک تصویر بهتر است از کدام رویداد استفاده کنید؟",
+      "options": ["رویداد load روی تصویر", "DOMContentLoaded", "keydown", "onloadstart"],
+      "answer": 0,
+      "explanation": "تا وقتی تصویر کاملاً بارگذاری نشده باشد ابعاد واقعی در دسترس نیست؛ رویداد load روی عنصر تصویر پایان دانلود را اعلام می‌کند."
+    },
+    {
+      "question": "رویداد load روی تگ script چه زمانی اجرا می‌شود؟",
+      "options": [
+        "وقتی اسکریپت با موفقیت بارگذاری و اجرا شد",
+        "وقتی فایل ذخیره شد",
+        "وقتی صفحه بسته شد",
+        "وقتی کاربر روی اسکریپت کلیک کند"
+      ],
+      "answer": 0,
+      "explanation": "رویداد load روی script پس از بارگذاری موفق و اجرای اسکریپت اجرا می‌شود؛ روی link هم بعد از بارگذاری و تجزیهٔ کامل شیت استایل."
+    },
+    {
+      "question": "زمان مناسب برای وصل کردن event handlerها به عنصرهای موجود، کدام رویداد است؟",
+      "options": ["DOMContentLoaded", "onloadstart", "onloadedmetadata", "wheel"],
+      "answer": 0,
+      "explanation": "در زمان DOMContentLoaded درخت DOM آماده است، پس عنصرها وجود دارند و می‌توانید listenerها را به آن‌ها وصل کنید."
+    }
+  ]
 }

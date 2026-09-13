@@ -1,409 +1,305 @@
 {
- "slug": "js_datatypes",
- "course": "js",
- "order": 91,
- "url": "/js/js_datatypes.asp",
- "title": "انواع داده در JavaScript",
- "summary": "هر متغیر JavaScript یکی از ۸ نوع داده را نگه می‌دارد: ۷ نوع اولیه و یک نوع شیء. در این درس این نوع‌ها را می‌بینید، یاد می‌گیرید چرا دانستن نوع اهمیت دارد و با عملگر typeof نوع متغیر را پیدا می‌کنید.",
- "objectives": [
-  "۷ نوع اولیه و نوع شیء را نام ببرید",
-  "دلیل اهمیت انواع داده را توضیح دهید",
-  "نتیجهٔ جمع عدد و رشته را پیش‌بینی کنید",
-  "نوع متغیر را با typeof تشخیص دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "انواع داده در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "یک متغیر JavaScript می‌تواند ۸ نوع داده را نگه دارد."
-  },
-  {
-   "type": "p",
-   "text": "۷ نوع دادهٔ اولیه و ۱ نوع دادهٔ شیء."
-  },
-  {
-   "type": "p",
-   "text": "نوع دادهٔ شیء می‌تواند انواع مختلفی از شیءها را نگه دارد."
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_datatypes_500.jpg",
-   "alt": "Datatypes"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نوع",
-     "توضیح"
-    ],
-    [
-     "Number",
-     "عددی که یک مقدار عددی را نشان می‌دهد"
-    ],
-    [
-     "Bigint",
-     "عددی که یک عدد صحیح بزرگ را نشان می‌دهد"
-    ],
-    [
-     "String",
-     "متنی از نویسه‌ها که داخل کوتیشن نوشته می‌شود"
-    ],
-    [
-     "Boolean",
-     "نوع داده‌ای که true یا false را نشان می‌دهد"
-    ],
-    [
-     "Undefined",
-     "متغیری که مقداری به آن نسبت داده نشده است"
-    ],
-    [
-     "Null",
-     "مقداری که نبودِ شیء را نشان می‌دهد"
-    ],
-    [
-     "Symbol",
-     "شناسه‌ای یکتا از نوع اولیه"
-    ],
-    [
-     "Object",
-     "مجموعه‌ای از جفت‌های کلید-مقدار داده"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Number\n\nlet length = 16;\n\nlet weight = 7.5;\n\n// BigInt\n\nlet x = 1234567890123456789012345n;\n\nlet y = BigInt(1234567890123456789012345)\n\n// Strings\n\nlet color = \"Yellow\";\n\nlet lastName = \"Johnson\";\n\n// Boolean\n\nlet x = true;\n\nlet y = false;\n\n// Undefined\n\nlet x;\n\nlet y;\n\n// Null\n\nlet x = null;\n\nlet y = null;\n\n// Symbol\n\nconst x = Symbol();\n\nconst y = Symbol();\n\n// Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Array Object\n\nconst cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\n// Date Object\n\nconst date = new Date(\"2022-03-25\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "h2",
-   "text": "مفهوم انواع داده"
-  },
-  {
-   "type": "p",
-   "text": "در برنامه‌نویسی، انواع داده مفهومی مهم است."
-  },
-  {
-   "type": "p",
-   "text": "برای اینکه بتوانید روی متغیرها عمل کنید، دانستن اطلاعاتی دربارهٔ نوع آن‌ها مهم است."
-  },
-  {
-   "type": "p",
-   "text": "بدون انواع داده، کامپیوتر نمی‌تواند این مورد را با اطمینان حل کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 16 + \"Volvo\";",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "آیا جمع کردن «Volvo» با شانزده معنایی دارد؟ خطا تولید می‌شود یا نتیجه؟"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript مثال بالا را این‌طور در نظر می‌گیرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"16\" + \"Volvo\";",
-   "caption": null
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "وقتی عدد و رشته را جمع کنید، JavaScript عدد را مانند رشته در نظر می‌گیرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 16 + \"Volvo\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_addstring"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"Volvo\" + 16;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_addstring2"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript عبارت را از چپ به راست ارزیابی می‌کند. ترتیب‌های مختلف می‌توانند نتیجه‌های متفاوتی بدهند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 16 + 4 + \"Volvo\";",
-   "caption": "JavaScript:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_addstrings_1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"Volvo\" + 16 + 4;",
-   "caption": "JavaScript:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_addstrings_2"
-  },
-  {
-   "type": "p",
-   "text": "در مثال اول، JavaScript تا رسیدن به «Volvo» با 16 و 4 مانند عدد رفتار می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "در مثال دوم، چون عملوند اول رشته است، همهٔ عملوندها مانند رشته در نظر گرفته می‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "نوع‌های JavaScript پویا هستند"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript نوع‌های پویا دارد. یعنی یک متغیر واحد می‌تواند انواع دادهٔ مختلفی را نگه دارد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x;       // Now x is undefined\n\nx = 5;       // Now x is a Number\n\nx = \"John\";  // Now x is a String",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_dynamic"
-  },
-  {
-   "type": "h2",
-   "text": "انواع شیء توکار"
-  },
-  {
-   "type": "p",
-   "text": "یک شیء JavaScript می‌تواند یک شیء JavaScript یا یک شیء تعریف‌شده توسط کاربر باشد."
-  },
-  {
-   "type": "p",
-   "text": "انواع شیء توکار JavaScript می‌توانند این‌ها باشند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Object",
-     "توضیح"
-    ],
-    [
-     "Array",
-     "آرایهٔ مقدارها که با اندیس عددی دسترسی‌پذیر است"
-    ],
-    [
-     "Map",
-     "آرایهٔ جفت‌های کلید-مقدار که کلیدهایش می‌توانند هر نوع داده‌ای باشند"
-    ],
-    [
-     "Set",
-     "آرایهٔ مقدارها که هر مقدار فقط یک بار می‌تواند بیاید"
-    ],
-    [
-     "WeakMap",
-     "نوعی Map با ارجاع‌های ضعیف به شیءهای ذخیره‌شده."
-    ],
-    [
-     "WeakSet",
-     "نوعی Set با ارجاع‌های ضعیف به شیءهای ذخیره‌شده."
-    ],
-    [
-     "Math",
-     "شیئی که ثابت‌ها و تابع‌های ریاضی مانند PI و random() را فراهم می‌کند"
-    ],
-    [
-     "Date",
-     "شیء کار با تاریخ و زمان"
-    ],
-    [
-     "RegExp",
-     "شیء کار با عبارت‌های باقاعده"
-    ],
-    [
-     "Error",
-     "شیئی که شرایط خطا در زمان اجرای برنامه را نشان می‌دهد"
-    ],
-    [
-     "JSON",
-     "شیئی با متدهایی برای تبدیل مقدارها میان JSON و شیء"
-    ],
-    [
-     "Promise",
-     "شیئی که پایان موفق یا ناموفق یک عملیات ناهمگام را نشان می‌دهد"
-    ],
-    [
-     "Int8Array",
-     "آرایه‌ای برای ذخیرهٔ مقدارهای صحیح ۸ بیتی با اندازهٔ ثابت"
-    ],
-    [
-     "Int16Array",
-     "آرایه‌ای برای ذخیرهٔ مقدارهای صحیح ۱۶ بیتی با اندازهٔ ثابت"
-    ],
-    [
-     "Int32Array",
-     "آرایه‌ای برای ذخیرهٔ مقدارهای صحیح ۳۲ بیتی با اندازهٔ ثابت"
-    ],
-    [
-     "Float16Array",
-     "آرایه‌ای برای ذخیرهٔ مقدارهای اعشاری ۱۶ بیتی با اندازهٔ ثابت"
-    ],
-    [
-     "Float32Array",
-     "آرایه‌ای برای ذخیرهٔ مقدارهای اعشاری ۳۲ بیتی با اندازهٔ ثابت"
-    ],
-    [
-     "Float64Array",
-     "آرایه‌ای برای ذخیرهٔ مقدارهای اعشاری ۶۴ بیتی با اندازهٔ ثابت"
-    ],
-    [
-     "BigInt64Array",
-     "آرایه‌ای برای ذخیرهٔ مقدارهای صحیح بزرگ ۶۴ بیتی با اندازهٔ ثابت"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "عملگر typeof"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید از عملگر typeof در JavaScript برای یافتن نوع یک متغیر JavaScript استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "عملگر typeof نوع یک متغیر یا عبارت را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "typeof \"\"          // Returns\n \"string\"\n\ntypeof \"John\"      // Returns\n \"string\"\n\ntypeof \"John Doe\"  // Returns\n \"string\"",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_typeof_string"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "typeof 0           // Returns\n \"number\"\n\n  typeof 314         // Returns\n \"number\"\n\n  typeof 3.14        // Returns\n \"number\"\n\n  typeof (3)         // Returns\n \"number\"\ntypeof (3 + 4)     // Returns\n \"number\"",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_typeof_number"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش typeof در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل data-types.html بسازید و با typeof نوع یک عدد، یک رشته و یک مقدار بولی را در کنسول چاپ کنید.",
-   "hint": "typeof خروجی را به‌صورت رشته‌ای مثل \"number\" یا \"string\" برمی‌گرداند."
-  },
-  {
-   "prompt": "متغیر let x = 16 + 4 + \"Volvo\"; را بسازید و مقدار و نوع آن را چاپ کنید.",
-   "hint": "JavaScript عبارت را از چپ به راست ارزیابی می‌کند؛ با رسیدن به رشته، بقیهٔ عملوندها هم رشته می‌شوند."
-  },
-  {
-   "prompt": "همان عبارت را به شکل let x = \"Volvo\" + 16 + 4; بنویسید و نتیجه را با حالت قبل مقایسه کنید.",
-   "hint": "اگر عملوند اول رشته باشد، همه‌چیز به رشته تبدیل و به هم چسبانده می‌شود."
-  },
-  {
-   "prompt": "نوع یک آرایه و یک شیء را با typeof در کنسول ببینید.",
-   "hint": "typeof برای همهٔ شیءها از جمله آرایه‌ها \"object\" برمی‌گرداند."
-  },
-  {
-   "prompt": "جدولی از ۸ نوع داده بسازید و برای هرکدام یک مقدار نمونه در کنسول بنویسید.",
-   "hint": "۷ نوع اولیه به‌علاوهٔ یک نوع شیء، جمعاً ۸ نوع می‌شود."
-  }
- ],
- "quiz": [
-  {
-   "question": "یک متغیر JavaScript چند نوع داده می‌تواند نگه دارد؟",
-   "options": [
-    "۶ نوع",
-    "۷ نوع",
-    "۸ نوع",
-    "۹ نوع"
-   ],
-   "answer": 2,
-   "explanation": "درس صریحاً می‌گوید ۸ نوع: ۷ نوع اولیه به‌اضافهٔ یک نوع شیء."
-  },
-  {
-   "question": "در JavaScript چند نوع دادهٔ اولیه داریم؟",
-   "options": [
-    "۵ نوع",
-    "۶ نوع",
-    "۷ نوع",
-    "۸ نوع"
-   ],
-   "answer": 2,
-   "explanation": "۷ نوع اولیه عبارت‌اند از Number، Bigint، String، Boolean، Undefined، Null و Symbol؛ نوع هشتم Object است."
-  },
-  {
-   "question": "نتیجهٔ عبارت 16 + 4 + \"Volvo\" چیست؟",
-   "options": [
-    "\"20Volvo\"",
-    "\"164Volvo\"",
-    "خطا",
-    "NaN"
-   ],
-   "answer": 0,
-   "explanation": "JavaScript از چپ به راست ارزیابی می‌کند: اول 16 و 4 عددند و جمعشان 20 می‌شود، سپس با رسیدن به رشته بقیه هم رشته می‌شود و \"20Volvo\" ساخته می‌شود."
-  },
-  {
-   "question": "typeof برای یک آرایه چه برمی‌گرداند؟",
-   "options": [
-    "\"array\"",
-    "\"object\"",
-    "\"list\"",
-    "\"undefined\""
-   ],
-   "answer": 1,
-   "explanation": "آرایه نوعی شیء است؛ پس typeof برای آن \"object\" می‌دهد و برای تشخیص آرایه باید از Array.isArray() استفاده کرد."
-  },
-  {
-   "question": "کدام گزینه دربارهٔ نوع‌های JavaScript درست است؟",
-   "options": [
-    "نوع متغیر پس از تعریف هرگز عوض نمی‌شود",
-    "JavaScript نوع‌های پویا دارد و یک متغیر می‌تواند نوعش را عوض کند",
-    "همهٔ متغیرها از نوع عددند",
-    "نوع متغیر را باید پیش از تعریف اعلام کرد"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید JavaScript نوع‌های پویا دارد؛ پس همان متغیر می‌تواند ابتدا عدد و بعد رشته نگه دارد."
-  }
- ]
+  "slug": "js_datatypes",
+  "course": "js",
+  "order": 91,
+  "url": "/js/js_datatypes.asp",
+  "title": "انواع داده در JavaScript",
+  "summary": "هر متغیر JavaScript یکی از ۸ نوع داده را نگه می‌دارد: ۷ نوع اولیه و یک نوع شیء. در این درس این نوع‌ها را می‌بینید، یاد می‌گیرید چرا دانستن نوع اهمیت دارد و با عملگر typeof نوع متغیر را پیدا می‌کنید.",
+  "objectives": [
+    "۷ نوع اولیه و نوع شیء را نام ببرید",
+    "دلیل اهمیت انواع داده را توضیح دهید",
+    "نتیجهٔ جمع عدد و رشته را پیش‌بینی کنید",
+    "نوع متغیر را با typeof تشخیص دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "انواع داده در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "یک متغیر JavaScript می‌تواند ۸ نوع داده را نگه دارد."
+    },
+    {
+      "type": "p",
+      "text": "۷ نوع دادهٔ اولیه و ۱ نوع دادهٔ شیء."
+    },
+    {
+      "type": "p",
+      "text": "نوع دادهٔ شیء می‌تواند انواع مختلفی از شیءها را نگه دارد."
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_datatypes_500.jpg",
+      "alt": "Datatypes"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نوع", "توضیح"],
+        ["Number", "عددی که یک مقدار عددی را نشان می‌دهد"],
+        ["Bigint", "عددی که یک عدد صحیح بزرگ را نشان می‌دهد"],
+        ["String", "متنی از نویسه‌ها که داخل کوتیشن نوشته می‌شود"],
+        ["Boolean", "نوع داده‌ای که true یا false را نشان می‌دهد"],
+        ["Undefined", "متغیری که مقداری به آن نسبت داده نشده است"],
+        ["Null", "مقداری که نبودِ شیء را نشان می‌دهد"],
+        ["Symbol", "شناسه‌ای یکتا از نوع اولیه"],
+        ["Object", "مجموعه‌ای از جفت‌های کلید-مقدار داده"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Number\n\nlet length = 16;\n\nlet weight = 7.5;\n\n// BigInt\n\nlet x = 1234567890123456789012345n;\n\nlet y = BigInt(1234567890123456789012345)\n\n// Strings\n\nlet color = \"Yellow\";\n\nlet lastName = \"Johnson\";\n\n// Boolean\n\nlet x = true;\n\nlet y = false;\n\n// Undefined\n\nlet x;\n\nlet y;\n\n// Null\n\nlet x = null;\n\nlet y = null;\n\n// Symbol\n\nconst x = Symbol();\n\nconst y = Symbol();\n\n// Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Array Object\n\nconst cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\n// Date Object\n\nconst date = new Date(\"2022-03-25\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "h2",
+      "text": "مفهوم انواع داده"
+    },
+    {
+      "type": "p",
+      "text": "در برنامه‌نویسی، انواع داده مفهومی مهم است."
+    },
+    {
+      "type": "p",
+      "text": "برای اینکه بتوانید روی متغیرها عمل کنید، دانستن اطلاعاتی دربارهٔ نوع آن‌ها مهم است."
+    },
+    {
+      "type": "p",
+      "text": "بدون انواع داده، کامپیوتر نمی‌تواند این مورد را با اطمینان حل کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 16 + \"Volvo\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "آیا جمع کردن «Volvo» با شانزده معنایی دارد؟ خطا تولید می‌شود یا نتیجه؟"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript مثال بالا را این‌طور در نظر می‌گیرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"16\" + \"Volvo\";",
+      "caption": null
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "وقتی عدد و رشته را جمع کنید، JavaScript عدد را مانند رشته در نظر می‌گیرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 16 + \"Volvo\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_addstring"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"Volvo\" + 16;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_addstring2"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript عبارت را از چپ به راست ارزیابی می‌کند. ترتیب‌های مختلف می‌توانند نتیجه‌های متفاوتی بدهند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 16 + 4 + \"Volvo\";",
+      "caption": "JavaScript:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_addstrings_1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"Volvo\" + 16 + 4;",
+      "caption": "JavaScript:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_addstrings_2"
+    },
+    {
+      "type": "p",
+      "text": "در مثال اول، JavaScript تا رسیدن به «Volvo» با 16 و 4 مانند عدد رفتار می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "در مثال دوم، چون عملوند اول رشته است، همهٔ عملوندها مانند رشته در نظر گرفته می‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "نوع‌های JavaScript پویا هستند"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript نوع‌های پویا دارد. یعنی یک متغیر واحد می‌تواند انواع دادهٔ مختلفی را نگه دارد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x;       // Now x is undefined\n\nx = 5;       // Now x is a Number\n\nx = \"John\";  // Now x is a String",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_dynamic"
+    },
+    {
+      "type": "h2",
+      "text": "انواع شیء توکار"
+    },
+    {
+      "type": "p",
+      "text": "یک شیء JavaScript می‌تواند یک شیء JavaScript یا یک شیء تعریف‌شده توسط کاربر باشد."
+    },
+    {
+      "type": "p",
+      "text": "انواع شیء توکار JavaScript می‌توانند این‌ها باشند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Object", "توضیح"],
+        ["Array", "آرایهٔ مقدارها که با اندیس عددی دسترسی‌پذیر است"],
+        ["Map", "آرایهٔ جفت‌های کلید-مقدار که کلیدهایش می‌توانند هر نوع داده‌ای باشند"],
+        ["Set", "آرایهٔ مقدارها که هر مقدار فقط یک بار می‌تواند بیاید"],
+        ["WeakMap", "نوعی Map با ارجاع‌های ضعیف به شیءهای ذخیره‌شده."],
+        ["WeakSet", "نوعی Set با ارجاع‌های ضعیف به شیءهای ذخیره‌شده."],
+        ["Math", "شیئی که ثابت‌ها و تابع‌های ریاضی مانند PI و random() را فراهم می‌کند"],
+        ["Date", "شیء کار با تاریخ و زمان"],
+        ["RegExp", "شیء کار با عبارت‌های باقاعده"],
+        ["Error", "شیئی که شرایط خطا در زمان اجرای برنامه را نشان می‌دهد"],
+        ["JSON", "شیئی با متدهایی برای تبدیل مقدارها میان JSON و شیء"],
+        ["Promise", "شیئی که پایان موفق یا ناموفق یک عملیات ناهمگام را نشان می‌دهد"],
+        ["Int8Array", "آرایه‌ای برای ذخیرهٔ مقدارهای صحیح ۸ بیتی با اندازهٔ ثابت"],
+        ["Int16Array", "آرایه‌ای برای ذخیرهٔ مقدارهای صحیح ۱۶ بیتی با اندازهٔ ثابت"],
+        ["Int32Array", "آرایه‌ای برای ذخیرهٔ مقدارهای صحیح ۳۲ بیتی با اندازهٔ ثابت"],
+        ["Float16Array", "آرایه‌ای برای ذخیرهٔ مقدارهای اعشاری ۱۶ بیتی با اندازهٔ ثابت"],
+        ["Float32Array", "آرایه‌ای برای ذخیرهٔ مقدارهای اعشاری ۳۲ بیتی با اندازهٔ ثابت"],
+        ["Float64Array", "آرایه‌ای برای ذخیرهٔ مقدارهای اعشاری ۶۴ بیتی با اندازهٔ ثابت"],
+        ["BigInt64Array", "آرایه‌ای برای ذخیرهٔ مقدارهای صحیح بزرگ ۶۴ بیتی با اندازهٔ ثابت"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "عملگر typeof"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید از عملگر typeof در JavaScript برای یافتن نوع یک متغیر JavaScript استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "عملگر typeof نوع یک متغیر یا عبارت را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "typeof \"\"          // Returns\n \"string\"\n\ntypeof \"John\"      // Returns\n \"string\"\n\ntypeof \"John Doe\"  // Returns\n \"string\"",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_typeof_string"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "typeof 0           // Returns\n \"number\"\n\n  typeof 314         // Returns\n \"number\"\n\n  typeof 3.14        // Returns\n \"number\"\n\n  typeof (3)         // Returns\n \"number\"\ntypeof (3 + 4)     // Returns\n \"number\"",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_datatypes_typeof_number"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش typeof در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل data-types.html بسازید و با typeof نوع یک عدد، یک رشته و یک مقدار بولی را در کنسول چاپ کنید.",
+      "hint": "typeof خروجی را به‌صورت رشته‌ای مثل \"number\" یا \"string\" برمی‌گرداند."
+    },
+    {
+      "prompt": "متغیر let x = 16 + 4 + \"Volvo\"; را بسازید و مقدار و نوع آن را چاپ کنید.",
+      "hint": "JavaScript عبارت را از چپ به راست ارزیابی می‌کند؛ با رسیدن به رشته، بقیهٔ عملوندها هم رشته می‌شوند."
+    },
+    {
+      "prompt": "همان عبارت را به شکل let x = \"Volvo\" + 16 + 4; بنویسید و نتیجه را با حالت قبل مقایسه کنید.",
+      "hint": "اگر عملوند اول رشته باشد، همه‌چیز به رشته تبدیل و به هم چسبانده می‌شود."
+    },
+    {
+      "prompt": "نوع یک آرایه و یک شیء را با typeof در کنسول ببینید.",
+      "hint": "typeof برای همهٔ شیءها از جمله آرایه‌ها \"object\" برمی‌گرداند."
+    },
+    {
+      "prompt": "جدولی از ۸ نوع داده بسازید و برای هرکدام یک مقدار نمونه در کنسول بنویسید.",
+      "hint": "۷ نوع اولیه به‌علاوهٔ یک نوع شیء، جمعاً ۸ نوع می‌شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "یک متغیر JavaScript چند نوع داده می‌تواند نگه دارد؟",
+      "options": ["۶ نوع", "۷ نوع", "۸ نوع", "۹ نوع"],
+      "answer": 2,
+      "explanation": "درس صریحاً می‌گوید ۸ نوع: ۷ نوع اولیه به‌اضافهٔ یک نوع شیء."
+    },
+    {
+      "question": "در JavaScript چند نوع دادهٔ اولیه داریم؟",
+      "options": ["۵ نوع", "۶ نوع", "۷ نوع", "۸ نوع"],
+      "answer": 2,
+      "explanation": "۷ نوع اولیه عبارت‌اند از Number، Bigint، String، Boolean، Undefined، Null و Symbol؛ نوع هشتم Object است."
+    },
+    {
+      "question": "نتیجهٔ عبارت 16 + 4 + \"Volvo\" چیست؟",
+      "options": ["\"20Volvo\"", "\"164Volvo\"", "خطا", "NaN"],
+      "answer": 0,
+      "explanation": "JavaScript از چپ به راست ارزیابی می‌کند: اول 16 و 4 عددند و جمعشان 20 می‌شود، سپس با رسیدن به رشته بقیه هم رشته می‌شود و \"20Volvo\" ساخته می‌شود."
+    },
+    {
+      "question": "typeof برای یک آرایه چه برمی‌گرداند؟",
+      "options": ["\"array\"", "\"object\"", "\"list\"", "\"undefined\""],
+      "answer": 1,
+      "explanation": "آرایه نوعی شیء است؛ پس typeof برای آن \"object\" می‌دهد و برای تشخیص آرایه باید از Array.isArray() استفاده کرد."
+    },
+    {
+      "question": "کدام گزینه دربارهٔ نوع‌های JavaScript درست است؟",
+      "options": [
+        "نوع متغیر پس از تعریف هرگز عوض نمی‌شود",
+        "JavaScript نوع‌های پویا دارد و یک متغیر می‌تواند نوعش را عوض کند",
+        "همهٔ متغیرها از نوع عددند",
+        "نوع متغیر را باید پیش از تعریف اعلام کرد"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید JavaScript نوع‌های پویا دارد؛ پس همان متغیر می‌تواند ابتدا عدد و بعد رشته نگه دارد."
+    }
+  ]
 }

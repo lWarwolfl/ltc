@@ -1,205 +1,200 @@
 {
- "slug": "js_tolocalestring",
- "course": "js",
- "order": 99,
- "url": "/js/js_tolocalestring.asp",
- "title": "JavaScript toLocaleString()",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript toLocaleString()"
-  },
-  {
-   "type": "p",
-   "text": "The toLocaleString() method converts a value to a string, using local formatting rules."
-  },
-  {
-   "type": "p",
-   "text": "The toLocaleString() method is especially useful for formatting numbers, dates, arrays, currencies,\nand percentages for different countries."
-  },
-  {
-   "type": "h2",
-   "text": "The toLocaleString() Method"
-  },
-  {
-   "type": "p",
-   "text": "The toLocaleString() method is available for many JavaScript datatypes / objects:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Numbers",
-    "Dates",
-    "Arrays",
-    "BigInts"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 1234567.89;\n\nlet text = num.toLocaleString();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_number"
-  },
-  {
-   "type": "h2",
-   "text": "Using Locales"
-  },
-  {
-   "type": "p",
-   "text": "You can specify a language and country code to format a value for a specific locale."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 1234567.89;\n\nlet us = num.toLocaleString(\"en-US\");\n\nlet de = num.toLocaleString(\"de-DE\");\n\nlet no = num.toLocaleString(\"no-NO\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_locales"
-  },
-  {
-   "type": "h2",
-   "text": "Formatting Currency"
-  },
-  {
-   "type": "p",
-   "text": "With options, toLocaleString() can format numbers as currency."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let price = 1299.95;\n\nlet dollars = price.toLocaleString(\"en-US\",\n\n{style:\"currency\", currency:\"USD\"});\n\nlet euros = price.toLocaleString(\"de-DE\",\n\n{style:\"currency\", currency:\"EUR\"});\n\nlet kroner = price.toLocaleString(\"no-NO\",\n\n{style:\"currency\", currency:\"NOK\"});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_currency"
-  },
-  {
-   "type": "h2",
-   "text": "Formatting Percentages"
-  },
-  {
-   "type": "p",
-   "text": "The style:\"percent\" option formats a number as a percentage."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let score = 0.875;\n\nlet result = score.toLocaleString(\"en-US\", {style:\"percent\"});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_percent"
-  },
-  {
-   "type": "h2",
-   "text": "Controlling Decimal Digits"
-  },
-  {
-   "type": "p",
-   "text": "You can control the number of decimal digits with minimumFractionDigits and maximumFractionDigits."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 3.14159;\n\nlet text = num.toLocaleString(\"en-US\", {\n\n  minimumFractionDigits: 2,\n\n  maximumFractionDigits: 2\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_decimals"
-  },
-  {
-   "type": "h3",
-   "text": "Note"
-  },
-  {
-   "type": "p",
-   "text": "The method name is toLocaleString(), not toLocalString()."
-  },
-  {
-   "type": "p",
-   "text": "The word locale means a language and country format, such as \"en-US\", \"de-DE\", or \"no-NO\"."
-  },
-  {
-   "type": "h2",
-   "text": "Formatting Dates"
-  },
-  {
-   "type": "p",
-   "text": "Dates can also be formatted with toLocaleString()."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let date = new Date();\n\nlet text = date.toLocaleString(\"en-US\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_date"
-  },
-  {
-   "type": "h2",
-   "text": "Date Formatting Options"
-  },
-  {
-   "type": "p",
-   "text": "Many options can be used to control how dates are displayed."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let date = new Date();\n\nlet text = date.toLocaleString(\"en-US\", {\n\n  weekday: \"long\",\n\n  year: \"numeric\",\n\n  month: \"long\",\n\n  day: \"numeric\"\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_date_options"
-  },
-  {
-   "type": "h2",
-   "text": "A Clever Use: Readable File Sizes"
-  },
-  {
-   "type": "p",
-   "text": "A clever use of toLocaleString() is to make file sizes easier to read."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function fileSize(bytes) {\n\n  if (bytes < 1024) return bytes + \" bytes\";\n\n  if (bytes < 1024 * 1024) return (bytes / 1024).toLocaleString(\"en-US\", {maximumFractionDigits: 1}) + \" KB\";\n\n  return (bytes / 1024 / 1024).toLocaleString(\"en-US\", {maximumFractionDigits: 1}) + \" MB\";\n\n}\n\nlet size = 1536000;\n\nlet text = fileSize(size);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_filesize"
-  },
-  {
-   "type": "h2",
-   "text": "Arrays and toLocaleString()"
-  },
-  {
-   "type": "p",
-   "text": "For arrays, the toLocaleString() methods converts each array element."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const dates = [\n\n  new Date(\"2026-01-01\"),\n\n  new Date(\"2026-12-24\")\n\n];\n\nlet text = dates.toLocaleString(\"en-US\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_array"
-  }
- ]
+  "slug": "js_tolocalestring",
+  "course": "js",
+  "order": 99,
+  "url": "/js/js_tolocalestring.asp",
+  "title": "JavaScript toLocaleString()",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript toLocaleString()"
+    },
+    {
+      "type": "p",
+      "text": "The toLocaleString() method converts a value to a string, using local formatting rules."
+    },
+    {
+      "type": "p",
+      "text": "The toLocaleString() method is especially useful for formatting numbers, dates, arrays, currencies,\nand percentages for different countries."
+    },
+    {
+      "type": "h2",
+      "text": "The toLocaleString() Method"
+    },
+    {
+      "type": "p",
+      "text": "The toLocaleString() method is available for many JavaScript datatypes / objects:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Numbers", "Dates", "Arrays", "BigInts"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 1234567.89;\n\nlet text = num.toLocaleString();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_number"
+    },
+    {
+      "type": "h2",
+      "text": "Using Locales"
+    },
+    {
+      "type": "p",
+      "text": "You can specify a language and country code to format a value for a specific locale."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 1234567.89;\n\nlet us = num.toLocaleString(\"en-US\");\n\nlet de = num.toLocaleString(\"de-DE\");\n\nlet no = num.toLocaleString(\"no-NO\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_locales"
+    },
+    {
+      "type": "h2",
+      "text": "Formatting Currency"
+    },
+    {
+      "type": "p",
+      "text": "With options, toLocaleString() can format numbers as currency."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let price = 1299.95;\n\nlet dollars = price.toLocaleString(\"en-US\",\n\n{style:\"currency\", currency:\"USD\"});\n\nlet euros = price.toLocaleString(\"de-DE\",\n\n{style:\"currency\", currency:\"EUR\"});\n\nlet kroner = price.toLocaleString(\"no-NO\",\n\n{style:\"currency\", currency:\"NOK\"});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_currency"
+    },
+    {
+      "type": "h2",
+      "text": "Formatting Percentages"
+    },
+    {
+      "type": "p",
+      "text": "The style:\"percent\" option formats a number as a percentage."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let score = 0.875;\n\nlet result = score.toLocaleString(\"en-US\", {style:\"percent\"});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_percent"
+    },
+    {
+      "type": "h2",
+      "text": "Controlling Decimal Digits"
+    },
+    {
+      "type": "p",
+      "text": "You can control the number of decimal digits with minimumFractionDigits and maximumFractionDigits."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 3.14159;\n\nlet text = num.toLocaleString(\"en-US\", {\n\n  minimumFractionDigits: 2,\n\n  maximumFractionDigits: 2\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_decimals"
+    },
+    {
+      "type": "h3",
+      "text": "Note"
+    },
+    {
+      "type": "p",
+      "text": "The method name is toLocaleString(), not toLocalString()."
+    },
+    {
+      "type": "p",
+      "text": "The word locale means a language and country format, such as \"en-US\", \"de-DE\", or \"no-NO\"."
+    },
+    {
+      "type": "h2",
+      "text": "Formatting Dates"
+    },
+    {
+      "type": "p",
+      "text": "Dates can also be formatted with toLocaleString()."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let date = new Date();\n\nlet text = date.toLocaleString(\"en-US\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_date"
+    },
+    {
+      "type": "h2",
+      "text": "Date Formatting Options"
+    },
+    {
+      "type": "p",
+      "text": "Many options can be used to control how dates are displayed."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let date = new Date();\n\nlet text = date.toLocaleString(\"en-US\", {\n\n  weekday: \"long\",\n\n  year: \"numeric\",\n\n  month: \"long\",\n\n  day: \"numeric\"\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_date_options"
+    },
+    {
+      "type": "h2",
+      "text": "A Clever Use: Readable File Sizes"
+    },
+    {
+      "type": "p",
+      "text": "A clever use of toLocaleString() is to make file sizes easier to read."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function fileSize(bytes) {\n\n  if (bytes < 1024) return bytes + \" bytes\";\n\n  if (bytes < 1024 * 1024) return (bytes / 1024).toLocaleString(\"en-US\", {maximumFractionDigits: 1}) + \" KB\";\n\n  return (bytes / 1024 / 1024).toLocaleString(\"en-US\", {maximumFractionDigits: 1}) + \" MB\";\n\n}\n\nlet size = 1536000;\n\nlet text = fileSize(size);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_filesize"
+    },
+    {
+      "type": "h2",
+      "text": "Arrays and toLocaleString()"
+    },
+    {
+      "type": "p",
+      "text": "For arrays, the toLocaleString() methods converts each array element."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const dates = [\n\n  new Date(\"2026-01-01\"),\n\n  new Date(\"2026-12-24\")\n\n];\n\nlet text = dates.toLocaleString(\"en-US\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_array"
+    }
+  ]
 }

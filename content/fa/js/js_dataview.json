@@ -1,500 +1,413 @@
 {
- "slug": "js_dataview",
- "course": "js",
- "order": 244,
- "url": "/js/js_dataview.asp",
- "title": "DataView در JavaScript",
- "summary": "DataView نمای منعطفی روی ArrayBuffer است که با متدهای getXxx() و setXxx() در هر افست بایتی مقدار می‌خواند و می‌نویسد. در این درس ساختن نما، خواندن و نوشتن انواع عددی، کنترل ترتیب بایت‌ها (endianness) و نگه‌داری نوع‌های مخلوط در یک بافر را یاد می‌گیرید.",
- "objectives": [
-  "یک DataView روی ArrayBuffer بسازید و افست و طول آن را بخوانید",
-  "با متدهای getXxx() و setXxx() مقدار بخوانید و بنویسید",
-  "تفاوت little-endian و big-endian را تشخیص دهید",
-  "تشخیص دهید چه زمانی DataView از آرایهٔ نوع‌دار مناسب‌تر است"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "DataView در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "شیء DataView می‌گذارد چند نوع عددی را در یک ArrayBuffer و در هر افست بایتی بخوانید و بنویسید، با کنترل اختیاری روی اندیان‌بودن (ترتیب بایت‌ها)."
-  },
-  {
-   "type": "h2",
-   "text": "DataView چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "DataView یک نما روی ArrayBuffer است."
-  },
-  {
-   "type": "p",
-   "text": "DataView خودش داده ذخیره نمی‌کند؛ در عوض می‌گذارد بایت‌های بافر را به‌شکل نوع‌های مختلف تفسیر کنید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "عددهای صحیح ۸، ۱۶ و ۳۲ بیتی (علامت‌دار و بدون علامت)",
-    "عددهای اعشاری ۳۲ و ۶۴ بیتی",
-    "در افست‌های بایتی دلخواه در بافر",
-    "با ترتیب little-endian یا big-endian قابل تنظیم"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "از DataView استفاده کنید وقتی:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "قالب دودویی دارید که میدان‌هایش نوع و اندازهٔ متفاوت دارند.",
-    "باید ترتیب بایت‌ها (endianness) را کنترل کنید.",
-    "آرایه‌های نوع‌دار مثل Uint8Array یا Float32Array به‌قدر کافی منعطف نیستند."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "از DataView استفاده کنید وقتی با دادهٔ دودویی کار می‌کنید و به کنترل کامل روی چیدمان بایت‌ها و نوع‌ها نیاز دارید (مثلاً بستهٔ شبکه، قالب فایل، یا هم‌کاری با زبان‌های دیگر)."
-  },
-  {
-   "type": "h2",
-   "text": "ساختن DataView"
-  },
-  {
-   "type": "p",
-   "text": "برای ساختن DataView به یک ArrayBuffer نیاز دارید."
-  },
-  {
-   "type": "p",
-   "text": "بعد ArrayBuffer را به سازندهٔ new DataView() می‌دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a 16 bytes ArrayBuffer\n\nconst buffer = new ArrayBuffer(16);\n\n// Create a new DataView\n\nconst view = new DataView(buffer);\n\n// Get lengths and offset\n\nlet len1 = buffer.byteLength);\n\nlet len2 = view.byteLength;\n\nlet off1 = view.byteOffset;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dataview_create"
-  },
-  {
-   "type": "p",
-   "text": "همچنین می‌توانید DataViewی بسازید که از افست مشخصی شروع شود و طول محدودی داشته باشد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a 16 bytes ArrayBuffer\n\nconst buffer = new ArrayBuffer(16);\n\n// Create a new DataView\n\nconst view = new DataView(buffer, 4, 8);\n\n// Get lengths and offset\n\nlet len1 = buffer.byteLength);\n\nlet len2 = view.byteLength;\n\nlet off1 = view.byteOffset;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dataview_create2"
-  },
-  {
-   "type": "p",
-   "text": "چند DataView و چند نمای آرایهٔ نوع‌دار می‌توانند یک ArrayBuffer مشترک داشته باشند."
-  },
-  {
-   "type": "h2",
-   "text": "خواندن و نوشتن مقدارها در DataView"
-  },
-  {
-   "type": "p",
-   "text": "DataView برای خواندن و نوشتن مقدارها از متدهای getXxx() و setXxx() استفاده می‌کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "getInt8(), setInt8()",
-    "getUint16(), setUint16()",
-    "getInt32(), setInt32()",
-    "getFloat32(), setFloat32()",
-    "و موارد بیشتر"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new ArrayBuffer(8);\n\nconst view = new DataView(buffer);\n\n// Write a 32-bit signed integer at byte offset 0\n\nview.setInt32(0, 123456);\n\n// Read it back\n\nconst value = view.getInt32(0);\n\nconsole.log(value); // 123456",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new ArrayBuffer(16);\n\nconst view = new DataView(buffer);\n\nview.setFloat64(0, Math.PI);\n\nview.setFloat64(8, Math.E);\n\nconst pi = view.getFloat64(0);\n\nconst e  = view.getFloat64(8);\n\nconsole.log(\"PI:\", pi);\n\nconsole.log(\"E:\", e);",
-   "caption": "مثال"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "آرگومان اول همیشه افست بایتی از ابتدای بافر زیرین است (یا byteOffset خود نما)."
-  },
-  {
-   "type": "h2",
-   "text": "اندیان‌بودن (ترتیب بایت)"
-  },
-  {
-   "type": "p",
-   "text": "بسیاری از قالب‌های دودویی مشخص می‌کنند که عددهای چندبایتی به‌شکل little-endian ذخیره می‌شوند یا big-endian."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "little-endian: کم‌اهمیت‌ترین بایت اول ذخیره می‌شود (رایج‌ترین حالت در کامپیوترهای شخصی).",
-    "big-endian: مهم‌ترین بایت اول ذخیره می‌شود (در بعضی پروتکل‌ها رایج است)."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر متدهای عددی DataView یک پارامتر اختیاری littleEndian دارند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true یعنی little-endian",
-    "false (یا حذف پارامتر) یعنی big-endian"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new ArrayBuffer(4);\n\nconst view   = new DataView(buffer);\n\n// Same number, two different byte orders:\n\nview.setUint32(0, 0x12345678, true);  // little-endian\n\nconsole.log(new Uint8Array(buffer));\n\n// Example output: Uint8Array(4) [120, 86, 52, 18] (0x78, 0x56, 0x34, 0x12)\n\n// Overwrite with big-endian\n\nview.setUint32(0, 0x12345678, false); // big-endian\n\nconsole.log(new Uint8Array(buffer));\n\n// Example output: Uint8Array(4) [18, 52, 86, 120] (0x12, 0x34, 0x56, 0x78)",
-   "caption": "مثال: نوشتن با little-endian و big-endian"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "همیشه مستندات قالب فایل یا پروتکل خود را ببینید تا بدانید کدام endianness را به کار ببرید."
-  },
-  {
-   "type": "h2",
-   "text": "نوع‌های مخلوط در یک بافر"
-  },
-  {
-   "type": "p",
-   "text": "یکی از مزیت‌های اصلی DataView این است که می‌توانید نوع‌های مختلف را در یک بافر تنها مخلوط کنید. برای نمونه:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "۱ بایت برای یک پرچم (flag)",
-    "۲ بایت برای یک طول",
-    "۴ بایت برای یک عدد اعشاری"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new ArrayBuffer(12);\n\nconst view   = new DataView(buffer);\n\n// Byte 0: a flag (0 or 1)\n\nview.setUint8(0, 1);\n\n// Bytes 1-2: a 16-bit length (little-endian)\n\nview.setUint16(1, 500, true);\n\n// Bytes 4-11: a 64-bit float (skip byte 3 for alignment)\n\nview.setFloat64(4, 3.14159, true);\n\n// Read the values back\n\nconst flag   = view.getUint8(0);\n\nconst length = view.getUint16(1, true);\n\nconst value  = view.getFloat64(4, true);\n\nconsole.log(\"Flag:\", flag);\n\nconsole.log(\"Length:\", length);\n\nconsole.log(\"Value:\", value);",
-   "caption": "مثال: نوع‌های مخلوط"
-  },
-  {
-   "type": "h2",
-   "text": "خلاصه"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "DataView راهی منعطف برای خواندن و نوشتن چند نوع عددی در ArrayBuffer است.",
-    "از متدهای getXxx() و setXxx() با افست بایتی (و endianness اختیاری) استفاده کنید.",
-    "برای پروتکل‌های دودویی، قالب‌های فایل و هم‌کاری با زبان‌های دیگر عالی است.",
-    "DataView را با آرایه‌های نوع‌دار ترکیب کنید تا بایت‌های تک‌تک را راحت ببینید."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "کاربردهای رایج"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تحلیل قالب‌های فایل دودویی (تصویر، صدا، قالب‌های اختصاصی).",
-    "پیاده‌سازی پروتکل‌های شبکهٔ دودویی روی WebSocket یا WebRTC.",
-    "هم‌کاری با WebAssembly یا کد بومی، جایی که چیدمان حافظه مهم است.",
-    "بازپیاده‌سازی ساختارها (struct) و اتحادیه‌های سبک C/C++ در JavaScript."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مرجع DataView"
-  },
-  {
-   "type": "h2",
-   "text": "بازنگری: دسامبر ۲۰۲۵"
-  },
-  {
-   "type": "h3",
-   "text": "سازنده"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نحو",
-     "توضیح"
-    ],
-    [
-     "new DataView(buffer)",
-     "نما روی کل ArrayBuffer."
-    ],
-    [
-     "new DataView(buffer, byteOffset)",
-     "نما از byteOffset تا انتها."
-    ],
-    [
-     "new DataView(buffer, byteOffset, byteLength)",
-     "نمایی با طول byteLength که از byteOffset شروع می‌شود."
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "خصوصیت‌ها"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "خصوصیت",
-     "توضیح"
-    ],
-    [
-     "dataView.buffer",
-     "ArrayBuffer زیرین."
-    ],
-    [
-     "dataView.byteLength",
-     "تعداد بایت‌های این نما."
-    ],
-    [
-     "dataView.byteOffset",
-     "فاصلهٔ این نما (بر حسب بایت) از ابتدای بافر."
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "متدهای خواندن (get)"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "getInt8(byteOffset)",
-     "یک عدد صحیح علامت‌دار ۸ بیتی می‌خواند."
-    ],
-    [
-     "getUint8(byteOffset)",
-     "یک عدد صحیح بدون علامت ۸ بیتی می‌خواند."
-    ],
-    [
-     "getInt16(byteOffset, littleEndian?)",
-     "یک عدد صحیح علامت‌دار ۱۶ بیتی می‌خواند."
-    ],
-    [
-     "getUint16(byteOffset, littleEndian?)",
-     "یک عدد صحیح بدون علامت ۱۶ بیتی می‌خواند."
-    ],
-    [
-     "getInt32(byteOffset, littleEndian?)",
-     "یک عدد صحیح علامت‌دار ۳۲ بیتی می‌خواند."
-    ],
-    [
-     "getUint32(byteOffset, littleEndian?)",
-     "یک عدد صحیح بدون علامت ۳۲ بیتی می‌خواند."
-    ],
-    [
-     "getFloat32(byteOffset, littleEndian?)",
-     "یک عدد اعشاری ۳۲ بیتی می‌خواند."
-    ],
-    [
-     "getFloat64(byteOffset, littleEndian?)",
-     "یک عدد اعشاری ۶۴ بیتی می‌خواند."
-    ],
-    [
-     "getBigInt64(byteOffset, littleEndian?)",
-     "یک عدد صحیح علامت‌دار ۶۴ بیتی را به‌شکل BigInt می‌خواند."
-    ],
-    [
-     "getBigUint64(byteOffset, littleEndian?)",
-     "یک عدد صحیح بدون علامت ۶۴ بیتی را به‌شکل BigInt می‌خواند."
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "متدهای نوشتن (set)"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "setInt8(byteOffset, value)",
-     "یک عدد صحیح علامت‌دار ۸ بیتی می‌نویسد."
-    ],
-    [
-     "setUint8(byteOffset, value)",
-     "یک عدد صحیح بدون علامت ۸ بیتی می‌نویسد."
-    ],
-    [
-     "setInt16(byteOffset, value, littleEndian?)",
-     "یک عدد صحیح علامت‌دار ۱۶ بیتی می‌نویسد."
-    ],
-    [
-     "setUint16(byteOffset, value, littleEndian?)",
-     "یک عدد صحیح بدون علامت ۱۶ بیتی می‌نویسد."
-    ],
-    [
-     "setInt32(byteOffset, value, littleEndian?)",
-     "یک عدد صحیح علامت‌دار ۳۲ بیتی می‌نویسد."
-    ],
-    [
-     "setUint32(byteOffset, value, littleEndian?)",
-     "یک عدد صحیح بدون علامت ۳۲ بیتی می‌نویسد."
-    ],
-    [
-     "setFloat32(byteOffset, value, littleEndian?)",
-     "یک عدد اعشاری ۳۲ بیتی می‌نویسد."
-    ],
-    [
-     "setFloat64(byteOffset, value, littleEndian?)",
-     "یک عدد اعشاری ۶۴ بیتی می‌نویسد."
-    ],
-    [
-     "setBigInt64(byteOffset, value, littleEndian?)",
-     "یک BigInt صحیح علامت‌دار ۶۴ بیتی می‌نویسد."
-    ],
-    [
-     "setBigUint64(byteOffset, value, littleEndian?)",
-     "یک BigInt صحیح بدون علامت ۶۴ بیتی می‌نویسد."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بیاموزید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "متدهای آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "مرجع آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "شیء Atomics"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک ArrayBuffer با اندازهٔ ۱۶ بایت بسازید، DataView آن را بگیرید و با setInt32 و getInt32 عدد ۱۰۰۰ را در افست ۰ بنویسید و بخوانید.",
-   "hint": "setInt32(0, 1000) مقدار را می‌نویسد و getInt32(0) همان را برمی‌گرداند."
-  },
-  {
-   "prompt": "روی یک بافر ۸ بایتی، در افست ۴ یک Float32 بنویسید و همان را با getFloat32 بخوانید؛ سپس با setFloat32 در افست صفر بنویسید و ببینید روی مقدار قبلی اثر ندارد.",
-   "hint": "هر متد فقط بایت‌های بازهٔ خودش را دست می‌زند؛ طول Float32 برابر ۴ بایت است."
-  },
-  {
-   "prompt": "یک DataView با byteOffset = ۲ و byteLength = ۴ بسازید و byteOffset و byteLength آن را چاپ کنید.",
-   "hint": "new DataView(buffer, 2, 4) نما را از بایت دوم و با طول ۴ می‌سازد."
-  },
-  {
-   "prompt": "عدد ۱ را در افست ۰ با little-endian و بعد با big-endian بنویسید و بایت‌هایش را با Uint8Array روی همان بافر ببینید.",
-   "hint": "در little-endian کم‌اهمیت‌ترین بایت اول می‌آید؛ در big-endian برعکس."
-  },
-  {
-   "prompt": "در یک بافر، یک پرچم یک‌بایتی، یک طول دوبایتی و یک عدد اعشاری چهاربایتی بنویسید؛ بعد همه را به ترتیب بخوانید و چاپ کنید.",
-   "hint": "افست هر فیلد مساوی جمع اندازهٔ فیلدهای قبلی است."
-  }
- ],
- "quiz": [
-  {
-   "question": "DataView برای خواندن و نوشتن از چه متدهایی استفاده می‌کند؟",
-   "options": [
-    "read() و write()",
-    "getXxx() و setXxx()",
-    "push() و pop()",
-    "slice() و splice()"
-   ],
-   "answer": 1,
-   "explanation": "همهٔ خواندن‌ها و نوشتن‌ها با خانوادهٔ getXxx() و setXxx() انجام می‌شود و آرگومان اول همیشه افست بایتی است."
-  },
-  {
-   "question": "در little-endian ترتیب بایت‌ها چگونه است؟",
-   "options": [
-    "مهم‌ترین بایت اول ذخیره می‌شود",
-    "کم‌اهمیت‌ترین بایت اول ذخیره می‌شود",
-    "ترتیب بایت‌ها اهمیتی ندارد",
-    "همهٔ بایت‌ها یکسان می‌شوند"
-   ],
-   "answer": 1,
-   "explanation": "little-endian یعنی کم‌اهمیت‌ترین بایت اول می‌آید و در کامپیوترهای شخصی رایج‌ترین حالت است؛ big-endian برعکس است."
-  },
-  {
-   "question": "مقدار پیش‌فرض پارامتر littleEndian در متدهای عددی DataView چه می‌شود؟",
-   "options": [
-    "true یعنی little-endian",
-    "false یعنی big-endian",
-    "همیشه خطا می‌دهد",
-    "به نوع داده بستگی دارد"
-   ],
-   "answer": 1,
-   "explanation": "اگر پارامتر را حذف کنید false فرض می‌شود، یعنی big-endian؛ برای little-endian باید صریحاً true بدهید."
-  },
-  {
-   "question": "کدام مورد دربارهٔ DataView درست است؟",
-   "options": [
-    "خودش داده را ذخیره می‌کند",
-    "روی ArrayBuffer نما می‌سازد و داده را ذخیره نمی‌کند",
-    "همیشه طول بافر را تغییر می‌دهد",
-    "فقط با SharedArrayBuffer کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "DataView فقط یک نما روی بافر است؛ داده در خود ArrayBuffer می‌ماند و چند نما می‌توانند یک بافر را شریک شوند."
-  },
-  {
-   "question": "برای قالب دودویی که فیلدهایی با نوع و اندازهٔ متفاوت دارد، کدام گزینه مناسب‌تر است؟",
-   "options": [
-    "DataView",
-    "Uint8Array تنها",
-    "Array معمولی",
-    "JSON"
-   ],
-   "answer": 0,
-   "explanation": "DataView می‌گذارد در هر افست بایتی مقدارهایی با نوع‌های مختلف بخوانید و بنویسید، پس برای دادهٔ مخلوط و ساخت‌یافته انتخاب درستی است."
-  }
- ]
+  "slug": "js_dataview",
+  "course": "js",
+  "order": 244,
+  "url": "/js/js_dataview.asp",
+  "title": "DataView در JavaScript",
+  "summary": "DataView نمای منعطفی روی ArrayBuffer است که با متدهای getXxx() و setXxx() در هر افست بایتی مقدار می‌خواند و می‌نویسد. در این درس ساختن نما، خواندن و نوشتن انواع عددی، کنترل ترتیب بایت‌ها (endianness) و نگه‌داری نوع‌های مخلوط در یک بافر را یاد می‌گیرید.",
+  "objectives": [
+    "یک DataView روی ArrayBuffer بسازید و افست و طول آن را بخوانید",
+    "با متدهای getXxx() و setXxx() مقدار بخوانید و بنویسید",
+    "تفاوت little-endian و big-endian را تشخیص دهید",
+    "تشخیص دهید چه زمانی DataView از آرایهٔ نوع‌دار مناسب‌تر است"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "DataView در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "شیء DataView می‌گذارد چند نوع عددی را در یک ArrayBuffer و در هر افست بایتی بخوانید و بنویسید، با کنترل اختیاری روی اندیان‌بودن (ترتیب بایت‌ها)."
+    },
+    {
+      "type": "h2",
+      "text": "DataView چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "DataView یک نما روی ArrayBuffer است."
+    },
+    {
+      "type": "p",
+      "text": "DataView خودش داده ذخیره نمی‌کند؛ در عوض می‌گذارد بایت‌های بافر را به‌شکل نوع‌های مختلف تفسیر کنید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "عددهای صحیح ۸، ۱۶ و ۳۲ بیتی (علامت‌دار و بدون علامت)",
+        "عددهای اعشاری ۳۲ و ۶۴ بیتی",
+        "در افست‌های بایتی دلخواه در بافر",
+        "با ترتیب little-endian یا big-endian قابل تنظیم"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "از DataView استفاده کنید وقتی:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "قالب دودویی دارید که میدان‌هایش نوع و اندازهٔ متفاوت دارند.",
+        "باید ترتیب بایت‌ها (endianness) را کنترل کنید.",
+        "آرایه‌های نوع‌دار مثل Uint8Array یا Float32Array به‌قدر کافی منعطف نیستند."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "از DataView استفاده کنید وقتی با دادهٔ دودویی کار می‌کنید و به کنترل کامل روی چیدمان بایت‌ها و نوع‌ها نیاز دارید (مثلاً بستهٔ شبکه، قالب فایل، یا هم‌کاری با زبان‌های دیگر)."
+    },
+    {
+      "type": "h2",
+      "text": "ساختن DataView"
+    },
+    {
+      "type": "p",
+      "text": "برای ساختن DataView به یک ArrayBuffer نیاز دارید."
+    },
+    {
+      "type": "p",
+      "text": "بعد ArrayBuffer را به سازندهٔ new DataView() می‌دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a 16 bytes ArrayBuffer\n\nconst buffer = new ArrayBuffer(16);\n\n// Create a new DataView\n\nconst view = new DataView(buffer);\n\n// Get lengths and offset\n\nlet len1 = buffer.byteLength);\n\nlet len2 = view.byteLength;\n\nlet off1 = view.byteOffset;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dataview_create"
+    },
+    {
+      "type": "p",
+      "text": "همچنین می‌توانید DataViewی بسازید که از افست مشخصی شروع شود و طول محدودی داشته باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a 16 bytes ArrayBuffer\n\nconst buffer = new ArrayBuffer(16);\n\n// Create a new DataView\n\nconst view = new DataView(buffer, 4, 8);\n\n// Get lengths and offset\n\nlet len1 = buffer.byteLength);\n\nlet len2 = view.byteLength;\n\nlet off1 = view.byteOffset;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dataview_create2"
+    },
+    {
+      "type": "p",
+      "text": "چند DataView و چند نمای آرایهٔ نوع‌دار می‌توانند یک ArrayBuffer مشترک داشته باشند."
+    },
+    {
+      "type": "h2",
+      "text": "خواندن و نوشتن مقدارها در DataView"
+    },
+    {
+      "type": "p",
+      "text": "DataView برای خواندن و نوشتن مقدارها از متدهای getXxx() و setXxx() استفاده می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "getInt8(), setInt8()",
+        "getUint16(), setUint16()",
+        "getInt32(), setInt32()",
+        "getFloat32(), setFloat32()",
+        "و موارد بیشتر"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new ArrayBuffer(8);\n\nconst view = new DataView(buffer);\n\n// Write a 32-bit signed integer at byte offset 0\n\nview.setInt32(0, 123456);\n\n// Read it back\n\nconst value = view.getInt32(0);\n\nconsole.log(value); // 123456",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new ArrayBuffer(16);\n\nconst view = new DataView(buffer);\n\nview.setFloat64(0, Math.PI);\n\nview.setFloat64(8, Math.E);\n\nconst pi = view.getFloat64(0);\n\nconst e  = view.getFloat64(8);\n\nconsole.log(\"PI:\", pi);\n\nconsole.log(\"E:\", e);",
+      "caption": "مثال"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "آرگومان اول همیشه افست بایتی از ابتدای بافر زیرین است (یا byteOffset خود نما)."
+    },
+    {
+      "type": "h2",
+      "text": "اندیان‌بودن (ترتیب بایت)"
+    },
+    {
+      "type": "p",
+      "text": "بسیاری از قالب‌های دودویی مشخص می‌کنند که عددهای چندبایتی به‌شکل little-endian ذخیره می‌شوند یا big-endian."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "little-endian: کم‌اهمیت‌ترین بایت اول ذخیره می‌شود (رایج‌ترین حالت در کامپیوترهای شخصی).",
+        "big-endian: مهم‌ترین بایت اول ذخیره می‌شود (در بعضی پروتکل‌ها رایج است)."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر متدهای عددی DataView یک پارامتر اختیاری littleEndian دارند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true یعنی little-endian", "false (یا حذف پارامتر) یعنی big-endian"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new ArrayBuffer(4);\n\nconst view   = new DataView(buffer);\n\n// Same number, two different byte orders:\n\nview.setUint32(0, 0x12345678, true);  // little-endian\n\nconsole.log(new Uint8Array(buffer));\n\n// Example output: Uint8Array(4) [120, 86, 52, 18] (0x78, 0x56, 0x34, 0x12)\n\n// Overwrite with big-endian\n\nview.setUint32(0, 0x12345678, false); // big-endian\n\nconsole.log(new Uint8Array(buffer));\n\n// Example output: Uint8Array(4) [18, 52, 86, 120] (0x12, 0x34, 0x56, 0x78)",
+      "caption": "مثال: نوشتن با little-endian و big-endian"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "همیشه مستندات قالب فایل یا پروتکل خود را ببینید تا بدانید کدام endianness را به کار ببرید."
+    },
+    {
+      "type": "h2",
+      "text": "نوع‌های مخلوط در یک بافر"
+    },
+    {
+      "type": "p",
+      "text": "یکی از مزیت‌های اصلی DataView این است که می‌توانید نوع‌های مختلف را در یک بافر تنها مخلوط کنید. برای نمونه:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["۱ بایت برای یک پرچم (flag)", "۲ بایت برای یک طول", "۴ بایت برای یک عدد اعشاری"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new ArrayBuffer(12);\n\nconst view   = new DataView(buffer);\n\n// Byte 0: a flag (0 or 1)\n\nview.setUint8(0, 1);\n\n// Bytes 1-2: a 16-bit length (little-endian)\n\nview.setUint16(1, 500, true);\n\n// Bytes 4-11: a 64-bit float (skip byte 3 for alignment)\n\nview.setFloat64(4, 3.14159, true);\n\n// Read the values back\n\nconst flag   = view.getUint8(0);\n\nconst length = view.getUint16(1, true);\n\nconst value  = view.getFloat64(4, true);\n\nconsole.log(\"Flag:\", flag);\n\nconsole.log(\"Length:\", length);\n\nconsole.log(\"Value:\", value);",
+      "caption": "مثال: نوع‌های مخلوط"
+    },
+    {
+      "type": "h2",
+      "text": "خلاصه"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "DataView راهی منعطف برای خواندن و نوشتن چند نوع عددی در ArrayBuffer است.",
+        "از متدهای getXxx() و setXxx() با افست بایتی (و endianness اختیاری) استفاده کنید.",
+        "برای پروتکل‌های دودویی، قالب‌های فایل و هم‌کاری با زبان‌های دیگر عالی است.",
+        "DataView را با آرایه‌های نوع‌دار ترکیب کنید تا بایت‌های تک‌تک را راحت ببینید."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "کاربردهای رایج"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "تحلیل قالب‌های فایل دودویی (تصویر، صدا، قالب‌های اختصاصی).",
+        "پیاده‌سازی پروتکل‌های شبکهٔ دودویی روی WebSocket یا WebRTC.",
+        "هم‌کاری با WebAssembly یا کد بومی، جایی که چیدمان حافظه مهم است.",
+        "بازپیاده‌سازی ساختارها (struct) و اتحادیه‌های سبک C/C++ در JavaScript."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مرجع DataView"
+    },
+    {
+      "type": "h2",
+      "text": "بازنگری: دسامبر ۲۰۲۵"
+    },
+    {
+      "type": "h3",
+      "text": "سازنده"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نحو", "توضیح"],
+        ["new DataView(buffer)", "نما روی کل ArrayBuffer."],
+        ["new DataView(buffer, byteOffset)", "نما از byteOffset تا انتها."],
+        [
+          "new DataView(buffer, byteOffset, byteLength)",
+          "نمایی با طول byteLength که از byteOffset شروع می‌شود."
+        ]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "خصوصیت‌ها"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["خصوصیت", "توضیح"],
+        ["dataView.buffer", "ArrayBuffer زیرین."],
+        ["dataView.byteLength", "تعداد بایت‌های این نما."],
+        ["dataView.byteOffset", "فاصلهٔ این نما (بر حسب بایت) از ابتدای بافر."]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "متدهای خواندن (get)"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["getInt8(byteOffset)", "یک عدد صحیح علامت‌دار ۸ بیتی می‌خواند."],
+        ["getUint8(byteOffset)", "یک عدد صحیح بدون علامت ۸ بیتی می‌خواند."],
+        ["getInt16(byteOffset, littleEndian?)", "یک عدد صحیح علامت‌دار ۱۶ بیتی می‌خواند."],
+        ["getUint16(byteOffset, littleEndian?)", "یک عدد صحیح بدون علامت ۱۶ بیتی می‌خواند."],
+        ["getInt32(byteOffset, littleEndian?)", "یک عدد صحیح علامت‌دار ۳۲ بیتی می‌خواند."],
+        ["getUint32(byteOffset, littleEndian?)", "یک عدد صحیح بدون علامت ۳۲ بیتی می‌خواند."],
+        ["getFloat32(byteOffset, littleEndian?)", "یک عدد اعشاری ۳۲ بیتی می‌خواند."],
+        ["getFloat64(byteOffset, littleEndian?)", "یک عدد اعشاری ۶۴ بیتی می‌خواند."],
+        [
+          "getBigInt64(byteOffset, littleEndian?)",
+          "یک عدد صحیح علامت‌دار ۶۴ بیتی را به‌شکل BigInt می‌خواند."
+        ],
+        [
+          "getBigUint64(byteOffset, littleEndian?)",
+          "یک عدد صحیح بدون علامت ۶۴ بیتی را به‌شکل BigInt می‌خواند."
+        ]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "متدهای نوشتن (set)"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["setInt8(byteOffset, value)", "یک عدد صحیح علامت‌دار ۸ بیتی می‌نویسد."],
+        ["setUint8(byteOffset, value)", "یک عدد صحیح بدون علامت ۸ بیتی می‌نویسد."],
+        ["setInt16(byteOffset, value, littleEndian?)", "یک عدد صحیح علامت‌دار ۱۶ بیتی می‌نویسد."],
+        ["setUint16(byteOffset, value, littleEndian?)", "یک عدد صحیح بدون علامت ۱۶ بیتی می‌نویسد."],
+        ["setInt32(byteOffset, value, littleEndian?)", "یک عدد صحیح علامت‌دار ۳۲ بیتی می‌نویسد."],
+        ["setUint32(byteOffset, value, littleEndian?)", "یک عدد صحیح بدون علامت ۳۲ بیتی می‌نویسد."],
+        ["setFloat32(byteOffset, value, littleEndian?)", "یک عدد اعشاری ۳۲ بیتی می‌نویسد."],
+        ["setFloat64(byteOffset, value, littleEndian?)", "یک عدد اعشاری ۶۴ بیتی می‌نویسد."],
+        [
+          "setBigInt64(byteOffset, value, littleEndian?)",
+          "یک BigInt صحیح علامت‌دار ۶۴ بیتی می‌نویسد."
+        ],
+        [
+          "setBigUint64(byteOffset, value, littleEndian?)",
+          "یک BigInt صحیح بدون علامت ۶۴ بیتی می‌نویسد."
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بیاموزید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "متدهای آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "مرجع آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "شیء Atomics"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک ArrayBuffer با اندازهٔ ۱۶ بایت بسازید، DataView آن را بگیرید و با setInt32 و getInt32 عدد ۱۰۰۰ را در افست ۰ بنویسید و بخوانید.",
+      "hint": "setInt32(0, 1000) مقدار را می‌نویسد و getInt32(0) همان را برمی‌گرداند."
+    },
+    {
+      "prompt": "روی یک بافر ۸ بایتی، در افست ۴ یک Float32 بنویسید و همان را با getFloat32 بخوانید؛ سپس با setFloat32 در افست صفر بنویسید و ببینید روی مقدار قبلی اثر ندارد.",
+      "hint": "هر متد فقط بایت‌های بازهٔ خودش را دست می‌زند؛ طول Float32 برابر ۴ بایت است."
+    },
+    {
+      "prompt": "یک DataView با byteOffset = ۲ و byteLength = ۴ بسازید و byteOffset و byteLength آن را چاپ کنید.",
+      "hint": "new DataView(buffer, 2, 4) نما را از بایت دوم و با طول ۴ می‌سازد."
+    },
+    {
+      "prompt": "عدد ۱ را در افست ۰ با little-endian و بعد با big-endian بنویسید و بایت‌هایش را با Uint8Array روی همان بافر ببینید.",
+      "hint": "در little-endian کم‌اهمیت‌ترین بایت اول می‌آید؛ در big-endian برعکس."
+    },
+    {
+      "prompt": "در یک بافر، یک پرچم یک‌بایتی، یک طول دوبایتی و یک عدد اعشاری چهاربایتی بنویسید؛ بعد همه را به ترتیب بخوانید و چاپ کنید.",
+      "hint": "افست هر فیلد مساوی جمع اندازهٔ فیلدهای قبلی است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "DataView برای خواندن و نوشتن از چه متدهایی استفاده می‌کند؟",
+      "options": [
+        "read() و write()",
+        "getXxx() و setXxx()",
+        "push() و pop()",
+        "slice() و splice()"
+      ],
+      "answer": 1,
+      "explanation": "همهٔ خواندن‌ها و نوشتن‌ها با خانوادهٔ getXxx() و setXxx() انجام می‌شود و آرگومان اول همیشه افست بایتی است."
+    },
+    {
+      "question": "در little-endian ترتیب بایت‌ها چگونه است؟",
+      "options": [
+        "مهم‌ترین بایت اول ذخیره می‌شود",
+        "کم‌اهمیت‌ترین بایت اول ذخیره می‌شود",
+        "ترتیب بایت‌ها اهمیتی ندارد",
+        "همهٔ بایت‌ها یکسان می‌شوند"
+      ],
+      "answer": 1,
+      "explanation": "little-endian یعنی کم‌اهمیت‌ترین بایت اول می‌آید و در کامپیوترهای شخصی رایج‌ترین حالت است؛ big-endian برعکس است."
+    },
+    {
+      "question": "مقدار پیش‌فرض پارامتر littleEndian در متدهای عددی DataView چه می‌شود؟",
+      "options": [
+        "true یعنی little-endian",
+        "false یعنی big-endian",
+        "همیشه خطا می‌دهد",
+        "به نوع داده بستگی دارد"
+      ],
+      "answer": 1,
+      "explanation": "اگر پارامتر را حذف کنید false فرض می‌شود، یعنی big-endian؛ برای little-endian باید صریحاً true بدهید."
+    },
+    {
+      "question": "کدام مورد دربارهٔ DataView درست است؟",
+      "options": [
+        "خودش داده را ذخیره می‌کند",
+        "روی ArrayBuffer نما می‌سازد و داده را ذخیره نمی‌کند",
+        "همیشه طول بافر را تغییر می‌دهد",
+        "فقط با SharedArrayBuffer کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "DataView فقط یک نما روی بافر است؛ داده در خود ArrayBuffer می‌ماند و چند نما می‌توانند یک بافر را شریک شوند."
+    },
+    {
+      "question": "برای قالب دودویی که فیلدهایی با نوع و اندازهٔ متفاوت دارد، کدام گزینه مناسب‌تر است؟",
+      "options": ["DataView", "Uint8Array تنها", "Array معمولی", "JSON"],
+      "answer": 0,
+      "explanation": "DataView می‌گذارد در هر افست بایتی مقدارهایی با نوع‌های مختلف بخوانید و بنویسید، پس برای دادهٔ مخلوط و ساخت‌یافته انتخاب درستی است."
+    }
+  ]
 }

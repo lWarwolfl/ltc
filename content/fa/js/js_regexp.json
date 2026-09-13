@@ -1,727 +1,627 @@
 {
- "slug": "js_regexp",
- "course": "js",
- "order": 81,
- "url": "/js/js_regexp.asp",
- "title": "RegExp در JavaScript",
- "summary": "عبارت باقاعده الگویی برای جست‌وجو در متن است و RegExp شیئی برای کار با آن. در این درس ساختن الگو، پرچم‌های g و i، متاکاراکترها، سنجه‌ها، ادعاها و کلاس‌های کاراکتر را با مثال تمرین می‌کنید.",
- "objectives": [
-  "با search()، match() و replace() روی متن جست‌وجو و جایگزینی کنید",
-  "معنای پرچم‌های g و i را توضیح دهید",
-  "متاکاراکترهای \\d، \\w و \\s را تشخیص دهید",
-  "کار سنجه‌ها، ادعاها و کلاس‌های کاراکتر را با مثال نشان دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "RegExp در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "عبارت‌های باقاعده (Regular Expression)"
-  },
-  {
-   "type": "p",
-   "text": "عبارت باقاعده دنباله‌ای از کاراکترها است که یک الگوی جست‌وجو می‌سازد."
-  },
-  {
-   "type": "p",
-   "text": "Regex کوتاه‌نوشت رایج عبارت باقاعده است."
-  },
-  {
-   "type": "p",
-   "text": "RegExp در JavaScript شیئی برای کار با عبارت‌های باقاعده است."
-  },
-  {
-   "type": "p",
-   "text": "از RegExp برای این کارها استفاده می‌شود:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "جست‌وجو در متن",
-    "جایگزینی در متن",
-    "اعتبارسنجی متن"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Visit W3Schools\";\n\nlet n = text.search(/w3schools/i);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_string_search"
-  },
-  {
-   "type": "p",
-   "text": "توضیح مثال:"
-  },
-  {
-   "type": "p",
-   "text": "/w3schools/i یک عبارت باقاعده است."
-  },
-  {
-   "type": "p",
-   "text": "w3schools یک الگو است (که در جست‌وجو به کار می‌رود)."
-  },
-  {
-   "type": "p",
-   "text": "i یک تغییردهنده است که جست‌وجو را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "نحو عبارت باقاعده"
-  },
-  {
-   "type": "p",
-   "text": "/pattern/modifier flags"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از متدهای رشته"
-  },
-  {
-   "type": "p",
-   "text": "عبارت‌های باقاعده معمولاً همراه متدهای رشته به کار می‌روند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "match(regex)",
-     "یک آرایه از نتیجه‌ها برمی‌گرداند"
-    ],
-    [
-     "replace(regex)",
-     "یک رشتهٔ تازه برمی‌گرداند"
-    ],
-    [
-     "search(regex)",
-     "اندیس نخستین تطبیق را برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از متد match() رشته"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Visit W3Schools\";\n\nlet n = text.match(/W3schools/);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_match"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از متد replace() رشته"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Visit Microsoft!\";\n\nlet result = text.replace(/Microsoft/i, \"W3Schools\");",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_replace"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از متد search() رشته"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Visit W3Schools\";\n\nlet n = text.search(/W3Schools/);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_search"
-  },
-  {
-   "type": "h2",
-   "text": "گزینه‌گزینی در RegExp (OR)"
-  },
-  {
-   "type": "p",
-   "text": "در عبارت باقاعده، گزینه‌گزینی با کاراکتر خط عمودی | نشان داده می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "گزینه‌گزینی با هر یک از گزینه‌های جدا شده با | تطبیق می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Black, white, red, green, blue, yellow.\";\n\nlet result = text.match(/red|green|blue/g);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_xy"
-  },
-  {
-   "type": "h2",
-   "text": "پرچم‌های Regex در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "/pattern/flags",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پرچم‌های عبارت باقاعده پارامترهایی هستند که نحوهٔ استفاده از الگو را تغییر می‌دهند، مثلاً بی‌تفاوت کردن به بزرگی و کوچکی حروف یا سراسری کردن جست‌وجو."
-  },
-  {
-   "type": "p",
-   "text": "این‌ها رایج‌ترین‌اند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Flag",
-     "توضیح"
-    ],
-    [
-     "/g",
-     "تطبیق سراسری انجام می‌دهد (همه را پیدا می‌کند)"
-    ],
-    [
-     "/i",
-     "تطبیق بدون حساسیت به بزرگی و کوچکی حروف انجام می‌دهد"
-    ],
-    [
-     "/u",
-     "پشتیبانی Unicode را فعال می‌کند (تازه در 2015)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پرچم /g (سراسری)"
-  },
-  {
-   "type": "p",
-   "text": "پرچم /g با همهٔ رخدادهای الگو تطبیق می‌کند، نه فقط با نخستین رخداد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Is this all there is?\";\n\nconst pattern = /is/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_g"
-  },
-  {
-   "type": "h2",
-   "text": "پرچم /i (بی‌تفاوت به بزرگی و کوچکی حروف)"
-  },
-  {
-   "type": "p",
-   "text": "پرچم /i تطبیق را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند: /abc/i با \"abc\"، \"AbC\" و \"ABC\" تطبیق می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Visit W3Schools\";\n\nconst pattern = /w3schools/i;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_i"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "پرچم‌های RegExp در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "متاکاراکترهای RegExp"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Match words\n\nconst pattern = /\\w/;",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "متاکاراکترها کاراکترهایی با معنای ویژه‌اند."
-  },
-  {
-   "type": "p",
-   "text": "با آن‌ها می‌توان با رقم‌ها، کلمه‌ها، فاصله‌ها و بیشتر از این‌ها تطبیق کرد."
-  },
-  {
-   "type": "p",
-   "text": "این‌ها رایج‌ترین‌اند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متا",
-     "توضیح"
-    ],
-    [
-     "\\d",
-     "با رقم‌ها تطبیق می‌کند"
-    ],
-    [
-     "\\w",
-     "با کلمه‌ها تطبیق می‌کند"
-    ],
-    [
-     "\\s",
-     "با فاصله‌ها تطبیق می‌کند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متاکاراکتر \\d در RegExp (رقم‌ها)"
-  },
-  {
-   "type": "p",
-   "text": "متاکاراکتر \\d با رقم‌ها تطبیق می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\d/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_d"
-  },
-  {
-   "type": "h2",
-   "text": "متاکاراکتر \\w در RegExp (کلمه)"
-  },
-  {
-   "type": "p",
-   "text": "متاکاراکتر \\w با کاراکترهای کلمه تطبیق می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "کاراکتر کلمه یعنی a-z، A-Z، 0-9 و همچنین _ (زیرخط)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\w/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_wordchar"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "متاکاراکترهای RegExp در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "سنجه‌ها (Quantifier) در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "سنجه‌ها تعداد کاراکترها یا عبارت‌هایی را که باید تطبیق داده شوند تعیین می‌کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /lo+/;",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "علامت + یعنی «یک یا بیشتر». این الگو با این‌ها تطبیق می‌کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "lo",
-    "loo",
-    "looo"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "این‌ها رایج‌ترین سنجه‌ها هستند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "سنجه",
-     "توضیح"
-    ],
-    [
-     "x+",
-     "با هر رشته‌ای که دست‌کم یک x داشته باشد تطبیق می‌کند"
-    ],
-    [
-     "x*",
-     "با هر رشته‌ای که صفر یا بیشتر x داشته باشد تطبیق می‌کند"
-    ],
-    [
-     "x?",
-     "با هر رشته‌ای که صفر یا یک x داشته باشد تطبیق می‌کند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "سنجهٔ ?"
-  },
-  {
-   "type": "p",
-   "text": "x? با صفر یا یک رخداد x تطبیق می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"1, 100 or 1000?\";\n\nconst pattern = /10?/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n3"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "سنجه‌ها (Quantifier) در RegExp"
-  },
-  {
-   "type": "h2",
-   "text": "ادعاها (Assertion) در عبارت باقاعده"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Match beginning of string\n\nconst pattern = /^W3Schools/;\n\n// Match end of string\n\nconst pattern = /W3Schools$/;",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "ادعاها شامل مرزها (Boundary) و نگاه‌های اطراف (Lookaround) است:"
-  },
-  {
-   "type": "p",
-   "text": "مرزهای رشته و مرزهای کلمه."
-  },
-  {
-   "type": "p",
-   "text": "نگاه‌های اطراف: نگاه به جلو و نگاه به عقب."
-  },
-  {
-   "type": "p",
-   "text": "این‌ها رایج‌ترین‌اند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نحو",
-     "نام",
-     "توضیح"
-    ],
-    [
-     "^",
-     "مرز رشته",
-     "با ابتدای یک رشته تطبیق می‌کند"
-    ],
-    [
-     "$",
-     "مرز رشته",
-     "با انتهای یک رشته تطبیق می‌کند"
-    ],
-    [
-     "\\b",
-     "مرز کلمه",
-     "با ابتدا یا انتهای یک کلمه تطبیق می‌کند"
-    ],
-    [
-     "(?=...)",
-     "نگاه به جلو",
-     "با رشتهٔ بعدی تطبیق می‌کند"
-    ],
-    [
-     "(?<=...)",
-     "نگاه به عقب",
-     "با رشتهٔ قبلی تطبیق می‌کند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متاکاراکتر ^ در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "متاکاراکتر ^ با ابتدای یک رشته تطبیق می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /^W3Schools/;\n\nlet text = \"W3Schools Tutorial\";\n\nlet result = pattern.test(text); // true",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /^W3Schools/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // false",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_hat"
-  },
-  {
-   "type": "h2",
-   "text": "متاکاراکتر $ در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "متاکاراکتر $ با انتهای یک رشته تطبیق می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /W3Schools$/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // true",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /W3Schools$/;\n\nlet text = \"W3Schools tutorial\";\n\nlet result = pattern.test(text); // false",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_dollar"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "ادعاهای RegExp در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "کلاس‌های کاراکتر در RegExp"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Match Digits\n\nconst pattern = /[0-9]/;",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "کلاس‌های کاراکتر کاراکترهایی هستند که داخل کروشه [] قرار می‌گیرند."
-  },
-  {
-   "type": "p",
-   "text": "کلاس کاراکتر با هر کاراکتری از مجموعهٔ داخل کروشه تطبیق می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "این‌ها رایج‌ترین‌اند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "کلاس",
-     "توضیح"
-    ],
-    [
-     "[a]",
-     "با کاراکتر داخل کروشه تطبیق می‌کند"
-    ],
-    [
-     "[abc]",
-     "با همهٔ کاراکترهای داخل کروشه تطبیق می‌کند"
-    ],
-    [
-     "[a-z]",
-     "با همهٔ کاراکترهای بازهٔ a تا z تطبیق می‌کند"
-    ],
-    [
-     "[0-9]",
-     "با همهٔ کاراکترهای بازهٔ 0 تا 9 تطبیق می‌کند"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"More than 1000 times\";\n\nconst pattern = /[0-9]/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال [0-9]"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_0-9_1"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "پرچم‌های RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کلاس‌های کاراکتر در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "متاکاراکترهای RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ادعاهای RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "گروه‌های RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "سنجه‌ها (Quantifier) در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "الگوهای RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "شیءهای RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متدهای RegExp در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل regexp.html بسازید و با متد search() و الگوی /w3schools/i کلمهٔ W3Schools را در یک متن پیدا کنید.",
-   "hint": "متد search() اندیس نخستین تطبیق را برمی‌گرداند و پرچم i جست‌وجو را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند."
-  },
-  {
-   "prompt": "با متد replace() در متن «Visit Microsoft!» کلمهٔ Microsoft را با W3Schools عوض کنید.",
-   "hint": "/Microsoft/i را به replace() بدهید تا حتی با حروف کوچک هم پیدا شود."
-  },
-  {
-   "prompt": "با الگوی /red|green|blue/g همهٔ نام رنگ‌ها را از یک متن بیرون بکشید و در کنسول ببینید.",
-   "hint": "خط عمودی | گزینه‌گزینی است و پرچم g همهٔ رخدادها را برمی‌گرداند."
-  },
-  {
-   "prompt": "با متاکاراکتر \\d همهٔ رقم‌های متن «Give 100%!» را جدا کنید.",
-   "hint": "\\d فقط با رقم‌ها تطبیق می‌کند؛ پرچم g لازم است تا همه پیدا شوند."
-  },
-  {
-   "prompt": "دو الگوی /^W3Schools/ و /W3Schools$/ بسازید و ببینید هر یک به ابتدا یا انتهای رشته گیر می‌دهد.",
-   "hint": "در ابتدای الگو ^ ابتدای رشته و در انتهای آن $ انتهای رشته را نشان می‌دهد."
-  }
- ],
- "quiz": [
-  {
-   "question": "عبارت باقاعده چیست؟",
-   "options": [
-    "دنباله‌ای از کاراکترها که یک الگوی جست‌وجو می‌سازد",
-    "یک نوع دادهٔ عددی در JavaScript",
-    "تابعی که آرایه می‌سازد",
-    "شیئی برای ذخیرهٔ داده"
-   ],
-   "answer": 0,
-   "explanation": "عبارت باقاعده دنباله‌ای از کاراکترهاست که الگوی جست‌وجو را می‌سازد و RegExp شیء JavaScript برای کار با آن است."
-  },
-  {
-   "question": "در الگوی /w3schools/i پرچم i چه می‌کند؟",
-   "options": [
-    "تطبیق را سراسری می‌کند",
-    "تطبیق را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند",
-    "پشتیبانی Unicode را فعال می‌کند",
-    "فقط نخستین تطبیق را برمی‌گرداند"
-   ],
-   "answer": 1,
-   "explanation": "i یعنی بی‌تفاوت به بزرگی و کوچکی حروف، پس /w3schools/i با W3Schools و w3schools هر دو تطبیق می‌کند؛ سراسری کردن کار پرچم g است."
-  },
-  {
-   "question": "کدام متاکاراکتر فقط با رقم‌ها تطبیق می‌کند؟",
-   "options": [
-    "\\w",
-    "\\s",
-    "\\d",
-    "\\b"
-   ],
-   "answer": 2,
-   "explanation": "\\d برای رقم‌هاست؛ \\w با کاراکتر کلمه (حرف، رقم و زیرخط)، \\s با فاصله و \\b با مرز کلمه تطبیق می‌کند."
-  },
-  {
-   "question": "سنجهٔ x+ با چه چیزی تطبیق می‌کند؟",
-   "options": [
-    "صفر یا یک رخداد x",
-    "صفر یا بیشتر رخداد x",
-    "دست‌کم یک رخداد x",
-    "دقیقاً دو رخداد x"
-   ],
-   "answer": 2,
-   "explanation": "+ یعنی «یک یا بیشتر»، پس x+ با هر رشته‌ای که دست‌کم یک x داشته باشد تطبیق می‌کند؛ * صفر یا بیشتر و ? صفر یا یک رخداد را می‌گیرد."
-  },
-  {
-   "question": "کلاس کاراکتر [^abc] با چه چیزی تطبیق می‌کند؟",
-   "options": [
-    "با همهٔ کاراکترهای داخل کروشه",
-    "با کاراکترهایی که داخل کروشه نیستند",
-    "فقط با کاراکتر a",
-    "با ابتدای رشته"
-   ],
-   "answer": 1,
-   "explanation": "علامت ^ در ابتدای کروشه معنی نفی می‌دهد، پس [^abc] با همهٔ کاراکترهایی تطبیق می‌کند که a، b یا c نیستند."
-  }
- ]
+  "slug": "js_regexp",
+  "course": "js",
+  "order": 81,
+  "url": "/js/js_regexp.asp",
+  "title": "RegExp در JavaScript",
+  "summary": "عبارت باقاعده الگویی برای جست‌وجو در متن است و RegExp شیئی برای کار با آن. در این درس ساختن الگو، پرچم‌های g و i، متاکاراکترها، سنجه‌ها، ادعاها و کلاس‌های کاراکتر را با مثال تمرین می‌کنید.",
+  "objectives": [
+    "با search()، match() و replace() روی متن جست‌وجو و جایگزینی کنید",
+    "معنای پرچم‌های g و i را توضیح دهید",
+    "متاکاراکترهای \\d، \\w و \\s را تشخیص دهید",
+    "کار سنجه‌ها، ادعاها و کلاس‌های کاراکتر را با مثال نشان دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "RegExp در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "عبارت‌های باقاعده (Regular Expression)"
+    },
+    {
+      "type": "p",
+      "text": "عبارت باقاعده دنباله‌ای از کاراکترها است که یک الگوی جست‌وجو می‌سازد."
+    },
+    {
+      "type": "p",
+      "text": "Regex کوتاه‌نوشت رایج عبارت باقاعده است."
+    },
+    {
+      "type": "p",
+      "text": "RegExp در JavaScript شیئی برای کار با عبارت‌های باقاعده است."
+    },
+    {
+      "type": "p",
+      "text": "از RegExp برای این کارها استفاده می‌شود:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["جست‌وجو در متن", "جایگزینی در متن", "اعتبارسنجی متن"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Visit W3Schools\";\n\nlet n = text.search(/w3schools/i);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_string_search"
+    },
+    {
+      "type": "p",
+      "text": "توضیح مثال:"
+    },
+    {
+      "type": "p",
+      "text": "/w3schools/i یک عبارت باقاعده است."
+    },
+    {
+      "type": "p",
+      "text": "w3schools یک الگو است (که در جست‌وجو به کار می‌رود)."
+    },
+    {
+      "type": "p",
+      "text": "i یک تغییردهنده است که جست‌وجو را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "نحو عبارت باقاعده"
+    },
+    {
+      "type": "p",
+      "text": "/pattern/modifier flags"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از متدهای رشته"
+    },
+    {
+      "type": "p",
+      "text": "عبارت‌های باقاعده معمولاً همراه متدهای رشته به کار می‌روند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["match(regex)", "یک آرایه از نتیجه‌ها برمی‌گرداند"],
+        ["replace(regex)", "یک رشتهٔ تازه برمی‌گرداند"],
+        ["search(regex)", "اندیس نخستین تطبیق را برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از متد match() رشته"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Visit W3Schools\";\n\nlet n = text.match(/W3schools/);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_match"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از متد replace() رشته"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Visit Microsoft!\";\n\nlet result = text.replace(/Microsoft/i, \"W3Schools\");",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_replace"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از متد search() رشته"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Visit W3Schools\";\n\nlet n = text.search(/W3Schools/);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_method_search"
+    },
+    {
+      "type": "h2",
+      "text": "گزینه‌گزینی در RegExp (OR)"
+    },
+    {
+      "type": "p",
+      "text": "در عبارت باقاعده، گزینه‌گزینی با کاراکتر خط عمودی | نشان داده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "گزینه‌گزینی با هر یک از گزینه‌های جدا شده با | تطبیق می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Black, white, red, green, blue, yellow.\";\n\nlet result = text.match(/red|green|blue/g);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_xy"
+    },
+    {
+      "type": "h2",
+      "text": "پرچم‌های Regex در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "/pattern/flags",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پرچم‌های عبارت باقاعده پارامترهایی هستند که نحوهٔ استفاده از الگو را تغییر می‌دهند، مثلاً بی‌تفاوت کردن به بزرگی و کوچکی حروف یا سراسری کردن جست‌وجو."
+    },
+    {
+      "type": "p",
+      "text": "این‌ها رایج‌ترین‌اند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Flag", "توضیح"],
+        ["/g", "تطبیق سراسری انجام می‌دهد (همه را پیدا می‌کند)"],
+        ["/i", "تطبیق بدون حساسیت به بزرگی و کوچکی حروف انجام می‌دهد"],
+        ["/u", "پشتیبانی Unicode را فعال می‌کند (تازه در 2015)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پرچم /g (سراسری)"
+    },
+    {
+      "type": "p",
+      "text": "پرچم /g با همهٔ رخدادهای الگو تطبیق می‌کند، نه فقط با نخستین رخداد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Is this all there is?\";\n\nconst pattern = /is/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_g"
+    },
+    {
+      "type": "h2",
+      "text": "پرچم /i (بی‌تفاوت به بزرگی و کوچکی حروف)"
+    },
+    {
+      "type": "p",
+      "text": "پرچم /i تطبیق را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند: /abc/i با \"abc\"، \"AbC\" و \"ABC\" تطبیق می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Visit W3Schools\";\n\nconst pattern = /w3schools/i;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_i"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "پرچم‌های RegExp در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "متاکاراکترهای RegExp"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Match words\n\nconst pattern = /\\w/;",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "متاکاراکترها کاراکترهایی با معنای ویژه‌اند."
+    },
+    {
+      "type": "p",
+      "text": "با آن‌ها می‌توان با رقم‌ها، کلمه‌ها، فاصله‌ها و بیشتر از این‌ها تطبیق کرد."
+    },
+    {
+      "type": "p",
+      "text": "این‌ها رایج‌ترین‌اند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متا", "توضیح"],
+        ["\\d", "با رقم‌ها تطبیق می‌کند"],
+        ["\\w", "با کلمه‌ها تطبیق می‌کند"],
+        ["\\s", "با فاصله‌ها تطبیق می‌کند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متاکاراکتر \\d در RegExp (رقم‌ها)"
+    },
+    {
+      "type": "p",
+      "text": "متاکاراکتر \\d با رقم‌ها تطبیق می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\d/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_d"
+    },
+    {
+      "type": "h2",
+      "text": "متاکاراکتر \\w در RegExp (کلمه)"
+    },
+    {
+      "type": "p",
+      "text": "متاکاراکتر \\w با کاراکترهای کلمه تطبیق می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "کاراکتر کلمه یعنی a-z، A-Z، 0-9 و همچنین _ (زیرخط)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\w/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_wordchar"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "متاکاراکترهای RegExp در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "سنجه‌ها (Quantifier) در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "سنجه‌ها تعداد کاراکترها یا عبارت‌هایی را که باید تطبیق داده شوند تعیین می‌کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /lo+/;",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "علامت + یعنی «یک یا بیشتر». این الگو با این‌ها تطبیق می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["lo", "loo", "looo"]
+    },
+    {
+      "type": "p",
+      "text": "این‌ها رایج‌ترین سنجه‌ها هستند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["سنجه", "توضیح"],
+        ["x+", "با هر رشته‌ای که دست‌کم یک x داشته باشد تطبیق می‌کند"],
+        ["x*", "با هر رشته‌ای که صفر یا بیشتر x داشته باشد تطبیق می‌کند"],
+        ["x?", "با هر رشته‌ای که صفر یا یک x داشته باشد تطبیق می‌کند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "سنجهٔ ?"
+    },
+    {
+      "type": "p",
+      "text": "x? با صفر یا یک رخداد x تطبیق می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"1, 100 or 1000?\";\n\nconst pattern = /10?/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_n3"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "سنجه‌ها (Quantifier) در RegExp"
+    },
+    {
+      "type": "h2",
+      "text": "ادعاها (Assertion) در عبارت باقاعده"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Match beginning of string\n\nconst pattern = /^W3Schools/;\n\n// Match end of string\n\nconst pattern = /W3Schools$/;",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "ادعاها شامل مرزها (Boundary) و نگاه‌های اطراف (Lookaround) است:"
+    },
+    {
+      "type": "p",
+      "text": "مرزهای رشته و مرزهای کلمه."
+    },
+    {
+      "type": "p",
+      "text": "نگاه‌های اطراف: نگاه به جلو و نگاه به عقب."
+    },
+    {
+      "type": "p",
+      "text": "این‌ها رایج‌ترین‌اند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نحو", "نام", "توضیح"],
+        ["^", "مرز رشته", "با ابتدای یک رشته تطبیق می‌کند"],
+        ["$", "مرز رشته", "با انتهای یک رشته تطبیق می‌کند"],
+        ["\\b", "مرز کلمه", "با ابتدا یا انتهای یک کلمه تطبیق می‌کند"],
+        ["(?=...)", "نگاه به جلو", "با رشتهٔ بعدی تطبیق می‌کند"],
+        ["(?<=...)", "نگاه به عقب", "با رشتهٔ قبلی تطبیق می‌کند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متاکاراکتر ^ در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "متاکاراکتر ^ با ابتدای یک رشته تطبیق می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /^W3Schools/;\n\nlet text = \"W3Schools Tutorial\";\n\nlet result = pattern.test(text); // true",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /^W3Schools/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // false",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_hat"
+    },
+    {
+      "type": "h2",
+      "text": "متاکاراکتر $ در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "متاکاراکتر $ با انتهای یک رشته تطبیق می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /W3Schools$/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // true",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /W3Schools$/;\n\nlet text = \"W3Schools tutorial\";\n\nlet result = pattern.test(text); // false",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_dollar"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "ادعاهای RegExp در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "کلاس‌های کاراکتر در RegExp"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Match Digits\n\nconst pattern = /[0-9]/;",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "کلاس‌های کاراکتر کاراکترهایی هستند که داخل کروشه [] قرار می‌گیرند."
+    },
+    {
+      "type": "p",
+      "text": "کلاس کاراکتر با هر کاراکتری از مجموعهٔ داخل کروشه تطبیق می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "این‌ها رایج‌ترین‌اند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["کلاس", "توضیح"],
+        ["[a]", "با کاراکتر داخل کروشه تطبیق می‌کند"],
+        ["[abc]", "با همهٔ کاراکترهای داخل کروشه تطبیق می‌کند"],
+        ["[a-z]", "با همهٔ کاراکترهای بازهٔ a تا z تطبیق می‌کند"],
+        ["[0-9]", "با همهٔ کاراکترهای بازهٔ 0 تا 9 تطبیق می‌کند"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"More than 1000 times\";\n\nconst pattern = /[0-9]/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال [0-9]"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_0-9_1"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "پرچم‌های RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کلاس‌های کاراکتر در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "متاکاراکترهای RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ادعاهای RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "گروه‌های RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "سنجه‌ها (Quantifier) در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "الگوهای RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "شیءهای RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متدهای RegExp در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل regexp.html بسازید و با متد search() و الگوی /w3schools/i کلمهٔ W3Schools را در یک متن پیدا کنید.",
+      "hint": "متد search() اندیس نخستین تطبیق را برمی‌گرداند و پرچم i جست‌وجو را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند."
+    },
+    {
+      "prompt": "با متد replace() در متن «Visit Microsoft!» کلمهٔ Microsoft را با W3Schools عوض کنید.",
+      "hint": "/Microsoft/i را به replace() بدهید تا حتی با حروف کوچک هم پیدا شود."
+    },
+    {
+      "prompt": "با الگوی /red|green|blue/g همهٔ نام رنگ‌ها را از یک متن بیرون بکشید و در کنسول ببینید.",
+      "hint": "خط عمودی | گزینه‌گزینی است و پرچم g همهٔ رخدادها را برمی‌گرداند."
+    },
+    {
+      "prompt": "با متاکاراکتر \\d همهٔ رقم‌های متن «Give 100%!» را جدا کنید.",
+      "hint": "\\d فقط با رقم‌ها تطبیق می‌کند؛ پرچم g لازم است تا همه پیدا شوند."
+    },
+    {
+      "prompt": "دو الگوی /^W3Schools/ و /W3Schools$/ بسازید و ببینید هر یک به ابتدا یا انتهای رشته گیر می‌دهد.",
+      "hint": "در ابتدای الگو ^ ابتدای رشته و در انتهای آن $ انتهای رشته را نشان می‌دهد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "عبارت باقاعده چیست؟",
+      "options": [
+        "دنباله‌ای از کاراکترها که یک الگوی جست‌وجو می‌سازد",
+        "یک نوع دادهٔ عددی در JavaScript",
+        "تابعی که آرایه می‌سازد",
+        "شیئی برای ذخیرهٔ داده"
+      ],
+      "answer": 0,
+      "explanation": "عبارت باقاعده دنباله‌ای از کاراکترهاست که الگوی جست‌وجو را می‌سازد و RegExp شیء JavaScript برای کار با آن است."
+    },
+    {
+      "question": "در الگوی /w3schools/i پرچم i چه می‌کند؟",
+      "options": [
+        "تطبیق را سراسری می‌کند",
+        "تطبیق را به بزرگی و کوچکی حروف بی‌تفاوت می‌کند",
+        "پشتیبانی Unicode را فعال می‌کند",
+        "فقط نخستین تطبیق را برمی‌گرداند"
+      ],
+      "answer": 1,
+      "explanation": "i یعنی بی‌تفاوت به بزرگی و کوچکی حروف، پس /w3schools/i با W3Schools و w3schools هر دو تطبیق می‌کند؛ سراسری کردن کار پرچم g است."
+    },
+    {
+      "question": "کدام متاکاراکتر فقط با رقم‌ها تطبیق می‌کند؟",
+      "options": ["\\w", "\\s", "\\d", "\\b"],
+      "answer": 2,
+      "explanation": "\\d برای رقم‌هاست؛ \\w با کاراکتر کلمه (حرف، رقم و زیرخط)، \\s با فاصله و \\b با مرز کلمه تطبیق می‌کند."
+    },
+    {
+      "question": "سنجهٔ x+ با چه چیزی تطبیق می‌کند؟",
+      "options": [
+        "صفر یا یک رخداد x",
+        "صفر یا بیشتر رخداد x",
+        "دست‌کم یک رخداد x",
+        "دقیقاً دو رخداد x"
+      ],
+      "answer": 2,
+      "explanation": "+ یعنی «یک یا بیشتر»، پس x+ با هر رشته‌ای که دست‌کم یک x داشته باشد تطبیق می‌کند؛ * صفر یا بیشتر و ? صفر یا یک رخداد را می‌گیرد."
+    },
+    {
+      "question": "کلاس کاراکتر [^abc] با چه چیزی تطبیق می‌کند؟",
+      "options": [
+        "با همهٔ کاراکترهای داخل کروشه",
+        "با کاراکترهایی که داخل کروشه نیستند",
+        "فقط با کاراکتر a",
+        "با ابتدای رشته"
+      ],
+      "answer": 1,
+      "explanation": "علامت ^ در ابتدای کروشه معنی نفی می‌دهد، پس [^abc] با همهٔ کاراکترهایی تطبیق می‌کند که a، b یا c نیستند."
+    }
+  ]
 }

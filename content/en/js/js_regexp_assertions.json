@@ -1,368 +1,302 @@
 {
- "slug": "js_regexp_assertions",
- "course": "js",
- "order": 85,
- "url": "/js/js_regexp_assertions.asp",
- "title": "Regular Expression Assertions",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Regular Expression Assertions"
-  },
-  {
-   "type": "h2",
-   "text": "RegExp Assertions"
-  },
-  {
-   "type": "p",
-   "text": "Assertions matches Boundaries and Lookarounds:"
-  },
-  {
-   "type": "p",
-   "text": "String Boundaries and Word Boundaries."
-  },
-  {
-   "type": "p",
-   "text": "Lookarounds: Lookaheads and Lookbehinds."
-  },
-  {
-   "type": "p",
-   "text": "// Match beginning of string\nconst pattern = /^W3Schools/;\n\n// Match end of string\nconst pattern = /W3Schools$/;"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Regex Assertions"
-  },
-  {
-   "type": "h2",
-   "text": "Revised July 2025"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Syntax",
-     "Name",
-     "Description"
-    ],
-    [
-     "^",
-     "String boundary",
-     "Matches the beginning of a string"
-    ],
-    [
-     "$",
-     "String boundary",
-     "Matches the end of a string"
-    ],
-    [
-     "\\b",
-     "Word boundary",
-     "Matches the beginning or end of a word"
-    ],
-    [
-     "\\B",
-     "Word boundary",
-     "Matches NOT the beginning or end of a word"
-    ],
-    [
-     "(?=...)",
-     "Lookahead",
-     "Matches the subsequent string"
-    ],
-    [
-     "(?!...)",
-     "Lookahead",
-     "Matches NOT the subsequent string"
-    ],
-    [
-     "(?<=...)",
-     "Lookbehind",
-     "Matches the previous string"
-    ],
-    [
-     "(?<!...)",
-     "Lookbehind",
-     "Matches NOT the previous string"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "RegExp ^ Metacharacter"
-  },
-  {
-   "type": "p",
-   "text": "The ^ metacharacter matches the beginning of a string."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /^W3Schools/;\n\nlet text = \"W3Schools Tutorial\";\n\nlet result = pattern.test(text); // true",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /^W3Schools/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // false",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_hat"
-  },
-  {
-   "type": "h2",
-   "text": "RegExp $ Metacharacter"
-  },
-  {
-   "type": "p",
-   "text": "The $ metacharacter matches the end of a string."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /W3Schools$/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // true",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const pattern = /W3Schools$/;\n\nlet text = \"W3Schools tutorial\";\n\nlet result = pattern.test(text); // false",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_dollar"
-  },
-  {
-   "type": "h2",
-   "text": "The \\b Metacharacter"
-  },
-  {
-   "type": "p",
-   "text": "The \\b metacharacter matches the beginning of a word or the end of a word."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"HELLO, LOOK AT YOU!\";\n\nlet result = text.search(/\\bLO/);",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"HELLO, LOOK AT YOU!\";\n\nlet result = text.search(/LO\\b/);",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_b"
-  },
-  {
-   "type": "h2",
-   "text": "RegExp Lookahead x(?=y)"
-  },
-  {
-   "type": "p",
-   "text": "x(?=y) matches \"x\" if \"x\" is followed by \"y\"."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"W3Schools Tutorials\";\n\nlet pattern = /W3Schools(?= Tutorials)/;\n\nlet result = pattern.test(text);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_lookahead"
-  },
-  {
-   "type": "h2",
-   "text": "Negative Lookahead x(?!y)"
-  },
-  {
-   "type": "p",
-   "text": "x(?!y) matches \"x\" if \"x\" is NOT followed by \"y\"."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"W3Schools Tutorials\";\n\nlet pattern = /W3Schools(?! Tutorials)/;\n\nlet result = pattern.test(text);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_negative_lookahead"
-  },
-  {
-   "type": "p",
-   "text": "Explanation"
-  },
-  {
-   "type": "p",
-   "text": "W3Schools matches the literal word."
-  },
-  {
-   "type": "p",
-   "text": "(?! Tutorials) asserts that what follows is not \" Tutorials\"."
-  },
-  {
-   "type": "p",
-   "text": "If text = \"W3Schools Tutorials\", the test returns false."
-  },
-  {
-   "type": "p",
-   "text": "If text = \"W3Schools Website\", the test returns true."
-  },
-  {
-   "type": "h2",
-   "text": "RegExp Lookbehind (?<=y)x"
-  },
-  {
-   "type": "p",
-   "text": "(?<=y)x matches \"x\" if \"x\" is preceded by \"y\"."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<=Hello )W3Schools/;\n\nlet result = pattern.test(text);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_lookbehind"
-  },
-  {
-   "type": "h2",
-   "text": "Negative Lookbehind (?<!y)x"
-  },
-  {
-   "type": "p",
-   "text": "(?<!y)x matches \"x\" only if \"x\" is NOT preceded by \"y\"."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<!Hello )W3Schools/;\n\nlet result = pattern.test(text);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_negative_lookbehind"
-  },
-  {
-   "type": "h2",
-   "text": "See Also:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Tutorial"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Flags"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Character Classes"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Meta Characters"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Groups"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Quantifiers"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Patterns"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Objects"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript RegExp Methods"
-  },
-  {
-   "type": "h2",
-   "text": "Regular Expression Methods"
-  },
-  {
-   "type": "p",
-   "text": "Regular Expression Search and Replace can be done with different methods."
-  },
-  {
-   "type": "p",
-   "text": "These are the most common:"
-  },
-  {
-   "type": "h3",
-   "text": "String Methods"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Description"
-    ],
-    [
-     "match(regex)",
-     "Returns an Array of results"
-    ],
-    [
-     "matchAll(regex)",
-     "Returns an Iterator of results"
-    ],
-    [
-     "replace(regex)",
-     "Returns a new String"
-    ],
-    [
-     "replaceAll(regex)",
-     "Returns a new String"
-    ],
-    [
-     "search(regex)",
-     "Returns the index of the first match"
-    ],
-    [
-     "split(regex)",
-     "Returns an Array of results"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "RegExp Methods"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Description"
-    ],
-    [
-     "regex.exec()",
-     "Returns an Iterator of results"
-    ],
-    [
-     "regex.test()",
-     "Returns true or false"
-    ]
-   ]
-  }
- ]
+  "slug": "js_regexp_assertions",
+  "course": "js",
+  "order": 85,
+  "url": "/js/js_regexp_assertions.asp",
+  "title": "Regular Expression Assertions",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Regular Expression Assertions"
+    },
+    {
+      "type": "h2",
+      "text": "RegExp Assertions"
+    },
+    {
+      "type": "p",
+      "text": "Assertions matches Boundaries and Lookarounds:"
+    },
+    {
+      "type": "p",
+      "text": "String Boundaries and Word Boundaries."
+    },
+    {
+      "type": "p",
+      "text": "Lookarounds: Lookaheads and Lookbehinds."
+    },
+    {
+      "type": "p",
+      "text": "// Match beginning of string\nconst pattern = /^W3Schools/;\n\n// Match end of string\nconst pattern = /W3Schools$/;"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Regex Assertions"
+    },
+    {
+      "type": "h2",
+      "text": "Revised July 2025"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Syntax", "Name", "Description"],
+        ["^", "String boundary", "Matches the beginning of a string"],
+        ["$", "String boundary", "Matches the end of a string"],
+        ["\\b", "Word boundary", "Matches the beginning or end of a word"],
+        ["\\B", "Word boundary", "Matches NOT the beginning or end of a word"],
+        ["(?=...)", "Lookahead", "Matches the subsequent string"],
+        ["(?!...)", "Lookahead", "Matches NOT the subsequent string"],
+        ["(?<=...)", "Lookbehind", "Matches the previous string"],
+        ["(?<!...)", "Lookbehind", "Matches NOT the previous string"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "RegExp ^ Metacharacter"
+    },
+    {
+      "type": "p",
+      "text": "The ^ metacharacter matches the beginning of a string."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /^W3Schools/;\n\nlet text = \"W3Schools Tutorial\";\n\nlet result = pattern.test(text); // true",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /^W3Schools/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // false",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_hat"
+    },
+    {
+      "type": "h2",
+      "text": "RegExp $ Metacharacter"
+    },
+    {
+      "type": "p",
+      "text": "The $ metacharacter matches the end of a string."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /W3Schools$/;\n\nlet text = \"Hello W3Schools\";\n\nlet result = pattern.test(text); // true",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const pattern = /W3Schools$/;\n\nlet text = \"W3Schools tutorial\";\n\nlet result = pattern.test(text); // false",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_dollar"
+    },
+    {
+      "type": "h2",
+      "text": "The \\b Metacharacter"
+    },
+    {
+      "type": "p",
+      "text": "The \\b metacharacter matches the beginning of a word or the end of a word."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"HELLO, LOOK AT YOU!\";\n\nlet result = text.search(/\\bLO/);",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"HELLO, LOOK AT YOU!\";\n\nlet result = text.search(/LO\\b/);",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_b"
+    },
+    {
+      "type": "h2",
+      "text": "RegExp Lookahead x(?=y)"
+    },
+    {
+      "type": "p",
+      "text": "x(?=y) matches \"x\" if \"x\" is followed by \"y\"."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"W3Schools Tutorials\";\n\nlet pattern = /W3Schools(?= Tutorials)/;\n\nlet result = pattern.test(text);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_lookahead"
+    },
+    {
+      "type": "h2",
+      "text": "Negative Lookahead x(?!y)"
+    },
+    {
+      "type": "p",
+      "text": "x(?!y) matches \"x\" if \"x\" is NOT followed by \"y\"."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"W3Schools Tutorials\";\n\nlet pattern = /W3Schools(?! Tutorials)/;\n\nlet result = pattern.test(text);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_negative_lookahead"
+    },
+    {
+      "type": "p",
+      "text": "Explanation"
+    },
+    {
+      "type": "p",
+      "text": "W3Schools matches the literal word."
+    },
+    {
+      "type": "p",
+      "text": "(?! Tutorials) asserts that what follows is not \" Tutorials\"."
+    },
+    {
+      "type": "p",
+      "text": "If text = \"W3Schools Tutorials\", the test returns false."
+    },
+    {
+      "type": "p",
+      "text": "If text = \"W3Schools Website\", the test returns true."
+    },
+    {
+      "type": "h2",
+      "text": "RegExp Lookbehind (?<=y)x"
+    },
+    {
+      "type": "p",
+      "text": "(?<=y)x matches \"x\" if \"x\" is preceded by \"y\"."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<=Hello )W3Schools/;\n\nlet result = pattern.test(text);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_lookbehind"
+    },
+    {
+      "type": "h2",
+      "text": "Negative Lookbehind (?<!y)x"
+    },
+    {
+      "type": "p",
+      "text": "(?<!y)x matches \"x\" only if \"x\" is NOT preceded by \"y\"."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<!Hello )W3Schools/;\n\nlet result = pattern.test(text);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_negative_lookbehind"
+    },
+    {
+      "type": "h2",
+      "text": "See Also:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Tutorial"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Flags"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Character Classes"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Meta Characters"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Groups"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Quantifiers"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Patterns"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Objects"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript RegExp Methods"
+    },
+    {
+      "type": "h2",
+      "text": "Regular Expression Methods"
+    },
+    {
+      "type": "p",
+      "text": "Regular Expression Search and Replace can be done with different methods."
+    },
+    {
+      "type": "p",
+      "text": "These are the most common:"
+    },
+    {
+      "type": "h3",
+      "text": "String Methods"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Description"],
+        ["match(regex)", "Returns an Array of results"],
+        ["matchAll(regex)", "Returns an Iterator of results"],
+        ["replace(regex)", "Returns a new String"],
+        ["replaceAll(regex)", "Returns a new String"],
+        ["search(regex)", "Returns the index of the first match"],
+        ["split(regex)", "Returns an Array of results"]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "RegExp Methods"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Description"],
+        ["regex.exec()", "Returns an Iterator of results"],
+        ["regex.test()", "Returns true or false"]
+      ]
+    }
+  ]
 }

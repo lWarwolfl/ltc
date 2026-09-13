@@ -1,724 +1,617 @@
 {
- "slug": "js_temporal_instant",
- "course": "js",
- "order": 185,
- "url": "/js/js_temporal_instant.asp",
- "title": "لحظهٔ دقیق در Temporal",
- "summary": "شیء Temporal.Instant یک لحظهٔ دقیق در زمان UTC را نگه می‌دارد؛ بدون منطقهٔ زمانی و بدون تقویم، فقط نانوثانیه‌هایی از مبدأ یونیکس. در این درس Instant را به چهار روش می‌سازید، با compare() و equals() مقایسه می‌کنید و آن را به زمان محلی تبدیل می‌کنید.",
- "objectives": [
-  "Instant را با سازنده، رشتهٔ ISO و میلی‌ثانیه یا نانوثانیهٔ مبدأ بسازید",
-  "معنی حرف Z و حرف T در رشتهٔ ISO 8601 را توضیح دهید",
-  "Date.now() را با Temporal.Now.instant() جایگزین کنید و خصوصیت‌های epoch را بخوانید",
-  "با compare() و equals() دو لحظه را مقایسه کنید و Instant را به زمان محلی تبدیل کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "لحظهٔ دقیق در Temporal"
-  },
-  {
-   "type": "h2",
-   "text": "شیء Temporal.Instant"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.Instant یک لحظهٔ دقیق در زمان UTC را نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "زمان UTC هیچ منطقهٔ زمانی و هیچ تقویمی ندارد."
-  },
-  {
-   "type": "p",
-   "text": "مثال: 2026-05-17T14:30:00Z"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant"
-  },
-  {
-   "type": "p",
-   "text": "حرف Z در پایان تاریخ به معنی زمان صفر (Zero) است."
-  },
-  {
-   "type": "p",
-   "text": "حرف T در میانه، جداکنندهٔ تاریخ و زمان است."
-  },
-  {
-   "type": "h2",
-   "text": "زمان UTC چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "UTC مخفف Universal Time Coordinated است."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "زمان دقیق روی نصف‌النهار صفر است (گرینویچ، لندن)",
-    "در همهٔ نقاط زمین یک لحظهٔ یکسان است",
-    "از هیچ منطقهٔ زمانی اثر نمی‌گیرد",
-    "از ساعت تابستانی (DST) اثر نمی‌گیرد"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "پیش از سال ۱۹۷۲ به UTC، زمان میانگین گرینویچ (GMT) می‌گفتند."
-  },
-  {
-   "type": "p",
-   "text": "امروز به آن Universal Time Coordinated یا UTC می‌گویند."
-  },
-  {
-   "type": "p",
-   "text": "به آن Coordinated Universal Time هم می‌گویند."
-  },
-  {
-   "type": "h2",
-   "text": "زمان Instant چیست؟"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "با UTC اندازه‌گیری می‌شود",
-    "به شکل نانوثانیه از مبدأ یونیکس ذخیره می‌شود",
-    "مبدأ یونیکس ۱ ژانویهٔ ۱۹۷۰ ساعت ۰۰:۰۰:۰۰ است"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "زمان محلی چیست"
-  },
-  {
-   "type": "p",
-   "text": "برای گرفتن زمان محلی در نقاط مختلف دنیا، باید بسته به اینکه چند منطقهٔ زمانی از گرینویچ دور هستید، ساعت را به UTC اضافه یا از آن کم کنید."
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "London:    12:00 (UTC)\n\nOslo:      14:00 (UTC+2)\n\nNew York:  08:00 (UTC-4)\n\nTokyo:     21:00 (UTC+9)",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "چگونه یک Temporal.Instant بسازید"
-  },
-  {
-   "type": "p",
-   "text": "یک Instant را می‌توان به چند روش مختلف ساخت:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "از",
-     "کد"
-    ],
-    [
-     "با سازنده",
-     "new Temporal.Instant()"
-    ],
-    [
-     "از رشته",
-     "Temporal.Instant.from()"
-    ],
-    [
-     "از میلی‌ثانیهٔ مبدأ",
-     "Temporal.Instant.fromEpochMilliseconds()"
-    ],
-    [
-     "از نانوثانیهٔ مبدأ",
-     "Temporal.Instant.fromEpochNanoseconds()"
-    ],
-    [
-     "از زمان فعلی",
-     "Temporal.Now.instant()"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ساختن Instant با new"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید با سازندهٔ new Temporal.Instant() یک Instant بسازید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = new Temporal.Instant(1779028200000000000n);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_new"
-  },
-  {
-   "type": "p",
-   "text": "حرف n در پایان یعنی BigInt."
-  },
-  {
-   "type": "p",
-   "text": "پارامتر باید BigInt باشد."
-  },
-  {
-   "type": "h2",
-   "text": "ساختن Instant از یک رشته"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید یک Instant را از یک رشتهٔ RFC 9557 بسازید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant"
-  },
-  {
-   "type": "h2",
-   "text": "حرف Z در پایان چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "حرف Z در پایان زمان، استاندارد ISO 8601 برای نوشتن زمان UTC است."
-  },
-  {
-   "type": "p",
-   "text": "نشان می‌دهد فاصله از زمان UTC صفر (Zero) است."
-  },
-  {
-   "type": "p",
-   "text": "به آن زمان Z، زمان صفر یا زمان زولو هم می‌گویند."
-  },
-  {
-   "type": "p",
-   "text": "حرف T در میانه، استاندارد ISO 8601 برای جدا کردن تاریخ و زمان است."
-  },
-  {
-   "type": "h2",
-   "text": "ساختن Instant از میلی‌ثانیه‌های مبدأ"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید یک شیء Instant را از تعداد میلی‌ثانیه‌های گذشته از مبدأ یونیکس بسازید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Instant.fromEpochMilliseconds(1779028200000);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_epoch"
-  },
-  {
-   "type": "p",
-   "text": "مبدأ یونیکس در ۱ ژانویهٔ ۱۹۷۰ ساعت ۰۰:۰۰:۰۰ UTC است"
-  },
-  {
-   "type": "p",
-   "text": "این شبیه روشی است که Date در JavaScript درون خودش کار می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "ساختن Instant از نانوثانیه‌های مبدأ"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید یک شیء Instant را از تعداد نانوثانیه‌های گذشته از مبدأ یونیکس بسازید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Instant.fromEpochNanoseconds(1779028200000000000n);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_epoch_nano"
-  },
-  {
-   "type": "h2",
-   "text": "ساختن Instant از زمان فعلی"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.Instant هیچ متدی برای ساختن Instant از زمان فعلی ندارد."
-  },
-  {
-   "type": "p",
-   "text": "باید به‌جای آن از یکی از متدهای Temporal.Now استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "متد Temporal.Now.instant() یک شیء Instant با زمان دقیق فعلی برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Now.instant();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_instant"
-  },
-  {
-   "type": "h2",
-   "text": "چگونه Date.now() را جایگزین کنیم"
-  },
-  {
-   "type": "p",
-   "text": "با Date برای گرفتن timestamp فعلی از Date.now() استفاده می‌کنید."
-  },
-  {
-   "type": "p",
-   "text": "متد Date.now() مقدار timestamp را به میلی‌ثانیه برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let timestamp = Date.now();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_5"
-  },
-  {
-   "type": "p",
-   "text": "با Temporal از Temporal.Now.instant() استفاده می‌کنید:"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت epochMilliseconds مقدار timestamp را به میلی‌ثانیه برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Now.instant();\n\nlet timestamp = instant.epochMilliseconds;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_6"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت epochNanoseconds مقدار timestamp را به نانوثانیه برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Now.instant();\n\nlet timestamp = instant.epochNanoseconds;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_1"
-  },
-  {
-   "type": "p",
-   "text": "دقت نانوثانیه یک میلیون برابر بیشتر از دقت میلی‌ثانیه است."
-  },
-  {
-   "type": "h2",
-   "text": "متد compare() در Temporal.Instant"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// compare()\n\nlet x1 = Temporal.Instant.compare(i1, i2));\n\nlet x2 = Temporal.Instant.compare(i1, i3));\n\nlet x3 = Temporal.Instant.compare(i3, i1));",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_compare"
-  },
-  {
-   "type": "h2",
-   "text": "متد equals() در Temporal.Instant"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// equals()\n\nlet x1 = i1.equals(i2);\n\nlet x2 = i1.equals(i3);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_equals"
-  },
-  {
-   "type": "p",
-   "text": "همهٔ شیءهای Temporal متد compare() خودشان را دارند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Temporal.Instant.compare(instant1, instant2)",
-    "Temporal.PlainDate.compare(plaindate1, plaindate2)",
-    "Temporal.PlainTime.compare(plaintime1, plaintime2)",
-    "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
-    "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
-    "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
-    "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
-    "Temporal.Duration.compare(duration1, duration2)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بیشتر شیءهای Temporal متد equals() خودشان را دارند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "instant.equals(instant)",
-    "plaindate.equals(plaindate)",
-    "plaintime.equals(plaintime)",
-    "plainyearmonth.equals(plainyearmonth)",
-    "plainmonthday.equals(plainmonthday)",
-    "plaindateTime.equals(plaindatetime)",
-    "zoneddateTime.equals(zoneddtatime)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "(*) شیء Duration این متد را ندارد."
-  },
-  {
-   "type": "h3",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "مقایسه در Temporal"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل زمان Instant به زمان محلی"
-  },
-  {
-   "type": "p",
-   "text": "شیء Temporal.Instant اطلاعات منطقهٔ زمانی را در خود ندارد."
-  },
-  {
-   "type": "p",
-   "text": "برای نمایش زمان محلی باید آن را به Temporal.ZonedDateTime تبدیل کنید."
-  },
-  {
-   "type": "p",
-   "text": "متد toZonedDateTimeISO() یک لحظهٔ UTC را به یک منطقهٔ زمانی مشخص تبدیل می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");\n\nconst zoned = instant.toZonedDateTimeISO(\"Europe/Oslo\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_zoned"
-  },
-  {
-   "type": "p",
-   "text": "Instant یعنی «در کل دنیا چه ساعتی است؟»"
-  },
-  {
-   "type": "p",
-   "text": "ZonedDateTime یعنی «اینجا چه ساعتی است؟»"
-  },
-  {
-   "type": "h2",
-   "text": "UTC در برابر زمان محلی"
-  },
-  {
-   "type": "p",
-   "text": "UTC یک ساعت جهانی است."
-  },
-  {
-   "type": "p",
-   "text": "منطقهٔ زمانی نمای محلی همان ساعت است."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نوع",
-     "توضیح"
-    ],
-    [
-     "UTC",
-     "در همه‌جای دنیا یکسان"
-    ],
-    [
-     "زمان محلی",
-     "به مکان بستگی دارد"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "UTC یا Coordinated Universal Time زمان استانداردی است که در همه‌جای دنیا به کار می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "از هیچ منطقهٔ زمانی یا ساعت تابستانی اثر نمی‌گیرد."
-  },
-  {
-   "type": "h2",
-   "text": "چرا UTC مهم است"
-  },
-  {
-   "type": "p",
-   "text": "UTC به‌عنوان زمان مرجع به کار می‌رود:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "سرورها و پایگاه‌های داده زمان را با UTC ذخیره می‌کنند",
-    "لاگ‌ها برای جلوگیری از اشتباه زمانی از timestampهای UTC استفاده می‌کنند",
-    "بیشتر APIها از timestampهای UTC استفاده می‌کنند"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "چه زمانی از Temporal.Instant استفاده کنیم"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "برای لحظه‌های دقیق در زمان UTC",
-    "برای timestampها",
-    "برای لاگ‌های پایگاه داده",
-    "برای لاگ رویدادها",
-    "برای مقایسهٔ لحظه‌ها"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ Instant با نوع‌های دیگر"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نوع",
-     "معنی"
-    ],
-    [
-     "Instant",
-     "لحظهٔ دقیق در زمان UTC"
-    ],
-    [
-     "PlainDateTime",
-     "تاریخ و زمان خالص (بدون منطقهٔ زمانی)"
-    ],
-    [
-     "ZonedDateTime",
-     "تاریخ و زمان محلی (همراه با منطقهٔ زمانی)"
-    ]
-   ]
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/js/img_temporal.svg",
-   "alt": "نقشهٔ Temporal"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای Temporal.Instant"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ساخت",
-     "توضیح"
-    ],
-    [
-     "new",
-     "یک شیء Temporal.Instant تازه می‌سازد"
-    ],
-    [
-     "from()",
-     "یک شیء Instant تازه از یک Instant دیگر یا یک رشته می‌سازد"
-    ],
-    [
-     "fromEpochMilliseconds()",
-     "یک شیء Instant تازه از تعداد میلی‌ثانیه برمی‌گرداند"
-    ],
-    [
-     "fromEpochNanoseconds()",
-     "یک شیء Instant تازه از تعداد نانوثانیه برمی‌گرداند"
-    ],
-    [
-     "محاسبات",
-     ""
-    ],
-    [
-     "add()",
-     "یک Instant تازه برمی‌گرداند که یک بازه به آن اضافه شده است"
-    ],
-    [
-     "round()",
-     "یک Instant تازه برمی‌گرداند که گرد شده است"
-    ],
-    [
-     "subtract()",
-     "یک Instant تازه برمی‌گرداند که یک بازه از آن کم شده است"
-    ],
-    [
-     "مقایسه",
-     ""
-    ],
-    [
-     "compare()",
-     "از مقایسهٔ دو Instant مقدار -1 یا 0 یا 1 برمی‌گرداند"
-    ],
-    [
-     "equals()",
-     "اگر دو Instant یکسان باشند true برمی‌گرداند"
-    ],
-    [
-     "since()",
-     "بازهٔ زمانی از یک تاریخ دیگر تا این لحظه را برمی‌گرداند"
-    ],
-    [
-     "until()",
-     "بازهٔ زمانی از این لحظه تا یک تاریخ دیگر را برمی‌گرداند"
-    ],
-    [
-     "تبدیل",
-     ""
-    ],
-    [
-     "toZonedDateTimeISO()",
-     "یک شیء ZonedDateTime تازه برمی‌گرداند"
-    ],
-    [
-     "قالب‌بندی",
-     ""
-    ],
-    [
-     "toJSON()",
-     "رشته‌ای در قالب RFC 9557 برای سریال کردن JSON برمی‌گرداند"
-    ],
-    [
-     "toLocaleString()",
-     "نمایش وابسته به زبان این لحظه را برمی‌گرداند"
-    ],
-    [
-     "toString()",
-     "رشته‌ای در قالب RFC 9557 از این لحظه برمی‌گرداند"
-    ],
-    [
-     "valueOf()",
-     "یک TypeError می‌دهد و نمی‌گذارد Instantها به مقدار ساده تبدیل شوند"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل instant.html بسازید و یک Instant با Temporal.Instant.from(\"2026-05-17T14:30:00Z\") بسازید؛ سپس توضیح دهید حرف Z و حرف T چه معنایی دارند.",
-   "hint": "Z یعنی فاصله از UTC صفر است و T جداکنندهٔ تاریخ و زمان است."
-  },
-  {
-   "prompt": "یک Instant با new Temporal.Instant(1779028200000000000n) بسازید و بگویید حرف n در پایان عدد چه معنایی دارد.",
-   "hint": "پارامتر سازنده باید BigInt باشد و n پایان عدد همین را می‌گوید."
-  },
-  {
-   "prompt": "زمان فعلی را با Date.now() بگیرید، بعد همان را با Temporal.Now.instant() و خصوصیت epochMilliseconds بگیرید و دو عدد را مقایسه کنید.",
-   "hint": "هر دو میلی‌ثانیه‌های گذشته از مبدأ یونیکس را می‌دهند؛ برای دقت بیشتر از epochNanoseconds استفاده کنید."
-  },
-  {
-   "prompt": "دو Instant برابر و یکی بزرگ‌تر بسازید و نتیجهٔ Temporal.Instant.compare و متد equals را برای هر جفت بنویسید.",
-   "hint": "compare برای برابر 0، برای بزرگ‌تر 1 و برای کوچک‌تر -1 می‌دهد؛ equals فقط true یا false برمی‌گرداند."
-  },
-  {
-   "prompt": "یک Instant بسازید و با toZonedDateTimeISO(\"Europe/Oslo\") آن را به زمان محلی تبدیل کنید؛ سپس نتیجه را با مقدار اصلی مقایسه کنید.",
-   "hint": "Instant اطلاعات منطقهٔ زمانی ندارد؛ برای نمایش زمان محلی باید به ZonedDateTime تبدیل شود."
-  }
- ],
- "quiz": [
-  {
-   "question": "شیء Temporal.Instant چه چیزی را نگه می‌دارد؟",
-   "options": [
-    "تاریخ و زمان همراه با منطقهٔ زمانی",
-    "یک لحظهٔ دقیق در زمان UTC بدون منطقهٔ زمانی و تقویم",
-    "فقط ساعت روز",
-    "یک بازهٔ زمانی بین دو تاریخ"
-   ],
-   "answer": 1,
-   "explanation": "درس Instant را لحظهٔ دقیق در UTC می‌داند که هیچ منطقهٔ زمانی و تقویمی ندارد و به شکل نانوثانیه از مبدأ یونیکس ذخیره می‌شود."
-  },
-  {
-   "question": "حرف Z در پایان رشتهٔ 2026-05-17T14:30:00Z چه معنایی دارد؟",
-   "options": [
-    "زمان منطقهٔ زولو در جنوب آفریقا",
-    "نشان می‌دهد فاصله از زمان UTC صفر است",
-    "یعنی این تاریخ منقضی شده است",
-    "جداکنندهٔ تاریخ و زمان"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید Z استاندارد ISO 8601 برای زمان UTC است و نشان می‌دهد فاصله از UTC صفر است؛ جداکنندهٔ تاریخ و زمان حرف T است."
-  },
-  {
-   "question": "برای ساختن Instant از زمان فعلی کدام روش درست است؟",
-   "options": [
-    "Temporal.Instant.now()",
-    "Temporal.Now.instant()",
-    "new Temporal.Instant()",
-    "Date.now()"
-   ],
-   "answer": 1,
-   "explanation": "درس صریحاً می‌گوید Temporal.Instant متدی برای گرفتن زمان فعلی ندارد و باید از Temporal.Now.instant() استفاده کنید."
-  },
-  {
-   "question": "کدام خصوصیت مقدار timestamp را به میلی‌ثانیه برمی‌گرداند؟",
-   "options": [
-    "epochNanoseconds",
-    "epochMilliseconds",
-    "epochSeconds",
-    "epochDays"
-   ],
-   "answer": 1,
-   "explanation": "epochMilliseconds همان میلی‌ثانیه‌های گذشته از مبدأ یونیکس را می‌دهد؛ epochNanoseconds نسخهٔ نانوثانیه‌ای آن است."
-  },
-  {
-   "question": "برای نمایش زمان محلی از یک Instant چه باید کرد؟",
-   "options": [
-    "همان Instant کافی است چون خودش زمان محلی دارد",
-    "باید آن را با toZonedDateTimeISO() به ZonedDateTime تبدیل کرد",
-    "باید آن را با JSON.parse خواند",
-    "باید اول به Duration تبدیل شود"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید Instant اطلاعات منطقهٔ زمانی ندارد و برای نمایش زمان محلی باید با متد toZonedDateTimeISO() به Temporal.ZonedDateTime تبدیل شود."
-  }
- ]
+  "slug": "js_temporal_instant",
+  "course": "js",
+  "order": 185,
+  "url": "/js/js_temporal_instant.asp",
+  "title": "لحظهٔ دقیق در Temporal",
+  "summary": "شیء Temporal.Instant یک لحظهٔ دقیق در زمان UTC را نگه می‌دارد؛ بدون منطقهٔ زمانی و بدون تقویم، فقط نانوثانیه‌هایی از مبدأ یونیکس. در این درس Instant را به چهار روش می‌سازید، با compare() و equals() مقایسه می‌کنید و آن را به زمان محلی تبدیل می‌کنید.",
+  "objectives": [
+    "Instant را با سازنده، رشتهٔ ISO و میلی‌ثانیه یا نانوثانیهٔ مبدأ بسازید",
+    "معنی حرف Z و حرف T در رشتهٔ ISO 8601 را توضیح دهید",
+    "Date.now() را با Temporal.Now.instant() جایگزین کنید و خصوصیت‌های epoch را بخوانید",
+    "با compare() و equals() دو لحظه را مقایسه کنید و Instant را به زمان محلی تبدیل کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "لحظهٔ دقیق در Temporal"
+    },
+    {
+      "type": "h2",
+      "text": "شیء Temporal.Instant"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.Instant یک لحظهٔ دقیق در زمان UTC را نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "زمان UTC هیچ منطقهٔ زمانی و هیچ تقویمی ندارد."
+    },
+    {
+      "type": "p",
+      "text": "مثال: 2026-05-17T14:30:00Z"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant"
+    },
+    {
+      "type": "p",
+      "text": "حرف Z در پایان تاریخ به معنی زمان صفر (Zero) است."
+    },
+    {
+      "type": "p",
+      "text": "حرف T در میانه، جداکنندهٔ تاریخ و زمان است."
+    },
+    {
+      "type": "h2",
+      "text": "زمان UTC چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "UTC مخفف Universal Time Coordinated است."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "زمان دقیق روی نصف‌النهار صفر است (گرینویچ، لندن)",
+        "در همهٔ نقاط زمین یک لحظهٔ یکسان است",
+        "از هیچ منطقهٔ زمانی اثر نمی‌گیرد",
+        "از ساعت تابستانی (DST) اثر نمی‌گیرد"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "پیش از سال ۱۹۷۲ به UTC، زمان میانگین گرینویچ (GMT) می‌گفتند."
+    },
+    {
+      "type": "p",
+      "text": "امروز به آن Universal Time Coordinated یا UTC می‌گویند."
+    },
+    {
+      "type": "p",
+      "text": "به آن Coordinated Universal Time هم می‌گویند."
+    },
+    {
+      "type": "h2",
+      "text": "زمان Instant چیست؟"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "با UTC اندازه‌گیری می‌شود",
+        "به شکل نانوثانیه از مبدأ یونیکس ذخیره می‌شود",
+        "مبدأ یونیکس ۱ ژانویهٔ ۱۹۷۰ ساعت ۰۰:۰۰:۰۰ است"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "زمان محلی چیست"
+    },
+    {
+      "type": "p",
+      "text": "برای گرفتن زمان محلی در نقاط مختلف دنیا، باید بسته به اینکه چند منطقهٔ زمانی از گرینویچ دور هستید، ساعت را به UTC اضافه یا از آن کم کنید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "London:    12:00 (UTC)\n\nOslo:      14:00 (UTC+2)\n\nNew York:  08:00 (UTC-4)\n\nTokyo:     21:00 (UTC+9)",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "چگونه یک Temporal.Instant بسازید"
+    },
+    {
+      "type": "p",
+      "text": "یک Instant را می‌توان به چند روش مختلف ساخت:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["از", "کد"],
+        ["با سازنده", "new Temporal.Instant()"],
+        ["از رشته", "Temporal.Instant.from()"],
+        ["از میلی‌ثانیهٔ مبدأ", "Temporal.Instant.fromEpochMilliseconds()"],
+        ["از نانوثانیهٔ مبدأ", "Temporal.Instant.fromEpochNanoseconds()"],
+        ["از زمان فعلی", "Temporal.Now.instant()"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ساختن Instant با new"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید با سازندهٔ new Temporal.Instant() یک Instant بسازید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = new Temporal.Instant(1779028200000000000n);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_new"
+    },
+    {
+      "type": "p",
+      "text": "حرف n در پایان یعنی BigInt."
+    },
+    {
+      "type": "p",
+      "text": "پارامتر باید BigInt باشد."
+    },
+    {
+      "type": "h2",
+      "text": "ساختن Instant از یک رشته"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید یک Instant را از یک رشتهٔ RFC 9557 بسازید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant"
+    },
+    {
+      "type": "h2",
+      "text": "حرف Z در پایان چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "حرف Z در پایان زمان، استاندارد ISO 8601 برای نوشتن زمان UTC است."
+    },
+    {
+      "type": "p",
+      "text": "نشان می‌دهد فاصله از زمان UTC صفر (Zero) است."
+    },
+    {
+      "type": "p",
+      "text": "به آن زمان Z، زمان صفر یا زمان زولو هم می‌گویند."
+    },
+    {
+      "type": "p",
+      "text": "حرف T در میانه، استاندارد ISO 8601 برای جدا کردن تاریخ و زمان است."
+    },
+    {
+      "type": "h2",
+      "text": "ساختن Instant از میلی‌ثانیه‌های مبدأ"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید یک شیء Instant را از تعداد میلی‌ثانیه‌های گذشته از مبدأ یونیکس بسازید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Instant.fromEpochMilliseconds(1779028200000);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_epoch"
+    },
+    {
+      "type": "p",
+      "text": "مبدأ یونیکس در ۱ ژانویهٔ ۱۹۷۰ ساعت ۰۰:۰۰:۰۰ UTC است"
+    },
+    {
+      "type": "p",
+      "text": "این شبیه روشی است که Date در JavaScript درون خودش کار می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "ساختن Instant از نانوثانیه‌های مبدأ"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید یک شیء Instant را از تعداد نانوثانیه‌های گذشته از مبدأ یونیکس بسازید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Instant.fromEpochNanoseconds(1779028200000000000n);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_epoch_nano"
+    },
+    {
+      "type": "h2",
+      "text": "ساختن Instant از زمان فعلی"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.Instant هیچ متدی برای ساختن Instant از زمان فعلی ندارد."
+    },
+    {
+      "type": "p",
+      "text": "باید به‌جای آن از یکی از متدهای Temporal.Now استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "متد Temporal.Now.instant() یک شیء Instant با زمان دقیق فعلی برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Now.instant();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_now_instant"
+    },
+    {
+      "type": "h2",
+      "text": "چگونه Date.now() را جایگزین کنیم"
+    },
+    {
+      "type": "p",
+      "text": "با Date برای گرفتن timestamp فعلی از Date.now() استفاده می‌کنید."
+    },
+    {
+      "type": "p",
+      "text": "متد Date.now() مقدار timestamp را به میلی‌ثانیه برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let timestamp = Date.now();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_5"
+    },
+    {
+      "type": "p",
+      "text": "با Temporal از Temporal.Now.instant() استفاده می‌کنید:"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت epochMilliseconds مقدار timestamp را به میلی‌ثانیه برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Now.instant();\n\nlet timestamp = instant.epochMilliseconds;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_6"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت epochNanoseconds مقدار timestamp را به نانوثانیه برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Now.instant();\n\nlet timestamp = instant.epochNanoseconds;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_1"
+    },
+    {
+      "type": "p",
+      "text": "دقت نانوثانیه یک میلیون برابر بیشتر از دقت میلی‌ثانیه است."
+    },
+    {
+      "type": "h2",
+      "text": "متد compare() در Temporal.Instant"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// compare()\n\nlet x1 = Temporal.Instant.compare(i1, i2));\n\nlet x2 = Temporal.Instant.compare(i1, i3));\n\nlet x3 = Temporal.Instant.compare(i3, i1));",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_compare"
+    },
+    {
+      "type": "h2",
+      "text": "متد equals() در Temporal.Instant"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// equals()\n\nlet x1 = i1.equals(i2);\n\nlet x2 = i1.equals(i3);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_equals"
+    },
+    {
+      "type": "p",
+      "text": "همهٔ شیءهای Temporal متد compare() خودشان را دارند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Temporal.Instant.compare(instant1, instant2)",
+        "Temporal.PlainDate.compare(plaindate1, plaindate2)",
+        "Temporal.PlainTime.compare(plaintime1, plaintime2)",
+        "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
+        "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
+        "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
+        "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
+        "Temporal.Duration.compare(duration1, duration2)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بیشتر شیءهای Temporal متد equals() خودشان را دارند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "instant.equals(instant)",
+        "plaindate.equals(plaindate)",
+        "plaintime.equals(plaintime)",
+        "plainyearmonth.equals(plainyearmonth)",
+        "plainmonthday.equals(plainmonthday)",
+        "plaindateTime.equals(plaindatetime)",
+        "zoneddateTime.equals(zoneddtatime)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "(*) شیء Duration این متد را ندارد."
+    },
+    {
+      "type": "h3",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "مقایسه در Temporal"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل زمان Instant به زمان محلی"
+    },
+    {
+      "type": "p",
+      "text": "شیء Temporal.Instant اطلاعات منطقهٔ زمانی را در خود ندارد."
+    },
+    {
+      "type": "p",
+      "text": "برای نمایش زمان محلی باید آن را به Temporal.ZonedDateTime تبدیل کنید."
+    },
+    {
+      "type": "p",
+      "text": "متد toZonedDateTimeISO() یک لحظهٔ UTC را به یک منطقهٔ زمانی مشخص تبدیل می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");\n\nconst zoned = instant.toZonedDateTimeISO(\"Europe/Oslo\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_zoned"
+    },
+    {
+      "type": "p",
+      "text": "Instant یعنی «در کل دنیا چه ساعتی است؟»"
+    },
+    {
+      "type": "p",
+      "text": "ZonedDateTime یعنی «اینجا چه ساعتی است؟»"
+    },
+    {
+      "type": "h2",
+      "text": "UTC در برابر زمان محلی"
+    },
+    {
+      "type": "p",
+      "text": "UTC یک ساعت جهانی است."
+    },
+    {
+      "type": "p",
+      "text": "منطقهٔ زمانی نمای محلی همان ساعت است."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نوع", "توضیح"],
+        ["UTC", "در همه‌جای دنیا یکسان"],
+        ["زمان محلی", "به مکان بستگی دارد"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "UTC یا Coordinated Universal Time زمان استانداردی است که در همه‌جای دنیا به کار می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "از هیچ منطقهٔ زمانی یا ساعت تابستانی اثر نمی‌گیرد."
+    },
+    {
+      "type": "h2",
+      "text": "چرا UTC مهم است"
+    },
+    {
+      "type": "p",
+      "text": "UTC به‌عنوان زمان مرجع به کار می‌رود:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "سرورها و پایگاه‌های داده زمان را با UTC ذخیره می‌کنند",
+        "لاگ‌ها برای جلوگیری از اشتباه زمانی از timestampهای UTC استفاده می‌کنند",
+        "بیشتر APIها از timestampهای UTC استفاده می‌کنند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "چه زمانی از Temporal.Instant استفاده کنیم"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "برای لحظه‌های دقیق در زمان UTC",
+        "برای timestampها",
+        "برای لاگ‌های پایگاه داده",
+        "برای لاگ رویدادها",
+        "برای مقایسهٔ لحظه‌ها"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ Instant با نوع‌های دیگر"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نوع", "معنی"],
+        ["Instant", "لحظهٔ دقیق در زمان UTC"],
+        ["PlainDateTime", "تاریخ و زمان خالص (بدون منطقهٔ زمانی)"],
+        ["ZonedDateTime", "تاریخ و زمان محلی (همراه با منطقهٔ زمانی)"]
+      ]
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/js/img_temporal.svg",
+      "alt": "نقشهٔ Temporal"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای Temporal.Instant"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ساخت", "توضیح"],
+        ["new", "یک شیء Temporal.Instant تازه می‌سازد"],
+        ["from()", "یک شیء Instant تازه از یک Instant دیگر یا یک رشته می‌سازد"],
+        ["fromEpochMilliseconds()", "یک شیء Instant تازه از تعداد میلی‌ثانیه برمی‌گرداند"],
+        ["fromEpochNanoseconds()", "یک شیء Instant تازه از تعداد نانوثانیه برمی‌گرداند"],
+        ["محاسبات", ""],
+        ["add()", "یک Instant تازه برمی‌گرداند که یک بازه به آن اضافه شده است"],
+        ["round()", "یک Instant تازه برمی‌گرداند که گرد شده است"],
+        ["subtract()", "یک Instant تازه برمی‌گرداند که یک بازه از آن کم شده است"],
+        ["مقایسه", ""],
+        ["compare()", "از مقایسهٔ دو Instant مقدار -1 یا 0 یا 1 برمی‌گرداند"],
+        ["equals()", "اگر دو Instant یکسان باشند true برمی‌گرداند"],
+        ["since()", "بازهٔ زمانی از یک تاریخ دیگر تا این لحظه را برمی‌گرداند"],
+        ["until()", "بازهٔ زمانی از این لحظه تا یک تاریخ دیگر را برمی‌گرداند"],
+        ["تبدیل", ""],
+        ["toZonedDateTimeISO()", "یک شیء ZonedDateTime تازه برمی‌گرداند"],
+        ["قالب‌بندی", ""],
+        ["toJSON()", "رشته‌ای در قالب RFC 9557 برای سریال کردن JSON برمی‌گرداند"],
+        ["toLocaleString()", "نمایش وابسته به زبان این لحظه را برمی‌گرداند"],
+        ["toString()", "رشته‌ای در قالب RFC 9557 از این لحظه برمی‌گرداند"],
+        ["valueOf()", "یک TypeError می‌دهد و نمی‌گذارد Instantها به مقدار ساده تبدیل شوند"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل instant.html بسازید و یک Instant با Temporal.Instant.from(\"2026-05-17T14:30:00Z\") بسازید؛ سپس توضیح دهید حرف Z و حرف T چه معنایی دارند.",
+      "hint": "Z یعنی فاصله از UTC صفر است و T جداکنندهٔ تاریخ و زمان است."
+    },
+    {
+      "prompt": "یک Instant با new Temporal.Instant(1779028200000000000n) بسازید و بگویید حرف n در پایان عدد چه معنایی دارد.",
+      "hint": "پارامتر سازنده باید BigInt باشد و n پایان عدد همین را می‌گوید."
+    },
+    {
+      "prompt": "زمان فعلی را با Date.now() بگیرید، بعد همان را با Temporal.Now.instant() و خصوصیت epochMilliseconds بگیرید و دو عدد را مقایسه کنید.",
+      "hint": "هر دو میلی‌ثانیه‌های گذشته از مبدأ یونیکس را می‌دهند؛ برای دقت بیشتر از epochNanoseconds استفاده کنید."
+    },
+    {
+      "prompt": "دو Instant برابر و یکی بزرگ‌تر بسازید و نتیجهٔ Temporal.Instant.compare و متد equals را برای هر جفت بنویسید.",
+      "hint": "compare برای برابر 0، برای بزرگ‌تر 1 و برای کوچک‌تر -1 می‌دهد؛ equals فقط true یا false برمی‌گرداند."
+    },
+    {
+      "prompt": "یک Instant بسازید و با toZonedDateTimeISO(\"Europe/Oslo\") آن را به زمان محلی تبدیل کنید؛ سپس نتیجه را با مقدار اصلی مقایسه کنید.",
+      "hint": "Instant اطلاعات منطقهٔ زمانی ندارد؛ برای نمایش زمان محلی باید به ZonedDateTime تبدیل شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "شیء Temporal.Instant چه چیزی را نگه می‌دارد؟",
+      "options": [
+        "تاریخ و زمان همراه با منطقهٔ زمانی",
+        "یک لحظهٔ دقیق در زمان UTC بدون منطقهٔ زمانی و تقویم",
+        "فقط ساعت روز",
+        "یک بازهٔ زمانی بین دو تاریخ"
+      ],
+      "answer": 1,
+      "explanation": "درس Instant را لحظهٔ دقیق در UTC می‌داند که هیچ منطقهٔ زمانی و تقویمی ندارد و به شکل نانوثانیه از مبدأ یونیکس ذخیره می‌شود."
+    },
+    {
+      "question": "حرف Z در پایان رشتهٔ 2026-05-17T14:30:00Z چه معنایی دارد؟",
+      "options": [
+        "زمان منطقهٔ زولو در جنوب آفریقا",
+        "نشان می‌دهد فاصله از زمان UTC صفر است",
+        "یعنی این تاریخ منقضی شده است",
+        "جداکنندهٔ تاریخ و زمان"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید Z استاندارد ISO 8601 برای زمان UTC است و نشان می‌دهد فاصله از UTC صفر است؛ جداکنندهٔ تاریخ و زمان حرف T است."
+    },
+    {
+      "question": "برای ساختن Instant از زمان فعلی کدام روش درست است؟",
+      "options": [
+        "Temporal.Instant.now()",
+        "Temporal.Now.instant()",
+        "new Temporal.Instant()",
+        "Date.now()"
+      ],
+      "answer": 1,
+      "explanation": "درس صریحاً می‌گوید Temporal.Instant متدی برای گرفتن زمان فعلی ندارد و باید از Temporal.Now.instant() استفاده کنید."
+    },
+    {
+      "question": "کدام خصوصیت مقدار timestamp را به میلی‌ثانیه برمی‌گرداند؟",
+      "options": ["epochNanoseconds", "epochMilliseconds", "epochSeconds", "epochDays"],
+      "answer": 1,
+      "explanation": "epochMilliseconds همان میلی‌ثانیه‌های گذشته از مبدأ یونیکس را می‌دهد؛ epochNanoseconds نسخهٔ نانوثانیه‌ای آن است."
+    },
+    {
+      "question": "برای نمایش زمان محلی از یک Instant چه باید کرد؟",
+      "options": [
+        "همان Instant کافی است چون خودش زمان محلی دارد",
+        "باید آن را با toZonedDateTimeISO() به ZonedDateTime تبدیل کرد",
+        "باید آن را با JSON.parse خواند",
+        "باید اول به Duration تبدیل شود"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید Instant اطلاعات منطقهٔ زمانی ندارد و برای نمایش زمان محلی باید با متد toZonedDateTimeISO() به Temporal.ZonedDateTime تبدیل شود."
+    }
+  ]
 }

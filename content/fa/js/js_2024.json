@@ -1,355 +1,339 @@
 {
- "slug": "js_2024",
- "course": "js",
- "order": 126,
- "url": "/js/js_2024.asp",
- "title": "ECMAScript 2024",
- "summary": "این درس ویژگی‌های ECMAScript 2024 را معرفی می‌کند: گروه‌بندی با Object.groupBy و Map.groupBy، بررسی و اصلاح رشته با isWellFormed و toWellFormed و ساخت ساده‌تر Promise با Promise.withResolvers.",
- "objectives": [
-  "عنصرهای یک آرایه یا Map را با groupBy گروه‌بندی کنید",
-  "تفاوت Object.groupBy و Map.groupBy را بگویید",
-  "جانشین تنها را تشخیص دهید و رشته را با toWellFormed درست کنید",
-  "یک Promise را با Promise.withResolvers بسازید و بیرون از اجراکننده resolve کنید",
-  "توضیح دهید چرا این ویژگی‌ها به Polyfill نیاز دارند"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2024"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید در JavaScript 2024"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح",
-     ""
-    ],
-    [
-     "Object.groupBy()",
-     "عنصرهای یک شیء را بر اساس مقدارهایی که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند",
-     ""
-    ],
-    [
-     "Map.groupBy()",
-     "عنصرهای یک Map را بر اساس مقدارهایی که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند",
-     ""
-    ],
-    [
-     "String isWellFormed()",
-     "اگر رشته به‌درستی شکل گرفته باشد true برمی‌گرداند",
-     ""
-    ],
-    [
-     "String.toWellFormed()",
-     "رشتهٔ جدیدی برمی‌گرداند که در آن «جانشین‌های تنها» با Unicode U+FFFD جایگزین شده‌اند",
-     ""
-    ],
-    [
-     "Promise.withResolvers()",
-     "",
-     ""
-    ],
-    [
-     "Atomics\nwaitAsync",
-     "",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "هشدار"
-  },
-  {
-   "type": "p",
-   "text": "این ویژگی‌ها نسبتاً جدیدند."
-  },
-  {
-   "type": "p",
-   "text": "مرورگرهای قدیمی‌تر ممکن است به کد جایگزین (Polyfill) نیاز داشته باشند"
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.groupBy() در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Array\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Object.groupBy(fruits, myCallback);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_groupby"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.groupBy() عنصرهای یک شیء را بر اساس مقدارهای رشته‌ای که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "متد Object.groupBy() یک شیء جدید برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد Object.groupBy() شیء اصلی را تغییر نمی‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "عنصرهای نسخهٔ اصلی و نسخهٔ برگردانده‌شده یکی هستند."
-  },
-  {
-   "type": "p",
-   "text": "تغییرهای بعدی هم در نسخهٔ اصلی و هم در نسخهٔ برگردانده‌شده دیده می‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "متد Map.groupBy() در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Map\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Map.groupBy(fruits, myCallback);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_groupby"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "p",
-   "text": "متد Map.groupBy() عنصرهای یک Map را بر اساس مقدارهای رشته‌ای که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "متد Map.groupBy() یک Map جدید برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد Map.groupBy() شیء اصلی را تغییر نمی‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "عنصرهای نسخهٔ اصلی و نسخهٔ برگردانده‌شده یکی هستند."
-  },
-  {
-   "type": "p",
-   "text": "تغییرهای بعدی هم در نسخهٔ اصلی و هم در نسخهٔ برگردانده‌شده دیده می‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ Object.groupBy() و Map.groupBy()"
-  },
-  {
-   "type": "p",
-   "text": "تفاوت میان Object.groupBy() و Map.groupBy() این است:"
-  },
-  {
-   "type": "p",
-   "text": "Object.groupBy() عنصرها را در یک شیء JavaScript گروه‌بندی می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "Map.groupBy() عنصرها را در یک شیء Map گروه‌بندی می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "متد isWellFormed() رشته در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد isWellFormed() اگر رشته به‌درستی شکل گرفته باشد true برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "در غیر این صورت false برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "رشته‌ای که «جانشین تنها» دارد، به‌درستی شکل نگرفته است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world!\";\n\nlet result = text.isWellFormed();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.isWellFormed();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_iswellformed"
-  },
-  {
-   "type": "h2",
-   "text": "جانشین‌های تنها (Lone Surrogates)"
-  },
-  {
-   "type": "p",
-   "text": "جانشین تنها یک کدپوینت جانشین یونیکد است که بخشی از یک جفت جانشین معتبر برای نمایش نویسه‌ها در کدگذاری UTF-16 نیست."
-  },
-  {
-   "type": "h2",
-   "text": "متد toWellFormed() رشته در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد رشته‌ای toWellFormed() رشتهٔ جدیدی برمی‌گرداند که در آن همهٔ «جانشین‌های تنها» با نویسهٔ جایگزین یونیکد (U+FFFD) عوض شده‌اند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.toWellFormed();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_towellformed"
-  },
-  {
-   "type": "h2",
-   "text": "متد Promise.withResolvers() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Promise.withResolvers() یک متد ایستا است که ساخت و مدیریت Promiseها را ساده می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "Promise.withResolvers() راه راحت‌تری برای دسترسی به تابع‌های resolve و reject مربوط به یک Promise بیرون از تابع executor آن فراهم می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "به‌جای الگوی سنتی سازندهٔ new Promise((resolve, reject) => { ... })، متد Promise.withResolvers() شیئی برمی‌گرداند که این‌ها را دارد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "promise: نمونهٔ Promise تازه‌ساخته‌شده",
-    "resolve: تابعی برای به‌سرانجام رساندن Promise با یک مقدار",
-    "reject: تابعی برای رد کردن Promise با یک دلیل (خطا)"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\">Waiting...</p>\n\n<script>\n\nconst {promise, resolve, reject} = Promise.withResolvers();\n\n// You can now use 'resolve' and 'reject' anywhere\n\n// in your code to control the state of 'promise'.\n\n// Simulate async work\n\nsetTimeout(() => {\n\n  const success = Math.random() > 0.5;\n\n  if (success) {\n\n    resolve(\"Operation successful!\");\n\n  } else {\n\n    reject(\"Operation failed!\");\n\n  }\n\n}, 1000);\n\n// Update the UI when the promise finishes\n\npromise\n\n  .then((message) => {\n\n    document.getElementById(\"demo\").innerHTML = message;\n\n  })\n\n  .catch((error) => {\n\n    document.getElementById(\"demo\").innerHTML = error;\n;\n\n  });\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_withresolvers"
-  },
-  {
-   "type": "h3",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "عنصر <p id=\"demo\"> در آغاز «Waiting...» را نشان می‌دهد",
-    "بعد از ۱ ثانیه، Promise یا به‌سرانجام می‌رسد یا رد می‌شود",
-    "نتیجه در «demo» نوشته می‌شود"
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل es2024.html بسازید و یک آرایه از شیءها را با Object.groupBy بر اساس یک خصوصیت گروه‌بندی کنید و نتیجه را در کنسول ببینید.",
-   "hint": "تابع کالبک باید مقداری برگرداند که کلید گروه باشد؛ برای شماره‌گذاری از Math.floor استفاده کنید."
-  },
-  {
-   "prompt": "همان گروه‌بندی را با Map.groupBy انجام دهید و تفاوت نوع نتیجه را با Object.groupBy بگویید.",
-   "hint": "Object.groupBy یک شیء JavaScript می‌سازد، اما Map.groupBy یک Map؛ کلیدهای Map می‌توانند غیررشته هم باشند."
-  },
-  {
-   "prompt": "دو رشته بسازید، یکی سالم و یکی دارای جانشین تنها، و با isWellFormed بررسی کنید؛ بعد رشتهٔ ناسالم را با toWellFormed درست کنید.",
-   "hint": "رشته‌ای که جانشین تنها دارد ناسالم است و toWellFormed نویسه‌های آن را با U+FFFD جایگزین می‌کند."
-  },
-  {
-   "prompt": "یک Promise را با Promise.withResolvers() بسازید و تابع resolve آن را بعد از یک ثانیه با setTimeout صدا بزنید.",
-   "hint": "این متد بیرون از تابع اجراکننده به resolve و reject و خود promise دسترسی می‌دهد."
-  },
-  {
-   "prompt": "صفحه‌ای بسازید که عنصر <p id=\"demo\"> اول «Waiting...» نشان دهد و بعد از یک ثانیه نتیجهٔ Promise در آن نوشته شود.",
-   "hint": "برای تغییر متن عنصر از document.getElementById(\"demo\").innerHTML استفاده کنید."
-  }
- ],
- "quiz": [
-  {
-   "question": "تفاوت Object.groupBy() و Map.groupBy() چیست؟",
-   "options": [
-    "Object.groupBy عنصرها را در یک شیء JavaScript می‌گذارد و Map.groupBy در یک Map",
-    "Map.groupBy سریع‌تر است",
-    "Object.groupBy فقط روی رشته‌ها کار می‌کند",
-    "هیچ تفاوتی ندارند"
-   ],
-   "answer": 0,
-   "explanation": "هر دو بر اساس مقدار برگشتی تابع کالبک گروه می‌سازند، اما نوع نتیجه متفاوت است: یکی شیء JavaScript و دیگری Map."
-  },
-  {
-   "question": "متد isWellFormed() چه زمانی false برمی‌گرداند؟",
-   "options": [
-    "وقتی رشته با فاصله شروع شود",
-    "وقتی رشته خالی باشد",
-    "وقتی رشته جانشین تنها داشته باشد",
-    "وقتی رشته عدد داشته باشد"
-   ],
-   "answer": 2,
-   "explanation": "رشته‌ای که جانشین تنها دارد به‌درستی شکل نگرفته است؛ برای درست کردن آن از toWellFormed() استفاده می‌کنیم."
-  },
-  {
-   "question": "toWellFormed() با جانشین‌های تنها چه می‌کند؟",
-   "options": [
-    "آن‌ها را به عدد تبدیل می‌کند",
-    "خطا پرتاب می‌کند",
-    "آن‌ها را حذف می‌کند",
-    "آن‌ها را با نویسهٔ جایگزین یونیکد U+FFFD عوض می‌کند"
-   ],
-   "answer": 3,
-   "explanation": "toWellFormed رشتهٔ جدیدی می‌سازد که در آن هر جانشین تنها با نویسهٔ جایگزین یونیکد (U+FFFD) جایگزین شده است."
-  },
-  {
-   "question": "Promise.withResolvers() چه چیزی برمی‌گرداند؟",
-   "options": [
-    "شیئی با promise و resolve و reject",
-    "یک تابع کالبک",
-    "یک آرایه",
-    "فقط یک Promise"
-   ],
-   "answer": 0,
-   "explanation": "این متد شیئی با سه بخش برمی‌گرداند: خود promise و توابع resolve و reject، تا بتوانید بیرون از تابع اجراکننده آن‌ها را در دست بگیرید."
-  },
-  {
-   "question": "چرا درس دربارهٔ این ویژگی‌ها هشدار می‌دهد؟",
-   "options": [
-    "چون در بعضی مرورگرها خطا می‌دهند",
-    "چون نسبتاً جدیدند و مرورگرهای قدیمی‌تر به Polyfill نیاز دارند",
-    "چون فقط در Node اجرا می‌شوند",
-    "چون بعداً حذف می‌شوند"
-   ],
-   "answer": 1,
-   "explanation": "این ویژگی‌ها تازه‌اند؛ مرورگرهای قدیمی‌تر ممکن است پشتیبانی نکنند و به کد جایگزین (Polyfill) نیاز داشته باشند."
-  }
- ]
+  "slug": "js_2024",
+  "course": "js",
+  "order": 126,
+  "url": "/js/js_2024.asp",
+  "title": "ECMAScript 2024",
+  "summary": "این درس ویژگی‌های ECMAScript 2024 را معرفی می‌کند: گروه‌بندی با Object.groupBy و Map.groupBy، بررسی و اصلاح رشته با isWellFormed و toWellFormed و ساخت ساده‌تر Promise با Promise.withResolvers.",
+  "objectives": [
+    "عنصرهای یک آرایه یا Map را با groupBy گروه‌بندی کنید",
+    "تفاوت Object.groupBy و Map.groupBy را بگویید",
+    "جانشین تنها را تشخیص دهید و رشته را با toWellFormed درست کنید",
+    "یک Promise را با Promise.withResolvers بسازید و بیرون از اجراکننده resolve کنید",
+    "توضیح دهید چرا این ویژگی‌ها به Polyfill نیاز دارند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2024"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید در JavaScript 2024"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح", ""],
+        [
+          "Object.groupBy()",
+          "عنصرهای یک شیء را بر اساس مقدارهایی که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند",
+          ""
+        ],
+        [
+          "Map.groupBy()",
+          "عنصرهای یک Map را بر اساس مقدارهایی که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند",
+          ""
+        ],
+        ["String isWellFormed()", "اگر رشته به‌درستی شکل گرفته باشد true برمی‌گرداند", ""],
+        [
+          "String.toWellFormed()",
+          "رشتهٔ جدیدی برمی‌گرداند که در آن «جانشین‌های تنها» با Unicode U+FFFD جایگزین شده‌اند",
+          ""
+        ],
+        ["Promise.withResolvers()", "", ""],
+        ["Atomics\nwaitAsync", "", ""]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "هشدار"
+    },
+    {
+      "type": "p",
+      "text": "این ویژگی‌ها نسبتاً جدیدند."
+    },
+    {
+      "type": "p",
+      "text": "مرورگرهای قدیمی‌تر ممکن است به کد جایگزین (Polyfill) نیاز داشته باشند"
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.groupBy() در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Array\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Object.groupBy(fruits, myCallback);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_groupby"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.groupBy() عنصرهای یک شیء را بر اساس مقدارهای رشته‌ای که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "متد Object.groupBy() یک شیء جدید برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد Object.groupBy() شیء اصلی را تغییر نمی‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "عنصرهای نسخهٔ اصلی و نسخهٔ برگردانده‌شده یکی هستند."
+    },
+    {
+      "type": "p",
+      "text": "تغییرهای بعدی هم در نسخهٔ اصلی و هم در نسخهٔ برگردانده‌شده دیده می‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "متد Map.groupBy() در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Map\n\nconst fruits = [\n\n  {name:\"apples\", quantity:300},\n\n  {name:\"bananas\", quantity:500},\n\n  {name:\"oranges\", quantity:200},\n\n  {name:\"kiwi\", quantity:150}\n\n];\n\n// Callback function to Group Elements\n\nfunction myCallback({ quantity }) {\n\n  return quantity > 200 ? \"ok\" : \"low\";\n\n}\n\n// Group by Quantity\n\nconst result = Map.groupBy(fruits, myCallback);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_groupby"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "p",
+      "text": "متد Map.groupBy() عنصرهای یک Map را بر اساس مقدارهای رشته‌ای که تابع کالبک برمی‌گرداند گروه‌بندی می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "متد Map.groupBy() یک Map جدید برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد Map.groupBy() شیء اصلی را تغییر نمی‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "عنصرهای نسخهٔ اصلی و نسخهٔ برگردانده‌شده یکی هستند."
+    },
+    {
+      "type": "p",
+      "text": "تغییرهای بعدی هم در نسخهٔ اصلی و هم در نسخهٔ برگردانده‌شده دیده می‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ Object.groupBy() و Map.groupBy()"
+    },
+    {
+      "type": "p",
+      "text": "تفاوت میان Object.groupBy() و Map.groupBy() این است:"
+    },
+    {
+      "type": "p",
+      "text": "Object.groupBy() عنصرها را در یک شیء JavaScript گروه‌بندی می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "Map.groupBy() عنصرها را در یک شیء Map گروه‌بندی می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "متد isWellFormed() رشته در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد isWellFormed() اگر رشته به‌درستی شکل گرفته باشد true برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "در غیر این صورت false برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "رشته‌ای که «جانشین تنها» دارد، به‌درستی شکل نگرفته است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world!\";\n\nlet result = text.isWellFormed();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.isWellFormed();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_iswellformed"
+    },
+    {
+      "type": "h2",
+      "text": "جانشین‌های تنها (Lone Surrogates)"
+    },
+    {
+      "type": "p",
+      "text": "جانشین تنها یک کدپوینت جانشین یونیکد است که بخشی از یک جفت جانشین معتبر برای نمایش نویسه‌ها در کدگذاری UTF-16 نیست."
+    },
+    {
+      "type": "h2",
+      "text": "متد toWellFormed() رشته در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد رشته‌ای toWellFormed() رشتهٔ جدیدی برمی‌گرداند که در آن همهٔ «جانشین‌های تنها» با نویسهٔ جایگزین یونیکد (U+FFFD) عوض شده‌اند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.toWellFormed();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_towellformed"
+    },
+    {
+      "type": "h2",
+      "text": "متد Promise.withResolvers() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Promise.withResolvers() یک متد ایستا است که ساخت و مدیریت Promiseها را ساده می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "Promise.withResolvers() راه راحت‌تری برای دسترسی به تابع‌های resolve و reject مربوط به یک Promise بیرون از تابع executor آن فراهم می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "به‌جای الگوی سنتی سازندهٔ new Promise((resolve, reject) => { ... })، متد Promise.withResolvers() شیئی برمی‌گرداند که این‌ها را دارد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "promise: نمونهٔ Promise تازه‌ساخته‌شده",
+        "resolve: تابعی برای به‌سرانجام رساندن Promise با یک مقدار",
+        "reject: تابعی برای رد کردن Promise با یک دلیل (خطا)"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\">Waiting...</p>\n\n<script>\n\nconst {promise, resolve, reject} = Promise.withResolvers();\n\n// You can now use 'resolve' and 'reject' anywhere\n\n// in your code to control the state of 'promise'.\n\n// Simulate async work\n\nsetTimeout(() => {\n\n  const success = Math.random() > 0.5;\n\n  if (success) {\n\n    resolve(\"Operation successful!\");\n\n  } else {\n\n    reject(\"Operation failed!\");\n\n  }\n\n}, 1000);\n\n// Update the UI when the promise finishes\n\npromise\n\n  .then((message) => {\n\n    document.getElementById(\"demo\").innerHTML = message;\n\n  })\n\n  .catch((error) => {\n\n    document.getElementById(\"demo\").innerHTML = error;\n;\n\n  });\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_withresolvers"
+    },
+    {
+      "type": "h3",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "عنصر <p id=\"demo\"> در آغاز «Waiting...» را نشان می‌دهد",
+        "بعد از ۱ ثانیه، Promise یا به‌سرانجام می‌رسد یا رد می‌شود",
+        "نتیجه در «demo» نوشته می‌شود"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل es2024.html بسازید و یک آرایه از شیءها را با Object.groupBy بر اساس یک خصوصیت گروه‌بندی کنید و نتیجه را در کنسول ببینید.",
+      "hint": "تابع کالبک باید مقداری برگرداند که کلید گروه باشد؛ برای شماره‌گذاری از Math.floor استفاده کنید."
+    },
+    {
+      "prompt": "همان گروه‌بندی را با Map.groupBy انجام دهید و تفاوت نوع نتیجه را با Object.groupBy بگویید.",
+      "hint": "Object.groupBy یک شیء JavaScript می‌سازد، اما Map.groupBy یک Map؛ کلیدهای Map می‌توانند غیررشته هم باشند."
+    },
+    {
+      "prompt": "دو رشته بسازید، یکی سالم و یکی دارای جانشین تنها، و با isWellFormed بررسی کنید؛ بعد رشتهٔ ناسالم را با toWellFormed درست کنید.",
+      "hint": "رشته‌ای که جانشین تنها دارد ناسالم است و toWellFormed نویسه‌های آن را با U+FFFD جایگزین می‌کند."
+    },
+    {
+      "prompt": "یک Promise را با Promise.withResolvers() بسازید و تابع resolve آن را بعد از یک ثانیه با setTimeout صدا بزنید.",
+      "hint": "این متد بیرون از تابع اجراکننده به resolve و reject و خود promise دسترسی می‌دهد."
+    },
+    {
+      "prompt": "صفحه‌ای بسازید که عنصر <p id=\"demo\"> اول «Waiting...» نشان دهد و بعد از یک ثانیه نتیجهٔ Promise در آن نوشته شود.",
+      "hint": "برای تغییر متن عنصر از document.getElementById(\"demo\").innerHTML استفاده کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "تفاوت Object.groupBy() و Map.groupBy() چیست؟",
+      "options": [
+        "Object.groupBy عنصرها را در یک شیء JavaScript می‌گذارد و Map.groupBy در یک Map",
+        "Map.groupBy سریع‌تر است",
+        "Object.groupBy فقط روی رشته‌ها کار می‌کند",
+        "هیچ تفاوتی ندارند"
+      ],
+      "answer": 0,
+      "explanation": "هر دو بر اساس مقدار برگشتی تابع کالبک گروه می‌سازند، اما نوع نتیجه متفاوت است: یکی شیء JavaScript و دیگری Map."
+    },
+    {
+      "question": "متد isWellFormed() چه زمانی false برمی‌گرداند؟",
+      "options": [
+        "وقتی رشته با فاصله شروع شود",
+        "وقتی رشته خالی باشد",
+        "وقتی رشته جانشین تنها داشته باشد",
+        "وقتی رشته عدد داشته باشد"
+      ],
+      "answer": 2,
+      "explanation": "رشته‌ای که جانشین تنها دارد به‌درستی شکل نگرفته است؛ برای درست کردن آن از toWellFormed() استفاده می‌کنیم."
+    },
+    {
+      "question": "toWellFormed() با جانشین‌های تنها چه می‌کند؟",
+      "options": [
+        "آن‌ها را به عدد تبدیل می‌کند",
+        "خطا پرتاب می‌کند",
+        "آن‌ها را حذف می‌کند",
+        "آن‌ها را با نویسهٔ جایگزین یونیکد U+FFFD عوض می‌کند"
+      ],
+      "answer": 3,
+      "explanation": "toWellFormed رشتهٔ جدیدی می‌سازد که در آن هر جانشین تنها با نویسهٔ جایگزین یونیکد (U+FFFD) جایگزین شده است."
+    },
+    {
+      "question": "Promise.withResolvers() چه چیزی برمی‌گرداند؟",
+      "options": [
+        "شیئی با promise و resolve و reject",
+        "یک تابع کالبک",
+        "یک آرایه",
+        "فقط یک Promise"
+      ],
+      "answer": 0,
+      "explanation": "این متد شیئی با سه بخش برمی‌گرداند: خود promise و توابع resolve و reject، تا بتوانید بیرون از تابع اجراکننده آن‌ها را در دست بگیرید."
+    },
+    {
+      "question": "چرا درس دربارهٔ این ویژگی‌ها هشدار می‌دهد؟",
+      "options": [
+        "چون در بعضی مرورگرها خطا می‌دهند",
+        "چون نسبتاً جدیدند و مرورگرهای قدیمی‌تر به Polyfill نیاز دارند",
+        "چون فقط در Node اجرا می‌شوند",
+        "چون بعداً حذف می‌شوند"
+      ],
+      "answer": 1,
+      "explanation": "این ویژگی‌ها تازه‌اند؛ مرورگرهای قدیمی‌تر ممکن است پشتیبانی نکنند و به کد جایگزین (Polyfill) نیاز داشته باشند."
+    }
+  ]
 }

@@ -1,220 +1,220 @@
 {
- "slug": "js_htmldom_elements",
- "course": "js",
- "order": 142,
- "url": "/js/js_htmldom_elements.asp",
- "title": "Selecting DOM Elements",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Selecting DOM Elements"
-  },
-  {
-   "type": "h2",
-   "text": "Finding HTML Elements"
-  },
-  {
-   "type": "p",
-   "text": "Often, with JavaScript, you want to manipulate HTML elements."
-  },
-  {
-   "type": "p",
-   "text": "To do so, you have to find the elements first. There are several ways to do this:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Finding HTML elements by id",
-    "Finding HTML elements by tag name",
-    "Finding HTML elements by class name",
-    "Finding HTML elements by CSS selectors",
-    "Finding HTML elements by HTML object collections"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Finding HTML Element by Id"
-  },
-  {
-   "type": "p",
-   "text": "The easiest way to find an HTML element in the DOM, is by using the element id."
-  },
-  {
-   "type": "p",
-   "text": "This example finds the element with id=\"intro\":"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const element = document.getElementById(\"intro\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementbyid"
-  },
-  {
-   "type": "p",
-   "text": "If the element is found, the method will return the element as an object (in element)."
-  },
-  {
-   "type": "p",
-   "text": "If the element is not found, element will contain null."
-  },
-  {
-   "type": "h2",
-   "text": "Finding HTML Elements by Tag Name"
-  },
-  {
-   "type": "p",
-   "text": "This example finds all <p> elements:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const element = document.getElementsByTagName(\"p\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbytagname2"
-  },
-  {
-   "type": "p",
-   "text": "This example finds the element with id=\"main\", and then finds all <p> elements\ninside \"main\":"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const x = document.getElementById(\"main\");\n\nconst y = x.getElementsByTagName(\"p\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbytagname"
-  },
-  {
-   "type": "h2",
-   "text": "Finding HTML Elements by Class Name"
-  },
-  {
-   "type": "p",
-   "text": "If you want to find all HTML elements with the same class name, use\ngetElementsByClassName()."
-  },
-  {
-   "type": "p",
-   "text": "This example returns a list of all elements with class=\"intro\"."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const x = document.getElementsByClassName(\"intro\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbyclassname"
-  },
-  {
-   "type": "h2",
-   "text": "Finding HTML Elements by CSS Selectors"
-  },
-  {
-   "type": "h2",
-   "text": "The querySelector() Method"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<html>\n\n<body>\n\n<p class=\"demo\"></p>\n\n<script>\n\n// Access a paragraph Element\n\nconst myPara = document.querySelector(\".demo\");\n\n// Change the content of the Element\n\nmyPara.innerHTML = \"Hello World!\";\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselector"
-  },
-  {
-   "type": "h2",
-   "text": "The querySelectorAll() Method"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<html>\n\n<body>\n\n<p class=\"demo\">One</p>\n\n<p class=\"demo\">Two</p>\n\n<script>\n\n// Access a paragraph Element\n\nconst myItems = document.querySelectorAll(\".demo\");\n\n// Change the content of the Element\n\nmyItems[0].innerHTML = \"First\";\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselector_all"
-  },
-  {
-   "type": "h2",
-   "text": "Common Mistakes"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Using `#` in getElementById():\n  Wrong: \"#demo\"",
-    "Forgetting that querySelector() returns only the first match"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "If you want to find all HTML elements that match a specified CSS selector\n(id, class names, types, attributes, values of attributes, etc), use the querySelectorAll() method."
-  },
-  {
-   "type": "p",
-   "text": "This example returns a list of all <p> elements with class=\"intro\"."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const x = document.querySelectorAll(\"p.intro\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselectorall"
-  },
-  {
-   "type": "h2",
-   "text": "Finding HTML Elements by HTML Object Collections"
-  },
-  {
-   "type": "p",
-   "text": "This example finds the form element with id=\"frm1\", in the forms\ncollection, and displays all element\nvalues:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const x = document.forms[\"frm1\"];\n\nlet text = \"\";\n\nfor (let i = 0; i < x.length; i++) {\n  text += x.elements[i].value + \"<br>\";\n}\ndocument.getElementById(\"demo\").innerHTML = text;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_form_elements"
-  },
-  {
-   "type": "p",
-   "text": "The following HTML objects (and object collections) are also accessible:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "document.anchors",
-    "document.body",
-    "document.documentElement",
-    "document.embeds",
-    "document.forms",
-    "document.head",
-    "document.images",
-    "document.links",
-    "document.scripts",
-    "document.title"
-   ]
-  }
- ]
+  "slug": "js_htmldom_elements",
+  "course": "js",
+  "order": 142,
+  "url": "/js/js_htmldom_elements.asp",
+  "title": "Selecting DOM Elements",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Selecting DOM Elements"
+    },
+    {
+      "type": "h2",
+      "text": "Finding HTML Elements"
+    },
+    {
+      "type": "p",
+      "text": "Often, with JavaScript, you want to manipulate HTML elements."
+    },
+    {
+      "type": "p",
+      "text": "To do so, you have to find the elements first. There are several ways to do this:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Finding HTML elements by id",
+        "Finding HTML elements by tag name",
+        "Finding HTML elements by class name",
+        "Finding HTML elements by CSS selectors",
+        "Finding HTML elements by HTML object collections"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Finding HTML Element by Id"
+    },
+    {
+      "type": "p",
+      "text": "The easiest way to find an HTML element in the DOM, is by using the element id."
+    },
+    {
+      "type": "p",
+      "text": "This example finds the element with id=\"intro\":"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const element = document.getElementById(\"intro\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementbyid"
+    },
+    {
+      "type": "p",
+      "text": "If the element is found, the method will return the element as an object (in element)."
+    },
+    {
+      "type": "p",
+      "text": "If the element is not found, element will contain null."
+    },
+    {
+      "type": "h2",
+      "text": "Finding HTML Elements by Tag Name"
+    },
+    {
+      "type": "p",
+      "text": "This example finds all <p> elements:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const element = document.getElementsByTagName(\"p\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbytagname2"
+    },
+    {
+      "type": "p",
+      "text": "This example finds the element with id=\"main\", and then finds all <p> elements\ninside \"main\":"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const x = document.getElementById(\"main\");\n\nconst y = x.getElementsByTagName(\"p\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbytagname"
+    },
+    {
+      "type": "h2",
+      "text": "Finding HTML Elements by Class Name"
+    },
+    {
+      "type": "p",
+      "text": "If you want to find all HTML elements with the same class name, use\ngetElementsByClassName()."
+    },
+    {
+      "type": "p",
+      "text": "This example returns a list of all elements with class=\"intro\"."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const x = document.getElementsByClassName(\"intro\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_getelementsbyclassname"
+    },
+    {
+      "type": "h2",
+      "text": "Finding HTML Elements by CSS Selectors"
+    },
+    {
+      "type": "h2",
+      "text": "The querySelector() Method"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<html>\n\n<body>\n\n<p class=\"demo\"></p>\n\n<script>\n\n// Access a paragraph Element\n\nconst myPara = document.querySelector(\".demo\");\n\n// Change the content of the Element\n\nmyPara.innerHTML = \"Hello World!\";\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselector"
+    },
+    {
+      "type": "h2",
+      "text": "The querySelectorAll() Method"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<html>\n\n<body>\n\n<p class=\"demo\">One</p>\n\n<p class=\"demo\">Two</p>\n\n<script>\n\n// Access a paragraph Element\n\nconst myItems = document.querySelectorAll(\".demo\");\n\n// Change the content of the Element\n\nmyItems[0].innerHTML = \"First\";\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselector_all"
+    },
+    {
+      "type": "h2",
+      "text": "Common Mistakes"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Using `#` in getElementById():\n  Wrong: \"#demo\"",
+        "Forgetting that querySelector() returns only the first match"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "If you want to find all HTML elements that match a specified CSS selector\n(id, class names, types, attributes, values of attributes, etc), use the querySelectorAll() method."
+    },
+    {
+      "type": "p",
+      "text": "This example returns a list of all <p> elements with class=\"intro\"."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const x = document.querySelectorAll(\"p.intro\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_queryselectorall"
+    },
+    {
+      "type": "h2",
+      "text": "Finding HTML Elements by HTML Object Collections"
+    },
+    {
+      "type": "p",
+      "text": "This example finds the form element with id=\"frm1\", in the forms\ncollection, and displays all element\nvalues:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const x = document.forms[\"frm1\"];\n\nlet text = \"\";\n\nfor (let i = 0; i < x.length; i++) {\n  text += x.elements[i].value + \"<br>\";\n}\ndocument.getElementById(\"demo\").innerHTML = text;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_form_elements"
+    },
+    {
+      "type": "p",
+      "text": "The following HTML objects (and object collections) are also accessible:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "document.anchors",
+        "document.body",
+        "document.documentElement",
+        "document.embeds",
+        "document.forms",
+        "document.head",
+        "document.images",
+        "document.links",
+        "document.scripts",
+        "document.title"
+      ]
+    }
+  ]
 }

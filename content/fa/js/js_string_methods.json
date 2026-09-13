@@ -1,1214 +1,1134 @@
 {
- "slug": "js_string_methods",
- "course": "js",
- "order": 29,
- "url": "/js/js_string_methods.asp",
- "title": "متدهای رشته در JavaScript",
- "summary": "متدهای رشته روی متن کار می‌کنند و همیشه رشتهٔ جدیدی می‌سازند، بدون اینکه رشتهٔ اصلی را عوض کنند. در این درس طول رشته، استخراج نویسه و بخش‌های رشته، تغییر بزرگی و کوچکی حروف، حذف فاصله‌های اضافه، پُر کردن، جانشینی و تبدیل رشته به آرایه را یاد می‌گیرید.",
- "objectives": [
-  "نویسه و بخش‌های یک رشته را با متدهای مناسب استخراج کنید",
-  "با trim و trimStart و trimEnd فاصله‌های اضافه را پاک کنید",
-  "با replace و replaceAll محتوای رشته را جانشین کنید",
-  "رشته را با split به آرایه تبدیل کنید و خطر آن را تشخیص دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "متدهای رشته در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای پایهٔ رشته"
-  },
-  {
-   "type": "p",
-   "text": "رشته‌های JavaScript اولیه و تغییرناپذیر (immutable) هستند: همهٔ متدهای رشته یک رشتهٔ جدید می‌سازند و رشتهٔ اصلی را عوض نمی‌کنند."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "String length\nString charAt()\nString charCodeAt()\nString codePointAt()\nString concat()\nString at()\nString [ ]\nString slice()\nString substring()\nString substr()\nString toUpperCase()\nString toLowerCase()",
-     "String isWellFormed()\nString toWellFormed()\nString trim()\nString trimStart()\nString trimEnd()\nString padStart()\nString padEnd()\nString repeat()\nString replace()\nString replaceAll()\nString split()"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "همچنین ببینید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش رشته"
-  },
-  {
-   "type": "p",
-   "text": "جست‌وجوی رشته"
-  },
-  {
-   "type": "p",
-   "text": "قالب‌های رشته"
-  },
-  {
-   "type": "p",
-   "text": "مرجع رشته"
-  },
-  {
-   "type": "h2",
-   "text": "طول رشته در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت length طول یک رشته را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n\nlet length = text.length;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_length"
-  },
-  {
-   "type": "h2",
-   "text": "استخراج نویسه‌های رشته"
-  },
-  {
-   "type": "p",
-   "text": "۴ متد برای استخراج نویسه‌های رشته وجود دارد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "متد at(position)",
-    "متد charAt(position)",
-    "متد charCodeAt(position)",
-    "دسترسی به خصوصیت با [] مثل آرایه‌ها"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد charAt() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد charAt() نویسهٔ موجود در اندیس (موقعیت) مشخصی از رشته را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"HELLO WORLD\";\n\nlet char = text.charAt(0);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_charat"
-  },
-  {
-   "type": "h2",
-   "text": "متد charCodeAt() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد charCodeAt() کد نویسهٔ موجود در اندیس مشخصی از رشته را برمی‌گرداند:"
-  },
-  {
-   "type": "p",
-   "text": "این متد یک کد UTF-16 برمی‌گرداند (عددی صحیح بین 0 و 65535)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"HELLO WORLD\";\n\nlet char = text.charCodeAt(0);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_charcodeat"
-  },
-  {
-   "type": "h2",
-   "text": "متد codePointAt() در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"HELLO WORLD\";\n\nlet code = text.codePointAt(0);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_codepointat"
-  },
-  {
-   "type": "h2",
-   "text": "متد at() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ES2022 متد رشتهٔ at() را معرفی کرد:"
-  },
-  {
-   "type": "p",
-   "text": "متد at() نویسهٔ موجود در اندیس (موقعیت) مشخصی از رشته را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد at() از مارس 2022 در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"W3Schools\";\n\nlet letter = name.at(2);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"W3Schools\";\n\nlet letter = name[2];",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_at"
-  },
-  {
-   "type": "p",
-   "text": "متد at() افزودهٔ تازه‌ای به JavaScript است."
-  },
-  {
-   "type": "p",
-   "text": "این متد اجازه می‌دهد از اندیس منفی استفاده کنید، در حالی که charAt() چنین اجازه‌ای نمی‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"W3Schools\";\n\nlet letter = name.at(-5);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"W3Schools\";\n\nlet letter = charAt(myString.length-5);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_at_3"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "at() یک ویژگی ECMAScript 2022 است."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript 2022 از مارس 2022 در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome92",
-     "Edge92",
-     "Firefox90",
-     "Safari15.4",
-     "Opera78"
-    ],
-    [
-     "آوریل 2021",
-     "ژوئیه 2021",
-     "ژوئیه 2021",
-     "مارس 2022",
-     "اوت 2021"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "دسترسی به خصوصیت با [ ]"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"HELLO WORLD\";\n\nlet char = text[0];",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "دسترسی به خصوصیت ممکن است کمی غیرقابل پیش‌بینی باشد:\n\n  رشته را شبیه آرایه نشان می‌دهد (ولی رشته آرایه نیست)\n  اگر نویسه‌ای پیدا نشود، [ ] مقدار undefined برمی‌گرداند، در حالی که charAt() رشتهٔ خالی می‌دهد.\n  دسترسی به خصوصیت فقط خواندنی است، ولی str[0] = \"A\" در «حالت sloppy» خطا نمی‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"HELLO WORLD\";\n\n// Try to change the first letter to \"A\"\n\ntry {\n\n  text[0] = \"A\";\n\n} catch(err) {\n\n  text = err.message\n\n}",
-   "caption": "مثال (حالت sloppy)"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop2"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"using strict\";\n\nlet text = \"HELLO WORLD\";\n\n// Try to change the first letter to \"A\"\n\ntry {\n\n text[0] = \"A\";\n\n} catch(err) {\n\n text = err.message\n\n}",
-   "caption": "مثال (حالت strict)"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop_error"
-  },
-  {
-   "type": "h2",
-   "text": "متد concat() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "concat() دو یا چند رشته را به هم می‌چسباند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text1 = \"Hello\";\n\nlet text2 = \"World\";\n\nlet text3 = text1.concat(\" \", text2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_concat"
-  },
-  {
-   "type": "p",
-   "text": "می‌توان از متد concat() به‌جای عملگر + استفاده کرد. این دو خط یک کار انجام می‌دهند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "text = \"Hello\" + \" \" + \"World!\";\n\ntext = \"Hello\".concat(\" \", \"World!\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "همهٔ متدهای رشته یک رشتهٔ جدید برمی‌گردانند و رشتهٔ اصلی را تغییر نمی‌دهند.\nبه بیان دقیق: رشته‌ها تغییرناپذیرند؛ رشته را نمی‌توان عوض کرد، فقط می‌توان رشتهٔ تازه‌ای ساخت."
-  },
-  {
-   "type": "h2",
-   "text": "استخراج بخش‌هایی از رشته"
-  },
-  {
-   "type": "p",
-   "text": "۳ متد برای استخراج بخشی از رشته وجود دارد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "slice(start, end)",
-    "substring(start, end)",
-    "substr(start, length)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد slice() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "slice() بخشی از رشته را استخراج می‌کند و آن بخش را در یک رشتهٔ جدید برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "این متد ۲ پارامتر می‌گیرد: موقعیت شروع و موقعیت پایان (خودِ اندیس پایان شمرده نمی‌شود)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(7, 13);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_slice"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "JavaScript شمارش موقعیت‌ها را از صفر شروع می‌کند.\nموقعیت اول 0 است.\nموقعیت دوم 1 است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(7);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(-12);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(-12, -6);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_slice_rest"
-  },
-  {
-   "type": "h2",
-   "text": "متد substring() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "substring() شبیه slice() است."
-  },
-  {
-   "type": "p",
-   "text": "تفاوتش این است که در substring() مقدارهای شروع و پایان کمتر از 0، صفر به حساب می‌آیند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substring(7, 13);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substring"
-  },
-  {
-   "type": "p",
-   "text": "اگر پارامتر دوم را ندهید، substring() بقیهٔ رشته را جدا می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "متد substr() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "substr() شبیه slice() است."
-  },
-  {
-   "type": "p",
-   "text": "تفاوتش این است که پارامتر دوم طول بخش استخراج‌شده را مشخص می‌کند."
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار\nمتد substr() در آخرین استاندارد JavaScript منسوخ شده است، ولی برای سازگاری با کدهای قدیمی هنوز رسماً در پیوست B مشخصات ECMAScript تعریف شده است.\nاکیداً توصیه می‌کنیم به‌جای آن از substring() یا slice() استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(7, 6);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr"
-  },
-  {
-   "type": "p",
-   "text": "اگر پارامتر دوم را ندهید، substr() بقیهٔ رشته را جدا می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(7);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr1"
-  },
-  {
-   "type": "p",
-   "text": "اگر پارامتر اول منفی باشد، موقعیت از انتهای رشته شمرده می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(-4);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr2"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل به حروف بزرگ و کوچک"
-  },
-  {
-   "type": "p",
-   "text": "رشته با toUpperCase() به حروف بزرگ تبدیل می‌شود:"
-  },
-  {
-   "type": "p",
-   "text": "رشته با toLowerCase() به حروف کوچک تبدیل می‌شود:"
-  },
-  {
-   "type": "h2",
-   "text": "متد toUpperCase() در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text1 = \"Hello World!\";\n\nlet text2 = text1.toUpperCase();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_toupper"
-  },
-  {
-   "type": "h2",
-   "text": "متد toLowerCase() در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text1 = \"Hello World!\";       // String\n\nlet text2 = text1.toLowerCase();  // text2 is text1\nconverted to lower",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_tolower"
-  },
-  {
-   "type": "h2",
-   "text": "متد isWellFormed() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد isWellFormed() اگر رشته شکل درستی داشته باشد مقدار true برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "در غیر این صورت false برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "رشته اگر شامل surrogateهای تنها باشد، شکل درستی ندارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world!\";\n\nlet result = text.isWellFormed();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.isWellFormed();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_iswellformed"
-  },
-  {
-   "type": "h2",
-   "text": "surrogateهای تنها"
-  },
-  {
-   "type": "p",
-   "text": "surrogate تنها یک code point از نوع surrogate در Unicode است که بخشی از یک جفت surrogate معتبر برای نمایش نویسه‌ها در رمزگذاری UTF-16 نیست."
-  },
-  {
-   "type": "h2",
-   "text": "متد toWellFormed() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد toWellFormed() رشته، رشتهٔ جدیدی برمی‌گرداند که در آن همهٔ «surrogateهای تنها» با نویسهٔ جانشین Unicode (U+FFFD) عوض شده‌اند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.toWellFormed();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_towellformed"
-  },
-  {
-   "type": "h2",
-   "text": "متد trim() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد trim() فاصله‌های سفید را از دو طرف رشته حذف می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text1 = \"      Hello World!      \";\n\nlet text2 = text1.trim();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trim"
-  },
-  {
-   "type": "h2",
-   "text": "متد trimStart() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2019 متد trimStart() را به JavaScript افزود."
-  },
-  {
-   "type": "p",
-   "text": "متد trimStart() مثل trim() کار می‌کند، ولی فاصله‌های سفید را فقط از ابتدای رشته حذف می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text1 = \"     Hello World!     \";\n\nlet text2 = text1.trimStart();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trimstart"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "trimStart() یک ویژگی ECMAScript 2019 است."
-  },
-  {
-   "type": "p",
-   "text": "ES2019 از ژانویه 2020 در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome66",
-     "Edge79",
-     "Firefox61",
-     "Safari12",
-     "Opera50"
-    ],
-    [
-     "آوریل 2018",
-     "ژانویه 2020",
-     "ژوئن 2018",
-     "سپتامبر 2018",
-     "مه 2018"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد trimEnd() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2019 متد trimEnd() را به JavaScript افزود."
-  },
-  {
-   "type": "p",
-   "text": "متد trimEnd() مثل trim() کار می‌کند، ولی فاصله‌های سفید را فقط از انتهای رشته حذف می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text1 = \"     Hello World!     \";\n\nlet text2 = text1.trimEnd();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trimend"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "trimEnd() یک ویژگی ECMAScript 2019 است."
-  },
-  {
-   "type": "p",
-   "text": "ES2019 از ژانویه 2020 در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome66",
-     "Edge79",
-     "Firefox61",
-     "Safari12",
-     "Opera50"
-    ],
-    [
-     "آوریل 2018",
-     "ژانویه 2020",
-     "ژوئن 2018",
-     "سپتامبر 2018",
-     "مه 2018"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پُر کردن رشته در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2017 دو متد تازهٔ رشته به JavaScript افزود: padStart() و padEnd()، برای پُر کردن ابتدا و انتهای رشته."
-  },
-  {
-   "type": "h2",
-   "text": "متد padStart() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد padStart() رشته را از ابتدا پُر می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "رشته را با رشتهٔ دیگری، چند بار، پُر می‌کند تا به طول مشخصی برسد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"5\";\n\nlet padded = text.padStart(4,\"0\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"5\";\n\nlet padded = text.padStart(4,\"x\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding1"
-  },
-  {
-   "type": "p",
-   "text": "متد padStart() یک متد رشته است."
-  },
-  {
-   "type": "p",
-   "text": "برای پُر کردن یک عدد، اول آن را به رشته تبدیل کنید."
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر را ببینید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let numb = 5;\n\nlet text = numb.toString();\n\nlet padded = text.padStart(4,\"0\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding3"
-  },
-  {
-   "type": "h2",
-   "text": "متد padEnd() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد padEnd() رشته را از انتها پُر می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "رشته را با رشتهٔ دیگری، چند بار، پُر می‌کند تا به طول مشخصی برسد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"5\";\n\nlet padded = text.padEnd(4,\"0\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"5\";\n\nlet padded = text.padEnd(4,\"x\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding2"
-  },
-  {
-   "type": "p",
-   "text": "متد padEnd() یک متد رشته است."
-  },
-  {
-   "type": "p",
-   "text": "برای پُر کردن یک عدد، اول آن را به رشته تبدیل کنید."
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر را ببینید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let numb = 5;\n\nlet text = numb.toString();\n\nlet padded = text.padEnd(4,\"0\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding5"
-  },
-  {
-   "type": "h2",
-   "text": "متد repeat() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد repeat() رشتهٔ جدیدی شامل چند نسخه از یک رشته برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد repeat() یک رشتهٔ جدید برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد repeat() رشتهٔ اصلی را تغییر نمی‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world!\";\n\nlet result = text.repeat(2);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world!\";\n\nlet result = text.repeat(4);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_repeat"
-  },
-  {
-   "type": "h2",
-   "text": "نحو"
-  },
-  {
-   "type": "p",
-   "text": "شکل استفاده: string.repeat(count)"
-  },
-  {
-   "type": "h2",
-   "text": "پارامترها"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "پارامتر",
-     "توضیح"
-    ],
-    [
-     "count",
-     "الزامی.\nتعداد نسخه‌های مورد نظر."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مقدار بازگشتی"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نوع",
-     "توضیح"
-    ],
-    [
-     "String",
-     "رشتهٔ جدیدی که شامل نسخه‌ها است."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "جانشین کردن محتوای رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد replace() مقدار مشخصی را در رشته با مقدار دیگری جانشین می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(\"Microsoft\", \"W3Schools\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace"
-  },
-  {
-   "type": "p",
-   "text": "متد replace() رشته‌ای که روی آن فراخوانی شده را تغییر نمی‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "متد replace() یک رشتهٔ جدید برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد replace() فقط اولین مطابقت را جانشین می‌کند"
-  },
-  {
-   "type": "p",
-   "text": "اگر می‌خواهید همهٔ مطابقت‌ها را جانشین کنید، از عبارتی باقاعده با پرچم /g استفاده کنید. مثال‌های زیر را ببینید."
-  },
-  {
-   "type": "p",
-   "text": "به طور پیش‌فرض، متد replace() فقط اولین مطابقت را جانشین می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please visit Microsoft and Microsoft!\";\n\nlet newText = text.replace(\"Microsoft\", \"W3Schools\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_first"
-  },
-  {
-   "type": "p",
-   "text": "به طور پیش‌فرض، متد replace() به بزرگی و کوچکی حروف حساس است؛ نوشتن MICROSOFT با حروف بزرگ نتیجه نمی‌دهد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(\"MICROSOFT\", \"W3Schools\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_case"
-  },
-  {
-   "type": "p",
-   "text": "برای جانشینی بدون حساسیت به بزرگی و کوچکی حروف، از عبارتی باقاعده با پرچم /i استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(/MICROSOFT/i, \"W3Schools\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_insensitive"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "عبارت‌های باقاعده بدون کوتیشن نوشته می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "برای جانشینی همهٔ مطابقت‌ها، از عبارتی باقاعده با پرچم /g به معنای مطابقت سراسری استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please visit Microsoft and Microsoft!\";\n\nlet newText = text.replace(/Microsoft/g, \"W3Schools\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_global"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "دربارهٔ عبارت‌های باقاعده در فصل JavaScript Regular Expressions چیزهای بیشتری یاد می‌گیرید."
-  },
-  {
-   "type": "h2",
-   "text": "متد replaceAll() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "در سال 2021، JavaScript متد replaceAll() را معرفی کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "text = text.replaceAll(\"Cats\",\"Dogs\");\n\ntext = text.replaceAll(\"cats\",\"dogs\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replaceall"
-  },
-  {
-   "type": "p",
-   "text": "متد replaceAll() اجازه می‌دهد به‌جای رشته‌ای که باید جانشین شود، عبارتی باقاعده مشخص کنید."
-  },
-  {
-   "type": "p",
-   "text": "اگر پارامتر یک عبارت باقاعده باشد، پرچم سراسری (g) باید فعال باشد، وگرنه خطای TypeError پرتاب می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "text = text.replaceAll(/Cats/g,\"Dogs\");\n\ntext = text.replaceAll(/cats/g,\"dogs\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replaceall2"
-  },
-  {
-   "type": "p",
-   "text": "replaceAll() یک ویژگی ES2021 است."
-  },
-  {
-   "type": "p",
-   "text": "replaceAll() در Internet Explorer کار نمی‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل رشته به آرایه"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "اگر می‌خواهید با یک رشته مثل آرایه کار کنید، می‌توانید آن را به آرایه تبدیل کنید."
-  },
-  {
-   "type": "h2",
-   "text": "متد split() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "با متد split() می‌توان رشته را به آرایه تبدیل کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "text.split(\"\")     // Split on characters\n\ntext.split(\",\")    // Split on commas\n\ntext.split(\" \")    // Split on spaces\n\ntext.split(\"|\")    // Split on pipe",
-   "caption": "نحو"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hi fox!\";\n\nconst myArr = text.split(\"\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"The quick brown fox.\";\n\nconst myArr = text.split(\" \");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"The quick brown fox.\";\n\nconst myArr = text.split();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_split_characters"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از split(\"\") می‌تواند ناایمن باشد"
-  },
-  {
-   "type": "p",
-   "text": "استفاده از split(\"\") برای رشته‌هایی که ایموجی یا نویسه‌های پیچیده دارند ناایمن است."
-  },
-  {
-   "type": "p",
-   "text": "این متد بر اساس واحدهای کد UTF-16 تقسیم می‌کند و جفت‌های surrogate را می‌شکند."
-  },
-  {
-   "type": "p",
-   "text": "split(\"\") برای ایموجی‌ها همیشه ناایمن است؛ از میانشان می‌برد و قطعه‌های کد شکسته و خراب می‌سازد."
-  },
-  {
-   "type": "p",
-   "text": "split(\" \") برای کلمه‌ها معمولاً ایمن است، حتی اگر ایموجی داخلشان باشد، تا وقتی ایموجی چسبیده به همان فاصله‌ای نباشد که رویش تقسیم می‌کنید."
-  },
-  {
-   "type": "h3",
-   "text": "خلاصهٔ گزینه‌ها:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "text.split(\"\") ناایمن‌ترین گزینه است\nایموجی‌های ۴ بایتی را می‌شکند (مثلاً 💩 به ['\\uD83D', '\\uDCA9'] تبدیل می‌شود).",
-    "عملگر Spread یعنی [...text] تا حدی ایمن است:\nبرای ایموجی‌های ساده مثل 💩 یا 🔥 کار می‌کند، ولی ایموجی‌های پیچیده مثل 👨‍👩‍👧‍👦، 🧑‍⚕️ (پزشک) یا پرچم‌ها را خراب می‌کند.",
-    "Intl.Segmenter صد در صد ایمن است:\nهمهٔ ایموجی‌ها، علامت‌های روی حروف و نویسه‌های پیچیده را درست مدیریت می‌کند."
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"👨‍👩‍👧‍👦\";\n\nconst myArr = text.split(\"\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"👨‍👩‍👧‍👦\";\n\nconst segmenter = new Intl.Segmenter(\"en\", {granularity:\"grapheme\"});\n\nconst myArr = Array.from(segmenter.segment(text)).map(s => s.segment);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_split_unsafe"
-  },
-  {
-   "type": "h2",
-   "text": "مرجع کامل JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، با توضیح کامل و مثال‌های فراوان، به اینجا سر بزنید:"
-  },
-  {
-   "type": "p",
-   "text": "مرجع کامل JavaScript در W3Schools."
-  },
-  {
-   "type": "p",
-   "text": "این مرجع شامل همهٔ به‌روزرسانی‌های JavaScript از 1999 تا 2025 است."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل string_methods.html بسازید و روی رشتهٔ let text = \"Hello World\"; طول، charAt(0)، toUpperCase() و slice(0, 5) را چاپ کنید.",
-   "hint": "به یاد داشته باشید JavaScript موقعیت‌ها را از صفر می‌شمارد."
-  },
-  {
-   "prompt": "متد charAt() را با اندیس منفی آزمایش کنید و ببینید چه برمی‌گرداند؛ بعد همان کار را با at() انجام دهید و تفاوت را توضیح دهید.",
-   "hint": "at() اندیس منفی را می‌پذیرد و از انتهای رشته می‌شمارد، ولی charAt() رشتهٔ خالی می‌دهد."
-  },
-  {
-   "prompt": "روی رشته‌ای با فاصله‌های اضافه در دو سر، trim() و trimStart() و trimEnd() را امتحان کنید و خروجی هر سه را با هم مقایسه کنید.",
-   "hint": "trim() هر دو سر را پاک می‌کند، trimStart() فقط ابتدا و trimEnd() فقط انتها را."
-  },
-  {
-   "prompt": "با replace() یک کلمه را جانشین کنید و بعد یک بار همان کلمه را با پرچم /g و یک بار با پرچم /i جایگزین کنید؛ نتیجه‌ها را در کنسول ببینید.",
-   "hint": "پرچم g همهٔ مطابقت‌ها را می‌گیرد و پرچم i حساسیت به بزرگی و کوچکی حروف را برمی‌دارد."
-  },
-  {
-   "prompt": "یک رشتهٔ چندکلمه‌ای را با split(\" \") به آرایه تبدیل کنید و تعداد اعضای آرایه را چاپ کنید.",
-   "hint": "split() رشته را بر اساس جداکننده به آرایه می‌شکند."
-  }
- ],
- "quiz": [
-  {
-   "question": "متد charAt(2) چه چیزی از رشته برمی‌گرداند؟",
-   "options": [
-    "نویسهٔ سوم رشته",
-    "نویسهٔ دوم رشته",
-    "کد عددی نویسهٔ سوم",
-    "طول رشته"
-   ],
-   "answer": 0,
-   "explanation": "شمارش از صفر شروع می‌شود، پس اندیس 2 نویسهٔ سوم است. کد عددی کار charCodeAt() است."
-  },
-  {
-   "question": "تفاوت at() با charAt() چیست؟",
-   "options": [
-    "at() سریع‌تر است",
-    "at() اندیس منفی را می‌پذیرد",
-    "charAt() فقط با اعداد کار می‌کند",
-    "هیچ تفاوتی ندارند"
-   ],
-   "answer": 1,
-   "explanation": "at() اندیس منفی را می‌پذیرد و از انتهای رشته می‌شمارد، ولی charAt() با اندیس نامعتبر رشتهٔ خالی برمی‌گرداند."
-  },
-  {
-   "question": "کدام متد فقط ابتدای رشته را از فاصله‌های سفید پاک می‌کند؟",
-   "options": [
-    "trim()",
-    "trimEnd()",
-    "trimStart()",
-    "padStart()"
-   ],
-   "answer": 2,
-   "explanation": "trimStart() فقط ابتدا را پاک می‌کند و trimEnd() فقط انتها را؛ trim() هر دو سر را. padStart() هم برای افزودن نویسهٔ پرکننده است، نه حذف فاصله."
-  },
-  {
-   "question": "متد replace() به طور پیش‌فرض چه چیزی را جانشین می‌کند و به چه چیزی حساس است؟",
-   "options": [
-    "همهٔ مطابقت‌ها، بدون حساسیت به حروف",
-    "فقط اولین مطابقت، با حساسیت به بزرگی و کوچکی حروف",
-    "فقط آخرین مطابقت، بدون حساسیت به حروف",
-    "هیچ چیزی را جانشین نمی‌کند"
-   ],
-   "answer": 1,
-   "explanation": "replace() به طور پیش‌فرض فقط اولین مطابقت را و با حساسیت به بزرگی و کوچکی حروف جانشین می‌کند؛ برای همهٔ مطابقت‌ها باید پرچم g بگذارید."
-  },
-  {
-   "question": "متد split(\"\") چه خطری برای رشته‌های دارای ایموجی دارد؟",
-   "options": [
-    "خطای نحو می‌دهد",
-    "بر اساس واحدهای کد UTF-16 می‌شکند و جفت‌های surrogate را خراب می‌کند",
-    "ایموجی‌ها را حذف می‌کند",
-    "سرعت را پایین می‌آورد"
-   ],
-   "answer": 1,
-   "explanation": "split(\"\") رشته را به واحدهای کد UTF-16 می‌شکند، پس ایموجی‌های ۴ بایتی به قطعه‌های خراب تقسیم می‌شوند. برای ایمنی کامل از Intl.Segmenter استفاده کنید."
-  }
- ]
+  "slug": "js_string_methods",
+  "course": "js",
+  "order": 29,
+  "url": "/js/js_string_methods.asp",
+  "title": "متدهای رشته در JavaScript",
+  "summary": "متدهای رشته روی متن کار می‌کنند و همیشه رشتهٔ جدیدی می‌سازند، بدون اینکه رشتهٔ اصلی را عوض کنند. در این درس طول رشته، استخراج نویسه و بخش‌های رشته، تغییر بزرگی و کوچکی حروف، حذف فاصله‌های اضافه، پُر کردن، جانشینی و تبدیل رشته به آرایه را یاد می‌گیرید.",
+  "objectives": [
+    "نویسه و بخش‌های یک رشته را با متدهای مناسب استخراج کنید",
+    "با trim و trimStart و trimEnd فاصله‌های اضافه را پاک کنید",
+    "با replace و replaceAll محتوای رشته را جانشین کنید",
+    "رشته را با split به آرایه تبدیل کنید و خطر آن را تشخیص دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "متدهای رشته در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای پایهٔ رشته"
+    },
+    {
+      "type": "p",
+      "text": "رشته‌های JavaScript اولیه و تغییرناپذیر (immutable) هستند: همهٔ متدهای رشته یک رشتهٔ جدید می‌سازند و رشتهٔ اصلی را عوض نمی‌کنند."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        [
+          "String length\nString charAt()\nString charCodeAt()\nString codePointAt()\nString concat()\nString at()\nString [ ]\nString slice()\nString substring()\nString substr()\nString toUpperCase()\nString toLowerCase()",
+          "String isWellFormed()\nString toWellFormed()\nString trim()\nString trimStart()\nString trimEnd()\nString padStart()\nString padEnd()\nString repeat()\nString replace()\nString replaceAll()\nString split()"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "همچنین ببینید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش رشته"
+    },
+    {
+      "type": "p",
+      "text": "جست‌وجوی رشته"
+    },
+    {
+      "type": "p",
+      "text": "قالب‌های رشته"
+    },
+    {
+      "type": "p",
+      "text": "مرجع رشته"
+    },
+    {
+      "type": "h2",
+      "text": "طول رشته در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت length طول یک رشته را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n\nlet length = text.length;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_length"
+    },
+    {
+      "type": "h2",
+      "text": "استخراج نویسه‌های رشته"
+    },
+    {
+      "type": "p",
+      "text": "۴ متد برای استخراج نویسه‌های رشته وجود دارد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "متد at(position)",
+        "متد charAt(position)",
+        "متد charCodeAt(position)",
+        "دسترسی به خصوصیت با [] مثل آرایه‌ها"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد charAt() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد charAt() نویسهٔ موجود در اندیس (موقعیت) مشخصی از رشته را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"HELLO WORLD\";\n\nlet char = text.charAt(0);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_charat"
+    },
+    {
+      "type": "h2",
+      "text": "متد charCodeAt() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد charCodeAt() کد نویسهٔ موجود در اندیس مشخصی از رشته را برمی‌گرداند:"
+    },
+    {
+      "type": "p",
+      "text": "این متد یک کد UTF-16 برمی‌گرداند (عددی صحیح بین 0 و 65535)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"HELLO WORLD\";\n\nlet char = text.charCodeAt(0);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_charcodeat"
+    },
+    {
+      "type": "h2",
+      "text": "متد codePointAt() در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"HELLO WORLD\";\n\nlet code = text.codePointAt(0);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_codepointat"
+    },
+    {
+      "type": "h2",
+      "text": "متد at() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ES2022 متد رشتهٔ at() را معرفی کرد:"
+    },
+    {
+      "type": "p",
+      "text": "متد at() نویسهٔ موجود در اندیس (موقعیت) مشخصی از رشته را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد at() از مارس 2022 در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"W3Schools\";\n\nlet letter = name.at(2);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"W3Schools\";\n\nlet letter = name[2];",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_at"
+    },
+    {
+      "type": "p",
+      "text": "متد at() افزودهٔ تازه‌ای به JavaScript است."
+    },
+    {
+      "type": "p",
+      "text": "این متد اجازه می‌دهد از اندیس منفی استفاده کنید، در حالی که charAt() چنین اجازه‌ای نمی‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"W3Schools\";\n\nlet letter = name.at(-5);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"W3Schools\";\n\nlet letter = charAt(myString.length-5);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_at_3"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "at() یک ویژگی ECMAScript 2022 است."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript 2022 از مارس 2022 در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome92", "Edge92", "Firefox90", "Safari15.4", "Opera78"],
+        ["آوریل 2021", "ژوئیه 2021", "ژوئیه 2021", "مارس 2022", "اوت 2021"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "دسترسی به خصوصیت با [ ]"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"HELLO WORLD\";\n\nlet char = text[0];",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "دسترسی به خصوصیت ممکن است کمی غیرقابل پیش‌بینی باشد:\n\n  رشته را شبیه آرایه نشان می‌دهد (ولی رشته آرایه نیست)\n  اگر نویسه‌ای پیدا نشود، [ ] مقدار undefined برمی‌گرداند، در حالی که charAt() رشتهٔ خالی می‌دهد.\n  دسترسی به خصوصیت فقط خواندنی است، ولی str[0] = \"A\" در «حالت sloppy» خطا نمی‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"HELLO WORLD\";\n\n// Try to change the first letter to \"A\"\n\ntry {\n\n  text[0] = \"A\";\n\n} catch(err) {\n\n  text = err.message\n\n}",
+      "caption": "مثال (حالت sloppy)"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop2"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"using strict\";\n\nlet text = \"HELLO WORLD\";\n\n// Try to change the first letter to \"A\"\n\ntry {\n\n text[0] = \"A\";\n\n} catch(err) {\n\n text = err.message\n\n}",
+      "caption": "مثال (حالت strict)"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_prop_error"
+    },
+    {
+      "type": "h2",
+      "text": "متد concat() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "concat() دو یا چند رشته را به هم می‌چسباند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text1 = \"Hello\";\n\nlet text2 = \"World\";\n\nlet text3 = text1.concat(\" \", text2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_concat"
+    },
+    {
+      "type": "p",
+      "text": "می‌توان از متد concat() به‌جای عملگر + استفاده کرد. این دو خط یک کار انجام می‌دهند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "text = \"Hello\" + \" \" + \"World!\";\n\ntext = \"Hello\".concat(\" \", \"World!\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "همهٔ متدهای رشته یک رشتهٔ جدید برمی‌گردانند و رشتهٔ اصلی را تغییر نمی‌دهند.\nبه بیان دقیق: رشته‌ها تغییرناپذیرند؛ رشته را نمی‌توان عوض کرد، فقط می‌توان رشتهٔ تازه‌ای ساخت."
+    },
+    {
+      "type": "h2",
+      "text": "استخراج بخش‌هایی از رشته"
+    },
+    {
+      "type": "p",
+      "text": "۳ متد برای استخراج بخشی از رشته وجود دارد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["slice(start, end)", "substring(start, end)", "substr(start, length)"]
+    },
+    {
+      "type": "h2",
+      "text": "متد slice() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "slice() بخشی از رشته را استخراج می‌کند و آن بخش را در یک رشتهٔ جدید برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "این متد ۲ پارامتر می‌گیرد: موقعیت شروع و موقعیت پایان (خودِ اندیس پایان شمرده نمی‌شود)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(7, 13);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_slice"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "JavaScript شمارش موقعیت‌ها را از صفر شروع می‌کند.\nموقعیت اول 0 است.\nموقعیت دوم 1 است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(7);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(-12);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Apple, Banana, Kiwi\";\n\nlet part = text.slice(-12, -6);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_slice_rest"
+    },
+    {
+      "type": "h2",
+      "text": "متد substring() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "substring() شبیه slice() است."
+    },
+    {
+      "type": "p",
+      "text": "تفاوتش این است که در substring() مقدارهای شروع و پایان کمتر از 0، صفر به حساب می‌آیند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substring(7, 13);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substring"
+    },
+    {
+      "type": "p",
+      "text": "اگر پارامتر دوم را ندهید، substring() بقیهٔ رشته را جدا می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "متد substr() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "substr() شبیه slice() است."
+    },
+    {
+      "type": "p",
+      "text": "تفاوتش این است که پارامتر دوم طول بخش استخراج‌شده را مشخص می‌کند."
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار\nمتد substr() در آخرین استاندارد JavaScript منسوخ شده است، ولی برای سازگاری با کدهای قدیمی هنوز رسماً در پیوست B مشخصات ECMAScript تعریف شده است.\nاکیداً توصیه می‌کنیم به‌جای آن از substring() یا slice() استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(7, 6);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr"
+    },
+    {
+      "type": "p",
+      "text": "اگر پارامتر دوم را ندهید، substr() بقیهٔ رشته را جدا می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(7);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr1"
+    },
+    {
+      "type": "p",
+      "text": "اگر پارامتر اول منفی باشد، موقعیت از انتهای رشته شمرده می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let str = \"Apple, Banana, Kiwi\";\n\nlet part = str.substr(-4);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_substr2"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل به حروف بزرگ و کوچک"
+    },
+    {
+      "type": "p",
+      "text": "رشته با toUpperCase() به حروف بزرگ تبدیل می‌شود:"
+    },
+    {
+      "type": "p",
+      "text": "رشته با toLowerCase() به حروف کوچک تبدیل می‌شود:"
+    },
+    {
+      "type": "h2",
+      "text": "متد toUpperCase() در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text1 = \"Hello World!\";\n\nlet text2 = text1.toUpperCase();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_toupper"
+    },
+    {
+      "type": "h2",
+      "text": "متد toLowerCase() در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text1 = \"Hello World!\";       // String\n\nlet text2 = text1.toLowerCase();  // text2 is text1\nconverted to lower",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_tolower"
+    },
+    {
+      "type": "h2",
+      "text": "متد isWellFormed() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد isWellFormed() اگر رشته شکل درستی داشته باشد مقدار true برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "در غیر این صورت false برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "رشته اگر شامل surrogateهای تنها باشد، شکل درستی ندارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world!\";\n\nlet result = text.isWellFormed();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.isWellFormed();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_iswellformed"
+    },
+    {
+      "type": "h2",
+      "text": "surrogateهای تنها"
+    },
+    {
+      "type": "p",
+      "text": "surrogate تنها یک code point از نوع surrogate در Unicode است که بخشی از یک جفت surrogate معتبر برای نمایش نویسه‌ها در رمزگذاری UTF-16 نیست."
+    },
+    {
+      "type": "h2",
+      "text": "متد toWellFormed() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد toWellFormed() رشته، رشتهٔ جدیدی برمی‌گرداند که در آن همهٔ «surrogateهای تنها» با نویسهٔ جانشین Unicode (U+FFFD) عوض شده‌اند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello World \\uD800\";\n\nlet result = text.toWellFormed();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_towellformed"
+    },
+    {
+      "type": "h2",
+      "text": "متد trim() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد trim() فاصله‌های سفید را از دو طرف رشته حذف می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text1 = \"      Hello World!      \";\n\nlet text2 = text1.trim();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trim"
+    },
+    {
+      "type": "h2",
+      "text": "متد trimStart() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2019 متد trimStart() را به JavaScript افزود."
+    },
+    {
+      "type": "p",
+      "text": "متد trimStart() مثل trim() کار می‌کند، ولی فاصله‌های سفید را فقط از ابتدای رشته حذف می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text1 = \"     Hello World!     \";\n\nlet text2 = text1.trimStart();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trimstart"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "trimStart() یک ویژگی ECMAScript 2019 است."
+    },
+    {
+      "type": "p",
+      "text": "ES2019 از ژانویه 2020 در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome66", "Edge79", "Firefox61", "Safari12", "Opera50"],
+        ["آوریل 2018", "ژانویه 2020", "ژوئن 2018", "سپتامبر 2018", "مه 2018"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد trimEnd() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2019 متد trimEnd() را به JavaScript افزود."
+    },
+    {
+      "type": "p",
+      "text": "متد trimEnd() مثل trim() کار می‌کند، ولی فاصله‌های سفید را فقط از انتهای رشته حذف می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text1 = \"     Hello World!     \";\n\nlet text2 = text1.trimEnd();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_trimend"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "trimEnd() یک ویژگی ECMAScript 2019 است."
+    },
+    {
+      "type": "p",
+      "text": "ES2019 از ژانویه 2020 در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome66", "Edge79", "Firefox61", "Safari12", "Opera50"],
+        ["آوریل 2018", "ژانویه 2020", "ژوئن 2018", "سپتامبر 2018", "مه 2018"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پُر کردن رشته در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2017 دو متد تازهٔ رشته به JavaScript افزود: padStart() و padEnd()، برای پُر کردن ابتدا و انتهای رشته."
+    },
+    {
+      "type": "h2",
+      "text": "متد padStart() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد padStart() رشته را از ابتدا پُر می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "رشته را با رشتهٔ دیگری، چند بار، پُر می‌کند تا به طول مشخصی برسد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"5\";\n\nlet padded = text.padStart(4,\"0\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"5\";\n\nlet padded = text.padStart(4,\"x\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding1"
+    },
+    {
+      "type": "p",
+      "text": "متد padStart() یک متد رشته است."
+    },
+    {
+      "type": "p",
+      "text": "برای پُر کردن یک عدد، اول آن را به رشته تبدیل کنید."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر را ببینید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let numb = 5;\n\nlet text = numb.toString();\n\nlet padded = text.padStart(4,\"0\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding3"
+    },
+    {
+      "type": "h2",
+      "text": "متد padEnd() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد padEnd() رشته را از انتها پُر می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "رشته را با رشتهٔ دیگری، چند بار، پُر می‌کند تا به طول مشخصی برسد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"5\";\n\nlet padded = text.padEnd(4,\"0\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"5\";\n\nlet padded = text.padEnd(4,\"x\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding2"
+    },
+    {
+      "type": "p",
+      "text": "متد padEnd() یک متد رشته است."
+    },
+    {
+      "type": "p",
+      "text": "برای پُر کردن یک عدد، اول آن را به رشته تبدیل کنید."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر را ببینید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let numb = 5;\n\nlet text = numb.toString();\n\nlet padded = text.padEnd(4,\"0\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding5"
+    },
+    {
+      "type": "h2",
+      "text": "متد repeat() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد repeat() رشتهٔ جدیدی شامل چند نسخه از یک رشته برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد repeat() یک رشتهٔ جدید برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد repeat() رشتهٔ اصلی را تغییر نمی‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world!\";\n\nlet result = text.repeat(2);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world!\";\n\nlet result = text.repeat(4);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_repeat"
+    },
+    {
+      "type": "h2",
+      "text": "نحو"
+    },
+    {
+      "type": "p",
+      "text": "شکل استفاده: string.repeat(count)"
+    },
+    {
+      "type": "h2",
+      "text": "پارامترها"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["پارامتر", "توضیح"],
+        ["count", "الزامی.\nتعداد نسخه‌های مورد نظر."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مقدار بازگشتی"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نوع", "توضیح"],
+        ["String", "رشتهٔ جدیدی که شامل نسخه‌ها است."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "جانشین کردن محتوای رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد replace() مقدار مشخصی را در رشته با مقدار دیگری جانشین می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(\"Microsoft\", \"W3Schools\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace"
+    },
+    {
+      "type": "p",
+      "text": "متد replace() رشته‌ای که روی آن فراخوانی شده را تغییر نمی‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "متد replace() یک رشتهٔ جدید برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد replace() فقط اولین مطابقت را جانشین می‌کند"
+    },
+    {
+      "type": "p",
+      "text": "اگر می‌خواهید همهٔ مطابقت‌ها را جانشین کنید، از عبارتی باقاعده با پرچم /g استفاده کنید. مثال‌های زیر را ببینید."
+    },
+    {
+      "type": "p",
+      "text": "به طور پیش‌فرض، متد replace() فقط اولین مطابقت را جانشین می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please visit Microsoft and Microsoft!\";\n\nlet newText = text.replace(\"Microsoft\", \"W3Schools\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_first"
+    },
+    {
+      "type": "p",
+      "text": "به طور پیش‌فرض، متد replace() به بزرگی و کوچکی حروف حساس است؛ نوشتن MICROSOFT با حروف بزرگ نتیجه نمی‌دهد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(\"MICROSOFT\", \"W3Schools\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_case"
+    },
+    {
+      "type": "p",
+      "text": "برای جانشینی بدون حساسیت به بزرگی و کوچکی حروف، از عبارتی باقاعده با پرچم /i استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please visit Microsoft!\";\n\nlet newText = text.replace(/MICROSOFT/i, \"W3Schools\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_insensitive"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "عبارت‌های باقاعده بدون کوتیشن نوشته می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "برای جانشینی همهٔ مطابقت‌ها، از عبارتی باقاعده با پرچم /g به معنای مطابقت سراسری استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please visit Microsoft and Microsoft!\";\n\nlet newText = text.replace(/Microsoft/g, \"W3Schools\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replace_global"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "دربارهٔ عبارت‌های باقاعده در فصل JavaScript Regular Expressions چیزهای بیشتری یاد می‌گیرید."
+    },
+    {
+      "type": "h2",
+      "text": "متد replaceAll() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "در سال 2021، JavaScript متد replaceAll() را معرفی کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "text = text.replaceAll(\"Cats\",\"Dogs\");\n\ntext = text.replaceAll(\"cats\",\"dogs\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replaceall"
+    },
+    {
+      "type": "p",
+      "text": "متد replaceAll() اجازه می‌دهد به‌جای رشته‌ای که باید جانشین شود، عبارتی باقاعده مشخص کنید."
+    },
+    {
+      "type": "p",
+      "text": "اگر پارامتر یک عبارت باقاعده باشد، پرچم سراسری (g) باید فعال باشد، وگرنه خطای TypeError پرتاب می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "text = text.replaceAll(/Cats/g,\"Dogs\");\n\ntext = text.replaceAll(/cats/g,\"dogs\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_replaceall2"
+    },
+    {
+      "type": "p",
+      "text": "replaceAll() یک ویژگی ES2021 است."
+    },
+    {
+      "type": "p",
+      "text": "replaceAll() در Internet Explorer کار نمی‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل رشته به آرایه"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "اگر می‌خواهید با یک رشته مثل آرایه کار کنید، می‌توانید آن را به آرایه تبدیل کنید."
+    },
+    {
+      "type": "h2",
+      "text": "متد split() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "با متد split() می‌توان رشته را به آرایه تبدیل کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "text.split(\"\")     // Split on characters\n\ntext.split(\",\")    // Split on commas\n\ntext.split(\" \")    // Split on spaces\n\ntext.split(\"|\")    // Split on pipe",
+      "caption": "نحو"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hi fox!\";\n\nconst myArr = text.split(\"\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"The quick brown fox.\";\n\nconst myArr = text.split(\" \");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"The quick brown fox.\";\n\nconst myArr = text.split();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_split_characters"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از split(\"\") می‌تواند ناایمن باشد"
+    },
+    {
+      "type": "p",
+      "text": "استفاده از split(\"\") برای رشته‌هایی که ایموجی یا نویسه‌های پیچیده دارند ناایمن است."
+    },
+    {
+      "type": "p",
+      "text": "این متد بر اساس واحدهای کد UTF-16 تقسیم می‌کند و جفت‌های surrogate را می‌شکند."
+    },
+    {
+      "type": "p",
+      "text": "split(\"\") برای ایموجی‌ها همیشه ناایمن است؛ از میانشان می‌برد و قطعه‌های کد شکسته و خراب می‌سازد."
+    },
+    {
+      "type": "p",
+      "text": "split(\" \") برای کلمه‌ها معمولاً ایمن است، حتی اگر ایموجی داخلشان باشد، تا وقتی ایموجی چسبیده به همان فاصله‌ای نباشد که رویش تقسیم می‌کنید."
+    },
+    {
+      "type": "h3",
+      "text": "خلاصهٔ گزینه‌ها:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "text.split(\"\") ناایمن‌ترین گزینه است\nایموجی‌های ۴ بایتی را می‌شکند (مثلاً 💩 به ['\\uD83D', '\\uDCA9'] تبدیل می‌شود).",
+        "عملگر Spread یعنی [...text] تا حدی ایمن است:\nبرای ایموجی‌های ساده مثل 💩 یا 🔥 کار می‌کند، ولی ایموجی‌های پیچیده مثل 👨‍👩‍👧‍👦، 🧑‍⚕️ (پزشک) یا پرچم‌ها را خراب می‌کند.",
+        "Intl.Segmenter صد در صد ایمن است:\nهمهٔ ایموجی‌ها، علامت‌های روی حروف و نویسه‌های پیچیده را درست مدیریت می‌کند."
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"👨‍👩‍👧‍👦\";\n\nconst myArr = text.split(\"\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"👨‍👩‍👧‍👦\";\n\nconst segmenter = new Intl.Segmenter(\"en\", {granularity:\"grapheme\"});\n\nconst myArr = Array.from(segmenter.segment(text)).map(s => s.segment);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_split_unsafe"
+    },
+    {
+      "type": "h2",
+      "text": "مرجع کامل JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، با توضیح کامل و مثال‌های فراوان، به اینجا سر بزنید:"
+    },
+    {
+      "type": "p",
+      "text": "مرجع کامل JavaScript در W3Schools."
+    },
+    {
+      "type": "p",
+      "text": "این مرجع شامل همهٔ به‌روزرسانی‌های JavaScript از 1999 تا 2025 است."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل string_methods.html بسازید و روی رشتهٔ let text = \"Hello World\"; طول، charAt(0)، toUpperCase() و slice(0, 5) را چاپ کنید.",
+      "hint": "به یاد داشته باشید JavaScript موقعیت‌ها را از صفر می‌شمارد."
+    },
+    {
+      "prompt": "متد charAt() را با اندیس منفی آزمایش کنید و ببینید چه برمی‌گرداند؛ بعد همان کار را با at() انجام دهید و تفاوت را توضیح دهید.",
+      "hint": "at() اندیس منفی را می‌پذیرد و از انتهای رشته می‌شمارد، ولی charAt() رشتهٔ خالی می‌دهد."
+    },
+    {
+      "prompt": "روی رشته‌ای با فاصله‌های اضافه در دو سر، trim() و trimStart() و trimEnd() را امتحان کنید و خروجی هر سه را با هم مقایسه کنید.",
+      "hint": "trim() هر دو سر را پاک می‌کند، trimStart() فقط ابتدا و trimEnd() فقط انتها را."
+    },
+    {
+      "prompt": "با replace() یک کلمه را جانشین کنید و بعد یک بار همان کلمه را با پرچم /g و یک بار با پرچم /i جایگزین کنید؛ نتیجه‌ها را در کنسول ببینید.",
+      "hint": "پرچم g همهٔ مطابقت‌ها را می‌گیرد و پرچم i حساسیت به بزرگی و کوچکی حروف را برمی‌دارد."
+    },
+    {
+      "prompt": "یک رشتهٔ چندکلمه‌ای را با split(\" \") به آرایه تبدیل کنید و تعداد اعضای آرایه را چاپ کنید.",
+      "hint": "split() رشته را بر اساس جداکننده به آرایه می‌شکند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "متد charAt(2) چه چیزی از رشته برمی‌گرداند؟",
+      "options": ["نویسهٔ سوم رشته", "نویسهٔ دوم رشته", "کد عددی نویسهٔ سوم", "طول رشته"],
+      "answer": 0,
+      "explanation": "شمارش از صفر شروع می‌شود، پس اندیس 2 نویسهٔ سوم است. کد عددی کار charCodeAt() است."
+    },
+    {
+      "question": "تفاوت at() با charAt() چیست؟",
+      "options": [
+        "at() سریع‌تر است",
+        "at() اندیس منفی را می‌پذیرد",
+        "charAt() فقط با اعداد کار می‌کند",
+        "هیچ تفاوتی ندارند"
+      ],
+      "answer": 1,
+      "explanation": "at() اندیس منفی را می‌پذیرد و از انتهای رشته می‌شمارد، ولی charAt() با اندیس نامعتبر رشتهٔ خالی برمی‌گرداند."
+    },
+    {
+      "question": "کدام متد فقط ابتدای رشته را از فاصله‌های سفید پاک می‌کند؟",
+      "options": ["trim()", "trimEnd()", "trimStart()", "padStart()"],
+      "answer": 2,
+      "explanation": "trimStart() فقط ابتدا را پاک می‌کند و trimEnd() فقط انتها را؛ trim() هر دو سر را. padStart() هم برای افزودن نویسهٔ پرکننده است، نه حذف فاصله."
+    },
+    {
+      "question": "متد replace() به طور پیش‌فرض چه چیزی را جانشین می‌کند و به چه چیزی حساس است؟",
+      "options": [
+        "همهٔ مطابقت‌ها، بدون حساسیت به حروف",
+        "فقط اولین مطابقت، با حساسیت به بزرگی و کوچکی حروف",
+        "فقط آخرین مطابقت، بدون حساسیت به حروف",
+        "هیچ چیزی را جانشین نمی‌کند"
+      ],
+      "answer": 1,
+      "explanation": "replace() به طور پیش‌فرض فقط اولین مطابقت را و با حساسیت به بزرگی و کوچکی حروف جانشین می‌کند؛ برای همهٔ مطابقت‌ها باید پرچم g بگذارید."
+    },
+    {
+      "question": "متد split(\"\") چه خطری برای رشته‌های دارای ایموجی دارد؟",
+      "options": [
+        "خطای نحو می‌دهد",
+        "بر اساس واحدهای کد UTF-16 می‌شکند و جفت‌های surrogate را خراب می‌کند",
+        "ایموجی‌ها را حذف می‌کند",
+        "سرعت را پایین می‌آورد"
+      ],
+      "answer": 1,
+      "explanation": "split(\"\") رشته را به واحدهای کد UTF-16 می‌شکند، پس ایموجی‌های ۴ بایتی به قطعه‌های خراب تقسیم می‌شوند. برای ایمنی کامل از Intl.Segmenter استفاده کنید."
+    }
+  ]
 }

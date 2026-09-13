@@ -1,211 +1,195 @@
 {
- "slug": "html5_draganddrop",
- "course": "html",
- "order": 72,
- "url": "/html/html5_draganddrop.asp",
- "title": "HTML Drag and Drop API",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "HTML Drag and Drop API"
-  },
-  {
-   "type": "p",
-   "text": "The HTML Drag and Drop API enables an element to be dragged and dropped."
-  },
-  {
-   "type": "h2",
-   "text": "Example"
-  },
-  {
-   "type": "p",
-   "text": "Drag the W3Schools image into the second rectangle."
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_w3slogo.gif",
-   "alt": ""
-  },
-  {
-   "type": "h2",
-   "text": "Drag and Drop"
-  },
-  {
-   "type": "p",
-   "text": "Drag and drop is a very common feature. It is when you \"grab\" an object and drag it to a different location."
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "The numbers in the table specify the first browser version that fully supports Drag and Drop."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "API",
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Drag and Drop",
-     "4.0",
-     "9.0",
-     "3.5",
-     "6.0",
-     "12.0"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "HTML Drag and Drop API Example"
-  },
-  {
-   "type": "p",
-   "text": "The example below is a simple drag and drop example:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE HTML>\n\n <html>\n\n <head>\n\n  <script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n\n  ev.preventDefault();\n}\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n\n  const data = ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<img id=\"img1\" src=\"img_logo.gif\"\n  draggable=\"true\" ondragstart=\"dragstartHandler(event)\" width=\"336\"\n  height=\"69\">\n\n </body>\n\n </html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop"
-  },
-  {
-   "type": "p",
-   "text": "It might seem complicated, but lets go through all the different parts of a drag and drop event."
-  },
-  {
-   "type": "h2",
-   "text": "Make an Element Draggable"
-  },
-  {
-   "type": "p",
-   "text": "First of all: To make an element draggable, set the draggable attribute to true:"
-  },
-  {
-   "type": "p",
-   "text": "<img id=\"img1\" draggable=\"true\">"
-  },
-  {
-   "type": "p",
-   "text": "or:"
-  },
-  {
-   "type": "p",
-   "text": "<p\n  id=\"p1\" draggable=\"true\">Draggable text</p>"
-  },
-  {
-   "type": "h2",
-   "text": "What to Drag - ondragstart and setData()"
-  },
-  {
-   "type": "p",
-   "text": "Then, specify what should happen when the element is dragged."
-  },
-  {
-   "type": "p",
-   "text": "In the example above, the ondragstart attribute\nof the <img> element calls a function (dragstartHandler(ev)),\nthat specifies what data to be dragged."
-  },
-  {
-   "type": "p",
-   "text": "The dataTransfer.setData() method sets the data type and the value of the\ndragged data:"
-  },
-  {
-   "type": "p",
-   "text": "function dragstartHandler(ev) {  ev.dataTransfer.setData(\"text\",\n  ev.target.id);}"
-  },
-  {
-   "type": "p",
-   "text": "In this case, the data type is \"text\" and the value is the id of the draggable element (\"img1\")."
-  },
-  {
-   "type": "h2",
-   "text": "Where to Drop - ondragover"
-  },
-  {
-   "type": "p",
-   "text": "The ondragover attrribute of the <div>\nelement calls a function (dragoverHandler(ev)), that specifies where the dragged data can be dropped."
-  },
-  {
-   "type": "p",
-   "text": "By default, data/elements cannot be dropped in other elements. To allow a drop,\nwe must prevent the default handling of the element."
-  },
-  {
-   "type": "p",
-   "text": "This is done by calling the preventDefault() method for the ondragover event:"
-  },
-  {
-   "type": "p",
-   "text": "function dragoverHandler(ev) {  ev.preventDefault();}"
-  },
-  {
-   "type": "h2",
-   "text": "Do the Drop - ondrop"
-  },
-  {
-   "type": "p",
-   "text": "When the dragged data is dropped, a drop event occurs."
-  },
-  {
-   "type": "p",
-   "text": "In the example above, the ondrop attribute of the <div> element calls a function, dropHandler(event):"
-  },
-  {
-   "type": "p",
-   "text": "function dropHandler(ev) {  ev.preventDefault();  const\n   data = ev.dataTransfer.getData(\"text\");  ev.target.appendChild(document.getElementById(data));\n   }"
-  },
-  {
-   "type": "p",
-   "text": "Code explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Call preventDefault() to prevent the browser default handling of the data (default is open as link on drop)",
-    "Get the dragged data with the\n  dataTransfer.getData() method. This method will return any data that was set to the same type in the\n  setData() method",
-    "The dragged data is the id of the dragged element (\"img1\")",
-    "Append the dragged element into the drop element"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "More Examples"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n  ev.preventDefault();\n\n  }\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n  const data =\n  ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<h1 id=\"h1\"\n  draggable=\"true\" ondragstart=\"dragstartHandler(event)\">W3Schools.com</h1>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop_h1"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n  ev.preventDefault();\n\n  }\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n  const data =\n  ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<a\n  id=\"link1\" href=\"https://w3schools.com\" draggable=\"true\" ondragstart=\"dragstartHandler(event)\">W3Schools.com</a>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop_link"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop2"
-  }
- ]
+  "slug": "html5_draganddrop",
+  "course": "html",
+  "order": 72,
+  "url": "/html/html5_draganddrop.asp",
+  "title": "HTML Drag and Drop API",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "HTML Drag and Drop API"
+    },
+    {
+      "type": "p",
+      "text": "The HTML Drag and Drop API enables an element to be dragged and dropped."
+    },
+    {
+      "type": "h2",
+      "text": "Example"
+    },
+    {
+      "type": "p",
+      "text": "Drag the W3Schools image into the second rectangle."
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_w3slogo.gif",
+      "alt": ""
+    },
+    {
+      "type": "h2",
+      "text": "Drag and Drop"
+    },
+    {
+      "type": "p",
+      "text": "Drag and drop is a very common feature. It is when you \"grab\" an object and drag it to a different location."
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "The numbers in the table specify the first browser version that fully supports Drag and Drop."
+    },
+    {
+      "type": "table",
+      "headers": ["API", "", "", "", "", ""],
+      "rows": [["Drag and Drop", "4.0", "9.0", "3.5", "6.0", "12.0"]]
+    },
+    {
+      "type": "h2",
+      "text": "HTML Drag and Drop API Example"
+    },
+    {
+      "type": "p",
+      "text": "The example below is a simple drag and drop example:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE HTML>\n\n <html>\n\n <head>\n\n  <script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n\n  ev.preventDefault();\n}\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n\n  const data = ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<img id=\"img1\" src=\"img_logo.gif\"\n  draggable=\"true\" ondragstart=\"dragstartHandler(event)\" width=\"336\"\n  height=\"69\">\n\n </body>\n\n </html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop"
+    },
+    {
+      "type": "p",
+      "text": "It might seem complicated, but lets go through all the different parts of a drag and drop event."
+    },
+    {
+      "type": "h2",
+      "text": "Make an Element Draggable"
+    },
+    {
+      "type": "p",
+      "text": "First of all: To make an element draggable, set the draggable attribute to true:"
+    },
+    {
+      "type": "p",
+      "text": "<img id=\"img1\" draggable=\"true\">"
+    },
+    {
+      "type": "p",
+      "text": "or:"
+    },
+    {
+      "type": "p",
+      "text": "<p\n  id=\"p1\" draggable=\"true\">Draggable text</p>"
+    },
+    {
+      "type": "h2",
+      "text": "What to Drag - ondragstart and setData()"
+    },
+    {
+      "type": "p",
+      "text": "Then, specify what should happen when the element is dragged."
+    },
+    {
+      "type": "p",
+      "text": "In the example above, the ondragstart attribute\nof the <img> element calls a function (dragstartHandler(ev)),\nthat specifies what data to be dragged."
+    },
+    {
+      "type": "p",
+      "text": "The dataTransfer.setData() method sets the data type and the value of the\ndragged data:"
+    },
+    {
+      "type": "p",
+      "text": "function dragstartHandler(ev) {  ev.dataTransfer.setData(\"text\",\n  ev.target.id);}"
+    },
+    {
+      "type": "p",
+      "text": "In this case, the data type is \"text\" and the value is the id of the draggable element (\"img1\")."
+    },
+    {
+      "type": "h2",
+      "text": "Where to Drop - ondragover"
+    },
+    {
+      "type": "p",
+      "text": "The ondragover attrribute of the <div>\nelement calls a function (dragoverHandler(ev)), that specifies where the dragged data can be dropped."
+    },
+    {
+      "type": "p",
+      "text": "By default, data/elements cannot be dropped in other elements. To allow a drop,\nwe must prevent the default handling of the element."
+    },
+    {
+      "type": "p",
+      "text": "This is done by calling the preventDefault() method for the ondragover event:"
+    },
+    {
+      "type": "p",
+      "text": "function dragoverHandler(ev) {  ev.preventDefault();}"
+    },
+    {
+      "type": "h2",
+      "text": "Do the Drop - ondrop"
+    },
+    {
+      "type": "p",
+      "text": "When the dragged data is dropped, a drop event occurs."
+    },
+    {
+      "type": "p",
+      "text": "In the example above, the ondrop attribute of the <div> element calls a function, dropHandler(event):"
+    },
+    {
+      "type": "p",
+      "text": "function dropHandler(ev) {  ev.preventDefault();  const\n   data = ev.dataTransfer.getData(\"text\");  ev.target.appendChild(document.getElementById(data));\n   }"
+    },
+    {
+      "type": "p",
+      "text": "Code explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Call preventDefault() to prevent the browser default handling of the data (default is open as link on drop)",
+        "Get the dragged data with the\n  dataTransfer.getData() method. This method will return any data that was set to the same type in the\n  setData() method",
+        "The dragged data is the id of the dragged element (\"img1\")",
+        "Append the dragged element into the drop element"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "More Examples"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n  ev.preventDefault();\n\n  }\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n  const data =\n  ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<h1 id=\"h1\"\n  draggable=\"true\" ondragstart=\"dragstartHandler(event)\">W3Schools.com</h1>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop_h1"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n  ev.preventDefault();\n\n  }\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n  const data =\n  ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<a\n  id=\"link1\" href=\"https://w3schools.com\" draggable=\"true\" ondragstart=\"dragstartHandler(event)\">W3Schools.com</a>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop_link"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop2"
+    }
+  ]
 }

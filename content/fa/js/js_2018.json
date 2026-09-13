@@ -1,481 +1,431 @@
 {
- "slug": "js_2018",
- "course": "js",
- "order": 132,
- "url": "/js/js_2018.asp",
- "title": "ECMAScript 2018",
- "summary": "ES 2018 چهار قابلیت مهم آورد: تکرار ناهمگام با for await، متد Promise.finally()، عملگر rest (...) برای آرایه و شیء، و چهار ویژگی تازه در RegExp مثل فلگ s و lookbehind. این درس همچنین تردها و حافظهٔ مشترک را با Web Workers و SharedArrayBuffer معرفی می‌کند.",
- "objectives": [
-  "بقیهٔ عنصرهای آرایه را با عملگر rest جدا کنید",
-  "خصوصیت‌های شیء را با destructuring بیرون بکشید",
-  "با فلگ s و lookbehind جست‌وجوی پیشرفته انجام دهید",
-  "کاربرد Promise.finally() را بگویید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2018"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید در JavaScript 2018"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح",
-     ""
-    ],
-    [
-     "تکرار ناهمگام",
-     "اجازه می‌دهد کلیدواژهٔ await در حلقه‌های for/of به کار برود",
-     ""
-    ],
-    [
-     "Promise Finally",
-     "تابعی را زمان‌بندی می‌کند که وقتی پرامیس fulfilled یا rejected شد اجرا شود",
-     ""
-    ],
-    [
-     "عنصرهای Rest آرایه",
-     "اجازه می‌دهد یک آرایه را تجزیه (destructure) کنید و باقی‌مانده‌ها را جمع کنید",
-     ""
-    ],
-    [
-     "خصوصیت‌های Rest شیء",
-     "اجازه می‌دهد یک شیء را تجزیه کنید و باقی‌مانده‌ها را جمع کنید",
-     ""
-    ],
-    [
-     "حافظهٔ مشترک",
-     "اجازه می‌دهد بخش‌های مختلف یک برنامه به حافظهٔ یکسانی دسترسی داشته باشند",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید RegExp در ۲۰۱۸"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح",
-     ""
-    ],
-    [
-     "/s",
-     "اجازه می‌دهد metacharacter نقطه (.) با نویسه‌های پایان خط هم مطابقت کند",
-     ""
-    ],
-    [
-     "\\p{}",
-     "با کاراکتری که یک خصوصیت یونیکد دارد مطابقت می‌کند",
-     ""
-    ],
-    [
-     "(?<=y)",
-     "(?<=y)x با x مطابقت می‌کند اگر پیش از x، y آمده باشد",
-     ""
-    ],
-    [
-     "(?<!y)",
-     "(?<!y)x با x مطابقت می‌کند اگر پیش از x، y نیامده باشد",
-     ""
-    ],
-    [
-     "(?<name>)",
-     "متنی را می‌گیرد و آن را نام‌گذاری (برچسب‌گذاری) می‌کند",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2018 از ژوئن ۲۰۲۰ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome64",
-     "Edge79",
-     "Firefox78",
-     "Safari12",
-     "Opera51"
-    ],
-    [
-     "ژانویه ۲۰۱۸",
-     "ژانویه ۲۰۲۰",
-     "ژوئن ۲۰۲۰",
-     "سپتامبر ۲۰۱۸",
-     "فوریه ۲۰۱۸"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تکرار ناهمگام در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2018 تکرارکننده‌ها و تکرارشونده‌های ناهمگام را اضافه کرد."
-  },
-  {
-   "type": "p",
-   "text": "با تکرارشونده‌های ناهمگام می‌توانیم کلیدواژهٔ await را در حلقه‌های for/of به کار ببریم."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "for await () {}",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "متد Promise.finally() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2018 با Promise.finally، پیاده‌سازی کامل شیء Promise را نهایی کرد:"
-  },
-  {
-   "type": "p",
-   "text": "Promise.finally() تابعی را تعریف می‌کند که وقتی پرامیس با موفقیت resolve یا reject شد اجرا می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let myPromise = new Promise();\n\nmyPromise.then();\n\nmyPromise.catch();\n\nmyPromise.finally();",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "عنصرهای Rest آرایه در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2018 عملگر rest (...) را اضافه کرد."
-  },
-  {
-   "type": "p",
-   "text": "عملگر rest (...) اجازه می‌دهد یک آرایه را تجزیه کنیم و باقی‌مانده‌ها را جمع کنیم:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let a, rest;\n\nconst arr1 = [1,2,3,4,5,6,7,8];\n\n[a, ...rest] = arr1;",
-   "caption": "مثال ۱"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_rest1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let a, b, rest;\n\nconst arr1 = [1,2,3,4,5,6,7,8];\n\n[a, b, ...rest] = arr1;",
-   "caption": "مثال ۲"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_rest2"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های Rest شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2018 عملگر rest (...) را اضافه کرد."
-  },
-  {
-   "type": "p",
-   "text": "این اجازه می‌دهد یک شیء را تجزیه کنیم و باقی‌مانده‌ها را روی یک شیء تازه جمع کنیم:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object:\n\nconst car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\n// Destructure the Object\n\nlet {type, model, color} = car;\n\ndocument.getElementById(\"demo\").innerHTML = \"The car type is: \" + type;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_rest"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2018 چهار ویژگی تازه به RegExp اضافه کرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "فلگ /s (dotAll)",
-    "فرارهای خصوصیت یونیکد (\\p{...})",
-    "ادعاهای lookbehind یعنی (?<=y)x و (?<!y)x",
-    "گروه‌های گرفتن نام‌دار"
-   ]
-  },
-  {
-   "type": "h1",
-   "text": "فلگ /s در RegExp"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Line\\nLine.\";\n\nlet pattern = /Line./gs;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_s"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "p",
-   "text": "فلگ s (dotAll) اجازه می‌دهد metacharacter نقطه (.) با هر کاراکتری مطابقت کند، از جمله نویسه‌های پایان خط (مثل \\n، \\r، \\u2028 و \\u2029)."
-  },
-  {
-   "type": "p",
-   "text": "بدون فلگ s، نقطه با نویسه‌های پایان خط مطابقت نمی‌کند."
-  },
-  {
-   "type": "h1",
-   "text": "metacharacter \\p در RegExp"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{RGI_Emoji}/v;\n\nlet result = pattern.test(text);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_meta_p"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "p",
-   "text": "metacharacter \\p{Unicode Property} با هر کاراکتری که یک خصوصیت یونیکد دارد مطابقت می‌کند."
-  },
-  {
-   "type": "h1",
-   "text": "lookbehind در RegExp"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<=Hello )W3Schools/;\n\nlet result = pattern.test(text);",
-   "caption": "مثال (?<=y)x"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_lookbehind"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "p",
-   "text": "(?<=y)x با x مطابقت می‌کند اگر پیش از x، y آمده باشد."
-  },
-  {
-   "type": "h1",
-   "text": "lookbehind منفی"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<=Hello )W3Schools/;\n\nlet result = pattern.test(text);",
-   "caption": "مثال (?<!y)x"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_negative_lookbehind"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "p",
-   "text": "(?<!y)x با x مطابقت می‌کند اگر پیش از x، y نیامده باشد."
-  },
-  {
-   "type": "h1",
-   "text": "گروه‌های گرفتن نام‌دار در RegExp"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = \"Name: John Doe\";\n\n// Using named capturing groups\n\nconst regex = /(?<firstName>\\w+) (?<lastName>\\w+)/;\n\nconst match = text.match(regex);\n\nlet fName = match.groups.firstName;\n\nlet lName = match.groups.lastName;",
-   "caption": "مثال (?<name>...)"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_named_groups"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "(?<firstName>\\w+) یک کلمه را می‌گیرد و آن را firstName نام‌گذاری می‌کند",
-    "(?<lastName>\\w+) همین کار را برای lastName انجام می‌دهد",
-    "text.match() آرایه‌ای برمی‌گرداند که یک خصوصیت groups دارد",
-    "match.groups() شیئی برمی‌گرداند: {firstName:\"John\", lastName:\"Doe\" }"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "وقتی از یک عبارت باقاعده با گروه‌های گرفتن استفاده می‌کنید، متد match() رشته آرایهٔ نتیجه‌ای برمی‌گرداند که خصوصیت groups را در خود دارد. این خصوصیت groups شیئی است که مطابقت‌های گروه‌های نام‌دار را نگه می‌دارد."
-  },
-  {
-   "type": "h2",
-   "text": "تردها (threads) در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "در JavaScript برای ساختن ترد از Web Workers API استفاده می‌کنید."
-  },
-  {
-   "type": "p",
-   "text": "تردهای Worker برای اجرای کد در پس‌زمینه به کار می‌روند تا برنامهٔ اصلی بتواند به اجرای خود ادامه دهد."
-  },
-  {
-   "type": "p",
-   "text": "تردهای Worker هم‌زمان با برنامهٔ اصلی اجرا می‌شوند. اجرای هم‌زمان بخش‌های مختلف یک برنامه می‌تواند در زمان صرفه‌جویی کند."
-  },
-  {
-   "type": "h2",
-   "text": "حافظهٔ مشترک در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "حافظهٔ مشترک ویژگی‌ای است که به تردها (بخش‌های مختلف یک برنامه) اجازه می‌دهد به دادهٔ یکسانی در حافظهٔ یکسان دسترسی پیدا کنند و آن را به‌روز کنند."
-  },
-  {
-   "type": "p",
-   "text": "به‌جای رد و بدل کردن داده بین تردها، می‌توانید یک شیء SharedArrayBuffer بفرستید که به حافظه‌ای اشاره می‌کند که داده در آن ذخیره شده است."
-  },
-  {
-   "type": "h2",
-   "text": "شیء SharedArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "شیء SharedArrayBuffer یک بافر دادهٔ دودویی خام با طول ثابت را نمایش می‌دهد، مشابه شیء ArrayBuffer."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "آرایه‌ای با ۸ عدد بسازید و با [a, ...rest] فقط عضو اول را جدا کنید و بقیه را در rest ببینید.",
-   "hint": "عملگر rest (...) باقی‌ماندهٔ عنصرها را در یک آرایهٔ تازه جمع می‌کند."
-  },
-  {
-   "prompt": "یک شیء car با خصوصیت‌های type، model و color بسازید و خصوصیت‌ها را با {type, model, color} بیرون بکشید.",
-   "hint": "تجزیهٔ شیء با همین نام‌ها کار می‌کند و ترتیبشان مهم نیست."
-  },
-  {
-   "prompt": "با /Line./gs روی رشته‌ای که \\n دارد جست‌وجو کنید، بعد فلگ s را بردارید و تفاوت نتیجه را ببینید.",
-   "hint": "بدون s، نقطه با نویسه‌های پایان خط مطابقت نمی‌کند."
-  },
-  {
-   "prompt": "با /(?<=Hello )W3Schools/ روی رشتهٔ \"Hello W3Schools\" جست‌وجو کنید و بعد نسخهٔ منفی (?<!y) را امتحان کنید.",
-   "hint": "lookbehind شرط می‌گذارد که پیش از الگو چه چیزی آمده یا نیامده باشد."
-  },
-  {
-   "prompt": "یک عبارت باقاعده با گروه نام‌دار بسازید و با match.groups مقادیر نام و نام خانوادگی را جدا بگیرید.",
-   "hint": "الگوی (?<firstName>\\w+) یک کلمه را می‌گیرد و با برچسب firstName در match.groups می‌گذارد."
-  }
- ],
- "quiz": [
-  {
-   "question": "عملگر rest (...) روی آرایه چه کاری انجام می‌دهد؟",
-   "options": [
-    "آرایه را مرتب می‌کند",
-    "باقی‌ماندهٔ عنصرها را در یک آرایهٔ تازه جمع می‌کند",
-    "آرایه را به رشته تبدیل می‌کند",
-    "عنصرها را حذف می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "rest (...) اجازه می‌دهد آرایه را تجزیه کنید و باقی‌مانده‌ها را جمع کنید، مثل [a, b, ...rest] = arr1."
-  },
-  {
-   "question": "Promise.finally() چه زمانی اجرا می‌شود؟",
-   "options": [
-    "فقط وقتی پرامیس با موفقیت resolve شود",
-    "فقط وقتی پرامیس reject شود",
-    "وقتی پرامیس resolve یا reject شود",
-    "قبل از ساختن پرامیس"
-   ],
-   "answer": 2,
-   "explanation": "finally در هر دو حالت اجرا می‌شود؛ یعنی چه پرامیس موفق شود و چه شکست بخورد، تابعی که تعریف کرده‌اید اجرا می‌شود."
-  },
-  {
-   "question": "فلگ s روی RegExp چه تأثیری دارد؟",
-   "options": [
-    "جست‌وجو را به بزرگی و کوچکی حروف حساس نمی‌کند",
-    "اجازه می‌دهد نقطه با نویسه‌های پایان خط هم مطابقت کند",
-    "جست‌وجو را از lastIndex شروع می‌کند",
-    "یونیکد را فعال می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "فلگ s (dotAll) به نقطه اجازه می‌دهد نویسه‌های پایان خط مثل \\n را هم بگیرد. حساس‌نبودن به حروف کار فلگ i و شروع از lastIndex کار فلگ y است."
-  },
-  {
-   "question": "الگوی (?<=y)x چه چیزی را مطابقت می‌دهد؟",
-   "options": [
-    "x را، اگر پس از آن y آمده باشد",
-    "x را، اگر پیش از آن y آمده باشد",
-    "y را همیشه",
-    "هیچ‌چیز"
-   ],
-   "answer": 1,
-   "explanation": "این lookbehind است: x را پیدا می‌کند به شرطی که پیش از آن y آمده باشد. حالت منفی (?<!y)x وقتی مطابقت می‌دهد که y پیش از x نیامده باشد."
-  },
-  {
-   "question": "چرا حافظهٔ مشترک در JavaScript فایده دارد؟",
-   "options": [
-    "کد را کوتاه‌تر می‌کند",
-    "به تردها اجازه می‌دهد به دادهٔ یکسانی در یک حافظه دسترسی داشته باشند و آن را به‌روز کنند",
-    "ارث‌بری بین شیءها را ممکن می‌کند",
-    "خطاهای JavaScript را می‌گیرد"
-   ],
-   "answer": 1,
-   "explanation": "با SharedArrayBuffer به‌جای رد و بدل کردن داده بین تردها، چند ترد به همان حافظه دسترسی دارند و آن را به‌روز می‌کنند."
-  }
- ]
+  "slug": "js_2018",
+  "course": "js",
+  "order": 132,
+  "url": "/js/js_2018.asp",
+  "title": "ECMAScript 2018",
+  "summary": "ES 2018 چهار قابلیت مهم آورد: تکرار ناهمگام با for await، متد Promise.finally()، عملگر rest (...) برای آرایه و شیء، و چهار ویژگی تازه در RegExp مثل فلگ s و lookbehind. این درس همچنین تردها و حافظهٔ مشترک را با Web Workers و SharedArrayBuffer معرفی می‌کند.",
+  "objectives": [
+    "بقیهٔ عنصرهای آرایه را با عملگر rest جدا کنید",
+    "خصوصیت‌های شیء را با destructuring بیرون بکشید",
+    "با فلگ s و lookbehind جست‌وجوی پیشرفته انجام دهید",
+    "کاربرد Promise.finally() را بگویید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2018"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید در JavaScript 2018"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح", ""],
+        ["تکرار ناهمگام", "اجازه می‌دهد کلیدواژهٔ await در حلقه‌های for/of به کار برود", ""],
+        [
+          "Promise Finally",
+          "تابعی را زمان‌بندی می‌کند که وقتی پرامیس fulfilled یا rejected شد اجرا شود",
+          ""
+        ],
+        [
+          "عنصرهای Rest آرایه",
+          "اجازه می‌دهد یک آرایه را تجزیه (destructure) کنید و باقی‌مانده‌ها را جمع کنید",
+          ""
+        ],
+        [
+          "خصوصیت‌های Rest شیء",
+          "اجازه می‌دهد یک شیء را تجزیه کنید و باقی‌مانده‌ها را جمع کنید",
+          ""
+        ],
+        [
+          "حافظهٔ مشترک",
+          "اجازه می‌دهد بخش‌های مختلف یک برنامه به حافظهٔ یکسانی دسترسی داشته باشند",
+          ""
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید RegExp در ۲۰۱۸"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح", ""],
+        ["/s", "اجازه می‌دهد metacharacter نقطه (.) با نویسه‌های پایان خط هم مطابقت کند", ""],
+        ["\\p{}", "با کاراکتری که یک خصوصیت یونیکد دارد مطابقت می‌کند", ""],
+        ["(?<=y)", "(?<=y)x با x مطابقت می‌کند اگر پیش از x، y آمده باشد", ""],
+        ["(?<!y)", "(?<!y)x با x مطابقت می‌کند اگر پیش از x، y نیامده باشد", ""],
+        ["(?<name>)", "متنی را می‌گیرد و آن را نام‌گذاری (برچسب‌گذاری) می‌کند", ""]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2018 از ژوئن ۲۰۲۰ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome64", "Edge79", "Firefox78", "Safari12", "Opera51"],
+        ["ژانویه ۲۰۱۸", "ژانویه ۲۰۲۰", "ژوئن ۲۰۲۰", "سپتامبر ۲۰۱۸", "فوریه ۲۰۱۸"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "تکرار ناهمگام در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2018 تکرارکننده‌ها و تکرارشونده‌های ناهمگام را اضافه کرد."
+    },
+    {
+      "type": "p",
+      "text": "با تکرارشونده‌های ناهمگام می‌توانیم کلیدواژهٔ await را در حلقه‌های for/of به کار ببریم."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "for await () {}",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "متد Promise.finally() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2018 با Promise.finally، پیاده‌سازی کامل شیء Promise را نهایی کرد:"
+    },
+    {
+      "type": "p",
+      "text": "Promise.finally() تابعی را تعریف می‌کند که وقتی پرامیس با موفقیت resolve یا reject شد اجرا می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let myPromise = new Promise();\n\nmyPromise.then();\n\nmyPromise.catch();\n\nmyPromise.finally();",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "عنصرهای Rest آرایه در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2018 عملگر rest (...) را اضافه کرد."
+    },
+    {
+      "type": "p",
+      "text": "عملگر rest (...) اجازه می‌دهد یک آرایه را تجزیه کنیم و باقی‌مانده‌ها را جمع کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let a, rest;\n\nconst arr1 = [1,2,3,4,5,6,7,8];\n\n[a, ...rest] = arr1;",
+      "caption": "مثال ۱"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_rest1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let a, b, rest;\n\nconst arr1 = [1,2,3,4,5,6,7,8];\n\n[a, b, ...rest] = arr1;",
+      "caption": "مثال ۲"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_rest2"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های Rest شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2018 عملگر rest (...) را اضافه کرد."
+    },
+    {
+      "type": "p",
+      "text": "این اجازه می‌دهد یک شیء را تجزیه کنیم و باقی‌مانده‌ها را روی یک شیء تازه جمع کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object:\n\nconst car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\n// Destructure the Object\n\nlet {type, model, color} = car;\n\ndocument.getElementById(\"demo\").innerHTML = \"The car type is: \" + type;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_rest"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2018 چهار ویژگی تازه به RegExp اضافه کرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "فلگ /s (dotAll)",
+        "فرارهای خصوصیت یونیکد (\\p{...})",
+        "ادعاهای lookbehind یعنی (?<=y)x و (?<!y)x",
+        "گروه‌های گرفتن نام‌دار"
+      ]
+    },
+    {
+      "type": "h1",
+      "text": "فلگ /s در RegExp"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Line\\nLine.\";\n\nlet pattern = /Line./gs;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_s"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "p",
+      "text": "فلگ s (dotAll) اجازه می‌دهد metacharacter نقطه (.) با هر کاراکتری مطابقت کند، از جمله نویسه‌های پایان خط (مثل \\n، \\r، \\u2028 و \\u2029)."
+    },
+    {
+      "type": "p",
+      "text": "بدون فلگ s، نقطه با نویسه‌های پایان خط مطابقت نمی‌کند."
+    },
+    {
+      "type": "h1",
+      "text": "metacharacter \\p در RegExp"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{RGI_Emoji}/v;\n\nlet result = pattern.test(text);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_meta_p"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "p",
+      "text": "metacharacter \\p{Unicode Property} با هر کاراکتری که یک خصوصیت یونیکد دارد مطابقت می‌کند."
+    },
+    {
+      "type": "h1",
+      "text": "lookbehind در RegExp"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<=Hello )W3Schools/;\n\nlet result = pattern.test(text);",
+      "caption": "مثال (?<=y)x"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_lookbehind"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "p",
+      "text": "(?<=y)x با x مطابقت می‌کند اگر پیش از x، y آمده باشد."
+    },
+    {
+      "type": "h1",
+      "text": "lookbehind منفی"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello W3Schools\";\n\nlet pattern = /(?<=Hello )W3Schools/;\n\nlet result = pattern.test(text);",
+      "caption": "مثال (?<!y)x"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_negative_lookbehind"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "p",
+      "text": "(?<!y)x با x مطابقت می‌کند اگر پیش از x، y نیامده باشد."
+    },
+    {
+      "type": "h1",
+      "text": "گروه‌های گرفتن نام‌دار در RegExp"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = \"Name: John Doe\";\n\n// Using named capturing groups\n\nconst regex = /(?<firstName>\\w+) (?<lastName>\\w+)/;\n\nconst match = text.match(regex);\n\nlet fName = match.groups.firstName;\n\nlet lName = match.groups.lastName;",
+      "caption": "مثال (?<name>...)"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_named_groups"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "(?<firstName>\\w+) یک کلمه را می‌گیرد و آن را firstName نام‌گذاری می‌کند",
+        "(?<lastName>\\w+) همین کار را برای lastName انجام می‌دهد",
+        "text.match() آرایه‌ای برمی‌گرداند که یک خصوصیت groups دارد",
+        "match.groups() شیئی برمی‌گرداند: {firstName:\"John\", lastName:\"Doe\" }"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "وقتی از یک عبارت باقاعده با گروه‌های گرفتن استفاده می‌کنید، متد match() رشته آرایهٔ نتیجه‌ای برمی‌گرداند که خصوصیت groups را در خود دارد. این خصوصیت groups شیئی است که مطابقت‌های گروه‌های نام‌دار را نگه می‌دارد."
+    },
+    {
+      "type": "h2",
+      "text": "تردها (threads) در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "در JavaScript برای ساختن ترد از Web Workers API استفاده می‌کنید."
+    },
+    {
+      "type": "p",
+      "text": "تردهای Worker برای اجرای کد در پس‌زمینه به کار می‌روند تا برنامهٔ اصلی بتواند به اجرای خود ادامه دهد."
+    },
+    {
+      "type": "p",
+      "text": "تردهای Worker هم‌زمان با برنامهٔ اصلی اجرا می‌شوند. اجرای هم‌زمان بخش‌های مختلف یک برنامه می‌تواند در زمان صرفه‌جویی کند."
+    },
+    {
+      "type": "h2",
+      "text": "حافظهٔ مشترک در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "حافظهٔ مشترک ویژگی‌ای است که به تردها (بخش‌های مختلف یک برنامه) اجازه می‌دهد به دادهٔ یکسانی در حافظهٔ یکسان دسترسی پیدا کنند و آن را به‌روز کنند."
+    },
+    {
+      "type": "p",
+      "text": "به‌جای رد و بدل کردن داده بین تردها، می‌توانید یک شیء SharedArrayBuffer بفرستید که به حافظه‌ای اشاره می‌کند که داده در آن ذخیره شده است."
+    },
+    {
+      "type": "h2",
+      "text": "شیء SharedArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "شیء SharedArrayBuffer یک بافر دادهٔ دودویی خام با طول ثابت را نمایش می‌دهد، مشابه شیء ArrayBuffer."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "آرایه‌ای با ۸ عدد بسازید و با [a, ...rest] فقط عضو اول را جدا کنید و بقیه را در rest ببینید.",
+      "hint": "عملگر rest (...) باقی‌ماندهٔ عنصرها را در یک آرایهٔ تازه جمع می‌کند."
+    },
+    {
+      "prompt": "یک شیء car با خصوصیت‌های type، model و color بسازید و خصوصیت‌ها را با {type, model, color} بیرون بکشید.",
+      "hint": "تجزیهٔ شیء با همین نام‌ها کار می‌کند و ترتیبشان مهم نیست."
+    },
+    {
+      "prompt": "با /Line./gs روی رشته‌ای که \\n دارد جست‌وجو کنید، بعد فلگ s را بردارید و تفاوت نتیجه را ببینید.",
+      "hint": "بدون s، نقطه با نویسه‌های پایان خط مطابقت نمی‌کند."
+    },
+    {
+      "prompt": "با /(?<=Hello )W3Schools/ روی رشتهٔ \"Hello W3Schools\" جست‌وجو کنید و بعد نسخهٔ منفی (?<!y) را امتحان کنید.",
+      "hint": "lookbehind شرط می‌گذارد که پیش از الگو چه چیزی آمده یا نیامده باشد."
+    },
+    {
+      "prompt": "یک عبارت باقاعده با گروه نام‌دار بسازید و با match.groups مقادیر نام و نام خانوادگی را جدا بگیرید.",
+      "hint": "الگوی (?<firstName>\\w+) یک کلمه را می‌گیرد و با برچسب firstName در match.groups می‌گذارد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "عملگر rest (...) روی آرایه چه کاری انجام می‌دهد؟",
+      "options": [
+        "آرایه را مرتب می‌کند",
+        "باقی‌ماندهٔ عنصرها را در یک آرایهٔ تازه جمع می‌کند",
+        "آرایه را به رشته تبدیل می‌کند",
+        "عنصرها را حذف می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "rest (...) اجازه می‌دهد آرایه را تجزیه کنید و باقی‌مانده‌ها را جمع کنید، مثل [a, b, ...rest] = arr1."
+    },
+    {
+      "question": "Promise.finally() چه زمانی اجرا می‌شود؟",
+      "options": [
+        "فقط وقتی پرامیس با موفقیت resolve شود",
+        "فقط وقتی پرامیس reject شود",
+        "وقتی پرامیس resolve یا reject شود",
+        "قبل از ساختن پرامیس"
+      ],
+      "answer": 2,
+      "explanation": "finally در هر دو حالت اجرا می‌شود؛ یعنی چه پرامیس موفق شود و چه شکست بخورد، تابعی که تعریف کرده‌اید اجرا می‌شود."
+    },
+    {
+      "question": "فلگ s روی RegExp چه تأثیری دارد؟",
+      "options": [
+        "جست‌وجو را به بزرگی و کوچکی حروف حساس نمی‌کند",
+        "اجازه می‌دهد نقطه با نویسه‌های پایان خط هم مطابقت کند",
+        "جست‌وجو را از lastIndex شروع می‌کند",
+        "یونیکد را فعال می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "فلگ s (dotAll) به نقطه اجازه می‌دهد نویسه‌های پایان خط مثل \\n را هم بگیرد. حساس‌نبودن به حروف کار فلگ i و شروع از lastIndex کار فلگ y است."
+    },
+    {
+      "question": "الگوی (?<=y)x چه چیزی را مطابقت می‌دهد؟",
+      "options": [
+        "x را، اگر پس از آن y آمده باشد",
+        "x را، اگر پیش از آن y آمده باشد",
+        "y را همیشه",
+        "هیچ‌چیز"
+      ],
+      "answer": 1,
+      "explanation": "این lookbehind است: x را پیدا می‌کند به شرطی که پیش از آن y آمده باشد. حالت منفی (?<!y)x وقتی مطابقت می‌دهد که y پیش از x نیامده باشد."
+    },
+    {
+      "question": "چرا حافظهٔ مشترک در JavaScript فایده دارد؟",
+      "options": [
+        "کد را کوتاه‌تر می‌کند",
+        "به تردها اجازه می‌دهد به دادهٔ یکسانی در یک حافظه دسترسی داشته باشند و آن را به‌روز کنند",
+        "ارث‌بری بین شیءها را ممکن می‌کند",
+        "خطاهای JavaScript را می‌گیرد"
+      ],
+      "answer": 1,
+      "explanation": "با SharedArrayBuffer به‌جای رد و بدل کردن داده بین تردها، چند ترد به همان حافظه دسترسی دارند و آن را به‌روز می‌کنند."
+    }
+  ]
 }

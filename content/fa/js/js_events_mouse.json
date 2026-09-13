@@ -1,179 +1,158 @@
 {
- "slug": "js_events_mouse",
- "course": "js",
- "order": 149,
- "url": "/js/js_events_mouse.asp",
- "title": "رویدادهای ماوس در JavaScript",
- "summary": "رویدادهای ماوس پایهٔ تعامل صفحه‌اند. این درس فهرست رویدادهای رایج مثل click، dblclick، mousemove، mouseenter و mouseleave را با تفاوت‌های دقیق‌شان توضیح می‌دهد و راه گرفتن موقعیت اشاره‌گر را نشان می‌دهد.",
- "objectives": [
-  "رویدادهای رایج ماوس را نام ببرید",
-  "تفاوت mouseover با mouseenter را تشخیص دهید",
-  "مختصات اشاره‌گر را از شیء رویداد بخوانید",
-  "بگویید چرا گاهی Pointer Events API انتخاب بهتری است"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "رویدادهای ماوس در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "رویدادهای ماوس وقتی رخ می‌دهند که کاربر با ماوس کار می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "رویدادهای رایج ماوس:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "click",
-    "dblclick",
-    "mouseover / mouseout",
-    "mousemove",
-    "mousedown / mouseup"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "رویدادهای ماوس برای ساختن صفحه‌ها و برنامه‌های تعاملی حیاتی‌اند، چون در پاسخ به کارهای کاربر مثل کلیک، چرخش و حرکت ماوس تابع‌های مشخصی را اجرا می‌کنند."
-  },
-  {
-   "type": "h3",
-   "text": "رویدادهای mouseover و mouseout"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div id=\"box\" style=\"width:200px;height:100px;padding:16px;border:1px solid #000;\">\n\nMove mouse over this box\n\n</div>\n\n<script>\n\nconst box = document.getElementById(\"box\");\n\n// Let box listen for mouseover\n\nbox.addEventListener(\"mouseover\", function () {\n\n  box.innerHTML = \"Mouse is over me!\";\n\n});\n\n// Let box listen for mouseout\n\nbox.addEventListener(\"mouseout\", function () {\n\n  box.innerHTML = \"Mouse is out!\";\n\n});\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_mouseoverout"
-  },
-  {
-   "type": "h2",
-   "text": "رویدادهای رایج ماوس"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "click: پس از اینکه هر دو رویداد mousedown و mouseup روی همان عنصر با دکمهٔ اصلی ماوس (معمولاً چپ) رخ دهد، اجرا می‌شود.",
-    "dblclick: پس از دو کلیک سریع پشت سر هم روی همان عنصر اجرا می‌شود.",
-    "mousedown / mouseup: این رویدادها به‌ترتیب وقتی دکمهٔ ماوس روی یک عنصر پایین نگه داشته شود (mousedown) یا رها شود (mouseup) اجرا می‌شوند.",
-    "mousemove: هر بار که اشاره‌گر ماوس روی یک عنصر حرکت کند پشت سر هم اجرا می‌شود و اطلاعات مکانی (مختصات) مکان‌نما را می‌دهد.",
-    "mouseover: وقتی اشاره‌گر روی یک عنصر (یا یکی از فرزندانش) می‌آید اجرا می‌شود.",
-    "mouseout: وقتی اشاره‌گر از یک عنصر خارج می‌شود اجرا می‌شود.",
-    "mouseenter: مانند mouseover است، اما وقتی اشاره‌گر وارد خود عنصر می‌شود اجرا می‌شود نه فرزندانش؛ همین آن را برای کارهایی مثل رفتار :hover در CSS مناسب‌تر می‌کند.",
-    "mouseleave: مانند mouseout است، اما وقتی اشاره‌گر از خود عنصر خارج می‌شود اجرا می‌شود نه از فرزندانش؛ همین آن را برای کارهایی مثل رفتار :hover در CSS مناسب‌تر می‌کند.",
-    "contextmenu: وقتی کاربر می‌خواهد منوی زمینه را باز کند، که معمولاً با کلیک راست است، اجرا می‌شود.",
-    "wheel: وقتی چرخ ماوس می‌چرخد اجرا می‌شود و معمولاً برای پیمایش یا بزرگ‌نمایی به کار می‌رود.",
-    "رویدادهای drag: مجموعه‌ای از رویدادها (dragstart، dragend، dragover و ...) برای ساختن رابط کشیدن و رها کردن."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "موقعیت ماوس"
-  },
-  {
-   "type": "p",
-   "text": "رابط MouseEvent یک شیء رویداد می‌دهد که خصوصیت‌های سودمندی مثل مختصات اشاره‌گر و اینکه کدام دکمهٔ ماوس فشرده شده است در آن هست."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\">Move the mouse in this window!</p>\n\n<script>\n\n// Let document listen for mousemove\n\ndocument.addEventListener(\"mousemove\", function (event) {\n\n  document.getElementById(\"demo\").innerHTML =\n\n  \"X: \" + event.clientX + \" Y: \" + event.clientY;\n\n});\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_mouseposition"
-  },
-  {
-   "type": "p",
-   "text": "برای مدیریت ورودی مدرن و مستقل از دستگاه که لمس و قلم هم در آن باشد، برنامه‌نویسان غالباً از Pointer Events API تازه‌تر استفاده می‌کنند."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل mouse.html بسازید که یک مستطیل رنگی داشته باشد؛ با mouseover رنگش را عوض کنید و با mouseout به رنگ اول برگردانید.",
-   "hint": "برای تغییر رنگ از style.backgroundColor استفاده کنید."
-  },
-  {
-   "prompt": "مختصات ماوس را روی یک مستطیل چاپ کنید و ببینید با حرکت ماوس مرتب عوض می‌شود.",
-   "hint": "رویداد mousemove را بگیرید و clientX و clientY را در یک عنصر نشان دهید."
-  },
-  {
-   "prompt": "تفاوت mouseover و mouseenter را با یک عنصر والد که فرزند دارد آزمایش کنید.",
-   "hint": "mouseover با ورود به فرزندان هم اجرا می‌شود، اما mouseenter فقط با ورود به خود عنصر؛ برای همین می‌توانید تعداد اجراها را بشمارید."
-  },
-  {
-   "prompt": "با رویداد contextmenu جلوی باز شدن منوی زمینه کلیک راست را بگیرید.",
-   "hint": "در listener از event.preventDefault() استفاده کنید."
-  },
-  {
-   "prompt": "در کنسول ببینید با هر کلیک کدام دکمهٔ ماوس فشرده شده است و برای تشخیص آن از شیء رویداد استفاده کنید.",
-   "hint": "شیء رویداد اطلاعات دکمه را در خود دارد؛ برای کلیک راست و چپ مقدار متفاوتی می‌بینید."
-  }
- ],
- "quiz": [
-  {
-   "question": "رویداد click چه زمانی اجرا می‌شود؟",
-   "options": [
-    "وقتی دکمهٔ ماوس پایین نگه داشته می‌شود",
-    "پس از رخ دادن هر دو رویداد mousedown و mouseup روی همان عنصر",
-    "وقتی اشاره‌گر از عنصر خارج می‌شود",
-    "وقتی چرخ ماوس می‌چرخد"
-   ],
-   "answer": 1,
-   "explanation": "click پس از اینکه هم mousedown و هم mouseup روی همان عنصر با دکمهٔ اصلی ماوس رخ دهد اجرا می‌شود؛ فقط یکی از آن دو کافی نیست."
-  },
-  {
-   "question": "تفاوت mouseenter با mouseover چیست؟",
-   "options": [
-    "mouseenter با ورود به خود عنصر اجرا می‌شود، نه فرزندانش",
-    "mouseenter فقط با کلیک کار می‌کند",
-    "mouseover فقط در مرورگرهای قدیمی کار می‌کند",
-    "هیچ تفاوتی ندارند"
-   ],
-   "answer": 0,
-   "explanation": "mouseover با ورود به فرزندان هم اجرا می‌شود، اما mouseenter فقط وقتی اشاره‌گر وارد خود عنصر شود؛ همین آن را برای رفتارهایی مثل :hover مناسب‌تر می‌کند."
-  },
-  {
-   "question": "رویداد mousemove چه چیزی در اختیار می‌گذارد؟",
-   "options": [
-    "مختصات اشاره‌گر ماوس",
-    "نام کلید فشرده‌شده",
-    "آدرس صفحه",
-    "حجم تصاویر صفحه"
-   ],
-   "answer": 0,
-   "explanation": "mousemove هر بار که اشاره‌گر حرکت کند اجرا می‌شود و از طریق شیء رویداد مختصات مکان‌نما را می‌دهد."
-  },
-  {
-   "question": "کدام رویداد هنگام کلیک راست برای باز کردن منوی زمینه رخ می‌دهد؟",
-   "options": [
-    "contextmenu",
-    "dblclick",
-    "wheel",
-    "mousedown"
-   ],
-   "answer": 0,
-   "explanation": "contextmenu وقتی کاربر می‌خواهد منوی زمینه را باز کند اجرا می‌شود و می‌توان با preventDefault جلوی رفتار پیش‌فرض را گرفت."
-  },
-  {
-   "question": "برای مدیریت ورودی‌های مدرن شامل لمس و قلم چه API تازه‌تری پیشنهاد شده است؟",
-   "options": [
-    "MouseEvent API",
-    "Pointer Events API",
-    "Touch Only API",
-    "DOM Events API قدیمی"
-   ],
-   "answer": 1,
-   "explanation": "درس اشاره می‌کند که برای ورودی مدرن و مستقل از دستگاه، برنامه‌نویسان از Pointer Events API تازه‌تر استفاده می‌کنند."
-  }
- ]
+  "slug": "js_events_mouse",
+  "course": "js",
+  "order": 149,
+  "url": "/js/js_events_mouse.asp",
+  "title": "رویدادهای ماوس در JavaScript",
+  "summary": "رویدادهای ماوس پایهٔ تعامل صفحه‌اند. این درس فهرست رویدادهای رایج مثل click، dblclick، mousemove، mouseenter و mouseleave را با تفاوت‌های دقیق‌شان توضیح می‌دهد و راه گرفتن موقعیت اشاره‌گر را نشان می‌دهد.",
+  "objectives": [
+    "رویدادهای رایج ماوس را نام ببرید",
+    "تفاوت mouseover با mouseenter را تشخیص دهید",
+    "مختصات اشاره‌گر را از شیء رویداد بخوانید",
+    "بگویید چرا گاهی Pointer Events API انتخاب بهتری است"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "رویدادهای ماوس در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "رویدادهای ماوس وقتی رخ می‌دهند که کاربر با ماوس کار می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "رویدادهای رایج ماوس:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["click", "dblclick", "mouseover / mouseout", "mousemove", "mousedown / mouseup"]
+    },
+    {
+      "type": "p",
+      "text": "رویدادهای ماوس برای ساختن صفحه‌ها و برنامه‌های تعاملی حیاتی‌اند، چون در پاسخ به کارهای کاربر مثل کلیک، چرخش و حرکت ماوس تابع‌های مشخصی را اجرا می‌کنند."
+    },
+    {
+      "type": "h3",
+      "text": "رویدادهای mouseover و mouseout"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div id=\"box\" style=\"width:200px;height:100px;padding:16px;border:1px solid #000;\">\n\nMove mouse over this box\n\n</div>\n\n<script>\n\nconst box = document.getElementById(\"box\");\n\n// Let box listen for mouseover\n\nbox.addEventListener(\"mouseover\", function () {\n\n  box.innerHTML = \"Mouse is over me!\";\n\n});\n\n// Let box listen for mouseout\n\nbox.addEventListener(\"mouseout\", function () {\n\n  box.innerHTML = \"Mouse is out!\";\n\n});\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_mouseoverout"
+    },
+    {
+      "type": "h2",
+      "text": "رویدادهای رایج ماوس"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "click: پس از اینکه هر دو رویداد mousedown و mouseup روی همان عنصر با دکمهٔ اصلی ماوس (معمولاً چپ) رخ دهد، اجرا می‌شود.",
+        "dblclick: پس از دو کلیک سریع پشت سر هم روی همان عنصر اجرا می‌شود.",
+        "mousedown / mouseup: این رویدادها به‌ترتیب وقتی دکمهٔ ماوس روی یک عنصر پایین نگه داشته شود (mousedown) یا رها شود (mouseup) اجرا می‌شوند.",
+        "mousemove: هر بار که اشاره‌گر ماوس روی یک عنصر حرکت کند پشت سر هم اجرا می‌شود و اطلاعات مکانی (مختصات) مکان‌نما را می‌دهد.",
+        "mouseover: وقتی اشاره‌گر روی یک عنصر (یا یکی از فرزندانش) می‌آید اجرا می‌شود.",
+        "mouseout: وقتی اشاره‌گر از یک عنصر خارج می‌شود اجرا می‌شود.",
+        "mouseenter: مانند mouseover است، اما وقتی اشاره‌گر وارد خود عنصر می‌شود اجرا می‌شود نه فرزندانش؛ همین آن را برای کارهایی مثل رفتار :hover در CSS مناسب‌تر می‌کند.",
+        "mouseleave: مانند mouseout است، اما وقتی اشاره‌گر از خود عنصر خارج می‌شود اجرا می‌شود نه از فرزندانش؛ همین آن را برای کارهایی مثل رفتار :hover در CSS مناسب‌تر می‌کند.",
+        "contextmenu: وقتی کاربر می‌خواهد منوی زمینه را باز کند، که معمولاً با کلیک راست است، اجرا می‌شود.",
+        "wheel: وقتی چرخ ماوس می‌چرخد اجرا می‌شود و معمولاً برای پیمایش یا بزرگ‌نمایی به کار می‌رود.",
+        "رویدادهای drag: مجموعه‌ای از رویدادها (dragstart، dragend، dragover و ...) برای ساختن رابط کشیدن و رها کردن."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "موقعیت ماوس"
+    },
+    {
+      "type": "p",
+      "text": "رابط MouseEvent یک شیء رویداد می‌دهد که خصوصیت‌های سودمندی مثل مختصات اشاره‌گر و اینکه کدام دکمهٔ ماوس فشرده شده است در آن هست."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\">Move the mouse in this window!</p>\n\n<script>\n\n// Let document listen for mousemove\n\ndocument.addEventListener(\"mousemove\", function (event) {\n\n  document.getElementById(\"demo\").innerHTML =\n\n  \"X: \" + event.clientX + \" Y: \" + event.clientY;\n\n});\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_mouseposition"
+    },
+    {
+      "type": "p",
+      "text": "برای مدیریت ورودی مدرن و مستقل از دستگاه که لمس و قلم هم در آن باشد، برنامه‌نویسان غالباً از Pointer Events API تازه‌تر استفاده می‌کنند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل mouse.html بسازید که یک مستطیل رنگی داشته باشد؛ با mouseover رنگش را عوض کنید و با mouseout به رنگ اول برگردانید.",
+      "hint": "برای تغییر رنگ از style.backgroundColor استفاده کنید."
+    },
+    {
+      "prompt": "مختصات ماوس را روی یک مستطیل چاپ کنید و ببینید با حرکت ماوس مرتب عوض می‌شود.",
+      "hint": "رویداد mousemove را بگیرید و clientX و clientY را در یک عنصر نشان دهید."
+    },
+    {
+      "prompt": "تفاوت mouseover و mouseenter را با یک عنصر والد که فرزند دارد آزمایش کنید.",
+      "hint": "mouseover با ورود به فرزندان هم اجرا می‌شود، اما mouseenter فقط با ورود به خود عنصر؛ برای همین می‌توانید تعداد اجراها را بشمارید."
+    },
+    {
+      "prompt": "با رویداد contextmenu جلوی باز شدن منوی زمینه کلیک راست را بگیرید.",
+      "hint": "در listener از event.preventDefault() استفاده کنید."
+    },
+    {
+      "prompt": "در کنسول ببینید با هر کلیک کدام دکمهٔ ماوس فشرده شده است و برای تشخیص آن از شیء رویداد استفاده کنید.",
+      "hint": "شیء رویداد اطلاعات دکمه را در خود دارد؛ برای کلیک راست و چپ مقدار متفاوتی می‌بینید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "رویداد click چه زمانی اجرا می‌شود؟",
+      "options": [
+        "وقتی دکمهٔ ماوس پایین نگه داشته می‌شود",
+        "پس از رخ دادن هر دو رویداد mousedown و mouseup روی همان عنصر",
+        "وقتی اشاره‌گر از عنصر خارج می‌شود",
+        "وقتی چرخ ماوس می‌چرخد"
+      ],
+      "answer": 1,
+      "explanation": "click پس از اینکه هم mousedown و هم mouseup روی همان عنصر با دکمهٔ اصلی ماوس رخ دهد اجرا می‌شود؛ فقط یکی از آن دو کافی نیست."
+    },
+    {
+      "question": "تفاوت mouseenter با mouseover چیست؟",
+      "options": [
+        "mouseenter با ورود به خود عنصر اجرا می‌شود، نه فرزندانش",
+        "mouseenter فقط با کلیک کار می‌کند",
+        "mouseover فقط در مرورگرهای قدیمی کار می‌کند",
+        "هیچ تفاوتی ندارند"
+      ],
+      "answer": 0,
+      "explanation": "mouseover با ورود به فرزندان هم اجرا می‌شود، اما mouseenter فقط وقتی اشاره‌گر وارد خود عنصر شود؛ همین آن را برای رفتارهایی مثل :hover مناسب‌تر می‌کند."
+    },
+    {
+      "question": "رویداد mousemove چه چیزی در اختیار می‌گذارد؟",
+      "options": ["مختصات اشاره‌گر ماوس", "نام کلید فشرده‌شده", "آدرس صفحه", "حجم تصاویر صفحه"],
+      "answer": 0,
+      "explanation": "mousemove هر بار که اشاره‌گر حرکت کند اجرا می‌شود و از طریق شیء رویداد مختصات مکان‌نما را می‌دهد."
+    },
+    {
+      "question": "کدام رویداد هنگام کلیک راست برای باز کردن منوی زمینه رخ می‌دهد؟",
+      "options": ["contextmenu", "dblclick", "wheel", "mousedown"],
+      "answer": 0,
+      "explanation": "contextmenu وقتی کاربر می‌خواهد منوی زمینه را باز کند اجرا می‌شود و می‌توان با preventDefault جلوی رفتار پیش‌فرض را گرفت."
+    },
+    {
+      "question": "برای مدیریت ورودی‌های مدرن شامل لمس و قلم چه API تازه‌تری پیشنهاد شده است؟",
+      "options": ["MouseEvent API", "Pointer Events API", "Touch Only API", "DOM Events API قدیمی"],
+      "answer": 1,
+      "explanation": "درس اشاره می‌کند که برای ورودی مدرن و مستقل از دستگاه، برنامه‌نویسان از Pointer Events API تازه‌تر استفاده می‌کنند."
+    }
+  ]
 }

@@ -1,527 +1,486 @@
 {
- "slug": "js_async_event_loop",
- "course": "js",
- "order": 227,
- "url": "/js/js_async_event_loop.asp",
- "title": "حلقهٔ رویداد ناهمگام",
- "summary": "حلقهٔ رویداد توضیح می‌دهد چرا setTimeout(..., 0) فوری اجرا نمی‌شود، چرا حلقه‌های طولانی صفحه را هنگ می‌کنند و چرا کالبک‌های پرامیس پیش از تایمرها اجرا می‌شوند. در این درس صف کار و صف میکروکار را از هم جدا می‌کنید و می‌بینید به‌روزرسانی DOM با رسم صفحه چه تفاوتی دارد.",
- "objectives": [
-  "نقش حلقهٔ رویداد را در اجرای کارها توضیح دهید",
-  "صف کار را از صف میکروکار تشخیص دهید",
-  "توضیح دهید چرا کار طولانی قفل شدن صفحه را می‌سازد",
-  "تفاوت به‌روزرسانی DOM و رسم صفحه را بگویید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "حلقهٔ رویداد ناهمگام"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript در هر لحظه فقط می‌تواند یک تکه کد را اجرا کند."
-  },
-  {
-   "type": "p",
-   "text": "تا وقتی JavaScript مشغول است، بقیهٔ کدهای JavaScript باید منتظر بمانند."
-  },
-  {
-   "type": "p",
-   "text": "خب JavaScript تایمرها، کلیک‌های کاربر، دانلودها و عملیات ناهمگام را چطور مدیریت می‌کند؟"
-  },
-  {
-   "type": "p",
-   "text": "پاسخ، حلقهٔ رویداد (Event Loop) است."
-  },
-  {
-   "type": "h2",
-   "text": "شناخت حلقهٔ رویداد"
-  },
-  {
-   "type": "p",
-   "text": "شناخت حلقهٔ رویداد، رفتارهای رایج زیادی در JavaScript را توضیح می‌دهد."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "چرا setTimeout(..., 0) بلافاصله اجرا نمی‌شود.",
-    "چرا حلقه‌های طولانی صفحه را هنگ می‌کنند.",
-    "چرا پرامیس‌ها پیش از تایمرها اجرا می‌شوند.",
-    "چرا await مرورگر را قفل نمی‌کند.",
-    "چرا رویدادهای کلیک تا تمام شدن کد جاری صبر می‌کنند."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript هر بار یک کار اجرا می‌کند"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript کد را به ترتیب اجرا می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "در هر لحظه فقط یک تابع می‌تواند اجرا شود."
-  },
-  {
-   "type": "p",
-   "text": "تابع‌ها به ترتیبی که فراخوانی شده‌اند اجرا می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "هر تابع باید تمام شود تا تابع بعدی شروع شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function step1() {\n\n  myDisplayer(\"Step 1\");\n\n}\n\nfunction step2() {\n\n  myDisplayer(\"Step 2\");\n\n}\n\nstep1();\n\nstep2();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Step 1\n\nStep 2",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function step1() {\n\n  myDisplayer(\"Step 1\");\n\n}\n\nfunction step2() {\n\n  myDisplayer(\"Step 2\");\n\n}\n\nstep2();\n\nstep1();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Step 2\n\nStep 1",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_sync"
-  },
-  {
-   "type": "h2",
-   "text": "مرورگر کار ناهمگام را انجام می‌دهد"
-  },
-  {
-   "type": "p",
-   "text": "خود JavaScript نه منتظر تایمرها می‌ماند و نه صفحه‌های وب را دانلود می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "به‌جای آن، مرورگر این عملیات را انجام می‌دهد و JavaScript به اجرا ادامه می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "نمونه‌ها:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تایمرها",
-    "درخواست‌های شبکه",
-    "رویدادهای کاربر",
-    "بارگذاری فایل"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "وقتی عملیاتی تمام شد، به JavaScript خبر داده می‌شود که نتیجه آماده است."
-  },
-  {
-   "type": "h2",
-   "text": "حلقهٔ رویداد"
-  },
-  {
-   "type": "p",
-   "text": "حلقهٔ رویداد مدام بررسی می‌کند که JavaScript مشغول است یا نه."
-  },
-  {
-   "type": "p",
-   "text": "وقتی JavaScript کار جاری خود را تمام کرد، حلقهٔ رویداد کار بعدی در نوبت را شروع می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "این روند تا وقتی صفحه باز است تکرار می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "JavaScript starts\n\n↓\n\nRun code\n\n↓\n\nStart timer\n\n↓\n\nContinue running\n\n↓\n\nTimer finishes\n\n↓\n\nEvent Loop\n\n↓\n\nRun callback",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "حلقهٔ رویداد عملیات ناهمگام را هماهنگ می‌کند و تعیین می‌کند JavaScript کِی کار بعدی را اجرا کند."
-  },
-  {
-   "type": "h2",
-   "text": "مثال: setTimeout()"
-  },
-  {
-   "type": "p",
-   "text": "کالبک بلافاصله اجرا نمی‌شود."
-  },
-  {
-   "type": "p",
-   "text": "به‌جای آن صبر می‌کند تا JavaScript کار جاری خود را تمام کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"A\");\n\nsetTimeout(function() {\n\n  myDisplayer(\"B\");\n\n}, 2000);\n\nmyDisplayer(\"C\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "A\n\nC\n\nB",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_timeout"
-  },
-  {
-   "type": "p",
-   "text": "تایمر تقریباً بلافاصله تمام می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "اما کالبک تا وقتی JavaScript اجرای کد جاری را تمام نکند نمی‌تواند اجرا شود."
-  },
-  {
-   "type": "p",
-   "text": "حلقهٔ رویداد بعد از تمام شدن کار جاری، کالبک را اجرا می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "مثال: پرامیس"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"A\");\n\nPromise.resolve().then(function() {\n\n  myDisplayer(\"B\");\n\n});\n\nmyDisplayer(\"C\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "A\n\nC\n\nB",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_promise"
-  },
-  {
-   "type": "p",
-   "text": "چرا کالبک پرامیس پیش از تایمر اجرا شد؟"
-  },
-  {
-   "type": "p",
-   "text": "پاسخ این است که کالبک‌های پرامیس در صف ویژه‌ای با اولویت بالاتر قرار می‌گیرند."
-  },
-  {
-   "type": "h2",
-   "text": "صف کار و صف میکروکار"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript برای کار ناهمگام از دو صف اصلی استفاده می‌کند."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "صف",
-     "محتوا"
-    ],
-    [
-     "صف کار (Task Queue)",
-     "تایمرها، رویدادها، پیام‌ها"
-    ],
-    [
-     "صف میکروکار (Microtask Queue)",
-     "مدیریت‌کننده‌های پرامیس و ادامهٔ await"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بعد از تمام شدن هر کار، JavaScript پیش از شروع کار بعدی همهٔ میکروکارهای در نوبت را پردازش می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ تایمرها و پرامیس‌ها"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "عملیات",
-     "صف"
-    ],
-    [
-     "setTimeout()",
-     "صف کار (Task Queue)"
-    ],
-    [
-     "setInterval()",
-     "صف کار (Task Queue)"
-    ],
-    [
-     "رویداد کلیک",
-     "صف کار (Task Queue)"
-    ],
-    [
-     "Promise.then()",
-     "صف میکروکار (Microtask Queue)"
-    ],
-    [
-     "catch()",
-     "صف میکروکار (Microtask Queue)"
-    ],
-    [
-     "finally()",
-     "صف میکروکار (Microtask Queue)"
-    ],
-    [
-     "ادامهٔ await",
-     "صف میکروکار (Microtask Queue)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "کارهای طولانی JavaScript را قفل می‌کنند"
-  },
-  {
-   "type": "p",
-   "text": "اگر JavaScript کار طولانی‌ای اجرا کند، هر چیز دیگری باید منتظر بماند."
-  },
-  {
-   "type": "p",
-   "text": "در این فاصله مرورگر نمی‌تواند کد JavaScript دیگری اجرا کند."
-  },
-  {
-   "type": "p",
-   "text": "کلیک‌های کاربر، تایمرها و دانلودهای تمام‌شده باید صبر کنند تا کار جاری تمام شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function wait() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n}\n\nmyDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_wait"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "p",
-   "text": "چرا این مثال زمان زیادی برد؟"
-  },
-  {
-   "type": "p",
-   "text": "چرا \"Start\" و \"Done\" با هم نمایش داده شدند؟"
-  },
-  {
-   "type": "p",
-   "text": "این پرسش‌ها مستقیم به این می‌رسند که مرورگرها چطور صفحه را به‌روز می‌کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");",
-   "caption": "گام ۱"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\">Start</p>",
-   "caption": "گام ۱"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "wait();",
-   "caption": "گام ۲"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Done\");",
-   "caption": "گام ۳"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\">Start Done</p>",
-   "caption": "گام ۳"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "Start Done",
-   "caption": "گام ۴"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "JavaScript starts\n\n↓\n\nmyDisplayer(\"Start\")\n\n(DOM changes)\n\n↓\n\nwait()\n\n(JavaScript busy)\n\n↓\n\nmyDisplayer(\"Done\")\n\n(DOM changes again)\n\n↓\n\nJavaScript finishes\n\n↓\n\nBrowser repaints\n\n↓\n\nScreen shows:\n\nStart Done",
-   "caption": "خط زمانی"
-  },
-  {
-   "type": "p",
-   "text": "مثال بالا نمونهٔ خوبی از کار حلقهٔ رویداد است."
-  },
-  {
-   "type": "p",
-   "text": "نشان می‌دهد دو چیز جدا از هم وجود دارد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "به‌روزرسانی DOM",
-    "به‌روزرسانی صفحه (رندر)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "DOM بلافاصله به‌روز می‌شود، اما مرورگر باید تا تمام شدن کار جاری JavaScript صبر کند و بعد صفحه را دوباره رسم کند."
-  },
-  {
-   "type": "h2",
-   "text": "می‌خواهید اول \"Start\" نمایش داده شود؟"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function wait() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n}\n\nmyDisplayer(\"Start\");\n\nsetTimeout(function () {\n\n  wait();\n\n  myDisplayer(\"Done\");\n\n}, 0);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_wait_2"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "JavaScript starts\n\n↓\n\nDisplay \"Start\"\n\n↓\n\nCurrent task finishes\n\n↓\n\nBrowser repaints\n\n(Start becomes visible)\n\n↓\n\nEvent Loop\n\n↓\n\nRun wait()\n\n↓\n\nDisplay \"Done\"\n\n↓\n\nBrowser repaints",
-   "caption": "خط زمانی"
-  },
-  {
-   "type": "h2",
-   "text": "خلاصه"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "JavaScript هر بار یک کار را اجرا می‌کند.",
-    "مرورگر عملیات ناهمگام مثل تایمرها، دانلودها و رویدادهای کاربر را انجام می‌دهد.",
-    "عملیات تمام‌شده صبر می‌کنند تا JavaScript آماده شود.",
-    "حلقهٔ رویداد وقتی کار جاری تمام شد، کارهای در نوبت را شروع می‌کند.",
-    "مدیریت‌کننده‌های پرامیس و ادامهٔ await پیش از تایمرها اجرا می‌شوند، چون از صف میکروکار استفاده می‌کنند."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "ابزار نمایش بصری »"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل loop.html بسازید، یک myDisplayer(\"A\")، بعد یک setTimeout با myDisplayer(\"B\") و در آخر myDisplayer(\"C\") بگذارید و ترتیب خروجی را ببینید.",
-   "hint": "خروجی A و C و B است، چون کالبک تایمر تا تمام شدن کار جاری اجرا نمی‌شود."
-  },
-  {
-   "prompt": "همان مثال را با Promise.resolve().then به‌جای تایمر بنویسید و ببینید ترتیب خروجی چه تفاوتی با تایمر دارد.",
-   "hint": "کالبک پرامیس در صف میکروکار است و پیش از تایمرهای صف کار اجرا می‌شود."
-  },
-  {
-   "prompt": "یک تابع با حلقهٔ سنگین بنویسید، بین دو myDisplayer بگذارید و ببینید چرا دو متن با هم روی صفحه می‌آیند.",
-   "hint": "DOM همان لحظه عوض می‌شود ولی رسم صفحه تا پایان کار جاری عقب می‌افتد."
-  },
-  {
-   "prompt": "مسئلهٔ بالا را با یک تأخیر کوچک در قالب setTimeout حل کنید تا \"Start\" پیش از حلقه دیده شود.",
-   "hint": "با انتقال کار سنگین به نوبت بعدی صف کار، مرورگر فرصت پیدا می‌کند صفحه را دوباره رسم کند."
-  },
-  {
-   "prompt": "برای چهار عملیات (setTimeout، setInterval، رویداد کلیک و Promise.then) بنویسید هر کدام در کدام صف قرار می‌گیرد.",
-   "hint": "تایمرها و رویدادها در صف کار و مدیریت‌کننده‌های پرامیس در صف میکروکار هستند."
-  }
- ],
- "quiz": [
-  {
-   "question": "حلقهٔ رویداد (Event Loop) چه کاری انجام می‌دهد؟",
-   "options": [
-    "کد را موازی روی چند هستهٔ CPU اجرا می‌کند",
-    "بررسی می‌کند JavaScript مشغول است یا نه و کار بعدی در نوبت را شروع می‌کند",
-    "تایمرها را خودش اجرا می‌کند",
-    "کد ناهمگام را به کد هم‌زمان تبدیل می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "حلقهٔ رویداد کار جاری را تمام‌شده می‌بیند و بعد کار بعدی صف را روی همان رشتهٔ اصلی شروع می‌کند؛ موازی‌سازی کار آن نیست."
-  },
-  {
-   "question": "چرا کالبک setTimeout پیش از تمام شدن کد جاری اجرا نمی‌شود؟",
-   "options": [
-    "چون تایمر خراب است",
-    "چون JavaScript تا پایان کار جاری به سراغ کارهای صف نمی‌رود",
-    "چون تایمر در صف میکروکار است",
-    "چون مرورگر تایمرها را متوقف می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "تایمر در پس‌زمینه تمام می‌شود، اما کالبک آن در صف کار می‌ماند تا کار جاری JavaScript تمام شود و حلقهٔ رویداد نوبت بعدی را شروع کند."
-  },
-  {
-   "question": "چرا کالبک پرامیس پیش از کالبک تایمر اجرا می‌شود؟",
-   "options": [
-    "چون پرامیس‌ها سریع‌تر محاسبه می‌شوند",
-    "چون مدیریت‌کننده‌های پرامیس در صف میکروکار با اولویت بالاتر قرار می‌گیرند",
-    "چون setTimeout زمان‌بندی نمی‌شود",
-    "چون پرامیس روی رشتهٔ جداگانه اجرا می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "بعد از هر کار، JavaScript اول همهٔ میکروکارها را پردازش می‌کند و تازه بعد به کار بعدی صف کار می‌رسد؛ پرامیس در صف میکروکار است."
-  },
-  {
-   "question": "کدام موارد در صف میکروکار قرار می‌گیرند؟",
-   "options": [
-    "setTimeout و setInterval",
-    "رویدادهای کلیک",
-    "مدیریت‌کننده‌های پرامیس و ادامهٔ await",
-    "دانلودهای تمام‌شده"
-   ],
-   "answer": 2,
-   "explanation": "Promise.then و catch و finally و ادامهٔ await در صف میکروکار هستند؛ تایمرها و رویدادها در صف کار قرار می‌گیرند."
-  },
-  {
-   "question": "چرا تغییر DOM با innerHTML ممکن است بلافاصله روی صفحه دیده نشود؟",
-   "options": [
-    "چون innerHTML مقدار را ذخیره نمی‌کند",
-    "چون DOM همان لحظه عوض می‌شود اما مرورگر تا پایان کار جاری JavaScript صفحه را دوباره رسم نمی‌کند",
-    "چون مرورگر هر تغییر DOM را نادیده می‌گیرد",
-    "چون رسم صفحه در صف کار قرار می‌گیرد"
-   ],
-   "answer": 1,
-   "explanation": "به‌روزرسانی DOM و رسم صفحه دو چیز جدا هستند؛ DOM فوراً عوض می‌شود ولی رسم تا پایان کار جاری عقب می‌افتد و همین باعث حس هنگ‌کردن می‌شود."
-  }
- ]
+  "slug": "js_async_event_loop",
+  "course": "js",
+  "order": 227,
+  "url": "/js/js_async_event_loop.asp",
+  "title": "حلقهٔ رویداد ناهمگام",
+  "summary": "حلقهٔ رویداد توضیح می‌دهد چرا setTimeout(..., 0) فوری اجرا نمی‌شود، چرا حلقه‌های طولانی صفحه را هنگ می‌کنند و چرا کالبک‌های پرامیس پیش از تایمرها اجرا می‌شوند. در این درس صف کار و صف میکروکار را از هم جدا می‌کنید و می‌بینید به‌روزرسانی DOM با رسم صفحه چه تفاوتی دارد.",
+  "objectives": [
+    "نقش حلقهٔ رویداد را در اجرای کارها توضیح دهید",
+    "صف کار را از صف میکروکار تشخیص دهید",
+    "توضیح دهید چرا کار طولانی قفل شدن صفحه را می‌سازد",
+    "تفاوت به‌روزرسانی DOM و رسم صفحه را بگویید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "حلقهٔ رویداد ناهمگام"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript در هر لحظه فقط می‌تواند یک تکه کد را اجرا کند."
+    },
+    {
+      "type": "p",
+      "text": "تا وقتی JavaScript مشغول است، بقیهٔ کدهای JavaScript باید منتظر بمانند."
+    },
+    {
+      "type": "p",
+      "text": "خب JavaScript تایمرها، کلیک‌های کاربر، دانلودها و عملیات ناهمگام را چطور مدیریت می‌کند؟"
+    },
+    {
+      "type": "p",
+      "text": "پاسخ، حلقهٔ رویداد (Event Loop) است."
+    },
+    {
+      "type": "h2",
+      "text": "شناخت حلقهٔ رویداد"
+    },
+    {
+      "type": "p",
+      "text": "شناخت حلقهٔ رویداد، رفتارهای رایج زیادی در JavaScript را توضیح می‌دهد."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "چرا setTimeout(..., 0) بلافاصله اجرا نمی‌شود.",
+        "چرا حلقه‌های طولانی صفحه را هنگ می‌کنند.",
+        "چرا پرامیس‌ها پیش از تایمرها اجرا می‌شوند.",
+        "چرا await مرورگر را قفل نمی‌کند.",
+        "چرا رویدادهای کلیک تا تمام شدن کد جاری صبر می‌کنند."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript هر بار یک کار اجرا می‌کند"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript کد را به ترتیب اجرا می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "در هر لحظه فقط یک تابع می‌تواند اجرا شود."
+    },
+    {
+      "type": "p",
+      "text": "تابع‌ها به ترتیبی که فراخوانی شده‌اند اجرا می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "هر تابع باید تمام شود تا تابع بعدی شروع شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function step1() {\n\n  myDisplayer(\"Step 1\");\n\n}\n\nfunction step2() {\n\n  myDisplayer(\"Step 2\");\n\n}\n\nstep1();\n\nstep2();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Step 1\n\nStep 2",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function step1() {\n\n  myDisplayer(\"Step 1\");\n\n}\n\nfunction step2() {\n\n  myDisplayer(\"Step 2\");\n\n}\n\nstep2();\n\nstep1();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Step 2\n\nStep 1",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_sync"
+    },
+    {
+      "type": "h2",
+      "text": "مرورگر کار ناهمگام را انجام می‌دهد"
+    },
+    {
+      "type": "p",
+      "text": "خود JavaScript نه منتظر تایمرها می‌ماند و نه صفحه‌های وب را دانلود می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "به‌جای آن، مرورگر این عملیات را انجام می‌دهد و JavaScript به اجرا ادامه می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "نمونه‌ها:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["تایمرها", "درخواست‌های شبکه", "رویدادهای کاربر", "بارگذاری فایل"]
+    },
+    {
+      "type": "p",
+      "text": "وقتی عملیاتی تمام شد، به JavaScript خبر داده می‌شود که نتیجه آماده است."
+    },
+    {
+      "type": "h2",
+      "text": "حلقهٔ رویداد"
+    },
+    {
+      "type": "p",
+      "text": "حلقهٔ رویداد مدام بررسی می‌کند که JavaScript مشغول است یا نه."
+    },
+    {
+      "type": "p",
+      "text": "وقتی JavaScript کار جاری خود را تمام کرد، حلقهٔ رویداد کار بعدی در نوبت را شروع می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "این روند تا وقتی صفحه باز است تکرار می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "JavaScript starts\n\n↓\n\nRun code\n\n↓\n\nStart timer\n\n↓\n\nContinue running\n\n↓\n\nTimer finishes\n\n↓\n\nEvent Loop\n\n↓\n\nRun callback",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "حلقهٔ رویداد عملیات ناهمگام را هماهنگ می‌کند و تعیین می‌کند JavaScript کِی کار بعدی را اجرا کند."
+    },
+    {
+      "type": "h2",
+      "text": "مثال: setTimeout()"
+    },
+    {
+      "type": "p",
+      "text": "کالبک بلافاصله اجرا نمی‌شود."
+    },
+    {
+      "type": "p",
+      "text": "به‌جای آن صبر می‌کند تا JavaScript کار جاری خود را تمام کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"A\");\n\nsetTimeout(function() {\n\n  myDisplayer(\"B\");\n\n}, 2000);\n\nmyDisplayer(\"C\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "A\n\nC\n\nB",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_timeout"
+    },
+    {
+      "type": "p",
+      "text": "تایمر تقریباً بلافاصله تمام می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "اما کالبک تا وقتی JavaScript اجرای کد جاری را تمام نکند نمی‌تواند اجرا شود."
+    },
+    {
+      "type": "p",
+      "text": "حلقهٔ رویداد بعد از تمام شدن کار جاری، کالبک را اجرا می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "مثال: پرامیس"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"A\");\n\nPromise.resolve().then(function() {\n\n  myDisplayer(\"B\");\n\n});\n\nmyDisplayer(\"C\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "A\n\nC\n\nB",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_promise"
+    },
+    {
+      "type": "p",
+      "text": "چرا کالبک پرامیس پیش از تایمر اجرا شد؟"
+    },
+    {
+      "type": "p",
+      "text": "پاسخ این است که کالبک‌های پرامیس در صف ویژه‌ای با اولویت بالاتر قرار می‌گیرند."
+    },
+    {
+      "type": "h2",
+      "text": "صف کار و صف میکروکار"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript برای کار ناهمگام از دو صف اصلی استفاده می‌کند."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["صف", "محتوا"],
+        ["صف کار (Task Queue)", "تایمرها، رویدادها، پیام‌ها"],
+        ["صف میکروکار (Microtask Queue)", "مدیریت‌کننده‌های پرامیس و ادامهٔ await"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بعد از تمام شدن هر کار، JavaScript پیش از شروع کار بعدی همهٔ میکروکارهای در نوبت را پردازش می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ تایمرها و پرامیس‌ها"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["عملیات", "صف"],
+        ["setTimeout()", "صف کار (Task Queue)"],
+        ["setInterval()", "صف کار (Task Queue)"],
+        ["رویداد کلیک", "صف کار (Task Queue)"],
+        ["Promise.then()", "صف میکروکار (Microtask Queue)"],
+        ["catch()", "صف میکروکار (Microtask Queue)"],
+        ["finally()", "صف میکروکار (Microtask Queue)"],
+        ["ادامهٔ await", "صف میکروکار (Microtask Queue)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "کارهای طولانی JavaScript را قفل می‌کنند"
+    },
+    {
+      "type": "p",
+      "text": "اگر JavaScript کار طولانی‌ای اجرا کند، هر چیز دیگری باید منتظر بماند."
+    },
+    {
+      "type": "p",
+      "text": "در این فاصله مرورگر نمی‌تواند کد JavaScript دیگری اجرا کند."
+    },
+    {
+      "type": "p",
+      "text": "کلیک‌های کاربر، تایمرها و دانلودهای تمام‌شده باید صبر کنند تا کار جاری تمام شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function wait() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n}\n\nmyDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_wait"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "چرا این مثال زمان زیادی برد؟"
+    },
+    {
+      "type": "p",
+      "text": "چرا \"Start\" و \"Done\" با هم نمایش داده شدند؟"
+    },
+    {
+      "type": "p",
+      "text": "این پرسش‌ها مستقیم به این می‌رسند که مرورگرها چطور صفحه را به‌روز می‌کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");",
+      "caption": "گام ۱"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\">Start</p>",
+      "caption": "گام ۱"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "wait();",
+      "caption": "گام ۲"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Done\");",
+      "caption": "گام ۳"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\">Start Done</p>",
+      "caption": "گام ۳"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "Start Done",
+      "caption": "گام ۴"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "JavaScript starts\n\n↓\n\nmyDisplayer(\"Start\")\n\n(DOM changes)\n\n↓\n\nwait()\n\n(JavaScript busy)\n\n↓\n\nmyDisplayer(\"Done\")\n\n(DOM changes again)\n\n↓\n\nJavaScript finishes\n\n↓\n\nBrowser repaints\n\n↓\n\nScreen shows:\n\nStart Done",
+      "caption": "خط زمانی"
+    },
+    {
+      "type": "p",
+      "text": "مثال بالا نمونهٔ خوبی از کار حلقهٔ رویداد است."
+    },
+    {
+      "type": "p",
+      "text": "نشان می‌دهد دو چیز جدا از هم وجود دارد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["به‌روزرسانی DOM", "به‌روزرسانی صفحه (رندر)"]
+    },
+    {
+      "type": "p",
+      "text": "DOM بلافاصله به‌روز می‌شود، اما مرورگر باید تا تمام شدن کار جاری JavaScript صبر کند و بعد صفحه را دوباره رسم کند."
+    },
+    {
+      "type": "h2",
+      "text": "می‌خواهید اول \"Start\" نمایش داده شود؟"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function wait() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n}\n\nmyDisplayer(\"Start\");\n\nsetTimeout(function () {\n\n  wait();\n\n  myDisplayer(\"Done\");\n\n}, 0);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_wait_2"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "JavaScript starts\n\n↓\n\nDisplay \"Start\"\n\n↓\n\nCurrent task finishes\n\n↓\n\nBrowser repaints\n\n(Start becomes visible)\n\n↓\n\nEvent Loop\n\n↓\n\nRun wait()\n\n↓\n\nDisplay \"Done\"\n\n↓\n\nBrowser repaints",
+      "caption": "خط زمانی"
+    },
+    {
+      "type": "h2",
+      "text": "خلاصه"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "JavaScript هر بار یک کار را اجرا می‌کند.",
+        "مرورگر عملیات ناهمگام مثل تایمرها، دانلودها و رویدادهای کاربر را انجام می‌دهد.",
+        "عملیات تمام‌شده صبر می‌کنند تا JavaScript آماده شود.",
+        "حلقهٔ رویداد وقتی کار جاری تمام شد، کارهای در نوبت را شروع می‌کند.",
+        "مدیریت‌کننده‌های پرامیس و ادامهٔ await پیش از تایمرها اجرا می‌شوند، چون از صف میکروکار استفاده می‌کنند."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "ابزار نمایش بصری »"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل loop.html بسازید، یک myDisplayer(\"A\")، بعد یک setTimeout با myDisplayer(\"B\") و در آخر myDisplayer(\"C\") بگذارید و ترتیب خروجی را ببینید.",
+      "hint": "خروجی A و C و B است، چون کالبک تایمر تا تمام شدن کار جاری اجرا نمی‌شود."
+    },
+    {
+      "prompt": "همان مثال را با Promise.resolve().then به‌جای تایمر بنویسید و ببینید ترتیب خروجی چه تفاوتی با تایمر دارد.",
+      "hint": "کالبک پرامیس در صف میکروکار است و پیش از تایمرهای صف کار اجرا می‌شود."
+    },
+    {
+      "prompt": "یک تابع با حلقهٔ سنگین بنویسید، بین دو myDisplayer بگذارید و ببینید چرا دو متن با هم روی صفحه می‌آیند.",
+      "hint": "DOM همان لحظه عوض می‌شود ولی رسم صفحه تا پایان کار جاری عقب می‌افتد."
+    },
+    {
+      "prompt": "مسئلهٔ بالا را با یک تأخیر کوچک در قالب setTimeout حل کنید تا \"Start\" پیش از حلقه دیده شود.",
+      "hint": "با انتقال کار سنگین به نوبت بعدی صف کار، مرورگر فرصت پیدا می‌کند صفحه را دوباره رسم کند."
+    },
+    {
+      "prompt": "برای چهار عملیات (setTimeout، setInterval، رویداد کلیک و Promise.then) بنویسید هر کدام در کدام صف قرار می‌گیرد.",
+      "hint": "تایمرها و رویدادها در صف کار و مدیریت‌کننده‌های پرامیس در صف میکروکار هستند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "حلقهٔ رویداد (Event Loop) چه کاری انجام می‌دهد؟",
+      "options": [
+        "کد را موازی روی چند هستهٔ CPU اجرا می‌کند",
+        "بررسی می‌کند JavaScript مشغول است یا نه و کار بعدی در نوبت را شروع می‌کند",
+        "تایمرها را خودش اجرا می‌کند",
+        "کد ناهمگام را به کد هم‌زمان تبدیل می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "حلقهٔ رویداد کار جاری را تمام‌شده می‌بیند و بعد کار بعدی صف را روی همان رشتهٔ اصلی شروع می‌کند؛ موازی‌سازی کار آن نیست."
+    },
+    {
+      "question": "چرا کالبک setTimeout پیش از تمام شدن کد جاری اجرا نمی‌شود؟",
+      "options": [
+        "چون تایمر خراب است",
+        "چون JavaScript تا پایان کار جاری به سراغ کارهای صف نمی‌رود",
+        "چون تایمر در صف میکروکار است",
+        "چون مرورگر تایمرها را متوقف می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "تایمر در پس‌زمینه تمام می‌شود، اما کالبک آن در صف کار می‌ماند تا کار جاری JavaScript تمام شود و حلقهٔ رویداد نوبت بعدی را شروع کند."
+    },
+    {
+      "question": "چرا کالبک پرامیس پیش از کالبک تایمر اجرا می‌شود؟",
+      "options": [
+        "چون پرامیس‌ها سریع‌تر محاسبه می‌شوند",
+        "چون مدیریت‌کننده‌های پرامیس در صف میکروکار با اولویت بالاتر قرار می‌گیرند",
+        "چون setTimeout زمان‌بندی نمی‌شود",
+        "چون پرامیس روی رشتهٔ جداگانه اجرا می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "بعد از هر کار، JavaScript اول همهٔ میکروکارها را پردازش می‌کند و تازه بعد به کار بعدی صف کار می‌رسد؛ پرامیس در صف میکروکار است."
+    },
+    {
+      "question": "کدام موارد در صف میکروکار قرار می‌گیرند؟",
+      "options": [
+        "setTimeout و setInterval",
+        "رویدادهای کلیک",
+        "مدیریت‌کننده‌های پرامیس و ادامهٔ await",
+        "دانلودهای تمام‌شده"
+      ],
+      "answer": 2,
+      "explanation": "Promise.then و catch و finally و ادامهٔ await در صف میکروکار هستند؛ تایمرها و رویدادها در صف کار قرار می‌گیرند."
+    },
+    {
+      "question": "چرا تغییر DOM با innerHTML ممکن است بلافاصله روی صفحه دیده نشود؟",
+      "options": [
+        "چون innerHTML مقدار را ذخیره نمی‌کند",
+        "چون DOM همان لحظه عوض می‌شود اما مرورگر تا پایان کار جاری JavaScript صفحه را دوباره رسم نمی‌کند",
+        "چون مرورگر هر تغییر DOM را نادیده می‌گیرد",
+        "چون رسم صفحه در صف کار قرار می‌گیرد"
+      ],
+      "answer": 1,
+      "explanation": "به‌روزرسانی DOM و رسم صفحه دو چیز جدا هستند؛ DOM فوراً عوض می‌شود ولی رسم تا پایان کار جاری عقب می‌افتد و همین باعث حس هنگ‌کردن می‌شود."
+    }
+  ]
 }

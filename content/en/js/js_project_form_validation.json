@@ -1,276 +1,276 @@
 {
- "slug": "js_project_form_validation",
- "course": "js",
- "order": 122,
- "url": "/js/js_project_form_validation.asp",
- "title": "Project - Form Validation",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Project - Form Validation"
-  },
-  {
-   "type": "p",
-   "text": "In this project you will build a form with validation."
-  },
-  {
-   "type": "p",
-   "text": "The form will show error messages under each input field, and it will not submit until everything is valid."
-  },
-  {
-   "type": "h3",
-   "text": "What You Will Learn"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "How to validate form fields with JavaScript",
-    "How to prevent a form from submitting",
-    "How to show error messages under inputs",
-    "How to check email and password rules"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Step 1 - Create the HTML"
-  },
-  {
-   "type": "p",
-   "text": "Create a form with four fields and an error message under each field."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form id=\"signupForm\">\n\n<div class=\"field\">\n\n  <label>Name:</label><br>\n\n  <input id=\"name\" type=\"text\" placeholder=\"Your name\">\n\n  <p id=\"nameError\" class=\"error\"></p>\n\n</div>\n\n<form>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation1"
-  },
-  {
-   "type": "h2",
-   "text": "Step 2 - Add the CSS"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<style>\n\ninput {\n\n  padding: 8px;\n\n  width: 260px;\n\n  margin-bottom: 4px;\n\n}\n\n.error {\n\n  color: red;\n\n  margin: 0;\n\n}\n\n.ok {\n\n  color: green;\n\n  margin: 0;\n\n}\n\n.field {\n\n  margin-bottom: 12px;\n\n}\n\n</style>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation2"
-  },
-  {
-   "type": "h2",
-   "text": "Step 3 - Add JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "You must create an object for each field."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object for each Field\n\nconst form = document.getElementById(\"signupForm\");\n\nconst nameInput = document.getElementById(\"name\");\n\nconst emailInput = document.getElementById(\"email\");\n\nconst passInput = document.getElementById(\"password\");\n\nconst confirmInput = document.getElementById(\"confirm\");\n\nconst nameError = document.getElementById(\"nameError\");\n\nconst emailError = document.getElementById(\"emailError\");\n\nconst passError = document.getElementById(\"passwordError\");\n\nconst confirmError = document.getElementById(\"confirmError\");\n\nconst result = document.getElementById(\"result\");",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "You need a function to diplay errors."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Display Error\n\nfunction showError(el, message) {\n\n  el.innerHTML = message;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "You need a function to clear the error field."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Clear the Error\n\nfunction clearError(el) {\n\n  el.innerHTML = \"\";\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "You need a function to validate the form."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Form\n\nfunction validateForm() {\n\n  return false;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "You need the code to validate the form."
-  },
-  {
-   "type": "p",
-   "text": "To validate the form, you must stop the page from reloading."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Prevent Default Reloading\n\nform.addEventListener(\"submit\", function (event) {\n\n  event.preventDefault();\n\n// Clear Result\n\n  result.innerHTML = \"\";\n\n// Validate Form\n\n  if (validateForm()) {\n\n    result.innerHTML = \"Form is valid!\";\n\n    result.className = \"ok\";\n\n  } else {\n\n    result.innerHTML = \"Please fix the errors.\";\n\n    result.className = \"error\";\n\n  }\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation3"
-  },
-  {
-   "type": "h2",
-   "text": "Step 4 - Validate Fields"
-  },
-  {
-   "type": "p",
-   "text": "Create one function per field."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Name\n\nfunction validateName() {\n\n  let value = nameInput.value.trim();\n\n  if (value.length < 2) {\n\n    showError(nameError, \"Name must be at least 2 characters.\");\n\n    return false;\n\n  }\n\n  clearError(nameError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  return okName;\n\n}",
-   "caption": "Validate Name"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation4"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Email\n\nfunction validateEmail() {\n\n  let value = emailInput.value.trim();\n\n  if (!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value))) {\n\n    showError(emailError, \"Enter a valid email address.\");\n\n    return false;\n\n  }\n\n  clearError(emailError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  return okName && okEmail;\n\n}",
-   "caption": "Validate Email"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation5"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Password\n\nfunction validatePassword() {\n\n  let value = passInput.value;\n\n  if (value.length < 8) {\n\n    showError(passError, \"Password must be at least 8 characters.\");\n\n    return false;\n\n  }\n\n  clearError(passError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  return okName && okEmail && okPass;\n\n}",
-   "caption": "Validate Password"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation6"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Confirm\n\nfunction validateConfirm() {\n\n  let pass = passInput.value;\n\n  let confirm = confirmInput.value;\n\n  if (confirm === \"\") {\n\n    showError(confirmError, \"Please confirm your password.\");\n\n    return false;\n\n  }\n\n  if (confirm !== pass) {\n\n    showError(confirmError, \"Passwords do not match.\");\n\n    return false;\n\n  }\n\n  clearError(confirmError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  let okConfirm = validateConfirm();\n\n  return okName && okEmail && okPass && okConfirm;\n\n}",
-   "caption": "Validate Confirm"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation7"
-  },
-  {
-   "type": "h2",
-   "text": "Form Validation (Finished)"
-  },
-  {
-   "type": "p",
-   "text": "This example shows the finished project."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<style>\n\ninput {\n\n  padding: 8px;\n\n  width: 260px;\n\n  margin-bottom: 4px;\n\n}\n\n.error {\n\n  color: red;\n\n  margin: 0;\n\n}\n\n.ok {\n\n  color: green;\n\n  margin: 0;\n\n}\n\n.field {\n\n  margin-bottom: 12px;\n\n}\n\n</style>",
-   "caption": "The CSS"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<style>\n\n... CSS goes here\n\n</style>\n\n<body>\n\n<h2>Sign Up</h2>\n\n<form id=\"signupForm\">\n\n<div class=\"field\">\n\n  <label>Name:</label><br>\n\n  <input id=\"name\" type=\"text\" placeholder=\"Your name\">\n\n  <p id=\"nameError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Email:</label><br>\n\n  <input id=\"email\" type=\"text\" placeholder=\"name@example.com\">\n\n  <p id=\"emailError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Password:</label><br>\n\n  <input id=\"password\" type=\"password\" placeholder=\"Min 8 characters\">\n\n  <p id=\"passwordError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Confirm Password:</label><br>\n\n  <input id=\"confirm\" type=\"password\" placeholder=\"Repeat password\">\n\n  <p id=\"confirmError\" class=\"error\"></p>\n\n</div>\n\n<p><button type=\"submit\">Create Account</button></p>\n\n</form>\n\n<p id=\"result\"></p>\n\n<script>\n\n// JavaScript goes here\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "The HTML"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object for each Field\n\nconst form = document.getElementById(\"signupForm\");\n\nconst nameInput = document.getElementById(\"name\");\n\nconst emailInput = document.getElementById(\"email\");\n\nconst passInput = document.getElementById(\"password\");\n\nconst confirmInput = document.getElementById(\"confirm\");\n\nconst nameError = document.getElementById(\"nameError\");\n\nconst emailError = document.getElementById(\"emailError\");\n\nconst passError = document.getElementById(\"passwordError\");\n\nconst confirmError = document.getElementById(\"confirmError\");\n\nconst result = document.getElementById(\"result\");\n\n// Function to Display Error\n\nfunction showError(el, message) {\n\n  el.innerHTML = message;\n\n}\n\n// Function to Clear Error\n\nfunction clearError(el) {\n\n  el.innerHTML = \"\";\n\n}\n\n// Function to Validate Name\n\nfunction validateName() {\n\n  let value = nameInput.value.trim();\n\n  if (value.length < 2) {\n\n    showError(nameError, \"Name must be at least 2 characters.\");\n\n    return false;\n\n  }\n\n  clearError(nameError);\n\n  return true;\n\n}\n\n// Function to Validate Email\n\nfunction validateEmail() {\n\n  let value = emailInput.value.trim();\n\n  if (!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value))) {\n\n    showError(emailError, \"Enter a valid email address.\");\n\n    return false;\n\n  }\n\n  clearError(emailError);\n\n  return true;\n\n}\n\n// Function to Validate Password\n\nfunction validatePassword() {\n\n  let value = passInput.value;\n\n  if (value.length < 8) {\n\n    showError(passError, \"Password must be at least 8 characters.\");\n\n    return false;\n\n  }\n\n  clearError(passError);\n\n  return true;\n\n}\n\n// Function to Validate Confirm\n\nfunction validateConfirm() {\n\n  let pass = passInput.value;\n\n  let confirm = confirmInput.value;\n\n  if (confirm === \"\") {\n\n    showError(confirmError, \"Please confirm your password.\");\n\n    return false;\n\n  }\n\n  if (confirm !== pass) {\n\n    showError(confirmError, \"Passwords do not match.\");\n\n    return false;\n\n  }\n\n  clearError(confirmError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  let okConfirm = validateConfirm();\n\n  return okName && okEmail && okPass && okConfirm;\n\n}\n\n// Prevent Default Reloading\n\nform.addEventListener(\"submit\", function (event) {\n\n  event.preventDefault();\n\n// Clear Result\n\n  result.innerHTML = \"\";\n\n// Validate Form\n\n  if (validateForm()) {\n\n    result.innerHTML = \"Form is valid!\";\n\n    result.className = \"ok\";\n\n  } else {\n\n    result.innerHTML = \"Please fix the errors.\";\n\n    result.className = \"error\";\n\n  }\n\n});",
-   "caption": "The JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation9"
-  },
-  {
-   "type": "h2",
-   "text": "Common Mistakes"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Forgetting event.preventDefault()",
-    "Not trimming the input values",
-    "Using innerHTML with user input (use text only for messages)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Exercises"
-  },
-  {
-   "type": "h3",
-   "text": "Exercise 1"
-  },
-  {
-   "type": "p",
-   "text": "Add a rule that the password must contain at least one number."
-  },
-  {
-   "type": "h3",
-   "text": "Exercise 2"
-  },
-  {
-   "type": "p",
-   "text": "Validate fields while the user is typing (use the input event)."
-  },
-  {
-   "type": "h3",
-   "text": "Exercise 3"
-  },
-  {
-   "type": "p",
-   "text": "Show a green message next to fields that are valid."
-  },
-  {
-   "type": "h2",
-   "text": "Bonus Challenges (Level Up)"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Add password strength indicator (Weak / Medium / Strong)",
-    "Disable the submit button until everything is valid",
-    "Show/hide password button"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Projects"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "JavaScript Counter\nA counter project with restore and save in localStorage.",
-    "JavaScript Event Listener\nThe counter project using event listener instead of onclick.",
-    "JavaScript To-Do List\nA do-do list saved in an array in local storage.",
-    "JavaScript Modal Popup\nA modal popup window that appears on top of the page.",
-    "JavaScript Form Validation\nAn HTML Form with form validation."
-   ]
-  }
- ]
+  "slug": "js_project_form_validation",
+  "course": "js",
+  "order": 122,
+  "url": "/js/js_project_form_validation.asp",
+  "title": "Project - Form Validation",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Project - Form Validation"
+    },
+    {
+      "type": "p",
+      "text": "In this project you will build a form with validation."
+    },
+    {
+      "type": "p",
+      "text": "The form will show error messages under each input field, and it will not submit until everything is valid."
+    },
+    {
+      "type": "h3",
+      "text": "What You Will Learn"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "How to validate form fields with JavaScript",
+        "How to prevent a form from submitting",
+        "How to show error messages under inputs",
+        "How to check email and password rules"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Step 1 - Create the HTML"
+    },
+    {
+      "type": "p",
+      "text": "Create a form with four fields and an error message under each field."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form id=\"signupForm\">\n\n<div class=\"field\">\n\n  <label>Name:</label><br>\n\n  <input id=\"name\" type=\"text\" placeholder=\"Your name\">\n\n  <p id=\"nameError\" class=\"error\"></p>\n\n</div>\n\n<form>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation1"
+    },
+    {
+      "type": "h2",
+      "text": "Step 2 - Add the CSS"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<style>\n\ninput {\n\n  padding: 8px;\n\n  width: 260px;\n\n  margin-bottom: 4px;\n\n}\n\n.error {\n\n  color: red;\n\n  margin: 0;\n\n}\n\n.ok {\n\n  color: green;\n\n  margin: 0;\n\n}\n\n.field {\n\n  margin-bottom: 12px;\n\n}\n\n</style>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation2"
+    },
+    {
+      "type": "h2",
+      "text": "Step 3 - Add JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "You must create an object for each field."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object for each Field\n\nconst form = document.getElementById(\"signupForm\");\n\nconst nameInput = document.getElementById(\"name\");\n\nconst emailInput = document.getElementById(\"email\");\n\nconst passInput = document.getElementById(\"password\");\n\nconst confirmInput = document.getElementById(\"confirm\");\n\nconst nameError = document.getElementById(\"nameError\");\n\nconst emailError = document.getElementById(\"emailError\");\n\nconst passError = document.getElementById(\"passwordError\");\n\nconst confirmError = document.getElementById(\"confirmError\");\n\nconst result = document.getElementById(\"result\");",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "You need a function to diplay errors."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Display Error\n\nfunction showError(el, message) {\n\n  el.innerHTML = message;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "You need a function to clear the error field."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Clear the Error\n\nfunction clearError(el) {\n\n  el.innerHTML = \"\";\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "You need a function to validate the form."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Form\n\nfunction validateForm() {\n\n  return false;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "You need the code to validate the form."
+    },
+    {
+      "type": "p",
+      "text": "To validate the form, you must stop the page from reloading."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Prevent Default Reloading\n\nform.addEventListener(\"submit\", function (event) {\n\n  event.preventDefault();\n\n// Clear Result\n\n  result.innerHTML = \"\";\n\n// Validate Form\n\n  if (validateForm()) {\n\n    result.innerHTML = \"Form is valid!\";\n\n    result.className = \"ok\";\n\n  } else {\n\n    result.innerHTML = \"Please fix the errors.\";\n\n    result.className = \"error\";\n\n  }\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation3"
+    },
+    {
+      "type": "h2",
+      "text": "Step 4 - Validate Fields"
+    },
+    {
+      "type": "p",
+      "text": "Create one function per field."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Name\n\nfunction validateName() {\n\n  let value = nameInput.value.trim();\n\n  if (value.length < 2) {\n\n    showError(nameError, \"Name must be at least 2 characters.\");\n\n    return false;\n\n  }\n\n  clearError(nameError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  return okName;\n\n}",
+      "caption": "Validate Name"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation4"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Email\n\nfunction validateEmail() {\n\n  let value = emailInput.value.trim();\n\n  if (!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value))) {\n\n    showError(emailError, \"Enter a valid email address.\");\n\n    return false;\n\n  }\n\n  clearError(emailError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  return okName && okEmail;\n\n}",
+      "caption": "Validate Email"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation5"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Password\n\nfunction validatePassword() {\n\n  let value = passInput.value;\n\n  if (value.length < 8) {\n\n    showError(passError, \"Password must be at least 8 characters.\");\n\n    return false;\n\n  }\n\n  clearError(passError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  return okName && okEmail && okPass;\n\n}",
+      "caption": "Validate Password"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation6"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Confirm\n\nfunction validateConfirm() {\n\n  let pass = passInput.value;\n\n  let confirm = confirmInput.value;\n\n  if (confirm === \"\") {\n\n    showError(confirmError, \"Please confirm your password.\");\n\n    return false;\n\n  }\n\n  if (confirm !== pass) {\n\n    showError(confirmError, \"Passwords do not match.\");\n\n    return false;\n\n  }\n\n  clearError(confirmError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  let okConfirm = validateConfirm();\n\n  return okName && okEmail && okPass && okConfirm;\n\n}",
+      "caption": "Validate Confirm"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation7"
+    },
+    {
+      "type": "h2",
+      "text": "Form Validation (Finished)"
+    },
+    {
+      "type": "p",
+      "text": "This example shows the finished project."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<style>\n\ninput {\n\n  padding: 8px;\n\n  width: 260px;\n\n  margin-bottom: 4px;\n\n}\n\n.error {\n\n  color: red;\n\n  margin: 0;\n\n}\n\n.ok {\n\n  color: green;\n\n  margin: 0;\n\n}\n\n.field {\n\n  margin-bottom: 12px;\n\n}\n\n</style>",
+      "caption": "The CSS"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<style>\n\n... CSS goes here\n\n</style>\n\n<body>\n\n<h2>Sign Up</h2>\n\n<form id=\"signupForm\">\n\n<div class=\"field\">\n\n  <label>Name:</label><br>\n\n  <input id=\"name\" type=\"text\" placeholder=\"Your name\">\n\n  <p id=\"nameError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Email:</label><br>\n\n  <input id=\"email\" type=\"text\" placeholder=\"name@example.com\">\n\n  <p id=\"emailError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Password:</label><br>\n\n  <input id=\"password\" type=\"password\" placeholder=\"Min 8 characters\">\n\n  <p id=\"passwordError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Confirm Password:</label><br>\n\n  <input id=\"confirm\" type=\"password\" placeholder=\"Repeat password\">\n\n  <p id=\"confirmError\" class=\"error\"></p>\n\n</div>\n\n<p><button type=\"submit\">Create Account</button></p>\n\n</form>\n\n<p id=\"result\"></p>\n\n<script>\n\n// JavaScript goes here\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "The HTML"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object for each Field\n\nconst form = document.getElementById(\"signupForm\");\n\nconst nameInput = document.getElementById(\"name\");\n\nconst emailInput = document.getElementById(\"email\");\n\nconst passInput = document.getElementById(\"password\");\n\nconst confirmInput = document.getElementById(\"confirm\");\n\nconst nameError = document.getElementById(\"nameError\");\n\nconst emailError = document.getElementById(\"emailError\");\n\nconst passError = document.getElementById(\"passwordError\");\n\nconst confirmError = document.getElementById(\"confirmError\");\n\nconst result = document.getElementById(\"result\");\n\n// Function to Display Error\n\nfunction showError(el, message) {\n\n  el.innerHTML = message;\n\n}\n\n// Function to Clear Error\n\nfunction clearError(el) {\n\n  el.innerHTML = \"\";\n\n}\n\n// Function to Validate Name\n\nfunction validateName() {\n\n  let value = nameInput.value.trim();\n\n  if (value.length < 2) {\n\n    showError(nameError, \"Name must be at least 2 characters.\");\n\n    return false;\n\n  }\n\n  clearError(nameError);\n\n  return true;\n\n}\n\n// Function to Validate Email\n\nfunction validateEmail() {\n\n  let value = emailInput.value.trim();\n\n  if (!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value))) {\n\n    showError(emailError, \"Enter a valid email address.\");\n\n    return false;\n\n  }\n\n  clearError(emailError);\n\n  return true;\n\n}\n\n// Function to Validate Password\n\nfunction validatePassword() {\n\n  let value = passInput.value;\n\n  if (value.length < 8) {\n\n    showError(passError, \"Password must be at least 8 characters.\");\n\n    return false;\n\n  }\n\n  clearError(passError);\n\n  return true;\n\n}\n\n// Function to Validate Confirm\n\nfunction validateConfirm() {\n\n  let pass = passInput.value;\n\n  let confirm = confirmInput.value;\n\n  if (confirm === \"\") {\n\n    showError(confirmError, \"Please confirm your password.\");\n\n    return false;\n\n  }\n\n  if (confirm !== pass) {\n\n    showError(confirmError, \"Passwords do not match.\");\n\n    return false;\n\n  }\n\n  clearError(confirmError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  let okConfirm = validateConfirm();\n\n  return okName && okEmail && okPass && okConfirm;\n\n}\n\n// Prevent Default Reloading\n\nform.addEventListener(\"submit\", function (event) {\n\n  event.preventDefault();\n\n// Clear Result\n\n  result.innerHTML = \"\";\n\n// Validate Form\n\n  if (validateForm()) {\n\n    result.innerHTML = \"Form is valid!\";\n\n    result.className = \"ok\";\n\n  } else {\n\n    result.innerHTML = \"Please fix the errors.\";\n\n    result.className = \"error\";\n\n  }\n\n});",
+      "caption": "The JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation9"
+    },
+    {
+      "type": "h2",
+      "text": "Common Mistakes"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Forgetting event.preventDefault()",
+        "Not trimming the input values",
+        "Using innerHTML with user input (use text only for messages)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Exercises"
+    },
+    {
+      "type": "h3",
+      "text": "Exercise 1"
+    },
+    {
+      "type": "p",
+      "text": "Add a rule that the password must contain at least one number."
+    },
+    {
+      "type": "h3",
+      "text": "Exercise 2"
+    },
+    {
+      "type": "p",
+      "text": "Validate fields while the user is typing (use the input event)."
+    },
+    {
+      "type": "h3",
+      "text": "Exercise 3"
+    },
+    {
+      "type": "p",
+      "text": "Show a green message next to fields that are valid."
+    },
+    {
+      "type": "h2",
+      "text": "Bonus Challenges (Level Up)"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Add password strength indicator (Weak / Medium / Strong)",
+        "Disable the submit button until everything is valid",
+        "Show/hide password button"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Projects"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "JavaScript Counter\nA counter project with restore and save in localStorage.",
+        "JavaScript Event Listener\nThe counter project using event listener instead of onclick.",
+        "JavaScript To-Do List\nA do-do list saved in an array in local storage.",
+        "JavaScript Modal Popup\nA modal popup window that appears on top of the page.",
+        "JavaScript Form Validation\nAn HTML Form with form validation."
+      ]
+    }
+  ]
 }

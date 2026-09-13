@@ -1,331 +1,331 @@
 {
- "slug": "js_cookies",
- "course": "js",
- "order": 165,
- "url": "/js/js_cookies.asp",
- "title": "JavaScript Cookies",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Cookies"
-  },
-  {
-   "type": "p",
-   "text": "Cookies let you store user information in web pages."
-  },
-  {
-   "type": "h2",
-   "text": "What are Cookies?"
-  },
-  {
-   "type": "p",
-   "text": "Cookies are data, stored in small text files, on your computer."
-  },
-  {
-   "type": "p",
-   "text": "When a web server has sent a web page to a browser, the connection is\nshut down, and the server forgets everything about the user."
-  },
-  {
-   "type": "p",
-   "text": "Cookies were invented to solve the problem \"how to remember information about\nthe user\":"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "When a user visits a web page, his/her name can be stored in a cookie.",
-    "Next time the user visits the page, the cookie \"remembers\" his/her name."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Cookies are saved in name-value pairs like:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "username = John Doe",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "When a browser requests a web page from a server, cookies belonging to the page are added to the request. This way the server\ngets the necessary data to \"remember\" information about users."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "None of the examples below will work if your browser has local cookies support turned off."
-  },
-  {
-   "type": "h2",
-   "text": "Create a Cookie with JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript can create, read, and delete cookies with the document.cookie\nproperty."
-  },
-  {
-   "type": "p",
-   "text": "With JavaScript, a cookie can be created like this:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=John Doe\";",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "You can also add an expiry date (in UTC time).\nBy default, the cookie is deleted when the browser is closed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC\";",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "With a path parameter, you can tell the browser what path the cookie belongs to.\nBy default, the cookie belongs to the current page."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\";",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Read a Cookie with JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "With JavaScript, cookies can be read like this:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = document.cookie;",
-   "caption": null
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "document.cookie will return all cookies in one string much like: cookie1=value; cookie2=value; cookie3=value;"
-  },
-  {
-   "type": "h2",
-   "text": "Change a Cookie with JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "With JavaScript, you can change a cookie the same way as you create it:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\";",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "The old cookie is overwritten."
-  },
-  {
-   "type": "h2",
-   "text": "Delete a Cookie with JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Deleting a cookie is very simple."
-  },
-  {
-   "type": "p",
-   "text": "You don't have to specify a cookie value when you delete a cookie."
-  },
-  {
-   "type": "p",
-   "text": "Just set the expires parameter to a past date:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=; expires=Thu, 01\nJan 1970 00:00:00 UTC; path=/;\";",
-   "caption": null
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "You should define the cookie path to ensure that you delete the right cookie.\nSome browsers will not let you delete a cookie if you don't specify the path."
-  },
-  {
-   "type": "h2",
-   "text": "The Cookie String"
-  },
-  {
-   "type": "p",
-   "text": "The document.cookie property looks like a normal text string. But it is not."
-  },
-  {
-   "type": "p",
-   "text": "Even if you write a whole cookie string to document.cookie, when you read it out again, you can only see the\nname-value pair of it."
-  },
-  {
-   "type": "p",
-   "text": "If you set a new cookie, older cookies are not overwritten.\nThe new cookie is added to document.cookie, so if you read document.cookie\nagain you will get something like:"
-  },
-  {
-   "type": "p",
-   "text": "cookie1 = value; cookie2 = value;"
-  },
-  {
-   "type": "p",
-   "text": "Display All Cookies\nCreate Cookie 1\nCreate Cookie 2\nDelete Cookie 1\nDelete Cookie 2"
-  },
-  {
-   "type": "p",
-   "text": "If you want to find the value of one specified cookie, you must write a JavaScript\nfunction that searches for the cookie value in the cookie string."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Cookie Example"
-  },
-  {
-   "type": "p",
-   "text": "In the example to follow, we will create a cookie that stores the name of a visitor."
-  },
-  {
-   "type": "p",
-   "text": "The first time a visitor arrives to the web page, he/she will be asked to fill in his/her name. The name is then stored in a cookie."
-  },
-  {
-   "type": "p",
-   "text": "The next time the visitor arrives at the same page, he/she will get a welcome message."
-  },
-  {
-   "type": "p",
-   "text": "For the example we will create 3 JavaScript functions:"
-  },
-  {
-   "type": "list",
-   "ordered": true,
-   "items": [
-    "A function to set a cookie value",
-    "A function to get a cookie value",
-    "A function to check a cookie value"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "A Function to Set a Cookie"
-  },
-  {
-   "type": "p",
-   "text": "First, we create a function that stores the name of the visitor in a cookie variable:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function setCookie(cname, cvalue, exdays) {\n\n   const d = new Date();\n  d.setTime(d.getTime() + (exdays*24*60*60*1000));\n  let expires = \"expires=\"+ d.toUTCString();\n  document.cookie = cname + \"=\" + cvalue + \";\" + expires + \";path=/\";\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "Example explained:"
-  },
-  {
-   "type": "p",
-   "text": "The parameters of the function above are the name of the cookie (cname), the value of the cookie\n(cvalue), and the number of days until the cookie should expire (exdays)."
-  },
-  {
-   "type": "p",
-   "text": "The function sets a cookie by adding together the cookiename, the cookie\nvalue, and the expires string."
-  },
-  {
-   "type": "h2",
-   "text": "A Function to Get a Cookie"
-  },
-  {
-   "type": "p",
-   "text": "Then, we create a function that returns the value of a specified cookie:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function getCookie(cname) {\n\nlet name = cname + \"=\";\n\nlet decodedCookie = decodeURIComponent(document.cookie);\n\n  let ca = decodedCookie.split(';');\n\n  for(let i = 0; i <ca.length; i++) {\n\n      let c = ca[i];\n    while (c.charAt(0) == ' ') {\n      c = c.substring(1);\n\n }\n\n      if (c.indexOf(name) == 0) {\n      return c.substring(name.length, c.length);\n\n      }\n\n    }\n\n    return \"\";\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "Function explained:"
-  },
-  {
-   "type": "p",
-   "text": "Take the cookiename as parameter (cname)."
-  },
-  {
-   "type": "p",
-   "text": "Create a variable (name) with the text to search for (cname + \"=\")."
-  },
-  {
-   "type": "p",
-   "text": "Decode the cookie string, to handle cookies with special characters, e.g. '$'"
-  },
-  {
-   "type": "p",
-   "text": "Split document.cookie on semicolons into an array called ca (ca =\ndecodedCookie.split(';'))."
-  },
-  {
-   "type": "p",
-   "text": "Loop through the ca array (i = 0; i < ca.length; i++), and read out each value\nc = ca[i])."
-  },
-  {
-   "type": "p",
-   "text": "If the cookie is found (c.indexOf(name) == 0), return the value of the cookie\n(c.substring(name.length, c.length)."
-  },
-  {
-   "type": "p",
-   "text": "If the cookie is not found, return \"\"."
-  },
-  {
-   "type": "h2",
-   "text": "A Function to Check a Cookie"
-  },
-  {
-   "type": "p",
-   "text": "Last, we create the function that checks if a cookie is set."
-  },
-  {
-   "type": "p",
-   "text": "If the cookie is set it will display a greeting."
-  },
-  {
-   "type": "p",
-   "text": "If the cookie is not set, it will display a prompt box, asking for the name of the user,\nand stores the username cookie for 365 days, by calling the setCookie function:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function checkCookie() {\n  let\nusername = getCookie(\"username\");\n  if (username != \"\") {\n\n     alert(\"Welcome again \" + username);\n\n  } else {\n\n    username = prompt(\"Please enter your name:\", \"\");\n\n      if (username != \"\"\n&& username != null) {\n\n        setCookie(\"username\", username, 365);\n\n      }\n  }\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "All Together Now"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function setCookie(cname, cvalue, exdays) {\n\n  const d = new Date();\n\nd.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));\n  let expires = \"expires=\"+d.toUTCString();\n\n  document.cookie = cname + \"=\" + cvalue +\n\";\" + expires + \";path=/\";\n\n}\n\nfunction getCookie(cname) {\n  let name = cname + \"=\";\n\n    let ca\n= document.cookie.split(';');\n  for(let i = 0; i < ca.length; i++)\n{\n\nlet c = ca[i];\n    while (c.charAt(0) == '\n') {\n      c = c.substring(1);\n    }\n    if (c.indexOf(name)\n == 0) {\n      return c.substring(name.length, c.length);\n\n      }\n  }\n\n    return \"\";\n}\n\nfunction\ncheckCookie() {\n  let user = getCookie(\"username\");\n\n  if (user != \"\")\n{\n    alert(\"Welcome again \" + user);\n\n  } else {\n\n    user = prompt(\"Please enter your name:\", \"\");\n\n      if (user != \"\" &&\nuser != null) {\n\n      setCookie(\"username\", user, 365);\n\n      }\n  }\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_cookie_username"
-  },
-  {
-   "type": "p",
-   "text": "The example above runs the checkCookie() function when the page loads."
-  }
- ]
+  "slug": "js_cookies",
+  "course": "js",
+  "order": 165,
+  "url": "/js/js_cookies.asp",
+  "title": "JavaScript Cookies",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Cookies"
+    },
+    {
+      "type": "p",
+      "text": "Cookies let you store user information in web pages."
+    },
+    {
+      "type": "h2",
+      "text": "What are Cookies?"
+    },
+    {
+      "type": "p",
+      "text": "Cookies are data, stored in small text files, on your computer."
+    },
+    {
+      "type": "p",
+      "text": "When a web server has sent a web page to a browser, the connection is\nshut down, and the server forgets everything about the user."
+    },
+    {
+      "type": "p",
+      "text": "Cookies were invented to solve the problem \"how to remember information about\nthe user\":"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "When a user visits a web page, his/her name can be stored in a cookie.",
+        "Next time the user visits the page, the cookie \"remembers\" his/her name."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Cookies are saved in name-value pairs like:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "username = John Doe",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "When a browser requests a web page from a server, cookies belonging to the page are added to the request. This way the server\ngets the necessary data to \"remember\" information about users."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "None of the examples below will work if your browser has local cookies support turned off."
+    },
+    {
+      "type": "h2",
+      "text": "Create a Cookie with JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript can create, read, and delete cookies with the document.cookie\nproperty."
+    },
+    {
+      "type": "p",
+      "text": "With JavaScript, a cookie can be created like this:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=John Doe\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "You can also add an expiry date (in UTC time).\nBy default, the cookie is deleted when the browser is closed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "With a path parameter, you can tell the browser what path the cookie belongs to.\nBy default, the cookie belongs to the current page."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\";",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Read a Cookie with JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "With JavaScript, cookies can be read like this:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = document.cookie;",
+      "caption": null
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "document.cookie will return all cookies in one string much like: cookie1=value; cookie2=value; cookie3=value;"
+    },
+    {
+      "type": "h2",
+      "text": "Change a Cookie with JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "With JavaScript, you can change a cookie the same way as you create it:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "The old cookie is overwritten."
+    },
+    {
+      "type": "h2",
+      "text": "Delete a Cookie with JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Deleting a cookie is very simple."
+    },
+    {
+      "type": "p",
+      "text": "You don't have to specify a cookie value when you delete a cookie."
+    },
+    {
+      "type": "p",
+      "text": "Just set the expires parameter to a past date:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=; expires=Thu, 01\nJan 1970 00:00:00 UTC; path=/;\";",
+      "caption": null
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "You should define the cookie path to ensure that you delete the right cookie.\nSome browsers will not let you delete a cookie if you don't specify the path."
+    },
+    {
+      "type": "h2",
+      "text": "The Cookie String"
+    },
+    {
+      "type": "p",
+      "text": "The document.cookie property looks like a normal text string. But it is not."
+    },
+    {
+      "type": "p",
+      "text": "Even if you write a whole cookie string to document.cookie, when you read it out again, you can only see the\nname-value pair of it."
+    },
+    {
+      "type": "p",
+      "text": "If you set a new cookie, older cookies are not overwritten.\nThe new cookie is added to document.cookie, so if you read document.cookie\nagain you will get something like:"
+    },
+    {
+      "type": "p",
+      "text": "cookie1 = value; cookie2 = value;"
+    },
+    {
+      "type": "p",
+      "text": "Display All Cookies\nCreate Cookie 1\nCreate Cookie 2\nDelete Cookie 1\nDelete Cookie 2"
+    },
+    {
+      "type": "p",
+      "text": "If you want to find the value of one specified cookie, you must write a JavaScript\nfunction that searches for the cookie value in the cookie string."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Cookie Example"
+    },
+    {
+      "type": "p",
+      "text": "In the example to follow, we will create a cookie that stores the name of a visitor."
+    },
+    {
+      "type": "p",
+      "text": "The first time a visitor arrives to the web page, he/she will be asked to fill in his/her name. The name is then stored in a cookie."
+    },
+    {
+      "type": "p",
+      "text": "The next time the visitor arrives at the same page, he/she will get a welcome message."
+    },
+    {
+      "type": "p",
+      "text": "For the example we will create 3 JavaScript functions:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "A function to set a cookie value",
+        "A function to get a cookie value",
+        "A function to check a cookie value"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "A Function to Set a Cookie"
+    },
+    {
+      "type": "p",
+      "text": "First, we create a function that stores the name of the visitor in a cookie variable:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function setCookie(cname, cvalue, exdays) {\n\n   const d = new Date();\n  d.setTime(d.getTime() + (exdays*24*60*60*1000));\n  let expires = \"expires=\"+ d.toUTCString();\n  document.cookie = cname + \"=\" + cvalue + \";\" + expires + \";path=/\";\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "Example explained:"
+    },
+    {
+      "type": "p",
+      "text": "The parameters of the function above are the name of the cookie (cname), the value of the cookie\n(cvalue), and the number of days until the cookie should expire (exdays)."
+    },
+    {
+      "type": "p",
+      "text": "The function sets a cookie by adding together the cookiename, the cookie\nvalue, and the expires string."
+    },
+    {
+      "type": "h2",
+      "text": "A Function to Get a Cookie"
+    },
+    {
+      "type": "p",
+      "text": "Then, we create a function that returns the value of a specified cookie:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function getCookie(cname) {\n\nlet name = cname + \"=\";\n\nlet decodedCookie = decodeURIComponent(document.cookie);\n\n  let ca = decodedCookie.split(';');\n\n  for(let i = 0; i <ca.length; i++) {\n\n      let c = ca[i];\n    while (c.charAt(0) == ' ') {\n      c = c.substring(1);\n\n }\n\n      if (c.indexOf(name) == 0) {\n      return c.substring(name.length, c.length);\n\n      }\n\n    }\n\n    return \"\";\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "Function explained:"
+    },
+    {
+      "type": "p",
+      "text": "Take the cookiename as parameter (cname)."
+    },
+    {
+      "type": "p",
+      "text": "Create a variable (name) with the text to search for (cname + \"=\")."
+    },
+    {
+      "type": "p",
+      "text": "Decode the cookie string, to handle cookies with special characters, e.g. '$'"
+    },
+    {
+      "type": "p",
+      "text": "Split document.cookie on semicolons into an array called ca (ca =\ndecodedCookie.split(';'))."
+    },
+    {
+      "type": "p",
+      "text": "Loop through the ca array (i = 0; i < ca.length; i++), and read out each value\nc = ca[i])."
+    },
+    {
+      "type": "p",
+      "text": "If the cookie is found (c.indexOf(name) == 0), return the value of the cookie\n(c.substring(name.length, c.length)."
+    },
+    {
+      "type": "p",
+      "text": "If the cookie is not found, return \"\"."
+    },
+    {
+      "type": "h2",
+      "text": "A Function to Check a Cookie"
+    },
+    {
+      "type": "p",
+      "text": "Last, we create the function that checks if a cookie is set."
+    },
+    {
+      "type": "p",
+      "text": "If the cookie is set it will display a greeting."
+    },
+    {
+      "type": "p",
+      "text": "If the cookie is not set, it will display a prompt box, asking for the name of the user,\nand stores the username cookie for 365 days, by calling the setCookie function:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function checkCookie() {\n  let\nusername = getCookie(\"username\");\n  if (username != \"\") {\n\n     alert(\"Welcome again \" + username);\n\n  } else {\n\n    username = prompt(\"Please enter your name:\", \"\");\n\n      if (username != \"\"\n&& username != null) {\n\n        setCookie(\"username\", username, 365);\n\n      }\n  }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "All Together Now"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function setCookie(cname, cvalue, exdays) {\n\n  const d = new Date();\n\nd.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));\n  let expires = \"expires=\"+d.toUTCString();\n\n  document.cookie = cname + \"=\" + cvalue +\n\";\" + expires + \";path=/\";\n\n}\n\nfunction getCookie(cname) {\n  let name = cname + \"=\";\n\n    let ca\n= document.cookie.split(';');\n  for(let i = 0; i < ca.length; i++)\n{\n\nlet c = ca[i];\n    while (c.charAt(0) == '\n') {\n      c = c.substring(1);\n    }\n    if (c.indexOf(name)\n == 0) {\n      return c.substring(name.length, c.length);\n\n      }\n  }\n\n    return \"\";\n}\n\nfunction\ncheckCookie() {\n  let user = getCookie(\"username\");\n\n  if (user != \"\")\n{\n    alert(\"Welcome again \" + user);\n\n  } else {\n\n    user = prompt(\"Please enter your name:\", \"\");\n\n      if (user != \"\" &&\nuser != null) {\n\n      setCookie(\"username\", user, 365);\n\n      }\n  }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_cookie_username"
+    },
+    {
+      "type": "p",
+      "text": "The example above runs the checkCookie() function when the page loads."
+    }
+  ]
 }

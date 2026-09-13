@@ -33,8 +33,13 @@ export const getCourse = cache(async (id: string): Promise<Course | undefined> =
 })
 
 export const getSections = cache(async (locale: string, course: string): Promise<SectionMeta[]> => {
-  const translated = locale === defaultContentLocale ? null : await readJson<SectionMeta[]>(join(CONTENT, locale, course, 'index.json'))
-  const base = await readJson<SectionMeta[]>(join(CONTENT, defaultContentLocale, course, 'index.json'))
+  const translated =
+    locale === defaultContentLocale
+      ? null
+      : await readJson<SectionMeta[]>(join(CONTENT, locale, course, 'index.json'))
+  const base = await readJson<SectionMeta[]>(
+    join(CONTENT, defaultContentLocale, course, 'index.json')
+  )
   if (!base) return []
 
   if (!translated) return base

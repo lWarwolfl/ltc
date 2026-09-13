@@ -1,276 +1,264 @@
 {
- "slug": "js_iterables",
- "course": "js",
- "order": 76,
- "url": "/js/js_iterables.asp",
- "title": "JavaScript Iterables",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Iterables"
-  },
-  {
-   "type": "h2",
-   "text": "An Iterable is an Iterable Object"
-  },
-  {
-   "type": "p",
-   "text": "Iterable can be iterated over with for...of loops"
-  },
-  {
-   "type": "h2",
-   "text": "The for...of Loop"
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript for..of statement loops\nthrough the elements of an iterable object."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "for (variable of iterable) {\n\n  // code block to be executed\n\n}",
-   "caption": "Syntax"
-  },
-  {
-   "type": "h2",
-   "text": "Iterating"
-  },
-  {
-   "type": "p",
-   "text": "Iterating means looping over a sequence of elements."
-  },
-  {
-   "type": "p",
-   "text": "Here are some examples:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Iterating over a String",
-    "Iterating over an Array",
-    "Iterating over a Set",
-    "Iterating over a Map"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Iterating Over a String"
-  },
-  {
-   "type": "p",
-   "text": "You can use a for...of loop to iterate over the elements of a string:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"W3Schools\";\n\nfor (const x of name) {\n\n  // code block to be executed\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_string"
-  },
-  {
-   "type": "h2",
-   "text": "Iterating Over an Array"
-  },
-  {
-   "type": "p",
-   "text": "You can use a for...of loop to iterate over the elements of an Array:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const letters = [\"a\",\"b\",\"c\"];\n\nfor (const x of letters) {\n\n  // code block to be executed\n\n}",
-   "caption": "Example 1"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_array"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const numbers = [2,4,6,8];\n\nfor (const x of numbers) {\n\n  // code block to be executed\n\n}",
-   "caption": "Example 2"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_array2"
-  },
-  {
-   "type": "h2",
-   "text": "Iterating Over a Set"
-  },
-  {
-   "type": "p",
-   "text": "You can use a for...of loop to iterate over the elements of a Set:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const letters = new Set([\"a\",\"b\",\"c\"]);\n\nfor (const x of letters) {\n\n  // code block to be executed\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_set"
-  },
-  {
-   "type": "h2",
-   "text": "Iterating Over a Map"
-  },
-  {
-   "type": "p",
-   "text": "You can use a for...of loop to iterate over the elements of a Map:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);\n\nfor (const x of fruits) {\n\n  // code block to be executed\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_map"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Iterators"
-  },
-  {
-   "type": "p",
-   "text": "The iterator protocol defines how to produce a sequence of values from an object."
-  },
-  {
-   "type": "p",
-   "text": "An object becomes an iterator when it implements a next() method."
-  },
-  {
-   "type": "p",
-   "text": "The next() method must return an object with two properties:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "value (the next value)",
-    "done (true or false)"
-   ]
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "value",
-     "The value returned by the iterator\n(Can be omitted if done is true)"
-    ],
-    [
-     "done",
-     "true if the iterator has completed\nfalse if the iterator has produced a new value"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Technically, iterables must implement the Symbol.iterator method."
-  },
-  {
-   "type": "p",
-   "text": "In JavaScript the following are iterables:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Strings",
-    "Arrays",
-    "Typed Arrays",
-    "Sets",
-    "Maps"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Because their prototype objects have a\nSymbol.iterator method:"
-  },
-  {
-   "type": "h2",
-   "text": "Home Made Iterable"
-  },
-  {
-   "type": "p",
-   "text": "This iterable returns never ending number: 10,20,30,40,.... when  the\nnext() method is called:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Home Made Iterable\n\nfunction myNumbers() {\n\n  let n = 0;\n\n  return {\n\n    next: function() {\n\n      n += 10;\n\n      return {value:n, done:false};\n\n    }\n\n  };\n\n}\n\n// Run the Iterable\n\nconst n = myNumbers();\n\nn.next(); // Returns 10\n\nn.next(); // Returns 20\n\nn.next(); // Returns 30",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade"
-  },
-  {
-   "type": "p",
-   "text": "Home made iterables do not support the JavaScript for...of statement."
-  },
-  {
-   "type": "p",
-   "text": "A JavaScript iterable is an object that has a Symbol.iterator."
-  },
-  {
-   "type": "p",
-   "text": "The Symbol.iterator is a function that returns a next() function."
-  },
-  {
-   "type": "p",
-   "text": "An iterable can be iterated over with the code: for (const x of iterable) { }"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nmyNumbers = {};\n\n// Make it Iterable\n\nmyNumbers[Symbol.iterator] = function() {\n\n  let n = 0;\n\n  done = false;\n\n  return {\n\n    next() {\n\n      n += 10;\n\n      if (n == 100) {done = true}\n\n      return {value:n, done:done};\n\n    }\n\n  };\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "for (const num of myNumbers) {\n\n  // Any Code Here\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade2"
-  },
-  {
-   "type": "p",
-   "text": "The Symbol.iterator method is called automatically by for..of."
-  },
-  {
-   "type": "p",
-   "text": "But we can also do it \"manually\":"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let iterator = myNumbers[Symbol.iterator]();\n\nwhile (true) {\n\n  const result = iterator.next();\n\n  if (result.done) break;\n\n  // Any Code Here\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade3"
-  },
-  {
-   "type": "p",
-   "text": "Iterators provide a controlled way to work with data sequences,\nenabling custom iteration logic for various data structures."
-  },
-  {
-   "type": "p",
-   "text": "In the next chapter you will learn about the new Iterator Helper Functions introduced in ECMAScript 2025."
-  }
- ]
+  "slug": "js_iterables",
+  "course": "js",
+  "order": 76,
+  "url": "/js/js_iterables.asp",
+  "title": "JavaScript Iterables",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Iterables"
+    },
+    {
+      "type": "h2",
+      "text": "An Iterable is an Iterable Object"
+    },
+    {
+      "type": "p",
+      "text": "Iterable can be iterated over with for...of loops"
+    },
+    {
+      "type": "h2",
+      "text": "The for...of Loop"
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript for..of statement loops\nthrough the elements of an iterable object."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "for (variable of iterable) {\n\n  // code block to be executed\n\n}",
+      "caption": "Syntax"
+    },
+    {
+      "type": "h2",
+      "text": "Iterating"
+    },
+    {
+      "type": "p",
+      "text": "Iterating means looping over a sequence of elements."
+    },
+    {
+      "type": "p",
+      "text": "Here are some examples:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Iterating over a String",
+        "Iterating over an Array",
+        "Iterating over a Set",
+        "Iterating over a Map"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Iterating Over a String"
+    },
+    {
+      "type": "p",
+      "text": "You can use a for...of loop to iterate over the elements of a string:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"W3Schools\";\n\nfor (const x of name) {\n\n  // code block to be executed\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_string"
+    },
+    {
+      "type": "h2",
+      "text": "Iterating Over an Array"
+    },
+    {
+      "type": "p",
+      "text": "You can use a for...of loop to iterate over the elements of an Array:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const letters = [\"a\",\"b\",\"c\"];\n\nfor (const x of letters) {\n\n  // code block to be executed\n\n}",
+      "caption": "Example 1"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_array"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const numbers = [2,4,6,8];\n\nfor (const x of numbers) {\n\n  // code block to be executed\n\n}",
+      "caption": "Example 2"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_array2"
+    },
+    {
+      "type": "h2",
+      "text": "Iterating Over a Set"
+    },
+    {
+      "type": "p",
+      "text": "You can use a for...of loop to iterate over the elements of a Set:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const letters = new Set([\"a\",\"b\",\"c\"]);\n\nfor (const x of letters) {\n\n  // code block to be executed\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_set"
+    },
+    {
+      "type": "h2",
+      "text": "Iterating Over a Map"
+    },
+    {
+      "type": "p",
+      "text": "You can use a for...of loop to iterate over the elements of a Map:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);\n\nfor (const x of fruits) {\n\n  // code block to be executed\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_map"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Iterators"
+    },
+    {
+      "type": "p",
+      "text": "The iterator protocol defines how to produce a sequence of values from an object."
+    },
+    {
+      "type": "p",
+      "text": "An object becomes an iterator when it implements a next() method."
+    },
+    {
+      "type": "p",
+      "text": "The next() method must return an object with two properties:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["value (the next value)", "done (true or false)"]
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["value", "The value returned by the iterator\n(Can be omitted if done is true)"],
+        [
+          "done",
+          "true if the iterator has completed\nfalse if the iterator has produced a new value"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Technically, iterables must implement the Symbol.iterator method."
+    },
+    {
+      "type": "p",
+      "text": "In JavaScript the following are iterables:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Strings", "Arrays", "Typed Arrays", "Sets", "Maps"]
+    },
+    {
+      "type": "p",
+      "text": "Because their prototype objects have a\nSymbol.iterator method:"
+    },
+    {
+      "type": "h2",
+      "text": "Home Made Iterable"
+    },
+    {
+      "type": "p",
+      "text": "This iterable returns never ending number: 10,20,30,40,.... when  the\nnext() method is called:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Home Made Iterable\n\nfunction myNumbers() {\n\n  let n = 0;\n\n  return {\n\n    next: function() {\n\n      n += 10;\n\n      return {value:n, done:false};\n\n    }\n\n  };\n\n}\n\n// Run the Iterable\n\nconst n = myNumbers();\n\nn.next(); // Returns 10\n\nn.next(); // Returns 20\n\nn.next(); // Returns 30",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade"
+    },
+    {
+      "type": "p",
+      "text": "Home made iterables do not support the JavaScript for...of statement."
+    },
+    {
+      "type": "p",
+      "text": "A JavaScript iterable is an object that has a Symbol.iterator."
+    },
+    {
+      "type": "p",
+      "text": "The Symbol.iterator is a function that returns a next() function."
+    },
+    {
+      "type": "p",
+      "text": "An iterable can be iterated over with the code: for (const x of iterable) { }"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nmyNumbers = {};\n\n// Make it Iterable\n\nmyNumbers[Symbol.iterator] = function() {\n\n  let n = 0;\n\n  done = false;\n\n  return {\n\n    next() {\n\n      n += 10;\n\n      if (n == 100) {done = true}\n\n      return {value:n, done:done};\n\n    }\n\n  };\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "for (const num of myNumbers) {\n\n  // Any Code Here\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade2"
+    },
+    {
+      "type": "p",
+      "text": "The Symbol.iterator method is called automatically by for..of."
+    },
+    {
+      "type": "p",
+      "text": "But we can also do it \"manually\":"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let iterator = myNumbers[Symbol.iterator]();\n\nwhile (true) {\n\n  const result = iterator.next();\n\n  if (result.done) break;\n\n  // Any Code Here\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_iterate_homemade3"
+    },
+    {
+      "type": "p",
+      "text": "Iterators provide a controlled way to work with data sequences,\nenabling custom iteration logic for various data structures."
+    },
+    {
+      "type": "p",
+      "text": "In the next chapter you will learn about the new Iterator Helper Functions introduced in ECMAScript 2025."
+    }
+  ]
 }

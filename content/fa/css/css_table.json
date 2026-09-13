@@ -1,421 +1,309 @@
 {
- "slug": "css_table",
- "course": "css",
- "order": 59,
- "url": "/css/css_table.asp",
- "title": "جدول‌های CSS",
- "summary": "جدول‌های HTML با یک حاشیهٔ ساده و کمی حاشیهٔ داخلی خوانا می‌شوند. در این درس حاشیهٔ جدول را می‌سازید، حاشیه‌های دوتایی را با border-collapse جمع می‌کنید و فاصلهٔ خانه‌ها را با padding و border-spacing تنظیم می‌کنید.",
- "objectives": [
-  "برای جدول حاشیه بسازید و اجزای border را تشخیص دهید",
-  "با border-collapse حاشیه‌های دوتایی را جمع کنید",
-  "فاصلهٔ محتوا از حاشیه را با padding تنظیم کنید",
-  "بین border-spacing و padding در جدول فرق بگذارید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "جدول‌های CSS"
-  },
-  {
-   "type": "p",
-   "text": "جدول‌های HTML را با CSS می‌توان خیلی بهتر کرد:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "شرکت",
-    "شخص رابط",
-    "کشور"
-   ],
-   "rows": [
-    [
-     "Alfreds Futterkiste",
-     "Maria Anders",
-     "آلمان"
-    ],
-    [
-     "Berglunds snabbköp",
-     "Christina Berglund",
-     "سوئد"
-    ],
-    [
-     "Centro comercial Moctezuma",
-     "Francisco Chang",
-     "مکزیک"
-    ],
-    [
-     "Ernst Handel",
-     "Roland Mendel",
-     "اتریش"
-    ],
-    [
-     "Island Trading",
-     "Helen Bennett",
-     "بریتانیا"
-    ],
-    [
-     "Königlich Essen",
-     "Philip Cramer",
-     "آلمان"
-    ],
-    [
-     "Laughing Bacchus Winecellars",
-     "Yoshi Tannamuri",
-     "کانادا"
-    ],
-    [
-     "Magazzini Alimentari Riuniti",
-     "Giovanni Rovelli",
-     "ایتالیا"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "خودتان امتحان کنید »"
-  },
-  {
-   "type": "h2",
-   "text": "حاشیه‌های جدول در CSS"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت border در CSS برای تعیین عرض، سبک و رنگ حاشیه‌های جدول به کار می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت border یک خصوصیت میان‌بُر برای این‌هاست:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "border-width - عرض حاشیه را تعیین می‌کند",
-    "border-style - سبک حاشیه را تعیین می‌کند (الزامی)",
-    "border-color - رنگ حاشیه را تعیین می‌کند"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر یک حاشیهٔ 1px solid برای عنصرهای <table> و <th> و <td> تعیین می‌کند:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نام خانوادگی"
-   ],
-   "rows": [
-    [
-     "Peter",
-     "Griffin"
-    ],
-    [
-     "Lois",
-     "Griffin"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "table, th, td {\n\n  border: 1px solid;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border"
-  },
-  {
-   "type": "h2",
-   "text": "رنگ حاشیهٔ جدول در CSS"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر یک حاشیهٔ 1px solid سبز برای عنصرهای <table> و <th> و <td> تعیین می‌کند:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نام خانوادگی"
-   ],
-   "rows": [
-    [
-     "Peter",
-     "Griffin"
-    ],
-    [
-     "Lois",
-     "Griffin"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "table, th, td {\n\n  border: 1px solid green;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border_color"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "چرا حاشیه‌ها دو برابر می‌شوند؟ دقت کنید جدول‌های مثال‌های بالا حاشیهٔ دوتایی دارند. دلیلش این است که هر سه عنصر <table> و <th> و <td> حاشیهٔ جداگانه دارند. برای برداشتن حاشیه‌های دوتایی، مثال زیر را ببینید."
-  },
-  {
-   "type": "h2",
-   "text": "جمع‌کردن حاشیه‌های جدول در CSS"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت border-collapse در CSS تعیین می‌کند حاشیه‌های جدول در یک حاشیهٔ واحد جمع شوند یا مثل HTML استاندارد جدا بمانند."
-  },
-  {
-   "type": "p",
-   "text": "این خصوصیت یکی از مقدارهای زیر را می‌پذیرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "separate - مقدار پیش‌فرض. حاشیه‌ها جدا می‌مانند و هر خانه حاشیهٔ خودش را نشان می‌دهد",
-    "collapse - حاشیه‌ها تا جای ممکن در یک حاشیهٔ واحد جمع می‌شوند"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "جدول زیر حاشیه‌های جمع‌شده دارد:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نام خانوادگی"
-   ],
-   "rows": [
-    [
-     "Peter",
-     "Griffin"
-    ],
-    [
-     "Lois",
-     "Griffin"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "table\n{\n\n  border-collapse: collapse;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border-collapse"
-  },
-  {
-   "type": "h2",
-   "text": "حاشیهٔ داخلی جدول در CSS"
-  },
-  {
-   "type": "p",
-   "text": "برای کنترل فاصلهٔ بین حاشیه و محتوای جدول، خصوصیت padding را روی عنصرهای <td> و <th> به کار ببرید:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نام خانوادگی",
-    "پس‌انداز"
-   ],
-   "rows": [
-    [
-     "Peter",
-     "Griffin",
-     "$100"
-    ],
-    [
-     "Lois",
-     "Griffin",
-     "$150"
-    ],
-    [
-     "Joe",
-     "Swanson",
-     "$300"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "th, td\n{\n\npadding: 10px;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border_padding"
-  },
-  {
-   "type": "h2",
-   "text": "فاصلهٔ حاشیه‌ها در CSS"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت border-spacing در CSS فاصلهٔ بین حاشیه‌های خانه‌های کنار هم را تعیین می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "نکته: این خصوصیت فقط وقتی کار می‌کند که border-collapse روی مقدار «separate» باشد."
-  },
-  {
-   "type": "p",
-   "text": "جدول زیر فاصلهٔ حاشیهٔ 15px دارد:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نام خانوادگی"
-   ],
-   "rows": [
-    [
-     "Peter",
-     "Griffin"
-    ],
-    [
-     "Lois",
-     "Griffin"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "table\n{\n\n  border-collapse: separate;\n  border-spacing: 15px;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border-spacing"
-  },
-  {
-   "type": "h2",
-   "text": "حاشیهٔ بیرونی جدول در CSS"
-  },
-  {
-   "type": "p",
-   "text": "اگر فقط حاشیهٔ دور جدول را می‌خواهید (نه داخلش)، خصوصیت border را فقط برای عنصر <table> تعیین کنید:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نام خانوادگی"
-   ],
-   "rows": [
-    [
-     "Peter",
-     "Griffin"
-    ],
-    [
-     "Lois",
-     "Griffin"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "table\n{\n  border: 1px solid;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border2"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل table.html بسازید و برای <table>، <th> و <td> یک حاشیهٔ 1px solid بگذارید.",
-   "hint": "border یک میان‌بُر است و سبک حاشیه در آن الزامی است."
-  },
-  {
-   "prompt": "رنگ حاشیهٔ جدول را سبز کنید و ببینید چرا حاشیه‌ها دوتایی دیده می‌شوند.",
-   "hint": "هر سه عنصر <table> و <th> و <td> حاشیهٔ جداگانه دارند."
-  },
-  {
-   "prompt": "با border-collapse: collapse حاشیه‌های دوتایی را جمع کنید و نتیجه را مقایسه کنید.",
-   "hint": "مقدار پیش‌فرض separate است."
-  },
-  {
-   "prompt": "با padding روی <td> و <th> فاصلهٔ محتوا از حاشیه را زیاد کنید.",
-   "hint": "padding فاصلهٔ بین حاشیه و محتوا را کنترل می‌کند."
-  },
-  {
-   "prompt": "border-spacing: 15px را امتحان کنید و بعد border-collapse را روی collapse بگذارید؛ بگویید چه اتفاقی می‌افتد.",
-   "hint": "border-spacing فقط با مقدار separate کار می‌کند."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام مقدار در میان‌بُر border الزامی است؟",
-   "options": [
-    "border-width",
-    "border-style",
-    "border-color",
-    "هیچ‌کدام"
-   ],
-   "answer": 1,
-   "explanation": "border-style الزامی است؛ اگر فقط عرض و رنگ بنویسید حاشیه دیده نمی‌شود."
-  },
-  {
-   "question": "چرا جدول‌های مثال حاشیهٔ دوتایی دارند؟",
-   "options": [
-    "چون CSS به طور پیش‌فرض حاشیهٔ دوتایی می‌سازد",
-    "چون هر سه عنصر <table>، <th> و <td> حاشیهٔ جداگانه دارند",
-    "چون رنگ حاشیه سبز است",
-    "چون padding صفر است"
-   ],
-   "answer": 1,
-   "explanation": "هر سه عنصر جدول حاشیهٔ خودشان را دارند و همین باعث دوتایی‌شدن مرز بین خانه‌ها می‌شود؛ با border-collapse: collapse درست می‌شود."
-  },
-  {
-   "question": "border-spacing چه زمانی اثر دارد؟",
-   "options": [
-    "فقط وقتی border-collapse روی separate باشد",
-    "فقط وقتی border-collapse روی collapse باشد",
-    "همیشه",
-    "فقط برای جدول‌های بدون حاشیه"
-   ],
-   "answer": 0,
-   "explanation": "درس صریح می‌گوید border-spacing فقط وقتی کار می‌کند که border-collapse روی مقدار separate باشد؛ با collapse حاشیه‌ها یکی شده‌اند و فاصله‌ای نمی‌ماند."
-  },
-  {
-   "question": "برای کنترل فاصلهٔ بین حاشیه و محتوای جدول از کدام خصوصیت استفاده می‌کنیم؟",
-   "options": [
-    "border-spacing",
-    "margin",
-    "padding",
-    "border-collapse"
-   ],
-   "answer": 2,
-   "explanation": "padding روی عنصرهای <td> و <th> فاصلهٔ محتوا از حاشیه را کنترل می‌کند؛ border-spacing فاصلهٔ بین حاشیهٔ خانه‌های کناری است."
-  },
-  {
-   "question": "اگر فقط حاشیهٔ دور جدول را بخواهیم، خصوصیت border را روی چه عنصری می‌گذاریم؟",
-   "options": [
-    "فقط روی <td>",
-    "فقط روی <th>",
-    "روی <table>، <th> و <td>",
-    "فقط روی <table>"
-   ],
-   "answer": 3,
-   "explanation": "برای حاشیهٔ بیرونی، border را فقط روی عنصر <table> تعیین می‌کنید؛ اگر روی <td> و <th> هم بگذارید حاشیهٔ داخل خانه‌ها هم دیده می‌شود."
-  }
- ]
+  "slug": "css_table",
+  "course": "css",
+  "order": 59,
+  "url": "/css/css_table.asp",
+  "title": "جدول‌های CSS",
+  "summary": "جدول‌های HTML با یک حاشیهٔ ساده و کمی حاشیهٔ داخلی خوانا می‌شوند. در این درس حاشیهٔ جدول را می‌سازید، حاشیه‌های دوتایی را با border-collapse جمع می‌کنید و فاصلهٔ خانه‌ها را با padding و border-spacing تنظیم می‌کنید.",
+  "objectives": [
+    "برای جدول حاشیه بسازید و اجزای border را تشخیص دهید",
+    "با border-collapse حاشیه‌های دوتایی را جمع کنید",
+    "فاصلهٔ محتوا از حاشیه را با padding تنظیم کنید",
+    "بین border-spacing و padding در جدول فرق بگذارید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "جدول‌های CSS"
+    },
+    {
+      "type": "p",
+      "text": "جدول‌های HTML را با CSS می‌توان خیلی بهتر کرد:"
+    },
+    {
+      "type": "table",
+      "headers": ["شرکت", "شخص رابط", "کشور"],
+      "rows": [
+        ["Alfreds Futterkiste", "Maria Anders", "آلمان"],
+        ["Berglunds snabbköp", "Christina Berglund", "سوئد"],
+        ["Centro comercial Moctezuma", "Francisco Chang", "مکزیک"],
+        ["Ernst Handel", "Roland Mendel", "اتریش"],
+        ["Island Trading", "Helen Bennett", "بریتانیا"],
+        ["Königlich Essen", "Philip Cramer", "آلمان"],
+        ["Laughing Bacchus Winecellars", "Yoshi Tannamuri", "کانادا"],
+        ["Magazzini Alimentari Riuniti", "Giovanni Rovelli", "ایتالیا"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "خودتان امتحان کنید »"
+    },
+    {
+      "type": "h2",
+      "text": "حاشیه‌های جدول در CSS"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت border در CSS برای تعیین عرض، سبک و رنگ حاشیه‌های جدول به کار می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت border یک خصوصیت میان‌بُر برای این‌هاست:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "border-width - عرض حاشیه را تعیین می‌کند",
+        "border-style - سبک حاشیه را تعیین می‌کند (الزامی)",
+        "border-color - رنگ حاشیه را تعیین می‌کند"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر یک حاشیهٔ 1px solid برای عنصرهای <table> و <th> و <td> تعیین می‌کند:"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نام خانوادگی"],
+      "rows": [
+        ["Peter", "Griffin"],
+        ["Lois", "Griffin"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "table, th, td {\n\n  border: 1px solid;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border"
+    },
+    {
+      "type": "h2",
+      "text": "رنگ حاشیهٔ جدول در CSS"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر یک حاشیهٔ 1px solid سبز برای عنصرهای <table> و <th> و <td> تعیین می‌کند:"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نام خانوادگی"],
+      "rows": [
+        ["Peter", "Griffin"],
+        ["Lois", "Griffin"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "table, th, td {\n\n  border: 1px solid green;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border_color"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "چرا حاشیه‌ها دو برابر می‌شوند؟ دقت کنید جدول‌های مثال‌های بالا حاشیهٔ دوتایی دارند. دلیلش این است که هر سه عنصر <table> و <th> و <td> حاشیهٔ جداگانه دارند. برای برداشتن حاشیه‌های دوتایی، مثال زیر را ببینید."
+    },
+    {
+      "type": "h2",
+      "text": "جمع‌کردن حاشیه‌های جدول در CSS"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت border-collapse در CSS تعیین می‌کند حاشیه‌های جدول در یک حاشیهٔ واحد جمع شوند یا مثل HTML استاندارد جدا بمانند."
+    },
+    {
+      "type": "p",
+      "text": "این خصوصیت یکی از مقدارهای زیر را می‌پذیرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "separate - مقدار پیش‌فرض. حاشیه‌ها جدا می‌مانند و هر خانه حاشیهٔ خودش را نشان می‌دهد",
+        "collapse - حاشیه‌ها تا جای ممکن در یک حاشیهٔ واحد جمع می‌شوند"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "جدول زیر حاشیه‌های جمع‌شده دارد:"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نام خانوادگی"],
+      "rows": [
+        ["Peter", "Griffin"],
+        ["Lois", "Griffin"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "table\n{\n\n  border-collapse: collapse;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border-collapse"
+    },
+    {
+      "type": "h2",
+      "text": "حاشیهٔ داخلی جدول در CSS"
+    },
+    {
+      "type": "p",
+      "text": "برای کنترل فاصلهٔ بین حاشیه و محتوای جدول، خصوصیت padding را روی عنصرهای <td> و <th> به کار ببرید:"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نام خانوادگی", "پس‌انداز"],
+      "rows": [
+        ["Peter", "Griffin", "$100"],
+        ["Lois", "Griffin", "$150"],
+        ["Joe", "Swanson", "$300"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "th, td\n{\n\npadding: 10px;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border_padding"
+    },
+    {
+      "type": "h2",
+      "text": "فاصلهٔ حاشیه‌ها در CSS"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت border-spacing در CSS فاصلهٔ بین حاشیه‌های خانه‌های کنار هم را تعیین می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "نکته: این خصوصیت فقط وقتی کار می‌کند که border-collapse روی مقدار «separate» باشد."
+    },
+    {
+      "type": "p",
+      "text": "جدول زیر فاصلهٔ حاشیهٔ 15px دارد:"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نام خانوادگی"],
+      "rows": [
+        ["Peter", "Griffin"],
+        ["Lois", "Griffin"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "table\n{\n\n  border-collapse: separate;\n  border-spacing: 15px;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border-spacing"
+    },
+    {
+      "type": "h2",
+      "text": "حاشیهٔ بیرونی جدول در CSS"
+    },
+    {
+      "type": "p",
+      "text": "اگر فقط حاشیهٔ دور جدول را می‌خواهید (نه داخلش)، خصوصیت border را فقط برای عنصر <table> تعیین کنید:"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نام خانوادگی"],
+      "rows": [
+        ["Peter", "Griffin"],
+        ["Lois", "Griffin"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "table\n{\n  border: 1px solid;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_table_border2"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل table.html بسازید و برای <table>، <th> و <td> یک حاشیهٔ 1px solid بگذارید.",
+      "hint": "border یک میان‌بُر است و سبک حاشیه در آن الزامی است."
+    },
+    {
+      "prompt": "رنگ حاشیهٔ جدول را سبز کنید و ببینید چرا حاشیه‌ها دوتایی دیده می‌شوند.",
+      "hint": "هر سه عنصر <table> و <th> و <td> حاشیهٔ جداگانه دارند."
+    },
+    {
+      "prompt": "با border-collapse: collapse حاشیه‌های دوتایی را جمع کنید و نتیجه را مقایسه کنید.",
+      "hint": "مقدار پیش‌فرض separate است."
+    },
+    {
+      "prompt": "با padding روی <td> و <th> فاصلهٔ محتوا از حاشیه را زیاد کنید.",
+      "hint": "padding فاصلهٔ بین حاشیه و محتوا را کنترل می‌کند."
+    },
+    {
+      "prompt": "border-spacing: 15px را امتحان کنید و بعد border-collapse را روی collapse بگذارید؛ بگویید چه اتفاقی می‌افتد.",
+      "hint": "border-spacing فقط با مقدار separate کار می‌کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام مقدار در میان‌بُر border الزامی است؟",
+      "options": ["border-width", "border-style", "border-color", "هیچ‌کدام"],
+      "answer": 1,
+      "explanation": "border-style الزامی است؛ اگر فقط عرض و رنگ بنویسید حاشیه دیده نمی‌شود."
+    },
+    {
+      "question": "چرا جدول‌های مثال حاشیهٔ دوتایی دارند؟",
+      "options": [
+        "چون CSS به طور پیش‌فرض حاشیهٔ دوتایی می‌سازد",
+        "چون هر سه عنصر <table>، <th> و <td> حاشیهٔ جداگانه دارند",
+        "چون رنگ حاشیه سبز است",
+        "چون padding صفر است"
+      ],
+      "answer": 1,
+      "explanation": "هر سه عنصر جدول حاشیهٔ خودشان را دارند و همین باعث دوتایی‌شدن مرز بین خانه‌ها می‌شود؛ با border-collapse: collapse درست می‌شود."
+    },
+    {
+      "question": "border-spacing چه زمانی اثر دارد؟",
+      "options": [
+        "فقط وقتی border-collapse روی separate باشد",
+        "فقط وقتی border-collapse روی collapse باشد",
+        "همیشه",
+        "فقط برای جدول‌های بدون حاشیه"
+      ],
+      "answer": 0,
+      "explanation": "درس صریح می‌گوید border-spacing فقط وقتی کار می‌کند که border-collapse روی مقدار separate باشد؛ با collapse حاشیه‌ها یکی شده‌اند و فاصله‌ای نمی‌ماند."
+    },
+    {
+      "question": "برای کنترل فاصلهٔ بین حاشیه و محتوای جدول از کدام خصوصیت استفاده می‌کنیم؟",
+      "options": ["border-spacing", "margin", "padding", "border-collapse"],
+      "answer": 2,
+      "explanation": "padding روی عنصرهای <td> و <th> فاصلهٔ محتوا از حاشیه را کنترل می‌کند؛ border-spacing فاصلهٔ بین حاشیهٔ خانه‌های کناری است."
+    },
+    {
+      "question": "اگر فقط حاشیهٔ دور جدول را بخواهیم، خصوصیت border را روی چه عنصری می‌گذاریم؟",
+      "options": ["فقط روی <td>", "فقط روی <th>", "روی <table>، <th> و <td>", "فقط روی <table>"],
+      "answer": 3,
+      "explanation": "برای حاشیهٔ بیرونی، border را فقط روی عنصر <table> تعیین می‌کنید؛ اگر روی <td> و <th> هم بگذارید حاشیهٔ داخل خانه‌ها هم دیده می‌شود."
+    }
+  ]
 }

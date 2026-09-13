@@ -1,127 +1,114 @@
 {
- "slug": "css3_variables_javascript",
- "course": "css",
- "order": 165,
- "url": "/css/css3_variables_javascript.asp",
- "title": "متغیرهای CSS و JavaScript",
- "summary": "چون متغیرهای CSS به DOM دسترسی دارند، از JavaScript هم می‌توان خواند و عوضشان کرد. در این درس با یک اسکریپت کوچک مقدار متغیر را تغییر می‌دهید و اثرش را روی صفحه می‌بینید.",
- "objectives": [
-  "بگویید چرا متغیرهای CSS با JavaScript قابل تغییرند",
-  "مقدار متغیر را با getComputedStyle بخوانید",
-  "مقدار متغیر را با setProperty عوض کنید",
-  "اثر تغییر متغیر روی کل صفحه را توضیح دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "متغیرهای CSS و JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "تغییر متغیرها با JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متغیرهای CSS به DOM دسترسی دارند؛ یعنی می‌توانید آن‌ها را با JavaScript تغییر دهید."
-  },
-  {
-   "type": "p",
-   "text": "در این‌جا نمونه‌ای می‌بینید که چطور اسکریپتی بسازید تا متغیر ‎--primary-bg-color‎ را از مثال صفحه‌های قبل نشان دهد و تغییر دهد. فعلاً اگر با JavaScript آشنا نیستید نگران نباشید. می‌توانید JavaScript را در آموزش JavaScript ما بیشتر یاد بگیرید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script>\n// Get the root element\nvar r =\n  document.querySelector(':root');\n\n// Function for getting a variable\n  value\nfunction myFunction_get() {\n  // Get the styles (properties\n  and values) for the root\n  var rs = getComputedStyle(r);\n  //\n  Alert the value of the --primary-bg-color variable\n  alert(\"The value\n  of --primary-bg-color is: \" + rs.getPropertyValue('--primary-bg-color'));\n}\n\n// Function for setting a variable value\nfunction myFunction_set() {\n\n  // Set the value of variable --primary-bg-color to another value (in this case\n  \"green\")\n  r.style.setProperty('--primary-bg-color', 'green');\n}\n\n  </script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_var_js"
-  },
-  {
-   "type": "h2",
-   "text": "تابع var() در CSS"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "تابع",
-    "توضیحات"
-   ],
-   "rows": [
-    [
-     "var()",
-     "مقدار یک متغیر CSS را درج می‌کند"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل var-js.html بسازید، در ‎:root‎ متغیر ‎--main-bg: lightblue;‎ را تعریف کنید و پس‌زمینهٔ body را با var() به آن وصل کنید.",
-   "hint": "اول با CSS کار تمام است؛ JavaScript فقط مقدار متغیر را عوض می‌کند."
-  },
-  {
-   "prompt": "با JavaScript مقدار متغیر را بخوانید: ‎getComputedStyle(document.documentElement).getPropertyValue('--main-bg')‎ و در کنسول چاپش کنید.",
-   "hint": "مقدار متغیر از عنصر ریشه (documentElement) خوانده می‌شود."
-  },
-  {
-   "prompt": "با ‎document.documentElement.style.setProperty('--main-bg', 'pink')‎ مقدار متغیر را عوض کنید و تغییر را روی صفحه ببینید.",
-   "hint": "setProperty نام متغیر را با همان دو خط تیره می‌گیرد."
-  },
-  {
-   "prompt": "دو دکمه بسازید که هرکدام با JavaScript مقدار ‎--main-bg‎ را به یک رنگ دیگر تغییر دهند.",
-   "hint": "کافی است هر دکمه یک بار setProperty را با رنگ خودش صدا بزند."
-  },
-  {
-   "prompt": "در کنسول مرورگر بنویسید چرا تغییر متغیر با JavaScript روی همهٔ عنصرهایی که از آن استفاده می‌کنند اثر می‌گذارد.",
-   "hint": "همهٔ آن عنصرها از یک متغیر مشترک روی ریشهٔ سند مقدار می‌گیرند."
-  }
- ],
- "quiz": [
-  {
-   "question": "چرا می‌توان متغیرهای CSS را با JavaScript تغییر داد؟",
-   "options": [
-    "چون متغیرها به DOM دسترسی دارند",
-    "چون CSS زبانی برنامه‌نویسی است",
-    "چون JavaScript داخل CSS اجرا می‌شود",
-    "چون متغیرها همیشه سراسری‌اند"
-   ],
-   "answer": 0,
-   "explanation": "متغیرهای CSS به DOM دسترسی دارند، پس از طریق عنصر ریشه با JavaScript قابل خواندن و تغییرند."
-  },
-  {
-   "question": "برای خواندن مقدار یک متغیر از ریشهٔ سند از کدام متد استفاده می‌کنیم؟",
-   "options": [
-    "getElementById",
-    "getPropertyValue روی نتیجهٔ getComputedStyle",
-    "querySelector",
-    "addEventListener"
-   ],
-   "answer": 1,
-   "explanation": "با getComputedStyle روی documentElement و بعد getPropertyValue نام متغیر، مقدار محاسبه‌شده خوانده می‌شود."
-  },
-  {
-   "question": "برای تغییر مقدار متغیر روی ریشهٔ سند کدام متد به کار می‌رود؟",
-   "options": [
-    "setAttribute",
-    "style.setProperty",
-    "classList.add",
-    "innerHTML"
-   ],
-   "answer": 1,
-   "explanation": "متد style.setProperty نام متغیر و مقدار تازه را می‌گیرد و همان لحظه روی کل سند اثر می‌گذارد."
-  },
-  {
-   "question": "اگر با JavaScript رنگ متغیر ‎--main-bg‎ را عوض کنیم، چه چیزی تغییر می‌کند؟",
-   "options": [
-    "فقط یک عنصر خاص",
-    "همهٔ عنصرهایی که از آن متغیر استفاده می‌کنند",
-    "هیچ‌چیز تا رفرش صفحه",
-    "فقط فایل CSS"
-   ],
-   "answer": 1,
-   "explanation": "چون همهٔ آن عنصرها مقدار را از یک متغیر مشترک روی ریشهٔ سند می‌خوانند، تغییر یک‌جا روی همه اثر می‌گذارد."
-  }
- ]
+  "slug": "css3_variables_javascript",
+  "course": "css",
+  "order": 165,
+  "url": "/css/css3_variables_javascript.asp",
+  "title": "متغیرهای CSS و JavaScript",
+  "summary": "چون متغیرهای CSS به DOM دسترسی دارند، از JavaScript هم می‌توان خواند و عوضشان کرد. در این درس با یک اسکریپت کوچک مقدار متغیر را تغییر می‌دهید و اثرش را روی صفحه می‌بینید.",
+  "objectives": [
+    "بگویید چرا متغیرهای CSS با JavaScript قابل تغییرند",
+    "مقدار متغیر را با getComputedStyle بخوانید",
+    "مقدار متغیر را با setProperty عوض کنید",
+    "اثر تغییر متغیر روی کل صفحه را توضیح دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "متغیرهای CSS و JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "تغییر متغیرها با JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متغیرهای CSS به DOM دسترسی دارند؛ یعنی می‌توانید آن‌ها را با JavaScript تغییر دهید."
+    },
+    {
+      "type": "p",
+      "text": "در این‌جا نمونه‌ای می‌بینید که چطور اسکریپتی بسازید تا متغیر ‎--primary-bg-color‎ را از مثال صفحه‌های قبل نشان دهد و تغییر دهد. فعلاً اگر با JavaScript آشنا نیستید نگران نباشید. می‌توانید JavaScript را در آموزش JavaScript ما بیشتر یاد بگیرید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script>\n// Get the root element\nvar r =\n  document.querySelector(':root');\n\n// Function for getting a variable\n  value\nfunction myFunction_get() {\n  // Get the styles (properties\n  and values) for the root\n  var rs = getComputedStyle(r);\n  //\n  Alert the value of the --primary-bg-color variable\n  alert(\"The value\n  of --primary-bg-color is: \" + rs.getPropertyValue('--primary-bg-color'));\n}\n\n// Function for setting a variable value\nfunction myFunction_set() {\n\n  // Set the value of variable --primary-bg-color to another value (in this case\n  \"green\")\n  r.style.setProperty('--primary-bg-color', 'green');\n}\n\n  </script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_var_js"
+    },
+    {
+      "type": "h2",
+      "text": "تابع var() در CSS"
+    },
+    {
+      "type": "table",
+      "headers": ["تابع", "توضیحات"],
+      "rows": [["var()", "مقدار یک متغیر CSS را درج می‌کند"]]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل var-js.html بسازید، در ‎:root‎ متغیر ‎--main-bg: lightblue;‎ را تعریف کنید و پس‌زمینهٔ body را با var() به آن وصل کنید.",
+      "hint": "اول با CSS کار تمام است؛ JavaScript فقط مقدار متغیر را عوض می‌کند."
+    },
+    {
+      "prompt": "با JavaScript مقدار متغیر را بخوانید: ‎getComputedStyle(document.documentElement).getPropertyValue('--main-bg')‎ و در کنسول چاپش کنید.",
+      "hint": "مقدار متغیر از عنصر ریشه (documentElement) خوانده می‌شود."
+    },
+    {
+      "prompt": "با ‎document.documentElement.style.setProperty('--main-bg', 'pink')‎ مقدار متغیر را عوض کنید و تغییر را روی صفحه ببینید.",
+      "hint": "setProperty نام متغیر را با همان دو خط تیره می‌گیرد."
+    },
+    {
+      "prompt": "دو دکمه بسازید که هرکدام با JavaScript مقدار ‎--main-bg‎ را به یک رنگ دیگر تغییر دهند.",
+      "hint": "کافی است هر دکمه یک بار setProperty را با رنگ خودش صدا بزند."
+    },
+    {
+      "prompt": "در کنسول مرورگر بنویسید چرا تغییر متغیر با JavaScript روی همهٔ عنصرهایی که از آن استفاده می‌کنند اثر می‌گذارد.",
+      "hint": "همهٔ آن عنصرها از یک متغیر مشترک روی ریشهٔ سند مقدار می‌گیرند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "چرا می‌توان متغیرهای CSS را با JavaScript تغییر داد؟",
+      "options": [
+        "چون متغیرها به DOM دسترسی دارند",
+        "چون CSS زبانی برنامه‌نویسی است",
+        "چون JavaScript داخل CSS اجرا می‌شود",
+        "چون متغیرها همیشه سراسری‌اند"
+      ],
+      "answer": 0,
+      "explanation": "متغیرهای CSS به DOM دسترسی دارند، پس از طریق عنصر ریشه با JavaScript قابل خواندن و تغییرند."
+    },
+    {
+      "question": "برای خواندن مقدار یک متغیر از ریشهٔ سند از کدام متد استفاده می‌کنیم؟",
+      "options": [
+        "getElementById",
+        "getPropertyValue روی نتیجهٔ getComputedStyle",
+        "querySelector",
+        "addEventListener"
+      ],
+      "answer": 1,
+      "explanation": "با getComputedStyle روی documentElement و بعد getPropertyValue نام متغیر، مقدار محاسبه‌شده خوانده می‌شود."
+    },
+    {
+      "question": "برای تغییر مقدار متغیر روی ریشهٔ سند کدام متد به کار می‌رود؟",
+      "options": ["setAttribute", "style.setProperty", "classList.add", "innerHTML"],
+      "answer": 1,
+      "explanation": "متد style.setProperty نام متغیر و مقدار تازه را می‌گیرد و همان لحظه روی کل سند اثر می‌گذارد."
+    },
+    {
+      "question": "اگر با JavaScript رنگ متغیر ‎--main-bg‎ را عوض کنیم، چه چیزی تغییر می‌کند؟",
+      "options": [
+        "فقط یک عنصر خاص",
+        "همهٔ عنصرهایی که از آن متغیر استفاده می‌کنند",
+        "هیچ‌چیز تا رفرش صفحه",
+        "فقط فایل CSS"
+      ],
+      "answer": 1,
+      "explanation": "چون همهٔ آن عنصرها مقدار را از یک متغیر مشترک روی ریشهٔ سند می‌خوانند، تغییر یک‌جا روی همه اثر می‌گذارد."
+    }
+  ]
 }

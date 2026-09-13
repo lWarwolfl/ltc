@@ -1,241 +1,231 @@
 {
- "slug": "js_break",
- "course": "js",
- "order": 25,
- "url": "/js/js_break.asp",
- "title": "دستور break در JavaScript",
- "summary": "دستور break اجرای حلقه یا switch را همان‌جا تمام می‌کند. در این درس می‌بینید break چطور از حلقه و از switch بیرون می‌زند، چرا نبودنش باعث افتادن روی caseهای بعدی می‌شود و برچسب‌ها چطور کمک می‌کنند از حلقه‌های تودرتو یک‌جا بیرون بیایید.",
- "objectives": [
-  "توضیح دهید break در حلقه و switch چه می‌کند",
-  "خطر fall-through در switch را تشخیص دهید",
-  "با برچسب از حلقه‌های تودرتو بیرون بیایید",
-  "تفاوت break با برچسب و بدون برچسب را بیان کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "دستور break در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "دستور break"
-  },
-  {
-   "type": "p",
-   "text": "دستور break از حلقه‌ها و switchها بیرون می‌زند."
-  },
-  {
-   "type": "p",
-   "text": "دستور break اجرای یک حلقه یا یک دستور switch را پایان می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "break در حلقه‌ها"
-  },
-  {
-   "type": "p",
-   "text": "وقتی در یک حلقه به break برسیم، حلقه بلافاصله پایان می‌یابد."
-  },
-  {
-   "type": "p",
-   "text": "کنترل برنامه به دستورهای پس از حلقه منتقل می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "دیگر هیچ دوری از حلقه اجرا نمی‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "for (let i = 0; i < 10; i++) {\n\nif (i === 3) { break; }\n\n    text += \"The number is \" + i + \"<br>\";\n\n }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break"
-  },
-  {
-   "type": "p",
-   "text": "پیش‌تر در فصل‌های قبل این آموزش، کاربرد دستور break را دیده‌اید."
-  },
-  {
-   "type": "p",
-   "text": "از آن برای بیرون زدن از یک دستور switch استفاده شده بود."
-  },
-  {
-   "type": "h2",
-   "text": "break در switch"
-  },
-  {
-   "type": "p",
-   "text": "در یک دستور switch، دستور break پس از اجرای case مطابق از بلوک switch بیرون می‌آید. بدون break، اجرا روی caseهای بعدی می‌افتد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "switch (new Date().getDay()) {\n\n  case 0:\n\n    day = \"Sunday\";\n\n    break;\n\n  case 1:\n\n      day = \"Monday\";\n\n     break;\n\n  case 2:\n\n       day = \"Tuesday\";\n\n      break;\n\n  case 3:\n\n    day = \"Wednesday\";\n\n      break;\n\n  case 4:\n\n      day = \"Thursday\";\n\n     break;\n\n  case 5:\n\n      day = \"Friday\";\n\n      break;\n\n  case 6:\n\n    day = \"Saturday\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch_break"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "کلمهٔ کلیدی break برای جلوگیری از «افتادن روی case بعدی» در switch حیاتی است. بدون break، کد اجرای caseهای بعدی (و بلوک default در صورت وجود) را ادامه می‌دهد، حتی اگر مقدارشان با عبارت مطابقت نداشته باشد."
-  },
-  {
-   "type": "h2",
-   "text": "برچسب‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "برچسب به یک دستور یا بلوکی از دستورها نام می‌دهد تا بتوان در کنترل جریان برنامه، خصوصاً در حلقه‌ها، به آن دستورها ارجاع داد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "labelname: statement;",
-   "caption": "نحو"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "labelname: {\n\n  statements\n\n}",
-   "caption": "نحو"
-  },
-  {
-   "type": "h2",
-   "text": "break با برچسب"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "break labelname;",
-   "caption": "نحو"
-  },
-  {
-   "type": "p",
-   "text": "دستور break از یک حلقه یا بلوک بیرون می‌آید و کنترل را به دستور برچسب‌دار منتقل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "دستور break خصوصاً برای بیرون آمدن از حلقه‌های داخلی یا بیرونی در حلقه‌های تودرتو بسیار به کار می‌آید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"\";\n\nloop1: for (let j = 1; j < 5; j++) {\n\n  loop2: for (let i = 1; i < 5; i++) {\n\n    if (i === 3) { break loop1; }\n\n    text += i;\n\n    }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break_label1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"\";\n\nloop1: for (let j = 1; j < 5; j++) {\n\n  loop2: for (let i = 1; i < 5; i++) {\n\n    if (i === 3) { break loop2; }\n\n    text += i;\n\n    }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break_label2"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "break و continue تنها دستورهای JavaScript هستند که می‌توانند از یک بلوک کد بیرون بزنند. بلوک کد همان کد میان { و } است.\n\nبدون ارجاع به برچسب، break فقط می‌تواند از یک حلقه یا یک switch بیرون بزند.\nبا ارجاع به برچسب، break می‌تواند از هر بلوک کدی بیرون بزند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const cars = [\"BMW\", \"Volvo\", \"Saab\", \"Ford\"];\nlist: {\n  text += cars[0] + \"<br>\";\n\n    text += cars[1] + \"<br>\";\n  break list;\n  text += cars[2] + \"<br>\";\n\n    text += cars[3] + \"<br>\";\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break_list"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل break.html بسازید و حلقه‌ای بنویسید که اعداد ۰ تا ۹ را چاپ کند، ولی وقتی به 5 رسید با break از حلقه بیرون بزند.",
-   "hint": "شرط توقف را داخل حلقه بگذارید: if (i === 5) { break; }"
-  },
-  {
-   "prompt": "بعد از حلقه یک console.log بگذارید و ببینید با break اجرای برنامه به کجا منتقل می‌شود.",
-   "hint": "break فقط از حلقه بیرون می‌زند؛ برنامه از خط بعد از حلقه ادامه می‌دهد."
-  },
-  {
-   "prompt": "یک switch بنویسید و از break در caseها استفاده کنید؛ بعد break را بردارید و تفاوت خروجی را ببینید.",
-   "hint": "بدون break اجرا به caseهای بعدی می‌افتد."
-  },
-  {
-   "prompt": "دو حلقهٔ تودرتو بنویسید و با یک برچسب روی حلقهٔ بیرونی، هر دو حلقه را با یک break ببندید.",
-   "hint": "شکل کار: outer: for (...) { for (...) { break outer; } }"
-  },
-  {
-   "prompt": "در همان کد یک break بدون برچسب بگذارید و ببینید فقط از حلقهٔ داخلی بیرون می‌زند.",
-   "hint": "بدون برچسب، break فقط از نزدیک‌ترین حلقه یا switch بیرون می‌زند."
-  }
- ],
- "quiz": [
-  {
-   "question": "دستور break در یک حلقه چه کاری می‌کند؟",
-   "options": [
-    "حلقه را یک دور جلو می‌برد",
-    "حلقه را بلافاصله پایان می‌دهد",
-    "کل برنامه را می‌بندد",
-    "شرط حلقه را عوض می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "break حلقه را همان‌جا تمام می‌کند و کنترل به دستورهای پس از حلقه منتقل می‌شود؛ نه یک دور جلو می‌رود و نه برنامه را می‌بندد."
-  },
-  {
-   "question": "بدون break در caseهای switch چه اتفاقی می‌افتد؟",
-   "options": [
-    "switch خطا می‌دهد",
-    "اجرا روی caseهای بعدی می‌افتد و آن‌ها هم اجرا می‌شوند",
-    "فقط case اول اجرا می‌شود",
-    "هیچ caseی اجرا نمی‌شود"
-   ],
-   "answer": 1,
-   "explanation": "این همان fall-through است: بدون break، پس از اجرای case مطابق، اجرا به caseهای بعدی و در صورت وجود به default هم می‌رسد."
-  },
-  {
-   "question": "بدون برچسب، break از کجا می‌تواند بیرون بزند؟",
-   "options": [
-    "از هر بلوک کدی",
-    "فقط از یک حلقه یا یک switch",
-    "فقط از تابع",
-    "از هیچ‌جا"
-   ],
-   "answer": 1,
-   "explanation": "بدون ارجاع به برچسب، break فقط از نزدیک‌ترین حلقه یا switch بیرون می‌زند. با برچسب می‌توان از هر بلوک کدی، حتی حلقه‌های تودرتو، بیرون آمد."
-  },
-  {
-   "question": "برای بیرون آمدن از هر دو حلقهٔ تودرتو با یک دستور، چه می‌کنیم؟",
-   "options": [
-    "دو break پشت سر هم می‌نویسیم",
-    "به حلقهٔ بیرونی برچسب می‌دهیم و break با آن برچسب می‌زنیم",
-    "از continue استفاده می‌کنیم",
-    "از return استفاده می‌کنیم"
-   ],
-   "answer": 1,
-   "explanation": "break بدون برچسب فقط از حلقهٔ داخلی بیرون می‌زند. با گذاشتن برچسب روی حلقهٔ بیرونی و نوشتن break به همراه آن نام، می‌توان هر دو حلقه را یک‌جا ترک کرد."
-  },
-  {
-   "question": "کدام دو دستور JavaScript می‌توانند از یک بلوک کد بیرون بزنند؟",
-   "options": [
-    "if و else",
-    "break و continue",
-    "for و while",
-    "switch و case"
-   ],
-   "answer": 1,
-   "explanation": "فقط break و continue چنین کاری می‌کنند. if و else فقط تصمیم می‌گیرند و for و while خودشان حلقه‌اند."
-  }
- ]
+  "slug": "js_break",
+  "course": "js",
+  "order": 25,
+  "url": "/js/js_break.asp",
+  "title": "دستور break در JavaScript",
+  "summary": "دستور break اجرای حلقه یا switch را همان‌جا تمام می‌کند. در این درس می‌بینید break چطور از حلقه و از switch بیرون می‌زند، چرا نبودنش باعث افتادن روی caseهای بعدی می‌شود و برچسب‌ها چطور کمک می‌کنند از حلقه‌های تودرتو یک‌جا بیرون بیایید.",
+  "objectives": [
+    "توضیح دهید break در حلقه و switch چه می‌کند",
+    "خطر fall-through در switch را تشخیص دهید",
+    "با برچسب از حلقه‌های تودرتو بیرون بیایید",
+    "تفاوت break با برچسب و بدون برچسب را بیان کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "دستور break در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "دستور break"
+    },
+    {
+      "type": "p",
+      "text": "دستور break از حلقه‌ها و switchها بیرون می‌زند."
+    },
+    {
+      "type": "p",
+      "text": "دستور break اجرای یک حلقه یا یک دستور switch را پایان می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "break در حلقه‌ها"
+    },
+    {
+      "type": "p",
+      "text": "وقتی در یک حلقه به break برسیم، حلقه بلافاصله پایان می‌یابد."
+    },
+    {
+      "type": "p",
+      "text": "کنترل برنامه به دستورهای پس از حلقه منتقل می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "دیگر هیچ دوری از حلقه اجرا نمی‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "for (let i = 0; i < 10; i++) {\n\nif (i === 3) { break; }\n\n    text += \"The number is \" + i + \"<br>\";\n\n }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break"
+    },
+    {
+      "type": "p",
+      "text": "پیش‌تر در فصل‌های قبل این آموزش، کاربرد دستور break را دیده‌اید."
+    },
+    {
+      "type": "p",
+      "text": "از آن برای بیرون زدن از یک دستور switch استفاده شده بود."
+    },
+    {
+      "type": "h2",
+      "text": "break در switch"
+    },
+    {
+      "type": "p",
+      "text": "در یک دستور switch، دستور break پس از اجرای case مطابق از بلوک switch بیرون می‌آید. بدون break، اجرا روی caseهای بعدی می‌افتد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "switch (new Date().getDay()) {\n\n  case 0:\n\n    day = \"Sunday\";\n\n    break;\n\n  case 1:\n\n      day = \"Monday\";\n\n     break;\n\n  case 2:\n\n       day = \"Tuesday\";\n\n      break;\n\n  case 3:\n\n    day = \"Wednesday\";\n\n      break;\n\n  case 4:\n\n      day = \"Thursday\";\n\n     break;\n\n  case 5:\n\n      day = \"Friday\";\n\n      break;\n\n  case 6:\n\n    day = \"Saturday\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch_break"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "کلمهٔ کلیدی break برای جلوگیری از «افتادن روی case بعدی» در switch حیاتی است. بدون break، کد اجرای caseهای بعدی (و بلوک default در صورت وجود) را ادامه می‌دهد، حتی اگر مقدارشان با عبارت مطابقت نداشته باشد."
+    },
+    {
+      "type": "h2",
+      "text": "برچسب‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "برچسب به یک دستور یا بلوکی از دستورها نام می‌دهد تا بتوان در کنترل جریان برنامه، خصوصاً در حلقه‌ها، به آن دستورها ارجاع داد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "labelname: statement;",
+      "caption": "نحو"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "labelname: {\n\n  statements\n\n}",
+      "caption": "نحو"
+    },
+    {
+      "type": "h2",
+      "text": "break با برچسب"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "break labelname;",
+      "caption": "نحو"
+    },
+    {
+      "type": "p",
+      "text": "دستور break از یک حلقه یا بلوک بیرون می‌آید و کنترل را به دستور برچسب‌دار منتقل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "دستور break خصوصاً برای بیرون آمدن از حلقه‌های داخلی یا بیرونی در حلقه‌های تودرتو بسیار به کار می‌آید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"\";\n\nloop1: for (let j = 1; j < 5; j++) {\n\n  loop2: for (let i = 1; i < 5; i++) {\n\n    if (i === 3) { break loop1; }\n\n    text += i;\n\n    }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break_label1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"\";\n\nloop1: for (let j = 1; j < 5; j++) {\n\n  loop2: for (let i = 1; i < 5; i++) {\n\n    if (i === 3) { break loop2; }\n\n    text += i;\n\n    }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break_label2"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "break و continue تنها دستورهای JavaScript هستند که می‌توانند از یک بلوک کد بیرون بزنند. بلوک کد همان کد میان { و } است.\n\nبدون ارجاع به برچسب، break فقط می‌تواند از یک حلقه یا یک switch بیرون بزند.\nبا ارجاع به برچسب، break می‌تواند از هر بلوک کدی بیرون بزند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const cars = [\"BMW\", \"Volvo\", \"Saab\", \"Ford\"];\nlist: {\n  text += cars[0] + \"<br>\";\n\n    text += cars[1] + \"<br>\";\n  break list;\n  text += cars[2] + \"<br>\";\n\n    text += cars[3] + \"<br>\";\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break_list"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل break.html بسازید و حلقه‌ای بنویسید که اعداد ۰ تا ۹ را چاپ کند، ولی وقتی به 5 رسید با break از حلقه بیرون بزند.",
+      "hint": "شرط توقف را داخل حلقه بگذارید: if (i === 5) { break; }"
+    },
+    {
+      "prompt": "بعد از حلقه یک console.log بگذارید و ببینید با break اجرای برنامه به کجا منتقل می‌شود.",
+      "hint": "break فقط از حلقه بیرون می‌زند؛ برنامه از خط بعد از حلقه ادامه می‌دهد."
+    },
+    {
+      "prompt": "یک switch بنویسید و از break در caseها استفاده کنید؛ بعد break را بردارید و تفاوت خروجی را ببینید.",
+      "hint": "بدون break اجرا به caseهای بعدی می‌افتد."
+    },
+    {
+      "prompt": "دو حلقهٔ تودرتو بنویسید و با یک برچسب روی حلقهٔ بیرونی، هر دو حلقه را با یک break ببندید.",
+      "hint": "شکل کار: outer: for (...) { for (...) { break outer; } }"
+    },
+    {
+      "prompt": "در همان کد یک break بدون برچسب بگذارید و ببینید فقط از حلقهٔ داخلی بیرون می‌زند.",
+      "hint": "بدون برچسب، break فقط از نزدیک‌ترین حلقه یا switch بیرون می‌زند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "دستور break در یک حلقه چه کاری می‌کند؟",
+      "options": [
+        "حلقه را یک دور جلو می‌برد",
+        "حلقه را بلافاصله پایان می‌دهد",
+        "کل برنامه را می‌بندد",
+        "شرط حلقه را عوض می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "break حلقه را همان‌جا تمام می‌کند و کنترل به دستورهای پس از حلقه منتقل می‌شود؛ نه یک دور جلو می‌رود و نه برنامه را می‌بندد."
+    },
+    {
+      "question": "بدون break در caseهای switch چه اتفاقی می‌افتد؟",
+      "options": [
+        "switch خطا می‌دهد",
+        "اجرا روی caseهای بعدی می‌افتد و آن‌ها هم اجرا می‌شوند",
+        "فقط case اول اجرا می‌شود",
+        "هیچ caseی اجرا نمی‌شود"
+      ],
+      "answer": 1,
+      "explanation": "این همان fall-through است: بدون break، پس از اجرای case مطابق، اجرا به caseهای بعدی و در صورت وجود به default هم می‌رسد."
+    },
+    {
+      "question": "بدون برچسب، break از کجا می‌تواند بیرون بزند؟",
+      "options": ["از هر بلوک کدی", "فقط از یک حلقه یا یک switch", "فقط از تابع", "از هیچ‌جا"],
+      "answer": 1,
+      "explanation": "بدون ارجاع به برچسب، break فقط از نزدیک‌ترین حلقه یا switch بیرون می‌زند. با برچسب می‌توان از هر بلوک کدی، حتی حلقه‌های تودرتو، بیرون آمد."
+    },
+    {
+      "question": "برای بیرون آمدن از هر دو حلقهٔ تودرتو با یک دستور، چه می‌کنیم؟",
+      "options": [
+        "دو break پشت سر هم می‌نویسیم",
+        "به حلقهٔ بیرونی برچسب می‌دهیم و break با آن برچسب می‌زنیم",
+        "از continue استفاده می‌کنیم",
+        "از return استفاده می‌کنیم"
+      ],
+      "answer": 1,
+      "explanation": "break بدون برچسب فقط از حلقهٔ داخلی بیرون می‌زند. با گذاشتن برچسب روی حلقهٔ بیرونی و نوشتن break به همراه آن نام، می‌توان هر دو حلقه را یک‌جا ترک کرد."
+    },
+    {
+      "question": "کدام دو دستور JavaScript می‌توانند از یک بلوک کد بیرون بزنند؟",
+      "options": ["if و else", "break و continue", "for و while", "switch و case"],
+      "answer": 1,
+      "explanation": "فقط break و continue چنین کاری می‌کنند. if و else فقط تصمیم می‌گیرند و for و while خودشان حلقه‌اند."
+    }
+  ]
 }

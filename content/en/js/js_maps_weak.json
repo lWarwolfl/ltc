@@ -1,284 +1,251 @@
 {
- "slug": "js_maps_weak",
- "course": "js",
- "order": 74,
- "url": "/js/js_maps_weak.asp",
- "title": "JavaScript WeakMap",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript WeakMap"
-  },
-  {
-   "type": "h2",
-   "text": "The WeakMap Object"
-  },
-  {
-   "type": "p",
-   "text": "A JavaScript WeakMap is a collection of key/value pairs where the\nkeys must be objects."
-  },
-  {
-   "type": "p",
-   "text": "A WeakMap holds weak references to its keys."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a WeakMap\n\nlet myMap = new WeakMap();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Set a WeakMap value\n\nmyMap.set(myObj, \"player\");\n\n// Get the WeakMap value\n\nlet type = myMap.get(myObj);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap"
-  },
-  {
-   "type": "h2",
-   "text": "Garbage Collection"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript employs a memory management mechanism known as Garbage Collection."
-  },
-  {
-   "type": "p",
-   "text": "The primary functions are:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Ensuring efficient use of memory resources",
-    "Reclaim memory occupied by variables that are no longer in use",
-    "Preventing memory leaks"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Weak References"
-  },
-  {
-   "type": "p",
-   "text": "Unlike a regular Map, a WeakMap does not prevent its keys from being garbage collected."
-  },
-  {
-   "type": "p",
-   "text": "If a key (an object) has no references to it in a program, it becomes eligible for garbage collection."
-  },
-  {
-   "type": "p",
-   "text": "When the key is garbage collected, its key-value pair is removed from the WeakMap."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let myMap = new WeakMap();\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\nmyMap.set(myObj, \"secret\");\n\nmyObj = null;\n\n// now myObj (and its values) in myMap can be garbage collected",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Keys Must Be Objects"
-  },
-  {
-   "type": "p",
-   "text": "Primitive values cannot be used as keys in a WeakMap."
-  },
-  {
-   "type": "p",
-   "text": "The keys must be objects or non-registered symbols."
-  },
-  {
-   "type": "p",
-   "text": "This restriction is tied to the garbage collection mechanism;\nprimitives are not garbage collected in the same way as objects."
-  },
-  {
-   "type": "h2",
-   "text": "Tracking Objects"
-  },
-  {
-   "type": "p",
-   "text": "The entries in a WeakMap are weakly held: if the object key becomes unreachable,\nits mapping is removed automatically."
-  },
-  {
-   "type": "p",
-   "text": "This is perfect for tracking data about objects without preventing garbage collection."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"\";\n\n// Create a WeakMap to store visit counts\n\nconst visitsCount = new WeakMap();\n\n// Create Visitor Objects\n\nconst John = {name:\"John\", age:40};\n\nconst Paul = {name:\"Paul\", age:41};\n\nconst Ringo = {name:\"Ringo\", age:42};\n\nconst George = {name:\"George\", age:43};\n\n// Track visits\n\ntrack(Paul);\n\ntrack(Ringo);\n\ntrack(Paul);\n\ntrack(Paul);\n\ntrack(John);\n\n// Function to track visitors\n\nfunction track(visitor) {\n\n  let count = visitsCount.get(visitor) || 0;\n\n  count++;\n\n  visitsCount.set(visitor, count);\n\n  text += visitor.name + \", age \" + visitor.age + \", has visited \" + count + \" time(s).<br>\";\n\n}",
-   "caption": "Tracking Visitors"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap_visitors"
-  },
-  {
-   "type": "h2",
-   "text": "Automatic Cleanup"
-  },
-  {
-   "type": "p",
-   "text": "If you remove all references to a visitor object:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "John = null;\n\n// The entry for John is now removed from the WeakMap (persons)",
-   "caption": "Tracking Visitors:"
-  },
-  {
-   "type": "h2",
-   "text": "Not Iterable"
-  },
-  {
-   "type": "p",
-   "text": "WeakMaps are not enumerable."
-  },
-  {
-   "type": "p",
-   "text": "You cannot iterate over the keys and values with for loops, forEach(), or keys()."
-  },
-  {
-   "type": "p",
-   "text": "You cannot access the size."
-  },
-  {
-   "type": "h2",
-   "text": "Limited Methods"
-  },
-  {
-   "type": "p",
-   "text": "WeakMap provides a limited set of methods:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "new WeakMap()",
-     "Creates a new WeakMap object"
-    ],
-    [
-     "get(key)",
-     "Gets the value for a key in a WeakMap"
-    ],
-    [
-     "set(key, value)",
-     "Sets the value for a key in a WeakMap"
-    ],
-    [
-     "delete(key)",
-     "Removes an element specified by a key"
-    ],
-    [
-     "has(key)",
-     "Returns true if a key exists in a WeakMap"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Weak Map Secret Data"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create WeakMap\n\nconst myMap = new WeakMap();\n\n// Private Fields Simulation\n\nclass User {\n\n  constructor(name) {\n\n  myMap.set(this, {secret:\"hidden data\"});\n\n  this.name = name;\n\n }\n\n getSecret() {\n\n  return myMap.get(this).secret;\n\n  }\n\n}\n\nconst user1 = new User(\"John\");\n\nsecret = user1.getSecret();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap_secret"
-  },
-  {
-   "type": "h3",
-   "text": "Example Explained"
-  },
-  {
-   "type": "p",
-   "text": "A WeakMap does not allow iteration."
-  },
-  {
-   "type": "p",
-   "text": "Outside code can not \"discover\" what objects are stored inside a WeakMap."
-  },
-  {
-   "type": "p",
-   "text": "To get the secret, you need the this reference that was used in the constructor."
-  },
-  {
-   "type": "p",
-   "text": "External code has access to user1 and myMap, bot not to the this reference inside myMap,\nunless you explicitly expose it, like via getSecret(), the secret value is unreachable."
-  },
-  {
-   "type": "h2",
-   "text": "Privacy"
-  },
-  {
-   "type": "p",
-   "text": "WeakMap was intentionally designed for privacy:\nyou can set, get, has, and delete using an object key, but not inspect what is inside."
-  },
-  {
-   "type": "p",
-   "text": "This was a great tool for simulating private properties in JavaScript classes\n(before #private fields were added to the language)."
-  },
-  {
-   "type": "h2",
-   "text": "Learn More:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Maps"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Map Methods"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Map Reference"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Sets"
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "WeakMap is an ES6  feature."
-  },
-  {
-   "type": "p",
-   "text": "ES6 is fully supported in all modern browsers since June 2017:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome51",
-     "Edge15",
-     "Firefox54",
-     "Safari10",
-     "Opera38"
-    ],
-    [
-     "May 2016",
-     "Apr 2017",
-     "Jun 2017",
-     "Sep 2016",
-     "Jun 2016"
-    ]
-   ]
-  }
- ]
+  "slug": "js_maps_weak",
+  "course": "js",
+  "order": 74,
+  "url": "/js/js_maps_weak.asp",
+  "title": "JavaScript WeakMap",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript WeakMap"
+    },
+    {
+      "type": "h2",
+      "text": "The WeakMap Object"
+    },
+    {
+      "type": "p",
+      "text": "A JavaScript WeakMap is a collection of key/value pairs where the\nkeys must be objects."
+    },
+    {
+      "type": "p",
+      "text": "A WeakMap holds weak references to its keys."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a WeakMap\n\nlet myMap = new WeakMap();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Set a WeakMap value\n\nmyMap.set(myObj, \"player\");\n\n// Get the WeakMap value\n\nlet type = myMap.get(myObj);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap"
+    },
+    {
+      "type": "h2",
+      "text": "Garbage Collection"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript employs a memory management mechanism known as Garbage Collection."
+    },
+    {
+      "type": "p",
+      "text": "The primary functions are:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Ensuring efficient use of memory resources",
+        "Reclaim memory occupied by variables that are no longer in use",
+        "Preventing memory leaks"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Weak References"
+    },
+    {
+      "type": "p",
+      "text": "Unlike a regular Map, a WeakMap does not prevent its keys from being garbage collected."
+    },
+    {
+      "type": "p",
+      "text": "If a key (an object) has no references to it in a program, it becomes eligible for garbage collection."
+    },
+    {
+      "type": "p",
+      "text": "When the key is garbage collected, its key-value pair is removed from the WeakMap."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let myMap = new WeakMap();\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\nmyMap.set(myObj, \"secret\");\n\nmyObj = null;\n\n// now myObj (and its values) in myMap can be garbage collected",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Keys Must Be Objects"
+    },
+    {
+      "type": "p",
+      "text": "Primitive values cannot be used as keys in a WeakMap."
+    },
+    {
+      "type": "p",
+      "text": "The keys must be objects or non-registered symbols."
+    },
+    {
+      "type": "p",
+      "text": "This restriction is tied to the garbage collection mechanism;\nprimitives are not garbage collected in the same way as objects."
+    },
+    {
+      "type": "h2",
+      "text": "Tracking Objects"
+    },
+    {
+      "type": "p",
+      "text": "The entries in a WeakMap are weakly held: if the object key becomes unreachable,\nits mapping is removed automatically."
+    },
+    {
+      "type": "p",
+      "text": "This is perfect for tracking data about objects without preventing garbage collection."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"\";\n\n// Create a WeakMap to store visit counts\n\nconst visitsCount = new WeakMap();\n\n// Create Visitor Objects\n\nconst John = {name:\"John\", age:40};\n\nconst Paul = {name:\"Paul\", age:41};\n\nconst Ringo = {name:\"Ringo\", age:42};\n\nconst George = {name:\"George\", age:43};\n\n// Track visits\n\ntrack(Paul);\n\ntrack(Ringo);\n\ntrack(Paul);\n\ntrack(Paul);\n\ntrack(John);\n\n// Function to track visitors\n\nfunction track(visitor) {\n\n  let count = visitsCount.get(visitor) || 0;\n\n  count++;\n\n  visitsCount.set(visitor, count);\n\n  text += visitor.name + \", age \" + visitor.age + \", has visited \" + count + \" time(s).<br>\";\n\n}",
+      "caption": "Tracking Visitors"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap_visitors"
+    },
+    {
+      "type": "h2",
+      "text": "Automatic Cleanup"
+    },
+    {
+      "type": "p",
+      "text": "If you remove all references to a visitor object:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "John = null;\n\n// The entry for John is now removed from the WeakMap (persons)",
+      "caption": "Tracking Visitors:"
+    },
+    {
+      "type": "h2",
+      "text": "Not Iterable"
+    },
+    {
+      "type": "p",
+      "text": "WeakMaps are not enumerable."
+    },
+    {
+      "type": "p",
+      "text": "You cannot iterate over the keys and values with for loops, forEach(), or keys()."
+    },
+    {
+      "type": "p",
+      "text": "You cannot access the size."
+    },
+    {
+      "type": "h2",
+      "text": "Limited Methods"
+    },
+    {
+      "type": "p",
+      "text": "WeakMap provides a limited set of methods:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["new WeakMap()", "Creates a new WeakMap object"],
+        ["get(key)", "Gets the value for a key in a WeakMap"],
+        ["set(key, value)", "Sets the value for a key in a WeakMap"],
+        ["delete(key)", "Removes an element specified by a key"],
+        ["has(key)", "Returns true if a key exists in a WeakMap"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Weak Map Secret Data"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create WeakMap\n\nconst myMap = new WeakMap();\n\n// Private Fields Simulation\n\nclass User {\n\n  constructor(name) {\n\n  myMap.set(this, {secret:\"hidden data\"});\n\n  this.name = name;\n\n }\n\n getSecret() {\n\n  return myMap.get(this).secret;\n\n  }\n\n}\n\nconst user1 = new User(\"John\");\n\nsecret = user1.getSecret();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakmap_secret"
+    },
+    {
+      "type": "h3",
+      "text": "Example Explained"
+    },
+    {
+      "type": "p",
+      "text": "A WeakMap does not allow iteration."
+    },
+    {
+      "type": "p",
+      "text": "Outside code can not \"discover\" what objects are stored inside a WeakMap."
+    },
+    {
+      "type": "p",
+      "text": "To get the secret, you need the this reference that was used in the constructor."
+    },
+    {
+      "type": "p",
+      "text": "External code has access to user1 and myMap, bot not to the this reference inside myMap,\nunless you explicitly expose it, like via getSecret(), the secret value is unreachable."
+    },
+    {
+      "type": "h2",
+      "text": "Privacy"
+    },
+    {
+      "type": "p",
+      "text": "WeakMap was intentionally designed for privacy:\nyou can set, get, has, and delete using an object key, but not inspect what is inside."
+    },
+    {
+      "type": "p",
+      "text": "This was a great tool for simulating private properties in JavaScript classes\n(before #private fields were added to the language)."
+    },
+    {
+      "type": "h2",
+      "text": "Learn More:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Maps"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Map Methods"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Map Reference"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Sets"
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "WeakMap is an ES6  feature."
+    },
+    {
+      "type": "p",
+      "text": "ES6 is fully supported in all modern browsers since June 2017:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome51", "Edge15", "Firefox54", "Safari10", "Opera38"],
+        ["May 2016", "Apr 2017", "Jun 2017", "Sep 2016", "Jun 2016"]
+      ]
+    }
+  ]
 }

@@ -9,7 +9,14 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { getLocaleWithProps, locales } from '@/i18n/i18n-configs'
-import { getCourse, getCourses, getLesson, getSections, localizedField, firstParagraph } from '@/lib/content'
+import {
+  getCourse,
+  getCourses,
+  getLesson,
+  getSections,
+  localizedField,
+  firstParagraph,
+} from '@/lib/content'
 import { ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
@@ -34,7 +41,10 @@ export const generateStaticParams = async () => {
 export const generateMetadata = async ({ params }: LessonPageProps): Promise<Metadata> => {
   const { course: courseId, slug } = await params
   const locale = await getLocaleWithProps()
-  const [course, lesson] = await Promise.all([getCourse(courseId), getLesson(locale.locale, courseId, slug)])
+  const [course, lesson] = await Promise.all([
+    getCourse(courseId),
+    getLesson(locale.locale, courseId, slug),
+  ])
   if (!course || !lesson) return {}
 
   const courseTitle = localizedField(course.title, locale.locale)

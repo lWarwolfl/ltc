@@ -1,407 +1,407 @@
 {
- "slug": "js_best_practices",
- "course": "js",
- "order": 113,
- "url": "/js/js_best_practices.asp",
- "title": "JavaScript Best Practices",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Best Practices"
-  },
-  {
-   "type": "p",
-   "text": "Avoid global variables, avoid new, avoid ==, avoid eval()"
-  },
-  {
-   "type": "h2",
-   "text": "Avoid Global Variables"
-  },
-  {
-   "type": "p",
-   "text": "Minimize the use of global variables."
-  },
-  {
-   "type": "p",
-   "text": "This includes all data types, objects, and functions."
-  },
-  {
-   "type": "p",
-   "text": "Global variables and functions can be overwritten by other scripts."
-  },
-  {
-   "type": "p",
-   "text": "Use local variables instead, and learn how to use\nclosures."
-  },
-  {
-   "type": "h2",
-   "text": "Always Declare Local Variables"
-  },
-  {
-   "type": "p",
-   "text": "All variables used in a function should be declared as local variables."
-  },
-  {
-   "type": "p",
-   "text": "Local variables must be declared with the var,\nthe let, or the const keyword,\notherwise they will become global variables."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Strict mode does not allow undeclared variables."
-  },
-  {
-   "type": "h2",
-   "text": "Declarations on Top"
-  },
-  {
-   "type": "p",
-   "text": "It is a good coding practice to put all declarations at the top of each script\nor function."
-  },
-  {
-   "type": "p",
-   "text": "This will:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Give cleaner code",
-    "Provide a single place to look for local variables",
-    "Make it easier to avoid unwanted (implied) global variables",
-    "Reduce the possibility of unwanted re-declarations"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Declare at the beginning\n\nlet firstName, lastName, price, discount, fullPrice;\n\n// Use later\nfirstName = \"John\";\nlastName = \"Doe\";\n\nprice = 19.90;\n\ndiscount = 0.10;\n\nfullPrice = price - discount;",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "This also goes for loop variables:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "for (let i = 0; i < 5; i++)\n {",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Initialize Variables"
-  },
-  {
-   "type": "p",
-   "text": "It is a good coding practice to initialize variables when you declare them."
-  },
-  {
-   "type": "p",
-   "text": "This will:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Give cleaner code",
-    "Provide a single place to initialize variables",
-    "Avoid undefined values"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Declare and initiate at the beginning\n\nlet firstName = \"\";\n\nlet lastName = \"\";\n\nlet price = 0;\n\nlet discount = 0;\n\nlet fullPrice = 0,\n\nconst myArray = [];\n\nconst myObject = {};",
-   "caption": null
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Initializing variables provides an idea of the intended use (and intended data type)."
-  },
-  {
-   "type": "h2",
-   "text": "Re-Declaring JavaScript Variables"
-  },
-  {
-   "type": "p",
-   "text": "If you re-declare a JavaScript variable declared with var, it will not lose its value."
-  },
-  {
-   "type": "p",
-   "text": "The variable carName will still have the value \"Volvo\" after the execution of these statements:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var carName = \"Volvo\";\n\nvar carName;",
-   "caption": "Example (Not Recommended)"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_variables_redefine"
-  },
-  {
-   "type": "p",
-   "text": "You cannot re-declare a variable declared with let or const."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let carName = \"Volvo\";\n\nlet carName;",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const carName = \"Volvo\";\n\nconst carName;",
-   "caption": "Examples"
-  },
-  {
-   "type": "h2",
-   "text": "Declare Objects with const"
-  },
-  {
-   "type": "p",
-   "text": "Declaring objects with const will prevent any accidental change of type:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\ncar = \"Fiat\";      // Changes object to string",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\ncar = \"Fiat\";      // Not possible",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Declare Arrays with const"
-  },
-  {
-   "type": "p",
-   "text": "Declaring arrays with const will prevent any accidential change of type:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\ncars = 3;    // Changes array to number",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\ncars = 3;    // Not possible",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Don't Use new Object()"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Use \"\" instead of new String()",
-    "Use 0 instead of new Number()",
-    "Use false instead of new Boolean()",
-    "Use {} instead of new Object()",
-    "Use [] instead of new Array()",
-    "Use /()/ instead of new RegExp()",
-    "Use function (){} instead of new Function()"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x1 = \"\";             // new primitive string\n\nlet x2 = 0;              // new primitive number\n\nlet x3 = false;          // new primitive boolean\n\nconst x4 = {};           // new object\n\nconst x5 = [];           // new array object\n\nconst x6 = /()/;         // new regexp object\n\nconst x7 = function(){}; // new function object",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_constructors"
-  },
-  {
-   "type": "h2",
-   "text": "Beware of Automatic Type Conversions"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript is loosely typed."
-  },
-  {
-   "type": "p",
-   "text": "A variable can contain all data types."
-  },
-  {
-   "type": "p",
-   "text": "A variable can change its data type:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"Hello\";     // typeof x is a string\n\nx = 5;               // changes typeof x to a number",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_typeof"
-  },
-  {
-   "type": "p",
-   "text": "Beware that numbers can accidentally be converted to strings or NaN (Not a\nNumber)."
-  },
-  {
-   "type": "p",
-   "text": "When doing mathematical operations, JavaScript can convert numbers to strings:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 5 + 7;       // x.valueOf() is 12,  typeof x is a number\n\nlet x = 5 + \"7\";     // x.valueOf() is 57,  typeof x is a string\n\nlet x = \"5\" + 7;     // x.valueOf() is 57,  typeof x is a string\n\nlet x = 5 - 7;       // x.valueOf() is -2,  typeof x is a number\n\nlet x = 5 - \"7\";     // x.valueOf() is -2,  typeof x is a number\n\nlet x = \"5\" - 7;     // x.valueOf() is -2,  typeof x is a number\n\nlet x = 5 - \"x\";     // x.valueOf() is NaN, typeof x is a number",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_valueof"
-  },
-  {
-   "type": "p",
-   "text": "Subtracting a string from a string, does not\ngenerate an error but returns NaN (Not a Number):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"Hello\" - \"Dolly\"    // returns NaN",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_string_op1"
-  },
-  {
-   "type": "h2",
-   "text": "Use === Comparison"
-  },
-  {
-   "type": "p",
-   "text": "The == comparison operator always converts (to matching types) before\ncomparison."
-  },
-  {
-   "type": "p",
-   "text": "The === operator forces comparison of values and type:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "0 == \"\";        // true\n\n1 == \"1\";       // true\n\n1 == true;      // true\n\n0 === \"\";       // false\n\n1 === \"1\";      // false\n\n1 === true;\n// false",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_comparison"
-  },
-  {
-   "type": "h2",
-   "text": "Use Parameter Defaults"
-  },
-  {
-   "type": "p",
-   "text": "If a function is called with a missing argument, the value of the missing\nargument is set to\nundefined."
-  },
-  {
-   "type": "p",
-   "text": "Undefined values can break your code. It is a good habit to assign default\nvalues to arguments."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction(x, y) {\n\n    if (y === undefined) {\n\n      y = 0;\n\n     }\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_parameter_default"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function (a=1, b=1) { /*function code*/  }",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Read more about function parameters and arguments at Function Parameters"
-  },
-  {
-   "type": "h2",
-   "text": "End Your Switches with Defaults"
-  },
-  {
-   "type": "p",
-   "text": "Always end your switch statements with a default. Even if you think there is\nno need for it."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "switch (new Date().getDay()) {\n\ncase 0:\n\n      day = \"Sunday\";\n\n      break;\n\n  case 1:\n\n      day = \"Monday\";\n\n      break;\n\n  case 2:\n\n    day = \"Tuesday\";\n\n     break;\n\ncase 3:\n\n    day = \"Wednesday\";\n\n      break;\n\ncase 4:\n\n    day = \"Thursday\";\n\n     break;\n\n  case 5:\n\n      day = \"Friday\";\n\n      break;\n\n  case 6:\n\n    day = \"Saturday\";\n\n      break;\n\n  default:\n    day =\n \"Unknown\";\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break_switch"
-  },
-  {
-   "type": "h2",
-   "text": "Avoid Number, String, and Boolean as Objects"
-  },
-  {
-   "type": "p",
-   "text": "Always treat numbers, strings, or booleans as primitive values. Not as\nobjects."
-  },
-  {
-   "type": "p",
-   "text": "Declaring these types as objects, slows down execution speed,\nand produces nasty side effects:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"John\";\n\nlet y = new String(\"John\");\n\n(x === y) // is false because x is a string and y is an object.",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_object_string1"
-  },
-  {
-   "type": "p",
-   "text": "Or even worse:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = new String(\"John\");\n\nlet y = new String(\"John\");\n\n(x == y) // is false because you cannot compare objects.",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_object_string2"
-  },
-  {
-   "type": "h2",
-   "text": "Avoid Using eval()"
-  },
-  {
-   "type": "p",
-   "text": "The eval() function is used to run text as code. In almost all cases, it\nshould not be necessary to use it."
-  },
-  {
-   "type": "p",
-   "text": "Because it allows arbitrary code to be run, it also represents a security\nproblem."
-  }
- ]
+  "slug": "js_best_practices",
+  "course": "js",
+  "order": 113,
+  "url": "/js/js_best_practices.asp",
+  "title": "JavaScript Best Practices",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Best Practices"
+    },
+    {
+      "type": "p",
+      "text": "Avoid global variables, avoid new, avoid ==, avoid eval()"
+    },
+    {
+      "type": "h2",
+      "text": "Avoid Global Variables"
+    },
+    {
+      "type": "p",
+      "text": "Minimize the use of global variables."
+    },
+    {
+      "type": "p",
+      "text": "This includes all data types, objects, and functions."
+    },
+    {
+      "type": "p",
+      "text": "Global variables and functions can be overwritten by other scripts."
+    },
+    {
+      "type": "p",
+      "text": "Use local variables instead, and learn how to use\nclosures."
+    },
+    {
+      "type": "h2",
+      "text": "Always Declare Local Variables"
+    },
+    {
+      "type": "p",
+      "text": "All variables used in a function should be declared as local variables."
+    },
+    {
+      "type": "p",
+      "text": "Local variables must be declared with the var,\nthe let, or the const keyword,\notherwise they will become global variables."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Strict mode does not allow undeclared variables."
+    },
+    {
+      "type": "h2",
+      "text": "Declarations on Top"
+    },
+    {
+      "type": "p",
+      "text": "It is a good coding practice to put all declarations at the top of each script\nor function."
+    },
+    {
+      "type": "p",
+      "text": "This will:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Give cleaner code",
+        "Provide a single place to look for local variables",
+        "Make it easier to avoid unwanted (implied) global variables",
+        "Reduce the possibility of unwanted re-declarations"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Declare at the beginning\n\nlet firstName, lastName, price, discount, fullPrice;\n\n// Use later\nfirstName = \"John\";\nlastName = \"Doe\";\n\nprice = 19.90;\n\ndiscount = 0.10;\n\nfullPrice = price - discount;",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "This also goes for loop variables:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "for (let i = 0; i < 5; i++)\n {",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Initialize Variables"
+    },
+    {
+      "type": "p",
+      "text": "It is a good coding practice to initialize variables when you declare them."
+    },
+    {
+      "type": "p",
+      "text": "This will:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Give cleaner code",
+        "Provide a single place to initialize variables",
+        "Avoid undefined values"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Declare and initiate at the beginning\n\nlet firstName = \"\";\n\nlet lastName = \"\";\n\nlet price = 0;\n\nlet discount = 0;\n\nlet fullPrice = 0,\n\nconst myArray = [];\n\nconst myObject = {};",
+      "caption": null
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Initializing variables provides an idea of the intended use (and intended data type)."
+    },
+    {
+      "type": "h2",
+      "text": "Re-Declaring JavaScript Variables"
+    },
+    {
+      "type": "p",
+      "text": "If you re-declare a JavaScript variable declared with var, it will not lose its value."
+    },
+    {
+      "type": "p",
+      "text": "The variable carName will still have the value \"Volvo\" after the execution of these statements:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var carName = \"Volvo\";\n\nvar carName;",
+      "caption": "Example (Not Recommended)"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_variables_redefine"
+    },
+    {
+      "type": "p",
+      "text": "You cannot re-declare a variable declared with let or const."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let carName = \"Volvo\";\n\nlet carName;",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const carName = \"Volvo\";\n\nconst carName;",
+      "caption": "Examples"
+    },
+    {
+      "type": "h2",
+      "text": "Declare Objects with const"
+    },
+    {
+      "type": "p",
+      "text": "Declaring objects with const will prevent any accidental change of type:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\ncar = \"Fiat\";      // Changes object to string",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\ncar = \"Fiat\";      // Not possible",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Declare Arrays with const"
+    },
+    {
+      "type": "p",
+      "text": "Declaring arrays with const will prevent any accidential change of type:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\ncars = 3;    // Changes array to number",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const cars = [\"Saab\", \"Volvo\", \"BMW\"];\n\ncars = 3;    // Not possible",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Don't Use new Object()"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Use \"\" instead of new String()",
+        "Use 0 instead of new Number()",
+        "Use false instead of new Boolean()",
+        "Use {} instead of new Object()",
+        "Use [] instead of new Array()",
+        "Use /()/ instead of new RegExp()",
+        "Use function (){} instead of new Function()"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x1 = \"\";             // new primitive string\n\nlet x2 = 0;              // new primitive number\n\nlet x3 = false;          // new primitive boolean\n\nconst x4 = {};           // new object\n\nconst x5 = [];           // new array object\n\nconst x6 = /()/;         // new regexp object\n\nconst x7 = function(){}; // new function object",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_constructors"
+    },
+    {
+      "type": "h2",
+      "text": "Beware of Automatic Type Conversions"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript is loosely typed."
+    },
+    {
+      "type": "p",
+      "text": "A variable can contain all data types."
+    },
+    {
+      "type": "p",
+      "text": "A variable can change its data type:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"Hello\";     // typeof x is a string\n\nx = 5;               // changes typeof x to a number",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_typeof"
+    },
+    {
+      "type": "p",
+      "text": "Beware that numbers can accidentally be converted to strings or NaN (Not a\nNumber)."
+    },
+    {
+      "type": "p",
+      "text": "When doing mathematical operations, JavaScript can convert numbers to strings:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 5 + 7;       // x.valueOf() is 12,  typeof x is a number\n\nlet x = 5 + \"7\";     // x.valueOf() is 57,  typeof x is a string\n\nlet x = \"5\" + 7;     // x.valueOf() is 57,  typeof x is a string\n\nlet x = 5 - 7;       // x.valueOf() is -2,  typeof x is a number\n\nlet x = 5 - \"7\";     // x.valueOf() is -2,  typeof x is a number\n\nlet x = \"5\" - 7;     // x.valueOf() is -2,  typeof x is a number\n\nlet x = 5 - \"x\";     // x.valueOf() is NaN, typeof x is a number",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_valueof"
+    },
+    {
+      "type": "p",
+      "text": "Subtracting a string from a string, does not\ngenerate an error but returns NaN (Not a Number):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"Hello\" - \"Dolly\"    // returns NaN",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_string_op1"
+    },
+    {
+      "type": "h2",
+      "text": "Use === Comparison"
+    },
+    {
+      "type": "p",
+      "text": "The == comparison operator always converts (to matching types) before\ncomparison."
+    },
+    {
+      "type": "p",
+      "text": "The === operator forces comparison of values and type:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "0 == \"\";        // true\n\n1 == \"1\";       // true\n\n1 == true;      // true\n\n0 === \"\";       // false\n\n1 === \"1\";      // false\n\n1 === true;\n// false",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_comparison"
+    },
+    {
+      "type": "h2",
+      "text": "Use Parameter Defaults"
+    },
+    {
+      "type": "p",
+      "text": "If a function is called with a missing argument, the value of the missing\nargument is set to\nundefined."
+    },
+    {
+      "type": "p",
+      "text": "Undefined values can break your code. It is a good habit to assign default\nvalues to arguments."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction(x, y) {\n\n    if (y === undefined) {\n\n      y = 0;\n\n     }\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_parameter_default"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function (a=1, b=1) { /*function code*/  }",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Read more about function parameters and arguments at Function Parameters"
+    },
+    {
+      "type": "h2",
+      "text": "End Your Switches with Defaults"
+    },
+    {
+      "type": "p",
+      "text": "Always end your switch statements with a default. Even if you think there is\nno need for it."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "switch (new Date().getDay()) {\n\ncase 0:\n\n      day = \"Sunday\";\n\n      break;\n\n  case 1:\n\n      day = \"Monday\";\n\n      break;\n\n  case 2:\n\n    day = \"Tuesday\";\n\n     break;\n\ncase 3:\n\n    day = \"Wednesday\";\n\n      break;\n\ncase 4:\n\n    day = \"Thursday\";\n\n     break;\n\n  case 5:\n\n      day = \"Friday\";\n\n      break;\n\n  case 6:\n\n    day = \"Saturday\";\n\n      break;\n\n  default:\n    day =\n \"Unknown\";\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_break_switch"
+    },
+    {
+      "type": "h2",
+      "text": "Avoid Number, String, and Boolean as Objects"
+    },
+    {
+      "type": "p",
+      "text": "Always treat numbers, strings, or booleans as primitive values. Not as\nobjects."
+    },
+    {
+      "type": "p",
+      "text": "Declaring these types as objects, slows down execution speed,\nand produces nasty side effects:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"John\";\n\nlet y = new String(\"John\");\n\n(x === y) // is false because x is a string and y is an object.",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_object_string1"
+    },
+    {
+      "type": "p",
+      "text": "Or even worse:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = new String(\"John\");\n\nlet y = new String(\"John\");\n\n(x == y) // is false because you cannot compare objects.",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_best_object_string2"
+    },
+    {
+      "type": "h2",
+      "text": "Avoid Using eval()"
+    },
+    {
+      "type": "p",
+      "text": "The eval() function is used to run text as code. In almost all cases, it\nshould not be necessary to use it."
+    },
+    {
+      "type": "p",
+      "text": "Because it allows arbitrary code to be run, it also represents a security\nproblem."
+    }
+  ]
 }

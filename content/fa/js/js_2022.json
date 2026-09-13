@@ -1,413 +1,343 @@
 {
- "slug": "js_2022",
- "course": "js",
- "order": 128,
- "url": "/js/js_2022.asp",
- "title": "ECMAScript 2022",
- "summary": "این درس ویژگی‌های ECMAScript 2022 را معرفی می‌کند: متد at() برای آرایه و رشته، تعدیلگر /d در RegExp، بررسی ایمن خصوصیت با Object.hasOwn، خطاهای زنجیره‌ای با error.cause و cause، و اعلان فیلدها و متدهای خصوصی کلاس.",
- "objectives": [
-  "با at() عضو انتهایی آرایه و رشته را بگیرید",
-  "تفاوت Object.hasOwn با hasOwnProperty را توضیح دهید",
-  "خطای زنجیره‌ای با cause بسازید و دلیل آن را بخوانید",
-  "تعدیلگرهای RegExp را تشخیص دهید و d را توضیح دهید",
-  "فیلد و متد خصوصی کلاس را با # بسازید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2022"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید در JavaScript 2022"
-  },
-  {
-   "type": "p",
-   "text": "از مارس ۲۰۲۳ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح",
-     ""
-    ],
-    [
-     "Array at()",
-     "یک عنصر با اندیس مشخص را از آرایه برمی‌گرداند",
-     ""
-    ],
-    [
-     "String at()",
-     "یک عنصر با اندیس مشخص را از رشته برمی‌گرداند",
-     ""
-    ],
-    [
-     "RegExp /d",
-     "تطبیق‌های زیررشته‌ای انجام می‌دهد",
-     ""
-    ],
-    [
-     "Object.hasOwn()",
-     "بررسی می‌کند که یک خصوصیت، خصوصیت خودِ شیء باشد",
-     ""
-    ],
-    [
-     "error.cause",
-     "به شما اجازه می‌دهد دلیل پشت یک خطا را مشخص کنید",
-     ""
-    ],
-    [
-     "await import",
-     "به ماژول‌های JavaScript اجازه می‌دهد پیش از اجرا منتظر منابعی بمانند که به import نیاز دارند.",
-     ""
-    ],
-    [
-     "اعلان فیلدهای کلاس",
-     "اجازه می‌دهد خصوصیت‌ها مستقیماً داخل کلاس تعریف شوند",
-     ""
-    ],
-    [
-     "متدها و فیلدهای خصوصی",
-     "امکان خصوصیت‌های خصوصی (#method و #field) را فراهم می‌کند",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2022 از مارس ۲۰۲۳ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome94",
-     "Edge94",
-     "Firefox93",
-     "Safari16.4",
-     "Opera80"
-    ],
-    [
-     "Sep 2021",
-     "Sep 2021",
-     "Oct 2021",
-     "Mar 2023",
-     "Oct 2021"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد at() آرایه در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ES2022 متد آرایه‌ای at() را معرفی کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits.at(2);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits[2];",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_at"
-  },
-  {
-   "type": "p",
-   "text": "متد at() یک عنصر با اندیس مشخص را از آرایه برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد at() همان چیزی را برمی‌گرداند که [] برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد at() از مارس ۲۰۲۲ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "p",
-   "text": "بسیاری از زبان‌ها اندیس منفی مثل [-1] را برای دسترسی به عنصرها از انتهای شیء، آرایه یا رشته مجاز می‌دانند."
-  },
-  {
-   "type": "p",
-   "text": "این کار در JavaScript ممکن نیست، چون [] هم برای دسترسی به آرایه و هم به شیء به کار می‌رود. عبارت obj[-1] به مقدار کلید 1- اشاره دارد، نه به آخرین خصوصیت شیء."
-  },
-  {
-   "type": "p",
-   "text": "متد at() در ES2022 برای حل همین مشکل معرفی شد."
-  },
-  {
-   "type": "h2",
-   "text": "متد at() رشته در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ES2022 متد رشته‌ای at() را معرفی کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"W3Schools\";\n\nlet letter = name.at(2);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"W3Schools\";\n\nlet letter = name[2];",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_at"
-  },
-  {
-   "type": "p",
-   "text": "متد at() یک عنصر با اندیس مشخص را از رشته برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "متد at() همان چیزی را برمی‌گرداند که [] برمی‌گرداند."
-  },
-  {
-   "type": "h2",
-   "text": "تعدیلگر d در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "ES2022 تعدیلگر /d را برای نمایش شروع و پایان تطبیق اضافه کرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"aaaabb\";\n\nlet result = text.match(/(aa)(bb)/d);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_indices"
-  },
-  {
-   "type": "p",
-   "text": "تعدیلگرهای RegExp برای تعیین جست‌وجوی بی‌حساسیت به بزرگی و کوچکی حروف و دیگر جست‌وجوهای سراسری به کار می‌روند:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "تعدیلگر",
-    "توضیح",
-    "امتحان کنید"
-   ],
-   "rows": [
-    [
-     "i",
-     "تطبیق بی‌حساسیت به بزرگی و کوچکی حروف انجام می‌دهد",
-     "امتحان کنید »"
-    ],
-    [
-     "g",
-     "تطبیق سراسری انجام می‌دهد (همه را پیدا می‌کند)",
-     "امتحان کنید »"
-    ],
-    [
-     "m",
-     "تطبیق چندخطی انجام می‌دهد",
-     "امتحان کنید »"
-    ],
-    [
-     "d",
-     "تطبیق‌های زیررشته‌ای انجام می‌دهد (جدید در ES2022)",
-     "امتحان کنید »"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.hasOwn"
-  },
-  {
-   "type": "p",
-   "text": "ES2022 راهی ایمن برای بررسی این که یک خصوصیت، خصوصیت خودِ شیء باشد فراهم می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "Object.hasOwn() شبیه Object.hasOwnProperty() است، اما از همهٔ نوع‌های شیء پشتیبانی می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.hasOwn(myObject, age)",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_obj_hasown"
-  },
-  {
-   "type": "h2",
-   "text": "دلیل خطا (cause)"
-  },
-  {
-   "type": "p",
-   "text": "از ECMAScript 2022 به بعد، سازندهٔ Error (و زیرکلاس‌هایش مثل TypeError، SyntaxError و غیره) از خصوصیت اختیاری {cause} پشتیبانی می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "این کار به شما اجازه می‌دهد خطاهای زنجیره‌ای بسازید؛ یعنی خطایی که خطای دیگری را به‌عنوان دلیل خود دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "try {\n\n  // Create a JSON parse failure\n\n  JSON.parse(\"blablablabla\");\n\n} catch(err) {\n\n  let text = err.name + \" \" + err.message;\n\n}",
-   "caption": "مثال (قبل)"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_cause"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "try {\n\n  try {\n\n    // Create a JSON parse failure\n\n    JSON.parse(\"blablablabla\");\n\n  } catch(err) {\n\n    // Create a new error and include the original one as the cause\n\n    throw new Error(\"Failed to load JSON\", {cause:err});\n\n  }\n\n} catch(err){\n\n  let text = err.name + \" \" + err.message;\n\n  document.getElementById(\"demo\").innerHTML = text;\n\n}",
-   "caption": "مثال (بعد)"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_cause2"
-  },
-  {
-   "type": "h2",
-   "text": "await import در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ماژول‌های JavaScript حالا می‌توانند پیش از اجرا منتظر منابعی بمانند که به import نیاز دارند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import {myData} from './myData.js';\n\nconst data = await myData();",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "اعلان فیلدهای کلاس در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Hello {\n\n  counter = 0; // Class field\n\n}\n\nconst myClass = new Hello();\n\nlet x = myClass.counter;",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "متدها و فیلدهای خصوصی در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Hello {\n\n  #counter = 0;  // Private field\n\n  #myMethod() {} // Private method\n\n}\n\nconst myClass = new Hello();\n\nlet x = myClass.#counter;  // Error\n\nmyClass.#myMethod();      // Error",
-   "caption": null
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل es2022.html بسازید و با at(-1) آخرین عضو یک آرایه و یک رشته را بگیرید و با نتیجهٔ ایندکس [آرایه.length - 1] مقایسه کنید.",
-   "hint": "at منفی از انتهای آرایه یا رشته می‌شمارد؛ در JavaScript اندیس منفی داخل [] کار نمی‌کند."
-  },
-  {
-   "prompt": "با Object.hasOwn بررسی کنید یک خصوصیت روی خود شیء هست یا نه و نتیجه را با Object.hasOwnProperty مقایسه کنید.",
-   "hint": "Object.hasOwn برای همهٔ نوع‌های شیء کار می‌کند، حتی شیءهای ساخته‌شده با Object.create(null)."
-  },
-  {
-   "prompt": "یک خطا با خصوصیت {cause} بسازید و با error.cause دلیل آن را بخوانید و در کنسول چاپ کنید.",
-   "hint": "cause برای ساختن خطاهای زنجیره‌ای است؛ خطای اصلی را به‌عنوان دلیل خطای جدید بدهید."
-  },
-  {
-   "prompt": "با تعدیلگر /d یک تطبیق انجام دهید و ببینید اندیس شروع و پایان تطبیق چه تفاوتی با حالت بدون d دارد.",
-   "hint": "تعدیلگر d اندیس شروع و پایان تطبیق را در اختیار می‌گذارد."
-  },
-  {
-   "prompt": "یک کلاس با فیلد خصوصی و متد خصوصی بسازید و مطمئن شوید از بیرون کلاس قابل دسترسی نیست.",
-   "hint": "خصوصیت‌های خصوصی با # شروع می‌شوند؛ دسترسی از بیرون کلاس خطای نحوی می‌دهد."
-  }
- ],
- "quiz": [
-  {
-   "question": "متد at() چه مشکلی را در JavaScript حل می‌کند؟",
-   "options": [
-    "مرتب کردن آرایه",
-    "تبدیل آرایه به رشته",
-    "دسترسی به عنصرها از انتهای آرایه یا رشته با اندیس منفی",
-    "جمع کردن عنصرهای آرایه"
-   ],
-   "answer": 2,
-   "explanation": "در JavaScript اندیس منفی داخل [] به کلید منفی اشاره می‌کند، نه به آخرین عضو؛ متد at() در ES2022 برای همین کار آمد."
-  },
-  {
-   "question": "Object.hasOwn() چه تفاوتی با Object.hasOwnProperty() دارد؟",
-   "options": [
-    "فقط روی آرایه کار می‌کند",
-    "نتیجهٔ برعکس می‌دهد",
-    "سریع‌تر است",
-    "از همهٔ نوع‌های شیء پشتیبانی می‌کند"
-   ],
-   "answer": 3,
-   "explanation": "هر دو بررسی می‌کنند که خصوصیت، خصوصیت خودِ شیء باشد، اما Object.hasOwn از همهٔ نوع‌های شیء پشتیبانی می‌کند و ایمن‌تر است."
-  },
-  {
-   "question": "خصوصیت {cause} در Error برای چه کاری است؟",
-   "options": [
-    "تعیین دلیل پشت خطا و ساختن خطاهای زنجیره‌ای",
-    "تعیین محل خطا در کد",
-    "تغییر رنگ پیام خطا",
-    "ذخیرهٔ خطا در localStorage"
-   ],
-   "answer": 0,
-   "explanation": "cause دلیل خطا را نگه می‌دارد و اجازه می‌دهد یک خطا، خطای دیگری را به‌عنوان دلیل خود داشته باشد؛ همین خطاهای زنجیره‌ای را ممکن می‌کند."
-  },
-  {
-   "question": "تعدیلگر /d در RegExp چه می‌کند؟",
-   "options": [
-    "تطبیق بی‌حساسیت به حروف بزرگ و کوچک انجام می‌دهد",
-    "شروع و پایان تطبیق را مشخص می‌کند",
-    "همهٔ تطبیق‌ها را پیدا می‌کند",
-    "تطبیق چندخطی انجام می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "/d برای نمایش شروع و پایان تطبیق اضافه شد؛ i برای بی‌حساسیت به حروف و g برای تطبیق سراسری به کار می‌روند."
-  },
-  {
-   "question": "فیلدها و متدهای خصوصی کلاس چگونه تعریف می‌شوند؟",
-   "options": [
-    "با const",
-    "با کلیدواژهٔ private",
-    "با علامت # پیش از نام",
-    "با زیرخط در پایان نام"
-   ],
-   "answer": 2,
-   "explanation": "در ES2022 خصوصیت‌های خصوصی با # پیش از نام تعریف می‌شوند و از بیرون کلاس قابل دسترسی نیستند."
-  }
- ]
+  "slug": "js_2022",
+  "course": "js",
+  "order": 128,
+  "url": "/js/js_2022.asp",
+  "title": "ECMAScript 2022",
+  "summary": "این درس ویژگی‌های ECMAScript 2022 را معرفی می‌کند: متد at() برای آرایه و رشته، تعدیلگر /d در RegExp، بررسی ایمن خصوصیت با Object.hasOwn، خطاهای زنجیره‌ای با error.cause و cause، و اعلان فیلدها و متدهای خصوصی کلاس.",
+  "objectives": [
+    "با at() عضو انتهایی آرایه و رشته را بگیرید",
+    "تفاوت Object.hasOwn با hasOwnProperty را توضیح دهید",
+    "خطای زنجیره‌ای با cause بسازید و دلیل آن را بخوانید",
+    "تعدیلگرهای RegExp را تشخیص دهید و d را توضیح دهید",
+    "فیلد و متد خصوصی کلاس را با # بسازید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2022"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید در JavaScript 2022"
+    },
+    {
+      "type": "p",
+      "text": "از مارس ۲۰۲۳ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح", ""],
+        ["Array at()", "یک عنصر با اندیس مشخص را از آرایه برمی‌گرداند", ""],
+        ["String at()", "یک عنصر با اندیس مشخص را از رشته برمی‌گرداند", ""],
+        ["RegExp /d", "تطبیق‌های زیررشته‌ای انجام می‌دهد", ""],
+        ["Object.hasOwn()", "بررسی می‌کند که یک خصوصیت، خصوصیت خودِ شیء باشد", ""],
+        ["error.cause", "به شما اجازه می‌دهد دلیل پشت یک خطا را مشخص کنید", ""],
+        [
+          "await import",
+          "به ماژول‌های JavaScript اجازه می‌دهد پیش از اجرا منتظر منابعی بمانند که به import نیاز دارند.",
+          ""
+        ],
+        ["اعلان فیلدهای کلاس", "اجازه می‌دهد خصوصیت‌ها مستقیماً داخل کلاس تعریف شوند", ""],
+        ["متدها و فیلدهای خصوصی", "امکان خصوصیت‌های خصوصی (#method و #field) را فراهم می‌کند", ""]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2022 از مارس ۲۰۲۳ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome94", "Edge94", "Firefox93", "Safari16.4", "Opera80"],
+        ["Sep 2021", "Sep 2021", "Oct 2021", "Mar 2023", "Oct 2021"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد at() آرایه در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ES2022 متد آرایه‌ای at() را معرفی کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits.at(2);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet fruit = fruits[2];",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_at"
+    },
+    {
+      "type": "p",
+      "text": "متد at() یک عنصر با اندیس مشخص را از آرایه برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد at() همان چیزی را برمی‌گرداند که [] برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد at() از مارس ۲۰۲۲ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "p",
+      "text": "بسیاری از زبان‌ها اندیس منفی مثل [-1] را برای دسترسی به عنصرها از انتهای شیء، آرایه یا رشته مجاز می‌دانند."
+    },
+    {
+      "type": "p",
+      "text": "این کار در JavaScript ممکن نیست، چون [] هم برای دسترسی به آرایه و هم به شیء به کار می‌رود. عبارت obj[-1] به مقدار کلید 1- اشاره دارد، نه به آخرین خصوصیت شیء."
+    },
+    {
+      "type": "p",
+      "text": "متد at() در ES2022 برای حل همین مشکل معرفی شد."
+    },
+    {
+      "type": "h2",
+      "text": "متد at() رشته در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ES2022 متد رشته‌ای at() را معرفی کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"W3Schools\";\n\nlet letter = name.at(2);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"W3Schools\";\n\nlet letter = name[2];",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_at"
+    },
+    {
+      "type": "p",
+      "text": "متد at() یک عنصر با اندیس مشخص را از رشته برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "متد at() همان چیزی را برمی‌گرداند که [] برمی‌گرداند."
+    },
+    {
+      "type": "h2",
+      "text": "تعدیلگر d در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "ES2022 تعدیلگر /d را برای نمایش شروع و پایان تطبیق اضافه کرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"aaaabb\";\n\nlet result = text.match(/(aa)(bb)/d);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_indices"
+    },
+    {
+      "type": "p",
+      "text": "تعدیلگرهای RegExp برای تعیین جست‌وجوی بی‌حساسیت به بزرگی و کوچکی حروف و دیگر جست‌وجوهای سراسری به کار می‌روند:"
+    },
+    {
+      "type": "table",
+      "headers": ["تعدیلگر", "توضیح", "امتحان کنید"],
+      "rows": [
+        ["i", "تطبیق بی‌حساسیت به بزرگی و کوچکی حروف انجام می‌دهد", "امتحان کنید »"],
+        ["g", "تطبیق سراسری انجام می‌دهد (همه را پیدا می‌کند)", "امتحان کنید »"],
+        ["m", "تطبیق چندخطی انجام می‌دهد", "امتحان کنید »"],
+        ["d", "تطبیق‌های زیررشته‌ای انجام می‌دهد (جدید در ES2022)", "امتحان کنید »"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.hasOwn"
+    },
+    {
+      "type": "p",
+      "text": "ES2022 راهی ایمن برای بررسی این که یک خصوصیت، خصوصیت خودِ شیء باشد فراهم می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "Object.hasOwn() شبیه Object.hasOwnProperty() است، اما از همهٔ نوع‌های شیء پشتیبانی می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.hasOwn(myObject, age)",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_obj_hasown"
+    },
+    {
+      "type": "h2",
+      "text": "دلیل خطا (cause)"
+    },
+    {
+      "type": "p",
+      "text": "از ECMAScript 2022 به بعد، سازندهٔ Error (و زیرکلاس‌هایش مثل TypeError، SyntaxError و غیره) از خصوصیت اختیاری {cause} پشتیبانی می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "این کار به شما اجازه می‌دهد خطاهای زنجیره‌ای بسازید؛ یعنی خطایی که خطای دیگری را به‌عنوان دلیل خود دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "try {\n\n  // Create a JSON parse failure\n\n  JSON.parse(\"blablablabla\");\n\n} catch(err) {\n\n  let text = err.name + \" \" + err.message;\n\n}",
+      "caption": "مثال (قبل)"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_cause"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "try {\n\n  try {\n\n    // Create a JSON parse failure\n\n    JSON.parse(\"blablablabla\");\n\n  } catch(err) {\n\n    // Create a new error and include the original one as the cause\n\n    throw new Error(\"Failed to load JSON\", {cause:err});\n\n  }\n\n} catch(err){\n\n  let text = err.name + \" \" + err.message;\n\n  document.getElementById(\"demo\").innerHTML = text;\n\n}",
+      "caption": "مثال (بعد)"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_cause2"
+    },
+    {
+      "type": "h2",
+      "text": "await import در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ماژول‌های JavaScript حالا می‌توانند پیش از اجرا منتظر منابعی بمانند که به import نیاز دارند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import {myData} from './myData.js';\n\nconst data = await myData();",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "اعلان فیلدهای کلاس در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Hello {\n\n  counter = 0; // Class field\n\n}\n\nconst myClass = new Hello();\n\nlet x = myClass.counter;",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "متدها و فیلدهای خصوصی در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Hello {\n\n  #counter = 0;  // Private field\n\n  #myMethod() {} // Private method\n\n}\n\nconst myClass = new Hello();\n\nlet x = myClass.#counter;  // Error\n\nmyClass.#myMethod();      // Error",
+      "caption": null
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل es2022.html بسازید و با at(-1) آخرین عضو یک آرایه و یک رشته را بگیرید و با نتیجهٔ ایندکس [آرایه.length - 1] مقایسه کنید.",
+      "hint": "at منفی از انتهای آرایه یا رشته می‌شمارد؛ در JavaScript اندیس منفی داخل [] کار نمی‌کند."
+    },
+    {
+      "prompt": "با Object.hasOwn بررسی کنید یک خصوصیت روی خود شیء هست یا نه و نتیجه را با Object.hasOwnProperty مقایسه کنید.",
+      "hint": "Object.hasOwn برای همهٔ نوع‌های شیء کار می‌کند، حتی شیءهای ساخته‌شده با Object.create(null)."
+    },
+    {
+      "prompt": "یک خطا با خصوصیت {cause} بسازید و با error.cause دلیل آن را بخوانید و در کنسول چاپ کنید.",
+      "hint": "cause برای ساختن خطاهای زنجیره‌ای است؛ خطای اصلی را به‌عنوان دلیل خطای جدید بدهید."
+    },
+    {
+      "prompt": "با تعدیلگر /d یک تطبیق انجام دهید و ببینید اندیس شروع و پایان تطبیق چه تفاوتی با حالت بدون d دارد.",
+      "hint": "تعدیلگر d اندیس شروع و پایان تطبیق را در اختیار می‌گذارد."
+    },
+    {
+      "prompt": "یک کلاس با فیلد خصوصی و متد خصوصی بسازید و مطمئن شوید از بیرون کلاس قابل دسترسی نیست.",
+      "hint": "خصوصیت‌های خصوصی با # شروع می‌شوند؛ دسترسی از بیرون کلاس خطای نحوی می‌دهد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "متد at() چه مشکلی را در JavaScript حل می‌کند؟",
+      "options": [
+        "مرتب کردن آرایه",
+        "تبدیل آرایه به رشته",
+        "دسترسی به عنصرها از انتهای آرایه یا رشته با اندیس منفی",
+        "جمع کردن عنصرهای آرایه"
+      ],
+      "answer": 2,
+      "explanation": "در JavaScript اندیس منفی داخل [] به کلید منفی اشاره می‌کند، نه به آخرین عضو؛ متد at() در ES2022 برای همین کار آمد."
+    },
+    {
+      "question": "Object.hasOwn() چه تفاوتی با Object.hasOwnProperty() دارد؟",
+      "options": [
+        "فقط روی آرایه کار می‌کند",
+        "نتیجهٔ برعکس می‌دهد",
+        "سریع‌تر است",
+        "از همهٔ نوع‌های شیء پشتیبانی می‌کند"
+      ],
+      "answer": 3,
+      "explanation": "هر دو بررسی می‌کنند که خصوصیت، خصوصیت خودِ شیء باشد، اما Object.hasOwn از همهٔ نوع‌های شیء پشتیبانی می‌کند و ایمن‌تر است."
+    },
+    {
+      "question": "خصوصیت {cause} در Error برای چه کاری است؟",
+      "options": [
+        "تعیین دلیل پشت خطا و ساختن خطاهای زنجیره‌ای",
+        "تعیین محل خطا در کد",
+        "تغییر رنگ پیام خطا",
+        "ذخیرهٔ خطا در localStorage"
+      ],
+      "answer": 0,
+      "explanation": "cause دلیل خطا را نگه می‌دارد و اجازه می‌دهد یک خطا، خطای دیگری را به‌عنوان دلیل خود داشته باشد؛ همین خطاهای زنجیره‌ای را ممکن می‌کند."
+    },
+    {
+      "question": "تعدیلگر /d در RegExp چه می‌کند؟",
+      "options": [
+        "تطبیق بی‌حساسیت به حروف بزرگ و کوچک انجام می‌دهد",
+        "شروع و پایان تطبیق را مشخص می‌کند",
+        "همهٔ تطبیق‌ها را پیدا می‌کند",
+        "تطبیق چندخطی انجام می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "/d برای نمایش شروع و پایان تطبیق اضافه شد؛ i برای بی‌حساسیت به حروف و g برای تطبیق سراسری به کار می‌روند."
+    },
+    {
+      "question": "فیلدها و متدهای خصوصی کلاس چگونه تعریف می‌شوند؟",
+      "options": [
+        "با const",
+        "با کلیدواژهٔ private",
+        "با علامت # پیش از نام",
+        "با زیرخط در پایان نام"
+      ],
+      "answer": 2,
+      "explanation": "در ES2022 خصوصیت‌های خصوصی با # پیش از نام تعریف می‌شوند و از بیرون کلاس قابل دسترسی نیستند."
+    }
+  ]
 }

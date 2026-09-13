@@ -1,149 +1,139 @@
 {
- "slug": "js_events_management",
- "course": "js",
- "order": 152,
- "url": "/js/js_events_management.asp",
- "title": "مدیریت رویدادها در JavaScript",
- "summary": "مدیریت رویداد یعنی افزودن و پس گرفتن listenerها و کنترل رفتار پیش‌فرض رویدادها. در این درس یاد می‌گیرید چرا حذف listener به همان تابع نام‌دار نیاز دارد و چگونه جلوی رفتار پیش‌فرض یک رویداد را بگیرید.",
- "objectives": [
-  "برای یک عنصر event listener اضافه کنید",
-  "توضیح دهید چرا حذف listener بدون تابع نام‌دار کار نمی‌کند",
-  "رفتار پیش‌فرض یک رویداد را متوقف کنید",
-  "تفاوت افزودن و حذف رویداد را با یک مثال نشان دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "مدیریت رویدادها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مدیریت رویداد یعنی افزودن، حذف و کنترل رویدادها."
-  },
-  {
-   "type": "h2",
-   "text": "افزودن رویداد"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button id=\"btn\">Click</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst btn = document.getElementById(\"btn\");\n\n// Let btn listen for click\n\nbtn.addEventListener(\"click\", myFunction);\n\nfunction myFunction() {\n\n  document.getElementById(\"demo\").innerHTML = \"Clicked!\";\n\n}\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_add"
-  },
-  {
-   "type": "h2",
-   "text": "حذف رویداد"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button id=\"add\">Add</button>\n\n<button id=\"remove\">Remove</button>\n\n<button id=\"test\">Test click</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst test = document.getElementById(\"test\");\n\nconst remove = document.getElementById(\"remove\");\n\nconst add = document.getElementById(\"add\");\n\nfunction myFunction() {\n\n    document.getElementById(\"demo\").innerHTML += \"Hello!\";\n\n}\n\n// Let add listen for click\n\nadd.addEventListener(\"click\", function () {\n\n  // Let test listen for click\n\n  test.addEventListener(\"click\", myFunction);\n\n});\n\n// Let remove listen for click\n\nremove.addEventListener(\"click\", function () {\n\n  // Prevent test from listen for click\n\n  test.removeEventListener(\"click\", myFunction);\n\n});\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_remove"
-  },
-  {
-   "type": "p",
-   "text": "برای حذف یک event listener باید همان تابع نام‌داری را بدهید که برای افزودن آن استفاده کرده بودید."
-  },
-  {
-   "type": "h2",
-   "text": "متوقف کردن رویدادها"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<a href=\"https://www.w3schools.com\" id=\"link\">Go to W3Schools</a>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst link = document.getElementById(\"link\");\n\n// Let link listen for click\n\nlink.addEventListener(\"click\", function (event) {\n\n  event.preventDefault();\n\n  document.getElementById(\"demo\").innerHTML = \"Link blocked!\";\n\n});\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_block"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل manage.html بسازید که یک دکمه داشته باشد؛ با addEventListener یک تابع نام‌دار به آن وصل کنید و در هر کلیک پیامی در کنسول چاپ کنید.",
-   "hint": "تابع را با کلمهٔ کلیدی function یا به‌صورت const myHandler = function(){} بسازید تا نام داشته باشد."
-  },
-  {
-   "prompt": "همان listener را با removeEventListener پس بگیرید و ببینید دیگر چه اتفاقی می‌افتد.",
-   "hint": "به removeEventListener باید همان تابع (نه یک تابع تازه) را بدهید."
-  },
-  {
-   "prompt": "به‌جای تابع نام‌دار، یک تابع بی‌نام (anonymous) به listener بدهید و بعد تلاش کنید حذفش کنید؛ نتیجه را توضیح دهید.",
-   "hint": "هر تابع بی‌نام یک شیء تازه است، پس مرجع آن دیگر در دست نیست و حذف انجام نمی‌شود."
-  },
-  {
-   "prompt": "روی یک پیوند رویداد click بگذارید و با preventDefault جلوی رفتن به مقصد را بگیرید.",
-   "hint": "رفتار پیش‌فرض پیوند باز کردن مقصد است؛ preventDefault همان رفتار را می‌خواباند."
-  },
-  {
-   "prompt": "رویداد submit یک فرم را با preventDefault متوقف کنید و بعد دادهٔ فیلدها را خودتان در کنسول چاپ کنید.",
-   "hint": "برای خواندن مقدار فیلدها از value استفاده کنید؛ توقف ارسال فرم باعث می‌شود صفحه دوباره بارگذاری نشود."
-  }
- ],
- "quiz": [
-  {
-   "question": "برای حذف یک event listener کدام تابع باید به removeEventListener داده شود؟",
-   "options": [
-    "همان تابع نام‌داری که برای افزودن استفاده شد",
-    "یک تابع تازه با همان کد",
-    "تابعی که مقدارش false برگرداند",
-    "هر تابعی، چون مهم نیست"
-   ],
-   "answer": 0,
-   "explanation": "removeEventListener بر پایهٔ مرجع تابع کار می‌کند؛ اگر تابع تازه بدهید، حذف انجام نمی‌شود. به همین دلیل تابع باید نام‌دار باشد."
-  },
-  {
-   "question": "چرا حذف یک listener با تابع بی‌نام مشکل دارد؟",
-   "options": [
-    "چون مرجع همان تابع دیگر در دست نیست",
-    "چون مرورگر تابع بی‌نام را اجرا نمی‌کند",
-    "چون تابع بی‌نام پارامتر ندارد",
-    "چون فقط در Firefox کار می‌کند"
-   ],
-   "answer": 0,
-   "explanation": "تابع بی‌نام فقط در همان لحظهٔ افزودن وجود دارد و ارجاعی به آن نگه نمی‌دارید؛ برای حذف به همان مرجع نیاز دارید."
-  },
-  {
-   "question": "برای متوقف کردن رفتار پیش‌فرض یک رویداد از کدام متد استفاده می‌کنیم؟",
-   "options": [
-    "stopPropagation()",
-    "preventDefault()",
-    "removeEventListener()",
-    "blockEvent()"
-   ],
-   "answer": 1,
-   "explanation": "preventDefault() رفتار پیش‌فرض مرورگر را می‌خواباند، مثل رفتن به مقصد پیوند یا ارسال فرم."
-  },
-  {
-   "question": "کدام متد برای افزودن یک listener به عنصر به کار می‌رود؟",
-   "options": [
-    "addEventListener()",
-    "setEventListener()",
-    "onEventAdd()",
-    "attachEvent()"
-   ],
-   "answer": 0,
-   "explanation": "addEventListener() روش استاندارد افزودن listener است و به شما اجازه می‌دهد چند listener روی یک عنصر داشته باشید."
-  },
-  {
-   "question": "مزیت addEventListener نسبت به نوشتن رویداد در ویژگی HTML چیست؟",
-   "options": [
-    "کد JavaScript از ساختار HTML جدا می‌ماند",
-    "سریع‌تر از ویژگی رویداد است",
-    "در مرورگرهای قدیمی‌تر کار می‌کند",
-    "نیاز به تابع ندارد"
-   ],
-   "answer": 0,
-   "explanation": "با addEventListener منطق جاوااسکریپت بیرون از HTML می‌ماند و نگهداری کد ساده‌تر می‌شود؛ چند listener هم روی یک رویداد پشتیبانی می‌شود."
-  }
- ]
+  "slug": "js_events_management",
+  "course": "js",
+  "order": 152,
+  "url": "/js/js_events_management.asp",
+  "title": "مدیریت رویدادها در JavaScript",
+  "summary": "مدیریت رویداد یعنی افزودن و پس گرفتن listenerها و کنترل رفتار پیش‌فرض رویدادها. در این درس یاد می‌گیرید چرا حذف listener به همان تابع نام‌دار نیاز دارد و چگونه جلوی رفتار پیش‌فرض یک رویداد را بگیرید.",
+  "objectives": [
+    "برای یک عنصر event listener اضافه کنید",
+    "توضیح دهید چرا حذف listener بدون تابع نام‌دار کار نمی‌کند",
+    "رفتار پیش‌فرض یک رویداد را متوقف کنید",
+    "تفاوت افزودن و حذف رویداد را با یک مثال نشان دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "مدیریت رویدادها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مدیریت رویداد یعنی افزودن، حذف و کنترل رویدادها."
+    },
+    {
+      "type": "h2",
+      "text": "افزودن رویداد"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button id=\"btn\">Click</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst btn = document.getElementById(\"btn\");\n\n// Let btn listen for click\n\nbtn.addEventListener(\"click\", myFunction);\n\nfunction myFunction() {\n\n  document.getElementById(\"demo\").innerHTML = \"Clicked!\";\n\n}\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_add"
+    },
+    {
+      "type": "h2",
+      "text": "حذف رویداد"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button id=\"add\">Add</button>\n\n<button id=\"remove\">Remove</button>\n\n<button id=\"test\">Test click</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst test = document.getElementById(\"test\");\n\nconst remove = document.getElementById(\"remove\");\n\nconst add = document.getElementById(\"add\");\n\nfunction myFunction() {\n\n    document.getElementById(\"demo\").innerHTML += \"Hello!\";\n\n}\n\n// Let add listen for click\n\nadd.addEventListener(\"click\", function () {\n\n  // Let test listen for click\n\n  test.addEventListener(\"click\", myFunction);\n\n});\n\n// Let remove listen for click\n\nremove.addEventListener(\"click\", function () {\n\n  // Prevent test from listen for click\n\n  test.removeEventListener(\"click\", myFunction);\n\n});\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_remove"
+    },
+    {
+      "type": "p",
+      "text": "برای حذف یک event listener باید همان تابع نام‌داری را بدهید که برای افزودن آن استفاده کرده بودید."
+    },
+    {
+      "type": "h2",
+      "text": "متوقف کردن رویدادها"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<a href=\"https://www.w3schools.com\" id=\"link\">Go to W3Schools</a>\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst link = document.getElementById(\"link\");\n\n// Let link listen for click\n\nlink.addEventListener(\"click\", function (event) {\n\n  event.preventDefault();\n\n  document.getElementById(\"demo\").innerHTML = \"Link blocked!\";\n\n});\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_block"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل manage.html بسازید که یک دکمه داشته باشد؛ با addEventListener یک تابع نام‌دار به آن وصل کنید و در هر کلیک پیامی در کنسول چاپ کنید.",
+      "hint": "تابع را با کلمهٔ کلیدی function یا به‌صورت const myHandler = function(){} بسازید تا نام داشته باشد."
+    },
+    {
+      "prompt": "همان listener را با removeEventListener پس بگیرید و ببینید دیگر چه اتفاقی می‌افتد.",
+      "hint": "به removeEventListener باید همان تابع (نه یک تابع تازه) را بدهید."
+    },
+    {
+      "prompt": "به‌جای تابع نام‌دار، یک تابع بی‌نام (anonymous) به listener بدهید و بعد تلاش کنید حذفش کنید؛ نتیجه را توضیح دهید.",
+      "hint": "هر تابع بی‌نام یک شیء تازه است، پس مرجع آن دیگر در دست نیست و حذف انجام نمی‌شود."
+    },
+    {
+      "prompt": "روی یک پیوند رویداد click بگذارید و با preventDefault جلوی رفتن به مقصد را بگیرید.",
+      "hint": "رفتار پیش‌فرض پیوند باز کردن مقصد است؛ preventDefault همان رفتار را می‌خواباند."
+    },
+    {
+      "prompt": "رویداد submit یک فرم را با preventDefault متوقف کنید و بعد دادهٔ فیلدها را خودتان در کنسول چاپ کنید.",
+      "hint": "برای خواندن مقدار فیلدها از value استفاده کنید؛ توقف ارسال فرم باعث می‌شود صفحه دوباره بارگذاری نشود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای حذف یک event listener کدام تابع باید به removeEventListener داده شود؟",
+      "options": [
+        "همان تابع نام‌داری که برای افزودن استفاده شد",
+        "یک تابع تازه با همان کد",
+        "تابعی که مقدارش false برگرداند",
+        "هر تابعی، چون مهم نیست"
+      ],
+      "answer": 0,
+      "explanation": "removeEventListener بر پایهٔ مرجع تابع کار می‌کند؛ اگر تابع تازه بدهید، حذف انجام نمی‌شود. به همین دلیل تابع باید نام‌دار باشد."
+    },
+    {
+      "question": "چرا حذف یک listener با تابع بی‌نام مشکل دارد؟",
+      "options": [
+        "چون مرجع همان تابع دیگر در دست نیست",
+        "چون مرورگر تابع بی‌نام را اجرا نمی‌کند",
+        "چون تابع بی‌نام پارامتر ندارد",
+        "چون فقط در Firefox کار می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "تابع بی‌نام فقط در همان لحظهٔ افزودن وجود دارد و ارجاعی به آن نگه نمی‌دارید؛ برای حذف به همان مرجع نیاز دارید."
+    },
+    {
+      "question": "برای متوقف کردن رفتار پیش‌فرض یک رویداد از کدام متد استفاده می‌کنیم؟",
+      "options": ["stopPropagation()", "preventDefault()", "removeEventListener()", "blockEvent()"],
+      "answer": 1,
+      "explanation": "preventDefault() رفتار پیش‌فرض مرورگر را می‌خواباند، مثل رفتن به مقصد پیوند یا ارسال فرم."
+    },
+    {
+      "question": "کدام متد برای افزودن یک listener به عنصر به کار می‌رود؟",
+      "options": ["addEventListener()", "setEventListener()", "onEventAdd()", "attachEvent()"],
+      "answer": 0,
+      "explanation": "addEventListener() روش استاندارد افزودن listener است و به شما اجازه می‌دهد چند listener روی یک عنصر داشته باشید."
+    },
+    {
+      "question": "مزیت addEventListener نسبت به نوشتن رویداد در ویژگی HTML چیست؟",
+      "options": [
+        "کد JavaScript از ساختار HTML جدا می‌ماند",
+        "سریع‌تر از ویژگی رویداد است",
+        "در مرورگرهای قدیمی‌تر کار می‌کند",
+        "نیاز به تابع ندارد"
+      ],
+      "answer": 0,
+      "explanation": "با addEventListener منطق جاوااسکریپت بیرون از HTML می‌ماند و نگهداری کد ساده‌تر می‌شود؛ چند listener هم روی یک رویداد پشتیبانی می‌شود."
+    }
+  ]
 }

@@ -1,244 +1,181 @@
 {
- "slug": "js_validation_api",
- "course": "js",
- "order": 179,
- "url": "/js/js_validation_api.asp",
- "title": "API اعتبارسنجی JavaScript",
- "summary": "مرورگر می‌تواند ورودی‌های یک فرم را قبل از فرستادن بررسی کند. در این درس با متد checkValidity() و متد setCustomValidity()، با خصوصیت‌های validity و validationMessage و willValidate، و با خاصیت‌های دقیق validity مثل rangeOverflow و valueMissing آشنا می‌شوید.",
- "objectives": [
-  "با checkValidity() معتبر بودن ورودی را بررسی کنید",
-  "پیام خطای مرورگر را با validationMessage نمایش دهید",
-  "خصوصیت‌های validity را تشخیص دهید و بگویید هرکدام چه زمانی true می‌شوند",
-  "با setCustomValidity() پیام اعتبارسنجی سفارشی بسازید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "API اعتبارسنجی JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای اعتبارسنجی محدودیت در DOM"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "خصوصیت",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "checkValidity()",
-     "اگر یک عنصر input دادهٔ معتبر داشته باشد، true برمی‌گرداند."
-    ],
-    [
-     "setCustomValidity()",
-     "خصوصیت validationMessage یک عنصر input را تنظیم می‌کند."
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "اگر یک فیلد ورودی دادهٔ نامعتبر داشته باشد، پیامی نمایش دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input id=\"id1\" type=\"number\" min=\"100\" max=\"300\"\n    required>\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\n function myFunction() {\n  const inpObj = document.getElementById(\"id1\");\n  if (!inpObj.checkValidity()) {\n    document.getElementById(\"demo\").innerHTML = inpObj.validationMessage;\n\n    }\n}\n</script>",
-   "caption": "متد checkValidity()"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_check"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های اعتبارسنجی محدودیت در DOM"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "خصوصیت",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "validity",
-     "خصوصیت‌های بولی مرتبط با معتبر بودن یک عنصر input را در خود دارد."
-    ],
-    [
-     "validationMessage",
-     "پیامی را در خود دارد که مرورگر وقتی اعتبار false باشد نمایش می‌دهد."
-    ],
-    [
-     "willValidate",
-     "نشان می‌دهد آیا یک عنصر input اعتبارسنجی می‌شود یا نه."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های validity"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت validity یک عنصر input چند خصوصیت مرتبط با معتبر بودن داده را در خود دارد:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "خصوصیت",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "customError",
-     "اگر پیام اعتبارسنجی سفارشی تنظیم شده باشد، true می‌شود."
-    ],
-    [
-     "patternMismatch",
-     "اگر مقدار عنصر با ویژگی pattern آن هم‌خوان نباشد، true می‌شود."
-    ],
-    [
-     "rangeOverflow",
-     "اگر مقدار عنصر از ویژگی max آن بیشتر باشد، true می‌شود."
-    ],
-    [
-     "rangeUnderflow",
-     "اگر مقدار عنصر از ویژگی min آن کمتر باشد، true می‌شود."
-    ],
-    [
-     "stepMismatch",
-     "اگر مقدار عنصر با ویژگی step آن معتبر نباشد، true می‌شود."
-    ],
-    [
-     "tooLong",
-     "اگر مقدار عنصر از ویژگی maxLength آن بیشتر شود، true می‌شود."
-    ],
-    [
-     "typeMismatch",
-     "اگر مقدار عنصر با ویژگی type آن معتبر نباشد، true می‌شود."
-    ],
-    [
-     "valueMissing",
-     "اگر عنصر (با ویژگی required) هیچ مقداری نداشته باشد، true می‌شود."
-    ],
-    [
-     "valid",
-     "اگر مقدار عنصر معتبر باشد، true می‌شود."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مثال‌ها"
-  },
-  {
-   "type": "p",
-   "text": "اگر عدد داخل یک فیلد ورودی از ۱۰۰ بیشتر باشد (ویژگی max آن input)، پیامی نمایش دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input id=\"id1\" type=\"number\" max=\"100\">\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nfunction myFunction() {\n  let text = \"Value OK\";\n\n    if (document.getElementById(\"id1\").validity.rangeOverflow) {\n\n      text = \"Value too large\";\n\n    }\n\n}\n\n</script>",
-   "caption": "خصوصیت rangeOverflow"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_rangeOverflow"
-  },
-  {
-   "type": "p",
-   "text": "اگر عدد داخل یک فیلد ورودی از ۱۰۰ کمتر باشد (ویژگی min آن input)، پیامی نمایش دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input id=\"id1\" type=\"number\" min=\"100\">\n\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nfunction myFunction() {\n  let text = \"Value OK\";\n\n    if (document.getElementById(\"id1\").validity.rangeUnderflow) {\n\n      text = \"Value too small\";\n\n    }\n\n}\n</script>",
-   "caption": "خصوصیت rangeUnderflow"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_rangeUnderflow"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل valid.html بسازید که یک <input type=\"number\" min=\"100\" max=\"300\" required> و یک دکمه داشته باشد؛ با کلیک دکمه، اگر checkValidity() منفی بود پیام validationMessage را در یک <p> نشان دهید.",
-   "hint": "خود checkValidity() مقدار بولی برمی‌گرداند؛ برای گرفتن متن خطای آمادهٔ مرورگر از خصوصیت validationMessage همان عنصر استفاده کنید."
-  },
-  {
-   "prompt": "در حالت‌های مختلف آزمایش کنید و بگویید کدام خصوصیت validity در هر حالت true می‌شود: فیلد خالی، عدد کمتر از ۱۰۰، و عددی بزرگ‌تر از ۳۰۰.",
-   "hint": "فیلد خالی valueMissing می‌شود، مقدار کم rangeUnderflow و مقدار زیاد rangeOverflow."
-  },
-  {
-   "prompt": "یک input با الگوی pattern بنویسید که فقط حرف‌های انگلیسی را قبول کند و با وارد کردن یک کاراکتر غیرمجاز مقدار patternMismatch را در کنسول چاپ کنید.",
-   "hint": "شرط را روی inputElement.validity.patternMismatch بگذارید تا مقدار بولی آن را ببینید."
-  },
-  {
-   "prompt": "با setCustomValidity() یک پیام دلخواه فارسی روی یک input بگذارید و شرط کنید که اگر مقدار شامل کلمهٔ test بود، خطا نشان داده شود.",
-   "hint": "وقتی پیامی تنظیم می‌کنید، خصوصیت customError در validity true می‌شود؛ برای پاک کردن پیام یک رشتهٔ خالی بدهید."
-  },
-  {
-   "prompt": "خصوصیت willValidate را روی یک input معمولی و روی یک input غیرفعال (disabled) بررسی کنید و تفاوت را توضیح دهید.",
-   "hint": "عنصرهای غیرفعال یا readOnly معمولاً اعتبارسنجی نمی‌شوند."
-  }
- ],
- "quiz": [
-  {
-   "question": "متد checkValidity() چه چیزی برمی‌گرداند؟",
-   "options": [
-    "پیام خطای مرورگر را",
-    "true اگر دادهٔ عنصر ورودی معتبر باشد",
-    "تعداد خطاهای فرم را",
-    "مقدار واردشده در فیلد را"
-   ],
-   "answer": 1,
-   "explanation": "جدول درس می‌گوید checkValidity() اگر عنصر input دادهٔ معتبر داشته باشد true برمی‌گرداند. پیام خطا را باید از validationMessage گرفت."
-  },
-  {
-   "question": "برای نشان دادن پیام خطای آمادهٔ مرورگر از چه خصوصیتی استفاده می‌کنید؟",
-   "options": [
-    "validity",
-    "willValidate",
-    "validationMessage",
-    "customError"
-   ],
-   "answer": 2,
-   "explanation": "validationMessage پیامی را در خود دارد که مرورگر وقتی اعتبار false باشد نمایش می‌دهد؛ در مثال درس هم همین خصوصیت داخل عنصر demo نوشته می‌شود."
-  },
-  {
-   "question": "اگر مقدار یک input بیشتر از max آن باشد، کدام خصوصیت validity مقدار true می‌گیرد؟",
-   "options": [
-    "rangeUnderflow",
-    "rangeOverflow",
-    "stepMismatch",
-    "valueMissing"
-   ],
-   "answer": 1,
-   "explanation": "rangeOverflow وقتی true می‌شود که مقدار عنصر از ویژگی max بیشتر شود؛ کمتر بودن از ویژگی min هم باعث true شدن rangeUnderflow می‌شود."
-  },
-  {
-   "question": "خصوصیت valueMissing چه زمانی true می‌شود؟",
-   "options": [
-    "وقتی عنصری با ویژگی required هیچ مقداری نداشته باشد",
-    "وقتی مقدار از maxLength بیشتر شود",
-    "وقتی مقدار با pattern نخواند",
-    "وقتی پیام سفارشی تنظیم شده باشد"
-   ],
-   "answer": 0,
-   "explanation": "valueMissing مخصوص عنصری است که ویژگی required دارد و خالی مانده است. پیام سفارشی مربوط به customError و طول بیش‌ازحد مربوط به tooLong است."
-  },
-  {
-   "question": "بررسی درستی مقدار عددی در محدوده (مثلاً بین ۱۰۰ و ۳۰۰) به‌صورت خودکار انجام نمی‌شود؛ برای اینکه عدد کوچک‌تر از ۱۰۰ را بفهمید از کدام خصوصیت استفاده می‌کنید؟",
-   "options": [
-    "rangeOverflow",
-    "rangeUnderflow",
-    "tooLong",
-    "typeMismatch"
-   ],
-   "answer": 1,
-   "explanation": "کمتر بودن از min باعث true شدن rangeUnderflow می‌شود؛ همان چیزی که مثال دوم درس با min=\"100\" بررسی می‌کند."
-  }
- ]
+  "slug": "js_validation_api",
+  "course": "js",
+  "order": 179,
+  "url": "/js/js_validation_api.asp",
+  "title": "API اعتبارسنجی JavaScript",
+  "summary": "مرورگر می‌تواند ورودی‌های یک فرم را قبل از فرستادن بررسی کند. در این درس با متد checkValidity() و متد setCustomValidity()، با خصوصیت‌های validity و validationMessage و willValidate، و با خاصیت‌های دقیق validity مثل rangeOverflow و valueMissing آشنا می‌شوید.",
+  "objectives": [
+    "با checkValidity() معتبر بودن ورودی را بررسی کنید",
+    "پیام خطای مرورگر را با validationMessage نمایش دهید",
+    "خصوصیت‌های validity را تشخیص دهید و بگویید هرکدام چه زمانی true می‌شوند",
+    "با setCustomValidity() پیام اعتبارسنجی سفارشی بسازید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "API اعتبارسنجی JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای اعتبارسنجی محدودیت در DOM"
+    },
+    {
+      "type": "table",
+      "headers": ["خصوصیت", "توضیح"],
+      "rows": [
+        ["checkValidity()", "اگر یک عنصر input دادهٔ معتبر داشته باشد، true برمی‌گرداند."],
+        ["setCustomValidity()", "خصوصیت validationMessage یک عنصر input را تنظیم می‌کند."]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "اگر یک فیلد ورودی دادهٔ نامعتبر داشته باشد، پیامی نمایش دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input id=\"id1\" type=\"number\" min=\"100\" max=\"300\"\n    required>\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\n function myFunction() {\n  const inpObj = document.getElementById(\"id1\");\n  if (!inpObj.checkValidity()) {\n    document.getElementById(\"demo\").innerHTML = inpObj.validationMessage;\n\n    }\n}\n</script>",
+      "caption": "متد checkValidity()"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_check"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های اعتبارسنجی محدودیت در DOM"
+    },
+    {
+      "type": "table",
+      "headers": ["خصوصیت", "توضیح"],
+      "rows": [
+        ["validity", "خصوصیت‌های بولی مرتبط با معتبر بودن یک عنصر input را در خود دارد."],
+        [
+          "validationMessage",
+          "پیامی را در خود دارد که مرورگر وقتی اعتبار false باشد نمایش می‌دهد."
+        ],
+        ["willValidate", "نشان می‌دهد آیا یک عنصر input اعتبارسنجی می‌شود یا نه."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های validity"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت validity یک عنصر input چند خصوصیت مرتبط با معتبر بودن داده را در خود دارد:"
+    },
+    {
+      "type": "table",
+      "headers": ["خصوصیت", "توضیح"],
+      "rows": [
+        ["customError", "اگر پیام اعتبارسنجی سفارشی تنظیم شده باشد، true می‌شود."],
+        ["patternMismatch", "اگر مقدار عنصر با ویژگی pattern آن هم‌خوان نباشد، true می‌شود."],
+        ["rangeOverflow", "اگر مقدار عنصر از ویژگی max آن بیشتر باشد، true می‌شود."],
+        ["rangeUnderflow", "اگر مقدار عنصر از ویژگی min آن کمتر باشد، true می‌شود."],
+        ["stepMismatch", "اگر مقدار عنصر با ویژگی step آن معتبر نباشد، true می‌شود."],
+        ["tooLong", "اگر مقدار عنصر از ویژگی maxLength آن بیشتر شود، true می‌شود."],
+        ["typeMismatch", "اگر مقدار عنصر با ویژگی type آن معتبر نباشد، true می‌شود."],
+        ["valueMissing", "اگر عنصر (با ویژگی required) هیچ مقداری نداشته باشد، true می‌شود."],
+        ["valid", "اگر مقدار عنصر معتبر باشد، true می‌شود."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مثال‌ها"
+    },
+    {
+      "type": "p",
+      "text": "اگر عدد داخل یک فیلد ورودی از ۱۰۰ بیشتر باشد (ویژگی max آن input)، پیامی نمایش دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input id=\"id1\" type=\"number\" max=\"100\">\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nfunction myFunction() {\n  let text = \"Value OK\";\n\n    if (document.getElementById(\"id1\").validity.rangeOverflow) {\n\n      text = \"Value too large\";\n\n    }\n\n}\n\n</script>",
+      "caption": "خصوصیت rangeOverflow"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_rangeOverflow"
+    },
+    {
+      "type": "p",
+      "text": "اگر عدد داخل یک فیلد ورودی از ۱۰۰ کمتر باشد (ویژگی min آن input)، پیامی نمایش دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input id=\"id1\" type=\"number\" min=\"100\">\n\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nfunction myFunction() {\n  let text = \"Value OK\";\n\n    if (document.getElementById(\"id1\").validity.rangeUnderflow) {\n\n      text = \"Value too small\";\n\n    }\n\n}\n</script>",
+      "caption": "خصوصیت rangeUnderflow"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_rangeUnderflow"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل valid.html بسازید که یک <input type=\"number\" min=\"100\" max=\"300\" required> و یک دکمه داشته باشد؛ با کلیک دکمه، اگر checkValidity() منفی بود پیام validationMessage را در یک <p> نشان دهید.",
+      "hint": "خود checkValidity() مقدار بولی برمی‌گرداند؛ برای گرفتن متن خطای آمادهٔ مرورگر از خصوصیت validationMessage همان عنصر استفاده کنید."
+    },
+    {
+      "prompt": "در حالت‌های مختلف آزمایش کنید و بگویید کدام خصوصیت validity در هر حالت true می‌شود: فیلد خالی، عدد کمتر از ۱۰۰، و عددی بزرگ‌تر از ۳۰۰.",
+      "hint": "فیلد خالی valueMissing می‌شود، مقدار کم rangeUnderflow و مقدار زیاد rangeOverflow."
+    },
+    {
+      "prompt": "یک input با الگوی pattern بنویسید که فقط حرف‌های انگلیسی را قبول کند و با وارد کردن یک کاراکتر غیرمجاز مقدار patternMismatch را در کنسول چاپ کنید.",
+      "hint": "شرط را روی inputElement.validity.patternMismatch بگذارید تا مقدار بولی آن را ببینید."
+    },
+    {
+      "prompt": "با setCustomValidity() یک پیام دلخواه فارسی روی یک input بگذارید و شرط کنید که اگر مقدار شامل کلمهٔ test بود، خطا نشان داده شود.",
+      "hint": "وقتی پیامی تنظیم می‌کنید، خصوصیت customError در validity true می‌شود؛ برای پاک کردن پیام یک رشتهٔ خالی بدهید."
+    },
+    {
+      "prompt": "خصوصیت willValidate را روی یک input معمولی و روی یک input غیرفعال (disabled) بررسی کنید و تفاوت را توضیح دهید.",
+      "hint": "عنصرهای غیرفعال یا readOnly معمولاً اعتبارسنجی نمی‌شوند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "متد checkValidity() چه چیزی برمی‌گرداند؟",
+      "options": [
+        "پیام خطای مرورگر را",
+        "true اگر دادهٔ عنصر ورودی معتبر باشد",
+        "تعداد خطاهای فرم را",
+        "مقدار واردشده در فیلد را"
+      ],
+      "answer": 1,
+      "explanation": "جدول درس می‌گوید checkValidity() اگر عنصر input دادهٔ معتبر داشته باشد true برمی‌گرداند. پیام خطا را باید از validationMessage گرفت."
+    },
+    {
+      "question": "برای نشان دادن پیام خطای آمادهٔ مرورگر از چه خصوصیتی استفاده می‌کنید؟",
+      "options": ["validity", "willValidate", "validationMessage", "customError"],
+      "answer": 2,
+      "explanation": "validationMessage پیامی را در خود دارد که مرورگر وقتی اعتبار false باشد نمایش می‌دهد؛ در مثال درس هم همین خصوصیت داخل عنصر demo نوشته می‌شود."
+    },
+    {
+      "question": "اگر مقدار یک input بیشتر از max آن باشد، کدام خصوصیت validity مقدار true می‌گیرد؟",
+      "options": ["rangeUnderflow", "rangeOverflow", "stepMismatch", "valueMissing"],
+      "answer": 1,
+      "explanation": "rangeOverflow وقتی true می‌شود که مقدار عنصر از ویژگی max بیشتر شود؛ کمتر بودن از ویژگی min هم باعث true شدن rangeUnderflow می‌شود."
+    },
+    {
+      "question": "خصوصیت valueMissing چه زمانی true می‌شود؟",
+      "options": [
+        "وقتی عنصری با ویژگی required هیچ مقداری نداشته باشد",
+        "وقتی مقدار از maxLength بیشتر شود",
+        "وقتی مقدار با pattern نخواند",
+        "وقتی پیام سفارشی تنظیم شده باشد"
+      ],
+      "answer": 0,
+      "explanation": "valueMissing مخصوص عنصری است که ویژگی required دارد و خالی مانده است. پیام سفارشی مربوط به customError و طول بیش‌ازحد مربوط به tooLong است."
+    },
+    {
+      "question": "بررسی درستی مقدار عددی در محدوده (مثلاً بین ۱۰۰ و ۳۰۰) به‌صورت خودکار انجام نمی‌شود؛ برای اینکه عدد کوچک‌تر از ۱۰۰ را بفهمید از کدام خصوصیت استفاده می‌کنید؟",
+      "options": ["rangeOverflow", "rangeUnderflow", "tooLong", "typeMismatch"],
+      "answer": 1,
+      "explanation": "کمتر بودن از min باعث true شدن rangeUnderflow می‌شود؛ همان چیزی که مثال دوم درس با min=\"100\" بررسی می‌کند."
+    }
+  ]
 }

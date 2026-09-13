@@ -1,221 +1,211 @@
 {
- "slug": "css3_3dtransforms_cube",
- "course": "css",
- "order": 134,
- "url": "/css/css3_3dtransforms_cube.asp",
- "title": "تبدیل‌های سه‌بعدی CSS: مکعب سه‌بعدی",
- "summary": "در این درس شش وجه را در فضای سه‌بعدی می‌چینید تا یک مکعب بسازید که پیوسته می‌چرخد. با جابه‌جا کردن هر وجه به اندازهٔ نصف ضلع با translateZ، ترکیب چرخش و انتقال سه‌بعدی را تمرین می‌کنید.",
- "objectives": [
-  "شش وجه مکعب را با HTML بسازید",
-  "هر وجه را با rotate و translateZ از مرکز بیرون ببرید",
-  "چرخش پیوسته را با @keyframes بسازید",
-  "بگویید چرا پس‌زمینهٔ نیمه‌شفاف کمک می‌کند"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تبدیل‌های سه‌بعدی CSS: مکعب سه‌بعدی"
-  },
-  {
-   "type": "h2",
-   "text": "CSS: یک مکعب سه‌بعدی چرخان"
-  },
-  {
-   "type": "p",
-   "text": "اینجا نشان می‌دهیم چطور یک شیء سه‌بعدی کلاسیک دیگر بسازیم: یک مکعب چرخان."
-  },
-  {
-   "type": "p",
-   "text": "جلو"
-  },
-  {
-   "type": "p",
-   "text": "پشت"
-  },
-  {
-   "type": "p",
-   "text": "راست"
-  },
-  {
-   "type": "p",
-   "text": "چپ"
-  },
-  {
-   "type": "p",
-   "text": "بالا"
-  },
-  {
-   "type": "p",
-   "text": "پایین"
-  },
-  {
-   "type": "h2",
-   "text": "ساختار HTML"
-  },
-  {
-   "type": "p",
-   "text": "با ساختار پایهٔ HTML شروع می‌کنیم:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div class=\"container\">\n  <div class=\"cube\">\n\n  <div class=\"face front\">front</div>\n    <div class=\"face\n  back\">back</div>\n    <div class=\"face right\">right</div>\n\n  <div class=\"face left\">left</div>\n    <div class=\"face\n  top\">top</div>\n    <div class=\"face bottom\">bottom</div>\n\n  </div>\n</div>",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "عنصر نگه‌دارنده میزبان فضای سه‌بعدی است. عنصر cube نقش شیء سه‌بعدی را دارد. شش عنصر وجه جداگانه برای شش وجه مکعب (جلو، پشت، راست، چپ، بالا و پایین) به کار می‌رود."
-  },
-  {
-   "type": "h2",
-   "text": "استایل‌دهی با CSS"
-  },
-  {
-   "type": "p",
-   "text": "اول جعبهٔ نگه‌دارندهٔ سه‌بعدی را تعریف می‌کنیم: پرسپکتیو را همراه با ارتفاع، پهنا و حاشیهٔ بیرونی اعمال کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n  width: 200px;\n  height: 200px;\n\n  margin: 100px auto;\n  perspective: 600px;\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "حالا عنصر cube می‌تواند در فضای سه‌بعدی نگه‌دارنده‌اش تبدیل شود. width: 100%; و height: 100%; را اضافه می‌کنیم. از position: relative برای موقعیت‌دهی مطلق وجه‌های مکعب استفاده می‌شود. خصوصیت transform-style: preserve-3d اینجا حیاتی است، چون عنصرهای فرزند را به فضای سه‌بعدی می‌کشاند. بدون آن، وجه‌ها به یک ورقهٔ دوبعدی تخت تبدیل می‌شوند. یک انیمیشن CSS هم اضافه می‌کنیم تا چرخش پیوستهٔ مکعب را راه بیندازیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".cube {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transform-style: preserve-3d;\n  animation: spin 12s\n  infinite linear;\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "بعد کمی استایل پایه برای هر شش وجه مکعب اضافه می‌کنیم. برای موقعیت‌دهی وجه‌ها در فضای سه‌بعدی باید موقعیت دوبعدی آن‌ها را با position: absolute صفر کنیم. یک رنگ پس‌زمینهٔ سرخ نیمه‌شفاف هم اضافه می‌کنیم تا عمق را ببینیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".face {\n  position: absolute;\n  width: 200px;\n\n  height: 200px;\n  border: 2px solid white;\n  line-height:\n  200px;\n  text-align: center;\n  font-size: 24px;\n\n  font-weight: bold;\n  color: white;\n  background: rgba(255, 0, 0,\n  0.5);\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "بعد باید هر وجه را جداگانه در فضای سه‌بعدی موقعیت دهیم. با فرض یک مکعب 200px، هر وجه دقیقاً ۱۰۰ پیکسل از مرکز فاصله می‌گیرد:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".front { transform: rotateY( 0deg) translateZ(100px); }\n.back { transform:\n  rotateY(180deg) translateZ(100px); }\n.left { transform: rotateY(-90deg)\n  translateZ(100px); }\n.right { transform: rotateY( 90deg) translateZ(100px);\n  }\n.top { transform: rotateX( 90deg) translateZ(100px); }\n.bottom {\n  transform: rotateX(-90deg) translateZ(100px); }",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "در پایان انیمیشن keyframe را برای چرخاندن مکعب می‌سازیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@keyframes spin {\n  from { transform: rotateX(0deg) rotateY(0deg); }\n\n  to { transform: rotateX(360deg) rotateY(360deg); }\n}",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "مثال کامل مکعب سه‌بعدی چرخان"
-  },
-  {
-   "type": "p",
-   "text": "این هم مثال کامل مکعب سه‌بعدی چرخان:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n  width: 200px;\n  height: 200px;\n\n  margin: 100px auto;\n  perspective: 600px;\n}\n\n.cube {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 12s infinite linear;\n}\n\n.face {\n  position: absolute;\n  width: 200px;\n\n  height: 200px;\n  border: 2px solid white;\n  line-height:\n  200px;\n  text-align: center;\n  font-size: 24px;\n\n  font-weight: bold;\n  color: white;\n  background: rgba(255, 0,\n  0, 0.5);\n}\n\n.front { transform: rotateY( 0deg)\n  translateZ(100px); }\n.back { transform: rotateY(180deg) translateZ(100px);\n  }\n.left { transform:\n  rotateY(-90deg) translateZ(100px); }\n.right { transform: rotateY( 90deg)\n  translateZ(100px); }\n.top { transform: rotateX( 90deg) translateZ(100px); }\n\n  .bottom { transform: rotateX(-90deg) translateZ(100px); }\n\n@keyframes\n  spin {\n  from { transform: rotateX(0deg) rotateY(0deg); }\n  to\n  { transform: rotateX(360deg) rotateY(360deg); }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_cube"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل cube.html بسازید و ساختار HTML را با یک .container، یک .cube و شش وجه .face بنویسید.",
-   "hint": "هر وجه یک کلاس اضافه مثل front یا back داشته باشد تا بتوانید هرکدام را جدا موقعیت دهید."
-  },
-  {
-   "prompt": "به نگه‌دارنده perspective: 600px; و به مکعب transform-style: preserve-3d; و animation: spin 12s infinite linear; بدهید.",
-   "hint": "بدون preserve-3d وجه‌ها در یک ورقهٔ دوبعدی تخت می‌شوند و مکعب ساخته نمی‌شود."
-  },
-  {
-   "prompt": "برای هر وجه transform مناسب بنویسید: جلو با rotateY(0deg) translateZ(100px) و پشت با rotateY(180deg) translateZ(100px).",
-   "hint": "ترتیب مهم است: اول بچرخانید و بعد با translateZ وجه را از مرکز بیرون ببرید."
-  },
-  {
-   "prompt": "با @keyframes spin از rotateX(0deg) rotateY(0deg) به rotateX(360deg) rotateY(360deg) انیمیشن چرخش را بسازید.",
-   "hint": "animation-name و animation-duration را روی .cube تعیین کنید تا انیمیشن به عنصر وصل شود."
-  },
-  {
-   "prompt": "پس‌زمینهٔ وجه‌ها را نیمه‌شفاف کنید، مثلاً rgba(255, 0, 0, 0.5)، و بگویید چرا عمق بهتر دیده می‌شود.",
-   "hint": "با نیمه‌شفاف بودن وجه‌ها، وجه‌های پشتی هم از میان وجه‌های جلویی دیده می‌شوند."
-  }
- ],
- "quiz": [
-  {
-   "question": "چند وجه برای ساختن مکعب لازم است؟",
-   "options": [
-    "چهار وجه",
-    "پنج وجه",
-    "شش وجه",
-    "هشت وجه"
-   ],
-   "answer": 2,
-   "explanation": "مکعب شش وجه دارد: جلو، پشت، راست، چپ، بالا و پایین؛ هر وجه یک عنصر جداگانه است."
-  },
-  {
-   "question": "در مکعب 200 پیکسلی، هر وجه با translateZ چقدر از مرکز فاصله می‌گیرد؟",
-   "options": [
-    "200px",
-    "50px",
-    "100px",
-    "150px"
-   ],
-   "answer": 2,
-   "explanation": "نصف ضلع مکعب برابر ۱۰۰ پیکسل است؛ همان اندازه‌ای که هر وجه را از مرکز بیرون می‌برد."
-  },
-  {
-   "question": "دلیل ضروری بودن transform-style: preserve-3d چیست؟",
-   "options": [
-    "بدون آن وجه‌ها در یک ورقهٔ دوبعدی تخت می‌شوند",
-    "بدون آن رنگ وجه‌ها عوض می‌شود",
-    "بدون آن انیمیشن اجرا نمی‌شود",
-    "بدون آن مکعب بزرگ‌تر می‌شود"
-   ],
-   "answer": 0,
-   "explanation": "این خصوصیت فرزندها را به فضای سه‌بعدی والد می‌کشاند؛ بدون آن تبدیل‌های وجه‌ها مسطح می‌شوند و مکعبی دیده نمی‌شود."
-  },
-  {
-   "question": "چرا به وجه‌های مکعب پس‌زمینهٔ نیمه‌شفاف می‌دهیم؟",
-   "options": [
-    "تا عمق و وجه‌های پشتی دیده شوند",
-    "تا رنگ‌ها روشن‌تر شوند",
-    "تا متن خوانا شود",
-    "تا مکعب سریع‌تر بچرخد"
-   ],
-   "answer": 0,
-   "explanation": "با نیمه‌شفاف بودن می‌توان وجه‌های پشتی را از پشت وجه‌های جلویی دید و حجم سه‌بعدی بهتر درک می‌شود."
-  },
-  {
-   "question": "در مثال، چرخش مکعب با چه چیزی راه می‌افتد؟",
-   "options": [
-    "با transition و :hover",
-    "با یک انیمیشن keyframe بی‌پایان",
-    "با JavaScript",
-    "با خصوصیت perspective روی وجه‌ها"
-   ],
-   "answer": 1,
-   "explanation": "مکعب با animation: spin 12s infinite linear; و @keyframes spin به‌طور پیوسته و بی‌پایان می‌چرخد."
-  }
- ]
+  "slug": "css3_3dtransforms_cube",
+  "course": "css",
+  "order": 134,
+  "url": "/css/css3_3dtransforms_cube.asp",
+  "title": "تبدیل‌های سه‌بعدی CSS: مکعب سه‌بعدی",
+  "summary": "در این درس شش وجه را در فضای سه‌بعدی می‌چینید تا یک مکعب بسازید که پیوسته می‌چرخد. با جابه‌جا کردن هر وجه به اندازهٔ نصف ضلع با translateZ، ترکیب چرخش و انتقال سه‌بعدی را تمرین می‌کنید.",
+  "objectives": [
+    "شش وجه مکعب را با HTML بسازید",
+    "هر وجه را با rotate و translateZ از مرکز بیرون ببرید",
+    "چرخش پیوسته را با @keyframes بسازید",
+    "بگویید چرا پس‌زمینهٔ نیمه‌شفاف کمک می‌کند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تبدیل‌های سه‌بعدی CSS: مکعب سه‌بعدی"
+    },
+    {
+      "type": "h2",
+      "text": "CSS: یک مکعب سه‌بعدی چرخان"
+    },
+    {
+      "type": "p",
+      "text": "اینجا نشان می‌دهیم چطور یک شیء سه‌بعدی کلاسیک دیگر بسازیم: یک مکعب چرخان."
+    },
+    {
+      "type": "p",
+      "text": "جلو"
+    },
+    {
+      "type": "p",
+      "text": "پشت"
+    },
+    {
+      "type": "p",
+      "text": "راست"
+    },
+    {
+      "type": "p",
+      "text": "چپ"
+    },
+    {
+      "type": "p",
+      "text": "بالا"
+    },
+    {
+      "type": "p",
+      "text": "پایین"
+    },
+    {
+      "type": "h2",
+      "text": "ساختار HTML"
+    },
+    {
+      "type": "p",
+      "text": "با ساختار پایهٔ HTML شروع می‌کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div class=\"container\">\n  <div class=\"cube\">\n\n  <div class=\"face front\">front</div>\n    <div class=\"face\n  back\">back</div>\n    <div class=\"face right\">right</div>\n\n  <div class=\"face left\">left</div>\n    <div class=\"face\n  top\">top</div>\n    <div class=\"face bottom\">bottom</div>\n\n  </div>\n</div>",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "عنصر نگه‌دارنده میزبان فضای سه‌بعدی است. عنصر cube نقش شیء سه‌بعدی را دارد. شش عنصر وجه جداگانه برای شش وجه مکعب (جلو، پشت، راست، چپ، بالا و پایین) به کار می‌رود."
+    },
+    {
+      "type": "h2",
+      "text": "استایل‌دهی با CSS"
+    },
+    {
+      "type": "p",
+      "text": "اول جعبهٔ نگه‌دارندهٔ سه‌بعدی را تعریف می‌کنیم: پرسپکتیو را همراه با ارتفاع، پهنا و حاشیهٔ بیرونی اعمال کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n  width: 200px;\n  height: 200px;\n\n  margin: 100px auto;\n  perspective: 600px;\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "حالا عنصر cube می‌تواند در فضای سه‌بعدی نگه‌دارنده‌اش تبدیل شود. width: 100%; و height: 100%; را اضافه می‌کنیم. از position: relative برای موقعیت‌دهی مطلق وجه‌های مکعب استفاده می‌شود. خصوصیت transform-style: preserve-3d اینجا حیاتی است، چون عنصرهای فرزند را به فضای سه‌بعدی می‌کشاند. بدون آن، وجه‌ها به یک ورقهٔ دوبعدی تخت تبدیل می‌شوند. یک انیمیشن CSS هم اضافه می‌کنیم تا چرخش پیوستهٔ مکعب را راه بیندازیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".cube {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transform-style: preserve-3d;\n  animation: spin 12s\n  infinite linear;\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "بعد کمی استایل پایه برای هر شش وجه مکعب اضافه می‌کنیم. برای موقعیت‌دهی وجه‌ها در فضای سه‌بعدی باید موقعیت دوبعدی آن‌ها را با position: absolute صفر کنیم. یک رنگ پس‌زمینهٔ سرخ نیمه‌شفاف هم اضافه می‌کنیم تا عمق را ببینیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".face {\n  position: absolute;\n  width: 200px;\n\n  height: 200px;\n  border: 2px solid white;\n  line-height:\n  200px;\n  text-align: center;\n  font-size: 24px;\n\n  font-weight: bold;\n  color: white;\n  background: rgba(255, 0, 0,\n  0.5);\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "بعد باید هر وجه را جداگانه در فضای سه‌بعدی موقعیت دهیم. با فرض یک مکعب 200px، هر وجه دقیقاً ۱۰۰ پیکسل از مرکز فاصله می‌گیرد:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".front { transform: rotateY( 0deg) translateZ(100px); }\n.back { transform:\n  rotateY(180deg) translateZ(100px); }\n.left { transform: rotateY(-90deg)\n  translateZ(100px); }\n.right { transform: rotateY( 90deg) translateZ(100px);\n  }\n.top { transform: rotateX( 90deg) translateZ(100px); }\n.bottom {\n  transform: rotateX(-90deg) translateZ(100px); }",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "در پایان انیمیشن keyframe را برای چرخاندن مکعب می‌سازیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@keyframes spin {\n  from { transform: rotateX(0deg) rotateY(0deg); }\n\n  to { transform: rotateX(360deg) rotateY(360deg); }\n}",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "مثال کامل مکعب سه‌بعدی چرخان"
+    },
+    {
+      "type": "p",
+      "text": "این هم مثال کامل مکعب سه‌بعدی چرخان:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n  width: 200px;\n  height: 200px;\n\n  margin: 100px auto;\n  perspective: 600px;\n}\n\n.cube {\n  width: 100%;\n\n  height: 100%;\n  position: relative;\n  transform-style:\n  preserve-3d;\n  animation: spin 12s infinite linear;\n}\n\n.face {\n  position: absolute;\n  width: 200px;\n\n  height: 200px;\n  border: 2px solid white;\n  line-height:\n  200px;\n  text-align: center;\n  font-size: 24px;\n\n  font-weight: bold;\n  color: white;\n  background: rgba(255, 0,\n  0, 0.5);\n}\n\n.front { transform: rotateY( 0deg)\n  translateZ(100px); }\n.back { transform: rotateY(180deg) translateZ(100px);\n  }\n.left { transform:\n  rotateY(-90deg) translateZ(100px); }\n.right { transform: rotateY( 90deg)\n  translateZ(100px); }\n.top { transform: rotateX( 90deg) translateZ(100px); }\n\n  .bottom { transform: rotateX(-90deg) translateZ(100px); }\n\n@keyframes\n  spin {\n  from { transform: rotateX(0deg) rotateY(0deg); }\n  to\n  { transform: rotateX(360deg) rotateY(360deg); }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_cube"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل cube.html بسازید و ساختار HTML را با یک .container، یک .cube و شش وجه .face بنویسید.",
+      "hint": "هر وجه یک کلاس اضافه مثل front یا back داشته باشد تا بتوانید هرکدام را جدا موقعیت دهید."
+    },
+    {
+      "prompt": "به نگه‌دارنده perspective: 600px; و به مکعب transform-style: preserve-3d; و animation: spin 12s infinite linear; بدهید.",
+      "hint": "بدون preserve-3d وجه‌ها در یک ورقهٔ دوبعدی تخت می‌شوند و مکعب ساخته نمی‌شود."
+    },
+    {
+      "prompt": "برای هر وجه transform مناسب بنویسید: جلو با rotateY(0deg) translateZ(100px) و پشت با rotateY(180deg) translateZ(100px).",
+      "hint": "ترتیب مهم است: اول بچرخانید و بعد با translateZ وجه را از مرکز بیرون ببرید."
+    },
+    {
+      "prompt": "با @keyframes spin از rotateX(0deg) rotateY(0deg) به rotateX(360deg) rotateY(360deg) انیمیشن چرخش را بسازید.",
+      "hint": "animation-name و animation-duration را روی .cube تعیین کنید تا انیمیشن به عنصر وصل شود."
+    },
+    {
+      "prompt": "پس‌زمینهٔ وجه‌ها را نیمه‌شفاف کنید، مثلاً rgba(255, 0, 0, 0.5)، و بگویید چرا عمق بهتر دیده می‌شود.",
+      "hint": "با نیمه‌شفاف بودن وجه‌ها، وجه‌های پشتی هم از میان وجه‌های جلویی دیده می‌شوند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "چند وجه برای ساختن مکعب لازم است؟",
+      "options": ["چهار وجه", "پنج وجه", "شش وجه", "هشت وجه"],
+      "answer": 2,
+      "explanation": "مکعب شش وجه دارد: جلو، پشت، راست، چپ، بالا و پایین؛ هر وجه یک عنصر جداگانه است."
+    },
+    {
+      "question": "در مکعب 200 پیکسلی، هر وجه با translateZ چقدر از مرکز فاصله می‌گیرد؟",
+      "options": ["200px", "50px", "100px", "150px"],
+      "answer": 2,
+      "explanation": "نصف ضلع مکعب برابر ۱۰۰ پیکسل است؛ همان اندازه‌ای که هر وجه را از مرکز بیرون می‌برد."
+    },
+    {
+      "question": "دلیل ضروری بودن transform-style: preserve-3d چیست؟",
+      "options": [
+        "بدون آن وجه‌ها در یک ورقهٔ دوبعدی تخت می‌شوند",
+        "بدون آن رنگ وجه‌ها عوض می‌شود",
+        "بدون آن انیمیشن اجرا نمی‌شود",
+        "بدون آن مکعب بزرگ‌تر می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "این خصوصیت فرزندها را به فضای سه‌بعدی والد می‌کشاند؛ بدون آن تبدیل‌های وجه‌ها مسطح می‌شوند و مکعبی دیده نمی‌شود."
+    },
+    {
+      "question": "چرا به وجه‌های مکعب پس‌زمینهٔ نیمه‌شفاف می‌دهیم؟",
+      "options": [
+        "تا عمق و وجه‌های پشتی دیده شوند",
+        "تا رنگ‌ها روشن‌تر شوند",
+        "تا متن خوانا شود",
+        "تا مکعب سریع‌تر بچرخد"
+      ],
+      "answer": 0,
+      "explanation": "با نیمه‌شفاف بودن می‌توان وجه‌های پشتی را از پشت وجه‌های جلویی دید و حجم سه‌بعدی بهتر درک می‌شود."
+    },
+    {
+      "question": "در مثال، چرخش مکعب با چه چیزی راه می‌افتد؟",
+      "options": [
+        "با transition و :hover",
+        "با یک انیمیشن keyframe بی‌پایان",
+        "با JavaScript",
+        "با خصوصیت perspective روی وجه‌ها"
+      ],
+      "answer": 1,
+      "explanation": "مکعب با animation: spin 12s infinite linear; و @keyframes spin به‌طور پیوسته و بی‌پایان می‌چرخد."
+    }
+  ]
 }

@@ -1,411 +1,336 @@
 {
- "slug": "js_regexp_meta_characters",
- "course": "js",
- "order": 84,
- "url": "/js/js_regexp_meta_characters.asp",
- "title": "متانویسه‌های RegExp",
- "summary": "متانویسه‌ها نویسه‌هایی با معنای ویژه در الگوهای RegExp هستند. در این درس با \\d، \\D، \\w، \\W، \\s و \\S و نیز کدهای شانزده‌وری و یونیکد آشنا می‌شوید و یاد می‌گیرید هرکدام چه چیزی را تطبیق می‌دهند.",
- "objectives": [
-  "معنای متانویسه‌ها را توضیح دهید",
-  "با \\d، \\w و \\s رقم و واژه و فاصله را تطبیق دهید",
-  "تفاوت حرف بزرگ و کوچک در متانویسه‌ها را تشخیص دهید",
-  "نویسه را با کد شانزده‌وری و یونیکد تطبیق دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "متانویسه‌های RegExp"
-  },
-  {
-   "type": "h2",
-   "text": "متانویسه‌های عبارت باقاعده"
-  },
-  {
-   "type": "p",
-   "text": "متانویسه‌ها نویسه‌هایی با معنای ویژه هستند."
-  },
-  {
-   "type": "p",
-   "text": "از آن‌ها می‌توان برای تطبیق رقم‌ها، واژه‌ها، فاصله‌ها و موارد بیشتر استفاده کرد:"
-  },
-  {
-   "type": "p",
-   "text": "// تطبیق واژه‌ها\nconst pattern = /\\w/;"
-  },
-  {
-   "type": "h2",
-   "text": "متانویسه‌های RegExp در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "ویرایش‌شده در جولای ۲۰۲۵"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متانویسه",
-     "توضیح"
-    ],
-    [
-     "\\d",
-     "رقم‌ها را تطبیق می‌دهد"
-    ],
-    [
-     "\\D",
-     "نویسه‌های غیررقم را تطبیق می‌دهد"
-    ],
-    [
-     "\\w",
-     "نویسه‌های واژه‌ای الفبایی‌عددی را تطبیق می‌دهد"
-    ],
-    [
-     "\\W",
-     "نویسه‌های غیرواژه‌ای را تطبیق می‌دهد"
-    ],
-    [
-     "\\s",
-     "فاصله‌ها را تطبیق می‌دهد"
-    ],
-    [
-     "\\S",
-     "نویسه‌های غیرفاصله را تطبیق می‌دهد"
-    ],
-    [
-     "\\ddd",
-     "نویسه‌ها را بر پایهٔ عدد هشت‌وری ddd تطبیق می‌دهد"
-    ],
-    [
-     "\\xhh",
-     "نویسه‌ها را بر پایهٔ عدد شانزده‌وری hh تطبیق می‌دهد"
-    ],
-    [
-     "\\uhhhh",
-     "نویسه‌های یونیکد را بر پایهٔ عدد شانزده‌وری hhhh تطبیق می‌دهد"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متانویسهٔ \\d (رقم‌ها) در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "متانویسهٔ \\d رقم‌ها را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\d/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_d"
-  },
-  {
-   "type": "h2",
-   "text": "متانویسهٔ \\D در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "متانویسهٔ \\D نویسه‌های غیررقم را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\D/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nondigit"
-  },
-  {
-   "type": "h2",
-   "text": "متانویسهٔ \\w (واژه) در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "متانویسهٔ \\w نویسه‌های واژه‌ای را تطبیق می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "نویسهٔ واژه‌ای نویسه‌هایی مانند a-z، A-Z و 0-9 به‌همراه _ (زیرخط) است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\w/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_wordchar"
-  },
-  {
-   "type": "h1",
-   "text": "متانویسهٔ \\W در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "متانویسهٔ \\W نویسه‌های غیرواژه‌ای را تطبیق می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "نویسهٔ واژه‌ای نویسه‌هایی مانند a-z، A-Z و 0-9 به‌همراه _ (زیرخط) است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\W/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nonwordchar"
-  },
-  {
-   "type": "h2",
-   "text": "متانویسهٔ \\s (فاصله)"
-  },
-  {
-   "type": "p",
-   "text": "متانویسهٔ \\s نویسه‌های فاصله مانند فاصله، tab و خط جدید را تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Is this all there is?\";\n\nconst pattern = /\\s/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_s"
-  },
-  {
-   "type": "h2",
-   "text": "\\xhh در RegExp (شانزده‌وری)"
-  },
-  {
-   "type": "p",
-   "text": "\\xhh نویسه‌ها را بر پایهٔ عدد شانزده‌وری hh تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Visit W3Schools. Hello World!\";\n\nlet pattern = /\\x6F/g;\n\nlet result = text.replace(pattern, \"*\");",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_hex"
-  },
-  {
-   "type": "h2",
-   "text": "\\uhhhh در RegExp (یونیکد شانزده‌وری)"
-  },
-  {
-   "type": "p",
-   "text": "\\uhhhh یک نویسهٔ یونیکد را بر پایهٔ عدد شانزده‌وری hhhh تطبیق می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Visit W3Schools. Hello World!\";\n\nconst pattern = /\\u0057/g;\n\nlet result = text.match(pattern);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_ux"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای عبارت باقاعده"
-  },
-  {
-   "type": "p",
-   "text": "جست‌وجو و جایگزینی با عبارت باقاعده را می‌توان با متدهای مختلفی انجام داد."
-  },
-  {
-   "type": "p",
-   "text": "این‌ها رایج‌ترین‌شان هستند:"
-  },
-  {
-   "type": "h3",
-   "text": "متدهای رشته"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "match(regex)",
-     "یک آرایه از نتیجه‌ها برمی‌گرداند"
-    ],
-    [
-     "matchAll(regex)",
-     "یک iterator از نتیجه‌ها برمی‌گرداند"
-    ],
-    [
-     "replace(regex)",
-     "یک رشتهٔ جدید برمی‌گرداند"
-    ],
-    [
-     "replaceAll(regex)",
-     "یک رشتهٔ جدید برمی‌گرداند"
-    ],
-    [
-     "search(regex)",
-     "اندیس نخستین تطبیق را برمی‌گرداند"
-    ],
-    [
-     "split(regex)",
-     "یک آرایه از نتیجه‌ها برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "متدهای RegExp"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "regex.exec()",
-     "یک iterator از نتیجه‌ها برمی‌گرداند"
-    ],
-    [
-     "regex.test()",
-     "true یا false برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "همچنین ببینید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کلاس‌های نویسه در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "Assertions در RegExp"
-  },
-  {
-   "type": "p",
-   "text": "گروه‌های RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کمیت‌سنج‌های RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "الگوهای RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "شیءهای RegExp در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متدهای RegExp در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل regex-meta.html بسازید و رشتهٔ \"Give 100%!\" را با الگوی /\\w/g تطبیق دهید و نتیجه را در کنسول چاپ کنید.",
-   "hint": "متانویسهٔ \\w نویسه‌های a-z، A-Z، 0-9 و _ را تطبیق می‌دهد و پرچم g همهٔ تطبیق‌ها را برمی‌گرداند."
-  },
-  {
-   "prompt": "همان رشته را یک‌بار با /\\d/g و یک‌بار با /\\D/g تطبیق دهید و دو آرایهٔ نتیجه را با هم مقایسه کنید.",
-   "hint": "\\d فقط رقم‌ها را برمی‌گرداند و \\D بقیهٔ نویسه‌ها را؛ پس مجموع طول دو آرایه با طول رشته برابر است."
-  },
-  {
-   "prompt": "روی رشتهٔ \"Is this all there is?\" الگوی /\\s/g را اجرا کنید و ببینید چند فاصله پیدا می‌شود.",
-   "hint": "\\s فاصله، tab و خط جدید را تطبیق می‌دهد."
-  },
-  {
-   "prompt": "با الگوی /\\x6F/g نویسهٔ o را در \"Visit W3Schools. Hello World!\" با * جایگزین کنید و نتیجه را چاپ کنید.",
-   "hint": "کد شانزده‌وری 6F همان حرف کوچک o است و متد replace جایگزینی را انجام می‌دهد."
-  },
-  {
-   "prompt": "با /\\u0057/g حرف W را در همان رشته تطبیق دهید و آرایهٔ نتیجه را ببینید.",
-   "hint": "الگوی \\uhhhh نویسهٔ یونیکد را با کد شانزده‌وری hhhh تطبیق می‌دهد و 0057 کد حرف W است."
-  }
- ],
- "quiz": [
-  {
-   "question": "متانویسهٔ \\d چه چیزی را تطبیق می‌دهد؟",
-   "options": [
-    "نویسه‌های واژه‌ای",
-    "رقم‌ها",
-    "فاصله‌ها",
-    "همهٔ نویسه‌ها"
-   ],
-   "answer": 1,
-   "explanation": "\\d فقط رقم‌ها را تطبیق می‌دهد. گزینهٔ «فاصله‌ها» کار \\s و «نویسه‌های واژه‌ای» کار \\w است و «همهٔ نویسه‌ها» معادل نقطه (.) است که در این درس معرفی نشده."
-  },
-  {
-   "question": "کدام متانویسه نویسه‌های غیرواژه‌ای را تطبیق می‌دهد؟",
-   "options": [
-    "\\D",
-    "\\W",
-    "\\S",
-    "\\w"
-   ],
-   "answer": 1,
-   "explanation": "\\W مکمل \\w است و هر چیزی جز حرف، رقم و زیرخط را برمی‌گرداند. \\D مکمل رقم‌ها، \\S مکمل فاصله‌ها و \\w خودِ نویسه‌های واژه‌ای است."
-  },
-  {
-   "question": "تفاوت \\w با \\W چیست؟",
-   "options": [
-    "هر دو یکسان‌اند",
-    "\\w نویسه‌های واژه‌ای و \\W نویسه‌های غیرواژه‌ای را تطبیق می‌دهد",
-    "\\w فقط رقم و \\W فقط حرف است",
-    "\\W فقط فاصله را تطبیق می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "حرف بزرگ در متانویسه‌ها همیشه معنای منفی می‌سازد؛ \\w واژه‌ای است و \\W هر نویسهٔ دیگری."
-  },
-  {
-   "question": "در الگوی /\\x6F/g، بخش 6F چه چیزی را مشخص می‌کند؟",
-   "options": [
-    "اندیس تطبیق در رشته",
-    "کد شانزده‌وری نویسه",
-    "تعداد تکرار الگو",
-    "نام گروه گیرنده"
-   ],
-   "answer": 1,
-   "explanation": "\\xhh نویسه را با عدد شانزده‌وری hh تطبیق می‌دهد و 6F کد حرف o است. تکرار را کمیت‌سنج‌ها ({n}) و نام گروه را گروه‌های نامدار تعیین می‌کنند."
-  },
-  {
-   "question": "کدام متد یک آرایه از همهٔ تطبیق‌ها را برمی‌گرداند؟",
-   "options": [
-    "match()",
-    "replace()",
-    "test()",
-    "isNaN()"
-   ],
-   "answer": 0,
-   "explanation": "در مثال‌های این درس text.match(pattern) آرایهٔ نتیجه‌ها را برمی‌گرداند. test() فقط true یا false می‌دهد و replace() رشتهٔ جایگزین‌شده را."
-  }
- ]
+  "slug": "js_regexp_meta_characters",
+  "course": "js",
+  "order": 84,
+  "url": "/js/js_regexp_meta_characters.asp",
+  "title": "متانویسه‌های RegExp",
+  "summary": "متانویسه‌ها نویسه‌هایی با معنای ویژه در الگوهای RegExp هستند. در این درس با \\d، \\D، \\w، \\W، \\s و \\S و نیز کدهای شانزده‌وری و یونیکد آشنا می‌شوید و یاد می‌گیرید هرکدام چه چیزی را تطبیق می‌دهند.",
+  "objectives": [
+    "معنای متانویسه‌ها را توضیح دهید",
+    "با \\d، \\w و \\s رقم و واژه و فاصله را تطبیق دهید",
+    "تفاوت حرف بزرگ و کوچک در متانویسه‌ها را تشخیص دهید",
+    "نویسه را با کد شانزده‌وری و یونیکد تطبیق دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "متانویسه‌های RegExp"
+    },
+    {
+      "type": "h2",
+      "text": "متانویسه‌های عبارت باقاعده"
+    },
+    {
+      "type": "p",
+      "text": "متانویسه‌ها نویسه‌هایی با معنای ویژه هستند."
+    },
+    {
+      "type": "p",
+      "text": "از آن‌ها می‌توان برای تطبیق رقم‌ها، واژه‌ها، فاصله‌ها و موارد بیشتر استفاده کرد:"
+    },
+    {
+      "type": "p",
+      "text": "// تطبیق واژه‌ها\nconst pattern = /\\w/;"
+    },
+    {
+      "type": "h2",
+      "text": "متانویسه‌های RegExp در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "ویرایش‌شده در جولای ۲۰۲۵"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متانویسه", "توضیح"],
+        ["\\d", "رقم‌ها را تطبیق می‌دهد"],
+        ["\\D", "نویسه‌های غیررقم را تطبیق می‌دهد"],
+        ["\\w", "نویسه‌های واژه‌ای الفبایی‌عددی را تطبیق می‌دهد"],
+        ["\\W", "نویسه‌های غیرواژه‌ای را تطبیق می‌دهد"],
+        ["\\s", "فاصله‌ها را تطبیق می‌دهد"],
+        ["\\S", "نویسه‌های غیرفاصله را تطبیق می‌دهد"],
+        ["\\ddd", "نویسه‌ها را بر پایهٔ عدد هشت‌وری ddd تطبیق می‌دهد"],
+        ["\\xhh", "نویسه‌ها را بر پایهٔ عدد شانزده‌وری hh تطبیق می‌دهد"],
+        ["\\uhhhh", "نویسه‌های یونیکد را بر پایهٔ عدد شانزده‌وری hhhh تطبیق می‌دهد"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متانویسهٔ \\d (رقم‌ها) در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "متانویسهٔ \\d رقم‌ها را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\d/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_d"
+    },
+    {
+      "type": "h2",
+      "text": "متانویسهٔ \\D در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "متانویسهٔ \\D نویسه‌های غیررقم را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\D/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nondigit"
+    },
+    {
+      "type": "h2",
+      "text": "متانویسهٔ \\w (واژه) در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "متانویسهٔ \\w نویسه‌های واژه‌ای را تطبیق می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "نویسهٔ واژه‌ای نویسه‌هایی مانند a-z، A-Z و 0-9 به‌همراه _ (زیرخط) است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\w/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_wordchar"
+    },
+    {
+      "type": "h1",
+      "text": "متانویسهٔ \\W در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "متانویسهٔ \\W نویسه‌های غیرواژه‌ای را تطبیق می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "نویسهٔ واژه‌ای نویسه‌هایی مانند a-z، A-Z و 0-9 به‌همراه _ (زیرخط) است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Give 100%!\";\n\nconst pattern = /\\W/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_nonwordchar"
+    },
+    {
+      "type": "h2",
+      "text": "متانویسهٔ \\s (فاصله)"
+    },
+    {
+      "type": "p",
+      "text": "متانویسهٔ \\s نویسه‌های فاصله مانند فاصله، tab و خط جدید را تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Is this all there is?\";\n\nconst pattern = /\\s/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_s"
+    },
+    {
+      "type": "h2",
+      "text": "\\xhh در RegExp (شانزده‌وری)"
+    },
+    {
+      "type": "p",
+      "text": "\\xhh نویسه‌ها را بر پایهٔ عدد شانزده‌وری hh تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Visit W3Schools. Hello World!\";\n\nlet pattern = /\\x6F/g;\n\nlet result = text.replace(pattern, \"*\");",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_hex"
+    },
+    {
+      "type": "h2",
+      "text": "\\uhhhh در RegExp (یونیکد شانزده‌وری)"
+    },
+    {
+      "type": "p",
+      "text": "\\uhhhh یک نویسهٔ یونیکد را بر پایهٔ عدد شانزده‌وری hhhh تطبیق می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Visit W3Schools. Hello World!\";\n\nconst pattern = /\\u0057/g;\n\nlet result = text.match(pattern);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_ux"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای عبارت باقاعده"
+    },
+    {
+      "type": "p",
+      "text": "جست‌وجو و جایگزینی با عبارت باقاعده را می‌توان با متدهای مختلفی انجام داد."
+    },
+    {
+      "type": "p",
+      "text": "این‌ها رایج‌ترین‌شان هستند:"
+    },
+    {
+      "type": "h3",
+      "text": "متدهای رشته"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["match(regex)", "یک آرایه از نتیجه‌ها برمی‌گرداند"],
+        ["matchAll(regex)", "یک iterator از نتیجه‌ها برمی‌گرداند"],
+        ["replace(regex)", "یک رشتهٔ جدید برمی‌گرداند"],
+        ["replaceAll(regex)", "یک رشتهٔ جدید برمی‌گرداند"],
+        ["search(regex)", "اندیس نخستین تطبیق را برمی‌گرداند"],
+        ["split(regex)", "یک آرایه از نتیجه‌ها برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "متدهای RegExp"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["regex.exec()", "یک iterator از نتیجه‌ها برمی‌گرداند"],
+        ["regex.test()", "true یا false برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "همچنین ببینید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کلاس‌های نویسه در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "Assertions در RegExp"
+    },
+    {
+      "type": "p",
+      "text": "گروه‌های RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کمیت‌سنج‌های RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "الگوهای RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "شیءهای RegExp در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متدهای RegExp در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل regex-meta.html بسازید و رشتهٔ \"Give 100%!\" را با الگوی /\\w/g تطبیق دهید و نتیجه را در کنسول چاپ کنید.",
+      "hint": "متانویسهٔ \\w نویسه‌های a-z، A-Z، 0-9 و _ را تطبیق می‌دهد و پرچم g همهٔ تطبیق‌ها را برمی‌گرداند."
+    },
+    {
+      "prompt": "همان رشته را یک‌بار با /\\d/g و یک‌بار با /\\D/g تطبیق دهید و دو آرایهٔ نتیجه را با هم مقایسه کنید.",
+      "hint": "\\d فقط رقم‌ها را برمی‌گرداند و \\D بقیهٔ نویسه‌ها را؛ پس مجموع طول دو آرایه با طول رشته برابر است."
+    },
+    {
+      "prompt": "روی رشتهٔ \"Is this all there is?\" الگوی /\\s/g را اجرا کنید و ببینید چند فاصله پیدا می‌شود.",
+      "hint": "\\s فاصله، tab و خط جدید را تطبیق می‌دهد."
+    },
+    {
+      "prompt": "با الگوی /\\x6F/g نویسهٔ o را در \"Visit W3Schools. Hello World!\" با * جایگزین کنید و نتیجه را چاپ کنید.",
+      "hint": "کد شانزده‌وری 6F همان حرف کوچک o است و متد replace جایگزینی را انجام می‌دهد."
+    },
+    {
+      "prompt": "با /\\u0057/g حرف W را در همان رشته تطبیق دهید و آرایهٔ نتیجه را ببینید.",
+      "hint": "الگوی \\uhhhh نویسهٔ یونیکد را با کد شانزده‌وری hhhh تطبیق می‌دهد و 0057 کد حرف W است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "متانویسهٔ \\d چه چیزی را تطبیق می‌دهد؟",
+      "options": ["نویسه‌های واژه‌ای", "رقم‌ها", "فاصله‌ها", "همهٔ نویسه‌ها"],
+      "answer": 1,
+      "explanation": "\\d فقط رقم‌ها را تطبیق می‌دهد. گزینهٔ «فاصله‌ها» کار \\s و «نویسه‌های واژه‌ای» کار \\w است و «همهٔ نویسه‌ها» معادل نقطه (.) است که در این درس معرفی نشده."
+    },
+    {
+      "question": "کدام متانویسه نویسه‌های غیرواژه‌ای را تطبیق می‌دهد؟",
+      "options": ["\\D", "\\W", "\\S", "\\w"],
+      "answer": 1,
+      "explanation": "\\W مکمل \\w است و هر چیزی جز حرف، رقم و زیرخط را برمی‌گرداند. \\D مکمل رقم‌ها، \\S مکمل فاصله‌ها و \\w خودِ نویسه‌های واژه‌ای است."
+    },
+    {
+      "question": "تفاوت \\w با \\W چیست؟",
+      "options": [
+        "هر دو یکسان‌اند",
+        "\\w نویسه‌های واژه‌ای و \\W نویسه‌های غیرواژه‌ای را تطبیق می‌دهد",
+        "\\w فقط رقم و \\W فقط حرف است",
+        "\\W فقط فاصله را تطبیق می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "حرف بزرگ در متانویسه‌ها همیشه معنای منفی می‌سازد؛ \\w واژه‌ای است و \\W هر نویسهٔ دیگری."
+    },
+    {
+      "question": "در الگوی /\\x6F/g، بخش 6F چه چیزی را مشخص می‌کند؟",
+      "options": [
+        "اندیس تطبیق در رشته",
+        "کد شانزده‌وری نویسه",
+        "تعداد تکرار الگو",
+        "نام گروه گیرنده"
+      ],
+      "answer": 1,
+      "explanation": "\\xhh نویسه را با عدد شانزده‌وری hh تطبیق می‌دهد و 6F کد حرف o است. تکرار را کمیت‌سنج‌ها ({n}) و نام گروه را گروه‌های نامدار تعیین می‌کنند."
+    },
+    {
+      "question": "کدام متد یک آرایه از همهٔ تطبیق‌ها را برمی‌گرداند؟",
+      "options": ["match()", "replace()", "test()", "isNaN()"],
+      "answer": 0,
+      "explanation": "در مثال‌های این درس text.match(pattern) آرایهٔ نتیجه‌ها را برمی‌گرداند. test() فقط true یا false می‌دهد و replace() رشتهٔ جایگزین‌شده را."
+    }
+  ]
 }

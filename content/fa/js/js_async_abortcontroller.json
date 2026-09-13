@@ -1,358 +1,353 @@
 {
- "slug": "js_async_abortcontroller",
- "course": "js",
- "order": 231,
- "url": "/js/js_async_abortcontroller.asp",
- "title": "AbortController در JavaScript",
- "summary": "شیء AbortController به شما اجازه می‌دهد عملیات‌های ناهمگام، به‌ویژه درخواست‌های fetch()، را لغو کنید. در این درس یک کنترلر می‌سازید، signal آن را به fetch() می‌دهید، با abort() درخواست را لغو می‌کنید و خطای AbortError را جداگانه مدیریت می‌کنید.",
- "objectives": [
-  "با new AbortController() یک کنترلر بسازید و signal آن را به fetch() بدهید",
-  "یک درخواست در حال اجرا را با abort() لغو کنید",
-  "خطای AbortError را از دیگر خطاهای درخواست تشخیص دهید",
-  "برای هر درخواست تازه یک کنترلر تازه بسازید و الگوی لغو درخواست قبلی را پیاده کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "AbortController ناهمگام"
-  },
-  {
-   "type": "p",
-   "text": "شیء AbortController به شما اجازه می‌دهد عملیات‌های ناهمگام را لغو کنید."
-  },
-  {
-   "type": "p",
-   "text": "کاربرد رایج آن لغو درخواست‌های fetch() است."
-  },
-  {
-   "type": "p",
-   "text": "لغو عملیات‌های غیرلازم کارایی را بهتر می‌کند و برنامه را پاسخگوتر می‌سازد."
-  },
-  {
-   "type": "h2",
-   "text": "چرا یک درخواست را لغو کنیم؟"
-  },
-  {
-   "type": "p",
-   "text": "گاهی یک عملیات ناهمگام دیگر لازم نیست."
-  },
-  {
-   "type": "p",
-   "text": "مثال‌ها:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "کاربر دکمهٔ Cancel را می‌زند.",
-    "کاربر جست‌وجوی دیگری را شروع می‌کند.",
-    "کاربر صفحه را ترک می‌کند.",
-    "یک درخواست زیادی طول می‌کشد."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "در این حالت‌ها می‌توانید عملیات را لغو کنید، به‌جای اینکه منتظر تمام شدنش بمانید."
-  },
-  {
-   "type": "h2",
-   "text": "ساختن AbortController"
-  },
-  {
-   "type": "p",
-   "text": "AbortController را با کلیدواژهٔ new بسازید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "سیگنال Abort"
-  },
-  {
-   "type": "p",
-   "text": "هر AbortController یک AbortSignal در اختیار می‌گذارد."
-  },
-  {
-   "type": "p",
-   "text": "این سیگنال به عملیات ناهمگام داده می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "عملیات سیگنال را می‌گیرد و متوقف می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();\n\nconst signal = controller.signal;",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "لغو یک درخواست fetch"
-  },
-  {
-   "type": "p",
-   "text": "signal کنترلر را به fetch() بدهید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();\n\nfetch(\"largefile.txt\", {\n\n  signal: controller.signal\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "لغو کردن یک درخواست"
-  },
-  {
-   "type": "p",
-   "text": "برای لغو عملیات، abort() را صدا بزنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "controller.abort();",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "مثال کامل"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();\n\n// Async function to download a file\n\nasync function loadFile(file) {\n\n  try {\n\n    const response = await fetch(file, {\n\n      signal: controller.signal\n\n    });\n\n    myDisplayer(await response.text());\n\n  } catch(err) {\n\n    if (err.name == \"AbortError\") {\n\n      myDisplayer(\"Download canceled\");\n\n    }\n\n  }\n\n}\n\n// Call the async function\n\nloadFile(\"fetch.txt\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_abort_1"
-  },
-  {
-   "type": "h2",
-   "text": "لغو با یک دکمه"
-  },
-  {
-   "type": "p",
-   "text": "می‌توان درخواست را وقتی کاربر روی دکمه‌ای کلیک می‌کند لغو کرد."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button onclick='loadFile(\"fetch.txt\")'>Start Download</button>\n\n<button onclick=\"controller.abort()\">Cancel Download</button>\n\n<p id=\"demo\"></p>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_abort_2"
-  },
-  {
-   "type": "h2",
-   "text": "برای هر درخواست یک کنترلر تازه بسازید"
-  },
-  {
-   "type": "p",
-   "text": "وقتی یک AbortController لغو شد، دیگر نمی‌توان از آن استفاده کرد."
-  },
-  {
-   "type": "p",
-   "text": "برای هر درخواست تازه یک کنترلر تازه بسازید."
-  },
-  {
-   "type": "h2",
-   "text": "درخواست قبلی را لغو کنید"
-  },
-  {
-   "type": "p",
-   "text": "برنامه‌های جست‌وجو اغلب قبل از شروع درخواست تازه، درخواست قبلی را لغو می‌کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let controller;\n\nasync function search(text) {\n\n  if (controller) {\n\n    controller.abort();\n\n  }\n\n  controller = new AbortController();\n\n  try {\n\n    const response = await fetch(\n\n    \"/search?q=\" + text,\n\n    {signal: controller.signal}\n\n  );\n\n    console.log(await response.text());\n\n  }\n\n  catch(err) {\n\n    if (err.name != \"AbortError\") {\n\n      console.log(err);\n\n    }\n\n  }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "User types:\n\nc\nca\ncat\ncats\n\n↓\n\nOnly the last request finishes.",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "User types:\n\nc\nca\ncat\ncats\n\n↓\n\nOnly the last request finishes.",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "لغو بعد از یک مهلت زمانی"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید تایمرها را با AbortController ترکیب کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();\n\nsetTimeout(function(){\n\n  controller.abort();\n\n},5000);\n\nawait fetch(url,{\n\n  signal: controller.signal\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "اشتباه‌های رایج"
-  },
-  {
-   "type": "p",
-   "text": "فراموش کردن فرستادن signal."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(url);",
-   "caption": "نادرست:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(url);",
-   "caption": "درست:"
-  },
-  {
-   "type": "h2",
-   "text": "استفادهٔ دوباره از کنترلر لغوشده"
-  },
-  {
-   "type": "p",
-   "text": "یادتان باشد کنترلر تازه بسازید."
-  },
-  {
-   "type": "h2",
-   "text": "برخورد با AbortError مثل یک شکست"
-  },
-  {
-   "type": "p",
-   "text": "لغو شدن درخواست اغلب انتظار می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "آن را جداگانه مدیریت کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "if (err.name == \"AbortError\") {\n\n  return;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "AbortController در همهٔ مرورگرهای مدرن پشتیبانی می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "این شیء در کنار Fetch API کاربرد فراوانی دارد."
-  },
-  {
-   "type": "h2",
-   "text": "چک‌لیست AbortController"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "برای هر درخواست تازه یک کنترلر تازه بسازید",
-    "آن را با new AbortController() بسازید",
-    "controller.signal را به fetch() بدهید",
-    "برای لغو درخواست abort() را صدا بزنید",
-    "AbortError را در بلوک catch مدیریت کنید"
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل HTML بسازید، با new AbortController() یک کنترلر بسازید و signal آن را به fetch() بدهید؛ بعد از دو ثانیه با setTimeout دستور controller.abort() را صدا بزنید.",
-   "hint": "signal را داخل آرگومان دوم fetch، یعنی {signal: controller.signal}، بفرستید."
-  },
-  {
-   "prompt": "در catch بررسی کنید که err.name برابر \"AbortError\" است و پیام «درخواست لغو شد» را نشان دهید؛ برای خطاهای دیگر متن خطا را چاپ کنید.",
-   "hint": "لغو شدن درخواست شکست نیست؛ پس نباید با بقیهٔ خطاها یکسان رفتار کنید."
-  },
-  {
-   "prompt": "دو دکمه بسازید؛ یکی برای شروع دانلود فایل و یکی برای لغو آن. روی دکمهٔ شروع یک تابع async را صدا بزنید و روی دکمهٔ لغو controller.abort() را.",
-   "hint": "تابع شروع را در onclick دکمه بگذارید و کنترلر را در متغیری بیرون از تابع نگه دارید."
-  },
-  {
-   "prompt": "یک تابع جست‌وجو بنویسید که در هر فراخوانی اول کنترلر قبلی را لغو کند و بعد کنترلر تازه بسازد؛ چند بار پشت‌سرهم صدایش بزنید و ببینید فقط آخرین نتیجه چاپ می‌شود.",
-   "hint": "var کنترلر را بیرون از تابع بگذارید و اول با if (controller) بررسی کنید که وجود دارد یا نه."
-  },
-  {
-   "prompt": "یک درخواست بسازید که اگر بیش از ۵ ثانیه طول کشید لغو شود، و ببینید در کنسول چه پیامی می‌آید.",
-   "hint": "با setTimeout بعد از ۵۰۰۰ میلی‌ثانیه controller.abort() را صدا بزنید."
-  }
- ],
- "quiz": [
-  {
-   "question": "کنترلر لغو درخواست با چه عبارتی ساخته می‌شود؟",
-   "options": [
-    "AbortController()",
-    "new AbortController()",
-    "AbortController.create()",
-    "signal.AbortController()"
-   ],
-   "answer": 1,
-   "explanation": "AbortController یک سازنده (constructor) است و با کلیدواژهٔ new ساخته می‌شود؛ بدون new خطا می‌گیرید."
-  },
-  {
-   "question": "برای اینکه fetch() قابل لغو شود، چه چیزی باید به آن داده شود؟",
-   "options": [
-    "آدرس فایل در آرگومان سوم",
-    "controller.signal در آرگومان دوم",
-    "مقدار abort در سرآیندها",
-    "یک تابع کالبک لغو"
-   ],
-   "answer": 1,
-   "explanation": "signal را در شیء تنظیمات آرگومان دوم fetch می‌گذارید: {signal: controller.signal}. بدون آن، abort() روی درخواست اثری ندارد."
-  },
-  {
-   "question": "وقتی درخواستی لغو می‌شود، نام خطای گرفته‌شده در catch چیست؟",
-   "options": [
-    "CancelError",
-    "AbortError",
-    "FetchError",
-    "TimeoutError"
-   ],
-   "answer": 1,
-   "explanation": "خطای لغو نام AbortError دارد؛ با بررسی err.name می‌توانید لغو را از خطاهای واقعی جدا کنید."
-  },
-  {
-   "question": "بعد از اینکه یک بار controller.abort() را صدا زدید، چه باید بکنید؟",
-   "options": [
-    "همان کنترلر را دوباره برای درخواست بعدی به کار ببرید",
-    "برای درخواست تازه یک کنترلر تازه بسازید",
-    "signal را دستی صفر کنید",
-    "تابع fetch را از نو تعریف کنید"
-   ],
-   "answer": 1,
-   "explanation": "کنترلر لغوشده دیگر قابل استفاده نیست؛ برای هر درخواست تازه باید یک AbortController تازه بسازید."
-  },
-  {
-   "question": "در الگوی لغو درخواست قبلی در جست‌وجو، چرا اول درخواست قبلی لغو می‌شود؟",
-   "options": [
-    "چون نتایج قدیمی دیگر لازم نیستند و کارایی و پاسخگویی بهتر می‌شود",
-    "چون fetch نمی‌تواند دو درخواست هم‌زمان بفرستد",
-    "چون مرورگر فقط یک درخواست در هر ثانیه می‌پذیرد",
-    "چون signal بعد از هر پاسخ پاک می‌شود"
-   ],
-   "answer": 0,
-   "explanation": "لغو درخواست‌های بی‌استفاده منابع را آزاد می‌کند و باعث می‌شود فقط نتیجهٔ جست‌وجوی آخر نمایش داده شود."
-  }
- ]
+  "slug": "js_async_abortcontroller",
+  "course": "js",
+  "order": 231,
+  "url": "/js/js_async_abortcontroller.asp",
+  "title": "AbortController در JavaScript",
+  "summary": "شیء AbortController به شما اجازه می‌دهد عملیات‌های ناهمگام، به‌ویژه درخواست‌های fetch()، را لغو کنید. در این درس یک کنترلر می‌سازید، signal آن را به fetch() می‌دهید، با abort() درخواست را لغو می‌کنید و خطای AbortError را جداگانه مدیریت می‌کنید.",
+  "objectives": [
+    "با new AbortController() یک کنترلر بسازید و signal آن را به fetch() بدهید",
+    "یک درخواست در حال اجرا را با abort() لغو کنید",
+    "خطای AbortError را از دیگر خطاهای درخواست تشخیص دهید",
+    "برای هر درخواست تازه یک کنترلر تازه بسازید و الگوی لغو درخواست قبلی را پیاده کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "AbortController ناهمگام"
+    },
+    {
+      "type": "p",
+      "text": "شیء AbortController به شما اجازه می‌دهد عملیات‌های ناهمگام را لغو کنید."
+    },
+    {
+      "type": "p",
+      "text": "کاربرد رایج آن لغو درخواست‌های fetch() است."
+    },
+    {
+      "type": "p",
+      "text": "لغو عملیات‌های غیرلازم کارایی را بهتر می‌کند و برنامه را پاسخگوتر می‌سازد."
+    },
+    {
+      "type": "h2",
+      "text": "چرا یک درخواست را لغو کنیم؟"
+    },
+    {
+      "type": "p",
+      "text": "گاهی یک عملیات ناهمگام دیگر لازم نیست."
+    },
+    {
+      "type": "p",
+      "text": "مثال‌ها:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "کاربر دکمهٔ Cancel را می‌زند.",
+        "کاربر جست‌وجوی دیگری را شروع می‌کند.",
+        "کاربر صفحه را ترک می‌کند.",
+        "یک درخواست زیادی طول می‌کشد."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "در این حالت‌ها می‌توانید عملیات را لغو کنید، به‌جای اینکه منتظر تمام شدنش بمانید."
+    },
+    {
+      "type": "h2",
+      "text": "ساختن AbortController"
+    },
+    {
+      "type": "p",
+      "text": "AbortController را با کلیدواژهٔ new بسازید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "سیگنال Abort"
+    },
+    {
+      "type": "p",
+      "text": "هر AbortController یک AbortSignal در اختیار می‌گذارد."
+    },
+    {
+      "type": "p",
+      "text": "این سیگنال به عملیات ناهمگام داده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "عملیات سیگنال را می‌گیرد و متوقف می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();\n\nconst signal = controller.signal;",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "لغو یک درخواست fetch"
+    },
+    {
+      "type": "p",
+      "text": "signal کنترلر را به fetch() بدهید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();\n\nfetch(\"largefile.txt\", {\n\n  signal: controller.signal\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "لغو کردن یک درخواست"
+    },
+    {
+      "type": "p",
+      "text": "برای لغو عملیات، abort() را صدا بزنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "controller.abort();",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "مثال کامل"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();\n\n// Async function to download a file\n\nasync function loadFile(file) {\n\n  try {\n\n    const response = await fetch(file, {\n\n      signal: controller.signal\n\n    });\n\n    myDisplayer(await response.text());\n\n  } catch(err) {\n\n    if (err.name == \"AbortError\") {\n\n      myDisplayer(\"Download canceled\");\n\n    }\n\n  }\n\n}\n\n// Call the async function\n\nloadFile(\"fetch.txt\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_abort_1"
+    },
+    {
+      "type": "h2",
+      "text": "لغو با یک دکمه"
+    },
+    {
+      "type": "p",
+      "text": "می‌توان درخواست را وقتی کاربر روی دکمه‌ای کلیک می‌کند لغو کرد."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button onclick='loadFile(\"fetch.txt\")'>Start Download</button>\n\n<button onclick=\"controller.abort()\">Cancel Download</button>\n\n<p id=\"demo\"></p>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_abort_2"
+    },
+    {
+      "type": "h2",
+      "text": "برای هر درخواست یک کنترلر تازه بسازید"
+    },
+    {
+      "type": "p",
+      "text": "وقتی یک AbortController لغو شد، دیگر نمی‌توان از آن استفاده کرد."
+    },
+    {
+      "type": "p",
+      "text": "برای هر درخواست تازه یک کنترلر تازه بسازید."
+    },
+    {
+      "type": "h2",
+      "text": "درخواست قبلی را لغو کنید"
+    },
+    {
+      "type": "p",
+      "text": "برنامه‌های جست‌وجو اغلب قبل از شروع درخواست تازه، درخواست قبلی را لغو می‌کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let controller;\n\nasync function search(text) {\n\n  if (controller) {\n\n    controller.abort();\n\n  }\n\n  controller = new AbortController();\n\n  try {\n\n    const response = await fetch(\n\n    \"/search?q=\" + text,\n\n    {signal: controller.signal}\n\n  );\n\n    console.log(await response.text());\n\n  }\n\n  catch(err) {\n\n    if (err.name != \"AbortError\") {\n\n      console.log(err);\n\n    }\n\n  }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "User types:\n\nc\nca\ncat\ncats\n\n↓\n\nOnly the last request finishes.",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "User types:\n\nc\nca\ncat\ncats\n\n↓\n\nOnly the last request finishes.",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "لغو بعد از یک مهلت زمانی"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید تایمرها را با AbortController ترکیب کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();\n\nsetTimeout(function(){\n\n  controller.abort();\n\n},5000);\n\nawait fetch(url,{\n\n  signal: controller.signal\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "اشتباه‌های رایج"
+    },
+    {
+      "type": "p",
+      "text": "فراموش کردن فرستادن signal."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(url);",
+      "caption": "نادرست:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(url);",
+      "caption": "درست:"
+    },
+    {
+      "type": "h2",
+      "text": "استفادهٔ دوباره از کنترلر لغوشده"
+    },
+    {
+      "type": "p",
+      "text": "یادتان باشد کنترلر تازه بسازید."
+    },
+    {
+      "type": "h2",
+      "text": "برخورد با AbortError مثل یک شکست"
+    },
+    {
+      "type": "p",
+      "text": "لغو شدن درخواست اغلب انتظار می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "آن را جداگانه مدیریت کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "if (err.name == \"AbortError\") {\n\n  return;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "AbortController در همهٔ مرورگرهای مدرن پشتیبانی می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "این شیء در کنار Fetch API کاربرد فراوانی دارد."
+    },
+    {
+      "type": "h2",
+      "text": "چک‌لیست AbortController"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "برای هر درخواست تازه یک کنترلر تازه بسازید",
+        "آن را با new AbortController() بسازید",
+        "controller.signal را به fetch() بدهید",
+        "برای لغو درخواست abort() را صدا بزنید",
+        "AbortError را در بلوک catch مدیریت کنید"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل HTML بسازید، با new AbortController() یک کنترلر بسازید و signal آن را به fetch() بدهید؛ بعد از دو ثانیه با setTimeout دستور controller.abort() را صدا بزنید.",
+      "hint": "signal را داخل آرگومان دوم fetch، یعنی {signal: controller.signal}، بفرستید."
+    },
+    {
+      "prompt": "در catch بررسی کنید که err.name برابر \"AbortError\" است و پیام «درخواست لغو شد» را نشان دهید؛ برای خطاهای دیگر متن خطا را چاپ کنید.",
+      "hint": "لغو شدن درخواست شکست نیست؛ پس نباید با بقیهٔ خطاها یکسان رفتار کنید."
+    },
+    {
+      "prompt": "دو دکمه بسازید؛ یکی برای شروع دانلود فایل و یکی برای لغو آن. روی دکمهٔ شروع یک تابع async را صدا بزنید و روی دکمهٔ لغو controller.abort() را.",
+      "hint": "تابع شروع را در onclick دکمه بگذارید و کنترلر را در متغیری بیرون از تابع نگه دارید."
+    },
+    {
+      "prompt": "یک تابع جست‌وجو بنویسید که در هر فراخوانی اول کنترلر قبلی را لغو کند و بعد کنترلر تازه بسازد؛ چند بار پشت‌سرهم صدایش بزنید و ببینید فقط آخرین نتیجه چاپ می‌شود.",
+      "hint": "var کنترلر را بیرون از تابع بگذارید و اول با if (controller) بررسی کنید که وجود دارد یا نه."
+    },
+    {
+      "prompt": "یک درخواست بسازید که اگر بیش از ۵ ثانیه طول کشید لغو شود، و ببینید در کنسول چه پیامی می‌آید.",
+      "hint": "با setTimeout بعد از ۵۰۰۰ میلی‌ثانیه controller.abort() را صدا بزنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کنترلر لغو درخواست با چه عبارتی ساخته می‌شود؟",
+      "options": [
+        "AbortController()",
+        "new AbortController()",
+        "AbortController.create()",
+        "signal.AbortController()"
+      ],
+      "answer": 1,
+      "explanation": "AbortController یک سازنده (constructor) است و با کلیدواژهٔ new ساخته می‌شود؛ بدون new خطا می‌گیرید."
+    },
+    {
+      "question": "برای اینکه fetch() قابل لغو شود، چه چیزی باید به آن داده شود؟",
+      "options": [
+        "آدرس فایل در آرگومان سوم",
+        "controller.signal در آرگومان دوم",
+        "مقدار abort در سرآیندها",
+        "یک تابع کالبک لغو"
+      ],
+      "answer": 1,
+      "explanation": "signal را در شیء تنظیمات آرگومان دوم fetch می‌گذارید: {signal: controller.signal}. بدون آن، abort() روی درخواست اثری ندارد."
+    },
+    {
+      "question": "وقتی درخواستی لغو می‌شود، نام خطای گرفته‌شده در catch چیست؟",
+      "options": ["CancelError", "AbortError", "FetchError", "TimeoutError"],
+      "answer": 1,
+      "explanation": "خطای لغو نام AbortError دارد؛ با بررسی err.name می‌توانید لغو را از خطاهای واقعی جدا کنید."
+    },
+    {
+      "question": "بعد از اینکه یک بار controller.abort() را صدا زدید، چه باید بکنید؟",
+      "options": [
+        "همان کنترلر را دوباره برای درخواست بعدی به کار ببرید",
+        "برای درخواست تازه یک کنترلر تازه بسازید",
+        "signal را دستی صفر کنید",
+        "تابع fetch را از نو تعریف کنید"
+      ],
+      "answer": 1,
+      "explanation": "کنترلر لغوشده دیگر قابل استفاده نیست؛ برای هر درخواست تازه باید یک AbortController تازه بسازید."
+    },
+    {
+      "question": "در الگوی لغو درخواست قبلی در جست‌وجو، چرا اول درخواست قبلی لغو می‌شود؟",
+      "options": [
+        "چون نتایج قدیمی دیگر لازم نیستند و کارایی و پاسخگویی بهتر می‌شود",
+        "چون fetch نمی‌تواند دو درخواست هم‌زمان بفرستد",
+        "چون مرورگر فقط یک درخواست در هر ثانیه می‌پذیرد",
+        "چون signal بعد از هر پاسخ پاک می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "لغو درخواست‌های بی‌استفاده منابع را آزاد می‌کند و باعث می‌شود فقط نتیجهٔ جست‌وجوی آخر نمایش داده شود."
+    }
+  ]
 }

@@ -54,19 +54,31 @@ export default async function SetupPage() {
           </a>
         </Button>
         <Button variant="outline" size="sm" asChild>
-          <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="noreferrer">
+          <a
+            href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FolderOpen className="size-4" />
             Live Server
           </a>
         </Button>
         <Button variant="outline" size="sm" asChild>
-          <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" target="_blank" rel="noreferrer">
+          <a
+            href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"
+            target="_blank"
+            rel="noreferrer"
+          >
             <Check className="size-4" />
             Prettier
           </a>
         </Button>
         <Button variant="outline" size="sm" asChild>
-          <a href="https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally" target="_blank" rel="noreferrer">
+          <a
+            href="https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally"
+            target="_blank"
+            rel="noreferrer"
+          >
             <BookOpen className="size-4" />
             i18n Ally
           </a>

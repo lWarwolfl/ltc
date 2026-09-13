@@ -1,414 +1,323 @@
 {
- "slug": "js_dataview",
- "course": "js",
- "order": 244,
- "url": "/js/js_dataview.asp",
- "title": "JavaScript DataView",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript DataView"
-  },
-  {
-   "type": "p",
-   "text": "The DataView Object lets you read and write multiple numeric types\nin an ArrayBuffer, at any byte offset, with optional control over\nendianness (byte order)."
-  },
-  {
-   "type": "h2",
-   "text": "What Is a DataView?"
-  },
-  {
-   "type": "p",
-   "text": "A DataView is a view on top of an ArrayBuffer."
-  },
-  {
-   "type": "p",
-   "text": "A DataView does not store data by itself; instead, it lets you interpret the bytes\nin the buffer as different types:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "8-bit, 16-bit, 32-bit integers (signed and unsigned)",
-    "32-bit and 64-bit floating point numbers",
-    "At arbitrary byte offsets in the buffer",
-    "With configurable little-endian or big-endian order"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Use DataView when:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "You have a binary format with fields of different types and sizes.",
-    "You need to control byte order (endianness).",
-    "Typed arrays like Uint8Array or Float32Array are not flexible enough."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Use DataView when you work with binary data where\nyou need full control over byte layout and types (for example network packets,\nfile formats, or interoperability with other languages)."
-  },
-  {
-   "type": "h2",
-   "text": "Creating a DataView"
-  },
-  {
-   "type": "p",
-   "text": "To create a DataView, you need an ArrayBuffer."
-  },
-  {
-   "type": "p",
-   "text": "Then you pass the ArrayBuffer to the new DataView() constructor:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a 16 bytes ArrayBuffer\n\nconst buffer = new ArrayBuffer(16);\n\n// Create a new DataView\n\nconst view = new DataView(buffer);\n\n// Get lengths and offset\n\nlet len1 = buffer.byteLength);\n\nlet len2 = view.byteLength;\n\nlet off1 = view.byteOffset;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dataview_create"
-  },
-  {
-   "type": "p",
-   "text": "You can also create a DataView that starts at a specific offset and has a limited length:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a 16 bytes ArrayBuffer\n\nconst buffer = new ArrayBuffer(16);\n\n// Create a new DataView\n\nconst view = new DataView(buffer, 4, 8);\n\n// Get lengths and offset\n\nlet len1 = buffer.byteLength);\n\nlet len2 = view.byteLength;\n\nlet off1 = view.byteOffset;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dataview_create2"
-  },
-  {
-   "type": "p",
-   "text": "Multiple DataView and typed array views can share the same ArrayBuffer."
-  },
-  {
-   "type": "h2",
-   "text": "Reading and Writing DataView Values"
-  },
-  {
-   "type": "p",
-   "text": "DataView uses getXxx() and setXxx() methods to read and write values:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "getInt8(), setInt8()",
-    "getUint16(), setUint16()",
-    "getInt32(), setInt32()",
-    "getFloat32(), setFloat32()",
-    "and more"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new ArrayBuffer(8);\n\nconst view = new DataView(buffer);\n\n// Write a 32-bit signed integer at byte offset 0\n\nview.setInt32(0, 123456);\n\n// Read it back\n\nconst value = view.getInt32(0);\n\nconsole.log(value); // 123456",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new ArrayBuffer(16);\n\nconst view = new DataView(buffer);\n\nview.setFloat64(0, Math.PI);\n\nview.setFloat64(8, Math.E);\n\nconst pi = view.getFloat64(0);\n\nconst e  = view.getFloat64(8);\n\nconsole.log(\"PI:\", pi);\n\nconsole.log(\"E:\", e);",
-   "caption": "Example"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "The first argument is always the byte offset from the start\n    of the underlying buffer (or the byteOffset of the view)."
-  },
-  {
-   "type": "h2",
-   "text": "Endianness (Byte Order)"
-  },
-  {
-   "type": "p",
-   "text": "Many binary formats specify whether multi-byte numbers are stored as\nlittle-endian or big-endian."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Little-endian: Least significant byte first (most common on PCs).",
-    "Big-endian: Most significant byte first (common in some protocols)."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Most DataView numeric methods have an optional\nlittleEndian parameter:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true = little-endian",
-    "false (or omitted) = big-endian"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new ArrayBuffer(4);\n\nconst view   = new DataView(buffer);\n\n// Same number, two different byte orders:\n\nview.setUint32(0, 0x12345678, true);  // little-endian\n\nconsole.log(new Uint8Array(buffer));\n\n// Example output: Uint8Array(4) [120, 86, 52, 18] (0x78, 0x56, 0x34, 0x12)\n\n// Overwrite with big-endian\n\nview.setUint32(0, 0x12345678, false); // big-endian\n\nconsole.log(new Uint8Array(buffer));\n\n// Example output: Uint8Array(4) [18, 52, 86, 120] (0x12, 0x34, 0x56, 0x78)",
-   "caption": "Example: Writing with Little-Endian and Big-Endian"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Always check the documentation for your file format or protocol\n    to know which endianness to use."
-  },
-  {
-   "type": "h2",
-   "text": "Mixed Types in One Buffer"
-  },
-  {
-   "type": "p",
-   "text": "One of the main advantages of DataView is that you can mix\n    different types in a single buffer. For example:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "1 byte for a flag",
-    "2 bytes for a length",
-    "4 bytes for a float"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new ArrayBuffer(12);\n\nconst view   = new DataView(buffer);\n\n// Byte 0: a flag (0 or 1)\n\nview.setUint8(0, 1);\n\n// Bytes 1-2: a 16-bit length (little-endian)\n\nview.setUint16(1, 500, true);\n\n// Bytes 4-11: a 64-bit float (skip byte 3 for alignment)\n\nview.setFloat64(4, 3.14159, true);\n\n// Read the values back\n\nconst flag   = view.getUint8(0);\n\nconst length = view.getUint16(1, true);\n\nconst value  = view.getFloat64(4, true);\n\nconsole.log(\"Flag:\", flag);\n\nconsole.log(\"Length:\", length);\n\nconsole.log(\"Value:\", value);",
-   "caption": "Example: Mixed Types"
-  },
-  {
-   "type": "h2",
-   "text": "Summary"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "DataView is a flexible way to read and write multiple numeric types in an ArrayBuffer.",
-    "Use getXxx() and setXxx() methods with a byte offset (and optional endianness).",
-    "Great for binary protocols, file formats, and interoperability with other languages.",
-    "Combine DataView with typed arrays to inspect individual bytes easily."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Common Use Cases"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Parsing binary file formats (images, audio, custom formats).",
-    "Implementing binary network protocols on top of WebSocket or WebRTC.",
-    "Interop with WebAssembly or native code where layout matters.",
-    "Re-implementing C/C++ style structs and unions in JavaScript."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "DataView Reference"
-  },
-  {
-   "type": "h2",
-   "text": "Revised December 2025"
-  },
-  {
-   "type": "h3",
-   "text": "Constructor"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Syntax",
-     "Description"
-    ],
-    [
-     "new DataView(buffer)",
-     "View on entire ArrayBuffer."
-    ],
-    [
-     "new DataView(buffer, byteOffset)",
-     "View starting at byteOffset to the end."
-    ],
-    [
-     "new DataView(buffer, byteOffset, byteLength)",
-     "View of length byteLength starting at byteOffset."
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "Properties"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Property",
-     "Description"
-    ],
-    [
-     "dataView.buffer",
-     "The underlying ArrayBuffer."
-    ],
-    [
-     "dataView.byteLength",
-     "Number of bytes in this view."
-    ],
-    [
-     "dataView.byteOffset",
-     "Offset (in bytes) of this view from the start of the buffer."
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "Read Methods (get)"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Description"
-    ],
-    [
-     "getInt8(byteOffset)",
-     "Reads an 8-bit signed integer."
-    ],
-    [
-     "getUint8(byteOffset)",
-     "Reads an 8-bit unsigned integer."
-    ],
-    [
-     "getInt16(byteOffset, littleEndian?)",
-     "Reads a 16-bit signed integer."
-    ],
-    [
-     "getUint16(byteOffset, littleEndian?)",
-     "Reads a 16-bit unsigned integer."
-    ],
-    [
-     "getInt32(byteOffset, littleEndian?)",
-     "Reads a 32-bit signed integer."
-    ],
-    [
-     "getUint32(byteOffset, littleEndian?)",
-     "Reads a 32-bit unsigned integer."
-    ],
-    [
-     "getFloat32(byteOffset, littleEndian?)",
-     "Reads a 32-bit floating point number."
-    ],
-    [
-     "getFloat64(byteOffset, littleEndian?)",
-     "Reads a 64-bit floating point number."
-    ],
-    [
-     "getBigInt64(byteOffset, littleEndian?)",
-     "Reads a 64-bit signed integer as BigInt."
-    ],
-    [
-     "getBigUint64(byteOffset, littleEndian?)",
-     "Reads a 64-bit unsigned integer as BigInt."
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "Write Methods (set)"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Description"
-    ],
-    [
-     "setInt8(byteOffset, value)",
-     "Writes an 8-bit signed integer."
-    ],
-    [
-     "setUint8(byteOffset, value)",
-     "Writes an 8-bit unsigned integer."
-    ],
-    [
-     "setInt16(byteOffset, value, littleEndian?)",
-     "Writes a 16-bit signed integer."
-    ],
-    [
-     "setUint16(byteOffset, value, littleEndian?)",
-     "Writes a 16-bit unsigned integer."
-    ],
-    [
-     "setInt32(byteOffset, value, littleEndian?)",
-     "Writes a 32-bit signed integer."
-    ],
-    [
-     "setUint32(byteOffset, value, littleEndian?)",
-     "Writes a 32-bit unsigned integer."
-    ],
-    [
-     "setFloat32(byteOffset, value, littleEndian?)",
-     "Writes a 32-bit floating point number."
-    ],
-    [
-     "setFloat64(byteOffset, value, littleEndian?)",
-     "Writes a 64-bit floating point number."
-    ],
-    [
-     "setBigInt64(byteOffset, value, littleEndian?)",
-     "Writes a 64-bit signed integer BigInt."
-    ],
-    [
-     "setBigUint64(byteOffset, value, littleEndian?)",
-     "Writes a 64-bit unsigned integer BigInt."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Learn More:"
-  },
-  {
-   "type": "p",
-   "text": "Typed Array Tutorial"
-  },
-  {
-   "type": "p",
-   "text": "Typed Array Methods"
-  },
-  {
-   "type": "p",
-   "text": "Typed Array Reference"
-  },
-  {
-   "type": "p",
-   "text": "Array Buffers"
-  },
-  {
-   "type": "p",
-   "text": "Atomics"
-  }
- ]
+  "slug": "js_dataview",
+  "course": "js",
+  "order": 244,
+  "url": "/js/js_dataview.asp",
+  "title": "JavaScript DataView",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript DataView"
+    },
+    {
+      "type": "p",
+      "text": "The DataView Object lets you read and write multiple numeric types\nin an ArrayBuffer, at any byte offset, with optional control over\nendianness (byte order)."
+    },
+    {
+      "type": "h2",
+      "text": "What Is a DataView?"
+    },
+    {
+      "type": "p",
+      "text": "A DataView is a view on top of an ArrayBuffer."
+    },
+    {
+      "type": "p",
+      "text": "A DataView does not store data by itself; instead, it lets you interpret the bytes\nin the buffer as different types:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "8-bit, 16-bit, 32-bit integers (signed and unsigned)",
+        "32-bit and 64-bit floating point numbers",
+        "At arbitrary byte offsets in the buffer",
+        "With configurable little-endian or big-endian order"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Use DataView when:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "You have a binary format with fields of different types and sizes.",
+        "You need to control byte order (endianness).",
+        "Typed arrays like Uint8Array or Float32Array are not flexible enough."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Use DataView when you work with binary data where\nyou need full control over byte layout and types (for example network packets,\nfile formats, or interoperability with other languages)."
+    },
+    {
+      "type": "h2",
+      "text": "Creating a DataView"
+    },
+    {
+      "type": "p",
+      "text": "To create a DataView, you need an ArrayBuffer."
+    },
+    {
+      "type": "p",
+      "text": "Then you pass the ArrayBuffer to the new DataView() constructor:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a 16 bytes ArrayBuffer\n\nconst buffer = new ArrayBuffer(16);\n\n// Create a new DataView\n\nconst view = new DataView(buffer);\n\n// Get lengths and offset\n\nlet len1 = buffer.byteLength);\n\nlet len2 = view.byteLength;\n\nlet off1 = view.byteOffset;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dataview_create"
+    },
+    {
+      "type": "p",
+      "text": "You can also create a DataView that starts at a specific offset and has a limited length:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a 16 bytes ArrayBuffer\n\nconst buffer = new ArrayBuffer(16);\n\n// Create a new DataView\n\nconst view = new DataView(buffer, 4, 8);\n\n// Get lengths and offset\n\nlet len1 = buffer.byteLength);\n\nlet len2 = view.byteLength;\n\nlet off1 = view.byteOffset;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dataview_create2"
+    },
+    {
+      "type": "p",
+      "text": "Multiple DataView and typed array views can share the same ArrayBuffer."
+    },
+    {
+      "type": "h2",
+      "text": "Reading and Writing DataView Values"
+    },
+    {
+      "type": "p",
+      "text": "DataView uses getXxx() and setXxx() methods to read and write values:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "getInt8(), setInt8()",
+        "getUint16(), setUint16()",
+        "getInt32(), setInt32()",
+        "getFloat32(), setFloat32()",
+        "and more"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new ArrayBuffer(8);\n\nconst view = new DataView(buffer);\n\n// Write a 32-bit signed integer at byte offset 0\n\nview.setInt32(0, 123456);\n\n// Read it back\n\nconst value = view.getInt32(0);\n\nconsole.log(value); // 123456",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new ArrayBuffer(16);\n\nconst view = new DataView(buffer);\n\nview.setFloat64(0, Math.PI);\n\nview.setFloat64(8, Math.E);\n\nconst pi = view.getFloat64(0);\n\nconst e  = view.getFloat64(8);\n\nconsole.log(\"PI:\", pi);\n\nconsole.log(\"E:\", e);",
+      "caption": "Example"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "The first argument is always the byte offset from the start\n    of the underlying buffer (or the byteOffset of the view)."
+    },
+    {
+      "type": "h2",
+      "text": "Endianness (Byte Order)"
+    },
+    {
+      "type": "p",
+      "text": "Many binary formats specify whether multi-byte numbers are stored as\nlittle-endian or big-endian."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Little-endian: Least significant byte first (most common on PCs).",
+        "Big-endian: Most significant byte first (common in some protocols)."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Most DataView numeric methods have an optional\nlittleEndian parameter:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true = little-endian", "false (or omitted) = big-endian"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new ArrayBuffer(4);\n\nconst view   = new DataView(buffer);\n\n// Same number, two different byte orders:\n\nview.setUint32(0, 0x12345678, true);  // little-endian\n\nconsole.log(new Uint8Array(buffer));\n\n// Example output: Uint8Array(4) [120, 86, 52, 18] (0x78, 0x56, 0x34, 0x12)\n\n// Overwrite with big-endian\n\nview.setUint32(0, 0x12345678, false); // big-endian\n\nconsole.log(new Uint8Array(buffer));\n\n// Example output: Uint8Array(4) [18, 52, 86, 120] (0x12, 0x34, 0x56, 0x78)",
+      "caption": "Example: Writing with Little-Endian and Big-Endian"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Always check the documentation for your file format or protocol\n    to know which endianness to use."
+    },
+    {
+      "type": "h2",
+      "text": "Mixed Types in One Buffer"
+    },
+    {
+      "type": "p",
+      "text": "One of the main advantages of DataView is that you can mix\n    different types in a single buffer. For example:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["1 byte for a flag", "2 bytes for a length", "4 bytes for a float"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new ArrayBuffer(12);\n\nconst view   = new DataView(buffer);\n\n// Byte 0: a flag (0 or 1)\n\nview.setUint8(0, 1);\n\n// Bytes 1-2: a 16-bit length (little-endian)\n\nview.setUint16(1, 500, true);\n\n// Bytes 4-11: a 64-bit float (skip byte 3 for alignment)\n\nview.setFloat64(4, 3.14159, true);\n\n// Read the values back\n\nconst flag   = view.getUint8(0);\n\nconst length = view.getUint16(1, true);\n\nconst value  = view.getFloat64(4, true);\n\nconsole.log(\"Flag:\", flag);\n\nconsole.log(\"Length:\", length);\n\nconsole.log(\"Value:\", value);",
+      "caption": "Example: Mixed Types"
+    },
+    {
+      "type": "h2",
+      "text": "Summary"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "DataView is a flexible way to read and write multiple numeric types in an ArrayBuffer.",
+        "Use getXxx() and setXxx() methods with a byte offset (and optional endianness).",
+        "Great for binary protocols, file formats, and interoperability with other languages.",
+        "Combine DataView with typed arrays to inspect individual bytes easily."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Common Use Cases"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Parsing binary file formats (images, audio, custom formats).",
+        "Implementing binary network protocols on top of WebSocket or WebRTC.",
+        "Interop with WebAssembly or native code where layout matters.",
+        "Re-implementing C/C++ style structs and unions in JavaScript."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "DataView Reference"
+    },
+    {
+      "type": "h2",
+      "text": "Revised December 2025"
+    },
+    {
+      "type": "h3",
+      "text": "Constructor"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Syntax", "Description"],
+        ["new DataView(buffer)", "View on entire ArrayBuffer."],
+        ["new DataView(buffer, byteOffset)", "View starting at byteOffset to the end."],
+        [
+          "new DataView(buffer, byteOffset, byteLength)",
+          "View of length byteLength starting at byteOffset."
+        ]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Properties"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Property", "Description"],
+        ["dataView.buffer", "The underlying ArrayBuffer."],
+        ["dataView.byteLength", "Number of bytes in this view."],
+        ["dataView.byteOffset", "Offset (in bytes) of this view from the start of the buffer."]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Read Methods (get)"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Description"],
+        ["getInt8(byteOffset)", "Reads an 8-bit signed integer."],
+        ["getUint8(byteOffset)", "Reads an 8-bit unsigned integer."],
+        ["getInt16(byteOffset, littleEndian?)", "Reads a 16-bit signed integer."],
+        ["getUint16(byteOffset, littleEndian?)", "Reads a 16-bit unsigned integer."],
+        ["getInt32(byteOffset, littleEndian?)", "Reads a 32-bit signed integer."],
+        ["getUint32(byteOffset, littleEndian?)", "Reads a 32-bit unsigned integer."],
+        ["getFloat32(byteOffset, littleEndian?)", "Reads a 32-bit floating point number."],
+        ["getFloat64(byteOffset, littleEndian?)", "Reads a 64-bit floating point number."],
+        ["getBigInt64(byteOffset, littleEndian?)", "Reads a 64-bit signed integer as BigInt."],
+        ["getBigUint64(byteOffset, littleEndian?)", "Reads a 64-bit unsigned integer as BigInt."]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Write Methods (set)"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Description"],
+        ["setInt8(byteOffset, value)", "Writes an 8-bit signed integer."],
+        ["setUint8(byteOffset, value)", "Writes an 8-bit unsigned integer."],
+        ["setInt16(byteOffset, value, littleEndian?)", "Writes a 16-bit signed integer."],
+        ["setUint16(byteOffset, value, littleEndian?)", "Writes a 16-bit unsigned integer."],
+        ["setInt32(byteOffset, value, littleEndian?)", "Writes a 32-bit signed integer."],
+        ["setUint32(byteOffset, value, littleEndian?)", "Writes a 32-bit unsigned integer."],
+        ["setFloat32(byteOffset, value, littleEndian?)", "Writes a 32-bit floating point number."],
+        ["setFloat64(byteOffset, value, littleEndian?)", "Writes a 64-bit floating point number."],
+        ["setBigInt64(byteOffset, value, littleEndian?)", "Writes a 64-bit signed integer BigInt."],
+        [
+          "setBigUint64(byteOffset, value, littleEndian?)",
+          "Writes a 64-bit unsigned integer BigInt."
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Learn More:"
+    },
+    {
+      "type": "p",
+      "text": "Typed Array Tutorial"
+    },
+    {
+      "type": "p",
+      "text": "Typed Array Methods"
+    },
+    {
+      "type": "p",
+      "text": "Typed Array Reference"
+    },
+    {
+      "type": "p",
+      "text": "Array Buffers"
+    },
+    {
+      "type": "p",
+      "text": "Atomics"
+    }
+  ]
 }

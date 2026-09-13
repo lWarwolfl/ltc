@@ -1,579 +1,480 @@
 {
- "slug": "js_2020",
- "course": "js",
- "order": 130,
- "url": "/js/js_2020.asp",
- "title": "ECMAScript 2020",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2020"
-  },
-  {
-   "type": "h2",
-   "text": "New Features in JavaScript 2020"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Feature",
-     "Description"
-    ],
-    [
-     "BigInt",
-     "Stores values too big to store in a JavaScript number"
-    ],
-    [
-     "String matchAll()",
-     "Searchs for all occurrences of a string in a string"
-    ],
-    [
-     "Promise.allSettled()",
-     "Takes promises as input and returns a single promise"
-    ],
-    [
-     "Dynamic Import",
-     "Loads JavaScript modules at runtime"
-    ],
-    [
-     "globalThis",
-     "Refers to the global object independent of code environment"
-    ],
-    [
-     "import.meta",
-     "Returns an object indicating the base URL of a module"
-    ],
-    [
-     "Namespace Exports",
-     "Export a full namespace from a module without having to import it first"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "New JavaScript Operators in 2020"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Oper",
-     "Description",
-     ""
-    ],
-    [
-     "??",
-     "Nullish coalescing returns the first argument not nullish",
-     ""
-    ],
-    [
-     "?.",
-     "Optional chaining returns undefined if an object is undefined or null",
-     ""
-    ],
-    [
-     "&&=",
-     "Logical AND assignment assigns the second value if the first value is true",
-     ""
-    ],
-    [
-     "||=",
-     "Logical OR assignment assigns the second value if the first value is false",
-     ""
-    ],
-    [
-     "??=",
-     "Nullish coalescing assignment assigns the second value if the first value is undefined or null",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2020 is supported in all modern browsers since April 2021."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome80",
-     "Edge80",
-     "Firefox80",
-     "Safari14.1",
-     "Opera67"
-    ],
-    [
-     "Feb 2020",
-     "Feb 2020",
-     "Aug 2020",
-     "Apr 2021",
-     "Mar 2020"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript BigInt"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript BigInt variables are used to store big integer values\nthat are too big to be represented by a a normal JavaScript Number."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript integers are only accurate up to about 15 digits."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 999999999999999;\n\nlet y = 9999999999999999; // too big",
-   "caption": "Integer Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 9999999999999999;\n\nlet y = 9999999999999999n;",
-   "caption": "Integer Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
-  },
-  {
-   "type": "p",
-   "text": "To create a BigInt, append n to the end of an integer or call\nBigInt():"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 1234567890123456789012345n;\n\nlet y = BigInt(1234567890123456789012345)",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_create"
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript typeof a BigInt is \"bigint\":"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = BigInt(999999999999999);\n\nlet type = typeof x;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_typeof"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript String matchAll()"
-  },
-  {
-   "type": "p",
-   "text": "Before ES2020 there was no string method that could be used to search for all occurrences\nof a string in a string."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const iterator = text.matchAll(\"Cats\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall"
-  },
-  {
-   "type": "p",
-   "text": "If the parameter is a regular expression, the global flag (g) must be set set, otherwise\na TypeError is thrown."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const iterator = text.matchAll(/Cats/g);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall2"
-  },
-  {
-   "type": "p",
-   "text": "If you want to search case insensitive, the insensitive flag (i) must be set:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const iterator = text.matchAll(/Cats/gi);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall3"
-  },
-  {
-   "type": "p",
-   "text": "ES2021 introduced the string method replaceAll()."
-  },
-  {
-   "type": "h2",
-   "text": "The Nullish Coalescing Operator (??)"
-  },
-  {
-   "type": "p",
-   "text": "The ?? operator returns the first operand if it is not nullish.\nOtherwise it returns the second."
-  },
-  {
-   "type": "p",
-   "text": "The ?? operator returns the second operand if the first operand is nullish."
-  },
-  {
-   "type": "p",
-   "text": "Nullish is a word for describing null or undefined."
-  },
-  {
-   "type": "p",
-   "text": "The ?? operator is used to provide default values and is distinct from the logical OR operator ||\nbecause it only treats null and undefined as \"nullish\" and ignores other \"falsy\" values\nlike 0 or an empty string."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let name = null;\n\nlet text = \"missing\";\n\nlet result = name ?? text;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nullish"
-  },
-  {
-   "type": "h2",
-   "text": "The Optional Chaining Operator (?.)"
-  },
-  {
-   "type": "p",
-   "text": "The Optional Chaining Operator returns undefined if an object property is\nundefined or null (instead of throwing an error)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\nlet name = car?.name;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_optional_chaining"
-  },
-  {
-   "type": "p",
-   "text": "Optional chaining not only works on object properties,\nbut also on function calls and arrays."
-  },
-  {
-   "type": "h3",
-   "text": "Function Calls"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Use Case",
-     "Syntax",
-     "Behavior"
-    ],
-    [
-     "Safe function call",
-     "obj.method?.()",
-     "Returns undefined if method does not exist"
-    ],
-    [
-     "Return handling",
-     "let x = fn?.()",
-     "x is undefined if fn does not exist"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "Arrays"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Use Case",
-     "Syntax",
-     "Returns"
-    ],
-    [
-     "Safe element access",
-     "arr?.[2]",
-     "undefined if arr is null\nor undefined"
-    ],
-    [
-     "Safe property on element",
-     "arr?.[1]?.name",
-     "Returns undefined safely"
-    ],
-    [
-     "Safe method call",
-     "arr?.map(fn)",
-     "Returns undefined if arr does not exist"
-    ],
-    [
-     "Default value fallback",
-     "arr?.[0] ?? \"N/A\"",
-     "Returns \"N/A\" if arr or element is missing"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The &&= Operator"
-  },
-  {
-   "type": "p",
-   "text": "The Logical AND Assignment Operator is used between two values."
-  },
-  {
-   "type": "p",
-   "text": "If the first value is true, the second value is assigned."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10;\n\nx &&= 5;",
-   "caption": "Logical AND Assignment Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_logical_and_and"
-  },
-  {
-   "type": "h2",
-   "text": "The ||= Operator"
-  },
-  {
-   "type": "p",
-   "text": "The Logical OR Assignment Operator is used between two values."
-  },
-  {
-   "type": "p",
-   "text": "If the first value is false, the second value is assigned."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10;\n\nx ||= 5;",
-   "caption": "Logical OR Assignment Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_logical_or_or"
-  },
-  {
-   "type": "h2",
-   "text": "The ??= Operator"
-  },
-  {
-   "type": "p",
-   "text": "The Nullish Coalescing Assignment Operator is used between two values."
-  },
-  {
-   "type": "p",
-   "text": "If the first value is undefined or null, the second value is assigned."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x;\n\nx ??= 10;",
-   "caption": "Nullish Coalescing Assignment Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_nullish"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Promise.allSettled()"
-  },
-  {
-   "type": "p",
-   "text": "The Promise.allSettled() method returns a single Promise from a list of promises."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Promise\n\nconst myPromise1 = new Promise((resolve, reject) => {\n\n  setTimeout(resolve, 200, \"King\");\n\n});\n\n// Create another Promise\n\nconst myPromise2 = new Promise((resolve, reject) => {\n\n  setTimeout(resolve, 100, \"Queen\");\n\n});\n\n// Settle All\n\nPromise.allSettled([myPromise1, myPromise2]).then((results) =>\n\n  results.forEach((x) => myDisplay(x.status)),\n\n);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_allsettled"
-  },
-  {
-   "type": "p",
-   "text": "Promise.allSettled() means \"Just run all promises. I don't care about the results\"."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Dynamic Import"
-  },
-  {
-   "type": "p",
-   "text": "Dynamic Import is a way to load JavaScript modules at runtime,\nrather than at the start of your program."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import(\"./module.js\")",
-   "caption": "Syntax"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The argument must be a string or expression that resolves to a path",
-    "You must run the import inside a module script (<script type=\"module\">)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Unlike static imports (which must appear at the top of a file), dynamic imports can be used anywhere\n- inside functions, conditionals, event handlers, etc."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Type",
-     "Example",
-     "When Loaded"
-    ],
-    [
-     "Static",
-     "import { add } from './math.js';",
-     "At load time"
-    ],
-    [
-     "Dynamic",
-     "const math = await import('./math.js');",
-     "When needed"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Global This"
-  },
-  {
-   "type": "p",
-   "text": "globalThis provides a standard way to access the global object,\nregardless of the environment your the code runs in: In the browser, Node.js, in a Web Worker, or another JS runtime."
-  },
-  {
-   "type": "p",
-   "text": "The global object is the top-level object in a JavaScript environment:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "In browsers, it is window.",
-    "In Node.js, it is global.",
-    "In Web Workers, it is self."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Many environments have their own name for the this object.\nThis caused compatibility issues for code meant to run everywhere."
-  },
-  {
-   "type": "p",
-   "text": "globalThis was introduced in ECMAScript 2020\n(ES11) to solve that problem. It is a unified reference to the global object, no matter the environment."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "globalThis === window); // true in browsers\n\nglobalThis === global); // true in Node.js",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "globalThis.appName = \"W3Schools Demo\";",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_globalthis"
-  },
-  {
-   "type": "p",
-   "text": "Previously, developers had to use workarounds like:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const getGlobal = function() {\n\n  if (typeof self !== 'undefined') return self;\n\n  if (typeof window !== 'undefined') return window;\n\n  if (typeof global !== 'undefined') return global;\n\n  throw new Error('Cannot find global object');\n\n};",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "With globalThis, that is no longer needed."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript import.meta"
-  },
-  {
-   "type": "p",
-   "text": "import.meta returns an object containing the base URL of a module."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myObject = import.meta;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_importmeta"
-  },
-  {
-   "type": "h2",
-   "text": "Module Namespace Exports"
-  },
-  {
-   "type": "p",
-   "text": "With module namespace exports, you can re-export an entire namespace from your own module, without having to import it first."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// re-export all named exports directly\n\nexport * from \"./utils.js\";\n\n// consumers can use:\n\nimport { add } from \"./math.js\";",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// re-export all as a namespace\n\nexport * as utils from \"./utils.js\";\n\n// consumers can use:\n\nimport { utils } from \"./math.js\";",
-   "caption": "Example"
-  }
- ]
+  "slug": "js_2020",
+  "course": "js",
+  "order": 130,
+  "url": "/js/js_2020.asp",
+  "title": "ECMAScript 2020",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2020"
+    },
+    {
+      "type": "h2",
+      "text": "New Features in JavaScript 2020"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Feature", "Description"],
+        ["BigInt", "Stores values too big to store in a JavaScript number"],
+        ["String matchAll()", "Searchs for all occurrences of a string in a string"],
+        ["Promise.allSettled()", "Takes promises as input and returns a single promise"],
+        ["Dynamic Import", "Loads JavaScript modules at runtime"],
+        ["globalThis", "Refers to the global object independent of code environment"],
+        ["import.meta", "Returns an object indicating the base URL of a module"],
+        [
+          "Namespace Exports",
+          "Export a full namespace from a module without having to import it first"
+        ]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "New JavaScript Operators in 2020"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Oper", "Description", ""],
+        ["??", "Nullish coalescing returns the first argument not nullish", ""],
+        ["?.", "Optional chaining returns undefined if an object is undefined or null", ""],
+        ["&&=", "Logical AND assignment assigns the second value if the first value is true", ""],
+        ["||=", "Logical OR assignment assigns the second value if the first value is false", ""],
+        [
+          "??=",
+          "Nullish coalescing assignment assigns the second value if the first value is undefined or null",
+          ""
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2020 is supported in all modern browsers since April 2021."
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome80", "Edge80", "Firefox80", "Safari14.1", "Opera67"],
+        ["Feb 2020", "Feb 2020", "Aug 2020", "Apr 2021", "Mar 2020"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript BigInt"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript BigInt variables are used to store big integer values\nthat are too big to be represented by a a normal JavaScript Number."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript integers are only accurate up to about 15 digits."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 999999999999999;\n\nlet y = 9999999999999999; // too big",
+      "caption": "Integer Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 9999999999999999;\n\nlet y = 9999999999999999n;",
+      "caption": "Integer Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_inaccurate1"
+    },
+    {
+      "type": "p",
+      "text": "To create a BigInt, append n to the end of an integer or call\nBigInt():"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 1234567890123456789012345n;\n\nlet y = BigInt(1234567890123456789012345)",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_create"
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript typeof a BigInt is \"bigint\":"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = BigInt(999999999999999);\n\nlet type = typeof x;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_bigint_typeof"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript String matchAll()"
+    },
+    {
+      "type": "p",
+      "text": "Before ES2020 there was no string method that could be used to search for all occurrences\nof a string in a string."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const iterator = text.matchAll(\"Cats\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall"
+    },
+    {
+      "type": "p",
+      "text": "If the parameter is a regular expression, the global flag (g) must be set set, otherwise\na TypeError is thrown."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const iterator = text.matchAll(/Cats/g);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall2"
+    },
+    {
+      "type": "p",
+      "text": "If you want to search case insensitive, the insensitive flag (i) must be set:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const iterator = text.matchAll(/Cats/gi);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall3"
+    },
+    {
+      "type": "p",
+      "text": "ES2021 introduced the string method replaceAll()."
+    },
+    {
+      "type": "h2",
+      "text": "The Nullish Coalescing Operator (??)"
+    },
+    {
+      "type": "p",
+      "text": "The ?? operator returns the first operand if it is not nullish.\nOtherwise it returns the second."
+    },
+    {
+      "type": "p",
+      "text": "The ?? operator returns the second operand if the first operand is nullish."
+    },
+    {
+      "type": "p",
+      "text": "Nullish is a word for describing null or undefined."
+    },
+    {
+      "type": "p",
+      "text": "The ?? operator is used to provide default values and is distinct from the logical OR operator ||\nbecause it only treats null and undefined as \"nullish\" and ignores other \"falsy\" values\nlike 0 or an empty string."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let name = null;\n\nlet text = \"missing\";\n\nlet result = name ?? text;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nullish"
+    },
+    {
+      "type": "h2",
+      "text": "The Optional Chaining Operator (?.)"
+    },
+    {
+      "type": "p",
+      "text": "The Optional Chaining Operator returns undefined if an object property is\nundefined or null (instead of throwing an error)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\nlet name = car?.name;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_optional_chaining"
+    },
+    {
+      "type": "p",
+      "text": "Optional chaining not only works on object properties,\nbut also on function calls and arrays."
+    },
+    {
+      "type": "h3",
+      "text": "Function Calls"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Use Case", "Syntax", "Behavior"],
+        ["Safe function call", "obj.method?.()", "Returns undefined if method does not exist"],
+        ["Return handling", "let x = fn?.()", "x is undefined if fn does not exist"]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Arrays"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Use Case", "Syntax", "Returns"],
+        ["Safe element access", "arr?.[2]", "undefined if arr is null\nor undefined"],
+        ["Safe property on element", "arr?.[1]?.name", "Returns undefined safely"],
+        ["Safe method call", "arr?.map(fn)", "Returns undefined if arr does not exist"],
+        [
+          "Default value fallback",
+          "arr?.[0] ?? \"N/A\"",
+          "Returns \"N/A\" if arr or element is missing"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The &&= Operator"
+    },
+    {
+      "type": "p",
+      "text": "The Logical AND Assignment Operator is used between two values."
+    },
+    {
+      "type": "p",
+      "text": "If the first value is true, the second value is assigned."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10;\n\nx &&= 5;",
+      "caption": "Logical AND Assignment Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_logical_and_and"
+    },
+    {
+      "type": "h2",
+      "text": "The ||= Operator"
+    },
+    {
+      "type": "p",
+      "text": "The Logical OR Assignment Operator is used between two values."
+    },
+    {
+      "type": "p",
+      "text": "If the first value is false, the second value is assigned."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10;\n\nx ||= 5;",
+      "caption": "Logical OR Assignment Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_logical_or_or"
+    },
+    {
+      "type": "h2",
+      "text": "The ??= Operator"
+    },
+    {
+      "type": "p",
+      "text": "The Nullish Coalescing Assignment Operator is used between two values."
+    },
+    {
+      "type": "p",
+      "text": "If the first value is undefined or null, the second value is assigned."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x;\n\nx ??= 10;",
+      "caption": "Nullish Coalescing Assignment Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_assign_nullish"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Promise.allSettled()"
+    },
+    {
+      "type": "p",
+      "text": "The Promise.allSettled() method returns a single Promise from a list of promises."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Promise\n\nconst myPromise1 = new Promise((resolve, reject) => {\n\n  setTimeout(resolve, 200, \"King\");\n\n});\n\n// Create another Promise\n\nconst myPromise2 = new Promise((resolve, reject) => {\n\n  setTimeout(resolve, 100, \"Queen\");\n\n});\n\n// Settle All\n\nPromise.allSettled([myPromise1, myPromise2]).then((results) =>\n\n  results.forEach((x) => myDisplay(x.status)),\n\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_allsettled"
+    },
+    {
+      "type": "p",
+      "text": "Promise.allSettled() means \"Just run all promises. I don't care about the results\"."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Dynamic Import"
+    },
+    {
+      "type": "p",
+      "text": "Dynamic Import is a way to load JavaScript modules at runtime,\nrather than at the start of your program."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import(\"./module.js\")",
+      "caption": "Syntax"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The argument must be a string or expression that resolves to a path",
+        "You must run the import inside a module script (<script type=\"module\">)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Unlike static imports (which must appear at the top of a file), dynamic imports can be used anywhere\n- inside functions, conditionals, event handlers, etc."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Type", "Example", "When Loaded"],
+        ["Static", "import { add } from './math.js';", "At load time"],
+        ["Dynamic", "const math = await import('./math.js');", "When needed"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Global This"
+    },
+    {
+      "type": "p",
+      "text": "globalThis provides a standard way to access the global object,\nregardless of the environment your the code runs in: In the browser, Node.js, in a Web Worker, or another JS runtime."
+    },
+    {
+      "type": "p",
+      "text": "The global object is the top-level object in a JavaScript environment:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "In browsers, it is window.",
+        "In Node.js, it is global.",
+        "In Web Workers, it is self."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Many environments have their own name for the this object.\nThis caused compatibility issues for code meant to run everywhere."
+    },
+    {
+      "type": "p",
+      "text": "globalThis was introduced in ECMAScript 2020\n(ES11) to solve that problem. It is a unified reference to the global object, no matter the environment."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "globalThis === window); // true in browsers\n\nglobalThis === global); // true in Node.js",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "globalThis.appName = \"W3Schools Demo\";",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_globalthis"
+    },
+    {
+      "type": "p",
+      "text": "Previously, developers had to use workarounds like:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const getGlobal = function() {\n\n  if (typeof self !== 'undefined') return self;\n\n  if (typeof window !== 'undefined') return window;\n\n  if (typeof global !== 'undefined') return global;\n\n  throw new Error('Cannot find global object');\n\n};",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "With globalThis, that is no longer needed."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript import.meta"
+    },
+    {
+      "type": "p",
+      "text": "import.meta returns an object containing the base URL of a module."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myObject = import.meta;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_importmeta"
+    },
+    {
+      "type": "h2",
+      "text": "Module Namespace Exports"
+    },
+    {
+      "type": "p",
+      "text": "With module namespace exports, you can re-export an entire namespace from your own module, without having to import it first."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// re-export all named exports directly\n\nexport * from \"./utils.js\";\n\n// consumers can use:\n\nimport { add } from \"./math.js\";",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// re-export all as a namespace\n\nexport * as utils from \"./utils.js\";\n\n// consumers can use:\n\nimport { utils } from \"./math.js\";",
+      "caption": "Example"
+    }
+  ]
 }

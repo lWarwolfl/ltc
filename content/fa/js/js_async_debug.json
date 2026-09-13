@@ -1,722 +1,655 @@
 {
- "slug": "js_async_debug",
- "course": "js",
- "order": 230,
- "url": "/js/js_async_debug.asp",
- "title": "اشکال‌زدایی کدهای ناهمگام",
- "summary": "اشکال‌زدایی کد ناهمگام سخت‌تر از کد همگام است، چون کد دیرتر از انتظار اجرا می‌شود و ممکن است چند عملیات هم‌زمان پیش بروند. در این درس با لاگ کردن رویدادها، بررسی response.ok، استفاده از Breakpoint و زبانهٔ Network مرورگر، باگ‌های fetch، پرامیس و async/await را پیدا و رفع می‌کنید.",
- "objectives": [
-  "با console.log ترتیب اجرای کد ناهمگام را دنبال کنید",
-  "توضیح دهید چرا یک پرامیس رد‌شده ممکن است نامرئی بماند",
-  "بعد از هر fetch() مقدار response.ok و response.status را بررسی کنید",
-  "با زبانهٔ Network و Breakpoint منبع خطا را پیدا کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "اشکال‌زدایی کدهای ناهمگام"
-  },
-  {
-   "type": "h2",
-   "text": "باگ‌های ناهمگام"
-  },
-  {
-   "type": "p",
-   "text": "اشکال‌زدایی کد ناهمگام سخت‌تر از کد همگام است."
-  },
-  {
-   "type": "p",
-   "text": "کد اغلب دیرتر از آنچه انتظار دارید اجرا می‌شود و ممکن است چند عملیات ناهمگام هم‌زمان پیش بروند."
-  },
-  {
-   "type": "p",
-   "text": "این درس تکنیک‌هایی برای پیدا کردن و رفع مشکل‌های رایج در JavaScript ناهمگام نشان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "این درس راه‌های عملی اشکال‌زدایی fetch()، پرامیس‌ها و async/await را نشان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "اشکال‌زدایی ناهمگام یعنی پیدا کردن جایی که کد متوقف می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "و بعد پیدا کردن دلیل توقف آن."
-  },
-  {
-   "type": "h2",
-   "text": "رویدادها را لاگ کنید"
-  },
-  {
-   "type": "p",
-   "text": "ساده‌ترین راه اشکال‌زدایی کد ناهمگام این است که زمان رخ دادن هر چیز را لاگ کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "console.log(\"Before fetch\");\n\nconst promise = fetch(\"fetch.txt\");\n\nconsole.log(\"After fetch\");",
-   "caption": "با console.log()"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Before fetch\");\n\nconst promise = fetch(\"fetch.txt\");\n\nmyDisplayer(\"After fetch\");",
-   "caption": "با تابع نمایش"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_2"
-  },
-  {
-   "type": "h3",
-   "text": "نکته"
-  },
-  {
-   "type": "p",
-   "text": "کنسول اغلب وضعیت جاری یک پرامیس را چیزی شبیه این نشان می‌دهد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "<pending>",
-    "<fulfilled>",
-    "<rejected>"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "این اطلاعات را ابزار اشکال‌زدایی فراهم می‌کند و بخشی از خود زبان JavaScript نیست."
-  },
-  {
-   "type": "p",
-   "text": "چرا خود JavaScript نمی‌تواند همین کار را بکند؟"
-  },
-  {
-   "type": "p",
-   "text": "چون خصوصیت استانداردی مثل این‌ها وجود ندارد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "promise.state",
-    "promise.status"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "این‌ها به‌سادگی وجود ندارند."
-  },
-  {
-   "type": "p",
-   "text": "بخش وضعیت پرامیس در API عمومی آن نیست."
-  },
-  {
-   "type": "h2",
-   "text": "باگ‌های ناهمگام می‌توانند نامرئی باشند"
-  },
-  {
-   "type": "p",
-   "text": "کد ناهمگام اغلب بعد از برگشتن تابع شما شکست می‌خورد."
-  },
-  {
-   "type": "p",
-   "text": "همین باعث می‌شود حس کنید هیچ اتفاقی نیفتاده است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response);\n\n}\n\nmyDisplayer(\"Start\");\n\n// Try to load a missing file\n\nloadText(\"missing.txt\");\n\nmyDisplayer(\"Done\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_3"
-  },
-  {
-   "type": "p",
-   "text": "پیام Done چاپ می‌شود، حتی اگر loadText() شکست خورده باشد."
-  },
-  {
-   "type": "p",
-   "text": "دلیلش این است که fetch() بعدتر شکست می‌خورد."
-  },
-  {
-   "type": "h2",
-   "text": "قاعدهٔ ۱: همیشه خطاها را مدیریت کنید"
-  },
-  {
-   "type": "p",
-   "text": "رد شدن‌های مدیریت‌نشدهٔ پرامیس، تازه‌کارها را گیج می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "خطاها را زود و شفاف مدیریت کنید."
-  },
-  {
-   "type": "p",
-   "text": "برای مدیریت پرامیس‌ها از try...catch استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  try {\n\n    let response = await fetch(file);\n\n    let data = await response.json()\n\n    myDisplayer(JSON.stringify(data));\n\n  } catch (error) {\n\n    myDisplayer(error);\n\n  }\n\n}\n\n// Call async function\n\nloadData(\"customer.json\")",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_error_2"
-  },
-  {
-   "type": "h3",
-   "text": "نکته"
-  },
-  {
-   "type": "p",
-   "text": "کد بالا خطاهای شبکه و خطاهای تجزیهٔ JSON را می‌گیرد."
-  },
-  {
-   "type": "p",
-   "text": "اما خطاهای HTTP مثل ۴۰۴ (فایل پیدا نشد) را نمی‌گیرد."
-  },
-  {
-   "type": "h2",
-   "text": "قاعدهٔ ۲: response.ok را بررسی کنید"
-  },
-  {
-   "type": "p",
-   "text": "fetch روی خطاهای HTTP مثل ۴۰۴ پرامیس را رد نمی‌کند."
-  },
-  {
-   "type": "p",
-   "text": "باید خودتان response.ok را بررسی کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  try {\n\n    let response = await fetch(file);\n\n    if (!response.ok) {\n\n      console.log(\"HTTP Error:\", response.status);\n\n      return;\n\n    }\n\n    let data = await response.json()\n\n    myDisplayer(JSON.stringify(data));\n\n  } catch (error) {\n\n    myDisplayer(error);\n\n  }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_error"
-  },
-  {
-   "type": "p",
-   "text": "کد بالا خطاهای HTTP را از خطاهای شبکه جدا می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "بیشتر باگ‌های fetch اصلاً باگ JavaScript نیستند."
-  },
-  {
-   "type": "p",
-   "text": "بلکه مشکل آدرس و پاسخ سرور هستند."
-  },
-  {
-   "type": "h2",
-   "text": "قاعدهٔ ۳: چیز درست را لاگ کنید"
-  },
-  {
-   "type": "p",
-   "text": "لاگ کردن یک پرامیس با لاگ کردن دادهٔ آن فرق دارد."
-  },
-  {
-   "type": "p",
-   "text": "اول پاسخ و کد وضعیت را لاگ کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  let response = await fetch(file);\n\n  myDisplayer(response.status);\n\n  myDisplayer(response.headers.get(\"content-type\"));\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_4"
-  },
-  {
-   "type": "p",
-   "text": "کد بالا می‌گوید سرور همان چیزی را برگردانده که انتظار داشتید یا نه."
-  },
-  {
-   "type": "h2",
-   "text": "هدرهای پرکاربرد پاسخ"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "هدر",
-     "توضیح"
-    ],
-    [
-     "Content-Type",
-     "نوع پاسخ (text/html، application/json و غیره)"
-    ],
-    [
-     "Content-Length",
-     "اندازهٔ پاسخ بر حسب بایت"
-    ],
-    [
-     "Cache-Control",
-     "اینکه پاسخ چطور می‌تواند در حافظهٔ موقت (cache) ذخیره شود"
-    ],
-    [
-     "Expires",
-     "زمان منقضی شدن پاسخ ذخیره‌شده در حافظهٔ موقت"
-    ],
-    [
-     "Last-Modified",
-     "زمان آخرین تغییر منبع"
-    ],
-    [
-     "ETag",
-     "شناسهٔ نسخهٔ منبع که برای حافظهٔ موقت به کار می‌رود"
-    ],
-    [
-     "Date",
-     "زمانی که سرور پاسخ را تولید کرده است"
-    ],
-    [
-     "Server",
-     "اطلاعات مربوط به وب‌سرور"
-    ],
-    [
-     "Access-Control-Allow-Origin",
-     "سیاست CORS"
-    ],
-    [
-     "Content-Encoding",
-     "فشرده‌سازی به‌کار‌رفته (gzip، br و غیره)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "از زبانهٔ Network مرورگر استفاده کنید"
-  },
-  {
-   "type": "p",
-   "text": "زبانهٔ Network یکی از پنل‌های Developer Tools مرورگر است."
-  },
-  {
-   "type": "p",
-   "text": "این زبانه همهٔ درخواست‌های شبکه‌ای را که صفحهٔ شما می‌فرستد نشان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "این زبانه یکی از مفیدترین ابزارها برای اشکال‌زدایی JavaScript ناهمگام است؛ چون دقیقاً نشان می‌دهد وقتی کد شما fetch() می‌زند، تصویر بار می‌کند، JSON دانلود می‌کند یا داده به سرور می‌فرستد، چه اتفاقی می‌افتد."
-  },
-  {
-   "type": "p",
-   "text": "روش استفاده از Developer Tools:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک وب‌سایت را باز کنید",
-    "کلید F12 را بزنید، یا",
-    "روی صفحه راست‌کلیک کنید و Inspect را انتخاب کنید.",
-    "بعد زبانهٔ Network را انتخاب کنید.",
-    "صفحه را دوباره بار کنید"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "زبانهٔ Network هر درخواستی را که برنامه‌تان می‌فرستد نشان می‌دهد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "کدام فایل‌ها درخواست شده‌اند",
-    "اینکه موفق بوده‌اند یا نه",
-    "کدهای وضعیت HTTP",
-    "زمان‌های دانلود"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const response = await fetch(\"customer.json\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "چند نتیجهٔ ممکن"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نام",
-     "وضعیت",
-     "نوع",
-     "اندازه",
-     "زمان"
-    ],
-    [
-     "customer.json",
-     "200",
-     "fetch",
-     "۵۴۸ بایت",
-     "۱۳۴ میلی‌ثانیه"
-    ],
-    [
-     "customer.json",
-     "404",
-     "fetch",
-     "",
-     ""
-    ],
-    [
-     "customer.json",
-     "ناموفق",
-     "",
-     "",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "این کار بسیار راحت‌تر از حدس زدن دربارهٔ دلیل شکست fetch() است."
-  },
-  {
-   "type": "h2",
-   "text": "از Breakpoint استفاده کنید"
-  },
-  {
-   "type": "p",
-   "text": "مرورگرهای مدرن اجازه می‌دهند اجرای JavaScript را موقتاً متوقف کنید."
-  },
-  {
-   "type": "p",
-   "text": "وقتی اجرا متوقف است، می‌توانید متغیرها، پرامیس‌ها و Call Stack را بررسی کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Example\nconst response = await fetch(\"demo.txt\");\n\ndebugger;\n\nconst text = await response.text();",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "وقتی اجرا به debugger می‌رسد، DevTools خودکار متوقف می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "Breakpoint روی await"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید روی خط‌های await نقطهٔ توقف بگذارید."
-  },
-  {
-   "type": "p",
-   "text": "با این کار مقدارها را قبل و بعد از هر مرحلهٔ ناهمگام بررسی می‌کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  console.log(data);\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "روی اولین خط await نقطهٔ توقف بگذارید."
-  },
-  {
-   "type": "p",
-   "text": "با Step over جلو بروید و response را بررسی کنید."
-  },
-  {
-   "type": "h2",
-   "text": "خطاهای رایج ناهمگام"
-  },
-  {
-   "type": "p",
-   "text": "فراموش کردن await رایج‌ترین اشتباه تازه‌کارها است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = response.json();\n\n  console.log(data);\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "این کد یک پرامیس لاگ می‌کند، نه خود JSON."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  console.log(data);\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "اشکال‌زدایی زنجیرهٔ پرامیس‌ها"
-  },
-  {
-   "type": "p",
-   "text": "پرامیس‌ها هرجای زنجیره ممکن است شکست بخورند."
-  },
-  {
-   "type": "p",
-   "text": "بین مرحله‌ها لاگ بگذارید تا بفهمید کجا شکست می‌خورد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"data.json\")\n\n.then(function(response) {\n\n  console.log(\"Got response\");\n\n  return response.json();\n\n})\n\n.then(function(data) {\n\n  console.log(\"Got data\");\n\n  console.log(data);\n\n})\n\n.catch(function(error) {\n\n  console.log(\"Failed\");\n\n  console.log(error);\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "این نشان می‌دهد کدام مرحله شکست می‌خورد."
-  },
-  {
-   "type": "h2",
-   "text": "ترتیب اجرا را بفهمید"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");\n\nsetTimeout(function() {myDisplayer(\"Timer\")},1000);\n\nmyDisplayer(\"End\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Start\n\nEnd\n\nTimer",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_order"
-  },
-  {
-   "type": "h2",
-   "text": "اشکال‌زدایی عملیات موازی"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const customer = fetch(\"customer.json\");\n\nconst products = fetch(\"products.json\");\n\nconst news = fetch(\"news.json\");",
-   "caption": "نتیجه"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "هر سه درخواست بی‌درنگ شروع می‌شوند",
-    "مرورگر ممکن است آن‌ها را به هر ترتیبی تمام کند",
-    "این طبیعی است"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "response.ok را بررسی کنید"
-  },
-  {
-   "type": "p",
-   "text": "خیلی از تازه‌کارها این را فراموش می‌کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const response = await fetch(\"missing.txt\");\n\nconst text = await response.text();",
-   "caption": "نادرست:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "if (!response.ok) {\n\n  console.log(response.status);\n\n}",
-   "caption": "بهتر:"
-  },
-  {
-   "type": "h2",
-   "text": "رد شدن پرامیس‌ها را مدیریت کنید"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"missing.txt\")\n\n.then(function(response){\n\n  return response.text();\n\n})\n\n.catch(function(err){\n\n  console.log(err);\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "تفاوت این دو را توضیح دهید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "پرامیس رد‌شده",
-    "خطای HTTP"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "از finally() استفاده کنید"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "showSpinner();\n\ntry {\n\n  ...\n\n}\n\nfinally {\n\n  hideSpinner();\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "کد پاک‌سازی جای‌اش finally() است."
-  },
-  {
-   "type": "h2",
-   "text": "راهنمای عملی اشکال‌زدایی"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "دور کد await‌شده try...catch بگذارید.",
-    "هم response.ok و هم response.status را بررسی کنید.",
-    "روی خط‌های await از Breakpoint استفاده کنید.",
-    "از زبانهٔ Network استفاده کنید."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "چک‌لیست اشکال‌زدایی"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "آیا پرامیس با موفقیت تمام شد؟",
-    "آیا await را فراموش کرده‌اید؟",
-    "آیا response.ok را بررسی کرده‌اید؟",
-    "آیا کدتان داخل یک تابع async است؟",
-    "آیا درخواست در زبانهٔ Network دیده می‌شود؟",
-    "آیا خطاها در کنسول گزارش می‌شوند؟",
-    "آیا Event Loop را قفل کرده‌اید؟"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "خلاصه"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "برای دنبال کردن اجرا از console.log() استفاده کنید.",
-    "هنگام اشکال‌زدایی شیءهای پرامیس را بررسی کنید.",
-    "برای پرامیس‌های رد‌شده از try...catch استفاده کنید.",
-    "برای بررسی درخواست‌ها از زبانهٔ Network مرورگر استفاده کنید.",
-    "برای بررسی متغیرها و اجرا نقطهٔ توقف بگذارید.",
-    "بعد از هر fetch() مقدار response.ok را بررسی کنید."
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل HTML بسازید و دو console.log بنویسید؛ یکی قبل از fetch() و یکی بعد از آن. صفحه را در مرورگر باز کنید و ببینید کدام پیام اول چاپ می‌شود.",
-   "hint": "کد JavaScript منتظر پاسخ سرور نمی‌ماند و به اجرای خودش ادامه می‌دهد؛ پس ترتیب چاپ با ترتیب خط‌ها یکی نیست."
-  },
-  {
-   "prompt": "همان فایل را با یک تابع async و try...catch بنویسید و عمداً نام فایل را غلط بدهید تا متن خطا را در کنسول ببینید.",
-   "hint": "با await fetch() یک پرامیس رد‌شده می‌سازید و catch آن را می‌گیرد؛ پیام خطا در کنسول چاپ می‌شود."
-  },
-  {
-   "prompt": "response.ok و response.status را برای یک فایل موجود چاپ کنید؛ بعد نام فایل را عوض کنید و همان دو مقدار را دوباره چاپ کنید.",
-   "hint": "برای فایل نبود، ok برابر false و status برابر 404 می‌شود، ولی پرامیس رد نمی‌شود؛ پس باید خودتان ok را بررسی کنید."
-  },
-  {
-   "prompt": "با F12 یا راست‌کلیک و Inspect زبانهٔ Network را باز کنید، صفحه را دوباره بار کنید و کد وضعیت هر درخواست را بخوانید.",
-   "hint": "زبانهٔ Network فایل درخواست‌شده، وضعیت، نوع، اندازه و زمان هر درخواست را نشان می‌دهد."
-  },
-  {
-   "prompt": "داخل یک تابع async دستور debugger؛ بگذارید، DevTools را باز کنید و کد را اجرا کنید؛ سپس مقدار response را در پنل بررسی کنید.",
-   "hint": "وقتی اجرا به debugger می‌رسد DevTools خودکار متوقف می‌شود و می‌توانید با Step over جلو بروید."
-  }
- ],
- "quiz": [
-  {
-   "question": "در مثال «Log Events»، چرا پیام After fetch قبل از رسیدن پاسخ سرور چاپ می‌شود؟",
-   "options": [
-    "چون fetch() همگام است",
-    "چون fetch() یک پرامیس برمی‌گرداند و کد منتظر آن نمی‌ماند",
-    "چون console.log سرعت دارد",
-    "چون مرورگر ترتیب خط‌ها را عوض می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "fetch() یک پرامیس برمی‌گرداند و اجرای کد بی‌درنگ ادامه می‌یابد؛ نتیجهٔ درخواست بعداً می‌رسد، پس پیام بعد از fetch زودتر از خود داده چاپ می‌شود."
-  },
-  {
-   "question": "وقتی سرور پاسخ 404 می‌دهد، پرامیس fetch() چه می‌شود؟",
-   "options": [
-    "رد می‌شود و catch اجرا می‌شود",
-    "خودکار با موفقیت تمام می‌شود و باید response.ok را بررسی کنید",
-    "به‌طور خودکار دوباره فرستاده می‌شود",
-    "به یک خطای نحوی تبدیل می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "fetch فقط روی خطاهای شبکه پرامیس را رد می‌کند؛ پاسخ‌های 404 و 500 پرامیس را رد نمی‌کنند، پس بررسی response.ok لازم است."
-  },
-  {
-   "question": "کدام قطعه کد خطاهای شبکه و خطاهای تجزیهٔ JSON را می‌گیرد اما خطای HTTP 404 را نه؟",
-   "options": [
-    "fetch(file) بدون هیچ بررسی",
-    "try...catch دور await fetch() و await response.json()",
-    "یک console.log بعد از fetch",
-    "استفاده از debugger داخل تابع"
-   ],
-   "answer": 1,
-   "explanation": "try...catch خطای شبکه و خطای JSON را می‌گیرد، اما پاسخ 404 یک پاسخ موفق از نظر fetch است و پرامیس را رد نمی‌کند؛ برای آن باید response.ok را بررسی کنید."
-  },
-  {
-   "question": "در قطعهٔ «Forgetting await»، خروجی console.log(data) چیست؟",
-   "options": [
-    "دادهٔ JSON به‌صورت شیء",
-    "یک پرامیس به‌جای دادهٔ JSON",
-    "مقدار undefined",
-    "کد وضعیت پاسخ"
-   ],
-   "answer": 1,
-   "explanation": "بدون await، خروجی response.json() یک پرامیس است؛ console.log همان پرامیس را چاپ می‌کند، نه دادهٔ JSON را."
-  },
-  {
-   "question": "کدام مورد دربارهٔ قطعهٔ setTimeout مثال «Understand Execution Order» درست است؟",
-   "options": [
-    "ترتیب خروجی Start و Timer و End است",
-    "ترتیب خروجی Start و End و Timer است",
-    "Timer هرگز چاپ نمی‌شود",
-    "End بلافاصله بعد از Timer چاپ می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "تایمر یک کار ناهمگام است؛ کد همگام تا آخر اجرا می‌شود، پس Start و End اول چاپ می‌شوند و Timer یک ثانیه بعد."
-  },
-  {
-   "question": "بر اساس چک‌لیست درس، کدام کار پس از هر fetch() لازم است؟",
-   "options": [
-    "تنظیم یک Breakpoint",
-    "بررسی response.ok",
-    "خالی کردن حافظهٔ موقت (cache)",
-    "فراخوانی دوباره fetch در finally"
-   ],
-   "answer": 1,
-   "explanation": "چون fetch روی خطاهای HTTP رد نمی‌شود، بعد از هر fetch باید response.ok (و در صورت نیاز response.status) را بررسی کنید."
-  }
- ]
+  "slug": "js_async_debug",
+  "course": "js",
+  "order": 230,
+  "url": "/js/js_async_debug.asp",
+  "title": "اشکال‌زدایی کدهای ناهمگام",
+  "summary": "اشکال‌زدایی کد ناهمگام سخت‌تر از کد همگام است، چون کد دیرتر از انتظار اجرا می‌شود و ممکن است چند عملیات هم‌زمان پیش بروند. در این درس با لاگ کردن رویدادها، بررسی response.ok، استفاده از Breakpoint و زبانهٔ Network مرورگر، باگ‌های fetch، پرامیس و async/await را پیدا و رفع می‌کنید.",
+  "objectives": [
+    "با console.log ترتیب اجرای کد ناهمگام را دنبال کنید",
+    "توضیح دهید چرا یک پرامیس رد‌شده ممکن است نامرئی بماند",
+    "بعد از هر fetch() مقدار response.ok و response.status را بررسی کنید",
+    "با زبانهٔ Network و Breakpoint منبع خطا را پیدا کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "اشکال‌زدایی کدهای ناهمگام"
+    },
+    {
+      "type": "h2",
+      "text": "باگ‌های ناهمگام"
+    },
+    {
+      "type": "p",
+      "text": "اشکال‌زدایی کد ناهمگام سخت‌تر از کد همگام است."
+    },
+    {
+      "type": "p",
+      "text": "کد اغلب دیرتر از آنچه انتظار دارید اجرا می‌شود و ممکن است چند عملیات ناهمگام هم‌زمان پیش بروند."
+    },
+    {
+      "type": "p",
+      "text": "این درس تکنیک‌هایی برای پیدا کردن و رفع مشکل‌های رایج در JavaScript ناهمگام نشان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "این درس راه‌های عملی اشکال‌زدایی fetch()، پرامیس‌ها و async/await را نشان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "اشکال‌زدایی ناهمگام یعنی پیدا کردن جایی که کد متوقف می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "و بعد پیدا کردن دلیل توقف آن."
+    },
+    {
+      "type": "h2",
+      "text": "رویدادها را لاگ کنید"
+    },
+    {
+      "type": "p",
+      "text": "ساده‌ترین راه اشکال‌زدایی کد ناهمگام این است که زمان رخ دادن هر چیز را لاگ کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "console.log(\"Before fetch\");\n\nconst promise = fetch(\"fetch.txt\");\n\nconsole.log(\"After fetch\");",
+      "caption": "با console.log()"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Before fetch\");\n\nconst promise = fetch(\"fetch.txt\");\n\nmyDisplayer(\"After fetch\");",
+      "caption": "با تابع نمایش"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_2"
+    },
+    {
+      "type": "h3",
+      "text": "نکته"
+    },
+    {
+      "type": "p",
+      "text": "کنسول اغلب وضعیت جاری یک پرامیس را چیزی شبیه این نشان می‌دهد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["<pending>", "<fulfilled>", "<rejected>"]
+    },
+    {
+      "type": "p",
+      "text": "این اطلاعات را ابزار اشکال‌زدایی فراهم می‌کند و بخشی از خود زبان JavaScript نیست."
+    },
+    {
+      "type": "p",
+      "text": "چرا خود JavaScript نمی‌تواند همین کار را بکند؟"
+    },
+    {
+      "type": "p",
+      "text": "چون خصوصیت استانداردی مثل این‌ها وجود ندارد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["promise.state", "promise.status"]
+    },
+    {
+      "type": "p",
+      "text": "این‌ها به‌سادگی وجود ندارند."
+    },
+    {
+      "type": "p",
+      "text": "بخش وضعیت پرامیس در API عمومی آن نیست."
+    },
+    {
+      "type": "h2",
+      "text": "باگ‌های ناهمگام می‌توانند نامرئی باشند"
+    },
+    {
+      "type": "p",
+      "text": "کد ناهمگام اغلب بعد از برگشتن تابع شما شکست می‌خورد."
+    },
+    {
+      "type": "p",
+      "text": "همین باعث می‌شود حس کنید هیچ اتفاقی نیفتاده است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Async function to download a file\n\nasync function loadText(file) {\n\n  const response = await fetch(file);\n\n  myDisplayer(response);\n\n}\n\nmyDisplayer(\"Start\");\n\n// Try to load a missing file\n\nloadText(\"missing.txt\");\n\nmyDisplayer(\"Done\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_3"
+    },
+    {
+      "type": "p",
+      "text": "پیام Done چاپ می‌شود، حتی اگر loadText() شکست خورده باشد."
+    },
+    {
+      "type": "p",
+      "text": "دلیلش این است که fetch() بعدتر شکست می‌خورد."
+    },
+    {
+      "type": "h2",
+      "text": "قاعدهٔ ۱: همیشه خطاها را مدیریت کنید"
+    },
+    {
+      "type": "p",
+      "text": "رد شدن‌های مدیریت‌نشدهٔ پرامیس، تازه‌کارها را گیج می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "خطاها را زود و شفاف مدیریت کنید."
+    },
+    {
+      "type": "p",
+      "text": "برای مدیریت پرامیس‌ها از try...catch استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  try {\n\n    let response = await fetch(file);\n\n    let data = await response.json()\n\n    myDisplayer(JSON.stringify(data));\n\n  } catch (error) {\n\n    myDisplayer(error);\n\n  }\n\n}\n\n// Call async function\n\nloadData(\"customer.json\")",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_error_2"
+    },
+    {
+      "type": "h3",
+      "text": "نکته"
+    },
+    {
+      "type": "p",
+      "text": "کد بالا خطاهای شبکه و خطاهای تجزیهٔ JSON را می‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "اما خطاهای HTTP مثل ۴۰۴ (فایل پیدا نشد) را نمی‌گیرد."
+    },
+    {
+      "type": "h2",
+      "text": "قاعدهٔ ۲: response.ok را بررسی کنید"
+    },
+    {
+      "type": "p",
+      "text": "fetch روی خطاهای HTTP مثل ۴۰۴ پرامیس را رد نمی‌کند."
+    },
+    {
+      "type": "p",
+      "text": "باید خودتان response.ok را بررسی کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  try {\n\n    let response = await fetch(file);\n\n    if (!response.ok) {\n\n      console.log(\"HTTP Error:\", response.status);\n\n      return;\n\n    }\n\n    let data = await response.json()\n\n    myDisplayer(JSON.stringify(data));\n\n  } catch (error) {\n\n    myDisplayer(error);\n\n  }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_error"
+    },
+    {
+      "type": "p",
+      "text": "کد بالا خطاهای HTTP را از خطاهای شبکه جدا می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "بیشتر باگ‌های fetch اصلاً باگ JavaScript نیستند."
+    },
+    {
+      "type": "p",
+      "text": "بلکه مشکل آدرس و پاسخ سرور هستند."
+    },
+    {
+      "type": "h2",
+      "text": "قاعدهٔ ۳: چیز درست را لاگ کنید"
+    },
+    {
+      "type": "p",
+      "text": "لاگ کردن یک پرامیس با لاگ کردن دادهٔ آن فرق دارد."
+    },
+    {
+      "type": "p",
+      "text": "اول پاسخ و کد وضعیت را لاگ کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Async function to download a file\n\nasync function loadData(file) {\n\n  let response = await fetch(file);\n\n  myDisplayer(response.status);\n\n  myDisplayer(response.headers.get(\"content-type\"));\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_log_4"
+    },
+    {
+      "type": "p",
+      "text": "کد بالا می‌گوید سرور همان چیزی را برگردانده که انتظار داشتید یا نه."
+    },
+    {
+      "type": "h2",
+      "text": "هدرهای پرکاربرد پاسخ"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["هدر", "توضیح"],
+        ["Content-Type", "نوع پاسخ (text/html، application/json و غیره)"],
+        ["Content-Length", "اندازهٔ پاسخ بر حسب بایت"],
+        ["Cache-Control", "اینکه پاسخ چطور می‌تواند در حافظهٔ موقت (cache) ذخیره شود"],
+        ["Expires", "زمان منقضی شدن پاسخ ذخیره‌شده در حافظهٔ موقت"],
+        ["Last-Modified", "زمان آخرین تغییر منبع"],
+        ["ETag", "شناسهٔ نسخهٔ منبع که برای حافظهٔ موقت به کار می‌رود"],
+        ["Date", "زمانی که سرور پاسخ را تولید کرده است"],
+        ["Server", "اطلاعات مربوط به وب‌سرور"],
+        ["Access-Control-Allow-Origin", "سیاست CORS"],
+        ["Content-Encoding", "فشرده‌سازی به‌کار‌رفته (gzip، br و غیره)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "از زبانهٔ Network مرورگر استفاده کنید"
+    },
+    {
+      "type": "p",
+      "text": "زبانهٔ Network یکی از پنل‌های Developer Tools مرورگر است."
+    },
+    {
+      "type": "p",
+      "text": "این زبانه همهٔ درخواست‌های شبکه‌ای را که صفحهٔ شما می‌فرستد نشان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "این زبانه یکی از مفیدترین ابزارها برای اشکال‌زدایی JavaScript ناهمگام است؛ چون دقیقاً نشان می‌دهد وقتی کد شما fetch() می‌زند، تصویر بار می‌کند، JSON دانلود می‌کند یا داده به سرور می‌فرستد، چه اتفاقی می‌افتد."
+    },
+    {
+      "type": "p",
+      "text": "روش استفاده از Developer Tools:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک وب‌سایت را باز کنید",
+        "کلید F12 را بزنید، یا",
+        "روی صفحه راست‌کلیک کنید و Inspect را انتخاب کنید.",
+        "بعد زبانهٔ Network را انتخاب کنید.",
+        "صفحه را دوباره بار کنید"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "زبانهٔ Network هر درخواستی را که برنامه‌تان می‌فرستد نشان می‌دهد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "کدام فایل‌ها درخواست شده‌اند",
+        "اینکه موفق بوده‌اند یا نه",
+        "کدهای وضعیت HTTP",
+        "زمان‌های دانلود"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const response = await fetch(\"customer.json\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "چند نتیجهٔ ممکن"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نام", "وضعیت", "نوع", "اندازه", "زمان"],
+        ["customer.json", "200", "fetch", "۵۴۸ بایت", "۱۳۴ میلی‌ثانیه"],
+        ["customer.json", "404", "fetch", "", ""],
+        ["customer.json", "ناموفق", "", "", ""]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "این کار بسیار راحت‌تر از حدس زدن دربارهٔ دلیل شکست fetch() است."
+    },
+    {
+      "type": "h2",
+      "text": "از Breakpoint استفاده کنید"
+    },
+    {
+      "type": "p",
+      "text": "مرورگرهای مدرن اجازه می‌دهند اجرای JavaScript را موقتاً متوقف کنید."
+    },
+    {
+      "type": "p",
+      "text": "وقتی اجرا متوقف است، می‌توانید متغیرها، پرامیس‌ها و Call Stack را بررسی کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Example\nconst response = await fetch(\"demo.txt\");\n\ndebugger;\n\nconst text = await response.text();",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "وقتی اجرا به debugger می‌رسد، DevTools خودکار متوقف می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "Breakpoint روی await"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید روی خط‌های await نقطهٔ توقف بگذارید."
+    },
+    {
+      "type": "p",
+      "text": "با این کار مقدارها را قبل و بعد از هر مرحلهٔ ناهمگام بررسی می‌کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  console.log(data);\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "روی اولین خط await نقطهٔ توقف بگذارید."
+    },
+    {
+      "type": "p",
+      "text": "با Step over جلو بروید و response را بررسی کنید."
+    },
+    {
+      "type": "h2",
+      "text": "خطاهای رایج ناهمگام"
+    },
+    {
+      "type": "p",
+      "text": "فراموش کردن await رایج‌ترین اشتباه تازه‌کارها است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = response.json();\n\n  console.log(data);\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "این کد یک پرامیس لاگ می‌کند، نه خود JSON."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  console.log(data);\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "اشکال‌زدایی زنجیرهٔ پرامیس‌ها"
+    },
+    {
+      "type": "p",
+      "text": "پرامیس‌ها هرجای زنجیره ممکن است شکست بخورند."
+    },
+    {
+      "type": "p",
+      "text": "بین مرحله‌ها لاگ بگذارید تا بفهمید کجا شکست می‌خورد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"data.json\")\n\n.then(function(response) {\n\n  console.log(\"Got response\");\n\n  return response.json();\n\n})\n\n.then(function(data) {\n\n  console.log(\"Got data\");\n\n  console.log(data);\n\n})\n\n.catch(function(error) {\n\n  console.log(\"Failed\");\n\n  console.log(error);\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "این نشان می‌دهد کدام مرحله شکست می‌خورد."
+    },
+    {
+      "type": "h2",
+      "text": "ترتیب اجرا را بفهمید"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");\n\nsetTimeout(function() {myDisplayer(\"Timer\")},1000);\n\nmyDisplayer(\"End\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Start\n\nEnd\n\nTimer",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_debug_order"
+    },
+    {
+      "type": "h2",
+      "text": "اشکال‌زدایی عملیات موازی"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const customer = fetch(\"customer.json\");\n\nconst products = fetch(\"products.json\");\n\nconst news = fetch(\"news.json\");",
+      "caption": "نتیجه"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "هر سه درخواست بی‌درنگ شروع می‌شوند",
+        "مرورگر ممکن است آن‌ها را به هر ترتیبی تمام کند",
+        "این طبیعی است"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "response.ok را بررسی کنید"
+    },
+    {
+      "type": "p",
+      "text": "خیلی از تازه‌کارها این را فراموش می‌کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const response = await fetch(\"missing.txt\");\n\nconst text = await response.text();",
+      "caption": "نادرست:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "if (!response.ok) {\n\n  console.log(response.status);\n\n}",
+      "caption": "بهتر:"
+    },
+    {
+      "type": "h2",
+      "text": "رد شدن پرامیس‌ها را مدیریت کنید"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"missing.txt\")\n\n.then(function(response){\n\n  return response.text();\n\n})\n\n.catch(function(err){\n\n  console.log(err);\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "تفاوت این دو را توضیح دهید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["پرامیس رد‌شده", "خطای HTTP"]
+    },
+    {
+      "type": "h2",
+      "text": "از finally() استفاده کنید"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "showSpinner();\n\ntry {\n\n  ...\n\n}\n\nfinally {\n\n  hideSpinner();\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "کد پاک‌سازی جای‌اش finally() است."
+    },
+    {
+      "type": "h2",
+      "text": "راهنمای عملی اشکال‌زدایی"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "دور کد await‌شده try...catch بگذارید.",
+        "هم response.ok و هم response.status را بررسی کنید.",
+        "روی خط‌های await از Breakpoint استفاده کنید.",
+        "از زبانهٔ Network استفاده کنید."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "چک‌لیست اشکال‌زدایی"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "آیا پرامیس با موفقیت تمام شد؟",
+        "آیا await را فراموش کرده‌اید؟",
+        "آیا response.ok را بررسی کرده‌اید؟",
+        "آیا کدتان داخل یک تابع async است؟",
+        "آیا درخواست در زبانهٔ Network دیده می‌شود؟",
+        "آیا خطاها در کنسول گزارش می‌شوند؟",
+        "آیا Event Loop را قفل کرده‌اید؟"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "خلاصه"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "برای دنبال کردن اجرا از console.log() استفاده کنید.",
+        "هنگام اشکال‌زدایی شیءهای پرامیس را بررسی کنید.",
+        "برای پرامیس‌های رد‌شده از try...catch استفاده کنید.",
+        "برای بررسی درخواست‌ها از زبانهٔ Network مرورگر استفاده کنید.",
+        "برای بررسی متغیرها و اجرا نقطهٔ توقف بگذارید.",
+        "بعد از هر fetch() مقدار response.ok را بررسی کنید."
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل HTML بسازید و دو console.log بنویسید؛ یکی قبل از fetch() و یکی بعد از آن. صفحه را در مرورگر باز کنید و ببینید کدام پیام اول چاپ می‌شود.",
+      "hint": "کد JavaScript منتظر پاسخ سرور نمی‌ماند و به اجرای خودش ادامه می‌دهد؛ پس ترتیب چاپ با ترتیب خط‌ها یکی نیست."
+    },
+    {
+      "prompt": "همان فایل را با یک تابع async و try...catch بنویسید و عمداً نام فایل را غلط بدهید تا متن خطا را در کنسول ببینید.",
+      "hint": "با await fetch() یک پرامیس رد‌شده می‌سازید و catch آن را می‌گیرد؛ پیام خطا در کنسول چاپ می‌شود."
+    },
+    {
+      "prompt": "response.ok و response.status را برای یک فایل موجود چاپ کنید؛ بعد نام فایل را عوض کنید و همان دو مقدار را دوباره چاپ کنید.",
+      "hint": "برای فایل نبود، ok برابر false و status برابر 404 می‌شود، ولی پرامیس رد نمی‌شود؛ پس باید خودتان ok را بررسی کنید."
+    },
+    {
+      "prompt": "با F12 یا راست‌کلیک و Inspect زبانهٔ Network را باز کنید، صفحه را دوباره بار کنید و کد وضعیت هر درخواست را بخوانید.",
+      "hint": "زبانهٔ Network فایل درخواست‌شده، وضعیت، نوع، اندازه و زمان هر درخواست را نشان می‌دهد."
+    },
+    {
+      "prompt": "داخل یک تابع async دستور debugger؛ بگذارید، DevTools را باز کنید و کد را اجرا کنید؛ سپس مقدار response را در پنل بررسی کنید.",
+      "hint": "وقتی اجرا به debugger می‌رسد DevTools خودکار متوقف می‌شود و می‌توانید با Step over جلو بروید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در مثال «Log Events»، چرا پیام After fetch قبل از رسیدن پاسخ سرور چاپ می‌شود؟",
+      "options": [
+        "چون fetch() همگام است",
+        "چون fetch() یک پرامیس برمی‌گرداند و کد منتظر آن نمی‌ماند",
+        "چون console.log سرعت دارد",
+        "چون مرورگر ترتیب خط‌ها را عوض می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "fetch() یک پرامیس برمی‌گرداند و اجرای کد بی‌درنگ ادامه می‌یابد؛ نتیجهٔ درخواست بعداً می‌رسد، پس پیام بعد از fetch زودتر از خود داده چاپ می‌شود."
+    },
+    {
+      "question": "وقتی سرور پاسخ 404 می‌دهد، پرامیس fetch() چه می‌شود؟",
+      "options": [
+        "رد می‌شود و catch اجرا می‌شود",
+        "خودکار با موفقیت تمام می‌شود و باید response.ok را بررسی کنید",
+        "به‌طور خودکار دوباره فرستاده می‌شود",
+        "به یک خطای نحوی تبدیل می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "fetch فقط روی خطاهای شبکه پرامیس را رد می‌کند؛ پاسخ‌های 404 و 500 پرامیس را رد نمی‌کنند، پس بررسی response.ok لازم است."
+    },
+    {
+      "question": "کدام قطعه کد خطاهای شبکه و خطاهای تجزیهٔ JSON را می‌گیرد اما خطای HTTP 404 را نه؟",
+      "options": [
+        "fetch(file) بدون هیچ بررسی",
+        "try...catch دور await fetch() و await response.json()",
+        "یک console.log بعد از fetch",
+        "استفاده از debugger داخل تابع"
+      ],
+      "answer": 1,
+      "explanation": "try...catch خطای شبکه و خطای JSON را می‌گیرد، اما پاسخ 404 یک پاسخ موفق از نظر fetch است و پرامیس را رد نمی‌کند؛ برای آن باید response.ok را بررسی کنید."
+    },
+    {
+      "question": "در قطعهٔ «Forgetting await»، خروجی console.log(data) چیست؟",
+      "options": [
+        "دادهٔ JSON به‌صورت شیء",
+        "یک پرامیس به‌جای دادهٔ JSON",
+        "مقدار undefined",
+        "کد وضعیت پاسخ"
+      ],
+      "answer": 1,
+      "explanation": "بدون await، خروجی response.json() یک پرامیس است؛ console.log همان پرامیس را چاپ می‌کند، نه دادهٔ JSON را."
+    },
+    {
+      "question": "کدام مورد دربارهٔ قطعهٔ setTimeout مثال «Understand Execution Order» درست است؟",
+      "options": [
+        "ترتیب خروجی Start و Timer و End است",
+        "ترتیب خروجی Start و End و Timer است",
+        "Timer هرگز چاپ نمی‌شود",
+        "End بلافاصله بعد از Timer چاپ می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "تایمر یک کار ناهمگام است؛ کد همگام تا آخر اجرا می‌شود، پس Start و End اول چاپ می‌شوند و Timer یک ثانیه بعد."
+    },
+    {
+      "question": "بر اساس چک‌لیست درس، کدام کار پس از هر fetch() لازم است؟",
+      "options": [
+        "تنظیم یک Breakpoint",
+        "بررسی response.ok",
+        "خالی کردن حافظهٔ موقت (cache)",
+        "فراخوانی دوباره fetch در finally"
+      ],
+      "answer": 1,
+      "explanation": "چون fetch روی خطاهای HTTP رد نمی‌شود، بعد از هر fetch باید response.ok (و در صورت نیاز response.status) را بررسی کنید."
+    }
+  ]
 }

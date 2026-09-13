@@ -1,262 +1,257 @@
 {
- "slug": "js_graphics_plotly",
- "course": "js",
- "order": 252,
- "url": "/js/js_graphics_plotly.asp",
- "title": "Plotly.js",
- "summary": "Plotly.js کتابخانهٔ نمودار متن‌بازی است که بیش از ۴۰ نوع نمودار می‌سازد. در این درس نمودار میله‌ای عمودی و افقی، دایره‌ای و دونات، پراکندگی، خطی و حبابی رسم می‌کنید و با حلقه معادله‌ها را روی نمودار می‌آورید.",
- "objectives": [
-  "یک نمودار میله‌ای با Plotly.newPlot رسم کنید",
-  "جهت میله‌ها و رنگ آن‌ها را تغییر دهید",
-  "نمودار دایره‌ای را به دونات تبدیل کنید",
-  "با دادهٔ ساخته‌شده در حلقه یک معادله را رسم کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Plotly.js"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Plotly.js یک کتابخانهٔ نمودار است که با بیش از ۴۰ نوع نمودار می‌آید:\n\nنمودارهای میله‌ای افقی و عمودی\nنمودارهای دایره‌ای و دونات\nنمودارهای خطی\nنمودارهای پراکندگی و حبابی\nرسم معادله‌ها\nنمودارهای سه‌بعدی\nنمودارهای آماری\nنقشه‌های SVG\n...\n\nPlotly.js آزاد و متن‌باز است و تحت پروانهٔ MIT منتشر می‌شود.\nنصب و استفاده از آن هیچ هزینه‌ای ندارد.\nمی‌توانید کد منبع را ببینید، مشکل گزارش دهید و با Github مشارکت کنید."
-  },
-  {
-   "type": "h2",
-   "text": "نمودارهای میله‌ای"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [\"Italy\",\"France\",\"Spain\",\"USA\",\"Argentina\"];\n\nconst yArray = [55, 49, 44, 24, 15];\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  type: \"bar\",\n\n  orientation:\"v\",\n\n  marker: {color:\"rgba(0,0,255)\"}\n\n}];\n\nconst layout = {title:\"World Wide Wine Production\"};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "کد منبع"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bars"
-  },
-  {
-   "type": "h2",
-   "text": "نمودارهای میله‌ای افقی"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [55, 49, 44, 24, 15];\n\nconst yArray = [\"Italy\",\"France\",\"Spain\",\"USA\",\"Argentina\"];\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  type: \"bar\",\n\n  orientation: \"h\",\n\n  marker: {color:\"rgba(255,0,0,0.6)\"}\n\n}];\n\nconst layout = {title:\"World Wide Wine Production\"};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "کد منبع"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bars_horizontal"
-  },
-  {
-   "type": "h2",
-   "text": "نمودارهای دایره‌ای"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const data = [{\n\n  labels: xArray,\n\n  values: yArray,\n\n  type: \"pie\"\n\n}];",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_pie"
-  },
-  {
-   "type": "h2",
-   "text": "نمودارهای دونات"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const data = [{\n\n  labels: xArray,\n\n  values: yArray,\n\n  hole: .4,\n\n  type: \"pie\"\n\n}];",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_donut"
-  },
-  {
-   "type": "h2",
-   "text": "رسم معادله‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let exp = \"Math.sin(x)\";\n\n// Generate values\n\nconst xValues = [];\n\nconst yValues = [];\n\nfor (let x = 0; x <= 10; x += 0.1) {\n\n  xValues.push(x);\n\n  yValues.push(eval(exp));\n\n}\n\n// Display using Plotly\n\nconst data = [{x:xValues, y:yValues, mode:\"lines\"}];\n\nconst layout = {title: \"y = \" + exp};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "کد منبع"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Display using Plotly\n\nconst data = [{x:xValues, y:yValues, mode:\"markers\"}];\n\nconst layout = {title: \"y = \" + exp};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_scatter"
-  },
-  {
-   "type": "h2",
-   "text": "نمودارهای پراکندگی"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Define Data\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  mode:\"markers\",\n\n  type:\"scatter\"\n\n}];\n\n// Define Layout\n\nconst layout = {\n\n  xaxis: {range: [40, 160], title: \"Square Meters\"},\n\n  yaxis: {range: [5, 16], title: \"Price in Millions\"},\n\n  title: \"House Prices vs. Size\"\n\n};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "کد منبع"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_scatter"
-  },
-  {
-   "type": "h2",
-   "text": "نمودارهای خطی"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Define Data\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  mode: \"lines\",\n\n  type: \"scatter\"\n\n}];\n\n// Define Layout\n\nconst layout = {\n\n  xaxis: {range: [40, 160], title: \"Square Meters\"},\n\n  yaxis: {range: [5, 16], title: \"Price in Millions\"},\n\n  title: \"House Prices vs Size\"\n\n};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "کد منبع"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_lines"
-  },
-  {
-   "type": "h2",
-   "text": "نمودارهای حبابی"
-  },
-  {
-   "type": "p",
-   "text": "نمودارهای حبابی همان نمودارهای پراکندگی هستند که نشانگرهایشان رنگ، اندازه و نماد متغیر دارند."
-  },
-  {
-   "type": "p",
-   "text": "نوعی نمودار سه‌بعدی است که فقط دو محور دارد (x و y) و اندازهٔ حباب بُعد سوم را نشان می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [1,2,3,4];\n\nconst yArray = [10,20,30,40];\n\nconst trace1 = {\n\n  x: xArray,\n\n  y: yArray,\n\n  mode: 'markers',\n\n  marker: {\n\n    color: ['red', 'green',  'blue', 'orange'],\n\n    size: [20, 30, 40, 50]\n\n  }\n\n};\n\nconst data = [trace1];\n\nconst layout = {\n\n  title: \"Plotting Bubbles\"\n\n};\n\nPlotly.newPlot('myPlot', data, layout);",
-   "caption": "کد منبع"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bubbles"
-  },
-  {
-   "type": "h2",
-   "text": "نمودارهای خطی (Linear)"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let exp = \"x + 17\";\n\n// Generate values\n\nconst xValues = [];\n\nconst yValues = [];\n\nfor (let x = 0; x <= 10; x += 1) {\n\n  yValues.push(eval(exp));\n\n  xValues.push(x);\n\n}\n\n// Define Data\n\nconst data = [{\n\n  x: xValues,\n\n  y: yValues,\n\n  mode: \"lines\"\n\n}];\n\n// Define Layout\n\nconst layout = {title: \"y = \" + exp};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "کد منبع"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_linear"
-  },
-  {
-   "type": "h2",
-   "text": "چند خط"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let exp1 = \"x\";\n\nlet exp2 = \"1.5*x\";\n\nlet exp3 = \"1.5*x + 7\";\n\n// Generate values\n\nconst x1Values = [];\n\nconst x2Values = [];\n\nconst x3Values = [];\n\nconst y1Values = [];\n\nconst y2Values = [];\n\nconst y3Values = [];\n\nfor (let x = 0; x <= 10; x += 1) {\n\n  x1Values.push(x);\n\n  x2Values.push(x);\n\n  x3Values.push(x);\n\n  y1Values.push(eval(exp1));\n\n  y2Values.push(eval(exp2));\n\n  y3Values.push(eval(exp3));\n\n}\n\n// Define Data\n\nconst data = [\n\n  {x: x1Values, y: y1Values, mode:\"lines\"},\n\n  {x: x2Values, y: y2Values, mode:\"lines\"},\n\n  {x: x3Values, y: y3Values, mode:\"lines\"}\n\n];\n\n// Define Layout\n\nconst layout = {title: \"[y=\" + exp1 + \"]  [y=\" + exp2 + \"]  [y=\" + exp3 + \"]\"};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "کد منبع"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_linear_multiple"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک صفحه با یک div به نام myPlot و اسکریپت Plotly بسازید و یک نمودار میله‌ای عمودی از دادهٔ نمونهٔ درس رسم کنید.",
-   "hint": "orientation را \"v\" بگذارید و در پایان Plotly.newPlot(\"myPlot\", data, layout) را صدا بزنید."
-  },
-  {
-   "prompt": "همان نمودار را افقی کنید و رنگ میله‌ها را با marker عوض کنید.",
-   "hint": "برای افقی شدن orientation را \"h\" بگذارید و در marker مقدار color را تعیین کنید."
-  },
-  {
-   "prompt": "نمودار دایره‌ای را به دونات تبدیل کنید و توضیح دهید کدام ویژگی این کار را می‌کند.",
-   "hint": "با hole در data، مثلاً hole: .4، وسط نمودار خالی می‌شود."
-  },
-  {
-   "prompt": "دو منحنی y = x و y = 1.5*x + 7 را در یک نمودار خطی رسم کنید.",
-   "hint": "data یک آرایه است؛ برای هر منحنی یک شیء با x و y و mode: \"lines\" بگذارید."
-  },
-  {
-   "prompt": "یک نمودار حبابی رسم کنید که اندازهٔ حباب‌ها با مقدار داده فرق کند.",
-   "hint": "در همان trace، marker را شیئی با color و size بگذارید."
-  }
- ],
- "quiz": [
-  {
-   "question": "برای رسم نمودار میله‌ای افقی در Plotly.js کدام ویژگی را تنظیم می‌کنیم؟",
-   "options": [
-    "type: \"bar\" و orientation: \"h\"",
-    "type: \"line\"",
-    "hole: .4",
-    "mode: \"markers\""
-   ],
-   "answer": 0,
-   "explanation": "نوع نمودار با type: \"bar\" تعیین می‌شود و جهت آن با orientation؛ مقدار \"h\" یعنی افقی و \"v\" یعنی عمودی."
-  },
-  {
-   "question": "در Plotly.js یک نمودار دایره‌ای را چگونه به دونات تبدیل می‌کنیم؟",
-   "options": [
-    "type را به \"donut\" تغییر می‌دهیم",
-    "ویژگی hole را تعیین می‌کنیم",
-    "orientation را \"h\" می‌کنیم",
-    "mode را \"lines\" می‌کنیم"
-   ],
-   "answer": 1,
-   "explanation": "نوع همان \"pie\" می‌ماند و با hole، مثلاً hole: .4، بخشی از وسط نمودار خالی می‌شود."
-  },
-  {
-   "question": "تفاوت mode: \"markers\" و mode: \"lines\" در نمودار پراکندگی چیست؟",
-   "options": [
-    "اولی نقطه‌ها را نشان می‌دهد و دومی خط را",
-    "اولی خط را می‌کشد و دومی نقطه‌ها را",
-    "هر دو یک کار می‌کنند",
-    "mode فقط در نمودار میله‌ای اثر دارد"
-   ],
-   "answer": 0,
-   "explanation": "با mode مشخص می‌کنید داده با نشانگر نمایش داده شود یا با خط؛ \"markers\" نقطه‌ها و \"lines\" خط است."
-  },
-  {
-   "question": "در نمودار حبابی، اندازهٔ حباب چه چیزی را نشان می‌دهد؟",
-   "options": [
-    "محور x",
-    "محور y",
-    "بُعد سوم داده",
-    "عنوان نمودار"
-   ],
-   "answer": 2,
-   "explanation": "درس می‌گوید نمودار حبابی سه‌بعدی است و بُعد سومش را اندازهٔ حباب منتقل می‌کند."
-  },
-  {
-   "question": "برای رسم معادله در Plotly.js چه می‌کنیم؟",
-   "options": [
-    "با یک حلقه مقدارهای x و y را می‌سازیم و آن‌ها را به Plotly می‌دهیم",
-    "فقط رشتهٔ معادله را به Plotly می‌دهیم",
-    "معادله را در title می‌نویسیم",
-    "از type: \"equation\" استفاده می‌کنیم"
-   ],
-   "answer": 0,
-   "explanation": "در مثال‌های درس آرایه‌های xValues و yValues با حلقه پر می‌شوند و بعد به‌عنوان داده به نمودار داده می‌شوند."
-  }
- ]
+  "slug": "js_graphics_plotly",
+  "course": "js",
+  "order": 252,
+  "url": "/js/js_graphics_plotly.asp",
+  "title": "Plotly.js",
+  "summary": "Plotly.js کتابخانهٔ نمودار متن‌بازی است که بیش از ۴۰ نوع نمودار می‌سازد. در این درس نمودار میله‌ای عمودی و افقی، دایره‌ای و دونات، پراکندگی، خطی و حبابی رسم می‌کنید و با حلقه معادله‌ها را روی نمودار می‌آورید.",
+  "objectives": [
+    "یک نمودار میله‌ای با Plotly.newPlot رسم کنید",
+    "جهت میله‌ها و رنگ آن‌ها را تغییر دهید",
+    "نمودار دایره‌ای را به دونات تبدیل کنید",
+    "با دادهٔ ساخته‌شده در حلقه یک معادله را رسم کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Plotly.js"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Plotly.js یک کتابخانهٔ نمودار است که با بیش از ۴۰ نوع نمودار می‌آید:\n\nنمودارهای میله‌ای افقی و عمودی\nنمودارهای دایره‌ای و دونات\nنمودارهای خطی\nنمودارهای پراکندگی و حبابی\nرسم معادله‌ها\nنمودارهای سه‌بعدی\nنمودارهای آماری\nنقشه‌های SVG\n...\n\nPlotly.js آزاد و متن‌باز است و تحت پروانهٔ MIT منتشر می‌شود.\nنصب و استفاده از آن هیچ هزینه‌ای ندارد.\nمی‌توانید کد منبع را ببینید، مشکل گزارش دهید و با Github مشارکت کنید."
+    },
+    {
+      "type": "h2",
+      "text": "نمودارهای میله‌ای"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [\"Italy\",\"France\",\"Spain\",\"USA\",\"Argentina\"];\n\nconst yArray = [55, 49, 44, 24, 15];\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  type: \"bar\",\n\n  orientation:\"v\",\n\n  marker: {color:\"rgba(0,0,255)\"}\n\n}];\n\nconst layout = {title:\"World Wide Wine Production\"};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "کد منبع"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bars"
+    },
+    {
+      "type": "h2",
+      "text": "نمودارهای میله‌ای افقی"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [55, 49, 44, 24, 15];\n\nconst yArray = [\"Italy\",\"France\",\"Spain\",\"USA\",\"Argentina\"];\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  type: \"bar\",\n\n  orientation: \"h\",\n\n  marker: {color:\"rgba(255,0,0,0.6)\"}\n\n}];\n\nconst layout = {title:\"World Wide Wine Production\"};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "کد منبع"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bars_horizontal"
+    },
+    {
+      "type": "h2",
+      "text": "نمودارهای دایره‌ای"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const data = [{\n\n  labels: xArray,\n\n  values: yArray,\n\n  type: \"pie\"\n\n}];",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_pie"
+    },
+    {
+      "type": "h2",
+      "text": "نمودارهای دونات"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const data = [{\n\n  labels: xArray,\n\n  values: yArray,\n\n  hole: .4,\n\n  type: \"pie\"\n\n}];",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_donut"
+    },
+    {
+      "type": "h2",
+      "text": "رسم معادله‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let exp = \"Math.sin(x)\";\n\n// Generate values\n\nconst xValues = [];\n\nconst yValues = [];\n\nfor (let x = 0; x <= 10; x += 0.1) {\n\n  xValues.push(x);\n\n  yValues.push(eval(exp));\n\n}\n\n// Display using Plotly\n\nconst data = [{x:xValues, y:yValues, mode:\"lines\"}];\n\nconst layout = {title: \"y = \" + exp};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "کد منبع"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Display using Plotly\n\nconst data = [{x:xValues, y:yValues, mode:\"markers\"}];\n\nconst layout = {title: \"y = \" + exp};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_scatter"
+    },
+    {
+      "type": "h2",
+      "text": "نمودارهای پراکندگی"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Define Data\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  mode:\"markers\",\n\n  type:\"scatter\"\n\n}];\n\n// Define Layout\n\nconst layout = {\n\n  xaxis: {range: [40, 160], title: \"Square Meters\"},\n\n  yaxis: {range: [5, 16], title: \"Price in Millions\"},\n\n  title: \"House Prices vs. Size\"\n\n};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "کد منبع"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_scatter"
+    },
+    {
+      "type": "h2",
+      "text": "نمودارهای خطی"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Define Data\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  mode: \"lines\",\n\n  type: \"scatter\"\n\n}];\n\n// Define Layout\n\nconst layout = {\n\n  xaxis: {range: [40, 160], title: \"Square Meters\"},\n\n  yaxis: {range: [5, 16], title: \"Price in Millions\"},\n\n  title: \"House Prices vs Size\"\n\n};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "کد منبع"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_lines"
+    },
+    {
+      "type": "h2",
+      "text": "نمودارهای حبابی"
+    },
+    {
+      "type": "p",
+      "text": "نمودارهای حبابی همان نمودارهای پراکندگی هستند که نشانگرهایشان رنگ، اندازه و نماد متغیر دارند."
+    },
+    {
+      "type": "p",
+      "text": "نوعی نمودار سه‌بعدی است که فقط دو محور دارد (x و y) و اندازهٔ حباب بُعد سوم را نشان می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [1,2,3,4];\n\nconst yArray = [10,20,30,40];\n\nconst trace1 = {\n\n  x: xArray,\n\n  y: yArray,\n\n  mode: 'markers',\n\n  marker: {\n\n    color: ['red', 'green',  'blue', 'orange'],\n\n    size: [20, 30, 40, 50]\n\n  }\n\n};\n\nconst data = [trace1];\n\nconst layout = {\n\n  title: \"Plotting Bubbles\"\n\n};\n\nPlotly.newPlot('myPlot', data, layout);",
+      "caption": "کد منبع"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bubbles"
+    },
+    {
+      "type": "h2",
+      "text": "نمودارهای خطی (Linear)"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let exp = \"x + 17\";\n\n// Generate values\n\nconst xValues = [];\n\nconst yValues = [];\n\nfor (let x = 0; x <= 10; x += 1) {\n\n  yValues.push(eval(exp));\n\n  xValues.push(x);\n\n}\n\n// Define Data\n\nconst data = [{\n\n  x: xValues,\n\n  y: yValues,\n\n  mode: \"lines\"\n\n}];\n\n// Define Layout\n\nconst layout = {title: \"y = \" + exp};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "کد منبع"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_linear"
+    },
+    {
+      "type": "h2",
+      "text": "چند خط"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let exp1 = \"x\";\n\nlet exp2 = \"1.5*x\";\n\nlet exp3 = \"1.5*x + 7\";\n\n// Generate values\n\nconst x1Values = [];\n\nconst x2Values = [];\n\nconst x3Values = [];\n\nconst y1Values = [];\n\nconst y2Values = [];\n\nconst y3Values = [];\n\nfor (let x = 0; x <= 10; x += 1) {\n\n  x1Values.push(x);\n\n  x2Values.push(x);\n\n  x3Values.push(x);\n\n  y1Values.push(eval(exp1));\n\n  y2Values.push(eval(exp2));\n\n  y3Values.push(eval(exp3));\n\n}\n\n// Define Data\n\nconst data = [\n\n  {x: x1Values, y: y1Values, mode:\"lines\"},\n\n  {x: x2Values, y: y2Values, mode:\"lines\"},\n\n  {x: x3Values, y: y3Values, mode:\"lines\"}\n\n];\n\n// Define Layout\n\nconst layout = {title: \"[y=\" + exp1 + \"]  [y=\" + exp2 + \"]  [y=\" + exp3 + \"]\"};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "کد منبع"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_linear_multiple"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک صفحه با یک div به نام myPlot و اسکریپت Plotly بسازید و یک نمودار میله‌ای عمودی از دادهٔ نمونهٔ درس رسم کنید.",
+      "hint": "orientation را \"v\" بگذارید و در پایان Plotly.newPlot(\"myPlot\", data, layout) را صدا بزنید."
+    },
+    {
+      "prompt": "همان نمودار را افقی کنید و رنگ میله‌ها را با marker عوض کنید.",
+      "hint": "برای افقی شدن orientation را \"h\" بگذارید و در marker مقدار color را تعیین کنید."
+    },
+    {
+      "prompt": "نمودار دایره‌ای را به دونات تبدیل کنید و توضیح دهید کدام ویژگی این کار را می‌کند.",
+      "hint": "با hole در data، مثلاً hole: .4، وسط نمودار خالی می‌شود."
+    },
+    {
+      "prompt": "دو منحنی y = x و y = 1.5*x + 7 را در یک نمودار خطی رسم کنید.",
+      "hint": "data یک آرایه است؛ برای هر منحنی یک شیء با x و y و mode: \"lines\" بگذارید."
+    },
+    {
+      "prompt": "یک نمودار حبابی رسم کنید که اندازهٔ حباب‌ها با مقدار داده فرق کند.",
+      "hint": "در همان trace، marker را شیئی با color و size بگذارید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای رسم نمودار میله‌ای افقی در Plotly.js کدام ویژگی را تنظیم می‌کنیم؟",
+      "options": [
+        "type: \"bar\" و orientation: \"h\"",
+        "type: \"line\"",
+        "hole: .4",
+        "mode: \"markers\""
+      ],
+      "answer": 0,
+      "explanation": "نوع نمودار با type: \"bar\" تعیین می‌شود و جهت آن با orientation؛ مقدار \"h\" یعنی افقی و \"v\" یعنی عمودی."
+    },
+    {
+      "question": "در Plotly.js یک نمودار دایره‌ای را چگونه به دونات تبدیل می‌کنیم؟",
+      "options": [
+        "type را به \"donut\" تغییر می‌دهیم",
+        "ویژگی hole را تعیین می‌کنیم",
+        "orientation را \"h\" می‌کنیم",
+        "mode را \"lines\" می‌کنیم"
+      ],
+      "answer": 1,
+      "explanation": "نوع همان \"pie\" می‌ماند و با hole، مثلاً hole: .4، بخشی از وسط نمودار خالی می‌شود."
+    },
+    {
+      "question": "تفاوت mode: \"markers\" و mode: \"lines\" در نمودار پراکندگی چیست؟",
+      "options": [
+        "اولی نقطه‌ها را نشان می‌دهد و دومی خط را",
+        "اولی خط را می‌کشد و دومی نقطه‌ها را",
+        "هر دو یک کار می‌کنند",
+        "mode فقط در نمودار میله‌ای اثر دارد"
+      ],
+      "answer": 0,
+      "explanation": "با mode مشخص می‌کنید داده با نشانگر نمایش داده شود یا با خط؛ \"markers\" نقطه‌ها و \"lines\" خط است."
+    },
+    {
+      "question": "در نمودار حبابی، اندازهٔ حباب چه چیزی را نشان می‌دهد؟",
+      "options": ["محور x", "محور y", "بُعد سوم داده", "عنوان نمودار"],
+      "answer": 2,
+      "explanation": "درس می‌گوید نمودار حبابی سه‌بعدی است و بُعد سومش را اندازهٔ حباب منتقل می‌کند."
+    },
+    {
+      "question": "برای رسم معادله در Plotly.js چه می‌کنیم؟",
+      "options": [
+        "با یک حلقه مقدارهای x و y را می‌سازیم و آن‌ها را به Plotly می‌دهیم",
+        "فقط رشتهٔ معادله را به Plotly می‌دهیم",
+        "معادله را در title می‌نویسیم",
+        "از type: \"equation\" استفاده می‌کنیم"
+      ],
+      "answer": 0,
+      "explanation": "در مثال‌های درس آرایه‌های xValues و yValues با حلقه پر می‌شوند و بعد به‌عنوان داده به نمودار داده می‌شوند."
+    }
+  ]
 }

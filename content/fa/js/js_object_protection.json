@@ -1,365 +1,365 @@
 {
- "slug": "js_object_protection",
- "course": "js",
- "order": 216,
- "url": "/js/js_object_protection.asp",
- "title": "محافظت از شیءها در JavaScript",
- "summary": "برای اینکه شیءها ناخواسته تغییر نکنند، JavaScript چند متد محافظت دارد: preventExtensions، seal و freeze. در این درس می‌بینید هر کدام چه چیزی را می‌بندد، چطور وضعیت شیء را با isExtensible، isSealed و isFrozen بررسی کنید و چرا حالت strict خطاها را آشکار می‌کند.",
- "objectives": [
-  "تفاوت const با Object.freeze() را در محافظت از شیء توضیح دهید",
-  "برای هر سناریو متد مناسب (preventExtensions، seal یا freeze) را انتخاب کنید",
-  "وضعیت شیء را با isExtensible، isSealed و isFrozen بررسی کنید",
-  "اثر حالت strict بر این متدها را تشخیص دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "محافظت از شیءها در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای محافظت از شیء"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Prevents re-assignment\n\nconst car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\n// Prevents adding object properties\n\nObject.preventExtensions(object)\n\n// Returns true if properties can be added to an object\n\nObject.isExtensible(object)\n\n// Prevents adding and deleting object properties\n\nObject.seal(object)\n\n// Returns true if object is sealed\n\nObject.isSealed(object)\n\n// Prevents any changes to an object\n\nObject.freeze(object)\n\n// Returns true if object is frozen\n\nObject.isFrozen(object)",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از const"
-  },
-  {
-   "type": "p",
-   "text": "رایج‌ترین راه محافظت از شیء در برابر تغییر، استفاده از کلیدواژهٔ const است."
-  },
-  {
-   "type": "p",
-   "text": "با const نمی‌توانید خود شیء را دوباره مقداردهی کنید، اما می‌توانید مقدار یک خصوصیت را عوض کنید، خصوصیتی را حذف کنید یا خصوصیت جدید بسازید."
-  },
-  {
-   "type": "h2",
-   "text": "Object.preventExtensions() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.preventExtensions() جلوی افزودن خصوصیت جدید به شیء را می‌گیرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Prevent Extensions\n\nObject.preventExtensions(person);\n\n// This will throw an error\n\nperson.nationality = \"English\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_preventextensions"
-  },
-  {
-   "type": "p",
-   "text": "چون آرایه‌ها هم شیء هستند، برای آرایه‌ها هم می‌توان جلوی گسترش را گرفت:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.preventExtensions(fruits);\n\n// This will throw an error:\n\nfruits.push(\"Kiwi\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_preventextensions2"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.preventExtensions() در حالت غیرstrict بی‌صدا شکست می‌خورد و در حالت strict خطای TypeError می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "Object.isExtensible() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "با Object.isExtensible() می‌توانید بررسی کنید که شیء قابل گسترش است یا نه."
-  },
-  {
-   "type": "p",
-   "text": "متد Object.isExtensible() اگر شیء قابل گسترش باشد true برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Prevent Extensions\n\nObject.preventExtensions(person);\n\n// This will return false\n\nlet answer = Object.isExtensible(person);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\n// Prevent Extensions\n\nObject.preventExtensions(fruits);\n\n// This will return false\n\nlet answer = Object.isExtensible(fruits);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_isextensible"
-  },
-  {
-   "type": "h2",
-   "text": "Object.seal() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.seal() جلوی افزودن و حذف خصوصیت‌ها را می‌گیرد."
-  },
-  {
-   "type": "p",
-   "text": "متد Object.seal() خصوصیت‌های موجود را غیرقابل‌تنظیم (non-configurable) می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "با متد Object.isSealed() می‌توانید ببینید شیء seal شده است یا نه."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\"\n\n// Create Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Seal Object\n\nObject.seal(person)\n\n// This will throw an error\n\ndelete person.age;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_seal2"
-  },
-  {
-   "type": "p",
-   "text": "چون آرایه‌ها هم شیء هستند، آرایه‌ها را هم می‌توان seal کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.seal(fruits);\n\n// This will throw an error:\n\nfruits.push(\"Kiwi\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_seal"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.seal() در حالت غیرstrict بی‌صدا شکست می‌خورد و در حالت strict خطای TypeError می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "Object.isSealed() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "با متد Object.isSealed() می‌توانید ببینید شیء seal شده است یا نه."
-  },
-  {
-   "type": "p",
-   "text": "متد Object.isSealed() اگر شیء seal شده باشد true برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Seal Object\n\nObject.seal(person);\n\n// This will return true\n\nlet answer = Object.isSealed(person);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\n// Seal Array\n\nObject.seal(fruits);\n\n// This will return true\n\nlet answer = Object.isSealed(fruits);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_issealed"
-  },
-  {
-   "type": "h2",
-   "text": "Object.freeze() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.freeze() جلوی هر تغییری در شیء را می‌گیرد."
-  },
-  {
-   "type": "p",
-   "text": "شیءهای freeze شده فقط‌خواندنی‌اند."
-  },
-  {
-   "type": "p",
-   "text": "هیچ تغییر، افزودن یا حذفی برای خصوصیت‌ها مجاز نیست."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\"\n\n// Create Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Freeze Object\n\nObject.freeze(person)\n\n// This will throw an error\n\nperson.age = 51;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_freeze2"
-  },
-  {
-   "type": "p",
-   "text": "چون آرایه‌ها هم شیء هستند، آرایه‌ها را هم می‌توان freeze کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.freeze(fruits);\n\n// This will trow an error:\n\nfruits.push(\"Kiwi\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_freeze"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.freeze() در حالت غیرstrict بی‌صدا شکست می‌خورد و در حالت strict خطای TypeError می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "Object.isFrozen() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "با متد Object.isFrozen() می‌توانید ببینید شیء freeze شده است یا نه."
-  },
-  {
-   "type": "p",
-   "text": "متد Object.isFrozen() اگر شیء freeze شده باشد true برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Freeze Object\n\nObject.freeze(person);\n\n// This will return true\n\nlet answer = Object.isFrozen(person);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.freeze(fruits);\n\n// This will return true:\n\nlet answer = Object.isFrozen(fruits);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_isfrozen"
-  },
-  {
-   "type": "h2",
-   "text": "فصل‌های پیشرفته:"
-  },
-  {
-   "type": "p",
-   "text": "تعریف شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "this پیشرفته در شیءهای JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پیمایش شیءها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مدیریت شیءها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "محافظت از شیءها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پروتوتایپ‌های شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع شیء در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل protect.html بسازید، یک شیء با const تعریف کنید و ببینید می‌توانید خصوصیتش را عوض کنید؛ نتیجه را در کنسول چاپ کنید.",
-   "hint": "const فقط جلوی دوباره مقداردهی خود شیء را می‌گیرد، نه تغییر خصوصیت‌های آن."
-  },
-  {
-   "prompt": "روی همان شیء Object.preventExtensions() را اجرا کنید، بعد یک خصوصیت جدید اضافه کنید و نتیجهٔ Object.isExtensible() را چاپ کنید.",
-   "hint": "در ابتدای اسکریپت \"use strict\" بگذارید تا خطای TypeError را ببینید."
-  },
-  {
-   "prompt": "یک شیء بسازید و آن را با Object.seal() مهر و موم کنید؛ اول یک خصوصیت را عوض کنید و بعد یکی را حذف کنید.",
-   "hint": "seal اجازهٔ تغییر مقدار خصوصیت‌های موجود را می‌دهد ولی حذف و افزودن را نه."
-  },
-  {
-   "prompt": "روی یک آرایه Object.freeze() را اجرا کنید و با push یک عضو جدید اضافه کنید؛ ببینید چه اتفاقی می‌افتد.",
-   "hint": "آرایه هم شیء است، پس freeze روی آن هم کار می‌کند و push در strict خطا می‌دهد."
-  },
-  {
-   "prompt": "برای یک شیء هم isExtensible()، هم isSealed() و هم isFrozen() را چاپ کنید و ترتیب true شدنشان را بعد از هر متد توضیح دهید.",
-   "hint": "freeze روی شیء seal شده هم اثر می‌گذارد، چون هر دو جلوی افزودن و حذف را می‌گیرند."
-  }
- ],
- "quiz": [
-  {
-   "question": "با const روی یک شیء دقیقاً چه کاری نمی‌توانیم انجام دهیم؟",
-   "options": [
-    "تغییر مقدار خصوصیت‌های شیء",
-    "دوباره مقداردهی خود شیء",
-    "حذف یک خصوصیت",
-    "افزودن خصوصیت جدید"
-   ],
-   "answer": 1,
-   "explanation": "const فقط اجازه نمی‌دهد خود شناسه دوباره به شیء دیگری اشاره کند؛ تغییر، افزودن و حذف خصوصیت‌ها همچنان ممکن است."
-  },
-  {
-   "question": "کدام متد جلوی افزودن خصوصیت جدید را می‌گیرد، ولی تغییر مقدار خصوصیت‌های موجود را آزاد می‌گذارد؟",
-   "options": [
-    "Object.freeze()",
-    "Object.seal()",
-    "Object.preventExtensions()",
-    "Object.isExtensible()"
-   ],
-   "answer": 2,
-   "explanation": "preventExtensions فقط افزودن خصوصیت را می‌بندد. seal حذف را هم می‌بندد و freeze هیچ تغییری را اجازه نمی‌دهد؛ isExtensible هم فقط وضعیت را گزارش می‌کند."
-  },
-  {
-   "question": "تفاوت Object.seal() و Object.freeze() چیست؟",
-   "options": [
-    "هیچ تفاوتی ندارند",
-    "seal اجازهٔ تغییر مقدار خصوصیت‌های موجود را می‌دهد ولی freeze هیچ تغییری را اجازه نمی‌دهد",
-    "freeze فقط روی آرایه‌ها کار می‌کند",
-    "seal خصوصیت‌های موجود را حذف می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "در شیء seal شده می‌توانید مقدار خصوصیت‌های موجود را عوض کنید اما نه اضافه یا حذف کنید؛ شیء freeze شده کاملاً فقط‌خواندنی است."
-  },
-  {
-   "question": "اگر در حالت غیرstrict روی شیء preventExtensions شده خصوصیت جدید بگذارید چه می‌شود؟",
-   "options": [
-    "خطای TypeError می‌گیرید",
-    "بی‌صدا شکست می‌خورد و خصوصیت اضافه نمی‌شود",
-    "خصوصیت اضافه می‌شود ولی هشدار می‌گیرید",
-    "کل شیء پاک می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "این متدها در حالت غیرstrict بی‌صدا شکست می‌خورند و فقط در حالت strict خطای TypeError می‌دهند؛ برای همین دیدن خطا در آزمون کد به strict نیاز دارید."
-  },
-  {
-   "question": "برای بررسی اینکه آیا شیء seal شده است از کدام متد استفاده می‌کنیم؟",
-   "options": [
-    "Object.isFrozen()",
-    "Object.isExtensible()",
-    "Object.isSealed()",
-    "Object.preventExtensions()"
-   ],
-   "answer": 2,
-   "explanation": "هر حالت متد بررسی خودش را دارد: isSealed برای seal، isFrozen برای freeze و isExtensible برای extensible بودن. preventExtensions هم خودِ عمل است، نه پرسش."
-  }
- ]
+  "slug": "js_object_protection",
+  "course": "js",
+  "order": 216,
+  "url": "/js/js_object_protection.asp",
+  "title": "محافظت از شیءها در JavaScript",
+  "summary": "برای اینکه شیءها ناخواسته تغییر نکنند، JavaScript چند متد محافظت دارد: preventExtensions، seal و freeze. در این درس می‌بینید هر کدام چه چیزی را می‌بندد، چطور وضعیت شیء را با isExtensible، isSealed و isFrozen بررسی کنید و چرا حالت strict خطاها را آشکار می‌کند.",
+  "objectives": [
+    "تفاوت const با Object.freeze() را در محافظت از شیء توضیح دهید",
+    "برای هر سناریو متد مناسب (preventExtensions، seal یا freeze) را انتخاب کنید",
+    "وضعیت شیء را با isExtensible، isSealed و isFrozen بررسی کنید",
+    "اثر حالت strict بر این متدها را تشخیص دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "محافظت از شیءها در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای محافظت از شیء"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Prevents re-assignment\n\nconst car = {type:\"Fiat\", model:\"500\", color:\"white\"};\n\n// Prevents adding object properties\n\nObject.preventExtensions(object)\n\n// Returns true if properties can be added to an object\n\nObject.isExtensible(object)\n\n// Prevents adding and deleting object properties\n\nObject.seal(object)\n\n// Returns true if object is sealed\n\nObject.isSealed(object)\n\n// Prevents any changes to an object\n\nObject.freeze(object)\n\n// Returns true if object is frozen\n\nObject.isFrozen(object)",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از const"
+    },
+    {
+      "type": "p",
+      "text": "رایج‌ترین راه محافظت از شیء در برابر تغییر، استفاده از کلیدواژهٔ const است."
+    },
+    {
+      "type": "p",
+      "text": "با const نمی‌توانید خود شیء را دوباره مقداردهی کنید، اما می‌توانید مقدار یک خصوصیت را عوض کنید، خصوصیتی را حذف کنید یا خصوصیت جدید بسازید."
+    },
+    {
+      "type": "h2",
+      "text": "Object.preventExtensions() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.preventExtensions() جلوی افزودن خصوصیت جدید به شیء را می‌گیرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Prevent Extensions\n\nObject.preventExtensions(person);\n\n// This will throw an error\n\nperson.nationality = \"English\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_preventextensions"
+    },
+    {
+      "type": "p",
+      "text": "چون آرایه‌ها هم شیء هستند، برای آرایه‌ها هم می‌توان جلوی گسترش را گرفت:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.preventExtensions(fruits);\n\n// This will throw an error:\n\nfruits.push(\"Kiwi\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_preventextensions2"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.preventExtensions() در حالت غیرstrict بی‌صدا شکست می‌خورد و در حالت strict خطای TypeError می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "Object.isExtensible() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "با Object.isExtensible() می‌توانید بررسی کنید که شیء قابل گسترش است یا نه."
+    },
+    {
+      "type": "p",
+      "text": "متد Object.isExtensible() اگر شیء قابل گسترش باشد true برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Prevent Extensions\n\nObject.preventExtensions(person);\n\n// This will return false\n\nlet answer = Object.isExtensible(person);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\n// Prevent Extensions\n\nObject.preventExtensions(fruits);\n\n// This will return false\n\nlet answer = Object.isExtensible(fruits);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_isextensible"
+    },
+    {
+      "type": "h2",
+      "text": "Object.seal() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.seal() جلوی افزودن و حذف خصوصیت‌ها را می‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "متد Object.seal() خصوصیت‌های موجود را غیرقابل‌تنظیم (non-configurable) می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "با متد Object.isSealed() می‌توانید ببینید شیء seal شده است یا نه."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\"\n\n// Create Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Seal Object\n\nObject.seal(person)\n\n// This will throw an error\n\ndelete person.age;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_seal2"
+    },
+    {
+      "type": "p",
+      "text": "چون آرایه‌ها هم شیء هستند، آرایه‌ها را هم می‌توان seal کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.seal(fruits);\n\n// This will throw an error:\n\nfruits.push(\"Kiwi\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_seal"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.seal() در حالت غیرstrict بی‌صدا شکست می‌خورد و در حالت strict خطای TypeError می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "Object.isSealed() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "با متد Object.isSealed() می‌توانید ببینید شیء seal شده است یا نه."
+    },
+    {
+      "type": "p",
+      "text": "متد Object.isSealed() اگر شیء seal شده باشد true برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Seal Object\n\nObject.seal(person);\n\n// This will return true\n\nlet answer = Object.isSealed(person);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\n// Seal Array\n\nObject.seal(fruits);\n\n// This will return true\n\nlet answer = Object.isSealed(fruits);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_issealed"
+    },
+    {
+      "type": "h2",
+      "text": "Object.freeze() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.freeze() جلوی هر تغییری در شیء را می‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "شیءهای freeze شده فقط‌خواندنی‌اند."
+    },
+    {
+      "type": "p",
+      "text": "هیچ تغییر، افزودن یا حذفی برای خصوصیت‌ها مجاز نیست."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\"\n\n// Create Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Freeze Object\n\nObject.freeze(person)\n\n// This will throw an error\n\nperson.age = 51;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_freeze2"
+    },
+    {
+      "type": "p",
+      "text": "چون آرایه‌ها هم شیء هستند، آرایه‌ها را هم می‌توان freeze کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.freeze(fruits);\n\n// This will trow an error:\n\nfruits.push(\"Kiwi\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_freeze"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.freeze() در حالت غیرstrict بی‌صدا شکست می‌خورد و در حالت strict خطای TypeError می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "Object.isFrozen() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "با متد Object.isFrozen() می‌توانید ببینید شیء freeze شده است یا نه."
+    },
+    {
+      "type": "p",
+      "text": "متد Object.isFrozen() اگر شیء freeze شده باشد true برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Object\n\nconst person = {firstName:\"John\", lastName:\"Doe\"};\n\n// Freeze Object\n\nObject.freeze(person);\n\n// This will return true\n\nlet answer = Object.isFrozen(person);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nObject.freeze(fruits);\n\n// This will return true:\n\nlet answer = Object.isFrozen(fruits);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_isfrozen"
+    },
+    {
+      "type": "h2",
+      "text": "فصل‌های پیشرفته:"
+    },
+    {
+      "type": "p",
+      "text": "تعریف شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "this پیشرفته در شیءهای JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پیمایش شیءها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مدیریت شیءها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "محافظت از شیءها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پروتوتایپ‌های شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع شیء در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل protect.html بسازید، یک شیء با const تعریف کنید و ببینید می‌توانید خصوصیتش را عوض کنید؛ نتیجه را در کنسول چاپ کنید.",
+      "hint": "const فقط جلوی دوباره مقداردهی خود شیء را می‌گیرد، نه تغییر خصوصیت‌های آن."
+    },
+    {
+      "prompt": "روی همان شیء Object.preventExtensions() را اجرا کنید، بعد یک خصوصیت جدید اضافه کنید و نتیجهٔ Object.isExtensible() را چاپ کنید.",
+      "hint": "در ابتدای اسکریپت \"use strict\" بگذارید تا خطای TypeError را ببینید."
+    },
+    {
+      "prompt": "یک شیء بسازید و آن را با Object.seal() مهر و موم کنید؛ اول یک خصوصیت را عوض کنید و بعد یکی را حذف کنید.",
+      "hint": "seal اجازهٔ تغییر مقدار خصوصیت‌های موجود را می‌دهد ولی حذف و افزودن را نه."
+    },
+    {
+      "prompt": "روی یک آرایه Object.freeze() را اجرا کنید و با push یک عضو جدید اضافه کنید؛ ببینید چه اتفاقی می‌افتد.",
+      "hint": "آرایه هم شیء است، پس freeze روی آن هم کار می‌کند و push در strict خطا می‌دهد."
+    },
+    {
+      "prompt": "برای یک شیء هم isExtensible()، هم isSealed() و هم isFrozen() را چاپ کنید و ترتیب true شدنشان را بعد از هر متد توضیح دهید.",
+      "hint": "freeze روی شیء seal شده هم اثر می‌گذارد، چون هر دو جلوی افزودن و حذف را می‌گیرند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "با const روی یک شیء دقیقاً چه کاری نمی‌توانیم انجام دهیم؟",
+      "options": [
+        "تغییر مقدار خصوصیت‌های شیء",
+        "دوباره مقداردهی خود شیء",
+        "حذف یک خصوصیت",
+        "افزودن خصوصیت جدید"
+      ],
+      "answer": 1,
+      "explanation": "const فقط اجازه نمی‌دهد خود شناسه دوباره به شیء دیگری اشاره کند؛ تغییر، افزودن و حذف خصوصیت‌ها همچنان ممکن است."
+    },
+    {
+      "question": "کدام متد جلوی افزودن خصوصیت جدید را می‌گیرد، ولی تغییر مقدار خصوصیت‌های موجود را آزاد می‌گذارد؟",
+      "options": [
+        "Object.freeze()",
+        "Object.seal()",
+        "Object.preventExtensions()",
+        "Object.isExtensible()"
+      ],
+      "answer": 2,
+      "explanation": "preventExtensions فقط افزودن خصوصیت را می‌بندد. seal حذف را هم می‌بندد و freeze هیچ تغییری را اجازه نمی‌دهد؛ isExtensible هم فقط وضعیت را گزارش می‌کند."
+    },
+    {
+      "question": "تفاوت Object.seal() و Object.freeze() چیست؟",
+      "options": [
+        "هیچ تفاوتی ندارند",
+        "seal اجازهٔ تغییر مقدار خصوصیت‌های موجود را می‌دهد ولی freeze هیچ تغییری را اجازه نمی‌دهد",
+        "freeze فقط روی آرایه‌ها کار می‌کند",
+        "seal خصوصیت‌های موجود را حذف می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "در شیء seal شده می‌توانید مقدار خصوصیت‌های موجود را عوض کنید اما نه اضافه یا حذف کنید؛ شیء freeze شده کاملاً فقط‌خواندنی است."
+    },
+    {
+      "question": "اگر در حالت غیرstrict روی شیء preventExtensions شده خصوصیت جدید بگذارید چه می‌شود؟",
+      "options": [
+        "خطای TypeError می‌گیرید",
+        "بی‌صدا شکست می‌خورد و خصوصیت اضافه نمی‌شود",
+        "خصوصیت اضافه می‌شود ولی هشدار می‌گیرید",
+        "کل شیء پاک می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "این متدها در حالت غیرstrict بی‌صدا شکست می‌خورند و فقط در حالت strict خطای TypeError می‌دهند؛ برای همین دیدن خطا در آزمون کد به strict نیاز دارید."
+    },
+    {
+      "question": "برای بررسی اینکه آیا شیء seal شده است از کدام متد استفاده می‌کنیم؟",
+      "options": [
+        "Object.isFrozen()",
+        "Object.isExtensible()",
+        "Object.isSealed()",
+        "Object.preventExtensions()"
+      ],
+      "answer": 2,
+      "explanation": "هر حالت متد بررسی خودش را دارد: isSealed برای seal، isFrozen برای freeze و isExtensible برای extensible بودن. preventExtensions هم خودِ عمل است، نه پرسش."
+    }
+  ]
 }

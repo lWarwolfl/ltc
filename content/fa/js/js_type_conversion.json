@@ -1,723 +1,503 @@
 {
- "slug": "js_type_conversion",
- "course": "js",
- "order": 101,
- "url": "/js/js_type_conversion.asp",
- "title": "تبدیل نوع در JavaScript",
- "summary": "در این درس می‌بینید JavaScript چگونه مقدارها را از یک نوع داده به نوع دیگر تبدیل می‌کند: رشته به عدد، عدد به رشته، تاریخ به عدد و بولی به عدد و رشته. پس از آن می‌توانید نتیجهٔ تبدیل‌های خودکار را پیش‌بینی کنید و بفهمید چرا بعضی تبدیل‌ها به NaN می‌رسند.",
- "objectives": [
-  "رشته را با Number() و عملگر یگانی + به عدد تبدیل کنید",
-  "عدد را با String() و toString() به رشته تبدیل کنید",
-  "تفاوت تبدیل خودکار در عملگرهای + و - را توضیح دهید",
-  "با متدهای تاریخ، جزءهای تاریخ را به عدد و رشته تبدیل کنید",
-  "نتیجهٔ غیرمنتظرهٔ بعضی تبدیل‌ها را با مثال نشان دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تبدیل نوع در JavaScript"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تبدیل رشته به عدد",
-    "تبدیل عدد به رشته",
-    "تبدیل تاریخ به عدد",
-    "تبدیل عدد به تاریخ",
-    "تبدیل بولی به عدد",
-    "تبدیل عدد به بولی"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل نوع در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متغیرهای JavaScript را می‌توان به متغیری جدید و نوع دادهٔ دیگری تبدیل کرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "با استفاده از یک تابع JavaScript",
-    "به‌طور خودکار توسط خود JavaScript"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل رشته به عدد"
-  },
-  {
-   "type": "p",
-   "text": "متد سراسری Number() یک متغیر (یا مقدار) را به عدد تبدیل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "رشتهٔ عددی (مانند \"3.14\") به عدد (مانند 3.14) تبدیل می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "رشتهٔ خالی (مانند \"\") به ۰ تبدیل می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "رشتهٔ غیرعددی (مانند \"John\") به NaN (Not a Number) تبدیل می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Number(\"3.14\")\n\nNumber(Math.PI)\n\nNumber(\" \")\n\nNumber(\"\")",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Number(\"99 88\")\n\nNumber(\"John\")",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای عدد"
-  },
-  {
-   "type": "p",
-   "text": "در فصل متدهای عدد، متدهای بیشتری می‌یابید که با آن‌ها می‌توان رشته را به عدد تبدیل کرد:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "متد",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "Number()",
-     "عددی را که از آرگومان خود تبدیل شده برمی‌گرداند"
-    ],
-    [
-     "parseFloat()",
-     "رشته را تجزیه می‌کند و یک عدد اعشاری برمی‌گرداند"
-    ],
-    [
-     "parseInt()",
-     "رشته را تجزیه می‌کند و یک عدد صحیح برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "عملگر یگانی +"
-  },
-  {
-   "type": "p",
-   "text": "عملگر یگانی + را می‌توان برای تبدیل متغیر به عدد به کار برد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let y = \"5\";\n// y is a string\n\nlet x = + y;\n// x is a number",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof3"
-  },
-  {
-   "type": "p",
-   "text": "اگر متغیر قابل تبدیل نباشد، باز هم عدد می‌شود، اما با مقدار NaN (Not a Number):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let y = \"John\";\n// y is a string\n\nlet x = + y;      // x is a number (NaN)",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof4"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل عدد به رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد سراسری String() می‌تواند عددها را به رشته تبدیل کند."
-  },
-  {
-   "type": "p",
-   "text": "می‌توان آن را روی هر نوع عدد، مقدار ثابت، متغیر یا عبارت به کار برد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "String(x)         // returns a string from a number variable x\n\n String(123)       // returns a string from a number literal 123\n\n String(100 + 23)  // returns a string from a number from an expression",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_string"
-  },
-  {
-   "type": "p",
-   "text": "متد عدد به نام toString() همین کار را می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "x.toString()\n(123).toString()\n(100 + 23).toString()",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_tostring"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای بیشتر"
-  },
-  {
-   "type": "p",
-   "text": "در فصل متدهای عدد، متدهای بیشتری می‌یابید که با آن‌ها می‌توان عدد را به رشته تبدیل کرد:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "متد",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "toExponential()",
-     "رشته‌ای برمی‌گرداند که عدد در آن گِرد شده و با نماد توان نوشته شده است."
-    ],
-    [
-     "toFixed()",
-     "رشته‌ای برمی‌گرداند که عدد در آن گِرد شده و با تعداد رقم اعشار مشخص نوشته شده است."
-    ],
-    [
-     "toPrecision()",
-     "رشته‌ای برمی‌گرداند که عدد در آن با طول مشخص نوشته شده است"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل تاریخ به عدد"
-  },
-  {
-   "type": "p",
-   "text": "متد سراسری Number() را می‌توان برای تبدیل تاریخ به عدد به کار برد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "d = new Date();\nNumber(d)          // returns 1404568027739",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "متد تاریخ به نام getTime() همین کار را می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "d = new Date();\nd.getTime()        // returns 1404568027739",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل تاریخ به رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد سراسری String() می‌تواند تاریخ را به رشته تبدیل کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "String(Date())",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tostring_date1"
-  },
-  {
-   "type": "p",
-   "text": "متد Date به نام toString() همین کار را می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Date().toString()",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tostring_date2"
-  },
-  {
-   "type": "h2",
-   "text": "اجزای تاریخ"
-  },
-  {
-   "type": "p",
-   "text": "بسیاری از متدهای تاریخ، یک جزء تاریخ را به صورت عدد برمی‌گردانند."
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید مقدارهای برگشتی را با متد toString() به رشته تبدیل کنید:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح",
-     "امتحان کنید »"
-    ],
-    [
-     "getFullYear()",
-     "سال چهاررقمی را برمی‌گرداند (yyyy)",
-     "امتحان کنید »"
-    ],
-    [
-     "getMonth()",
-     "شمارهٔ ماه را برمی‌گرداند (۰ تا ۱۱)",
-     "امتحان کنید »"
-    ],
-    [
-     "getDate()",
-     "شمارهٔ روز را برمی‌گرداند (۱ تا ۳۱)",
-     "امتحان کنید »"
-    ],
-    [
-     "getDay()",
-     "شمارهٔ روز هفته را برمی‌گرداند (۰ تا ۶)",
-     "امتحان کنید »"
-    ],
-    [
-     "getHours()",
-     "ساعت را برمی‌گرداند (۰ تا ۲۳)",
-     "امتحان کنید »"
-    ],
-    [
-     "getMinutes()",
-     "دقیقه را برمی‌گرداند (۰ تا ۲۳)",
-     "امتحان کنید »"
-    ],
-    [
-     "getSeconds()",
-     "ثانیه را برمی‌گرداند (۰ تا ۵۹)",
-     "امتحان کنید »"
-    ],
-    [
-     "getMilliseconds()",
-     "میلی‌ثانیه را برمی‌گرداند (۰ تا ۹۹۹)",
-     "امتحان کنید »"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "شمارش ماه از صفر آغاز می‌شود"
-  },
-  {
-   "type": "p",
-   "text": "به‌طور پیش‌فرض، getMonth() عددی بین ۰ (ژانویه) و ۱۱ (دسامبر) برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "برای رسیدن به بازهٔ استاندارد ۱ تا ۱۲ باید ۱ را به نتیجه اضافه کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(date.getMonth()+1).toString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tostring_getmonth2"
-  },
-  {
-   "type": "h2",
-   "text": "نام ماه"
-  },
-  {
-   "type": "p",
-   "text": "برای قالب‌بندی ساده از متد toLocaleString() استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "date.toLocaleString('default', { month: 'long' });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_getmonth"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید:"
-  },
-  {
-   "type": "p",
-   "text": "متدهای تاریخ در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل بولی به عدد"
-  },
-  {
-   "type": "p",
-   "text": "متد سراسری Number() می‌تواند بولی را هم به عدد تبدیل کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Number(false)     // returns 0\n\nNumber(true)      // returns 1",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل بولی به رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد سراسری String() می‌تواند بولی را به رشته تبدیل کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "String(false)      // returns \"false\"\n\nString(true)       // returns \"true\"",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "متد Boolean به نام toString() همین کار را می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "false.toString()   // returns \"false\"\n\n  true.toString()    // returns \"true\"",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل نوع خودکار"
-  },
-  {
-   "type": "p",
-   "text": "وقتی JavaScript می‌خواهد روی نوع دادهٔ «نامناسب» عملی انجام دهد، می‌کوشد مقدار را به نوع «مناسب» تبدیل کند."
-  },
-  {
-   "type": "p",
-   "text": "نتیجه همیشه آن چیزی نیست که انتظار دارید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "5 + null    // returns 5         because null is converted to 0\n\"5\" + null  // returns \"5null\"   because null is converted to \"null\"\n\"5\" + 2     // returns\n    \"52\"      because 2 is converted to \"2\"\n\n \"5\" - 2     // returns 3         because \"5\" is converted to 5\n\"5\" * \"2\"   // returns\n    10        because \"5\" and \"2\" are\n    converted to 5 and 2",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_type_convert_auto"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل خودکار به رشته"
-  },
-  {
-   "type": "p",
-   "text": "وقتی می‌خواهید یک شیء یا متغیر را «نمایش» دهید، JavaScript به‌طور خودکار تابع toString() آن را صدا می‌زند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.getElementById(\"demo\").innerHTML = myVar;\n\n// if myVar = {name:\"Fjohn\"}  // toString converts to \"[object Object]\"\n\n// if myVar = [1,2,3,4]       // toString converts to \"1,2,3,4\"\n\n// if myVar = new Date()      // toString converts to \"Fri Jul 18 2014 09:08:55 GMT+0200\"",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "عددها و بولی‌ها هم تبدیل می‌شوند، اما این تغییر چندان دیده نمی‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// if myVar = 123             // toString converts to \"123\"\n\n// if myVar = true            // toString converts to \"true\"\n\n// if myVar = false           // toString converts to \"false\"",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "جدول تبدیل نوع در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "این جدول نتیجهٔ تبدیل مقدارهای گوناگون JavaScript را به عدد، رشته و بولی نشان می‌دهد:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "مقدار اصلی",
-    "تبدیل به عدد",
-    "تبدیل به رشته",
-    "تبدیل به بولی",
-    "امتحان کنید"
-   ],
-   "rows": [
-    [
-     "false",
-     "0",
-     "\"false\"",
-     "false",
-     "امتحان کنید »"
-    ],
-    [
-     "true",
-     "1",
-     "\"true\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "0",
-     "0",
-     "\"0\"",
-     "false",
-     "امتحان کنید »"
-    ],
-    [
-     "1",
-     "1",
-     "\"1\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "\"0\"",
-     "0",
-     "\"0\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "\"000\"",
-     "0",
-     "\"000\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "\"1\"",
-     "1",
-     "\"1\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "NaN",
-     "NaN",
-     "\"NaN\"",
-     "false",
-     "امتحان کنید »"
-    ],
-    [
-     "Infinity",
-     "Infinity",
-     "\"Infinity\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "-Infinity",
-     "-Infinity",
-     "\"-Infinity\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "\"\"",
-     "0",
-     "\"\"",
-     "false",
-     "امتحان کنید »"
-    ],
-    [
-     "\"20\"",
-     "20",
-     "\"20\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "\"twenty\"",
-     "NaN",
-     "\"twenty\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "[ ]",
-     "0",
-     "\"\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "[20]",
-     "20",
-     "\"20\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "[10,20]",
-     "NaN",
-     "\"10,20\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "[\"twenty\"]",
-     "NaN",
-     "\"twenty\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "[\"ten\",\"twenty\"]",
-     "NaN",
-     "\"ten,twenty\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "function(){}",
-     "NaN",
-     "\"function(){}\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "{ }",
-     "NaN",
-     "\"[object Object]\"",
-     "true",
-     "امتحان کنید »"
-    ],
-    [
-     "null",
-     "0",
-     "\"null\"",
-     "false",
-     "امتحان کنید »"
-    ],
-    [
-     "undefined",
-     "NaN",
-     "\"undefined\"",
-     "false",
-     "امتحان کنید »"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "مقدارهایی که داخل کوتیشن هستند، رشته‌اند."
-  },
-  {
-   "type": "p",
-   "text": "مقدارهای قرمز، مقدارهایی هستند که (بعضی) برنامه‌نویسان انتظارشان را ندارند."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل convert.html بسازید و مقدارهای Number(\"3.14\")، Number(\"\")، Number(\"John\") و Number(\"99 88\") را با console.log چاپ کنید و نتیجهٔ هر کدام را یادداشت کنید.",
-   "hint": "رشتهٔ عددی به عدد، رشتهٔ خالی به ۰ و رشتهٔ غیرعددی به NaN تبدیل می‌شود."
-  },
-  {
-   "prompt": "متغیری با مقدار \"5\" بسازید و با عملگر یگانی + آن را به عدد تبدیل کنید؛ سپس typeof متغیر جدید را در کنسول چاپ کنید.",
-   "hint": "let x = + y; نوع x دیگر number است، نه string."
-  },
-  {
-   "prompt": "عدد ۱۲۳ را یک بار با String() و یک بار با toString() به رشته تبدیل کنید و هر دو نتیجه را کنار هم ببینید.",
-   "hint": "برای مقدار عددی ثابت باید پرانتز بگذارید: (123).toString()؛ چون 123.toString() خطای نحوی می‌دهد."
-  },
-  {
-   "prompt": "شمارهٔ ماه جاری را با getMonth() چاپ کنید، سپس با افزودن ۱ به آن بازهٔ استاندارد ۱ تا ۱۲ را بسازید.",
-   "hint": "شمارش ماه از صفر است؛ ژانویه ۰ و دسامبر ۱۱."
-  },
-  {
-   "prompt": "در کنسول حاصل \"5\" + 2 و \"5\" - 2 را حساب کنید و تفاوت نوع نتیجه را توضیح دهید.",
-   "hint": "عملگر + با رشته‌ها الحاق می‌کند، اما - مقدارها را به عدد تبدیل می‌کند."
-  }
- ],
- "quiz": [
-  {
-   "question": "Number(\"3.14\") چه چیزی برمی‌گرداند؟",
-   "options": [
-    "عدد NaN",
-    "عدد 3.14",
-    "رشتهٔ \"3.14\"",
-    "عدد صفر"
-   ],
-   "answer": 1,
-   "explanation": "متد سراسری Number() رشتهٔ عددی را به عدد تبدیل می‌کند. NaN تنها برای رشته‌های غیرعددی مانند \"John\" برمی‌گردد و رشتهٔ خالی به ۰ تبدیل می‌شود."
-  },
-  {
-   "question": "نتیجهٔ Number(\"John\") چیست؟",
-   "options": [
-    "\"John\"",
-    "NaN",
-    "undefined",
-    "0"
-   ],
-   "answer": 3,
-   "explanation": "رشتهٔ غیرعددی به عدد تبدیل نمی‌شود و NaN (Not a Number) برمی‌گردد. رشتهٔ خالی \"\" حالت دیگری است که به ۰ تبدیل می‌شود."
-  },
-  {
-   "question": "کدام عبارت یک عدد را به رشته تبدیل می‌کند؟",
-   "options": [
-    "123.toString()",
-    "parseInt(\"123\")",
-    "Number(123)",
-    "+123"
-   ],
-   "answer": 0,
-   "explanation": "متد toString() روی عدد، رشته برمی‌گرداند. Number() و عملگر + در جهت مخالف عمل می‌کنند و parseInt() رشته را به عدد تبدیل می‌کند."
-  },
-  {
-   "question": "getMonth() برای ماه ژانویه چه عددی برمی‌گرداند؟",
-   "options": [
-    "12",
-    "0",
-    "1",
-    "11"
-   ],
-   "answer": 3,
-   "explanation": "شمارش ماه از صفر آغاز می‌شود؛ ژانویه ۰ و دسامبر ۱۱ است، پس برای بازهٔ ۱ تا ۱۲ باید ۱ به نتیجه اضافه کنید."
-  },
-  {
-   "question": "نتیجهٔ \"5\" + 2 چیست؟",
-   "options": [
-    "عدد 7",
-    "رشتهٔ \"52\"",
-    "رشتهٔ \"25\"",
-    "عدد 52"
-   ],
-   "answer": 1,
-   "explanation": "در عملگر + اگر یکی از عملوندها رشته باشد، همه چیز به رشته تبدیل می‌شود و نویسه‌ها به هم می‌چسبند؛ نتیجه رشتهٔ \"52\" است نه جمع عددی."
-  }
- ]
+  "slug": "js_type_conversion",
+  "course": "js",
+  "order": 101,
+  "url": "/js/js_type_conversion.asp",
+  "title": "تبدیل نوع در JavaScript",
+  "summary": "در این درس می‌بینید JavaScript چگونه مقدارها را از یک نوع داده به نوع دیگر تبدیل می‌کند: رشته به عدد، عدد به رشته، تاریخ به عدد و بولی به عدد و رشته. پس از آن می‌توانید نتیجهٔ تبدیل‌های خودکار را پیش‌بینی کنید و بفهمید چرا بعضی تبدیل‌ها به NaN می‌رسند.",
+  "objectives": [
+    "رشته را با Number() و عملگر یگانی + به عدد تبدیل کنید",
+    "عدد را با String() و toString() به رشته تبدیل کنید",
+    "تفاوت تبدیل خودکار در عملگرهای + و - را توضیح دهید",
+    "با متدهای تاریخ، جزءهای تاریخ را به عدد و رشته تبدیل کنید",
+    "نتیجهٔ غیرمنتظرهٔ بعضی تبدیل‌ها را با مثال نشان دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تبدیل نوع در JavaScript"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "تبدیل رشته به عدد",
+        "تبدیل عدد به رشته",
+        "تبدیل تاریخ به عدد",
+        "تبدیل عدد به تاریخ",
+        "تبدیل بولی به عدد",
+        "تبدیل عدد به بولی"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل نوع در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متغیرهای JavaScript را می‌توان به متغیری جدید و نوع دادهٔ دیگری تبدیل کرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["با استفاده از یک تابع JavaScript", "به‌طور خودکار توسط خود JavaScript"]
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل رشته به عدد"
+    },
+    {
+      "type": "p",
+      "text": "متد سراسری Number() یک متغیر (یا مقدار) را به عدد تبدیل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "رشتهٔ عددی (مانند \"3.14\") به عدد (مانند 3.14) تبدیل می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "رشتهٔ خالی (مانند \"\") به ۰ تبدیل می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "رشتهٔ غیرعددی (مانند \"John\") به NaN (Not a Number) تبدیل می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Number(\"3.14\")\n\nNumber(Math.PI)\n\nNumber(\" \")\n\nNumber(\"\")",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Number(\"99 88\")\n\nNumber(\"John\")",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای عدد"
+    },
+    {
+      "type": "p",
+      "text": "در فصل متدهای عدد، متدهای بیشتری می‌یابید که با آن‌ها می‌توان رشته را به عدد تبدیل کرد:"
+    },
+    {
+      "type": "table",
+      "headers": ["متد", "توضیح"],
+      "rows": [
+        ["Number()", "عددی را که از آرگومان خود تبدیل شده برمی‌گرداند"],
+        ["parseFloat()", "رشته را تجزیه می‌کند و یک عدد اعشاری برمی‌گرداند"],
+        ["parseInt()", "رشته را تجزیه می‌کند و یک عدد صحیح برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "عملگر یگانی +"
+    },
+    {
+      "type": "p",
+      "text": "عملگر یگانی + را می‌توان برای تبدیل متغیر به عدد به کار برد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let y = \"5\";\n// y is a string\n\nlet x = + y;\n// x is a number",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof3"
+    },
+    {
+      "type": "p",
+      "text": "اگر متغیر قابل تبدیل نباشد، باز هم عدد می‌شود، اما با مقدار NaN (Not a Number):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let y = \"John\";\n// y is a string\n\nlet x = + y;      // x is a number (NaN)",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typeof4"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل عدد به رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد سراسری String() می‌تواند عددها را به رشته تبدیل کند."
+    },
+    {
+      "type": "p",
+      "text": "می‌توان آن را روی هر نوع عدد، مقدار ثابت، متغیر یا عبارت به کار برد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "String(x)         // returns a string from a number variable x\n\n String(123)       // returns a string from a number literal 123\n\n String(100 + 23)  // returns a string from a number from an expression",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_string"
+    },
+    {
+      "type": "p",
+      "text": "متد عدد به نام toString() همین کار را می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "x.toString()\n(123).toString()\n(100 + 23).toString()",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_tostring"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای بیشتر"
+    },
+    {
+      "type": "p",
+      "text": "در فصل متدهای عدد، متدهای بیشتری می‌یابید که با آن‌ها می‌توان عدد را به رشته تبدیل کرد:"
+    },
+    {
+      "type": "table",
+      "headers": ["متد", "توضیح"],
+      "rows": [
+        [
+          "toExponential()",
+          "رشته‌ای برمی‌گرداند که عدد در آن گِرد شده و با نماد توان نوشته شده است."
+        ],
+        [
+          "toFixed()",
+          "رشته‌ای برمی‌گرداند که عدد در آن گِرد شده و با تعداد رقم اعشار مشخص نوشته شده است."
+        ],
+        ["toPrecision()", "رشته‌ای برمی‌گرداند که عدد در آن با طول مشخص نوشته شده است"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل تاریخ به عدد"
+    },
+    {
+      "type": "p",
+      "text": "متد سراسری Number() را می‌توان برای تبدیل تاریخ به عدد به کار برد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "d = new Date();\nNumber(d)          // returns 1404568027739",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "متد تاریخ به نام getTime() همین کار را می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "d = new Date();\nd.getTime()        // returns 1404568027739",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل تاریخ به رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد سراسری String() می‌تواند تاریخ را به رشته تبدیل کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "String(Date())",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tostring_date1"
+    },
+    {
+      "type": "p",
+      "text": "متد Date به نام toString() همین کار را می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Date().toString()",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tostring_date2"
+    },
+    {
+      "type": "h2",
+      "text": "اجزای تاریخ"
+    },
+    {
+      "type": "p",
+      "text": "بسیاری از متدهای تاریخ، یک جزء تاریخ را به صورت عدد برمی‌گردانند."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید مقدارهای برگشتی را با متد toString() به رشته تبدیل کنید:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح", "امتحان کنید »"],
+        ["getFullYear()", "سال چهاررقمی را برمی‌گرداند (yyyy)", "امتحان کنید »"],
+        ["getMonth()", "شمارهٔ ماه را برمی‌گرداند (۰ تا ۱۱)", "امتحان کنید »"],
+        ["getDate()", "شمارهٔ روز را برمی‌گرداند (۱ تا ۳۱)", "امتحان کنید »"],
+        ["getDay()", "شمارهٔ روز هفته را برمی‌گرداند (۰ تا ۶)", "امتحان کنید »"],
+        ["getHours()", "ساعت را برمی‌گرداند (۰ تا ۲۳)", "امتحان کنید »"],
+        ["getMinutes()", "دقیقه را برمی‌گرداند (۰ تا ۲۳)", "امتحان کنید »"],
+        ["getSeconds()", "ثانیه را برمی‌گرداند (۰ تا ۵۹)", "امتحان کنید »"],
+        ["getMilliseconds()", "میلی‌ثانیه را برمی‌گرداند (۰ تا ۹۹۹)", "امتحان کنید »"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "شمارش ماه از صفر آغاز می‌شود"
+    },
+    {
+      "type": "p",
+      "text": "به‌طور پیش‌فرض، getMonth() عددی بین ۰ (ژانویه) و ۱۱ (دسامبر) برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "برای رسیدن به بازهٔ استاندارد ۱ تا ۱۲ باید ۱ را به نتیجه اضافه کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(date.getMonth()+1).toString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tostring_getmonth2"
+    },
+    {
+      "type": "h2",
+      "text": "نام ماه"
+    },
+    {
+      "type": "p",
+      "text": "برای قالب‌بندی ساده از متد toLocaleString() استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "date.toLocaleString('default', { month: 'long' });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_getmonth"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید:"
+    },
+    {
+      "type": "p",
+      "text": "متدهای تاریخ در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل بولی به عدد"
+    },
+    {
+      "type": "p",
+      "text": "متد سراسری Number() می‌تواند بولی را هم به عدد تبدیل کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Number(false)     // returns 0\n\nNumber(true)      // returns 1",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل بولی به رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد سراسری String() می‌تواند بولی را به رشته تبدیل کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "String(false)      // returns \"false\"\n\nString(true)       // returns \"true\"",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "متد Boolean به نام toString() همین کار را می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "false.toString()   // returns \"false\"\n\n  true.toString()    // returns \"true\"",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل نوع خودکار"
+    },
+    {
+      "type": "p",
+      "text": "وقتی JavaScript می‌خواهد روی نوع دادهٔ «نامناسب» عملی انجام دهد، می‌کوشد مقدار را به نوع «مناسب» تبدیل کند."
+    },
+    {
+      "type": "p",
+      "text": "نتیجه همیشه آن چیزی نیست که انتظار دارید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "5 + null    // returns 5         because null is converted to 0\n\"5\" + null  // returns \"5null\"   because null is converted to \"null\"\n\"5\" + 2     // returns\n    \"52\"      because 2 is converted to \"2\"\n\n \"5\" - 2     // returns 3         because \"5\" is converted to 5\n\"5\" * \"2\"   // returns\n    10        because \"5\" and \"2\" are\n    converted to 5 and 2",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_type_convert_auto"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل خودکار به رشته"
+    },
+    {
+      "type": "p",
+      "text": "وقتی می‌خواهید یک شیء یا متغیر را «نمایش» دهید، JavaScript به‌طور خودکار تابع toString() آن را صدا می‌زند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.getElementById(\"demo\").innerHTML = myVar;\n\n// if myVar = {name:\"Fjohn\"}  // toString converts to \"[object Object]\"\n\n// if myVar = [1,2,3,4]       // toString converts to \"1,2,3,4\"\n\n// if myVar = new Date()      // toString converts to \"Fri Jul 18 2014 09:08:55 GMT+0200\"",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "عددها و بولی‌ها هم تبدیل می‌شوند، اما این تغییر چندان دیده نمی‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// if myVar = 123             // toString converts to \"123\"\n\n// if myVar = true            // toString converts to \"true\"\n\n// if myVar = false           // toString converts to \"false\"",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "جدول تبدیل نوع در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "این جدول نتیجهٔ تبدیل مقدارهای گوناگون JavaScript را به عدد، رشته و بولی نشان می‌دهد:"
+    },
+    {
+      "type": "table",
+      "headers": ["مقدار اصلی", "تبدیل به عدد", "تبدیل به رشته", "تبدیل به بولی", "امتحان کنید"],
+      "rows": [
+        ["false", "0", "\"false\"", "false", "امتحان کنید »"],
+        ["true", "1", "\"true\"", "true", "امتحان کنید »"],
+        ["0", "0", "\"0\"", "false", "امتحان کنید »"],
+        ["1", "1", "\"1\"", "true", "امتحان کنید »"],
+        ["\"0\"", "0", "\"0\"", "true", "امتحان کنید »"],
+        ["\"000\"", "0", "\"000\"", "true", "امتحان کنید »"],
+        ["\"1\"", "1", "\"1\"", "true", "امتحان کنید »"],
+        ["NaN", "NaN", "\"NaN\"", "false", "امتحان کنید »"],
+        ["Infinity", "Infinity", "\"Infinity\"", "true", "امتحان کنید »"],
+        ["-Infinity", "-Infinity", "\"-Infinity\"", "true", "امتحان کنید »"],
+        ["\"\"", "0", "\"\"", "false", "امتحان کنید »"],
+        ["\"20\"", "20", "\"20\"", "true", "امتحان کنید »"],
+        ["\"twenty\"", "NaN", "\"twenty\"", "true", "امتحان کنید »"],
+        ["[ ]", "0", "\"\"", "true", "امتحان کنید »"],
+        ["[20]", "20", "\"20\"", "true", "امتحان کنید »"],
+        ["[10,20]", "NaN", "\"10,20\"", "true", "امتحان کنید »"],
+        ["[\"twenty\"]", "NaN", "\"twenty\"", "true", "امتحان کنید »"],
+        ["[\"ten\",\"twenty\"]", "NaN", "\"ten,twenty\"", "true", "امتحان کنید »"],
+        ["function(){}", "NaN", "\"function(){}\"", "true", "امتحان کنید »"],
+        ["{ }", "NaN", "\"[object Object]\"", "true", "امتحان کنید »"],
+        ["null", "0", "\"null\"", "false", "امتحان کنید »"],
+        ["undefined", "NaN", "\"undefined\"", "false", "امتحان کنید »"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "مقدارهایی که داخل کوتیشن هستند، رشته‌اند."
+    },
+    {
+      "type": "p",
+      "text": "مقدارهای قرمز، مقدارهایی هستند که (بعضی) برنامه‌نویسان انتظارشان را ندارند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل convert.html بسازید و مقدارهای Number(\"3.14\")، Number(\"\")، Number(\"John\") و Number(\"99 88\") را با console.log چاپ کنید و نتیجهٔ هر کدام را یادداشت کنید.",
+      "hint": "رشتهٔ عددی به عدد، رشتهٔ خالی به ۰ و رشتهٔ غیرعددی به NaN تبدیل می‌شود."
+    },
+    {
+      "prompt": "متغیری با مقدار \"5\" بسازید و با عملگر یگانی + آن را به عدد تبدیل کنید؛ سپس typeof متغیر جدید را در کنسول چاپ کنید.",
+      "hint": "let x = + y; نوع x دیگر number است، نه string."
+    },
+    {
+      "prompt": "عدد ۱۲۳ را یک بار با String() و یک بار با toString() به رشته تبدیل کنید و هر دو نتیجه را کنار هم ببینید.",
+      "hint": "برای مقدار عددی ثابت باید پرانتز بگذارید: (123).toString()؛ چون 123.toString() خطای نحوی می‌دهد."
+    },
+    {
+      "prompt": "شمارهٔ ماه جاری را با getMonth() چاپ کنید، سپس با افزودن ۱ به آن بازهٔ استاندارد ۱ تا ۱۲ را بسازید.",
+      "hint": "شمارش ماه از صفر است؛ ژانویه ۰ و دسامبر ۱۱."
+    },
+    {
+      "prompt": "در کنسول حاصل \"5\" + 2 و \"5\" - 2 را حساب کنید و تفاوت نوع نتیجه را توضیح دهید.",
+      "hint": "عملگر + با رشته‌ها الحاق می‌کند، اما - مقدارها را به عدد تبدیل می‌کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Number(\"3.14\") چه چیزی برمی‌گرداند؟",
+      "options": ["عدد NaN", "عدد 3.14", "رشتهٔ \"3.14\"", "عدد صفر"],
+      "answer": 1,
+      "explanation": "متد سراسری Number() رشتهٔ عددی را به عدد تبدیل می‌کند. NaN تنها برای رشته‌های غیرعددی مانند \"John\" برمی‌گردد و رشتهٔ خالی به ۰ تبدیل می‌شود."
+    },
+    {
+      "question": "نتیجهٔ Number(\"John\") چیست؟",
+      "options": ["\"John\"", "NaN", "undefined", "0"],
+      "answer": 3,
+      "explanation": "رشتهٔ غیرعددی به عدد تبدیل نمی‌شود و NaN (Not a Number) برمی‌گردد. رشتهٔ خالی \"\" حالت دیگری است که به ۰ تبدیل می‌شود."
+    },
+    {
+      "question": "کدام عبارت یک عدد را به رشته تبدیل می‌کند؟",
+      "options": ["123.toString()", "parseInt(\"123\")", "Number(123)", "+123"],
+      "answer": 0,
+      "explanation": "متد toString() روی عدد، رشته برمی‌گرداند. Number() و عملگر + در جهت مخالف عمل می‌کنند و parseInt() رشته را به عدد تبدیل می‌کند."
+    },
+    {
+      "question": "getMonth() برای ماه ژانویه چه عددی برمی‌گرداند؟",
+      "options": ["12", "0", "1", "11"],
+      "answer": 3,
+      "explanation": "شمارش ماه از صفر آغاز می‌شود؛ ژانویه ۰ و دسامبر ۱۱ است، پس برای بازهٔ ۱ تا ۱۲ باید ۱ به نتیجه اضافه کنید."
+    },
+    {
+      "question": "نتیجهٔ \"5\" + 2 چیست؟",
+      "options": ["عدد 7", "رشتهٔ \"52\"", "رشتهٔ \"25\"", "عدد 52"],
+      "answer": 1,
+      "explanation": "در عملگر + اگر یکی از عملوندها رشته باشد، همه چیز به رشته تبدیل می‌شود و نویسه‌ها به هم می‌چسبند؛ نتیجه رشتهٔ \"52\" است نه جمع عددی."
+    }
+  ]
 }

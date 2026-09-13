@@ -1,197 +1,173 @@
 {
- "slug": "js_events_keyboard",
- "course": "js",
- "order": 150,
- "url": "/js/js_events_keyboard.asp",
- "title": "رویدادهای صفحه‌کلید در JavaScript",
- "summary": "رویدادهای صفحه‌کلید ورودی کاربر را از صفحه‌کلید می‌گیرند. این درس تفاوت keydown، keyup و keypress منسوخ، تفاوت event.key با event.code و راه تشخیص کلیدهای ترکیبی و کلید Enter را آموزش می‌دهد.",
- "objectives": [
-  "تفاوت keydown و keyup را توضیح دهید",
-  "بگویید چرا keypress منسوخ شده است",
-  "تفاوت event.key و event.code را با مثال Z تشخیص دهید",
-  "کلیدهای ترکیبی مثل Ctrl + S و کلید Enter را تشخیص دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "رویدادهای صفحه‌کلید در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "رویدادهای صفحه‌کلید وقتی رخ می‌دهند که کاربر کلیدی روی صفحه‌کلید فشار دهد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "keydown (کلید پایین نگه داشته می‌شود)",
-    "keyup (کلید رها می‌شود)",
-    "keypress (منسوخ شده)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "رویداد keypress فقط برای کلیدهای نویسه‌دار (مثل a یا 5) اجرا می‌شود، نه برای کلیدهای کنترلی (مثل alt یا backspace)."
-  },
-  {
-   "type": "p",
-   "text": "به برنامه‌نویسان توصیه می‌شود به‌جای آن از keydown یا keyup استفاده کنند."
-  },
-  {
-   "type": "h2",
-   "text": "رویداد keydown"
-  },
-  {
-   "type": "h3",
-   "text": "استفاده از event.key"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input id=\"k\" type=\"text\" placeholder=\"Press a key\">\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst k = document.getElementById(\"k\");\n\n// Let k listen for keydown\n\nk.addEventListener(\"keydown\", function (event) {\n\n// Then display the event.key\n\n  document.getElementById(\"demo\").innerHTML = \"You pressed: \" + event.key;\n\n});\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_keydown"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های کلید"
-  },
-  {
-   "type": "p",
-   "text": "شیء KeyboardEvent خصوصیت‌های سودمندی دارد که نشان می‌دهد کدام کلید در رویداد دخیل بوده است:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "خصوصیت",
-     "توضیح",
-     "هنگام فشردن Z"
-    ],
-    [
-     "event.key",
-     "مقدار کلید را برمی‌گرداند. بسته به تنظیمات زبان می‌تواند متفاوت باشد.",
-     "‏z را برمی‌گرداند (یا Z اگر Shift نگه داشته شده باشد)"
-    ],
-    [
-     "event.code",
-     "کد کلید را برمی‌گرداند. مستقل از تنظیمات زبان همیشه ثابت است.",
-     "همیشه \"KeyZ\" را برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "با خصوصیت‌هایی مثل event.ctrlKey، event.shiftKey، event.altKey و event.metaKey می‌توانید کلیدهای ترکیبی را هم تشخیص دهید و ترکیب‌هایی مثل Ctrl + S بسازید."
-  },
-  {
-   "type": "h2",
-   "text": "تشخیص کلید Enter"
-  },
-  {
-   "type": "h3",
-   "text": "استفاده از event.code"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input id=\"in01\" type=\"text\" placeholder=\"Press Enter\">\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst in01 = document.getElementById(\"in01\");\n\n// Let in01 listen for keydown\n\nin01.addEventListener(\"keydown\", function (event) {\n\n// If event.code was \"enter\", then display text\n\n  if (event.code === \"Enter\") {\n\n    document.getElementById(\"demo\").innerHTML = \"Enter was pressed!\";\n\n  }\n\n});\n\n</script>",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_detectenter"
-  },
-  {
-   "type": "h2",
-   "text": "خلاصه"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript رویدادهای صفحه‌کلید را در اختیار می‌گذارد تا ورودی کاربر از صفحه‌کلید را تشخیص دهید و مدیریت کنید؛ همین امکان تجربه‌های تعاملی مثل اعتبارسنجی فرم، کنترل بازی و میانبرهای صفحه‌کلید را می‌سازد."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل keyboard.html بسازید که یک فیلد ورودی داشته باشد؛ با رویداد keydown هر کلیدی که فشرده می‌شود را در یک عنصر نشان دهید.",
-   "hint": "از event.key برای گرفتن مقدار کلید استفاده کنید و آن را در textContent بنویسید."
-  },
-  {
-   "prompt": "همان کد را با event.code بنویسید و با فشردن Z ببینید چه چیزی چاپ می‌شود.",
-   "hint": "event.code مقدار ثابت \"KeyZ\" را می‌دهد، مستقل از اینکه Shift نگه داشته شده باشد یا نه."
-  },
-  {
-   "prompt": "بررسی کنید با نگه داشتن Shift، تفاوت خروجی event.key و event.code چیست.",
-   "hint": "یکی به حرف بزرگ و کوچک حساس است و دیگری ثابت می‌ماند."
-  },
-  {
-   "prompt": "با ترکیب Ctrl + S جلوی ذخیرهٔ صفحه را بگیرید و پیام خودتان را نشان دهید.",
-   "hint": "event.ctrlKey و event.key را با هم بررسی کنید و نتیجه را با event.preventDefault() خنثی کنید."
-  },
-  {
-   "prompt": "با رویداد keydown و مقایسهٔ event.key با \"Enter\" یک تابع را فقط با فشردن Enter اجرا کنید.",
-   "hint": "مقدار کلید Enter در event.key همان رشتهٔ \"Enter\" است."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام رویداد صفحه‌کلید منسوخ شده است؟",
-   "options": [
-    "keydown",
-    "keyup",
-    "keypress",
-    "input"
-   ],
-   "answer": 2,
-   "explanation": "keypress منسوخ شده است و فقط برای کلیدهای نویسه‌دار اجرا می‌شود؛ به‌جایش از keydown یا keyup استفاده کنید."
-  },
-  {
-   "question": "با فشردن کلید Z، مقدار event.key چه چیزی برمی‌گرداند؟",
-   "options": [
-    "همیشه \"KeyZ\"",
-    "‏z، یا Z اگر Shift نگه داشته شده باشد",
-    "کد یونی‌کد ۹۰ به‌صورت ثابت",
-    "هیچ مقداری، چون فقط code کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "event.key به تنظیمات زبان و کلیدهای نگه‌داشته‌شده بستگی دارد، پس با Shift حرف بزرگ می‌دهد؛ در مقابل event.code همیشه \"KeyZ\" است."
-  },
-  {
-   "question": "کدام خصوصیت کلید ثابت و مستقل از تنظیمات زبان است؟",
-   "options": [
-    "event.key",
-    "event.code",
-    "event.shiftKey",
-    "event.metaKey"
-   ],
-   "answer": 1,
-   "explanation": "event.code کد فیزیکی کلید را می‌دهد و مستقل از زبان و حالت حروف ثابت می‌ماند؛ همین آن را برای کنترل بازی مناسب می‌کند."
-  },
-  {
-   "question": "برای تشخیص فشرده شدن کلید Ctrl همراه با حرف S از کدام خصوصیت استفاده می‌کنیم؟",
-   "options": [
-    "event.ctrlKey",
-    "event.key",
-    "event.code",
-    "event.altKey"
-   ],
-   "answer": 0,
-   "explanation": "event.ctrlKey نشان می‌دهد کلید Ctrl نگه داشته شده است؛ با ترکیب آن با event.key می‌توان ترکیب‌هایی مثل Ctrl + S را تشخیص داد."
-  },
-  {
-   "question": "برای اجرای کدی فقط با فشردن کلید Enter، مقدار event.key را با چه چیزی مقایسه می‌کنیم؟",
-   "options": [
-    "\"Enter\"",
-    "\"Return\"",
-    "\"KeyEnter\"",
-    "\"\\n\""
-   ],
-   "answer": 0,
-   "explanation": "در event.key نام کلید Enter رشتهٔ \"Enter\" است؛ با مقایسهٔ آن می‌توانید فقط زمانی واکنش نشان دهید که کاربر Enter زده باشد."
-  }
- ]
+  "slug": "js_events_keyboard",
+  "course": "js",
+  "order": 150,
+  "url": "/js/js_events_keyboard.asp",
+  "title": "رویدادهای صفحه‌کلید در JavaScript",
+  "summary": "رویدادهای صفحه‌کلید ورودی کاربر را از صفحه‌کلید می‌گیرند. این درس تفاوت keydown، keyup و keypress منسوخ، تفاوت event.key با event.code و راه تشخیص کلیدهای ترکیبی و کلید Enter را آموزش می‌دهد.",
+  "objectives": [
+    "تفاوت keydown و keyup را توضیح دهید",
+    "بگویید چرا keypress منسوخ شده است",
+    "تفاوت event.key و event.code را با مثال Z تشخیص دهید",
+    "کلیدهای ترکیبی مثل Ctrl + S و کلید Enter را تشخیص دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "رویدادهای صفحه‌کلید در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "رویدادهای صفحه‌کلید وقتی رخ می‌دهند که کاربر کلیدی روی صفحه‌کلید فشار دهد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "keydown (کلید پایین نگه داشته می‌شود)",
+        "keyup (کلید رها می‌شود)",
+        "keypress (منسوخ شده)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "رویداد keypress فقط برای کلیدهای نویسه‌دار (مثل a یا 5) اجرا می‌شود، نه برای کلیدهای کنترلی (مثل alt یا backspace)."
+    },
+    {
+      "type": "p",
+      "text": "به برنامه‌نویسان توصیه می‌شود به‌جای آن از keydown یا keyup استفاده کنند."
+    },
+    {
+      "type": "h2",
+      "text": "رویداد keydown"
+    },
+    {
+      "type": "h3",
+      "text": "استفاده از event.key"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input id=\"k\" type=\"text\" placeholder=\"Press a key\">\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst k = document.getElementById(\"k\");\n\n// Let k listen for keydown\n\nk.addEventListener(\"keydown\", function (event) {\n\n// Then display the event.key\n\n  document.getElementById(\"demo\").innerHTML = \"You pressed: \" + event.key;\n\n});\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_keydown"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های کلید"
+    },
+    {
+      "type": "p",
+      "text": "شیء KeyboardEvent خصوصیت‌های سودمندی دارد که نشان می‌دهد کدام کلید در رویداد دخیل بوده است:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["خصوصیت", "توضیح", "هنگام فشردن Z"],
+        [
+          "event.key",
+          "مقدار کلید را برمی‌گرداند. بسته به تنظیمات زبان می‌تواند متفاوت باشد.",
+          "‏z را برمی‌گرداند (یا Z اگر Shift نگه داشته شده باشد)"
+        ],
+        [
+          "event.code",
+          "کد کلید را برمی‌گرداند. مستقل از تنظیمات زبان همیشه ثابت است.",
+          "همیشه \"KeyZ\" را برمی‌گرداند"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "با خصوصیت‌هایی مثل event.ctrlKey، event.shiftKey، event.altKey و event.metaKey می‌توانید کلیدهای ترکیبی را هم تشخیص دهید و ترکیب‌هایی مثل Ctrl + S بسازید."
+    },
+    {
+      "type": "h2",
+      "text": "تشخیص کلید Enter"
+    },
+    {
+      "type": "h3",
+      "text": "استفاده از event.code"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input id=\"in01\" type=\"text\" placeholder=\"Press Enter\">\n\n<p id=\"demo\"></p>\n\n<script>\n\nconst in01 = document.getElementById(\"in01\");\n\n// Let in01 listen for keydown\n\nin01.addEventListener(\"keydown\", function (event) {\n\n// If event.code was \"enter\", then display text\n\n  if (event.code === \"Enter\") {\n\n    document.getElementById(\"demo\").innerHTML = \"Enter was pressed!\";\n\n  }\n\n});\n\n</script>",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_events_detectenter"
+    },
+    {
+      "type": "h2",
+      "text": "خلاصه"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript رویدادهای صفحه‌کلید را در اختیار می‌گذارد تا ورودی کاربر از صفحه‌کلید را تشخیص دهید و مدیریت کنید؛ همین امکان تجربه‌های تعاملی مثل اعتبارسنجی فرم، کنترل بازی و میانبرهای صفحه‌کلید را می‌سازد."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل keyboard.html بسازید که یک فیلد ورودی داشته باشد؛ با رویداد keydown هر کلیدی که فشرده می‌شود را در یک عنصر نشان دهید.",
+      "hint": "از event.key برای گرفتن مقدار کلید استفاده کنید و آن را در textContent بنویسید."
+    },
+    {
+      "prompt": "همان کد را با event.code بنویسید و با فشردن Z ببینید چه چیزی چاپ می‌شود.",
+      "hint": "event.code مقدار ثابت \"KeyZ\" را می‌دهد، مستقل از اینکه Shift نگه داشته شده باشد یا نه."
+    },
+    {
+      "prompt": "بررسی کنید با نگه داشتن Shift، تفاوت خروجی event.key و event.code چیست.",
+      "hint": "یکی به حرف بزرگ و کوچک حساس است و دیگری ثابت می‌ماند."
+    },
+    {
+      "prompt": "با ترکیب Ctrl + S جلوی ذخیرهٔ صفحه را بگیرید و پیام خودتان را نشان دهید.",
+      "hint": "event.ctrlKey و event.key را با هم بررسی کنید و نتیجه را با event.preventDefault() خنثی کنید."
+    },
+    {
+      "prompt": "با رویداد keydown و مقایسهٔ event.key با \"Enter\" یک تابع را فقط با فشردن Enter اجرا کنید.",
+      "hint": "مقدار کلید Enter در event.key همان رشتهٔ \"Enter\" است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام رویداد صفحه‌کلید منسوخ شده است؟",
+      "options": ["keydown", "keyup", "keypress", "input"],
+      "answer": 2,
+      "explanation": "keypress منسوخ شده است و فقط برای کلیدهای نویسه‌دار اجرا می‌شود؛ به‌جایش از keydown یا keyup استفاده کنید."
+    },
+    {
+      "question": "با فشردن کلید Z، مقدار event.key چه چیزی برمی‌گرداند؟",
+      "options": [
+        "همیشه \"KeyZ\"",
+        "‏z، یا Z اگر Shift نگه داشته شده باشد",
+        "کد یونی‌کد ۹۰ به‌صورت ثابت",
+        "هیچ مقداری، چون فقط code کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "event.key به تنظیمات زبان و کلیدهای نگه‌داشته‌شده بستگی دارد، پس با Shift حرف بزرگ می‌دهد؛ در مقابل event.code همیشه \"KeyZ\" است."
+    },
+    {
+      "question": "کدام خصوصیت کلید ثابت و مستقل از تنظیمات زبان است؟",
+      "options": ["event.key", "event.code", "event.shiftKey", "event.metaKey"],
+      "answer": 1,
+      "explanation": "event.code کد فیزیکی کلید را می‌دهد و مستقل از زبان و حالت حروف ثابت می‌ماند؛ همین آن را برای کنترل بازی مناسب می‌کند."
+    },
+    {
+      "question": "برای تشخیص فشرده شدن کلید Ctrl همراه با حرف S از کدام خصوصیت استفاده می‌کنیم؟",
+      "options": ["event.ctrlKey", "event.key", "event.code", "event.altKey"],
+      "answer": 0,
+      "explanation": "event.ctrlKey نشان می‌دهد کلید Ctrl نگه داشته شده است؛ با ترکیب آن با event.key می‌توان ترکیب‌هایی مثل Ctrl + S را تشخیص داد."
+    },
+    {
+      "question": "برای اجرای کدی فقط با فشردن کلید Enter، مقدار event.key را با چه چیزی مقایسه می‌کنیم؟",
+      "options": ["\"Enter\"", "\"Return\"", "\"KeyEnter\"", "\"\\n\""],
+      "answer": 0,
+      "explanation": "در event.key نام کلید Enter رشتهٔ \"Enter\" است؛ با مقایسهٔ آن می‌توانید فقط زمانی واکنش نشان دهید که کاربر Enter زده باشد."
+    }
+  ]
 }

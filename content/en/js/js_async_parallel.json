@@ -1,323 +1,283 @@
 {
- "slug": "js_async_parallel",
- "course": "js",
- "order": 226,
- "url": "/js/js_async_parallel.asp",
- "title": "Running Async Tasks in Parallel",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Running Async Tasks in Parallel"
-  },
-  {
-   "type": "p",
-   "text": "An await statement waits for one Promise before continuing."
-  },
-  {
-   "type": "p",
-   "text": "If several asynchronous operations do not depend on each other, waiting for them one by one\nmay be slower than necessary."
-  },
-  {
-   "type": "p",
-   "text": "Instead, you can start all the operations at the same time and wait for them together."
-  },
-  {
-   "type": "h2",
-   "text": "Sequential Operations"
-  },
-  {
-   "type": "p",
-   "text": "When each operation depends on the previous one, use multiple\nawait statements."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// async function to load data\n\nasync function loadData() {\n\n  let response1 = await fetch(\"customer.json\");\n\n  let customer = await response1.json();\n\n  let response2 = await fetch(\"products.json\");\n\n  let products = await response2.json();\n\n  let text = \"\";\n\n  text += JSON.stringify(customer);\n\n  text += JSON.stringify(products);\n\n}\n\n// Call the async load function\n\nloadData();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_sequential"
-  },
-  {
-   "type": "h2",
-   "text": "response.json()"
-  },
-  {
-   "type": "p",
-   "text": "response.json()) is a built-in method of the Fetch API."
-  },
-  {
-   "type": "p",
-   "text": "It reads a raw HTTP response stream, parses the JSON text, and resolves as a completed JavaScript\nobject or array that you can actually use in your code."
-  },
-  {
-   "type": "h2",
-   "text": "Independent Operations"
-  },
-  {
-   "type": "p",
-   "text": "If asynchronous operations are independent, they can start at the same time."
-  },
-  {
-   "type": "p",
-   "text": "This is called running tasks in parallel."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// async function to load data\n\nasync function loadData() {\n\n  let customerPromise = fetch(\"customer.json\");\n\n  let productsPromise = fetch(\"products.json\");\n\n  let customer = await customerPromise;\n\n  let products = await productsPromise;\n\n  let text = \"\";\n\n  text += JSON.stringify(customer);\n\n  text += JSON.stringify(products);\n\n}\n\n// Call the async load function\n\nloadData();",
-   "caption": "Example 1"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_parallel_1"
-  },
-  {
-   "type": "p",
-   "text": "All three downloads begin immediately."
-  },
-  {
-   "type": "p",
-   "text": "The await statements wait only when the results are needed."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// async function to load data\n\nasync function loadData() {\n\n  let customerPromise = fetch(\"customer.json\");\n\n  let productsPromise = fetch(\"products.json\");\n\n  let customer = await customerPromise;\n\n  let products = await productsPromise;\n\n  let text =\n\n  \"<h3>Customer</h3>\" +\n\n  customer.name + \", \" +\n\n  customer.city +\n\n  \"<h3>Products</h3>\" +\n\n  products[0].name + \", \" +\n\n  products[1].name + \", \" +\n\n  products[2].name;\n\n}\n\n// Call the async load function\n\nloadData();",
-   "caption": "Example 2"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_parallel_2"
-  },
-  {
-   "type": "h2",
-   "text": "Promise.all()"
-  },
-  {
-   "type": "p",
-   "text": "The Promise.all() method waits for several Promises to complete."
-  },
-  {
-   "type": "p",
-   "text": "It returns a single Promise that resolves when every Promise has been fulfilled."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// async function to load data\n\nasync function loadData() {\n\n  let responses = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n}\n\n// Call the async load function\n\nloadData();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all"
-  },
-  {
-   "type": "h2",
-   "text": "Reading JSON Responses"
-  },
-  {
-   "type": "p",
-   "text": "You can combine Promise.all() with response.json()."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// async function to load data\n\nasync function loadData() {\n\n  let responses = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n  let data = await Promise.all(\n\n    responses.map(response => response.json())\n\n  );\n\n}\n\n// Call the async load function\n\nloadData();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_json"
-  },
-  {
-   "type": "h2",
-   "text": "Promise.all() Errors"
-  },
-  {
-   "type": "p",
-   "text": "If one Promise is rejected, the Promise returned by Promise.all() is also rejected."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// async function to load data\n\nasync function loadData() {\n\n  try {\n\n    let data = await Promise.all([\n\n    fetch(\"missing1\"),\n\n    fetch(\"missing2\"),\n\n    fetch(\"missing3\")\n\n    ]);\n\n  }\n\n  catch(err) {\n\n    myDisplayer(err.message);\n\n  }\n\n}\n\n// Call the async load function\n\nloadData();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_error_1"
-  },
-  {
-   "type": "h3",
-   "text": "Note"
-  },
-  {
-   "type": "p",
-   "text": "fetch() does not reject its Promise for HTTP errors such as 404 Not Found."
-  },
-  {
-   "type": "p",
-   "text": "It resolves with a Response object."
-  },
-  {
-   "type": "p",
-   "text": "To make Promise.all() reject on HTTP errors, check response.ok and throw an error yourself."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// async function to get file\n\nasync function getFile(url) {\n\n  const response = await fetch(url);\n\n  if (!response.ok) {\n\n    throw new Error(response.status + \" \" + response.statusText);\n\n  }\n\n  return response.text();\n\n}\n\n// async function to load data\n\nasync function loadData() {\n\n  try {\n\n    let data = await Promise.all([\n\n    getFile(\"missing1\"),\n\n    getFile(\"missing2\"),\n\n    getFile(\"missing3\")\n\n    ]);\n\n  }\n\n  catch(err) {\n\n    myDisplayer(err.message);\n\n  }\n\n}\n\n// Call the async load function\n\nloadData();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_error_2"
-  },
-  {
-   "type": "p",
-   "text": "The example above demonstrates both Promise.all() and proper error handling."
-  },
-  {
-   "type": "h2",
-   "text": "Promise.allSettled()"
-  },
-  {
-   "type": "p",
-   "text": "The Promise.allSettled() method waits until every Promise has finished."
-  },
-  {
-   "type": "p",
-   "text": "Unlike Promise.all(), it does not stop when one Promise is rejected."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let results = await Promise.allSettled([\n\n  fetch(\"a.txt\"),\n\n  fetch(\"b.txt\"),\n\n  fetch(\"missing.txt\")\n]);",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "Each result contains a status of fulfilled or rejected."
-  },
-  {
-   "type": "h2",
-   "text": "Promise.any()"
-  },
-  {
-   "type": "p",
-   "text": "The Promise.any() method returns the first fulfilled Promise."
-  },
-  {
-   "type": "p",
-   "text": "Rejected Promises are ignored unless every Promise is rejected."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let fastest = await Promise.any([\n\n  fetch(\"server1/data\"),\n\n  fetch(\"server2/data\"),\n\n  fetch(\"server3/data\")\n\n]);",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Promise.race()"
-  },
-  {
-   "type": "p",
-   "text": "The Promise.race() method returns the first Promise that settles."
-  },
-  {
-   "type": "p",
-   "text": "The first Promise may be fulfilled or rejected."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let result = await Promise.race([\n\n  fetch(\"server1/data\"),\n\n  fetch(\"server2/data\")\n\n]);",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Which Method to Use?"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Waits For",
-     "Typical Use"
-    ],
-    [
-     "Promise.all()",
-     "All fulfilled",
-     "Load everything"
-    ],
-    [
-     "Promise.allSettled()",
-     "All settled",
-     "Accept failures"
-    ],
-    [
-     "Promise.any()",
-     "First fulfilled",
-     "Fastest successful response"
-    ],
-    [
-     "Promise.race()",
-     "First settled",
-     "Timeouts and competitions"
-    ]
-   ]
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Fails if one rejects?",
-     "Returns"
-    ],
-    [
-     "Promise.all()",
-     "Yes",
-     "Array of values"
-    ],
-    [
-     "Promise.allSettled()",
-     "No",
-     "Array of result objects"
-    ],
-    [
-     "Promise.any()",
-     "Only if all reject",
-     "First fulfilled value"
-    ],
-    [
-     "Promise.race()",
-     "If the first settles with rejection",
-     "First settled result"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Summary"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Use sequential await statements when one operation depends on another.",
-    "Start independent asynchronous operations together whenever possible.",
-    "Use Promise.all() when every operation must succeed.",
-    "Use Promise.allSettled() when you want every result, even if some fail.",
-    "Use Promise.any() when you need the first successful result.",
-    "Use Promise.race() when you need the first Promise that settles."
-   ]
-  }
- ]
+  "slug": "js_async_parallel",
+  "course": "js",
+  "order": 226,
+  "url": "/js/js_async_parallel.asp",
+  "title": "Running Async Tasks in Parallel",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Running Async Tasks in Parallel"
+    },
+    {
+      "type": "p",
+      "text": "An await statement waits for one Promise before continuing."
+    },
+    {
+      "type": "p",
+      "text": "If several asynchronous operations do not depend on each other, waiting for them one by one\nmay be slower than necessary."
+    },
+    {
+      "type": "p",
+      "text": "Instead, you can start all the operations at the same time and wait for them together."
+    },
+    {
+      "type": "h2",
+      "text": "Sequential Operations"
+    },
+    {
+      "type": "p",
+      "text": "When each operation depends on the previous one, use multiple\nawait statements."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// async function to load data\n\nasync function loadData() {\n\n  let response1 = await fetch(\"customer.json\");\n\n  let customer = await response1.json();\n\n  let response2 = await fetch(\"products.json\");\n\n  let products = await response2.json();\n\n  let text = \"\";\n\n  text += JSON.stringify(customer);\n\n  text += JSON.stringify(products);\n\n}\n\n// Call the async load function\n\nloadData();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_sequential"
+    },
+    {
+      "type": "h2",
+      "text": "response.json()"
+    },
+    {
+      "type": "p",
+      "text": "response.json()) is a built-in method of the Fetch API."
+    },
+    {
+      "type": "p",
+      "text": "It reads a raw HTTP response stream, parses the JSON text, and resolves as a completed JavaScript\nobject or array that you can actually use in your code."
+    },
+    {
+      "type": "h2",
+      "text": "Independent Operations"
+    },
+    {
+      "type": "p",
+      "text": "If asynchronous operations are independent, they can start at the same time."
+    },
+    {
+      "type": "p",
+      "text": "This is called running tasks in parallel."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// async function to load data\n\nasync function loadData() {\n\n  let customerPromise = fetch(\"customer.json\");\n\n  let productsPromise = fetch(\"products.json\");\n\n  let customer = await customerPromise;\n\n  let products = await productsPromise;\n\n  let text = \"\";\n\n  text += JSON.stringify(customer);\n\n  text += JSON.stringify(products);\n\n}\n\n// Call the async load function\n\nloadData();",
+      "caption": "Example 1"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_parallel_1"
+    },
+    {
+      "type": "p",
+      "text": "All three downloads begin immediately."
+    },
+    {
+      "type": "p",
+      "text": "The await statements wait only when the results are needed."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// async function to load data\n\nasync function loadData() {\n\n  let customerPromise = fetch(\"customer.json\");\n\n  let productsPromise = fetch(\"products.json\");\n\n  let customer = await customerPromise;\n\n  let products = await productsPromise;\n\n  let text =\n\n  \"<h3>Customer</h3>\" +\n\n  customer.name + \", \" +\n\n  customer.city +\n\n  \"<h3>Products</h3>\" +\n\n  products[0].name + \", \" +\n\n  products[1].name + \", \" +\n\n  products[2].name;\n\n}\n\n// Call the async load function\n\nloadData();",
+      "caption": "Example 2"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_parallel_2"
+    },
+    {
+      "type": "h2",
+      "text": "Promise.all()"
+    },
+    {
+      "type": "p",
+      "text": "The Promise.all() method waits for several Promises to complete."
+    },
+    {
+      "type": "p",
+      "text": "It returns a single Promise that resolves when every Promise has been fulfilled."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// async function to load data\n\nasync function loadData() {\n\n  let responses = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n}\n\n// Call the async load function\n\nloadData();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all"
+    },
+    {
+      "type": "h2",
+      "text": "Reading JSON Responses"
+    },
+    {
+      "type": "p",
+      "text": "You can combine Promise.all() with response.json()."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// async function to load data\n\nasync function loadData() {\n\n  let responses = await Promise.all([\n\n    fetch(\"customer.json\"),\n\n    fetch(\"products.json\"),\n\n    fetch(\"news.json\")\n\n  ]);\n\n  let data = await Promise.all(\n\n    responses.map(response => response.json())\n\n  );\n\n}\n\n// Call the async load function\n\nloadData();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_json"
+    },
+    {
+      "type": "h2",
+      "text": "Promise.all() Errors"
+    },
+    {
+      "type": "p",
+      "text": "If one Promise is rejected, the Promise returned by Promise.all() is also rejected."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// async function to load data\n\nasync function loadData() {\n\n  try {\n\n    let data = await Promise.all([\n\n    fetch(\"missing1\"),\n\n    fetch(\"missing2\"),\n\n    fetch(\"missing3\")\n\n    ]);\n\n  }\n\n  catch(err) {\n\n    myDisplayer(err.message);\n\n  }\n\n}\n\n// Call the async load function\n\nloadData();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_error_1"
+    },
+    {
+      "type": "h3",
+      "text": "Note"
+    },
+    {
+      "type": "p",
+      "text": "fetch() does not reject its Promise for HTTP errors such as 404 Not Found."
+    },
+    {
+      "type": "p",
+      "text": "It resolves with a Response object."
+    },
+    {
+      "type": "p",
+      "text": "To make Promise.all() reject on HTTP errors, check response.ok and throw an error yourself."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// async function to get file\n\nasync function getFile(url) {\n\n  const response = await fetch(url);\n\n  if (!response.ok) {\n\n    throw new Error(response.status + \" \" + response.statusText);\n\n  }\n\n  return response.text();\n\n}\n\n// async function to load data\n\nasync function loadData() {\n\n  try {\n\n    let data = await Promise.all([\n\n    getFile(\"missing1\"),\n\n    getFile(\"missing2\"),\n\n    getFile(\"missing3\")\n\n    ]);\n\n  }\n\n  catch(err) {\n\n    myDisplayer(err.message);\n\n  }\n\n}\n\n// Call the async load function\n\nloadData();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_all_error_2"
+    },
+    {
+      "type": "p",
+      "text": "The example above demonstrates both Promise.all() and proper error handling."
+    },
+    {
+      "type": "h2",
+      "text": "Promise.allSettled()"
+    },
+    {
+      "type": "p",
+      "text": "The Promise.allSettled() method waits until every Promise has finished."
+    },
+    {
+      "type": "p",
+      "text": "Unlike Promise.all(), it does not stop when one Promise is rejected."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let results = await Promise.allSettled([\n\n  fetch(\"a.txt\"),\n\n  fetch(\"b.txt\"),\n\n  fetch(\"missing.txt\")\n]);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "Each result contains a status of fulfilled or rejected."
+    },
+    {
+      "type": "h2",
+      "text": "Promise.any()"
+    },
+    {
+      "type": "p",
+      "text": "The Promise.any() method returns the first fulfilled Promise."
+    },
+    {
+      "type": "p",
+      "text": "Rejected Promises are ignored unless every Promise is rejected."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let fastest = await Promise.any([\n\n  fetch(\"server1/data\"),\n\n  fetch(\"server2/data\"),\n\n  fetch(\"server3/data\")\n\n]);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Promise.race()"
+    },
+    {
+      "type": "p",
+      "text": "The Promise.race() method returns the first Promise that settles."
+    },
+    {
+      "type": "p",
+      "text": "The first Promise may be fulfilled or rejected."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let result = await Promise.race([\n\n  fetch(\"server1/data\"),\n\n  fetch(\"server2/data\")\n\n]);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Which Method to Use?"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Waits For", "Typical Use"],
+        ["Promise.all()", "All fulfilled", "Load everything"],
+        ["Promise.allSettled()", "All settled", "Accept failures"],
+        ["Promise.any()", "First fulfilled", "Fastest successful response"],
+        ["Promise.race()", "First settled", "Timeouts and competitions"]
+      ]
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Fails if one rejects?", "Returns"],
+        ["Promise.all()", "Yes", "Array of values"],
+        ["Promise.allSettled()", "No", "Array of result objects"],
+        ["Promise.any()", "Only if all reject", "First fulfilled value"],
+        ["Promise.race()", "If the first settles with rejection", "First settled result"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Summary"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Use sequential await statements when one operation depends on another.",
+        "Start independent asynchronous operations together whenever possible.",
+        "Use Promise.all() when every operation must succeed.",
+        "Use Promise.allSettled() when you want every result, even if some fail.",
+        "Use Promise.any() when you need the first successful result.",
+        "Use Promise.race() when you need the first Promise that settles."
+      ]
+    }
+  ]
 }

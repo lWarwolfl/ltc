@@ -1,310 +1,300 @@
 {
- "slug": "js_destructuring",
- "course": "js",
- "order": 102,
- "url": "/js/js_destructuring.asp",
- "title": "تخریب ساختار در JavaScript",
- "summary": "تخریب ساختار (destructuring) راهی کوتاه برای باز کردن مقدارهای شیء و آرایه در متغیرهاست. در این درس این نحو را روی شیء، رشته، آرایه و Map یاد می‌گیرید و می‌بینید چگونه مقدار پیش‌فرض، نام مستعار، ویژگی rest و جابه‌جایی متغیرها را بنویسید.",
- "objectives": [
-  "شیء را با تخریب ساختار در متغیرها باز کنید",
-  "برای خصوصیت‌های ناموجود مقدار پیش‌فرض بگذارید",
-  "با کاماهای اضافی مقدارهای آرایه را رد کنید",
-  "با ویژگی rest مقدارهای باقی‌مانده را در آرایه بریزید",
-  "مقدار دو متغیر را با تخریب ساختار جابه‌جا کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تخریب ساختار در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "نحو تخصیص تخریب ساختار"
-  },
-  {
-   "type": "p",
-   "text": "نحو تخصیص تخریب ساختار می‌تواند شیءها را در متغیرها باز کند:"
-  },
-  {
-   "type": "p",
-   "text": "این نحو به شکل let {firstName, lastName} = person; است."
-  },
-  {
-   "type": "h2",
-   "text": "تخریب ساختار شیء"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50\n\n};\n\n// Destructuring\n\nlet {firstName, lastName} = person;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destruct"
-  },
-  {
-   "type": "p",
-   "text": "ترتیب خصوصیت‌ها مهم نیست:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50\n\n};\n\n// Destructuring\n\nlet {lastName, firstName} = person;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destruct4"
-  },
-  {
-   "type": "p",
-   "text": "تخریب ساختار مخرب نیست."
-  },
-  {
-   "type": "p",
-   "text": "تخریب ساختار شیء اصلی را تغییر نمی‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "مقدارهای پیش‌فرض شیء"
-  },
-  {
-   "type": "p",
-   "text": "برای خصوصیت‌هایی که ممکن است وجود نداشته باشند می‌توان مقدار پیش‌فرض گذاشت:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50\n\n};\n\n// Destructuring\n\nlet {firstName, lastName, country = \"US\"} = person;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destruct2"
-  },
-  {
-   "type": "h2",
-   "text": "نام مستعار برای خصوصیت شیء"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50\n\n};\n\n// Destructuring\n\nlet {lastName : name} = person;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destruct3"
-  },
-  {
-   "type": "h2",
-   "text": "تخریب ساختار رشته"
-  },
-  {
-   "type": "p",
-   "text": "یکی از کاربردهای تخریب ساختار، باز کردن نویسه‌های یک رشته است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a String\n\nlet name = \"W3Schools\";\n\n// Destructuring\n\nlet [a1, a2, a3, a4, a5] = name;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_destruct"
-  },
-  {
-   "type": "p",
-   "text": "تخریب ساختار با هر شیء قابل پیمایش (iterable) کار می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "تخریب ساختار آرایه"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانیم مقدارهای آرایه را در متغیرهای خودمان بریزیم:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Array\n\nconst fruits = [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"];\n\n// Destructuring\n\nlet [fruit1, fruit2] = fruits;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destruct"
-  },
-  {
-   "type": "h2",
-   "text": "رد کردن مقدارهای آرایه"
-  },
-  {
-   "type": "p",
-   "text": "با دو کاما یا بیشتر می‌توان مقدارهای آرایه را رد کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Array\n\nconst fruits = [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"];\n\n// Destructuring\n\nlet [fruit1,,,fruit2] = fruits;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destruct2"
-  },
-  {
-   "type": "h2",
-   "text": "مقدارها بر پایهٔ جایگاه در آرایه"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانیم مقدارها را از جایگاه اندیس مشخصی در آرایه برداریم:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Array\n\nconst fruits = [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"];\n\n// Destructuring\n\nlet {[0]:fruit1 ,[1]:fruit2} = fruits;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destruct3"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی rest"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید نحو تخریب ساختار را با ویژگی rest تمام کنید."
-  },
-  {
-   "type": "p",
-   "text": "این نحو، همهٔ مقدارهای باقی‌مانده را در آرایه‌ای جدید می‌ریزد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Array\n\nconst numbers = [10, 20, 30, 40, 50, 60, 70];\n\n// Destructuring\n\nconst [a,b, ...rest] = numbers",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destruct4"
-  },
-  {
-   "type": "h2",
-   "text": "تخریب ساختار Map"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Map\n\nconst fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);\n\n// Destructuring\n\nlet text = \"\";\n\nfor (const [key, value] of fruits) {\n\n  text += key + \" is \" + value;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_destruct"
-  },
-  {
-   "type": "h2",
-   "text": "جابه‌جایی متغیرها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید مقدار دو متغیر را با یک تخصیص تخریب ساختار جابه‌جا کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let firstName = \"John\";\n\nlet lastName = \"Doe\";\n\n// Destructuring\n\n[firstName, lastName] = [lastName, firstName];",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_swap_destruct"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک شیء person با خصوصیت‌های firstName، lastName و age بسازید و آن را با let {firstName, lastName} = person; در متغیرها باز کنید.",
-   "hint": "نام متغیرها باید با نام خصوصیت‌های شیء یکی باشد."
-  },
-  {
-   "prompt": "همان تخریب ساختار را یک بار دیگر با ترتیب برعکس، یعنی {lastName, firstName}، بنویسید و ببینید نتیجه عوض نمی‌شود.",
-   "hint": "در تخریب ساختار شیء، نام خصوصیت‌ها تعیین‌کننده‌اند نه ترتیب آن‌ها."
-  },
-  {
-   "prompt": "برای خصوصیتی که در شیء وجود ندارد مقدار پیش‌فرض بگذارید، مثل country = \"US\"، و مقدار آن را چاپ کنید.",
-   "hint": "مقدار پیش‌فرض با علامت = بعد از نام خصوصیت می‌آید."
-  },
-  {
-   "prompt": "آرایهٔ [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"] را بسازید و با let [fruit1,,,fruit2] مقدار اول و چهارم را بردارید.",
-   "hint": "هر کامای اضافی یک جایگاه آرایه را رد می‌کند."
-  },
-  {
-   "prompt": "دو متغیر firstName و lastName بسازید و مقدارشان را با تخریب ساختار جابه‌جا کنید و نتیجه را چاپ کنید.",
-   "hint": "کافی است بنویسید [firstName, lastName] = [lastName, firstName];"
-  }
- ],
- "quiz": [
-  {
-   "question": "در تخریب ساختار شیء، ترتیب خصوصیت‌ها چه نقشی دارد؟",
-   "options": [
-    "باید دقیقاً مطابق ترتیب شیء باشد",
-    "باید الفبایی باشد",
-    "مهم نیست، نام خصوصیت‌ها تعیین‌کننده‌اند",
-    "فقط برای خصوصیت age مهم است"
-   ],
-   "answer": 2,
-   "explanation": "تخریب ساختار با نام خصوصیت کار می‌کند، پس {lastName, firstName} هم درست است. ترتیب فقط در تخریب ساختار آرایه اهمیت دارد."
-  },
-  {
-   "question": "در let {firstName, lastName, country = \"US\"} = person; اگر شیء خصوصیت country نداشته باشد، country چه مقداری می‌گیرد؟",
-   "options": [
-    "خطا می‌دهد",
-    "\"US\"",
-    "null",
-    "undefined"
-   ],
-   "answer": 3,
-   "explanation": "مقدار پیش‌فرض وقتی به کار می‌آید که خصوصیت در شیء نباشد؛ بدون آن، country مقدار undefined می‌گرفت."
-  },
-  {
-   "question": "با آرایهٔ [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"]، کد let [fruit1,,,fruit2] = fruits; چه مقداری در fruit2 می‌گذارد؟",
-   "options": [
-    "\"Apples\"",
-    "undefined",
-    "\"Oranges\"",
-    "\"Mangos\""
-   ],
-   "answer": 3,
-   "explanation": "هر کامای اضافی یک جایگاه را رد می‌کند؛ دو جایگاه وسط رد می‌شود و fruit2 مقدار چهارم، یعنی \"Mangos\" را می‌گیرد."
-  },
-  {
-   "question": "تخریب ساختار روی شیء اصلی چه اثری دارد؟",
-   "options": [
-    "هیچ تغییری در آن نمی‌دهد",
-    "خصوصیت‌ها را حذف می‌کند",
-    "شیء را به آرایه تبدیل می‌کند",
-    "خصوصیت‌ها را بازنویسی می‌کند"
-   ],
-   "answer": 2,
-   "explanation": "تخریب ساختار مخرب نیست؛ فقط مقدار خصوصیت‌ها را در متغیرهای جدید می‌ریزد و شیء اصلی دست‌نخورده می‌ماند."
-  },
-  {
-   "question": "کدام کد همهٔ مقدارهای باقی‌ماندهٔ آرایه را با ویژگی rest در یک آرایه می‌ریزد؟",
-   "options": [
-    "const [a,b, ...rest] = numbers",
-    "const [a,b] = numbers",
-    "const {a,b} = numbers",
-    "const [...rest, a, b] = numbers"
-   ],
-   "answer": 0,
-   "explanation": "ویژگی rest با سه‌نقطه و در پایان الگو می‌آید، پس ...rest مقدارهای بعد از a و b را جمع می‌کند. در آرایه نمی‌توان آن را اول گذاشت."
-  }
- ]
+  "slug": "js_destructuring",
+  "course": "js",
+  "order": 102,
+  "url": "/js/js_destructuring.asp",
+  "title": "تخریب ساختار در JavaScript",
+  "summary": "تخریب ساختار (destructuring) راهی کوتاه برای باز کردن مقدارهای شیء و آرایه در متغیرهاست. در این درس این نحو را روی شیء، رشته، آرایه و Map یاد می‌گیرید و می‌بینید چگونه مقدار پیش‌فرض، نام مستعار، ویژگی rest و جابه‌جایی متغیرها را بنویسید.",
+  "objectives": [
+    "شیء را با تخریب ساختار در متغیرها باز کنید",
+    "برای خصوصیت‌های ناموجود مقدار پیش‌فرض بگذارید",
+    "با کاماهای اضافی مقدارهای آرایه را رد کنید",
+    "با ویژگی rest مقدارهای باقی‌مانده را در آرایه بریزید",
+    "مقدار دو متغیر را با تخریب ساختار جابه‌جا کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تخریب ساختار در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "نحو تخصیص تخریب ساختار"
+    },
+    {
+      "type": "p",
+      "text": "نحو تخصیص تخریب ساختار می‌تواند شیءها را در متغیرها باز کند:"
+    },
+    {
+      "type": "p",
+      "text": "این نحو به شکل let {firstName, lastName} = person; است."
+    },
+    {
+      "type": "h2",
+      "text": "تخریب ساختار شیء"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50\n\n};\n\n// Destructuring\n\nlet {firstName, lastName} = person;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destruct"
+    },
+    {
+      "type": "p",
+      "text": "ترتیب خصوصیت‌ها مهم نیست:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50\n\n};\n\n// Destructuring\n\nlet {lastName, firstName} = person;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destruct4"
+    },
+    {
+      "type": "p",
+      "text": "تخریب ساختار مخرب نیست."
+    },
+    {
+      "type": "p",
+      "text": "تخریب ساختار شیء اصلی را تغییر نمی‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "مقدارهای پیش‌فرض شیء"
+    },
+    {
+      "type": "p",
+      "text": "برای خصوصیت‌هایی که ممکن است وجود نداشته باشند می‌توان مقدار پیش‌فرض گذاشت:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50\n\n};\n\n// Destructuring\n\nlet {firstName, lastName, country = \"US\"} = person;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destruct2"
+    },
+    {
+      "type": "h2",
+      "text": "نام مستعار برای خصوصیت شیء"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50\n\n};\n\n// Destructuring\n\nlet {lastName : name} = person;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destruct3"
+    },
+    {
+      "type": "h2",
+      "text": "تخریب ساختار رشته"
+    },
+    {
+      "type": "p",
+      "text": "یکی از کاربردهای تخریب ساختار، باز کردن نویسه‌های یک رشته است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a String\n\nlet name = \"W3Schools\";\n\n// Destructuring\n\nlet [a1, a2, a3, a4, a5] = name;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_destruct"
+    },
+    {
+      "type": "p",
+      "text": "تخریب ساختار با هر شیء قابل پیمایش (iterable) کار می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "تخریب ساختار آرایه"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانیم مقدارهای آرایه را در متغیرهای خودمان بریزیم:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Array\n\nconst fruits = [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"];\n\n// Destructuring\n\nlet [fruit1, fruit2] = fruits;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destruct"
+    },
+    {
+      "type": "h2",
+      "text": "رد کردن مقدارهای آرایه"
+    },
+    {
+      "type": "p",
+      "text": "با دو کاما یا بیشتر می‌توان مقدارهای آرایه را رد کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Array\n\nconst fruits = [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"];\n\n// Destructuring\n\nlet [fruit1,,,fruit2] = fruits;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destruct2"
+    },
+    {
+      "type": "h2",
+      "text": "مقدارها بر پایهٔ جایگاه در آرایه"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانیم مقدارها را از جایگاه اندیس مشخصی در آرایه برداریم:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Array\n\nconst fruits = [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"];\n\n// Destructuring\n\nlet {[0]:fruit1 ,[1]:fruit2} = fruits;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destruct3"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی rest"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید نحو تخریب ساختار را با ویژگی rest تمام کنید."
+    },
+    {
+      "type": "p",
+      "text": "این نحو، همهٔ مقدارهای باقی‌مانده را در آرایه‌ای جدید می‌ریزد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Array\n\nconst numbers = [10, 20, 30, 40, 50, 60, 70];\n\n// Destructuring\n\nconst [a,b, ...rest] = numbers",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destruct4"
+    },
+    {
+      "type": "h2",
+      "text": "تخریب ساختار Map"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Map\n\nconst fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);\n\n// Destructuring\n\nlet text = \"\";\n\nfor (const [key, value] of fruits) {\n\n  text += key + \" is \" + value;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_destruct"
+    },
+    {
+      "type": "h2",
+      "text": "جابه‌جایی متغیرها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید مقدار دو متغیر را با یک تخصیص تخریب ساختار جابه‌جا کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let firstName = \"John\";\n\nlet lastName = \"Doe\";\n\n// Destructuring\n\n[firstName, lastName] = [lastName, firstName];",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_swap_destruct"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک شیء person با خصوصیت‌های firstName، lastName و age بسازید و آن را با let {firstName, lastName} = person; در متغیرها باز کنید.",
+      "hint": "نام متغیرها باید با نام خصوصیت‌های شیء یکی باشد."
+    },
+    {
+      "prompt": "همان تخریب ساختار را یک بار دیگر با ترتیب برعکس، یعنی {lastName, firstName}، بنویسید و ببینید نتیجه عوض نمی‌شود.",
+      "hint": "در تخریب ساختار شیء، نام خصوصیت‌ها تعیین‌کننده‌اند نه ترتیب آن‌ها."
+    },
+    {
+      "prompt": "برای خصوصیتی که در شیء وجود ندارد مقدار پیش‌فرض بگذارید، مثل country = \"US\"، و مقدار آن را چاپ کنید.",
+      "hint": "مقدار پیش‌فرض با علامت = بعد از نام خصوصیت می‌آید."
+    },
+    {
+      "prompt": "آرایهٔ [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"] را بسازید و با let [fruit1,,,fruit2] مقدار اول و چهارم را بردارید.",
+      "hint": "هر کامای اضافی یک جایگاه آرایه را رد می‌کند."
+    },
+    {
+      "prompt": "دو متغیر firstName و lastName بسازید و مقدارشان را با تخریب ساختار جابه‌جا کنید و نتیجه را چاپ کنید.",
+      "hint": "کافی است بنویسید [firstName, lastName] = [lastName, firstName];"
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در تخریب ساختار شیء، ترتیب خصوصیت‌ها چه نقشی دارد؟",
+      "options": [
+        "باید دقیقاً مطابق ترتیب شیء باشد",
+        "باید الفبایی باشد",
+        "مهم نیست، نام خصوصیت‌ها تعیین‌کننده‌اند",
+        "فقط برای خصوصیت age مهم است"
+      ],
+      "answer": 2,
+      "explanation": "تخریب ساختار با نام خصوصیت کار می‌کند، پس {lastName, firstName} هم درست است. ترتیب فقط در تخریب ساختار آرایه اهمیت دارد."
+    },
+    {
+      "question": "در let {firstName, lastName, country = \"US\"} = person; اگر شیء خصوصیت country نداشته باشد، country چه مقداری می‌گیرد؟",
+      "options": ["خطا می‌دهد", "\"US\"", "null", "undefined"],
+      "answer": 3,
+      "explanation": "مقدار پیش‌فرض وقتی به کار می‌آید که خصوصیت در شیء نباشد؛ بدون آن، country مقدار undefined می‌گرفت."
+    },
+    {
+      "question": "با آرایهٔ [\"Bananas\", \"Oranges\", \"Apples\", \"Mangos\"]، کد let [fruit1,,,fruit2] = fruits; چه مقداری در fruit2 می‌گذارد؟",
+      "options": ["\"Apples\"", "undefined", "\"Oranges\"", "\"Mangos\""],
+      "answer": 3,
+      "explanation": "هر کامای اضافی یک جایگاه را رد می‌کند؛ دو جایگاه وسط رد می‌شود و fruit2 مقدار چهارم، یعنی \"Mangos\" را می‌گیرد."
+    },
+    {
+      "question": "تخریب ساختار روی شیء اصلی چه اثری دارد؟",
+      "options": [
+        "هیچ تغییری در آن نمی‌دهد",
+        "خصوصیت‌ها را حذف می‌کند",
+        "شیء را به آرایه تبدیل می‌کند",
+        "خصوصیت‌ها را بازنویسی می‌کند"
+      ],
+      "answer": 2,
+      "explanation": "تخریب ساختار مخرب نیست؛ فقط مقدار خصوصیت‌ها را در متغیرهای جدید می‌ریزد و شیء اصلی دست‌نخورده می‌ماند."
+    },
+    {
+      "question": "کدام کد همهٔ مقدارهای باقی‌ماندهٔ آرایه را با ویژگی rest در یک آرایه می‌ریزد؟",
+      "options": [
+        "const [a,b, ...rest] = numbers",
+        "const [a,b] = numbers",
+        "const {a,b} = numbers",
+        "const [...rest, a, b] = numbers"
+      ],
+      "answer": 0,
+      "explanation": "ویژگی rest با سه‌نقطه و در پایان الگو می‌آید، پس ...rest مقدارهای بعد از a و b را جمع می‌کند. در آرایه نمی‌توان آن را اول گذاشت."
+    }
+  ]
 }

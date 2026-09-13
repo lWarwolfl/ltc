@@ -1,547 +1,525 @@
 {
- "slug": "js_math",
- "course": "js",
- "order": 79,
- "url": "/js/js_math.asp",
- "title": "شیء Math در JavaScript",
- "summary": "شیء Math ابزارهای ریاضی JavaScript را در خود دارد و بدون ساختن شیء به کار می‌رود. در این درس ثابت‌هایی مثل Math.PI، متدهای گرد کردن عدد به عدد صحیح، توان و جذر، و توابع مثلثاتی sin و cos را تمرین می‌کنید.",
- "objectives": [
-  "ثابت‌های Math و نحو دسترسی به آن‌ها را بگویید",
-  "با round()، ceil()، floor() و trunc() عدد را گرد کنید",
-  "با pow()، sqrt() و abs() محاسبهٔ ریاضی انجام دهید",
-  "تفاوت sin و cos را با درجه و رادیان توضیح دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "شیء Math در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "شیء Math"
-  },
-  {
-   "type": "p",
-   "text": "شیء Math در JavaScript به شما اجازه می‌دهد کارهای ریاضی انجام دهید."
-  },
-  {
-   "type": "p",
-   "text": "شیء Math ایستا (static) است."
-  },
-  {
-   "type": "p",
-   "text": "همهٔ متدها و خصوصیت‌ها را می‌توان بدون ساختن شیء Math به کار برد."
-  },
-  {
-   "type": "p",
-   "text": "Math.PI;"
-  },
-  {
-   "type": "p",
-   "text": "خودتان امتحان کنید »"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های Math (ثابت‌ها)"
-  },
-  {
-   "type": "p",
-   "text": "نحو هر خصوصیت Math این است: Math.property."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript هشت ثابت ریاضی فراهم می‌کند که به‌صورت خصوصیت‌های Math در دسترس‌اند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.E        // returns Euler's number\n\nMath.PI       // returns PI\n\nMath.SQRT2    // returns the square root of 2\n\nMath.SQRT1_2  // returns the square root of 1/2\n\nMath.LN2      // returns the natural logarithm of 2\n\nMath.LN10     // returns the natural logarithm of 10\n\nMath.LOG2E    // returns base 2 logarithm of E\n\nMath.LOG10E   // returns base 10 logarithm of E",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_constants"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای Math"
-  },
-  {
-   "type": "p",
-   "text": "نحو هر متد Math این است: Math.method(number)"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل عدد به عدد صحیح"
-  },
-  {
-   "type": "p",
-   "text": "چهار متد رایج برای گرد کردن عدد به عدد صحیح وجود دارد:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Math.round(x)",
-     "x را به نزدیک‌ترین عدد صحیح گرد می‌کند"
-    ],
-    [
-     "Math.ceil(x)",
-     "x را به نزدیک‌ترین عدد صحیح بزرگ‌تر گرد می‌کند"
-    ],
-    [
-     "Math.floor(x)",
-     "x را به نزدیک‌ترین عدد صحیح کوچک‌تر گرد می‌کند"
-    ],
-    [
-     "Math.trunc(x)",
-     "بخش صحیح x را برمی‌گرداند (تازه در ES6)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.round()"
-  },
-  {
-   "type": "p",
-   "text": "Math.round(x) نزدیک‌ترین عدد صحیح را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.round(4.6);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.round(4.5);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.round(4.4);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_round_1"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.ceil()"
-  },
-  {
-   "type": "p",
-   "text": "Math.ceil(x) مقدار x را به نزدیک‌ترین عدد صحیح بزرگ‌تر گرد می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.ceil(4.9);\n\nMath.ceil(4.7);\n\nMath.ceil(4.4);\n\nMath.ceil(4.2);\n\nMath.ceil(-4.2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_ceil"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.floor()"
-  },
-  {
-   "type": "p",
-   "text": "Math.floor(x) مقدار x را به نزدیک‌ترین عدد صحیح کوچک‌تر گرد می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.floor(4.9);\n\nMath.floor(4.7);\n\nMath.floor(4.4);\n\nMath.floor(4.2);\n\nMath.floor(-4.2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_floor"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.trunc()"
-  },
-  {
-   "type": "p",
-   "text": "Math.trunc(x) بخش صحیح x را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.trunc(4.9);\n\nMath.trunc(4.7);\n\nMath.trunc(4.4);\n\nMath.trunc(4.2);\n\nMath.trunc(-4.2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_trunc"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.sign()"
-  },
-  {
-   "type": "p",
-   "text": "Math.sign(x) می‌گوید x منفی است، صفر است یا مثبت."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "اگر x مثبت باشد ۱ برمی‌گرداند",
-    "اگر x منفی باشد 1- برمی‌گرداند",
-    "اگر x صفر باشد ۰ برمی‌گرداند"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.sign(-4);\n\nMath.sign(0);\n\nMath.sign(4);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sign"
-  },
-  {
-   "type": "p",
-   "text": "Math.trunc() و Math.sign() در JavaScript 2015 یعنی ES6 اضافه شدند."
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.pow()"
-  },
-  {
-   "type": "p",
-   "text": "Math.pow(x, y) مقدار x به قوهٔ y را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.pow(8, 2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_pow"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.sqrt()"
-  },
-  {
-   "type": "p",
-   "text": "Math.sqrt(x) جذر x را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.sqrt(64);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sqrt"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.abs()"
-  },
-  {
-   "type": "p",
-   "text": "Math.abs(x) قدرمطلق (مقدار مثبت) x را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.abs(-4.7);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_abs"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.sin()"
-  },
-  {
-   "type": "p",
-   "text": "Math.sin(x) سینوس زاویهٔ x (بر حسب رادیان) را برمی‌گرداند؛ مقداری بین 1- و ۱."
-  },
-  {
-   "type": "p",
-   "text": "اگر می‌خواهید به‌جای رادیان از درجه استفاده کنید، باید درجه را به رادیان تبدیل کنید:"
-  },
-  {
-   "type": "p",
-   "text": "زاویه به رادیان = زاویه به درجه × PI / 180."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.sin(90 * Math.PI / 180);     // returns 1 (the sine of 90 degrees)",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sin"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.cos()"
-  },
-  {
-   "type": "p",
-   "text": "Math.cos(x) کسینوس زاویهٔ x (بر حسب رادیان) را برمی‌گرداند؛ مقداری بین 1- و ۱."
-  },
-  {
-   "type": "p",
-   "text": "اگر می‌خواهید به‌جای رادیان از درجه استفاده کنید، باید درجه را به رادیان تبدیل کنید:"
-  },
-  {
-   "type": "p",
-   "text": "زاویه به رادیان = زاویه به درجه × PI / 180."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.cos(0 * Math.PI / 180);     // returns 1 (the cos of 0 degrees)",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_cos"
-  },
-  {
-   "type": "h2",
-   "text": "Math.min() و Math.max()"
-  },
-  {
-   "type": "p",
-   "text": "با Math.min() و Math.max() می‌توانید کوچک‌ترین یا بزرگ‌ترین مقدار را در فهرستی از آرگومان‌ها پیدا کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.min(0, 150, 30, 20, -8, -200);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_min"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.max(0, 150, 30, 20, -8, -200);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_max"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.random()"
-  },
-  {
-   "type": "p",
-   "text": "Math.random() عددی تصادفی بین ۰ (شامل) و ۱ (غیرشامل) برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.random();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_random"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "در درس بعدی این آموزش دربارهٔ Math.random() بیشتر یاد می‌گیرید."
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.log()"
-  },
-  {
-   "type": "p",
-   "text": "Math.log(x) لگاریتم طبیعی x را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "لگاریتم طبیعی زمان لازم برای رسیدن به سطح مشخصی از رشد را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.log(1);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.log(2);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.log(3);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log"
-  },
-  {
-   "type": "p",
-   "text": "Math.E و Math.log() دوقلو هستند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.log(10);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log_ten_times"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.log2()"
-  },
-  {
-   "type": "p",
-   "text": "Math.log2(x) لگاریتم x در مبنای 2 را برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.log2(8);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log2"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.log10()"
-  },
-  {
-   "type": "p",
-   "text": "Math.log10(x) لگاریتم x در مبنای 10 را برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.log10(1000);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log10"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "مرجع کامل Math"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل math.html بسازید و مقدار Math.PI و Math.E را در کنسول چاپ کنید.",
-   "hint": "Math شیء ایستاست، پس بدون new مستقیم Math.PI را می‌خوانید."
-  },
-  {
-   "prompt": "عدد ۴.۶ را با round()، ceil()، floor() و trunc() گرد کنید و خروجی هر چهار را کنار هم بگذارید.",
-   "hint": "ceil به بالا و floor به پایین گرد می‌کند؛ round به نزدیک‌ترین عدد و trunc فقط بخش اعشار را می‌برد."
-  },
-  {
-   "prompt": "با Math.sign() علامت یک عدد مثبت، یک عدد منفی و صفر را ببینید.",
-   "hint": "برای عدد مثبت ۱، برای منفی 1- و برای صفر ۰ برمی‌گردد."
-  },
-  {
-   "prompt": "با Math.min() و Math.max() کوچک‌ترین و بزرگ‌ترین عدد یک فهرست آرگومان را پیدا کنید.",
-   "hint": "آرگومان‌ها را با کاما بدهید: Math.min(0, 150, 30, 20, -8, -200)."
-  },
-  {
-   "prompt": "سینوس زاویهٔ ۹۰ درجه را حساب کنید و توضیح دهید چرا نتیجه ۱ می‌گیرید.",
-   "hint": "اول درجه را به رادیان تبدیل کنید: Math.sin(90 * Math.PI / 180)."
-  }
- ],
- "quiz": [
-  {
-   "question": "برای استفاده از متدهای Math چه کاری لازم است؟",
-   "options": [
-    "ساختن شیء با new Math()",
-    "هیچ کاری؛ Math ایستاست و متدها مستقیم کار می‌کنند",
-    "تعریف متغیری به نام math",
-    "وارد کردن یک کتابخانهٔ بیرونی"
-   ],
-   "answer": 1,
-   "explanation": "شیء Math ایستاست، پس همهٔ متدها و خصوصیت‌ها را بدون ساختن شیء Math به کار می‌برید."
-  },
-  {
-   "question": "Math.ceil(4.2) چه چیزی برمی‌گرداند؟",
-   "options": [
-    "4",
-    "5",
-    "4.2",
-    "0"
-   ],
-   "answer": 1,
-   "explanation": "ceil همیشه به نزدیک‌ترین عدد صحیح بزرگ‌تر گرد می‌کند، پس 4.2 می‌شود ۵. برای گرفتن 4 باید از floor یا trunc استفاده کنید."
-  },
-  {
-   "question": "تفاوت Math.trunc(-4.2) و Math.floor(-4.2) چیست؟",
-   "options": [
-    "هر دو 4- می‌دهند",
-    "هر دو 5- می‌دهند",
-    "trunc می‌شود 5- و floor می‌شود 4-",
-    "trunc می‌شود 4- و floor می‌شود 5-"
-   ],
-   "answer": 3,
-   "explanation": "trunc فقط بخش اعشار را می‌برد و 4- می‌دهد، اما floor همیشه به سمت عدد کوچک‌تر می‌رود و 5- می‌دهد."
-  },
-  {
-   "question": "شمارهٔ ثابت‌های ریاضی Math چند است و کدام‌یک نمونهٔ آن است؟",
-   "options": [
-    "۴ ثابت و Math.PI نمونهٔ آن است",
-    "۸ ثابت و Math.PI نمونهٔ آن است",
-    "۸ ثابت و Math.round نمونهٔ آن است",
-    "۲ ثابت و Math.E نمونهٔ آن است"
-   ],
-   "answer": 1,
-   "explanation": "JavaScript هشت ثابت ریاضی به‌صورت خصوصیت‌های Math می‌دهد؛ Math.PI، Math.E و Math.SQRT2 نمونه‌های آن هستند، در حالی که Math.round متد است نه ثابت."
-  },
-  {
-   "question": "Math.sign(-4) چه برمی‌گرداند؟",
-   "options": [
-    "1",
-    "0",
-    "1-",
-    "4"
-   ],
-   "answer": 2,
-   "explanation": "sign برای عدد مثبت ۱، برای صفر ۰ و برای عدد منفی 1- برمی‌گرداند؛ این متد همراه Math.trunc در ES6 اضافه شده است."
-  }
- ]
+  "slug": "js_math",
+  "course": "js",
+  "order": 79,
+  "url": "/js/js_math.asp",
+  "title": "شیء Math در JavaScript",
+  "summary": "شیء Math ابزارهای ریاضی JavaScript را در خود دارد و بدون ساختن شیء به کار می‌رود. در این درس ثابت‌هایی مثل Math.PI، متدهای گرد کردن عدد به عدد صحیح، توان و جذر، و توابع مثلثاتی sin و cos را تمرین می‌کنید.",
+  "objectives": [
+    "ثابت‌های Math و نحو دسترسی به آن‌ها را بگویید",
+    "با round()، ceil()، floor() و trunc() عدد را گرد کنید",
+    "با pow()، sqrt() و abs() محاسبهٔ ریاضی انجام دهید",
+    "تفاوت sin و cos را با درجه و رادیان توضیح دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "شیء Math در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "شیء Math"
+    },
+    {
+      "type": "p",
+      "text": "شیء Math در JavaScript به شما اجازه می‌دهد کارهای ریاضی انجام دهید."
+    },
+    {
+      "type": "p",
+      "text": "شیء Math ایستا (static) است."
+    },
+    {
+      "type": "p",
+      "text": "همهٔ متدها و خصوصیت‌ها را می‌توان بدون ساختن شیء Math به کار برد."
+    },
+    {
+      "type": "p",
+      "text": "Math.PI;"
+    },
+    {
+      "type": "p",
+      "text": "خودتان امتحان کنید »"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های Math (ثابت‌ها)"
+    },
+    {
+      "type": "p",
+      "text": "نحو هر خصوصیت Math این است: Math.property."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript هشت ثابت ریاضی فراهم می‌کند که به‌صورت خصوصیت‌های Math در دسترس‌اند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.E        // returns Euler's number\n\nMath.PI       // returns PI\n\nMath.SQRT2    // returns the square root of 2\n\nMath.SQRT1_2  // returns the square root of 1/2\n\nMath.LN2      // returns the natural logarithm of 2\n\nMath.LN10     // returns the natural logarithm of 10\n\nMath.LOG2E    // returns base 2 logarithm of E\n\nMath.LOG10E   // returns base 10 logarithm of E",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_constants"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای Math"
+    },
+    {
+      "type": "p",
+      "text": "نحو هر متد Math این است: Math.method(number)"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل عدد به عدد صحیح"
+    },
+    {
+      "type": "p",
+      "text": "چهار متد رایج برای گرد کردن عدد به عدد صحیح وجود دارد:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Math.round(x)", "x را به نزدیک‌ترین عدد صحیح گرد می‌کند"],
+        ["Math.ceil(x)", "x را به نزدیک‌ترین عدد صحیح بزرگ‌تر گرد می‌کند"],
+        ["Math.floor(x)", "x را به نزدیک‌ترین عدد صحیح کوچک‌تر گرد می‌کند"],
+        ["Math.trunc(x)", "بخش صحیح x را برمی‌گرداند (تازه در ES6)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.round()"
+    },
+    {
+      "type": "p",
+      "text": "Math.round(x) نزدیک‌ترین عدد صحیح را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.round(4.6);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.round(4.5);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.round(4.4);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_round_1"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.ceil()"
+    },
+    {
+      "type": "p",
+      "text": "Math.ceil(x) مقدار x را به نزدیک‌ترین عدد صحیح بزرگ‌تر گرد می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.ceil(4.9);\n\nMath.ceil(4.7);\n\nMath.ceil(4.4);\n\nMath.ceil(4.2);\n\nMath.ceil(-4.2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_ceil"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.floor()"
+    },
+    {
+      "type": "p",
+      "text": "Math.floor(x) مقدار x را به نزدیک‌ترین عدد صحیح کوچک‌تر گرد می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.floor(4.9);\n\nMath.floor(4.7);\n\nMath.floor(4.4);\n\nMath.floor(4.2);\n\nMath.floor(-4.2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_floor"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.trunc()"
+    },
+    {
+      "type": "p",
+      "text": "Math.trunc(x) بخش صحیح x را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.trunc(4.9);\n\nMath.trunc(4.7);\n\nMath.trunc(4.4);\n\nMath.trunc(4.2);\n\nMath.trunc(-4.2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_trunc"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.sign()"
+    },
+    {
+      "type": "p",
+      "text": "Math.sign(x) می‌گوید x منفی است، صفر است یا مثبت."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "اگر x مثبت باشد ۱ برمی‌گرداند",
+        "اگر x منفی باشد 1- برمی‌گرداند",
+        "اگر x صفر باشد ۰ برمی‌گرداند"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.sign(-4);\n\nMath.sign(0);\n\nMath.sign(4);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sign"
+    },
+    {
+      "type": "p",
+      "text": "Math.trunc() و Math.sign() در JavaScript 2015 یعنی ES6 اضافه شدند."
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.pow()"
+    },
+    {
+      "type": "p",
+      "text": "Math.pow(x, y) مقدار x به قوهٔ y را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.pow(8, 2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_pow"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.sqrt()"
+    },
+    {
+      "type": "p",
+      "text": "Math.sqrt(x) جذر x را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.sqrt(64);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sqrt"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.abs()"
+    },
+    {
+      "type": "p",
+      "text": "Math.abs(x) قدرمطلق (مقدار مثبت) x را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.abs(-4.7);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_abs"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.sin()"
+    },
+    {
+      "type": "p",
+      "text": "Math.sin(x) سینوس زاویهٔ x (بر حسب رادیان) را برمی‌گرداند؛ مقداری بین 1- و ۱."
+    },
+    {
+      "type": "p",
+      "text": "اگر می‌خواهید به‌جای رادیان از درجه استفاده کنید، باید درجه را به رادیان تبدیل کنید:"
+    },
+    {
+      "type": "p",
+      "text": "زاویه به رادیان = زاویه به درجه × PI / 180."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.sin(90 * Math.PI / 180);     // returns 1 (the sine of 90 degrees)",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sin"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.cos()"
+    },
+    {
+      "type": "p",
+      "text": "Math.cos(x) کسینوس زاویهٔ x (بر حسب رادیان) را برمی‌گرداند؛ مقداری بین 1- و ۱."
+    },
+    {
+      "type": "p",
+      "text": "اگر می‌خواهید به‌جای رادیان از درجه استفاده کنید، باید درجه را به رادیان تبدیل کنید:"
+    },
+    {
+      "type": "p",
+      "text": "زاویه به رادیان = زاویه به درجه × PI / 180."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.cos(0 * Math.PI / 180);     // returns 1 (the cos of 0 degrees)",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_cos"
+    },
+    {
+      "type": "h2",
+      "text": "Math.min() و Math.max()"
+    },
+    {
+      "type": "p",
+      "text": "با Math.min() و Math.max() می‌توانید کوچک‌ترین یا بزرگ‌ترین مقدار را در فهرستی از آرگومان‌ها پیدا کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.min(0, 150, 30, 20, -8, -200);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_min"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.max(0, 150, 30, 20, -8, -200);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_max"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.random()"
+    },
+    {
+      "type": "p",
+      "text": "Math.random() عددی تصادفی بین ۰ (شامل) و ۱ (غیرشامل) برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.random();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_random"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "در درس بعدی این آموزش دربارهٔ Math.random() بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.log()"
+    },
+    {
+      "type": "p",
+      "text": "Math.log(x) لگاریتم طبیعی x را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "لگاریتم طبیعی زمان لازم برای رسیدن به سطح مشخصی از رشد را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.log(1);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.log(2);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.log(3);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log"
+    },
+    {
+      "type": "p",
+      "text": "Math.E و Math.log() دوقلو هستند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.log(10);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log_ten_times"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.log2()"
+    },
+    {
+      "type": "p",
+      "text": "Math.log2(x) لگاریتم x در مبنای 2 را برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.log2(8);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log2"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.log10()"
+    },
+    {
+      "type": "p",
+      "text": "Math.log10(x) لگاریتم x در مبنای 10 را برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.log10(1000);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log10"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "مرجع کامل Math"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل math.html بسازید و مقدار Math.PI و Math.E را در کنسول چاپ کنید.",
+      "hint": "Math شیء ایستاست، پس بدون new مستقیم Math.PI را می‌خوانید."
+    },
+    {
+      "prompt": "عدد ۴.۶ را با round()، ceil()، floor() و trunc() گرد کنید و خروجی هر چهار را کنار هم بگذارید.",
+      "hint": "ceil به بالا و floor به پایین گرد می‌کند؛ round به نزدیک‌ترین عدد و trunc فقط بخش اعشار را می‌برد."
+    },
+    {
+      "prompt": "با Math.sign() علامت یک عدد مثبت، یک عدد منفی و صفر را ببینید.",
+      "hint": "برای عدد مثبت ۱، برای منفی 1- و برای صفر ۰ برمی‌گردد."
+    },
+    {
+      "prompt": "با Math.min() و Math.max() کوچک‌ترین و بزرگ‌ترین عدد یک فهرست آرگومان را پیدا کنید.",
+      "hint": "آرگومان‌ها را با کاما بدهید: Math.min(0, 150, 30, 20, -8, -200)."
+    },
+    {
+      "prompt": "سینوس زاویهٔ ۹۰ درجه را حساب کنید و توضیح دهید چرا نتیجه ۱ می‌گیرید.",
+      "hint": "اول درجه را به رادیان تبدیل کنید: Math.sin(90 * Math.PI / 180)."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای استفاده از متدهای Math چه کاری لازم است؟",
+      "options": [
+        "ساختن شیء با new Math()",
+        "هیچ کاری؛ Math ایستاست و متدها مستقیم کار می‌کنند",
+        "تعریف متغیری به نام math",
+        "وارد کردن یک کتابخانهٔ بیرونی"
+      ],
+      "answer": 1,
+      "explanation": "شیء Math ایستاست، پس همهٔ متدها و خصوصیت‌ها را بدون ساختن شیء Math به کار می‌برید."
+    },
+    {
+      "question": "Math.ceil(4.2) چه چیزی برمی‌گرداند؟",
+      "options": ["4", "5", "4.2", "0"],
+      "answer": 1,
+      "explanation": "ceil همیشه به نزدیک‌ترین عدد صحیح بزرگ‌تر گرد می‌کند، پس 4.2 می‌شود ۵. برای گرفتن 4 باید از floor یا trunc استفاده کنید."
+    },
+    {
+      "question": "تفاوت Math.trunc(-4.2) و Math.floor(-4.2) چیست؟",
+      "options": [
+        "هر دو 4- می‌دهند",
+        "هر دو 5- می‌دهند",
+        "trunc می‌شود 5- و floor می‌شود 4-",
+        "trunc می‌شود 4- و floor می‌شود 5-"
+      ],
+      "answer": 3,
+      "explanation": "trunc فقط بخش اعشار را می‌برد و 4- می‌دهد، اما floor همیشه به سمت عدد کوچک‌تر می‌رود و 5- می‌دهد."
+    },
+    {
+      "question": "شمارهٔ ثابت‌های ریاضی Math چند است و کدام‌یک نمونهٔ آن است؟",
+      "options": [
+        "۴ ثابت و Math.PI نمونهٔ آن است",
+        "۸ ثابت و Math.PI نمونهٔ آن است",
+        "۸ ثابت و Math.round نمونهٔ آن است",
+        "۲ ثابت و Math.E نمونهٔ آن است"
+      ],
+      "answer": 1,
+      "explanation": "JavaScript هشت ثابت ریاضی به‌صورت خصوصیت‌های Math می‌دهد؛ Math.PI، Math.E و Math.SQRT2 نمونه‌های آن هستند، در حالی که Math.round متد است نه ثابت."
+    },
+    {
+      "question": "Math.sign(-4) چه برمی‌گرداند؟",
+      "options": ["1", "0", "1-", "4"],
+      "answer": 2,
+      "explanation": "sign برای عدد مثبت ۱، برای صفر ۰ و برای عدد منفی 1- برمی‌گرداند؛ این متد همراه Math.trunc در ES6 اضافه شده است."
+    }
+  ]
 }

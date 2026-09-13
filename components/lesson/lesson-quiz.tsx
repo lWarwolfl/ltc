@@ -40,7 +40,10 @@ export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
     )
   }
 
-  const score = quiz.reduce((total, question, index) => total + (answers[index] === question.answer ? 1 : 0), 0)
+  const score = quiz.reduce(
+    (total, question, index) => total + (answers[index] === question.answer ? 1 : 0),
+    0
+  )
 
   function submit() {
     if (answers.some((answer) => answer < 0)) {
@@ -86,7 +89,9 @@ export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
                 value={chosen >= 0 ? String(chosen) : ''}
                 onValueChange={(value) =>
                   setAnswers((current) =>
-                    current.map((answer, index) => (index === questionIndex ? Number(value) : answer))
+                    current.map((answer, index) =>
+                      index === questionIndex ? Number(value) : answer
+                    )
                   )
                 }
                 disabled={submitted}
@@ -94,7 +99,8 @@ export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
               >
                 {question.options.map((option, optionIndex) => {
                   const isCorrect = submitted && optionIndex === correctAnswer
-                  const isWrong = submitted && optionIndex === chosen && optionIndex !== correctAnswer
+                  const isWrong =
+                    submitted && optionIndex === chosen && optionIndex !== correctAnswer
 
                   return (
                     <div
@@ -105,8 +111,14 @@ export function LessonQuiz({ course, slug, quiz }: LessonQuizProps) {
                         isWrong && 'border-destructive/60 bg-destructive/10'
                       )}
                     >
-                      <RadioGroupItem value={String(optionIndex)} id={`${slug}-${questionIndex}-${optionIndex}`} />
-                      <label htmlFor={`${slug}-${questionIndex}-${optionIndex}`} className="flex-1 text-sm">
+                      <RadioGroupItem
+                        value={String(optionIndex)}
+                        id={`${slug}-${questionIndex}-${optionIndex}`}
+                      />
+                      <label
+                        htmlFor={`${slug}-${questionIndex}-${optionIndex}`}
+                        className="flex-1 text-sm"
+                      >
                         {bidiText(option)}
                       </label>
                       {isCorrect ? <Check className="text-primary size-4" /> : null}

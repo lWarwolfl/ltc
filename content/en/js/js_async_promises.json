@@ -1,568 +1,538 @@
 {
- "slug": "js_async_promises",
- "course": "js",
- "order": 224,
- "url": "/js/js_async_promises.asp",
- "title": "Asynchronous Promises",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Asynchronous Promises"
-  },
-  {
-   "type": "h2",
-   "text": "\"I Promise a Result!\""
-  },
-  {
-   "type": "p",
-   "text": "A Promise represents the future result of an asynchronous operation."
-  },
-  {
-   "type": "p",
-   "text": "It acts as a placeholder for a value that is not available yet."
-  },
-  {
-   "type": "p",
-   "text": "When the operation finishes, the Promise is either fulfilled with a value or rejected with an error."
-  },
-  {
-   "type": "h2",
-   "text": "Why Promises?"
-  },
-  {
-   "type": "p",
-   "text": "Callbacks work well for simple asynchronous operations."
-  },
-  {
-   "type": "p",
-   "text": "However, several dependent callbacks can become difficult to read."
-  },
-  {
-   "type": "p",
-   "text": "Promises provide a cleaner and more readable way to organize asynchronous code."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "step1(function(result1) {\n\n  step2(result1, function(result2) {\n\n    step3(result2, function(result3) {\n\n      display(result3);\n\n    });\n\n  });\n\n});",
-   "caption": "Callback Example"
-  },
-  {
-   "type": "p",
-   "text": "This style is often called callback hell."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "step1()\n\n  .then(step2)\n\n  .then(step3)\n\n  .then(display);",
-   "caption": "The Same Flow with Promises"
-  },
-  {
-   "type": "p",
-   "text": "The code becomes flatter and easier to read."
-  },
-  {
-   "type": "h2",
-   "text": "Promise States"
-  },
-  {
-   "type": "p",
-   "text": "Every Promise is always in one of three states."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "State",
-    "Description"
-   ],
-   "rows": [
-    [
-     "Pending",
-     "The operation has started but has not finished."
-    ],
-    [
-     "Fulfilled",
-     "The operation completed successfully."
-    ],
-    [
-     "Rejected",
-     "The operation failed."
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Pending\n   │\n   ├────────► Fulfilled\n   │\n   └────────► Rejected"
-  },
-  {
-   "type": "p",
-   "text": "A Promise is settled when it is fulfilled or rejected."
-  },
-  {
-   "type": "h2",
-   "text": "Promises Returned by JavaScript APIs"
-  },
-  {
-   "type": "p",
-   "text": "Many JavaScript APIs return Promises."
-  },
-  {
-   "type": "p",
-   "text": "The fetch() method is one example."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_fetch"
-  },
-  {
-   "type": "p",
-   "text": "The fetch() method immediately returns a Promise."
-  },
-  {
-   "type": "p",
-   "text": "The download continues in the background while JavaScript runs other code."
-  },
-  {
-   "type": "h2",
-   "text": "How then() Works"
-  },
-  {
-   "type": "p",
-   "text": "The then() method is called immediately."
-  },
-  {
-   "type": "p",
-   "text": "It registers a function that JavaScript will call after the Promise is fulfilled."
-  },
-  {
-   "type": "p",
-   "text": "The registered function runs later when the Promise has a result."
-  },
-  {
-   "type": "p",
-   "text": "Each call to then() returns a new Promise."
-  },
-  {
-   "type": "p",
-   "text": "The then() method itself does not wait."
-  },
-  {
-   "type": "p",
-   "text": "It registers a callback and immediately returns a new Promise."
-  },
-  {
-   "type": "h3",
-   "text": "Promise Flow"
-  },
-  {
-   "type": "p",
-   "text": "fetch()\n⮯\nreturns a Promise\n⮯\nthen() registers a callback\n⮯\nJavaScript continues\n⮯\nPromise becomes fulfilled\n⮯\ncallback runs"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let promise = fetch(\"fetch.txt\");\n\npromise.then(function(response) {\n\n  return response.text();\n\n});\n\nmyDisplayer(\"JavaScript continues...\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_flow"
-  },
-  {
-   "type": "p",
-   "text": "The callback passed to then() receives the Promise's fulfillment value."
-  },
-  {
-   "type": "p",
-   "text": "For fetch(), that value is a Response object."
-  },
-  {
-   "type": "p",
-   "text": "In the next section you will learn how to create your own Promise."
-  },
-  {
-   "type": "h2",
-   "text": "Creating a Promise"
-  },
-  {
-   "type": "p",
-   "text": "Most of the time you will use Promises returned by JavaScript APIs such as fetch()."
-  },
-  {
-   "type": "p",
-   "text": "Sometimes you need to create your own Promise."
-  },
-  {
-   "type": "p",
-   "text": "Create a Promise with the Promise() constructor."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const promise = new Promise(function(resolve, reject) {\n\n  // Asynchronous work\n\n  if (success) {\n\n    resolve(value);\n\n  } else {\n\n    reject(error);\n\n  }\n\n});",
-   "caption": "Syntax"
-  },
-  {
-   "type": "p",
-   "text": "The constructor receives a function with two parameters."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Parameter",
-    "Description"
-   ],
-   "rows": [
-    [
-     "resolve",
-     "Fulfills the Promise with a value."
-    ],
-    [
-     "reject",
-     "Rejects the Promise with an error."
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Call either resolve() or reject()."
-  },
-  {
-   "type": "p",
-   "text": "A Promise can settle only once."
-  },
-  {
-   "type": "h2",
-   "text": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const promise = new Promise(function(resolve, reject) {\n\n  const success = true;\n\n if (success) {\n\n    resolve(\"Operation completed\");\n\n } else {\n\n    reject(\"Operation failed\");\n\n  }\n\n});\n\npromise.then(function(value) {\n\n  myDisplayer(value);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
-   "caption": "Create and Use a Promise"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_then"
-  },
-  {
-   "type": "h2",
-   "text": "The then() Method"
-  },
-  {
-   "type": "p",
-   "text": "The then() method registers a function that handles a fulfilled Promise."
-  },
-  {
-   "type": "p",
-   "text": "The registered function receives the fulfillment value."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_then"
-  },
-  {
-   "type": "p",
-   "text": "Each call to then() returns a new Promise."
-  },
-  {
-   "type": "p",
-   "text": "This makes Promise chaining possible."
-  },
-  {
-   "type": "h2",
-   "text": "The catch() Method"
-  },
-  {
-   "type": "p",
-   "text": "The catch() method registers a function that handles a rejected Promise."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"missing.txt\")\n\n.then(function(response) {\n\n  if (!response.ok) {\n\n    throw new Error(response.statusText);\n\n  }\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_catch"
-  },
-  {
-   "type": "p",
-   "text": "A single catch() can handle errors from any earlier step in the Promise chain."
-  },
-  {
-   "type": "h2",
-   "text": "The finally() Method"
-  },
-  {
-   "type": "p",
-   "text": "The finally() method registers a function that runs when a Promise settles."
-  },
-  {
-   "type": "p",
-   "text": "It runs whether the Promise is fulfilled or rejected."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n})\n\n.finally(function() {\n\n  myDisplayer(\"Finished\");\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_finally"
-  },
-  {
-   "type": "h2",
-   "text": "Promise Chaining"
-  },
-  {
-   "type": "p",
-   "text": "Since then() returns a new Promise, several asynchronous operations can be chained together."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function step1() {\n\n  return Promise.resolve(\"A\");\n\n}\n\nfunction step2(value) {\n\n  return Promise.resolve(value + \"B\");\n\n}\n\nfunction step3(value) {\n\n  return Promise.resolve(value + \"C\");\n\n}\n\nstep1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  return step3(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_steps"
-  },
-  {
-   "type": "p",
-   "text": "Each step waits for the Promise returned by the previous step."
-  },
-  {
-   "type": "h2",
-   "text": "Returning a Promise"
-  },
-  {
-   "type": "p",
-   "text": "If a then() callback starts another asynchronous operation, return its Promise."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "step1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
-   "caption": "Correct"
-  },
-  {
-   "type": "p",
-   "text": "If you forget to return the Promise, the next step in the chain may run before the asynchronous operation has finished."
-  },
-  {
-   "type": "h2",
-   "text": "Common Promise Mistakes"
-  },
-  {
-   "type": "h3",
-   "text": "Forgetting to Return a Promise"
-  },
-  {
-   "type": "p",
-   "text": "If a then() callback starts another asynchronous operation, return its Promise."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "step1()\n\n.then(function(value) {\n\n  step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
-   "caption": "Incorrect"
-  },
-  {
-   "type": "p",
-   "text": "The second then() may run before step2() has finished."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "step1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
-   "caption": "Correct"
-  },
-  {
-   "type": "p",
-   "text": "Returning the Promise keeps the chain in the correct order."
-  },
-  {
-   "type": "h3",
-   "text": "Forgetting to Handle Errors"
-  },
-  {
-   "type": "p",
-   "text": "Unhandled Promise rejections make debugging difficult."
-  },
-  {
-   "type": "p",
-   "text": "Use catch() to handle errors."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"missing.txt\")\n\n.then(function(response) {\n\n  if (!response.ok) {\n\n    throw new Error(response.statusText);\n\n  }\n\n  return response.text();\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_error"
-  },
-  {
-   "type": "h3",
-   "text": "Expecting Promises to Block JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Creating a Promise does not pause JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript continues executing while the asynchronous operation is in progress."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");\n\nfetch(\"fetch.txt\")\n\n.then(function() {\n\n  myDisplayer(\"Finished\");\n\n});\n\nmyDisplayer(\"JavaScript continues\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_order"
-  },
-  {
-   "type": "p",
-   "text": "The output is:"
-  },
-  {
-   "type": "p",
-   "text": "Start\nJavaScript continues\nFinished"
-  },
-  {
-   "type": "p",
-   "text": "Promises represent asynchronous operations."
-  },
-  {
-   "type": "p",
-   "text": "They do not stop JavaScript from executing other code."
-  },
-  {
-   "type": "h2",
-   "text": "Promises and Asynchronous Programming"
-  },
-  {
-   "type": "p",
-   "text": "A Promise represents the result of an asynchronous operation."
-  },
-  {
-   "type": "p",
-   "text": "The asynchronous work is usually performed by a browser API such as fetch() or setTimeout()."
-  },
-  {
-   "type": "p",
-   "text": "The Promise provides a clean way to receive the result when that operation finishes."
-  },
-  {
-   "type": "p",
-   "text": "A Promise does not make code asynchronous."
-  },
-  {
-   "type": "p",
-   "text": "It represents the result of an asynchronous operation."
-  },
-  {
-   "type": "h2",
-   "text": "Promises and the Event Loop"
-  },
-  {
-   "type": "p",
-   "text": "Promise callbacks do not run immediately."
-  },
-  {
-   "type": "p",
-   "text": "They are scheduled to run after the current JavaScript task has completed."
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript Event Loop is responsible for running these callbacks."
-  },
-  {
-   "type": "p",
-   "text": "You will learn more about this in the JavaScript Event Loop chapter."
-  },
-  {
-   "type": "h2",
-   "text": "Promises vs Callbacks"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Callbacks",
-     "Promises"
-    ],
-    [
-     "Can become deeply nested.",
-     "Can be chained."
-    ],
-    [
-     "Error handling is often spread throughout the code.",
-     "A single catch() can handle errors from the entire chain."
-    ],
-    [
-     "Harder to read for complex operations.",
-     "More readable for multiple asynchronous steps."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Summary"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "A Promise represents the future result of an asynchronous operation.",
-    "A Promise is either pending, fulfilled, or rejected.",
-    "then() registers fulfillment handlers.",
-    "catch() registers rejection handlers.",
-    "finally() registers a handler that runs when the Promise settles.",
-    "Return Promises from then() to keep Promise chains in the correct order.",
-    "Most JavaScript APIs, including fetch(), return Promises."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Next Step"
-  },
-  {
-   "type": "p",
-   "text": "Promises make asynchronous code easier to organize."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript also provides the async and await keywords, which let you write Promise-based code in a style that looks like synchronous JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "Continue with the next chapter to learn Async and Await."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Async/Await"
-  }
- ]
+  "slug": "js_async_promises",
+  "course": "js",
+  "order": 224,
+  "url": "/js/js_async_promises.asp",
+  "title": "Asynchronous Promises",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Asynchronous Promises"
+    },
+    {
+      "type": "h2",
+      "text": "\"I Promise a Result!\""
+    },
+    {
+      "type": "p",
+      "text": "A Promise represents the future result of an asynchronous operation."
+    },
+    {
+      "type": "p",
+      "text": "It acts as a placeholder for a value that is not available yet."
+    },
+    {
+      "type": "p",
+      "text": "When the operation finishes, the Promise is either fulfilled with a value or rejected with an error."
+    },
+    {
+      "type": "h2",
+      "text": "Why Promises?"
+    },
+    {
+      "type": "p",
+      "text": "Callbacks work well for simple asynchronous operations."
+    },
+    {
+      "type": "p",
+      "text": "However, several dependent callbacks can become difficult to read."
+    },
+    {
+      "type": "p",
+      "text": "Promises provide a cleaner and more readable way to organize asynchronous code."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "step1(function(result1) {\n\n  step2(result1, function(result2) {\n\n    step3(result2, function(result3) {\n\n      display(result3);\n\n    });\n\n  });\n\n});",
+      "caption": "Callback Example"
+    },
+    {
+      "type": "p",
+      "text": "This style is often called callback hell."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "step1()\n\n  .then(step2)\n\n  .then(step3)\n\n  .then(display);",
+      "caption": "The Same Flow with Promises"
+    },
+    {
+      "type": "p",
+      "text": "The code becomes flatter and easier to read."
+    },
+    {
+      "type": "h2",
+      "text": "Promise States"
+    },
+    {
+      "type": "p",
+      "text": "Every Promise is always in one of three states."
+    },
+    {
+      "type": "table",
+      "headers": ["State", "Description"],
+      "rows": [
+        ["Pending", "The operation has started but has not finished."],
+        ["Fulfilled", "The operation completed successfully."],
+        ["Rejected", "The operation failed."]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Pending\n   │\n   ├────────► Fulfilled\n   │\n   └────────► Rejected"
+    },
+    {
+      "type": "p",
+      "text": "A Promise is settled when it is fulfilled or rejected."
+    },
+    {
+      "type": "h2",
+      "text": "Promises Returned by JavaScript APIs"
+    },
+    {
+      "type": "p",
+      "text": "Many JavaScript APIs return Promises."
+    },
+    {
+      "type": "p",
+      "text": "The fetch() method is one example."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_fetch"
+    },
+    {
+      "type": "p",
+      "text": "The fetch() method immediately returns a Promise."
+    },
+    {
+      "type": "p",
+      "text": "The download continues in the background while JavaScript runs other code."
+    },
+    {
+      "type": "h2",
+      "text": "How then() Works"
+    },
+    {
+      "type": "p",
+      "text": "The then() method is called immediately."
+    },
+    {
+      "type": "p",
+      "text": "It registers a function that JavaScript will call after the Promise is fulfilled."
+    },
+    {
+      "type": "p",
+      "text": "The registered function runs later when the Promise has a result."
+    },
+    {
+      "type": "p",
+      "text": "Each call to then() returns a new Promise."
+    },
+    {
+      "type": "p",
+      "text": "The then() method itself does not wait."
+    },
+    {
+      "type": "p",
+      "text": "It registers a callback and immediately returns a new Promise."
+    },
+    {
+      "type": "h3",
+      "text": "Promise Flow"
+    },
+    {
+      "type": "p",
+      "text": "fetch()\n⮯\nreturns a Promise\n⮯\nthen() registers a callback\n⮯\nJavaScript continues\n⮯\nPromise becomes fulfilled\n⮯\ncallback runs"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let promise = fetch(\"fetch.txt\");\n\npromise.then(function(response) {\n\n  return response.text();\n\n});\n\nmyDisplayer(\"JavaScript continues...\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_flow"
+    },
+    {
+      "type": "p",
+      "text": "The callback passed to then() receives the Promise's fulfillment value."
+    },
+    {
+      "type": "p",
+      "text": "For fetch(), that value is a Response object."
+    },
+    {
+      "type": "p",
+      "text": "In the next section you will learn how to create your own Promise."
+    },
+    {
+      "type": "h2",
+      "text": "Creating a Promise"
+    },
+    {
+      "type": "p",
+      "text": "Most of the time you will use Promises returned by JavaScript APIs such as fetch()."
+    },
+    {
+      "type": "p",
+      "text": "Sometimes you need to create your own Promise."
+    },
+    {
+      "type": "p",
+      "text": "Create a Promise with the Promise() constructor."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const promise = new Promise(function(resolve, reject) {\n\n  // Asynchronous work\n\n  if (success) {\n\n    resolve(value);\n\n  } else {\n\n    reject(error);\n\n  }\n\n});",
+      "caption": "Syntax"
+    },
+    {
+      "type": "p",
+      "text": "The constructor receives a function with two parameters."
+    },
+    {
+      "type": "table",
+      "headers": ["Parameter", "Description"],
+      "rows": [
+        ["resolve", "Fulfills the Promise with a value."],
+        ["reject", "Rejects the Promise with an error."]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Call either resolve() or reject()."
+    },
+    {
+      "type": "p",
+      "text": "A Promise can settle only once."
+    },
+    {
+      "type": "h2",
+      "text": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const promise = new Promise(function(resolve, reject) {\n\n  const success = true;\n\n if (success) {\n\n    resolve(\"Operation completed\");\n\n } else {\n\n    reject(\"Operation failed\");\n\n  }\n\n});\n\npromise.then(function(value) {\n\n  myDisplayer(value);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
+      "caption": "Create and Use a Promise"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_then"
+    },
+    {
+      "type": "h2",
+      "text": "The then() Method"
+    },
+    {
+      "type": "p",
+      "text": "The then() method registers a function that handles a fulfilled Promise."
+    },
+    {
+      "type": "p",
+      "text": "The registered function receives the fulfillment value."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_then"
+    },
+    {
+      "type": "p",
+      "text": "Each call to then() returns a new Promise."
+    },
+    {
+      "type": "p",
+      "text": "This makes Promise chaining possible."
+    },
+    {
+      "type": "h2",
+      "text": "The catch() Method"
+    },
+    {
+      "type": "p",
+      "text": "The catch() method registers a function that handles a rejected Promise."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"missing.txt\")\n\n.then(function(response) {\n\n  if (!response.ok) {\n\n    throw new Error(response.statusText);\n\n  }\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_catch"
+    },
+    {
+      "type": "p",
+      "text": "A single catch() can handle errors from any earlier step in the Promise chain."
+    },
+    {
+      "type": "h2",
+      "text": "The finally() Method"
+    },
+    {
+      "type": "p",
+      "text": "The finally() method registers a function that runs when a Promise settles."
+    },
+    {
+      "type": "p",
+      "text": "It runs whether the Promise is fulfilled or rejected."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n})\n\n.finally(function() {\n\n  myDisplayer(\"Finished\");\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_finally"
+    },
+    {
+      "type": "h2",
+      "text": "Promise Chaining"
+    },
+    {
+      "type": "p",
+      "text": "Since then() returns a new Promise, several asynchronous operations can be chained together."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function step1() {\n\n  return Promise.resolve(\"A\");\n\n}\n\nfunction step2(value) {\n\n  return Promise.resolve(value + \"B\");\n\n}\n\nfunction step3(value) {\n\n  return Promise.resolve(value + \"C\");\n\n}\n\nstep1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  return step3(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error);\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_steps"
+    },
+    {
+      "type": "p",
+      "text": "Each step waits for the Promise returned by the previous step."
+    },
+    {
+      "type": "h2",
+      "text": "Returning a Promise"
+    },
+    {
+      "type": "p",
+      "text": "If a then() callback starts another asynchronous operation, return its Promise."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "step1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
+      "caption": "Correct"
+    },
+    {
+      "type": "p",
+      "text": "If you forget to return the Promise, the next step in the chain may run before the asynchronous operation has finished."
+    },
+    {
+      "type": "h2",
+      "text": "Common Promise Mistakes"
+    },
+    {
+      "type": "h3",
+      "text": "Forgetting to Return a Promise"
+    },
+    {
+      "type": "p",
+      "text": "If a then() callback starts another asynchronous operation, return its Promise."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "step1()\n\n.then(function(value) {\n\n  step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
+      "caption": "Incorrect"
+    },
+    {
+      "type": "p",
+      "text": "The second then() may run before step2() has finished."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "step1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
+      "caption": "Correct"
+    },
+    {
+      "type": "p",
+      "text": "Returning the Promise keeps the chain in the correct order."
+    },
+    {
+      "type": "h3",
+      "text": "Forgetting to Handle Errors"
+    },
+    {
+      "type": "p",
+      "text": "Unhandled Promise rejections make debugging difficult."
+    },
+    {
+      "type": "p",
+      "text": "Use catch() to handle errors."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"missing.txt\")\n\n.then(function(response) {\n\n  if (!response.ok) {\n\n    throw new Error(response.statusText);\n\n  }\n\n  return response.text();\n\n})\n\n.catch(function(error) {\n\n  myDisplayer(error.message);\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_error"
+    },
+    {
+      "type": "h3",
+      "text": "Expecting Promises to Block JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Creating a Promise does not pause JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript continues executing while the asynchronous operation is in progress."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");\n\nfetch(\"fetch.txt\")\n\n.then(function() {\n\n  myDisplayer(\"Finished\");\n\n});\n\nmyDisplayer(\"JavaScript continues\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_promise_order"
+    },
+    {
+      "type": "p",
+      "text": "The output is:"
+    },
+    {
+      "type": "p",
+      "text": "Start\nJavaScript continues\nFinished"
+    },
+    {
+      "type": "p",
+      "text": "Promises represent asynchronous operations."
+    },
+    {
+      "type": "p",
+      "text": "They do not stop JavaScript from executing other code."
+    },
+    {
+      "type": "h2",
+      "text": "Promises and Asynchronous Programming"
+    },
+    {
+      "type": "p",
+      "text": "A Promise represents the result of an asynchronous operation."
+    },
+    {
+      "type": "p",
+      "text": "The asynchronous work is usually performed by a browser API such as fetch() or setTimeout()."
+    },
+    {
+      "type": "p",
+      "text": "The Promise provides a clean way to receive the result when that operation finishes."
+    },
+    {
+      "type": "p",
+      "text": "A Promise does not make code asynchronous."
+    },
+    {
+      "type": "p",
+      "text": "It represents the result of an asynchronous operation."
+    },
+    {
+      "type": "h2",
+      "text": "Promises and the Event Loop"
+    },
+    {
+      "type": "p",
+      "text": "Promise callbacks do not run immediately."
+    },
+    {
+      "type": "p",
+      "text": "They are scheduled to run after the current JavaScript task has completed."
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript Event Loop is responsible for running these callbacks."
+    },
+    {
+      "type": "p",
+      "text": "You will learn more about this in the JavaScript Event Loop chapter."
+    },
+    {
+      "type": "h2",
+      "text": "Promises vs Callbacks"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Callbacks", "Promises"],
+        ["Can become deeply nested.", "Can be chained."],
+        [
+          "Error handling is often spread throughout the code.",
+          "A single catch() can handle errors from the entire chain."
+        ],
+        ["Harder to read for complex operations.", "More readable for multiple asynchronous steps."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Summary"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A Promise represents the future result of an asynchronous operation.",
+        "A Promise is either pending, fulfilled, or rejected.",
+        "then() registers fulfillment handlers.",
+        "catch() registers rejection handlers.",
+        "finally() registers a handler that runs when the Promise settles.",
+        "Return Promises from then() to keep Promise chains in the correct order.",
+        "Most JavaScript APIs, including fetch(), return Promises."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Next Step"
+    },
+    {
+      "type": "p",
+      "text": "Promises make asynchronous code easier to organize."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript also provides the async and await keywords, which let you write Promise-based code in a style that looks like synchronous JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "Continue with the next chapter to learn Async and Await."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Async/Await"
+    }
+  ]
 }

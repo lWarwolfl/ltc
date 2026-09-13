@@ -1,327 +1,289 @@
 {
- "slug": "js_modules_export",
- "course": "js",
- "order": 234,
- "url": "/js/js_modules_export.asp",
- "title": "JavaScript Modules Export",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Modules Export"
-  },
-  {
-   "type": "h2",
-   "text": "The Export Keyword"
-  },
-  {
-   "type": "p",
-   "text": "A module uses the export keyword\nto share values with other files."
-  },
-  {
-   "type": "p",
-   "text": "A module can have many named exports."
-  },
-  {
-   "type": "p",
-   "text": "A module can (optionally) have one default export."
-  },
-  {
-   "type": "h2",
-   "text": "Named Exports"
-  },
-  {
-   "type": "p",
-   "text": "A named export gives a name to each item."
-  },
-  {
-   "type": "p",
-   "text": "Items can be exported individually, or wrapped in { } at the bottom:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// export name and age\n\nexport const name = \"Jesse\";\n\nexport const age = 40;",
-   "caption": "Module File \"person.js\""
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const name = \"Jesse\";\n\nconst age = 40;\n\n// export name and age\n\nexport { name, age };",
-   "caption": "Module File \"person.js\""
-  },
-  {
-   "type": "p",
-   "text": "You import named exports by wrapping them in { }."
-  },
-  {
-   "type": "p",
-   "text": "The names must match exactly."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\n// Import name and age\n\nimport { name, age } from \"./person.js\";\n\n</script>",
-   "caption": "Module Script"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
-  },
-  {
-   "type": "p",
-   "text": "Named exports enforce correct naming. If you misspell a name, you get an error."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "export const PI = 3.14159;\n\nexport function add(a, b) {\n\n  return a + b;\n\n}\n\nexport function subtract(a, b) {\n\n  return a - b;\n\n}\n\nexport function multiply(a, b) {\n\n  return a * b;\n\n}\n\nexport function divide(a, b) {\n\n  return a / b;\n\n}",
-   "caption": "Module File \"math.js\""
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\nimport { add, subtract, PI } from './math.js';\n\n</script>",
-   "caption": "Module File \"math.js\""
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_math"
-  },
-  {
-   "type": "h2",
-   "text": "Name Strictness"
-  },
-  {
-   "type": "p",
-   "text": "With named exports, the imported names must match exactly."
-  },
-  {
-   "type": "p",
-   "text": "Name exports avoid mistakes caused by typos or renaming."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import { calcluate } from './math.js'; // ❌ error thrown",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Toolbox Utilities (Helpers)"
-  },
-  {
-   "type": "p",
-   "text": "Utilities work best with named exports if they contain multiple helpers:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "math.js",
-    "stringUtils.js",
-    "domHelpers.js",
-    "dateHelpers.js"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Named exports are perfect for \"toolbox\" modules containing many utilities."
-  },
-  {
-   "type": "h2",
-   "text": "Tree-Shaking"
-  },
-  {
-   "type": "p",
-   "text": "Named exports enable bundlers to remove unused code (tree-shaking)."
-  },
-  {
-   "type": "p",
-   "text": "In this example PI, subract, multiply, and divide is removed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import { add } from './math.js';",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "When to Use Named Export?"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Cases",
-     "Why Named Export"
-    ],
-    [
-     "Many functions",
-     "Clearly lists all functions"
-    ],
-    [
-     "Strictness needed",
-     "Prevents name typos"
-    ],
-    [
-     "Big projects",
-     "Improves consistency"
-    ],
-    [
-     "Utility sets",
-     "Matches module structure"
-    ],
-    [
-     "Tree-shaking",
-     "Removes unused code automatically"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Default Exports"
-  },
-  {
-   "type": "p",
-   "text": "Default Export exports one main value from a module."
-  },
-  {
-   "type": "p",
-   "text": "This gives a clear intent about what the module's primary functionality is."
-  },
-  {
-   "type": "p",
-   "text": "If a file is meant to expose one primary function, class, or value, default export makes that explicit:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "export default function calculateSum() { ... }",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "You can have only one default export in a file."
-  },
-  {
-   "type": "h2",
-   "text": "Default is Flexible"
-  },
-  {
-   "type": "p",
-   "text": "Default exports let you import using any name:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import calc from './calculateSum.js';",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "The name calc does not need to match the original."
-  },
-  {
-   "type": "p",
-   "text": "Compared to named exports, where the name must match exactly:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import { calculateSum } from './calculateSum.js';",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Try it yourself using the module file named message.js:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const message = () => {\n\n  const name = \"Jesse\";\n\n  const age = 40;\n\n  return name + ' is ' + age + 'years old.';\n\n};\n\nexport default message;",
-   "caption": "Module File \"message.js\""
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\nimport message from \"./message.js\";\n\n</script>",
-   "caption": "Module File \"message.js\""
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\nimport text from \"./message.js\";\n\n</script>",
-   "caption": "Module File \"message.js\""
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules2"
-  },
-  {
-   "type": "h2",
-   "text": "Default is Clean"
-  },
-  {
-   "type": "p",
-   "text": "Many libraries expose a single feature as the default:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import React from 'react';",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Combining Default + Named"
-  },
-  {
-   "type": "p",
-   "text": "A module can provide one main function plus some helpers:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "export default function parse() { ... }\n\nexport function validate() { ... }\n\nexport function format() { ... }",
-   "caption": "Module File"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import parse, { validate, format } from './parser.js';",
-   "caption": "Module File"
-  },
-  {
-   "type": "h2",
-   "text": "When to Use Default Export?"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "When",
-     "Why"
-    ],
-    [
-     "One main purpose",
-     "Good for modules with a primary function"
-    ],
-    [
-     "Flexible naming",
-     "Importers can choose any name"
-    ],
-    [
-     "Cleaner imports",
-     "Shorter and simpler import syntax"
-    ],
-    [
-     "Common pattern",
-     "Frameworks use it for the main API"
-    ]
-   ]
-  }
- ]
+  "slug": "js_modules_export",
+  "course": "js",
+  "order": 234,
+  "url": "/js/js_modules_export.asp",
+  "title": "JavaScript Modules Export",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Modules Export"
+    },
+    {
+      "type": "h2",
+      "text": "The Export Keyword"
+    },
+    {
+      "type": "p",
+      "text": "A module uses the export keyword\nto share values with other files."
+    },
+    {
+      "type": "p",
+      "text": "A module can have many named exports."
+    },
+    {
+      "type": "p",
+      "text": "A module can (optionally) have one default export."
+    },
+    {
+      "type": "h2",
+      "text": "Named Exports"
+    },
+    {
+      "type": "p",
+      "text": "A named export gives a name to each item."
+    },
+    {
+      "type": "p",
+      "text": "Items can be exported individually, or wrapped in { } at the bottom:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// export name and age\n\nexport const name = \"Jesse\";\n\nexport const age = 40;",
+      "caption": "Module File \"person.js\""
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const name = \"Jesse\";\n\nconst age = 40;\n\n// export name and age\n\nexport { name, age };",
+      "caption": "Module File \"person.js\""
+    },
+    {
+      "type": "p",
+      "text": "You import named exports by wrapping them in { }."
+    },
+    {
+      "type": "p",
+      "text": "The names must match exactly."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\n// Import name and age\n\nimport { name, age } from \"./person.js\";\n\n</script>",
+      "caption": "Module Script"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
+    },
+    {
+      "type": "p",
+      "text": "Named exports enforce correct naming. If you misspell a name, you get an error."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "export const PI = 3.14159;\n\nexport function add(a, b) {\n\n  return a + b;\n\n}\n\nexport function subtract(a, b) {\n\n  return a - b;\n\n}\n\nexport function multiply(a, b) {\n\n  return a * b;\n\n}\n\nexport function divide(a, b) {\n\n  return a / b;\n\n}",
+      "caption": "Module File \"math.js\""
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\nimport { add, subtract, PI } from './math.js';\n\n</script>",
+      "caption": "Module File \"math.js\""
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_math"
+    },
+    {
+      "type": "h2",
+      "text": "Name Strictness"
+    },
+    {
+      "type": "p",
+      "text": "With named exports, the imported names must match exactly."
+    },
+    {
+      "type": "p",
+      "text": "Name exports avoid mistakes caused by typos or renaming."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import { calcluate } from './math.js'; // ❌ error thrown",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Toolbox Utilities (Helpers)"
+    },
+    {
+      "type": "p",
+      "text": "Utilities work best with named exports if they contain multiple helpers:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["math.js", "stringUtils.js", "domHelpers.js", "dateHelpers.js"]
+    },
+    {
+      "type": "p",
+      "text": "Named exports are perfect for \"toolbox\" modules containing many utilities."
+    },
+    {
+      "type": "h2",
+      "text": "Tree-Shaking"
+    },
+    {
+      "type": "p",
+      "text": "Named exports enable bundlers to remove unused code (tree-shaking)."
+    },
+    {
+      "type": "p",
+      "text": "In this example PI, subract, multiply, and divide is removed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import { add } from './math.js';",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "When to Use Named Export?"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Cases", "Why Named Export"],
+        ["Many functions", "Clearly lists all functions"],
+        ["Strictness needed", "Prevents name typos"],
+        ["Big projects", "Improves consistency"],
+        ["Utility sets", "Matches module structure"],
+        ["Tree-shaking", "Removes unused code automatically"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Default Exports"
+    },
+    {
+      "type": "p",
+      "text": "Default Export exports one main value from a module."
+    },
+    {
+      "type": "p",
+      "text": "This gives a clear intent about what the module's primary functionality is."
+    },
+    {
+      "type": "p",
+      "text": "If a file is meant to expose one primary function, class, or value, default export makes that explicit:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "export default function calculateSum() { ... }",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "You can have only one default export in a file."
+    },
+    {
+      "type": "h2",
+      "text": "Default is Flexible"
+    },
+    {
+      "type": "p",
+      "text": "Default exports let you import using any name:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import calc from './calculateSum.js';",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "The name calc does not need to match the original."
+    },
+    {
+      "type": "p",
+      "text": "Compared to named exports, where the name must match exactly:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import { calculateSum } from './calculateSum.js';",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Try it yourself using the module file named message.js:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const message = () => {\n\n  const name = \"Jesse\";\n\n  const age = 40;\n\n  return name + ' is ' + age + 'years old.';\n\n};\n\nexport default message;",
+      "caption": "Module File \"message.js\""
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\nimport message from \"./message.js\";\n\n</script>",
+      "caption": "Module File \"message.js\""
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\nimport text from \"./message.js\";\n\n</script>",
+      "caption": "Module File \"message.js\""
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules2"
+    },
+    {
+      "type": "h2",
+      "text": "Default is Clean"
+    },
+    {
+      "type": "p",
+      "text": "Many libraries expose a single feature as the default:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import React from 'react';",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Combining Default + Named"
+    },
+    {
+      "type": "p",
+      "text": "A module can provide one main function plus some helpers:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "export default function parse() { ... }\n\nexport function validate() { ... }\n\nexport function format() { ... }",
+      "caption": "Module File"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import parse, { validate, format } from './parser.js';",
+      "caption": "Module File"
+    },
+    {
+      "type": "h2",
+      "text": "When to Use Default Export?"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["When", "Why"],
+        ["One main purpose", "Good for modules with a primary function"],
+        ["Flexible naming", "Importers can choose any name"],
+        ["Cleaner imports", "Shorter and simpler import syntax"],
+        ["Common pattern", "Frameworks use it for the main API"]
+      ]
+    }
+  ]
 }

@@ -1,149 +1,136 @@
 {
- "slug": "css3_variables_overriding",
- "course": "css",
- "order": 164,
- "url": "/css/css3_variables_overriding.asp",
- "title": "بازنویسی متغیرها در CSS",
- "summary": "با تعریف دوبارهٔ یک متغیر در دامنهٔ محلی می‌توان مقدار آن را فقط برای بخشی از صفحه عوض کرد. در این درس تفاوت دامنهٔ سراسری و محلی را در عمل می‌بینید.",
- "objectives": [
-  "توضیح دهید بازنویسی متغیر چطور کار می‌کند",
-  "متغیر سراسری را برای یک انتخابگر بازنویسی کنید",
-  "برای کاربرد یک‌جا یک متغیر محلی تازه تعریف کنید",
-  "بگویید چرا ترتیب تعریف متغیر مهم است"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "بازنویسی متغیرها در CSS"
-  },
-  {
-   "type": "h2",
-   "text": "بازنویسی متغیر سراسری با متغیر محلی"
-  },
-  {
-   "type": "p",
-   "text": "از صفحهٔ قبل یاد گرفتیم که به متغیرهای سراسری از کل سند دسترسی داریم، ولی متغیرهای محلی فقط داخل همان انتخابگری به کار می‌روند که در آن تعریف شده‌اند."
-  },
-  {
-   "type": "p",
-   "text": "گاهی می‌خواهیم متغیرها فقط در بخش مشخصی از صفحه تغییر کنند."
-  },
-  {
-   "type": "p",
-   "text": "فرض کنید می‌خواهیم عنصرهای <p class=\"note\"> رنگ حاشیهٔ متفاوتی داشته باشند. در این حالت می‌توانیم متغیر ‎--primary-bg-color‎ را داخل انتخابگر ‎.note‎ دوباره تعریف کنیم. وقتی داخل این انتخابگر از var(--primary-bg-color) استفاده کنیم، مقدار محلی همین متغیر به کار می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "می‌بینیم که متغیر محلی ‎--primary-bg-color‎ برای انتخابگر ‎.note‎ روی متغیر سراسری ‎--primary-bg-color‎ غلبه می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ":root {\n  --primary-bg-color: #1e90ff;\n  --primary-color:\n  #ffffff;\n}\n\nbody {\n  background-color:\n  var(--primary-bg-color);\n}\n\n.container {\n  color:\n  var(--primary-bg-color);\n  background-color: var(--primary-color);\n\n  padding: 15px;\n}\n\n.container h2 {\n  border-bottom: 2px solid\n  var(--primary-bg-color);\n}\n\n.container .note {\n\n  --primary-bg-color: red; /* local variable will override global */\n\n  border: 1px solid var(--primary-bg-color);\n  padding: 10px;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_var_override"
-  },
-  {
-   "type": "h2",
-   "text": "تعریف یک متغیر محلی تازه"
-  },
-  {
-   "type": "p",
-   "text": "اگر متغیری فقط در یک جا به کار می‌رود، می‌توانستیم یک متغیر محلی تازه هم تعریف کنیم؛ به این شکل:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ":root {\n  --primary-bg-color: #1e90ff;\n  --primary-color:\n  #ffffff;\n}\n\nbody {\n  background-color:\n  var(--primary-bg-color);\n}\n\n.container {\n  color:\n  var(--primary-bg-color);\n  background-color: var(--primary-color);\n\n  padding: 15px;\n}\n\n.container h2 {\n  border-bottom: 2px solid\n  var(--primary-bg-color);\n}\n\n.container .note {\n\n  --note-border-color: red; /* new local variable */\n  border: 1px solid\n  var(--note-border-color);\n  padding: 10px;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_var_local"
-  },
-  {
-   "type": "h2",
-   "text": "تابع var() در CSS"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "تابع",
-    "توضیحات"
-   ],
-   "rows": [
-    [
-     "var()",
-     "مقدار یک متغیر CSS را درج می‌کند"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل override.html بسازید، در ‎:root‎ متغیر ‎--main-bg: #eef;‎ را تعریف کنید و آن را روی پس‌زمینهٔ همهٔ ‎.note‎‎ها به کار ببرید.",
-   "hint": "اول متغیر سراسری را تعریف کنید، بعد در انتخابگر ‎.note‎ مقدارش را با var() بخوانید."
-  },
-  {
-   "prompt": "داخل انتخابگر ‎.note‎ همان نام متغیر را با مقدار دیگری دوباره تعریف کنید و ببینید فقط همان بخش رنگش عوض می‌شود.",
-   "hint": "تعریف دوبارهٔ متغیر داخل انتخابگر، مقدار سراسری را برای همان بخش بازنویسی می‌کند."
-  },
-  {
-   "prompt": "یک متغیر محلی تازه فقط برای همان ‎.note‎ تعریف کنید و بیرون از آن انتخابگر از آن استفاده کنید. بگویید چه اتفاقی می‌افتد.",
-   "hint": "متغیر محلی بیرون از دامنهٔ خودش پیدا نمی‌شود، پس var() به مقدار جانشین می‌افتد."
-  },
-  {
-   "prompt": "ترتیب را عوض کنید: متغیر را بعد از استفادهٔ var() تعریف کنید و بگویید چرا اثر نمی‌کند.",
-   "hint": "متغیر باید قبل از جایی که به کار می‌رود تعریف شده باشد."
-  }
- ],
- "quiz": [
-  {
-   "question": "بازنویسی متغیر (override) در CSS یعنی چه؟",
-   "options": [
-    "حذف متغیر سراسری",
-    "تعریف دوبارهٔ همان نام متغیر در دامنهٔ محلی تا مقدار سراسری بازنویسی شود",
-    "تبدیل متغیر به کلاس",
-    "تغییر نام متغیر"
-   ],
-   "answer": 1,
-   "explanation": "وقتی متغیری با همان نام در دامنهٔ محلی تعریف شود، در آن انتخابگر مقدار محلی جای سراسری را می‌گیرد."
-  },
-  {
-   "question": "اگر ‎--primary-bg-color‎ هم در ‎:root‎ و هم در ‎.note‎ تعریف شده باشد، داخل ‎.note‎ کدام مقدار به کار می‌رود؟",
-   "options": [
-    "مقدار سراسری ‎:root‎",
-    "مقدار محلی ‎.note‎",
-    "هیچ‌کدام",
-    "هر دو با هم"
-   ],
-   "answer": 1,
-   "explanation": "نزدیک‌ترین دامنه برنده است؛ مقدار محلی همان انتخابگر مقدار سراسری را برای آن بخش بازنویسی می‌کند."
-  },
-  {
-   "question": "چرا متغیر محلی برای بخشی از صفحه به کار می‌رود؟",
-   "options": [
-    "چون سرعت مرورگر را زیاد می‌کند",
-    "چون می‌خواهیم متغیر فقط در بخش مشخصی تغییر کند",
-    "چون متغیر سراسری را پاک می‌کند",
-    "چون واجب است"
-   ],
-   "answer": 1,
-   "explanation": "هدف این است که یک بخش از صفحه ظاهر متفاوتی بگیرد، بدون دست‌زدن به بقیهٔ صفحه."
-  },
-  {
-   "question": "متغیری که فقط در یک جا به کار می‌رود را چه کار می‌توان کرد؟",
-   "options": [
-    "باید سراسری تعریف شود",
-    "می‌توان همان‌جا یک متغیر محلی تازه تعریف کرد",
-    "باید حذف شود",
-    "باید به JavaScript داد"
-   ],
-   "answer": 1,
-   "explanation": "برای کاربرد یک‌جا، تعریف یک متغیر محلی تازه در همان انتخابگر کافی است."
-  }
- ]
+  "slug": "css3_variables_overriding",
+  "course": "css",
+  "order": 164,
+  "url": "/css/css3_variables_overriding.asp",
+  "title": "بازنویسی متغیرها در CSS",
+  "summary": "با تعریف دوبارهٔ یک متغیر در دامنهٔ محلی می‌توان مقدار آن را فقط برای بخشی از صفحه عوض کرد. در این درس تفاوت دامنهٔ سراسری و محلی را در عمل می‌بینید.",
+  "objectives": [
+    "توضیح دهید بازنویسی متغیر چطور کار می‌کند",
+    "متغیر سراسری را برای یک انتخابگر بازنویسی کنید",
+    "برای کاربرد یک‌جا یک متغیر محلی تازه تعریف کنید",
+    "بگویید چرا ترتیب تعریف متغیر مهم است"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "بازنویسی متغیرها در CSS"
+    },
+    {
+      "type": "h2",
+      "text": "بازنویسی متغیر سراسری با متغیر محلی"
+    },
+    {
+      "type": "p",
+      "text": "از صفحهٔ قبل یاد گرفتیم که به متغیرهای سراسری از کل سند دسترسی داریم، ولی متغیرهای محلی فقط داخل همان انتخابگری به کار می‌روند که در آن تعریف شده‌اند."
+    },
+    {
+      "type": "p",
+      "text": "گاهی می‌خواهیم متغیرها فقط در بخش مشخصی از صفحه تغییر کنند."
+    },
+    {
+      "type": "p",
+      "text": "فرض کنید می‌خواهیم عنصرهای <p class=\"note\"> رنگ حاشیهٔ متفاوتی داشته باشند. در این حالت می‌توانیم متغیر ‎--primary-bg-color‎ را داخل انتخابگر ‎.note‎ دوباره تعریف کنیم. وقتی داخل این انتخابگر از var(--primary-bg-color) استفاده کنیم، مقدار محلی همین متغیر به کار می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "می‌بینیم که متغیر محلی ‎--primary-bg-color‎ برای انتخابگر ‎.note‎ روی متغیر سراسری ‎--primary-bg-color‎ غلبه می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ":root {\n  --primary-bg-color: #1e90ff;\n  --primary-color:\n  #ffffff;\n}\n\nbody {\n  background-color:\n  var(--primary-bg-color);\n}\n\n.container {\n  color:\n  var(--primary-bg-color);\n  background-color: var(--primary-color);\n\n  padding: 15px;\n}\n\n.container h2 {\n  border-bottom: 2px solid\n  var(--primary-bg-color);\n}\n\n.container .note {\n\n  --primary-bg-color: red; /* local variable will override global */\n\n  border: 1px solid var(--primary-bg-color);\n  padding: 10px;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_var_override"
+    },
+    {
+      "type": "h2",
+      "text": "تعریف یک متغیر محلی تازه"
+    },
+    {
+      "type": "p",
+      "text": "اگر متغیری فقط در یک جا به کار می‌رود، می‌توانستیم یک متغیر محلی تازه هم تعریف کنیم؛ به این شکل:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ":root {\n  --primary-bg-color: #1e90ff;\n  --primary-color:\n  #ffffff;\n}\n\nbody {\n  background-color:\n  var(--primary-bg-color);\n}\n\n.container {\n  color:\n  var(--primary-bg-color);\n  background-color: var(--primary-color);\n\n  padding: 15px;\n}\n\n.container h2 {\n  border-bottom: 2px solid\n  var(--primary-bg-color);\n}\n\n.container .note {\n\n  --note-border-color: red; /* new local variable */\n  border: 1px solid\n  var(--note-border-color);\n  padding: 10px;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_var_local"
+    },
+    {
+      "type": "h2",
+      "text": "تابع var() در CSS"
+    },
+    {
+      "type": "table",
+      "headers": ["تابع", "توضیحات"],
+      "rows": [["var()", "مقدار یک متغیر CSS را درج می‌کند"]]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل override.html بسازید، در ‎:root‎ متغیر ‎--main-bg: #eef;‎ را تعریف کنید و آن را روی پس‌زمینهٔ همهٔ ‎.note‎‎ها به کار ببرید.",
+      "hint": "اول متغیر سراسری را تعریف کنید، بعد در انتخابگر ‎.note‎ مقدارش را با var() بخوانید."
+    },
+    {
+      "prompt": "داخل انتخابگر ‎.note‎ همان نام متغیر را با مقدار دیگری دوباره تعریف کنید و ببینید فقط همان بخش رنگش عوض می‌شود.",
+      "hint": "تعریف دوبارهٔ متغیر داخل انتخابگر، مقدار سراسری را برای همان بخش بازنویسی می‌کند."
+    },
+    {
+      "prompt": "یک متغیر محلی تازه فقط برای همان ‎.note‎ تعریف کنید و بیرون از آن انتخابگر از آن استفاده کنید. بگویید چه اتفاقی می‌افتد.",
+      "hint": "متغیر محلی بیرون از دامنهٔ خودش پیدا نمی‌شود، پس var() به مقدار جانشین می‌افتد."
+    },
+    {
+      "prompt": "ترتیب را عوض کنید: متغیر را بعد از استفادهٔ var() تعریف کنید و بگویید چرا اثر نمی‌کند.",
+      "hint": "متغیر باید قبل از جایی که به کار می‌رود تعریف شده باشد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "بازنویسی متغیر (override) در CSS یعنی چه؟",
+      "options": [
+        "حذف متغیر سراسری",
+        "تعریف دوبارهٔ همان نام متغیر در دامنهٔ محلی تا مقدار سراسری بازنویسی شود",
+        "تبدیل متغیر به کلاس",
+        "تغییر نام متغیر"
+      ],
+      "answer": 1,
+      "explanation": "وقتی متغیری با همان نام در دامنهٔ محلی تعریف شود، در آن انتخابگر مقدار محلی جای سراسری را می‌گیرد."
+    },
+    {
+      "question": "اگر ‎--primary-bg-color‎ هم در ‎:root‎ و هم در ‎.note‎ تعریف شده باشد، داخل ‎.note‎ کدام مقدار به کار می‌رود؟",
+      "options": ["مقدار سراسری ‎:root‎", "مقدار محلی ‎.note‎", "هیچ‌کدام", "هر دو با هم"],
+      "answer": 1,
+      "explanation": "نزدیک‌ترین دامنه برنده است؛ مقدار محلی همان انتخابگر مقدار سراسری را برای آن بخش بازنویسی می‌کند."
+    },
+    {
+      "question": "چرا متغیر محلی برای بخشی از صفحه به کار می‌رود؟",
+      "options": [
+        "چون سرعت مرورگر را زیاد می‌کند",
+        "چون می‌خواهیم متغیر فقط در بخش مشخصی تغییر کند",
+        "چون متغیر سراسری را پاک می‌کند",
+        "چون واجب است"
+      ],
+      "answer": 1,
+      "explanation": "هدف این است که یک بخش از صفحه ظاهر متفاوتی بگیرد، بدون دست‌زدن به بقیهٔ صفحه."
+    },
+    {
+      "question": "متغیری که فقط در یک جا به کار می‌رود را چه کار می‌توان کرد؟",
+      "options": [
+        "باید سراسری تعریف شود",
+        "می‌توان همان‌جا یک متغیر محلی تازه تعریف کرد",
+        "باید حذف شود",
+        "باید به JavaScript داد"
+      ],
+      "answer": 1,
+      "explanation": "برای کاربرد یک‌جا، تعریف یک متغیر محلی تازه در همان انتخابگر کافی است."
+    }
+  ]
 }

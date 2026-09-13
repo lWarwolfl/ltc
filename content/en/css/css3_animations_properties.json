@@ -1,238 +1,217 @@
 {
- "slug": "css3_animations_properties",
- "course": "css",
- "order": 140,
- "url": "/css/css3_animations_properties.asp",
- "title": "CSS Animation Properties",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "CSS Animation Properties"
-  },
-  {
-   "type": "p",
-   "text": "This page covers the CSS animation direction, fill mode, and the shorthand property."
-  },
-  {
-   "type": "h2",
-   "text": "CSS animation-direction Property"
-  },
-  {
-   "type": "p",
-   "text": "The\nanimation-direction property specifies\nwhether an animation should be played forwards, backwards or in alternate\ncycles."
-  },
-  {
-   "type": "p",
-   "text": "The animation-direction property can have the following values:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "normal - The animation is played as normal\n(forwards). This is default",
-    "reverse - The animation is played in\nreverse direction (backwards)",
-    "alternate - The animation is played\nforwards first, then backwards",
-    "alternate-reverse - The animation is played\nbackwards first, then forwards"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "The following example will run the animation in reverse direction (backwards):"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n\nwidth: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n\nanimation-name: myAnimation;\n\nanimation-duration: 4s;\n  animation-direction:\nreverse;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction"
-  },
-  {
-   "type": "p",
-   "text": "The following example uses the value \"alternate\" to make the animation\nrun forwards first, then backwards:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n\nwidth: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n  animation-name:\n  myAnimation;\n  animation-duration: 4s;\n  animation-iteration-count: 2;\n  animation-direction:\nalternate;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction2"
-  },
-  {
-   "type": "p",
-   "text": "The following example uses the value \"alternate-reverse\" to make the animation\nrun backwards first, then forwards:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n  width: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n  animation-name:\n  myAnimation;\n  animation-duration: 4s;\n  animation-iteration-count: 2;\n  animation-direction:\nalternate-reverse;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction3"
-  },
-  {
-   "type": "h2",
-   "text": "CSS animation-fill-mode Property"
-  },
-  {
-   "type": "p",
-   "text": "CSS animations do not affect an element before the first keyframe is played\nor after the last keyframe is played. The animation-fill-mode property can\noverride this behavior."
-  },
-  {
-   "type": "p",
-   "text": "The\nanimation-fill-mode property specifies a\nstyle for the target element when the animation is not playing (before it\nstarts, after it ends, or both)."
-  },
-  {
-   "type": "p",
-   "text": "The animation-fill-mode property can have the following values:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "none - Default value. Animation will not\napply any styles to the element before or after it is executing",
-    "forwards - The element will retain the\nstyle values that is set by the last keyframe (depends on animation-direction\nand animation-iteration-count)",
-    "backwards - The element will get the style\nvalues that is set by the first keyframe (depends on animation-direction), and\nretain this during the animation-delay period",
-    "both - The animation will follow the rules\nfor both forwards and backwards, extending the animation properties in both\ndirections"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "The following example lets the <div> element retain the style values from the\nlast keyframe when the animation ends:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n  width: 100px;\n  height: 100px;\n  background: red;\n  position: relative;\n  animation-name:\n  myAnimation;\n  animation-duration: 3s;\n\n    animation-fill-mode: forwards;\n\n  }",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode"
-  },
-  {
-   "type": "p",
-   "text": "The following example lets the <div> element get the style values set by the\nfirst keyframe before the animation starts (during the animation-delay period):"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n  width: 100px;\n  height: 100px;\n\n  background: red;\n  position: relative;\n\nanimation-name: myAnimation;\n\nanimation-duration: 3s;\n\nanimation-delay: 2s;\n  animation-fill-mode: backwards;\n\n  }",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode2"
-  },
-  {
-   "type": "p",
-   "text": "The following example lets the <div> element get the style values set\nby the first keyframe before the animation starts, and retain the style values\nfrom the last keyframe when the animation ends:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div {\n  width: 100px;\n  height: 100px;\n  background: red;\n\n    position: relative;\n\nanimation-name: myAnimation;\n\nanimation-duration: 3s;\n\nanimation-delay: 2s;\n  animation-fill-mode: both;\n\n  }",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode3"
-  },
-  {
-   "type": "h2",
-   "text": "CSS Animation Shorthand Property"
-  },
-  {
-   "type": "p",
-   "text": "The example below uses six of the animation properties:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div\n{\n\nanimation-name: myAnimation;\n\nanimation-duration: 5s;\n\nanimation-timing-function: linear;\n\nanimation-delay: 2s;\n\nanimation-iteration-count: infinite;\n\nanimation-direction: alternate;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation4"
-  },
-  {
-   "type": "p",
-   "text": "The same animation effect as above can be achieved by using the shorthand\nanimation property:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "div\n{\n\n    animation: myAnimation 5s linear 2s infinite alternate;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation5"
-  },
-  {
-   "type": "h2",
-   "text": "CSS Animation Properties"
-  },
-  {
-   "type": "p",
-   "text": "The following table lists the @keyframes rule and all the CSS animation properties:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Property",
-    "Description"
-   ],
-   "rows": [
-    [
-     "@keyframes",
-     "Specifies the animation code"
-    ],
-    [
-     "animation",
-     "A shorthand property for setting all the animation properties"
-    ],
-    [
-     "animation-delay",
-     "Specifies a delay for the start of an animation"
-    ],
-    [
-     "animation-direction",
-     "Specifies whether an animation should be played forwards, backwards or\n    in alternate cycles"
-    ],
-    [
-     "animation-duration",
-     "Specifies how long time an animation should take to complete one cycle"
-    ],
-    [
-     "animation-fill-mode",
-     "Specifies a style for the element when the animation is not playing\n   (before it starts, after it ends, or both)"
-    ],
-    [
-     "animation-iteration-count",
-     "Specifies the number of times an animation should be played"
-    ],
-    [
-     "animation-name",
-     "Specifies the name of the @keyframes animation"
-    ],
-    [
-     "animation-play-state",
-     "Specifies whether the animation is running or paused"
-    ],
-    [
-     "animation-timing-function",
-     "Specifies the speed curve of the animation"
-    ]
-   ]
-  }
- ]
+  "slug": "css3_animations_properties",
+  "course": "css",
+  "order": 140,
+  "url": "/css/css3_animations_properties.asp",
+  "title": "CSS Animation Properties",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "CSS Animation Properties"
+    },
+    {
+      "type": "p",
+      "text": "This page covers the CSS animation direction, fill mode, and the shorthand property."
+    },
+    {
+      "type": "h2",
+      "text": "CSS animation-direction Property"
+    },
+    {
+      "type": "p",
+      "text": "The\nanimation-direction property specifies\nwhether an animation should be played forwards, backwards or in alternate\ncycles."
+    },
+    {
+      "type": "p",
+      "text": "The animation-direction property can have the following values:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "normal - The animation is played as normal\n(forwards). This is default",
+        "reverse - The animation is played in\nreverse direction (backwards)",
+        "alternate - The animation is played\nforwards first, then backwards",
+        "alternate-reverse - The animation is played\nbackwards first, then forwards"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The following example will run the animation in reverse direction (backwards):"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n\nwidth: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n\nanimation-name: myAnimation;\n\nanimation-duration: 4s;\n  animation-direction:\nreverse;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction"
+    },
+    {
+      "type": "p",
+      "text": "The following example uses the value \"alternate\" to make the animation\nrun forwards first, then backwards:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n\nwidth: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n  animation-name:\n  myAnimation;\n  animation-duration: 4s;\n  animation-iteration-count: 2;\n  animation-direction:\nalternate;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction2"
+    },
+    {
+      "type": "p",
+      "text": "The following example uses the value \"alternate-reverse\" to make the animation\nrun backwards first, then forwards:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n  width: 100px;\n  height: 100px;\n\nposition: relative;\n  background-color: red;\n  animation-name:\n  myAnimation;\n  animation-duration: 4s;\n  animation-iteration-count: 2;\n  animation-direction:\nalternate-reverse;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_direction3"
+    },
+    {
+      "type": "h2",
+      "text": "CSS animation-fill-mode Property"
+    },
+    {
+      "type": "p",
+      "text": "CSS animations do not affect an element before the first keyframe is played\nor after the last keyframe is played. The animation-fill-mode property can\noverride this behavior."
+    },
+    {
+      "type": "p",
+      "text": "The\nanimation-fill-mode property specifies a\nstyle for the target element when the animation is not playing (before it\nstarts, after it ends, or both)."
+    },
+    {
+      "type": "p",
+      "text": "The animation-fill-mode property can have the following values:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "none - Default value. Animation will not\napply any styles to the element before or after it is executing",
+        "forwards - The element will retain the\nstyle values that is set by the last keyframe (depends on animation-direction\nand animation-iteration-count)",
+        "backwards - The element will get the style\nvalues that is set by the first keyframe (depends on animation-direction), and\nretain this during the animation-delay period",
+        "both - The animation will follow the rules\nfor both forwards and backwards, extending the animation properties in both\ndirections"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The following example lets the <div> element retain the style values from the\nlast keyframe when the animation ends:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n  width: 100px;\n  height: 100px;\n  background: red;\n  position: relative;\n  animation-name:\n  myAnimation;\n  animation-duration: 3s;\n\n    animation-fill-mode: forwards;\n\n  }",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode"
+    },
+    {
+      "type": "p",
+      "text": "The following example lets the <div> element get the style values set by the\nfirst keyframe before the animation starts (during the animation-delay period):"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n  width: 100px;\n  height: 100px;\n\n  background: red;\n  position: relative;\n\nanimation-name: myAnimation;\n\nanimation-duration: 3s;\n\nanimation-delay: 2s;\n  animation-fill-mode: backwards;\n\n  }",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode2"
+    },
+    {
+      "type": "p",
+      "text": "The following example lets the <div> element get the style values set\nby the first keyframe before the animation starts, and retain the style values\nfrom the last keyframe when the animation ends:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div {\n  width: 100px;\n  height: 100px;\n  background: red;\n\n    position: relative;\n\nanimation-name: myAnimation;\n\nanimation-duration: 3s;\n\nanimation-delay: 2s;\n  animation-fill-mode: both;\n\n  }",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation_fill-mode3"
+    },
+    {
+      "type": "h2",
+      "text": "CSS Animation Shorthand Property"
+    },
+    {
+      "type": "p",
+      "text": "The example below uses six of the animation properties:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div\n{\n\nanimation-name: myAnimation;\n\nanimation-duration: 5s;\n\nanimation-timing-function: linear;\n\nanimation-delay: 2s;\n\nanimation-iteration-count: infinite;\n\nanimation-direction: alternate;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation4"
+    },
+    {
+      "type": "p",
+      "text": "The same animation effect as above can be achieved by using the shorthand\nanimation property:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "div\n{\n\n    animation: myAnimation 5s linear 2s infinite alternate;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_animation5"
+    },
+    {
+      "type": "h2",
+      "text": "CSS Animation Properties"
+    },
+    {
+      "type": "p",
+      "text": "The following table lists the @keyframes rule and all the CSS animation properties:"
+    },
+    {
+      "type": "table",
+      "headers": ["Property", "Description"],
+      "rows": [
+        ["@keyframes", "Specifies the animation code"],
+        ["animation", "A shorthand property for setting all the animation properties"],
+        ["animation-delay", "Specifies a delay for the start of an animation"],
+        [
+          "animation-direction",
+          "Specifies whether an animation should be played forwards, backwards or\n    in alternate cycles"
+        ],
+        [
+          "animation-duration",
+          "Specifies how long time an animation should take to complete one cycle"
+        ],
+        [
+          "animation-fill-mode",
+          "Specifies a style for the element when the animation is not playing\n   (before it starts, after it ends, or both)"
+        ],
+        [
+          "animation-iteration-count",
+          "Specifies the number of times an animation should be played"
+        ],
+        ["animation-name", "Specifies the name of the @keyframes animation"],
+        ["animation-play-state", "Specifies whether the animation is running or paused"],
+        ["animation-timing-function", "Specifies the speed curve of the animation"]
+      ]
+    }
+  ]
 }

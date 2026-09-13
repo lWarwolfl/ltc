@@ -1,1455 +1,1282 @@
 {
- "slug": "js_es6",
- "course": "js",
- "order": 135,
- "url": "/js/js_es6.asp",
- "title": "Javascript 2015 (ES6)",
- "summary": "ES6 دومین بازنگری مهم JavaScript است و بزرگ‌ترین تغییر زبان تا امروز. در این درس let و const، تابع‌های پیکانی، تجزیهٔ آرایه و شیء، عملگر spread، حلقهٔ for/of، Map و Set، کلاس‌ها، پرامیس‌ها، Symbol، پارامترهای پیش‌فرض و rest، متدهای تازهٔ رشته و آرایه و ویژگی‌های Math و Number را می‌بینید.",
- "objectives": [
-  "با تابع‌های پیکانی و عملگر spread کد کوتاه‌تر بنویسید",
-  "آرایه و شیء را با destructuring تجزیه کنید",
-  "با Map و Set داده‌های یکتا و جفت‌های کلید-مقدار را نگه دارید",
-  "یک کلاس بسازید و از آن نمونهٔ شیء بسازید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Javascript 2015 (ES6)"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "ECMAScript 2015 دومین بازنگری مهم JavaScript است. ECMAScript 2015 با نام ES6 هم شناخته می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید در JavaScript 2015 (ES6)"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح"
-    ],
-    [
-     "کلیدواژهٔ let",
-     "متغیری با دامنهٔ بلوکی تعریف می‌کند"
-    ],
-    [
-     "کلیدواژهٔ const",
-     "یک متغیر ثابت تغییرناپذیر تعریف می‌کند"
-    ],
-    [
-     "تابع‌های پیکانی",
-     "نحو کوتاه‌تری برای نوشتن عبارت‌های تابعی فراهم می‌کند"
-    ],
-    [
-     "عملگر {a,b} =",
-     "خصوصیت‌های شیء را به متغیرها نسبت می‌دهد (تجزیهٔ شیء)"
-    ],
-    [
-     "عملگر [a,b] =",
-     "مقدارهای آرایه را به متغیرها نسبت می‌دهد (تجزیهٔ آرایه)"
-    ],
-    [
-     "عملگر ...",
-     "یک آرایه یا تکرارشونده را به عنصرهای جداگانه پخش می‌کند"
-    ],
-    [
-     "for/of",
-     "روی مقدارهای شیءهای تکرارشونده حلقه می‌زند"
-    ],
-    [
-     "شیء Map",
-     "شیئی با جفت‌های کلید-مقدار، شبیه شیءها اما با تفاوت‌هایی"
-    ],
-    [
-     "شیء Set",
-     "آرایه‌ای که فقط مقدارهای یکتا نگه می‌دارد"
-    ],
-    [
-     "کلاس‌ها",
-     "قالب‌هایی برای شیءهای JavaScript"
-    ],
-    [
-     "پرامیس‌ها",
-     "شیئی که کامل شدن یک عملیات ناهمگام را نشان می‌دهد"
-    ],
-    [
-     "Symbol",
-     "شناسهٔ یکتای «پنهانی» که هیچ کدی به آن دسترسی ندارد"
-    ],
-    [
-     "پارامترهای پیش‌فرض",
-     "مقدار پیش‌فرض برای پارامترهای تابع را مجاز می‌کند"
-    ],
-    [
-     "پارامترهای rest",
-     "اجازه می‌دهد تابع‌ها تعداد نامعیینی از آرگومان‌ها را بپذیرند"
-    ],
-    [
-     "متد String.includes()",
-     "اگر رشته مقدار مشخصی را داشته باشد true برمی‌گرداند"
-    ],
-    [
-     "متد String.startsWith()",
-     "اگر رشته با مقدار مشخصی شروع شود true برمی‌گرداند"
-    ],
-    [
-     "متد String.endsWith()",
-     "اگر رشته با مقدار مشخصی تمام شود true برمی‌گرداند"
-    ],
-    [
-     "متد entries() آرایه",
-     "یک iterator از جفت‌های کلید/مقدار آرایه برمی‌گرداند"
-    ],
-    [
-     "متد Array.from()",
-     "از یک رشته آرایه می‌سازد"
-    ],
-    [
-     "متد keys() آرایه",
-     "یک iterator از کلیدهای آرایه برمی‌گرداند"
-    ],
-    [
-     "متد find() آرایه",
-     "مقدار اولین عنصری را برمی‌گرداند که شرط را رد کند"
-    ],
-    [
-     "متد findIndex() آرایه",
-     "اندیس اولین عنصری را برمی‌گرداند که شرط را رد کند"
-    ],
-    [
-     "متد Object.assign()",
-     "خصوصیت‌ها را از شیء مبدأ به شیء مقصد کپی می‌کند"
-    ],
-    [
-     "RegExp /u",
-     "پشتیبانی کامل یونیکد را در عبارت باقاعده فعال می‌کند"
-    ],
-    [
-     "RegExp /y",
-     "یک جست‌وجوی «چسبنده» از روی خصوصیت lastIndex انجام می‌دهد"
-    ],
-    [
-     "متد isFinite()",
-     "اگر آرگومان Infinity یا NaN نباشد true برمی‌گرداند"
-    ],
-    [
-     "متد isNaN()",
-     "اگر آرگومان NaN باشد true برمی‌گرداند"
-    ],
-    [
-     "ماژول‌ها",
-     "اجازه می‌دهند کد را به فایل‌های جداگانه تقسیم کنید"
-    ],
-    [
-     "Reflect",
-     "شیئی برای عملیات سطح‌پایین روی شیءها"
-    ],
-    [
-     "Proxy",
-     "شیئی که برای کنترل عملیات، شیءهای دیگر را می‌پیچد"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های Math"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح"
-    ],
-    [
-     "Math.trunc(x)",
-     "بخش صحیح x را برمی‌گرداند"
-    ],
-    [
-     "Math.sign(x)",
-     "مقدار ۱-، ۰ یا ۱ برمی‌گرداند (x منفی، صفر یا مثبت است)"
-    ],
-    [
-     "Math.cbrt(x)",
-     "ریشهٔ سوم x را برمی‌گرداند"
-    ],
-    [
-     "Math.log2(x)",
-     "لگاریتم در مبنای ۲ عدد x را برمی‌گرداند"
-    ],
-    [
-     "Math.log10(x)",
-     "لگاریتم در مبنای ۱۰ عدد x را برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های Number"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح"
-    ],
-    [
-     "Number.EPSILON",
-     "تفاوت بین ۱ و کوچک‌ترین عدد بزرگ‌تر از ۱"
-    ],
-    [
-     "Number.MIN_SAFE_INTEGER",
-     "کوچک‌ترین مقداری که می‌توان دقیق نمایش داد"
-    ],
-    [
-     "Number.MAX_SAFE_INTEGER",
-     "بزرگ‌ترین مقداری که می‌توان دقیق نمایش داد"
-    ],
-    [
-     "متد Number.isInteger()",
-     "اگر آرگومان عدد صحیح باشد true برمی‌گرداند"
-    ],
-    [
-     "متد Number.isSafeInteger()",
-     "اگر آرگومان یک عدد صحیح امن باشد true برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript 2015 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome51",
-     "Edge15",
-     "Firefox54",
-     "Safari10",
-     "Opera38"
-    ],
-    [
-     "می ۲۰۱۶",
-     "آوریل ۲۰۱۷",
-     "ژوئن ۲۰۱۷",
-     "سپتامبر ۲۰۱۶",
-     "ژوئن ۲۰۱۶"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "ES6 در Internet Explorer پشتیبانی نمی‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "کلیدواژهٔ let در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژهٔ let اجازه می‌دهد متغیری با دامنهٔ بلوکی تعریف کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var x = 10;\n\n// Here x is 10\n\n{\n\n  let x = 2;\n\n    // Here x is 2\n}\n\n// Here x is 10",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_let"
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ let در فصل let در JavaScript بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "کلیدواژهٔ const در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژهٔ const اجازه می‌دهد یک ثابت تعریف کنید (متغیری JavaScript با مقدار ثابت)."
-  },
-  {
-   "type": "p",
-   "text": "ثابت‌ها شبیه متغیرهای let هستند، با این تفاوت که مقدارشان تغییر نمی‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var x = 10;\n\n// Here x is 10\n\n{\n\n  const x = 2;\n\n    // Here x is 2\n}\n\n// Here x is 10",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_const"
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ const در فصل const در JavaScript بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "تابع‌های پیکانی"
-  },
-  {
-   "type": "p",
-   "text": "تابع‌های پیکانی نحو کوتاهی برای نوشتن عبارت‌های تابعی هستند."
-  },
-  {
-   "type": "p",
-   "text": "به کلیدواژهٔ function، کلیدواژهٔ return و آکولادها نیازی ندارید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let myFunction = function(a, b) {return a * b}",
-   "caption": "پیش از پیکان:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arrow_before"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let myFunction = (a, b) => a * b;",
-   "caption": "با پیکان"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arrow_function"
-  },
-  {
-   "type": "p",
-   "text": "تابع‌های پیکانی this خودشان را ندارند. برای تعریف متدهای شیء مناسب نیستند."
-  },
-  {
-   "type": "p",
-   "text": "تابع‌های پیکانی hoist نمی‌شوند. باید پیش از استفاده تعریف شوند."
-  },
-  {
-   "type": "p",
-   "text": "فقط وقتی می‌توانید کلیدواژهٔ return و آکولادها را حذف کنید که تابع یک دستور تک باشد. به همین دلیل عادت خوبی است که همیشه آن‌ها را نگه دارید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// This will not work\n\nlet myFunction = (x, y) =>  { x * y } ;\n\n// This will not work\n\nlet myFunction = (x, y) =>  return x * y ;\n\n// Only this will work\n\nlet myFunction = (x, y) => { return x * y };",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_arrow_safe"
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ تابع‌های پیکانی در فصل تابع پیکانی در JavaScript بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "تجزیهٔ شیء"
-  },
-  {
-   "type": "p",
-   "text": "تخصیص تجزیه‌ای، نسبت دادن مقدارهای آرایه و خصوصیت‌های شیء به متغیرها را آسان می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Destructuring Assignment\n\nlet { firstName, age } = person;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destructuring"
-  },
-  {
-   "type": "p",
-   "text": "هنگام تجزیهٔ یک شیء، باید نام متغیرها دقیقاً همان کلیدهای (نام‌های) متناظر شیء باشد."
-  },
-  {
-   "type": "p",
-   "text": "ترتیب کلیدها (نام‌ها) اهمیتی ندارد."
-  },
-  {
-   "type": "h2",
-   "text": "تجزیهٔ آرایه"
-  },
-  {
-   "type": "p",
-   "text": "تخصیص تجزیه‌ای، نسبت دادن مقدارهای آرایه و خصوصیت‌های شیء به متغیرها را آسان می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\n// Destructuring Assignment\n\nlet [fruit1, fruit2] = fruits;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destructuring"
-  },
-  {
-   "type": "h2",
-   "text": "عملگر spread (...)"
-  },
-  {
-   "type": "p",
-   "text": "عملگر ... یک آرایه یا تکرارشونده را به عنصرهای جداگانه پخش می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const numbers = [23,55,21,87,56];\n\nlet minValue = Math.min(...numbers);\n\nlet maxValue = Math.max(...numbers);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_arguments"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const arr1 = [1, 2, 3];\n\nconst arr2 = [4, 5, 6];\n\nconst arr3 = [...arr1, ...arr2];",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const q1 = [\"Jan\", \"Feb\", \"Mar\"];\n\nconst q2 = [\"Apr\", \"May\", \"Jun\"];\n\nconst q3 = [\"Jul\", \"Aug\", \"Sep\"];\n\nconst q4 = [\"Oct\", \"Nov\", \"Dec\"];\n\nconst year = [...q1, ...q2, ...q3, ...q4];",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_year"
-  },
-  {
-   "type": "h2",
-   "text": "حلقهٔ for/of"
-  },
-  {
-   "type": "p",
-   "text": "دستور for/of در JavaScript روی مقدارهای شیءهای تکرارشونده حلقه می‌زند."
-  },
-  {
-   "type": "p",
-   "text": "for/of اجازه می‌دهد روی ساختارهای دادهٔ تکرارشونده مثل آرایه‌ها، رشته‌ها، Mapها، NodeListها و بیشتر حلقه بزنید."
-  },
-  {
-   "type": "p",
-   "text": "حلقهٔ for/of این نحو را دارد:"
-  },
-  {
-   "type": "p",
-   "text": "for (variable of iterable) { // بلوکی از کد که اجرا می‌شود }"
-  },
-  {
-   "type": "p",
-   "text": "variable: در هر تکرار، مقدار خصوصیت بعدی به این متغیر نسبت داده می‌شود. متغیر را می‌توانید با const، let یا var تعریف کنید."
-  },
-  {
-   "type": "p",
-   "text": "iterable: شیئی که خصوصیت‌های تکرارشونده دارد."
-  },
-  {
-   "type": "h3",
-   "text": "حلقه روی یک آرایه"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const cars = [\"BMW\", \"Volvo\", \"Mini\"];\n\nlet text = \"\";\n\nfor (let x of cars) {\n\n  text += x + \" \";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_for_of"
-  },
-  {
-   "type": "h3",
-   "text": "حلقه روی یک رشته"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let language = \"JavaScript\";\n\nlet text = \"\";\n\nfor (let x of language) {\n\n  text += x + \" \";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_for_of2"
-  },
-  {
-   "type": "p",
-   "text": "بیشتر در فصل حلقه‌های For/In/Of در JavaScript بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "Mapها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Map شیئی است که جفت‌های کلید-مقدار نگه می‌دارد، شبیه شیءهای معمولی اما با تفاوت‌هایی:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "کلیدها می‌توانند از هر نوع داده باشند (شیء، تابع، مقدار اولیه)، برخلاف شیءهای ساده که کلیدهایشان رشته است.",
-    "ترتیب اصلی درج کلیدها را حفظ می‌کند."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "امکان استفاده از یک شیء به‌عنوان کلید، ویژگی مهم Map است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_create_array"
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ شیءهای Map و تفاوت Map با آرایه در فصل Mapها در JavaScript بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "Setها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Set شیئی است که مقدارهای یکتا از هر نوعی (مقدارهای اولیه، تابع‌ها، شیءها) نگه می‌دارد."
-  },
-  {
-   "type": "p",
-   "text": "Set فقط می‌تواند مقدارهای یکتا داشته باشد. تلاش برای افزودن مقدار تکراری نادیده گرفته می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Set\n\nconst letters = new Set();\n\n// Add some values to the Set\n\nletters.add(\"a\");\n\nletters.add(\"b\");\n\nletters.add(\"c\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_create_values"
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ شیءهای Set در فصل Setها در JavaScript بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "کلاس‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کلاس‌های JavaScript قالب‌هایی برای شیءهای JavaScript هستند."
-  },
-  {
-   "type": "p",
-   "text": "برای ساختن کلاس از کلیدواژهٔ class استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "همیشه متدی به نام constructor() اضافه کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class ClassName {\n\n   constructor() { ... }\n\n}",
-   "caption": "نحو"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n\n   constructor(name, year) {\n\n    this.name = name;\n\n    this.year = year;\n\n  }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "مثال بالا کلاسی به نام \"Car\" می‌سازد."
-  },
-  {
-   "type": "p",
-   "text": "این کلاس دو خصوصیت اولیه دارد: \"name\" و \"year\"."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "کلاس JavaScript خودش شیء نیست. قالبی برای شیءهای JavaScript است."
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از یک کلاس"
-  },
-  {
-   "type": "p",
-   "text": "وقتی کلاس دارید، می‌توانید با آن شیء بسازید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myCar1 = new Car(\"Ford\", 2014);\n\nconst myCar2 = new Car(\"Audi\", 2019);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_init"
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ کلاس‌ها در فصل کلاس‌ها در JavaScript بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "پرامیس‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پرامیس JavaScript شیئی است که کامل شدن یا شکست یک عملیات ناهمگام و مقدارهایش را نشان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "جایگزینی برای مقداری است که ممکن است هنوز آماده نباشد و راهی منظم برای مدیریت کد ناهمگام فراهم می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myPromise = new Promise(function(myResolve, myReject) {\n\n// \"Producing Code\" (May take some time)\n\n  myResolve(); // when successful\n\n  myReject();  // when error\n\n});\n\n// \"Consuming Code\" (Must wait for a fulfilled Promise).\n\nmyPromise.then(\n\n  function(value) { /* code if successful */ },\n\n  function(error) { /* code if some error */ }\n\n);",
-   "caption": "نحو پرامیس"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myPromise = new Promise(function(myResolve, myReject) {\n\n  setTimeout(function() { myResolve(\"I love You !!\"); }, 3000);\n});\n\nmyPromise.then(function(value) {\n\n  document.getElementById(\"demo\").innerHTML = value;\n\n});",
-   "caption": "مثال با پرامیس"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise3"
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ پرامیس‌ها در فصل پرامیس‌ها در JavaScript بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "نوع Symbol"
-  },
-  {
-   "type": "p",
-   "text": "Symbol در JavaScript یک نوع دادهٔ اولیه است، درست مثل Number، String یا Boolean."
-  },
-  {
-   "type": "p",
-   "text": "شناسهٔ یکتای «پنهانی» را نمایندگی می‌کند که هیچ کد دیگری به‌طور اتفاقی به آن دسترسی ندارد."
-  },
-  {
-   "type": "p",
-   "text": "برای نمونه، اگر برنامه‌نویسان مختلف بخواهند خصوصیت person.id را به شیء person که مربوط به کد شخص ثالث است اضافه کنند، ممکن است مقدارهایشان با هم قاطی شود."
-  },
-  {
-   "type": "p",
-   "text": "استفاده از Symbol() برای ساختن شناسه‌های یکتا این مشکل را حل می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\nlet id = Symbol('id');\n\nperson[id] = 140353;\n\n// Now person[id] = 140353\n\n// but person.id is still undefined",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_symbol"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Symbolها همیشه یکتا هستند. اگر دو Symbol با توصیف یکسان بسازید، مقدارشان متفاوت خواهد بود: Symbol(\"id\") == Symbol(\"id\"); // false"
-  },
-  {
-   "type": "h2",
-   "text": "مقدار پیش‌فرض پارامتر"
-  },
-  {
-   "type": "p",
-   "text": "ES6 اجازه می‌دهد پارامترهای تابع مقدار پیش‌فرض داشته باشند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction(x, y = 10) {\n\n  // y is 10 if not passed or undefined\n\n  return x + y;\n}\nmyFunction(5); // will return 15",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_default"
-  },
-  {
-   "type": "h2",
-   "text": "پارامتر rest تابع"
-  },
-  {
-   "type": "p",
-   "text": "پارامتر rest (...) اجازه می‌دهد یک تابع تعداد نامعیینی از آرگومان‌ها را مانند یک آرایه ببیند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function sum(...args) {\n\n  let sum = 0;\n\n  for (let arg of args) sum += arg;\n\n  return sum;\n\n}\n\nlet x = sum(4, 9, 16, 25, 29, 100, 66, 77);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_rest"
-  },
-  {
-   "type": "h2",
-   "text": "متد String.includes()"
-  },
-  {
-   "type": "p",
-   "text": "متد includes() اگر رشته مقدار مشخصی را داشته باشد true و در غیر این صورت false برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.includes(\"world\")    // Returns true",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_includes"
-  },
-  {
-   "type": "h2",
-   "text": "متد String.startsWith()"
-  },
-  {
-   "type": "p",
-   "text": "متد startsWith() اگر رشته با مقدار مشخصی شروع شود true و در غیر این صورت false برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"Hello\")   // Returns true",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_startswith"
-  },
-  {
-   "type": "h2",
-   "text": "متد String.endsWith()"
-  },
-  {
-   "type": "p",
-   "text": "متد endsWith() اگر رشته با مقدار مشخصی تمام شود true و در غیر این صورت false برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var text = \"John Doe\";\n\ntext.endsWith(\"Doe\")    // Returns true",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_endswith"
-  },
-  {
-   "type": "h2",
-   "text": "متد entries() آرایه"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nconst f = fruits.entries();\n\nfor (let x of f) {\n\n  document.getElementById(\"demo\").innerHTML += x;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_entries"
-  },
-  {
-   "type": "p",
-   "text": "متد entries() شیء Array Iterator با جفت‌های کلید/مقدار برمی‌گرداند:"
-  },
-  {
-   "type": "p",
-   "text": "یعنی [0, \"Banana\"][1, \"Orange\"][2, \"Apple\"][3, \"Mango\"]"
-  },
-  {
-   "type": "p",
-   "text": "متد entries() آرایهٔ اصلی را تغییر نمی‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "متد Array.from()"
-  },
-  {
-   "type": "p",
-   "text": "متد Array.from() از هر شیئی که خصوصیت length دارد یا هر شیء تکرارشونده، یک آرایه برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Array.from(\"ABCDEFG\")   // Returns [A,B,C,D,E,F,G]",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_from"
-  },
-  {
-   "type": "h2",
-   "text": "متد keys() آرایه"
-  },
-  {
-   "type": "p",
-   "text": "متد keys() شیء Array Iterator با کلیدهای آرایه برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nconst keys = fruits.keys();\n\nlet text = \"\";\n\nfor (let x of keys) {\n\n  text += x + \"<br>\";\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_keys"
-  },
-  {
-   "type": "h2",
-   "text": "متد find() آرایه"
-  },
-  {
-   "type": "p",
-   "text": "متد find() مقدار اولین عنصر آرایه را برمی‌گرداند که تابع شرط را رد کند."
-  },
-  {
-   "type": "p",
-   "text": "این مثال اولین عنصری را که بزرگ‌تر از ۱۸ باشد پیدا می‌کند (مقدارش را برمی‌گرداند):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const numbers = [4, 9, 16, 25, 29];\nlet first =\n  numbers.find(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_find"
-  },
-  {
-   "type": "p",
-   "text": "توجه کنید این تابع سه آرگومان می‌گیرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "مقدار عنصر",
-    "اندیس عنصر",
-    "خود آرایه"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد findIndex() آرایه"
-  },
-  {
-   "type": "p",
-   "text": "متد findIndex() اندیس اولین عنصر آرایه را برمی‌گرداند که تابع شرط را رد کند."
-  },
-  {
-   "type": "p",
-   "text": "این مثال اندیس اولین عنصری را که بزرگ‌تر از ۱۸ باشد پیدا می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const numbers = [4, 9, 16, 25, 29];\nlet first =\n  numbers.findIndex(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_find_index"
-  },
-  {
-   "type": "p",
-   "text": "توجه کنید این تابع سه آرگومان می‌گیرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "مقدار عنصر",
-    "اندیس عنصر",
-    "خود آرایه"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ماژول‌ها"
-  },
-  {
-   "type": "p",
-   "text": "ماژول‌ها به دو شکل مختلف import می‌شوند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import { name, age } from \"./person.js\";",
-   "caption": "import از exportهای نام‌دار"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "import message from \"./message.js\";",
-   "caption": "import از export پیش‌فرض"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules2"
-  },
-  {
-   "type": "p",
-   "text": "بیشتر دربارهٔ ماژول‌ها در بخش ماژول‌های JavaScript بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "Reflect در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پیش از Reflect، عملیات روی شیءها پراکنده بود:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "استفاده از کلیدواژهٔ in",
-    "استفاده از کلیدواژهٔ delete",
-    "استفاده از متدهایی مثل Object.defineProperty",
-    "استفاده از سازوکارهای زبان مثل [[Get]] و [[Set]]"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Reflect همهٔ این‌ها را در متدهای مرتب Reflect جمع می‌کند."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "متدهای Reflect همه چیز را یکپارچه می‌کنند",
-    "متدهای Reflect رفتار قابل پیش‌بینی دارند",
-    "متدهای Reflect با Proxy عالی کار می‌کنند"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Reflect.has()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {name: \"John\", lastname: \"Doe\"};\n\nlet answer = Reflect.has(person, \"name\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let answer = \"name\" in person;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_has"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید..."
-  },
-  {
-   "type": "p",
-   "text": "آموزش Reflect در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "Proxy در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n//Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n\n    return target[property];\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n\n    return target[property];\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nlet text = proxy.name;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید..."
-  },
-  {
-   "type": "p",
-   "text": "آموزش Proxy در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای تازهٔ Math"
-  },
-  {
-   "type": "p",
-   "text": "ES6 این متدها را به شیء Math اضافه کرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Math.trunc()",
-    "Math.sign()",
-    "Math.cbrt()",
-    "Math.log2()",
-    "Math.log10()"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.trunc()"
-  },
-  {
-   "type": "p",
-   "text": "Math.trunc(x) بخش صحیح x را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.trunc(4.9);    // returns 4\n\nMath.trunc(4.7);    // returns 4\n\nMath.trunc(4.4);    // returns 4\n\nMath.trunc(4.2);    // returns 4\n\nMath.trunc(-4.2);    // returns -4",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_trunc"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.sign()"
-  },
-  {
-   "type": "p",
-   "text": "Math.sign(x) مقدار ۱-، ۰ یا ۱ برمی‌گرداند (اگر x منفی، صفر یا مثبت باشد):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.sign(-4);    // returns -1\n\nMath.sign(0);    // returns 0\n\nMath.sign(4);    // returns 1",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sign"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.cbrt()"
-  },
-  {
-   "type": "p",
-   "text": "Math.cbrt(x) ریشهٔ سوم x را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.cbrt(8);    // returns 2\n\nMath.cbrt(64);    // returns 4\n\nMath.cbrt(125);    // returns 5",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_cbrt"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.log2()"
-  },
-  {
-   "type": "p",
-   "text": "Math.log2(x) لگاریتم در مبنای ۲ عدد x را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.log2(2);    // returns 1",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log2"
-  },
-  {
-   "type": "h2",
-   "text": "متد Math.log10()"
-  },
-  {
-   "type": "p",
-   "text": "Math.log10(x) لگاریتم در مبنای ۱۰ عدد x را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Math.log10(10);    // returns 1",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log10"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های تازهٔ Number"
-  },
-  {
-   "type": "p",
-   "text": "ES6 این خصوصیت‌ها را به شیء Number اضافه کرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "EPSILON",
-    "MIN_SAFE_INTEGER",
-    "MAX_SAFE_INTEGER"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = Number.EPSILON;",
-   "caption": "مثال EPSILON"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_epsilon"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = Number.MIN_SAFE_INTEGER;",
-   "caption": "مثال MIN_SAFE_INTEGER"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_min_safe"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = Number.MAX_SAFE_INTEGER;",
-   "caption": "مثال MAX_SAFE_INTEGER"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_max_safe"
-  },
-  {
-   "type": "h2",
-   "text": "متد Number.isInteger()"
-  },
-  {
-   "type": "p",
-   "text": "متد Number.isInteger() اگر آرگومان عدد صحیح باشد true برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Number.isInteger(10);        // returns true\n\nNumber.isInteger(10.5);      // returns false",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_isinteger"
-  },
-  {
-   "type": "h2",
-   "text": "متد Number.isSafeInteger()"
-  },
-  {
-   "type": "p",
-   "text": "عدد صحیح امن عددی است که بتوان آن را دقیقاً به‌صورت عدد اعشاری دقت دوگانه نمایش داد."
-  },
-  {
-   "type": "p",
-   "text": "متد Number.isSafeInteger() اگر آرگومان یک عدد صحیح امن باشد true برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Number.isSafeInteger(10);    // returns true\n\nNumber.isSafeInteger(12345678901234567890);  // returns false",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_issafeinteger"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای سراسری تازه"
-  },
-  {
-   "type": "p",
-   "text": "ES6 دو متد سراسری تازه برای عدد اضافه کرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "متد isFinite()",
-    "isNaN()"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد isFinite()"
-  },
-  {
-   "type": "p",
-   "text": "متد سراسری isFinite() اگر آرگومان Infinity یا NaN باشد false برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "در غیر این صورت true برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "isFinite(10/0);       // returns false\n\nisFinite(10/1);       // returns true",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_isfinite"
-  },
-  {
-   "type": "h2",
-   "text": "متد isNaN()"
-  },
-  {
-   "type": "p",
-   "text": "متد سراسری isNaN() اگر آرگومان NaN باشد true برمی‌گرداند؛ در غیر این صورت false:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "isNaN(\"Hello\");       // returns true",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_isnan"
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.assign() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.assign() خصوصیت‌ها را از یک یا چند شیء مبدأ به یک شیء مقصد کپی می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Target Object\n\nconst person1 = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Create Source Object\n\nconst person2 = {firstName: \"Anne\",lastName: \"Smith\"};\n\n// Assign Source to Target\n\nObject.assign(person1, person2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_assign"
-  },
-  {
-   "type": "h2",
-   "text": "فلگ u در RegExp"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{Emoji}/u;\n\nlet result = pattern.test(text);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{Emoji}/;\n\nlet result = pattern.test(text);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_u"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "p",
-   "text": "فلگ u (یونیکد) پشتیبانی کامل یونیکد را در عبارت باقاعده فعال می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "به‌طور پیش‌فرض، JavaScript و regex کاراکترهای ۴ بایتی یونیکد (مثل ایموجی‌ها یا نمادهای کم‌کاربرد) را دو واحد کد ۲ بایتی surrogate جدا می‌بینند."
-  },
-  {
-   "type": "p",
-   "text": "فلگ u الگو را دنباله‌ای از code pointهای یونیکد می‌بیند، که برای مدیریت درست کاراکترهای بیرون از صفحهٔ چندزبانهٔ پایه (BMP) اهمیت دارد."
-  },
-  {
-   "type": "h2",
-   "text": "فلگ y در RegExp"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"abc def ghi\";\n\nlet pattern = /\\w+/y;\n\n// Start match from position 4\n\npattern.lastIndex = 4;\n\nlet result = text.match(pattern);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"abc def ghi\";\n\nlet pattern = /\\w+/;\n\n// Start match from position 4\n\npattern.lastIndex = 4;\n\nlet result = text.match(pattern);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_y"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح"
-  },
-  {
-   "type": "p",
-   "text": "فلگ y (چسبنده) جست‌وجویی انجام می‌دهد که فقط از خصوصیت lastIndex شیء RegExp مطابقت می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "فلگ y تضمین می‌کند مطابقت‌های بعدی بلافاصله بعد از قبلی شروع شوند، بدون رد کردن کاراکترها."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایلی به نام es6.html بسازید و یک تابع پیکانی بنویسید که دو عدد را ضرب کند و نتیجه را در کنسول چاپ کنید.",
-   "hint": "نحو کوتاه: let myFunction = (a, b) => a * b; به function و return نیازی نیست."
-  },
-  {
-   "prompt": "یک آرایه از عددها بسازید و با ... آرایهٔ تازه بسازید (مثلاً [1,2,3] و [4,5,6] را ادغام کنید).",
-   "hint": "عملگر spread هر عنصر آرایه را جدا پخش می‌کند: const arr3 = [...arr1, ...arr2]."
-  },
-  {
-   "prompt": "یک شیء با چند خصوصیت بسازید و با {firstName, age} آن را تجزیه کنید و مقادیر را چاپ کنید.",
-   "hint": "نام متغیرها باید همان کلیدهای شیء باشد، اما ترتیب کلیدها مهم نیست."
-  },
-  {
-   "prompt": "با حلقهٔ for/of روی یک رشته مثل \"JavaScript\" بگردید و کاراکترها را چاپ کنید.",
-   "hint": "for (let x of language) روی مقدارهای شیءهای تکرارشونده مثل رشتهها کار می‌کند."
-  },
-  {
-   "prompt": "یک کلاس Car با constructor بسازید و دو شیء با new بسازید و خصوصیت‌هایشان را چاپ کنید.",
-   "hint": "کلاس خودش شیء نیست، قالب است؛ با new Car(\"Ford\", 2014) نمونه می‌سازید."
-  }
- ],
- "quiz": [
-  {
-   "question": "تابع پیکانی (arrow function) در ES6 کدام گزینه را حذف می‌کند؟",
-   "options": [
-    "کلیدواژهٔ function و return و آکولادها",
-    "نام پارامترها",
-    "عملگر تخصیص",
-    "مقدار پیش‌فرض پارامتر"
-   ],
-   "answer": 0,
-   "explanation": "تابع پیکانی نحو کوتاه‌تر است و به function، return و آکولادها نیازی ندارد، به شرطی که تابع یک دستور تک باشد. گزینه‌های دیگر بخشی از تعریف تابع‌اند."
-  },
-  {
-   "question": "دربارهٔ this در تابع پیکانی کدام گزینه درست است؟",
-   "options": [
-    "تابع پیکانی this خودش را دارد",
-    "تابع پیکانی this خودش را ندارد",
-    "تابع پیکانی همیشه this را undefined می‌کند",
-    "تابع پیکانی this را به آرایه می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "تابع پیکانی this خودش را ندارد و به همین دلیل برای تعریف متدهای شیء مناسب نیست. همچنین hoist نمی‌شود و باید پیش از استفاده تعریف شود."
-  },
-  {
-   "question": "شیء Set چه تفاوتی با آرایهٔ معمولی دارد؟",
-   "options": [
-    "مرتب است",
-    "فقط مقدارهای یکتا نگه می‌دارد",
-    "فقط عدد می‌پذیرد",
-    "کلیدها را به رشته تبدیل می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "Set مقدارهای یکتا نگه می‌دارد؛ افزودن مقدار تکراری نادیده گرفته می‌شود. Map است که با جفت کلید-مقدار کار می‌کند."
-  },
-  {
-   "question": "عملگر spread (...) چه کاری انجام می‌دهد؟",
-   "options": [
-    "آرایه را تخت می‌کند",
-    "یک آرایه یا تکرارشونده را به عنصرهای جداگانه پخش می‌کند",
-    "آرایه را کپی سطحی نمی‌کند",
-    "عنصر تکراری را حذف می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "spread عنصرهای یک آرایه یا شیء تکرارشونده را جدا پخش می‌کند، مثلاً برای Math.min(...numbers) یا ادغام دو آرایه."
-  },
-  {
-   "question": "کلاس JavaScript چیست؟",
-   "options": [
-    "یک شیء آماده",
-    "قالبی برای ساختن شیءها",
-    "یک نوع دادهٔ اولیه",
-    "یک آرایهٔ خاص"
-   ],
-   "answer": 1,
-   "explanation": "درس تأکید می‌کند کلاس خودش شیء نیست؛ قالبی است که با کلیدواژهٔ class ساخته می‌شود و با new از آن نمونه می‌سازید."
-  }
- ]
+  "slug": "js_es6",
+  "course": "js",
+  "order": 135,
+  "url": "/js/js_es6.asp",
+  "title": "Javascript 2015 (ES6)",
+  "summary": "ES6 دومین بازنگری مهم JavaScript است و بزرگ‌ترین تغییر زبان تا امروز. در این درس let و const، تابع‌های پیکانی، تجزیهٔ آرایه و شیء، عملگر spread، حلقهٔ for/of، Map و Set، کلاس‌ها، پرامیس‌ها، Symbol، پارامترهای پیش‌فرض و rest، متدهای تازهٔ رشته و آرایه و ویژگی‌های Math و Number را می‌بینید.",
+  "objectives": [
+    "با تابع‌های پیکانی و عملگر spread کد کوتاه‌تر بنویسید",
+    "آرایه و شیء را با destructuring تجزیه کنید",
+    "با Map و Set داده‌های یکتا و جفت‌های کلید-مقدار را نگه دارید",
+    "یک کلاس بسازید و از آن نمونهٔ شیء بسازید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Javascript 2015 (ES6)"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "ECMAScript 2015 دومین بازنگری مهم JavaScript است. ECMAScript 2015 با نام ES6 هم شناخته می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید در JavaScript 2015 (ES6)"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح"],
+        ["کلیدواژهٔ let", "متغیری با دامنهٔ بلوکی تعریف می‌کند"],
+        ["کلیدواژهٔ const", "یک متغیر ثابت تغییرناپذیر تعریف می‌کند"],
+        ["تابع‌های پیکانی", "نحو کوتاه‌تری برای نوشتن عبارت‌های تابعی فراهم می‌کند"],
+        ["عملگر {a,b} =", "خصوصیت‌های شیء را به متغیرها نسبت می‌دهد (تجزیهٔ شیء)"],
+        ["عملگر [a,b] =", "مقدارهای آرایه را به متغیرها نسبت می‌دهد (تجزیهٔ آرایه)"],
+        ["عملگر ...", "یک آرایه یا تکرارشونده را به عنصرهای جداگانه پخش می‌کند"],
+        ["for/of", "روی مقدارهای شیءهای تکرارشونده حلقه می‌زند"],
+        ["شیء Map", "شیئی با جفت‌های کلید-مقدار، شبیه شیءها اما با تفاوت‌هایی"],
+        ["شیء Set", "آرایه‌ای که فقط مقدارهای یکتا نگه می‌دارد"],
+        ["کلاس‌ها", "قالب‌هایی برای شیءهای JavaScript"],
+        ["پرامیس‌ها", "شیئی که کامل شدن یک عملیات ناهمگام را نشان می‌دهد"],
+        ["Symbol", "شناسهٔ یکتای «پنهانی» که هیچ کدی به آن دسترسی ندارد"],
+        ["پارامترهای پیش‌فرض", "مقدار پیش‌فرض برای پارامترهای تابع را مجاز می‌کند"],
+        ["پارامترهای rest", "اجازه می‌دهد تابع‌ها تعداد نامعیینی از آرگومان‌ها را بپذیرند"],
+        ["متد String.includes()", "اگر رشته مقدار مشخصی را داشته باشد true برمی‌گرداند"],
+        ["متد String.startsWith()", "اگر رشته با مقدار مشخصی شروع شود true برمی‌گرداند"],
+        ["متد String.endsWith()", "اگر رشته با مقدار مشخصی تمام شود true برمی‌گرداند"],
+        ["متد entries() آرایه", "یک iterator از جفت‌های کلید/مقدار آرایه برمی‌گرداند"],
+        ["متد Array.from()", "از یک رشته آرایه می‌سازد"],
+        ["متد keys() آرایه", "یک iterator از کلیدهای آرایه برمی‌گرداند"],
+        ["متد find() آرایه", "مقدار اولین عنصری را برمی‌گرداند که شرط را رد کند"],
+        ["متد findIndex() آرایه", "اندیس اولین عنصری را برمی‌گرداند که شرط را رد کند"],
+        ["متد Object.assign()", "خصوصیت‌ها را از شیء مبدأ به شیء مقصد کپی می‌کند"],
+        ["RegExp /u", "پشتیبانی کامل یونیکد را در عبارت باقاعده فعال می‌کند"],
+        ["RegExp /y", "یک جست‌وجوی «چسبنده» از روی خصوصیت lastIndex انجام می‌دهد"],
+        ["متد isFinite()", "اگر آرگومان Infinity یا NaN نباشد true برمی‌گرداند"],
+        ["متد isNaN()", "اگر آرگومان NaN باشد true برمی‌گرداند"],
+        ["ماژول‌ها", "اجازه می‌دهند کد را به فایل‌های جداگانه تقسیم کنید"],
+        ["Reflect", "شیئی برای عملیات سطح‌پایین روی شیءها"],
+        ["Proxy", "شیئی که برای کنترل عملیات، شیءهای دیگر را می‌پیچد"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های Math"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح"],
+        ["Math.trunc(x)", "بخش صحیح x را برمی‌گرداند"],
+        ["Math.sign(x)", "مقدار ۱-، ۰ یا ۱ برمی‌گرداند (x منفی، صفر یا مثبت است)"],
+        ["Math.cbrt(x)", "ریشهٔ سوم x را برمی‌گرداند"],
+        ["Math.log2(x)", "لگاریتم در مبنای ۲ عدد x را برمی‌گرداند"],
+        ["Math.log10(x)", "لگاریتم در مبنای ۱۰ عدد x را برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های Number"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح"],
+        ["Number.EPSILON", "تفاوت بین ۱ و کوچک‌ترین عدد بزرگ‌تر از ۱"],
+        ["Number.MIN_SAFE_INTEGER", "کوچک‌ترین مقداری که می‌توان دقیق نمایش داد"],
+        ["Number.MAX_SAFE_INTEGER", "بزرگ‌ترین مقداری که می‌توان دقیق نمایش داد"],
+        ["متد Number.isInteger()", "اگر آرگومان عدد صحیح باشد true برمی‌گرداند"],
+        ["متد Number.isSafeInteger()", "اگر آرگومان یک عدد صحیح امن باشد true برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript 2015 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome51", "Edge15", "Firefox54", "Safari10", "Opera38"],
+        ["می ۲۰۱۶", "آوریل ۲۰۱۷", "ژوئن ۲۰۱۷", "سپتامبر ۲۰۱۶", "ژوئن ۲۰۱۶"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "ES6 در Internet Explorer پشتیبانی نمی‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "کلیدواژهٔ let در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژهٔ let اجازه می‌دهد متغیری با دامنهٔ بلوکی تعریف کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var x = 10;\n\n// Here x is 10\n\n{\n\n  let x = 2;\n\n    // Here x is 2\n}\n\n// Here x is 10",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_let"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ let در فصل let در JavaScript بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "کلیدواژهٔ const در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژهٔ const اجازه می‌دهد یک ثابت تعریف کنید (متغیری JavaScript با مقدار ثابت)."
+    },
+    {
+      "type": "p",
+      "text": "ثابت‌ها شبیه متغیرهای let هستند، با این تفاوت که مقدارشان تغییر نمی‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var x = 10;\n\n// Here x is 10\n\n{\n\n  const x = 2;\n\n    // Here x is 2\n}\n\n// Here x is 10",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_const"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ const در فصل const در JavaScript بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "تابع‌های پیکانی"
+    },
+    {
+      "type": "p",
+      "text": "تابع‌های پیکانی نحو کوتاهی برای نوشتن عبارت‌های تابعی هستند."
+    },
+    {
+      "type": "p",
+      "text": "به کلیدواژهٔ function، کلیدواژهٔ return و آکولادها نیازی ندارید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let myFunction = function(a, b) {return a * b}",
+      "caption": "پیش از پیکان:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arrow_before"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let myFunction = (a, b) => a * b;",
+      "caption": "با پیکان"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_arrow_function"
+    },
+    {
+      "type": "p",
+      "text": "تابع‌های پیکانی this خودشان را ندارند. برای تعریف متدهای شیء مناسب نیستند."
+    },
+    {
+      "type": "p",
+      "text": "تابع‌های پیکانی hoist نمی‌شوند. باید پیش از استفاده تعریف شوند."
+    },
+    {
+      "type": "p",
+      "text": "فقط وقتی می‌توانید کلیدواژهٔ return و آکولادها را حذف کنید که تابع یک دستور تک باشد. به همین دلیل عادت خوبی است که همیشه آن‌ها را نگه دارید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// This will not work\n\nlet myFunction = (x, y) =>  { x * y } ;\n\n// This will not work\n\nlet myFunction = (x, y) =>  return x * y ;\n\n// Only this will work\n\nlet myFunction = (x, y) => { return x * y };",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_arrow_safe"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ تابع‌های پیکانی در فصل تابع پیکانی در JavaScript بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "تجزیهٔ شیء"
+    },
+    {
+      "type": "p",
+      "text": "تخصیص تجزیه‌ای، نسبت دادن مقدارهای آرایه و خصوصیت‌های شیء به متغیرها را آسان می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Destructuring Assignment\n\nlet { firstName, age } = person;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_destructuring"
+    },
+    {
+      "type": "p",
+      "text": "هنگام تجزیهٔ یک شیء، باید نام متغیرها دقیقاً همان کلیدهای (نام‌های) متناظر شیء باشد."
+    },
+    {
+      "type": "p",
+      "text": "ترتیب کلیدها (نام‌ها) اهمیتی ندارد."
+    },
+    {
+      "type": "h2",
+      "text": "تجزیهٔ آرایه"
+    },
+    {
+      "type": "p",
+      "text": "تخصیص تجزیه‌ای، نسبت دادن مقدارهای آرایه و خصوصیت‌های شیء به متغیرها را آسان می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Array\n\nconst fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\n// Destructuring Assignment\n\nlet [fruit1, fruit2] = fruits;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_destructuring"
+    },
+    {
+      "type": "h2",
+      "text": "عملگر spread (...)"
+    },
+    {
+      "type": "p",
+      "text": "عملگر ... یک آرایه یا تکرارشونده را به عنصرهای جداگانه پخش می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const numbers = [23,55,21,87,56];\n\nlet minValue = Math.min(...numbers);\n\nlet maxValue = Math.max(...numbers);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_arguments"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const arr1 = [1, 2, 3];\n\nconst arr2 = [4, 5, 6];\n\nconst arr3 = [...arr1, ...arr2];",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const q1 = [\"Jan\", \"Feb\", \"Mar\"];\n\nconst q2 = [\"Apr\", \"May\", \"Jun\"];\n\nconst q3 = [\"Jul\", \"Aug\", \"Sep\"];\n\nconst q4 = [\"Oct\", \"Nov\", \"Dec\"];\n\nconst year = [...q1, ...q2, ...q3, ...q4];",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_spread_year"
+    },
+    {
+      "type": "h2",
+      "text": "حلقهٔ for/of"
+    },
+    {
+      "type": "p",
+      "text": "دستور for/of در JavaScript روی مقدارهای شیءهای تکرارشونده حلقه می‌زند."
+    },
+    {
+      "type": "p",
+      "text": "for/of اجازه می‌دهد روی ساختارهای دادهٔ تکرارشونده مثل آرایه‌ها، رشته‌ها، Mapها، NodeListها و بیشتر حلقه بزنید."
+    },
+    {
+      "type": "p",
+      "text": "حلقهٔ for/of این نحو را دارد:"
+    },
+    {
+      "type": "p",
+      "text": "for (variable of iterable) { // بلوکی از کد که اجرا می‌شود }"
+    },
+    {
+      "type": "p",
+      "text": "variable: در هر تکرار، مقدار خصوصیت بعدی به این متغیر نسبت داده می‌شود. متغیر را می‌توانید با const، let یا var تعریف کنید."
+    },
+    {
+      "type": "p",
+      "text": "iterable: شیئی که خصوصیت‌های تکرارشونده دارد."
+    },
+    {
+      "type": "h3",
+      "text": "حلقه روی یک آرایه"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const cars = [\"BMW\", \"Volvo\", \"Mini\"];\n\nlet text = \"\";\n\nfor (let x of cars) {\n\n  text += x + \" \";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_for_of"
+    },
+    {
+      "type": "h3",
+      "text": "حلقه روی یک رشته"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let language = \"JavaScript\";\n\nlet text = \"\";\n\nfor (let x of language) {\n\n  text += x + \" \";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_for_of2"
+    },
+    {
+      "type": "p",
+      "text": "بیشتر در فصل حلقه‌های For/In/Of در JavaScript بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "Mapها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Map شیئی است که جفت‌های کلید-مقدار نگه می‌دارد، شبیه شیءهای معمولی اما با تفاوت‌هایی:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "کلیدها می‌توانند از هر نوع داده باشند (شیء، تابع، مقدار اولیه)، برخلاف شیءهای ساده که کلیدهایشان رشته است.",
+        "ترتیب اصلی درج کلیدها را حفظ می‌کند."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "امکان استفاده از یک شیء به‌عنوان کلید، ویژگی مهم Map است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_create_array"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ شیءهای Map و تفاوت Map با آرایه در فصل Mapها در JavaScript بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "Setها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Set شیئی است که مقدارهای یکتا از هر نوعی (مقدارهای اولیه، تابع‌ها، شیءها) نگه می‌دارد."
+    },
+    {
+      "type": "p",
+      "text": "Set فقط می‌تواند مقدارهای یکتا داشته باشد. تلاش برای افزودن مقدار تکراری نادیده گرفته می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Set\n\nconst letters = new Set();\n\n// Add some values to the Set\n\nletters.add(\"a\");\n\nletters.add(\"b\");\n\nletters.add(\"c\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_set_create_values"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ شیءهای Set در فصل Setها در JavaScript بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "کلاس‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کلاس‌های JavaScript قالب‌هایی برای شیءهای JavaScript هستند."
+    },
+    {
+      "type": "p",
+      "text": "برای ساختن کلاس از کلیدواژهٔ class استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "همیشه متدی به نام constructor() اضافه کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class ClassName {\n\n   constructor() { ... }\n\n}",
+      "caption": "نحو"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n\n   constructor(name, year) {\n\n    this.name = name;\n\n    this.year = year;\n\n  }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "مثال بالا کلاسی به نام \"Car\" می‌سازد."
+    },
+    {
+      "type": "p",
+      "text": "این کلاس دو خصوصیت اولیه دارد: \"name\" و \"year\"."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "کلاس JavaScript خودش شیء نیست. قالبی برای شیءهای JavaScript است."
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از یک کلاس"
+    },
+    {
+      "type": "p",
+      "text": "وقتی کلاس دارید، می‌توانید با آن شیء بسازید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myCar1 = new Car(\"Ford\", 2014);\n\nconst myCar2 = new Car(\"Audi\", 2019);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_init"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ کلاس‌ها در فصل کلاس‌ها در JavaScript بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "پرامیس‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پرامیس JavaScript شیئی است که کامل شدن یا شکست یک عملیات ناهمگام و مقدارهایش را نشان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "جایگزینی برای مقداری است که ممکن است هنوز آماده نباشد و راهی منظم برای مدیریت کد ناهمگام فراهم می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myPromise = new Promise(function(myResolve, myReject) {\n\n// \"Producing Code\" (May take some time)\n\n  myResolve(); // when successful\n\n  myReject();  // when error\n\n});\n\n// \"Consuming Code\" (Must wait for a fulfilled Promise).\n\nmyPromise.then(\n\n  function(value) { /* code if successful */ },\n\n  function(error) { /* code if some error */ }\n\n);",
+      "caption": "نحو پرامیس"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myPromise = new Promise(function(myResolve, myReject) {\n\n  setTimeout(function() { myResolve(\"I love You !!\"); }, 3000);\n});\n\nmyPromise.then(function(value) {\n\n  document.getElementById(\"demo\").innerHTML = value;\n\n});",
+      "caption": "مثال با پرامیس"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise3"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ پرامیس‌ها در فصل پرامیس‌ها در JavaScript بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "نوع Symbol"
+    },
+    {
+      "type": "p",
+      "text": "Symbol در JavaScript یک نوع دادهٔ اولیه است، درست مثل Number، String یا Boolean."
+    },
+    {
+      "type": "p",
+      "text": "شناسهٔ یکتای «پنهانی» را نمایندگی می‌کند که هیچ کد دیگری به‌طور اتفاقی به آن دسترسی ندارد."
+    },
+    {
+      "type": "p",
+      "text": "برای نمونه، اگر برنامه‌نویسان مختلف بخواهند خصوصیت person.id را به شیء person که مربوط به کد شخص ثالث است اضافه کنند، ممکن است مقدارهایشان با هم قاطی شود."
+    },
+    {
+      "type": "p",
+      "text": "استفاده از Symbol() برای ساختن شناسه‌های یکتا این مشکل را حل می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\nlet id = Symbol('id');\n\nperson[id] = 140353;\n\n// Now person[id] = 140353\n\n// but person.id is still undefined",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_symbol"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Symbolها همیشه یکتا هستند. اگر دو Symbol با توصیف یکسان بسازید، مقدارشان متفاوت خواهد بود: Symbol(\"id\") == Symbol(\"id\"); // false"
+    },
+    {
+      "type": "h2",
+      "text": "مقدار پیش‌فرض پارامتر"
+    },
+    {
+      "type": "p",
+      "text": "ES6 اجازه می‌دهد پارامترهای تابع مقدار پیش‌فرض داشته باشند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction(x, y = 10) {\n\n  // y is 10 if not passed or undefined\n\n  return x + y;\n}\nmyFunction(5); // will return 15",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_default"
+    },
+    {
+      "type": "h2",
+      "text": "پارامتر rest تابع"
+    },
+    {
+      "type": "p",
+      "text": "پارامتر rest (...) اجازه می‌دهد یک تابع تعداد نامعیینی از آرگومان‌ها را مانند یک آرایه ببیند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function sum(...args) {\n\n  let sum = 0;\n\n  for (let arg of args) sum += arg;\n\n  return sum;\n\n}\n\nlet x = sum(4, 9, 16, 25, 29, 100, 66, 77);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_rest"
+    },
+    {
+      "type": "h2",
+      "text": "متد String.includes()"
+    },
+    {
+      "type": "p",
+      "text": "متد includes() اگر رشته مقدار مشخصی را داشته باشد true و در غیر این صورت false برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.includes(\"world\")    // Returns true",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_includes"
+    },
+    {
+      "type": "h2",
+      "text": "متد String.startsWith()"
+    },
+    {
+      "type": "p",
+      "text": "متد startsWith() اگر رشته با مقدار مشخصی شروع شود true و در غیر این صورت false برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"Hello\")   // Returns true",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_startswith"
+    },
+    {
+      "type": "h2",
+      "text": "متد String.endsWith()"
+    },
+    {
+      "type": "p",
+      "text": "متد endsWith() اگر رشته با مقدار مشخصی تمام شود true و در غیر این صورت false برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var text = \"John Doe\";\n\ntext.endsWith(\"Doe\")    // Returns true",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_endswith"
+    },
+    {
+      "type": "h2",
+      "text": "متد entries() آرایه"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nconst f = fruits.entries();\n\nfor (let x of f) {\n\n  document.getElementById(\"demo\").innerHTML += x;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_entries"
+    },
+    {
+      "type": "p",
+      "text": "متد entries() شیء Array Iterator با جفت‌های کلید/مقدار برمی‌گرداند:"
+    },
+    {
+      "type": "p",
+      "text": "یعنی [0, \"Banana\"][1, \"Orange\"][2, \"Apple\"][3, \"Mango\"]"
+    },
+    {
+      "type": "p",
+      "text": "متد entries() آرایهٔ اصلی را تغییر نمی‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "متد Array.from()"
+    },
+    {
+      "type": "p",
+      "text": "متد Array.from() از هر شیئی که خصوصیت length دارد یا هر شیء تکرارشونده، یک آرایه برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Array.from(\"ABCDEFG\")   // Returns [A,B,C,D,E,F,G]",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_from"
+    },
+    {
+      "type": "h2",
+      "text": "متد keys() آرایه"
+    },
+    {
+      "type": "p",
+      "text": "متد keys() شیء Array Iterator با کلیدهای آرایه برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nconst keys = fruits.keys();\n\nlet text = \"\";\n\nfor (let x of keys) {\n\n  text += x + \"<br>\";\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_keys"
+    },
+    {
+      "type": "h2",
+      "text": "متد find() آرایه"
+    },
+    {
+      "type": "p",
+      "text": "متد find() مقدار اولین عنصر آرایه را برمی‌گرداند که تابع شرط را رد کند."
+    },
+    {
+      "type": "p",
+      "text": "این مثال اولین عنصری را که بزرگ‌تر از ۱۸ باشد پیدا می‌کند (مقدارش را برمی‌گرداند):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const numbers = [4, 9, 16, 25, 29];\nlet first =\n  numbers.find(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_find"
+    },
+    {
+      "type": "p",
+      "text": "توجه کنید این تابع سه آرگومان می‌گیرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["مقدار عنصر", "اندیس عنصر", "خود آرایه"]
+    },
+    {
+      "type": "h2",
+      "text": "متد findIndex() آرایه"
+    },
+    {
+      "type": "p",
+      "text": "متد findIndex() اندیس اولین عنصر آرایه را برمی‌گرداند که تابع شرط را رد کند."
+    },
+    {
+      "type": "p",
+      "text": "این مثال اندیس اولین عنصری را که بزرگ‌تر از ۱۸ باشد پیدا می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const numbers = [4, 9, 16, 25, 29];\nlet first =\n  numbers.findIndex(myFunction);\n\nfunction myFunction(value, index, array) {\n\n    return\n  value > 18;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_find_index"
+    },
+    {
+      "type": "p",
+      "text": "توجه کنید این تابع سه آرگومان می‌گیرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["مقدار عنصر", "اندیس عنصر", "خود آرایه"]
+    },
+    {
+      "type": "h2",
+      "text": "ماژول‌ها"
+    },
+    {
+      "type": "p",
+      "text": "ماژول‌ها به دو شکل مختلف import می‌شوند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import { name, age } from \"./person.js\";",
+      "caption": "import از exportهای نام‌دار"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "import message from \"./message.js\";",
+      "caption": "import از export پیش‌فرض"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules2"
+    },
+    {
+      "type": "p",
+      "text": "بیشتر دربارهٔ ماژول‌ها در بخش ماژول‌های JavaScript بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "Reflect در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پیش از Reflect، عملیات روی شیءها پراکنده بود:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "استفاده از کلیدواژهٔ in",
+        "استفاده از کلیدواژهٔ delete",
+        "استفاده از متدهایی مثل Object.defineProperty",
+        "استفاده از سازوکارهای زبان مثل [[Get]] و [[Set]]"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Reflect همهٔ این‌ها را در متدهای مرتب Reflect جمع می‌کند."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "متدهای Reflect همه چیز را یکپارچه می‌کنند",
+        "متدهای Reflect رفتار قابل پیش‌بینی دارند",
+        "متدهای Reflect با Proxy عالی کار می‌کنند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Reflect.has()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {name: \"John\", lastname: \"Doe\"};\n\nlet answer = Reflect.has(person, \"name\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let answer = \"name\" in person;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_has"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید..."
+    },
+    {
+      "type": "p",
+      "text": "آموزش Reflect در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "Proxy در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n//Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n\n    return target[property];\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n\n    return target[property];\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nlet text = proxy.name;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید..."
+    },
+    {
+      "type": "p",
+      "text": "آموزش Proxy در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای تازهٔ Math"
+    },
+    {
+      "type": "p",
+      "text": "ES6 این متدها را به شیء Math اضافه کرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Math.trunc()", "Math.sign()", "Math.cbrt()", "Math.log2()", "Math.log10()"]
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.trunc()"
+    },
+    {
+      "type": "p",
+      "text": "Math.trunc(x) بخش صحیح x را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.trunc(4.9);    // returns 4\n\nMath.trunc(4.7);    // returns 4\n\nMath.trunc(4.4);    // returns 4\n\nMath.trunc(4.2);    // returns 4\n\nMath.trunc(-4.2);    // returns -4",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_trunc"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.sign()"
+    },
+    {
+      "type": "p",
+      "text": "Math.sign(x) مقدار ۱-، ۰ یا ۱ برمی‌گرداند (اگر x منفی، صفر یا مثبت باشد):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.sign(-4);    // returns -1\n\nMath.sign(0);    // returns 0\n\nMath.sign(4);    // returns 1",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sign"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.cbrt()"
+    },
+    {
+      "type": "p",
+      "text": "Math.cbrt(x) ریشهٔ سوم x را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.cbrt(8);    // returns 2\n\nMath.cbrt(64);    // returns 4\n\nMath.cbrt(125);    // returns 5",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_cbrt"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.log2()"
+    },
+    {
+      "type": "p",
+      "text": "Math.log2(x) لگاریتم در مبنای ۲ عدد x را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.log2(2);    // returns 1",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log2"
+    },
+    {
+      "type": "h2",
+      "text": "متد Math.log10()"
+    },
+    {
+      "type": "p",
+      "text": "Math.log10(x) لگاریتم در مبنای ۱۰ عدد x را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Math.log10(10);    // returns 1",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_log10"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های تازهٔ Number"
+    },
+    {
+      "type": "p",
+      "text": "ES6 این خصوصیت‌ها را به شیء Number اضافه کرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["EPSILON", "MIN_SAFE_INTEGER", "MAX_SAFE_INTEGER"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = Number.EPSILON;",
+      "caption": "مثال EPSILON"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_epsilon"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = Number.MIN_SAFE_INTEGER;",
+      "caption": "مثال MIN_SAFE_INTEGER"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_min_safe"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = Number.MAX_SAFE_INTEGER;",
+      "caption": "مثال MAX_SAFE_INTEGER"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_max_safe"
+    },
+    {
+      "type": "h2",
+      "text": "متد Number.isInteger()"
+    },
+    {
+      "type": "p",
+      "text": "متد Number.isInteger() اگر آرگومان عدد صحیح باشد true برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Number.isInteger(10);        // returns true\n\nNumber.isInteger(10.5);      // returns false",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_isinteger"
+    },
+    {
+      "type": "h2",
+      "text": "متد Number.isSafeInteger()"
+    },
+    {
+      "type": "p",
+      "text": "عدد صحیح امن عددی است که بتوان آن را دقیقاً به‌صورت عدد اعشاری دقت دوگانه نمایش داد."
+    },
+    {
+      "type": "p",
+      "text": "متد Number.isSafeInteger() اگر آرگومان یک عدد صحیح امن باشد true برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Number.isSafeInteger(10);    // returns true\n\nNumber.isSafeInteger(12345678901234567890);  // returns false",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_issafeinteger"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای سراسری تازه"
+    },
+    {
+      "type": "p",
+      "text": "ES6 دو متد سراسری تازه برای عدد اضافه کرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["متد isFinite()", "isNaN()"]
+    },
+    {
+      "type": "h2",
+      "text": "متد isFinite()"
+    },
+    {
+      "type": "p",
+      "text": "متد سراسری isFinite() اگر آرگومان Infinity یا NaN باشد false برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "در غیر این صورت true برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "isFinite(10/0);       // returns false\n\nisFinite(10/1);       // returns true",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_isfinite"
+    },
+    {
+      "type": "h2",
+      "text": "متد isNaN()"
+    },
+    {
+      "type": "p",
+      "text": "متد سراسری isNaN() اگر آرگومان NaN باشد true برمی‌گرداند؛ در غیر این صورت false:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "isNaN(\"Hello\");       // returns true",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_isnan"
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.assign() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.assign() خصوصیت‌ها را از یک یا چند شیء مبدأ به یک شیء مقصد کپی می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Target Object\n\nconst person1 = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Create Source Object\n\nconst person2 = {firstName: \"Anne\",lastName: \"Smith\"};\n\n// Assign Source to Target\n\nObject.assign(person1, person2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_assign"
+    },
+    {
+      "type": "h2",
+      "text": "فلگ u در RegExp"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{Emoji}/u;\n\nlet result = pattern.test(text);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello 😄\";\n\nlet pattern = /\\p{Emoji}/;\n\nlet result = pattern.test(text);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_flag_u"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "p",
+      "text": "فلگ u (یونیکد) پشتیبانی کامل یونیکد را در عبارت باقاعده فعال می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "به‌طور پیش‌فرض، JavaScript و regex کاراکترهای ۴ بایتی یونیکد (مثل ایموجی‌ها یا نمادهای کم‌کاربرد) را دو واحد کد ۲ بایتی surrogate جدا می‌بینند."
+    },
+    {
+      "type": "p",
+      "text": "فلگ u الگو را دنباله‌ای از code pointهای یونیکد می‌بیند، که برای مدیریت درست کاراکترهای بیرون از صفحهٔ چندزبانهٔ پایه (BMP) اهمیت دارد."
+    },
+    {
+      "type": "h2",
+      "text": "فلگ y در RegExp"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"abc def ghi\";\n\nlet pattern = /\\w+/y;\n\n// Start match from position 4\n\npattern.lastIndex = 4;\n\nlet result = text.match(pattern);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"abc def ghi\";\n\nlet pattern = /\\w+/;\n\n// Start match from position 4\n\npattern.lastIndex = 4;\n\nlet result = text.match(pattern);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_regexp_y"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح"
+    },
+    {
+      "type": "p",
+      "text": "فلگ y (چسبنده) جست‌وجویی انجام می‌دهد که فقط از خصوصیت lastIndex شیء RegExp مطابقت می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "فلگ y تضمین می‌کند مطابقت‌های بعدی بلافاصله بعد از قبلی شروع شوند، بدون رد کردن کاراکترها."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایلی به نام es6.html بسازید و یک تابع پیکانی بنویسید که دو عدد را ضرب کند و نتیجه را در کنسول چاپ کنید.",
+      "hint": "نحو کوتاه: let myFunction = (a, b) => a * b; به function و return نیازی نیست."
+    },
+    {
+      "prompt": "یک آرایه از عددها بسازید و با ... آرایهٔ تازه بسازید (مثلاً [1,2,3] و [4,5,6] را ادغام کنید).",
+      "hint": "عملگر spread هر عنصر آرایه را جدا پخش می‌کند: const arr3 = [...arr1, ...arr2]."
+    },
+    {
+      "prompt": "یک شیء با چند خصوصیت بسازید و با {firstName, age} آن را تجزیه کنید و مقادیر را چاپ کنید.",
+      "hint": "نام متغیرها باید همان کلیدهای شیء باشد، اما ترتیب کلیدها مهم نیست."
+    },
+    {
+      "prompt": "با حلقهٔ for/of روی یک رشته مثل \"JavaScript\" بگردید و کاراکترها را چاپ کنید.",
+      "hint": "for (let x of language) روی مقدارهای شیءهای تکرارشونده مثل رشتهها کار می‌کند."
+    },
+    {
+      "prompt": "یک کلاس Car با constructor بسازید و دو شیء با new بسازید و خصوصیت‌هایشان را چاپ کنید.",
+      "hint": "کلاس خودش شیء نیست، قالب است؛ با new Car(\"Ford\", 2014) نمونه می‌سازید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "تابع پیکانی (arrow function) در ES6 کدام گزینه را حذف می‌کند؟",
+      "options": [
+        "کلیدواژهٔ function و return و آکولادها",
+        "نام پارامترها",
+        "عملگر تخصیص",
+        "مقدار پیش‌فرض پارامتر"
+      ],
+      "answer": 0,
+      "explanation": "تابع پیکانی نحو کوتاه‌تر است و به function، return و آکولادها نیازی ندارد، به شرطی که تابع یک دستور تک باشد. گزینه‌های دیگر بخشی از تعریف تابع‌اند."
+    },
+    {
+      "question": "دربارهٔ this در تابع پیکانی کدام گزینه درست است؟",
+      "options": [
+        "تابع پیکانی this خودش را دارد",
+        "تابع پیکانی this خودش را ندارد",
+        "تابع پیکانی همیشه this را undefined می‌کند",
+        "تابع پیکانی this را به آرایه می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "تابع پیکانی this خودش را ندارد و به همین دلیل برای تعریف متدهای شیء مناسب نیست. همچنین hoist نمی‌شود و باید پیش از استفاده تعریف شود."
+    },
+    {
+      "question": "شیء Set چه تفاوتی با آرایهٔ معمولی دارد؟",
+      "options": [
+        "مرتب است",
+        "فقط مقدارهای یکتا نگه می‌دارد",
+        "فقط عدد می‌پذیرد",
+        "کلیدها را به رشته تبدیل می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "Set مقدارهای یکتا نگه می‌دارد؛ افزودن مقدار تکراری نادیده گرفته می‌شود. Map است که با جفت کلید-مقدار کار می‌کند."
+    },
+    {
+      "question": "عملگر spread (...) چه کاری انجام می‌دهد؟",
+      "options": [
+        "آرایه را تخت می‌کند",
+        "یک آرایه یا تکرارشونده را به عنصرهای جداگانه پخش می‌کند",
+        "آرایه را کپی سطحی نمی‌کند",
+        "عنصر تکراری را حذف می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "spread عنصرهای یک آرایه یا شیء تکرارشونده را جدا پخش می‌کند، مثلاً برای Math.min(...numbers) یا ادغام دو آرایه."
+    },
+    {
+      "question": "کلاس JavaScript چیست؟",
+      "options": ["یک شیء آماده", "قالبی برای ساختن شیءها", "یک نوع دادهٔ اولیه", "یک آرایهٔ خاص"],
+      "answer": 1,
+      "explanation": "درس تأکید می‌کند کلاس خودش شیء نیست؛ قالبی است که با کلیدواژهٔ class ساخته می‌شود و با new از آن نمونه می‌سازید."
+    }
+  ]
 }

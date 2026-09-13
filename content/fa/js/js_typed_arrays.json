@@ -1,620 +1,445 @@
 {
- "slug": "js_typed_arrays",
- "course": "js",
- "order": 241,
- "url": "/js/js_typed_arrays.asp",
- "title": "آرایه‌های نوع‌دار در JavaScript",
- "summary": "آرایه‌های نوع‌دار برای کار با دادهٔ دودویی ساخته شده‌اند: بافرهایی با طول ثابت که هر عنصرشان نوع مشخصی دارد. در این درس می‌بینید چرا این آرایه‌ها سریع‌ترند، کدام APIهای مرورگر از آن‌ها استفاده می‌کنند و تفاوت Uint8Array و Uint8ClampedArray در چیست.",
- "objectives": [
-  "توضیح دهید آرایهٔ نوع‌دار چیست و چه تفاوتی با آرایهٔ معمولی دارد",
-  "انواع آرایهٔ نوع‌دار و بازهٔ مقدارهایشان را تشخیص دهید",
-  "تفاوت Uint8Array و Uint8ClampedArray را در برخورد با مقدارهای بیرون از بازه بگویید",
-  "کاربردهای مناسب آرایه‌های نوع‌دار را در APIهای مرورگر تشخیص دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "آرایه‌های نوع‌دار (Typed Arrays) در JavaScript"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Typed Arrays\nآرایه‌های نوع‌دار برای کار با دادهٔ دودویی (binary) طراحی شده‌اند.\nبرخلاف آرایه‌های معمولی، آرایه‌های نوع‌دار بافرهایی با طول ثابت هستند.\nآرایه‌های نوع‌دار عنصرهایی با نوع ثابت نگه می‌دارند؛ مثلاً عددهای صحیح ۸ بیتی یا عددهای ۳۲ بیتی."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Uint8Array(5);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Uint8Array([0,1,2,3,4]);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = Uint8Array.of(0,1,2,3,4);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = Uint8Array.from([0,1,2,3,4]);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_uint8_1"
-  },
-  {
-   "type": "h2",
-   "text": "مزیت‌های آرایه‌های نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار برای فراهم کردن راهی کارآمد برای کار با دادهٔ دودویی طراحی شده‌اند، برخلاف آرایه‌های سنتی JavaScript که می‌توانند عنصرهایی با نوع‌های مختلف نگه دارند."
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار حافظهٔ خام‌اند، پس JavaScript می‌تواند آن‌ها را مستقیم به هر تابعی بدهد، بدون تبدیل داده به بازنمایی دیگر."
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار برای فرستادن داده به تابع‌هایی که با دادهٔ دودویی خام کار می‌کنند، بسیار سریع‌تر از آرایه‌های معمولی‌اند. آرایه‌های نوع‌دار برای این موارد بسیار مناسب‌اند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "WebGL و Canvas:\nرندر سریع گرافیک و پردازش تصویر.",
-    "File APIها:\nخواندن و نوشتن سریع فایل‌های محلی.",
-    "Media APIها:\nکار سریع با دادهٔ صدا و ویدیو.",
-    "WebSockets:\nانتقال کارآمد دادهٔ دودویی روی شبکه."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار راهی برای کار با دادهٔ دودویی می‌دهند که به همان کارآمدی آرایه‌ها در زبان C است."
-  },
-  {
-   "type": "h2",
-   "text": "APIهای مرورگر که از آرایه‌های نوع‌دار پشتیبانی می‌کنند"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(url)\n\n.then(request => request.arrayBuffer())\n\n.then(arrayBuffer =>...);",
-   "caption": "مثال Fetch API"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const canvas = document.getElementById('my_canvas');\n\nconst context = canvas.getContext('2d');\n\nconst imageData = context.getImageData(0, 0, canvas.width, canvas.height);\n\nconst uint8ClampedArray = imageData.data;",
-   "caption": "مثال Canvas"
-  },
-  {
-   "type": "h2",
-   "text": "تفاوت‌ها با آرایه‌های معمولی"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "طول ثابت:\nآرایه‌های نوع‌دار را نمی‌توان با متدهایی مثل push() یا pop() به‌صورت پویا تغییر اندازه داد.",
-    "محدودیت نوع:\nعنصرها باید از نوع دادهٔ مشخص‌شدهٔ آرایهٔ نوع‌دار پیروی کنند.",
-    "بافر زیرین:\nآرایه‌های نوع‌دار نمایی (view) روی یک ArrayBuffer هستند و دستکاری مستقیم دادهٔ دودویی را ممکن می‌کنند."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "انواع آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "نام",
-     "کمینه",
-     "بیشینه",
-     "بایت",
-     "نوع"
-    ],
-    [
-     "Int8Array",
-     "-128",
-     "127",
-     "1",
-     "بایت"
-    ],
-    [
-     "Uint8Array",
-     "0",
-     "255",
-     "1",
-     "اکتت"
-    ],
-    [
-     "Uint8ClampedArray",
-     "0",
-     "255",
-     "1",
-     "اکتت"
-    ],
-    [
-     "Int16Array",
-     "-32768",
-     "32767",
-     "2",
-     "عدد کوتاه (short)"
-    ],
-    [
-     "Uint16Array",
-     "0",
-     "65535",
-     "2",
-     "عدد کوتاه بدون علامت (unsigned short)"
-    ],
-    [
-     "Int32Array",
-     "-2147483648",
-     "2147483647",
-     "4",
-     "عدد بلند (long)"
-    ],
-    [
-     "Uint32Array",
-     "0",
-     "4294967295",
-     "4",
-     "عدد بلند بدون علامت (unsigned long)"
-    ],
-    [
-     "BigInt64Array",
-     "-263",
-     "263 - 1",
-     "8",
-     "عدد صحیح بزرگ (bigint)"
-    ],
-    [
-     "BigUint64Array",
-     "0",
-     "264 - 1",
-     "8",
-     "عدد صحیح بزرگ بدون علامت"
-    ],
-    [
-     "",
-     "",
-     "",
-     "",
-     ""
-    ],
-    [
-     "Float16Array",
-     "-65504",
-     "65504",
-     "2",
-     "نیم‌دقت بی‌قید"
-    ],
-    [
-     "Float32Array",
-     "-3.4e38",
-     "3.4e38",
-     "4",
-     "float بی‌قید"
-    ],
-    [
-     "Float64Array",
-     "-1.8e308",
-     "1.8e308",
-     "8",
-     "double بی‌قید"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "عددهای صحیح ۸ بیتی"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نوع داده",
-    "بازه"
-   ],
-   "rows": [
-    [
-     "Int8Array",
-     "عدد صحیح علامت‌دار (byte)",
-     "-128/127"
-    ],
-    [
-     "Uint8Array",
-     "عدد صحیح بدون علامت (octet)",
-     "0/255"
-    ],
-    [
-     "Uint8ClampedArray",
-     "عدد صحیح بدون علامت (octet)",
-     "0/255"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Int8Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Uint8Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Uint8ClampedArray(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_int8"
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ Uint8Array و Uint8ClampedArray"
-  },
-  {
-   "type": "p",
-   "text": "تفاوت Uint8Array و Uint8ClampedArray در نحوهٔ نوشتن مقدارهاست."
-  },
-  {
-   "type": "p",
-   "text": "اگر در Uint8ClampedArray عنصری را مقداری بیرون از بازهٔ ۰ تا ۲۵۵ بدهید، همان ۰ یا ۲۵۵ گذاشته می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "اما آرایهٔ نوع‌دار فقط ۸ بیت اول مقدار را برمی‌دارد."
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار آرایه نیستند."
-  },
-  {
-   "type": "p",
-   "text": "متد isArray() روی یک آرایهٔ نوع‌دار مقدار false برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "خیلی از متدهای آرایه (مثل push و pop) در آرایه‌های نوع‌دار پشتیبانی نمی‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "عددهای صحیح ۱۶ بیتی"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نوع داده",
-    "بازه"
-   ],
-   "rows": [
-    [
-     "Int16Array",
-     "عدد صحیح کوتاه",
-     "-32768/32767"
-    ],
-    [
-     "Uint16Array",
-     "عدد صحیح کوتاه بدون علامت",
-     "0/65535"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Int16Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Uint16Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_int16"
-  },
-  {
-   "type": "h2",
-   "text": "عددهای صحیح ۳۲ بیتی"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نوع داده",
-    "بازه"
-   ],
-   "rows": [
-    [
-     "Int32Array",
-     "عدد صحیح بلند علامت‌دار",
-     "-2147483648 / 2147483647"
-    ],
-    [
-     "Uint32Array",
-     "عدد صحیح بلند بدون علامت",
-     "0 / 4294967295"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Int32Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Uint32Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_int32"
-  },
-  {
-   "type": "h2",
-   "text": "عددهای صحیح ۶۴ بیتی"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "نوع داده",
-    "بازه"
-   ],
-   "rows": [
-    [
-     "BigInt64Array",
-     "عدد صحیح بزرگ علامت‌دار",
-     "-263/263-1"
-    ],
-    [
-     "BigUint64Array",
-     "عدد صحیح بزرگ بدون علامت",
-     "0/264"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Bigint64Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Biguint64Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_bigint64"
-  },
-  {
-   "type": "h2",
-   "text": "عددهای اعشاری"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام",
-    "توضیح",
-    "بازه"
-   ],
-   "rows": [
-    [
-     "Float16Array",
-     "نیم‌دقت، ۳ رقم دهدهی معنادار",
-     "از -65504 تا 65504"
-    ],
-    [
-     "Float32Array",
-     "دقت معمولی، ۷ رقم دهدهی معنادار",
-     "از -3.4e38 تا 3.4e38"
-    ],
-    [
-     "Float64Array",
-     "دقت دوگانه، ۱۵ رقم دهدهی معنادار",
-     "از -1.8e308 تا 1.8e308"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "بر اساس استاندارد ECMAScript، محاسبه‌های ریاضی در JavaScript باید با حساب اعشاری دقت دوگانه (double) انجام شود:"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_double_floating_point_900.jpg",
-   "alt": "64-bit"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Float16Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Float32Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = new Float64Array(10);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_float16"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید:"
-  },
-  {
-   "type": "p",
-   "text": "متدهای آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "مرجع آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "بافرهای آرایه (ArrayBuffer)"
-  },
-  {
-   "type": "p",
-   "text": "DataViewها"
-  },
-  {
-   "type": "p",
-   "text": "Atomics"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار یک ویژگی ES6 هستند."
-  },
-  {
-   "type": "p",
-   "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن کامل پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome51",
-     "Edge15",
-     "Firefox54",
-     "Safari10",
-     "Opera38"
-    ],
-    [
-     "مه ۲۰۱۶",
-     "آوریل ۲۰۱۷",
-     "ژوئن ۲۰۱۷",
-     "سپتامبر ۲۰۱۶",
-     "ژوئن ۲۰۱۶"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک Uint8Array با طول ۵ بسازید، چند مقدار داخلش بگذارید و با کنسول چاپش کنید؛ بعد طول آن را با length بخوانید و بگویید چرا push() روی آن کار نمی‌کند.",
-   "hint": "آرایه‌های نوع‌دار طول ثابت دارند و متدهایی مثل push و pop را پشتیبانی نمی‌کنند."
-  },
-  {
-   "prompt": "روی همان آرایه isArray() را صدا بزنید و نتیجه را با یک آرایهٔ معمولی مقایسه کنید.",
-   "hint": "isArray روی آرایهٔ نوع‌دار مقدار false برمی‌گرداند؛ آرایه‌های نوع‌دار آرایه نیستند."
-  },
-  {
-   "prompt": "یکی از عنصرهای Uint8Array را ۳۰۰ بگذارید و یکی از عنصرهای Uint8ClampedArray را هم ۳۰۰ بگذارید؛ هر دو را چاپ کنید و تفاوت را توضیح دهید.",
-   "hint": "Uint8ClampedArray مقدار بیرون از بازه را به ۰ یا ۲۵۵ می‌چسباند، اما Uint8Array فقط ۸ بیت اول را نگه می‌دارد."
-  },
-  {
-   "prompt": "یک ArrayBuffer بسازید و روی آن دو نمای مختلف (مثلاً Int8Array و Uint8Array) بگیرید؛ ببینید روی همان بایت‌ها کار می‌کنند.",
-   "hint": "آرایه‌های نوع‌دار view روی ArrayBuffer هستند؛ ArrayBuffer خودش داده است و viewها آن را تفسیر می‌کنند."
-  },
-  {
-   "prompt": "با Canvas یک بوم بسازید، با getImageData دادهٔ پیکسل‌ها را بگیرید و پیام کنید که این داده از کدام نوع آرایه است.",
-   "hint": "خروجی getImageData یک Uint8ClampedArray است، چون مقدارهای رنگ باید در بازهٔ ۰ تا ۲۵۵ بمانند."
-  }
- ],
- "quiz": [
-  {
-   "question": "ویژگی اصلی آرایه‌های نوع‌دار در مقایسه با آرایه‌های معمولی چیست؟",
-   "options": [
-    "اندازه‌شان پویاست",
-    "طولشان ثابت است و هر عنصر نوع مشخصی دارد",
-    "می‌توانند هر نوع داده‌ای را قاطی کنند",
-    "همیشه سریع‌تر از آرایه‌های معمولی‌اند"
-   ],
-   "answer": 1,
-   "explanation": "آرایه‌های نوع‌دار بافرهایی با طول ثابت‌اند و عنصرها نوع ثابتی دارند؛ به همین دلیل نمی‌توان با push و pop اندازه‌شان را عوض کرد."
-  },
-  {
-   "question": "Uint8ClampedArray اگر مقداری بیرون از بازهٔ ۰ تا ۲۵۵ بگیرد چه می‌کند؟",
-   "options": [
-    "خطا می‌دهد",
-    "مقدار را به ۰ یا ۲۵۵ می‌چسباند",
-    "فقط ۸ بیت اول را نگه می‌دارد",
-    "مقدار را گرد می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "درس توضیح می‌دهد که در نوع clamped مقدارهای بیرون از بازه به ۰ یا ۲۵۵ تبدیل می‌شوند؛ در حالی که آرایهٔ نوع‌دار معمولی ۸ بیت اول را برمی‌دارد."
-  },
-  {
-   "question": "خروجی isArray() روی یک آرایهٔ نوع‌دار چیست؟",
-   "options": [
-    "true",
-    "false",
-    "null",
-    "به نوع آرایه بستگی دارد"
-   ],
-   "answer": 1,
-   "explanation": "آرایه‌های نوع‌دار آرایه نیستند؛ isArray روی آن‌ها false برمی‌گرداند و به همین دلیل خیلی از متدهای آرایه هم پشتیبانی نمی‌شوند."
-  },
-  {
-   "question": "آرایهٔ نوع‌دار در واقع چه چیزی است؟",
-   "options": [
-    "یک آرایهٔ معمولی با طول ثابت",
-    "یک نما (view) روی یک ArrayBuffer",
-    "یک شیء برای ذخیرهٔ رشته‌ها",
-    "یک جایگزین برای JSON"
-   ],
-   "answer": 1,
-   "explanation": "آرایه‌های نوع‌دار حافظهٔ خام را از طریق ArrayBuffer می‌بینند و همین باعث می‌شود JavaScript بتواند داده را بدون تبدیل بازنمایی به تابع‌های دیگر بدهد."
-  },
-  {
-   "question": "کدام کاربرد در درس به‌عنوان کاربرد مناسب آرایه‌های نوع‌دار ذکر شده است؟",
-   "options": [
-    "پردازش تصویر و رندر گرافیک در WebGL و Canvas",
-    "ساختن دکمه‌های HTML",
-    "مدیریت رویدادهای صفحه",
-    "ذخیرهٔ کوکی‌ها"
-   ],
-   "answer": 0,
-   "explanation": "درس آرایه‌های نوع‌دار را برای WebGL و Canvas، File APIها، Media APIها و WebSockets مناسب می‌داند، چون این نواحی با دادهٔ دودویی خام کار می‌کنند."
-  }
- ]
+  "slug": "js_typed_arrays",
+  "course": "js",
+  "order": 241,
+  "url": "/js/js_typed_arrays.asp",
+  "title": "آرایه‌های نوع‌دار در JavaScript",
+  "summary": "آرایه‌های نوع‌دار برای کار با دادهٔ دودویی ساخته شده‌اند: بافرهایی با طول ثابت که هر عنصرشان نوع مشخصی دارد. در این درس می‌بینید چرا این آرایه‌ها سریع‌ترند، کدام APIهای مرورگر از آن‌ها استفاده می‌کنند و تفاوت Uint8Array و Uint8ClampedArray در چیست.",
+  "objectives": [
+    "توضیح دهید آرایهٔ نوع‌دار چیست و چه تفاوتی با آرایهٔ معمولی دارد",
+    "انواع آرایهٔ نوع‌دار و بازهٔ مقدارهایشان را تشخیص دهید",
+    "تفاوت Uint8Array و Uint8ClampedArray را در برخورد با مقدارهای بیرون از بازه بگویید",
+    "کاربردهای مناسب آرایه‌های نوع‌دار را در APIهای مرورگر تشخیص دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "آرایه‌های نوع‌دار (Typed Arrays) در JavaScript"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Typed Arrays\nآرایه‌های نوع‌دار برای کار با دادهٔ دودویی (binary) طراحی شده‌اند.\nبرخلاف آرایه‌های معمولی، آرایه‌های نوع‌دار بافرهایی با طول ثابت هستند.\nآرایه‌های نوع‌دار عنصرهایی با نوع ثابت نگه می‌دارند؛ مثلاً عددهای صحیح ۸ بیتی یا عددهای ۳۲ بیتی."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Uint8Array(5);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Uint8Array([0,1,2,3,4]);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = Uint8Array.of(0,1,2,3,4);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = Uint8Array.from([0,1,2,3,4]);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_uint8_1"
+    },
+    {
+      "type": "h2",
+      "text": "مزیت‌های آرایه‌های نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار برای فراهم کردن راهی کارآمد برای کار با دادهٔ دودویی طراحی شده‌اند، برخلاف آرایه‌های سنتی JavaScript که می‌توانند عنصرهایی با نوع‌های مختلف نگه دارند."
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار حافظهٔ خام‌اند، پس JavaScript می‌تواند آن‌ها را مستقیم به هر تابعی بدهد، بدون تبدیل داده به بازنمایی دیگر."
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار برای فرستادن داده به تابع‌هایی که با دادهٔ دودویی خام کار می‌کنند، بسیار سریع‌تر از آرایه‌های معمولی‌اند. آرایه‌های نوع‌دار برای این موارد بسیار مناسب‌اند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "WebGL و Canvas:\nرندر سریع گرافیک و پردازش تصویر.",
+        "File APIها:\nخواندن و نوشتن سریع فایل‌های محلی.",
+        "Media APIها:\nکار سریع با دادهٔ صدا و ویدیو.",
+        "WebSockets:\nانتقال کارآمد دادهٔ دودویی روی شبکه."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار راهی برای کار با دادهٔ دودویی می‌دهند که به همان کارآمدی آرایه‌ها در زبان C است."
+    },
+    {
+      "type": "h2",
+      "text": "APIهای مرورگر که از آرایه‌های نوع‌دار پشتیبانی می‌کنند"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(url)\n\n.then(request => request.arrayBuffer())\n\n.then(arrayBuffer =>...);",
+      "caption": "مثال Fetch API"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const canvas = document.getElementById('my_canvas');\n\nconst context = canvas.getContext('2d');\n\nconst imageData = context.getImageData(0, 0, canvas.width, canvas.height);\n\nconst uint8ClampedArray = imageData.data;",
+      "caption": "مثال Canvas"
+    },
+    {
+      "type": "h2",
+      "text": "تفاوت‌ها با آرایه‌های معمولی"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "طول ثابت:\nآرایه‌های نوع‌دار را نمی‌توان با متدهایی مثل push() یا pop() به‌صورت پویا تغییر اندازه داد.",
+        "محدودیت نوع:\nعنصرها باید از نوع دادهٔ مشخص‌شدهٔ آرایهٔ نوع‌دار پیروی کنند.",
+        "بافر زیرین:\nآرایه‌های نوع‌دار نمایی (view) روی یک ArrayBuffer هستند و دستکاری مستقیم دادهٔ دودویی را ممکن می‌کنند."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "انواع آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["نام", "کمینه", "بیشینه", "بایت", "نوع"],
+        ["Int8Array", "-128", "127", "1", "بایت"],
+        ["Uint8Array", "0", "255", "1", "اکتت"],
+        ["Uint8ClampedArray", "0", "255", "1", "اکتت"],
+        ["Int16Array", "-32768", "32767", "2", "عدد کوتاه (short)"],
+        ["Uint16Array", "0", "65535", "2", "عدد کوتاه بدون علامت (unsigned short)"],
+        ["Int32Array", "-2147483648", "2147483647", "4", "عدد بلند (long)"],
+        ["Uint32Array", "0", "4294967295", "4", "عدد بلند بدون علامت (unsigned long)"],
+        ["BigInt64Array", "-263", "263 - 1", "8", "عدد صحیح بزرگ (bigint)"],
+        ["BigUint64Array", "0", "264 - 1", "8", "عدد صحیح بزرگ بدون علامت"],
+        ["", "", "", "", ""],
+        ["Float16Array", "-65504", "65504", "2", "نیم‌دقت بی‌قید"],
+        ["Float32Array", "-3.4e38", "3.4e38", "4", "float بی‌قید"],
+        ["Float64Array", "-1.8e308", "1.8e308", "8", "double بی‌قید"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "عددهای صحیح ۸ بیتی"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نوع داده", "بازه"],
+      "rows": [
+        ["Int8Array", "عدد صحیح علامت‌دار (byte)", "-128/127"],
+        ["Uint8Array", "عدد صحیح بدون علامت (octet)", "0/255"],
+        ["Uint8ClampedArray", "عدد صحیح بدون علامت (octet)", "0/255"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Int8Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Uint8Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Uint8ClampedArray(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_int8"
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ Uint8Array و Uint8ClampedArray"
+    },
+    {
+      "type": "p",
+      "text": "تفاوت Uint8Array و Uint8ClampedArray در نحوهٔ نوشتن مقدارهاست."
+    },
+    {
+      "type": "p",
+      "text": "اگر در Uint8ClampedArray عنصری را مقداری بیرون از بازهٔ ۰ تا ۲۵۵ بدهید، همان ۰ یا ۲۵۵ گذاشته می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "اما آرایهٔ نوع‌دار فقط ۸ بیت اول مقدار را برمی‌دارد."
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار آرایه نیستند."
+    },
+    {
+      "type": "p",
+      "text": "متد isArray() روی یک آرایهٔ نوع‌دار مقدار false برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "خیلی از متدهای آرایه (مثل push و pop) در آرایه‌های نوع‌دار پشتیبانی نمی‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "عددهای صحیح ۱۶ بیتی"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نوع داده", "بازه"],
+      "rows": [
+        ["Int16Array", "عدد صحیح کوتاه", "-32768/32767"],
+        ["Uint16Array", "عدد صحیح کوتاه بدون علامت", "0/65535"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Int16Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Uint16Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_int16"
+    },
+    {
+      "type": "h2",
+      "text": "عددهای صحیح ۳۲ بیتی"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نوع داده", "بازه"],
+      "rows": [
+        ["Int32Array", "عدد صحیح بلند علامت‌دار", "-2147483648 / 2147483647"],
+        ["Uint32Array", "عدد صحیح بلند بدون علامت", "0 / 4294967295"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Int32Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Uint32Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_int32"
+    },
+    {
+      "type": "h2",
+      "text": "عددهای صحیح ۶۴ بیتی"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "نوع داده", "بازه"],
+      "rows": [
+        ["BigInt64Array", "عدد صحیح بزرگ علامت‌دار", "-263/263-1"],
+        ["BigUint64Array", "عدد صحیح بزرگ بدون علامت", "0/264"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Bigint64Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Biguint64Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_bigint64"
+    },
+    {
+      "type": "h2",
+      "text": "عددهای اعشاری"
+    },
+    {
+      "type": "table",
+      "headers": ["نام", "توضیح", "بازه"],
+      "rows": [
+        ["Float16Array", "نیم‌دقت، ۳ رقم دهدهی معنادار", "از -65504 تا 65504"],
+        ["Float32Array", "دقت معمولی، ۷ رقم دهدهی معنادار", "از -3.4e38 تا 3.4e38"],
+        ["Float64Array", "دقت دوگانه، ۱۵ رقم دهدهی معنادار", "از -1.8e308 تا 1.8e308"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "بر اساس استاندارد ECMAScript، محاسبه‌های ریاضی در JavaScript باید با حساب اعشاری دقت دوگانه (double) انجام شود:"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_double_floating_point_900.jpg",
+      "alt": "64-bit"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Float16Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Float32Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = new Float64Array(10);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_float16"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید:"
+    },
+    {
+      "type": "p",
+      "text": "متدهای آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "مرجع آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "بافرهای آرایه (ArrayBuffer)"
+    },
+    {
+      "type": "p",
+      "text": "DataViewها"
+    },
+    {
+      "type": "p",
+      "text": "Atomics"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار یک ویژگی ES6 هستند."
+    },
+    {
+      "type": "p",
+      "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن کامل پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome51", "Edge15", "Firefox54", "Safari10", "Opera38"],
+        ["مه ۲۰۱۶", "آوریل ۲۰۱۷", "ژوئن ۲۰۱۷", "سپتامبر ۲۰۱۶", "ژوئن ۲۰۱۶"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک Uint8Array با طول ۵ بسازید، چند مقدار داخلش بگذارید و با کنسول چاپش کنید؛ بعد طول آن را با length بخوانید و بگویید چرا push() روی آن کار نمی‌کند.",
+      "hint": "آرایه‌های نوع‌دار طول ثابت دارند و متدهایی مثل push و pop را پشتیبانی نمی‌کنند."
+    },
+    {
+      "prompt": "روی همان آرایه isArray() را صدا بزنید و نتیجه را با یک آرایهٔ معمولی مقایسه کنید.",
+      "hint": "isArray روی آرایهٔ نوع‌دار مقدار false برمی‌گرداند؛ آرایه‌های نوع‌دار آرایه نیستند."
+    },
+    {
+      "prompt": "یکی از عنصرهای Uint8Array را ۳۰۰ بگذارید و یکی از عنصرهای Uint8ClampedArray را هم ۳۰۰ بگذارید؛ هر دو را چاپ کنید و تفاوت را توضیح دهید.",
+      "hint": "Uint8ClampedArray مقدار بیرون از بازه را به ۰ یا ۲۵۵ می‌چسباند، اما Uint8Array فقط ۸ بیت اول را نگه می‌دارد."
+    },
+    {
+      "prompt": "یک ArrayBuffer بسازید و روی آن دو نمای مختلف (مثلاً Int8Array و Uint8Array) بگیرید؛ ببینید روی همان بایت‌ها کار می‌کنند.",
+      "hint": "آرایه‌های نوع‌دار view روی ArrayBuffer هستند؛ ArrayBuffer خودش داده است و viewها آن را تفسیر می‌کنند."
+    },
+    {
+      "prompt": "با Canvas یک بوم بسازید، با getImageData دادهٔ پیکسل‌ها را بگیرید و پیام کنید که این داده از کدام نوع آرایه است.",
+      "hint": "خروجی getImageData یک Uint8ClampedArray است، چون مقدارهای رنگ باید در بازهٔ ۰ تا ۲۵۵ بمانند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "ویژگی اصلی آرایه‌های نوع‌دار در مقایسه با آرایه‌های معمولی چیست؟",
+      "options": [
+        "اندازه‌شان پویاست",
+        "طولشان ثابت است و هر عنصر نوع مشخصی دارد",
+        "می‌توانند هر نوع داده‌ای را قاطی کنند",
+        "همیشه سریع‌تر از آرایه‌های معمولی‌اند"
+      ],
+      "answer": 1,
+      "explanation": "آرایه‌های نوع‌دار بافرهایی با طول ثابت‌اند و عنصرها نوع ثابتی دارند؛ به همین دلیل نمی‌توان با push و pop اندازه‌شان را عوض کرد."
+    },
+    {
+      "question": "Uint8ClampedArray اگر مقداری بیرون از بازهٔ ۰ تا ۲۵۵ بگیرد چه می‌کند؟",
+      "options": [
+        "خطا می‌دهد",
+        "مقدار را به ۰ یا ۲۵۵ می‌چسباند",
+        "فقط ۸ بیت اول را نگه می‌دارد",
+        "مقدار را گرد می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "درس توضیح می‌دهد که در نوع clamped مقدارهای بیرون از بازه به ۰ یا ۲۵۵ تبدیل می‌شوند؛ در حالی که آرایهٔ نوع‌دار معمولی ۸ بیت اول را برمی‌دارد."
+    },
+    {
+      "question": "خروجی isArray() روی یک آرایهٔ نوع‌دار چیست؟",
+      "options": ["true", "false", "null", "به نوع آرایه بستگی دارد"],
+      "answer": 1,
+      "explanation": "آرایه‌های نوع‌دار آرایه نیستند؛ isArray روی آن‌ها false برمی‌گرداند و به همین دلیل خیلی از متدهای آرایه هم پشتیبانی نمی‌شوند."
+    },
+    {
+      "question": "آرایهٔ نوع‌دار در واقع چه چیزی است؟",
+      "options": [
+        "یک آرایهٔ معمولی با طول ثابت",
+        "یک نما (view) روی یک ArrayBuffer",
+        "یک شیء برای ذخیرهٔ رشته‌ها",
+        "یک جایگزین برای JSON"
+      ],
+      "answer": 1,
+      "explanation": "آرایه‌های نوع‌دار حافظهٔ خام را از طریق ArrayBuffer می‌بینند و همین باعث می‌شود JavaScript بتواند داده را بدون تبدیل بازنمایی به تابع‌های دیگر بدهد."
+    },
+    {
+      "question": "کدام کاربرد در درس به‌عنوان کاربرد مناسب آرایه‌های نوع‌دار ذکر شده است؟",
+      "options": [
+        "پردازش تصویر و رندر گرافیک در WebGL و Canvas",
+        "ساختن دکمه‌های HTML",
+        "مدیریت رویدادهای صفحه",
+        "ذخیرهٔ کوکی‌ها"
+      ],
+      "answer": 0,
+      "explanation": "درس آرایه‌های نوع‌دار را برای WebGL و Canvas، File APIها، Media APIها و WebSockets مناسب می‌داند، چون این نواحی با دادهٔ دودویی خام کار می‌کنند."
+    }
+  ]
 }

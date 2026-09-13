@@ -1,167 +1,162 @@
 {
- "slug": "js_jquery_dom",
- "course": "js",
- "order": 268,
- "url": "/js/js_jquery_dom.asp",
- "title": "DOM در jQuery",
- "summary": "jQuery برای کار با درخت DOM متدهای کوتاه دارد. در این درس عنصر را با remove از صفحه حذف می‌کنید و والد یک عنصر را با parent و prop می‌گیرید و معادل استاندارد هر کدام را می‌بینید.",
- "objectives": [
-  "عنصر را با remove حذف کنید",
-  "والد عنصر را با parent بگیرید",
-  "نام گره را با prop بخوانید",
-  "معادل استاندارد JavaScript هر متد را بنویسید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "DOM در jQuery"
-  },
-  {
-   "type": "h2",
-   "text": "jQuery در برابر JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "jQuery در سال ۲۰۰۶ توسط John Resig ساخته شد.\nهدفش رسیدگی به ناسازگاری مرورگرها و ساده کردن دستکاری HTML DOM، مدیریت رویداد، انیمیشن و Ajax بود."
-  },
-  {
-   "type": "p",
-   "text": "اما بعد از نسخهٔ ۵ JavaScript (سال ۲۰۰۹)، بیشتر کارهایی که jQuery انجام می‌داد با چند خط JavaScript استاندارد حل می‌شود:"
-  },
-  {
-   "type": "h2",
-   "text": "حذف عنصرهای HTML"
-  },
-  {
-   "type": "p",
-   "text": "یک عنصر HTML را حذف کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "$(\"#id02\").remove();",
-   "caption": "jQuery"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_remove_element"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.getElementById(\"id02\").remove();",
-   "caption": "JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_remove_element"
-  },
-  {
-   "type": "h2",
-   "text": "گرفتن عنصر والد"
-  },
-  {
-   "type": "p",
-   "text": "والد یک عنصر HTML را برگردانید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myParent = $(\"#02\").parent().prop(\"nodeName\"); ;",
-   "caption": "jQuery"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_getparent"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myParent = document.getElementById(\"02\").parentNode.nodeName;",
-   "caption": "JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_getparent"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک عنصر با شناسه بسازید و با متد remove حذفش کنید؛ بعد معادل استاندارد را هم امتحان کنید.",
-   "hint": "در jQuery $(\"#id02\").remove() و در JavaScript document.getElementById(\"id02\").remove()."
-  },
-  {
-   "prompt": "والد یک عنصر را با parent() بگیرید و نام گره‌اش را با prop(\"nodeName\") چاپ کنید.",
-   "hint": "معادل استانداردش parentNode.nodeName است."
-  },
-  {
-   "prompt": "با parent() روی عنصر اصلی صفحه کار کنید و بگویید چه چیزی برمی‌گرداند.",
-   "hint": "والد html سند است؛ ممکن است به گرهٔ سند برسید."
-  },
-  {
-   "prompt": "یک عنصر را با remove حذف کنید، سپس بگویید چرا برخلاف hide دیگر در صفحه نیست و برنمی‌گردد.",
-   "hint": "remove عنصر را از درخت DOM بیرون می‌برد؛ hide فقط پنهانش می‌کند."
-  },
-  {
-   "prompt": "برای عنصری که چند والد تودرتو دارد، parent() را دو بار پشت سر هم صدا بزنید و نتیجه را توضیح دهید.",
-   "hint": "هر فراخوانی یک پله در درخت بالا می‌رود."
-  }
- ],
- "quiz": [
-  {
-   "question": "معادل استاندارد JavaScript برای $(\"#id02\").remove() کدام است؟",
-   "options": [
-    "document.getElementById(\"id02\").remove();",
-    "document.getElementById(\"id02\").display = \"none\";",
-    "document.getElementById(\"id02\").hidden = true;",
-    "document.removeElement(\"id02\");"
-   ],
-   "answer": 0,
-   "explanation": "متد remove در jQuery همان remove() استاندارد DOM را صدا می‌زند که عنصر را از درخت صفحه بیرون می‌برد."
-  },
-  {
-   "question": "متد parent() در jQuery چه چیزی برمی‌گرداند؟",
-   "options": [
-    "فرزندهای عنصر",
-    "والد عنصر",
-    "همهٔ خواهر و برادرها",
-    "خود عنصر"
-   ],
-   "answer": 1,
-   "explanation": "parent() عنصر والد را برمی‌گرداند و معادلش در DOM خصوصیت parentNode است."
-  },
-  {
-   "question": "برای گرفتن نام گرهٔ والد در jQuery از کدام متد استفاده می‌شود؟",
-   "options": [
-    "prop(\"nodeName\")",
-    "attr(\"nodeName\")",
-    "css(\"nodeName\")",
-    "text(\"nodeName\")"
-   ],
-   "answer": 0,
-   "explanation": "در مثال درس نام گره با parent().prop(\"nodeName\") گرفته می‌شود؛ معادلش parentNode.nodeName است."
-  },
-  {
-   "question": "تفاوت remove و hide چیست؟",
-   "options": [
-    "remove عنصر را از صفحه بیرون می‌برد و hide فقط پنهانش می‌کند",
-    "hide عنصر را حذف می‌کند",
-    "هیچ تفاوتی ندارند",
-    "remove فقط در jQuery هست و hide نه"
-   ],
-   "answer": 0,
-   "explanation": "عنصر حذف‌شده دیگر در درخت DOM نیست و باید دوباره ساخته شود؛ عنصر پنهان فقط دیده نمی‌شود."
-  },
-  {
-   "question": "چند بار صدا زدن parent() چه اثری دارد؟",
-   "options": [
-    "هیچ",
-    "هر بار یک سطح بالاتر در درخت می‌رود",
-    "همیشه همان والد اول را می‌دهد",
-    "خطا می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "parent() یک پله در درخت بالا می‌رود؛ صدا زدن دوباره والدِ والد را برمی‌گرداند."
-  }
- ]
+  "slug": "js_jquery_dom",
+  "course": "js",
+  "order": 268,
+  "url": "/js/js_jquery_dom.asp",
+  "title": "DOM در jQuery",
+  "summary": "jQuery برای کار با درخت DOM متدهای کوتاه دارد. در این درس عنصر را با remove از صفحه حذف می‌کنید و والد یک عنصر را با parent و prop می‌گیرید و معادل استاندارد هر کدام را می‌بینید.",
+  "objectives": [
+    "عنصر را با remove حذف کنید",
+    "والد عنصر را با parent بگیرید",
+    "نام گره را با prop بخوانید",
+    "معادل استاندارد JavaScript هر متد را بنویسید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "DOM در jQuery"
+    },
+    {
+      "type": "h2",
+      "text": "jQuery در برابر JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "jQuery در سال ۲۰۰۶ توسط John Resig ساخته شد.\nهدفش رسیدگی به ناسازگاری مرورگرها و ساده کردن دستکاری HTML DOM، مدیریت رویداد، انیمیشن و Ajax بود."
+    },
+    {
+      "type": "p",
+      "text": "اما بعد از نسخهٔ ۵ JavaScript (سال ۲۰۰۹)، بیشتر کارهایی که jQuery انجام می‌داد با چند خط JavaScript استاندارد حل می‌شود:"
+    },
+    {
+      "type": "h2",
+      "text": "حذف عنصرهای HTML"
+    },
+    {
+      "type": "p",
+      "text": "یک عنصر HTML را حذف کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "$(\"#id02\").remove();",
+      "caption": "jQuery"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_remove_element"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.getElementById(\"id02\").remove();",
+      "caption": "JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_remove_element"
+    },
+    {
+      "type": "h2",
+      "text": "گرفتن عنصر والد"
+    },
+    {
+      "type": "p",
+      "text": "والد یک عنصر HTML را برگردانید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myParent = $(\"#02\").parent().prop(\"nodeName\"); ;",
+      "caption": "jQuery"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_getparent"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myParent = document.getElementById(\"02\").parentNode.nodeName;",
+      "caption": "JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_getparent"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک عنصر با شناسه بسازید و با متد remove حذفش کنید؛ بعد معادل استاندارد را هم امتحان کنید.",
+      "hint": "در jQuery $(\"#id02\").remove() و در JavaScript document.getElementById(\"id02\").remove()."
+    },
+    {
+      "prompt": "والد یک عنصر را با parent() بگیرید و نام گره‌اش را با prop(\"nodeName\") چاپ کنید.",
+      "hint": "معادل استانداردش parentNode.nodeName است."
+    },
+    {
+      "prompt": "با parent() روی عنصر اصلی صفحه کار کنید و بگویید چه چیزی برمی‌گرداند.",
+      "hint": "والد html سند است؛ ممکن است به گرهٔ سند برسید."
+    },
+    {
+      "prompt": "یک عنصر را با remove حذف کنید، سپس بگویید چرا برخلاف hide دیگر در صفحه نیست و برنمی‌گردد.",
+      "hint": "remove عنصر را از درخت DOM بیرون می‌برد؛ hide فقط پنهانش می‌کند."
+    },
+    {
+      "prompt": "برای عنصری که چند والد تودرتو دارد، parent() را دو بار پشت سر هم صدا بزنید و نتیجه را توضیح دهید.",
+      "hint": "هر فراخوانی یک پله در درخت بالا می‌رود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "معادل استاندارد JavaScript برای $(\"#id02\").remove() کدام است؟",
+      "options": [
+        "document.getElementById(\"id02\").remove();",
+        "document.getElementById(\"id02\").display = \"none\";",
+        "document.getElementById(\"id02\").hidden = true;",
+        "document.removeElement(\"id02\");"
+      ],
+      "answer": 0,
+      "explanation": "متد remove در jQuery همان remove() استاندارد DOM را صدا می‌زند که عنصر را از درخت صفحه بیرون می‌برد."
+    },
+    {
+      "question": "متد parent() در jQuery چه چیزی برمی‌گرداند؟",
+      "options": ["فرزندهای عنصر", "والد عنصر", "همهٔ خواهر و برادرها", "خود عنصر"],
+      "answer": 1,
+      "explanation": "parent() عنصر والد را برمی‌گرداند و معادلش در DOM خصوصیت parentNode است."
+    },
+    {
+      "question": "برای گرفتن نام گرهٔ والد در jQuery از کدام متد استفاده می‌شود؟",
+      "options": [
+        "prop(\"nodeName\")",
+        "attr(\"nodeName\")",
+        "css(\"nodeName\")",
+        "text(\"nodeName\")"
+      ],
+      "answer": 0,
+      "explanation": "در مثال درس نام گره با parent().prop(\"nodeName\") گرفته می‌شود؛ معادلش parentNode.nodeName است."
+    },
+    {
+      "question": "تفاوت remove و hide چیست؟",
+      "options": [
+        "remove عنصر را از صفحه بیرون می‌برد و hide فقط پنهانش می‌کند",
+        "hide عنصر را حذف می‌کند",
+        "هیچ تفاوتی ندارند",
+        "remove فقط در jQuery هست و hide نه"
+      ],
+      "answer": 0,
+      "explanation": "عنصر حذف‌شده دیگر در درخت DOM نیست و باید دوباره ساخته شود؛ عنصر پنهان فقط دیده نمی‌شود."
+    },
+    {
+      "question": "چند بار صدا زدن parent() چه اثری دارد؟",
+      "options": [
+        "هیچ",
+        "هر بار یک سطح بالاتر در درخت می‌رود",
+        "همیشه همان والد اول را می‌دهد",
+        "خطا می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "parent() یک پله در درخت بالا می‌رود؛ صدا زدن دوباره والدِ والد را برمی‌گرداند."
+    }
+  ]
 }

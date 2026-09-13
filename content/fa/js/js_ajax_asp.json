@@ -1,172 +1,167 @@
 {
- "slug": "js_ajax_asp",
- "course": "js",
- "order": 262,
- "url": "/js/js_ajax_asp.asp",
- "title": "مثال ASP با AJAX",
- "summary": "این درس همان مثال پیشنهاد زندهٔ PHP را با ASP می‌سازد. می‌بینید کلاینت همان کلاینت است، فقط فایل سمت سرور با response.write و request.querystring پاسخ می‌دهد.",
- "objectives": [
-  "پارامتر ورودی را در ASP با request.querystring بخوانید",
-  "پاسخ را با response.write به مرورگر بفرستید",
-  "از ذخیره شدن پاسخ در حافظهٔ موقت جلوگیری کنید",
-  "تفاوت مثال PHP و ASP را بیان کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "مثال ASP با AJAX"
-  },
-  {
-   "type": "p",
-   "text": "AJAX برای ساختن برنامه‌های تعاملی‌تر به کار می‌رود."
-  },
-  {
-   "type": "h2",
-   "text": "مثال ASP با AJAX"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر نشان می‌دهد یک صفحهٔ وب چگونه وقتی کاربر در یک فیلد ورودی نویسه تایپ می‌کند، با سرور وب ارتباط می‌گیرد:"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "p",
-   "text": "در مثال بالا، وقتی کاربر یک نویسه در فیلد ورودی تایپ می‌کند، تابعی به نام showHint() اجرا می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "این تابع با رویداد onkeyup فعال می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "کد این است:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p>Start typing a name in the input field below:</p>\n\n<p>Suggestions: <span id=\"txtHint\"></span></p>\n\n<form>\n\nFirst name: <input type=\"text\" onkeyup=\"showHint(this.value)\">\n</form>\n\n<script>\n\nfunction showHint(str) {\n\n  if (str.length == 0) {\n\n    document.getElementById(\"txtHint\").innerHTML = \"\";\n\n    return;\n\n  } else {\n\n    const xmlhttp = new XMLHttpRequest();\n\n    xmlhttp.onload = function() {\n\n      document.getElementById(\"txtHint\").innerHTML = this.responseText;\n\n    }\n\n  xmlhttp.open(\"GET\", \"gethint.asp?q=\" + str);\n\n  xmlhttp.send();\n\n  }\n\n}\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_suggest_asp"
-  },
-  {
-   "type": "p",
-   "text": "توضیح کد:"
-  },
-  {
-   "type": "p",
-   "text": "نخست بررسی می‌کنیم که فیلد ورودی خالی است یا نه (str.length == 0). اگر خالی بود، محتوای نگه‌دارندهٔ txtHint پاک می‌شود و از تابع بیرون می‌آییم."
-  },
-  {
-   "type": "p",
-   "text": "اما اگر فیلد ورودی خالی نبود، این کارها را انجام دهید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء XMLHttpRequest بسازید",
-    "تابعی بسازید که وقتی پاسخ سرور آماده شد اجرا شود",
-    "درخواست را به یک فایل ASP روی سرور (gethint.asp) بفرستید",
-    "توجه کنید که پارامتر q به آدرس اضافه شده است: gethint.asp?q=\"+str",
-    "متغیر str محتوای فیلد ورودی را نگه می‌دارد"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "فایل ASP: \"gethint.asp\""
-  },
-  {
-   "type": "p",
-   "text": "فایل ASP یک آرایهٔ نام را بررسی می‌کند و نام (یا نام‌های) متناظر را به مرورگر برمی‌گرداند:"
-  },
-  {
-   "type": "p",
-   "text": "<%\nresponse.expires=-1\ndim a(30)\n'پر کردن آرایه با نام‌ها\na(1)=\"Anna\"\na(2)=\"Brittany\"\na(3)=\"Cinderella\"\na(4)=\"Diana\"\na(5)=\"Eva\"\na(6)=\"Fiona\"\na(7)=\"Gunda\"\na(8)=\"Hege\"\na(9)=\"Inga\"\na(10)=\"Johanna\"\na(11)=\"Kitty\"\na(12)=\"Linda\"\na(13)=\"Nina\"\na(14)=\"Ophelia\"\na(15)=\"Petunia\"\na(16)=\"Amanda\"\na(17)=\"Raquel\"\na(18)=\"Cindy\"\na(19)=\"Doris\"\na(20)=\"Eve\"\na(21)=\"Evita\"\na(22)=\"Sunniva\"\na(23)=\"Tove\"\na(24)=\"Unni\"\na(25)=\"Violet\"\na(26)=\"Liza\"\na(27)=\"Elizabeth\"\na(28)=\"Ellen\"\na(29)=\"Wenche\"\na(30)=\"Vicky\"\n'گرفتن پارامتر q از URL\nq=ucase(request.querystring(\"q\"))\n'اگر طول q بزرگ‌تر از صفر باشد، همهٔ پیشنهادها را در آرایه بگرد\nif len(q)>0 then\n\n  hint=\"\"\n\n  for i=1 to 30\n\n    if q=ucase(mid(a(i),1,len(q))) then\n\n      if hint=\"\" then\n\n        hint=a(i)\n\n      else\n\n        hint=hint & \" , \" & a(i)\n\n      end if\n\n    end if\n\n  next\nend if\n'اگر پیشنهادی پیدا نشد «no suggestion» را چاپ کن\n'یا مقدارهای درست را چاپ کن\nif hint=\"\" then\n\n  response.write(\"no suggestion\")\nelse\n\n  response.write(hint)\nend if\n%>"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل gethint.asp بسازید که آرایه‌ای از نام‌ها داشته باشد و بر اساس پارامتر q نام‌های متناظر را برگرداند؛ بعد از مرورگر صدا بزنیدش.",
-   "hint": "پارامتر با request.querystring(\"q\") گرفته می‌شود و خروجی با response.write برگردانده می‌شود."
-  },
-  {
-   "prompt": "یک فیلد ورودی با رویداد onkeyup بسازید که showHint() را صدا بزند و پاسخ را در txtHint بنویسد.",
-   "hint": "پیش از فرستادن درخواست بررسی کنید که فیلد خالی نباشد."
-  },
-  {
-   "prompt": "در فایل ASP خط response.expires = -1 را حذف کنید و تفاوت رفتار را در مرورگر ببینید.",
-   "hint": "این خط از ذخیره شدن پاسخ در حافظهٔ موقت جلوگیری می‌کند."
-  },
-  {
-   "prompt": "خروجی فایل ASP را مستقیم در مرورگر با آدرس gethint.asp?q=A باز کنید و ببینید چه برمی‌گردد.",
-   "hint": "پاسخ همان متنی است که AJAX می‌گیرد و در صفحه می‌گذارد."
-  },
-  {
-   "prompt": "در کد کلاینت، پارامتر q را از URL حذف کنید و نتیجه را توضیح دهید.",
-   "hint": "بدون پارامتر q فایل سرور ورودی خالی می‌گیرد و پیشنهادی برنمی‌گرداند."
-  }
- ],
- "quiz": [
-  {
-   "question": "در کد ASP، پارامتر q از کجا خوانده می‌شود؟",
-   "options": [
-    "request.form(\"q\")",
-    "request.querystring(\"q\")",
-    "session(\"q\")",
-    "cookie(\"q\")"
-   ],
-   "answer": 1,
-   "explanation": "پارامتر در آدرس URL فرستاده می‌شود، پس در سمت سرور با request.querystring گرفته می‌شود."
-  },
-  {
-   "question": "خروجی فایل ASP با کدام دستور به مرورگر فرستاده می‌شود؟",
-   "options": [
-    "response.write",
-    "echo",
-    "print",
-    "return"
-   ],
-   "answer": 0,
-   "explanation": "در ASP خروجی با response.write نوشته می‌شود؛ echo و print مربوط به زبان‌های دیگری مثل PHP هستند."
-  },
-  {
-   "question": "خط response.expires = -1 در فایل ASP چه کاری می‌کند؟",
-   "options": [
-    "پاسخ را در حافظهٔ موقت ذخیره می‌کند",
-    "مانع ذخیره شدن پاسخ در حافظهٔ موقت می‌شود",
-    "پارامتر q را می‌خواند",
-    "طول پاسخ را تعیین می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "با این خط پاسخ منقضی می‌شود و مرورگر نتیجهٔ قدیمی را از حافظهٔ موقت برنمی‌گرداند."
-  },
-  {
-   "question": "اگر طول q بزرگ‌تر از صفر نباشد، فایل ASP چه می‌کند؟",
-   "options": [
-    "حلقه را اجرا می‌کند",
-    "هیچ پیشنهادی نمی‌سازد و «no suggestion» می‌نویسد",
-    "خطا می‌دهد",
-    "همهٔ نام‌ها را می‌نویسد"
-   ],
-   "answer": 1,
-   "explanation": "در کد ASP حلقهٔ جست‌وجو فقط وقتی len(q)>0 باشد اجرا می‌شود و در پایان اگر hint خالی بماند «no suggestion» چاپ می‌شود."
-  },
-  {
-   "question": "تفاوت اصلی مثال ASP با مثال PHP این درس در چیست؟",
-   "options": [
-    "نام فایل سرور و زبان اسکریپت سمت سرور",
-    "رویداد کلاینت",
-    "متد فرستادن درخواست",
-    "شکل پاسخگویی در صفحه"
-   ],
-   "answer": 0,
-   "explanation": "ساختار کلاینت یکی است (رویداد onkeyup و پارامتر q)، فقط فایل سمت سرور در یکی ASP و در دیگری PHP است."
-  }
- ]
+  "slug": "js_ajax_asp",
+  "course": "js",
+  "order": 262,
+  "url": "/js/js_ajax_asp.asp",
+  "title": "مثال ASP با AJAX",
+  "summary": "این درس همان مثال پیشنهاد زندهٔ PHP را با ASP می‌سازد. می‌بینید کلاینت همان کلاینت است، فقط فایل سمت سرور با response.write و request.querystring پاسخ می‌دهد.",
+  "objectives": [
+    "پارامتر ورودی را در ASP با request.querystring بخوانید",
+    "پاسخ را با response.write به مرورگر بفرستید",
+    "از ذخیره شدن پاسخ در حافظهٔ موقت جلوگیری کنید",
+    "تفاوت مثال PHP و ASP را بیان کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "مثال ASP با AJAX"
+    },
+    {
+      "type": "p",
+      "text": "AJAX برای ساختن برنامه‌های تعاملی‌تر به کار می‌رود."
+    },
+    {
+      "type": "h2",
+      "text": "مثال ASP با AJAX"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر نشان می‌دهد یک صفحهٔ وب چگونه وقتی کاربر در یک فیلد ورودی نویسه تایپ می‌کند، با سرور وب ارتباط می‌گیرد:"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا، وقتی کاربر یک نویسه در فیلد ورودی تایپ می‌کند، تابعی به نام showHint() اجرا می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "این تابع با رویداد onkeyup فعال می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "کد این است:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p>Start typing a name in the input field below:</p>\n\n<p>Suggestions: <span id=\"txtHint\"></span></p>\n\n<form>\n\nFirst name: <input type=\"text\" onkeyup=\"showHint(this.value)\">\n</form>\n\n<script>\n\nfunction showHint(str) {\n\n  if (str.length == 0) {\n\n    document.getElementById(\"txtHint\").innerHTML = \"\";\n\n    return;\n\n  } else {\n\n    const xmlhttp = new XMLHttpRequest();\n\n    xmlhttp.onload = function() {\n\n      document.getElementById(\"txtHint\").innerHTML = this.responseText;\n\n    }\n\n  xmlhttp.open(\"GET\", \"gethint.asp?q=\" + str);\n\n  xmlhttp.send();\n\n  }\n\n}\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_suggest_asp"
+    },
+    {
+      "type": "p",
+      "text": "توضیح کد:"
+    },
+    {
+      "type": "p",
+      "text": "نخست بررسی می‌کنیم که فیلد ورودی خالی است یا نه (str.length == 0). اگر خالی بود، محتوای نگه‌دارندهٔ txtHint پاک می‌شود و از تابع بیرون می‌آییم."
+    },
+    {
+      "type": "p",
+      "text": "اما اگر فیلد ورودی خالی نبود، این کارها را انجام دهید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک شیء XMLHttpRequest بسازید",
+        "تابعی بسازید که وقتی پاسخ سرور آماده شد اجرا شود",
+        "درخواست را به یک فایل ASP روی سرور (gethint.asp) بفرستید",
+        "توجه کنید که پارامتر q به آدرس اضافه شده است: gethint.asp?q=\"+str",
+        "متغیر str محتوای فیلد ورودی را نگه می‌دارد"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "فایل ASP: \"gethint.asp\""
+    },
+    {
+      "type": "p",
+      "text": "فایل ASP یک آرایهٔ نام را بررسی می‌کند و نام (یا نام‌های) متناظر را به مرورگر برمی‌گرداند:"
+    },
+    {
+      "type": "p",
+      "text": "<%\nresponse.expires=-1\ndim a(30)\n'پر کردن آرایه با نام‌ها\na(1)=\"Anna\"\na(2)=\"Brittany\"\na(3)=\"Cinderella\"\na(4)=\"Diana\"\na(5)=\"Eva\"\na(6)=\"Fiona\"\na(7)=\"Gunda\"\na(8)=\"Hege\"\na(9)=\"Inga\"\na(10)=\"Johanna\"\na(11)=\"Kitty\"\na(12)=\"Linda\"\na(13)=\"Nina\"\na(14)=\"Ophelia\"\na(15)=\"Petunia\"\na(16)=\"Amanda\"\na(17)=\"Raquel\"\na(18)=\"Cindy\"\na(19)=\"Doris\"\na(20)=\"Eve\"\na(21)=\"Evita\"\na(22)=\"Sunniva\"\na(23)=\"Tove\"\na(24)=\"Unni\"\na(25)=\"Violet\"\na(26)=\"Liza\"\na(27)=\"Elizabeth\"\na(28)=\"Ellen\"\na(29)=\"Wenche\"\na(30)=\"Vicky\"\n'گرفتن پارامتر q از URL\nq=ucase(request.querystring(\"q\"))\n'اگر طول q بزرگ‌تر از صفر باشد، همهٔ پیشنهادها را در آرایه بگرد\nif len(q)>0 then\n\n  hint=\"\"\n\n  for i=1 to 30\n\n    if q=ucase(mid(a(i),1,len(q))) then\n\n      if hint=\"\" then\n\n        hint=a(i)\n\n      else\n\n        hint=hint & \" , \" & a(i)\n\n      end if\n\n    end if\n\n  next\nend if\n'اگر پیشنهادی پیدا نشد «no suggestion» را چاپ کن\n'یا مقدارهای درست را چاپ کن\nif hint=\"\" then\n\n  response.write(\"no suggestion\")\nelse\n\n  response.write(hint)\nend if\n%>"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل gethint.asp بسازید که آرایه‌ای از نام‌ها داشته باشد و بر اساس پارامتر q نام‌های متناظر را برگرداند؛ بعد از مرورگر صدا بزنیدش.",
+      "hint": "پارامتر با request.querystring(\"q\") گرفته می‌شود و خروجی با response.write برگردانده می‌شود."
+    },
+    {
+      "prompt": "یک فیلد ورودی با رویداد onkeyup بسازید که showHint() را صدا بزند و پاسخ را در txtHint بنویسد.",
+      "hint": "پیش از فرستادن درخواست بررسی کنید که فیلد خالی نباشد."
+    },
+    {
+      "prompt": "در فایل ASP خط response.expires = -1 را حذف کنید و تفاوت رفتار را در مرورگر ببینید.",
+      "hint": "این خط از ذخیره شدن پاسخ در حافظهٔ موقت جلوگیری می‌کند."
+    },
+    {
+      "prompt": "خروجی فایل ASP را مستقیم در مرورگر با آدرس gethint.asp?q=A باز کنید و ببینید چه برمی‌گردد.",
+      "hint": "پاسخ همان متنی است که AJAX می‌گیرد و در صفحه می‌گذارد."
+    },
+    {
+      "prompt": "در کد کلاینت، پارامتر q را از URL حذف کنید و نتیجه را توضیح دهید.",
+      "hint": "بدون پارامتر q فایل سرور ورودی خالی می‌گیرد و پیشنهادی برنمی‌گرداند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در کد ASP، پارامتر q از کجا خوانده می‌شود؟",
+      "options": [
+        "request.form(\"q\")",
+        "request.querystring(\"q\")",
+        "session(\"q\")",
+        "cookie(\"q\")"
+      ],
+      "answer": 1,
+      "explanation": "پارامتر در آدرس URL فرستاده می‌شود، پس در سمت سرور با request.querystring گرفته می‌شود."
+    },
+    {
+      "question": "خروجی فایل ASP با کدام دستور به مرورگر فرستاده می‌شود؟",
+      "options": ["response.write", "echo", "print", "return"],
+      "answer": 0,
+      "explanation": "در ASP خروجی با response.write نوشته می‌شود؛ echo و print مربوط به زبان‌های دیگری مثل PHP هستند."
+    },
+    {
+      "question": "خط response.expires = -1 در فایل ASP چه کاری می‌کند؟",
+      "options": [
+        "پاسخ را در حافظهٔ موقت ذخیره می‌کند",
+        "مانع ذخیره شدن پاسخ در حافظهٔ موقت می‌شود",
+        "پارامتر q را می‌خواند",
+        "طول پاسخ را تعیین می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "با این خط پاسخ منقضی می‌شود و مرورگر نتیجهٔ قدیمی را از حافظهٔ موقت برنمی‌گرداند."
+    },
+    {
+      "question": "اگر طول q بزرگ‌تر از صفر نباشد، فایل ASP چه می‌کند؟",
+      "options": [
+        "حلقه را اجرا می‌کند",
+        "هیچ پیشنهادی نمی‌سازد و «no suggestion» می‌نویسد",
+        "خطا می‌دهد",
+        "همهٔ نام‌ها را می‌نویسد"
+      ],
+      "answer": 1,
+      "explanation": "در کد ASP حلقهٔ جست‌وجو فقط وقتی len(q)>0 باشد اجرا می‌شود و در پایان اگر hint خالی بماند «no suggestion» چاپ می‌شود."
+    },
+    {
+      "question": "تفاوت اصلی مثال ASP با مثال PHP این درس در چیست؟",
+      "options": [
+        "نام فایل سرور و زبان اسکریپت سمت سرور",
+        "رویداد کلاینت",
+        "متد فرستادن درخواست",
+        "شکل پاسخگویی در صفحه"
+      ],
+      "answer": 0,
+      "explanation": "ساختار کلاینت یکی است (رویداد onkeyup و پارامتر q)، فقط فایل سمت سرور در یکی ASP و در دیگری PHP است."
+    }
+  ]
 }

@@ -1,343 +1,274 @@
 {
- "slug": "js_htmldom_methods",
- "course": "js",
- "order": 141,
- "url": "/js/js_htmldom_methods.asp",
- "title": "API در DOM",
- "summary": "API مجموعه‌ای از متدها و خصوصیت‌هاست که مرورگر در اختیار JavaScript می‌گذارد. این درس نقطهٔ ورود document، متدهای انتخاب عنصر، خصوصیت‌های خواندن و تغییر محتوا و متدهای ساختاردهی درخت DOM را معرفی می‌کند.",
- "objectives": [
-  "توضیح دهید API چیست و چرا document نقطهٔ ورود است",
-  "متدهای انتخاب عنصر مثل getElementById و querySelector را تشخیص دهید",
-  "تفاوت خصوصیت innerHTML با textContent را بگویید",
-  "متدهای ساخت، حذف و جایگزینی عنصر را در جدول پیدا کنید",
-  "برای یک رویداد onclick یک event handler بنویسید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "API در DOM"
-  },
-  {
-   "type": "h2",
-   "text": "رابط برنامه‌نویسی برنامه‌ها"
-  },
-  {
-   "type": "p",
-   "text": "DOM API (رابط برنامه‌نویسی برنامه‌ها) مجموعه‌ای از متدها و خصوصیت‌هاست که به JavaScript اجازه می‌دهد محتوا، ساختار و استایل هر عنصر HTML را تغییر دهد."
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_htmltree_800.svg",
-   "alt": "DOM HTML tree"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<html>\n\n<body>\n\n<p id=\"demo\"></p>\n\n<script>\n\n// Access a paragraph Element\n\nconst myPara = document.getElementById(\"demo\");\n\n// Change the content of the Element\n\nmyPara.innerHTML = \"Hello World!\";\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_method"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "p",
-   "text": "document همان سند HTML است."
-  },
-  {
-   "type": "p",
-   "text": "getElementById() یک متد روی document است."
-  },
-  {
-   "type": "p",
-   "text": "myPara = getElementById(\"demo\") عنصر \"demo\" را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "innerHTML یک خصوصیت عنصر است."
-  },
-  {
-   "type": "p",
-   "text": "myPara.innerHTML = \"Hello World!\" این خصوصیت را تغییر می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "توانایی‌های DOM API"
-  },
-  {
-   "type": "p",
-   "text": "DOM API این توانایی‌ها را به ما می‌دهد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "پیدا کردن و انتخاب عنصرها",
-    "تغییر محتوا و ویژگی‌های عنصرها",
-    "افزودن، حذف یا تغییر عنصرها",
-    "تغییر استایل‌های CSS",
-    "افزودن event listener برای واکنش به ورودی کاربر"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "زبان، JavaScript است"
-  },
-  {
-   "type": "p",
-   "text": "DOM API استانداردی است برای اینکه عنصرهای DOM را چگونه بگیریم، تغییر دهیم، اضافه کنیم یا حذف کنیم."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript زبانی است که در مرورگرها برای دسترسی به DOM از طریق API به کار می‌رود."
-  },
-  {
-   "type": "h2",
-   "text": "متدها و خصوصیت‌های API"
-  },
-  {
-   "type": "p",
-   "text": "برنامه‌نویسان از شیءهای سراسری مثل document و window به‌عنوان نقطهٔ ورود به هر API استفاده می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "اگر بخواهید به هر عنصری در صفحهٔ HTML دسترسی پیدا کنید، همیشه با گرفتن شیء document شروع می‌کنید. شیء document نمایندهٔ صفحهٔ وب شماست."
-  },
-  {
-   "type": "p",
-   "text": "برای دست‌کاری HTML با JavaScript، نخست باید یک عنصر را انتخاب کنید."
-  },
-  {
-   "type": "p",
-   "text": "در ادامه چند نمونه می‌بینید که چگونه با شیء document به HTML دسترسی پیدا کنید:"
-  },
-  {
-   "type": "h2",
-   "text": "انتخاب عنصرهای HTML"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "متد",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "document.getElementById(id)",
-     "پیدا کردن یک عنصر با شناسهٔ آن"
-    ],
-    [
-     "document.getElementsByTagName(name)",
-     "پیدا کردن عنصرها با نام تگ"
-    ],
-    [
-     "document.getElementsByClassName(name)",
-     "پیدا کردن عنصرها با نام کلاس"
-    ],
-    [
-     "document.querySelector(selector)",
-     "پیدا کردن نخستین عنصری که با یک انتخابگر CSS مطابق است"
-    ],
-    [
-     "document.querySelectorAll(selector)",
-     "پیدا کردن همهٔ عنصرهایی که با یک انتخابگر CSS مطابق‌اند"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "شیء document مالک همهٔ شیءهای دیگر در صفحهٔ وب شماست."
-  },
-  {
-   "type": "h2",
-   "text": "دسترسی به محتوای عنصر"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "خصوصیت",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "element.innerHTML",
-     "محتوای HTML یک عنصر"
-    ],
-    [
-     "element.textContent",
-     "محتوای متنی یک عنصر"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "دسترسی به ویژگی‌های عنصر"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "خصوصیت",
-     "توضیح"
-    ],
-    [
-     "element.attribute",
-     "تغییر مقدار ویژگی یک عنصر HTML"
-    ],
-    [
-     "element.style.property",
-     "استایل یک عنصر HTML"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تغییر ویژگی‌های عنصر"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "element.setAttribute()",
-     "ساختن یا تنظیم یک ویژگی تازه"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "دست‌کاری ساختار"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "document.createElement()",
-     "ساختن یک عنصر HTML تازه"
-    ],
-    [
-     "document.removeChild()",
-     "حذف یک عنصر HTML"
-    ],
-    [
-     "document.appendChild()",
-     "افزودن یک عنصر HTML"
-    ],
-    [
-     "document.replaceChild()",
-     "جایگزین کردن یک عنصر HTML"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "افزودن event handler"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "متد",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "document.getElementById(id).onclick = function(){code}",
-     "افزودن کد event handler به رویداد onclick"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل api.html بسازید که یک پاراگراف با id=\"demo\" داشته باشد؛ با getElementById آن را بگیرید و با innerHTML متنش را به «Hello World!» تغییر دهید.",
-   "hint": "ترتیب کار سه بخش است: انتخاب عنصر، تغییر خصوصیت، دیدن نتیجه در صفحه."
-  },
-  {
-   "prompt": "همان عنصر را با querySelector(\"#demo\") انتخاب کنید و بگویید کدام روش را می‌پسندید.",
-   "hint": "querySelector نخستین عنصری را می‌دهد که با انتخابگر CSS مطابق است."
-  },
-  {
-   "prompt": "یک عنصر تازه با createElement بسازید، متنش را پر کنید و با appendChild به صفحه اضافه کنید.",
-   "hint": "نخست createElement، بعد مقداردهی به textContent یا innerHTML، و در پایان appendChild روی عنصر والد."
-  },
-  {
-   "prompt": "تفاوت innerHTML و textContent را با یک متن حاوی تگ آزمایش کنید و نتیجه را در کنسول ببینید.",
-   "hint": "یکی رشته را به‌عنوان HTML می‌فهمد و دیگری فقط متن خام می‌گذارد؛ همین باعث تفاوت خروجی می‌شود."
-  },
-  {
-   "prompt": "با setAttribute ویژگی id یک عنصر را عوض کنید و بعد با getElementById ببینید آیا عنصر با شناسهٔ تازه پیدا می‌شود.",
-   "hint": "setAttribute(\"id\", \"newName\") شناسه را تغییر می‌دهد؛ برای خواندن مقدار از getAttribute استفاده کنید."
-  }
- ],
- "quiz": [
-  {
-   "question": "نقطهٔ ورود برای دسترسی به عنصرهای صفحهٔ وب کدام شیء است؟",
-   "options": [
-    "window.alert",
-    "document",
-    "console",
-    "element.body"
-   ],
-   "answer": 1,
-   "explanation": "همیشه با شیء document شروع می‌کنید؛ این شیء مالک همهٔ شیءهای دیگر صفحه است و نمایندهٔ صفحهٔ وب شماست."
-  },
-  {
-   "question": "کدام متد نخستین عنصری را برمی‌گرداند که با یک انتخابگر CSS مطابق است؟",
-   "options": [
-    "getElementById",
-    "getElementsByTagName",
-    "querySelector",
-    "querySelectorAll"
-   ],
-   "answer": 2,
-   "explanation": "querySelector اولین تطابق را می‌دهد و querySelectorAll همهٔ تطابق‌ها را؛ دو متد دیگر با شناسه و نام تگ کار می‌کنند."
-  },
-  {
-   "question": "برای افزودن یک عنصر ساخته‌شده به صفحه از کدام متد استفاده می‌کنیم؟",
-   "options": [
-    "createElement",
-    "appendChild",
-    "removeChild",
-    "setAttribute"
-   ],
-   "answer": 1,
-   "explanation": "createElement فقط عنصر را در حافظه می‌سازد؛ تا زمانی که با appendChild به یک عنصر والد افزوده نشود، در صفحه دیده نمی‌شود."
-  },
-  {
-   "question": "تفاوت innerHTML و textContent چیست؟",
-   "options": [
-    "innerHTML محتوای HTML را می‌فهمد و textContent فقط متن خام را می‌گذارد",
-    "textContent تگ‌ها را می‌سازد و innerHTML نمی‌تواند",
-    "هیچ تفاوتی ندارند",
-    "innerHTML فقط برای ویژگی‌ها است"
-   ],
-   "answer": 0,
-   "explanation": "innerHTML رشته را به‌عنوان HTML تفسیر می‌کند و تگ‌های داخلش را می‌سازد؛ textContent همان متن خام را بدون تفسیر تگ می‌گذارد."
-  },
-  {
-   "question": "کدام مورد یک متد روی document برای ساخت عنصر تازه است؟",
-   "options": [
-    "document.querySelector()",
-    "document.createElement()",
-    "document.textContent",
-    "document.innerHTML"
-   ],
-   "answer": 1,
-   "explanation": "createElement یک عنصر تازه می‌سازد. querySelector فقط انتخاب می‌کند و دو مورد دیگر خصوصیت هستند، نه متد."
-  }
- ]
+  "slug": "js_htmldom_methods",
+  "course": "js",
+  "order": 141,
+  "url": "/js/js_htmldom_methods.asp",
+  "title": "API در DOM",
+  "summary": "API مجموعه‌ای از متدها و خصوصیت‌هاست که مرورگر در اختیار JavaScript می‌گذارد. این درس نقطهٔ ورود document، متدهای انتخاب عنصر، خصوصیت‌های خواندن و تغییر محتوا و متدهای ساختاردهی درخت DOM را معرفی می‌کند.",
+  "objectives": [
+    "توضیح دهید API چیست و چرا document نقطهٔ ورود است",
+    "متدهای انتخاب عنصر مثل getElementById و querySelector را تشخیص دهید",
+    "تفاوت خصوصیت innerHTML با textContent را بگویید",
+    "متدهای ساخت، حذف و جایگزینی عنصر را در جدول پیدا کنید",
+    "برای یک رویداد onclick یک event handler بنویسید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "API در DOM"
+    },
+    {
+      "type": "h2",
+      "text": "رابط برنامه‌نویسی برنامه‌ها"
+    },
+    {
+      "type": "p",
+      "text": "DOM API (رابط برنامه‌نویسی برنامه‌ها) مجموعه‌ای از متدها و خصوصیت‌هاست که به JavaScript اجازه می‌دهد محتوا، ساختار و استایل هر عنصر HTML را تغییر دهد."
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_htmltree_800.svg",
+      "alt": "DOM HTML tree"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<html>\n\n<body>\n\n<p id=\"demo\"></p>\n\n<script>\n\n// Access a paragraph Element\n\nconst myPara = document.getElementById(\"demo\");\n\n// Change the content of the Element\n\nmyPara.innerHTML = \"Hello World!\";\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_method"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "document همان سند HTML است."
+    },
+    {
+      "type": "p",
+      "text": "getElementById() یک متد روی document است."
+    },
+    {
+      "type": "p",
+      "text": "myPara = getElementById(\"demo\") عنصر \"demo\" را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "innerHTML یک خصوصیت عنصر است."
+    },
+    {
+      "type": "p",
+      "text": "myPara.innerHTML = \"Hello World!\" این خصوصیت را تغییر می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "توانایی‌های DOM API"
+    },
+    {
+      "type": "p",
+      "text": "DOM API این توانایی‌ها را به ما می‌دهد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "پیدا کردن و انتخاب عنصرها",
+        "تغییر محتوا و ویژگی‌های عنصرها",
+        "افزودن، حذف یا تغییر عنصرها",
+        "تغییر استایل‌های CSS",
+        "افزودن event listener برای واکنش به ورودی کاربر"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "زبان، JavaScript است"
+    },
+    {
+      "type": "p",
+      "text": "DOM API استانداردی است برای اینکه عنصرهای DOM را چگونه بگیریم، تغییر دهیم، اضافه کنیم یا حذف کنیم."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript زبانی است که در مرورگرها برای دسترسی به DOM از طریق API به کار می‌رود."
+    },
+    {
+      "type": "h2",
+      "text": "متدها و خصوصیت‌های API"
+    },
+    {
+      "type": "p",
+      "text": "برنامه‌نویسان از شیءهای سراسری مثل document و window به‌عنوان نقطهٔ ورود به هر API استفاده می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "اگر بخواهید به هر عنصری در صفحهٔ HTML دسترسی پیدا کنید، همیشه با گرفتن شیء document شروع می‌کنید. شیء document نمایندهٔ صفحهٔ وب شماست."
+    },
+    {
+      "type": "p",
+      "text": "برای دست‌کاری HTML با JavaScript، نخست باید یک عنصر را انتخاب کنید."
+    },
+    {
+      "type": "p",
+      "text": "در ادامه چند نمونه می‌بینید که چگونه با شیء document به HTML دسترسی پیدا کنید:"
+    },
+    {
+      "type": "h2",
+      "text": "انتخاب عنصرهای HTML"
+    },
+    {
+      "type": "table",
+      "headers": ["متد", "توضیح"],
+      "rows": [
+        ["document.getElementById(id)", "پیدا کردن یک عنصر با شناسهٔ آن"],
+        ["document.getElementsByTagName(name)", "پیدا کردن عنصرها با نام تگ"],
+        ["document.getElementsByClassName(name)", "پیدا کردن عنصرها با نام کلاس"],
+        [
+          "document.querySelector(selector)",
+          "پیدا کردن نخستین عنصری که با یک انتخابگر CSS مطابق است"
+        ],
+        [
+          "document.querySelectorAll(selector)",
+          "پیدا کردن همهٔ عنصرهایی که با یک انتخابگر CSS مطابق‌اند"
+        ]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "شیء document مالک همهٔ شیءهای دیگر در صفحهٔ وب شماست."
+    },
+    {
+      "type": "h2",
+      "text": "دسترسی به محتوای عنصر"
+    },
+    {
+      "type": "table",
+      "headers": ["خصوصیت", "توضیح"],
+      "rows": [
+        ["element.innerHTML", "محتوای HTML یک عنصر"],
+        ["element.textContent", "محتوای متنی یک عنصر"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "دسترسی به ویژگی‌های عنصر"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["خصوصیت", "توضیح"],
+        ["element.attribute", "تغییر مقدار ویژگی یک عنصر HTML"],
+        ["element.style.property", "استایل یک عنصر HTML"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "تغییر ویژگی‌های عنصر"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["element.setAttribute()", "ساختن یا تنظیم یک ویژگی تازه"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "دست‌کاری ساختار"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["document.createElement()", "ساختن یک عنصر HTML تازه"],
+        ["document.removeChild()", "حذف یک عنصر HTML"],
+        ["document.appendChild()", "افزودن یک عنصر HTML"],
+        ["document.replaceChild()", "جایگزین کردن یک عنصر HTML"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "افزودن event handler"
+    },
+    {
+      "type": "table",
+      "headers": ["متد", "توضیح"],
+      "rows": [
+        [
+          "document.getElementById(id).onclick = function(){code}",
+          "افزودن کد event handler به رویداد onclick"
+        ]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل api.html بسازید که یک پاراگراف با id=\"demo\" داشته باشد؛ با getElementById آن را بگیرید و با innerHTML متنش را به «Hello World!» تغییر دهید.",
+      "hint": "ترتیب کار سه بخش است: انتخاب عنصر، تغییر خصوصیت، دیدن نتیجه در صفحه."
+    },
+    {
+      "prompt": "همان عنصر را با querySelector(\"#demo\") انتخاب کنید و بگویید کدام روش را می‌پسندید.",
+      "hint": "querySelector نخستین عنصری را می‌دهد که با انتخابگر CSS مطابق است."
+    },
+    {
+      "prompt": "یک عنصر تازه با createElement بسازید، متنش را پر کنید و با appendChild به صفحه اضافه کنید.",
+      "hint": "نخست createElement، بعد مقداردهی به textContent یا innerHTML، و در پایان appendChild روی عنصر والد."
+    },
+    {
+      "prompt": "تفاوت innerHTML و textContent را با یک متن حاوی تگ آزمایش کنید و نتیجه را در کنسول ببینید.",
+      "hint": "یکی رشته را به‌عنوان HTML می‌فهمد و دیگری فقط متن خام می‌گذارد؛ همین باعث تفاوت خروجی می‌شود."
+    },
+    {
+      "prompt": "با setAttribute ویژگی id یک عنصر را عوض کنید و بعد با getElementById ببینید آیا عنصر با شناسهٔ تازه پیدا می‌شود.",
+      "hint": "setAttribute(\"id\", \"newName\") شناسه را تغییر می‌دهد؛ برای خواندن مقدار از getAttribute استفاده کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "نقطهٔ ورود برای دسترسی به عنصرهای صفحهٔ وب کدام شیء است؟",
+      "options": ["window.alert", "document", "console", "element.body"],
+      "answer": 1,
+      "explanation": "همیشه با شیء document شروع می‌کنید؛ این شیء مالک همهٔ شیءهای دیگر صفحه است و نمایندهٔ صفحهٔ وب شماست."
+    },
+    {
+      "question": "کدام متد نخستین عنصری را برمی‌گرداند که با یک انتخابگر CSS مطابق است؟",
+      "options": ["getElementById", "getElementsByTagName", "querySelector", "querySelectorAll"],
+      "answer": 2,
+      "explanation": "querySelector اولین تطابق را می‌دهد و querySelectorAll همهٔ تطابق‌ها را؛ دو متد دیگر با شناسه و نام تگ کار می‌کنند."
+    },
+    {
+      "question": "برای افزودن یک عنصر ساخته‌شده به صفحه از کدام متد استفاده می‌کنیم؟",
+      "options": ["createElement", "appendChild", "removeChild", "setAttribute"],
+      "answer": 1,
+      "explanation": "createElement فقط عنصر را در حافظه می‌سازد؛ تا زمانی که با appendChild به یک عنصر والد افزوده نشود، در صفحه دیده نمی‌شود."
+    },
+    {
+      "question": "تفاوت innerHTML و textContent چیست؟",
+      "options": [
+        "innerHTML محتوای HTML را می‌فهمد و textContent فقط متن خام را می‌گذارد",
+        "textContent تگ‌ها را می‌سازد و innerHTML نمی‌تواند",
+        "هیچ تفاوتی ندارند",
+        "innerHTML فقط برای ویژگی‌ها است"
+      ],
+      "answer": 0,
+      "explanation": "innerHTML رشته را به‌عنوان HTML تفسیر می‌کند و تگ‌های داخلش را می‌سازد؛ textContent همان متن خام را بدون تفسیر تگ می‌گذارد."
+    },
+    {
+      "question": "کدام مورد یک متد روی document برای ساخت عنصر تازه است؟",
+      "options": [
+        "document.querySelector()",
+        "document.createElement()",
+        "document.textContent",
+        "document.innerHTML"
+      ],
+      "answer": 1,
+      "explanation": "createElement یک عنصر تازه می‌سازد. querySelector فقط انتخاب می‌کند و دو مورد دیگر خصوصیت هستند، نه متد."
+    }
+  ]
 }

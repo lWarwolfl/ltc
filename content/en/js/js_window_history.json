@@ -1,512 +1,482 @@
 {
- "slug": "js_window_history",
- "course": "js",
- "order": 162,
- "url": "/js/js_window_history.asp",
- "title": "JavaScript History API",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript History API"
-  },
-  {
-   "type": "p",
-   "text": "The History API lets you work with the browser's session history."
-  },
-  {
-   "type": "p",
-   "text": "You can:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Move backward",
-    "Move forward",
-    "Add new history entries",
-    "Change the current entry"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The History Object"
-  },
-  {
-   "type": "p",
-   "text": "The History API is accessed with the window.history object."
-  },
-  {
-   "type": "p",
-   "text": "The history object can be written without the window prefix."
-  },
-  {
-   "type": "p",
-   "text": "The most common methods are:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "history.back() - same as clicking back in the browser",
-    "history.forward() - same as clicking forward in the browser"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "History Object Methods"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Description"
-    ],
-    [
-     "back()",
-     "Loads the previous entry in the session history"
-    ],
-    [
-     "forward()",
-     "Loads the next entry in the session history"
-    ],
-    [
-     "go()",
-     "Loads an entry relative to the current entry"
-    ],
-    [
-     "pushState()",
-     "Adds a new entry to the session history"
-    ],
-    [
-     "replaceState()",
-     "Changes the current history entry"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Use back(), forward(),\nand go() to navigate through the session history."
-  },
-  {
-   "type": "p",
-   "text": "Use pushState() to create a new history entry without loading a new page."
-  },
-  {
-   "type": "p",
-   "text": "Use replaceState() to change the current entry without loading a new page."
-  },
-  {
-   "type": "p",
-   "text": "Use the popstate event to detect when the user moves to another history entry."
-  },
-  {
-   "type": "h2",
-   "text": "History Object Properties"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Property",
-     "Description"
-    ],
-    [
-     "length",
-     "Returns the number of entries in the history"
-    ],
-    [
-     "state",
-     "Returns the state of the current history entry"
-    ],
-    [
-     "scrollRestoration",
-     "Gets or sets the scroll restoration behavior"
-    ]
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "Note!"
-  },
-  {
-   "type": "p",
-   "text": "To protect user privacy, there are limitations to how JavaScript can access the history object."
-  },
-  {
-   "type": "p",
-   "text": "For privacy reasons, JavaScript cannot read the URLs stored in the browser history."
-  },
-  {
-   "type": "h2",
-   "text": "The history.back() Method"
-  },
-  {
-   "type": "p",
-   "text": "The history.back() method loads the previous page in the session history."
-  },
-  {
-   "type": "p",
-   "text": "This is the same as clicking the browser's Back button."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button onclick=\"window.history.back()\">Go Back</button>",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button onclick=\"history.back()\">Go Back</button>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_back"
-  },
-  {
-   "type": "h2",
-   "text": "The history.forward() Method"
-  },
-  {
-   "type": "p",
-   "text": "The history.forward() method loads the next page in the session history."
-  },
-  {
-   "type": "p",
-   "text": "This is the same as clicking the browser's Forward button."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button onclick=\"history.forward()\">Go Forward</button>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_forward"
-  },
-  {
-   "type": "h2",
-   "text": "The history.go() Method"
-  },
-  {
-   "type": "p",
-   "text": "The history.go() method loads a specific page from the session history."
-  },
-  {
-   "type": "p",
-   "text": "The argument tells the browser how many steps to move from the current page."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button onclick=\"history.go(-2)\">Go Back</button>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_go"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button onclick=\"history.go(1)\">Go Forward</button>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_go_2"
-  },
-  {
-   "type": "p",
-   "text": "Negative numbers move backward."
-  },
-  {
-   "type": "p",
-   "text": "Positive numbers move forward."
-  },
-  {
-   "type": "p",
-   "text": "history.go(0) reloads the current page."
-  },
-  {
-   "type": "p",
-   "text": "history.back() is equivalent to\nhistory.go(-1)."
-  },
-  {
-   "type": "p",
-   "text": "history.forward() is equivalent to\nhistory.go(1)."
-  },
-  {
-   "type": "h2",
-   "text": "The history.length Property"
-  },
-  {
-   "type": "p",
-   "text": "The history.length property returns the number of entries in the session history."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let length = window.history.length;",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let length = history.length;",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_length"
-  },
-  {
-   "type": "p",
-   "text": "The current page is included in the number."
-  },
-  {
-   "type": "h2",
-   "text": "The history.state Property"
-  },
-  {
-   "type": "p",
-   "text": "The history.state property returns the state data associated with the current history entry."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let state = history.state;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state"
-  },
-  {
-   "type": "p",
-   "text": "The value of history.state is\nnull until you call history.pushState()\nor history.replaceState()."
-  },
-  {
-   "type": "h2",
-   "text": "Changing the Browser History"
-  },
-  {
-   "type": "p",
-   "text": "The History API can also add or replace entries in the browser history."
-  },
-  {
-   "type": "p",
-   "text": "This is useful for applications that change page content without loading a completely new document."
-  },
-  {
-   "type": "p",
-   "text": "The two methods are:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "history.pushState() - adds a new history entry",
-    "history.replaceState() - replaces the current history entry"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The history.pushState() Method"
-  },
-  {
-   "type": "p",
-   "text": "The history.pushState() method adds a new entry to the session history."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "history.pushState(state, \"\", url)",
-   "caption": "Syntax"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let state = {name:\"example\", page: 2};\n\nlet url = \"page2.html\";\n\nhistory.pushState(state, \"\", url);",
-   "caption": "Syntax"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_2"
-  },
-  {
-   "type": "p",
-   "text": "The example changes the URL to page2.html and adds a new history entry."
-  },
-  {
-   "type": "p",
-   "text": "It does not load page2.html from the server."
-  },
-  {
-   "type": "p",
-   "text": "In the state argument you can store any data associated with the entry."
-  },
-  {
-   "type": "p",
-   "text": "The second argument (\"\") exists for historical reasons and is normally empty."
-  },
-  {
-   "type": "p",
-   "text": "The optional url argument must have the same origin as the current page."
-  },
-  {
-   "type": "h3",
-   "text": "Does Not Load a New Page"
-  },
-  {
-   "type": "p",
-   "text": "The history.pushState() method does not load a new page."
-  },
-  {
-   "type": "p",
-   "text": "It adds a new entry to the browser history, including the URL and the state object."
-  },
-  {
-   "type": "p",
-   "text": "If the page content should change, JavaScript must change it separately\nwith a statemet like location.href = \"page2.html\";"
-  },
-  {
-   "type": "h2",
-   "text": "The history.replaceState() Method"
-  },
-  {
-   "type": "p",
-   "text": "The history.replaceState() method changes the current history entry."
-  },
-  {
-   "type": "p",
-   "text": "Unlike history.pushState(), it does not create a new history entry."
-  },
-  {
-   "type": "p",
-   "text": "This changes the current URL without adding another entry to the browser history:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "history.replaceState(state, \"\", url)",
-   "caption": "Syntax"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let state = {name:\"example\", page: 2};\n\nlet url = \"page2.html\";\n\nhistory.replaceState(state, \"\", url);",
-   "caption": "Syntax"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_3"
-  },
-  {
-   "type": "h3",
-   "text": "Does Not Load a New Page"
-  },
-  {
-   "type": "p",
-   "text": "The history.replaceState() method does not load a new page."
-  },
-  {
-   "type": "p",
-   "text": "It changes the current history entry, including the URL and the state object."
-  },
-  {
-   "type": "p",
-   "text": "If the page content should change, JavaScript must change it separately\nwith a statemet like location.href = \"page2.html\";"
-  },
-  {
-   "type": "h2",
-   "text": "The popstate Event"
-  },
-  {
-   "type": "p",
-   "text": "The popstate event occurs when the active history entry changes."
-  },
-  {
-   "type": "p",
-   "text": "This normally happens when the user clicks the browser's Back or Forward button."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "window.addEventListener(\"popstate\", function(event) {\n\n  myDisplayer(\"Page changed\");\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "If a history entry contains state data, it is available from event.state:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "window.addEventListener(\"popstate\", function(event) {\n\n  if (event.state) {\n\n    myDisplayer(event.state.page);\n\n  }\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Calling pushState() or replaceState() does not trigger a popstate event."
-  },
-  {
-   "type": "h2",
-   "text": "A Simple History API Example"
-  },
-  {
-   "type": "p",
-   "text": "The following example changes the URL without loading a new page."
-  },
-  {
-   "type": "p",
-   "text": "It also restores the displayed content when the user clicks Back or Forward."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button onclick=\"showPage('home')\">Home</button>\n\n<button onclick=\"showPage('about')\">About</button>\n\n<p id=\"demo\">Home</p>\n\n<script>\n\nfunction showPage(page) {\n\n  myDisplayer(page);\n\n  history.pushState({page: page}, \"\", \"?page=\" + page);\n\n}\n\nwindow.addEventListener(\"popstate\", function(event) {\n\n  if (event.state) {\n\n    myDisplayer(event.state.page);\n\n  }\n\n});\n\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_4"
-  },
-  {
-   "type": "h2",
-   "text": "Scroll Restoration"
-  },
-  {
-   "type": "p",
-   "text": "Browsers normally restore the scroll position when users move backward or forward."
-  },
-  {
-   "type": "p",
-   "text": "The history.scrollRestoration property can control this behavior."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "history.scrollRestoration = \"manual\";",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The possible values are:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "\"auto\" - the browser restores the scroll position",
-    "\"manual\" - the application controls the scroll position"
-   ]
-  }
- ]
+  "slug": "js_window_history",
+  "course": "js",
+  "order": 162,
+  "url": "/js/js_window_history.asp",
+  "title": "JavaScript History API",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript History API"
+    },
+    {
+      "type": "p",
+      "text": "The History API lets you work with the browser's session history."
+    },
+    {
+      "type": "p",
+      "text": "You can:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Move backward",
+        "Move forward",
+        "Add new history entries",
+        "Change the current entry"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The History Object"
+    },
+    {
+      "type": "p",
+      "text": "The History API is accessed with the window.history object."
+    },
+    {
+      "type": "p",
+      "text": "The history object can be written without the window prefix."
+    },
+    {
+      "type": "p",
+      "text": "The most common methods are:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "history.back() - same as clicking back in the browser",
+        "history.forward() - same as clicking forward in the browser"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "History Object Methods"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Description"],
+        ["back()", "Loads the previous entry in the session history"],
+        ["forward()", "Loads the next entry in the session history"],
+        ["go()", "Loads an entry relative to the current entry"],
+        ["pushState()", "Adds a new entry to the session history"],
+        ["replaceState()", "Changes the current history entry"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Use back(), forward(),\nand go() to navigate through the session history."
+    },
+    {
+      "type": "p",
+      "text": "Use pushState() to create a new history entry without loading a new page."
+    },
+    {
+      "type": "p",
+      "text": "Use replaceState() to change the current entry without loading a new page."
+    },
+    {
+      "type": "p",
+      "text": "Use the popstate event to detect when the user moves to another history entry."
+    },
+    {
+      "type": "h2",
+      "text": "History Object Properties"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Property", "Description"],
+        ["length", "Returns the number of entries in the history"],
+        ["state", "Returns the state of the current history entry"],
+        ["scrollRestoration", "Gets or sets the scroll restoration behavior"]
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Note!"
+    },
+    {
+      "type": "p",
+      "text": "To protect user privacy, there are limitations to how JavaScript can access the history object."
+    },
+    {
+      "type": "p",
+      "text": "For privacy reasons, JavaScript cannot read the URLs stored in the browser history."
+    },
+    {
+      "type": "h2",
+      "text": "The history.back() Method"
+    },
+    {
+      "type": "p",
+      "text": "The history.back() method loads the previous page in the session history."
+    },
+    {
+      "type": "p",
+      "text": "This is the same as clicking the browser's Back button."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button onclick=\"window.history.back()\">Go Back</button>",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button onclick=\"history.back()\">Go Back</button>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_back"
+    },
+    {
+      "type": "h2",
+      "text": "The history.forward() Method"
+    },
+    {
+      "type": "p",
+      "text": "The history.forward() method loads the next page in the session history."
+    },
+    {
+      "type": "p",
+      "text": "This is the same as clicking the browser's Forward button."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button onclick=\"history.forward()\">Go Forward</button>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_forward"
+    },
+    {
+      "type": "h2",
+      "text": "The history.go() Method"
+    },
+    {
+      "type": "p",
+      "text": "The history.go() method loads a specific page from the session history."
+    },
+    {
+      "type": "p",
+      "text": "The argument tells the browser how many steps to move from the current page."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button onclick=\"history.go(-2)\">Go Back</button>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_go"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button onclick=\"history.go(1)\">Go Forward</button>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_go_2"
+    },
+    {
+      "type": "p",
+      "text": "Negative numbers move backward."
+    },
+    {
+      "type": "p",
+      "text": "Positive numbers move forward."
+    },
+    {
+      "type": "p",
+      "text": "history.go(0) reloads the current page."
+    },
+    {
+      "type": "p",
+      "text": "history.back() is equivalent to\nhistory.go(-1)."
+    },
+    {
+      "type": "p",
+      "text": "history.forward() is equivalent to\nhistory.go(1)."
+    },
+    {
+      "type": "h2",
+      "text": "The history.length Property"
+    },
+    {
+      "type": "p",
+      "text": "The history.length property returns the number of entries in the session history."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let length = window.history.length;",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let length = history.length;",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_length"
+    },
+    {
+      "type": "p",
+      "text": "The current page is included in the number."
+    },
+    {
+      "type": "h2",
+      "text": "The history.state Property"
+    },
+    {
+      "type": "p",
+      "text": "The history.state property returns the state data associated with the current history entry."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let state = history.state;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state"
+    },
+    {
+      "type": "p",
+      "text": "The value of history.state is\nnull until you call history.pushState()\nor history.replaceState()."
+    },
+    {
+      "type": "h2",
+      "text": "Changing the Browser History"
+    },
+    {
+      "type": "p",
+      "text": "The History API can also add or replace entries in the browser history."
+    },
+    {
+      "type": "p",
+      "text": "This is useful for applications that change page content without loading a completely new document."
+    },
+    {
+      "type": "p",
+      "text": "The two methods are:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "history.pushState() - adds a new history entry",
+        "history.replaceState() - replaces the current history entry"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The history.pushState() Method"
+    },
+    {
+      "type": "p",
+      "text": "The history.pushState() method adds a new entry to the session history."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "history.pushState(state, \"\", url)",
+      "caption": "Syntax"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let state = {name:\"example\", page: 2};\n\nlet url = \"page2.html\";\n\nhistory.pushState(state, \"\", url);",
+      "caption": "Syntax"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_2"
+    },
+    {
+      "type": "p",
+      "text": "The example changes the URL to page2.html and adds a new history entry."
+    },
+    {
+      "type": "p",
+      "text": "It does not load page2.html from the server."
+    },
+    {
+      "type": "p",
+      "text": "In the state argument you can store any data associated with the entry."
+    },
+    {
+      "type": "p",
+      "text": "The second argument (\"\") exists for historical reasons and is normally empty."
+    },
+    {
+      "type": "p",
+      "text": "The optional url argument must have the same origin as the current page."
+    },
+    {
+      "type": "h3",
+      "text": "Does Not Load a New Page"
+    },
+    {
+      "type": "p",
+      "text": "The history.pushState() method does not load a new page."
+    },
+    {
+      "type": "p",
+      "text": "It adds a new entry to the browser history, including the URL and the state object."
+    },
+    {
+      "type": "p",
+      "text": "If the page content should change, JavaScript must change it separately\nwith a statemet like location.href = \"page2.html\";"
+    },
+    {
+      "type": "h2",
+      "text": "The history.replaceState() Method"
+    },
+    {
+      "type": "p",
+      "text": "The history.replaceState() method changes the current history entry."
+    },
+    {
+      "type": "p",
+      "text": "Unlike history.pushState(), it does not create a new history entry."
+    },
+    {
+      "type": "p",
+      "text": "This changes the current URL without adding another entry to the browser history:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "history.replaceState(state, \"\", url)",
+      "caption": "Syntax"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let state = {name:\"example\", page: 2};\n\nlet url = \"page2.html\";\n\nhistory.replaceState(state, \"\", url);",
+      "caption": "Syntax"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_3"
+    },
+    {
+      "type": "h3",
+      "text": "Does Not Load a New Page"
+    },
+    {
+      "type": "p",
+      "text": "The history.replaceState() method does not load a new page."
+    },
+    {
+      "type": "p",
+      "text": "It changes the current history entry, including the URL and the state object."
+    },
+    {
+      "type": "p",
+      "text": "If the page content should change, JavaScript must change it separately\nwith a statemet like location.href = \"page2.html\";"
+    },
+    {
+      "type": "h2",
+      "text": "The popstate Event"
+    },
+    {
+      "type": "p",
+      "text": "The popstate event occurs when the active history entry changes."
+    },
+    {
+      "type": "p",
+      "text": "This normally happens when the user clicks the browser's Back or Forward button."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "window.addEventListener(\"popstate\", function(event) {\n\n  myDisplayer(\"Page changed\");\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "If a history entry contains state data, it is available from event.state:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "window.addEventListener(\"popstate\", function(event) {\n\n  if (event.state) {\n\n    myDisplayer(event.state.page);\n\n  }\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Calling pushState() or replaceState() does not trigger a popstate event."
+    },
+    {
+      "type": "h2",
+      "text": "A Simple History API Example"
+    },
+    {
+      "type": "p",
+      "text": "The following example changes the URL without loading a new page."
+    },
+    {
+      "type": "p",
+      "text": "It also restores the displayed content when the user clicks Back or Forward."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button onclick=\"showPage('home')\">Home</button>\n\n<button onclick=\"showPage('about')\">About</button>\n\n<p id=\"demo\">Home</p>\n\n<script>\n\nfunction showPage(page) {\n\n  myDisplayer(page);\n\n  history.pushState({page: page}, \"\", \"?page=\" + page);\n\n}\n\nwindow.addEventListener(\"popstate\", function(event) {\n\n  if (event.state) {\n\n    myDisplayer(event.state.page);\n\n  }\n\n});\n\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_history_state_4"
+    },
+    {
+      "type": "h2",
+      "text": "Scroll Restoration"
+    },
+    {
+      "type": "p",
+      "text": "Browsers normally restore the scroll position when users move backward or forward."
+    },
+    {
+      "type": "p",
+      "text": "The history.scrollRestoration property can control this behavior."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "history.scrollRestoration = \"manual\";",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The possible values are:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "\"auto\" - the browser restores the scroll position",
+        "\"manual\" - the application controls the scroll position"
+      ]
+    }
+  ]
 }

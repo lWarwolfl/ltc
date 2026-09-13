@@ -1,307 +1,292 @@
 {
- "slug": "css_grid_tracks",
- "course": "css",
- "order": 179,
- "url": "/css/css_grid_tracks.asp",
- "title": "مسیرهای grid در CSS",
- "summary": "تعداد و اندازهٔ ستون‌ها و سطرهای grid با grid-template تعیین می‌شود. در این درس با واحد fr، تابع repeat() و تابع minmax() شبکه‌های انعطاف‌پذیر می‌سازید.",
- "objectives": [
-  "ستون‌های grid را با پهنای ثابت و درصدی بسازید",
-  "با واحد fr فضا را به نسبت تقسیم کنید",
-  "شبکه را با repeat() کوتاه‌تر بنویسید",
-  "با minmax() کمینه و بیشینهٔ اندازهٔ ستون را تعیین کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "مسیرهای grid در CSS"
-  },
-  {
-   "type": "h2",
-   "text": "مسیرهای grid (سطرها و ستون‌ها)"
-  },
-  {
-   "type": "p",
-   "text": "داخل ظرف grid تعداد و اندازهٔ ستون‌ها و سطرهای grid را تعیین می‌کنید."
-  },
-  {
-   "type": "p",
-   "text": "برای این کار از خصوصیت‌های زیر استفاده می‌کنیم:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "grid-template-columns، تعداد و پهنای ستون‌ها را در grid تعیین می‌کند",
-    "grid-template-rows، تعداد و ارتفاع سطرها را در grid تعیین می‌کند",
-    "grid-template-areas، تعیین می‌کند ستون‌ها و سطرها با آیتم‌های نام‌دار grid چگونه نمایش داده شوند"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت grid-template-columns در CSS"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت grid-template-columns تعداد و پهنای ستون‌ها را در grid تعیین می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "مقدار آن فهرستی جداشده با فاصله است که هر مقدار پهنای ستون متناظر خودش را تعیین می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "مقدارهای پرکاربرد این‌ها هستند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "طول‌های ثابت (100px 300px 200px)",
-    "درصدها (20% 60% 20%)",
-    "واحد fr (1fr 2fr 1fr)",
-    "auto (auto auto auto)",
-    "repeat() (repeat(3, 1fr))",
-    "minmax() (minmax(80px, 1fr) 150px 150px)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "grid-template-columns با مقدار auto"
-  },
-  {
-   "type": "p",
-   "text": "برای ساختن چیدمان grid با ۳ ستون هم‌عرض از کلیدواژهٔ «auto» استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: auto auto auto;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-template-columns1"
-  },
-  {
-   "type": "h2",
-   "text": "ستون‌های grid با پهنای ترکیبی"
-  },
-  {
-   "type": "p",
-   "text": "برای ساختن چیدمان grid با ۳ ستون: ۲ ستون با پهنای ثابت و ۱ ستون با اندازهٔ «auto»."
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: 80px 200px auto;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-template-columns2"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "اگر در شبکه‌ای با ۳ ستون بیش از ۳ آیتم grid داشته باشید، شبکه خودکار سطرهای تازه می‌سازد تا آیتم‌ها را در آن‌ها بگذارد."
-  },
-  {
-   "type": "h2",
-   "text": "ستون‌های grid با واحد fr"
-  },
-  {
-   "type": "p",
-   "text": "واحد fr کوتاه‌شدهٔ «fraction» یعنی کسر است. این واحد فضای موجود را خودکار به کسرهایی تقسیم می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "‎1fr یک کسر از فضای موجود را می‌گیرد، در حالی که ‎2fr دو کسر از فضای موجود را برمی‌دارد."
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: 1fr 1fr 1fr;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid-template-columns_fr"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: 1fr 2fr 1fr;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid-template-columns_fr2"
-  },
-  {
-   "type": "h2",
-   "text": "ستون‌های grid با تابع repeat()"
-  },
-  {
-   "type": "p",
-   "text": "تابع repeat() در CSS برای تکرار مجموعه‌ای از ستون‌ها یا سطرها در grid به کار می‌رود."
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: repeat(3, 1fr);\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid-template-columns_repeat"
-  },
-  {
-   "type": "h2",
-   "text": "ستون‌های grid با تابع minmax()"
-  },
-  {
-   "type": "p",
-   "text": "تابع minmax() در CSS برای تعیین بازهٔ اندازه به کار می‌رود؛ بزرگ‌تر یا مساوی مقدار کمینه و کوچک‌تر یا مساوی مقدار بیشینه."
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: minmax(80px, 1fr) 150px 150px;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid-template-columns_minmax"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت grid-template-rows در CSS"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت grid-template-rows تعداد و ارتفاع سطرها را در grid تعیین می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "مقدار آن فهرستی جداشده با فاصله است که هر مقدار ارتفاع سطر متناظر خودش را تعیین می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "مقدارهای پرکاربرد این‌ها هستند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "طول‌های ثابت",
-    "درصدها",
-    "واحد fr",
-    "auto",
-    "min-content",
-    "max-content",
-    "repeat()",
-    "minmax()",
-    "fit-content()"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n\n    display: grid;\n\n  grid-template-rows: 80px 200px;\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-template-rows"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "توجه کنید سطر اول در grid بالا 80px ارتفاع دارد و سطر دوم 200px. سطرهای بعدی به‌طور پیش‌فرض auto می‌گیرند."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل tracks.html بسازید، یک ظرف grid با شش آیتم درست کنید و با grid-template-columns: 100px 300px 200px; سه ستون با پهنای ثابت بسازید.",
-   "hint": "هر عدد پهنای ستون خودش را می‌دهد و ترتیبشان از چپ به راست است."
-  },
-  {
-   "prompt": "همان ستون‌ها را با درصد بنویسید: 20% 60% 20% و بگویید چرا ستون‌ها به عرض پنجره واکنش نشان می‌دهند.",
-   "hint": "درصد نسبت به پهنای ظرف حساب می‌شود، پس با تغییر پنجره عوض می‌شود."
-  },
-  {
-   "prompt": "با grid-template-columns: 1fr 2fr 1fr; سه ستون بسازید و بگویید ستون وسط چند برابر بقیه است.",
-   "hint": "مجموع کسرها ۴ است، پس ستون وسط دو کسر و دو ستون دیگر هرکدام یک کسر می‌گیرند."
-  },
-  {
-   "prompt": "با repeat(3, 1fr) همان شبکه را کوتاه‌تر بنویسید.",
-   "hint": "repeat تعداد تکرار و الگوی تکرارشونده را می‌گیرد."
-  },
-  {
-   "prompt": "با minmax(80px, 1fr) دو ستون بسازید و با کشیدن پنجره ببینید ستون‌ها کجا کوچک‌تر از 80px نمی‌شوند.",
-   "hint": "minmax کمترین و بیشترین اندازهٔ مجاز ستون را تعیین می‌کند."
-  },
-  {
-   "prompt": "روی همان شبکه grid-template-rows بنویسید و بگویید سطرهای بعدی چه ارتفاعی می‌گیرند.",
-   "hint": "سطرهای خارج از فهرست به‌طور پیش‌فرض auto می‌گیرند."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام خصوصیت تعداد و پهنای ستون‌های grid را تعیین می‌کند؟",
-   "options": [
-    "grid-template-rows",
-    "grid-template-columns",
-    "column-gap",
-    "grid-area"
-   ],
-   "answer": 1,
-   "explanation": "grid-template-columns ستون‌ها را می‌سازد؛ grid-template-rows کارش سطرهاست."
-  },
-  {
-   "question": "واحد fr در grid چه معنایی دارد؟",
-   "options": [
-    "کسر از فضای موجود",
-    "فوت",
-    "فریم",
-    "درصد ثابت"
-   ],
-   "answer": 0,
-   "explanation": "fr کوتاه‌شدهٔ fraction است و فضای موجود را به نسبت‌های مساوی تقسیم می‌کند."
-  },
-  {
-   "question": "در grid-template-columns: 1fr 2fr 1fr; ستون وسط چه سهمی از فضا می‌گیرد؟",
-   "options": [
-    "یک‌سوم",
-    "نصف",
-    "دو برابر هر ستون کناری",
-    "هم‌اندازهٔ ستون‌های کناری"
-   ],
-   "answer": 2,
-   "explanation": "مجموع کسرها ۴ است و ستون وسط ۲ کسر می‌گیرد، یعنی دو برابر هر ستون یک‌کفره."
-  },
-  {
-   "question": "تابع repeat() چه کاری می‌کند؟",
-   "options": [
-    "یک مجموعه ستون یا سطر را تکرار می‌کند",
-    "رنگ ستون‌ها را عوض می‌کند",
-    "فاصلهٔ ستون‌ها را تعیین می‌کند",
-    "اندازهٔ متن را تغییر می‌دهد"
-   ],
-   "answer": 0,
-   "explanation": "repeat() الگویی را چند بار تکرار می‌کند تا فهرست طولانی ستون‌ها یا سطرها کوتاه شود."
-  },
-  {
-   "question": "تابع minmax() چه چیزی تعیین می‌کند؟",
-   "options": [
-    "بازهٔ اندازه بین یک کمینه و یک بیشینه",
-    "تعداد ستون‌ها",
-    "رنگ سلول‌ها",
-    "ترتیب آیتم‌ها"
-   ],
-   "answer": 0,
-   "explanation": "minmax(80px, 1fr) یعنی ستون کمتر از ۸۰ پیکسل نشود و در صورت وجود فضا بزرگ‌تر شود."
-  }
- ]
+  "slug": "css_grid_tracks",
+  "course": "css",
+  "order": 179,
+  "url": "/css/css_grid_tracks.asp",
+  "title": "مسیرهای grid در CSS",
+  "summary": "تعداد و اندازهٔ ستون‌ها و سطرهای grid با grid-template تعیین می‌شود. در این درس با واحد fr، تابع repeat() و تابع minmax() شبکه‌های انعطاف‌پذیر می‌سازید.",
+  "objectives": [
+    "ستون‌های grid را با پهنای ثابت و درصدی بسازید",
+    "با واحد fr فضا را به نسبت تقسیم کنید",
+    "شبکه را با repeat() کوتاه‌تر بنویسید",
+    "با minmax() کمینه و بیشینهٔ اندازهٔ ستون را تعیین کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "مسیرهای grid در CSS"
+    },
+    {
+      "type": "h2",
+      "text": "مسیرهای grid (سطرها و ستون‌ها)"
+    },
+    {
+      "type": "p",
+      "text": "داخل ظرف grid تعداد و اندازهٔ ستون‌ها و سطرهای grid را تعیین می‌کنید."
+    },
+    {
+      "type": "p",
+      "text": "برای این کار از خصوصیت‌های زیر استفاده می‌کنیم:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "grid-template-columns، تعداد و پهنای ستون‌ها را در grid تعیین می‌کند",
+        "grid-template-rows، تعداد و ارتفاع سطرها را در grid تعیین می‌کند",
+        "grid-template-areas، تعیین می‌کند ستون‌ها و سطرها با آیتم‌های نام‌دار grid چگونه نمایش داده شوند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت grid-template-columns در CSS"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت grid-template-columns تعداد و پهنای ستون‌ها را در grid تعیین می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "مقدار آن فهرستی جداشده با فاصله است که هر مقدار پهنای ستون متناظر خودش را تعیین می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "مقدارهای پرکاربرد این‌ها هستند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "طول‌های ثابت (100px 300px 200px)",
+        "درصدها (20% 60% 20%)",
+        "واحد fr (1fr 2fr 1fr)",
+        "auto (auto auto auto)",
+        "repeat() (repeat(3, 1fr))",
+        "minmax() (minmax(80px, 1fr) 150px 150px)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "grid-template-columns با مقدار auto"
+    },
+    {
+      "type": "p",
+      "text": "برای ساختن چیدمان grid با ۳ ستون هم‌عرض از کلیدواژهٔ «auto» استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: auto auto auto;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-template-columns1"
+    },
+    {
+      "type": "h2",
+      "text": "ستون‌های grid با پهنای ترکیبی"
+    },
+    {
+      "type": "p",
+      "text": "برای ساختن چیدمان grid با ۳ ستون: ۲ ستون با پهنای ثابت و ۱ ستون با اندازهٔ «auto»."
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: 80px 200px auto;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-template-columns2"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "اگر در شبکه‌ای با ۳ ستون بیش از ۳ آیتم grid داشته باشید، شبکه خودکار سطرهای تازه می‌سازد تا آیتم‌ها را در آن‌ها بگذارد."
+    },
+    {
+      "type": "h2",
+      "text": "ستون‌های grid با واحد fr"
+    },
+    {
+      "type": "p",
+      "text": "واحد fr کوتاه‌شدهٔ «fraction» یعنی کسر است. این واحد فضای موجود را خودکار به کسرهایی تقسیم می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "‎1fr یک کسر از فضای موجود را می‌گیرد، در حالی که ‎2fr دو کسر از فضای موجود را برمی‌دارد."
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: 1fr 1fr 1fr;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid-template-columns_fr"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: 1fr 2fr 1fr;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid-template-columns_fr2"
+    },
+    {
+      "type": "h2",
+      "text": "ستون‌های grid با تابع repeat()"
+    },
+    {
+      "type": "p",
+      "text": "تابع repeat() در CSS برای تکرار مجموعه‌ای از ستون‌ها یا سطرها در grid به کار می‌رود."
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: repeat(3, 1fr);\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid-template-columns_repeat"
+    },
+    {
+      "type": "h2",
+      "text": "ستون‌های grid با تابع minmax()"
+    },
+    {
+      "type": "p",
+      "text": "تابع minmax() در CSS برای تعیین بازهٔ اندازه به کار می‌رود؛ بزرگ‌تر یا مساوی مقدار کمینه و کوچک‌تر یا مساوی مقدار بیشینه."
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n\n    display: grid;\n\n  grid-template-columns: minmax(80px, 1fr) 150px 150px;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid-template-columns_minmax"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت grid-template-rows در CSS"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت grid-template-rows تعداد و ارتفاع سطرها را در grid تعیین می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "مقدار آن فهرستی جداشده با فاصله است که هر مقدار ارتفاع سطر متناظر خودش را تعیین می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "مقدارهای پرکاربرد این‌ها هستند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "طول‌های ثابت",
+        "درصدها",
+        "واحد fr",
+        "auto",
+        "min-content",
+        "max-content",
+        "repeat()",
+        "minmax()",
+        "fit-content()"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n\n    display: grid;\n\n  grid-template-rows: 80px 200px;\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_grid_grid-template-rows"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "توجه کنید سطر اول در grid بالا 80px ارتفاع دارد و سطر دوم 200px. سطرهای بعدی به‌طور پیش‌فرض auto می‌گیرند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل tracks.html بسازید، یک ظرف grid با شش آیتم درست کنید و با grid-template-columns: 100px 300px 200px; سه ستون با پهنای ثابت بسازید.",
+      "hint": "هر عدد پهنای ستون خودش را می‌دهد و ترتیبشان از چپ به راست است."
+    },
+    {
+      "prompt": "همان ستون‌ها را با درصد بنویسید: 20% 60% 20% و بگویید چرا ستون‌ها به عرض پنجره واکنش نشان می‌دهند.",
+      "hint": "درصد نسبت به پهنای ظرف حساب می‌شود، پس با تغییر پنجره عوض می‌شود."
+    },
+    {
+      "prompt": "با grid-template-columns: 1fr 2fr 1fr; سه ستون بسازید و بگویید ستون وسط چند برابر بقیه است.",
+      "hint": "مجموع کسرها ۴ است، پس ستون وسط دو کسر و دو ستون دیگر هرکدام یک کسر می‌گیرند."
+    },
+    {
+      "prompt": "با repeat(3, 1fr) همان شبکه را کوتاه‌تر بنویسید.",
+      "hint": "repeat تعداد تکرار و الگوی تکرارشونده را می‌گیرد."
+    },
+    {
+      "prompt": "با minmax(80px, 1fr) دو ستون بسازید و با کشیدن پنجره ببینید ستون‌ها کجا کوچک‌تر از 80px نمی‌شوند.",
+      "hint": "minmax کمترین و بیشترین اندازهٔ مجاز ستون را تعیین می‌کند."
+    },
+    {
+      "prompt": "روی همان شبکه grid-template-rows بنویسید و بگویید سطرهای بعدی چه ارتفاعی می‌گیرند.",
+      "hint": "سطرهای خارج از فهرست به‌طور پیش‌فرض auto می‌گیرند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام خصوصیت تعداد و پهنای ستون‌های grid را تعیین می‌کند؟",
+      "options": ["grid-template-rows", "grid-template-columns", "column-gap", "grid-area"],
+      "answer": 1,
+      "explanation": "grid-template-columns ستون‌ها را می‌سازد؛ grid-template-rows کارش سطرهاست."
+    },
+    {
+      "question": "واحد fr در grid چه معنایی دارد؟",
+      "options": ["کسر از فضای موجود", "فوت", "فریم", "درصد ثابت"],
+      "answer": 0,
+      "explanation": "fr کوتاه‌شدهٔ fraction است و فضای موجود را به نسبت‌های مساوی تقسیم می‌کند."
+    },
+    {
+      "question": "در grid-template-columns: 1fr 2fr 1fr; ستون وسط چه سهمی از فضا می‌گیرد؟",
+      "options": ["یک‌سوم", "نصف", "دو برابر هر ستون کناری", "هم‌اندازهٔ ستون‌های کناری"],
+      "answer": 2,
+      "explanation": "مجموع کسرها ۴ است و ستون وسط ۲ کسر می‌گیرد، یعنی دو برابر هر ستون یک‌کفره."
+    },
+    {
+      "question": "تابع repeat() چه کاری می‌کند؟",
+      "options": [
+        "یک مجموعه ستون یا سطر را تکرار می‌کند",
+        "رنگ ستون‌ها را عوض می‌کند",
+        "فاصلهٔ ستون‌ها را تعیین می‌کند",
+        "اندازهٔ متن را تغییر می‌دهد"
+      ],
+      "answer": 0,
+      "explanation": "repeat() الگویی را چند بار تکرار می‌کند تا فهرست طولانی ستون‌ها یا سطرها کوتاه شود."
+    },
+    {
+      "question": "تابع minmax() چه چیزی تعیین می‌کند؟",
+      "options": [
+        "بازهٔ اندازه بین یک کمینه و یک بیشینه",
+        "تعداد ستون‌ها",
+        "رنگ سلول‌ها",
+        "ترتیب آیتم‌ها"
+      ],
+      "answer": 0,
+      "explanation": "minmax(80px, 1fr) یعنی ستون کمتر از ۸۰ پیکسل نشود و در صورت وجود فضا بزرگ‌تر شود."
+    }
+  ]
 }

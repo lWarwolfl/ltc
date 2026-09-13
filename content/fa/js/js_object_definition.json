@@ -1,466 +1,386 @@
 {
- "slug": "js_object_definition",
- "course": "js",
- "order": 211,
- "url": "/js/js_object_definition.asp",
- "title": "تعریف شیء در JavaScript",
- "summary": "شیء را می‌توان به چند راه تعریف کرد: شیء نوشتاری، کلیدواژهٔ new، سازنده، Object.create، Object.assign و Object.fromEntries. در این درس این روش‌ها را می‌بینید و یاد می‌گیرید چرا در JavaScript تقریباً همه چیز شیء است و چرا شیء‌ها با ارجاع کار می‌کنند.",
- "objectives": [
-  "شش روش تعریف شیء را نام ببرید",
-  "با Object.create و Object.fromEntries شیء بسازید",
-  "نوع‌های اولیه و تفاوتشان با شیء را توضیح دهید",
-  "نشان دهید شیء‌ها با ارجاع تغییر می‌کنند"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تعریف شیء در JavaScript"
-  },
-  {
-   "type": "h3",
-   "text": "روش‌های تعریف شیء در JavaScript"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "با شیء نوشتاری (object literal)",
-    "با کلیدواژهٔ new",
-    "با سازندهٔ شیء",
-    "با Object.assign()",
-    "با Object.create()",
-    "با Object.fromEntries()"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "با شیء نوشتاری (object literal)"
-  },
-  {
-   "type": "p",
-   "text": "شیء نوشتاری فهرستی از جفت‌های کلید و مقدار خصوصیت داخل آکولاد { } است."
-  },
-  {
-   "type": "p",
-   "text": "نمونهٔ ساختار شیء نوشتاری: {firstName:\"John\", lastName:\"Doe\", age:50, eyeColor:\"blue\"};"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_objects_create_2"
-  },
-  {
-   "type": "h2",
-   "text": "با کلیدواژهٔ new"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = new Object({\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_create_new"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "مثال‌های بالا دقیقاً یک کار انجام می‌دهند. اما نیازی به new Object() نیست. برای خوانایی، سادگی و سرعت اجرا از روش شیء نوشتاری استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "شیء‌هایی که به شکل جفت نام و مقدار نوشته می‌شوند شبیه این‌ها هستند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "آرایه‌های انجمنی در PHP",
-    "دیکشنری‌ها در Python",
-    "جدول‌های هش در C",
-    "نقشه‌های هش در Java",
-    "هش‌ها در Ruby و Perl"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.create() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.create() از روی یک شیء موجود، شیء تازه‌ای می‌سازد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\"\n\n};\n\n// Create new Object\n\nconst man = Object.create(person);\n\nman.firstName = \"Peter\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_met_create"
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.fromEntries() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "‏ES2019 متد fromEntries() را به Object در JavaScript اضافه کرد."
-  },
-  {
-   "type": "p",
-   "text": "متد fromEntries() از جفت‌های کلید و مقدار قابل پیمایش یک شیء می‌سازد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = [\n\n[\"apples\", 300],\n\n[\"pears\", 900],\n\n[\"bananas\", 500]\n\n];\n\nconst myObj = Object.fromEntries(fruits);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_fromentries"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگر‌ها"
-  },
-  {
-   "type": "p",
-   "text": "‏fromEntries() یکی از ویژگی‌های ECMAScript 2019 است."
-  },
-  {
-   "type": "p",
-   "text": "‏ES2019 از ژانویهٔ 2020 در همهٔ مرورگر‌های مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "‏Chrome 66",
-     "‏Edge 79",
-     "‏Firefox 61",
-     "‏Safari 12",
-     "‏Opera 50"
-    ],
-    [
-     "آوریل ۲۰۱۸",
-     "ژانویهٔ ۲۰۲۰",
-     "ژوئن ۲۰۱۸",
-     "سپتامبر ۲۰۱۸",
-     "مهٔ ۲۰۱۸"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.assign() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.assign() خصوصیت‌ها را از یک یا چند شیء مبدأ به یک شیء مقصد کپی می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Target Object\n\nconst person1 = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Create Source Object\n\nconst person2 = {firstName: \"Anne\",lastName: \"Smith\"};\n\n// Assign Source to Target\n\nObject.assign(person1, person2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_assign"
-  },
-  {
-   "type": "h2",
-   "text": "در JavaScript، شیء‌ها پادشاه‌اند."
-  },
-  {
-   "type": "h2",
-   "text": "اگر شیء‌ها را بفهمید، JavaScript را فهمیدهاید."
-  },
-  {
-   "type": "p",
-   "text": "در JavaScript تقریباً «همه چیز» شیء است."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "شیء‌ها شیء هستند",
-    "‏Math شیء است",
-    "تابع‌ها شیء هستند",
-    "‏Date شیء است",
-    "آرایه‌ها شیء هستند",
-    "‏Map شیء است",
-    "‏Set شیء است"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "همهٔ مقدار‌های JavaScript، به جز نوع‌های اولیه، شیء هستند."
-  },
-  {
-   "type": "h2",
-   "text": "نوع‌های اولیه در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "نوع دادهٔ اولیه نوعی است که فقط می‌تواند یک مقدار اولیه را نگه دارد."
-  },
-  {
-   "type": "p",
-   "text": "‏JavaScript هفت نوع دادهٔ اولیه تعریف می‌کند:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نوع",
-    "مقدار نمونه"
-   ],
-   "rows": [
-    [
-     "رشته (string)",
-     "\"Hello\""
-    ],
-    [
-     "عدد (number)",
-     "3.14"
-    ],
-    [
-     "بولی (boolean)",
-     "true"
-    ],
-    [
-     "عدد صحیح بزرگ (bigint)",
-     "12345678901234n"
-    ],
-    [
-     "null",
-     "null"
-    ],
-    [
-     "undefined",
-     "undefined"
-    ],
-    [
-     "symbol",
-     "symbol"
-    ]
-   ]
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "تغییرناپذیر\nمقدار‌های اولیه تغییرناپذیرند؛ ثابت‌اند و عوض نمی‌شوند. اگر x = 3.14 باشد، می‌توانید مقدار x را عوض کنید، اما نمی‌توانید مقدار 3.14 را تغییر دهید."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "مقدار",
-    "نوع",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "\"Hello\"",
-     "رشته (string)",
-     "‏\"Hello\" همیشه \"Hello\" است"
-    ],
-    [
-     "3.14",
-     "عدد (number)",
-     "‏3.14 همیشه 3.14 است"
-    ],
-    [
-     "true",
-     "بولی (boolean)",
-     "‏true همیشه true است"
-    ],
-    [
-     "false",
-     "بولی (boolean)",
-     "‏false همیشه false است"
-    ],
-    [
-     "null",
-     "null",
-     "‏null همیشه null است"
-    ],
-    [
-     "undefined",
-     "undefined",
-     "‏undefined همیشه undefined است"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "شیء‌های JavaScript تغییرپذیرند"
-  },
-  {
-   "type": "p",
-   "text": "شیء‌ها تغییرپذیرند: آن‌ها با ارجاع شناخته می‌شوند، نه با مقدار."
-  },
-  {
-   "type": "p",
-   "text": "اگر person یک شیء باشد، دستور زیر نسخهٔ کپی‌ای از person نمی‌سازد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const x = person;",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "شیء x کپی person نیست؛ شیء x همان person است."
-  },
-  {
-   "type": "p",
-   "text": "شیء x و شیء person یک نشانی حافظهٔ مشترک دارند."
-  },
-  {
-   "type": "p",
-   "text": "هر تغییری در x، person را هم عوض می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "//Create an Object\n\nconst person = {\n\n  firstName:\"John\",\n\n  lastName:\"Doe\",\n\n  age:50, eyeColor:\"blue\"\n\n}\n\n// Try to create a copy\n\nconst x = person;\n\n// This will change age in person:\n\nx.age = 10;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_mutable"
-  },
-  {
-   "type": "h2",
-   "text": "فصل‌های پیشرفته:"
-  },
-  {
-   "type": "p",
-   "text": "تعریف شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "‏this پیشرفته در شیء‌های JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پیمایش شیء‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیء‌های JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مدیریت شیء‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "محافظت از شیء‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پروتوتایپ‌های شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع شیء در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل objdef.js بسازید و یک شیء را با شیء نوشتاری و یک بار دیگر با new Object() بسازید. هر دو را در کنسول چاپ کنید.",
-   "hint": "طبق درس، شیء نوشتاری خواناتر و سریع‌تر است."
-  },
-  {
-   "prompt": "با Object.create یک شیء تازه از روی شیء موجود بسازید و یک خصوصیت هم در آن عوض کنید. ببینید شیء اصلی سالم می‌ماند.",
-   "hint": "Object.create شیء تازه‌ای می‌سازد که پروتوتایپش شیء داده‌شده است."
-  },
-  {
-   "prompt": "یک آرایه از جفت‌های کلید و مقدار بسازید و با Object.fromEntries آن را به شیء تبدیل کنید.",
-   "hint": "هر عضو آرایه باید خودش یک آرایهٔ دو عضوی باشد."
-  },
-  {
-   "prompt": "با Object.assign خصوصیت‌های یک شیء را روی شیء دیگر کپی کنید و بعد چاپ کنید تا ببینید شیء مقصد عوض شده است.",
-   "hint": "آرگومان اول مقصد است و بقیه مبدأ."
-  },
-  {
-   "prompt": "نشان دهید شیء‌ها با ارجاع کار می‌کنند: یک شیء بسازید، آن را در متغیر دیگری بریزید و خصوصیت سن را در متغیر دوم عوض کنید. شیء اول را چاپ کنید.",
-   "hint": "هر دو متغیر به یک نشانی حافظه اشاره می‌کنند."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام روش تعریف شیء در درس توصیه شده است؟",
-   "options": [
-    "new Object()",
-    "شیء نوشتاری (object literal)",
-    "سازندهٔ Function",
-    "Object.prototype"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید مثال‌ها یک کار می‌کنند، اما برای خوانایی، سادگی و سرعت اجرا بهتر است از شیء نوشتاری استفاده کنید."
-  },
-  {
-   "question": "Object.fromEntries() با چه ورودی‌ای کار می‌کند؟",
-   "options": [
-    "یک رشته",
-    "فهرستی از جفت‌های کلید و مقدار",
-    "یک عدد",
-    "یک تابع"
-   ],
-   "answer": 1,
-   "explanation": "این متد یک ساختار قابل پیمایش از جفت‌های کلید و مقدار می‌گیرد و شیء می‌سازد، مثل آرایه‌ای از آرایه‌های دو عضوی."
-  },
-  {
-   "question": "دربارهٔ مقدار‌های اولیه کدام جمله درست است؟",
-   "options": [
-    "تغییرپذیرند",
-    "تغییرناپذیرند و ثابت می‌مانند",
-    "خودشان شیء هستند",
-    "فقط در حالت سخت‌گیرانه ثابت‌اند"
-   ],
-   "answer": 1,
-   "explanation": "مقدار‌هایی مثل \"Hello\" و 3.14 و true تغییرناپذیرند؛ می‌توانید متغیر را عوض کنید، اما خود مقدار ثابت می‌ماند."
-  },
-  {
-   "question": "اگر بنویسیم const x = person و بعد x.age = 10، چه اتفاقی می‌افتد؟",
-   "options": [
-    "نسخهٔ کپی ساخته می‌شود",
-    "سن در شیء person هم عوض می‌شود، چون هر دو یک شیء هستند",
-    "خطا می‌گیریم",
-    "شیء person قفل می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "شیء‌ها با ارجاع نگه‌داری می‌شوند، پس x و person یک نشانی حافظه دارند و تغییر یکی روی دیگری اثر می‌گذارد."
-  },
-  {
-   "question": "کدام گزینه شیء نیست؟",
-   "options": [
-    "Math",
-    "Date",
-    "مقدار اولیهٔ boolean",
-    "آرایه"
-   ],
-   "answer": 2,
-   "explanation": "درس فهرست می‌کند که Math و Date و تابع و آرایه و Map و Set همه شیء هستند؛ تنها استثنا نوع‌های اولیه مثل boolean است."
-  }
- ]
+  "slug": "js_object_definition",
+  "course": "js",
+  "order": 211,
+  "url": "/js/js_object_definition.asp",
+  "title": "تعریف شیء در JavaScript",
+  "summary": "شیء را می‌توان به چند راه تعریف کرد: شیء نوشتاری، کلیدواژهٔ new، سازنده، Object.create، Object.assign و Object.fromEntries. در این درس این روش‌ها را می‌بینید و یاد می‌گیرید چرا در JavaScript تقریباً همه چیز شیء است و چرا شیء‌ها با ارجاع کار می‌کنند.",
+  "objectives": [
+    "شش روش تعریف شیء را نام ببرید",
+    "با Object.create و Object.fromEntries شیء بسازید",
+    "نوع‌های اولیه و تفاوتشان با شیء را توضیح دهید",
+    "نشان دهید شیء‌ها با ارجاع تغییر می‌کنند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تعریف شیء در JavaScript"
+    },
+    {
+      "type": "h3",
+      "text": "روش‌های تعریف شیء در JavaScript"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "با شیء نوشتاری (object literal)",
+        "با کلیدواژهٔ new",
+        "با سازندهٔ شیء",
+        "با Object.assign()",
+        "با Object.create()",
+        "با Object.fromEntries()"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "با شیء نوشتاری (object literal)"
+    },
+    {
+      "type": "p",
+      "text": "شیء نوشتاری فهرستی از جفت‌های کلید و مقدار خصوصیت داخل آکولاد { } است."
+    },
+    {
+      "type": "p",
+      "text": "نمونهٔ ساختار شیء نوشتاری: {firstName:\"John\", lastName:\"Doe\", age:50, eyeColor:\"blue\"};"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_objects_create_2"
+    },
+    {
+      "type": "h2",
+      "text": "با کلیدواژهٔ new"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = new Object({\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_create_new"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "مثال‌های بالا دقیقاً یک کار انجام می‌دهند. اما نیازی به new Object() نیست. برای خوانایی، سادگی و سرعت اجرا از روش شیء نوشتاری استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "شیء‌هایی که به شکل جفت نام و مقدار نوشته می‌شوند شبیه این‌ها هستند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "آرایه‌های انجمنی در PHP",
+        "دیکشنری‌ها در Python",
+        "جدول‌های هش در C",
+        "نقشه‌های هش در Java",
+        "هش‌ها در Ruby و Perl"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.create() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.create() از روی یک شیء موجود، شیء تازه‌ای می‌سازد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\"\n\n};\n\n// Create new Object\n\nconst man = Object.create(person);\n\nman.firstName = \"Peter\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_met_create"
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.fromEntries() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "‏ES2019 متد fromEntries() را به Object در JavaScript اضافه کرد."
+    },
+    {
+      "type": "p",
+      "text": "متد fromEntries() از جفت‌های کلید و مقدار قابل پیمایش یک شیء می‌سازد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = [\n\n[\"apples\", 300],\n\n[\"pears\", 900],\n\n[\"bananas\", 500]\n\n];\n\nconst myObj = Object.fromEntries(fruits);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_fromentries"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگر‌ها"
+    },
+    {
+      "type": "p",
+      "text": "‏fromEntries() یکی از ویژگی‌های ECMAScript 2019 است."
+    },
+    {
+      "type": "p",
+      "text": "‏ES2019 از ژانویهٔ 2020 در همهٔ مرورگر‌های مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["‏Chrome 66", "‏Edge 79", "‏Firefox 61", "‏Safari 12", "‏Opera 50"],
+        ["آوریل ۲۰۱۸", "ژانویهٔ ۲۰۲۰", "ژوئن ۲۰۱۸", "سپتامبر ۲۰۱۸", "مهٔ ۲۰۱۸"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.assign() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.assign() خصوصیت‌ها را از یک یا چند شیء مبدأ به یک شیء مقصد کپی می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Target Object\n\nconst person1 = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  age: 50,\n\n  eyeColor: \"blue\"\n\n};\n\n// Create Source Object\n\nconst person2 = {firstName: \"Anne\",lastName: \"Smith\"};\n\n// Assign Source to Target\n\nObject.assign(person1, person2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_assign"
+    },
+    {
+      "type": "h2",
+      "text": "در JavaScript، شیء‌ها پادشاه‌اند."
+    },
+    {
+      "type": "h2",
+      "text": "اگر شیء‌ها را بفهمید، JavaScript را فهمیدهاید."
+    },
+    {
+      "type": "p",
+      "text": "در JavaScript تقریباً «همه چیز» شیء است."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "شیء‌ها شیء هستند",
+        "‏Math شیء است",
+        "تابع‌ها شیء هستند",
+        "‏Date شیء است",
+        "آرایه‌ها شیء هستند",
+        "‏Map شیء است",
+        "‏Set شیء است"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "همهٔ مقدار‌های JavaScript، به جز نوع‌های اولیه، شیء هستند."
+    },
+    {
+      "type": "h2",
+      "text": "نوع‌های اولیه در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "نوع دادهٔ اولیه نوعی است که فقط می‌تواند یک مقدار اولیه را نگه دارد."
+    },
+    {
+      "type": "p",
+      "text": "‏JavaScript هفت نوع دادهٔ اولیه تعریف می‌کند:"
+    },
+    {
+      "type": "table",
+      "headers": ["نوع", "مقدار نمونه"],
+      "rows": [
+        ["رشته (string)", "\"Hello\""],
+        ["عدد (number)", "3.14"],
+        ["بولی (boolean)", "true"],
+        ["عدد صحیح بزرگ (bigint)", "12345678901234n"],
+        ["null", "null"],
+        ["undefined", "undefined"],
+        ["symbol", "symbol"]
+      ]
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "تغییرناپذیر\nمقدار‌های اولیه تغییرناپذیرند؛ ثابت‌اند و عوض نمی‌شوند. اگر x = 3.14 باشد، می‌توانید مقدار x را عوض کنید، اما نمی‌توانید مقدار 3.14 را تغییر دهید."
+    },
+    {
+      "type": "table",
+      "headers": ["مقدار", "نوع", "توضیح"],
+      "rows": [
+        ["\"Hello\"", "رشته (string)", "‏\"Hello\" همیشه \"Hello\" است"],
+        ["3.14", "عدد (number)", "‏3.14 همیشه 3.14 است"],
+        ["true", "بولی (boolean)", "‏true همیشه true است"],
+        ["false", "بولی (boolean)", "‏false همیشه false است"],
+        ["null", "null", "‏null همیشه null است"],
+        ["undefined", "undefined", "‏undefined همیشه undefined است"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "شیء‌های JavaScript تغییرپذیرند"
+    },
+    {
+      "type": "p",
+      "text": "شیء‌ها تغییرپذیرند: آن‌ها با ارجاع شناخته می‌شوند، نه با مقدار."
+    },
+    {
+      "type": "p",
+      "text": "اگر person یک شیء باشد، دستور زیر نسخهٔ کپی‌ای از person نمی‌سازد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const x = person;",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "شیء x کپی person نیست؛ شیء x همان person است."
+    },
+    {
+      "type": "p",
+      "text": "شیء x و شیء person یک نشانی حافظهٔ مشترک دارند."
+    },
+    {
+      "type": "p",
+      "text": "هر تغییری در x، person را هم عوض می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "//Create an Object\n\nconst person = {\n\n  firstName:\"John\",\n\n  lastName:\"Doe\",\n\n  age:50, eyeColor:\"blue\"\n\n}\n\n// Try to create a copy\n\nconst x = person;\n\n// This will change age in person:\n\nx.age = 10;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_mutable"
+    },
+    {
+      "type": "h2",
+      "text": "فصل‌های پیشرفته:"
+    },
+    {
+      "type": "p",
+      "text": "تعریف شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "‏this پیشرفته در شیء‌های JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پیمایش شیء‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیء‌های JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مدیریت شیء‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "محافظت از شیء‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پروتوتایپ‌های شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع شیء در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل objdef.js بسازید و یک شیء را با شیء نوشتاری و یک بار دیگر با new Object() بسازید. هر دو را در کنسول چاپ کنید.",
+      "hint": "طبق درس، شیء نوشتاری خواناتر و سریع‌تر است."
+    },
+    {
+      "prompt": "با Object.create یک شیء تازه از روی شیء موجود بسازید و یک خصوصیت هم در آن عوض کنید. ببینید شیء اصلی سالم می‌ماند.",
+      "hint": "Object.create شیء تازه‌ای می‌سازد که پروتوتایپش شیء داده‌شده است."
+    },
+    {
+      "prompt": "یک آرایه از جفت‌های کلید و مقدار بسازید و با Object.fromEntries آن را به شیء تبدیل کنید.",
+      "hint": "هر عضو آرایه باید خودش یک آرایهٔ دو عضوی باشد."
+    },
+    {
+      "prompt": "با Object.assign خصوصیت‌های یک شیء را روی شیء دیگر کپی کنید و بعد چاپ کنید تا ببینید شیء مقصد عوض شده است.",
+      "hint": "آرگومان اول مقصد است و بقیه مبدأ."
+    },
+    {
+      "prompt": "نشان دهید شیء‌ها با ارجاع کار می‌کنند: یک شیء بسازید، آن را در متغیر دیگری بریزید و خصوصیت سن را در متغیر دوم عوض کنید. شیء اول را چاپ کنید.",
+      "hint": "هر دو متغیر به یک نشانی حافظه اشاره می‌کنند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام روش تعریف شیء در درس توصیه شده است؟",
+      "options": [
+        "new Object()",
+        "شیء نوشتاری (object literal)",
+        "سازندهٔ Function",
+        "Object.prototype"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید مثال‌ها یک کار می‌کنند، اما برای خوانایی، سادگی و سرعت اجرا بهتر است از شیء نوشتاری استفاده کنید."
+    },
+    {
+      "question": "Object.fromEntries() با چه ورودی‌ای کار می‌کند؟",
+      "options": ["یک رشته", "فهرستی از جفت‌های کلید و مقدار", "یک عدد", "یک تابع"],
+      "answer": 1,
+      "explanation": "این متد یک ساختار قابل پیمایش از جفت‌های کلید و مقدار می‌گیرد و شیء می‌سازد، مثل آرایه‌ای از آرایه‌های دو عضوی."
+    },
+    {
+      "question": "دربارهٔ مقدار‌های اولیه کدام جمله درست است؟",
+      "options": [
+        "تغییرپذیرند",
+        "تغییرناپذیرند و ثابت می‌مانند",
+        "خودشان شیء هستند",
+        "فقط در حالت سخت‌گیرانه ثابت‌اند"
+      ],
+      "answer": 1,
+      "explanation": "مقدار‌هایی مثل \"Hello\" و 3.14 و true تغییرناپذیرند؛ می‌توانید متغیر را عوض کنید، اما خود مقدار ثابت می‌ماند."
+    },
+    {
+      "question": "اگر بنویسیم const x = person و بعد x.age = 10، چه اتفاقی می‌افتد؟",
+      "options": [
+        "نسخهٔ کپی ساخته می‌شود",
+        "سن در شیء person هم عوض می‌شود، چون هر دو یک شیء هستند",
+        "خطا می‌گیریم",
+        "شیء person قفل می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "شیء‌ها با ارجاع نگه‌داری می‌شوند، پس x و person یک نشانی حافظه دارند و تغییر یکی روی دیگری اثر می‌گذارد."
+    },
+    {
+      "question": "کدام گزینه شیء نیست؟",
+      "options": ["Math", "Date", "مقدار اولیهٔ boolean", "آرایه"],
+      "answer": 2,
+      "explanation": "درس فهرست می‌کند که Math و Date و تابع و آرایه و Map و Set همه شیء هستند؛ تنها استثنا نوع‌های اولیه مثل boolean است."
+    }
+  ]
 }

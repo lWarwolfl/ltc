@@ -1,176 +1,176 @@
 {
- "slug": "js_graphics_plotly",
- "course": "js",
- "order": 252,
- "url": "/js/js_graphics_plotly.asp",
- "title": "Plotly.js",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Plotly.js"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Plotly.js is a charting library that comes with over 40 chart types:\n\nHorizontal and Vertical Bar Charts\nPie and Donut Charts\nLine Charts\nScatter and Bubble Plots\nEquation Plots\n3D Charts\nStatistical Graphs\nSVG Maps\n...\n\nPlotly.js is free and open-source under the MIT license.\nIt costs nothing to install and use.\nYou can view the source, report issues and contribute using Github."
-  },
-  {
-   "type": "h2",
-   "text": "Bar Charts"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [\"Italy\",\"France\",\"Spain\",\"USA\",\"Argentina\"];\n\nconst yArray = [55, 49, 44, 24, 15];\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  type: \"bar\",\n\n  orientation:\"v\",\n\n  marker: {color:\"rgba(0,0,255)\"}\n\n}];\n\nconst layout = {title:\"World Wide Wine Production\"};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "Source Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bars"
-  },
-  {
-   "type": "h2",
-   "text": "Horizontal Bar Charts"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [55, 49, 44, 24, 15];\n\nconst yArray = [\"Italy\",\"France\",\"Spain\",\"USA\",\"Argentina\"];\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  type: \"bar\",\n\n  orientation: \"h\",\n\n  marker: {color:\"rgba(255,0,0,0.6)\"}\n\n}];\n\nconst layout = {title:\"World Wide Wine Production\"};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "Source Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bars_horizontal"
-  },
-  {
-   "type": "h2",
-   "text": "Pie Charts"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const data = [{\n\n  labels: xArray,\n\n  values: yArray,\n\n  type: \"pie\"\n\n}];",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_pie"
-  },
-  {
-   "type": "h2",
-   "text": "Donut Charts"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const data = [{\n\n  labels: xArray,\n\n  values: yArray,\n\n  hole: .4,\n\n  type: \"pie\"\n\n}];",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_donut"
-  },
-  {
-   "type": "h2",
-   "text": "Plotting Equations"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let exp = \"Math.sin(x)\";\n\n// Generate values\n\nconst xValues = [];\n\nconst yValues = [];\n\nfor (let x = 0; x <= 10; x += 0.1) {\n\n  xValues.push(x);\n\n  yValues.push(eval(exp));\n\n}\n\n// Display using Plotly\n\nconst data = [{x:xValues, y:yValues, mode:\"lines\"}];\n\nconst layout = {title: \"y = \" + exp};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "Source Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Display using Plotly\n\nconst data = [{x:xValues, y:yValues, mode:\"markers\"}];\n\nconst layout = {title: \"y = \" + exp};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_scatter"
-  },
-  {
-   "type": "h2",
-   "text": "Scatter Plots"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Define Data\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  mode:\"markers\",\n\n  type:\"scatter\"\n\n}];\n\n// Define Layout\n\nconst layout = {\n\n  xaxis: {range: [40, 160], title: \"Square Meters\"},\n\n  yaxis: {range: [5, 16], title: \"Price in Millions\"},\n\n  title: \"House Prices vs. Size\"\n\n};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "Source Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_scatter"
-  },
-  {
-   "type": "h2",
-   "text": "Line Graphs"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Define Data\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  mode: \"lines\",\n\n  type: \"scatter\"\n\n}];\n\n// Define Layout\n\nconst layout = {\n\n  xaxis: {range: [40, 160], title: \"Square Meters\"},\n\n  yaxis: {range: [5, 16], title: \"Price in Millions\"},\n\n  title: \"House Prices vs Size\"\n\n};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "Source Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_lines"
-  },
-  {
-   "type": "h2",
-   "text": "Bubble Plots"
-  },
-  {
-   "type": "p",
-   "text": "Bubble Plots are Scatter Plots whose markers have variable color, size, and symbols."
-  },
-  {
-   "type": "p",
-   "text": "It is a type of 3-dimensional chart with only two axes (x and y) where the size of the bubble\ncommunicates the third dimention."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xArray = [1,2,3,4];\n\nconst yArray = [10,20,30,40];\n\nconst trace1 = {\n\n  x: xArray,\n\n  y: yArray,\n\n  mode: 'markers',\n\n  marker: {\n\n    color: ['red', 'green',  'blue', 'orange'],\n\n    size: [20, 30, 40, 50]\n\n  }\n\n};\n\nconst data = [trace1];\n\nconst layout = {\n\n  title: \"Plotting Bubbles\"\n\n};\n\nPlotly.newPlot('myPlot', data, layout);",
-   "caption": "Source Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bubbles"
-  },
-  {
-   "type": "h2",
-   "text": "Linear Graphs"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let exp = \"x + 17\";\n\n// Generate values\n\nconst xValues = [];\n\nconst yValues = [];\n\nfor (let x = 0; x <= 10; x += 1) {\n\n  yValues.push(eval(exp));\n\n  xValues.push(x);\n\n}\n\n// Define Data\n\nconst data = [{\n\n  x: xValues,\n\n  y: yValues,\n\n  mode: \"lines\"\n\n}];\n\n// Define Layout\n\nconst layout = {title: \"y = \" + exp};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "Source Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_linear"
-  },
-  {
-   "type": "h2",
-   "text": "Multiple Lines"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let exp1 = \"x\";\n\nlet exp2 = \"1.5*x\";\n\nlet exp3 = \"1.5*x + 7\";\n\n// Generate values\n\nconst x1Values = [];\n\nconst x2Values = [];\n\nconst x3Values = [];\n\nconst y1Values = [];\n\nconst y2Values = [];\n\nconst y3Values = [];\n\nfor (let x = 0; x <= 10; x += 1) {\n\n  x1Values.push(x);\n\n  x2Values.push(x);\n\n  x3Values.push(x);\n\n  y1Values.push(eval(exp1));\n\n  y2Values.push(eval(exp2));\n\n  y3Values.push(eval(exp3));\n\n}\n\n// Define Data\n\nconst data = [\n\n  {x: x1Values, y: y1Values, mode:\"lines\"},\n\n  {x: x2Values, y: y2Values, mode:\"lines\"},\n\n  {x: x3Values, y: y3Values, mode:\"lines\"}\n\n];\n\n// Define Layout\n\nconst layout = {title: \"[y=\" + exp1 + \"]  [y=\" + exp2 + \"]  [y=\" + exp3 + \"]\"};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
-   "caption": "Source Code"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_linear_multiple"
-  }
- ]
+  "slug": "js_graphics_plotly",
+  "course": "js",
+  "order": 252,
+  "url": "/js/js_graphics_plotly.asp",
+  "title": "Plotly.js",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Plotly.js"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Plotly.js is a charting library that comes with over 40 chart types:\n\nHorizontal and Vertical Bar Charts\nPie and Donut Charts\nLine Charts\nScatter and Bubble Plots\nEquation Plots\n3D Charts\nStatistical Graphs\nSVG Maps\n...\n\nPlotly.js is free and open-source under the MIT license.\nIt costs nothing to install and use.\nYou can view the source, report issues and contribute using Github."
+    },
+    {
+      "type": "h2",
+      "text": "Bar Charts"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [\"Italy\",\"France\",\"Spain\",\"USA\",\"Argentina\"];\n\nconst yArray = [55, 49, 44, 24, 15];\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  type: \"bar\",\n\n  orientation:\"v\",\n\n  marker: {color:\"rgba(0,0,255)\"}\n\n}];\n\nconst layout = {title:\"World Wide Wine Production\"};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "Source Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bars"
+    },
+    {
+      "type": "h2",
+      "text": "Horizontal Bar Charts"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [55, 49, 44, 24, 15];\n\nconst yArray = [\"Italy\",\"France\",\"Spain\",\"USA\",\"Argentina\"];\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  type: \"bar\",\n\n  orientation: \"h\",\n\n  marker: {color:\"rgba(255,0,0,0.6)\"}\n\n}];\n\nconst layout = {title:\"World Wide Wine Production\"};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "Source Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bars_horizontal"
+    },
+    {
+      "type": "h2",
+      "text": "Pie Charts"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const data = [{\n\n  labels: xArray,\n\n  values: yArray,\n\n  type: \"pie\"\n\n}];",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_pie"
+    },
+    {
+      "type": "h2",
+      "text": "Donut Charts"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const data = [{\n\n  labels: xArray,\n\n  values: yArray,\n\n  hole: .4,\n\n  type: \"pie\"\n\n}];",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_donut"
+    },
+    {
+      "type": "h2",
+      "text": "Plotting Equations"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let exp = \"Math.sin(x)\";\n\n// Generate values\n\nconst xValues = [];\n\nconst yValues = [];\n\nfor (let x = 0; x <= 10; x += 0.1) {\n\n  xValues.push(x);\n\n  yValues.push(eval(exp));\n\n}\n\n// Display using Plotly\n\nconst data = [{x:xValues, y:yValues, mode:\"lines\"}];\n\nconst layout = {title: \"y = \" + exp};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "Source Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Display using Plotly\n\nconst data = [{x:xValues, y:yValues, mode:\"markers\"}];\n\nconst layout = {title: \"y = \" + exp};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_scatter"
+    },
+    {
+      "type": "h2",
+      "text": "Scatter Plots"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Define Data\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  mode:\"markers\",\n\n  type:\"scatter\"\n\n}];\n\n// Define Layout\n\nconst layout = {\n\n  xaxis: {range: [40, 160], title: \"Square Meters\"},\n\n  yaxis: {range: [5, 16], title: \"Price in Millions\"},\n\n  title: \"House Prices vs. Size\"\n\n};\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "Source Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_scatter"
+    },
+    {
+      "type": "h2",
+      "text": "Line Graphs"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [50,60,70,80,90,100,110,120,130,140,150];\n\nconst yArray = [7,8,8,9,9,9,10,11,14,14,15];\n\n// Define Data\n\nconst data = [{\n\n  x: xArray,\n\n  y: yArray,\n\n  mode: \"lines\",\n\n  type: \"scatter\"\n\n}];\n\n// Define Layout\n\nconst layout = {\n\n  xaxis: {range: [40, 160], title: \"Square Meters\"},\n\n  yaxis: {range: [5, 16], title: \"Price in Millions\"},\n\n  title: \"House Prices vs Size\"\n\n};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "Source Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_lines"
+    },
+    {
+      "type": "h2",
+      "text": "Bubble Plots"
+    },
+    {
+      "type": "p",
+      "text": "Bubble Plots are Scatter Plots whose markers have variable color, size, and symbols."
+    },
+    {
+      "type": "p",
+      "text": "It is a type of 3-dimensional chart with only two axes (x and y) where the size of the bubble\ncommunicates the third dimention."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xArray = [1,2,3,4];\n\nconst yArray = [10,20,30,40];\n\nconst trace1 = {\n\n  x: xArray,\n\n  y: yArray,\n\n  mode: 'markers',\n\n  marker: {\n\n    color: ['red', 'green',  'blue', 'orange'],\n\n    size: [20, 30, 40, 50]\n\n  }\n\n};\n\nconst data = [trace1];\n\nconst layout = {\n\n  title: \"Plotting Bubbles\"\n\n};\n\nPlotly.newPlot('myPlot', data, layout);",
+      "caption": "Source Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_bubbles"
+    },
+    {
+      "type": "h2",
+      "text": "Linear Graphs"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let exp = \"x + 17\";\n\n// Generate values\n\nconst xValues = [];\n\nconst yValues = [];\n\nfor (let x = 0; x <= 10; x += 1) {\n\n  yValues.push(eval(exp));\n\n  xValues.push(x);\n\n}\n\n// Define Data\n\nconst data = [{\n\n  x: xValues,\n\n  y: yValues,\n\n  mode: \"lines\"\n\n}];\n\n// Define Layout\n\nconst layout = {title: \"y = \" + exp};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "Source Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_linear"
+    },
+    {
+      "type": "h2",
+      "text": "Multiple Lines"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let exp1 = \"x\";\n\nlet exp2 = \"1.5*x\";\n\nlet exp3 = \"1.5*x + 7\";\n\n// Generate values\n\nconst x1Values = [];\n\nconst x2Values = [];\n\nconst x3Values = [];\n\nconst y1Values = [];\n\nconst y2Values = [];\n\nconst y3Values = [];\n\nfor (let x = 0; x <= 10; x += 1) {\n\n  x1Values.push(x);\n\n  x2Values.push(x);\n\n  x3Values.push(x);\n\n  y1Values.push(eval(exp1));\n\n  y2Values.push(eval(exp2));\n\n  y3Values.push(eval(exp3));\n\n}\n\n// Define Data\n\nconst data = [\n\n  {x: x1Values, y: y1Values, mode:\"lines\"},\n\n  {x: x2Values, y: y2Values, mode:\"lines\"},\n\n  {x: x3Values, y: y3Values, mode:\"lines\"}\n\n];\n\n// Define Layout\n\nconst layout = {title: \"[y=\" + exp1 + \"]  [y=\" + exp2 + \"]  [y=\" + exp3 + \"]\"};\n\n// Display using Plotly\n\nPlotly.newPlot(\"myPlot\", data, layout);",
+      "caption": "Source Code"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryplotly_function_linear_multiple"
+    }
+  ]
 }

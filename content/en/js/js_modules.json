@@ -1,164 +1,159 @@
 {
- "slug": "js_modules",
- "course": "js",
- "order": 233,
- "url": "/js/js_modules.asp",
- "title": "JavaScript Modules",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Modules"
-  },
-  {
-   "type": "h2",
-   "text": "What are Modules?"
-  },
-  {
-   "type": "p",
-   "text": "Modules are code blocks that can export and/or import functions and values."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Export an \"add\" function\n\nexport function add(a, b) {\n\n  return a + b;\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Import an \"add\" function\n\nimport { add } from './math.js';\n\nlet result = add(2, 3);",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Modules let you to break up code into separate files."
-  },
-  {
-   "type": "p",
-   "text": "Modules is a fundamental feature in modern JavaScript."
-  },
-  {
-   "type": "h2",
-   "text": "Module Files"
-  },
-  {
-   "type": "p",
-   "text": "A JavaScript module is usually a file, but it can also be an HTML script."
-  },
-  {
-   "type": "p",
-   "text": "A module file is a .js file using import / export."
-  },
-  {
-   "type": "p",
-   "text": "A module script is an HTML script using import / export."
-  },
-  {
-   "type": "h2",
-   "text": "How to Use Modules"
-  },
-  {
-   "type": "p",
-   "text": "Modules use export and import to interchange functionalities between modules."
-  },
-  {
-   "type": "p",
-   "text": "An HTML script using type=\"module\" is treated as a module:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Export an \"add\" function\n\nexport function add(a, b) {\n\n  return a + b;\n\n}",
-   "caption": "Module File \"math.js:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\n// Import the add function\n\nimport { add } from './math.js';\n\nlet result = add(2, 3);\n\n</script>",
-   "caption": "Module File \"math.js:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_add"
-  },
-  {
-   "type": "p",
-   "text": "Module files must be stored on a server."
-  },
-  {
-   "type": "p",
-   "text": "Modules only work with the HTTP(s) protocol."
-  },
-  {
-   "type": "p",
-   "text": "A web-page opened via the file:// protocol cannot use import / export."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Export name and age\n\nexport const name = \"Jesse\";\n\nexport const age = 40;",
-   "caption": "Module File \"person.js\""
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "<script type=\"module\">\n\n// Import name and age\n\nimport { name, age } from \"./person.js\";\n\n</script>",
-   "caption": "Module File \"person.js\""
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
-  },
-  {
-   "type": "h2",
-   "text": "Modules Can Export"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Variables",
-    "Functions",
-    "Objects",
-    "Classes"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const message = () => {\n\n  const name = \"Jesse\";\n\n  const age = 40;\n\n  return name + ' is ' + age + 'years old.';\n\n};\n\nexport default message;",
-   "caption": "Module File \"message.js\""
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\nimport message from \"./message.js\";\n\n</script>",
-   "caption": "Module File \"message.js\""
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules2"
-  },
-  {
-   "type": "p",
-   "text": "Modules operate in strict mode by default."
-  },
-  {
-   "type": "h2",
-   "text": "Why Modules?"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Modules help organizing code.\nModules let you break down large codebases into small self-contained files, each focused on a specific task.\nModules are essential for large and complex applications.",
-    "Modules prevent naming conflicts.\nBefore modules, developers had only the global scope, which can lead to \"namespace pollution\"\nwhere unrelated code can accidentally overwrite other global variables.\nModules has a private scope. Variables and functions are not exposed globally,\nunless explicitly exported.",
-    "Modules have better readability\nModules improves code organization, making it easier to navigate, understand, and manage,\nespecially in larger projects or team environments.",
-    "Modules are easily reused across different parts of an application and in entirely new projects.\nModules promote reusability by enabling the export of functions, variables, or objects from one\nfile and their import into other files or projects. This eliminates redundant code and fosters\na more efficient development process.\nA module can be easily reused across different parts of a project or in entirely new projects.\nThis promotes the \"Don't Repeat Yourself\" (DRY) principle, reducing code duplication and saving time.",
-    "Modules are easier to maintain and debug.\nBy dividing code into distinct modules, modifications or bug fixes in one part of the application\ncan be isolated to a specific module, minimizing the impact on other parts of the system.\nthis makes the codebase easier to maintain and scale as the project grows.\nModules allow multiple developers to work on different parts of the codebase simultaneously\nwith less risk of conflicts. Clear module boundaries enhance communication and make it easier\nto add new features with minimal impact on existing code.",
-    "Modules have better encapsulation and isolation\nVariables and functions defined within a module are private by default,\nonly becoming accessible to other modules when explicitly exported.\nThis enhances code isolation, reduces the risk of unintended side effects, and makes code easier to reason about.",
-    "Modules have better dependency management.\nModules use explicit import and export statements to manage dependencies.\nThis makes it easier to understand the relationships between different parts\nof the application and to manage external libraries or components.\nModules are much more reliable than the older, manual process of ensuring scripts were loaded\nin the correct order."
-   ]
-  }
- ]
+  "slug": "js_modules",
+  "course": "js",
+  "order": 233,
+  "url": "/js/js_modules.asp",
+  "title": "JavaScript Modules",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Modules"
+    },
+    {
+      "type": "h2",
+      "text": "What are Modules?"
+    },
+    {
+      "type": "p",
+      "text": "Modules are code blocks that can export and/or import functions and values."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Export an \"add\" function\n\nexport function add(a, b) {\n\n  return a + b;\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Import an \"add\" function\n\nimport { add } from './math.js';\n\nlet result = add(2, 3);",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Modules let you to break up code into separate files."
+    },
+    {
+      "type": "p",
+      "text": "Modules is a fundamental feature in modern JavaScript."
+    },
+    {
+      "type": "h2",
+      "text": "Module Files"
+    },
+    {
+      "type": "p",
+      "text": "A JavaScript module is usually a file, but it can also be an HTML script."
+    },
+    {
+      "type": "p",
+      "text": "A module file is a .js file using import / export."
+    },
+    {
+      "type": "p",
+      "text": "A module script is an HTML script using import / export."
+    },
+    {
+      "type": "h2",
+      "text": "How to Use Modules"
+    },
+    {
+      "type": "p",
+      "text": "Modules use export and import to interchange functionalities between modules."
+    },
+    {
+      "type": "p",
+      "text": "An HTML script using type=\"module\" is treated as a module:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Export an \"add\" function\n\nexport function add(a, b) {\n\n  return a + b;\n\n}",
+      "caption": "Module File \"math.js:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\n// Import the add function\n\nimport { add } from './math.js';\n\nlet result = add(2, 3);\n\n</script>",
+      "caption": "Module File \"math.js:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules_add"
+    },
+    {
+      "type": "p",
+      "text": "Module files must be stored on a server."
+    },
+    {
+      "type": "p",
+      "text": "Modules only work with the HTTP(s) protocol."
+    },
+    {
+      "type": "p",
+      "text": "A web-page opened via the file:// protocol cannot use import / export."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Export name and age\n\nexport const name = \"Jesse\";\n\nexport const age = 40;",
+      "caption": "Module File \"person.js\""
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "<script type=\"module\">\n\n// Import name and age\n\nimport { name, age } from \"./person.js\";\n\n</script>",
+      "caption": "Module File \"person.js\""
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules1"
+    },
+    {
+      "type": "h2",
+      "text": "Modules Can Export"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Variables", "Functions", "Objects", "Classes"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const message = () => {\n\n  const name = \"Jesse\";\n\n  const age = 40;\n\n  return name + ' is ' + age + 'years old.';\n\n};\n\nexport default message;",
+      "caption": "Module File \"message.js\""
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\nimport message from \"./message.js\";\n\n</script>",
+      "caption": "Module File \"message.js\""
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_modules2"
+    },
+    {
+      "type": "p",
+      "text": "Modules operate in strict mode by default."
+    },
+    {
+      "type": "h2",
+      "text": "Why Modules?"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Modules help organizing code.\nModules let you break down large codebases into small self-contained files, each focused on a specific task.\nModules are essential for large and complex applications.",
+        "Modules prevent naming conflicts.\nBefore modules, developers had only the global scope, which can lead to \"namespace pollution\"\nwhere unrelated code can accidentally overwrite other global variables.\nModules has a private scope. Variables and functions are not exposed globally,\nunless explicitly exported.",
+        "Modules have better readability\nModules improves code organization, making it easier to navigate, understand, and manage,\nespecially in larger projects or team environments.",
+        "Modules are easily reused across different parts of an application and in entirely new projects.\nModules promote reusability by enabling the export of functions, variables, or objects from one\nfile and their import into other files or projects. This eliminates redundant code and fosters\na more efficient development process.\nA module can be easily reused across different parts of a project or in entirely new projects.\nThis promotes the \"Don't Repeat Yourself\" (DRY) principle, reducing code duplication and saving time.",
+        "Modules are easier to maintain and debug.\nBy dividing code into distinct modules, modifications or bug fixes in one part of the application\ncan be isolated to a specific module, minimizing the impact on other parts of the system.\nthis makes the codebase easier to maintain and scale as the project grows.\nModules allow multiple developers to work on different parts of the codebase simultaneously\nwith less risk of conflicts. Clear module boundaries enhance communication and make it easier\nto add new features with minimal impact on existing code.",
+        "Modules have better encapsulation and isolation\nVariables and functions defined within a module are private by default,\nonly becoming accessible to other modules when explicitly exported.\nThis enhances code isolation, reduces the risk of unintended side effects, and makes code easier to reason about.",
+        "Modules have better dependency management.\nModules use explicit import and export statements to manage dependencies.\nThis makes it easier to understand the relationships between different parts\nof the application and to manage external libraries or components.\nModules are much more reliable than the older, manual process of ensuring scripts were loaded\nin the correct order."
+      ]
+    }
+  ]
 }

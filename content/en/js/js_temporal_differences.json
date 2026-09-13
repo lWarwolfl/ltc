@@ -1,241 +1,229 @@
 {
- "slug": "js_temporal_differences",
- "course": "js",
- "order": 194,
- "url": "/js/js_temporal_differences.asp",
- "title": "JS Temporal Differences",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JS Temporal Differences"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript since() and until()"
-  },
-  {
-   "type": "p",
-   "text": "The since() method calculates the since duration between two dates."
-  },
-  {
-   "type": "p",
-   "text": "The until() method calculates the until duration between two dates."
-  },
-  {
-   "type": "p",
-   "text": "The since() and until() are effectivly the inverse of each other."
-  },
-  {
-   "type": "p",
-   "text": "All temporal date objects have their own since() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "plaindate.since(plaindate)",
-    "plaintime.since(plaintime)",
-    "plainyearmonth.since(plainyearmonth)",
-    "plainmonthday.since(plainmonthday)",
-    "plaindatetime.since(plaindatetime)",
-    "zoneddatetime.since(zoneddatetime)",
-    "instant.since(instant)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "All temporal objects have their own until() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "plaindate.until(plaindate)",
-    "plaintime.until(plaintime)",
-    "plainyearmonth.until(plainyearmonth)",
-    "plainmonthday.until(plainmonthday)",
-    "plaindatetime.until(plaindatetime)",
-    "zoneddatetime.until(zoneddatetime)",
-    "instant.until(instant)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Temporal since()"
-  },
-  {
-   "type": "p",
-   "text": "The since() method calculates the duration between two temporal dates."
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "t1.since(t2, options)",
-   "caption": "Syntax"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = start.since(end);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_since"
-  },
-  {
-   "type": "p",
-   "text": "The since() method returns a Temporal.Duration Object\nrepresenting the elapsed time."
-  },
-  {
-   "type": "p",
-   "text": "The duration is positive if the \"other\" date is in the past."
-  },
-  {
-   "type": "p",
-   "text": "The duration is negative if the \"other\" date is in the future."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Temporal until()"
-  },
-  {
-   "type": "p",
-   "text": "The until() method calculates the duration between two temporal dates."
-  },
-  {
-   "type": "p",
-   "text": "The until() method is effectively the inverse of the\nsince() method."
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "t1.until(t2, options)",
-   "caption": "Syntax"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = start.until(end);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_until"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal since() vs until()"
-  },
-  {
-   "type": "p",
-   "text": "The methods are opposites."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Meaning"
-    ],
-    [
-     "a.since(b)",
-     "time from b → a"
-    ],
-    [
-     "a.until(b)",
-     "time from a → b"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration1 = start.since(end);\n\nconst duration2 = start.until(end);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_until3"
-  },
-  {
-   "type": "p",
-   "text": "Think:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "since = past (since yesterday)",
-    "until = future (until tomorrow)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The Options Parameters"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const wedding = Temporal.PlainDate.from(\"2000-05-17\");\n\nconst today = Temporal.Now.plainDateISO();\n\nconst duration = today.since(wedding);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since3"
-  },
-  {
-   "type": "p",
-   "text": "The since() method returns the total number of days,\nbut you can use the largestUnit option to break it down into years and months:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const wedding = Temporal.PlainDate.from(\"2000-05-17\");\n\nconst today = Temporal.Now.plainDateISO();\n\nconst duration = today.since(wedding, {largestUnit:'years'});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since4"
-  },
-  {
-   "type": "h2",
-   "text": "PlainTime since()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.PlainTime.from(\"09:00\");\n\nconst end = Temporal.PlainTime.from(\"17:30\");\n\nconst duration = end.since(start);",
-   "caption": "Example: Plain Time"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since1"
-  },
-  {
-   "type": "h2",
-   "text": "ZonedDateTime since()"
-  },
-  {
-   "type": "p",
-   "text": "The since() method calculates the duration between two temporal dates."
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "t1.since(t2, options)",
-   "caption": "Syntax"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T09:00:00+01:00[Europe/Oslo]\");\n\nconst end = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T17:30:00+01:00[Europe/Oslo]\");\n\nconst duration = end.since(start);",
-   "caption": "Example: ZonedDateTime"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since2"
-  }
- ]
+  "slug": "js_temporal_differences",
+  "course": "js",
+  "order": 194,
+  "url": "/js/js_temporal_differences.asp",
+  "title": "JS Temporal Differences",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JS Temporal Differences"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript since() and until()"
+    },
+    {
+      "type": "p",
+      "text": "The since() method calculates the since duration between two dates."
+    },
+    {
+      "type": "p",
+      "text": "The until() method calculates the until duration between two dates."
+    },
+    {
+      "type": "p",
+      "text": "The since() and until() are effectivly the inverse of each other."
+    },
+    {
+      "type": "p",
+      "text": "All temporal date objects have their own since() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "plaindate.since(plaindate)",
+        "plaintime.since(plaintime)",
+        "plainyearmonth.since(plainyearmonth)",
+        "plainmonthday.since(plainmonthday)",
+        "plaindatetime.since(plaindatetime)",
+        "zoneddatetime.since(zoneddatetime)",
+        "instant.since(instant)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "All temporal objects have their own until() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "plaindate.until(plaindate)",
+        "plaintime.until(plaintime)",
+        "plainyearmonth.until(plainyearmonth)",
+        "plainmonthday.until(plainmonthday)",
+        "plaindatetime.until(plaindatetime)",
+        "zoneddatetime.until(zoneddatetime)",
+        "instant.until(instant)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Temporal since()"
+    },
+    {
+      "type": "p",
+      "text": "The since() method calculates the duration between two temporal dates."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "t1.since(t2, options)",
+      "caption": "Syntax"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = start.since(end);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_since"
+    },
+    {
+      "type": "p",
+      "text": "The since() method returns a Temporal.Duration Object\nrepresenting the elapsed time."
+    },
+    {
+      "type": "p",
+      "text": "The duration is positive if the \"other\" date is in the past."
+    },
+    {
+      "type": "p",
+      "text": "The duration is negative if the \"other\" date is in the future."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Temporal until()"
+    },
+    {
+      "type": "p",
+      "text": "The until() method calculates the duration between two temporal dates."
+    },
+    {
+      "type": "p",
+      "text": "The until() method is effectively the inverse of the\nsince() method."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "t1.until(t2, options)",
+      "caption": "Syntax"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration = start.until(end);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_until"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal since() vs until()"
+    },
+    {
+      "type": "p",
+      "text": "The methods are opposites."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Meaning"],
+        ["a.since(b)", "time from b → a"],
+        ["a.until(b)", "time from a → b"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst duration1 = start.since(end);\n\nconst duration2 = start.until(end);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_until3"
+    },
+    {
+      "type": "p",
+      "text": "Think:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["since = past (since yesterday)", "until = future (until tomorrow)"]
+    },
+    {
+      "type": "h2",
+      "text": "The Options Parameters"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const wedding = Temporal.PlainDate.from(\"2000-05-17\");\n\nconst today = Temporal.Now.plainDateISO();\n\nconst duration = today.since(wedding);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since3"
+    },
+    {
+      "type": "p",
+      "text": "The since() method returns the total number of days,\nbut you can use the largestUnit option to break it down into years and months:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const wedding = Temporal.PlainDate.from(\"2000-05-17\");\n\nconst today = Temporal.Now.plainDateISO();\n\nconst duration = today.since(wedding, {largestUnit:'years'});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since4"
+    },
+    {
+      "type": "h2",
+      "text": "PlainTime since()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.PlainTime.from(\"09:00\");\n\nconst end = Temporal.PlainTime.from(\"17:30\");\n\nconst duration = end.since(start);",
+      "caption": "Example: Plain Time"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since1"
+    },
+    {
+      "type": "h2",
+      "text": "ZonedDateTime since()"
+    },
+    {
+      "type": "p",
+      "text": "The since() method calculates the duration between two temporal dates."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "t1.since(t2, options)",
+      "caption": "Syntax"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T09:00:00+01:00[Europe/Oslo]\");\n\nconst end = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T17:30:00+01:00[Europe/Oslo]\");\n\nconst duration = end.since(start);",
+      "caption": "Example: ZonedDateTime"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since2"
+    }
+  ]
 }

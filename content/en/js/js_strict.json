@@ -1,375 +1,375 @@
 {
- "slug": "js_strict",
- "course": "js",
- "order": 56,
- "url": "/js/js_strict.asp",
- "title": "JavaScript Use Strict",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Use Strict"
-  },
-  {
-   "type": "h2",
-   "text": "The \"use strict\" Directive"
-  },
-  {
-   "type": "p",
-   "text": "The \"use strict\" directive was new in ECMAScript version 5."
-  },
-  {
-   "type": "p",
-   "text": "It defines that JavaScript code should be executed in \"strict mode\"."
-  },
-  {
-   "type": "p",
-   "text": "It is not a statement. It is a literal expression, ignored by earlier versions of JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "The purpose of \"use strict\" is to indicate that the code should be executed in \"strict mode\"."
-  },
-  {
-   "type": "p",
-   "text": "With strict mode, you can not, for example, use undeclared variables."
-  },
-  {
-   "type": "h2",
-   "text": "Declaring Strict Mode"
-  },
-  {
-   "type": "p",
-   "text": "Strict mode is declared by adding \"use strict\"; to the beginning of a\nscript or a function."
-  },
-  {
-   "type": "p",
-   "text": "Declared at the beginning of a script, it has global scope (all code\nin the script will execute in strict mode):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nx = 3.14;       // This will cause an error\n because x is not declared",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_variable"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nmyFunction();\n\nfunction myFunction() {\n\n   y = 3.14;   // This will also cause an error\n because y is not declared\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_global"
-  },
-  {
-   "type": "p",
-   "text": "Declared inside a function, it has local scope (only the code inside the function is\nin strict mode):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "x = 3.14;       // This will not cause an error.\n\nmyFunction();\n\nfunction\n myFunction() {\n\n  \"use strict\";\n\n    y = 3.14;   // This will cause an error\n}",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_local"
-  },
-  {
-   "type": "h2",
-   "text": "The \"use strict\"; Syntax"
-  },
-  {
-   "type": "p",
-   "text": "The syntax, for declaring strict mode, was designed to be compatible with\nolder versions of JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "Compiling a numeric literal (4 + 5;) or a string literal (\"John Doe\";) in a\nJavaScript program has no side effects. It simply compiles to a non existing\nvariable and dies."
-  },
-  {
-   "type": "p",
-   "text": "So \"use strict\"; only matters to new compilers that \"understand\" the meaning\nof it."
-  },
-  {
-   "type": "h2",
-   "text": "Why Strict Mode?"
-  },
-  {
-   "type": "p",
-   "text": "Strict mode makes it easier to write \"secure\" JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "Strict mode changes previously accepted \"bad syntax\" into real errors."
-  },
-  {
-   "type": "p",
-   "text": "As an example, in normal JavaScript, mistyping a variable name creates a new\nglobal variable. In strict mode, this will throw an error, making it impossible\nto accidentally create a global variable."
-  },
-  {
-   "type": "p",
-   "text": "In normal JavaScript, a developer will not receive any error feedback\nassigning values to non-writable properties."
-  },
-  {
-   "type": "p",
-   "text": "In strict mode, any assignment to a non-writable property, a getter-only\nproperty, a non-existing property, a non-existing variable, or a non-existing\nobject, will throw an error."
-  },
-  {
-   "type": "h2",
-   "text": "Not Allowed in Strict Mode"
-  },
-  {
-   "type": "p",
-   "text": "Using a variable, without declaring it, is not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\n\n x = 3.14;                // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_variable"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Objects are variables too."
-  },
-  {
-   "type": "p",
-   "text": "Using an object, without declaring it, is not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\n\n x = {p1:10, p2:20};      // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_object"
-  },
-  {
-   "type": "p",
-   "text": "Deleting a variable (or object) is not allowed."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nlet x = 3.14;\n\ndelete x;                // This\nwill cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_delete"
-  },
-  {
-   "type": "p",
-   "text": "Deleting a function is not allowed."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nfunction x(p1, p2) {};\ndelete x;\n // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_delete_function"
-  },
-  {
-   "type": "p",
-   "text": "Duplicating a parameter name is not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nfunction x(p1, p1) {};   // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_duplicate"
-  },
-  {
-   "type": "p",
-   "text": "Octal numeric literals are not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nlet x = 010;             // This\nwill cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_octal"
-  },
-  {
-   "type": "p",
-   "text": "Octal escape characters are not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\n\nlet x = \"\\010\";            // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_escape"
-  },
-  {
-   "type": "p",
-   "text": "Writing to a read-only property is not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\n\nconst obj = {};\n\nObject.defineProperty(obj, \"x\", {value:0, writable:false});\n\nobj.x = 3.14;            // This\nwill cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_readonly"
-  },
-  {
-   "type": "p",
-   "text": "Writing to a get-only property is not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\n\nconst obj = {get x()\n{return 0} };\n\nobj.x = 3.14;            // This\nwill cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_getonly"
-  },
-  {
-   "type": "p",
-   "text": "Deleting an undeletable property is not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\ndelete Object.prototype; // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_deleteprop"
-  },
-  {
-   "type": "p",
-   "text": "The word eval cannot be used as a variable:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nlet eval = 3.14;         // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval"
-  },
-  {
-   "type": "p",
-   "text": "The word arguments cannot be used as a variable:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nlet arguments = 3.14;    // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_arguments"
-  },
-  {
-   "type": "p",
-   "text": "The with statement is not allowed:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nwith (Math){x = cos(2)}; // This will cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_width"
-  },
-  {
-   "type": "p",
-   "text": "For security reasons, eval() is not allowed to create\nvariables in the scope from which it was called."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\n\neval (\"x = 2\");\n\nalert (x);      // This\nwill cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval4"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\n\neval (\"var x = 2\");\n\nalert (x);    // This\nwill cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval2"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "eval (\"let x = 2\");\n\nalert (x);        // This\nwill cause an error",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval3"
-  },
-  {
-   "type": "p",
-   "text": "The this keyword in functions behaves\ndifferently in strict mode."
-  },
-  {
-   "type": "p",
-   "text": "The this keyword refers to the object that\ncalled the function."
-  },
-  {
-   "type": "p",
-   "text": "If the object is not specified, functions in strict mode\nwill return undefined and functions in normal\nmode will return the global object (window):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"use strict\";\nfunction myFunction() {\n\n  alert(this); // will alert \"undefined\"\n}\nmyFunction();",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_this"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "Watch Out!\nThe \"use strict\" directive is only recognized at the beginning of a script\nor a function."
-  }
- ]
+  "slug": "js_strict",
+  "course": "js",
+  "order": 56,
+  "url": "/js/js_strict.asp",
+  "title": "JavaScript Use Strict",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Use Strict"
+    },
+    {
+      "type": "h2",
+      "text": "The \"use strict\" Directive"
+    },
+    {
+      "type": "p",
+      "text": "The \"use strict\" directive was new in ECMAScript version 5."
+    },
+    {
+      "type": "p",
+      "text": "It defines that JavaScript code should be executed in \"strict mode\"."
+    },
+    {
+      "type": "p",
+      "text": "It is not a statement. It is a literal expression, ignored by earlier versions of JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "The purpose of \"use strict\" is to indicate that the code should be executed in \"strict mode\"."
+    },
+    {
+      "type": "p",
+      "text": "With strict mode, you can not, for example, use undeclared variables."
+    },
+    {
+      "type": "h2",
+      "text": "Declaring Strict Mode"
+    },
+    {
+      "type": "p",
+      "text": "Strict mode is declared by adding \"use strict\"; to the beginning of a\nscript or a function."
+    },
+    {
+      "type": "p",
+      "text": "Declared at the beginning of a script, it has global scope (all code\nin the script will execute in strict mode):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nx = 3.14;       // This will cause an error\n because x is not declared",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_variable"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nmyFunction();\n\nfunction myFunction() {\n\n   y = 3.14;   // This will also cause an error\n because y is not declared\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_global"
+    },
+    {
+      "type": "p",
+      "text": "Declared inside a function, it has local scope (only the code inside the function is\nin strict mode):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "x = 3.14;       // This will not cause an error.\n\nmyFunction();\n\nfunction\n myFunction() {\n\n  \"use strict\";\n\n    y = 3.14;   // This will cause an error\n}",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_local"
+    },
+    {
+      "type": "h2",
+      "text": "The \"use strict\"; Syntax"
+    },
+    {
+      "type": "p",
+      "text": "The syntax, for declaring strict mode, was designed to be compatible with\nolder versions of JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "Compiling a numeric literal (4 + 5;) or a string literal (\"John Doe\";) in a\nJavaScript program has no side effects. It simply compiles to a non existing\nvariable and dies."
+    },
+    {
+      "type": "p",
+      "text": "So \"use strict\"; only matters to new compilers that \"understand\" the meaning\nof it."
+    },
+    {
+      "type": "h2",
+      "text": "Why Strict Mode?"
+    },
+    {
+      "type": "p",
+      "text": "Strict mode makes it easier to write \"secure\" JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "Strict mode changes previously accepted \"bad syntax\" into real errors."
+    },
+    {
+      "type": "p",
+      "text": "As an example, in normal JavaScript, mistyping a variable name creates a new\nglobal variable. In strict mode, this will throw an error, making it impossible\nto accidentally create a global variable."
+    },
+    {
+      "type": "p",
+      "text": "In normal JavaScript, a developer will not receive any error feedback\nassigning values to non-writable properties."
+    },
+    {
+      "type": "p",
+      "text": "In strict mode, any assignment to a non-writable property, a getter-only\nproperty, a non-existing property, a non-existing variable, or a non-existing\nobject, will throw an error."
+    },
+    {
+      "type": "h2",
+      "text": "Not Allowed in Strict Mode"
+    },
+    {
+      "type": "p",
+      "text": "Using a variable, without declaring it, is not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\n\n x = 3.14;                // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_variable"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Objects are variables too."
+    },
+    {
+      "type": "p",
+      "text": "Using an object, without declaring it, is not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\n\n x = {p1:10, p2:20};      // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_object"
+    },
+    {
+      "type": "p",
+      "text": "Deleting a variable (or object) is not allowed."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nlet x = 3.14;\n\ndelete x;                // This\nwill cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_delete"
+    },
+    {
+      "type": "p",
+      "text": "Deleting a function is not allowed."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nfunction x(p1, p2) {};\ndelete x;\n // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_delete_function"
+    },
+    {
+      "type": "p",
+      "text": "Duplicating a parameter name is not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nfunction x(p1, p1) {};   // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_duplicate"
+    },
+    {
+      "type": "p",
+      "text": "Octal numeric literals are not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nlet x = 010;             // This\nwill cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_octal"
+    },
+    {
+      "type": "p",
+      "text": "Octal escape characters are not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\n\nlet x = \"\\010\";            // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_escape"
+    },
+    {
+      "type": "p",
+      "text": "Writing to a read-only property is not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\n\nconst obj = {};\n\nObject.defineProperty(obj, \"x\", {value:0, writable:false});\n\nobj.x = 3.14;            // This\nwill cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_readonly"
+    },
+    {
+      "type": "p",
+      "text": "Writing to a get-only property is not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\n\nconst obj = {get x()\n{return 0} };\n\nobj.x = 3.14;            // This\nwill cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_getonly"
+    },
+    {
+      "type": "p",
+      "text": "Deleting an undeletable property is not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\ndelete Object.prototype; // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_deleteprop"
+    },
+    {
+      "type": "p",
+      "text": "The word eval cannot be used as a variable:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nlet eval = 3.14;         // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval"
+    },
+    {
+      "type": "p",
+      "text": "The word arguments cannot be used as a variable:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nlet arguments = 3.14;    // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_arguments"
+    },
+    {
+      "type": "p",
+      "text": "The with statement is not allowed:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nwith (Math){x = cos(2)}; // This will cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_width"
+    },
+    {
+      "type": "p",
+      "text": "For security reasons, eval() is not allowed to create\nvariables in the scope from which it was called."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\n\neval (\"x = 2\");\n\nalert (x);      // This\nwill cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval4"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\n\neval (\"var x = 2\");\n\nalert (x);    // This\nwill cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval2"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "eval (\"let x = 2\");\n\nalert (x);        // This\nwill cause an error",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_eval3"
+    },
+    {
+      "type": "p",
+      "text": "The this keyword in functions behaves\ndifferently in strict mode."
+    },
+    {
+      "type": "p",
+      "text": "The this keyword refers to the object that\ncalled the function."
+    },
+    {
+      "type": "p",
+      "text": "If the object is not specified, functions in strict mode\nwill return undefined and functions in normal\nmode will return the global object (window):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"use strict\";\nfunction myFunction() {\n\n  alert(this); // will alert \"undefined\"\n}\nmyFunction();",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_strict_this"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "Watch Out!\nThe \"use strict\" directive is only recognized at the beginning of a script\nor a function."
+    }
+  ]
 }

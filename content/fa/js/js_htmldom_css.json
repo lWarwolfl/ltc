@@ -1,182 +1,168 @@
 {
- "slug": "js_htmldom_css",
- "course": "js",
- "order": 144,
- "url": "/js/js_htmldom_css.asp",
- "title": "DOM در HTML: تغییر CSS",
- "summary": "با DOM می‌توانید استایل عنصرها را از JavaScript تغییر دهید. در این درس ساختار style.property را یاد می‌گیرید، می‌بینید رویدادها چگونه کد شما را اجرا می‌کنند و مرجع کامل خصوصیت‌های style را پیدا می‌کنید.",
- "objectives": [
-  "با خصوصیت style رنگ و اندازهٔ یک عنصر را تغییر دهید",
-  "بگویید رویداد چه زمانی توسط مرورگر ساخته می‌شود",
-  "سه نمونهٔ رویداد رایج روی عنصرهای HTML را نام ببرید",
-  "مرجع خصوصیت‌های style را در مستندات پیدا کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "DOM در HTML: تغییر CSS"
-  },
-  {
-   "type": "h2",
-   "text": "تغییر استایل HTML"
-  },
-  {
-   "type": "p",
-   "text": "DOM به JavaScript اجازه می‌دهد استایل عنصرهای HTML را تغییر دهد."
-  },
-  {
-   "type": "p",
-   "text": "برای تغییر استایل یک عنصر HTML از این ساختار استفاده کنید:"
-  },
-  {
-   "type": "p",
-   "text": "document.getElementById(id).style.property= new style"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<html>\n\n<body>\n\n<p id=\"p2\">Hello World!</p>\n\n<script>\n\ndocument.getElementById(\"p2\").style.color = \"blue\";\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_change_style"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از رویدادها"
-  },
-  {
-   "type": "p",
-   "text": "DOM به شما اجازه می‌دهد وقتی رویدادی رخ می‌دهد کد اجرا کنید."
-  },
-  {
-   "type": "p",
-   "text": "مرورگر وقتی «چیزی برای» عنصرهای HTML رخ می‌دهد رویداد می‌سازد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "روی عنصری کلیک شود",
-    "صفحه بارگذاری شده باشد",
-    "مقدار فیلدهای ورودی تغییر کند"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "در بخش بعدی این آموزش دربارهٔ رویدادها بیشتر یاد می‌گیرید."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n<html>\n<body>\n\n<h1 id=\"id1\">My Heading 1</h1>\n\n<button type=\"button\"\nonclick=\"document.getElementById('id1').style.color = 'red'\">\n\nClick Me!</button>\n\n</body>\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_color2"
-  },
-  {
-   "type": "h2",
-   "text": "مثال‌های بیشتر"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input type=\"button\" value=\"Hide text\" onclick=\"document.getElementById('p1').style.visibility='hidden'\">\n<input type=\"button\" value=\"Show text\" onclick=\"document.getElementById('p1').style.visibility='visible'\">\nClick Me!</button>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_visibility"
-  },
-  {
-   "type": "h2",
-   "text": "مرجع شیء style در DOM"
-  },
-  {
-   "type": "p",
-   "text": "برای دیدن همهٔ خصوصیت‌های شیء style در DOM به مرجع کامل شیء style در DOM مراجعه کنید."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل style.html بسازید که یک پاراگراف با id=\"p1\" داشته باشد؛ با style.color رنگ متنش را قرمز کنید.",
-   "hint": "نام خصوصیت‌های CSS در JavaScript بدون خط تیره و با حرف بزرگ نوشته می‌شوند: backgroundColor به‌جای background-color."
-  },
-  {
-   "prompt": "پس‌زمینهٔ همان پاراگراف را با style.backgroundColor تغییر دهید و در مرورگر ببینید.",
-   "hint": "مقدار می‌تواند نام رنگ یا کد رنگ مثل \"#ffffcc\" باشد."
-  },
-  {
-   "prompt": "یک دکمه بسازید که با کلیک، اندازهٔ قلم یک سرتیتر را بزرگ‌تر کند.",
-   "hint": "از رویداد onclick روی دکمه استفاده کنید و مقدار style.fontSize را عوض کنید؛ یادتان باشد واحد مثل \"30px\" را بنویسید."
-  },
-  {
-   "prompt": "با یک تابع، پس از بارگذاری صفحه رنگ یک عنصر را با تایمر کوچکی تغییر دهید و بگویید کدام رویداد باعث اجرای کد شد.",
-   "hint": "رویداد load یا یک تایمر می‌تواند کد شما را اجرا کند؛ هدف دیدن این است که کد بدون کلیک هم اجرا می‌شود."
-  },
-  {
-   "prompt": "با مرجع شیء style در DOM، سه خصوصیت دیگر مثل width، visibility و display را پیدا کنید و یکی را روی صفحه امتحان کنید.",
-   "hint": "مقدار visibility از \"hidden\" به \"visible\" برمی‌گردد و display می‌تواند \"none\" باشد."
-  }
- ],
- "quiz": [
-  {
-   "question": "برای تغییر استایل یک عنصر کدام ساختار درست است؟",
-   "options": [
-    "document.getElementById(id).style.property = new style",
-    "document.style(id).property",
-    "getElementById(id).css(property)",
-    "document.write(style)"
-   ],
-   "answer": 0,
-   "explanation": "نخست عنصر را می‌گیرید و بعد از طریق شیء style یکی از خصوصیت‌ها را مقداردهی می‌کنید؛ نام خصوصیت‌ها camelCase است."
-  },
-  {
-   "question": "نام خصوصیت background-color در JavaScript چگونه نوشته می‌شود؟",
-   "options": [
-    "background-color",
-    "backgroundColor",
-    "background_color",
-    "BackgroundColor"
-   ],
-   "answer": 1,
-   "explanation": "در JavaScript خط تیره در نام خصوصیت‌ها مجاز نیست، پس به شکل camelCase نوشته می‌شوند: backgroundColor."
-  },
-  {
-   "question": "کد داخل رویداد onclick چه زمانی اجرا می‌شود؟",
-   "options": [
-    "هنگام بارگذاری صفحه",
-    "وقتی کاربر روی عنصر کلیک کند",
-    "وقتی فایل ذخیره شود",
-    "هرگز"
-   ],
-   "answer": 1,
-   "explanation": "رویداد onclick هنگام کلیک روی عنصر اجرا می‌شود؛ همین یکی از ساده‌ترین راه‌های اجرای کد واکنشی است."
-  },
-  {
-   "question": "کدام مورد از نمونه‌های رویداد در این درس نیست؟",
-   "options": [
-    "کلیک روی عنصر",
-    "بارگذاری صفحه",
-    "تغییر فیلدهای ورودی",
-    "ذخیرهٔ فایل پروژه"
-   ],
-   "answer": 3,
-   "explanation": "درس سه نمونه آورده است: کلیک، بارگذاری صفحه و تغییر فیلدهای ورودی. ذخیرهٔ فایل ربطی به رویدادهای مرورگر ندارد."
-  },
-  {
-   "question": "مرجع کامل خصوصیت‌های style را در کجا پیدا می‌کنید؟",
-   "options": [
-    "در مرجع شیء style در DOM",
-    "در بخش متغیرها",
-    "در مستندات HTML فقط",
-    "در تنظیمات مرورگر"
-   ],
-   "answer": 0,
-   "explanation": "درس به مرجع کامل شیء style در DOM ارجاع می‌دهد؛ همان جایی که همهٔ خصوصیت‌های style فهرست شده‌اند."
-  }
- ]
+  "slug": "js_htmldom_css",
+  "course": "js",
+  "order": 144,
+  "url": "/js/js_htmldom_css.asp",
+  "title": "DOM در HTML: تغییر CSS",
+  "summary": "با DOM می‌توانید استایل عنصرها را از JavaScript تغییر دهید. در این درس ساختار style.property را یاد می‌گیرید، می‌بینید رویدادها چگونه کد شما را اجرا می‌کنند و مرجع کامل خصوصیت‌های style را پیدا می‌کنید.",
+  "objectives": [
+    "با خصوصیت style رنگ و اندازهٔ یک عنصر را تغییر دهید",
+    "بگویید رویداد چه زمانی توسط مرورگر ساخته می‌شود",
+    "سه نمونهٔ رویداد رایج روی عنصرهای HTML را نام ببرید",
+    "مرجع خصوصیت‌های style را در مستندات پیدا کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "DOM در HTML: تغییر CSS"
+    },
+    {
+      "type": "h2",
+      "text": "تغییر استایل HTML"
+    },
+    {
+      "type": "p",
+      "text": "DOM به JavaScript اجازه می‌دهد استایل عنصرهای HTML را تغییر دهد."
+    },
+    {
+      "type": "p",
+      "text": "برای تغییر استایل یک عنصر HTML از این ساختار استفاده کنید:"
+    },
+    {
+      "type": "p",
+      "text": "document.getElementById(id).style.property= new style"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<html>\n\n<body>\n\n<p id=\"p2\">Hello World!</p>\n\n<script>\n\ndocument.getElementById(\"p2\").style.color = \"blue\";\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_change_style"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از رویدادها"
+    },
+    {
+      "type": "p",
+      "text": "DOM به شما اجازه می‌دهد وقتی رویدادی رخ می‌دهد کد اجرا کنید."
+    },
+    {
+      "type": "p",
+      "text": "مرورگر وقتی «چیزی برای» عنصرهای HTML رخ می‌دهد رویداد می‌سازد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["روی عنصری کلیک شود", "صفحه بارگذاری شده باشد", "مقدار فیلدهای ورودی تغییر کند"]
+    },
+    {
+      "type": "p",
+      "text": "در بخش بعدی این آموزش دربارهٔ رویدادها بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n<html>\n<body>\n\n<h1 id=\"id1\">My Heading 1</h1>\n\n<button type=\"button\"\nonclick=\"document.getElementById('id1').style.color = 'red'\">\n\nClick Me!</button>\n\n</body>\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_color2"
+    },
+    {
+      "type": "h2",
+      "text": "مثال‌های بیشتر"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input type=\"button\" value=\"Hide text\" onclick=\"document.getElementById('p1').style.visibility='hidden'\">\n<input type=\"button\" value=\"Show text\" onclick=\"document.getElementById('p1').style.visibility='visible'\">\nClick Me!</button>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_visibility"
+    },
+    {
+      "type": "h2",
+      "text": "مرجع شیء style در DOM"
+    },
+    {
+      "type": "p",
+      "text": "برای دیدن همهٔ خصوصیت‌های شیء style در DOM به مرجع کامل شیء style در DOM مراجعه کنید."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل style.html بسازید که یک پاراگراف با id=\"p1\" داشته باشد؛ با style.color رنگ متنش را قرمز کنید.",
+      "hint": "نام خصوصیت‌های CSS در JavaScript بدون خط تیره و با حرف بزرگ نوشته می‌شوند: backgroundColor به‌جای background-color."
+    },
+    {
+      "prompt": "پس‌زمینهٔ همان پاراگراف را با style.backgroundColor تغییر دهید و در مرورگر ببینید.",
+      "hint": "مقدار می‌تواند نام رنگ یا کد رنگ مثل \"#ffffcc\" باشد."
+    },
+    {
+      "prompt": "یک دکمه بسازید که با کلیک، اندازهٔ قلم یک سرتیتر را بزرگ‌تر کند.",
+      "hint": "از رویداد onclick روی دکمه استفاده کنید و مقدار style.fontSize را عوض کنید؛ یادتان باشد واحد مثل \"30px\" را بنویسید."
+    },
+    {
+      "prompt": "با یک تابع، پس از بارگذاری صفحه رنگ یک عنصر را با تایمر کوچکی تغییر دهید و بگویید کدام رویداد باعث اجرای کد شد.",
+      "hint": "رویداد load یا یک تایمر می‌تواند کد شما را اجرا کند؛ هدف دیدن این است که کد بدون کلیک هم اجرا می‌شود."
+    },
+    {
+      "prompt": "با مرجع شیء style در DOM، سه خصوصیت دیگر مثل width، visibility و display را پیدا کنید و یکی را روی صفحه امتحان کنید.",
+      "hint": "مقدار visibility از \"hidden\" به \"visible\" برمی‌گردد و display می‌تواند \"none\" باشد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای تغییر استایل یک عنصر کدام ساختار درست است؟",
+      "options": [
+        "document.getElementById(id).style.property = new style",
+        "document.style(id).property",
+        "getElementById(id).css(property)",
+        "document.write(style)"
+      ],
+      "answer": 0,
+      "explanation": "نخست عنصر را می‌گیرید و بعد از طریق شیء style یکی از خصوصیت‌ها را مقداردهی می‌کنید؛ نام خصوصیت‌ها camelCase است."
+    },
+    {
+      "question": "نام خصوصیت background-color در JavaScript چگونه نوشته می‌شود؟",
+      "options": ["background-color", "backgroundColor", "background_color", "BackgroundColor"],
+      "answer": 1,
+      "explanation": "در JavaScript خط تیره در نام خصوصیت‌ها مجاز نیست، پس به شکل camelCase نوشته می‌شوند: backgroundColor."
+    },
+    {
+      "question": "کد داخل رویداد onclick چه زمانی اجرا می‌شود؟",
+      "options": [
+        "هنگام بارگذاری صفحه",
+        "وقتی کاربر روی عنصر کلیک کند",
+        "وقتی فایل ذخیره شود",
+        "هرگز"
+      ],
+      "answer": 1,
+      "explanation": "رویداد onclick هنگام کلیک روی عنصر اجرا می‌شود؛ همین یکی از ساده‌ترین راه‌های اجرای کد واکنشی است."
+    },
+    {
+      "question": "کدام مورد از نمونه‌های رویداد در این درس نیست؟",
+      "options": ["کلیک روی عنصر", "بارگذاری صفحه", "تغییر فیلدهای ورودی", "ذخیرهٔ فایل پروژه"],
+      "answer": 3,
+      "explanation": "درس سه نمونه آورده است: کلیک، بارگذاری صفحه و تغییر فیلدهای ورودی. ذخیرهٔ فایل ربطی به رویدادهای مرورگر ندارد."
+    },
+    {
+      "question": "مرجع کامل خصوصیت‌های style را در کجا پیدا می‌کنید؟",
+      "options": [
+        "در مرجع شیء style در DOM",
+        "در بخش متغیرها",
+        "در مستندات HTML فقط",
+        "در تنظیمات مرورگر"
+      ],
+      "answer": 0,
+      "explanation": "درس به مرجع کامل شیء style در DOM ارجاع می‌دهد؛ همان جایی که همهٔ خصوصیت‌های style فهرست شده‌اند."
+    }
+  ]
 }

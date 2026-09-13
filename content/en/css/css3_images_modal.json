@@ -1,83 +1,83 @@
 {
- "slug": "css3_images_modal",
- "course": "css",
- "order": 146,
- "url": "/css/css3_images_modal.asp",
- "title": "CSS Responsive Modal Images",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "CSS Responsive Modal Images"
-  },
-  {
-   "type": "h2",
-   "text": "Responsive Modal Image Gallery"
-  },
-  {
-   "type": "p",
-   "text": "A modal image gives a user the ability to display a larger version of an\nimage, without navigating away from the current page. When a user clicks on a\nmodal image, it shows a popup window that appears on top of the main content of\nthe webpage, often with a semi-transparent background. The modal must be closed\nby the user, typically with a \"close\" button or an \"X\" sign in top-right corner."
-  },
-  {
-   "type": "p",
-   "text": "This example demonstrates how to use HTML, CSS and JavaScript together, to create a responsive modal image gallery."
-  },
-  {
-   "type": "p",
-   "text": "We use CSS to create a modal window (dialog box), and hide it by default."
-  },
-  {
-   "type": "p",
-   "text": "Then, we use a JavaScript to show the modal window with the correct image inside, when a user clicks on the image:"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_5terre.jpg",
-   "alt": "Cinque Terre"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_forest.jpg",
-   "alt": "Forest"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_lights.jpg",
-   "alt": "Northern Lights"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_mountains.jpg",
-   "alt": "Mountains"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_5terre.jpg",
-   "alt": "Cinque Terre"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_forest.jpg",
-   "alt": "Forest"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_lights.jpg",
-   "alt": "Northern Lights"
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_mountains.jpg",
-   "alt": "Mountains"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<html>\n<head>\n<meta name=\"viewport\" content=\"width=device-width,\n  initial-scale=1.0\">\n<style>\n* {\n  margin: 0;\n  padding: 0;\n\n  box-sizing: border-box;\n}\n\nh1 {\n  text-align: center;\n  padding:\n  20px;\n}\n\n.gallery {\n  display: flex;\n  flex-wrap: wrap;\n\n  justify-content: flex-start;\n  padding: 0 15px;\n}\n\n.gallery-item {\n\n  position: relative;\n  width: calc(25% - 20px);\n  height: auto;\n  margin:\n  10px;\n  cursor: pointer;\n  transition: transform 0.5s ease;\n}\n\n  .gallery-item:hover {\n  transform: scale(1.1);\n}\n\n/* The Modal\n  (background) */\n.modal {\n  display: none;\n  position: fixed;\n  z-index:\n  1000;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n\n  background-color: rgba(0, 0, 0, 0.8);\n  align-items: center;\n\n  justify-content: center;\n  transition: opacity 0.5s ease;\n}\n\n/*\n  Modal content (image) */\n.modal-content {\n  position: relative;\n  width:\n  90%;\n  height: auto;\n  max-width: 90%;\n  max-height: 90%;\n  border-radius:\n  5px;\n  overflow: hidden;\n  animation: zoomIn 0.5s;\n}\n\n@keyframes\n  zoomIn {\n  from {transform: scale(0.6);}\n  to {transform: scale(1);}\n}\n\n.modal.show {\n  display: flex;\n  opacity: 1;\n}\n\n/* Close button\n  */\n.close {\n  position: absolute;\n  top: 10px;\n  right: 15px;\n  color:\n  #ffffff;\n  font-size: 35px;\n  font-weight: bold;\n  cursor: pointer;\n\n  transition: transform 0.3s;\n}\n\n/* Caption of modal image */\n\n  .caption {\n  position: absolute;\n  bottom: 15px;\n  width: 100%;\n\n  text-align: center;\n  color: #ffffff;\n  font-size: 24px;\n}\n\n@media\n  screen and (max-width: 768px) {\n  .gallery-item {\n    width: calc(50% - 20px);\n\n  }\n}\n\n@media screen and (max-width: 480px) {\n  .gallery-item {\n\n  width: calc(100% - 20px);\n  }\n}\n</style>\n</head>\n<body>\n\n  <h1>Responsive Modal Images</h1>\n\n<div class=\"gallery\">\n  <img\n  src=\"img_5terre.jpg\" alt=\"Cinque Terre\" class=\"gallery-item\"\n  onclick=\"openModal('modal1', 'Cinque Terre')\">\n\n  <img src=\"img_forest.jpg\" alt=\"Forest\" class=\"gallery-item\"\n  onclick=\"openModal('modal2', 'Forest')\">\n  <img\n  src=\"img_lights.jpg\" alt=\"Northern Lights\" class=\"gallery-item\"\n  onclick=\"openModal('modal3', 'Nothern Lights')\">\n\n  <img src=\"img_mountains.jpg\" alt=\"Mountains\" class=\"gallery-item\"\n  onclick=\"openModal('modal4', 'Mountains')\">\n</div>\n\n<div id=\"modal1\" class=\"modal\">\n  <span class=\"close\"\n  onclick=\"closeModal('modal1')\">&times;</span>\n  <img src=\"img_5terre.jpg\"\n  alt=\"Cinque Terre\" class=\"modal-content\">\n  <div\n  class=\"caption\"></div>\n</div>\n\n<div id=\"modal2\" class=\"modal\">\n\n  <span class=\"close\" onclick=\"closeModal('modal2')\">&times;</span>\n  <img\n  src=\"img_forest.jpg\" alt=\"Forest\" class=\"modal-content\">\n  <div class=\"caption\"></div>\n</div>\n\n<div id=\"modal3\"\n  class=\"modal\">\n  <span class=\"close\"\n  onclick=\"closeModal('modal3')\">&times;</span>\n  <img src=\"img_lights.jpg\"\n  alt=\"Northern Lights\" class=\"modal-content\">\n  <div\n  class=\"caption\"></div>\n</div>\n\n<div id=\"modal4\" class=\"modal\">\n\n  <span class=\"close\" onclick=\"closeModal('modal4')\">&times;</span>\n  <img\n  src=\"img_mountains.jpg\" alt=\"Mountains\" class=\"modal-content\">\n  <div class=\"caption\"></div>\n</div>\n\n<script>\nfunction openModal(modalId, caption) {\n  let modal =\n  document.getElementById(modalId);\n  modal.style.display = \"flex\";\n\n  modal.classList.add(\"show\");\n  let message = modal.querySelector(\".caption\");\n\n  message.innerText = caption;\n}\n\nfunction closeModal(modalId) {\n  let\n  modal = document.getElementById(modalId);\n  modal.classList.remove(\"show\");\n\n  setTimeout(function () {\n    modal.style.display = \"none\";\n\n  modal.querySelector(\".caption\").innerText = \"\";\n  }, 300);\n}\n</script>\n\n  </body>\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_image_modal_js"
-  }
- ]
+  "slug": "css3_images_modal",
+  "course": "css",
+  "order": 146,
+  "url": "/css/css3_images_modal.asp",
+  "title": "CSS Responsive Modal Images",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "CSS Responsive Modal Images"
+    },
+    {
+      "type": "h2",
+      "text": "Responsive Modal Image Gallery"
+    },
+    {
+      "type": "p",
+      "text": "A modal image gives a user the ability to display a larger version of an\nimage, without navigating away from the current page. When a user clicks on a\nmodal image, it shows a popup window that appears on top of the main content of\nthe webpage, often with a semi-transparent background. The modal must be closed\nby the user, typically with a \"close\" button or an \"X\" sign in top-right corner."
+    },
+    {
+      "type": "p",
+      "text": "This example demonstrates how to use HTML, CSS and JavaScript together, to create a responsive modal image gallery."
+    },
+    {
+      "type": "p",
+      "text": "We use CSS to create a modal window (dialog box), and hide it by default."
+    },
+    {
+      "type": "p",
+      "text": "Then, we use a JavaScript to show the modal window with the correct image inside, when a user clicks on the image:"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_5terre.jpg",
+      "alt": "Cinque Terre"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_forest.jpg",
+      "alt": "Forest"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_lights.jpg",
+      "alt": "Northern Lights"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_mountains.jpg",
+      "alt": "Mountains"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_5terre.jpg",
+      "alt": "Cinque Terre"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_forest.jpg",
+      "alt": "Forest"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_lights.jpg",
+      "alt": "Northern Lights"
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_mountains.jpg",
+      "alt": "Mountains"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<html>\n<head>\n<meta name=\"viewport\" content=\"width=device-width,\n  initial-scale=1.0\">\n<style>\n* {\n  margin: 0;\n  padding: 0;\n\n  box-sizing: border-box;\n}\n\nh1 {\n  text-align: center;\n  padding:\n  20px;\n}\n\n.gallery {\n  display: flex;\n  flex-wrap: wrap;\n\n  justify-content: flex-start;\n  padding: 0 15px;\n}\n\n.gallery-item {\n\n  position: relative;\n  width: calc(25% - 20px);\n  height: auto;\n  margin:\n  10px;\n  cursor: pointer;\n  transition: transform 0.5s ease;\n}\n\n  .gallery-item:hover {\n  transform: scale(1.1);\n}\n\n/* The Modal\n  (background) */\n.modal {\n  display: none;\n  position: fixed;\n  z-index:\n  1000;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n\n  background-color: rgba(0, 0, 0, 0.8);\n  align-items: center;\n\n  justify-content: center;\n  transition: opacity 0.5s ease;\n}\n\n/*\n  Modal content (image) */\n.modal-content {\n  position: relative;\n  width:\n  90%;\n  height: auto;\n  max-width: 90%;\n  max-height: 90%;\n  border-radius:\n  5px;\n  overflow: hidden;\n  animation: zoomIn 0.5s;\n}\n\n@keyframes\n  zoomIn {\n  from {transform: scale(0.6);}\n  to {transform: scale(1);}\n}\n\n.modal.show {\n  display: flex;\n  opacity: 1;\n}\n\n/* Close button\n  */\n.close {\n  position: absolute;\n  top: 10px;\n  right: 15px;\n  color:\n  #ffffff;\n  font-size: 35px;\n  font-weight: bold;\n  cursor: pointer;\n\n  transition: transform 0.3s;\n}\n\n/* Caption of modal image */\n\n  .caption {\n  position: absolute;\n  bottom: 15px;\n  width: 100%;\n\n  text-align: center;\n  color: #ffffff;\n  font-size: 24px;\n}\n\n@media\n  screen and (max-width: 768px) {\n  .gallery-item {\n    width: calc(50% - 20px);\n\n  }\n}\n\n@media screen and (max-width: 480px) {\n  .gallery-item {\n\n  width: calc(100% - 20px);\n  }\n}\n</style>\n</head>\n<body>\n\n  <h1>Responsive Modal Images</h1>\n\n<div class=\"gallery\">\n  <img\n  src=\"img_5terre.jpg\" alt=\"Cinque Terre\" class=\"gallery-item\"\n  onclick=\"openModal('modal1', 'Cinque Terre')\">\n\n  <img src=\"img_forest.jpg\" alt=\"Forest\" class=\"gallery-item\"\n  onclick=\"openModal('modal2', 'Forest')\">\n  <img\n  src=\"img_lights.jpg\" alt=\"Northern Lights\" class=\"gallery-item\"\n  onclick=\"openModal('modal3', 'Nothern Lights')\">\n\n  <img src=\"img_mountains.jpg\" alt=\"Mountains\" class=\"gallery-item\"\n  onclick=\"openModal('modal4', 'Mountains')\">\n</div>\n\n<div id=\"modal1\" class=\"modal\">\n  <span class=\"close\"\n  onclick=\"closeModal('modal1')\">&times;</span>\n  <img src=\"img_5terre.jpg\"\n  alt=\"Cinque Terre\" class=\"modal-content\">\n  <div\n  class=\"caption\"></div>\n</div>\n\n<div id=\"modal2\" class=\"modal\">\n\n  <span class=\"close\" onclick=\"closeModal('modal2')\">&times;</span>\n  <img\n  src=\"img_forest.jpg\" alt=\"Forest\" class=\"modal-content\">\n  <div class=\"caption\"></div>\n</div>\n\n<div id=\"modal3\"\n  class=\"modal\">\n  <span class=\"close\"\n  onclick=\"closeModal('modal3')\">&times;</span>\n  <img src=\"img_lights.jpg\"\n  alt=\"Northern Lights\" class=\"modal-content\">\n  <div\n  class=\"caption\"></div>\n</div>\n\n<div id=\"modal4\" class=\"modal\">\n\n  <span class=\"close\" onclick=\"closeModal('modal4')\">&times;</span>\n  <img\n  src=\"img_mountains.jpg\" alt=\"Mountains\" class=\"modal-content\">\n  <div class=\"caption\"></div>\n</div>\n\n<script>\nfunction openModal(modalId, caption) {\n  let modal =\n  document.getElementById(modalId);\n  modal.style.display = \"flex\";\n\n  modal.classList.add(\"show\");\n  let message = modal.querySelector(\".caption\");\n\n  message.innerText = caption;\n}\n\nfunction closeModal(modalId) {\n  let\n  modal = document.getElementById(modalId);\n  modal.classList.remove(\"show\");\n\n  setTimeout(function () {\n    modal.style.display = \"none\";\n\n  modal.querySelector(\".caption\").innerText = \"\";\n  }, 300);\n}\n</script>\n\n  </body>\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_image_modal_js"
+    }
+  ]
 }

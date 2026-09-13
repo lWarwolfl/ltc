@@ -1,291 +1,281 @@
 {
- "slug": "js_tolocalestring",
- "course": "js",
- "order": 99,
- "url": "/js/js_tolocalestring.asp",
- "title": "متد toLocaleString() در JavaScript",
- "summary": "متد toLocaleString() مقدارها را با قواعد محلی هر کشور قالب‌بندی می‌کند. در این درس عدد، واحد پول، درصد و تاریخ را برای localeهای مختلف قالب‌بندی می‌کنید و رقم‌های اعشار را کنترل می‌کنید.",
- "objectives": [
-  "عدد را برای یک locale قالب‌بندی کنید",
-  "با style و currency واحد پول و درصد بسازید",
-  "رقم‌های اعشار را با گزینه‌ها کنترل کنید",
-  "تاریخ را با گزینه‌های قالب‌بندی نمایش دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "متد toLocaleString() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد toLocaleString() یک مقدار را با قواعد قالب‌بندی محلی به رشته تبدیل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "متد toLocaleString() به‌ویژه برای قالب‌بندی عددها، تاریخ‌ها، آرایه‌ها، واحدهای پول و درصدها برای کشورهای مختلف مفید است."
-  },
-  {
-   "type": "h2",
-   "text": "متد toLocaleString()"
-  },
-  {
-   "type": "p",
-   "text": "متد toLocaleString() برای بسیاری از انواع داده و شیءهای JavaScript در دسترس است:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "عددها",
-    "تاریخ‌ها",
-    "آرایه‌ها",
-    "BigIntها"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 1234567.89;\n\nlet text = num.toLocaleString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_number"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از locale"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید کد زبان و کشور را مشخص کنید تا مقدار برای locale مشخصی قالب‌بندی شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 1234567.89;\n\nlet us = num.toLocaleString(\"en-US\");\n\nlet de = num.toLocaleString(\"de-DE\");\n\nlet no = num.toLocaleString(\"no-NO\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_locales"
-  },
-  {
-   "type": "h2",
-   "text": "قالب‌بندی واحد پول"
-  },
-  {
-   "type": "p",
-   "text": "با گزینه‌ها، toLocaleString() می‌تواند عددها را به‌شکل واحد پول قالب‌بندی کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let price = 1299.95;\n\nlet dollars = price.toLocaleString(\"en-US\",\n\n{style:\"currency\", currency:\"USD\"});\n\nlet euros = price.toLocaleString(\"de-DE\",\n\n{style:\"currency\", currency:\"EUR\"});\n\nlet kroner = price.toLocaleString(\"no-NO\",\n\n{style:\"currency\", currency:\"NOK\"});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_currency"
-  },
-  {
-   "type": "h2",
-   "text": "قالب‌بندی درصد"
-  },
-  {
-   "type": "p",
-   "text": "گزینهٔ style:\"percent\" عدد را به‌شکل درصد قالب‌بندی می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let score = 0.875;\n\nlet result = score.toLocaleString(\"en-US\", {style:\"percent\"});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_percent"
-  },
-  {
-   "type": "h2",
-   "text": "کنترل رقم‌های اعشار"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید تعداد رقم‌های اعشار را با minimumFractionDigits و maximumFractionDigits کنترل کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 3.14159;\n\nlet text = num.toLocaleString(\"en-US\", {\n\n  minimumFractionDigits: 2,\n\n  maximumFractionDigits: 2\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_decimals"
-  },
-  {
-   "type": "h3",
-   "text": "نکته"
-  },
-  {
-   "type": "p",
-   "text": "نام این متد toLocaleString() است، نه toLocalString()."
-  },
-  {
-   "type": "p",
-   "text": "واژهٔ locale به‌معنای قالب زبان و کشور است، مانند \"en-US\"، \"de-DE\" یا \"no-NO\"."
-  },
-  {
-   "type": "h2",
-   "text": "قالب‌بندی تاریخ‌ها"
-  },
-  {
-   "type": "p",
-   "text": "تاریخ‌ها را هم می‌توان با toLocaleString() قالب‌بندی کرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let date = new Date();\n\nlet text = date.toLocaleString(\"en-US\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_date"
-  },
-  {
-   "type": "h2",
-   "text": "گزینه‌های قالب‌بندی تاریخ"
-  },
-  {
-   "type": "p",
-   "text": "گزینه‌های زیادی برای کنترل نحوهٔ نمایش تاریخ وجود دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let date = new Date();\n\nlet text = date.toLocaleString(\"en-US\", {\n\n  weekday: \"long\",\n\n  year: \"numeric\",\n\n  month: \"long\",\n\n  day: \"numeric\"\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_date_options"
-  },
-  {
-   "type": "h2",
-   "text": "یک کاربرد هوشمندانه: اندازهٔ خوانای فایل"
-  },
-  {
-   "type": "p",
-   "text": "یکی از کاربردهای هوشمندانهٔ toLocaleString() خوانا کردن اندازهٔ فایل‌هاست."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function fileSize(bytes) {\n\n  if (bytes < 1024) return bytes + \" bytes\";\n\n  if (bytes < 1024 * 1024) return (bytes / 1024).toLocaleString(\"en-US\", {maximumFractionDigits: 1}) + \" KB\";\n\n  return (bytes / 1024 / 1024).toLocaleString(\"en-US\", {maximumFractionDigits: 1}) + \" MB\";\n\n}\n\nlet size = 1536000;\n\nlet text = fileSize(size);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_filesize"
-  },
-  {
-   "type": "h2",
-   "text": "آرایه‌ها و toLocaleString()"
-  },
-  {
-   "type": "p",
-   "text": "برای آرایه‌ها، متد toLocaleString() هر عضو آرایه را تبدیل می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const dates = [\n\n  new Date(\"2026-01-01\"),\n\n  new Date(\"2026-12-24\")\n\n];\n\nlet text = dates.toLocaleString(\"en-US\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_array"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل locale.html بسازید و عدد 1234567.89 را یک‌بار با toLocaleString(\"en-US\") و یک‌بار با \"fa-IR\" قالب‌بندی کنید و تفاوت را ببینید.",
-   "hint": "کد locale زبان و کشور را مشخص می‌کند و جداکنندهٔ هزارگان و اعشار را تغییر می‌دهد."
-  },
-  {
-   "prompt": "همان عدد را با style: \"currency\" و currency: \"USD\" به‌شکل واحد پول درآورید.",
-   "hint": "قالب واحد پول با ترکیب گزینه‌های style و currency تعیین می‌شود."
-  },
-  {
-   "prompt": "عددی را با style: \"percent\" قالب‌بندی کنید.",
-   "hint": "گزینهٔ percent مقدار را به درصد تبدیل و قالب‌بندی می‌کند."
-  },
-  {
-   "prompt": "با minimumFractionDigits و maximumFractionDigits تعداد رقم‌های اعشار را ثابت کنید.",
-   "hint": "این دو گزینه کمینه و بیشینهٔ رقم‌های اعشار را تعیین می‌کنند."
-  },
-  {
-   "prompt": "یک تاریخ را با toLocaleString و گزینه‌های قالب‌بندی تاریخ نمایش دهید.",
-   "hint": "گزینه‌هایی مانند year و month و day نحوهٔ نمایش تاریخ را کنترل می‌کنند."
-  }
- ],
- "quiz": [
-  {
-   "question": "متد toLocaleString() چه کاری انجام می‌دهد؟",
-   "options": [
-    "مقدار را به عدد تبدیل می‌کند",
-    "مقدار را با قواعد قالب‌بندی محلی به رشته تبدیل می‌کند",
-    "مقدار را حذف می‌کند",
-    "فقط تاریخ را نمایش می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "این متد مقدار را بر پایهٔ قواعد محلی (locale) قالب‌بندی و رشته‌ای می‌کند؛ مثلاً جداکنندهٔ هزارگان را برای هر کشور تغییر می‌دهد."
-  },
-  {
-   "question": "برای قالب‌بندی یک عدد به‌شکل واحد پول چه چیزی لازم است؟",
-   "options": [
-    "style: \"decimal\"",
-    "style: \"currency\" به‌همراه currency",
-    "type: \"money\"",
-    "format: \"$\""
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید با گزینه‌ها می‌توان عدد را به واحد پول تبدیل کرد: style: \"currency\" و مشخص کردن currency."
-  },
-  {
-   "question": "نام درست این متد کدام است؟",
-   "options": [
-    "toLocalString()",
-    "toLocaleString()",
-    "toLocale()",
-    "localeString()"
-   ],
-   "answer": 1,
-   "explanation": "در درس تأکید شده که نام متد toLocaleString() است و املای toLocalString() غلط است."
-  },
-  {
-   "question": "با کدام گزینه‌ها تعداد رقم‌های اعشار را کنترل می‌کنیم؟",
-   "options": [
-    "style و currency",
-    "minimumFractionDigits و maximumFractionDigits",
-    "locale و type",
-    "year و month"
-   ],
-   "answer": 1,
-   "explanation": "این دو گزینه کمینه و بیشینهٔ رقم‌های اعشار را تعیین می‌کنند؛ بقیهٔ گزینه‌ها به واحد پول و قالب تاریخ مربوط‌اند."
-  },
-  {
-   "question": "کدام جمله دربارهٔ locale درست است؟",
-   "options": [
-    "یک نوع دادهٔ عددی است",
-    "قالب زبان و کشور را نشان می‌دهد، مانند \"en-US\"",
-    "نام یک متد است",
-    "فقط برای BigInt کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "locale به‌معنای قالب زبان و کشور است؛ نمونه‌های درس \"en-US\"، \"de-DE\" و \"no-NO\" هستند."
-  }
- ]
+  "slug": "js_tolocalestring",
+  "course": "js",
+  "order": 99,
+  "url": "/js/js_tolocalestring.asp",
+  "title": "متد toLocaleString() در JavaScript",
+  "summary": "متد toLocaleString() مقدارها را با قواعد محلی هر کشور قالب‌بندی می‌کند. در این درس عدد، واحد پول، درصد و تاریخ را برای localeهای مختلف قالب‌بندی می‌کنید و رقم‌های اعشار را کنترل می‌کنید.",
+  "objectives": [
+    "عدد را برای یک locale قالب‌بندی کنید",
+    "با style و currency واحد پول و درصد بسازید",
+    "رقم‌های اعشار را با گزینه‌ها کنترل کنید",
+    "تاریخ را با گزینه‌های قالب‌بندی نمایش دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "متد toLocaleString() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد toLocaleString() یک مقدار را با قواعد قالب‌بندی محلی به رشته تبدیل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "متد toLocaleString() به‌ویژه برای قالب‌بندی عددها، تاریخ‌ها، آرایه‌ها، واحدهای پول و درصدها برای کشورهای مختلف مفید است."
+    },
+    {
+      "type": "h2",
+      "text": "متد toLocaleString()"
+    },
+    {
+      "type": "p",
+      "text": "متد toLocaleString() برای بسیاری از انواع داده و شیءهای JavaScript در دسترس است:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["عددها", "تاریخ‌ها", "آرایه‌ها", "BigIntها"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 1234567.89;\n\nlet text = num.toLocaleString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_number"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از locale"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید کد زبان و کشور را مشخص کنید تا مقدار برای locale مشخصی قالب‌بندی شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 1234567.89;\n\nlet us = num.toLocaleString(\"en-US\");\n\nlet de = num.toLocaleString(\"de-DE\");\n\nlet no = num.toLocaleString(\"no-NO\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_locales"
+    },
+    {
+      "type": "h2",
+      "text": "قالب‌بندی واحد پول"
+    },
+    {
+      "type": "p",
+      "text": "با گزینه‌ها، toLocaleString() می‌تواند عددها را به‌شکل واحد پول قالب‌بندی کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let price = 1299.95;\n\nlet dollars = price.toLocaleString(\"en-US\",\n\n{style:\"currency\", currency:\"USD\"});\n\nlet euros = price.toLocaleString(\"de-DE\",\n\n{style:\"currency\", currency:\"EUR\"});\n\nlet kroner = price.toLocaleString(\"no-NO\",\n\n{style:\"currency\", currency:\"NOK\"});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_currency"
+    },
+    {
+      "type": "h2",
+      "text": "قالب‌بندی درصد"
+    },
+    {
+      "type": "p",
+      "text": "گزینهٔ style:\"percent\" عدد را به‌شکل درصد قالب‌بندی می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let score = 0.875;\n\nlet result = score.toLocaleString(\"en-US\", {style:\"percent\"});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_percent"
+    },
+    {
+      "type": "h2",
+      "text": "کنترل رقم‌های اعشار"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید تعداد رقم‌های اعشار را با minimumFractionDigits و maximumFractionDigits کنترل کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 3.14159;\n\nlet text = num.toLocaleString(\"en-US\", {\n\n  minimumFractionDigits: 2,\n\n  maximumFractionDigits: 2\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_decimals"
+    },
+    {
+      "type": "h3",
+      "text": "نکته"
+    },
+    {
+      "type": "p",
+      "text": "نام این متد toLocaleString() است، نه toLocalString()."
+    },
+    {
+      "type": "p",
+      "text": "واژهٔ locale به‌معنای قالب زبان و کشور است، مانند \"en-US\"، \"de-DE\" یا \"no-NO\"."
+    },
+    {
+      "type": "h2",
+      "text": "قالب‌بندی تاریخ‌ها"
+    },
+    {
+      "type": "p",
+      "text": "تاریخ‌ها را هم می‌توان با toLocaleString() قالب‌بندی کرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let date = new Date();\n\nlet text = date.toLocaleString(\"en-US\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_date"
+    },
+    {
+      "type": "h2",
+      "text": "گزینه‌های قالب‌بندی تاریخ"
+    },
+    {
+      "type": "p",
+      "text": "گزینه‌های زیادی برای کنترل نحوهٔ نمایش تاریخ وجود دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let date = new Date();\n\nlet text = date.toLocaleString(\"en-US\", {\n\n  weekday: \"long\",\n\n  year: \"numeric\",\n\n  month: \"long\",\n\n  day: \"numeric\"\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_date_options"
+    },
+    {
+      "type": "h2",
+      "text": "یک کاربرد هوشمندانه: اندازهٔ خوانای فایل"
+    },
+    {
+      "type": "p",
+      "text": "یکی از کاربردهای هوشمندانهٔ toLocaleString() خوانا کردن اندازهٔ فایل‌هاست."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function fileSize(bytes) {\n\n  if (bytes < 1024) return bytes + \" bytes\";\n\n  if (bytes < 1024 * 1024) return (bytes / 1024).toLocaleString(\"en-US\", {maximumFractionDigits: 1}) + \" KB\";\n\n  return (bytes / 1024 / 1024).toLocaleString(\"en-US\", {maximumFractionDigits: 1}) + \" MB\";\n\n}\n\nlet size = 1536000;\n\nlet text = fileSize(size);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_filesize"
+    },
+    {
+      "type": "h2",
+      "text": "آرایه‌ها و toLocaleString()"
+    },
+    {
+      "type": "p",
+      "text": "برای آرایه‌ها، متد toLocaleString() هر عضو آرایه را تبدیل می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const dates = [\n\n  new Date(\"2026-01-01\"),\n\n  new Date(\"2026-12-24\")\n\n];\n\nlet text = dates.toLocaleString(\"en-US\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_tolocalestring_array"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل locale.html بسازید و عدد 1234567.89 را یک‌بار با toLocaleString(\"en-US\") و یک‌بار با \"fa-IR\" قالب‌بندی کنید و تفاوت را ببینید.",
+      "hint": "کد locale زبان و کشور را مشخص می‌کند و جداکنندهٔ هزارگان و اعشار را تغییر می‌دهد."
+    },
+    {
+      "prompt": "همان عدد را با style: \"currency\" و currency: \"USD\" به‌شکل واحد پول درآورید.",
+      "hint": "قالب واحد پول با ترکیب گزینه‌های style و currency تعیین می‌شود."
+    },
+    {
+      "prompt": "عددی را با style: \"percent\" قالب‌بندی کنید.",
+      "hint": "گزینهٔ percent مقدار را به درصد تبدیل و قالب‌بندی می‌کند."
+    },
+    {
+      "prompt": "با minimumFractionDigits و maximumFractionDigits تعداد رقم‌های اعشار را ثابت کنید.",
+      "hint": "این دو گزینه کمینه و بیشینهٔ رقم‌های اعشار را تعیین می‌کنند."
+    },
+    {
+      "prompt": "یک تاریخ را با toLocaleString و گزینه‌های قالب‌بندی تاریخ نمایش دهید.",
+      "hint": "گزینه‌هایی مانند year و month و day نحوهٔ نمایش تاریخ را کنترل می‌کنند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "متد toLocaleString() چه کاری انجام می‌دهد؟",
+      "options": [
+        "مقدار را به عدد تبدیل می‌کند",
+        "مقدار را با قواعد قالب‌بندی محلی به رشته تبدیل می‌کند",
+        "مقدار را حذف می‌کند",
+        "فقط تاریخ را نمایش می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "این متد مقدار را بر پایهٔ قواعد محلی (locale) قالب‌بندی و رشته‌ای می‌کند؛ مثلاً جداکنندهٔ هزارگان را برای هر کشور تغییر می‌دهد."
+    },
+    {
+      "question": "برای قالب‌بندی یک عدد به‌شکل واحد پول چه چیزی لازم است؟",
+      "options": [
+        "style: \"decimal\"",
+        "style: \"currency\" به‌همراه currency",
+        "type: \"money\"",
+        "format: \"$\""
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید با گزینه‌ها می‌توان عدد را به واحد پول تبدیل کرد: style: \"currency\" و مشخص کردن currency."
+    },
+    {
+      "question": "نام درست این متد کدام است؟",
+      "options": ["toLocalString()", "toLocaleString()", "toLocale()", "localeString()"],
+      "answer": 1,
+      "explanation": "در درس تأکید شده که نام متد toLocaleString() است و املای toLocalString() غلط است."
+    },
+    {
+      "question": "با کدام گزینه‌ها تعداد رقم‌های اعشار را کنترل می‌کنیم؟",
+      "options": [
+        "style و currency",
+        "minimumFractionDigits و maximumFractionDigits",
+        "locale و type",
+        "year و month"
+      ],
+      "answer": 1,
+      "explanation": "این دو گزینه کمینه و بیشینهٔ رقم‌های اعشار را تعیین می‌کنند؛ بقیهٔ گزینه‌ها به واحد پول و قالب تاریخ مربوط‌اند."
+    },
+    {
+      "question": "کدام جمله دربارهٔ locale درست است؟",
+      "options": [
+        "یک نوع دادهٔ عددی است",
+        "قالب زبان و کشور را نشان می‌دهد، مانند \"en-US\"",
+        "نام یک متد است",
+        "فقط برای BigInt کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "locale به‌معنای قالب زبان و کشور است؛ نمونه‌های درس \"en-US\"، \"de-DE\" و \"no-NO\" هستند."
+    }
+  ]
 }

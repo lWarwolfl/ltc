@@ -1,414 +1,411 @@
 {
- "slug": "js_function_iife",
- "course": "js",
- "order": 208,
- "url": "/js/js_function_iife.asp",
- "title": "تابع‌های خودفراخوان",
- "summary": "‏IIFE تابعی است که به محض تعریف شدن اجرا می‌شود و برای ساختن دامنهٔ خصوصی و پرهیز از آلوده کردن دامنهٔ global به کار می‌رود. در این درس نحو آن، نسخهٔ پیکانی، پارامتر و مقدار برگشتی، IIFE نامدار و جایگزین‌های مدرن را می‌بینید.",
- "objectives": [
-  "توضیح دهید IIFE چطور بدون صدا زدن اجرا می‌شود",
-  "‏IIFE با پارامتر و مقدار برگشتی بنویسید",
-  "با IIFE دامنهٔ خصوصی بسازید",
-  "بگویید چه زمانی بهتر است از IIFE استفاده نکنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تابع‌های خودفراخوان"
-  },
-  {
-   "type": "h2",
-   "text": "عبارت‌های تابعی که فوری اجرا می‌شوند (IIFE)"
-  },
-  {
-   "type": "p",
-   "text": "‏IIFE کوتاه‌شدهٔ Immediately Invoked Function Expression است؛ یعنی عبارت تابعی که فوری فراخوانی می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "‏IIFE تابعی است که به محض تعریف شدن، خودش را صدا می‌زند."
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "تابع معمولاً فقط وقتی اجرا می‌شود که صدا زده شود."
-  },
-  {
-   "type": "p",
-   "text": "تابع خودفراخوان به محض اینکه موتور JavaScript آن را بخواند و کامپایل کند، خودکار اجرا می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n  // Code to run immediately\n\n})();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife1"
-  },
-  {
-   "type": "p",
-   "text": "تابع IIFE همزمان تعریف و اجرا می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE کجا به کار می‌آید؟"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "برای ساختن دامنهٔ خصوصی",
-    "برای اجرای یک‌بارهٔ کد آماده‌سازی",
-    "در کد‌های قدیمی JavaScript"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پرهیز از آلوده کردن دامنهٔ global"
-  },
-  {
-   "type": "p",
-   "text": "هر چیزی داخل IIFE خصوصی همان تابع است."
-  },
-  {
-   "type": "p",
-   "text": "به متغیر‌های داخل IIFE از بیرون دسترسی نیست."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n  let x = 10;\n\n})();\n\n// x is not accessible here",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n  let hidden = 42;\n\n})();\n\nlet result = hidden; // ⛔ Error: hidden is not defined",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE ساده"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n  let text = \"Hello! I called myself.\";\n\n})();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife1"
-  },
-  {
-   "type": "p",
-   "text": "تابع بالا را تابع خودفراخوان بی‌نام هم می‌گویند؛ یعنی تابعی بدون نام."
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE چطور کار می‌کند"
-  },
-  {
-   "type": "p",
-   "text": "از عبارت‌های تابعی می‌توان تابع خودفراخوان ساخت."
-  },
-  {
-   "type": "p",
-   "text": "عبارت تابعی خودفراخوان بدون صدا زدن اجرا می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function () {\n\n   // Code to run\n\n};",
-   "caption": "تابع"
-  },
-  {
-   "type": "p",
-   "text": "پرانتز‌های دور تابع به JavaScript می‌گویند که آن را یک عبارت ببیند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n   // Code to run\n\n});",
-   "caption": "عبارت"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n   // Code to run\n\n})();",
-   "caption": "نحو نهایی"
-  },
-  {
-   "type": "p",
-   "text": "فقط از عبارت تابعی می‌توان تابع خودفراخوان ساخت."
-  },
-  {
-   "type": "p",
-   "text": "از اعلان تابع نمی‌توان تابع خودفراخوان ساخت."
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE با پارامتر"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید به IIFE آرگومان بدهید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function (name) {\n\n  let text = \"Hello \" + name;\n\n})(\"John Doe\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife2"
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE با مقدار برگشتی"
-  },
-  {
-   "type": "p",
-   "text": "‏IIFE می‌تواند مقداری برگرداند که در متغیر ذخیره می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let result = (function () {\n\n      return 5 + 5;\n\n    })();",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE با تابع پیکانی"
-  },
-  {
-   "type": "p",
-   "text": "تابع‌های پیکانی هم می‌توانند به عنوان IIFE به کار بروند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(() => {\n\n  let text = \"Hello! I called myself.\";\n\n})();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife3"
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE با تابع پیکانی و پارامتر"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "((name) => {\n\n  let text = \"Hello \" + name;\n\n})(\"John Doe\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife5"
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE در JavaScript مدرن"
-  },
-  {
-   "type": "p",
-   "text": "امروز ماژول‌های JavaScript اغلب جای نیاز به IIFE را گرفته‌اند؛ ماژول‌ها به طور پیش‌فرض دامنهٔ خودشان را دارند."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\n    let x = 10;\n\n    </script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "متغیر x در دامنهٔ ماژول محصور است و global نیست."
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE با عبارت تابعی نامدار"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید به IIFE نام بدهید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function greet() {\n\n  let text = \"Hello! I called myself.\";\n\n})();\n\ngreet(); // ⛔ ReferenceError",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "اما نام greet فقط داخل خود تابع وجود دارد، نه در دامنهٔ بیرونی یا global."
-  },
-  {
-   "type": "p",
-   "text": "چرا از IIFE نامدار استفاده کنیم؟"
-  },
-  {
-   "type": "p",
-   "text": "برای تابع‌های بازگشتی که خودشان را پشت سر هم صدا می‌زنند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function factorial(n) {\n\n  if (n <= 1) return 1;\n\n  return n * factorial(n - 1); // recursive call\n\n})(5);",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "‏IIFE به عنوان ماژول (متغیر‌های خصوصی)"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const counter = (function () {\n\n  let value = 0;\n\n  return {\n\n    increment() { value++; },\n\n    get() { return value; }\n\n  };\n\n})();\n\ncounter.increment();\n\nlet x = counter.get();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife4"
-  },
-  {
-   "type": "p",
-   "text": "تابع‌های خودفراخوان پیش از ECMAScript 6 خیلی زیاد به کار می‌رفتند."
-  },
-  {
-   "type": "p",
-   "text": "امروز let، const و ماژول‌ها در JavaScript نیاز به آن‌ها را کم کرده‌اند."
-  },
-  {
-   "type": "p",
-   "text": "اما هنوز هم برای این کار‌ها مفیدند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "اجرای کد آماده‌سازی که باید فوری اجرا شود",
-    "ساختن متغیر‌های خصوصی و دامنهٔ خصوصی",
-    "پرهیز از آلوده کردن دامنهٔ global",
-    "کار کردن با کد‌های قدیمی JavaScript که به آن‌ها تکیه دارند"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "کجا از IIFE استفاده نکنیم"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "وقتی از ماژول‌های مدرن JavaScript استفاده می‌کنید",
-    "وقتی کد ساده‌تر کافی است"
-   ]
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "آزمون\nچرا IIFEها پیش از به وجود آمدن ماژول‌ها در JavaScript زیاد به کار می‌رفتند؟"
-  },
-  {
-   "type": "h2",
-   "text": "اشتباه‌های رایج"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "فراموش کردن پرانتز‌های آخر\nبدون () تابع اجرا نمی‌شود.",
-    "قاطی کردن IIFE با تابع معمولی\n‏IIFE را نمی‌توان دوباره صدا زد.",
-    "زیاد استفاده کردن از IIFE\n‏JavaScript مدرن اغلب به آن‌ها نیازی ندارد."
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل iife1.js بسازید و یک IIFE ساده بنویسید که یک پیام در کنسول چاپ کند. بعد همان کد را بدون پرانتز‌های آخر امتحان کنید و خطا را ببینید.",
-   "hint": "بدون () تابع فقط تعریف می‌شود و اجرا نمی‌شود."
-  },
-  {
-   "prompt": "یک IIFE با پارامتر بنویسید و مقدار \"John Doe\" را به آن بدهید.",
-   "hint": "پارامتر بعد از function می‌آید و آرگومان داخل پرانتز‌های آخر."
-  },
-  {
-   "prompt": "یک IIFE بنویسید که ۵ + ۵ را برگرداند و نتیجه را در متغیری ذخیره کنید. بعد آن متغیر را چاپ کنید.",
-   "hint": "پرانتز‌های صدا زدن باید بیرون از پرانتز تابع باشند: (function () {...})();"
-  },
-  {
-   "prompt": "همان IIFE را یک بار با تابع معمولی و یک بار با تابع پیکانی بنویسید و خروجی هر دو را در کنسول مقایسه کنید.",
-   "hint": "نسخهٔ پیکانی این شکل است: (() => { ... })();"
-  },
-  {
-   "prompt": "با IIFE یک شمارندهٔ خصوصی بسازید که متد‌های increment و get برگرداند و از بیرون به متغیر داخلی دسترسی نداشته باشید.",
-   "hint": "داخل IIFE یک متغیر با let تعریف و در return فقط متد‌ها را بیرون بدهید."
-  }
- ],
- "quiz": [
-  {
-   "question": "‏IIFE چه تفاوتی با تابع معمولی دارد؟",
-   "options": [
-    "هیچ‌وقت اجرا نمی‌شود",
-    "به محض تعریف شدن خودش اجرا می‌شود",
-    "پارامتر نمی‌گیرد",
-    "فقط داخل شیء کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "تابع معمولی تا وقتی صدا زده نشود اجرا نمی‌شود، اما IIFE همان لحظه‌ای که موتور JavaScript آن را می‌خواند اجرا می‌شود."
-  },
-  {
-   "question": "چرا پرانتز‌های دور تابع در IIFE لازم‌اند؟",
-   "options": [
-    "برای زیبایی کد",
-    "تا JavaScript تابع را یک عبارت ببیند و اجازهٔ اجرای فوری بدهد",
-    "برای اینکه تابع پارامتر بگیرد",
-    "برای ساختن دامنهٔ global"
-   ],
-   "answer": 1,
-   "explanation": "پرانتز دور تابع آن را به عبارت تبدیل می‌کند و اجازه می‌دهد بلافاصله با () صدا زده شود؛ اعلان تابع را نمی‌توان خودفراخوان کرد."
-  },
-  {
-   "question": "اگر پرانتز‌های آخر IIFE را فراموش کنیم چه می‌شود؟",
-   "options": [
-    "تابع باز هم اجرا می‌شود",
-    "تابع فقط تعریف می‌شود و اجرا نمی‌شود",
-    "خطای نحوی می‌گیریم",
-    "تابع دو بار اجرا می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "اجرای تابع همان پرانتز‌های آخر است؛ بدون آن‌ها تابع فقط ساخته می‌شود و هیچ کاری نمی‌کند."
-  },
-  {
-   "question": "‏IIFE چه فایده‌ای برای دامنهٔ global دارد؟",
-   "options": [
-    "دامنهٔ global را پاک می‌کند",
-    "نمی‌گذارد متغیر‌های داخلی دامنهٔ global را آلوده کنند",
-    "متغیر‌ها را global می‌کند",
-    "دامنهٔ محلی را حذف می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "هر چیزی داخل IIFE خصوصی است و از بیرون دیده نمی‌شود؛ به همین دلیل متغیر‌ها دامنهٔ global را آلوده نمی‌کنند."
-  },
-  {
-   "question": "چرا در JavaScript مدرن نیاز به IIFE کمتر شده است؟",
-   "options": [
-    "چون حذف شده‌اند",
-    "چون let، const و ماژول‌ها دامنهٔ خصوصی را خودشان می‌دهند",
-    "چون دیگر کار نمی‌کنند",
-    "چون فقط در Node.js کار می‌کنند"
-   ],
-   "answer": 1,
-   "explanation": "ماژول‌ها به طور پیش‌فرض دامنهٔ خودشان را دارند و let و const دامنهٔ بلوکی می‌سازند، پس نیازی که قبلاً IIFE پر می‌کرد کم شده است."
-  }
- ]
+  "slug": "js_function_iife",
+  "course": "js",
+  "order": 208,
+  "url": "/js/js_function_iife.asp",
+  "title": "تابع‌های خودفراخوان",
+  "summary": "‏IIFE تابعی است که به محض تعریف شدن اجرا می‌شود و برای ساختن دامنهٔ خصوصی و پرهیز از آلوده کردن دامنهٔ global به کار می‌رود. در این درس نحو آن، نسخهٔ پیکانی، پارامتر و مقدار برگشتی، IIFE نامدار و جایگزین‌های مدرن را می‌بینید.",
+  "objectives": [
+    "توضیح دهید IIFE چطور بدون صدا زدن اجرا می‌شود",
+    "‏IIFE با پارامتر و مقدار برگشتی بنویسید",
+    "با IIFE دامنهٔ خصوصی بسازید",
+    "بگویید چه زمانی بهتر است از IIFE استفاده نکنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تابع‌های خودفراخوان"
+    },
+    {
+      "type": "h2",
+      "text": "عبارت‌های تابعی که فوری اجرا می‌شوند (IIFE)"
+    },
+    {
+      "type": "p",
+      "text": "‏IIFE کوتاه‌شدهٔ Immediately Invoked Function Expression است؛ یعنی عبارت تابعی که فوری فراخوانی می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "‏IIFE تابعی است که به محض تعریف شدن، خودش را صدا می‌زند."
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "تابع معمولاً فقط وقتی اجرا می‌شود که صدا زده شود."
+    },
+    {
+      "type": "p",
+      "text": "تابع خودفراخوان به محض اینکه موتور JavaScript آن را بخواند و کامپایل کند، خودکار اجرا می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n  // Code to run immediately\n\n})();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife1"
+    },
+    {
+      "type": "p",
+      "text": "تابع IIFE همزمان تعریف و اجرا می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE کجا به کار می‌آید؟"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "برای ساختن دامنهٔ خصوصی",
+        "برای اجرای یک‌بارهٔ کد آماده‌سازی",
+        "در کد‌های قدیمی JavaScript"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پرهیز از آلوده کردن دامنهٔ global"
+    },
+    {
+      "type": "p",
+      "text": "هر چیزی داخل IIFE خصوصی همان تابع است."
+    },
+    {
+      "type": "p",
+      "text": "به متغیر‌های داخل IIFE از بیرون دسترسی نیست."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n  let x = 10;\n\n})();\n\n// x is not accessible here",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n  let hidden = 42;\n\n})();\n\nlet result = hidden; // ⛔ Error: hidden is not defined",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE ساده"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n  let text = \"Hello! I called myself.\";\n\n})();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife1"
+    },
+    {
+      "type": "p",
+      "text": "تابع بالا را تابع خودفراخوان بی‌نام هم می‌گویند؛ یعنی تابعی بدون نام."
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE چطور کار می‌کند"
+    },
+    {
+      "type": "p",
+      "text": "از عبارت‌های تابعی می‌توان تابع خودفراخوان ساخت."
+    },
+    {
+      "type": "p",
+      "text": "عبارت تابعی خودفراخوان بدون صدا زدن اجرا می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function () {\n\n   // Code to run\n\n};",
+      "caption": "تابع"
+    },
+    {
+      "type": "p",
+      "text": "پرانتز‌های دور تابع به JavaScript می‌گویند که آن را یک عبارت ببیند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n   // Code to run\n\n});",
+      "caption": "عبارت"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n   // Code to run\n\n})();",
+      "caption": "نحو نهایی"
+    },
+    {
+      "type": "p",
+      "text": "فقط از عبارت تابعی می‌توان تابع خودفراخوان ساخت."
+    },
+    {
+      "type": "p",
+      "text": "از اعلان تابع نمی‌توان تابع خودفراخوان ساخت."
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE با پارامتر"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید به IIFE آرگومان بدهید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function (name) {\n\n  let text = \"Hello \" + name;\n\n})(\"John Doe\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife2"
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE با مقدار برگشتی"
+    },
+    {
+      "type": "p",
+      "text": "‏IIFE می‌تواند مقداری برگرداند که در متغیر ذخیره می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let result = (function () {\n\n      return 5 + 5;\n\n    })();",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE با تابع پیکانی"
+    },
+    {
+      "type": "p",
+      "text": "تابع‌های پیکانی هم می‌توانند به عنوان IIFE به کار بروند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(() => {\n\n  let text = \"Hello! I called myself.\";\n\n})();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife3"
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE با تابع پیکانی و پارامتر"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "((name) => {\n\n  let text = \"Hello \" + name;\n\n})(\"John Doe\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife5"
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE در JavaScript مدرن"
+    },
+    {
+      "type": "p",
+      "text": "امروز ماژول‌های JavaScript اغلب جای نیاز به IIFE را گرفته‌اند؛ ماژول‌ها به طور پیش‌فرض دامنهٔ خودشان را دارند."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\n    let x = 10;\n\n    </script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "متغیر x در دامنهٔ ماژول محصور است و global نیست."
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE با عبارت تابعی نامدار"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید به IIFE نام بدهید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function greet() {\n\n  let text = \"Hello! I called myself.\";\n\n})();\n\ngreet(); // ⛔ ReferenceError",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "اما نام greet فقط داخل خود تابع وجود دارد، نه در دامنهٔ بیرونی یا global."
+    },
+    {
+      "type": "p",
+      "text": "چرا از IIFE نامدار استفاده کنیم؟"
+    },
+    {
+      "type": "p",
+      "text": "برای تابع‌های بازگشتی که خودشان را پشت سر هم صدا می‌زنند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function factorial(n) {\n\n  if (n <= 1) return 1;\n\n  return n * factorial(n - 1); // recursive call\n\n})(5);",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "‏IIFE به عنوان ماژول (متغیر‌های خصوصی)"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const counter = (function () {\n\n  let value = 0;\n\n  return {\n\n    increment() { value++; },\n\n    get() { return value; }\n\n  };\n\n})();\n\ncounter.increment();\n\nlet x = counter.get();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife4"
+    },
+    {
+      "type": "p",
+      "text": "تابع‌های خودفراخوان پیش از ECMAScript 6 خیلی زیاد به کار می‌رفتند."
+    },
+    {
+      "type": "p",
+      "text": "امروز let، const و ماژول‌ها در JavaScript نیاز به آن‌ها را کم کرده‌اند."
+    },
+    {
+      "type": "p",
+      "text": "اما هنوز هم برای این کار‌ها مفیدند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "اجرای کد آماده‌سازی که باید فوری اجرا شود",
+        "ساختن متغیر‌های خصوصی و دامنهٔ خصوصی",
+        "پرهیز از آلوده کردن دامنهٔ global",
+        "کار کردن با کد‌های قدیمی JavaScript که به آن‌ها تکیه دارند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "کجا از IIFE استفاده نکنیم"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["وقتی از ماژول‌های مدرن JavaScript استفاده می‌کنید", "وقتی کد ساده‌تر کافی است"]
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "آزمون\nچرا IIFEها پیش از به وجود آمدن ماژول‌ها در JavaScript زیاد به کار می‌رفتند؟"
+    },
+    {
+      "type": "h2",
+      "text": "اشتباه‌های رایج"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "فراموش کردن پرانتز‌های آخر\nبدون () تابع اجرا نمی‌شود.",
+        "قاطی کردن IIFE با تابع معمولی\n‏IIFE را نمی‌توان دوباره صدا زد.",
+        "زیاد استفاده کردن از IIFE\n‏JavaScript مدرن اغلب به آن‌ها نیازی ندارد."
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل iife1.js بسازید و یک IIFE ساده بنویسید که یک پیام در کنسول چاپ کند. بعد همان کد را بدون پرانتز‌های آخر امتحان کنید و خطا را ببینید.",
+      "hint": "بدون () تابع فقط تعریف می‌شود و اجرا نمی‌شود."
+    },
+    {
+      "prompt": "یک IIFE با پارامتر بنویسید و مقدار \"John Doe\" را به آن بدهید.",
+      "hint": "پارامتر بعد از function می‌آید و آرگومان داخل پرانتز‌های آخر."
+    },
+    {
+      "prompt": "یک IIFE بنویسید که ۵ + ۵ را برگرداند و نتیجه را در متغیری ذخیره کنید. بعد آن متغیر را چاپ کنید.",
+      "hint": "پرانتز‌های صدا زدن باید بیرون از پرانتز تابع باشند: (function () {...})();"
+    },
+    {
+      "prompt": "همان IIFE را یک بار با تابع معمولی و یک بار با تابع پیکانی بنویسید و خروجی هر دو را در کنسول مقایسه کنید.",
+      "hint": "نسخهٔ پیکانی این شکل است: (() => { ... })();"
+    },
+    {
+      "prompt": "با IIFE یک شمارندهٔ خصوصی بسازید که متد‌های increment و get برگرداند و از بیرون به متغیر داخلی دسترسی نداشته باشید.",
+      "hint": "داخل IIFE یک متغیر با let تعریف و در return فقط متد‌ها را بیرون بدهید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "‏IIFE چه تفاوتی با تابع معمولی دارد؟",
+      "options": [
+        "هیچ‌وقت اجرا نمی‌شود",
+        "به محض تعریف شدن خودش اجرا می‌شود",
+        "پارامتر نمی‌گیرد",
+        "فقط داخل شیء کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "تابع معمولی تا وقتی صدا زده نشود اجرا نمی‌شود، اما IIFE همان لحظه‌ای که موتور JavaScript آن را می‌خواند اجرا می‌شود."
+    },
+    {
+      "question": "چرا پرانتز‌های دور تابع در IIFE لازم‌اند؟",
+      "options": [
+        "برای زیبایی کد",
+        "تا JavaScript تابع را یک عبارت ببیند و اجازهٔ اجرای فوری بدهد",
+        "برای اینکه تابع پارامتر بگیرد",
+        "برای ساختن دامنهٔ global"
+      ],
+      "answer": 1,
+      "explanation": "پرانتز دور تابع آن را به عبارت تبدیل می‌کند و اجازه می‌دهد بلافاصله با () صدا زده شود؛ اعلان تابع را نمی‌توان خودفراخوان کرد."
+    },
+    {
+      "question": "اگر پرانتز‌های آخر IIFE را فراموش کنیم چه می‌شود؟",
+      "options": [
+        "تابع باز هم اجرا می‌شود",
+        "تابع فقط تعریف می‌شود و اجرا نمی‌شود",
+        "خطای نحوی می‌گیریم",
+        "تابع دو بار اجرا می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "اجرای تابع همان پرانتز‌های آخر است؛ بدون آن‌ها تابع فقط ساخته می‌شود و هیچ کاری نمی‌کند."
+    },
+    {
+      "question": "‏IIFE چه فایده‌ای برای دامنهٔ global دارد؟",
+      "options": [
+        "دامنهٔ global را پاک می‌کند",
+        "نمی‌گذارد متغیر‌های داخلی دامنهٔ global را آلوده کنند",
+        "متغیر‌ها را global می‌کند",
+        "دامنهٔ محلی را حذف می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "هر چیزی داخل IIFE خصوصی است و از بیرون دیده نمی‌شود؛ به همین دلیل متغیر‌ها دامنهٔ global را آلوده نمی‌کنند."
+    },
+    {
+      "question": "چرا در JavaScript مدرن نیاز به IIFE کمتر شده است؟",
+      "options": [
+        "چون حذف شده‌اند",
+        "چون let، const و ماژول‌ها دامنهٔ خصوصی را خودشان می‌دهند",
+        "چون دیگر کار نمی‌کنند",
+        "چون فقط در Node.js کار می‌کنند"
+      ],
+      "answer": 1,
+      "explanation": "ماژول‌ها به طور پیش‌فرض دامنهٔ خودشان را دارند و let و const دامنهٔ بلوکی می‌سازند، پس نیازی که قبلاً IIFE پر می‌کرد کم شده است."
+    }
+  ]
 }

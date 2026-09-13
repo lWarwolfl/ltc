@@ -1,172 +1,152 @@
 {
- "slug": "js_ajax_php",
- "course": "js",
- "order": 261,
- "url": "/js/js_ajax_php.asp",
- "title": "مثال PHP با AJAX",
- "summary": "با AJAX می‌توان پیشنهاد زندهٔ نام‌ها را ساخت: کاربر تایپ می‌کند و صفحه بدون بارگذاری دوباره پاسخ می‌گیرد. در این درس تابع showHint() را می‌سازید، پارامتر ورودی را به فایل PHP می‌فرستید و با onkeyup نتیجه را نشان می‌دهید.",
- "objectives": [
-  "رویداد onkeyup را به تابع پیشنهاد وصل کنید",
-  "مقدار فیلد ورودی را به‌عنوان پارامتر به فایل PHP بفرستید",
-  "پاسخ سرور را بدون بارگذاری دوباره نشان دهید",
-  "حالت خالی بودن فیلد را مدیریت کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "مثال PHP با AJAX"
-  },
-  {
-   "type": "p",
-   "text": "AJAX برای ساختن برنامه‌های تعاملی‌تر به کار می‌رود."
-  },
-  {
-   "type": "h2",
-   "text": "مثال PHP با AJAX"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر نشان می‌دهد یک صفحهٔ وب چگونه وقتی کاربر در یک فیلد ورودی نویسه تایپ می‌کند، با سرور وب ارتباط می‌گیرد:"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "p",
-   "text": "در مثال بالا، وقتی کاربر یک نویسه در فیلد ورودی تایپ می‌کند، تابعی به نام showHint() اجرا می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "این تابع با رویداد onkeyup فعال می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "کد این است:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p>Start typing a name in the input field below:</p>\n\n<p>Suggestions: <span id=\"txtHint\"></span></p>\n\n<form>\n\nFirst name: <input type=\"text\" onkeyup=\"showHint(this.value)\">\n</form>\n\n<script>\n\nfunction showHint(str) {\n\n  if (str.length == 0) {\n\n    document.getElementById(\"txtHint\").innerHTML = \"\";\n\n    return;\n\n  } else {\n\n    const xmlhttp = new XMLHttpRequest();\n\n    xmlhttp.onload = function() {\n\n      document.getElementById(\"txtHint\").innerHTML = this.responseText;\n\n    }\n\n  xmlhttp.open(\"GET\", \"gethint.php?q=\" + str);\n\n  xmlhttp.send();\n\n  }\n\n}\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_suggest_php"
-  },
-  {
-   "type": "p",
-   "text": "توضیح کد:"
-  },
-  {
-   "type": "p",
-   "text": "نخست بررسی می‌کنیم که فیلد ورودی خالی است یا نه (str.length == 0). اگر خالی بود، محتوای نگه‌دارندهٔ txtHint پاک می‌شود و از تابع بیرون می‌آییم."
-  },
-  {
-   "type": "p",
-   "text": "اما اگر فیلد ورودی خالی نبود، این کارها را انجام دهید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء XMLHttpRequest بسازید",
-    "تابعی بسازید که وقتی پاسخ سرور آماده شد اجرا شود",
-    "درخواست را به یک فایل PHP روی سرور (gethint.php) بفرستید",
-    "توجه کنید که پارامتر q به آدرس اضافه شده است: gethint.php?q=\"+str",
-    "متغیر str محتوای فیلد ورودی را نگه می‌دارد"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "فایل PHP: \"gethint.php\""
-  },
-  {
-   "type": "p",
-   "text": "فایل PHP یک آرایهٔ نام را بررسی می‌کند و نام (یا نام‌های) متناظر را به مرورگر برمی‌گرداند:"
-  },
-  {
-   "type": "p",
-   "text": "<?php\n// آرایه‌ای از نام‌ها\n$a[] = \"Anna\";\n$a[] = \"Brittany\";\n$a[] = \"Cinderella\";\n$a[] = \"Diana\";\n$a[] = \"Eva\";\n$a[] = \"Fiona\";\n$a[] = \"Gunda\";\n$a[] = \"Hege\";\n$a[] = \"Inga\";\n$a[] = \"Johanna\";\n$a[] = \"Kitty\";\n$a[] = \"Linda\";\n$a[] = \"Nina\";\n$a[] = \"Ophelia\";\n$a[] = \"Petunia\";\n$a[] = \"Amanda\";\n$a[] = \"Raquel\";\n$a[] = \"Cindy\";\n$a[] = \"Doris\";\n$a[] = \"Eve\";\n$a[] = \"Evita\";\n$a[] = \"Sunniva\";\n$a[] = \"Tove\";\n$a[] = \"Unni\";\n$a[] = \"Violet\";\n$a[] = \"Liza\";\n$a[] = \"Elizabeth\";\n$a[] = \"Ellen\";\n$a[] = \"Wenche\";\n$a[] = \"Vicky\";\n // گرفتن پارامتر q از URL$q = $_REQUEST[\"q\"];$hint = \"\";// اگر q خالی نباشد، همهٔ پیشنهادها را در آرایه بگرد if ($q !== \"\") {  $q = strtolower($q);\n    $len=strlen($q);  foreach($a as $name) {    if (stristr($q, substr($name, 0, $len))) {      if ($hint === \"\") {        $hint = $name;      } else {\n          $hint .= \", $name\";      }\n      }  }}// اگر پیشنهادی پیدا نشد «no suggestion» و در غیر این صورت مقدارهای درست را چاپ کن\n echo $hint === \"\" ? \"no suggestion\" : $hint;?>"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل gethint.php بسازید که آرایه‌ای از نام‌ها داشته باشد و بر اساس پارامتر q نام‌های متناظر را برگرداند؛ بعد از مرورگر آن را صدا بزنید.",
-   "hint": "پارامتر با $_REQUEST[\"q\"] گرفته می‌شود و خروجی با echo برگردانده می‌شود."
-  },
-  {
-   "prompt": "یک فیلد ورودی با رویداد onkeyup بسازید که تابع showHint() را صدا بزند و پاسخ را در عنصر txtHint بنویسد.",
-   "hint": "تابع در ابتدا باید بررسی کند که مقدار فیلد خالی نباشد."
-  },
-  {
-   "prompt": "در تابع، پارامتر q را به انتهای آدرس فایل اضافه کنید و ببینید مقدار فیلد چطور به سرور می‌رسد.",
-   "hint": "آدرس به شکل gethint.php?q= + مقدار فیلد ساخته می‌شود."
-  },
-  {
-   "prompt": "فیلد ورودی را خالی بگذارید و بررسی کنید که نگه‌دارندهٔ txtHint پاک می‌شود.",
-   "hint": "شرط str.length == 0 همین حالت را می‌پوشاند."
-  },
-  {
-   "prompt": "دلیل وجود response.expires = -1 در فایل سرور را توضیح دهید و بگویید اگر نباشد چه اتفاقی می‌افتد.",
-   "hint": "این خط از ذخیره شدن پاسخ در حافظهٔ موقت جلوگیری می‌کند تا نتیجهٔ قدیمی نشان داده نشود."
-  }
- ],
- "quiz": [
-  {
-   "question": "در مثال PHP، تابع showHint() با کدام رویداد اجرا می‌شود؟",
-   "options": [
-    "onclick",
-    "onkeyup",
-    "onchange",
-    "onload"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید این تابع با رویداد onkeyup فعال می‌شود، یعنی هر بار که کلیدی در فیلد ورودی رها شود."
-  },
-  {
-   "question": "محتوای فیلد ورودی با کدام پارامتر به سرور فرستاده می‌شود؟",
-   "options": [
-    "p",
-    "q",
-    "hint",
-    "str"
-   ],
-   "answer": 1,
-   "explanation": "پارامتر q به انتهای آدرس فایل اضافه می‌شود: gethint.php?q= ... ."
-  },
-  {
-   "question": "اگر فیلد ورودی خالی باشد، تابع چه می‌کند؟",
-   "options": [
-    "محتوای txtHint را پاک می‌کند و از تابع بیرون می‌آید",
-    "به سرور درخواست می‌فرستد",
-    "خطا می‌دهد",
-    "همهٔ نام‌ها را نشان می‌دهد"
-   ],
-   "answer": 0,
-   "explanation": "شرط str.length == 0 همین حالت را می‌گیرد و پیش از فرستادن درخواست از تابع خارج می‌شود."
-  },
-  {
-   "question": "فایل gethint.php چگونه پاسخ را برمی‌گرداند؟",
-   "options": [
-    "با return",
-    "با echo",
-    "با print_r",
-    "با یک فایل HTML"
-   ],
-   "answer": 1,
-   "explanation": "در کد این درس پاسخ با echo به مرورگر فرستاده می‌شود؛ همین متن در پاسخ AJAX خوانده می‌شود."
-  },
-  {
-   "question": "اگر هیچ نامی با ورودی کاربر متناظر نباشد، فایل سرور چه چیزی برمی‌گرداند؟",
-   "options": [
-    "رشتهٔ خالی",
-    "عدد صفر",
-    "متن no suggestion",
-    "خطای ۴۰۴"
-   ],
-   "answer": 2,
-   "explanation": "کد سرور در این حالت رشتهٔ \"no suggestion\" را چاپ می‌کند، چون متغیر hint خالی مانده است."
-  }
- ]
+  "slug": "js_ajax_php",
+  "course": "js",
+  "order": 261,
+  "url": "/js/js_ajax_php.asp",
+  "title": "مثال PHP با AJAX",
+  "summary": "با AJAX می‌توان پیشنهاد زندهٔ نام‌ها را ساخت: کاربر تایپ می‌کند و صفحه بدون بارگذاری دوباره پاسخ می‌گیرد. در این درس تابع showHint() را می‌سازید، پارامتر ورودی را به فایل PHP می‌فرستید و با onkeyup نتیجه را نشان می‌دهید.",
+  "objectives": [
+    "رویداد onkeyup را به تابع پیشنهاد وصل کنید",
+    "مقدار فیلد ورودی را به‌عنوان پارامتر به فایل PHP بفرستید",
+    "پاسخ سرور را بدون بارگذاری دوباره نشان دهید",
+    "حالت خالی بودن فیلد را مدیریت کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "مثال PHP با AJAX"
+    },
+    {
+      "type": "p",
+      "text": "AJAX برای ساختن برنامه‌های تعاملی‌تر به کار می‌رود."
+    },
+    {
+      "type": "h2",
+      "text": "مثال PHP با AJAX"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر نشان می‌دهد یک صفحهٔ وب چگونه وقتی کاربر در یک فیلد ورودی نویسه تایپ می‌کند، با سرور وب ارتباط می‌گیرد:"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا، وقتی کاربر یک نویسه در فیلد ورودی تایپ می‌کند، تابعی به نام showHint() اجرا می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "این تابع با رویداد onkeyup فعال می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "کد این است:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p>Start typing a name in the input field below:</p>\n\n<p>Suggestions: <span id=\"txtHint\"></span></p>\n\n<form>\n\nFirst name: <input type=\"text\" onkeyup=\"showHint(this.value)\">\n</form>\n\n<script>\n\nfunction showHint(str) {\n\n  if (str.length == 0) {\n\n    document.getElementById(\"txtHint\").innerHTML = \"\";\n\n    return;\n\n  } else {\n\n    const xmlhttp = new XMLHttpRequest();\n\n    xmlhttp.onload = function() {\n\n      document.getElementById(\"txtHint\").innerHTML = this.responseText;\n\n    }\n\n  xmlhttp.open(\"GET\", \"gethint.php?q=\" + str);\n\n  xmlhttp.send();\n\n  }\n\n}\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_suggest_php"
+    },
+    {
+      "type": "p",
+      "text": "توضیح کد:"
+    },
+    {
+      "type": "p",
+      "text": "نخست بررسی می‌کنیم که فیلد ورودی خالی است یا نه (str.length == 0). اگر خالی بود، محتوای نگه‌دارندهٔ txtHint پاک می‌شود و از تابع بیرون می‌آییم."
+    },
+    {
+      "type": "p",
+      "text": "اما اگر فیلد ورودی خالی نبود، این کارها را انجام دهید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک شیء XMLHttpRequest بسازید",
+        "تابعی بسازید که وقتی پاسخ سرور آماده شد اجرا شود",
+        "درخواست را به یک فایل PHP روی سرور (gethint.php) بفرستید",
+        "توجه کنید که پارامتر q به آدرس اضافه شده است: gethint.php?q=\"+str",
+        "متغیر str محتوای فیلد ورودی را نگه می‌دارد"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "فایل PHP: \"gethint.php\""
+    },
+    {
+      "type": "p",
+      "text": "فایل PHP یک آرایهٔ نام را بررسی می‌کند و نام (یا نام‌های) متناظر را به مرورگر برمی‌گرداند:"
+    },
+    {
+      "type": "p",
+      "text": "<?php\n// آرایه‌ای از نام‌ها\n$a[] = \"Anna\";\n$a[] = \"Brittany\";\n$a[] = \"Cinderella\";\n$a[] = \"Diana\";\n$a[] = \"Eva\";\n$a[] = \"Fiona\";\n$a[] = \"Gunda\";\n$a[] = \"Hege\";\n$a[] = \"Inga\";\n$a[] = \"Johanna\";\n$a[] = \"Kitty\";\n$a[] = \"Linda\";\n$a[] = \"Nina\";\n$a[] = \"Ophelia\";\n$a[] = \"Petunia\";\n$a[] = \"Amanda\";\n$a[] = \"Raquel\";\n$a[] = \"Cindy\";\n$a[] = \"Doris\";\n$a[] = \"Eve\";\n$a[] = \"Evita\";\n$a[] = \"Sunniva\";\n$a[] = \"Tove\";\n$a[] = \"Unni\";\n$a[] = \"Violet\";\n$a[] = \"Liza\";\n$a[] = \"Elizabeth\";\n$a[] = \"Ellen\";\n$a[] = \"Wenche\";\n$a[] = \"Vicky\";\n // گرفتن پارامتر q از URL$q = $_REQUEST[\"q\"];$hint = \"\";// اگر q خالی نباشد، همهٔ پیشنهادها را در آرایه بگرد if ($q !== \"\") {  $q = strtolower($q);\n    $len=strlen($q);  foreach($a as $name) {    if (stristr($q, substr($name, 0, $len))) {      if ($hint === \"\") {        $hint = $name;      } else {\n          $hint .= \", $name\";      }\n      }  }}// اگر پیشنهادی پیدا نشد «no suggestion» و در غیر این صورت مقدارهای درست را چاپ کن\n echo $hint === \"\" ? \"no suggestion\" : $hint;?>"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل gethint.php بسازید که آرایه‌ای از نام‌ها داشته باشد و بر اساس پارامتر q نام‌های متناظر را برگرداند؛ بعد از مرورگر آن را صدا بزنید.",
+      "hint": "پارامتر با $_REQUEST[\"q\"] گرفته می‌شود و خروجی با echo برگردانده می‌شود."
+    },
+    {
+      "prompt": "یک فیلد ورودی با رویداد onkeyup بسازید که تابع showHint() را صدا بزند و پاسخ را در عنصر txtHint بنویسد.",
+      "hint": "تابع در ابتدا باید بررسی کند که مقدار فیلد خالی نباشد."
+    },
+    {
+      "prompt": "در تابع، پارامتر q را به انتهای آدرس فایل اضافه کنید و ببینید مقدار فیلد چطور به سرور می‌رسد.",
+      "hint": "آدرس به شکل gethint.php?q= + مقدار فیلد ساخته می‌شود."
+    },
+    {
+      "prompt": "فیلد ورودی را خالی بگذارید و بررسی کنید که نگه‌دارندهٔ txtHint پاک می‌شود.",
+      "hint": "شرط str.length == 0 همین حالت را می‌پوشاند."
+    },
+    {
+      "prompt": "دلیل وجود response.expires = -1 در فایل سرور را توضیح دهید و بگویید اگر نباشد چه اتفاقی می‌افتد.",
+      "hint": "این خط از ذخیره شدن پاسخ در حافظهٔ موقت جلوگیری می‌کند تا نتیجهٔ قدیمی نشان داده نشود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در مثال PHP، تابع showHint() با کدام رویداد اجرا می‌شود؟",
+      "options": ["onclick", "onkeyup", "onchange", "onload"],
+      "answer": 1,
+      "explanation": "درس می‌گوید این تابع با رویداد onkeyup فعال می‌شود، یعنی هر بار که کلیدی در فیلد ورودی رها شود."
+    },
+    {
+      "question": "محتوای فیلد ورودی با کدام پارامتر به سرور فرستاده می‌شود؟",
+      "options": ["p", "q", "hint", "str"],
+      "answer": 1,
+      "explanation": "پارامتر q به انتهای آدرس فایل اضافه می‌شود: gethint.php?q= ... ."
+    },
+    {
+      "question": "اگر فیلد ورودی خالی باشد، تابع چه می‌کند؟",
+      "options": [
+        "محتوای txtHint را پاک می‌کند و از تابع بیرون می‌آید",
+        "به سرور درخواست می‌فرستد",
+        "خطا می‌دهد",
+        "همهٔ نام‌ها را نشان می‌دهد"
+      ],
+      "answer": 0,
+      "explanation": "شرط str.length == 0 همین حالت را می‌گیرد و پیش از فرستادن درخواست از تابع خارج می‌شود."
+    },
+    {
+      "question": "فایل gethint.php چگونه پاسخ را برمی‌گرداند؟",
+      "options": ["با return", "با echo", "با print_r", "با یک فایل HTML"],
+      "answer": 1,
+      "explanation": "در کد این درس پاسخ با echo به مرورگر فرستاده می‌شود؛ همین متن در پاسخ AJAX خوانده می‌شود."
+    },
+    {
+      "question": "اگر هیچ نامی با ورودی کاربر متناظر نباشد، فایل سرور چه چیزی برمی‌گرداند؟",
+      "options": ["رشتهٔ خالی", "عدد صفر", "متن no suggestion", "خطای ۴۰۴"],
+      "answer": 2,
+      "explanation": "کد سرور در این حالت رشتهٔ \"no suggestion\" را چاپ می‌کند، چون متغیر hint خالی مانده است."
+    }
+  ]
 }

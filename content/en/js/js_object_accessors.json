@@ -1,205 +1,205 @@
 {
- "slug": "js_object_accessors",
- "course": "js",
- "order": 214,
- "url": "/js/js_object_accessors.asp",
- "title": "JavaScript Object Accessors",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Object Accessors"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Getters and Setters"
-  },
-  {
-   "type": "p",
-   "text": "Getters and setters allow you to define Object Accessors (Computed\nProperties)."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Getter (The get Keyword)"
-  },
-  {
-   "type": "p",
-   "text": "This example uses a lang property to get\nthe value of the language property."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"en\",\n\n  get lang() {\n\n    return this.language;\n\n    }\n};\n\n// Display data from the object using a getter:\n\ndocument.getElementById(\"demo\").innerHTML = person.lang;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_get"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Setter (The set Keyword)"
-  },
-  {
-   "type": "p",
-   "text": "This example uses a lang property to set\nthe value of the language property."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"\",\n\n    set lang(lang) {\n\n    this.language = lang;\n\n    }\n};\n\n// Set an object\nproperty using a setter:\n\nperson.lang = \"en\";\n\n// Display data from the object:\n\ndocument.getElementById(\"demo\").innerHTML = person.language;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Function or Getter?"
-  },
-  {
-   "type": "p",
-   "text": "What is the differences between these two examples?"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  fullName: function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};\n\n// Display data from the object using a method:\n\n  document.getElementById(\"demo\").innerHTML = person.fullName();",
-   "caption": "Example 1"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_method"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  get fullName() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};\n\n// Display data from the object using a getter:\n\n  document.getElementById(\"demo\").innerHTML = person.fullName;",
-   "caption": "Example 2"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_method_get"
-  },
-  {
-   "type": "p",
-   "text": "Example 1 access fullName as a function: person.fullName()."
-  },
-  {
-   "type": "p",
-   "text": "Example 2 access fullName as a property: person.fullName."
-  },
-  {
-   "type": "p",
-   "text": "The second example provides a simpler syntax."
-  },
-  {
-   "type": "h2",
-   "text": "Data Quality"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript can secure better data quality when using getters and setters."
-  },
-  {
-   "type": "p",
-   "text": "Using the lang property, in this example, returns the value\nof the language property in upper case:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"en\",\n\n  get lang() {\n\n    return this.language.toUpperCase();\n\n    }\n};\n\n// Display data from the object using a getter:\n\ndocument.getElementById(\"demo\").innerHTML = person.lang;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_get2"
-  },
-  {
-   "type": "p",
-   "text": "Using the lang property, in this example, stores an upper case\nvalue in the language property:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"\",\n\n  set lang(lang) {\n\n      this.language = lang.toUpperCase();\n\n    }\n};\n\n// Set an object\nproperty using a setter:\n\nperson.lang = \"en\";\n\n// Display data from the object:\n\ndocument.getElementById(\"demo\").innerHTML = person.language;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set2"
-  },
-  {
-   "type": "h2",
-   "text": "Why Using Getters and Setters?"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "It gives simpler syntax",
-    "It allows equal syntax for properties and methods",
-    "It can secure better data quality",
-    "It is useful for doing things behind-the-scenes"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Avoid getters or setters if you only need simple values (prevents overuse)."
-  },
-  {
-   "type": "h2",
-   "text": "Object.defineProperty()"
-  },
-  {
-   "type": "p",
-   "text": "The Object.defineProperty() method can also be used to add Getters and\nSetters:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Define object\n\nconst obj = {counter : 0};\n\n// Define setters and getters\n\nObject.defineProperty(obj, \"reset\", {\n\n  get : function () {this.counter = 0;}\n});\n\nObject.defineProperty(obj, \"increment\", {\n\n  get : function () {this.counter++;}\n});\n\nObject.defineProperty(obj, \"decrement\", {\n\n  get : function () {this.counter--;}\n});\n\nObject.defineProperty(obj, \"add\", {\n\n  set : function (value) {this.counter += value;}\n});\n\nObject.defineProperty(obj, \"subtract\", {\n\n  set : function (value) {this.counter -= value;}\n});\n\n// Play with the counter:\n\nobj.reset;\n\nobj.add = 5;\n\nobj.subtract = 1;\n\nobj.increment;\n\nobj.decrement;",
-   "caption": "A Counter Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set4"
-  },
-  {
-   "type": "h2",
-   "text": "Advanced Chapters:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Definitions"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Advanced this"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Iterations"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Getters & Setters"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Management"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Protection"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Prototypes"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Reference"
-  }
- ]
+  "slug": "js_object_accessors",
+  "course": "js",
+  "order": 214,
+  "url": "/js/js_object_accessors.asp",
+  "title": "JavaScript Object Accessors",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Object Accessors"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Getters and Setters"
+    },
+    {
+      "type": "p",
+      "text": "Getters and setters allow you to define Object Accessors (Computed\nProperties)."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Getter (The get Keyword)"
+    },
+    {
+      "type": "p",
+      "text": "This example uses a lang property to get\nthe value of the language property."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"en\",\n\n  get lang() {\n\n    return this.language;\n\n    }\n};\n\n// Display data from the object using a getter:\n\ndocument.getElementById(\"demo\").innerHTML = person.lang;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_get"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Setter (The set Keyword)"
+    },
+    {
+      "type": "p",
+      "text": "This example uses a lang property to set\nthe value of the language property."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"\",\n\n    set lang(lang) {\n\n    this.language = lang;\n\n    }\n};\n\n// Set an object\nproperty using a setter:\n\nperson.lang = \"en\";\n\n// Display data from the object:\n\ndocument.getElementById(\"demo\").innerHTML = person.language;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Function or Getter?"
+    },
+    {
+      "type": "p",
+      "text": "What is the differences between these two examples?"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  fullName: function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};\n\n// Display data from the object using a method:\n\n  document.getElementById(\"demo\").innerHTML = person.fullName();",
+      "caption": "Example 1"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_method"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  get fullName() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};\n\n// Display data from the object using a getter:\n\n  document.getElementById(\"demo\").innerHTML = person.fullName;",
+      "caption": "Example 2"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_method_get"
+    },
+    {
+      "type": "p",
+      "text": "Example 1 access fullName as a function: person.fullName()."
+    },
+    {
+      "type": "p",
+      "text": "Example 2 access fullName as a property: person.fullName."
+    },
+    {
+      "type": "p",
+      "text": "The second example provides a simpler syntax."
+    },
+    {
+      "type": "h2",
+      "text": "Data Quality"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript can secure better data quality when using getters and setters."
+    },
+    {
+      "type": "p",
+      "text": "Using the lang property, in this example, returns the value\nof the language property in upper case:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"en\",\n\n  get lang() {\n\n    return this.language.toUpperCase();\n\n    }\n};\n\n// Display data from the object using a getter:\n\ndocument.getElementById(\"demo\").innerHTML = person.lang;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_get2"
+    },
+    {
+      "type": "p",
+      "text": "Using the lang property, in this example, stores an upper case\nvalue in the language property:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"\",\n\n  set lang(lang) {\n\n      this.language = lang.toUpperCase();\n\n    }\n};\n\n// Set an object\nproperty using a setter:\n\nperson.lang = \"en\";\n\n// Display data from the object:\n\ndocument.getElementById(\"demo\").innerHTML = person.language;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set2"
+    },
+    {
+      "type": "h2",
+      "text": "Why Using Getters and Setters?"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "It gives simpler syntax",
+        "It allows equal syntax for properties and methods",
+        "It can secure better data quality",
+        "It is useful for doing things behind-the-scenes"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Avoid getters or setters if you only need simple values (prevents overuse)."
+    },
+    {
+      "type": "h2",
+      "text": "Object.defineProperty()"
+    },
+    {
+      "type": "p",
+      "text": "The Object.defineProperty() method can also be used to add Getters and\nSetters:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Define object\n\nconst obj = {counter : 0};\n\n// Define setters and getters\n\nObject.defineProperty(obj, \"reset\", {\n\n  get : function () {this.counter = 0;}\n});\n\nObject.defineProperty(obj, \"increment\", {\n\n  get : function () {this.counter++;}\n});\n\nObject.defineProperty(obj, \"decrement\", {\n\n  get : function () {this.counter--;}\n});\n\nObject.defineProperty(obj, \"add\", {\n\n  set : function (value) {this.counter += value;}\n});\n\nObject.defineProperty(obj, \"subtract\", {\n\n  set : function (value) {this.counter -= value;}\n});\n\n// Play with the counter:\n\nobj.reset;\n\nobj.add = 5;\n\nobj.subtract = 1;\n\nobj.increment;\n\nobj.decrement;",
+      "caption": "A Counter Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set4"
+    },
+    {
+      "type": "h2",
+      "text": "Advanced Chapters:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Definitions"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Advanced this"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Iterations"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Getters & Setters"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Management"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Protection"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Prototypes"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Reference"
+    }
+  ]
 }

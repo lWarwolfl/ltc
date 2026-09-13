@@ -1,459 +1,391 @@
 {
- "slug": "js_json_stringify",
- "course": "js",
- "order": 171,
- "url": "/js/js_json_stringify.asp",
- "title": "ساختن رشتهٔ JSON در JavaScript",
- "summary": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند تا بتوان آن را فرستاد یا ذخیره کرد. در این درس شیء و آرایه را تبدیل می‌کنید، با replacer خصوصیت‌ها را انتخاب یا تغییر می‌دهید، با پارامتر space خروجی را قالب‌بندی می‌کنید و با مقدارهای پشتیبانی‌نشده آشنا می‌شوید.",
- "objectives": [
-  "با JSON.stringify() شیء و آرایه را به متن JSON تبدیل کنید",
-  "با آرایه و تابع replacer خصوصیت‌ها را انتخاب یا تغییر دهید",
-  "با پارامتر space خروجی JSON را خوانا کنید",
-  "تشخیص دهید کدام مقدارها حذف می‌شوند یا به null تبدیل می‌شوند",
-  "خطای ارجاع حلقه‌ای و stringify دوباره را توضیح دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ساختن رشتهٔ JSON در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "متد JSON.stringify()"
-  },
-  {
-   "type": "p",
-   "text": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "متغیرهای JavaScript باید به متن خالص تبدیل شوند تا بتوان آن‌ها را:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "روی HTTP به سرور فرستاد",
-    "بین برنامه‌ها منتقل کرد",
-    "در یک فایل متنی ذخیره کرد"
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "توجه"
-  },
-  {
-   "type": "p",
-   "text": "متد JSON.stringify() یک رشتهٔ متنی برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "JSON.stringify(value, replacer, space)",
-   "caption": "نحو"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "پارامتر",
-     "توضیحات"
-    ],
-    [
-     "value",
-     "مقدار JavaScriptی که باید تبدیل شود."
-    ],
-    [
-     "replacer",
-     "تابع یا آرایهٔ اختیاری که مقدارها را انتخاب یا تغییر می‌دهد."
-    ],
-    [
-     "space",
-     "عدد یا رشتهٔ اختیاری برای تودرتو کردن متن JSON."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل یک شیء"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a JavaScript object\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\n// Convert the object to a JSON text\n\nconst text = JSON.stringify(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل یک آرایه"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a JavaScript array\n\nconst cars = [\"Ford\", \"Volvo\", \"BMW\"];\n\n// Convert the array to a JSON text\n\nconst text = JSON.stringify(cars);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_array"
-  },
-  {
-   "type": "h2",
-   "text": "تبدیل دیگر مقدارها"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON.stringify() می‌تواند همهٔ مقدارهای JavaScriptی را که JSON پشتیبانی می‌کند تبدیل کند."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "مقدار JavaScript",
-     "متن JSON"
-    ],
-    [
-     "رشته",
-     "\"John\""
-    ],
-    [
-     "عدد",
-     "42"
-    ],
-    [
-     "بولی",
-     "true"
-    ],
-    [
-     "null",
-     "null"
-    ],
-    [
-     "شیء",
-     "{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}"
-    ],
-    [
-     "آرایه",
-     "[\"Ford\",\"Volvo\",\"BMW\"]"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "JSON.stringify(\"John\");\n\nJSON.stringify(42);\n\nJSON.stringify(false);\n\nJSON.stringify(Boolean(0));\n\nJSON.stringify(true);\n\nJSON.stringify(Boolean(1));\n\nJSON.stringify(undefined);\n\n// These returns null\n\nJSON.stringify(null);\n\nJSON.stringify(NaN);\n\nJSON.stringify(Infinity);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_all"
-  },
-  {
-   "type": "h2",
-   "text": "انتخاب خصوصیت‌ها"
-  },
-  {
-   "type": "p",
-   "text": "آرایهٔ replacer می‌تواند تعیین کند کدام خصوصیت‌ها در خروجی بیایند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nlet text = JSON.stringify(person, [\"name\", \"city\"]);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_select"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON خروجی فقط خصوصیت‌های انتخاب‌شده را دارد."
-  },
-  {
-   "type": "h2",
-   "text": "تغییر مقدارها"
-  },
-  {
-   "type": "p",
-   "text": "تابع replacer می‌تواند مقدارها را پیش از تبدیل تغییر دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nconst text = JSON.stringify(person,\nfunction(key, value) {\n\n  if (key == \"age\") {\n\n    return value + 1;\n\n  }\n\n  return value;\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_replace"
-  },
-  {
-   "type": "h2",
-   "text": "قالب‌بندی JSON"
-  },
-  {
-   "type": "p",
-   "text": "پارامتر اختیاری space خواندن JSON را راحت‌تر می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nlet text = JSON.stringify(person, null, 1);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_space"
-  },
-  {
-   "type": "p",
-   "text": "مقدار null یعنی هیچ replacerی انتخاب نمی‌شود."
-  },
-  {
-   "type": "p",
-   "text": "مقدار 1 هر سطح را با یک فاصله تودرتو می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "مقدارهای پشتیبانی‌نشده"
-  },
-  {
-   "type": "p",
-   "text": "بعضی مقدارهای JavaScript در JSON قابل نمایش نیستند."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "مقدار",
-     "نتیجه"
-    ],
-    [
-     "BigInt",
-     "یک TypeError پرتاب می‌کند."
-    ],
-    [
-     "Infinity",
-     "در شیءها و آرایه‌ها به null تبدیل می‌شود."
-    ],
-    [
-     "NaN",
-     "در شیءها و آرایه‌ها به null تبدیل می‌شود."
-    ],
-    [
-     "undefined",
-     "از شیءها حذف می‌شود. در آرایه‌ها به null تبدیل می‌شود."
-    ],
-    [
-     "تابع‌ها",
-     "از شیءها حذف می‌شود. در آرایه‌ها به null تبدیل می‌شود."
-    ],
-    [
-     "Symbol",
-     "از شیءها حذف می‌شود. در آرایه‌ها به null تبدیل می‌شود."
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  name: \"John\",\n\n  greet: function() {},\n\n  age: undefined\n\n};\n\nlet text = JSON.stringify(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_unsupported"
-  },
-  {
-   "type": "h3",
-   "text": "توجه"
-  },
-  {
-   "type": "p",
-   "text": "نحو JSON خروجی فقط شامل مقدارهای پشتیبانی‌شده است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  name: \"John\",\n\n  greet: NAN,\n\n  age: Infinity\n\n};\n\nlet text = JSON.stringify(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_unsupported_2"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// JavaScript Array\n\nconst cars = [\"Ford\", \"Volvo\", function() {}, undefined, NaN, Infinity];\n\n// Convert the array to JSON\n\nlet text = JSON.stringify(cars);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_array_unsupported"
-  },
-  {
-   "type": "h2",
-   "text": "ساختن رشتهٔ JSON از تاریخ‌ها"
-  },
-  {
-   "type": "p",
-   "text": "تابع JSON.stringify() شیءهای Date را به رشته تبدیل می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name:\"John\", today:date, city:\"New York\"};\n\nlet text = JSON.stringify(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_date"
-  },
-  {
-   "type": "p",
-   "text": "در سمت گیرنده می‌توانید رشته را دوباره به شیء تاریخ تبدیل کنید."
-  },
-  {
-   "type": "h2",
-   "text": "ذخیرهٔ داده"
-  },
-  {
-   "type": "p",
-   "text": "هنگام ذخیرهٔ داده، داده باید قالب مشخصی داشته باشد و هر جا که آن را ذخیره کنید، متن همیشه یکی از قالب‌های مجاز است."
-  },
-  {
-   "type": "p",
-   "text": "‏JSON امکان ذخیرهٔ شیءهای JavaScript به‌صورت متن را می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Store data:\n\nconst myObj = {name: \"John\", age: 31, city: \"New York\"};\n\nconst myJSON = JSON.stringify(myObj);\nlocalStorage.setItem(\"testJSON\", myJSON);\n\n// Retrieve data:\n\nlet text = localStorage.getItem(\"testJSON\");\n\nlet obj = JSON.parse(text);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_store"
-  },
-  {
-   "type": "h2",
-   "text": "اشتباه‌های رایج در stringify"
-  },
-  {
-   "type": "p",
-   "text": "صدا زدن دوبارهٔ JSON.stringify() علامت‌های کوتیشن escape‌شده اضافه می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name:\"John\"};\n\nconst text = JSON.stringify(person);\n\nconst textAgain = JSON.stringify(text);",
-   "caption": "نادرست"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_twice"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON.stringify() نمی‌تواند شیءهایی با ارجاع حلقه‌ای را تبدیل کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {};\n\nperson.self = person;\n\nJSON.stringify(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "مثال بالا یک TypeError پرتاب می‌کند."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک شیء JavaScript بسازید و با JSON.stringify() به متن تبدیلش کنید، بعد نوع نتیجه را با typeof چاپ کنید.",
-   "hint": "خروجی همیشه رشته است، چون فقط متن را می‌توان فرستاد یا ذخیره کرد."
-  },
-  {
-   "prompt": "آرایه‌ای از سه رنگ بسازید و خروجی JSON آن را با پارامتر سوم 2 تودرتو کنید و نتیجه را در کنسول ببینید.",
-   "hint": "پارامتر سوم تعداد فاصله‌های تودرتویی هر سطح را تعیین می‌کند."
-  },
-  {
-   "prompt": "با آرایهٔ replacer فقط دو خصوصیت از یک شیء را در خروجی نگه دارید.",
-   "hint": "آرایه‌ای از نام خصوصیت‌ها بدهید: JSON.stringify(obj, [\"name\",\"age\"])."
-  },
-  {
-   "prompt": "شیئی بسازید که یک خصوصیتش undefined و یکی تابع باشد و خروجی JSON آن را ببینید.",
-   "hint": "این دو مقدار از شیء حذف می‌شوند؛ اما همین مقدارها در آرایه به null تبدیل می‌شوند."
-  },
-  {
-   "prompt": "یک شیء با ارجاع حلقه‌ای بسازید (obj.self = obj) و ببینید JSON.stringify() چه خطایی پرتاب می‌کند.",
-   "hint": "‏JSON نمی‌تواند ارجاع حلقه‌ای را نمایش دهد، پس TypeError می‌گیرید."
-  }
- ],
- "quiz": [
-  {
-   "question": "نتیجهٔ JSON.stringify() چه نوعی دارد؟",
-   "options": [
-    "شیء",
-    "آرایه",
-    "رشتهٔ متنی",
-    "بولی"
-   ],
-   "answer": 2,
-   "explanation": "‏JSON.stringify() یک رشتهٔ متنی برمی‌گرداند؛ به همین دلیل می‌توان آن را روی HTTP فرستاد، بین برنامه‌ها منتقل کرد یا در فایل متنی ذخیره کرد."
-  },
-  {
-   "question": "پارامتر سوم JSON.stringify() چه می‌کند؟",
-   "options": [
-    "تعداد خصوصیت‌ها را تعیین می‌کند",
-    "فاصله‌های تودرتویی متن JSON را تعیین می‌کند",
-    "مقدار پیش‌فرض می‌دهد",
-    "متن را پارس می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "پارامتر سوم که space نام دارد، متن JSON را برای خوانایی تودرتو می‌کند؛ مثلاً 2 هر سطح را با دو فاصله جلو می‌برد."
-  },
-  {
-   "question": "خصوصیتی با مقدار undefined در خروجی JSON چه می‌شود؟",
-   "options": [
-    "به null تبدیل می‌شود",
-    "به رشته تبدیل می‌شود",
-    "از شیء حذف می‌شود",
-    "خطا پرتاب می‌کند"
-   ],
-   "answer": 2,
-   "explanation": "‏undefined از شیءها حذف می‌شود؛ فقط داخل آرایه‌ها به null تبدیل می‌شود. همین حکم برای تابع‌ها و Symbol هم برقرار است."
-  },
-  {
-   "question": "مقدار NaN هنگام JSON.stringify() روی یک شیء چه می‌شود؟",
-   "options": [
-    "به null تبدیل می‌شود",
-    "به رشتهٔ \"NaN\" تبدیل می‌شود",
-    "خطای TypeError می‌دهد",
-    "از شیء حذف می‌شود"
-   ],
-   "answer": 0,
-   "explanation": "مقدارهای NaN، Infinity و -Infinity در شیءها و آرایه‌ها به null تبدیل می‌شوند، چون JSON عدد نامتناهی یا NaN نمی‌شناسد."
-  },
-  {
-   "question": "کدام مقدار هنگام stringify خطای TypeError پرتاب می‌کند؟",
-   "options": [
-    "Date",
-    "BigInt",
-    "تابع",
-    "undefined"
-   ],
-   "answer": 1,
-   "explanation": "فقط BigInt است که خطای TypeError می‌دهد. تابع و undefined از شیء حذف می‌شوند و Date به رشته تبدیل می‌شود."
-  }
- ]
+  "slug": "js_json_stringify",
+  "course": "js",
+  "order": 171,
+  "url": "/js/js_json_stringify.asp",
+  "title": "ساختن رشتهٔ JSON در JavaScript",
+  "summary": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند تا بتوان آن را فرستاد یا ذخیره کرد. در این درس شیء و آرایه را تبدیل می‌کنید، با replacer خصوصیت‌ها را انتخاب یا تغییر می‌دهید، با پارامتر space خروجی را قالب‌بندی می‌کنید و با مقدارهای پشتیبانی‌نشده آشنا می‌شوید.",
+  "objectives": [
+    "با JSON.stringify() شیء و آرایه را به متن JSON تبدیل کنید",
+    "با آرایه و تابع replacer خصوصیت‌ها را انتخاب یا تغییر دهید",
+    "با پارامتر space خروجی JSON را خوانا کنید",
+    "تشخیص دهید کدام مقدارها حذف می‌شوند یا به null تبدیل می‌شوند",
+    "خطای ارجاع حلقه‌ای و stringify دوباره را توضیح دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ساختن رشتهٔ JSON در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "متد JSON.stringify()"
+    },
+    {
+      "type": "p",
+      "text": "متد JSON.stringify() یک مقدار JavaScript را به متن JSON تبدیل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "متغیرهای JavaScript باید به متن خالص تبدیل شوند تا بتوان آن‌ها را:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["روی HTTP به سرور فرستاد", "بین برنامه‌ها منتقل کرد", "در یک فایل متنی ذخیره کرد"]
+    },
+    {
+      "type": "h3",
+      "text": "توجه"
+    },
+    {
+      "type": "p",
+      "text": "متد JSON.stringify() یک رشتهٔ متنی برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "JSON.stringify(value, replacer, space)",
+      "caption": "نحو"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["پارامتر", "توضیحات"],
+        ["value", "مقدار JavaScriptی که باید تبدیل شود."],
+        ["replacer", "تابع یا آرایهٔ اختیاری که مقدارها را انتخاب یا تغییر می‌دهد."],
+        ["space", "عدد یا رشتهٔ اختیاری برای تودرتو کردن متن JSON."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل یک شیء"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a JavaScript object\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\n// Convert the object to a JSON text\n\nconst text = JSON.stringify(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل یک آرایه"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a JavaScript array\n\nconst cars = [\"Ford\", \"Volvo\", \"BMW\"];\n\n// Convert the array to a JSON text\n\nconst text = JSON.stringify(cars);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_array"
+    },
+    {
+      "type": "h2",
+      "text": "تبدیل دیگر مقدارها"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON.stringify() می‌تواند همهٔ مقدارهای JavaScriptی را که JSON پشتیبانی می‌کند تبدیل کند."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["مقدار JavaScript", "متن JSON"],
+        ["رشته", "\"John\""],
+        ["عدد", "42"],
+        ["بولی", "true"],
+        ["null", "null"],
+        ["شیء", "{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}"],
+        ["آرایه", "[\"Ford\",\"Volvo\",\"BMW\"]"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "JSON.stringify(\"John\");\n\nJSON.stringify(42);\n\nJSON.stringify(false);\n\nJSON.stringify(Boolean(0));\n\nJSON.stringify(true);\n\nJSON.stringify(Boolean(1));\n\nJSON.stringify(undefined);\n\n// These returns null\n\nJSON.stringify(null);\n\nJSON.stringify(NaN);\n\nJSON.stringify(Infinity);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_all"
+    },
+    {
+      "type": "h2",
+      "text": "انتخاب خصوصیت‌ها"
+    },
+    {
+      "type": "p",
+      "text": "آرایهٔ replacer می‌تواند تعیین کند کدام خصوصیت‌ها در خروجی بیایند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nlet text = JSON.stringify(person, [\"name\", \"city\"]);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_select"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON خروجی فقط خصوصیت‌های انتخاب‌شده را دارد."
+    },
+    {
+      "type": "h2",
+      "text": "تغییر مقدارها"
+    },
+    {
+      "type": "p",
+      "text": "تابع replacer می‌تواند مقدارها را پیش از تبدیل تغییر دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  name: \"John\",\n\n  age: 30\n\n};\n\nconst text = JSON.stringify(person,\nfunction(key, value) {\n\n  if (key == \"age\") {\n\n    return value + 1;\n\n  }\n\n  return value;\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_replace"
+    },
+    {
+      "type": "h2",
+      "text": "قالب‌بندی JSON"
+    },
+    {
+      "type": "p",
+      "text": "پارامتر اختیاری space خواندن JSON را راحت‌تر می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\nlet text = JSON.stringify(person, null, 1);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_space"
+    },
+    {
+      "type": "p",
+      "text": "مقدار null یعنی هیچ replacerی انتخاب نمی‌شود."
+    },
+    {
+      "type": "p",
+      "text": "مقدار 1 هر سطح را با یک فاصله تودرتو می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "مقدارهای پشتیبانی‌نشده"
+    },
+    {
+      "type": "p",
+      "text": "بعضی مقدارهای JavaScript در JSON قابل نمایش نیستند."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["مقدار", "نتیجه"],
+        ["BigInt", "یک TypeError پرتاب می‌کند."],
+        ["Infinity", "در شیءها و آرایه‌ها به null تبدیل می‌شود."],
+        ["NaN", "در شیءها و آرایه‌ها به null تبدیل می‌شود."],
+        ["undefined", "از شیءها حذف می‌شود. در آرایه‌ها به null تبدیل می‌شود."],
+        ["تابع‌ها", "از شیءها حذف می‌شود. در آرایه‌ها به null تبدیل می‌شود."],
+        ["Symbol", "از شیءها حذف می‌شود. در آرایه‌ها به null تبدیل می‌شود."]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  name: \"John\",\n\n  greet: function() {},\n\n  age: undefined\n\n};\n\nlet text = JSON.stringify(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_unsupported"
+    },
+    {
+      "type": "h3",
+      "text": "توجه"
+    },
+    {
+      "type": "p",
+      "text": "نحو JSON خروجی فقط شامل مقدارهای پشتیبانی‌شده است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  name: \"John\",\n\n  greet: NAN,\n\n  age: Infinity\n\n};\n\nlet text = JSON.stringify(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_object_unsupported_2"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// JavaScript Array\n\nconst cars = [\"Ford\", \"Volvo\", function() {}, undefined, NaN, Infinity];\n\n// Convert the array to JSON\n\nlet text = JSON.stringify(cars);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_array_unsupported"
+    },
+    {
+      "type": "h2",
+      "text": "ساختن رشتهٔ JSON از تاریخ‌ها"
+    },
+    {
+      "type": "p",
+      "text": "تابع JSON.stringify() شیءهای Date را به رشته تبدیل می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name:\"John\", today:date, city:\"New York\"};\n\nlet text = JSON.stringify(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_date"
+    },
+    {
+      "type": "p",
+      "text": "در سمت گیرنده می‌توانید رشته را دوباره به شیء تاریخ تبدیل کنید."
+    },
+    {
+      "type": "h2",
+      "text": "ذخیرهٔ داده"
+    },
+    {
+      "type": "p",
+      "text": "هنگام ذخیرهٔ داده، داده باید قالب مشخصی داشته باشد و هر جا که آن را ذخیره کنید، متن همیشه یکی از قالب‌های مجاز است."
+    },
+    {
+      "type": "p",
+      "text": "‏JSON امکان ذخیرهٔ شیءهای JavaScript به‌صورت متن را می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Store data:\n\nconst myObj = {name: \"John\", age: 31, city: \"New York\"};\n\nconst myJSON = JSON.stringify(myObj);\nlocalStorage.setItem(\"testJSON\", myJSON);\n\n// Retrieve data:\n\nlet text = localStorage.getItem(\"testJSON\");\n\nlet obj = JSON.parse(text);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_store"
+    },
+    {
+      "type": "h2",
+      "text": "اشتباه‌های رایج در stringify"
+    },
+    {
+      "type": "p",
+      "text": "صدا زدن دوبارهٔ JSON.stringify() علامت‌های کوتیشن escape‌شده اضافه می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name:\"John\"};\n\nconst text = JSON.stringify(person);\n\nconst textAgain = JSON.stringify(text);",
+      "caption": "نادرست"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_stringify_twice"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON.stringify() نمی‌تواند شیءهایی با ارجاع حلقه‌ای را تبدیل کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {};\n\nperson.self = person;\n\nJSON.stringify(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "مثال بالا یک TypeError پرتاب می‌کند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک شیء JavaScript بسازید و با JSON.stringify() به متن تبدیلش کنید، بعد نوع نتیجه را با typeof چاپ کنید.",
+      "hint": "خروجی همیشه رشته است، چون فقط متن را می‌توان فرستاد یا ذخیره کرد."
+    },
+    {
+      "prompt": "آرایه‌ای از سه رنگ بسازید و خروجی JSON آن را با پارامتر سوم 2 تودرتو کنید و نتیجه را در کنسول ببینید.",
+      "hint": "پارامتر سوم تعداد فاصله‌های تودرتویی هر سطح را تعیین می‌کند."
+    },
+    {
+      "prompt": "با آرایهٔ replacer فقط دو خصوصیت از یک شیء را در خروجی نگه دارید.",
+      "hint": "آرایه‌ای از نام خصوصیت‌ها بدهید: JSON.stringify(obj, [\"name\",\"age\"])."
+    },
+    {
+      "prompt": "شیئی بسازید که یک خصوصیتش undefined و یکی تابع باشد و خروجی JSON آن را ببینید.",
+      "hint": "این دو مقدار از شیء حذف می‌شوند؛ اما همین مقدارها در آرایه به null تبدیل می‌شوند."
+    },
+    {
+      "prompt": "یک شیء با ارجاع حلقه‌ای بسازید (obj.self = obj) و ببینید JSON.stringify() چه خطایی پرتاب می‌کند.",
+      "hint": "‏JSON نمی‌تواند ارجاع حلقه‌ای را نمایش دهد، پس TypeError می‌گیرید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "نتیجهٔ JSON.stringify() چه نوعی دارد؟",
+      "options": ["شیء", "آرایه", "رشتهٔ متنی", "بولی"],
+      "answer": 2,
+      "explanation": "‏JSON.stringify() یک رشتهٔ متنی برمی‌گرداند؛ به همین دلیل می‌توان آن را روی HTTP فرستاد، بین برنامه‌ها منتقل کرد یا در فایل متنی ذخیره کرد."
+    },
+    {
+      "question": "پارامتر سوم JSON.stringify() چه می‌کند؟",
+      "options": [
+        "تعداد خصوصیت‌ها را تعیین می‌کند",
+        "فاصله‌های تودرتویی متن JSON را تعیین می‌کند",
+        "مقدار پیش‌فرض می‌دهد",
+        "متن را پارس می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "پارامتر سوم که space نام دارد، متن JSON را برای خوانایی تودرتو می‌کند؛ مثلاً 2 هر سطح را با دو فاصله جلو می‌برد."
+    },
+    {
+      "question": "خصوصیتی با مقدار undefined در خروجی JSON چه می‌شود؟",
+      "options": [
+        "به null تبدیل می‌شود",
+        "به رشته تبدیل می‌شود",
+        "از شیء حذف می‌شود",
+        "خطا پرتاب می‌کند"
+      ],
+      "answer": 2,
+      "explanation": "‏undefined از شیءها حذف می‌شود؛ فقط داخل آرایه‌ها به null تبدیل می‌شود. همین حکم برای تابع‌ها و Symbol هم برقرار است."
+    },
+    {
+      "question": "مقدار NaN هنگام JSON.stringify() روی یک شیء چه می‌شود؟",
+      "options": [
+        "به null تبدیل می‌شود",
+        "به رشتهٔ \"NaN\" تبدیل می‌شود",
+        "خطای TypeError می‌دهد",
+        "از شیء حذف می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "مقدارهای NaN، Infinity و -Infinity در شیءها و آرایه‌ها به null تبدیل می‌شوند، چون JSON عدد نامتناهی یا NaN نمی‌شناسد."
+    },
+    {
+      "question": "کدام مقدار هنگام stringify خطای TypeError پرتاب می‌کند؟",
+      "options": ["Date", "BigInt", "تابع", "undefined"],
+      "answer": 1,
+      "explanation": "فقط BigInt است که خطای TypeError می‌دهد. تابع و undefined از شیء حذف می‌شوند و Date به رشته تبدیل می‌شود."
+    }
+  ]
 }

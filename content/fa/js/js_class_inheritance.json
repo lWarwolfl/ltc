@@ -1,224 +1,219 @@
 {
- "slug": "js_class_inheritance",
- "course": "js",
- "order": 219,
- "url": "/js/js_class_inheritance.asp",
- "title": "وراثت کلاس در JavaScript",
- "summary": "وراثت کلاس اجازه می‌دهد متدها و خصوصیت‌های یک کلاس را در کلاس دیگری دوباره به کار ببرید. در این درس با extends و super() کار می‌کنید، گیرنده و تنظیم‌کننده در کلاس می‌سازید و یاد می‌گیرید چرا اعلان کلاس برخلاف تابع بالا کشیده نمی‌شود.",
- "objectives": [
-  "با extends کلاس فرزند بسازید و از والدش ارث ببرید",
-  "نقش super() در سازندهٔ کلاس فرزند را توضیح دهید",
-  "در کلاس گیرنده و تنظیم‌کننده بسازید و دلیل زیرخط در نام خصوصیت را بگویید",
-  "اثر hoisting نشدن اعلان کلاس را تشخیص دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "وراثت کلاس در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "وراثت کلاس"
-  },
-  {
-   "type": "p",
-   "text": "برای ساختن وراثت کلاس از کلیدواژهٔ extends استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "کلاسی که با وراثت ساخته می‌شود، همهٔ متدهای کلاس دیگر را به ارث می‌برد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n  constructor(brand) {\n    this.carname =\n  brand;\n\n  }\n  present() {\n    return 'I have a ' + this.carname;\n\n  }\n}\n\nclass Model extends Car {\n\n  constructor(brand, mod) {\n    super(brand);\n    this.model = mod;\n\n  }\n  show() {\n\n      return this.present() + ', it is a ' + this.model;\n\n  }\n}\n\nlet myCar = new Model(\"Ford\", \"Mustang\");\ndocument.getElementById(\"demo\").innerHTML\n  = myCar.show();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_inherit"
-  },
-  {
-   "type": "p",
-   "text": "متد super() به کلاس والد اشاره می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "با فراخوانی super() داخل متد سازنده، سازندهٔ کلاس والد را صدا می‌زنیم و به خصوصیت‌ها و متدهای والد دسترسی پیدا می‌کنیم."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "وراثت برای استفادهٔ دوباره از کد مفید است: وقتی کلاس جدیدی می‌سازید، خصوصیت‌ها و متدهای یک کلاس موجود را دوباره به کار می‌برید."
-  },
-  {
-   "type": "h2",
-   "text": "گیرنده‌ها و تنظیم‌کننده‌ها"
-  },
-  {
-   "type": "p",
-   "text": "کلاس‌ها استفاده از گیرنده و تنظیم‌کننده را هم ممکن می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "به کار بردن گیرنده و تنظیم‌کننده برای خصوصیت‌ها کار هوشمندانه‌ای است؛ به‌ویژه وقتی بخواهید پیش از برگرداندن مقدار یا پیش از ذخیرهٔ آن کار خاصی انجام دهید."
-  },
-  {
-   "type": "p",
-   "text": "برای افزودن گیرنده و تنظیم‌کننده در کلاس از کلیدواژه‌های get و set استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n  constructor(brand) {\n    this.carname\n  = brand;\n  }\n  get cnam() {\n\n  return this.carname;\n  }\n  set cnam(x) {\n\n  this.carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  document.getElementById(\"demo\").innerHTML = myCar.cnam;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_getters"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "با اینکه گیرنده یک متد است، برای خواندن مقدار خصوصیت پرانتز نمی‌گذارید."
-  },
-  {
-   "type": "p",
-   "text": "نام متد گیرنده/تنظیم‌کننده نمی‌تواند با نام خصوصیت یکی باشد؛ در این مثال carname."
-  },
-  {
-   "type": "p",
-   "text": "بسیاری از برنامه‌نویسان پیش از نام خصوصیت یک زیرخط _ می‌گذارند تا گیرنده/تنظیم‌کننده را از خصوصیت اصلی جدا کنند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n  constructor(brand) {\n    this._carname\n  = brand;\n  }\n  get carname() {\n\n  return this._carname;\n  }\n  set carname(x) {\n\n  this._carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  document.getElementById(\"demo\").innerHTML = myCar.carname;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_getters2"
-  },
-  {
-   "type": "p",
-   "text": "برای استفاده از تنظیم‌کننده هم مثل مقداردهی به یک خصوصیت عمل کنید، بدون پرانتز:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n  constructor(brand) {\n    this._carname\n  = brand;\n  }\n  get carname() {\n\n  return this._carname;\n  }\n  set carname(x) {\n\n  this._carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  myCar.carname = \"Volvo\";\n\n  document.getElementById(\"demo\").innerHTML = myCar.carname;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_setter"
-  },
-  {
-   "type": "h2",
-   "text": "بالا کشیدن اعلان‌ها (hoisting)"
-  },
-  {
-   "type": "p",
-   "text": "برخلاف تابع‌ها و اعلان‌های دیگر JavaScript، اعلان کلاس بالا کشیده نمی‌شود (hoist نمی‌شود)."
-  },
-  {
-   "type": "p",
-   "text": "یعنی باید کلاس را پیش از استفاده از آن اعلان کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "//You cannot use the class yet.\n//myCar = new Car(\"Ford\") will raise an error.\n\nclass Car {\n\n  constructor(brand) {\n    this.carname = brand;\n\n  }\n}\n\n//Now you can use the class:\nconst myCar = new Car(\"Ford\")",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_hoisting"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "برای اعلان‌های دیگر مثل تابع‌ها، اگر پیش از اعلان از آن‌ها استفاده کنید خطا نمی‌گیرید؛ چون رفتار پیش‌فرض اعلان‌های JavaScript بالا کشیدن (hoisting) است، یعنی اعلان به بالای کد منتقل می‌شود."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل inherit.html بسازید، کلاس Car را با سازنده و یک متد بنویسید و بعد کلاس Model را با extends از آن بسازید.",
-   "hint": "در سازندهٔ کلاس فرزند اول super(...) را صدا بزنید تا خصوصیت‌های والد ساخته شوند."
-  },
-  {
-   "prompt": "یک نمونه از کلاس فرزند بسازید و متد ارث‌بردهٔ والد را روی همان نمونه صدا بزنید.",
-   "hint": "کلاس فرزند همهٔ متدهای والد را به ارث می‌برد و لازم نیست دوباره تعریفشان کنید."
-  },
-  {
-   "prompt": "داخل کلاس Car یک گیرنده و تنظیم‌کننده برای carname بنویسید و مقدار را یک بار با = عوض کنید و یک بار با نقطه بخوانید.",
-   "hint": "برای خواندن مقدار گیرنده پرانتز نمی‌خواهد، ولی برای نوشتن با تنظیم‌کننده از = استفاده می‌کنید."
-  },
-  {
-   "prompt": "نام گیرنده را هم‌نام خصوصیت بگذارید (carname) و خطای کنسول را ببینید؛ بعد نام خصوصیت را به _carname عوض کنید.",
-   "hint": "گیرنده و خصوصیت هم‌نام باعث بازگشت بی‌پایان می‌شوند؛ زیرخط همین تعارض را حل می‌کند."
-  },
-  {
-   "prompt": "یک نمونه از کلاس را پیش از اعلان کلاس بسازید و خطا را ببینید؛ بعد جای اعلان و استفاده را عوض کنید.",
-   "hint": "اعلان کلاس hoist نمی‌شود، پس ترتیب خط‌ها در فایل مهم است."
-  }
- ],
- "quiz": [
-  {
-   "question": "برای ساختن وراثت کلاس از کدام کلیدواژه استفاده می‌کنیم؟",
-   "options": [
-    "inherits",
-    "extends",
-    "super",
-    "prototype"
-   ],
-   "answer": 1,
-   "explanation": "کلیدواژهٔ extends کلاس فرزند را به والد وصل می‌کند. super() برای صدا زدن سازندهٔ والد است و prototype مربوط به شیءهاست، نه نحو کلاس."
-  },
-  {
-   "question": "کاربرد super() در متد سازندهٔ کلاس فرزند چیست؟",
-   "options": [
-    "یک نمونه جدید از کلاس والد می‌سازد",
-    "سازندهٔ کلاس والد را فراخوانی می‌کند و دسترسی به خصوصیت‌ها و متدهای والد را ممکن می‌کند",
-    "متدها را از کلاس فرزند حذف می‌کند",
-    "کلاس والد را به‌صورت موقت غیرفعال می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "super() به کلاس والد اشاره می‌کند؛ با فراخوانی آن در سازنده، مقداردهی اولیهٔ والد انجام می‌شود و نمونهٔ فرزند به خصوصیت‌ها و متدهای والد می‌رسد."
-  },
-  {
-   "question": "دربارهٔ hoisting اعلان کلاس کدام گزینه درست است؟",
-   "options": [
-    "اعلان کلاس مثل تابع بالا کشیده می‌شود",
-    "اعلان کلاس بالا کشیده نمی‌شود و باید پیش از استفاده نوشته شود",
-    "فقط در حالت strict بالا کشیده می‌شود",
-    "اعلان کلاس فقط داخل تابع‌ها بالا کشیده می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "برخلاف تابع‌ها، اعلان کلاس hoist نمی‌شود؛ پس اگر پیش از تعریف کلاس از آن استفاده کنید خطا می‌گیرید."
-  },
-  {
-   "question": "چرا خیلی از برنامه‌نویسان نام خصوصیت را با زیرخط می‌نویسند، مثل _carname؟",
-   "options": [
-    "چون JavaScript نام‌های بدون زیرخط را نمی‌پذیرد",
-    "چون نمی‌توان نام گیرنده و خصوصیت را یکی گذاشت و زیرخط این دو را جدا می‌کند",
-    "چون زیرخط خصوصیت را فقط‌خواندنی می‌کند",
-    "چون زیرخط سرعت اجرا را بیشتر می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "اگر نام گیرنده/تنظیم‌کننده با نام خصوصیت یکی باشد، خواندن خصوصیت باعث فراخوانی بی‌پایان خودش می‌شود؛ پس خصوصیت پشت‌صحنه را با زیرخط جدا می‌کنند."
-  },
-  {
-   "question": "برای گرفتن مقدار یک خصوصیت که گیرنده دارد، چطور عمل می‌کنیم؟",
-   "options": [
-    "با پرانتز، مثل myCar.carname()",
-    "با نقطه و بدون پرانتز، مثل myCar.carname",
-    "با new، مثل new myCar.carname",
-    "با super، مثل super.carname"
-   ],
-   "answer": 1,
-   "explanation": "گیرنده با اینکه متد است، مثل یک خصوصیت معمولی خوانده می‌شود و پرانتز نمی‌گیرد؛ به همین دلیل کد گیرنده شبیه دسترسی ساده به داده است."
-  }
- ]
+  "slug": "js_class_inheritance",
+  "course": "js",
+  "order": 219,
+  "url": "/js/js_class_inheritance.asp",
+  "title": "وراثت کلاس در JavaScript",
+  "summary": "وراثت کلاس اجازه می‌دهد متدها و خصوصیت‌های یک کلاس را در کلاس دیگری دوباره به کار ببرید. در این درس با extends و super() کار می‌کنید، گیرنده و تنظیم‌کننده در کلاس می‌سازید و یاد می‌گیرید چرا اعلان کلاس برخلاف تابع بالا کشیده نمی‌شود.",
+  "objectives": [
+    "با extends کلاس فرزند بسازید و از والدش ارث ببرید",
+    "نقش super() در سازندهٔ کلاس فرزند را توضیح دهید",
+    "در کلاس گیرنده و تنظیم‌کننده بسازید و دلیل زیرخط در نام خصوصیت را بگویید",
+    "اثر hoisting نشدن اعلان کلاس را تشخیص دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "وراثت کلاس در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "وراثت کلاس"
+    },
+    {
+      "type": "p",
+      "text": "برای ساختن وراثت کلاس از کلیدواژهٔ extends استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "کلاسی که با وراثت ساخته می‌شود، همهٔ متدهای کلاس دیگر را به ارث می‌برد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n  constructor(brand) {\n    this.carname =\n  brand;\n\n  }\n  present() {\n    return 'I have a ' + this.carname;\n\n  }\n}\n\nclass Model extends Car {\n\n  constructor(brand, mod) {\n    super(brand);\n    this.model = mod;\n\n  }\n  show() {\n\n      return this.present() + ', it is a ' + this.model;\n\n  }\n}\n\nlet myCar = new Model(\"Ford\", \"Mustang\");\ndocument.getElementById(\"demo\").innerHTML\n  = myCar.show();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_inherit"
+    },
+    {
+      "type": "p",
+      "text": "متد super() به کلاس والد اشاره می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "با فراخوانی super() داخل متد سازنده، سازندهٔ کلاس والد را صدا می‌زنیم و به خصوصیت‌ها و متدهای والد دسترسی پیدا می‌کنیم."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "وراثت برای استفادهٔ دوباره از کد مفید است: وقتی کلاس جدیدی می‌سازید، خصوصیت‌ها و متدهای یک کلاس موجود را دوباره به کار می‌برید."
+    },
+    {
+      "type": "h2",
+      "text": "گیرنده‌ها و تنظیم‌کننده‌ها"
+    },
+    {
+      "type": "p",
+      "text": "کلاس‌ها استفاده از گیرنده و تنظیم‌کننده را هم ممکن می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "به کار بردن گیرنده و تنظیم‌کننده برای خصوصیت‌ها کار هوشمندانه‌ای است؛ به‌ویژه وقتی بخواهید پیش از برگرداندن مقدار یا پیش از ذخیرهٔ آن کار خاصی انجام دهید."
+    },
+    {
+      "type": "p",
+      "text": "برای افزودن گیرنده و تنظیم‌کننده در کلاس از کلیدواژه‌های get و set استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n  constructor(brand) {\n    this.carname\n  = brand;\n  }\n  get cnam() {\n\n  return this.carname;\n  }\n  set cnam(x) {\n\n  this.carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  document.getElementById(\"demo\").innerHTML = myCar.cnam;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_getters"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "با اینکه گیرنده یک متد است، برای خواندن مقدار خصوصیت پرانتز نمی‌گذارید."
+    },
+    {
+      "type": "p",
+      "text": "نام متد گیرنده/تنظیم‌کننده نمی‌تواند با نام خصوصیت یکی باشد؛ در این مثال carname."
+    },
+    {
+      "type": "p",
+      "text": "بسیاری از برنامه‌نویسان پیش از نام خصوصیت یک زیرخط _ می‌گذارند تا گیرنده/تنظیم‌کننده را از خصوصیت اصلی جدا کنند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n  constructor(brand) {\n    this._carname\n  = brand;\n  }\n  get carname() {\n\n  return this._carname;\n  }\n  set carname(x) {\n\n  this._carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  document.getElementById(\"demo\").innerHTML = myCar.carname;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_getters2"
+    },
+    {
+      "type": "p",
+      "text": "برای استفاده از تنظیم‌کننده هم مثل مقداردهی به یک خصوصیت عمل کنید، بدون پرانتز:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n  constructor(brand) {\n    this._carname\n  = brand;\n  }\n  get carname() {\n\n  return this._carname;\n  }\n  set carname(x) {\n\n  this._carname = x;\n  }\n}\n\nconst myCar = new Car(\"Ford\");\n\n  myCar.carname = \"Volvo\";\n\n  document.getElementById(\"demo\").innerHTML = myCar.carname;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_setter"
+    },
+    {
+      "type": "h2",
+      "text": "بالا کشیدن اعلان‌ها (hoisting)"
+    },
+    {
+      "type": "p",
+      "text": "برخلاف تابع‌ها و اعلان‌های دیگر JavaScript، اعلان کلاس بالا کشیده نمی‌شود (hoist نمی‌شود)."
+    },
+    {
+      "type": "p",
+      "text": "یعنی باید کلاس را پیش از استفاده از آن اعلان کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "//You cannot use the class yet.\n//myCar = new Car(\"Ford\") will raise an error.\n\nclass Car {\n\n  constructor(brand) {\n    this.carname = brand;\n\n  }\n}\n\n//Now you can use the class:\nconst myCar = new Car(\"Ford\")",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_classes_hoisting"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برای اعلان‌های دیگر مثل تابع‌ها، اگر پیش از اعلان از آن‌ها استفاده کنید خطا نمی‌گیرید؛ چون رفتار پیش‌فرض اعلان‌های JavaScript بالا کشیدن (hoisting) است، یعنی اعلان به بالای کد منتقل می‌شود."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل inherit.html بسازید، کلاس Car را با سازنده و یک متد بنویسید و بعد کلاس Model را با extends از آن بسازید.",
+      "hint": "در سازندهٔ کلاس فرزند اول super(...) را صدا بزنید تا خصوصیت‌های والد ساخته شوند."
+    },
+    {
+      "prompt": "یک نمونه از کلاس فرزند بسازید و متد ارث‌بردهٔ والد را روی همان نمونه صدا بزنید.",
+      "hint": "کلاس فرزند همهٔ متدهای والد را به ارث می‌برد و لازم نیست دوباره تعریفشان کنید."
+    },
+    {
+      "prompt": "داخل کلاس Car یک گیرنده و تنظیم‌کننده برای carname بنویسید و مقدار را یک بار با = عوض کنید و یک بار با نقطه بخوانید.",
+      "hint": "برای خواندن مقدار گیرنده پرانتز نمی‌خواهد، ولی برای نوشتن با تنظیم‌کننده از = استفاده می‌کنید."
+    },
+    {
+      "prompt": "نام گیرنده را هم‌نام خصوصیت بگذارید (carname) و خطای کنسول را ببینید؛ بعد نام خصوصیت را به _carname عوض کنید.",
+      "hint": "گیرنده و خصوصیت هم‌نام باعث بازگشت بی‌پایان می‌شوند؛ زیرخط همین تعارض را حل می‌کند."
+    },
+    {
+      "prompt": "یک نمونه از کلاس را پیش از اعلان کلاس بسازید و خطا را ببینید؛ بعد جای اعلان و استفاده را عوض کنید.",
+      "hint": "اعلان کلاس hoist نمی‌شود، پس ترتیب خط‌ها در فایل مهم است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای ساختن وراثت کلاس از کدام کلیدواژه استفاده می‌کنیم؟",
+      "options": ["inherits", "extends", "super", "prototype"],
+      "answer": 1,
+      "explanation": "کلیدواژهٔ extends کلاس فرزند را به والد وصل می‌کند. super() برای صدا زدن سازندهٔ والد است و prototype مربوط به شیءهاست، نه نحو کلاس."
+    },
+    {
+      "question": "کاربرد super() در متد سازندهٔ کلاس فرزند چیست؟",
+      "options": [
+        "یک نمونه جدید از کلاس والد می‌سازد",
+        "سازندهٔ کلاس والد را فراخوانی می‌کند و دسترسی به خصوصیت‌ها و متدهای والد را ممکن می‌کند",
+        "متدها را از کلاس فرزند حذف می‌کند",
+        "کلاس والد را به‌صورت موقت غیرفعال می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "super() به کلاس والد اشاره می‌کند؛ با فراخوانی آن در سازنده، مقداردهی اولیهٔ والد انجام می‌شود و نمونهٔ فرزند به خصوصیت‌ها و متدهای والد می‌رسد."
+    },
+    {
+      "question": "دربارهٔ hoisting اعلان کلاس کدام گزینه درست است؟",
+      "options": [
+        "اعلان کلاس مثل تابع بالا کشیده می‌شود",
+        "اعلان کلاس بالا کشیده نمی‌شود و باید پیش از استفاده نوشته شود",
+        "فقط در حالت strict بالا کشیده می‌شود",
+        "اعلان کلاس فقط داخل تابع‌ها بالا کشیده می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "برخلاف تابع‌ها، اعلان کلاس hoist نمی‌شود؛ پس اگر پیش از تعریف کلاس از آن استفاده کنید خطا می‌گیرید."
+    },
+    {
+      "question": "چرا خیلی از برنامه‌نویسان نام خصوصیت را با زیرخط می‌نویسند، مثل _carname؟",
+      "options": [
+        "چون JavaScript نام‌های بدون زیرخط را نمی‌پذیرد",
+        "چون نمی‌توان نام گیرنده و خصوصیت را یکی گذاشت و زیرخط این دو را جدا می‌کند",
+        "چون زیرخط خصوصیت را فقط‌خواندنی می‌کند",
+        "چون زیرخط سرعت اجرا را بیشتر می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "اگر نام گیرنده/تنظیم‌کننده با نام خصوصیت یکی باشد، خواندن خصوصیت باعث فراخوانی بی‌پایان خودش می‌شود؛ پس خصوصیت پشت‌صحنه را با زیرخط جدا می‌کنند."
+    },
+    {
+      "question": "برای گرفتن مقدار یک خصوصیت که گیرنده دارد، چطور عمل می‌کنیم؟",
+      "options": [
+        "با پرانتز، مثل myCar.carname()",
+        "با نقطه و بدون پرانتز، مثل myCar.carname",
+        "با new، مثل new myCar.carname",
+        "با super، مثل super.carname"
+      ],
+      "answer": 1,
+      "explanation": "گیرنده با اینکه متد است، مثل یک خصوصیت معمولی خوانده می‌شود و پرانتز نمی‌گیرد؛ به همین دلیل کد گیرنده شبیه دسترسی ساده به داده است."
+    }
+  ]
 }

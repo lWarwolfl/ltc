@@ -1,236 +1,236 @@
 {
- "slug": "js_project_todo",
- "course": "js",
- "order": 120,
- "url": "/js/js_project_todo.asp",
- "title": "Project - To-Do List",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Project - To-Do List"
-  },
-  {
-   "type": "h2",
-   "text": "To-Do List"
-  },
-  {
-   "type": "p",
-   "text": "Add"
-  },
-  {
-   "type": "p",
-   "text": "Clear All"
-  },
-  {
-   "type": "p",
-   "text": "In this project you will build a To-Do List."
-  },
-  {
-   "type": "p",
-   "text": "You will add tasks, remove tasks, and clear all tasks."
-  },
-  {
-   "type": "p",
-   "text": "The tasks will be saved in an Array in localStorage."
-  },
-  {
-   "type": "h2",
-   "text": "You Will Learn"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "How to store items in an array",
-    "How to remove items from an array",
-    "How to display a list using JavaScript",
-    "How to save and load data using localStorage"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "First: Create the HTML"
-  },
-  {
-   "type": "p",
-   "text": "First create an HTML page with:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "An input field wid id=\"task\"",
-    "A button for calling addTask()",
-    "A unordered list with id=\"list\"",
-    "A button for calling clearAll()"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>To-Do List</h2>\n\n<input id=\"task\" placeholder=\"New task\">\n\n<button onclick=\"addTask()\">Add</button>\n\n<ul id=\"list\"></ul>\n\n<button onclick=\"clearAll()\">Clear All</button>\n\n<script>\n\n// Create a task Array\n\nlet tasks = [];\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_todo_1"
-  },
-  {
-   "type": "h2",
-   "text": "Add a Display Function"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to display the list\n\nfunction displayTasks() {\n\n  let html = \"\";\n\n  for (let i = 0; i < tasks.length; i++) {\n\n    html += \"<li>\" + tasks[i] +\n\n    \" <button onclick='removeTask(\" + i + \")'>x</button></li>\";\n\n  }\n\n  document.getElementById(\"list\").innerHTML = html;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The displayTasks() function should be called whenever the list changes."
-  },
-  {
-   "type": "h2",
-   "text": "Add an Add Task Function"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Add a task\n\nfunction addTask() {\n\n  let taskInput = document.getElementById(\"task\");\n\n  let text = taskInput.value;\n\n  if (text === \"\") {\n\n    return;\n\n  }\n\n  tasks.push(text);\n\n  taskInput.value = \"\";\n\n  saveTasks();\n\n  displayTasks();\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Add a Remove Task Function"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Remove a task\n\nfunction removeTask(i) {\n\n  tasks.splice(i, 1);\n\n  saveTasks();\n\n  displayTasks();\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The Array method splice(i, 1) removes 1 item at position i."
-  },
-  {
-   "type": "h2",
-   "text": "Add a Clear All Function"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Clear all tasks\n\nfunction clearAll() {\n\n  tasks = [];\n\n  saveTasks();\n\n  displayTasks();\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Function to Save a Task"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Save tasks\n\nfunction saveTasks() {\n\n  localStorage.setItem(\"tasks\", JSON.stringify(tasks));\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "To store arrays in localStorage, we convert them to text using JSON.stringify()."
-  },
-  {
-   "type": "h2",
-   "text": "Function to Load the Tasks"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function loadTasks() {\n\n  let saved = localStorage.getItem(\"tasks\");\n\n  if (saved !== null) {\n\n    tasks = JSON.parse(saved);\n\n  }\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "To load arrays, we convert them back using JSON.parse()."
-  },
-  {
-   "type": "h2",
-   "text": "Final Project"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>To-Do List</h2>\n\n<input id=\"task\" placeholder=\"New task\">\n\n<button onclick=\"addTask()\">Add</button>\n\n<ul id=\"list\"></ul>\n\n<button onclick=\"clearAll()\">Clear All</button>\n\n<script>\n\n// JavaScript goes here\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Final HTML"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a task Array\n\nlet tasks = [];\n\n// Function to Display tasks\n\nfunction displayTasks() {\n\n  let html = \"\";\n\n  for (let i = 0; i < tasks.length; i++) {\n\n    html += \"<li>\" + tasks[i] +\n\n    \" <button onclick='removeTask(\" + i + \")'>x</button></li>\";\n\n  }\n\n  document.getElementById(\"list\").innerHTML = html;\n\n}\n\n// Function to Add a task\n\nfunction addTask() {\n\n  let taskInput = document.getElementById(\"task\");\n\n  let text = taskInput.value;\n\n  if (text === \"\") {\n\n    return;\n\n  }\n\n  tasks.push(text);\n\n  taskInput.value = \"\";\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Remove a task\n\nfunction removeTask(i) {\n\n  tasks.splice(i, 1);\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Clear all tasks\n\nfunction clearAll() {\n\n  tasks = [];\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Save tasks\n\nfunction saveTasks() {\n\n  localStorage.setItem(\"tasks\", JSON.stringify(tasks));\n\n}\n\n// Function to Load tasks\n\nfunction loadTasks() {\n\n  let saved = localStorage.getItem(\"tasks\");\n\n  if (saved !== null) {\n\n    tasks = JSON.parse(saved);\n\n  }\n\n}\n\n// Load and display tasks when page loads\n\nloadTasks();\n\ndisplayTasks()",
-   "caption": "Final HTML"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_todo"
-  },
-  {
-   "type": "h2",
-   "text": "Exercises"
-  },
-  {
-   "type": "h3",
-   "text": "Exercise 1"
-  },
-  {
-   "type": "h3",
-   "text": "Exercise 2"
-  },
-  {
-   "type": "p",
-   "text": "Allow the user to press Enter to add a task."
-  },
-  {
-   "type": "h3",
-   "text": "Exercise 3"
-  },
-  {
-   "type": "p",
-   "text": "Save the tasks automatically after every change (already done)."
-  },
-  {
-   "type": "p",
-   "text": "Add a \"Saved!\" message to show when saving."
-  },
-  {
-   "type": "h3",
-   "text": "Bonus Challenges (Level Up)"
-  },
-  {
-   "type": "p",
-   "text": "Try to improve the project:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Mark tasks as done (✔)",
-    "Filter tasks: All / Active / Done",
-    "Add \"Edit task\" functionality",
-    "Sort tasks alphabetically"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Projects"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "JavaScript Counter\nA counter project with restore and save in localStorage.",
-    "JavaScript Event Listener\nThe counter project using event listener instead of onclick.",
-    "JavaScript To-Do List\nA do-do list saved in an array in local storage.",
-    "JavaScript Modal Popup\nA modal popup window that appears on top of the page.",
-    "JavaScript Form Validation\nAn HTML Form with form validation."
-   ]
-  }
- ]
+  "slug": "js_project_todo",
+  "course": "js",
+  "order": 120,
+  "url": "/js/js_project_todo.asp",
+  "title": "Project - To-Do List",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Project - To-Do List"
+    },
+    {
+      "type": "h2",
+      "text": "To-Do List"
+    },
+    {
+      "type": "p",
+      "text": "Add"
+    },
+    {
+      "type": "p",
+      "text": "Clear All"
+    },
+    {
+      "type": "p",
+      "text": "In this project you will build a To-Do List."
+    },
+    {
+      "type": "p",
+      "text": "You will add tasks, remove tasks, and clear all tasks."
+    },
+    {
+      "type": "p",
+      "text": "The tasks will be saved in an Array in localStorage."
+    },
+    {
+      "type": "h2",
+      "text": "You Will Learn"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "How to store items in an array",
+        "How to remove items from an array",
+        "How to display a list using JavaScript",
+        "How to save and load data using localStorage"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "First: Create the HTML"
+    },
+    {
+      "type": "p",
+      "text": "First create an HTML page with:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "An input field wid id=\"task\"",
+        "A button for calling addTask()",
+        "A unordered list with id=\"list\"",
+        "A button for calling clearAll()"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>To-Do List</h2>\n\n<input id=\"task\" placeholder=\"New task\">\n\n<button onclick=\"addTask()\">Add</button>\n\n<ul id=\"list\"></ul>\n\n<button onclick=\"clearAll()\">Clear All</button>\n\n<script>\n\n// Create a task Array\n\nlet tasks = [];\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_todo_1"
+    },
+    {
+      "type": "h2",
+      "text": "Add a Display Function"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to display the list\n\nfunction displayTasks() {\n\n  let html = \"\";\n\n  for (let i = 0; i < tasks.length; i++) {\n\n    html += \"<li>\" + tasks[i] +\n\n    \" <button onclick='removeTask(\" + i + \")'>x</button></li>\";\n\n  }\n\n  document.getElementById(\"list\").innerHTML = html;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The displayTasks() function should be called whenever the list changes."
+    },
+    {
+      "type": "h2",
+      "text": "Add an Add Task Function"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Add a task\n\nfunction addTask() {\n\n  let taskInput = document.getElementById(\"task\");\n\n  let text = taskInput.value;\n\n  if (text === \"\") {\n\n    return;\n\n  }\n\n  tasks.push(text);\n\n  taskInput.value = \"\";\n\n  saveTasks();\n\n  displayTasks();\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Add a Remove Task Function"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Remove a task\n\nfunction removeTask(i) {\n\n  tasks.splice(i, 1);\n\n  saveTasks();\n\n  displayTasks();\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The Array method splice(i, 1) removes 1 item at position i."
+    },
+    {
+      "type": "h2",
+      "text": "Add a Clear All Function"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Clear all tasks\n\nfunction clearAll() {\n\n  tasks = [];\n\n  saveTasks();\n\n  displayTasks();\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Function to Save a Task"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Save tasks\n\nfunction saveTasks() {\n\n  localStorage.setItem(\"tasks\", JSON.stringify(tasks));\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "To store arrays in localStorage, we convert them to text using JSON.stringify()."
+    },
+    {
+      "type": "h2",
+      "text": "Function to Load the Tasks"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function loadTasks() {\n\n  let saved = localStorage.getItem(\"tasks\");\n\n  if (saved !== null) {\n\n    tasks = JSON.parse(saved);\n\n  }\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "To load arrays, we convert them back using JSON.parse()."
+    },
+    {
+      "type": "h2",
+      "text": "Final Project"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h2>To-Do List</h2>\n\n<input id=\"task\" placeholder=\"New task\">\n\n<button onclick=\"addTask()\">Add</button>\n\n<ul id=\"list\"></ul>\n\n<button onclick=\"clearAll()\">Clear All</button>\n\n<script>\n\n// JavaScript goes here\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Final HTML"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a task Array\n\nlet tasks = [];\n\n// Function to Display tasks\n\nfunction displayTasks() {\n\n  let html = \"\";\n\n  for (let i = 0; i < tasks.length; i++) {\n\n    html += \"<li>\" + tasks[i] +\n\n    \" <button onclick='removeTask(\" + i + \")'>x</button></li>\";\n\n  }\n\n  document.getElementById(\"list\").innerHTML = html;\n\n}\n\n// Function to Add a task\n\nfunction addTask() {\n\n  let taskInput = document.getElementById(\"task\");\n\n  let text = taskInput.value;\n\n  if (text === \"\") {\n\n    return;\n\n  }\n\n  tasks.push(text);\n\n  taskInput.value = \"\";\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Remove a task\n\nfunction removeTask(i) {\n\n  tasks.splice(i, 1);\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Clear all tasks\n\nfunction clearAll() {\n\n  tasks = [];\n\n  saveTasks();\n\n  displayTasks();\n\n}\n\n// Function to Save tasks\n\nfunction saveTasks() {\n\n  localStorage.setItem(\"tasks\", JSON.stringify(tasks));\n\n}\n\n// Function to Load tasks\n\nfunction loadTasks() {\n\n  let saved = localStorage.getItem(\"tasks\");\n\n  if (saved !== null) {\n\n    tasks = JSON.parse(saved);\n\n  }\n\n}\n\n// Load and display tasks when page loads\n\nloadTasks();\n\ndisplayTasks()",
+      "caption": "Final HTML"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_todo"
+    },
+    {
+      "type": "h2",
+      "text": "Exercises"
+    },
+    {
+      "type": "h3",
+      "text": "Exercise 1"
+    },
+    {
+      "type": "h3",
+      "text": "Exercise 2"
+    },
+    {
+      "type": "p",
+      "text": "Allow the user to press Enter to add a task."
+    },
+    {
+      "type": "h3",
+      "text": "Exercise 3"
+    },
+    {
+      "type": "p",
+      "text": "Save the tasks automatically after every change (already done)."
+    },
+    {
+      "type": "p",
+      "text": "Add a \"Saved!\" message to show when saving."
+    },
+    {
+      "type": "h3",
+      "text": "Bonus Challenges (Level Up)"
+    },
+    {
+      "type": "p",
+      "text": "Try to improve the project:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Mark tasks as done (✔)",
+        "Filter tasks: All / Active / Done",
+        "Add \"Edit task\" functionality",
+        "Sort tasks alphabetically"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Projects"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "JavaScript Counter\nA counter project with restore and save in localStorage.",
+        "JavaScript Event Listener\nThe counter project using event listener instead of onclick.",
+        "JavaScript To-Do List\nA do-do list saved in an array in local storage.",
+        "JavaScript Modal Popup\nA modal popup window that appears on top of the page.",
+        "JavaScript Form Validation\nAn HTML Form with form validation."
+      ]
+    }
+  ]
 }

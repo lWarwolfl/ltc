@@ -1,148 +1,138 @@
 {
- "slug": "css3_flexbox_responsive",
- "course": "css",
- "order": 176,
- "url": "/css/css3_flexbox_responsive.asp",
- "title": "flexbox واکنش‌گرا در CSS",
- "summary": "با ترکیب flexbox و media query می‌توان چیدمانی ساخت که در هر اندازهٔ صفحه مناسب باشد. در این درس با تغییر flex-direction و درصد flex، گالری و وب‌سایت واکنش‌گرا می‌سازید.",
- "objectives": [
-  "در یک نقطهٔ شکست flex-direction را عوض کنید",
-  "با درصد flex چیدمان چندستونه بسازید",
-  "نقش flex-wrap در چیدمان واکنش‌گرا را توضیح دهید",
-  "یک نوار ناوبری واکنش‌گرا بسازید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "flexbox واکنش‌گرا در CSS"
-  },
-  {
-   "type": "h2",
-   "text": "flexbox واکنش‌گرا"
-  },
-  {
-   "type": "p",
-   "text": "در فصل media query در CSS یاد گرفتید که می‌توانید با media query چیدمان‌های متفاوت برای اندازهٔ صفحه و دستگاه‌های مختلف بسازید."
-  },
-  {
-   "type": "p",
-   "text": "برای نمونه، اگر می‌خواهید برای صفحه‌های بزرگ چیدمان سه‌ستونه و برای صفحه‌های کوچک (مثل گوشی) چیدمان یک‌ستونه داشته باشید، می‌توانید در یک نقطهٔ شکست مشخص (در مثال زیر 600px) مقدار flex-direction را از row به column تغییر دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".flex-container {\n  display: flex;\n  flex-direction: row;\n}\n\n  .flex-item {\n  background-color: #f1f1f1;\n  padding: 10px;\n\n  font-size: 30px;\n  text-align: center;\n  width: 100%;\n}\n\n/*\n  Make a one column-layout instead of three-column layout */\n@media\n  (max-width: 600px) {\n  .flex-container {\n\n  flex-direction: column;\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_flexbox_responsive"
-  },
-  {
-   "type": "p",
-   "text": "راه دیگر این است که درصد خصوصیت flex آیتم‌های flex را عوض کنید تا برای اندازه‌های مختلف صفحه چیدمان‌های متفاوتی ساخته شود. توجه کنید که برای کار کردن این مثال باید flex-wrap: wrap; را هم روی ظرف flex بگذارید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".flex-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.flex-item\n  {\n  background-color: #f1f1f1;\n  padding: 10px;\n\n  text-align: center;\n  font-size: 30px;\n  flex: 33.3%;\n}\n\n/*\n  Make a one\n  column-layout instead of a three-column layout */\n@media (max-width: 600px)\n  {\n  .flex-item {\n    flex: 100%;\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_flexbox_responsive2"
-  },
-  {
-   "type": "h2",
-   "text": "گالری تصویر واکنش‌گرا با flexbox"
-  },
-  {
-   "type": "p",
-   "text": "در این‌جا از media query همراه با flexbox برای ساختن یک گالری تصویر واکنش‌گرا استفاده می‌کنیم:"
-  },
-  {
-   "type": "p",
-   "text": "خودتان امتحان کنید »"
-  },
-  {
-   "type": "h2",
-   "text": "وب‌سایت واکنش‌گرا با flexbox"
-  },
-  {
-   "type": "p",
-   "text": "با flexbox یک وب‌سایت واکنش‌گرا بسازید که نوار ناوبری انعطاف‌پذیر و محتوای انعطاف‌پذیر داشته باشد:"
-  },
-  {
-   "type": "p",
-   "text": "خودتان امتحان کنید »"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل flexresponsive.html بسازید، روی ظرف flex مقدار flex-direction: row; بگذارید و در ‎@media (max-width: 600px)‎ آن را به column عوض کنید.",
-   "hint": "در صفحه‌های باریک‌تر از ۶۰۰ پیکسل، چیدمان افقی به عمودی تبدیل می‌شود."
-  },
-  {
-   "prompt": "نقطهٔ شکست را به 800px تغییر دهید و بگویید چیدمان در چه پهنایی عوض می‌شود.",
-   "hint": "عدد داخل max-width همان نقطه‌ای است که قاعده اعمال می‌شود."
-  },
-  {
-   "prompt": "راه دوم را امتحان کنید: روی آیتم‌ها flex: 25%; بگذارید و flex-wrap: wrap; را روی ظرف بگذارید.",
-   "hint": "با ۲۵٪ چهار آیتم در هر ردیف جا می‌شوند؛ در media query این درصد را به ۵۰٪ یا ۱۰۰٪ عوض کنید."
-  },
-  {
-   "prompt": "با همین روش یک گالری تصویر بسازید که در گوشی یک‌ستونه و در رایانه چهارستونه باشد.",
-   "hint": "تصویرها را داخل آیتم‌های flex بگذارید و عرض آیتم‌ها را با media query عوض کنید."
-  },
-  {
-   "prompt": "یک نوار ناوبری بسازید که در صفحهٔ بزرگ افقی و در صفحهٔ کوچک عمودی شود.",
-   "hint": "همان تغییر flex-direction از row به column در media query همین کار را می‌کند."
-  }
- ],
- "quiz": [
-  {
-   "question": "برای ساختن چیدمان سه‌ستونه در صفحهٔ بزرگ و یک‌ستونه در گوشی، چه تغییری در نقطهٔ شکست می‌دهیم؟",
-   "options": [
-    "flex-wrap را حذف می‌کنیم",
-    "flex-direction را از row به column عوض می‌کنیم",
-    "display را به block عوض می‌کنیم",
-    "order را صفر می‌کنیم"
-   ],
-   "answer": 1,
-   "explanation": "تغییر flex-direction از row به column در media query، آیتم‌ها را در صفحه‌های کوچک زیر هم می‌چیند."
-  },
-  {
-   "question": "در راه دوم که درصد flex را عوض می‌کنیم، کدام خصوصیت باید روی ظرف باشد؟",
-   "options": [
-    "flex-wrap: wrap;",
-    "align-content: center;",
-    "position: relative;",
-    "order: 1;"
-   ],
-   "answer": 0,
-   "explanation": "بدون flex-wrap: wrap; آیتم‌ها به خط بعد نمی‌روند، پس چیدمان چندستونه ساخته نمی‌شود."
-  },
-  {
-   "question": "با flex: 25%; روی آیتم‌ها، هر ردیف چند آیتم جا می‌گیرد؟",
-   "options": [
-    "۲",
-    "۳",
-    "۴",
-    "۵"
-   ],
-   "answer": 2,
-   "explanation": "چهار برابر ۲۵٪ پهنای کامل را پر می‌کند، پس چهار آیتم در هر ردیف می‌نشیند."
-  },
-  {
-   "question": "نقطهٔ شکست (breakpoint) در این درس چه چیزی است؟",
-   "options": [
-    "رنگی که در media query تعیین می‌شود",
-    "پهنایی که در آن چیدمان عوض می‌شود",
-    "تعداد آیتم‌های flex",
-    "ارتفاع ظرف"
-   ],
-   "answer": 1,
-   "explanation": "نقطهٔ شکست پهنایی است که قاعدهٔ media query در آن فعال می‌شود و چیدمان تغییر می‌کند."
-  }
- ]
+  "slug": "css3_flexbox_responsive",
+  "course": "css",
+  "order": 176,
+  "url": "/css/css3_flexbox_responsive.asp",
+  "title": "flexbox واکنش‌گرا در CSS",
+  "summary": "با ترکیب flexbox و media query می‌توان چیدمانی ساخت که در هر اندازهٔ صفحه مناسب باشد. در این درس با تغییر flex-direction و درصد flex، گالری و وب‌سایت واکنش‌گرا می‌سازید.",
+  "objectives": [
+    "در یک نقطهٔ شکست flex-direction را عوض کنید",
+    "با درصد flex چیدمان چندستونه بسازید",
+    "نقش flex-wrap در چیدمان واکنش‌گرا را توضیح دهید",
+    "یک نوار ناوبری واکنش‌گرا بسازید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "flexbox واکنش‌گرا در CSS"
+    },
+    {
+      "type": "h2",
+      "text": "flexbox واکنش‌گرا"
+    },
+    {
+      "type": "p",
+      "text": "در فصل media query در CSS یاد گرفتید که می‌توانید با media query چیدمان‌های متفاوت برای اندازهٔ صفحه و دستگاه‌های مختلف بسازید."
+    },
+    {
+      "type": "p",
+      "text": "برای نمونه، اگر می‌خواهید برای صفحه‌های بزرگ چیدمان سه‌ستونه و برای صفحه‌های کوچک (مثل گوشی) چیدمان یک‌ستونه داشته باشید، می‌توانید در یک نقطهٔ شکست مشخص (در مثال زیر 600px) مقدار flex-direction را از row به column تغییر دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".flex-container {\n  display: flex;\n  flex-direction: row;\n}\n\n  .flex-item {\n  background-color: #f1f1f1;\n  padding: 10px;\n\n  font-size: 30px;\n  text-align: center;\n  width: 100%;\n}\n\n/*\n  Make a one column-layout instead of three-column layout */\n@media\n  (max-width: 600px) {\n  .flex-container {\n\n  flex-direction: column;\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_flexbox_responsive"
+    },
+    {
+      "type": "p",
+      "text": "راه دیگر این است که درصد خصوصیت flex آیتم‌های flex را عوض کنید تا برای اندازه‌های مختلف صفحه چیدمان‌های متفاوتی ساخته شود. توجه کنید که برای کار کردن این مثال باید flex-wrap: wrap; را هم روی ظرف flex بگذارید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".flex-container {\n  display: flex;\n  flex-wrap: wrap;\n}\n\n.flex-item\n  {\n  background-color: #f1f1f1;\n  padding: 10px;\n\n  text-align: center;\n  font-size: 30px;\n  flex: 33.3%;\n}\n\n/*\n  Make a one\n  column-layout instead of a three-column layout */\n@media (max-width: 600px)\n  {\n  .flex-item {\n    flex: 100%;\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_flexbox_responsive2"
+    },
+    {
+      "type": "h2",
+      "text": "گالری تصویر واکنش‌گرا با flexbox"
+    },
+    {
+      "type": "p",
+      "text": "در این‌جا از media query همراه با flexbox برای ساختن یک گالری تصویر واکنش‌گرا استفاده می‌کنیم:"
+    },
+    {
+      "type": "p",
+      "text": "خودتان امتحان کنید »"
+    },
+    {
+      "type": "h2",
+      "text": "وب‌سایت واکنش‌گرا با flexbox"
+    },
+    {
+      "type": "p",
+      "text": "با flexbox یک وب‌سایت واکنش‌گرا بسازید که نوار ناوبری انعطاف‌پذیر و محتوای انعطاف‌پذیر داشته باشد:"
+    },
+    {
+      "type": "p",
+      "text": "خودتان امتحان کنید »"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل flexresponsive.html بسازید، روی ظرف flex مقدار flex-direction: row; بگذارید و در ‎@media (max-width: 600px)‎ آن را به column عوض کنید.",
+      "hint": "در صفحه‌های باریک‌تر از ۶۰۰ پیکسل، چیدمان افقی به عمودی تبدیل می‌شود."
+    },
+    {
+      "prompt": "نقطهٔ شکست را به 800px تغییر دهید و بگویید چیدمان در چه پهنایی عوض می‌شود.",
+      "hint": "عدد داخل max-width همان نقطه‌ای است که قاعده اعمال می‌شود."
+    },
+    {
+      "prompt": "راه دوم را امتحان کنید: روی آیتم‌ها flex: 25%; بگذارید و flex-wrap: wrap; را روی ظرف بگذارید.",
+      "hint": "با ۲۵٪ چهار آیتم در هر ردیف جا می‌شوند؛ در media query این درصد را به ۵۰٪ یا ۱۰۰٪ عوض کنید."
+    },
+    {
+      "prompt": "با همین روش یک گالری تصویر بسازید که در گوشی یک‌ستونه و در رایانه چهارستونه باشد.",
+      "hint": "تصویرها را داخل آیتم‌های flex بگذارید و عرض آیتم‌ها را با media query عوض کنید."
+    },
+    {
+      "prompt": "یک نوار ناوبری بسازید که در صفحهٔ بزرگ افقی و در صفحهٔ کوچک عمودی شود.",
+      "hint": "همان تغییر flex-direction از row به column در media query همین کار را می‌کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای ساختن چیدمان سه‌ستونه در صفحهٔ بزرگ و یک‌ستونه در گوشی، چه تغییری در نقطهٔ شکست می‌دهیم؟",
+      "options": [
+        "flex-wrap را حذف می‌کنیم",
+        "flex-direction را از row به column عوض می‌کنیم",
+        "display را به block عوض می‌کنیم",
+        "order را صفر می‌کنیم"
+      ],
+      "answer": 1,
+      "explanation": "تغییر flex-direction از row به column در media query، آیتم‌ها را در صفحه‌های کوچک زیر هم می‌چیند."
+    },
+    {
+      "question": "در راه دوم که درصد flex را عوض می‌کنیم، کدام خصوصیت باید روی ظرف باشد؟",
+      "options": ["flex-wrap: wrap;", "align-content: center;", "position: relative;", "order: 1;"],
+      "answer": 0,
+      "explanation": "بدون flex-wrap: wrap; آیتم‌ها به خط بعد نمی‌روند، پس چیدمان چندستونه ساخته نمی‌شود."
+    },
+    {
+      "question": "با flex: 25%; روی آیتم‌ها، هر ردیف چند آیتم جا می‌گیرد؟",
+      "options": ["۲", "۳", "۴", "۵"],
+      "answer": 2,
+      "explanation": "چهار برابر ۲۵٪ پهنای کامل را پر می‌کند، پس چهار آیتم در هر ردیف می‌نشیند."
+    },
+    {
+      "question": "نقطهٔ شکست (breakpoint) در این درس چه چیزی است؟",
+      "options": [
+        "رنگی که در media query تعیین می‌شود",
+        "پهنایی که در آن چیدمان عوض می‌شود",
+        "تعداد آیتم‌های flex",
+        "ارتفاع ظرف"
+      ],
+      "answer": 1,
+      "explanation": "نقطهٔ شکست پهنایی است که قاعدهٔ media query در آن فعال می‌شود و چیدمان تغییر می‌کند."
+    }
+  ]
 }

@@ -52,7 +52,10 @@ async function main() {
   await writeFile(join(PUBLIC, 'icon.svg'), svg({}), 'utf8')
 
   for (const size of SIZES) {
-    await sharp(Buffer.from(svg({}))).resize(size, size).png().toFile(join(PUBLIC, `icon-${size}x${size}.png`))
+    await sharp(Buffer.from(svg({})))
+      .resize(size, size)
+      .png()
+      .toFile(join(PUBLIC, `icon-${size}x${size}.png`))
   }
 
   await sharp(Buffer.from(svg({})))
@@ -68,7 +71,10 @@ async function main() {
   const favicon = await Promise.all(
     FAVICON_SIZES.map(async (size) => ({
       size,
-      data: await sharp(Buffer.from(svg({}))).resize(size, size).png().toBuffer(),
+      data: await sharp(Buffer.from(svg({})))
+        .resize(size, size)
+        .png()
+        .toBuffer(),
     }))
   )
   await writeFile(join(process.cwd(), 'app', 'favicon.ico'), buildIco(favicon))

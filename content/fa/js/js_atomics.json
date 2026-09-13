@@ -1,369 +1,351 @@
 {
- "slug": "js_atomics",
- "course": "js",
- "order": 245,
- "url": "/js/js_atomics.asp",
- "title": "Atomics در JavaScript",
- "summary": "شیء Atomics عملیات اتمی و غیرقابل‌قطع روی حافظهٔ اشتراکی می‌دهد و برای کار با SharedArrayBuffer بین workerها ساخته شده است. در این درس پیش‌نیازها، خواندن و نوشتن اتمی، جمع و تفریق، تبادل مقدار و انتظار و بیدار کردن ریسه‌ها را یاد می‌گیرید.",
- "objectives": [
-  "بگویید Atomics چیست و چه مشکلی را حل می‌کند",
-  "پیش‌نیازهای استفاده از Atomics را فهرست کنید",
-  "با Atomics.load و store و add مقدار بخوانید و تغییر دهید",
-  "تفاوت compareExchange و exchange را توضیح دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Atomics در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "شیء Atomics"
-  },
-  {
-   "type": "p",
-   "text": "شیء Atomics عملیات اتمی سطح‌پایین روی حافظهٔ اشتراکی فراهم می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "این شیء همراه SharedArrayBuffer و آرایه‌های نوع‌دار برای به اشتراک گذاشتن داده بین workerها به کار می‌رود."
-  },
-  {
-   "type": "h2",
-   "text": "Atomics چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "وقتی چند ریسه (مثلاً ریسهٔ اصلی و یک یا چند worker) به دادهٔ یکسانی دسترسی دارند، ممکن است وضعیت مسابقه (race condition) پیش بیاید. Atomics با فراهم کردن عملیاتی که این شرایط را کم می‌کند به شما کمک می‌کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "روی آرایه‌های نوع‌دار اشتراکی کار می‌کنند",
-    "به‌صورت اتمی انجام می‌شوند (در میانهٔ کار قطع نمی‌شوند)",
-    "مقدار قبلی عنصر را برمی‌گردانند"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "شیء Atomics یک شیء سراسری است (مثل Math) با متدهای ایستا مانند Atomics.load()، Atomics.store()، Atomics.add() و موارد بیشتر."
-  },
-  {
-   "type": "p",
-   "text": "Atomics یک قابلیت پیشرفته است."
-  },
-  {
-   "type": "p",
-   "text": "معمولاً وقتی با اینها کار می‌کنید از Atomics استفاده می‌کنید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Web Workerها",
-    "ریسه‌های worker",
-    "حافظهٔ اشتراکی"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پیش‌نیازها"
-  },
-  {
-   "type": "p",
-   "text": "برای استفاده از Atomics به اینها نیاز دارید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک SharedArrayBuffer",
-    "آرایهٔ نوع‌داری که از بافر اشتراکی استفاده می‌کند (مثلاً Int32Array)",
-    "یک یا چند worker (یا ریسه) که همان بافر را به اشتراک می‌گذارند"
-   ]
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "امنیت: مرورگرها برای فعال شدن SharedArrayBuffer در وب ممکن است به سرایندهای ویژه (مثل COOP/COEP) نیاز داشته باشند."
-  },
-  {
-   "type": "h2",
-   "text": "استفادهٔ پایه از Atomics"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\n// Shared integer array with 4 elements\n\nconst sharedArray = new Int32Array(buffer);\n\n// Initialize the array\n\nsharedArray[0] = 10;\n\nsharedArray[1] = 20;\n\nsharedArray[2] = 30;\n\nsharedArray[3] = 40;",
-   "caption": "مثال: ساختن آرایهٔ نوع‌دار اشتراکی"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_atomics_basic"
-  },
-  {
-   "type": "h2",
-   "text": "خواندن و نوشتن اتمی"
-  },
-  {
-   "type": "p",
-   "text": "برای خواندن یک عنصر در آرایهٔ نوع‌دار اشتراکی از Atomics.load() و برای نوشتن از Atomics.store() استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\n// Store a value atomically\n\nAtomics.store(sharedArray, 0, 123);\n\n// Load the value atomically\n\nvar value = Atomics.load(sharedArray, 0);\n\nconsole.log(\"Value:\", value); // Value: 123",
-   "caption": "مثال: Atomics.load() و Atomics.store()"
-  },
-  {
-   "type": "p",
-   "text": "Atomics.store() مقداری را که ذخیره کرده‌اید برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "Atomics.load() مقدار فعلی عنصر را برمی‌گرداند."
-  },
-  {
-   "type": "h2",
-   "text": "جمع و تفریق اتمی"
-  },
-  {
-   "type": "p",
-   "text": "Atomics.add() و Atomics.sub() یک مقدار را تغییر می‌دهند و مقدار قبلی را برمی‌گردانند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 5;\n\nvar oldValue = Atomics.add(sharedArray, 0, 3);\n\nconsole.log(\"Old:\", oldValue);  // Old: 5\n\nconsole.log(\"New:\", sharedArray[0]);// New: 8",
-   "caption": "مثال: Atomics.add()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 10;\n\nvar oldValue = Atomics.sub(sharedArray, 0, 4);\n\nconsole.log(\"Old:\", oldValue);  // Old: 10\n\nconsole.log(\"New:\", sharedArray[0]);// New: 6",
-   "caption": "مثال: Atomics.sub()"
-  },
-  {
-   "type": "h2",
-   "text": "تبادل اتمی و compareExchange"
-  },
-  {
-   "type": "p",
-   "text": "Atomics.exchange() یک مقدار جدید می‌گذارد و مقدار قبلی را برمی‌گرداند. Atomics.compareExchange() مقدار جدید را تنها وقتی می‌گذارد که مقدار فعلی برابر مقدار انتظار داده‌شده باشد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 1;\n\nvar oldValue = Atomics.exchange(sharedArray, 0, 99);\n\nconsole.log(\"Old:\", oldValue);   // Old: 1\n\nconsole.log(\"New:\", sharedArray[0]); // New: 99",
-   "caption": "مثال: Atomics.exchange()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 10;\n\n// Only replace 10 with 20 if the current value is 10\n\nvar oldValue = Atomics.compareExchange(sharedArray, 0, 10, 20);\n\nconsole.log(\"Old:\", oldValue);   // Old: 10\n\nconsole.log(\"New:\", sharedArray[0]); // New: 20\n\n// Now it will NOT change because the expected value does not match\n\noldValue = Atomics.compareExchange(sharedArray, 0, 10, 30);\n\nconsole.log(\"Old:\", oldValue);   // Old: 20\n\nconsole.log(\"New:\", sharedArray[0]); // New: 20",
-   "caption": "مثال: Atomics.compareExchange()"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای Atomics.wait() و Atomics.notify()"
-  },
-  {
-   "type": "p",
-   "text": "Atomics.wait() (در workerها) می‌تواند یک ریسه را تا تغییر مقدار در یک موقعیت به خواب ببرد و Atomics.notify() یک یا چند ریسهٔ خوابیده را بیدار می‌کند."
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "مهم: Atomics.wait() در مرورگرها فقط در محیط worker قابل استفاده است (نه در ریسهٔ اصلی)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// main.js\n\nvar buffer = new SharedArrayBuffer(4);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 0;\n\nvar worker = new Worker(\"worker.js\");\n\n// Send the shared buffer to the worker\n\nworker.postMessage(buffer);\n\n// Simulate some work, then set the value and notify the worker\n\nsetTimeout(function() {\n\n  Atomics.store(sharedArray, 0, 1);\n\n  Atomics.notify(sharedArray, 0, 1); // wake 1 worker\n\n}, 1000);",
-   "caption": "مثال: workerای که منتظر یک مقدار است"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// worker.js\n\nonmessage = function(e) {\n\n  var buffer = e.data;\n\n  var sharedArray = new Int32Array(buffer);\n\n  console.log(\"Worker waiting...\");\n\n  var result = Atomics.wait(sharedArray, 0, 0); // wait while value is 0\n\n  console.log(\"Worker woken, result =\", result);\n\n  console.log(\"New value:\", Atomics.load(sharedArray, 0));\n\n};",
-   "caption": "مثال: workerای که منتظر یک مقدار است"
-  },
-  {
-   "type": "h2",
-   "text": "مرجع کامل Atomics"
-  },
-  {
-   "type": "h2",
-   "text": "بازنگری: دسامبر ۲۰۲۵"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متد",
-     "توضیح"
-    ],
-    [
-     "load(typedArray, index)",
-     "مقدار موجود در index را می‌خواند و برمی‌گرداند."
-    ],
-    [
-     "store(typedArray, index, value)",
-     "مقدار را در index ذخیره می‌کند و همان را برمی‌گرداند."
-    ],
-    [
-     "add(typedArray, index, value)",
-     "مقدار را به عنصر اضافه می‌کند و مقدار قبلی را برمی‌گرداند."
-    ],
-    [
-     "sub(typedArray, index, value)",
-     "مقدار را کم می‌کند و مقدار قبلی را برمی‌گرداند."
-    ],
-    [
-     "and(typedArray, index, value)",
-     "عملگر بیتی AND را با مقدار انجام می‌دهد و مقدار قبلی را برمی‌گرداند."
-    ],
-    [
-     "or(typedArray, index, value)",
-     "عملگر بیتی OR را با مقدار انجام می‌دهد و مقدار قبلی را برمی‌گرداند."
-    ],
-    [
-     "xor(typedArray, index, value)",
-     "عملگر بیتی XOR را با مقدار انجام می‌دهد و مقدار قبلی را برمی‌گرداند."
-    ],
-    [
-     "exchange(typedArray, index, value)",
-     "مقدار index را جایگزین می‌کند و مقدار قبلی را برمی‌گرداند."
-    ],
-    [
-     "compareExchange(typedArray, index, expected, value)",
-     "اگر مقدار فعلی برابر expected باشد، مقدار index را با value جایگزین می‌کند. مقدار قبلی را برمی‌گرداند."
-    ],
-    [
-     "wait(typedArray, index, value, timeout?)",
-     "(فقط در worker) ریسهٔ فراخوان را تا تغییر عنصر یا پایان timeout منتظر نگه می‌دارد."
-    ],
-    [
-     "notify(typedArray, index, count)",
-     "ریسه‌های خوابیده‌ای را که منتظر index هستند بیدار می‌کند."
-    ]
-   ]
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Atomics برای ارتباط بین ریسه‌ها با حافظهٔ اشتراکی است",
-    "آنها را با SharedArrayBuffer و آرایه‌های نوع‌دار به کار می‌برید",
-    "عملیات Atomics را ریسه‌های دیگر نمی‌توانند قطع کنند",
-    "Atomics را فقط وقتی به کار ببرید که به همگام‌سازی سطح‌پایین نیاز دارید",
-    "بیشتر کدهای JavaScript به Atomics نیازی ندارند"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بیاموزید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "متدهای آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "مرجع آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "DataView"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک SharedArrayBuffer با اندازهٔ ۴ بایت بسازید، یک Int32Array روی آن بگیرید و مقدار خانهٔ صفر را با Atomics.store بگذارید و با Atomics.load بخوانید.",
-   "hint": "Atomics.store(arr, 0, 5) مقدار ذخیره‌شده را برمی‌گرداند و Atomics.load(arr, 0) مقدار فعلی را."
-  },
-  {
-   "prompt": "روی همان آرایه متد Atomics.add را با مقدار ۳ صدا بزنید و خروجی آن را ببینید؛ بعد با Atomics.load مقدار جدید را چاپ کنید.",
-   "hint": "add مقدار جدید را برنمی‌گرداند؛ مقدار قبلی ارسال را برمی‌گرداند."
-  },
-  {
-   "prompt": "با Atomics.exchange مقدار خانه را عوض کنید و بعد با compareExchange تلاش کنید مقدار را از یک «مقدار انتظار» اشتباه تغییر دهید و نتیجه را توضیح دهید.",
-   "hint": "compareExchange تنها وقتی می‌نویسد که مقدار فعلی با expected برابر باشد؛ در غیر این صورت تغییری نمی‌دهد."
-  },
-  {
-   "prompt": "در کنسول مرورگر Atomics.wait را روی ریسهٔ اصلی صدا بزنید و خطای آن را ببینید.",
-   "hint": "wait فقط در محیط worker کار می‌کند، چون ریسهٔ اصلی نباید خواب برود."
-  },
-  {
-   "prompt": "توضیح دهید چرا تغییر یک خانه از آرایهٔ اشتراکی با += ممکن است مقدار درست را از دست بدهد ولی Atomics.add این مشکل را ندارد.",
-   "hint": "عملیات += از چند مرحله تشکیل شده است و ریسه‌ای دیگر می‌تواند وسط آن مقدار را عوض کند."
-  }
- ],
- "quiz": [
-  {
-   "question": "Atomics برای چه کاری ساخته شده است؟",
-   "options": [
-    "مرتب کردن آرایه‌ها",
-    "عملیات اتمی روی حافظهٔ اشتراکی بین ریسه‌ها",
-    "تبدیل رشته به عدد",
-    "ذخیرهٔ داده در حافظهٔ محلی مرورگر"
-   ],
-   "answer": 1,
-   "explanation": "Atomics عملیات سطح‌پایین و غیرقابل‌قطع روی آرایه‌های نوع‌دار اشتراکی فراهم می‌کند تا وضعیت مسابقه بین ریسه‌ها پیش نیاید."
-  },
-  {
-   "question": "Atomics.add(arr, 0, 3) چه چیزی برمی‌گرداند؟",
-   "options": [
-    "مقدار جدید خانه",
-    "مقدار قبلی خانه",
-    "true یا false",
-    "طول آرایه"
-   ],
-   "answer": 1,
-   "explanation": "متدهای تغییردهندهٔ Atomics همیشه مقدار قبلی عنصر را برمی‌گردانند، نه مقدار تازه را."
-  },
-  {
-   "question": "برای استفاده از Atomics به کدام مورد نیاز دارید؟",
-   "options": [
-    "یک ArrayBuffer معمولی",
-    "یک SharedArrayBuffer و آرایهٔ نوع‌دار روی آن",
-    "یک شیء JSON",
-    "یک Regex"
-   ],
-   "answer": 1,
-   "explanation": "Atomics روی حافظهٔ اشتراکی کار می‌کند؛ پس به SharedArrayBuffer و آرایهٔ نوع‌داری که روی آن ساخته شده نیاز است."
-  },
-  {
-   "question": "Atomics.compareExchange(arr, 0, 5, 10) در چه صورتی مقدار را عوض می‌کند؟",
-   "options": [
-    "همیشه",
-    "اگر مقدار فعلی خانه برابر ۵ باشد",
-    "اگر مقدار فعلی برابر ۱۰ باشد",
-    "هیچ‌وقت"
-   ],
-   "answer": 1,
-   "explanation": "compareExchange فقط وقتی مقدار جدید را می‌گذارد که مقدار فعلی با expected برابر باشد؛ یعنی ۵ در این مثال."
-  },
-  {
-   "question": "کدام جمله دربارهٔ Atomics.wait() درست است؟",
-   "options": [
-    "در ریسهٔ اصلی مرورگر هم مجاز است",
-    "فقط در محیط worker قابل استفاده است",
-    "همیشه بلافاصله خطا می‌دهد",
-    "مقدار خانه را تغییر می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "در مرورگرها wait فقط در worker کار می‌کند؛ خواب بردن ریسهٔ اصلی رابط کاربری را قفل می‌کند و مجاز نیست."
-  }
- ]
+  "slug": "js_atomics",
+  "course": "js",
+  "order": 245,
+  "url": "/js/js_atomics.asp",
+  "title": "Atomics در JavaScript",
+  "summary": "شیء Atomics عملیات اتمی و غیرقابل‌قطع روی حافظهٔ اشتراکی می‌دهد و برای کار با SharedArrayBuffer بین workerها ساخته شده است. در این درس پیش‌نیازها، خواندن و نوشتن اتمی، جمع و تفریق، تبادل مقدار و انتظار و بیدار کردن ریسه‌ها را یاد می‌گیرید.",
+  "objectives": [
+    "بگویید Atomics چیست و چه مشکلی را حل می‌کند",
+    "پیش‌نیازهای استفاده از Atomics را فهرست کنید",
+    "با Atomics.load و store و add مقدار بخوانید و تغییر دهید",
+    "تفاوت compareExchange و exchange را توضیح دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Atomics در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "شیء Atomics"
+    },
+    {
+      "type": "p",
+      "text": "شیء Atomics عملیات اتمی سطح‌پایین روی حافظهٔ اشتراکی فراهم می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "این شیء همراه SharedArrayBuffer و آرایه‌های نوع‌دار برای به اشتراک گذاشتن داده بین workerها به کار می‌رود."
+    },
+    {
+      "type": "h2",
+      "text": "Atomics چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "وقتی چند ریسه (مثلاً ریسهٔ اصلی و یک یا چند worker) به دادهٔ یکسانی دسترسی دارند، ممکن است وضعیت مسابقه (race condition) پیش بیاید. Atomics با فراهم کردن عملیاتی که این شرایط را کم می‌کند به شما کمک می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "روی آرایه‌های نوع‌دار اشتراکی کار می‌کنند",
+        "به‌صورت اتمی انجام می‌شوند (در میانهٔ کار قطع نمی‌شوند)",
+        "مقدار قبلی عنصر را برمی‌گردانند"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "شیء Atomics یک شیء سراسری است (مثل Math) با متدهای ایستا مانند Atomics.load()، Atomics.store()، Atomics.add() و موارد بیشتر."
+    },
+    {
+      "type": "p",
+      "text": "Atomics یک قابلیت پیشرفته است."
+    },
+    {
+      "type": "p",
+      "text": "معمولاً وقتی با اینها کار می‌کنید از Atomics استفاده می‌کنید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Web Workerها", "ریسه‌های worker", "حافظهٔ اشتراکی"]
+    },
+    {
+      "type": "h2",
+      "text": "پیش‌نیازها"
+    },
+    {
+      "type": "p",
+      "text": "برای استفاده از Atomics به اینها نیاز دارید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک SharedArrayBuffer",
+        "آرایهٔ نوع‌داری که از بافر اشتراکی استفاده می‌کند (مثلاً Int32Array)",
+        "یک یا چند worker (یا ریسه) که همان بافر را به اشتراک می‌گذارند"
+      ]
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "امنیت: مرورگرها برای فعال شدن SharedArrayBuffer در وب ممکن است به سرایندهای ویژه (مثل COOP/COEP) نیاز داشته باشند."
+    },
+    {
+      "type": "h2",
+      "text": "استفادهٔ پایه از Atomics"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\n// Shared integer array with 4 elements\n\nconst sharedArray = new Int32Array(buffer);\n\n// Initialize the array\n\nsharedArray[0] = 10;\n\nsharedArray[1] = 20;\n\nsharedArray[2] = 30;\n\nsharedArray[3] = 40;",
+      "caption": "مثال: ساختن آرایهٔ نوع‌دار اشتراکی"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_atomics_basic"
+    },
+    {
+      "type": "h2",
+      "text": "خواندن و نوشتن اتمی"
+    },
+    {
+      "type": "p",
+      "text": "برای خواندن یک عنصر در آرایهٔ نوع‌دار اشتراکی از Atomics.load() و برای نوشتن از Atomics.store() استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\n// Store a value atomically\n\nAtomics.store(sharedArray, 0, 123);\n\n// Load the value atomically\n\nvar value = Atomics.load(sharedArray, 0);\n\nconsole.log(\"Value:\", value); // Value: 123",
+      "caption": "مثال: Atomics.load() و Atomics.store()"
+    },
+    {
+      "type": "p",
+      "text": "Atomics.store() مقداری را که ذخیره کرده‌اید برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "Atomics.load() مقدار فعلی عنصر را برمی‌گرداند."
+    },
+    {
+      "type": "h2",
+      "text": "جمع و تفریق اتمی"
+    },
+    {
+      "type": "p",
+      "text": "Atomics.add() و Atomics.sub() یک مقدار را تغییر می‌دهند و مقدار قبلی را برمی‌گردانند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 5;\n\nvar oldValue = Atomics.add(sharedArray, 0, 3);\n\nconsole.log(\"Old:\", oldValue);  // Old: 5\n\nconsole.log(\"New:\", sharedArray[0]);// New: 8",
+      "caption": "مثال: Atomics.add()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 10;\n\nvar oldValue = Atomics.sub(sharedArray, 0, 4);\n\nconsole.log(\"Old:\", oldValue);  // Old: 10\n\nconsole.log(\"New:\", sharedArray[0]);// New: 6",
+      "caption": "مثال: Atomics.sub()"
+    },
+    {
+      "type": "h2",
+      "text": "تبادل اتمی و compareExchange"
+    },
+    {
+      "type": "p",
+      "text": "Atomics.exchange() یک مقدار جدید می‌گذارد و مقدار قبلی را برمی‌گرداند. Atomics.compareExchange() مقدار جدید را تنها وقتی می‌گذارد که مقدار فعلی برابر مقدار انتظار داده‌شده باشد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 1;\n\nvar oldValue = Atomics.exchange(sharedArray, 0, 99);\n\nconsole.log(\"Old:\", oldValue);   // Old: 1\n\nconsole.log(\"New:\", sharedArray[0]); // New: 99",
+      "caption": "مثال: Atomics.exchange()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var buffer = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 10;\n\n// Only replace 10 with 20 if the current value is 10\n\nvar oldValue = Atomics.compareExchange(sharedArray, 0, 10, 20);\n\nconsole.log(\"Old:\", oldValue);   // Old: 10\n\nconsole.log(\"New:\", sharedArray[0]); // New: 20\n\n// Now it will NOT change because the expected value does not match\n\noldValue = Atomics.compareExchange(sharedArray, 0, 10, 30);\n\nconsole.log(\"Old:\", oldValue);   // Old: 20\n\nconsole.log(\"New:\", sharedArray[0]); // New: 20",
+      "caption": "مثال: Atomics.compareExchange()"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای Atomics.wait() و Atomics.notify()"
+    },
+    {
+      "type": "p",
+      "text": "Atomics.wait() (در workerها) می‌تواند یک ریسه را تا تغییر مقدار در یک موقعیت به خواب ببرد و Atomics.notify() یک یا چند ریسهٔ خوابیده را بیدار می‌کند."
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "مهم: Atomics.wait() در مرورگرها فقط در محیط worker قابل استفاده است (نه در ریسهٔ اصلی)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// main.js\n\nvar buffer = new SharedArrayBuffer(4);\n\nvar sharedArray = new Int32Array(buffer);\n\nsharedArray[0] = 0;\n\nvar worker = new Worker(\"worker.js\");\n\n// Send the shared buffer to the worker\n\nworker.postMessage(buffer);\n\n// Simulate some work, then set the value and notify the worker\n\nsetTimeout(function() {\n\n  Atomics.store(sharedArray, 0, 1);\n\n  Atomics.notify(sharedArray, 0, 1); // wake 1 worker\n\n}, 1000);",
+      "caption": "مثال: workerای که منتظر یک مقدار است"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// worker.js\n\nonmessage = function(e) {\n\n  var buffer = e.data;\n\n  var sharedArray = new Int32Array(buffer);\n\n  console.log(\"Worker waiting...\");\n\n  var result = Atomics.wait(sharedArray, 0, 0); // wait while value is 0\n\n  console.log(\"Worker woken, result =\", result);\n\n  console.log(\"New value:\", Atomics.load(sharedArray, 0));\n\n};",
+      "caption": "مثال: workerای که منتظر یک مقدار است"
+    },
+    {
+      "type": "h2",
+      "text": "مرجع کامل Atomics"
+    },
+    {
+      "type": "h2",
+      "text": "بازنگری: دسامبر ۲۰۲۵"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متد", "توضیح"],
+        ["load(typedArray, index)", "مقدار موجود در index را می‌خواند و برمی‌گرداند."],
+        [
+          "store(typedArray, index, value)",
+          "مقدار را در index ذخیره می‌کند و همان را برمی‌گرداند."
+        ],
+        [
+          "add(typedArray, index, value)",
+          "مقدار را به عنصر اضافه می‌کند و مقدار قبلی را برمی‌گرداند."
+        ],
+        ["sub(typedArray, index, value)", "مقدار را کم می‌کند و مقدار قبلی را برمی‌گرداند."],
+        [
+          "and(typedArray, index, value)",
+          "عملگر بیتی AND را با مقدار انجام می‌دهد و مقدار قبلی را برمی‌گرداند."
+        ],
+        [
+          "or(typedArray, index, value)",
+          "عملگر بیتی OR را با مقدار انجام می‌دهد و مقدار قبلی را برمی‌گرداند."
+        ],
+        [
+          "xor(typedArray, index, value)",
+          "عملگر بیتی XOR را با مقدار انجام می‌دهد و مقدار قبلی را برمی‌گرداند."
+        ],
+        [
+          "exchange(typedArray, index, value)",
+          "مقدار index را جایگزین می‌کند و مقدار قبلی را برمی‌گرداند."
+        ],
+        [
+          "compareExchange(typedArray, index, expected, value)",
+          "اگر مقدار فعلی برابر expected باشد، مقدار index را با value جایگزین می‌کند. مقدار قبلی را برمی‌گرداند."
+        ],
+        [
+          "wait(typedArray, index, value, timeout?)",
+          "(فقط در worker) ریسهٔ فراخوان را تا تغییر عنصر یا پایان timeout منتظر نگه می‌دارد."
+        ],
+        [
+          "notify(typedArray, index, count)",
+          "ریسه‌های خوابیده‌ای را که منتظر index هستند بیدار می‌کند."
+        ]
+      ]
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Atomics برای ارتباط بین ریسه‌ها با حافظهٔ اشتراکی است",
+        "آنها را با SharedArrayBuffer و آرایه‌های نوع‌دار به کار می‌برید",
+        "عملیات Atomics را ریسه‌های دیگر نمی‌توانند قطع کنند",
+        "Atomics را فقط وقتی به کار ببرید که به همگام‌سازی سطح‌پایین نیاز دارید",
+        "بیشتر کدهای JavaScript به Atomics نیازی ندارند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بیاموزید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "متدهای آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "مرجع آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "DataView"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک SharedArrayBuffer با اندازهٔ ۴ بایت بسازید، یک Int32Array روی آن بگیرید و مقدار خانهٔ صفر را با Atomics.store بگذارید و با Atomics.load بخوانید.",
+      "hint": "Atomics.store(arr, 0, 5) مقدار ذخیره‌شده را برمی‌گرداند و Atomics.load(arr, 0) مقدار فعلی را."
+    },
+    {
+      "prompt": "روی همان آرایه متد Atomics.add را با مقدار ۳ صدا بزنید و خروجی آن را ببینید؛ بعد با Atomics.load مقدار جدید را چاپ کنید.",
+      "hint": "add مقدار جدید را برنمی‌گرداند؛ مقدار قبلی ارسال را برمی‌گرداند."
+    },
+    {
+      "prompt": "با Atomics.exchange مقدار خانه را عوض کنید و بعد با compareExchange تلاش کنید مقدار را از یک «مقدار انتظار» اشتباه تغییر دهید و نتیجه را توضیح دهید.",
+      "hint": "compareExchange تنها وقتی می‌نویسد که مقدار فعلی با expected برابر باشد؛ در غیر این صورت تغییری نمی‌دهد."
+    },
+    {
+      "prompt": "در کنسول مرورگر Atomics.wait را روی ریسهٔ اصلی صدا بزنید و خطای آن را ببینید.",
+      "hint": "wait فقط در محیط worker کار می‌کند، چون ریسهٔ اصلی نباید خواب برود."
+    },
+    {
+      "prompt": "توضیح دهید چرا تغییر یک خانه از آرایهٔ اشتراکی با += ممکن است مقدار درست را از دست بدهد ولی Atomics.add این مشکل را ندارد.",
+      "hint": "عملیات += از چند مرحله تشکیل شده است و ریسه‌ای دیگر می‌تواند وسط آن مقدار را عوض کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Atomics برای چه کاری ساخته شده است؟",
+      "options": [
+        "مرتب کردن آرایه‌ها",
+        "عملیات اتمی روی حافظهٔ اشتراکی بین ریسه‌ها",
+        "تبدیل رشته به عدد",
+        "ذخیرهٔ داده در حافظهٔ محلی مرورگر"
+      ],
+      "answer": 1,
+      "explanation": "Atomics عملیات سطح‌پایین و غیرقابل‌قطع روی آرایه‌های نوع‌دار اشتراکی فراهم می‌کند تا وضعیت مسابقه بین ریسه‌ها پیش نیاید."
+    },
+    {
+      "question": "Atomics.add(arr, 0, 3) چه چیزی برمی‌گرداند؟",
+      "options": ["مقدار جدید خانه", "مقدار قبلی خانه", "true یا false", "طول آرایه"],
+      "answer": 1,
+      "explanation": "متدهای تغییردهندهٔ Atomics همیشه مقدار قبلی عنصر را برمی‌گردانند، نه مقدار تازه را."
+    },
+    {
+      "question": "برای استفاده از Atomics به کدام مورد نیاز دارید؟",
+      "options": [
+        "یک ArrayBuffer معمولی",
+        "یک SharedArrayBuffer و آرایهٔ نوع‌دار روی آن",
+        "یک شیء JSON",
+        "یک Regex"
+      ],
+      "answer": 1,
+      "explanation": "Atomics روی حافظهٔ اشتراکی کار می‌کند؛ پس به SharedArrayBuffer و آرایهٔ نوع‌داری که روی آن ساخته شده نیاز است."
+    },
+    {
+      "question": "Atomics.compareExchange(arr, 0, 5, 10) در چه صورتی مقدار را عوض می‌کند؟",
+      "options": [
+        "همیشه",
+        "اگر مقدار فعلی خانه برابر ۵ باشد",
+        "اگر مقدار فعلی برابر ۱۰ باشد",
+        "هیچ‌وقت"
+      ],
+      "answer": 1,
+      "explanation": "compareExchange فقط وقتی مقدار جدید را می‌گذارد که مقدار فعلی با expected برابر باشد؛ یعنی ۵ در این مثال."
+    },
+    {
+      "question": "کدام جمله دربارهٔ Atomics.wait() درست است؟",
+      "options": [
+        "در ریسهٔ اصلی مرورگر هم مجاز است",
+        "فقط در محیط worker قابل استفاده است",
+        "همیشه بلافاصله خطا می‌دهد",
+        "مقدار خانه را تغییر می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "در مرورگرها wait فقط در worker کار می‌کند؛ خواب بردن ریسهٔ اصلی رابط کاربری را قفل می‌کند و مجاز نیست."
+    }
+  ]
 }

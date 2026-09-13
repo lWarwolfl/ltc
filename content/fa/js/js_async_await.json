@@ -1,420 +1,415 @@
 {
- "slug": "js_async_await",
- "course": "js",
- "order": 225,
- "url": "/js/js_async_await.asp",
- "title": "تابع‌های ناهمگام",
- "summary": "async و await کد مبتنی بر پرامیس را خواناتر می‌کنند: تابع async همیشه پرامیس برمی‌گرداند و await منتظر تعیین‌تکلیف پرامیس می‌ماند، ولی فقط تابع جاری را نگه می‌دارد. در این درس خطاها را با try...catch می‌گیرید و می‌بینید چرا اجرای پشت سر هم awaitها می‌تواند کند باشد.",
- "objectives": [
-  "تابع async بسازید و بدانید همیشه پرامیس برمی‌گرداند",
-  "با await نتیجهٔ پرامیس را به سبک کد هم‌زمان بگیرید",
-  "خطاهای ناهمگام را با try...catch مدیریت کنید",
-  "توضیح دهید چرا await فقط تابع جاری را متوقف می‌کند"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تابع‌های ناهمگام"
-  },
-  {
-   "type": "h2",
-   "text": "کلیدواژه‌های async و await در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "«async و await کار با پرامیس را آسان‌تر می‌کنند»"
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژه‌های async و await خواندن کد مبتنی بر پرامیس را آسان‌تر می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "کمک می‌کنند کد ناهمگام شبیه کد هم‌زمان معمولی به نظر برسد."
-  },
-  {
-   "type": "p",
-   "text": "در پشت‌صحنه، async و await هنوز از پرامیس استفاده می‌کنند."
-  },
-  {
-   "type": "h2",
-   "text": "کلیدواژهٔ async"
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژهٔ async پیش از تابع، آن تابع را وادار می‌کند پرامیس برگرداند."
-  },
-  {
-   "type": "p",
-   "text": "این موضوع حتی وقتی مقدار معمولی return کنید هم درست است."
-  },
-  {
-   "type": "p",
-   "text": "اگر تابع مقداری برگرداند، JavaScript آن مقدار را به‌طور خودکار در یک پرامیس می‌پیچد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an async function\n\nasync function hello() {\n\n  return \"Hello World!\";\n\n}\n\n// Call the async function\n\nhello().then(function(value) {\n\n  myDisplayer(value);\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_return"
-  },
-  {
-   "type": "h2",
-   "text": "کلیدواژهٔ await"
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژهٔ await منتظر می‌ماند تا پرامیس تعیین‌تکلیف شود."
-  },
-  {
-   "type": "p",
-   "text": "await فقط داخل تابع async یا در سطح بالای یک ماژول JavaScript قابل استفاده است."
-  },
-  {
-   "type": "p",
-   "text": "تا وقتی تابع async منتظر است، بقیهٔ برنامه می‌تواند به اجرا ادامه دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an async function\n\nasync function getData() {\n\n  let response = await fetch(\"fetch.txt\");\n\n  let text = await response.text();\n\n  myDisplayer(text);\n\n}\n\n// Call the async function\n\ngetData();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_fetch"
-  },
-  {
-   "type": "h2",
-   "text": "هنگام await چه اتفاقی می‌افتد؟"
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژهٔ await فقط تابع async جاری را متوقف می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript را متوقف نمی‌کند."
-  },
-  {
-   "type": "p",
-   "text": "تا وقتی پرامیس در حالت انتظار است، کدهای دیگر، تایمرها، رویدادها و تعامل‌های کاربر می‌توانند ادامه پیدا کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");\n\n// Create an async function\n\nasync function getData() {\n\n  await fetch(\"fetch.txt\");\n\n  myDisplayer(\"Done\");\n\n}\n\n// Call the async function\n\ngetData();\n\nmyDisplayer(\"Continue\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Start\n\nContinue\n\nDone",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_pending"
-  },
-  {
-   "type": "h3",
-   "text": "نکته"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript منتظر نمی‌ماند."
-  },
-  {
-   "type": "p",
-   "text": "تابع async است که منتظر می‌ماند."
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ پرامیس و await"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Fetch function\n\nfetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n});",
-   "caption": "نسخهٔ پرامیس"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Asyn function\n\nasync function getData() {\n\n  let response = await fetch(\"fetch.txt\");\n\n  let text = await response.text();\n\n  myDisplayer(text);\n\n}\n\n// Call async function\n\ngetData();",
-   "caption": "نسخهٔ async/await"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_2"
-  },
-  {
-   "type": "h3",
-   "text": "نکته"
-  },
-  {
-   "type": "p",
-   "text": "هر دو مثال دقیقاً یک کار را انجام می‌دهند."
-  },
-  {
-   "type": "p",
-   "text": "خواندن مثال دوم آسان‌تر است، چون دستورها به همان ترتیبی نوشته شده‌اند که اجرا می‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "مدیریت خطاها"
-  },
-  {
-   "type": "p",
-   "text": "برای مدیریت پرامیس‌های ردشده از try...catch استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function getData() {\n\n  try {\n\n    let response = await fetch(\"fetch.txt\");\n\n    let text = await response.text();\n\n    myDisplayer(text);\n\n  } catch(err) {\n\n    myDisplayer(err);\n\n  }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_2"
-  },
-  {
-   "type": "h3",
-   "text": "نکته"
-  },
-  {
-   "type": "p",
-   "text": "خطاهای پرامیس‌های await شده مثل خطاهای معمولی گرفته می‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "چند await پشت سر هم"
-  },
-  {
-   "type": "p",
-   "text": "خیلی از تازه‌کارها نمی‌دانند که awaitها یکی پس از دیگری اجرا می‌شوند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let a = await fetch(\"a.txt\");\n\nlet b = await fetch(\"b.txt\");\n\nlet c = await fetch(\"c.txt\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_multiple"
-  },
-  {
-   "type": "p",
-   "text": "هر await منتظر تمام شدن عملیات قبلی می‌ماند."
-  },
-  {
-   "type": "p",
-   "text": "اگر عملیات به هم وابسته نباشند، اجرای یکی پس از دیگری ممکن است بیش از لازم کند باشد."
-  },
-  {
-   "type": "p",
-   "text": "فصل بعدی توضیح می‌دهد چطور عملیات ناهمگام را موازی اجرا کنید."
-  },
-  {
-   "type": "h2",
-   "text": "خلاصه"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تابع‌های async همیشه پرامیس برمی‌گردانند.",
-    "await منتظر می‌ماند تا پرامیس تعیین‌تکلیف شود.",
-    "await تابع async جاری را متوقف می‌کند، نه کل JavaScript را.",
-    "try...catch خطاهای پرامیس را مدیریت می‌کند.",
-    "async و await خواندن کد مبتنی بر پرامیس را آسان‌تر می‌کنند."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مثال‌های بیشتر"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction() {\n\n  return Promise.resolve(\"Hello\");\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "نتیجه با then() مدیریت می‌شود، چون یک پرامیس است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myFunction().then(\n\n  function(value) { /* code if successful */ },\n\n  function(value) { /* code if some error */ }\n\n);",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}\nmyFunction().then(\n  function(value) {myDisplayer(value);},\n\n  function(value) {myDisplayer(value);}\n);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_1"
-  },
-  {
-   "type": "p",
-   "text": "یا ساده‌تر: چون انتظار یک مقدار معمولی دارید (یک پاسخ معمولی، نه خطا):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}\nmyFunction().then(\n  function(value) {myDisplayer(value);}\n\n);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_2"
-  },
-  {
-   "type": "h2",
-   "text": "چرا async و await به وجود آمدند"
-  },
-  {
-   "type": "p",
-   "text": "زنجیره‌های پرامیس می‌توانند طولانی شوند."
-  },
-  {
-   "type": "p",
-   "text": "async و await آمدند تا تودرتو بودن را کم کنند و خوانایی را بهتر کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Three functions to run in steps\n\nfunction step1() {\n\n  return Promise.resolve(\"A\");\n\n}\n\nfunction step2(value) {\n\n  return Promise.resolve(value + \"B\");\n\n}\n\nfunction step3(value) {\n\n  return Promise.resolve(value + \"C\");\n\n}\n\n// Run the three functions in steps\n\nstep1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  return step3(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
-   "caption": "مثال با پرامیس‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_steps"
-  },
-  {
-   "type": "p",
-   "text": "همان جریان با async و await خواناتر است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to run the three functions in steps\n\nasync function run() {\n\n  let v1 = await step1();\n\n  let v2 = await step2(v1);\n\n  let v3 = await step3(v2);\n\n  myDisplayer(v3);\n\n}\n\nrun();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await"
-  },
-  {
-   "type": "h2",
-   "text": "خطاهای رایج تازه‌کارها"
-  },
-  {
-   "type": "p",
-   "text": "استفاده از await بیرون از تابع async خطا می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "فراموش کردن try...catch می‌تواند خطاهای ناهمگام را پنهان کند."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل async.html بسازید و یک تابع با کلیدواژهٔ async بنویسید که فقط یک رشته return کند؛ نتیجهٔ صدا زدنش را با then چاپ کنید.",
-   "hint": "تابع async همیشه پرامیس برمی‌گرداند، حتی وقتی مقدار معمولی return کنید."
-  },
-  {
-   "prompt": "در کنسول نوع مقدار برگشتی یک تابع async را با typeof بررسی کنید و توضیح دهید چرا \"object\" می‌گیرید.",
-   "hint": "چون JavaScript مقدار برگشتی را خودکار داخل یک پرامیس می‌پیچد."
-  },
-  {
-   "prompt": "یک تابع async بنویسید که با await یک فایل متنی را با fetch بگیرد و متنش را در کنسول چاپ کند.",
-   "hint": "بعد از await fetch، برای گرفتن متن باید await response.text() هم بنویسید."
-  },
-  {
-   "prompt": "همان کار را یک بار با زنجیرهٔ then بنویسید و یک بار با async/await؛ بگویید کدام خواناتر است و چرا.",
-   "hint": "در نسخهٔ async/await دستورها به همان ترتیبی که اجرا می‌شوند از بالا به پایین نوشته می‌شوند."
-  },
-  {
-   "prompt": "دو await پشت سر هم روی دو فایل مستقل بگذارید و ببینید چقدر طول می‌کشد؛ بعد توضیح دهید چرا این حالت کندتر از حالت موازی است.",
-   "hint": "هر await منتظر تمام شدن عملیات قبلی می‌ماند، پس عملیات مستقل بی‌دلیل پشت سر هم صف می‌بندند."
-  }
- ],
- "quiz": [
-  {
-   "question": "تابع async چه چیزی برمی‌گرداند؟",
-   "options": [
-    "همیشه یک رشته",
-    "همیشه یک پرامیس",
-    "همیشه undefined",
-    "به مقدار return بستگی دارد و پرامیس نمی‌سازد"
-   ],
-   "answer": 1,
-   "explanation": "JavaScript مقدار برگشتی تابع async را خودکار داخل پرامیس می‌پیچد؛ پس حتی if یک رشته return کنید، خروجی پرامیس است."
-  },
-  {
-   "question": "کلیدواژهٔ await چه زمانی قابل استفاده است؟",
-   "options": [
-    "در هر جای کد",
-    "فقط داخل تابع async یا در سطح بالای ماژول",
-    "فقط داخل حلقه‌ها",
-    "فقط داخل try...catch"
-   ],
-   "answer": 1,
-   "explanation": "await بیرون از تابع async خطا می‌دهد؛ تنها استثنا، سطح بالای یک ماژول JavaScript است."
-  },
-  {
-   "question": "هنگام await چه چیزی متوقف می‌شود؟",
-   "options": [
-    "کل JavaScript",
-    "فقط تابع async جاری",
-    "مرورگر و رندر صفحه",
-    "همهٔ تایمرها و رویدادها"
-   ],
-   "answer": 1,
-   "explanation": "await فقط اجرای تابع async جاری را نگه می‌دارد؛ بقیهٔ کد، تایمرها و رویدادها به کار خود ادامه می‌دهند."
-  },
-  {
-   "question": "برای مدیریت خطای یک پرامیس await شده از چه ساختاری استفاده می‌کنیم؟",
-   "options": [
-    "if...else",
-    "try...catch",
-    "for...of",
-    "switch"
-   ],
-   "answer": 1,
-   "explanation": "خطای پرامیس‌های await شده مثل خطاهای معمولی در try...catch گرفته می‌شود؛ فراموش کردن آن باعث پنهان ماندن خطاها می‌شود."
-  },
-  {
-   "question": "چرا چند await پشت سر هم روی عملیات مستقل می‌تواند کند باشد؟",
-   "options": [
-    "چون await سرعت شبکه را کم می‌کند",
-    "چون هر await منتظر تمام شدن عملیات قبلی می‌ماند و عملیات‌ها پشت سر هم اجرا می‌شوند",
-    "چون await هر بار تابع را از نو می‌سازد",
-    "چون مرورگر await را نادیده می‌گیرد"
-   ],
-   "answer": 1,
-   "explanation": "awaitها یکی پس از دیگری اجرا می‌شوند؛ اگر عملیات‌ها به هم وابسته نباشند، بهتر است همزمان شروع شوند و با هم منتظرشان بمانیم."
-  }
- ]
+  "slug": "js_async_await",
+  "course": "js",
+  "order": 225,
+  "url": "/js/js_async_await.asp",
+  "title": "تابع‌های ناهمگام",
+  "summary": "async و await کد مبتنی بر پرامیس را خواناتر می‌کنند: تابع async همیشه پرامیس برمی‌گرداند و await منتظر تعیین‌تکلیف پرامیس می‌ماند، ولی فقط تابع جاری را نگه می‌دارد. در این درس خطاها را با try...catch می‌گیرید و می‌بینید چرا اجرای پشت سر هم awaitها می‌تواند کند باشد.",
+  "objectives": [
+    "تابع async بسازید و بدانید همیشه پرامیس برمی‌گرداند",
+    "با await نتیجهٔ پرامیس را به سبک کد هم‌زمان بگیرید",
+    "خطاهای ناهمگام را با try...catch مدیریت کنید",
+    "توضیح دهید چرا await فقط تابع جاری را متوقف می‌کند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تابع‌های ناهمگام"
+    },
+    {
+      "type": "h2",
+      "text": "کلیدواژه‌های async و await در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "«async و await کار با پرامیس را آسان‌تر می‌کنند»"
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژه‌های async و await خواندن کد مبتنی بر پرامیس را آسان‌تر می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "کمک می‌کنند کد ناهمگام شبیه کد هم‌زمان معمولی به نظر برسد."
+    },
+    {
+      "type": "p",
+      "text": "در پشت‌صحنه، async و await هنوز از پرامیس استفاده می‌کنند."
+    },
+    {
+      "type": "h2",
+      "text": "کلیدواژهٔ async"
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژهٔ async پیش از تابع، آن تابع را وادار می‌کند پرامیس برگرداند."
+    },
+    {
+      "type": "p",
+      "text": "این موضوع حتی وقتی مقدار معمولی return کنید هم درست است."
+    },
+    {
+      "type": "p",
+      "text": "اگر تابع مقداری برگرداند، JavaScript آن مقدار را به‌طور خودکار در یک پرامیس می‌پیچد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an async function\n\nasync function hello() {\n\n  return \"Hello World!\";\n\n}\n\n// Call the async function\n\nhello().then(function(value) {\n\n  myDisplayer(value);\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_return"
+    },
+    {
+      "type": "h2",
+      "text": "کلیدواژهٔ await"
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژهٔ await منتظر می‌ماند تا پرامیس تعیین‌تکلیف شود."
+    },
+    {
+      "type": "p",
+      "text": "await فقط داخل تابع async یا در سطح بالای یک ماژول JavaScript قابل استفاده است."
+    },
+    {
+      "type": "p",
+      "text": "تا وقتی تابع async منتظر است، بقیهٔ برنامه می‌تواند به اجرا ادامه دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an async function\n\nasync function getData() {\n\n  let response = await fetch(\"fetch.txt\");\n\n  let text = await response.text();\n\n  myDisplayer(text);\n\n}\n\n// Call the async function\n\ngetData();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_fetch"
+    },
+    {
+      "type": "h2",
+      "text": "هنگام await چه اتفاقی می‌افتد؟"
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژهٔ await فقط تابع async جاری را متوقف می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript را متوقف نمی‌کند."
+    },
+    {
+      "type": "p",
+      "text": "تا وقتی پرامیس در حالت انتظار است، کدهای دیگر، تایمرها، رویدادها و تعامل‌های کاربر می‌توانند ادامه پیدا کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");\n\n// Create an async function\n\nasync function getData() {\n\n  await fetch(\"fetch.txt\");\n\n  myDisplayer(\"Done\");\n\n}\n\n// Call the async function\n\ngetData();\n\nmyDisplayer(\"Continue\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Start\n\nContinue\n\nDone",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_pending"
+    },
+    {
+      "type": "h3",
+      "text": "نکته"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript منتظر نمی‌ماند."
+    },
+    {
+      "type": "p",
+      "text": "تابع async است که منتظر می‌ماند."
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ پرامیس و await"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Fetch function\n\nfetch(\"fetch.txt\")\n\n.then(function(response) {\n\n  return response.text();\n\n})\n\n.then(function(text) {\n\n  myDisplayer(text);\n\n});",
+      "caption": "نسخهٔ پرامیس"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Asyn function\n\nasync function getData() {\n\n  let response = await fetch(\"fetch.txt\");\n\n  let text = await response.text();\n\n  myDisplayer(text);\n\n}\n\n// Call async function\n\ngetData();",
+      "caption": "نسخهٔ async/await"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_2"
+    },
+    {
+      "type": "h3",
+      "text": "نکته"
+    },
+    {
+      "type": "p",
+      "text": "هر دو مثال دقیقاً یک کار را انجام می‌دهند."
+    },
+    {
+      "type": "p",
+      "text": "خواندن مثال دوم آسان‌تر است، چون دستورها به همان ترتیبی نوشته شده‌اند که اجرا می‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "مدیریت خطاها"
+    },
+    {
+      "type": "p",
+      "text": "برای مدیریت پرامیس‌های ردشده از try...catch استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function getData() {\n\n  try {\n\n    let response = await fetch(\"fetch.txt\");\n\n    let text = await response.text();\n\n    myDisplayer(text);\n\n  } catch(err) {\n\n    myDisplayer(err);\n\n  }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_vs_promise_2"
+    },
+    {
+      "type": "h3",
+      "text": "نکته"
+    },
+    {
+      "type": "p",
+      "text": "خطاهای پرامیس‌های await شده مثل خطاهای معمولی گرفته می‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "چند await پشت سر هم"
+    },
+    {
+      "type": "p",
+      "text": "خیلی از تازه‌کارها نمی‌دانند که awaitها یکی پس از دیگری اجرا می‌شوند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let a = await fetch(\"a.txt\");\n\nlet b = await fetch(\"b.txt\");\n\nlet c = await fetch(\"c.txt\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_multiple"
+    },
+    {
+      "type": "p",
+      "text": "هر await منتظر تمام شدن عملیات قبلی می‌ماند."
+    },
+    {
+      "type": "p",
+      "text": "اگر عملیات به هم وابسته نباشند، اجرای یکی پس از دیگری ممکن است بیش از لازم کند باشد."
+    },
+    {
+      "type": "p",
+      "text": "فصل بعدی توضیح می‌دهد چطور عملیات ناهمگام را موازی اجرا کنید."
+    },
+    {
+      "type": "h2",
+      "text": "خلاصه"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "تابع‌های async همیشه پرامیس برمی‌گردانند.",
+        "await منتظر می‌ماند تا پرامیس تعیین‌تکلیف شود.",
+        "await تابع async جاری را متوقف می‌کند، نه کل JavaScript را.",
+        "try...catch خطاهای پرامیس را مدیریت می‌کند.",
+        "async و await خواندن کد مبتنی بر پرامیس را آسان‌تر می‌کنند."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مثال‌های بیشتر"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction() {\n\n  return Promise.resolve(\"Hello\");\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "نتیجه با then() مدیریت می‌شود، چون یک پرامیس است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myFunction().then(\n\n  function(value) { /* code if successful */ },\n\n  function(value) { /* code if some error */ }\n\n);",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}\nmyFunction().then(\n  function(value) {myDisplayer(value);},\n\n  function(value) {myDisplayer(value);}\n);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_1"
+    },
+    {
+      "type": "p",
+      "text": "یا ساده‌تر: چون انتظار یک مقدار معمولی دارید (یک پاسخ معمولی، نه خطا):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function myFunction() {\n\n  return \"Hello\";\n\n}\nmyFunction().then(\n  function(value) {myDisplayer(value);}\n\n);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await_2"
+    },
+    {
+      "type": "h2",
+      "text": "چرا async و await به وجود آمدند"
+    },
+    {
+      "type": "p",
+      "text": "زنجیره‌های پرامیس می‌توانند طولانی شوند."
+    },
+    {
+      "type": "p",
+      "text": "async و await آمدند تا تودرتو بودن را کم کنند و خوانایی را بهتر کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Three functions to run in steps\n\nfunction step1() {\n\n  return Promise.resolve(\"A\");\n\n}\n\nfunction step2(value) {\n\n  return Promise.resolve(value + \"B\");\n\n}\n\nfunction step3(value) {\n\n  return Promise.resolve(value + \"C\");\n\n}\n\n// Run the three functions in steps\n\nstep1()\n\n.then(function(value) {\n\n  return step2(value);\n\n})\n\n.then(function(value) {\n\n  return step3(value);\n\n})\n\n.then(function(value) {\n\n  myDisplayer(value);\n\n});",
+      "caption": "مثال با پرامیس‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_promise_steps"
+    },
+    {
+      "type": "p",
+      "text": "همان جریان با async و await خواناتر است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to run the three functions in steps\n\nasync function run() {\n\n  let v1 = await step1();\n\n  let v2 = await step2(v1);\n\n  let v3 = await step3(v2);\n\n  myDisplayer(v3);\n\n}\n\nrun();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_await"
+    },
+    {
+      "type": "h2",
+      "text": "خطاهای رایج تازه‌کارها"
+    },
+    {
+      "type": "p",
+      "text": "استفاده از await بیرون از تابع async خطا می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "فراموش کردن try...catch می‌تواند خطاهای ناهمگام را پنهان کند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل async.html بسازید و یک تابع با کلیدواژهٔ async بنویسید که فقط یک رشته return کند؛ نتیجهٔ صدا زدنش را با then چاپ کنید.",
+      "hint": "تابع async همیشه پرامیس برمی‌گرداند، حتی وقتی مقدار معمولی return کنید."
+    },
+    {
+      "prompt": "در کنسول نوع مقدار برگشتی یک تابع async را با typeof بررسی کنید و توضیح دهید چرا \"object\" می‌گیرید.",
+      "hint": "چون JavaScript مقدار برگشتی را خودکار داخل یک پرامیس می‌پیچد."
+    },
+    {
+      "prompt": "یک تابع async بنویسید که با await یک فایل متنی را با fetch بگیرد و متنش را در کنسول چاپ کند.",
+      "hint": "بعد از await fetch، برای گرفتن متن باید await response.text() هم بنویسید."
+    },
+    {
+      "prompt": "همان کار را یک بار با زنجیرهٔ then بنویسید و یک بار با async/await؛ بگویید کدام خواناتر است و چرا.",
+      "hint": "در نسخهٔ async/await دستورها به همان ترتیبی که اجرا می‌شوند از بالا به پایین نوشته می‌شوند."
+    },
+    {
+      "prompt": "دو await پشت سر هم روی دو فایل مستقل بگذارید و ببینید چقدر طول می‌کشد؛ بعد توضیح دهید چرا این حالت کندتر از حالت موازی است.",
+      "hint": "هر await منتظر تمام شدن عملیات قبلی می‌ماند، پس عملیات مستقل بی‌دلیل پشت سر هم صف می‌بندند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "تابع async چه چیزی برمی‌گرداند؟",
+      "options": [
+        "همیشه یک رشته",
+        "همیشه یک پرامیس",
+        "همیشه undefined",
+        "به مقدار return بستگی دارد و پرامیس نمی‌سازد"
+      ],
+      "answer": 1,
+      "explanation": "JavaScript مقدار برگشتی تابع async را خودکار داخل پرامیس می‌پیچد؛ پس حتی if یک رشته return کنید، خروجی پرامیس است."
+    },
+    {
+      "question": "کلیدواژهٔ await چه زمانی قابل استفاده است؟",
+      "options": [
+        "در هر جای کد",
+        "فقط داخل تابع async یا در سطح بالای ماژول",
+        "فقط داخل حلقه‌ها",
+        "فقط داخل try...catch"
+      ],
+      "answer": 1,
+      "explanation": "await بیرون از تابع async خطا می‌دهد؛ تنها استثنا، سطح بالای یک ماژول JavaScript است."
+    },
+    {
+      "question": "هنگام await چه چیزی متوقف می‌شود؟",
+      "options": [
+        "کل JavaScript",
+        "فقط تابع async جاری",
+        "مرورگر و رندر صفحه",
+        "همهٔ تایمرها و رویدادها"
+      ],
+      "answer": 1,
+      "explanation": "await فقط اجرای تابع async جاری را نگه می‌دارد؛ بقیهٔ کد، تایمرها و رویدادها به کار خود ادامه می‌دهند."
+    },
+    {
+      "question": "برای مدیریت خطای یک پرامیس await شده از چه ساختاری استفاده می‌کنیم؟",
+      "options": ["if...else", "try...catch", "for...of", "switch"],
+      "answer": 1,
+      "explanation": "خطای پرامیس‌های await شده مثل خطاهای معمولی در try...catch گرفته می‌شود؛ فراموش کردن آن باعث پنهان ماندن خطاها می‌شود."
+    },
+    {
+      "question": "چرا چند await پشت سر هم روی عملیات مستقل می‌تواند کند باشد؟",
+      "options": [
+        "چون await سرعت شبکه را کم می‌کند",
+        "چون هر await منتظر تمام شدن عملیات قبلی می‌ماند و عملیات‌ها پشت سر هم اجرا می‌شوند",
+        "چون await هر بار تابع را از نو می‌سازد",
+        "چون مرورگر await را نادیده می‌گیرد"
+      ],
+      "answer": 1,
+      "explanation": "awaitها یکی پس از دیگری اجرا می‌شوند؛ اگر عملیات‌ها به هم وابسته نباشند، بهتر است همزمان شروع شوند و با هم منتظرشان بمانیم."
+    }
+  ]
 }

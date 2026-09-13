@@ -1,1106 +1,931 @@
 {
- "slug": "js_meta_proxy",
- "course": "js",
- "order": 240,
- "url": "/js/js_meta_proxy.asp",
- "title": "JavaScript Proxy",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Proxy"
-  },
-  {
-   "type": "h2",
-   "text": "What is a Proxy?"
-  },
-  {
-   "type": "p",
-   "text": "A Proxy is a JavaScript object that can wrap other objects."
-  },
-  {
-   "type": "p",
-   "text": "A Proxy lets you control operations on other objects."
-  },
-  {
-   "type": "p",
-   "text": "A Proxy can trap and intercept code when someone is:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Reading a property (get)",
-    "Setting a property (set)",
-    "Deleting a property (deleteProperty)",
-    "Checking if a property exists (has)",
-    "Calling a function (apply)",
-    "Constructing an object (construct)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "A Proxy lets you run your own code when someone interacts with an object."
-  },
-  {
-   "type": "p",
-   "text": "A Proxy gan be a middleman between your code and a JavaScript object."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const proxy = new Proxy(target, handler);",
-   "caption": null
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "target - the original object or function",
-    "handler - an object with trap methods"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myObject = {name: \"Jan\"};\n\nconst proxy = new Proxy(myObject, {\n\n  get(target, prop) {\n\n    return target[prop];\n\n  }\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Proxy Logging"
-  },
-  {
-   "type": "p",
-   "text": "A typical Proxy example is logging of object changes."
-  },
-  {
-   "type": "p",
-   "text": "Below is a demo that:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Wraps an object in a Proxy",
-    "Logs whenever a property is read or written",
-    "Logs each get and set operation in real time"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n//Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n\n    return target[property];\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n\n    return target[property];\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nproxy.age = 42;\n\nlet text1 = proxy.name;\n\nlet text2 = proxy.age",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy"
-  },
-  {
-   "type": "h2",
-   "text": "Proxy with Reflect (Most Common)"
-  },
-  {
-   "type": "p",
-   "text": "Below is a demo that:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Wraps an object in a Proxy",
-    "Logs whenever a property is read or written",
-    "Uses Reflect.get() and Reflect.set() inside the Proxy handlers",
-    "get trap uses Reflect.get(target, property, receiver)",
-    "set trap uses Reflect.set(target, property, value, receiver)",
-    "Reflect makes the Proxy behavior match the normal object behavior"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n    // safe forwarding\n\n    return Reflect.get(target, property);\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n    // safe forwarding\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nproxy.age = 42;\n\nlet text1 = proxy.name;\n\nlet text2 = proxy.age",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_reflect"
-  },
-  {
-   "type": "h2",
-   "text": "Proxy with Reflect Flow"
-  },
-  {
-   "type": "p",
-   "text": "The flow below is the essence of JavaScript metaprogramming with Proxy + Reflect."
-  },
-  {
-   "type": "p",
-   "text": "Flow Explanation:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Your code interacts with an object",
-    "Proxy intercepts the operation",
-    "Your trap code decides what to do",
-    "Reflect forwards the operation safely",
-    "The target object receives the real action"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Why Proxies?"
-  },
-  {
-   "type": "p",
-   "text": "Proxies allow you to:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Add logging",
-    "Validate changes",
-    "Auto-generate properties",
-    "Protect sensitive data",
-    "Create virtual or computed objects",
-    "Intercept function calls",
-    "Create reactive systems (like Vue.js)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Proxy Validation"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  set(target, prop, value) {\n\n    if (prop === \"age\" && value < 0) {\n\n      text = \"Age cannot be negative!\";\n\n      document.getElementById(\"demo\").innerHTML = text;\n\n    }\n\n    return Reflect.set(target, prop, value);\n\n  }\n\n});\n\nproxy.age = 45;  // OK\n\nproxy.age = -5;  // Error",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_validate"
-  },
-  {
-   "type": "h2",
-   "text": "Virtual Properties"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  first: \"John\",\n\n  last:  \"Doe\"\n\n};\n\n// Create a Proxy\n\nconst virtual = new Proxy(person, {\n\n  get(target, prop) {\n\n    if (prop === \"fullName\") {\n\n      return target.first + \" \" + target.last;\n\n    }\n\n    return Reflect.get(target, prop);\n\n  }\n\n});\n\nlet text = virtual.fullName; // \"John Doe\"",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_virtual"
-  },
-  {
-   "type": "h2",
-   "text": "Dynamic Functions"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fn = new Function(\"a\", \"b\", \"return a + b\");\n\nlet result = fn(3, 2);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_dynamic"
-  },
-  {
-   "type": "h2",
-   "text": "Metaprogramming"
-  },
-  {
-   "type": "p",
-   "text": "Metaprogramming lets JavaScript:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Intercept behavior",
-    "Modify behavior",
-    "Define new behavior",
-    "Generate behavior dynamically"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "It gives developers deep control over the language's inner workings."
-  },
-  {
-   "type": "h2",
-   "text": "Proxy Traps"
-  },
-  {
-   "type": "p",
-   "text": "A trap is a function inside a Proxy handler."
-  },
-  {
-   "type": "p",
-   "text": "It runs whenever a specific operation is performed on the Proxy."
-  },
-  {
-   "type": "p",
-   "text": "Below is a complete and accurate explanation of every JavaScript Proxy trap, what triggers them,\ntheir parameters, and what they are expected to return."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Trap Name",
-    "Triggered when"
-   ],
-   "rows": [
-    [
-     "get",
-     "A property is read"
-    ],
-    [
-     "set",
-     "A property is changed"
-    ],
-    [
-     "has",
-     "Using the in operator"
-    ],
-    [
-     "deleteProperty",
-     "A property is deleted"
-    ],
-    [
-     "apply",
-     "A function is called"
-    ],
-    [
-     "construct",
-     "An object is cretated (with new)"
-    ],
-    [
-     "getOwnPropertyDescriptor",
-     "A property descriptor is retrieved"
-    ],
-    [
-     "defineProperty",
-     "A property is defined"
-    ],
-    [
-     "getPrototypeOf",
-     "A prototype is retrieved"
-    ],
-    [
-     "setPrototypeOf",
-     "A prototype is set"
-    ],
-    [
-     "isExtensible",
-     "Extensibility is checked"
-    ],
-    [
-     "preventExtensions",
-     "Existenibility is prevented"
-    ],
-    [
-     "ownKeys",
-     "Properties are listed"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "The list above is 2025-accurate and includes all 13 Proxy traps defined in ECMAScript."
-  },
-  {
-   "type": "p",
-   "text": "Each trap handler is decribed below."
-  },
-  {
-   "type": "h2",
-   "text": "handler.get()"
-  },
-  {
-   "type": "p",
-   "text": "Triggered when a property is read:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "get(obj, prop, receiver) {\n\n  return Reflect.get(obj, prop, receiver);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "proxy.property\n\nproxy[\"property\"]\n\nobject.property()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object",
-    "prop - the property being accessed",
-    "receiver - the this value for getters (usually the proxy itself)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The property value"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.set()"
-  },
-  {
-   "type": "p",
-   "text": "Triggered when a property is assigned a value:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "set(obj, prop, value, receiver) {\n\n  return Reflect.set(obj, prop, value, receiver);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "proxy.property = value;\n\nproxy[\"property\"] = value;",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object",
-    "prop - the property being set",
-    "value - the new property value",
-    "receiver - the object that received the assignment (usually the proxy)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true - if the assignment succeeded",
-    "false - if the assignment failed"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Throwing an error is also allowed."
-  },
-  {
-   "type": "h2",
-   "text": "handler.has()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts the in operator."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "has(obj, prop) {\n\n  return Reflect.has(obj, prop);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"property\" in proxy",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object",
-    "prop - the property being accessed",
-    "receiver - the value of this for setters (usually the proxy itself)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true",
-    "false"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.deleteProperty()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts the delete operator."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "deleteProperty(obj, prop) {\n\n  return Reflect.deleteProperty(obj, prop);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "delete proxy.property",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object",
-    "prop - the property to delete"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true - for sucess",
-    "false - for failure"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.apply()"
-  },
-  {
-   "type": "p",
-   "text": "Triggered when a function is called:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "apply(func, thisArg, args) {\n\n  return Reflect.apply(func, this, args);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "proxy()\n\nproxy.call()\n\nproxy.apply()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "func - the callable object (function)",
-    "this - the this argument for the call",
-    "args - the function arguments array"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The return value of the function"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.construct"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts the new operator."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "construct(obj, args, newTarget) {\n\n  return Reflect.construct(obj, args, newTarget);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "nex proxy()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the constructor object",
-    "args - the array of arguments passed",
-    "newTarget - the constructor"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "An Object (The new instance)"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const obj = {}  // No trap\n\nObject.create() // No trap\n\nclass User {};\n\nnew User();     // No trap",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "handler.getOwnPropertyDescriptor()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts property descriptor retrieval."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "getOwnPropertyDescriptor(obj, prop) {\n\n  return Reflect.getOwnPropertyDescriptor(obj, prop);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.getOwnPropertyDescriptor(obj, prop)",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object",
-    "prop - the property to describe"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "A property descriptor",
-    "undefined"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.defineProperty()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts Object.defineProperty()."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "defineProperty(obj, prop, descriptor) {\n\n  return Reflect.defineProperty(obj, prop, descriptor);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.defineProperty()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object",
-    "prop - the property to describe",
-    "descriptor - the property descriptor"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true - if sucess",
-    "false - if not"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.getPrototypeOf()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts prototype lookup."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "getPrototypeOf(obj) {\n\n  return Reflect.getPrototypeOf(obj);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.getPrototypeOf()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "An Object",
-    "null"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.setPrototypeOf()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts setting the prototype."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "setPrototypeOf(obj, prototype) {\n\n  return Reflect.setPrototypeOf(obj, prototype);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.settPrototypeOf()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object",
-    "prototype - the new prototype or null"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "An Object",
-    "null"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.isExtensible()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts checking if an object is extensible."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "isExtensible(obj) {\n\n  return Reflect.isExtensible(obj);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.isExtensible()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true - for yes",
-    "false - for no"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.preventExtentions()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts making an object non-extensible."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "preventExtensions(obj) {\n\n  return Reflect.preventExtensions(obj);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.preventExtensions()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true - for success",
-    "false - for failure"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "handler.ownKeys()"
-  },
-  {
-   "type": "p",
-   "text": "Intercepts operations listing keys (property names or symbols)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "ownKeys(obj) {\n\n  return Reflect.ownKeys(obj);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.keys()\n\nObject.getOwnPropertyNames()\n\nObject.getOwnPropertySymbols()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Parameters"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj - the target object"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Must Return"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "array of keys with no duplicates"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Proxy Traps Map Reflect Methods"
-  },
-  {
-   "type": "p",
-   "text": "A Proxy trap represents one of JavaScript's internal operations:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "[[Construct]]",
-    "[[Call]]",
-    "[[Get]]",
-    "[[Set]]",
-    "[[HasProperty]]",
-    "[[Delete]]",
-    "[[DefineProperty]]",
-    "[[GetOwnProperty]]",
-    "[[OwnPropertyKeys]]",
-    "[[GetPrototypeOf]]",
-    "[[SetPrototypeOf]]",
-    "[[PreventExtensions]]",
-    "[[IsExtensible]]"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "These internal operations are what JavaScript uses (inside the engine) when you access or modify objects."
-  },
-  {
-   "type": "p",
-   "text": "When a Proxy intercepts one of these operations, they should be forwarded correctly:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "get(target, property, receiver) {\n\n  return Reflect.get(target, property, receiver);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Reflect is used because Reflect methods are 1-to-1 mirrors of the internal operations."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "They produce correct return values (true/false/descriptor)",
-    "They avoid throwing errors that would break Proxy rules",
-    "They make the Proxy behave like normal JavaScript objects (unless modified)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "This is why every Proxy trap has a Reflect method with the same name and signature."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Internals Became Reflect"
-  },
-  {
-   "type": "p",
-   "text": "Before ES6 (2015), many fundamental operations did not exist as functions:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Operation",
-     "Before E6",
-     "Problem"
-    ],
-    [
-     "get property",
-     "obj[prop]",
-     "Not callable as a function"
-    ],
-    [
-     "set property",
-     "obj[prop] = value",
-     "Not callable as a function"
-    ],
-    [
-     "delete property",
-     "delete obj[prop]",
-     "Operator, not a function"
-    ],
-    [
-     "check property",
-     "\"prop\" in obj",
-     "Operator, not a function"
-    ],
-    [
-     "construct (new)",
-     "new Foo()",
-     "Not callable generically"
-    ],
-    [
-     "get prototypes",
-     "Object.getPrototypeOf(obj)",
-     "Throws on non-objects"
-    ],
-    [
-     "define property",
-     "Object.defineProperty()",
-     "Returns object instead of boolean"
-    ],
-    [
-     "own keys",
-     "Object.keys()",
-     "Not complete (misses symbols)"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "These were incomplete and inconsistent for Proxy forwarding."
-  },
-  {
-   "type": "p",
-   "text": "So ES6 (2015) added Reflect:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Internal Operation",
-    "Reflect Method"
-   ],
-   "rows": [
-    [
-     "[[Construct]]",
-     "Reflect.construct()"
-    ],
-    [
-     "[[Call]]",
-     "Reflect.apply()"
-    ],
-    [
-     "[[Get]]",
-     "Reflect.get()"
-    ],
-    [
-     "[[Set]]",
-     "Reflect.set()"
-    ],
-    [
-     "[[HasProperty]]",
-     "Reflect.has()"
-    ],
-    [
-     "[[Delete]]",
-     "Reflect.deleteProperty()"
-    ],
-    [
-     "[[DefineProperty]]",
-     "Reflect.defineProperty()"
-    ],
-    [
-     "[[GetOwnProperty]]",
-     "Reflect.getOwnProperty()"
-    ],
-    [
-     "[[OwnPropertyKeys]]",
-     "Reflect.ownPropertyKeys()"
-    ],
-    [
-     "[[IsExstensible]]",
-     "Reflect.isExtensible()"
-    ],
-    [
-     "[[PreventExstensions]]",
-     "Reflect.preventExtensions()"
-    ],
-    [
-     "[[GetPrototypeOf]]",
-     "Reflect.getPrototypeOf()"
-    ],
-    [
-     "[[SetPrototypeOf]]",
-     "Reflect.setPrototypeOf()"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Learn More"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Metaprogramming"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Reflect Tutorial"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Meta Reference"
-  }
- ]
+  "slug": "js_meta_proxy",
+  "course": "js",
+  "order": 240,
+  "url": "/js/js_meta_proxy.asp",
+  "title": "JavaScript Proxy",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Proxy"
+    },
+    {
+      "type": "h2",
+      "text": "What is a Proxy?"
+    },
+    {
+      "type": "p",
+      "text": "A Proxy is a JavaScript object that can wrap other objects."
+    },
+    {
+      "type": "p",
+      "text": "A Proxy lets you control operations on other objects."
+    },
+    {
+      "type": "p",
+      "text": "A Proxy can trap and intercept code when someone is:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Reading a property (get)",
+        "Setting a property (set)",
+        "Deleting a property (deleteProperty)",
+        "Checking if a property exists (has)",
+        "Calling a function (apply)",
+        "Constructing an object (construct)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "A Proxy lets you run your own code when someone interacts with an object."
+    },
+    {
+      "type": "p",
+      "text": "A Proxy gan be a middleman between your code and a JavaScript object."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const proxy = new Proxy(target, handler);",
+      "caption": null
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["target - the original object or function", "handler - an object with trap methods"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myObject = {name: \"Jan\"};\n\nconst proxy = new Proxy(myObject, {\n\n  get(target, prop) {\n\n    return target[prop];\n\n  }\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Proxy Logging"
+    },
+    {
+      "type": "p",
+      "text": "A typical Proxy example is logging of object changes."
+    },
+    {
+      "type": "p",
+      "text": "Below is a demo that:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Wraps an object in a Proxy",
+        "Logs whenever a property is read or written",
+        "Logs each get and set operation in real time"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n//Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n\n    return target[property];\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n\n    return target[property];\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nproxy.age = 42;\n\nlet text1 = proxy.name;\n\nlet text2 = proxy.age",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy"
+    },
+    {
+      "type": "h2",
+      "text": "Proxy with Reflect (Most Common)"
+    },
+    {
+      "type": "p",
+      "text": "Below is a demo that:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Wraps an object in a Proxy",
+        "Logs whenever a property is read or written",
+        "Uses Reflect.get() and Reflect.set() inside the Proxy handlers",
+        "get trap uses Reflect.get(target, property, receiver)",
+        "set trap uses Reflect.set(target, property, value, receiver)",
+        "Reflect makes the Proxy behavior match the normal object behavior"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n    // safe forwarding\n\n    return Reflect.get(target, property);\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n    // safe forwarding\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nproxy.age = 42;\n\nlet text1 = proxy.name;\n\nlet text2 = proxy.age",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_reflect"
+    },
+    {
+      "type": "h2",
+      "text": "Proxy with Reflect Flow"
+    },
+    {
+      "type": "p",
+      "text": "The flow below is the essence of JavaScript metaprogramming with Proxy + Reflect."
+    },
+    {
+      "type": "p",
+      "text": "Flow Explanation:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Your code interacts with an object",
+        "Proxy intercepts the operation",
+        "Your trap code decides what to do",
+        "Reflect forwards the operation safely",
+        "The target object receives the real action"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Why Proxies?"
+    },
+    {
+      "type": "p",
+      "text": "Proxies allow you to:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Add logging",
+        "Validate changes",
+        "Auto-generate properties",
+        "Protect sensitive data",
+        "Create virtual or computed objects",
+        "Intercept function calls",
+        "Create reactive systems (like Vue.js)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Proxy Validation"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  set(target, prop, value) {\n\n    if (prop === \"age\" && value < 0) {\n\n      text = \"Age cannot be negative!\";\n\n      document.getElementById(\"demo\").innerHTML = text;\n\n    }\n\n    return Reflect.set(target, prop, value);\n\n  }\n\n});\n\nproxy.age = 45;  // OK\n\nproxy.age = -5;  // Error",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_validate"
+    },
+    {
+      "type": "h2",
+      "text": "Virtual Properties"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  first: \"John\",\n\n  last:  \"Doe\"\n\n};\n\n// Create a Proxy\n\nconst virtual = new Proxy(person, {\n\n  get(target, prop) {\n\n    if (prop === \"fullName\") {\n\n      return target.first + \" \" + target.last;\n\n    }\n\n    return Reflect.get(target, prop);\n\n  }\n\n});\n\nlet text = virtual.fullName; // \"John Doe\"",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_virtual"
+    },
+    {
+      "type": "h2",
+      "text": "Dynamic Functions"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fn = new Function(\"a\", \"b\", \"return a + b\");\n\nlet result = fn(3, 2);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_dynamic"
+    },
+    {
+      "type": "h2",
+      "text": "Metaprogramming"
+    },
+    {
+      "type": "p",
+      "text": "Metaprogramming lets JavaScript:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Intercept behavior",
+        "Modify behavior",
+        "Define new behavior",
+        "Generate behavior dynamically"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "It gives developers deep control over the language's inner workings."
+    },
+    {
+      "type": "h2",
+      "text": "Proxy Traps"
+    },
+    {
+      "type": "p",
+      "text": "A trap is a function inside a Proxy handler."
+    },
+    {
+      "type": "p",
+      "text": "It runs whenever a specific operation is performed on the Proxy."
+    },
+    {
+      "type": "p",
+      "text": "Below is a complete and accurate explanation of every JavaScript Proxy trap, what triggers them,\ntheir parameters, and what they are expected to return."
+    },
+    {
+      "type": "table",
+      "headers": ["Trap Name", "Triggered when"],
+      "rows": [
+        ["get", "A property is read"],
+        ["set", "A property is changed"],
+        ["has", "Using the in operator"],
+        ["deleteProperty", "A property is deleted"],
+        ["apply", "A function is called"],
+        ["construct", "An object is cretated (with new)"],
+        ["getOwnPropertyDescriptor", "A property descriptor is retrieved"],
+        ["defineProperty", "A property is defined"],
+        ["getPrototypeOf", "A prototype is retrieved"],
+        ["setPrototypeOf", "A prototype is set"],
+        ["isExtensible", "Extensibility is checked"],
+        ["preventExtensions", "Existenibility is prevented"],
+        ["ownKeys", "Properties are listed"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The list above is 2025-accurate and includes all 13 Proxy traps defined in ECMAScript."
+    },
+    {
+      "type": "p",
+      "text": "Each trap handler is decribed below."
+    },
+    {
+      "type": "h2",
+      "text": "handler.get()"
+    },
+    {
+      "type": "p",
+      "text": "Triggered when a property is read:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "get(obj, prop, receiver) {\n\n  return Reflect.get(obj, prop, receiver);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "proxy.property\n\nproxy[\"property\"]\n\nobject.property()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "obj - the target object",
+        "prop - the property being accessed",
+        "receiver - the this value for getters (usually the proxy itself)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["The property value"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.set()"
+    },
+    {
+      "type": "p",
+      "text": "Triggered when a property is assigned a value:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "set(obj, prop, value, receiver) {\n\n  return Reflect.set(obj, prop, value, receiver);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "proxy.property = value;\n\nproxy[\"property\"] = value;",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "obj - the target object",
+        "prop - the property being set",
+        "value - the new property value",
+        "receiver - the object that received the assignment (usually the proxy)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true - if the assignment succeeded", "false - if the assignment failed"]
+    },
+    {
+      "type": "p",
+      "text": "Throwing an error is also allowed."
+    },
+    {
+      "type": "h2",
+      "text": "handler.has()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts the in operator."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "has(obj, prop) {\n\n  return Reflect.has(obj, prop);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"property\" in proxy",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "obj - the target object",
+        "prop - the property being accessed",
+        "receiver - the value of this for setters (usually the proxy itself)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true", "false"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.deleteProperty()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts the delete operator."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "deleteProperty(obj, prop) {\n\n  return Reflect.deleteProperty(obj, prop);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "delete proxy.property",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj - the target object", "prop - the property to delete"]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true - for sucess", "false - for failure"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.apply()"
+    },
+    {
+      "type": "p",
+      "text": "Triggered when a function is called:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "apply(func, thisArg, args) {\n\n  return Reflect.apply(func, this, args);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "proxy()\n\nproxy.call()\n\nproxy.apply()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "func - the callable object (function)",
+        "this - the this argument for the call",
+        "args - the function arguments array"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["The return value of the function"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.construct"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts the new operator."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "construct(obj, args, newTarget) {\n\n  return Reflect.construct(obj, args, newTarget);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "nex proxy()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "obj - the constructor object",
+        "args - the array of arguments passed",
+        "newTarget - the constructor"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["An Object (The new instance)"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const obj = {}  // No trap\n\nObject.create() // No trap\n\nclass User {};\n\nnew User();     // No trap",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "handler.getOwnPropertyDescriptor()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts property descriptor retrieval."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "getOwnPropertyDescriptor(obj, prop) {\n\n  return Reflect.getOwnPropertyDescriptor(obj, prop);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.getOwnPropertyDescriptor(obj, prop)",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj - the target object", "prop - the property to describe"]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["A property descriptor", "undefined"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.defineProperty()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts Object.defineProperty()."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "defineProperty(obj, prop, descriptor) {\n\n  return Reflect.defineProperty(obj, prop, descriptor);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.defineProperty()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "obj - the target object",
+        "prop - the property to describe",
+        "descriptor - the property descriptor"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true - if sucess", "false - if not"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.getPrototypeOf()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts prototype lookup."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "getPrototypeOf(obj) {\n\n  return Reflect.getPrototypeOf(obj);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.getPrototypeOf()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj - the target object"]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["An Object", "null"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.setPrototypeOf()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts setting the prototype."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "setPrototypeOf(obj, prototype) {\n\n  return Reflect.setPrototypeOf(obj, prototype);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.settPrototypeOf()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj - the target object", "prototype - the new prototype or null"]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["An Object", "null"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.isExtensible()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts checking if an object is extensible."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "isExtensible(obj) {\n\n  return Reflect.isExtensible(obj);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.isExtensible()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj - the target object"]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true - for yes", "false - for no"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.preventExtentions()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts making an object non-extensible."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "preventExtensions(obj) {\n\n  return Reflect.preventExtensions(obj);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.preventExtensions()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj - the target object"]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true - for success", "false - for failure"]
+    },
+    {
+      "type": "h2",
+      "text": "handler.ownKeys()"
+    },
+    {
+      "type": "p",
+      "text": "Intercepts operations listing keys (property names or symbols)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "ownKeys(obj) {\n\n  return Reflect.ownKeys(obj);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.keys()\n\nObject.getOwnPropertyNames()\n\nObject.getOwnPropertySymbols()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Parameters"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj - the target object"]
+    },
+    {
+      "type": "p",
+      "text": "Must Return"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["array of keys with no duplicates"]
+    },
+    {
+      "type": "h2",
+      "text": "Proxy Traps Map Reflect Methods"
+    },
+    {
+      "type": "p",
+      "text": "A Proxy trap represents one of JavaScript's internal operations:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "[[Construct]]",
+        "[[Call]]",
+        "[[Get]]",
+        "[[Set]]",
+        "[[HasProperty]]",
+        "[[Delete]]",
+        "[[DefineProperty]]",
+        "[[GetOwnProperty]]",
+        "[[OwnPropertyKeys]]",
+        "[[GetPrototypeOf]]",
+        "[[SetPrototypeOf]]",
+        "[[PreventExtensions]]",
+        "[[IsExtensible]]"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "These internal operations are what JavaScript uses (inside the engine) when you access or modify objects."
+    },
+    {
+      "type": "p",
+      "text": "When a Proxy intercepts one of these operations, they should be forwarded correctly:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "get(target, property, receiver) {\n\n  return Reflect.get(target, property, receiver);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Reflect is used because Reflect methods are 1-to-1 mirrors of the internal operations."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "They produce correct return values (true/false/descriptor)",
+        "They avoid throwing errors that would break Proxy rules",
+        "They make the Proxy behave like normal JavaScript objects (unless modified)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "This is why every Proxy trap has a Reflect method with the same name and signature."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Internals Became Reflect"
+    },
+    {
+      "type": "p",
+      "text": "Before ES6 (2015), many fundamental operations did not exist as functions:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Operation", "Before E6", "Problem"],
+        ["get property", "obj[prop]", "Not callable as a function"],
+        ["set property", "obj[prop] = value", "Not callable as a function"],
+        ["delete property", "delete obj[prop]", "Operator, not a function"],
+        ["check property", "\"prop\" in obj", "Operator, not a function"],
+        ["construct (new)", "new Foo()", "Not callable generically"],
+        ["get prototypes", "Object.getPrototypeOf(obj)", "Throws on non-objects"],
+        ["define property", "Object.defineProperty()", "Returns object instead of boolean"],
+        ["own keys", "Object.keys()", "Not complete (misses symbols)"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "These were incomplete and inconsistent for Proxy forwarding."
+    },
+    {
+      "type": "p",
+      "text": "So ES6 (2015) added Reflect:"
+    },
+    {
+      "type": "table",
+      "headers": ["Internal Operation", "Reflect Method"],
+      "rows": [
+        ["[[Construct]]", "Reflect.construct()"],
+        ["[[Call]]", "Reflect.apply()"],
+        ["[[Get]]", "Reflect.get()"],
+        ["[[Set]]", "Reflect.set()"],
+        ["[[HasProperty]]", "Reflect.has()"],
+        ["[[Delete]]", "Reflect.deleteProperty()"],
+        ["[[DefineProperty]]", "Reflect.defineProperty()"],
+        ["[[GetOwnProperty]]", "Reflect.getOwnProperty()"],
+        ["[[OwnPropertyKeys]]", "Reflect.ownPropertyKeys()"],
+        ["[[IsExstensible]]", "Reflect.isExtensible()"],
+        ["[[PreventExstensions]]", "Reflect.preventExtensions()"],
+        ["[[GetPrototypeOf]]", "Reflect.getPrototypeOf()"],
+        ["[[SetPrototypeOf]]", "Reflect.setPrototypeOf()"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Learn More"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Metaprogramming"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Reflect Tutorial"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Meta Reference"
+    }
+  ]
 }

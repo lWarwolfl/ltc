@@ -69,7 +69,14 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
   return (
     <html lang={locale.languageCode} dir={locale.direction} suppressHydrationWarning>
-      <body className={cn(locale.font.variable, geistMono.variable, locale.font.className, 'antialiased')}>
+      <body
+        className={cn(
+          locale.font.variable,
+          geistMono.variable,
+          locale.font.className,
+          'antialiased'
+        )}
+      >
         <WrappedProviders>{children}</WrappedProviders>
       </body>
     </html>

@@ -1,256 +1,220 @@
 {
- "slug": "js_this",
- "course": "js",
- "order": 212,
- "url": "/js/js_this.asp",
- "title": "this in JavaScript Objects",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "this in JavaScript Objects"
-  },
-  {
-   "type": "h2",
-   "text": "this in an Object Method"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n    firstName: \"John\",\n\n  lastName : \"Doe\",\n\n    id       : 5566,\n\n    fullName : function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n\n};",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_method"
-  },
-  {
-   "type": "p",
-   "text": "When used in an object method, this refers to the object."
-  },
-  {
-   "type": "p",
-   "text": "In the example above, this refers to the person object."
-  },
-  {
-   "type": "p",
-   "text": "Because the fullName method is a method of the person object."
-  },
-  {
-   "type": "h2",
-   "text": "Object Method Binding"
-  },
-  {
-   "type": "p",
-   "text": "In these examples, this is the person object:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n    firstName  : \"John\",\n\n    lastName   : \"Doe\",\n\n    id         : 5566,\n\n    myFunction : function() {\n\n    return this;\n  }\n\n};",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_object"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n    firstName: \"John\",\n\n    lastName : \"Doe\",\n\n    id       : 5566,\n\n    fullName : function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_method"
-  },
-  {
-   "type": "p",
-   "text": "i.e. this.firstName is the firstName property of this (the person object)."
-  },
-  {
-   "type": "h2",
-   "text": "Explicit Function Binding"
-  },
-  {
-   "type": "p",
-   "text": "The call() and apply() methods are predefined JavaScript methods."
-  },
-  {
-   "type": "p",
-   "text": "They can both be used to call an object method with another object as argument."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "See Also:\nThe Function call() Method\nThe Function apply() Method\nThe Function bind() Method"
-  },
-  {
-   "type": "p",
-   "text": "The example below calls person1.fullName with person2 as an argument, this refers to person2,\neven if fullName is a method of person1:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person1 = {\n\n    fullName: function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\nconst person2 = {\n\n    firstName:\"John\",\n\n    lastName: \"Doe\",\n\n}\n\n// Return \"John Doe\":\n\nperson1.fullName.call(person2);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_call"
-  },
-  {
-   "type": "h2",
-   "text": "Function Borrowing"
-  },
-  {
-   "type": "p",
-   "text": "With the bind() method, an object can borrow a method from another object."
-  },
-  {
-   "type": "p",
-   "text": "This example creates 2 objects (person and member)."
-  },
-  {
-   "type": "p",
-   "text": "The member object borrows the fullname method from the person object:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    fullName: function () {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nconst member = {\n\n  firstName:\"Hege\",\n\n  lastName: \"Nilsen\",\n\n}\n\nlet fullName = person.fullName.bind(member);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_borrow"
-  },
-  {
-   "type": "h2",
-   "text": "What is this?"
-  },
-  {
-   "type": "p",
-   "text": "In JavaScript, the this keyword refers to an object."
-  },
-  {
-   "type": "p",
-   "text": "The this keyword refers to different objects depending on how it is used:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Alone, this refers to the global object."
-    ],
-    [
-     "In a function, this refers to the global object."
-    ],
-    [
-     "In a function, in strict mode, this is undefined."
-    ],
-    [
-     "In an object method, this refers to the object."
-    ],
-    [
-     "In an event, this refers to the element that received the event."
-    ],
-    [
-     "In methods like call(), apply()\nand bind(), this can refer to any object."
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "this is not a variable."
-  },
-  {
-   "type": "p",
-   "text": "this is a keyword."
-  },
-  {
-   "type": "p",
-   "text": "You cannot change the value of this."
-  },
-  {
-   "type": "h2",
-   "text": "This Precedence"
-  },
-  {
-   "type": "p",
-   "text": "Use the following precedence of order to determine which object this refers to:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Order",
-     "Object",
-     "Because"
-    ],
-    [
-     "1",
-     "bind()",
-     "this is in a function being called using bind()"
-    ],
-    [
-     "2",
-     "apply()",
-     "this is in a function being called using apply()"
-    ],
-    [
-     "2",
-     "call()",
-     "this is in a function being called using call()"
-    ],
-    [
-     "3",
-     "Object method",
-     "this is in an object function (method)"
-    ],
-    [
-     "4",
-     "Global scope",
-     "this is in a function in the global scope"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Advanced Chapters:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Definitions"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Advanced this"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Iterations"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Getters & Setters"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Management"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Protection"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Prototypes"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Object Reference"
-  }
- ]
+  "slug": "js_this",
+  "course": "js",
+  "order": 212,
+  "url": "/js/js_this.asp",
+  "title": "this in JavaScript Objects",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "this in JavaScript Objects"
+    },
+    {
+      "type": "h2",
+      "text": "this in an Object Method"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n    firstName: \"John\",\n\n  lastName : \"Doe\",\n\n    id       : 5566,\n\n    fullName : function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n\n};",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_method"
+    },
+    {
+      "type": "p",
+      "text": "When used in an object method, this refers to the object."
+    },
+    {
+      "type": "p",
+      "text": "In the example above, this refers to the person object."
+    },
+    {
+      "type": "p",
+      "text": "Because the fullName method is a method of the person object."
+    },
+    {
+      "type": "h2",
+      "text": "Object Method Binding"
+    },
+    {
+      "type": "p",
+      "text": "In these examples, this is the person object:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n    firstName  : \"John\",\n\n    lastName   : \"Doe\",\n\n    id         : 5566,\n\n    myFunction : function() {\n\n    return this;\n  }\n\n};",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_object"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n    firstName: \"John\",\n\n    lastName : \"Doe\",\n\n    id       : 5566,\n\n    fullName : function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_method"
+    },
+    {
+      "type": "p",
+      "text": "i.e. this.firstName is the firstName property of this (the person object)."
+    },
+    {
+      "type": "h2",
+      "text": "Explicit Function Binding"
+    },
+    {
+      "type": "p",
+      "text": "The call() and apply() methods are predefined JavaScript methods."
+    },
+    {
+      "type": "p",
+      "text": "They can both be used to call an object method with another object as argument."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "See Also:\nThe Function call() Method\nThe Function apply() Method\nThe Function bind() Method"
+    },
+    {
+      "type": "p",
+      "text": "The example below calls person1.fullName with person2 as an argument, this refers to person2,\neven if fullName is a method of person1:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person1 = {\n\n    fullName: function() {\n\n      return this.firstName + \" \" + this.lastName;\n\n    }\n}\n\nconst person2 = {\n\n    firstName:\"John\",\n\n    lastName: \"Doe\",\n\n}\n\n// Return \"John Doe\":\n\nperson1.fullName.call(person2);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_this_call"
+    },
+    {
+      "type": "h2",
+      "text": "Function Borrowing"
+    },
+    {
+      "type": "p",
+      "text": "With the bind() method, an object can borrow a method from another object."
+    },
+    {
+      "type": "p",
+      "text": "This example creates 2 objects (person and member)."
+    },
+    {
+      "type": "p",
+      "text": "The member object borrows the fullname method from the person object:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    fullName: function () {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nconst member = {\n\n  firstName:\"Hege\",\n\n  lastName: \"Nilsen\",\n\n}\n\nlet fullName = person.fullName.bind(member);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_borrow"
+    },
+    {
+      "type": "h2",
+      "text": "What is this?"
+    },
+    {
+      "type": "p",
+      "text": "In JavaScript, the this keyword refers to an object."
+    },
+    {
+      "type": "p",
+      "text": "The this keyword refers to different objects depending on how it is used:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Alone, this refers to the global object."],
+        ["In a function, this refers to the global object."],
+        ["In a function, in strict mode, this is undefined."],
+        ["In an object method, this refers to the object."],
+        ["In an event, this refers to the element that received the event."],
+        ["In methods like call(), apply()\nand bind(), this can refer to any object."]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "this is not a variable."
+    },
+    {
+      "type": "p",
+      "text": "this is a keyword."
+    },
+    {
+      "type": "p",
+      "text": "You cannot change the value of this."
+    },
+    {
+      "type": "h2",
+      "text": "This Precedence"
+    },
+    {
+      "type": "p",
+      "text": "Use the following precedence of order to determine which object this refers to:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Order", "Object", "Because"],
+        ["1", "bind()", "this is in a function being called using bind()"],
+        ["2", "apply()", "this is in a function being called using apply()"],
+        ["2", "call()", "this is in a function being called using call()"],
+        ["3", "Object method", "this is in an object function (method)"],
+        ["4", "Global scope", "this is in a function in the global scope"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Advanced Chapters:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Definitions"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Advanced this"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Iterations"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Getters & Setters"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Management"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Protection"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Prototypes"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Object Reference"
+    }
+  ]
 }

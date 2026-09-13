@@ -1,363 +1,358 @@
 {
- "slug": "js_project_form_validation",
- "course": "js",
- "order": 122,
- "url": "/js/js_project_form_validation.asp",
- "title": "پروژه: اعتبارسنجی فرم",
- "summary": "در این پروژه یک فرم با اعتبارسنجی می‌سازید که زیر هر فیلد پیام خطا نشان می‌دهد و تا درست شدن همه چیز ارسال نمی‌شود. با جلوگیری از ارسال فرم، تشخیص ایمیل و گذرواژه، و نمایش و پاک کردن پیام خطا کار می‌کنید.",
- "objectives": [
-  "ساختار فرم با چهار فیلد و عنصرهای پیام خطا بسازید",
-  "برای هر فیلد یک تابع اعتبارسنجی بنویسید",
-  "ارسال فرم را با event.preventDefault() متوقف کنید",
-  "قواعد ایمیل و گذرواژه و تطابق تکرار گذرواژه را بررسی کنید",
-  "پیام‌های خطا را با تغییر رنگ و متن نمایش دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "پروژه: اعتبارسنجی فرم"
-  },
-  {
-   "type": "p",
-   "text": "در این پروژه یک فرم همراه با اعتبارسنجی می‌سازید."
-  },
-  {
-   "type": "p",
-   "text": "فرم زیر هر فیلد پیام خطا نشان می‌دهد و تا وقتی همه چیز درست نباشد ارسال نمی‌شود."
-  },
-  {
-   "type": "h3",
-   "text": "چه یاد می‌گیرید"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "چگونه فیلدهای فرم را با JavaScript اعتبارسنجی کنید",
-    "چگونه جلوی ارسال فرم را بگیرید",
-    "چگونه پیام خطا را زیر فیلدها نمایش دهید",
-    "چگونه قواعد ایمیل و گذرواژه را بررسی کنید"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "گام ۱: ساخت HTML"
-  },
-  {
-   "type": "p",
-   "text": "فرمی با چهار فیلد بسازید و زیر هر فیلد یک عنصر برای پیام خطا بگذارید."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form id=\"signupForm\">\n\n<div class=\"field\">\n\n  <label>Name:</label><br>\n\n  <input id=\"name\" type=\"text\" placeholder=\"Your name\">\n\n  <p id=\"nameError\" class=\"error\"></p>\n\n</div>\n\n<form>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation1"
-  },
-  {
-   "type": "h2",
-   "text": "گام ۲: افزودن CSS"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<style>\n\ninput {\n\n  padding: 8px;\n\n  width: 260px;\n\n  margin-bottom: 4px;\n\n}\n\n.error {\n\n  color: red;\n\n  margin: 0;\n\n}\n\n.ok {\n\n  color: green;\n\n  margin: 0;\n\n}\n\n.field {\n\n  margin-bottom: 12px;\n\n}\n\n</style>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation2"
-  },
-  {
-   "type": "h2",
-   "text": "گام ۳: افزودن JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "برای هر فیلد باید یک شیء بسازید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object for each Field\n\nconst form = document.getElementById(\"signupForm\");\n\nconst nameInput = document.getElementById(\"name\");\n\nconst emailInput = document.getElementById(\"email\");\n\nconst passInput = document.getElementById(\"password\");\n\nconst confirmInput = document.getElementById(\"confirm\");\n\nconst nameError = document.getElementById(\"nameError\");\n\nconst emailError = document.getElementById(\"emailError\");\n\nconst passError = document.getElementById(\"passwordError\");\n\nconst confirmError = document.getElementById(\"confirmError\");\n\nconst result = document.getElementById(\"result\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "به تابعی برای نمایش خطاها نیاز دارید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Display Error\n\nfunction showError(el, message) {\n\n  el.innerHTML = message;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "به تابعی برای پاک کردن پیام خطا نیاز دارید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Clear the Error\n\nfunction clearError(el) {\n\n  el.innerHTML = \"\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "به تابعی برای اعتبارسنجی فرم نیاز دارید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Form\n\nfunction validateForm() {\n\n  return false;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "به کدی برای اعتبارسنجی فرم نیاز دارید."
-  },
-  {
-   "type": "p",
-   "text": "برای اعتبارسنجی فرم باید جلوی بارگذاری دوبارهٔ صفحه را بگیرید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Prevent Default Reloading\n\nform.addEventListener(\"submit\", function (event) {\n\n  event.preventDefault();\n\n// Clear Result\n\n  result.innerHTML = \"\";\n\n// Validate Form\n\n  if (validateForm()) {\n\n    result.innerHTML = \"Form is valid!\";\n\n    result.className = \"ok\";\n\n  } else {\n\n    result.innerHTML = \"Please fix the errors.\";\n\n    result.className = \"error\";\n\n  }\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation3"
-  },
-  {
-   "type": "h2",
-   "text": "گام ۴: اعتبارسنجی فیلدها"
-  },
-  {
-   "type": "p",
-   "text": "برای هر فیلد یک تابع بسازید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Name\n\nfunction validateName() {\n\n  let value = nameInput.value.trim();\n\n  if (value.length < 2) {\n\n    showError(nameError, \"Name must be at least 2 characters.\");\n\n    return false;\n\n  }\n\n  clearError(nameError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  return okName;\n\n}",
-   "caption": "اعتبارسنجی نام"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation4"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Email\n\nfunction validateEmail() {\n\n  let value = emailInput.value.trim();\n\n  if (!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value))) {\n\n    showError(emailError, \"Enter a valid email address.\");\n\n    return false;\n\n  }\n\n  clearError(emailError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  return okName && okEmail;\n\n}",
-   "caption": "اعتبارسنجی ایمیل"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation5"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Password\n\nfunction validatePassword() {\n\n  let value = passInput.value;\n\n  if (value.length < 8) {\n\n    showError(passError, \"Password must be at least 8 characters.\");\n\n    return false;\n\n  }\n\n  clearError(passError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  return okName && okEmail && okPass;\n\n}",
-   "caption": "اعتبارسنجی گذرواژه"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation6"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to Validate Confirm\n\nfunction validateConfirm() {\n\n  let pass = passInput.value;\n\n  let confirm = confirmInput.value;\n\n  if (confirm === \"\") {\n\n    showError(confirmError, \"Please confirm your password.\");\n\n    return false;\n\n  }\n\n  if (confirm !== pass) {\n\n    showError(confirmError, \"Passwords do not match.\");\n\n    return false;\n\n  }\n\n  clearError(confirmError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  let okConfirm = validateConfirm();\n\n  return okName && okEmail && okPass && okConfirm;\n\n}",
-   "caption": "اعتبارسنجی تکرار گذرواژه"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation7"
-  },
-  {
-   "type": "h2",
-   "text": "اعتبارسنجی فرم (نسخهٔ نهایی)"
-  },
-  {
-   "type": "p",
-   "text": "این مثال پروژهٔ کامل‌شده را نشان می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<style>\n\ninput {\n\n  padding: 8px;\n\n  width: 260px;\n\n  margin-bottom: 4px;\n\n}\n\n.error {\n\n  color: red;\n\n  margin: 0;\n\n}\n\n.ok {\n\n  color: green;\n\n  margin: 0;\n\n}\n\n.field {\n\n  margin-bottom: 12px;\n\n}\n\n</style>",
-   "caption": "CSS"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<style>\n\n... CSS goes here\n\n</style>\n\n<body>\n\n<h2>Sign Up</h2>\n\n<form id=\"signupForm\">\n\n<div class=\"field\">\n\n  <label>Name:</label><br>\n\n  <input id=\"name\" type=\"text\" placeholder=\"Your name\">\n\n  <p id=\"nameError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Email:</label><br>\n\n  <input id=\"email\" type=\"text\" placeholder=\"name@example.com\">\n\n  <p id=\"emailError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Password:</label><br>\n\n  <input id=\"password\" type=\"password\" placeholder=\"Min 8 characters\">\n\n  <p id=\"passwordError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Confirm Password:</label><br>\n\n  <input id=\"confirm\" type=\"password\" placeholder=\"Repeat password\">\n\n  <p id=\"confirmError\" class=\"error\"></p>\n\n</div>\n\n<p><button type=\"submit\">Create Account</button></p>\n\n</form>\n\n<p id=\"result\"></p>\n\n<script>\n\n// JavaScript goes here\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "HTML"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object for each Field\n\nconst form = document.getElementById(\"signupForm\");\n\nconst nameInput = document.getElementById(\"name\");\n\nconst emailInput = document.getElementById(\"email\");\n\nconst passInput = document.getElementById(\"password\");\n\nconst confirmInput = document.getElementById(\"confirm\");\n\nconst nameError = document.getElementById(\"nameError\");\n\nconst emailError = document.getElementById(\"emailError\");\n\nconst passError = document.getElementById(\"passwordError\");\n\nconst confirmError = document.getElementById(\"confirmError\");\n\nconst result = document.getElementById(\"result\");\n\n// Function to Display Error\n\nfunction showError(el, message) {\n\n  el.innerHTML = message;\n\n}\n\n// Function to Clear Error\n\nfunction clearError(el) {\n\n  el.innerHTML = \"\";\n\n}\n\n// Function to Validate Name\n\nfunction validateName() {\n\n  let value = nameInput.value.trim();\n\n  if (value.length < 2) {\n\n    showError(nameError, \"Name must be at least 2 characters.\");\n\n    return false;\n\n  }\n\n  clearError(nameError);\n\n  return true;\n\n}\n\n// Function to Validate Email\n\nfunction validateEmail() {\n\n  let value = emailInput.value.trim();\n\n  if (!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value))) {\n\n    showError(emailError, \"Enter a valid email address.\");\n\n    return false;\n\n  }\n\n  clearError(emailError);\n\n  return true;\n\n}\n\n// Function to Validate Password\n\nfunction validatePassword() {\n\n  let value = passInput.value;\n\n  if (value.length < 8) {\n\n    showError(passError, \"Password must be at least 8 characters.\");\n\n    return false;\n\n  }\n\n  clearError(passError);\n\n  return true;\n\n}\n\n// Function to Validate Confirm\n\nfunction validateConfirm() {\n\n  let pass = passInput.value;\n\n  let confirm = confirmInput.value;\n\n  if (confirm === \"\") {\n\n    showError(confirmError, \"Please confirm your password.\");\n\n    return false;\n\n  }\n\n  if (confirm !== pass) {\n\n    showError(confirmError, \"Passwords do not match.\");\n\n    return false;\n\n  }\n\n  clearError(confirmError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  let okConfirm = validateConfirm();\n\n  return okName && okEmail && okPass && okConfirm;\n\n}\n\n// Prevent Default Reloading\n\nform.addEventListener(\"submit\", function (event) {\n\n  event.preventDefault();\n\n// Clear Result\n\n  result.innerHTML = \"\";\n\n// Validate Form\n\n  if (validateForm()) {\n\n    result.innerHTML = \"Form is valid!\";\n\n    result.className = \"ok\";\n\n  } else {\n\n    result.innerHTML = \"Please fix the errors.\";\n\n    result.className = \"error\";\n\n  }\n\n});",
-   "caption": "JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation9"
-  },
-  {
-   "type": "h2",
-   "text": "اشتباه‌های رایج"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "فراموش کردن event.preventDefault()",
-    "trim نکردن مقدار ورودی‌ها",
-    "استفاده از innerHTML با ورودی کاربر (برای پیام‌ها فقط از متن استفاده کنید)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تمرین‌ها"
-  },
-  {
-   "type": "h3",
-   "text": "تمرین ۱"
-  },
-  {
-   "type": "p",
-   "text": "قاعده‌ای اضافه کنید که گذرواژه حداقل یک عدد داشته باشد."
-  },
-  {
-   "type": "h3",
-   "text": "تمرین ۲"
-  },
-  {
-   "type": "p",
-   "text": "فیلدها را هنگام تایپ کاربر اعتبارسنجی کنید (از رویداد input استفاده کنید)."
-  },
-  {
-   "type": "h3",
-   "text": "تمرین ۳"
-  },
-  {
-   "type": "p",
-   "text": "کنار فیلدهای درست یک پیام سبز نمایش دهید."
-  },
-  {
-   "type": "h2",
-   "text": "چالش‌های امتیازی (یک سطح بالاتر)"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "نشانگر قدرت گذرواژه اضافه کنید (ضعیف / متوسط / قوی)",
-    "دکمهٔ ارسال را تا درست شدن همه چیز غیرفعال نگه دارید",
-    "دکمهٔ نمایش و پنهان کردن گذرواژه"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پروژه‌های JavaScript"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "شمارندهٔ JavaScript\nپروژهٔ شمارنده با ذخیره و بازیابی در localStorage.",
-    "شنوندهٔ رویداد JavaScript\nهمان پروژهٔ شمارنده، این بار با شنوندهٔ رویداد (event listener) به‌جای onclick.",
-    "فهرست کارهای روزانه\nفهرست کارهایی که در یک آرایه در localStorage ذخیره می‌شود.",
-    "پنجرهٔ مودال\nیک پنجرهٔ مودال که روی صفحه ظاهر می‌شود.",
-    "اعتبارسنجی فرم\nیک فرم HTML همراه با اعتبارسنجی فرم."
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل form.html بسازید با چهار فیلد نام، ایمیل، گذرواژه و تکرار گذرواژه و زیر هر فیلد یک عنصر خالی برای پیام خطا.",
-   "hint": "برای هر فیلد یک متغیر بسازید و عنصر پیام خطا را با یک شناسه مثل errName در دسترس داشته باشید."
-  },
-  {
-   "prompt": "برای هر فیلد یک شیء با فیلد ورودی و عنصر خطا بسازید و تابعی بنویسید که پیام خطا را زیر فیلد نمایش دهد و پاک کند.",
-   "hint": "یک شیء مثل { input: nameInput, error: errName } کار را مرتب می‌کند؛ نمایش خطا یعنی گذاشتن متن در عنصر خطا."
-  },
-  {
-   "prompt": "تابع main را بنویسید که هنگام ارسال فرم با event.preventDefault() جلوی بارگذاری دوبارهٔ صفحه را بگیرد و همهٔ فیلدها را بررسی کند.",
-   "hint": "با فرم.addEventListener(\"submit\", ...) شروع کنید و اولین خطش event.preventDefault() باشد."
-  },
-  {
-   "prompt": "تمرین‌های درس را انجام دهید: قاعدهٔ حداقل یک عدد در گذرواژه، اعتبارسنجی هنگام تایپ با رویداد input و پیام سبز برای فیلدهای درست.",
-   "hint": "برای عدد از /\\d/ در گذرواژه استفاده کنید؛ برای پیام سبز فقط رنگ متن را در CSS عوض کنید."
-  },
-  {
-   "prompt": "با مقایسهٔ گذرواژه و تکرار آن بررسی کنید که هر دو یکسان باشند و در صورت نبودن پیام مناسب نشان دهید.",
-   "hint": "پیش از بررسی تکرار گذرواژه، اول مطمئن شوید خود گذرواژه درست است تا پیام خطا گیج‌کننده نشود."
-  }
- ],
- "quiz": [
-  {
-   "question": "چرا در تابع اعتبارسنجی فرم باید event.preventDefault() را صدا بزنیم؟",
-   "options": [
-    "تا خطاها پاک شوند",
-    "تا فیلدها پاک شوند",
-    "تا فرم ارسال شود",
-    "تا جلوی بارگذاری دوبارهٔ صفحه هنگام ارسال فرم گرفته شود"
-   ],
-   "answer": 3,
-   "explanation": "رفتار پیش‌فرض ارسال فرم، بارگذاری دوبارهٔ صفحه است؛ preventDefault جلوی آن را می‌گیرد تا کد اعتبارسنجی اجرا شود و خطاها نمایش داده شوند."
-  },
-  {
-   "question": "چرا مقدار ورودی‌ها را trim می‌کنیم؟",
-   "options": [
-    "تا فاصله‌های خالی ابتدا و انتهای متن باعث پذیرش ورودی نادرست نشوند",
-    "تا متن کوچک‌تر شود",
-    "چون مرورگر بدون trim کار نمی‌کند",
-    "تا رنگ متن عوض شود"
-   ],
-   "answer": 0,
-   "explanation": "trim فاصله‌های اضافی را حذف می‌کند؛ بدون آن ورودی‌ای که فقط فاصله دارد معتبر شمرده می‌شود و قاعدهٔ اعتبارسنجی بی‌اثر می‌ماند."
-  },
-  {
-   "question": "چرا استفاده از innerHTML با ورودی کاربر خطرناک است؟",
-   "options": [
-    "چون خطا پرتاب می‌کند",
-    "چون می‌تواند کد HTML واردشده را اجرا کند",
-    "چون متن را بلندتر می‌کند",
-    "چون innerHTML در همهٔ مرورگرها نیست"
-   ],
-   "answer": 1,
-   "explanation": "innerHTML ورودی را به‌عنوان HTML تفسیر می‌کند و ورودی کاربر می‌تواند کد مخرب برساند؛ برای پیام‌ها فقط متن خالی را قرار دهید."
-  },
-  {
-   "question": "کار تابعی که برای هر فیلد می‌سازیم چیست؟",
-   "options": [
-    "پاک کردن کل فرم",
-    "بارگذاری صفحه",
-    "بررسی قاعدهٔ همان فیلد و نمایش یا پاک کردن پیام خطای آن",
-    "ارسال فرم"
-   ],
-   "answer": 2,
-   "explanation": "هر تابع فقط یک فیلد را بررسی می‌کند و نتیجه را با پیام خطا نشان می‌دهد؛ همین کار کد را خواناتر و اشکال‌زدایی را ساده‌تر می‌کند."
-  },
-  {
-   "question": "برای دیدن خطاها هم‌زمان با تایپ کاربر از کدام رویداد استفاده می‌کنیم؟",
-   "options": [
-    "submit",
-    "keyup on document",
-    "DOMContentLoaded",
-    "input"
-   ],
-   "answer": 3,
-   "explanation": "رویداد input هنگام تغییر مقدار فیلد (تایپ، چسباندن یا پاک کردن) اجرا می‌شود؛ به همین دلیل برای اعتبارسنجی زنده مناسب است."
-  }
- ]
+  "slug": "js_project_form_validation",
+  "course": "js",
+  "order": 122,
+  "url": "/js/js_project_form_validation.asp",
+  "title": "پروژه: اعتبارسنجی فرم",
+  "summary": "در این پروژه یک فرم با اعتبارسنجی می‌سازید که زیر هر فیلد پیام خطا نشان می‌دهد و تا درست شدن همه چیز ارسال نمی‌شود. با جلوگیری از ارسال فرم، تشخیص ایمیل و گذرواژه، و نمایش و پاک کردن پیام خطا کار می‌کنید.",
+  "objectives": [
+    "ساختار فرم با چهار فیلد و عنصرهای پیام خطا بسازید",
+    "برای هر فیلد یک تابع اعتبارسنجی بنویسید",
+    "ارسال فرم را با event.preventDefault() متوقف کنید",
+    "قواعد ایمیل و گذرواژه و تطابق تکرار گذرواژه را بررسی کنید",
+    "پیام‌های خطا را با تغییر رنگ و متن نمایش دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "پروژه: اعتبارسنجی فرم"
+    },
+    {
+      "type": "p",
+      "text": "در این پروژه یک فرم همراه با اعتبارسنجی می‌سازید."
+    },
+    {
+      "type": "p",
+      "text": "فرم زیر هر فیلد پیام خطا نشان می‌دهد و تا وقتی همه چیز درست نباشد ارسال نمی‌شود."
+    },
+    {
+      "type": "h3",
+      "text": "چه یاد می‌گیرید"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "چگونه فیلدهای فرم را با JavaScript اعتبارسنجی کنید",
+        "چگونه جلوی ارسال فرم را بگیرید",
+        "چگونه پیام خطا را زیر فیلدها نمایش دهید",
+        "چگونه قواعد ایمیل و گذرواژه را بررسی کنید"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "گام ۱: ساخت HTML"
+    },
+    {
+      "type": "p",
+      "text": "فرمی با چهار فیلد بسازید و زیر هر فیلد یک عنصر برای پیام خطا بگذارید."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form id=\"signupForm\">\n\n<div class=\"field\">\n\n  <label>Name:</label><br>\n\n  <input id=\"name\" type=\"text\" placeholder=\"Your name\">\n\n  <p id=\"nameError\" class=\"error\"></p>\n\n</div>\n\n<form>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation1"
+    },
+    {
+      "type": "h2",
+      "text": "گام ۲: افزودن CSS"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<style>\n\ninput {\n\n  padding: 8px;\n\n  width: 260px;\n\n  margin-bottom: 4px;\n\n}\n\n.error {\n\n  color: red;\n\n  margin: 0;\n\n}\n\n.ok {\n\n  color: green;\n\n  margin: 0;\n\n}\n\n.field {\n\n  margin-bottom: 12px;\n\n}\n\n</style>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation2"
+    },
+    {
+      "type": "h2",
+      "text": "گام ۳: افزودن JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "برای هر فیلد باید یک شیء بسازید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object for each Field\n\nconst form = document.getElementById(\"signupForm\");\n\nconst nameInput = document.getElementById(\"name\");\n\nconst emailInput = document.getElementById(\"email\");\n\nconst passInput = document.getElementById(\"password\");\n\nconst confirmInput = document.getElementById(\"confirm\");\n\nconst nameError = document.getElementById(\"nameError\");\n\nconst emailError = document.getElementById(\"emailError\");\n\nconst passError = document.getElementById(\"passwordError\");\n\nconst confirmError = document.getElementById(\"confirmError\");\n\nconst result = document.getElementById(\"result\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "به تابعی برای نمایش خطاها نیاز دارید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Display Error\n\nfunction showError(el, message) {\n\n  el.innerHTML = message;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "به تابعی برای پاک کردن پیام خطا نیاز دارید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Clear the Error\n\nfunction clearError(el) {\n\n  el.innerHTML = \"\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "به تابعی برای اعتبارسنجی فرم نیاز دارید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Form\n\nfunction validateForm() {\n\n  return false;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "به کدی برای اعتبارسنجی فرم نیاز دارید."
+    },
+    {
+      "type": "p",
+      "text": "برای اعتبارسنجی فرم باید جلوی بارگذاری دوبارهٔ صفحه را بگیرید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Prevent Default Reloading\n\nform.addEventListener(\"submit\", function (event) {\n\n  event.preventDefault();\n\n// Clear Result\n\n  result.innerHTML = \"\";\n\n// Validate Form\n\n  if (validateForm()) {\n\n    result.innerHTML = \"Form is valid!\";\n\n    result.className = \"ok\";\n\n  } else {\n\n    result.innerHTML = \"Please fix the errors.\";\n\n    result.className = \"error\";\n\n  }\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation3"
+    },
+    {
+      "type": "h2",
+      "text": "گام ۴: اعتبارسنجی فیلدها"
+    },
+    {
+      "type": "p",
+      "text": "برای هر فیلد یک تابع بسازید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Name\n\nfunction validateName() {\n\n  let value = nameInput.value.trim();\n\n  if (value.length < 2) {\n\n    showError(nameError, \"Name must be at least 2 characters.\");\n\n    return false;\n\n  }\n\n  clearError(nameError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  return okName;\n\n}",
+      "caption": "اعتبارسنجی نام"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation4"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Email\n\nfunction validateEmail() {\n\n  let value = emailInput.value.trim();\n\n  if (!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value))) {\n\n    showError(emailError, \"Enter a valid email address.\");\n\n    return false;\n\n  }\n\n  clearError(emailError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  return okName && okEmail;\n\n}",
+      "caption": "اعتبارسنجی ایمیل"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation5"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Password\n\nfunction validatePassword() {\n\n  let value = passInput.value;\n\n  if (value.length < 8) {\n\n    showError(passError, \"Password must be at least 8 characters.\");\n\n    return false;\n\n  }\n\n  clearError(passError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  return okName && okEmail && okPass;\n\n}",
+      "caption": "اعتبارسنجی گذرواژه"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation6"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to Validate Confirm\n\nfunction validateConfirm() {\n\n  let pass = passInput.value;\n\n  let confirm = confirmInput.value;\n\n  if (confirm === \"\") {\n\n    showError(confirmError, \"Please confirm your password.\");\n\n    return false;\n\n  }\n\n  if (confirm !== pass) {\n\n    showError(confirmError, \"Passwords do not match.\");\n\n    return false;\n\n  }\n\n  clearError(confirmError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  let okConfirm = validateConfirm();\n\n  return okName && okEmail && okPass && okConfirm;\n\n}",
+      "caption": "اعتبارسنجی تکرار گذرواژه"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation7"
+    },
+    {
+      "type": "h2",
+      "text": "اعتبارسنجی فرم (نسخهٔ نهایی)"
+    },
+    {
+      "type": "p",
+      "text": "این مثال پروژهٔ کامل‌شده را نشان می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<style>\n\ninput {\n\n  padding: 8px;\n\n  width: 260px;\n\n  margin-bottom: 4px;\n\n}\n\n.error {\n\n  color: red;\n\n  margin: 0;\n\n}\n\n.ok {\n\n  color: green;\n\n  margin: 0;\n\n}\n\n.field {\n\n  margin-bottom: 12px;\n\n}\n\n</style>",
+      "caption": "CSS"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<style>\n\n... CSS goes here\n\n</style>\n\n<body>\n\n<h2>Sign Up</h2>\n\n<form id=\"signupForm\">\n\n<div class=\"field\">\n\n  <label>Name:</label><br>\n\n  <input id=\"name\" type=\"text\" placeholder=\"Your name\">\n\n  <p id=\"nameError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Email:</label><br>\n\n  <input id=\"email\" type=\"text\" placeholder=\"name@example.com\">\n\n  <p id=\"emailError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Password:</label><br>\n\n  <input id=\"password\" type=\"password\" placeholder=\"Min 8 characters\">\n\n  <p id=\"passwordError\" class=\"error\"></p>\n\n</div>\n\n<div class=\"field\">\n\n  <label>Confirm Password:</label><br>\n\n  <input id=\"confirm\" type=\"password\" placeholder=\"Repeat password\">\n\n  <p id=\"confirmError\" class=\"error\"></p>\n\n</div>\n\n<p><button type=\"submit\">Create Account</button></p>\n\n</form>\n\n<p id=\"result\"></p>\n\n<script>\n\n// JavaScript goes here\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "HTML"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object for each Field\n\nconst form = document.getElementById(\"signupForm\");\n\nconst nameInput = document.getElementById(\"name\");\n\nconst emailInput = document.getElementById(\"email\");\n\nconst passInput = document.getElementById(\"password\");\n\nconst confirmInput = document.getElementById(\"confirm\");\n\nconst nameError = document.getElementById(\"nameError\");\n\nconst emailError = document.getElementById(\"emailError\");\n\nconst passError = document.getElementById(\"passwordError\");\n\nconst confirmError = document.getElementById(\"confirmError\");\n\nconst result = document.getElementById(\"result\");\n\n// Function to Display Error\n\nfunction showError(el, message) {\n\n  el.innerHTML = message;\n\n}\n\n// Function to Clear Error\n\nfunction clearError(el) {\n\n  el.innerHTML = \"\";\n\n}\n\n// Function to Validate Name\n\nfunction validateName() {\n\n  let value = nameInput.value.trim();\n\n  if (value.length < 2) {\n\n    showError(nameError, \"Name must be at least 2 characters.\");\n\n    return false;\n\n  }\n\n  clearError(nameError);\n\n  return true;\n\n}\n\n// Function to Validate Email\n\nfunction validateEmail() {\n\n  let value = emailInput.value.trim();\n\n  if (!(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value))) {\n\n    showError(emailError, \"Enter a valid email address.\");\n\n    return false;\n\n  }\n\n  clearError(emailError);\n\n  return true;\n\n}\n\n// Function to Validate Password\n\nfunction validatePassword() {\n\n  let value = passInput.value;\n\n  if (value.length < 8) {\n\n    showError(passError, \"Password must be at least 8 characters.\");\n\n    return false;\n\n  }\n\n  clearError(passError);\n\n  return true;\n\n}\n\n// Function to Validate Confirm\n\nfunction validateConfirm() {\n\n  let pass = passInput.value;\n\n  let confirm = confirmInput.value;\n\n  if (confirm === \"\") {\n\n    showError(confirmError, \"Please confirm your password.\");\n\n    return false;\n\n  }\n\n  if (confirm !== pass) {\n\n    showError(confirmError, \"Passwords do not match.\");\n\n    return false;\n\n  }\n\n  clearError(confirmError);\n\n  return true;\n\n}\n\n// Function to Validate Form\n\nfunction validateForm() {\n\n  let okName = validateName();\n\n  let okEmail = validateEmail();\n\n  let okPass = validatePassword();\n\n  let okConfirm = validateConfirm();\n\n  return okName && okEmail && okPass && okConfirm;\n\n}\n\n// Prevent Default Reloading\n\nform.addEventListener(\"submit\", function (event) {\n\n  event.preventDefault();\n\n// Clear Result\n\n  result.innerHTML = \"\";\n\n// Validate Form\n\n  if (validateForm()) {\n\n    result.innerHTML = \"Form is valid!\";\n\n    result.className = \"ok\";\n\n  } else {\n\n    result.innerHTML = \"Please fix the errors.\";\n\n    result.className = \"error\";\n\n  }\n\n});",
+      "caption": "JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_project_form_validation9"
+    },
+    {
+      "type": "h2",
+      "text": "اشتباه‌های رایج"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "فراموش کردن event.preventDefault()",
+        "trim نکردن مقدار ورودی‌ها",
+        "استفاده از innerHTML با ورودی کاربر (برای پیام‌ها فقط از متن استفاده کنید)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "تمرین‌ها"
+    },
+    {
+      "type": "h3",
+      "text": "تمرین ۱"
+    },
+    {
+      "type": "p",
+      "text": "قاعده‌ای اضافه کنید که گذرواژه حداقل یک عدد داشته باشد."
+    },
+    {
+      "type": "h3",
+      "text": "تمرین ۲"
+    },
+    {
+      "type": "p",
+      "text": "فیلدها را هنگام تایپ کاربر اعتبارسنجی کنید (از رویداد input استفاده کنید)."
+    },
+    {
+      "type": "h3",
+      "text": "تمرین ۳"
+    },
+    {
+      "type": "p",
+      "text": "کنار فیلدهای درست یک پیام سبز نمایش دهید."
+    },
+    {
+      "type": "h2",
+      "text": "چالش‌های امتیازی (یک سطح بالاتر)"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "نشانگر قدرت گذرواژه اضافه کنید (ضعیف / متوسط / قوی)",
+        "دکمهٔ ارسال را تا درست شدن همه چیز غیرفعال نگه دارید",
+        "دکمهٔ نمایش و پنهان کردن گذرواژه"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پروژه‌های JavaScript"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "شمارندهٔ JavaScript\nپروژهٔ شمارنده با ذخیره و بازیابی در localStorage.",
+        "شنوندهٔ رویداد JavaScript\nهمان پروژهٔ شمارنده، این بار با شنوندهٔ رویداد (event listener) به‌جای onclick.",
+        "فهرست کارهای روزانه\nفهرست کارهایی که در یک آرایه در localStorage ذخیره می‌شود.",
+        "پنجرهٔ مودال\nیک پنجرهٔ مودال که روی صفحه ظاهر می‌شود.",
+        "اعتبارسنجی فرم\nیک فرم HTML همراه با اعتبارسنجی فرم."
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل form.html بسازید با چهار فیلد نام، ایمیل، گذرواژه و تکرار گذرواژه و زیر هر فیلد یک عنصر خالی برای پیام خطا.",
+      "hint": "برای هر فیلد یک متغیر بسازید و عنصر پیام خطا را با یک شناسه مثل errName در دسترس داشته باشید."
+    },
+    {
+      "prompt": "برای هر فیلد یک شیء با فیلد ورودی و عنصر خطا بسازید و تابعی بنویسید که پیام خطا را زیر فیلد نمایش دهد و پاک کند.",
+      "hint": "یک شیء مثل { input: nameInput, error: errName } کار را مرتب می‌کند؛ نمایش خطا یعنی گذاشتن متن در عنصر خطا."
+    },
+    {
+      "prompt": "تابع main را بنویسید که هنگام ارسال فرم با event.preventDefault() جلوی بارگذاری دوبارهٔ صفحه را بگیرد و همهٔ فیلدها را بررسی کند.",
+      "hint": "با فرم.addEventListener(\"submit\", ...) شروع کنید و اولین خطش event.preventDefault() باشد."
+    },
+    {
+      "prompt": "تمرین‌های درس را انجام دهید: قاعدهٔ حداقل یک عدد در گذرواژه، اعتبارسنجی هنگام تایپ با رویداد input و پیام سبز برای فیلدهای درست.",
+      "hint": "برای عدد از /\\d/ در گذرواژه استفاده کنید؛ برای پیام سبز فقط رنگ متن را در CSS عوض کنید."
+    },
+    {
+      "prompt": "با مقایسهٔ گذرواژه و تکرار آن بررسی کنید که هر دو یکسان باشند و در صورت نبودن پیام مناسب نشان دهید.",
+      "hint": "پیش از بررسی تکرار گذرواژه، اول مطمئن شوید خود گذرواژه درست است تا پیام خطا گیج‌کننده نشود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "چرا در تابع اعتبارسنجی فرم باید event.preventDefault() را صدا بزنیم؟",
+      "options": [
+        "تا خطاها پاک شوند",
+        "تا فیلدها پاک شوند",
+        "تا فرم ارسال شود",
+        "تا جلوی بارگذاری دوبارهٔ صفحه هنگام ارسال فرم گرفته شود"
+      ],
+      "answer": 3,
+      "explanation": "رفتار پیش‌فرض ارسال فرم، بارگذاری دوبارهٔ صفحه است؛ preventDefault جلوی آن را می‌گیرد تا کد اعتبارسنجی اجرا شود و خطاها نمایش داده شوند."
+    },
+    {
+      "question": "چرا مقدار ورودی‌ها را trim می‌کنیم؟",
+      "options": [
+        "تا فاصله‌های خالی ابتدا و انتهای متن باعث پذیرش ورودی نادرست نشوند",
+        "تا متن کوچک‌تر شود",
+        "چون مرورگر بدون trim کار نمی‌کند",
+        "تا رنگ متن عوض شود"
+      ],
+      "answer": 0,
+      "explanation": "trim فاصله‌های اضافی را حذف می‌کند؛ بدون آن ورودی‌ای که فقط فاصله دارد معتبر شمرده می‌شود و قاعدهٔ اعتبارسنجی بی‌اثر می‌ماند."
+    },
+    {
+      "question": "چرا استفاده از innerHTML با ورودی کاربر خطرناک است؟",
+      "options": [
+        "چون خطا پرتاب می‌کند",
+        "چون می‌تواند کد HTML واردشده را اجرا کند",
+        "چون متن را بلندتر می‌کند",
+        "چون innerHTML در همهٔ مرورگرها نیست"
+      ],
+      "answer": 1,
+      "explanation": "innerHTML ورودی را به‌عنوان HTML تفسیر می‌کند و ورودی کاربر می‌تواند کد مخرب برساند؛ برای پیام‌ها فقط متن خالی را قرار دهید."
+    },
+    {
+      "question": "کار تابعی که برای هر فیلد می‌سازیم چیست؟",
+      "options": [
+        "پاک کردن کل فرم",
+        "بارگذاری صفحه",
+        "بررسی قاعدهٔ همان فیلد و نمایش یا پاک کردن پیام خطای آن",
+        "ارسال فرم"
+      ],
+      "answer": 2,
+      "explanation": "هر تابع فقط یک فیلد را بررسی می‌کند و نتیجه را با پیام خطا نشان می‌دهد؛ همین کار کد را خواناتر و اشکال‌زدایی را ساده‌تر می‌کند."
+    },
+    {
+      "question": "برای دیدن خطاها هم‌زمان با تایپ کاربر از کدام رویداد استفاده می‌کنیم؟",
+      "options": ["submit", "keyup on document", "DOMContentLoaded", "input"],
+      "answer": 3,
+      "explanation": "رویداد input هنگام تغییر مقدار فیلد (تایپ، چسباندن یا پاک کردن) اجرا می‌شود؛ به همین دلیل برای اعتبارسنجی زنده مناسب است."
+    }
+  ]
 }

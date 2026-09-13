@@ -1,182 +1,182 @@
 {
- "slug": "js_htmldom_html",
- "course": "js",
- "order": 143,
- "url": "/js/js_htmldom_html.asp",
- "title": "HTML DOM - Changing HTML",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "HTML DOM - Changing HTML"
-  },
-  {
-   "type": "h2",
-   "text": "Changing HTML Content"
-  },
-  {
-   "type": "p",
-   "text": "The HTML DOM allows JavaScript to change both the text and the content of HTML elements."
-  },
-  {
-   "type": "p",
-   "text": "The easiest way to modify the content is by using the innerHTML property:"
-  },
-  {
-   "type": "p",
-   "text": "document.getElementById(id).innerHTML = new HTML"
-  },
-  {
-   "type": "h2",
-   "text": "The innerHTML Property"
-  },
-  {
-   "type": "p",
-   "text": "The easiest way to get the content of an element is by using the innerHTML property."
-  },
-  {
-   "type": "p",
-   "text": "The innerHTML property is useful for getting or replacing the content of HTML elements."
-  },
-  {
-   "type": "p",
-   "text": "The innerHTML property can be used to get or change any HTML element,\nincluding <html> and <body>."
-  },
-  {
-   "type": "h2",
-   "text": "Common Mistakes"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Trying to access a DOM element before it exists",
-    "Forgetting the quotes in an id like \"demo\""
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<html>\n\n<body>\n\n<p id=\"p1\">Hello World!</p>\n\n<script>\n\ndocument.getElementById(\"p1\").innerHTML = \"New text!\";\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_change_innerhtml"
-  },
-  {
-   "type": "p",
-   "text": "Example explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The HTML document above contains a <p> element with id=\"p1\"",
-    "We use the HTML DOM to get the element with id=\"p1\"",
-    "A JavaScript changes the content (innerHTML) of that element to \"New\n  text!\""
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1 id=\"id01\">Old Heading</h1>\n\n<script>\n\nconst element = document.getElementById(\"id01\");\nelement.innerHTML = \"New Heading\";\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_innerhtml"
-  },
-  {
-   "type": "p",
-   "text": "Example explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The HTML document above contains an <h1> element with id=\"id01\"",
-    "We use the HTML DOM to get the element with id=\"id01\"",
-    "A JavaScript changes the content (innerHTML) of that element to \"New\n  Heading\""
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Changing an Attribute"
-  },
-  {
-   "type": "p",
-   "text": "To change the value of an HTML attribute, use this syntax:"
-  },
-  {
-   "type": "p",
-   "text": "document.getElementById(id).attribute = new value"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<img id=\"myImage\" src=\"smiley.gif\">\n\n<script>\n\ndocument.getElementById(\"myImage\").src = \"landscape.jpg\";\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_image"
-  },
-  {
-   "type": "p",
-   "text": "Example explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The HTML document above contains an <img> element with id=\"myImage\"",
-    "We use the HTML DOM to get the element with id=\"myImage\"",
-    "A JavaScript changes the src attribute of that element from \"smiley.gif\" to \"landscape.jpg\""
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Dynamic HTML content"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript can create dynamic HTML content:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = \"Date : \" + Date();\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_date"
-  },
-  {
-   "type": "h2",
-   "text": "document.write()"
-  },
-  {
-   "type": "p",
-   "text": "In JavaScript, document.write() can be used to write directly to the HTML\noutput stream:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<p>Bla bla bla</p>\n\n<script>\n\ndocument.write(Date());\n\n</script>\n\n<p>Bla bla bla</p>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_write"
-  },
-  {
-   "type": "h2",
-   "text": "Warning !"
-  },
-  {
-   "type": "p",
-   "text": "Never use document.write() after the document is loaded. It will\noverwrite the document."
-  }
- ]
+  "slug": "js_htmldom_html",
+  "course": "js",
+  "order": 143,
+  "url": "/js/js_htmldom_html.asp",
+  "title": "HTML DOM - Changing HTML",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "HTML DOM - Changing HTML"
+    },
+    {
+      "type": "h2",
+      "text": "Changing HTML Content"
+    },
+    {
+      "type": "p",
+      "text": "The HTML DOM allows JavaScript to change both the text and the content of HTML elements."
+    },
+    {
+      "type": "p",
+      "text": "The easiest way to modify the content is by using the innerHTML property:"
+    },
+    {
+      "type": "p",
+      "text": "document.getElementById(id).innerHTML = new HTML"
+    },
+    {
+      "type": "h2",
+      "text": "The innerHTML Property"
+    },
+    {
+      "type": "p",
+      "text": "The easiest way to get the content of an element is by using the innerHTML property."
+    },
+    {
+      "type": "p",
+      "text": "The innerHTML property is useful for getting or replacing the content of HTML elements."
+    },
+    {
+      "type": "p",
+      "text": "The innerHTML property can be used to get or change any HTML element,\nincluding <html> and <body>."
+    },
+    {
+      "type": "h2",
+      "text": "Common Mistakes"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Trying to access a DOM element before it exists",
+        "Forgetting the quotes in an id like \"demo\""
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<html>\n\n<body>\n\n<p id=\"p1\">Hello World!</p>\n\n<script>\n\ndocument.getElementById(\"p1\").innerHTML = \"New text!\";\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_change_innerhtml"
+    },
+    {
+      "type": "p",
+      "text": "Example explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The HTML document above contains a <p> element with id=\"p1\"",
+        "We use the HTML DOM to get the element with id=\"p1\"",
+        "A JavaScript changes the content (innerHTML) of that element to \"New\n  text!\""
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1 id=\"id01\">Old Heading</h1>\n\n<script>\n\nconst element = document.getElementById(\"id01\");\nelement.innerHTML = \"New Heading\";\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_innerhtml"
+    },
+    {
+      "type": "p",
+      "text": "Example explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The HTML document above contains an <h1> element with id=\"id01\"",
+        "We use the HTML DOM to get the element with id=\"id01\"",
+        "A JavaScript changes the content (innerHTML) of that element to \"New\n  Heading\""
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Changing an Attribute"
+    },
+    {
+      "type": "p",
+      "text": "To change the value of an HTML attribute, use this syntax:"
+    },
+    {
+      "type": "p",
+      "text": "document.getElementById(id).attribute = new value"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<img id=\"myImage\" src=\"smiley.gif\">\n\n<script>\n\ndocument.getElementById(\"myImage\").src = \"landscape.jpg\";\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_image"
+    },
+    {
+      "type": "p",
+      "text": "Example explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The HTML document above contains an <img> element with id=\"myImage\"",
+        "We use the HTML DOM to get the element with id=\"myImage\"",
+        "A JavaScript changes the src attribute of that element from \"smiley.gif\" to \"landscape.jpg\""
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Dynamic HTML content"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript can create dynamic HTML content:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = \"Date : \" + Date();\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_date"
+    },
+    {
+      "type": "h2",
+      "text": "document.write()"
+    },
+    {
+      "type": "p",
+      "text": "In JavaScript, document.write() can be used to write directly to the HTML\noutput stream:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<p>Bla bla bla</p>\n\n<script>\n\ndocument.write(Date());\n\n</script>\n\n<p>Bla bla bla</p>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_write"
+    },
+    {
+      "type": "h2",
+      "text": "Warning !"
+    },
+    {
+      "type": "p",
+      "text": "Never use document.write() after the document is loaded. It will\noverwrite the document."
+    }
+  ]
 }

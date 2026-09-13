@@ -1,187 +1,172 @@
 {
- "slug": "js_ajax_applications",
- "course": "js",
- "order": 264,
- "url": "/js/js_ajax_applications.asp",
- "title": "کاربردهای XML",
- "summary": "در این فصل با کمک XML، HTTP، DOM و JavaScript چند برنامهٔ کامل HTML ساخته می‌شود. دادهٔ CDها را از فایل XML می‌خوانید، در جدول نشان می‌دهید، بین آلبوم‌ها حرکت می‌کنید و با کلیک روی هر CD اطلاعاتش را می‌بینید.",
- "objectives": [
-  "دادهٔ XML را در یک جدول HTML نشان دهید",
-  "نخستین رکورد XML را در یک عنصر صفحه نمایش دهید",
-  "با تابع‌های next و previous بین رکوردها حرکت کنید",
-  "با کلیک روی هر سطر اطلاعات آن را نمایش دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "کاربردهای XML"
-  },
-  {
-   "type": "p",
-   "text": "این فصل چند برنامهٔ HTML را نشان می‌دهد که از XML، HTTP، DOM و JavaScript استفاده می‌کنند."
-  },
-  {
-   "type": "h2",
-   "text": "سند XMLی که به کار می‌بریم"
-  },
-  {
-   "type": "p",
-   "text": "در این فصل از فایل XMLی به نام \"cd_catalog.xml\" استفاده می‌کنیم."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش دادهٔ XML در یک جدول HTML"
-  },
-  {
-   "type": "p",
-   "text": "این مثال روی هر عنصر <CD> حلقه می‌زند و مقدارهای عنصرهای <ARTIST> و <TITLE> را در یک جدول HTML نشان می‌دهد:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<table id=\"demo\"></table>\n\n<script>\n\nfunction loadXMLDoc() {\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onload = function() {\n\n    const xmlDoc = xhttp.responseXML;\n\n    const cd = xmlDoc.getElementsByTagName(\"CD\");\n\n    myFunction(cd);\n\n  }\n\n  xhttp.open(\"GET\", \"cd_catalog.xml\");\n\nxhttp.send();\n\n}\n\nfunction myFunction(cd) {\n\n  let table=\"<tr><th>Artist</th><th>Title</th></tr>\";\n\n  for (let i = 0; i < cd.length; i++) {\n\n    table += \"<tr><td>\" +\n    cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue\n +\n    \"</td><td>\" +\n    cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue\n +\n    \"</td></tr>\";\n  }\n\n document.getElementById(\"demo\").innerHTML = table;\n}\n</script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_display_table"
-  },
-  {
-   "type": "p",
-   "text": "برای اطلاعات بیشتر دربارهٔ استفاده از JavaScript و XML DOM به بخش آشنایی با DOM بروید."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش نخستین CD در یک عنصر div"
-  },
-  {
-   "type": "p",
-   "text": "این مثال با یک تابع، نخستین عنصر CD را در عنصر HTMLی با id=\"showCD\" نشان می‌دهد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const xhttp = new XMLHttpRequest();\n\nxhttp.onload = function() {\n\n  const xmlDoc = xhttp.responseXML;\n\n  const cd = xmlDoc.getElementsByTagName(\"CD\");\n\n  myFunction(cd, 0);\n\n}\n\nxhttp.open(\"GET\", \"cd_catalog.xml\");\n\nxhttp.send();\n\nfunction myFunction(cd, i) {\n\n  document.getElementById(\"showCD\").innerHTML =\n\n  \"Artist: \" +\n\n  cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue +\n\n  \"<br>Title: \" +\n\n  cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue +\n\n  \"<br>Year: \" +\n\n  cd[i].getElementsByTagName(\"YEAR\")[0].childNodes[0].nodeValue;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app_first"
-  },
-  {
-   "type": "h2",
-   "text": "حرکت بین CDها"
-  },
-  {
-   "type": "p",
-   "text": "برای حرکت بین CDها در مثال بالا، دو تابع next() و previous() بسازید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function next()\n{\n  // display the next CD, unless you are on the last CD\n\nif (i < len-1) {\n\n    i++;\n\n    displayCD(i);\n\n  }\n\n}\n\nfunction previous()\n{\n  // display the previous CD, unless you are on the first CD\n\nif (i > 0) {\n\n    i--;\n\n    displayCD(i);\n\n  }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app_navigate"
-  },
-  {
-   "type": "h2",
-   "text": "نمایش اطلاعات آلبوم با کلیک روی یک CD"
-  },
-  {
-   "type": "p",
-   "text": "مثال آخر نشان می‌دهد چگونه وقتی کاربر روی یک CD کلیک می‌کند اطلاعات آلبوم را نشان دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function displayCD(i) {\n\n  document.getElementById(\"showCD\").innerHTML =\n\n   \"Artist: \" +\n\n  cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue +\n\n  \"<br>Title: \" +\n\n  cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue +\n\n  \"<br>Year: \" +\n\n  cd[i].getElementsByTagName(\"YEAR\")[0].childNodes[0].nodeValue;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل cd_catalog.xml بسازید و در صفحه با AJAX آن را بخوانید و رکوردهای CD را در یک جدول HTML نشان دهید.",
-   "hint": "روی عنصرهای CD حلقه بزنید و مقدار ARTIST و TITLE را در خانه‌های جدول بگذارید."
-  },
-  {
-   "prompt": "تابعی بسازید که نخستین CD را در عنصری با شناسهٔ showCD نشان دهد.",
-   "hint": "با getAllResponseHeaders یا responseXML به داده برسید و با getElementById در صفحه بگذارید."
-  },
-  {
-   "prompt": "دو تابع next() و previous() بسازید و با دکمه‌هایی بین CDها حرکت کنید.",
-   "hint": "یک شمارندهٔ اندیس نگه دارید و در مرزهای آرایه آن را از حد خارج نکنید."
-  },
-  {
-   "prompt": "کاری کنید که با کلیک روی هر CD در جدول، اطلاعات کامل همان آلبوم نشان داده شود.",
-   "hint": "به هر سطر یک رویداد onclick بدهید و اندیس همان سطر را به تابع بدهید."
-  },
-  {
-   "prompt": "توضیح دهید چرا این مثال‌ها به هر سه بخش XML، DOM و JavaScript نیاز دارند.",
-   "hint": "XML داده را نگه می‌دارد، JavaScript آن را می‌خواند و DOM آن را در صفحه می‌نشاند."
-  }
- ],
- "quiz": [
-  {
-   "question": "در این فصل داده از کدام فایل خوانده می‌شود؟",
-   "options": [
-    "cd_catalog.xml",
-    "customers.json",
-    "gethint.php",
-    "ajax_info.txt"
-   ],
-   "answer": 0,
-   "explanation": "درس می‌گوید در این فصل از فایل XMLی به نام \"cd_catalog.xml\" استفاده می‌شود."
-  },
-  {
-   "question": "برای نمایش همهٔ CDها در یک جدول چه می‌کنیم؟",
-   "options": [
-    "روی هر عنصر CD حلقه می‌زنیم و مقدار ARTIST و TITLE را نشان می‌دهیم",
-    "فقط عنصر اول را می‌خوانیم",
-    "از JSON.parse استفاده می‌کنیم",
-    "فایل XML را در مرورگر باز می‌کنیم"
-   ],
-   "answer": 0,
-   "explanation": "درس توضیح می‌دهد که مثال روی هر عنصر <CD> حلقه می‌زند و مقادیر <ARTIST> و <TITLE> را در جدول می‌گذارد."
-  },
-  {
-   "question": "دو تابعی که برای حرکت بین CDها ساخته می‌شوند کدام‌اند؟",
-   "options": [
-    "first() و last()",
-    "next() و previous()",
-    "up() و down()",
-    "open() و close()"
-   ],
-   "answer": 1,
-   "explanation": "درس برای حرکت بین CDها دو تابع next() و previous() را معرفی می‌کند."
-  },
-  {
-   "question": "نخستین CD در چه عنصری نشان داده می‌شود؟",
-   "options": [
-    "یک عنصر با id=\"showCD\"",
-    "یک جدول",
-    "یک تصویر",
-    "عنصر body"
-   ],
-   "answer": 0,
-   "explanation": "درس می‌گوید نخستین عنصر CD در عنصر HTMLی با id=\"showCD\" نمایش داده می‌شود."
-  },
-  {
-   "question": "در این مثال‌ها نقش HTML DOM چیست؟",
-   "options": [
-    "داده را ذخیره می‌کند",
-    "دادهٔ XML را در صفحه نمایش می‌دهد",
-    "فایل XML را می‌سازد",
-    "کوئری پایگاه داده می‌زند"
-   ],
-   "answer": 1,
-   "explanation": "DOM ابزار نمایش و دستکاری عنصرهای صفحه است؛ داده در XML می‌ماند و JavaScript آن را می‌خواند."
-  }
- ]
+  "slug": "js_ajax_applications",
+  "course": "js",
+  "order": 264,
+  "url": "/js/js_ajax_applications.asp",
+  "title": "کاربردهای XML",
+  "summary": "در این فصل با کمک XML، HTTP، DOM و JavaScript چند برنامهٔ کامل HTML ساخته می‌شود. دادهٔ CDها را از فایل XML می‌خوانید، در جدول نشان می‌دهید، بین آلبوم‌ها حرکت می‌کنید و با کلیک روی هر CD اطلاعاتش را می‌بینید.",
+  "objectives": [
+    "دادهٔ XML را در یک جدول HTML نشان دهید",
+    "نخستین رکورد XML را در یک عنصر صفحه نمایش دهید",
+    "با تابع‌های next و previous بین رکوردها حرکت کنید",
+    "با کلیک روی هر سطر اطلاعات آن را نمایش دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "کاربردهای XML"
+    },
+    {
+      "type": "p",
+      "text": "این فصل چند برنامهٔ HTML را نشان می‌دهد که از XML، HTTP، DOM و JavaScript استفاده می‌کنند."
+    },
+    {
+      "type": "h2",
+      "text": "سند XMLی که به کار می‌بریم"
+    },
+    {
+      "type": "p",
+      "text": "در این فصل از فایل XMLی به نام \"cd_catalog.xml\" استفاده می‌کنیم."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش دادهٔ XML در یک جدول HTML"
+    },
+    {
+      "type": "p",
+      "text": "این مثال روی هر عنصر <CD> حلقه می‌زند و مقدارهای عنصرهای <ARTIST> و <TITLE> را در یک جدول HTML نشان می‌دهد:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<table id=\"demo\"></table>\n\n<script>\n\nfunction loadXMLDoc() {\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onload = function() {\n\n    const xmlDoc = xhttp.responseXML;\n\n    const cd = xmlDoc.getElementsByTagName(\"CD\");\n\n    myFunction(cd);\n\n  }\n\n  xhttp.open(\"GET\", \"cd_catalog.xml\");\n\nxhttp.send();\n\n}\n\nfunction myFunction(cd) {\n\n  let table=\"<tr><th>Artist</th><th>Title</th></tr>\";\n\n  for (let i = 0; i < cd.length; i++) {\n\n    table += \"<tr><td>\" +\n    cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue\n +\n    \"</td><td>\" +\n    cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue\n +\n    \"</td></tr>\";\n  }\n\n document.getElementById(\"demo\").innerHTML = table;\n}\n</script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_display_table"
+    },
+    {
+      "type": "p",
+      "text": "برای اطلاعات بیشتر دربارهٔ استفاده از JavaScript و XML DOM به بخش آشنایی با DOM بروید."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش نخستین CD در یک عنصر div"
+    },
+    {
+      "type": "p",
+      "text": "این مثال با یک تابع، نخستین عنصر CD را در عنصر HTMLی با id=\"showCD\" نشان می‌دهد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const xhttp = new XMLHttpRequest();\n\nxhttp.onload = function() {\n\n  const xmlDoc = xhttp.responseXML;\n\n  const cd = xmlDoc.getElementsByTagName(\"CD\");\n\n  myFunction(cd, 0);\n\n}\n\nxhttp.open(\"GET\", \"cd_catalog.xml\");\n\nxhttp.send();\n\nfunction myFunction(cd, i) {\n\n  document.getElementById(\"showCD\").innerHTML =\n\n  \"Artist: \" +\n\n  cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue +\n\n  \"<br>Title: \" +\n\n  cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue +\n\n  \"<br>Year: \" +\n\n  cd[i].getElementsByTagName(\"YEAR\")[0].childNodes[0].nodeValue;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app_first"
+    },
+    {
+      "type": "h2",
+      "text": "حرکت بین CDها"
+    },
+    {
+      "type": "p",
+      "text": "برای حرکت بین CDها در مثال بالا، دو تابع next() و previous() بسازید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function next()\n{\n  // display the next CD, unless you are on the last CD\n\nif (i < len-1) {\n\n    i++;\n\n    displayCD(i);\n\n  }\n\n}\n\nfunction previous()\n{\n  // display the previous CD, unless you are on the first CD\n\nif (i > 0) {\n\n    i--;\n\n    displayCD(i);\n\n  }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app_navigate"
+    },
+    {
+      "type": "h2",
+      "text": "نمایش اطلاعات آلبوم با کلیک روی یک CD"
+    },
+    {
+      "type": "p",
+      "text": "مثال آخر نشان می‌دهد چگونه وقتی کاربر روی یک CD کلیک می‌کند اطلاعات آلبوم را نشان دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function displayCD(i) {\n\n  document.getElementById(\"showCD\").innerHTML =\n\n   \"Artist: \" +\n\n  cd[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue +\n\n  \"<br>Title: \" +\n\n  cd[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue +\n\n  \"<br>Year: \" +\n\n  cd[i].getElementsByTagName(\"YEAR\")[0].childNodes[0].nodeValue;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_app"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل cd_catalog.xml بسازید و در صفحه با AJAX آن را بخوانید و رکوردهای CD را در یک جدول HTML نشان دهید.",
+      "hint": "روی عنصرهای CD حلقه بزنید و مقدار ARTIST و TITLE را در خانه‌های جدول بگذارید."
+    },
+    {
+      "prompt": "تابعی بسازید که نخستین CD را در عنصری با شناسهٔ showCD نشان دهد.",
+      "hint": "با getAllResponseHeaders یا responseXML به داده برسید و با getElementById در صفحه بگذارید."
+    },
+    {
+      "prompt": "دو تابع next() و previous() بسازید و با دکمه‌هایی بین CDها حرکت کنید.",
+      "hint": "یک شمارندهٔ اندیس نگه دارید و در مرزهای آرایه آن را از حد خارج نکنید."
+    },
+    {
+      "prompt": "کاری کنید که با کلیک روی هر CD در جدول، اطلاعات کامل همان آلبوم نشان داده شود.",
+      "hint": "به هر سطر یک رویداد onclick بدهید و اندیس همان سطر را به تابع بدهید."
+    },
+    {
+      "prompt": "توضیح دهید چرا این مثال‌ها به هر سه بخش XML، DOM و JavaScript نیاز دارند.",
+      "hint": "XML داده را نگه می‌دارد، JavaScript آن را می‌خواند و DOM آن را در صفحه می‌نشاند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در این فصل داده از کدام فایل خوانده می‌شود؟",
+      "options": ["cd_catalog.xml", "customers.json", "gethint.php", "ajax_info.txt"],
+      "answer": 0,
+      "explanation": "درس می‌گوید در این فصل از فایل XMLی به نام \"cd_catalog.xml\" استفاده می‌شود."
+    },
+    {
+      "question": "برای نمایش همهٔ CDها در یک جدول چه می‌کنیم؟",
+      "options": [
+        "روی هر عنصر CD حلقه می‌زنیم و مقدار ARTIST و TITLE را نشان می‌دهیم",
+        "فقط عنصر اول را می‌خوانیم",
+        "از JSON.parse استفاده می‌کنیم",
+        "فایل XML را در مرورگر باز می‌کنیم"
+      ],
+      "answer": 0,
+      "explanation": "درس توضیح می‌دهد که مثال روی هر عنصر <CD> حلقه می‌زند و مقادیر <ARTIST> و <TITLE> را در جدول می‌گذارد."
+    },
+    {
+      "question": "دو تابعی که برای حرکت بین CDها ساخته می‌شوند کدام‌اند؟",
+      "options": ["first() و last()", "next() و previous()", "up() و down()", "open() و close()"],
+      "answer": 1,
+      "explanation": "درس برای حرکت بین CDها دو تابع next() و previous() را معرفی می‌کند."
+    },
+    {
+      "question": "نخستین CD در چه عنصری نشان داده می‌شود؟",
+      "options": ["یک عنصر با id=\"showCD\"", "یک جدول", "یک تصویر", "عنصر body"],
+      "answer": 0,
+      "explanation": "درس می‌گوید نخستین عنصر CD در عنصر HTMLی با id=\"showCD\" نمایش داده می‌شود."
+    },
+    {
+      "question": "در این مثال‌ها نقش HTML DOM چیست؟",
+      "options": [
+        "داده را ذخیره می‌کند",
+        "دادهٔ XML را در صفحه نمایش می‌دهد",
+        "فایل XML را می‌سازد",
+        "کوئری پایگاه داده می‌زند"
+      ],
+      "answer": 1,
+      "explanation": "DOM ابزار نمایش و دستکاری عنصرهای صفحه است؛ داده در XML می‌ماند و JavaScript آن را می‌خواند."
+    }
+  ]
 }

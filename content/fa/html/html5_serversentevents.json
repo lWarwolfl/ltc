@@ -1,262 +1,219 @@
 {
- "slug": "html5_serversentevents",
- "course": "html",
- "order": 75,
- "url": "/html/html5_serversentevents.asp",
- "title": "API رویدادهای ارسالی از سرور در HTML",
- "summary": "SSE به سرور اجازه می‌دهد به‌روزرسانی‌ها را خودکار روی اتصال HTTP به صفحهٔ وب بفرستد؛ بدون اینکه صفحه مدام درخواست بدهد. در این درس شیء EventSource، رویداد onmessage، بررسی پشتیبانی مرورگر و کد سمت سرور با هدر text/event-stream را می‌آموزید.",
- "objectives": [
-  "توضیح دهید SSE چیست و با روش درخواست معمولی چه فرقی دارد",
-  "با شیء EventSource به‌روزرسانی‌های سرور را دریافت کنید",
-  "رویدادهای onopen، onmessage و onerror را بشناسید",
-  "شرط‌های کد سمت سرور برای فرستادن جریان رویداد را بگویید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "API رویدادهای ارسالی از سرور در HTML"
-  },
-  {
-   "type": "p",
-   "text": "API رویدادهای ارسالی از سرور (SSE) اجازه می‌دهد پیام‌ها و به‌روزرسانی‌ها از سرور روی اتصال HTTP به صفحهٔ وب فرستاده شوند."
-  },
-  {
-   "type": "h2",
-   "text": "رویدادهای ارسالی از سرور؛ پیام‌رسانی یک‌طرفه"
-  },
-  {
-   "type": "p",
-   "text": "رویداد ارسالی از سرور یعنی صفحهٔ وب به‌طور خودکار پیام‌ها و به‌روزرسانی‌ها را از سرور می‌گیرد."
-  },
-  {
-   "type": "p",
-   "text": "معمولاً صفحهٔ وب باید داده را از سرور درخواست کند، اما با رویدادهای ارسالی از سرور، به‌روزرسانی‌ها خودکار فرستاده می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "مثال‌ها: به‌روزرسانی‌های Facebook و Twitter، تغییرات بورس، خوراک خبری، نتایج ورزشی و مانند آن."
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "عددهای جدول، اولین نسخهٔ مرورگری را نشان می‌دهند که به‌طور کامل از API رویدادهای ارسالی از سرور پشتیبانی می‌کند."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "API",
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "SSE",
-     "6.0",
-     "79.0",
-     "6.0",
-     "5.0",
-     "11.5"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "دریافت اعلان‌های رویداد ارسالی از سرور"
-  },
-  {
-   "type": "p",
-   "text": "شیء EventSource برای دریافت اعلان‌های رویداد ارسالی از سرور به کار می‌رود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "<script>\nconst x = document.getElementById(\"result\");\n\n  // Check browser support for SSE\nif(typeof(EventSource)\n  !== \"undefined\") {\n  var source = new EventSource(\"demo_sse.php\");\n\n  source.onmessage = function(event) {\n    x.innerHTML +=\n  event.data + \"<br>\";\n  };\n} else {\n  x.innerHTML = \"Sorry,\n  no support for server-sent events.\";\n}\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_sse"
-  },
-  {
-   "type": "p",
-   "text": "توضیح مثال:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء EventSource تازه بسازید و نشانی صفحه‌ای را بدهید که به‌روزرسانی‌ها را می‌فرستد (در این مثال \\\"demo_sse.php\\\")",
-    "هر بار که به‌روزرسانی‌ای دریافت شود، رویداد onmessage رخ می‌دهد",
-    "وقتی رویداد onmessage رخ داد، دادهٔ دریافتی را داخل عنصری با id=\\\"result\\\" بگذارید"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگر را بررسی کنید"
-  },
-  {
-   "type": "p",
-   "text": "در مثال tryit بالا چند خط کد اضافه برای بررسی پشتیبانی مرورگر از رویدادهای ارسالی از سرور وجود داشت:"
-  },
-  {
-   "type": "p",
-   "text": "if(typeof(EventSource) !== \"undefined\") {\n    // Yes! Server-sent events support!\n    // Some code.....\n }\n else {\n    // Sorry! No server-sent events support..\n }"
-  },
-  {
-   "type": "h2",
-   "text": "مثال کد سمت سرور"
-  },
-  {
-   "type": "p",
-   "text": "برای اینکه مثال بالا کار کند، به سروری نیاز دارید که بتواند به‌روزرسانی داده بفرستد (مثل PHP یا ASP)."
-  },
-  {
-   "type": "p",
-   "text": "نحو جریان رویداد در سمت سرور ساده است. هدر \\\"Content-Type\\\" را روی \\\"text/event-stream\\\" بگذارید. حالا می‌توانید جریان رویداد بفرستید."
-  },
-  {
-   "type": "p",
-   "text": "کد PHP (فایل demo_sse.php):"
-  },
-  {
-   "type": "p",
-   "text": "<?phpheader('Content-Type: text/event-stream');\n header('Cache-Control: no-cache');$time = date('r');echo \"data: The server time is: {$time}\\n\\n\";flush();?>"
-  },
-  {
-   "type": "p",
-   "text": "کد ASP با VB (فایل demo_sse.asp):"
-  },
-  {
-   "type": "p",
-   "text": "<%Response.ContentType = \"text/event-stream\"Response.Expires = -1\n Response.Write(\"data: The server time is: \" & now())Response.Flush()%>"
-  },
-  {
-   "type": "p",
-   "text": "توضیح کد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "هدر \\\"Content-Type\\\" را روی \\\"text/event-stream\\\" بگذارید",
-    "تعیین کنید که صفحه نباید در حافظهٔ موقت (cache) ذخیره شود",
-    "دادهٔ ارسالی را چاپ کنید (همیشه با \\\"data: \\\" شروع می‌شود)",
-    "دادهٔ خروجی را به صفحهٔ وب برگردانید"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "شیء EventSource"
-  },
-  {
-   "type": "p",
-   "text": "در مثال‌های بالا از رویداد onmessage برای گرفتن پیام‌ها استفاده کردیم، اما رویدادهای دیگری هم در دسترس‌اند:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "رویدادها",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "onopen",
-     "وقتی اتصال به سرور باز می‌شود"
-    ],
-    [
-     "onmessage",
-     "وقتی پیامی دریافت می‌شود"
-    ],
-    [
-     "onerror",
-     "وقتی خطایی رخ می‌دهد"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل sse.html بسازید و یک شیء EventSource با نشانی یک اسکریپت سروری بسازید.",
-   "hint": "new EventSource(\"demo_sse.php\") همان شیء مورد نظر است."
-  },
-  {
-   "prompt": "رویداد onmessage را روی شیء EventSource بنویسید و دادهٔ دریافتی را در عنصری با id=\"result\" بگذارید.",
-   "hint": "داده در event.data قرار دارد."
-  },
-  {
-   "prompt": "پیش از ساختن شیء بررسی کنید که EventSource در مرورگر پشتیبانی می‌شود یا نه و در غیر این صورت پیام مناسب نشان دهید.",
-   "hint": "با typeof(EventSource) !== \"undefined\" بررسی کنید."
-  },
-  {
-   "prompt": "در دو خط بنویسید سرور برای فرستادن جریان رویداد باید کدام هدر و چه قالبی را رعایت کند.",
-   "hint": "هدر Content-Type با مقدار text/event-stream و خطوطی که با data: شروع می‌شوند."
-  },
-  {
-   "prompt": "جدول رویدادهای شیء EventSource را از درس بنویسید و کار onopen و onerror را توضیح دهید.",
-   "hint": "onopen برای باز شدن اتصال و onerror برای رخ دادن خطاست."
-  }
- ],
- "quiz": [
-  {
-   "question": "رویداد ارسالی از سرور (SSE) چه چیزی را ممکن می‌کند؟",
-   "options": [
-    "آپلود فایل از مرورگر به سرور",
-    "فرستادن خودکار پیام‌ها و به‌روزرسانی‌ها از سرور به صفحهٔ وب روی اتصال HTTP",
-    "ذخیرهٔ داده در مرورگر کاربر",
-    "رسم گرافیک با JavaScript"
-   ],
-   "answer": 1,
-   "explanation": "SSE پیام‌رسانی یک‌طرفه از سرور به صفحه است؛ برخلاف روش معمول که صفحه باید داده را درخواست کند."
-  },
-  {
-   "question": "کدام شیء اعلان‌های رویداد ارسالی از سرور را دریافت می‌کند؟",
-   "options": [
-    "EventSource",
-    "Worker",
-    "XMLHttpRequest2",
-    "localStorage"
-   ],
-   "answer": 0,
-   "explanation": "درس می‌گوید شیء EventSource برای دریافت این اعلان‌ها ساخته می‌شود و با new EventSource ساخته می‌شود."
-  },
-  {
-   "question": "هدر سمت سرور برای فرستادن جریان رویداد چه مقداری می‌گیرد؟",
-   "options": [
-    "application/json",
-    "text/html",
-    "text/event-stream",
-    "audio/ogg"
-   ],
-   "answer": 2,
-   "explanation": "درس می‌گوید هدر \"Content-Type\" را روی \"text/event-stream\" بگذارید تا بتوانید جریان رویداد بفرستید."
-  },
-  {
-   "question": "رویداد onopen چه زمانی رخ می‌دهد؟",
-   "options": [
-    "وقتی پیامی دریافت می‌شود",
-    "وقتی خطایی رخ می‌دهد",
-    "وقتی داده پاک می‌شود",
-    "وقتی اتصال به سرور باز می‌شود"
-   ],
-   "answer": 3,
-   "explanation": "جدول رویدادها onopen را برای لحظهٔ باز شدن اتصال، onmessage را برای دریافت پیام و onerror را برای خطا تعریف می‌کند."
-  },
-  {
-   "question": "خروجی دادهٔ SSE در سمت سرور همیشه با چه چیزی شروع می‌شود؟",
-   "options": [
-    "data: ",
-    "stream: ",
-    "msg: ",
-    "event: "
-   ],
-   "answer": 0,
-   "explanation": "توضیح کد می‌گوید دادهٔ ارسالی همیشه با \"data: \" شروع می‌شود و بعد با flush به صفحه فرستاده می‌شود."
-  }
- ]
+  "slug": "html5_serversentevents",
+  "course": "html",
+  "order": 75,
+  "url": "/html/html5_serversentevents.asp",
+  "title": "API رویدادهای ارسالی از سرور در HTML",
+  "summary": "SSE به سرور اجازه می‌دهد به‌روزرسانی‌ها را خودکار روی اتصال HTTP به صفحهٔ وب بفرستد؛ بدون اینکه صفحه مدام درخواست بدهد. در این درس شیء EventSource، رویداد onmessage، بررسی پشتیبانی مرورگر و کد سمت سرور با هدر text/event-stream را می‌آموزید.",
+  "objectives": [
+    "توضیح دهید SSE چیست و با روش درخواست معمولی چه فرقی دارد",
+    "با شیء EventSource به‌روزرسانی‌های سرور را دریافت کنید",
+    "رویدادهای onopen، onmessage و onerror را بشناسید",
+    "شرط‌های کد سمت سرور برای فرستادن جریان رویداد را بگویید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "API رویدادهای ارسالی از سرور در HTML"
+    },
+    {
+      "type": "p",
+      "text": "API رویدادهای ارسالی از سرور (SSE) اجازه می‌دهد پیام‌ها و به‌روزرسانی‌ها از سرور روی اتصال HTTP به صفحهٔ وب فرستاده شوند."
+    },
+    {
+      "type": "h2",
+      "text": "رویدادهای ارسالی از سرور؛ پیام‌رسانی یک‌طرفه"
+    },
+    {
+      "type": "p",
+      "text": "رویداد ارسالی از سرور یعنی صفحهٔ وب به‌طور خودکار پیام‌ها و به‌روزرسانی‌ها را از سرور می‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "معمولاً صفحهٔ وب باید داده را از سرور درخواست کند، اما با رویدادهای ارسالی از سرور، به‌روزرسانی‌ها خودکار فرستاده می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "مثال‌ها: به‌روزرسانی‌های Facebook و Twitter، تغییرات بورس، خوراک خبری، نتایج ورزشی و مانند آن."
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "عددهای جدول، اولین نسخهٔ مرورگری را نشان می‌دهند که به‌طور کامل از API رویدادهای ارسالی از سرور پشتیبانی می‌کند."
+    },
+    {
+      "type": "table",
+      "headers": ["API", "", "", "", "", ""],
+      "rows": [["SSE", "6.0", "79.0", "6.0", "5.0", "11.5"]]
+    },
+    {
+      "type": "h2",
+      "text": "دریافت اعلان‌های رویداد ارسالی از سرور"
+    },
+    {
+      "type": "p",
+      "text": "شیء EventSource برای دریافت اعلان‌های رویداد ارسالی از سرور به کار می‌رود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "<script>\nconst x = document.getElementById(\"result\");\n\n  // Check browser support for SSE\nif(typeof(EventSource)\n  !== \"undefined\") {\n  var source = new EventSource(\"demo_sse.php\");\n\n  source.onmessage = function(event) {\n    x.innerHTML +=\n  event.data + \"<br>\";\n  };\n} else {\n  x.innerHTML = \"Sorry,\n  no support for server-sent events.\";\n}\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_sse"
+    },
+    {
+      "type": "p",
+      "text": "توضیح مثال:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک شیء EventSource تازه بسازید و نشانی صفحه‌ای را بدهید که به‌روزرسانی‌ها را می‌فرستد (در این مثال \\\"demo_sse.php\\\")",
+        "هر بار که به‌روزرسانی‌ای دریافت شود، رویداد onmessage رخ می‌دهد",
+        "وقتی رویداد onmessage رخ داد، دادهٔ دریافتی را داخل عنصری با id=\\\"result\\\" بگذارید"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگر را بررسی کنید"
+    },
+    {
+      "type": "p",
+      "text": "در مثال tryit بالا چند خط کد اضافه برای بررسی پشتیبانی مرورگر از رویدادهای ارسالی از سرور وجود داشت:"
+    },
+    {
+      "type": "p",
+      "text": "if(typeof(EventSource) !== \"undefined\") {\n    // Yes! Server-sent events support!\n    // Some code.....\n }\n else {\n    // Sorry! No server-sent events support..\n }"
+    },
+    {
+      "type": "h2",
+      "text": "مثال کد سمت سرور"
+    },
+    {
+      "type": "p",
+      "text": "برای اینکه مثال بالا کار کند، به سروری نیاز دارید که بتواند به‌روزرسانی داده بفرستد (مثل PHP یا ASP)."
+    },
+    {
+      "type": "p",
+      "text": "نحو جریان رویداد در سمت سرور ساده است. هدر \\\"Content-Type\\\" را روی \\\"text/event-stream\\\" بگذارید. حالا می‌توانید جریان رویداد بفرستید."
+    },
+    {
+      "type": "p",
+      "text": "کد PHP (فایل demo_sse.php):"
+    },
+    {
+      "type": "p",
+      "text": "<?phpheader('Content-Type: text/event-stream');\n header('Cache-Control: no-cache');$time = date('r');echo \"data: The server time is: {$time}\\n\\n\";flush();?>"
+    },
+    {
+      "type": "p",
+      "text": "کد ASP با VB (فایل demo_sse.asp):"
+    },
+    {
+      "type": "p",
+      "text": "<%Response.ContentType = \"text/event-stream\"Response.Expires = -1\n Response.Write(\"data: The server time is: \" & now())Response.Flush()%>"
+    },
+    {
+      "type": "p",
+      "text": "توضیح کد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "هدر \\\"Content-Type\\\" را روی \\\"text/event-stream\\\" بگذارید",
+        "تعیین کنید که صفحه نباید در حافظهٔ موقت (cache) ذخیره شود",
+        "دادهٔ ارسالی را چاپ کنید (همیشه با \\\"data: \\\" شروع می‌شود)",
+        "دادهٔ خروجی را به صفحهٔ وب برگردانید"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "شیء EventSource"
+    },
+    {
+      "type": "p",
+      "text": "در مثال‌های بالا از رویداد onmessage برای گرفتن پیام‌ها استفاده کردیم، اما رویدادهای دیگری هم در دسترس‌اند:"
+    },
+    {
+      "type": "table",
+      "headers": ["رویدادها", "توضیح"],
+      "rows": [
+        ["onopen", "وقتی اتصال به سرور باز می‌شود"],
+        ["onmessage", "وقتی پیامی دریافت می‌شود"],
+        ["onerror", "وقتی خطایی رخ می‌دهد"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل sse.html بسازید و یک شیء EventSource با نشانی یک اسکریپت سروری بسازید.",
+      "hint": "new EventSource(\"demo_sse.php\") همان شیء مورد نظر است."
+    },
+    {
+      "prompt": "رویداد onmessage را روی شیء EventSource بنویسید و دادهٔ دریافتی را در عنصری با id=\"result\" بگذارید.",
+      "hint": "داده در event.data قرار دارد."
+    },
+    {
+      "prompt": "پیش از ساختن شیء بررسی کنید که EventSource در مرورگر پشتیبانی می‌شود یا نه و در غیر این صورت پیام مناسب نشان دهید.",
+      "hint": "با typeof(EventSource) !== \"undefined\" بررسی کنید."
+    },
+    {
+      "prompt": "در دو خط بنویسید سرور برای فرستادن جریان رویداد باید کدام هدر و چه قالبی را رعایت کند.",
+      "hint": "هدر Content-Type با مقدار text/event-stream و خطوطی که با data: شروع می‌شوند."
+    },
+    {
+      "prompt": "جدول رویدادهای شیء EventSource را از درس بنویسید و کار onopen و onerror را توضیح دهید.",
+      "hint": "onopen برای باز شدن اتصال و onerror برای رخ دادن خطاست."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "رویداد ارسالی از سرور (SSE) چه چیزی را ممکن می‌کند؟",
+      "options": [
+        "آپلود فایل از مرورگر به سرور",
+        "فرستادن خودکار پیام‌ها و به‌روزرسانی‌ها از سرور به صفحهٔ وب روی اتصال HTTP",
+        "ذخیرهٔ داده در مرورگر کاربر",
+        "رسم گرافیک با JavaScript"
+      ],
+      "answer": 1,
+      "explanation": "SSE پیام‌رسانی یک‌طرفه از سرور به صفحه است؛ برخلاف روش معمول که صفحه باید داده را درخواست کند."
+    },
+    {
+      "question": "کدام شیء اعلان‌های رویداد ارسالی از سرور را دریافت می‌کند؟",
+      "options": ["EventSource", "Worker", "XMLHttpRequest2", "localStorage"],
+      "answer": 0,
+      "explanation": "درس می‌گوید شیء EventSource برای دریافت این اعلان‌ها ساخته می‌شود و با new EventSource ساخته می‌شود."
+    },
+    {
+      "question": "هدر سمت سرور برای فرستادن جریان رویداد چه مقداری می‌گیرد؟",
+      "options": ["application/json", "text/html", "text/event-stream", "audio/ogg"],
+      "answer": 2,
+      "explanation": "درس می‌گوید هدر \"Content-Type\" را روی \"text/event-stream\" بگذارید تا بتوانید جریان رویداد بفرستید."
+    },
+    {
+      "question": "رویداد onopen چه زمانی رخ می‌دهد؟",
+      "options": [
+        "وقتی پیامی دریافت می‌شود",
+        "وقتی خطایی رخ می‌دهد",
+        "وقتی داده پاک می‌شود",
+        "وقتی اتصال به سرور باز می‌شود"
+      ],
+      "answer": 3,
+      "explanation": "جدول رویدادها onopen را برای لحظهٔ باز شدن اتصال، onmessage را برای دریافت پیام و onerror را برای خطا تعریف می‌کند."
+    },
+    {
+      "question": "خروجی دادهٔ SSE در سمت سرور همیشه با چه چیزی شروع می‌شود؟",
+      "options": ["data: ", "stream: ", "msg: ", "event: "],
+      "answer": 0,
+      "explanation": "توضیح کد می‌گوید دادهٔ ارسالی همیشه با \"data: \" شروع می‌شود و بعد با flush به صفحه فرستاده می‌شود."
+    }
+  ]
 }

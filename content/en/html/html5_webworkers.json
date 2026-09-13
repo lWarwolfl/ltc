@@ -1,220 +1,200 @@
 {
- "slug": "html5_webworkers",
- "course": "html",
- "order": 74,
- "url": "/html/html5_webworkers.asp",
- "title": "HTML Web Workers API",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "HTML Web Workers API"
-  },
-  {
-   "type": "p",
-   "text": "A web worker is an external JavaScript file that runs in the background, without affecting the performance of the page."
-  },
-  {
-   "type": "h2",
-   "text": "What is a Web Worker?"
-  },
-  {
-   "type": "p",
-   "text": "When executing scripts in an HTML page, the page becomes unresponsive until the script is finished."
-  },
-  {
-   "type": "p",
-   "text": "A web worker is an external JavaScript file that runs in the background, independently\nof other scripts, without affecting the performance of the page. You can continue to do whatever you want:\nclicking, selecting things, etc., while the web worker runs in the background."
-  },
-  {
-   "type": "p",
-   "text": "Web workers are useful for heavy code that can't be run on the main thread,\nwithout causing long tasks that make the page unresponsive."
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "The numbers in the table specify the first browser version that fully support\nthe Web Workers API."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "API",
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Web Workers",
-     "4.0",
-     "10.0",
-     "3.5",
-     "4.0",
-     "11.5"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Web Workers API Example"
-  },
-  {
-   "type": "p",
-   "text": "The example below creates a simple web worker that count numbers in the background:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Normally web workers are not used for such simple scripts, but for more CPU intensive tasks!"
-  },
-  {
-   "type": "h2",
-   "text": "Check Web Worker API Support"
-  },
-  {
-   "type": "p",
-   "text": "Before using web worker, we can quickly check browser support:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "<script>\nconst x = document.getElementById(\"result\");\n\n  if(typeof(Worker) !== \"undefined\") {\n  x.innerHTML = \"Your browser\n  support Web Workers!\";\n} else {\n  x.innerHTML = \"Sorry, your\n  browser does not support Web Workers.\";\n}\n\n  </script>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker_browsertest"
-  },
-  {
-   "type": "h2",
-   "text": "Create a .js Web Worker File"
-  },
-  {
-   "type": "p",
-   "text": "Now, let's create a web worker in an external JavaScript file."
-  },
-  {
-   "type": "p",
-   "text": "Here we create a script that counts. The script is stored in the \"demo_workers.js\" file:"
-  },
-  {
-   "type": "p",
-   "text": "var i = 0;\n\nfunction timedCount()\n{\n\ni = i + 1;\n\npostMessage(i);\n  setTimeout(\"timedCount()\",500);\n}\n\ntimedCount();"
-  },
-  {
-   "type": "p",
-   "text": "Note: The important part of the code above is the postMessage() method - which is used to post messages back to the HTML page."
-  },
-  {
-   "type": "h2",
-   "text": "Create a Web Worker Object"
-  },
-  {
-   "type": "p",
-   "text": "Once we have created the .js web worker file, we can call it from an HTML page."
-  },
-  {
-   "type": "p",
-   "text": "The following lines checks if a worker (w) already exists, if not - it creates a new web worker object and\npoints to the .js file:\n\"demo_workers.js\":"
-  },
-  {
-   "type": "p",
-   "text": "if (typeof(w) == \"undefined\") {\n    w = new Worker(\"demo_workers.js\");\n }"
-  },
-  {
-   "type": "p",
-   "text": "Then we can SEND and RETRIEVE messages from the web worker."
-  },
-  {
-   "type": "p",
-   "text": "Data is sent between web workers and the main thread via a system of messages\n- both sides send their messages using the postMessage()\nmethod, and respond to messages via the onmessage\nevent handler."
-  },
-  {
-   "type": "p",
-   "text": "Add an onmessage event listener to the web worker\nobject."
-  },
-  {
-   "type": "p",
-   "text": "w.onmessage = function(event){\n  document.getElementById(\"result\").innerHTML = event.data;\n };"
-  },
-  {
-   "type": "p",
-   "text": "When the web worker in the .js posts a message, the code within the event listener is executed. The data\nfrom the web worker is stored in event.data."
-  },
-  {
-   "type": "h2",
-   "text": "Terminate a Web Worker"
-  },
-  {
-   "type": "p",
-   "text": "When a web worker object is created, it will continue to listen for messages until it is terminated."
-  },
-  {
-   "type": "p",
-   "text": "To terminate a web worker object, and free browser/computer resources, use the\nterminate() method:"
-  },
-  {
-   "type": "p",
-   "text": "w.terminate();"
-  },
-  {
-   "type": "h2",
-   "text": "Reuse the Web Worker"
-  },
-  {
-   "type": "p",
-   "text": "If you set the web worker variable to undefined, after it has been terminated,\nyou can reuse the worker/code:"
-  },
-  {
-   "type": "p",
-   "text": "w = undefined;"
-  },
-  {
-   "type": "h2",
-   "text": "Full Web Worker Example"
-  },
-  {
-   "type": "p",
-   "text": "We have already seen the Web Worker code in the .js file."
-  },
-  {
-   "type": "p",
-   "text": "Below is the full code for the HTML page:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<p>Count numbers: <output id=\"result\"></output></p>\n\n<button onclick=\"startWorker()\">Start Worker</button>\n\n<button onclick=\"stopWorker()\">Stop Worker</button>\n\n<script>\n\n  let w;\n\nfunction startWorker()\n{\n  const x = document.getElementById(\"result\");\n\nif (typeof(Worker) !== \"undefined\")\n{\n\n    if (typeof(w) == \"undefined\") {\n\n        w = new Worker(\"demo_workers.js\");\n\n      }\n\n    w.onmessage = function(event) {\n\n        x.innerHTML = event.data;\n\n    };\n\n  }\nelse\n{\n\n  x.innerHTML = \"Sorry! No Web Worker support.\";\n\n    }\n\n}\n\nfunction stopWorker()\n{\n\n  w.terminate();\n  w = undefined;\n\n}\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker"
-  },
-  {
-   "type": "h2",
-   "text": "Web Workers and the DOM"
-  },
-  {
-   "type": "p",
-   "text": "Since web workers are in external .js files, they do not have access to the following JavaScript objects:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The window object",
-    "The document object",
-    "The parent object"
-   ]
-  }
- ]
+  "slug": "html5_webworkers",
+  "course": "html",
+  "order": 74,
+  "url": "/html/html5_webworkers.asp",
+  "title": "HTML Web Workers API",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "HTML Web Workers API"
+    },
+    {
+      "type": "p",
+      "text": "A web worker is an external JavaScript file that runs in the background, without affecting the performance of the page."
+    },
+    {
+      "type": "h2",
+      "text": "What is a Web Worker?"
+    },
+    {
+      "type": "p",
+      "text": "When executing scripts in an HTML page, the page becomes unresponsive until the script is finished."
+    },
+    {
+      "type": "p",
+      "text": "A web worker is an external JavaScript file that runs in the background, independently\nof other scripts, without affecting the performance of the page. You can continue to do whatever you want:\nclicking, selecting things, etc., while the web worker runs in the background."
+    },
+    {
+      "type": "p",
+      "text": "Web workers are useful for heavy code that can't be run on the main thread,\nwithout causing long tasks that make the page unresponsive."
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "The numbers in the table specify the first browser version that fully support\nthe Web Workers API."
+    },
+    {
+      "type": "table",
+      "headers": ["API", "", "", "", "", ""],
+      "rows": [["Web Workers", "4.0", "10.0", "3.5", "4.0", "11.5"]]
+    },
+    {
+      "type": "h2",
+      "text": "Web Workers API Example"
+    },
+    {
+      "type": "p",
+      "text": "The example below creates a simple web worker that count numbers in the background:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Normally web workers are not used for such simple scripts, but for more CPU intensive tasks!"
+    },
+    {
+      "type": "h2",
+      "text": "Check Web Worker API Support"
+    },
+    {
+      "type": "p",
+      "text": "Before using web worker, we can quickly check browser support:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "<script>\nconst x = document.getElementById(\"result\");\n\n  if(typeof(Worker) !== \"undefined\") {\n  x.innerHTML = \"Your browser\n  support Web Workers!\";\n} else {\n  x.innerHTML = \"Sorry, your\n  browser does not support Web Workers.\";\n}\n\n  </script>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker_browsertest"
+    },
+    {
+      "type": "h2",
+      "text": "Create a .js Web Worker File"
+    },
+    {
+      "type": "p",
+      "text": "Now, let's create a web worker in an external JavaScript file."
+    },
+    {
+      "type": "p",
+      "text": "Here we create a script that counts. The script is stored in the \"demo_workers.js\" file:"
+    },
+    {
+      "type": "p",
+      "text": "var i = 0;\n\nfunction timedCount()\n{\n\ni = i + 1;\n\npostMessage(i);\n  setTimeout(\"timedCount()\",500);\n}\n\ntimedCount();"
+    },
+    {
+      "type": "p",
+      "text": "Note: The important part of the code above is the postMessage() method - which is used to post messages back to the HTML page."
+    },
+    {
+      "type": "h2",
+      "text": "Create a Web Worker Object"
+    },
+    {
+      "type": "p",
+      "text": "Once we have created the .js web worker file, we can call it from an HTML page."
+    },
+    {
+      "type": "p",
+      "text": "The following lines checks if a worker (w) already exists, if not - it creates a new web worker object and\npoints to the .js file:\n\"demo_workers.js\":"
+    },
+    {
+      "type": "p",
+      "text": "if (typeof(w) == \"undefined\") {\n    w = new Worker(\"demo_workers.js\");\n }"
+    },
+    {
+      "type": "p",
+      "text": "Then we can SEND and RETRIEVE messages from the web worker."
+    },
+    {
+      "type": "p",
+      "text": "Data is sent between web workers and the main thread via a system of messages\n- both sides send their messages using the postMessage()\nmethod, and respond to messages via the onmessage\nevent handler."
+    },
+    {
+      "type": "p",
+      "text": "Add an onmessage event listener to the web worker\nobject."
+    },
+    {
+      "type": "p",
+      "text": "w.onmessage = function(event){\n  document.getElementById(\"result\").innerHTML = event.data;\n };"
+    },
+    {
+      "type": "p",
+      "text": "When the web worker in the .js posts a message, the code within the event listener is executed. The data\nfrom the web worker is stored in event.data."
+    },
+    {
+      "type": "h2",
+      "text": "Terminate a Web Worker"
+    },
+    {
+      "type": "p",
+      "text": "When a web worker object is created, it will continue to listen for messages until it is terminated."
+    },
+    {
+      "type": "p",
+      "text": "To terminate a web worker object, and free browser/computer resources, use the\nterminate() method:"
+    },
+    {
+      "type": "p",
+      "text": "w.terminate();"
+    },
+    {
+      "type": "h2",
+      "text": "Reuse the Web Worker"
+    },
+    {
+      "type": "p",
+      "text": "If you set the web worker variable to undefined, after it has been terminated,\nyou can reuse the worker/code:"
+    },
+    {
+      "type": "p",
+      "text": "w = undefined;"
+    },
+    {
+      "type": "h2",
+      "text": "Full Web Worker Example"
+    },
+    {
+      "type": "p",
+      "text": "We have already seen the Web Worker code in the .js file."
+    },
+    {
+      "type": "p",
+      "text": "Below is the full code for the HTML page:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<p>Count numbers: <output id=\"result\"></output></p>\n\n<button onclick=\"startWorker()\">Start Worker</button>\n\n<button onclick=\"stopWorker()\">Stop Worker</button>\n\n<script>\n\n  let w;\n\nfunction startWorker()\n{\n  const x = document.getElementById(\"result\");\n\nif (typeof(Worker) !== \"undefined\")\n{\n\n    if (typeof(w) == \"undefined\") {\n\n        w = new Worker(\"demo_workers.js\");\n\n      }\n\n    w.onmessage = function(event) {\n\n        x.innerHTML = event.data;\n\n    };\n\n  }\nelse\n{\n\n  x.innerHTML = \"Sorry! No Web Worker support.\";\n\n    }\n\n}\n\nfunction stopWorker()\n{\n\n  w.terminate();\n  w = undefined;\n\n}\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_webworker"
+    },
+    {
+      "type": "h2",
+      "text": "Web Workers and the DOM"
+    },
+    {
+      "type": "p",
+      "text": "Since web workers are in external .js files, they do not have access to the following JavaScript objects:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["The window object", "The document object", "The parent object"]
+    }
+  ]
 }

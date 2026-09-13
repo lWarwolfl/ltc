@@ -1,262 +1,142 @@
 {
- "slug": "js_comparisons",
- "course": "js",
- "order": 14,
- "url": "/js/js_comparisons.asp",
- "title": "JavaScript Comparison",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Comparison"
-  },
-  {
-   "type": "h2",
-   "text": "Comparison Operators"
-  },
-  {
-   "type": "p",
-   "text": "Comparison operators are used to compare two values."
-  },
-  {
-   "type": "p",
-   "text": "Comparison operators always return true or\nfalse."
-  },
-  {
-   "type": "p",
-   "text": "Given that x = 5, the table below explains the comparison operators:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Operator",
-    "Description",
-    "Comparing",
-    "Returns",
-    ""
-   ],
-   "rows": [
-    [
-     "==",
-     "equal to",
-     "x == 8",
-     "false",
-     "Try it »"
-    ],
-    [
-     "",
-     "",
-     "x == 5",
-     "true",
-     "Try it »"
-    ],
-    [
-     "",
-     "",
-     "x == \"5\"",
-     "true",
-     "Try it »"
-    ],
-    [
-     "===",
-     "equal value and equal type",
-     "x === 5",
-     "true",
-     "Try it »"
-    ],
-    [
-     "",
-     "",
-     "x === \"5\"",
-     "false",
-     "Try it »"
-    ],
-    [
-     "!=",
-     "not equal",
-     "x != 8",
-     "true",
-     "Try it »"
-    ],
-    [
-     "!==",
-     "not equal value or not equal type",
-     "x !== 5",
-     "false",
-     "Try it »"
-    ],
-    [
-     "",
-     "",
-     "x !== \"5\"",
-     "true",
-     "Try it »"
-    ],
-    [
-     "",
-     "",
-     "x !== 8",
-     "true",
-     "Try it »"
-    ],
-    [
-     ">",
-     "greater than",
-     "x > 8",
-     "false",
-     "Try it »"
-    ],
-    [
-     "<",
-     "less than",
-     "x < 8",
-     "true",
-     "Try it »"
-    ],
-    [
-     ">=",
-     "greater than or equal to",
-     "x >= 8",
-     "false",
-     "Try it »"
-    ],
-    [
-     "<=",
-     "less than or equal to",
-     "x <= 8",
-     "true",
-     "Try it »"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Comparison operators can be used in conditional statements to compare values\nand take action depending on the result:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "if (age < 18) text = \"Too young to buy alcohol\";",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "You will learn more about the use of conditional statements in the\nif...else chapter of this tutorial."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript String Comparison"
-  },
-  {
-   "type": "p",
-   "text": "All the comparison operators above can also be used on strings:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text1 = \"A\";\n\nlet text2 = \"B\";\n\nlet result = text1 < text2;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_string_comparison"
-  },
-  {
-   "type": "p",
-   "text": "Note that strings are compared alphabetically:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text1 = \"20\";\n\nlet text2 = \"5\";\n\nlet result = text1 < text2;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_string_comparison1"
-  },
-  {
-   "type": "h2",
-   "text": "Comparing Different Types"
-  },
-  {
-   "type": "p",
-   "text": "Comparing data of different types may give unexpected results."
-  },
-  {
-   "type": "p",
-   "text": "When comparing a string with a number, JavaScript will convert the string to\na number when doing the comparison. An empty string converts to 0. A non-numeric\nstring converts to NaN which is always false."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Case",
-    "Value",
-    "Try"
-   ],
-   "rows": [
-    [
-     "2 < 12",
-     "true",
-     "Try it »"
-    ],
-    [
-     "2 < \"12\"",
-     "true",
-     "Try it »"
-    ],
-    [
-     "2 < \"John\"",
-     "false",
-     "Try it »"
-    ],
-    [
-     "2 > \"John\"",
-     "false",
-     "Try it »"
-    ],
-    [
-     "2 == \"John\"",
-     "false",
-     "Try it »"
-    ],
-    [
-     "\"2\" < \"12\"",
-     "false",
-     "Try it »"
-    ],
-    [
-     "\"2\" > \"12\"",
-     "true",
-     "Try it »"
-    ],
-    [
-     "\"2\" == \"12\"",
-     "false",
-     "Try it »"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "When comparing two strings, \"2\" will be greater than \"12\"."
-  },
-  {
-   "type": "p",
-   "text": "Alphabetically 1 is less than 21."
-  },
-  {
-   "type": "p",
-   "text": "To secure a proper result, variables should be converted to the proper type\nbefore comparison:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "age = Number(age);\n\nif (isNaN(age)) {\n\n  voteable = \"Input is not a number\";\n\n} else {\n\n    voteable = (age < 18) ? \"Too young\" : \"Old enough\";\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_comparison_12"
-  }
- ]
+  "slug": "js_comparisons",
+  "course": "js",
+  "order": 14,
+  "url": "/js/js_comparisons.asp",
+  "title": "JavaScript Comparison",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Comparison"
+    },
+    {
+      "type": "h2",
+      "text": "Comparison Operators"
+    },
+    {
+      "type": "p",
+      "text": "Comparison operators are used to compare two values."
+    },
+    {
+      "type": "p",
+      "text": "Comparison operators always return true or\nfalse."
+    },
+    {
+      "type": "p",
+      "text": "Given that x = 5, the table below explains the comparison operators:"
+    },
+    {
+      "type": "table",
+      "headers": ["Operator", "Description", "Comparing", "Returns", ""],
+      "rows": [
+        ["==", "equal to", "x == 8", "false", "Try it »"],
+        ["", "", "x == 5", "true", "Try it »"],
+        ["", "", "x == \"5\"", "true", "Try it »"],
+        ["===", "equal value and equal type", "x === 5", "true", "Try it »"],
+        ["", "", "x === \"5\"", "false", "Try it »"],
+        ["!=", "not equal", "x != 8", "true", "Try it »"],
+        ["!==", "not equal value or not equal type", "x !== 5", "false", "Try it »"],
+        ["", "", "x !== \"5\"", "true", "Try it »"],
+        ["", "", "x !== 8", "true", "Try it »"],
+        [">", "greater than", "x > 8", "false", "Try it »"],
+        ["<", "less than", "x < 8", "true", "Try it »"],
+        [">=", "greater than or equal to", "x >= 8", "false", "Try it »"],
+        ["<=", "less than or equal to", "x <= 8", "true", "Try it »"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Comparison operators can be used in conditional statements to compare values\nand take action depending on the result:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "if (age < 18) text = \"Too young to buy alcohol\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "You will learn more about the use of conditional statements in the\nif...else chapter of this tutorial."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript String Comparison"
+    },
+    {
+      "type": "p",
+      "text": "All the comparison operators above can also be used on strings:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text1 = \"A\";\n\nlet text2 = \"B\";\n\nlet result = text1 < text2;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_string_comparison"
+    },
+    {
+      "type": "p",
+      "text": "Note that strings are compared alphabetically:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text1 = \"20\";\n\nlet text2 = \"5\";\n\nlet result = text1 < text2;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_oper_string_comparison1"
+    },
+    {
+      "type": "h2",
+      "text": "Comparing Different Types"
+    },
+    {
+      "type": "p",
+      "text": "Comparing data of different types may give unexpected results."
+    },
+    {
+      "type": "p",
+      "text": "When comparing a string with a number, JavaScript will convert the string to\na number when doing the comparison. An empty string converts to 0. A non-numeric\nstring converts to NaN which is always false."
+    },
+    {
+      "type": "table",
+      "headers": ["Case", "Value", "Try"],
+      "rows": [
+        ["2 < 12", "true", "Try it »"],
+        ["2 < \"12\"", "true", "Try it »"],
+        ["2 < \"John\"", "false", "Try it »"],
+        ["2 > \"John\"", "false", "Try it »"],
+        ["2 == \"John\"", "false", "Try it »"],
+        ["\"2\" < \"12\"", "false", "Try it »"],
+        ["\"2\" > \"12\"", "true", "Try it »"],
+        ["\"2\" == \"12\"", "false", "Try it »"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "When comparing two strings, \"2\" will be greater than \"12\"."
+    },
+    {
+      "type": "p",
+      "text": "Alphabetically 1 is less than 21."
+    },
+    {
+      "type": "p",
+      "text": "To secure a proper result, variables should be converted to the proper type\nbefore comparison:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "age = Number(age);\n\nif (isNaN(age)) {\n\n  voteable = \"Input is not a number\";\n\n} else {\n\n    voteable = (age < 18) ? \"Too young\" : \"Old enough\";\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_comparison_12"
+    }
+  ]
 }

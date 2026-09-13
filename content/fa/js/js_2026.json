@@ -1,512 +1,422 @@
 {
- "slug": "js_2026",
- "course": "js",
- "order": 124,
- "url": "/js/js_2026.asp",
- "title": "ECMAScript 2026",
- "summary": "این درس ویژگی‌های رسمی ECMAScript 2026 را معرفی می‌کند: جمع دقیق با Math.sumPrecise، تشخیص خطا با Error.isError، ساخت ناهمگام آرایه با Array.fromAsync، درج یا به‌روزرسانی در Map با getOrInsert، دقت بالای JSON با rawJSON و متدهای تازهٔ Uint8Array برای Base64 و مبنای شانزده.",
- "objectives": [
-  "ویژگی‌های جدید ES2026 را فهرست کنید",
-  "توضیح دهید چرا جمع اعشاری خطا دارد و Math.sumPrecise چه می‌کند",
-  "با getOrInsert یک کلید را در Map درج و به‌روزرسانی کنید",
-  "تفاوت Error.isError با instanceof را تشخیص دهید",
-  "بگویید کدام پیشنهادها به ES2027 موکول شدند"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2026"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید در JavaScript 2026"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2026 (ES2026)، هفدهمین ویرایش مشخصات زبان JavaScript، در ۳۰ ژوئن ۲۰۲۶ رسماً توسط ECMA International تصویب شد."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "محاسبات دقیق با Math.sumPrecise()",
-    "تشخیص خطا با Error.isError()",
-    "ساخت ناهمگام آرایه با Array.fromAsync()",
-    "درج یا به‌روزرسانی در Map با getOrInsert()",
-    "JSON با دقت بالا با rawJSON()",
-    "کدگذاری Base64 و مبنای شانزده برای Uint8Array"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌هایی که به ES2027 موکول شدند"
-  },
-  {
-   "type": "p",
-   "text": "دو پیشنهاد بزرگ، با اینکه از طریق polyfillهای بالغ در اکوسیستم کاملاً شناخته شده‌اند، از مهلت ژوئن ۲۰۲۶ برای ورود رسمی جا ماندند و رسماً برای مشخصات سال بعد کنار گذاشته شدند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Temporal API\nجانشینی که سال‌هاست چشم‌به‌راه آن هستیم، برای شیء Date سی‌ساله و پرباگ. برخلاف Date، شیءهای Temporal تغییرناپذیرند و از منطقه‌های زمانی و تقویم‌های غیرگرگوری پشتیبانی درجه‌یک دارند.",
-    "مدیریت صریح منابع (کلیدواژهٔ using)\nمتغیرهای دامنه‌بلوکی به سبک C# که با خارج شدن از بافت، اتصال‌های پایگاه داده و جریان‌ها را خودکار آزاد می‌کنند و تکرار بی‌فایدهٔ try...finally را از میان برمی‌دارند."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "محاسبات دقیق با Math.sumPrecise()"
-  },
-  {
-   "type": "p",
-   "text": "Math.sumPrecise() مشکل کلاسیک اعشاری 0.1 + 0.2 === 0.30000000000000004 را هنگام جمع کردن فهرستی از عددها برطرف می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "رایانه‌ها مثل انسان در مبنای ۱۰ اعشاری فکر نمی‌کنند؛ آن‌ها با بیت‌های دودویی کار می‌کنند و همین باعث اشکال‌های ساختاری در محاسبات برنامه‌نویسی می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "مشکل: در JavaScript عبارت 0.1 + 0.2 از دیرباز به خاطر خطاهای گرد کردن اعشاری برابر 0.30000000000000004 بوده است. این برای برنامه‌های مالی خطرناک است."
-  },
-  {
-   "type": "p",
-   "text": "راه‌حل: Math.sumPrecise تغییر می‌دهد که موتور زبان فهرستی از عددهای اعشاری را چگونه محاسبه کند و با دور زدن محدودیت ساختاری سیستم، جمعی بی‌عیب تحویل دهد."
-  },
-  {
-   "type": "h2",
-   "text": "درج یا به‌روزرسانی در Map با getOrInsert()"
-  },
-  {
-   "type": "p",
-   "text": "Map.prototype.getOrInsert قالب تکراریِ بررسی وجود کلید پیش از افزودن آیتم به ساختار Map را حذف می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "یک ساختار داده (مثل Array یا Map) اطلاعات شما را نگه می‌دارد. پیش‌تر، ساختارهای بومی JavaScript میانبرهای بدیهی زبان‌های دیگر را نداشتند."
-  },
-  {
-   "type": "p",
-   "text": "مشکل: اگر می‌خواستید یک دیکشنری (Map) را به‌روزرسانی کنید، باید دستور if می‌نوشتید تا وجود کلید را بررسی کنید، اگر نبود بسازید و بعد به‌روزش کنید."
-  },
-  {
-   "type": "p",
-   "text": "راه‌حل: Map.prototype.getOrInsert به شما اجازه می‌دهد در یک حرکت داده را پیدا یا ایجاد کنید و توان ساختار داده را به‌صورت بومی بیشتر می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const userRoles = new Map();\n\n// Old Way: Multi-line checks\n\nif (!userRoles.has(\"admin\")) {\n\n  userRoles.set(\"admin\", []);\n\n}\n\nuserRoles.get(\"admin\").push(\"Alice\");\n\n// New ES2026 Way: Single-line default insertion\n\nuserRoles.getOrInsert(\"admin\", []).push(\"Bob\");\n\nuserRoles.getOrInsert(\"admin\", []).push(\"Charlie\");\n\nconsole.log(userRoles.get(\"admin\")); // ['Bob', 'Charlie']",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "JSON با دقت بالا با rawJSON()"
-  },
-  {
-   "type": "p",
-   "text": "JSON.rawJSON عددهای بزرگ (مثل رشته‌های شناسهٔ پایگاه داده) را بدون از دست دادن رقم‌ها به خاطر گرد کردن داخلی حفظ می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const precisionLossJSON = '{\"id\": 9223372036854775807}';\n\n// New ES2026 Reviver: Accesses the raw source string before rounding\n\nconst data = JSON.parse(precisionLossJSON, (key, value, context) => {\n\n  if (key === 'id') {\n\n    return context.source; // \"9223372036854775807\" as a string\n\n  }\n\n  return value;\n\n});\n\n// New ES2026 Stringify: Outputs the unrounded big integer safely\n\nconst output = JSON.stringify({\n\n  id: JSON.rawJSON(\"9223372036854775807\")\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "متد Error.isError()"
-  },
-  {
-   "type": "p",
-   "text": "Error.isError() یک متد ایستا برای بررسی قابل‌اعتماد این است که یک مقدار شیء Error باشد؛ همین کار مدیریت خطا و اشکال‌زدایی را بهتر می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "Error.isError() شیءهای خطا را قابل‌اعتماد تشخیص می‌دهد، حتی اگر از داخل یک <iframe> یا یک محیط اجرای جداگانه آمده باشند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Error.isError(new TypeError());   // true\n\nError.isError({ name: \"Error\" }); // false",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_iserror"
-  },
-  {
-   "type": "p",
-   "text": "بررسی خطای ایمن میان محیط‌ها: خطای آمده از یک iframe با Error.isError() تأیید می‌شود، اما با instanceof رد می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "try {\n\n  throw new TypeError(\"Invalid format\");\n\n} catch (err) {\n\n  // Old Way: Could fail across different window contexts\n\n  console.log(err instanceof Error);\n\n  // New ES2026 Way: Globally reliable\n\n  console.log(Error.isError(err)); // true\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "h3",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "Error.isError() در بسیاری از مرورگرها پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome134",
-     "Edge134",
-     "Firefox138",
-     "Safari❌",
-     "Opera119"
-    ],
-    [
-     "Mar 2025",
-     "Mar 2025",
-     "Apr 2025",
-     "❌",
-     "May 2025"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Array.fromAsync()"
-  },
-  {
-   "type": "p",
-   "text": "Array.fromAsync() ویژگی‌ای است که به برنامه‌نویس اجازه می‌دهد از متغیرهای قابل‌پیمایش ناهمگام، شیءهای آرایه‌مانند یا Promiseها یک نمونهٔ جدید Array بسازد و کار با داده‌های منابع ناهمگام را ساده کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// An async generator simulating a paginated API\n\nasync function* fetchPages() {\n\n  yield;\n\n  yield;\n\n}\n\n// New ES2026 Way: Resolves and flattens natively\n\nconst allData = await Array.fromAsync(fetchPages(), flatMap => flatMap);\n\nconsole.log(allData); // [1, 2, 3, 4]",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function* asyncGenerator() {\n\n  yield Promise.resolve(1);\n\n  yield Promise.resolve(2);\n\n  yield Promise.resolve(3);\n\n}\n\nasync function processAsyncData() {\n\n  const arr = await Array.fromAsync(asyncGenerator());\n\n}\n\nprocessAsyncData();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_fromasync"
-  },
-  {
-   "type": "h3",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "Array.fromAsync() در همهٔ مرورگرهای اصلی پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome121",
-     "Edge121",
-     "Firefox115",
-     "Safari16.4",
-     "Opera107"
-    ],
-    [
-     "Jan 2024",
-     "Jan 2024",
-     "Jul 2023",
-     "May 2023",
-     "Feb 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متدهای جدید Uint8Array"
-  },
-  {
-   "type": "p",
-   "text": "کدگذاری Base64 و مبنای شانزده برای Uint8Array."
-  },
-  {
-   "type": "p",
-   "text": "این متدهای ایستا با افزودن تبدیل مستقیم میان شیءهای Uint8Array و رشته‌های Base64 یا مبنای شانزده، کار با دادهٔ دودویی را ساده می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "این کار نیاز به ماژول‌های بافر بیرونی یا روش‌های سرهم‌بندی مثل btoa() و atob() را از میان می‌برد."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Uint8Array fromBase64()\nیک شیء Uint8Array از یک رشتهٔ کدگذاری‌شده با base64 می‌سازد",
-    "Uint8Array toBase64()\nیک رشتهٔ کدگذاری‌شده با base64 از دادهٔ داخل Uint8Array برمی‌گرداند",
-    "Uint8Array fromHex()\nیک شیء Uint8Array از یک رشتهٔ مبنای شانزده می‌سازد",
-    "Uint8Array toHex()\nیک رشتهٔ مبنای شانزده از دادهٔ داخل Uint8Array برمی‌گرداند"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Uint8Array to/fromBase64()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Creating raw binary data\n\nconst bytes = new Uint8Array([72, 101, 108, 108, 111]); // \"Hello\"\n\n// New ES2026: Direct string conversions\n\nconst base64String = bytes.toBase64();\n\nconsole.log(base64String); // \"SGVsbG8=\"\n\nconst hexString = bytes.toHex();\n\nconsole.log(hexString); // \"48656c6c6f\"\n\n// Reversing the operation\n\nconst restoredBytes = Uint8Array.fromBase64(\"SGVsbG8=\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let string = 'W3Schools 123';\n\nconst arr = Uint8Array.fromBase64(string);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const arr = new Uint8Array([91,116,156,134,138,37,179,93,183]);\n\nlet text = arr.toBase64();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_uint8array_fromBase64"
-  },
-  {
-   "type": "h3",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "to/fromBase64() در همهٔ مرورگرهای اصلی پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome140",
-     "Edge140",
-     "Firefox133",
-     "Safari18.2",
-     "Opera124"
-    ],
-    [
-     "Sep 2025",
-     "Sep 2025",
-     "Nov 2024",
-     "Des 2024",
-     "Nov 2024"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد Uint8Array to/fromHex()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = '5b749c868a25b35db7';\n\nconst arr = Uint8Array.fromHex(text);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const arr = new Uint8Array([91,116,156,134,138,37,179,93,183]);\n\nlet text = arr.toHex();",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_uint8array_fromhex"
-  },
-  {
-   "type": "h3",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "to/fromHex() در همهٔ مرورگرهای اصلی پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome140",
-     "Edge140",
-     "Firefox133",
-     "Safari18.2",
-     "Opera124"
-    ],
-    [
-     "Sep 2025",
-     "Sep 2025",
-     "Nov 2024",
-     "Des 2024",
-     "Nov 2025"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "محاسبات دقیق اعشاری"
-  },
-  {
-   "type": "p",
-   "text": "متد Math.sumPrecise() مشکل کلاسیک اعشاری 0.1 + 0.2 === 0.30000000000000004 را هنگام جمع کردن فهرستی از عددها برطرف می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Old Way: Inaccuracies accumulate\n\nconst items = [0.1, 0.2, 0.3];\n\nconst badSum = items.reduce((a, b) => a + b, 0);\n\nmyDisplayer(badSum);\n\n// New ES2026 Way: Perfectly precise\n\nconst preciseSum = Math.sumPrecise(items);\n\nmyDisplayer(preciseSum);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sumprecise"
-  },
-  {
-   "type": "h3",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "Math.sumPrecise() در همهٔ مرورگرهای اصلی پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome147",
-     "Edge147",
-     "Firefox137",
-     "Safari26.2",
-     "Opera131;"
-    ],
-    [
-     "Apr 2026",
-     "Apr 2026",
-     "Apr 2025",
-     "Nov 2025",
-     "Apr 2026"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل es2026.html بسازید و با Math.sumPrecise([0.1, 0.2]) جمع را حساب کنید؛ نتیجه را با 0.1 + 0.2 مقایسه کنید.",
-   "hint": "جمع معمولی خطای گرد کردن اعشاری دارد، اما Math.sumPrecise جمع دقیق فهرست عددها را برمی‌گرداند."
-  },
-  {
-   "prompt": "یک Map بسازید و با getOrInsert یک کلید جدید اضافه کنید و بعد همان کلید را با مقدار تازه به‌روزرسانی کنید.",
-   "hint": "getOrInsert هم کار بررسی وجود کلید و هم درج اولیه را در یک فراخوانی انجام می‌دهد و قالب if تکراری را حذف می‌کند."
-  },
-  {
-   "prompt": "یک عدد بزرگ را با JSON.rawJSON ذخیره و بازخوانی کنید و ببینید رقم‌ها حفظ می‌شوند.",
-   "hint": "rawJSON جلوی گرد شدن عددهای بزرگ (مثل شناسهٔ پایگاه داده) را می‌گیرد."
-  },
-  {
-   "prompt": "یک شیء Error بسازید و با Error.isError() بررسی کنید؛ بعد همان بررسی را با instanceof انجام دهید.",
-   "hint": "Error.isError() حتی برای خطای آمده از iframe یا محیط اجرای جداگانه هم درست جواب می‌دهد."
-  },
-  {
-   "prompt": "یک آرایه را از یک منبع ناهمگام با Array.fromAsync() بسازید و نتیجه را در کنسول چاپ کنید.",
-   "hint": "این متد از Promiseها و متغیرهای قابل‌پیمایش ناهمگام یک آرایهٔ آماده می‌سازد."
-  }
- ],
- "quiz": [
-  {
-   "question": "Math.sumPrecise() چه مشکلی را حل می‌کند؟",
-   "options": [
-    "خطای گرد کردن اعشاری در جمع فهرست عددها را برطرف می‌کند",
-    "آرایه را مرتب می‌کند",
-    "جمع را به رشته تبدیل می‌کند",
-    "سرعت جمع کردن آرایه‌ها را زیاد می‌کند"
-   ],
-   "answer": 0,
-   "explanation": "این متد مشکل کلاسیک 0.1 + 0.2 === 0.30000000000000004 را در جمع فهرست عددها برطرف می‌کند؛ همین موضوع برای برنامه‌های مالی مهم است."
-  },
-  {
-   "question": "کاربرد اصلی Map.prototype.getOrInsert چیست؟",
-   "options": [
-    "حذف یک کلید از Map",
-    "پیدا کردن یا ساختن یک کلید در یک حرکت، بدون if تکراری",
-    "تبدیل Map به آرایه",
-    "مرتب کردن کلیدها"
-   ],
-   "answer": 1,
-   "explanation": "پیش از این باید با if وجود کلید را بررسی می‌کردید، در صورت نبود می‌ساختید و بعد به‌روزرسانی می‌کردید؛ getOrInsert همه را در یک فراخوانی انجام می‌دهد."
-  },
-  {
-   "question": "چرا از JSON.rawJSON استفاده می‌کنیم؟",
-   "options": [
-    "برای تبدیل JSON به آرایه",
-    "برای بررسی نوع داده",
-    "برای حفظ عددهای بزرگ بدون از دست دادن رقم‌ها",
-    "برای فشرده کردن JSON"
-   ],
-   "answer": 2,
-   "explanation": "JSON.rawJSON عددهای بزرگ مثل شناسه‌های پایگاه داده را نگه می‌دارد و جلوی گرد شدن عددی داخلی را می‌گیرد."
-  },
-  {
-   "question": "مزیت Error.isError() نسبت به instanceof چیست؟",
-   "options": [
-    "فقط برای خطای نحوی کار می‌کند",
-    "با try...finally یکی است",
-    "سریع‌تر است",
-    "حتی برای خطای آمده از iframe یا محیط اجرای جداگانه هم درست کار می‌کند"
-   ],
-   "answer": 3,
-   "explanation": "instanceof در محیط‌های جداگانه شکست می‌خورد، اما Error.isError() شیء خطا را قابلاعتماد تشخیص می‌دهد، حتی از داخل iframe."
-  },
-  {
-   "question": "کدام گزینه جزء ویژگی‌های موکول‌شده به ES2027 است؟",
-   "options": [
-    "Temporal API و مدیریت صریح منابع",
-    "Error.isError()",
-    "Uint8Array toBase64()",
-    "Array.fromAsync()"
-   ],
-   "answer": 0,
-   "explanation": "Temporal API و مدیریت صریح منابع (using) با اینکه در اکوسیستم شناخته‌شده‌اند، از مهلت ژوئن ۲۰۲۶ جا ماندند و رسماً به مشخصات ES2027 موکول شدند."
-  }
- ]
+  "slug": "js_2026",
+  "course": "js",
+  "order": 124,
+  "url": "/js/js_2026.asp",
+  "title": "ECMAScript 2026",
+  "summary": "این درس ویژگی‌های رسمی ECMAScript 2026 را معرفی می‌کند: جمع دقیق با Math.sumPrecise، تشخیص خطا با Error.isError، ساخت ناهمگام آرایه با Array.fromAsync، درج یا به‌روزرسانی در Map با getOrInsert، دقت بالای JSON با rawJSON و متدهای تازهٔ Uint8Array برای Base64 و مبنای شانزده.",
+  "objectives": [
+    "ویژگی‌های جدید ES2026 را فهرست کنید",
+    "توضیح دهید چرا جمع اعشاری خطا دارد و Math.sumPrecise چه می‌کند",
+    "با getOrInsert یک کلید را در Map درج و به‌روزرسانی کنید",
+    "تفاوت Error.isError با instanceof را تشخیص دهید",
+    "بگویید کدام پیشنهادها به ES2027 موکول شدند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2026"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید در JavaScript 2026"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2026 (ES2026)، هفدهمین ویرایش مشخصات زبان JavaScript، در ۳۰ ژوئن ۲۰۲۶ رسماً توسط ECMA International تصویب شد."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "محاسبات دقیق با Math.sumPrecise()",
+        "تشخیص خطا با Error.isError()",
+        "ساخت ناهمگام آرایه با Array.fromAsync()",
+        "درج یا به‌روزرسانی در Map با getOrInsert()",
+        "JSON با دقت بالا با rawJSON()",
+        "کدگذاری Base64 و مبنای شانزده برای Uint8Array"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌هایی که به ES2027 موکول شدند"
+    },
+    {
+      "type": "p",
+      "text": "دو پیشنهاد بزرگ، با اینکه از طریق polyfillهای بالغ در اکوسیستم کاملاً شناخته شده‌اند، از مهلت ژوئن ۲۰۲۶ برای ورود رسمی جا ماندند و رسماً برای مشخصات سال بعد کنار گذاشته شدند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Temporal API\nجانشینی که سال‌هاست چشم‌به‌راه آن هستیم، برای شیء Date سی‌ساله و پرباگ. برخلاف Date، شیءهای Temporal تغییرناپذیرند و از منطقه‌های زمانی و تقویم‌های غیرگرگوری پشتیبانی درجه‌یک دارند.",
+        "مدیریت صریح منابع (کلیدواژهٔ using)\nمتغیرهای دامنه‌بلوکی به سبک C# که با خارج شدن از بافت، اتصال‌های پایگاه داده و جریان‌ها را خودکار آزاد می‌کنند و تکرار بی‌فایدهٔ try...finally را از میان برمی‌دارند."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "محاسبات دقیق با Math.sumPrecise()"
+    },
+    {
+      "type": "p",
+      "text": "Math.sumPrecise() مشکل کلاسیک اعشاری 0.1 + 0.2 === 0.30000000000000004 را هنگام جمع کردن فهرستی از عددها برطرف می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "رایانه‌ها مثل انسان در مبنای ۱۰ اعشاری فکر نمی‌کنند؛ آن‌ها با بیت‌های دودویی کار می‌کنند و همین باعث اشکال‌های ساختاری در محاسبات برنامه‌نویسی می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "مشکل: در JavaScript عبارت 0.1 + 0.2 از دیرباز به خاطر خطاهای گرد کردن اعشاری برابر 0.30000000000000004 بوده است. این برای برنامه‌های مالی خطرناک است."
+    },
+    {
+      "type": "p",
+      "text": "راه‌حل: Math.sumPrecise تغییر می‌دهد که موتور زبان فهرستی از عددهای اعشاری را چگونه محاسبه کند و با دور زدن محدودیت ساختاری سیستم، جمعی بی‌عیب تحویل دهد."
+    },
+    {
+      "type": "h2",
+      "text": "درج یا به‌روزرسانی در Map با getOrInsert()"
+    },
+    {
+      "type": "p",
+      "text": "Map.prototype.getOrInsert قالب تکراریِ بررسی وجود کلید پیش از افزودن آیتم به ساختار Map را حذف می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "یک ساختار داده (مثل Array یا Map) اطلاعات شما را نگه می‌دارد. پیش‌تر، ساختارهای بومی JavaScript میانبرهای بدیهی زبان‌های دیگر را نداشتند."
+    },
+    {
+      "type": "p",
+      "text": "مشکل: اگر می‌خواستید یک دیکشنری (Map) را به‌روزرسانی کنید، باید دستور if می‌نوشتید تا وجود کلید را بررسی کنید، اگر نبود بسازید و بعد به‌روزش کنید."
+    },
+    {
+      "type": "p",
+      "text": "راه‌حل: Map.prototype.getOrInsert به شما اجازه می‌دهد در یک حرکت داده را پیدا یا ایجاد کنید و توان ساختار داده را به‌صورت بومی بیشتر می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const userRoles = new Map();\n\n// Old Way: Multi-line checks\n\nif (!userRoles.has(\"admin\")) {\n\n  userRoles.set(\"admin\", []);\n\n}\n\nuserRoles.get(\"admin\").push(\"Alice\");\n\n// New ES2026 Way: Single-line default insertion\n\nuserRoles.getOrInsert(\"admin\", []).push(\"Bob\");\n\nuserRoles.getOrInsert(\"admin\", []).push(\"Charlie\");\n\nconsole.log(userRoles.get(\"admin\")); // ['Bob', 'Charlie']",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "JSON با دقت بالا با rawJSON()"
+    },
+    {
+      "type": "p",
+      "text": "JSON.rawJSON عددهای بزرگ (مثل رشته‌های شناسهٔ پایگاه داده) را بدون از دست دادن رقم‌ها به خاطر گرد کردن داخلی حفظ می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const precisionLossJSON = '{\"id\": 9223372036854775807}';\n\n// New ES2026 Reviver: Accesses the raw source string before rounding\n\nconst data = JSON.parse(precisionLossJSON, (key, value, context) => {\n\n  if (key === 'id') {\n\n    return context.source; // \"9223372036854775807\" as a string\n\n  }\n\n  return value;\n\n});\n\n// New ES2026 Stringify: Outputs the unrounded big integer safely\n\nconst output = JSON.stringify({\n\n  id: JSON.rawJSON(\"9223372036854775807\")\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "متد Error.isError()"
+    },
+    {
+      "type": "p",
+      "text": "Error.isError() یک متد ایستا برای بررسی قابل‌اعتماد این است که یک مقدار شیء Error باشد؛ همین کار مدیریت خطا و اشکال‌زدایی را بهتر می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "Error.isError() شیءهای خطا را قابل‌اعتماد تشخیص می‌دهد، حتی اگر از داخل یک <iframe> یا یک محیط اجرای جداگانه آمده باشند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Error.isError(new TypeError());   // true\n\nError.isError({ name: \"Error\" }); // false",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_iserror"
+    },
+    {
+      "type": "p",
+      "text": "بررسی خطای ایمن میان محیط‌ها: خطای آمده از یک iframe با Error.isError() تأیید می‌شود، اما با instanceof رد می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "try {\n\n  throw new TypeError(\"Invalid format\");\n\n} catch (err) {\n\n  // Old Way: Could fail across different window contexts\n\n  console.log(err instanceof Error);\n\n  // New ES2026 Way: Globally reliable\n\n  console.log(Error.isError(err)); // true\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "h3",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "Error.isError() در بسیاری از مرورگرها پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome134", "Edge134", "Firefox138", "Safari❌", "Opera119"],
+        ["Mar 2025", "Mar 2025", "Apr 2025", "❌", "May 2025"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Array.fromAsync()"
+    },
+    {
+      "type": "p",
+      "text": "Array.fromAsync() ویژگی‌ای است که به برنامه‌نویس اجازه می‌دهد از متغیرهای قابل‌پیمایش ناهمگام، شیءهای آرایه‌مانند یا Promiseها یک نمونهٔ جدید Array بسازد و کار با داده‌های منابع ناهمگام را ساده کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// An async generator simulating a paginated API\n\nasync function* fetchPages() {\n\n  yield;\n\n  yield;\n\n}\n\n// New ES2026 Way: Resolves and flattens natively\n\nconst allData = await Array.fromAsync(fetchPages(), flatMap => flatMap);\n\nconsole.log(allData); // [1, 2, 3, 4]",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function* asyncGenerator() {\n\n  yield Promise.resolve(1);\n\n  yield Promise.resolve(2);\n\n  yield Promise.resolve(3);\n\n}\n\nasync function processAsyncData() {\n\n  const arr = await Array.fromAsync(asyncGenerator());\n\n}\n\nprocessAsyncData();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_fromasync"
+    },
+    {
+      "type": "h3",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "Array.fromAsync() در همهٔ مرورگرهای اصلی پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome121", "Edge121", "Firefox115", "Safari16.4", "Opera107"],
+        ["Jan 2024", "Jan 2024", "Jul 2023", "May 2023", "Feb 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متدهای جدید Uint8Array"
+    },
+    {
+      "type": "p",
+      "text": "کدگذاری Base64 و مبنای شانزده برای Uint8Array."
+    },
+    {
+      "type": "p",
+      "text": "این متدهای ایستا با افزودن تبدیل مستقیم میان شیءهای Uint8Array و رشته‌های Base64 یا مبنای شانزده، کار با دادهٔ دودویی را ساده می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "این کار نیاز به ماژول‌های بافر بیرونی یا روش‌های سرهم‌بندی مثل btoa() و atob() را از میان می‌برد."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Uint8Array fromBase64()\nیک شیء Uint8Array از یک رشتهٔ کدگذاری‌شده با base64 می‌سازد",
+        "Uint8Array toBase64()\nیک رشتهٔ کدگذاری‌شده با base64 از دادهٔ داخل Uint8Array برمی‌گرداند",
+        "Uint8Array fromHex()\nیک شیء Uint8Array از یک رشتهٔ مبنای شانزده می‌سازد",
+        "Uint8Array toHex()\nیک رشتهٔ مبنای شانزده از دادهٔ داخل Uint8Array برمی‌گرداند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Uint8Array to/fromBase64()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Creating raw binary data\n\nconst bytes = new Uint8Array([72, 101, 108, 108, 111]); // \"Hello\"\n\n// New ES2026: Direct string conversions\n\nconst base64String = bytes.toBase64();\n\nconsole.log(base64String); // \"SGVsbG8=\"\n\nconst hexString = bytes.toHex();\n\nconsole.log(hexString); // \"48656c6c6f\"\n\n// Reversing the operation\n\nconst restoredBytes = Uint8Array.fromBase64(\"SGVsbG8=\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let string = 'W3Schools 123';\n\nconst arr = Uint8Array.fromBase64(string);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const arr = new Uint8Array([91,116,156,134,138,37,179,93,183]);\n\nlet text = arr.toBase64();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_uint8array_fromBase64"
+    },
+    {
+      "type": "h3",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "to/fromBase64() در همهٔ مرورگرهای اصلی پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome140", "Edge140", "Firefox133", "Safari18.2", "Opera124"],
+        ["Sep 2025", "Sep 2025", "Nov 2024", "Des 2024", "Nov 2024"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد Uint8Array to/fromHex()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = '5b749c868a25b35db7';\n\nconst arr = Uint8Array.fromHex(text);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const arr = new Uint8Array([91,116,156,134,138,37,179,93,183]);\n\nlet text = arr.toHex();",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_uint8array_fromhex"
+    },
+    {
+      "type": "h3",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "to/fromHex() در همهٔ مرورگرهای اصلی پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome140", "Edge140", "Firefox133", "Safari18.2", "Opera124"],
+        ["Sep 2025", "Sep 2025", "Nov 2024", "Des 2024", "Nov 2025"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "محاسبات دقیق اعشاری"
+    },
+    {
+      "type": "p",
+      "text": "متد Math.sumPrecise() مشکل کلاسیک اعشاری 0.1 + 0.2 === 0.30000000000000004 را هنگام جمع کردن فهرستی از عددها برطرف می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Old Way: Inaccuracies accumulate\n\nconst items = [0.1, 0.2, 0.3];\n\nconst badSum = items.reduce((a, b) => a + b, 0);\n\nmyDisplayer(badSum);\n\n// New ES2026 Way: Perfectly precise\n\nconst preciseSum = Math.sumPrecise(items);\n\nmyDisplayer(preciseSum);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_math_sumprecise"
+    },
+    {
+      "type": "h3",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "Math.sumPrecise() در همهٔ مرورگرهای اصلی پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome147", "Edge147", "Firefox137", "Safari26.2", "Opera131;"],
+        ["Apr 2026", "Apr 2026", "Apr 2025", "Nov 2025", "Apr 2026"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل es2026.html بسازید و با Math.sumPrecise([0.1, 0.2]) جمع را حساب کنید؛ نتیجه را با 0.1 + 0.2 مقایسه کنید.",
+      "hint": "جمع معمولی خطای گرد کردن اعشاری دارد، اما Math.sumPrecise جمع دقیق فهرست عددها را برمی‌گرداند."
+    },
+    {
+      "prompt": "یک Map بسازید و با getOrInsert یک کلید جدید اضافه کنید و بعد همان کلید را با مقدار تازه به‌روزرسانی کنید.",
+      "hint": "getOrInsert هم کار بررسی وجود کلید و هم درج اولیه را در یک فراخوانی انجام می‌دهد و قالب if تکراری را حذف می‌کند."
+    },
+    {
+      "prompt": "یک عدد بزرگ را با JSON.rawJSON ذخیره و بازخوانی کنید و ببینید رقم‌ها حفظ می‌شوند.",
+      "hint": "rawJSON جلوی گرد شدن عددهای بزرگ (مثل شناسهٔ پایگاه داده) را می‌گیرد."
+    },
+    {
+      "prompt": "یک شیء Error بسازید و با Error.isError() بررسی کنید؛ بعد همان بررسی را با instanceof انجام دهید.",
+      "hint": "Error.isError() حتی برای خطای آمده از iframe یا محیط اجرای جداگانه هم درست جواب می‌دهد."
+    },
+    {
+      "prompt": "یک آرایه را از یک منبع ناهمگام با Array.fromAsync() بسازید و نتیجه را در کنسول چاپ کنید.",
+      "hint": "این متد از Promiseها و متغیرهای قابل‌پیمایش ناهمگام یک آرایهٔ آماده می‌سازد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Math.sumPrecise() چه مشکلی را حل می‌کند؟",
+      "options": [
+        "خطای گرد کردن اعشاری در جمع فهرست عددها را برطرف می‌کند",
+        "آرایه را مرتب می‌کند",
+        "جمع را به رشته تبدیل می‌کند",
+        "سرعت جمع کردن آرایه‌ها را زیاد می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "این متد مشکل کلاسیک 0.1 + 0.2 === 0.30000000000000004 را در جمع فهرست عددها برطرف می‌کند؛ همین موضوع برای برنامه‌های مالی مهم است."
+    },
+    {
+      "question": "کاربرد اصلی Map.prototype.getOrInsert چیست؟",
+      "options": [
+        "حذف یک کلید از Map",
+        "پیدا کردن یا ساختن یک کلید در یک حرکت، بدون if تکراری",
+        "تبدیل Map به آرایه",
+        "مرتب کردن کلیدها"
+      ],
+      "answer": 1,
+      "explanation": "پیش از این باید با if وجود کلید را بررسی می‌کردید، در صورت نبود می‌ساختید و بعد به‌روزرسانی می‌کردید؛ getOrInsert همه را در یک فراخوانی انجام می‌دهد."
+    },
+    {
+      "question": "چرا از JSON.rawJSON استفاده می‌کنیم؟",
+      "options": [
+        "برای تبدیل JSON به آرایه",
+        "برای بررسی نوع داده",
+        "برای حفظ عددهای بزرگ بدون از دست دادن رقم‌ها",
+        "برای فشرده کردن JSON"
+      ],
+      "answer": 2,
+      "explanation": "JSON.rawJSON عددهای بزرگ مثل شناسه‌های پایگاه داده را نگه می‌دارد و جلوی گرد شدن عددی داخلی را می‌گیرد."
+    },
+    {
+      "question": "مزیت Error.isError() نسبت به instanceof چیست؟",
+      "options": [
+        "فقط برای خطای نحوی کار می‌کند",
+        "با try...finally یکی است",
+        "سریع‌تر است",
+        "حتی برای خطای آمده از iframe یا محیط اجرای جداگانه هم درست کار می‌کند"
+      ],
+      "answer": 3,
+      "explanation": "instanceof در محیط‌های جداگانه شکست می‌خورد، اما Error.isError() شیء خطا را قابلاعتماد تشخیص می‌دهد، حتی از داخل iframe."
+    },
+    {
+      "question": "کدام گزینه جزء ویژگی‌های موکول‌شده به ES2027 است؟",
+      "options": [
+        "Temporal API و مدیریت صریح منابع",
+        "Error.isError()",
+        "Uint8Array toBase64()",
+        "Array.fromAsync()"
+      ],
+      "answer": 0,
+      "explanation": "Temporal API و مدیریت صریح منابع (using) با اینکه در اکوسیستم شناخته‌شده‌اند، از مهلت ژوئن ۲۰۲۶ جا ماندند و رسماً به مشخصات ES2027 موکول شدند."
+    }
+  ]
 }

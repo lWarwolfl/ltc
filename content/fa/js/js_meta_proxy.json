@@ -1,1192 +1,1004 @@
 {
- "slug": "js_meta_proxy",
- "course": "js",
- "order": 240,
- "url": "/js/js_meta_proxy.asp",
- "title": "Proxy در JavaScript",
- "summary": "Proxy یک شیء JavaScript است که شیءهای دیگر را می‌پیچد و اجازه می‌دهد عملیات‌هایی مثل خواندن، نوشتن، حذف و صدا زدن تابع را رهگیری کنید. در این درس Proxy می‌سازید، با trapها لاگ و اعتبارسنجی می‌کنید و با Reflect عملیات را به شکل امن هدایت می‌کنید.",
- "objectives": [
-  "با new Proxy یک شیء را بپیچید و trapهای get و set را بنویسید",
-  "در trapها تغییرها را لاگ بگیرید و داده را اعتبارسنجی کنید",
-  "با Reflect عملیات رهگیری‌شده را به شکل امن هدایت کنید",
-  "نام و کار trapهای مختلف Proxy را تشخیص دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Proxy در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "Proxy چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "Proxy یک شیء JavaScript است که می‌تواند شیءهای دیگر را بپیچد."
-  },
-  {
-   "type": "p",
-   "text": "Proxy اجازه می‌دهد عملیات‌های روی شیءهای دیگر را کنترل کنید."
-  },
-  {
-   "type": "p",
-   "text": "Proxy می‌تواند کد را وقتی کسی این کارها را می‌کند رهگیری کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "خواندن یک خصوصیت (get)",
-    "تنظیم یک خصوصیت (set)",
-    "حذف یک خصوصیت (deleteProperty)",
-    "بررسی وجود یک خصوصیت (has)",
-    "صدا زدن یک تابع (apply)",
-    "ساختن یک شیء (construct)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Proxy اجازه می‌دهد وقتی کسی با یک شیء تعامل می‌کند، کد خودتان اجرا شود."
-  },
-  {
-   "type": "p",
-   "text": "Proxy می‌تواند واسطه‌ای بین کد شما و یک شیء JavaScript باشد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const proxy = new Proxy(target, handler);",
-   "caption": null
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "target: شیء یا تابع اصلی",
-    "handler: شیئی که متدهای trap را دارد"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myObject = {name: \"Jan\"};\n\nconst proxy = new Proxy(myObject, {\n\n  get(target, prop) {\n\n    return target[prop];\n\n  }\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "لاگ‌گیری با Proxy"
-  },
-  {
-   "type": "p",
-   "text": "یک مثال رایج Proxy، لاگ گرفتن از تغییرهای شیء است."
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر کاری را نشان می‌دهد که:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء را داخل Proxy می‌پیچد",
-    "هر بار خصوصیتی خوانده یا نوشته شود لاگ می‌گیرد",
-    "هر عملیات get و set را در لحظه لاگ می‌کند"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n//Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n\n    return target[property];\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n\n    return target[property];\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nproxy.age = 42;\n\nlet text1 = proxy.name;\n\nlet text2 = proxy.age",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy"
-  },
-  {
-   "type": "h2",
-   "text": "Proxy همراه با Reflect (رایج‌ترین حالت)"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر کاری را نشان می‌دهد که:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء را داخل Proxy می‌پیچد",
-    "هر بار خصوصیتی خوانده یا نوشته شود لاگ می‌گیرد",
-    "داخل مدیریت‌کننده‌های Proxy از Reflect.get() و Reflect.set() استفاده می‌کند",
-    "trap مربوط به get از Reflect.get(target, property, receiver) استفاده می‌کند",
-    "trap مربوط به set از Reflect.set(target, property, value, receiver) استفاده می‌کند",
-    "Reflect کاری می‌کند رفتار Proxy با رفتار شیء معمولی هم‌خوان شود"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n    // safe forwarding\n\n    return Reflect.get(target, property);\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n    // safe forwarding\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nproxy.age = 42;\n\nlet text1 = proxy.name;\n\nlet text2 = proxy.age",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_reflect"
-  },
-  {
-   "type": "h2",
-   "text": "جریان کار Proxy همراه با Reflect"
-  },
-  {
-   "type": "p",
-   "text": "جریان زیر جان‌مایهٔ فرابرنامه‌نویسی JavaScript با Proxy و Reflect است."
-  },
-  {
-   "type": "p",
-   "text": "توضیح جریان:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "کد شما با یک شیء تعامل می‌کند",
-    "Proxy آن عملیات را رهگیری می‌کند",
-    "کد trap شما تصمیم می‌گیرد چه اتفاقی بیفتد",
-    "Reflect عملیات را به شکل امن هدایت می‌کند",
-    "شیء هدف عمل واقعی را دریافت می‌کند"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "چرا Proxy؟"
-  },
-  {
-   "type": "p",
-   "text": "Proxyها به شما اجازه می‌دهند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "لاگ‌گیری اضافه کنید",
-    "تغییرها را اعتبارسنجی کنید",
-    "خصوصیت‌ها را خودکار بسازید",
-    "از دادهٔ حساس محافظت کنید",
-    "شیءهای مجازی یا محاسباتی بسازید",
-    "فراخوانی تابع‌ها را رهگیری کنید",
-    "سامانه‌های واکنش‌گرا (مثل Vue.js) بسازید"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "اعتبارسنجی با Proxy"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  set(target, prop, value) {\n\n    if (prop === \"age\" && value < 0) {\n\n      text = \"Age cannot be negative!\";\n\n      document.getElementById(\"demo\").innerHTML = text;\n\n    }\n\n    return Reflect.set(target, prop, value);\n\n  }\n\n});\n\nproxy.age = 45;  // OK\n\nproxy.age = -5;  // Error",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_validate"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های مجازی"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {\n\n  first: \"John\",\n\n  last:  \"Doe\"\n\n};\n\n// Create a Proxy\n\nconst virtual = new Proxy(person, {\n\n  get(target, prop) {\n\n    if (prop === \"fullName\") {\n\n      return target.first + \" \" + target.last;\n\n    }\n\n    return Reflect.get(target, prop);\n\n  }\n\n});\n\nlet text = virtual.fullName; // \"John Doe\"",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_virtual"
-  },
-  {
-   "type": "h2",
-   "text": "تابع‌های پویا"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fn = new Function(\"a\", \"b\", \"return a + b\");\n\nlet result = fn(3, 2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_dynamic"
-  },
-  {
-   "type": "h2",
-   "text": "فرابرنامه‌نویسی"
-  },
-  {
-   "type": "p",
-   "text": "فرابرنامه‌نویسی به JavaScript اجازه می‌دهد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "رفتار را رهگیری کند",
-    "رفتار را تغییر دهد",
-    "رفتار تازه‌ای تعریف کند",
-    "رفتار را به‌صورت پویا بسازد"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "این کار کنترل عمیقی روی سازوکارهای درونی زبان به برنامه‌نویس می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "trapهای Proxy"
-  },
-  {
-   "type": "p",
-   "text": "trap یک تابع داخل handler یک Proxy است."
-  },
-  {
-   "type": "p",
-   "text": "هر بار عملیات مشخصی روی Proxy انجام شود، این تابع اجرا می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "در ادامه توضیح کامل و دقیق هر trap از Proxy در JavaScript می‌آید: چه چیزی آن را فعال می‌کند، چه پارامترهایی دارد و چه چیزی باید برگرداند."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "نام trap",
-    "چه زمانی فعال می‌شود"
-   ],
-   "rows": [
-    [
-     "get",
-     "یک خصوصیت خوانده می‌شود"
-    ],
-    [
-     "set",
-     "یک خصوصیت تغییر می‌کند"
-    ],
-    [
-     "has",
-     "از عملگر in استفاده می‌شود"
-    ],
-    [
-     "deleteProperty",
-     "یک خصوصیت حذف می‌شود"
-    ],
-    [
-     "apply",
-     "یک تابع صدا زده می‌شود"
-    ],
-    [
-     "construct",
-     "یک شیء (با new) ساخته می‌شود"
-    ],
-    [
-     "getOwnPropertyDescriptor",
-     "توصیف‌گر یک خصوصیت خوانده می‌شود"
-    ],
-    [
-     "defineProperty",
-     "یک خصوصیت تعریف می‌شود"
-    ],
-    [
-     "getPrototypeOf",
-     "پروتوتایپ خوانده می‌شود"
-    ],
-    [
-     "setPrototypeOf",
-     "پروتوتایپ تنظیم می‌شود"
-    ],
-    [
-     "isExtensible",
-     "قابل گسترش بودن بررسی می‌شود"
-    ],
-    [
-     "preventExtensions",
-     "از گسترش شیء جلوگیری می‌شود"
-    ],
-    [
-     "ownKeys",
-     "خصوصیت‌ها فهرست می‌شوند"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "فهرست بالا مطابق سال ۲۰۲۵ است و همهٔ ۱۳ trap تعریف‌شده در ECMAScript را دربر می‌گیرد."
-  },
-  {
-   "type": "p",
-   "text": "هر مدیریت‌کنندهٔ trap در ادامه توضیح داده شده است."
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.get()"
-  },
-  {
-   "type": "p",
-   "text": "وقتی یک خصوصیت خوانده می‌شود فعال می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "get(obj, prop, receiver) {\n\n  return Reflect.get(obj, prop, receiver);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "proxy.property\n\nproxy[\"property\"]\n\nobject.property()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف",
-    "prop: خصوصیتی که به آن دسترسی می‌شود",
-    "receiver: مقدار this برای getterها (معمولاً خود proxy)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "مقدار آن خصوصیت"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.set()"
-  },
-  {
-   "type": "p",
-   "text": "وقتی به یک خصوصیت مقدار داده می‌شود فعال می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "set(obj, prop, value, receiver) {\n\n  return Reflect.set(obj, prop, value, receiver);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "proxy.property = value;\n\nproxy[\"property\"] = value;",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف",
-    "prop: خصوصیتی که تنظیم می‌شود",
-    "value: مقدار تازهٔ خصوصیت",
-    "receiver: شیئی که مقدار را گرفته است (معمولاً خود proxy)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true اگر مقداردهی موفق بوده باشد",
-    "false اگر ناموفق بوده باشد"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "پرتاب خطا هم مجاز است."
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.has()"
-  },
-  {
-   "type": "p",
-   "text": "عملگر in را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "has(obj, prop) {\n\n  return Reflect.has(obj, prop);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "\"property\" in proxy",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف",
-    "prop: خصوصیتی که به آن دسترسی می‌شود",
-    "receiver: مقدار this برای setterها (معمولاً خود proxy)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true",
-    "false"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.deleteProperty()"
-  },
-  {
-   "type": "p",
-   "text": "عملگر delete را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "deleteProperty(obj, prop) {\n\n  return Reflect.deleteProperty(obj, prop);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "delete proxy.property",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف",
-    "prop: خصوصیتی که باید حذف شود"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true در صورت موفقیت",
-    "false در صورت شکست"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.apply()"
-  },
-  {
-   "type": "p",
-   "text": "وقتی یک تابع صدا زده می‌شود فعال می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "apply(func, thisArg, args) {\n\n  return Reflect.apply(func, this, args);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "proxy()\n\nproxy.call()\n\nproxy.apply()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "func: شیء قابل صدا زدن (تابع)",
-    "this: مقدار this برای این فراخوانی",
-    "args: آرایهٔ آرگومان‌های تابع"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "مقدار بازگشتی تابع"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.construct"
-  },
-  {
-   "type": "p",
-   "text": "عملگر new را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "construct(obj, args, newTarget) {\n\n  return Reflect.construct(obj, args, newTarget);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "nex proxy()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء سازنده",
-    "args: آرایهٔ آرگومان‌های داده‌شده",
-    "newTarget: سازنده"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء (نمونهٔ تازه)"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const obj = {}  // No trap\n\nObject.create() // No trap\n\nclass User {};\n\nnew User();     // No trap",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.getOwnPropertyDescriptor()"
-  },
-  {
-   "type": "p",
-   "text": "خواندن توصیف‌گر خصوصیت را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "getOwnPropertyDescriptor(obj, prop) {\n\n  return Reflect.getOwnPropertyDescriptor(obj, prop);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.getOwnPropertyDescriptor(obj, prop)",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف",
-    "prop: خصوصیتی که باید توصیف شود"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک توصیف‌گر خصوصیت",
-    "undefined"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.defineProperty()"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.defineProperty() را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "defineProperty(obj, prop, descriptor) {\n\n  return Reflect.defineProperty(obj, prop, descriptor);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.defineProperty()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف",
-    "prop: خصوصیتی که باید توصیف شود",
-    "descriptor: توصیف‌گر خصوصیت"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true در صورت موفقیت",
-    "false در غیر این صورت"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.getPrototypeOf()"
-  },
-  {
-   "type": "p",
-   "text": "جست‌وجوی پروتوتایپ را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "getPrototypeOf(obj) {\n\n  return Reflect.getPrototypeOf(obj);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.getPrototypeOf()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء",
-    "null"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.setPrototypeOf()"
-  },
-  {
-   "type": "p",
-   "text": "تنظیم پروتوتایپ را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "setPrototypeOf(obj, prototype) {\n\n  return Reflect.setPrototypeOf(obj, prototype);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.settPrototypeOf()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف",
-    "prototype: پروتوتایپ تازه یا null"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء",
-    "null"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.isExtensible()"
-  },
-  {
-   "type": "p",
-   "text": "بررسی قابل گسترش بودن یک شیء را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "isExtensible(obj) {\n\n  return Reflect.isExtensible(obj);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.isExtensible()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true برای بله",
-    "false برای خیر"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.preventExtentions()"
-  },
-  {
-   "type": "p",
-   "text": "غیرقابل گسترش کردن یک شیء را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "preventExtensions(obj) {\n\n  return Reflect.preventExtensions(obj);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.preventExtensions()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "true در صورت موفقیت",
-    "false در صورت شکست"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد handler.ownKeys()"
-  },
-  {
-   "type": "p",
-   "text": "عملیات‌های فهرست کردن کلیدها (نام خصوصیت‌ها یا symbolها) را رهگیری می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "ownKeys(obj) {\n\n  return Reflect.ownKeys(obj);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Object.keys()\n\nObject.getOwnPropertyNames()\n\nObject.getOwnPropertySymbols()",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "پارامترها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "obj: شیء هدف"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "باید برگرداند"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "آرایه‌ای از کلیدها بدون تکراری"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "نگاشت trapهای Proxy به متدهای Reflect"
-  },
-  {
-   "type": "p",
-   "text": "هر trap از Proxy نمایندهٔ یکی از عملیات‌های داخلی JavaScript است:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "[[Construct]]",
-    "[[Call]]",
-    "[[Get]]",
-    "[[Set]]",
-    "[[HasProperty]]",
-    "[[Delete]]",
-    "[[DefineProperty]]",
-    "[[GetOwnProperty]]",
-    "[[OwnPropertyKeys]]",
-    "[[GetPrototypeOf]]",
-    "[[SetPrototypeOf]]",
-    "[[PreventExtensions]]",
-    "[[IsExtensible]]"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "این عملیات‌های داخلی همان چیزهایی هستند که JavaScript (درون موتور) هنگام دسترسی یا تغییر شیءها به کار می‌برد."
-  },
-  {
-   "type": "p",
-   "text": "وقتی Proxy یکی از این عملیات‌ها را رهگیری می‌کند، باید آن را درست هدایت کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "get(target, property, receiver) {\n\n  return Reflect.get(target, property, receiver);\n\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "از Reflect استفاده می‌شود چون متدهایش بازتاب یک‌به‌یک عملیات‌های داخلی‌اند."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "مقدارهای بازگشتی درست (true/false/descriptor) تولید می‌کنند",
-    "از پرتاب خطاهایی که قوانین Proxy را می‌شکنند پرهیز می‌کنند",
-    "کاری می‌کنند Proxy مثل شیءهای معمولی JavaScript رفتار کند (مگر اینکه تغییرش داده باشید)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "به همین دلیل هر trap از Proxy یک متد Reflect با همان نام و امضا دارد."
-  },
-  {
-   "type": "h2",
-   "text": "عملیات داخلی JavaScript چگونه Reflect شد"
-  },
-  {
-   "type": "p",
-   "text": "قبل از ES6 (سال ۲۰۱۵) خیلی از عملیات‌های بنیادی به شکل تابع وجود نداشتند:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "عملیات",
-     "قبل از ES6",
-     "مشکل"
-    ],
-    [
-     "خواندن خصوصیت",
-     "obj[prop]",
-     "به شکل تابع قابل صدا زدن نیست"
-    ],
-    [
-     "تنظیم خصوصیت",
-     "obj[prop] = value",
-     "به شکل تابع قابل صدا زدن نیست"
-    ],
-    [
-     "حذف خصوصیت",
-     "delete obj[prop]",
-     "عملگر است، نه تابع"
-    ],
-    [
-     "بررسی خصوصیت",
-     "\"prop\" in obj",
-     "عملگر است، نه تابع"
-    ],
-    [
-     "ساختن شیء (new)",
-     "new Foo()",
-     "به شکل عمومی قابل صدا زدن نیست"
-    ],
-    [
-     "خواندن پروتوتایپ",
-     "Object.getPrototypeOf(obj)",
-     "روی مقدارهای غیرشیء خطا می‌دهد"
-    ],
-    [
-     "تعریف خصوصیت",
-     "Object.defineProperty()",
-     "به‌جای بولی، شیء برمی‌گرداند"
-    ],
-    [
-     "کلیدهای خود شیء",
-     "Object.keys()",
-     "کامل نیست (symbolها را جا می‌اندازد)"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "این‌ها برای هدایت عملیات توسط Proxy ناکامل و ناهمگون بودند."
-  },
-  {
-   "type": "p",
-   "text": "پس ES6 (سال ۲۰۱۵) شیء Reflect را اضافه کرد:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "عملیات داخلی",
-    "متد Reflect"
-   ],
-   "rows": [
-    [
-     "[[Construct]]",
-     "Reflect.construct()"
-    ],
-    [
-     "[[Call]]",
-     "Reflect.apply()"
-    ],
-    [
-     "[[Get]]",
-     "Reflect.get()"
-    ],
-    [
-     "[[Set]]",
-     "Reflect.set()"
-    ],
-    [
-     "[[HasProperty]]",
-     "Reflect.has()"
-    ],
-    [
-     "[[Delete]]",
-     "Reflect.deleteProperty()"
-    ],
-    [
-     "[[DefineProperty]]",
-     "Reflect.defineProperty()"
-    ],
-    [
-     "[[GetOwnProperty]]",
-     "Reflect.getOwnProperty()"
-    ],
-    [
-     "[[OwnPropertyKeys]]",
-     "Reflect.ownPropertyKeys()"
-    ],
-    [
-     "[[IsExstensible]]",
-     "Reflect.isExtensible()"
-    ],
-    [
-     "[[PreventExstensions]]",
-     "Reflect.preventExtensions()"
-    ],
-    [
-     "[[GetPrototypeOf]]",
-     "Reflect.getPrototypeOf()"
-    ],
-    [
-     "[[SetPrototypeOf]]",
-     "Reflect.setPrototypeOf()"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید"
-  },
-  {
-   "type": "p",
-   "text": "فرابرنامه‌نویسی در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "آموزش Reflect در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع Meta در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک شیء user با نام و سن بسازید و آن را با new Proxy بپیچید؛ در trap مربوط به get هر خواندن را در کنسول لاگ کنید و بعد user.name را بخوانید.",
-   "hint": "get دو آرگومان target و property می‌گیرد و باید مقدار خصوصیت را برگرداند."
-  },
-  {
-   "prompt": "در trap مربوط به set اجازه دهید سن فقط عدد باشد؛ اگر مقدار غیرعددی بود پیام خطا چاپ کنید و مقدار را نپذیرید.",
-   "hint": "برای رد کردن، false برگردانید یا خطا پرتاب کنید؛ trap مربوط به set باید true یا false برگرداند."
-  },
-  {
-   "prompt": "یک Proxy بسازید که برای خصوصیتی که در شیء وجود ندارد مقدار پیش‌فرض «نامعلوم» برگرداند و آن را یک خصوصیت مجازی بنامید.",
-   "hint": "در trap مربوط به get با بررسی typeof یا استفاده از in می‌توانید مقدار پیش‌فرض بسازید."
-  },
-  {
-   "prompt": "همان Proxy را یک بار با بازگرداندن دستی مقدار بنویسید و یک بار با Reflect.get و Reflect.set؛ بگویید کدام کوتاه‌تر و امن‌تر است.",
-   "hint": "Reflect هر عملیات را دقیقاً مثل شیء معمولی هدایت می‌کند و از خطاهای پنهان جلوگیری می‌کند."
-  },
-  {
-   "prompt": "با trap مربوط به apply یک تابع را بپیچید که هر فراخوانی را بشمارد و تعداد را در کنسول چاپ کند.",
-   "hint": "apply آرگومان‌های func و thisArg و args را می‌گیرد و باید مقدار بازگشتی تابع را برگرداند."
-  }
- ],
- "quiz": [
-  {
-   "question": "Proxy در JavaScript چه کاری می‌کند؟",
-   "options": [
-    "شیءهای دیگر را می‌پیچد و عملیات روی آن‌ها را کنترل می‌کند",
-    "کد را در رشتهٔ جدا اجرا می‌کند",
-    "داده را در حافظهٔ موقت ذخیره می‌کند",
-    "کد را فشرده می‌کند"
-   ],
-   "answer": 0,
-   "explanation": "Proxy یک شیء پوشاننده است که عملیات‌های روی شیء هدف را رهگیری می‌کند و اجازه می‌دهد کد خودتان اجرا شود."
-  },
-  {
-   "question": "در new Proxy(target, handler)، آرگومان دوم چه چیزی است؟",
-   "options": [
-    "تابعی که روی عملیات اجرا می‌شود",
-    "شیئی که متدهای trap را دارد",
-    "یک آرایه از نام خصوصیت‌ها",
-    "شیء هدف اصلی"
-   ],
-   "answer": 1,
-   "explanation": "target شیء اصلی است و handler شیئی است که trapها، یعنی تابع‌های رهگیر عملیات، را در خود دارد."
-  },
-  {
-   "question": "trap مربوط به set باید چه چیزی برگرداند؟",
-   "options": [
-    "مقدار تازهٔ خصوصیت",
-    "true یا false، و پرتاب خطا هم مجاز است",
-    "شیء هدف",
-    "همیشه undefined"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید trap مربوط به set برای موفقیت true و برای شکست false برمی‌گرداند؛ پرتاب خطا هم مجاز است."
-  },
-  {
-   "question": "چرا در handlerهای Proxy از Reflect استفاده می‌شود؟",
-   "options": [
-    "چون مرورگرهای قدیمی فقط Reflect را می‌شناسند",
-    "چون متدهای Reflect بازتاب یک‌به‌یک عملیات‌های داخلی‌اند و هدایت را امن می‌کنند",
-    "چون بدون Reflect هیچ trap‌ای اجرا نمی‌شود",
-    "چون Reflect کد را سریع‌تر اجرا می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "هر trap متناظر یک عملیات داخلی است و Reflect همان عملیات را با مقدار بازگشتی درست انجام می‌دهد، پس رفتار Proxy مثل شیء معمولی می‌ماند."
-  },
-  {
-   "question": "کدام trap وقتی فعال می‌شود که خصوصیتی خوانده شود؟",
-   "options": [
-    "set",
-    "get",
-    "has",
-    "ownKeys"
-   ],
-   "answer": 1,
-   "explanation": "بر اساس جدول trapهای درس، get هنگام خواندن یک خصوصیت فعال می‌شود؛ set هنگام نوشتن، has برای عملگر in و ownKeys هنگام فهرست کردن کلیدها."
-  }
- ]
+  "slug": "js_meta_proxy",
+  "course": "js",
+  "order": 240,
+  "url": "/js/js_meta_proxy.asp",
+  "title": "Proxy در JavaScript",
+  "summary": "Proxy یک شیء JavaScript است که شیءهای دیگر را می‌پیچد و اجازه می‌دهد عملیات‌هایی مثل خواندن، نوشتن، حذف و صدا زدن تابع را رهگیری کنید. در این درس Proxy می‌سازید، با trapها لاگ و اعتبارسنجی می‌کنید و با Reflect عملیات را به شکل امن هدایت می‌کنید.",
+  "objectives": [
+    "با new Proxy یک شیء را بپیچید و trapهای get و set را بنویسید",
+    "در trapها تغییرها را لاگ بگیرید و داده را اعتبارسنجی کنید",
+    "با Reflect عملیات رهگیری‌شده را به شکل امن هدایت کنید",
+    "نام و کار trapهای مختلف Proxy را تشخیص دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Proxy در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "Proxy چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "Proxy یک شیء JavaScript است که می‌تواند شیءهای دیگر را بپیچد."
+    },
+    {
+      "type": "p",
+      "text": "Proxy اجازه می‌دهد عملیات‌های روی شیءهای دیگر را کنترل کنید."
+    },
+    {
+      "type": "p",
+      "text": "Proxy می‌تواند کد را وقتی کسی این کارها را می‌کند رهگیری کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "خواندن یک خصوصیت (get)",
+        "تنظیم یک خصوصیت (set)",
+        "حذف یک خصوصیت (deleteProperty)",
+        "بررسی وجود یک خصوصیت (has)",
+        "صدا زدن یک تابع (apply)",
+        "ساختن یک شیء (construct)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Proxy اجازه می‌دهد وقتی کسی با یک شیء تعامل می‌کند، کد خودتان اجرا شود."
+    },
+    {
+      "type": "p",
+      "text": "Proxy می‌تواند واسطه‌ای بین کد شما و یک شیء JavaScript باشد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const proxy = new Proxy(target, handler);",
+      "caption": null
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["target: شیء یا تابع اصلی", "handler: شیئی که متدهای trap را دارد"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myObject = {name: \"Jan\"};\n\nconst proxy = new Proxy(myObject, {\n\n  get(target, prop) {\n\n    return target[prop];\n\n  }\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "لاگ‌گیری با Proxy"
+    },
+    {
+      "type": "p",
+      "text": "یک مثال رایج Proxy، لاگ گرفتن از تغییرهای شیء است."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر کاری را نشان می‌دهد که:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک شیء را داخل Proxy می‌پیچد",
+        "هر بار خصوصیتی خوانده یا نوشته شود لاگ می‌گیرد",
+        "هر عملیات get و set را در لحظه لاگ می‌کند"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n//Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n\n    return target[property];\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n\n    return target[property];\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nproxy.age = 42;\n\nlet text1 = proxy.name;\n\nlet text2 = proxy.age",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy"
+    },
+    {
+      "type": "h2",
+      "text": "Proxy همراه با Reflect (رایج‌ترین حالت)"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر کاری را نشان می‌دهد که:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک شیء را داخل Proxy می‌پیچد",
+        "هر بار خصوصیتی خوانده یا نوشته شود لاگ می‌گیرد",
+        "داخل مدیریت‌کننده‌های Proxy از Reflect.get() و Reflect.set() استفاده می‌کند",
+        "trap مربوط به get از Reflect.get(target, property, receiver) استفاده می‌کند",
+        "trap مربوط به set از Reflect.set(target, property, value, receiver) استفاده می‌کند",
+        "Reflect کاری می‌کند رفتار Proxy با رفتار شیء معمولی هم‌خوان شود"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  get(target, property) {\n\n    log(\"Getting: \" + property);\n    // safe forwarding\n\n    return Reflect.get(target, property);\n\n  },\n\n  set(target, property, value) {\n\n    log(\"Setting: \" + property);\n    // safe forwarding\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});\n\nproxy.name = \"John\";\n\nproxy.age = 42;\n\nlet text1 = proxy.name;\n\nlet text2 = proxy.age",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_reflect"
+    },
+    {
+      "type": "h2",
+      "text": "جریان کار Proxy همراه با Reflect"
+    },
+    {
+      "type": "p",
+      "text": "جریان زیر جان‌مایهٔ فرابرنامه‌نویسی JavaScript با Proxy و Reflect است."
+    },
+    {
+      "type": "p",
+      "text": "توضیح جریان:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "کد شما با یک شیء تعامل می‌کند",
+        "Proxy آن عملیات را رهگیری می‌کند",
+        "کد trap شما تصمیم می‌گیرد چه اتفاقی بیفتد",
+        "Reflect عملیات را به شکل امن هدایت می‌کند",
+        "شیء هدف عمل واقعی را دریافت می‌کند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "چرا Proxy؟"
+    },
+    {
+      "type": "p",
+      "text": "Proxyها به شما اجازه می‌دهند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "لاگ‌گیری اضافه کنید",
+        "تغییرها را اعتبارسنجی کنید",
+        "خصوصیت‌ها را خودکار بسازید",
+        "از دادهٔ حساس محافظت کنید",
+        "شیءهای مجازی یا محاسباتی بسازید",
+        "فراخوانی تابع‌ها را رهگیری کنید",
+        "سامانه‌های واکنش‌گرا (مثل Vue.js) بسازید"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "اعتبارسنجی با Proxy"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = { name: \"Jan\", age: 40 };\n\n// Create a Proxy\n\nconst proxy = new Proxy(user, {\n\n  set(target, prop, value) {\n\n    if (prop === \"age\" && value < 0) {\n\n      text = \"Age cannot be negative!\";\n\n      document.getElementById(\"demo\").innerHTML = text;\n\n    }\n\n    return Reflect.set(target, prop, value);\n\n  }\n\n});\n\nproxy.age = 45;  // OK\n\nproxy.age = -5;  // Error",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_validate"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های مجازی"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {\n\n  first: \"John\",\n\n  last:  \"Doe\"\n\n};\n\n// Create a Proxy\n\nconst virtual = new Proxy(person, {\n\n  get(target, prop) {\n\n    if (prop === \"fullName\") {\n\n      return target.first + \" \" + target.last;\n\n    }\n\n    return Reflect.get(target, prop);\n\n  }\n\n});\n\nlet text = virtual.fullName; // \"John Doe\"",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_virtual"
+    },
+    {
+      "type": "h2",
+      "text": "تابع‌های پویا"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fn = new Function(\"a\", \"b\", \"return a + b\");\n\nlet result = fn(3, 2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_dynamic"
+    },
+    {
+      "type": "h2",
+      "text": "فرابرنامه‌نویسی"
+    },
+    {
+      "type": "p",
+      "text": "فرابرنامه‌نویسی به JavaScript اجازه می‌دهد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "رفتار را رهگیری کند",
+        "رفتار را تغییر دهد",
+        "رفتار تازه‌ای تعریف کند",
+        "رفتار را به‌صورت پویا بسازد"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "این کار کنترل عمیقی روی سازوکارهای درونی زبان به برنامه‌نویس می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "trapهای Proxy"
+    },
+    {
+      "type": "p",
+      "text": "trap یک تابع داخل handler یک Proxy است."
+    },
+    {
+      "type": "p",
+      "text": "هر بار عملیات مشخصی روی Proxy انجام شود، این تابع اجرا می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "در ادامه توضیح کامل و دقیق هر trap از Proxy در JavaScript می‌آید: چه چیزی آن را فعال می‌کند، چه پارامترهایی دارد و چه چیزی باید برگرداند."
+    },
+    {
+      "type": "table",
+      "headers": ["نام trap", "چه زمانی فعال می‌شود"],
+      "rows": [
+        ["get", "یک خصوصیت خوانده می‌شود"],
+        ["set", "یک خصوصیت تغییر می‌کند"],
+        ["has", "از عملگر in استفاده می‌شود"],
+        ["deleteProperty", "یک خصوصیت حذف می‌شود"],
+        ["apply", "یک تابع صدا زده می‌شود"],
+        ["construct", "یک شیء (با new) ساخته می‌شود"],
+        ["getOwnPropertyDescriptor", "توصیف‌گر یک خصوصیت خوانده می‌شود"],
+        ["defineProperty", "یک خصوصیت تعریف می‌شود"],
+        ["getPrototypeOf", "پروتوتایپ خوانده می‌شود"],
+        ["setPrototypeOf", "پروتوتایپ تنظیم می‌شود"],
+        ["isExtensible", "قابل گسترش بودن بررسی می‌شود"],
+        ["preventExtensions", "از گسترش شیء جلوگیری می‌شود"],
+        ["ownKeys", "خصوصیت‌ها فهرست می‌شوند"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "فهرست بالا مطابق سال ۲۰۲۵ است و همهٔ ۱۳ trap تعریف‌شده در ECMAScript را دربر می‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "هر مدیریت‌کنندهٔ trap در ادامه توضیح داده شده است."
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.get()"
+    },
+    {
+      "type": "p",
+      "text": "وقتی یک خصوصیت خوانده می‌شود فعال می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "get(obj, prop, receiver) {\n\n  return Reflect.get(obj, prop, receiver);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "proxy.property\n\nproxy[\"property\"]\n\nobject.property()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "obj: شیء هدف",
+        "prop: خصوصیتی که به آن دسترسی می‌شود",
+        "receiver: مقدار this برای getterها (معمولاً خود proxy)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["مقدار آن خصوصیت"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.set()"
+    },
+    {
+      "type": "p",
+      "text": "وقتی به یک خصوصیت مقدار داده می‌شود فعال می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "set(obj, prop, value, receiver) {\n\n  return Reflect.set(obj, prop, value, receiver);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "proxy.property = value;\n\nproxy[\"property\"] = value;",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "obj: شیء هدف",
+        "prop: خصوصیتی که تنظیم می‌شود",
+        "value: مقدار تازهٔ خصوصیت",
+        "receiver: شیئی که مقدار را گرفته است (معمولاً خود proxy)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true اگر مقداردهی موفق بوده باشد", "false اگر ناموفق بوده باشد"]
+    },
+    {
+      "type": "p",
+      "text": "پرتاب خطا هم مجاز است."
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.has()"
+    },
+    {
+      "type": "p",
+      "text": "عملگر in را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "has(obj, prop) {\n\n  return Reflect.has(obj, prop);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "\"property\" in proxy",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "obj: شیء هدف",
+        "prop: خصوصیتی که به آن دسترسی می‌شود",
+        "receiver: مقدار this برای setterها (معمولاً خود proxy)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true", "false"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.deleteProperty()"
+    },
+    {
+      "type": "p",
+      "text": "عملگر delete را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "deleteProperty(obj, prop) {\n\n  return Reflect.deleteProperty(obj, prop);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "delete proxy.property",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء هدف", "prop: خصوصیتی که باید حذف شود"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true در صورت موفقیت", "false در صورت شکست"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.apply()"
+    },
+    {
+      "type": "p",
+      "text": "وقتی یک تابع صدا زده می‌شود فعال می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "apply(func, thisArg, args) {\n\n  return Reflect.apply(func, this, args);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "proxy()\n\nproxy.call()\n\nproxy.apply()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "func: شیء قابل صدا زدن (تابع)",
+        "this: مقدار this برای این فراخوانی",
+        "args: آرایهٔ آرگومان‌های تابع"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["مقدار بازگشتی تابع"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.construct"
+    },
+    {
+      "type": "p",
+      "text": "عملگر new را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "construct(obj, args, newTarget) {\n\n  return Reflect.construct(obj, args, newTarget);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "nex proxy()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء سازنده", "args: آرایهٔ آرگومان‌های داده‌شده", "newTarget: سازنده"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["یک شیء (نمونهٔ تازه)"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const obj = {}  // No trap\n\nObject.create() // No trap\n\nclass User {};\n\nnew User();     // No trap",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.getOwnPropertyDescriptor()"
+    },
+    {
+      "type": "p",
+      "text": "خواندن توصیف‌گر خصوصیت را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "getOwnPropertyDescriptor(obj, prop) {\n\n  return Reflect.getOwnPropertyDescriptor(obj, prop);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.getOwnPropertyDescriptor(obj, prop)",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء هدف", "prop: خصوصیتی که باید توصیف شود"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["یک توصیف‌گر خصوصیت", "undefined"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.defineProperty()"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.defineProperty() را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "defineProperty(obj, prop, descriptor) {\n\n  return Reflect.defineProperty(obj, prop, descriptor);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.defineProperty()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء هدف", "prop: خصوصیتی که باید توصیف شود", "descriptor: توصیف‌گر خصوصیت"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true در صورت موفقیت", "false در غیر این صورت"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.getPrototypeOf()"
+    },
+    {
+      "type": "p",
+      "text": "جست‌وجوی پروتوتایپ را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "getPrototypeOf(obj) {\n\n  return Reflect.getPrototypeOf(obj);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.getPrototypeOf()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء هدف"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["یک شیء", "null"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.setPrototypeOf()"
+    },
+    {
+      "type": "p",
+      "text": "تنظیم پروتوتایپ را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "setPrototypeOf(obj, prototype) {\n\n  return Reflect.setPrototypeOf(obj, prototype);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.settPrototypeOf()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء هدف", "prototype: پروتوتایپ تازه یا null"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["یک شیء", "null"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.isExtensible()"
+    },
+    {
+      "type": "p",
+      "text": "بررسی قابل گسترش بودن یک شیء را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "isExtensible(obj) {\n\n  return Reflect.isExtensible(obj);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.isExtensible()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء هدف"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true برای بله", "false برای خیر"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.preventExtentions()"
+    },
+    {
+      "type": "p",
+      "text": "غیرقابل گسترش کردن یک شیء را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "preventExtensions(obj) {\n\n  return Reflect.preventExtensions(obj);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.preventExtensions()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء هدف"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["true در صورت موفقیت", "false در صورت شکست"]
+    },
+    {
+      "type": "h2",
+      "text": "متد handler.ownKeys()"
+    },
+    {
+      "type": "p",
+      "text": "عملیات‌های فهرست کردن کلیدها (نام خصوصیت‌ها یا symbolها) را رهگیری می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "ownKeys(obj) {\n\n  return Reflect.ownKeys(obj);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Object.keys()\n\nObject.getOwnPropertyNames()\n\nObject.getOwnPropertySymbols()",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "پارامترها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["obj: شیء هدف"]
+    },
+    {
+      "type": "p",
+      "text": "باید برگرداند"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["آرایه‌ای از کلیدها بدون تکراری"]
+    },
+    {
+      "type": "h2",
+      "text": "نگاشت trapهای Proxy به متدهای Reflect"
+    },
+    {
+      "type": "p",
+      "text": "هر trap از Proxy نمایندهٔ یکی از عملیات‌های داخلی JavaScript است:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "[[Construct]]",
+        "[[Call]]",
+        "[[Get]]",
+        "[[Set]]",
+        "[[HasProperty]]",
+        "[[Delete]]",
+        "[[DefineProperty]]",
+        "[[GetOwnProperty]]",
+        "[[OwnPropertyKeys]]",
+        "[[GetPrototypeOf]]",
+        "[[SetPrototypeOf]]",
+        "[[PreventExtensions]]",
+        "[[IsExtensible]]"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "این عملیات‌های داخلی همان چیزهایی هستند که JavaScript (درون موتور) هنگام دسترسی یا تغییر شیءها به کار می‌برد."
+    },
+    {
+      "type": "p",
+      "text": "وقتی Proxy یکی از این عملیات‌ها را رهگیری می‌کند، باید آن را درست هدایت کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "get(target, property, receiver) {\n\n  return Reflect.get(target, property, receiver);\n\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "از Reflect استفاده می‌شود چون متدهایش بازتاب یک‌به‌یک عملیات‌های داخلی‌اند."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "مقدارهای بازگشتی درست (true/false/descriptor) تولید می‌کنند",
+        "از پرتاب خطاهایی که قوانین Proxy را می‌شکنند پرهیز می‌کنند",
+        "کاری می‌کنند Proxy مثل شیءهای معمولی JavaScript رفتار کند (مگر اینکه تغییرش داده باشید)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "به همین دلیل هر trap از Proxy یک متد Reflect با همان نام و امضا دارد."
+    },
+    {
+      "type": "h2",
+      "text": "عملیات داخلی JavaScript چگونه Reflect شد"
+    },
+    {
+      "type": "p",
+      "text": "قبل از ES6 (سال ۲۰۱۵) خیلی از عملیات‌های بنیادی به شکل تابع وجود نداشتند:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["عملیات", "قبل از ES6", "مشکل"],
+        ["خواندن خصوصیت", "obj[prop]", "به شکل تابع قابل صدا زدن نیست"],
+        ["تنظیم خصوصیت", "obj[prop] = value", "به شکل تابع قابل صدا زدن نیست"],
+        ["حذف خصوصیت", "delete obj[prop]", "عملگر است، نه تابع"],
+        ["بررسی خصوصیت", "\"prop\" in obj", "عملگر است، نه تابع"],
+        ["ساختن شیء (new)", "new Foo()", "به شکل عمومی قابل صدا زدن نیست"],
+        ["خواندن پروتوتایپ", "Object.getPrototypeOf(obj)", "روی مقدارهای غیرشیء خطا می‌دهد"],
+        ["تعریف خصوصیت", "Object.defineProperty()", "به‌جای بولی، شیء برمی‌گرداند"],
+        ["کلیدهای خود شیء", "Object.keys()", "کامل نیست (symbolها را جا می‌اندازد)"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "این‌ها برای هدایت عملیات توسط Proxy ناکامل و ناهمگون بودند."
+    },
+    {
+      "type": "p",
+      "text": "پس ES6 (سال ۲۰۱۵) شیء Reflect را اضافه کرد:"
+    },
+    {
+      "type": "table",
+      "headers": ["عملیات داخلی", "متد Reflect"],
+      "rows": [
+        ["[[Construct]]", "Reflect.construct()"],
+        ["[[Call]]", "Reflect.apply()"],
+        ["[[Get]]", "Reflect.get()"],
+        ["[[Set]]", "Reflect.set()"],
+        ["[[HasProperty]]", "Reflect.has()"],
+        ["[[Delete]]", "Reflect.deleteProperty()"],
+        ["[[DefineProperty]]", "Reflect.defineProperty()"],
+        ["[[GetOwnProperty]]", "Reflect.getOwnProperty()"],
+        ["[[OwnPropertyKeys]]", "Reflect.ownPropertyKeys()"],
+        ["[[IsExstensible]]", "Reflect.isExtensible()"],
+        ["[[PreventExstensions]]", "Reflect.preventExtensions()"],
+        ["[[GetPrototypeOf]]", "Reflect.getPrototypeOf()"],
+        ["[[SetPrototypeOf]]", "Reflect.setPrototypeOf()"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید"
+    },
+    {
+      "type": "p",
+      "text": "فرابرنامه‌نویسی در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "آموزش Reflect در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع Meta در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک شیء user با نام و سن بسازید و آن را با new Proxy بپیچید؛ در trap مربوط به get هر خواندن را در کنسول لاگ کنید و بعد user.name را بخوانید.",
+      "hint": "get دو آرگومان target و property می‌گیرد و باید مقدار خصوصیت را برگرداند."
+    },
+    {
+      "prompt": "در trap مربوط به set اجازه دهید سن فقط عدد باشد؛ اگر مقدار غیرعددی بود پیام خطا چاپ کنید و مقدار را نپذیرید.",
+      "hint": "برای رد کردن، false برگردانید یا خطا پرتاب کنید؛ trap مربوط به set باید true یا false برگرداند."
+    },
+    {
+      "prompt": "یک Proxy بسازید که برای خصوصیتی که در شیء وجود ندارد مقدار پیش‌فرض «نامعلوم» برگرداند و آن را یک خصوصیت مجازی بنامید.",
+      "hint": "در trap مربوط به get با بررسی typeof یا استفاده از in می‌توانید مقدار پیش‌فرض بسازید."
+    },
+    {
+      "prompt": "همان Proxy را یک بار با بازگرداندن دستی مقدار بنویسید و یک بار با Reflect.get و Reflect.set؛ بگویید کدام کوتاه‌تر و امن‌تر است.",
+      "hint": "Reflect هر عملیات را دقیقاً مثل شیء معمولی هدایت می‌کند و از خطاهای پنهان جلوگیری می‌کند."
+    },
+    {
+      "prompt": "با trap مربوط به apply یک تابع را بپیچید که هر فراخوانی را بشمارد و تعداد را در کنسول چاپ کند.",
+      "hint": "apply آرگومان‌های func و thisArg و args را می‌گیرد و باید مقدار بازگشتی تابع را برگرداند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Proxy در JavaScript چه کاری می‌کند؟",
+      "options": [
+        "شیءهای دیگر را می‌پیچد و عملیات روی آن‌ها را کنترل می‌کند",
+        "کد را در رشتهٔ جدا اجرا می‌کند",
+        "داده را در حافظهٔ موقت ذخیره می‌کند",
+        "کد را فشرده می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "Proxy یک شیء پوشاننده است که عملیات‌های روی شیء هدف را رهگیری می‌کند و اجازه می‌دهد کد خودتان اجرا شود."
+    },
+    {
+      "question": "در new Proxy(target, handler)، آرگومان دوم چه چیزی است؟",
+      "options": [
+        "تابعی که روی عملیات اجرا می‌شود",
+        "شیئی که متدهای trap را دارد",
+        "یک آرایه از نام خصوصیت‌ها",
+        "شیء هدف اصلی"
+      ],
+      "answer": 1,
+      "explanation": "target شیء اصلی است و handler شیئی است که trapها، یعنی تابع‌های رهگیر عملیات، را در خود دارد."
+    },
+    {
+      "question": "trap مربوط به set باید چه چیزی برگرداند؟",
+      "options": [
+        "مقدار تازهٔ خصوصیت",
+        "true یا false، و پرتاب خطا هم مجاز است",
+        "شیء هدف",
+        "همیشه undefined"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید trap مربوط به set برای موفقیت true و برای شکست false برمی‌گرداند؛ پرتاب خطا هم مجاز است."
+    },
+    {
+      "question": "چرا در handlerهای Proxy از Reflect استفاده می‌شود؟",
+      "options": [
+        "چون مرورگرهای قدیمی فقط Reflect را می‌شناسند",
+        "چون متدهای Reflect بازتاب یک‌به‌یک عملیات‌های داخلی‌اند و هدایت را امن می‌کنند",
+        "چون بدون Reflect هیچ trap‌ای اجرا نمی‌شود",
+        "چون Reflect کد را سریع‌تر اجرا می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "هر trap متناظر یک عملیات داخلی است و Reflect همان عملیات را با مقدار بازگشتی درست انجام می‌دهد، پس رفتار Proxy مثل شیء معمولی می‌ماند."
+    },
+    {
+      "question": "کدام trap وقتی فعال می‌شود که خصوصیتی خوانده شود؟",
+      "options": ["set", "get", "has", "ownKeys"],
+      "answer": 1,
+      "explanation": "بر اساس جدول trapهای درس، get هنگام خواندن یک خصوصیت فعال می‌شود؛ set هنگام نوشتن، has برای عملگر in و ownKeys هنگام فهرست کردن کلیدها."
+    }
+  ]
 }

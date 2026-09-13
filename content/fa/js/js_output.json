@@ -1,298 +1,278 @@
 {
- "slug": "js_output",
- "course": "js",
- "order": 3,
- "url": "/js/js_output.asp",
- "title": "خروجی در JavaScript",
- "summary": "JavaScript داده‌ها را به چند شکل نمایش می‌دهد: با innerHTML و innerText داخل عنصر HTML، با document.write() در خروجی HTML، با window.alert() در کادر گفت‌وگو و با console.log() در کنسول مرورگر. در این درس هر چهار راه را امتحان می‌کنید و می‌بینید document.write() چه خطری دارد.",
- "objectives": [
-  "چهار راه نمایش داده در JavaScript را نام ببرید",
-  "داده را با innerHTML و innerText داخل یک عنصر HTML بنویسید",
-  "با window.alert() و console.log() خروجی بگیرید",
-  "توضیح دهید چرا document.write() بعد از بارگذاری صفحه مشکل می‌سازد"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "خروجی در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "راه‌های نمایش داده در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript می‌تواند داده‌ها را به شکل‌های مختلف «نمایش» دهد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "نوشتن داخل یک عنصر HTML، با innerHTML یا innerText.",
-    "نوشتن در خروجی HTML با document.write().",
-    "نوشتن در کادر alert با window.alert().",
-    "نوشتن در کنسول مرورگر با console.log()."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از innerHTML"
-  },
-  {
-   "type": "p",
-   "text": "برای دسترسی به یک عنصر HTML می‌توانید از متد document.getElementById(id) استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "با ویژگی id عنصر HTML را مشخص کنید."
-  },
-  {
-   "type": "p",
-   "text": "سپس با خصوصیت innerHTML محتوای HTML عنصر را تغییر دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n <p>My First Paragraph</p>\n\n<p id=\"demo\"></p>\n\n<script>\n\n document.getElementById(\"demo\").innerHTML = \"<h2>Hello World</h2>\";\n\n    </script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_innerhtml"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "تغییر خصوصیت innerHTML یک عنصر HTML رایج‌ترین راه نمایش داده در HTML است."
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از innerText"
-  },
-  {
-   "type": "p",
-   "text": "برای دسترسی به یک عنصر HTML از متد document.getElementById(id) استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "سپس با خصوصیت innerText متن داخلی عنصر HTML را تغییر دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n <p>My First Paragraph</p>\n\n<p id=\"demo\"></p>\n\n<script>\n\n document.getElementById(\"demo\").innerText = \"Hello World\";\n\n    </script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_innertext"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "وقتی می‌خواهید عنصر HTML را تغییر دهید از innerHTML استفاده کنید. وقتی فقط می‌خواهید متن ساده را عوض کنید از innerText."
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از document.write()"
-  },
-  {
-   "type": "p",
-   "text": "برای آزمایش کردن، استفاده از document.write() راحت است:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n <p>My first paragraph.</p>\n\n<script>\ndocument.write(5 + 6);\n</script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_write"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "اگر document.write() را بعد از بارگذاری سند HTML اجرا کنید، همهٔ HTML موجود پاک می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n <p>My first paragraph.</p>\n\n<button type=\"button\" onclick=\"document.write(5 + 6)\">Try it</button>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_write_over"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "متد document.write() فقط باید برای آزمایش به کار برود."
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از window.alert()"
-  },
-  {
-   "type": "p",
-   "text": "برای نمایش داده می‌توانید از کادر alert استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n<p>My first paragraph.</p>\n\n<script>\nwindow.alert(5 + 6);\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_alert"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید کلیدواژهٔ window را حذف کنید."
-  },
-  {
-   "type": "p",
-   "text": "در JavaScript شیء window همان شیء دامنهٔ سراسری است. یعنی متغیرها، خصوصیت‌ها و متدها به‌طور پیش‌فرض به شیء window تعلق دارند. پس نوشتن کلیدواژهٔ window اختیاری است:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n<p>My first paragraph.</p>\n\n<script>\nalert(5 + 6);\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_alert2"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از console.log()"
-  },
-  {
-   "type": "p",
-   "text": "برای اشکال‌زدایی می‌توانید متد console.log() را در مرورگر صدا بزنید تا داده‌ها نمایش داده شوند."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "در فصل‌های بعدی دربارهٔ اشکال‌زدایی بیشتر یاد می‌گیرید."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<script>\n\nconsole.log(5 + 6);\n\n</script>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_console"
-  },
-  {
-   "type": "h2",
-   "text": "چاپ در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript هیچ شیء یا متد چاپی ندارد."
-  },
-  {
-   "type": "p",
-   "text": "از JavaScript نمی‌توانید به دستگاه‌های خروجی دسترسی بگیرید."
-  },
-  {
-   "type": "p",
-   "text": "تنها استثنا این است که می‌توانید متد window.print() را در مرورگر صدا بزنید تا محتوای پنجرهٔ جاری چاپ شود."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE html>\n\n<html>\n<body>\n\n<button onclick=\"window.print()\">Print this page</button>\n\n</body>\n\n</html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_print"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل output.html بسازید و با innerHTML یک تگ <h2> داخل عنصر demo بگذارید.",
-   "hint": "اگر رشته تگ HTML داشته باشد، innerHTML آن را به‌عنوان HTML تفسیر می‌کند و یک سرتیتر واقعی ساخته می‌شود."
-  },
-  {
-   "prompt": "همان کار را با innerText تکرار کنید و تفاوت خروجی را در مرورگر ببینید.",
-   "hint": "innerText متن را خام نشان می‌دهد و تگ‌ها را نمی‌سازد."
-  },
-  {
-   "prompt": "یک دکمه بسازید که با کلیک، document.write(5 + 6) را بعد از بارگذاری صفحه اجرا کند و ببینید چه اتفاقی می‌افتد.",
-   "hint": "این همان هشدار درس است: document.write() بعد از بارگذاری، کل HTML صفحه را پاک می‌کند."
-  },
-  {
-   "prompt": "مقدار 5 + 6 را یک بار با window.alert و یک بار فقط با alert نمایش دهید.",
-   "hint": "شیء window سراسری است، پس نوشتن window اختیاری است."
-  },
-  {
-   "prompt": "صفحه را در مرورگر باز کنید، با F12 تب Console را باز کنید و با console.log(5 + 6) خروجی بگیرید.",
-   "hint": "برای اشکال‌زدایی کد همیشه از کنسول استفاده می‌کنید، پس جای خروجی را پیدا کنید."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام متد داده را در کادر گفت‌وگو نمایش می‌دهد؟",
-   "options": [
-    "innerHTML",
-    "window.alert()",
-    "console.log()",
-    "document.write()"
-   ],
-   "answer": 1,
-   "explanation": "window.alert() یک کادر پیام باز می‌کند. innerHTML داخل عنصر می‌نویسد، console.log() در کنسول و document.write() در خروجی HTML."
-  },
-  {
-   "question": "اگر بخواهیم فقط متن ساده بنویسیم و تگ‌های HTML ساخته نشوند، کدام خصوصیت را انتخاب می‌کنیم؟",
-   "options": [
-    "innerHTML",
-    "style.display",
-    "innerText",
-    "document.write()"
-   ],
-   "answer": 2,
-   "explanation": "innerText متن ساده را می‌نویسد. innerHTML رشته را به‌عنوان HTML تفسیر می‌کند و بقیهٔ گزینه‌ها جای نوشتن متن نیستند."
-  },
-  {
-   "question": "چرا استفاده از document.write() بعد از بارگذاری صفحه خطرناک است؟",
-   "options": [
-    "چون صفحه را کند می‌کند",
-    "چون همهٔ HTML موجود را پاک می‌کند",
-    "چون فقط با کوتیشن تک کار می‌کند",
-    "چون در مرورگرهای جدید کار نمی‌کند"
-   ],
-   "answer": 1,
-   "explanation": "اگر این متد بعد از بارگذاری سند اجرا شود، کل HTML موجود را پاک می‌کند؛ برای همین فقط برای آزمایش مناسب است."
-  },
-  {
-   "question": "کدام متد را برای اشکال‌زدایی در کنسول مرورگر صدا می‌زنیم؟",
-   "options": [
-    "console.log()",
-    "window.print()",
-    "innerHTML",
-    "alert()"
-   ],
-   "answer": 0,
-   "explanation": "console.log() داده را در کنسول نشان می‌دهد. window.print() صفحه را چاپ می‌کند و innerHTML یک خصوصیت است، نه متد کنسول."
-  },
-  {
-   "question": "برای چاپ محتوای پنجرهٔ جاری کدام متد را صدا می‌زنیم؟",
-   "options": [
-    "console.print()",
-    "document.write()",
-    "window.alert()",
-    "window.print()"
-   ],
-   "answer": 3,
-   "explanation": "JavaScript شیء یا متد چاپ دیگری ندارد؛ تنها استثنا window.print() است که پنجرهٔ جاری را چاپ می‌کند."
-  }
- ]
+  "slug": "js_output",
+  "course": "js",
+  "order": 3,
+  "url": "/js/js_output.asp",
+  "title": "خروجی در JavaScript",
+  "summary": "JavaScript داده‌ها را به چند شکل نمایش می‌دهد: با innerHTML و innerText داخل عنصر HTML، با document.write() در خروجی HTML، با window.alert() در کادر گفت‌وگو و با console.log() در کنسول مرورگر. در این درس هر چهار راه را امتحان می‌کنید و می‌بینید document.write() چه خطری دارد.",
+  "objectives": [
+    "چهار راه نمایش داده در JavaScript را نام ببرید",
+    "داده را با innerHTML و innerText داخل یک عنصر HTML بنویسید",
+    "با window.alert() و console.log() خروجی بگیرید",
+    "توضیح دهید چرا document.write() بعد از بارگذاری صفحه مشکل می‌سازد"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "خروجی در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "راه‌های نمایش داده در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript می‌تواند داده‌ها را به شکل‌های مختلف «نمایش» دهد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "نوشتن داخل یک عنصر HTML، با innerHTML یا innerText.",
+        "نوشتن در خروجی HTML با document.write().",
+        "نوشتن در کادر alert با window.alert().",
+        "نوشتن در کنسول مرورگر با console.log()."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از innerHTML"
+    },
+    {
+      "type": "p",
+      "text": "برای دسترسی به یک عنصر HTML می‌توانید از متد document.getElementById(id) استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "با ویژگی id عنصر HTML را مشخص کنید."
+    },
+    {
+      "type": "p",
+      "text": "سپس با خصوصیت innerHTML محتوای HTML عنصر را تغییر دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n <p>My First Paragraph</p>\n\n<p id=\"demo\"></p>\n\n<script>\n\n document.getElementById(\"demo\").innerHTML = \"<h2>Hello World</h2>\";\n\n    </script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_innerhtml"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "تغییر خصوصیت innerHTML یک عنصر HTML رایج‌ترین راه نمایش داده در HTML است."
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از innerText"
+    },
+    {
+      "type": "p",
+      "text": "برای دسترسی به یک عنصر HTML از متد document.getElementById(id) استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "سپس با خصوصیت innerText متن داخلی عنصر HTML را تغییر دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n <p>My First Paragraph</p>\n\n<p id=\"demo\"></p>\n\n<script>\n\n document.getElementById(\"demo\").innerText = \"Hello World\";\n\n    </script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_innertext"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "وقتی می‌خواهید عنصر HTML را تغییر دهید از innerHTML استفاده کنید. وقتی فقط می‌خواهید متن ساده را عوض کنید از innerText."
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از document.write()"
+    },
+    {
+      "type": "p",
+      "text": "برای آزمایش کردن، استفاده از document.write() راحت است:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n <p>My first paragraph.</p>\n\n<script>\ndocument.write(5 + 6);\n</script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_write"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "اگر document.write() را بعد از بارگذاری سند HTML اجرا کنید، همهٔ HTML موجود پاک می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n\n <p>My first paragraph.</p>\n\n<button type=\"button\" onclick=\"document.write(5 + 6)\">Try it</button>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_write_over"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "متد document.write() فقط باید برای آزمایش به کار برود."
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از window.alert()"
+    },
+    {
+      "type": "p",
+      "text": "برای نمایش داده می‌توانید از کادر alert استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n<p>My first paragraph.</p>\n\n<script>\nwindow.alert(5 + 6);\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_alert"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید کلیدواژهٔ window را حذف کنید."
+    },
+    {
+      "type": "p",
+      "text": "در JavaScript شیء window همان شیء دامنهٔ سراسری است. یعنی متغیرها، خصوصیت‌ها و متدها به‌طور پیش‌فرض به شیء window تعلق دارند. پس نوشتن کلیدواژهٔ window اختیاری است:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<h1>My First Web Page</h1>\n<p>My first paragraph.</p>\n\n<script>\nalert(5 + 6);\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_alert2"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از console.log()"
+    },
+    {
+      "type": "p",
+      "text": "برای اشکال‌زدایی می‌توانید متد console.log() را در مرورگر صدا بزنید تا داده‌ها نمایش داده شوند."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "در فصل‌های بعدی دربارهٔ اشکال‌زدایی بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n\n<body>\n\n<script>\n\nconsole.log(5 + 6);\n\n</script>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_console"
+    },
+    {
+      "type": "h2",
+      "text": "چاپ در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript هیچ شیء یا متد چاپی ندارد."
+    },
+    {
+      "type": "p",
+      "text": "از JavaScript نمی‌توانید به دستگاه‌های خروجی دسترسی بگیرید."
+    },
+    {
+      "type": "p",
+      "text": "تنها استثنا این است که می‌توانید متد window.print() را در مرورگر صدا بزنید تا محتوای پنجرهٔ جاری چاپ شود."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE html>\n\n<html>\n<body>\n\n<button onclick=\"window.print()\">Print this page</button>\n\n</body>\n\n</html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_output_print"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل output.html بسازید و با innerHTML یک تگ <h2> داخل عنصر demo بگذارید.",
+      "hint": "اگر رشته تگ HTML داشته باشد، innerHTML آن را به‌عنوان HTML تفسیر می‌کند و یک سرتیتر واقعی ساخته می‌شود."
+    },
+    {
+      "prompt": "همان کار را با innerText تکرار کنید و تفاوت خروجی را در مرورگر ببینید.",
+      "hint": "innerText متن را خام نشان می‌دهد و تگ‌ها را نمی‌سازد."
+    },
+    {
+      "prompt": "یک دکمه بسازید که با کلیک، document.write(5 + 6) را بعد از بارگذاری صفحه اجرا کند و ببینید چه اتفاقی می‌افتد.",
+      "hint": "این همان هشدار درس است: document.write() بعد از بارگذاری، کل HTML صفحه را پاک می‌کند."
+    },
+    {
+      "prompt": "مقدار 5 + 6 را یک بار با window.alert و یک بار فقط با alert نمایش دهید.",
+      "hint": "شیء window سراسری است، پس نوشتن window اختیاری است."
+    },
+    {
+      "prompt": "صفحه را در مرورگر باز کنید، با F12 تب Console را باز کنید و با console.log(5 + 6) خروجی بگیرید.",
+      "hint": "برای اشکال‌زدایی کد همیشه از کنسول استفاده می‌کنید، پس جای خروجی را پیدا کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام متد داده را در کادر گفت‌وگو نمایش می‌دهد؟",
+      "options": ["innerHTML", "window.alert()", "console.log()", "document.write()"],
+      "answer": 1,
+      "explanation": "window.alert() یک کادر پیام باز می‌کند. innerHTML داخل عنصر می‌نویسد، console.log() در کنسول و document.write() در خروجی HTML."
+    },
+    {
+      "question": "اگر بخواهیم فقط متن ساده بنویسیم و تگ‌های HTML ساخته نشوند، کدام خصوصیت را انتخاب می‌کنیم؟",
+      "options": ["innerHTML", "style.display", "innerText", "document.write()"],
+      "answer": 2,
+      "explanation": "innerText متن ساده را می‌نویسد. innerHTML رشته را به‌عنوان HTML تفسیر می‌کند و بقیهٔ گزینه‌ها جای نوشتن متن نیستند."
+    },
+    {
+      "question": "چرا استفاده از document.write() بعد از بارگذاری صفحه خطرناک است؟",
+      "options": [
+        "چون صفحه را کند می‌کند",
+        "چون همهٔ HTML موجود را پاک می‌کند",
+        "چون فقط با کوتیشن تک کار می‌کند",
+        "چون در مرورگرهای جدید کار نمی‌کند"
+      ],
+      "answer": 1,
+      "explanation": "اگر این متد بعد از بارگذاری سند اجرا شود، کل HTML موجود را پاک می‌کند؛ برای همین فقط برای آزمایش مناسب است."
+    },
+    {
+      "question": "کدام متد را برای اشکال‌زدایی در کنسول مرورگر صدا می‌زنیم؟",
+      "options": ["console.log()", "window.print()", "innerHTML", "alert()"],
+      "answer": 0,
+      "explanation": "console.log() داده را در کنسول نشان می‌دهد. window.print() صفحه را چاپ می‌کند و innerHTML یک خصوصیت است، نه متد کنسول."
+    },
+    {
+      "question": "برای چاپ محتوای پنجرهٔ جاری کدام متد را صدا می‌زنیم؟",
+      "options": ["console.print()", "document.write()", "window.alert()", "window.print()"],
+      "answer": 3,
+      "explanation": "JavaScript شیء یا متد چاپ دیگری ندارد؛ تنها استثنا window.print() است که پنجرهٔ جاری را چاپ می‌کند."
+    }
+  ]
 }

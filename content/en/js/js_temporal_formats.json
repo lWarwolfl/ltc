@@ -1,296 +1,284 @@
 {
- "slug": "js_temporal_formats",
- "course": "js",
- "order": 197,
- "url": "/js/js_temporal_formats.asp",
- "title": "Temporal Display Formats",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Temporal Display Formats"
-  },
-  {
-   "type": "p",
-   "text": "Temporal dates can be serialized as strings in different ways:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Method",
-     "Description"
-    ],
-    [
-     "toString()",
-     "To a date string in the RFC 9557 / ISO 8601 format."
-    ],
-    [
-     "toLocaleString()",
-     "To language-sensitive string like \"en-US\"."
-    ],
-    [
-     "Intl.DateTimeFormat()",
-     "When you need more control over the output."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "PlainDate toString()"
-  },
-  {
-   "type": "p",
-   "text": "The toString() method returns a standard ISO string."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet text = date.toString();",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "2026-05-17",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate"
-  },
-  {
-   "type": "h2",
-   "text": "PlainTime toString()"
-  },
-  {
-   "type": "p",
-   "text": "A PlainTime value is formatted as a time string."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const time = Temporal.PlainTime.from(\"14:30:15\");\n\nlet text = time.toString();",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "14:30:15",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaintime"
-  },
-  {
-   "type": "h2",
-   "text": "PlainDateTime toString()"
-  },
-  {
-   "type": "p",
-   "text": "A PlainDateTime value includes both date and time."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30:15\");\n\nlet text = dateTime.toString();",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "2026-05-17T14:30:15",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindatetime"
-  },
-  {
-   "type": "h2",
-   "text": "ZonedDateTime toString()"
-  },
-  {
-   "type": "p",
-   "text": "A ZonedDateTime string includes the offset and time zone."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15[Europe/Oslo]\");\n\nlet text = zoned.toString();",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "2026-05-17T14:30:15+01:00[Europe/Oslo]\n\nor:\n\n2026-05-17T14:30:15+02:00[Europe/Oslo]",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime"
-  },
-  {
-   "type": "h2",
-   "text": "Remove Smaller Time Units"
-  },
-  {
-   "type": "p",
-   "text": "You can control how much detail to include."
-  },
-  {
-   "type": "p",
-   "text": "For example, you can hide seconds or milliseconds."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const time = Temporal.PlainTime.from(\"14:30:15.123\");\n\nlet text = time.toString({ smallestUnit: \"minute\" });",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "14:30",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Control Fractional Digits"
-  },
-  {
-   "type": "p",
-   "text": "You can choose how many decimal digits to include."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const time = Temporal.PlainTime.from(\"14:30:15.123456789\");\n\nlet text = time.toString({ fractionalSecondDigits: 3 });",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "14:30:15.123",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "PlainDate toLocaleString()"
-  },
-  {
-   "type": "p",
-   "text": "Use toLocaleString() to format a value using the user's locale."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet text_us = date.toLocaleString(\"en-US\");\n\nlet text_de = date.toLocaleString(\"de-DE\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate_locale"
-  },
-  {
-   "type": "p",
-   "text": "The output depends on the chosen locale."
-  },
-  {
-   "type": "h2",
-   "text": "ZonedDateTime toLocaleString()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15+01:00[Europe/Oslo]\");\n\nlet text = zoned.toLocaleString(\"en-US\", {\n\n  dateStyle: \"full\",\n\n  timeStyle: \"short\"\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime_locale"
-  },
-  {
-   "type": "h2",
-   "text": "Format with Intl.DateTimeFormat"
-  },
-  {
-   "type": "p",
-   "text": "Use Intl.DateTimeFormat when you need more control over the output."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst formatter = new Intl.DateTimeFormat(\"en-US\", {\n\n  year: \"numeric\",\n\n  month: \"long\",\n\n  day: \"numeric\"\n\n});\n\nlet text = formatter.format(date);",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "February 17, 2026",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate_intl"
-  },
-  {
-   "type": "h2",
-   "text": "Format Date and Time Together"
-  },
-  {
-   "type": "p",
-   "text": "You can format a PlainDateTime with both date and time options."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30:15\");\n\nconst formatter = new Intl.DateTimeFormat(\"en-GB\", {\n\n  year: \"numeric\",\n\n  month: \"short\",\n\n  day: \"numeric\",\n\n  hour: \"2-digit\",\n\n  minute: \"2-digit\"\n\n});\n\nlet text = formatter.format(dateTime);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindatetime_intl"
-  },
-  {
-   "type": "h2",
-   "text": "ZonedDateTime toLocaleString()"
-  },
-  {
-   "type": "p",
-   "text": "The Intl.DateTimeFormat() method does not\naccept a Temporal.ZonedDateTime object as input."
-  },
-  {
-   "type": "p",
-   "text": "This design choice prevents conflicts between the time zone held by the\nZonedDateTime and the time zone defined in the formatter."
-  },
-  {
-   "type": "p",
-   "text": "The best solution is to use toLocaleString()\ninstead."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15+01:00[Europe/Oslo]\");\n\nlet text = zoned.toLocaleString(\"en-US\", {\n\n  dateStyle: \"full\",\n\n  timeStyle: \"short\"\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime_locale"
-  },
-  {
-   "type": "h2",
-   "text": "When to Use Each Method"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Use toString() for standard ISO output.",
-    "Use toLocaleString() for simple local formatting.",
-    "Use Intl.DateTimeFormat for custom formatting."
-   ]
-  }
- ]
+  "slug": "js_temporal_formats",
+  "course": "js",
+  "order": 197,
+  "url": "/js/js_temporal_formats.asp",
+  "title": "Temporal Display Formats",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Temporal Display Formats"
+    },
+    {
+      "type": "p",
+      "text": "Temporal dates can be serialized as strings in different ways:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Method", "Description"],
+        ["toString()", "To a date string in the RFC 9557 / ISO 8601 format."],
+        ["toLocaleString()", "To language-sensitive string like \"en-US\"."],
+        ["Intl.DateTimeFormat()", "When you need more control over the output."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "PlainDate toString()"
+    },
+    {
+      "type": "p",
+      "text": "The toString() method returns a standard ISO string."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet text = date.toString();",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "2026-05-17",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate"
+    },
+    {
+      "type": "h2",
+      "text": "PlainTime toString()"
+    },
+    {
+      "type": "p",
+      "text": "A PlainTime value is formatted as a time string."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const time = Temporal.PlainTime.from(\"14:30:15\");\n\nlet text = time.toString();",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "14:30:15",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaintime"
+    },
+    {
+      "type": "h2",
+      "text": "PlainDateTime toString()"
+    },
+    {
+      "type": "p",
+      "text": "A PlainDateTime value includes both date and time."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30:15\");\n\nlet text = dateTime.toString();",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "2026-05-17T14:30:15",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindatetime"
+    },
+    {
+      "type": "h2",
+      "text": "ZonedDateTime toString()"
+    },
+    {
+      "type": "p",
+      "text": "A ZonedDateTime string includes the offset and time zone."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15[Europe/Oslo]\");\n\nlet text = zoned.toString();",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "2026-05-17T14:30:15+01:00[Europe/Oslo]\n\nor:\n\n2026-05-17T14:30:15+02:00[Europe/Oslo]",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime"
+    },
+    {
+      "type": "h2",
+      "text": "Remove Smaller Time Units"
+    },
+    {
+      "type": "p",
+      "text": "You can control how much detail to include."
+    },
+    {
+      "type": "p",
+      "text": "For example, you can hide seconds or milliseconds."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const time = Temporal.PlainTime.from(\"14:30:15.123\");\n\nlet text = time.toString({ smallestUnit: \"minute\" });",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "14:30",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Control Fractional Digits"
+    },
+    {
+      "type": "p",
+      "text": "You can choose how many decimal digits to include."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const time = Temporal.PlainTime.from(\"14:30:15.123456789\");\n\nlet text = time.toString({ fractionalSecondDigits: 3 });",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "14:30:15.123",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "PlainDate toLocaleString()"
+    },
+    {
+      "type": "p",
+      "text": "Use toLocaleString() to format a value using the user's locale."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nlet text_us = date.toLocaleString(\"en-US\");\n\nlet text_de = date.toLocaleString(\"de-DE\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate_locale"
+    },
+    {
+      "type": "p",
+      "text": "The output depends on the chosen locale."
+    },
+    {
+      "type": "h2",
+      "text": "ZonedDateTime toLocaleString()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15+01:00[Europe/Oslo]\");\n\nlet text = zoned.toLocaleString(\"en-US\", {\n\n  dateStyle: \"full\",\n\n  timeStyle: \"short\"\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime_locale"
+    },
+    {
+      "type": "h2",
+      "text": "Format with Intl.DateTimeFormat"
+    },
+    {
+      "type": "p",
+      "text": "Use Intl.DateTimeFormat when you need more control over the output."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst formatter = new Intl.DateTimeFormat(\"en-US\", {\n\n  year: \"numeric\",\n\n  month: \"long\",\n\n  day: \"numeric\"\n\n});\n\nlet text = formatter.format(date);",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "February 17, 2026",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindate_intl"
+    },
+    {
+      "type": "h2",
+      "text": "Format Date and Time Together"
+    },
+    {
+      "type": "p",
+      "text": "You can format a PlainDateTime with both date and time options."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const dateTime = Temporal.PlainDateTime.from(\"2026-05-17T14:30:15\");\n\nconst formatter = new Intl.DateTimeFormat(\"en-GB\", {\n\n  year: \"numeric\",\n\n  month: \"short\",\n\n  day: \"numeric\",\n\n  hour: \"2-digit\",\n\n  minute: \"2-digit\"\n\n});\n\nlet text = formatter.format(dateTime);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_plaindatetime_intl"
+    },
+    {
+      "type": "h2",
+      "text": "ZonedDateTime toLocaleString()"
+    },
+    {
+      "type": "p",
+      "text": "The Intl.DateTimeFormat() method does not\naccept a Temporal.ZonedDateTime object as input."
+    },
+    {
+      "type": "p",
+      "text": "This design choice prevents conflicts between the time zone held by the\nZonedDateTime and the time zone defined in the formatter."
+    },
+    {
+      "type": "p",
+      "text": "The best solution is to use toLocaleString()\ninstead."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:15+01:00[Europe/Oslo]\");\n\nlet text = zoned.toLocaleString(\"en-US\", {\n\n  dateStyle: \"full\",\n\n  timeStyle: \"short\"\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_format_zoneddatetime_locale"
+    },
+    {
+      "type": "h2",
+      "text": "When to Use Each Method"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Use toString() for standard ISO output.",
+        "Use toLocaleString() for simple local formatting.",
+        "Use Intl.DateTimeFormat for custom formatting."
+      ]
+    }
+  ]
 }

@@ -1,283 +1,241 @@
 {
- "slug": "js_2017",
- "course": "js",
- "order": 133,
- "url": "/js/js_2017.asp",
- "title": "ECMAScript 2017",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2017"
-  },
-  {
-   "type": "h2",
-   "text": "New Features in JavaScript 2017"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Feature",
-     "Description",
-     ""
-    ],
-    [
-     "String padStart()",
-     "Pads the beginning of a string",
-     ""
-    ],
-    [
-     "String padEnd()",
-     "Pads the end of a string",
-     ""
-    ],
-    [
-     "Object entries()",
-     "Returns an array of the key/value pairs of an object",
-     ""
-    ],
-    [
-     "Object values()",
-     "Returns an array of the values of an object",
-     ""
-    ],
-    [
-     "async and await",
-     "Simplifies the handling of promises",
-     ""
-    ],
-    [
-     "Trailing Commas",
-     "Allows trailing commas where a comma-separated list of values is accepted",
-     ""
-    ],
-    [
-     "getOwnPropertyDescriptors",
-     "Returns an object containing all own property descriptors of an object",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript 2017 is supported in all modern browsers since September 2017:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome58",
-     "Edge15",
-     "Firefox52",
-     "Safari11",
-     "Opera45"
-    ],
-    [
-     "Apr 2017",
-     "Apr 2017",
-     "Mar 2017",
-     "Sep 2017",
-     "May 2017"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript String Padding"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2017 added two string methods to JavaScript: padStart()\nand padEnd() to support padding at the beginning and at the end of a string."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"5\";\n\ntext = text.padStart(4,0);",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"5\";\n\ntext = text.padEnd(4,0);",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding1"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Object Entries"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2017 added the Object.entries() method to objects."
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() returns an array of the key/value pairs in an object:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.entries(person);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries"
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() makes it simple to use objects in loops:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nlet text = \"\";\n\nfor (let [fruit, value] of Object.entries(fruits)) {\n\n  text += fruit + \": \" + value + \"<br>\";\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_loop"
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() also makes it simple to convert objects to maps:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nconst myMap = new Map(Object.entries(fruits));",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_map"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Object Values"
-  },
-  {
-   "type": "p",
-   "text": "Object.values() is similar to Object.entries(),\nbut returns a single dimension array of the object values:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.values(person);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_values"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Async Functions"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function myDisplay() {\n\n  let myPromise = new Promise(function(myResolve,  myReject) {\n\n    setTimeout(function() { myResolve(\"I love You !!\"); }, 3000);\n\n  });\n\n  document.getElementById(\"demo\").innerHTML = await myPromise;\n}\n\n myDisplay();",
-   "caption": "Waiting for a Timeout"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async4"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Trailing Commas"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript allows trailing commas wherever a comma-separated list of values is accepted."
-  },
-  {
-   "type": "p",
-   "text": "In Array and Object Literals, Function Calls, Parameters, Imports and Exports."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunc(x,,,) {};\n\nconst myArr = [1,2,3,4,,,];\n\nconst myObj = {fname: John, age:50,,,};",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "The Object.getOwnPropertyDescriptor() Method"
-  },
-  {
-   "type": "p",
-   "text": "Object.getOwnPropertyDescriptors()\nreturns all own property descriptors of a given object."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myProp = Object.getOwnPropertyNames(person);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myProp = Object.getOwnPropertyDescriptors(person);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes2"
-  },
-  {
-   "type": "p",
-   "text": "A property descriptor is an object that describes all attributes of a property:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "value: The property's value",
-    "writable: true if the property value can be changed",
-    "enumerable: true if the property will show up in loops (for...in, Object.keys())",
-    "configurable: true if the property descriptor can be changed or deleted",
-    "get: Function to get the property value (for accessor properties)",
-    "set: Function to set the property value (for accessor properties)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Object Cloning"
-  },
-  {
-   "type": "p",
-   "text": "The Object.getOwnPropertyDescriptors()\nis often used to clone objects while preserving getters, setters, and property attributes:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(person));",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes3"
-  }
- ]
+  "slug": "js_2017",
+  "course": "js",
+  "order": 133,
+  "url": "/js/js_2017.asp",
+  "title": "ECMAScript 2017",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2017"
+    },
+    {
+      "type": "h2",
+      "text": "New Features in JavaScript 2017"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Feature", "Description", ""],
+        ["String padStart()", "Pads the beginning of a string", ""],
+        ["String padEnd()", "Pads the end of a string", ""],
+        ["Object entries()", "Returns an array of the key/value pairs of an object", ""],
+        ["Object values()", "Returns an array of the values of an object", ""],
+        ["async and await", "Simplifies the handling of promises", ""],
+        [
+          "Trailing Commas",
+          "Allows trailing commas where a comma-separated list of values is accepted",
+          ""
+        ],
+        [
+          "getOwnPropertyDescriptors",
+          "Returns an object containing all own property descriptors of an object",
+          ""
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript 2017 is supported in all modern browsers since September 2017:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome58", "Edge15", "Firefox52", "Safari11", "Opera45"],
+        ["Apr 2017", "Apr 2017", "Mar 2017", "Sep 2017", "May 2017"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript String Padding"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2017 added two string methods to JavaScript: padStart()\nand padEnd() to support padding at the beginning and at the end of a string."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"5\";\n\ntext = text.padStart(4,0);",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"5\";\n\ntext = text.padEnd(4,0);",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding1"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Object Entries"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2017 added the Object.entries() method to objects."
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() returns an array of the key/value pairs in an object:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.entries(person);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries"
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() makes it simple to use objects in loops:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nlet text = \"\";\n\nfor (let [fruit, value] of Object.entries(fruits)) {\n\n  text += fruit + \": \" + value + \"<br>\";\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_loop"
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() also makes it simple to convert objects to maps:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nconst myMap = new Map(Object.entries(fruits));",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_map"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Object Values"
+    },
+    {
+      "type": "p",
+      "text": "Object.values() is similar to Object.entries(),\nbut returns a single dimension array of the object values:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.values(person);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_values"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Async Functions"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function myDisplay() {\n\n  let myPromise = new Promise(function(myResolve,  myReject) {\n\n    setTimeout(function() { myResolve(\"I love You !!\"); }, 3000);\n\n  });\n\n  document.getElementById(\"demo\").innerHTML = await myPromise;\n}\n\n myDisplay();",
+      "caption": "Waiting for a Timeout"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async4"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Trailing Commas"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript allows trailing commas wherever a comma-separated list of values is accepted."
+    },
+    {
+      "type": "p",
+      "text": "In Array and Object Literals, Function Calls, Parameters, Imports and Exports."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunc(x,,,) {};\n\nconst myArr = [1,2,3,4,,,];\n\nconst myObj = {fname: John, age:50,,,};",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "The Object.getOwnPropertyDescriptor() Method"
+    },
+    {
+      "type": "p",
+      "text": "Object.getOwnPropertyDescriptors()\nreturns all own property descriptors of a given object."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myProp = Object.getOwnPropertyNames(person);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myProp = Object.getOwnPropertyDescriptors(person);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes2"
+    },
+    {
+      "type": "p",
+      "text": "A property descriptor is an object that describes all attributes of a property:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "value: The property's value",
+        "writable: true if the property value can be changed",
+        "enumerable: true if the property will show up in loops (for...in, Object.keys())",
+        "configurable: true if the property descriptor can be changed or deleted",
+        "get: Function to get the property value (for accessor properties)",
+        "set: Function to set the property value (for accessor properties)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Object Cloning"
+    },
+    {
+      "type": "p",
+      "text": "The Object.getOwnPropertyDescriptors()\nis often used to clone objects while preserving getters, setters, and property attributes:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(person));",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes3"
+    }
+  ]
 }

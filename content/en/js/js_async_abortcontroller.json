@@ -1,272 +1,272 @@
 {
- "slug": "js_async_abortcontroller",
- "course": "js",
- "order": 231,
- "url": "/js/js_async_abortcontroller.asp",
- "title": "Asynchronous AbortController",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Asynchronous AbortController"
-  },
-  {
-   "type": "p",
-   "text": "The AbortController Object lets you cancel asynchronous operations."
-  },
-  {
-   "type": "p",
-   "text": "It is commonly used to cancel fetch() requests."
-  },
-  {
-   "type": "p",
-   "text": "Canceling unnecessary operations can improve performance and make applications more responsive."
-  },
-  {
-   "type": "h2",
-   "text": "Why Cancel a Request?"
-  },
-  {
-   "type": "p",
-   "text": "Sometimes an asynchronous operation is no longer needed."
-  },
-  {
-   "type": "p",
-   "text": "Examples include:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The user clicks a Cancel button.",
-    "The user starts another search.",
-    "The user leaves the page.",
-    "A request takes too long."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "In these situations, you can cancel the operation instead of waiting for it to finish."
-  },
-  {
-   "type": "h2",
-   "text": "Creating an AbortController"
-  },
-  {
-   "type": "p",
-   "text": "Create an AbortController with the new keyword."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "The Abort Signal"
-  },
-  {
-   "type": "p",
-   "text": "An AbortController provides an AbortSignal."
-  },
-  {
-   "type": "p",
-   "text": "The signal is passed to an asynchronous operation."
-  },
-  {
-   "type": "p",
-   "text": "The operation receives the signal and stops."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();\n\nconst signal = controller.signal;",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Canceling a Fetch Request"
-  },
-  {
-   "type": "p",
-   "text": "Pass the controller's signal to fetch()."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();\n\nfetch(\"largefile.txt\", {\n\n  signal: controller.signal\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Aborting a Request"
-  },
-  {
-   "type": "p",
-   "text": "Call abort() to cancel the operation."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "controller.abort();",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Complete Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();\n\n// Async function to download a file\n\nasync function loadFile(file) {\n\n  try {\n\n    const response = await fetch(file, {\n\n      signal: controller.signal\n\n    });\n\n    myDisplayer(await response.text());\n\n  } catch(err) {\n\n    if (err.name == \"AbortError\") {\n\n      myDisplayer(\"Download canceled\");\n\n    }\n\n  }\n\n}\n\n// Call the async function\n\nloadFile(\"fetch.txt\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_abort_1"
-  },
-  {
-   "type": "h2",
-   "text": "Cancel with a Button"
-  },
-  {
-   "type": "p",
-   "text": "A request can be canceled when the user clicks a button."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<button onclick='loadFile(\"fetch.txt\")'>Start Download</button>\n\n<button onclick=\"controller.abort()\">Cancel Download</button>\n\n<p id=\"demo\"></p>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_abort_2"
-  },
-  {
-   "type": "h2",
-   "text": "Create a New Controller for Each Request"
-  },
-  {
-   "type": "p",
-   "text": "Once an AbortController has been aborted, it cannot be reused."
-  },
-  {
-   "type": "p",
-   "text": "Create a new controller for each new request."
-  },
-  {
-   "type": "h2",
-   "text": "Cancel the Previous Request"
-  },
-  {
-   "type": "p",
-   "text": "Search applications often cancel an earlier request before starting a new one."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let controller;\n\nasync function search(text) {\n\n  if (controller) {\n\n    controller.abort();\n\n  }\n\n  controller = new AbortController();\n\n  try {\n\n    const response = await fetch(\n\n    \"/search?q=\" + text,\n\n    {signal: controller.signal}\n\n  );\n\n    console.log(await response.text());\n\n  }\n\n  catch(err) {\n\n    if (err.name != \"AbortError\") {\n\n      console.log(err);\n\n    }\n\n  }\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "User types:\n\nc\nca\ncat\ncats\n\n↓\n\nOnly the last request finishes.",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "User types:\n\nc\nca\ncat\ncats\n\n↓\n\nOnly the last request finishes.",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Cancel After a Timeout"
-  },
-  {
-   "type": "p",
-   "text": "You can combine timers with AbortController)=."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const controller = new AbortController();\n\nsetTimeout(function(){\n\n  controller.abort();\n\n},5000);\n\nawait fetch(url,{\n\n  signal: controller.signal\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Common Mistakes"
-  },
-  {
-   "type": "p",
-   "text": "Forgetting to pass the signal."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(url);",
-   "caption": "Wrong:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(url);",
-   "caption": "Right:"
-  },
-  {
-   "type": "h2",
-   "text": "Reusing a canceled controller."
-  },
-  {
-   "type": "p",
-   "text": "Remember to create a new controller."
-  },
-  {
-   "type": "h2",
-   "text": "Treating AbortError as a Failure"
-  },
-  {
-   "type": "p",
-   "text": "An aborted request is often expected."
-  },
-  {
-   "type": "p",
-   "text": "Handle it separately."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "if (err.name == \"AbortError\") {\n\n  return;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "AbortController is supported by all modern browsers."
-  },
-  {
-   "type": "p",
-   "text": "It is widely used together with the Fetch API."
-  },
-  {
-   "type": "h2",
-   "text": "AbortController Checklist"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Create a new controller for each new request",
-    "Create it with new AbortController()",
-    "Pass controller.signal to fetch()",
-    "Call abort() to cancel the request",
-    "Handle AbortError in a catch block"
-   ]
-  }
- ]
+  "slug": "js_async_abortcontroller",
+  "course": "js",
+  "order": 231,
+  "url": "/js/js_async_abortcontroller.asp",
+  "title": "Asynchronous AbortController",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Asynchronous AbortController"
+    },
+    {
+      "type": "p",
+      "text": "The AbortController Object lets you cancel asynchronous operations."
+    },
+    {
+      "type": "p",
+      "text": "It is commonly used to cancel fetch() requests."
+    },
+    {
+      "type": "p",
+      "text": "Canceling unnecessary operations can improve performance and make applications more responsive."
+    },
+    {
+      "type": "h2",
+      "text": "Why Cancel a Request?"
+    },
+    {
+      "type": "p",
+      "text": "Sometimes an asynchronous operation is no longer needed."
+    },
+    {
+      "type": "p",
+      "text": "Examples include:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "The user clicks a Cancel button.",
+        "The user starts another search.",
+        "The user leaves the page.",
+        "A request takes too long."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "In these situations, you can cancel the operation instead of waiting for it to finish."
+    },
+    {
+      "type": "h2",
+      "text": "Creating an AbortController"
+    },
+    {
+      "type": "p",
+      "text": "Create an AbortController with the new keyword."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "The Abort Signal"
+    },
+    {
+      "type": "p",
+      "text": "An AbortController provides an AbortSignal."
+    },
+    {
+      "type": "p",
+      "text": "The signal is passed to an asynchronous operation."
+    },
+    {
+      "type": "p",
+      "text": "The operation receives the signal and stops."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();\n\nconst signal = controller.signal;",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Canceling a Fetch Request"
+    },
+    {
+      "type": "p",
+      "text": "Pass the controller's signal to fetch()."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();\n\nfetch(\"largefile.txt\", {\n\n  signal: controller.signal\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Aborting a Request"
+    },
+    {
+      "type": "p",
+      "text": "Call abort() to cancel the operation."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "controller.abort();",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Complete Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();\n\n// Async function to download a file\n\nasync function loadFile(file) {\n\n  try {\n\n    const response = await fetch(file, {\n\n      signal: controller.signal\n\n    });\n\n    myDisplayer(await response.text());\n\n  } catch(err) {\n\n    if (err.name == \"AbortError\") {\n\n      myDisplayer(\"Download canceled\");\n\n    }\n\n  }\n\n}\n\n// Call the async function\n\nloadFile(\"fetch.txt\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_abort_1"
+    },
+    {
+      "type": "h2",
+      "text": "Cancel with a Button"
+    },
+    {
+      "type": "p",
+      "text": "A request can be canceled when the user clicks a button."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<button onclick='loadFile(\"fetch.txt\")'>Start Download</button>\n\n<button onclick=\"controller.abort()\">Cancel Download</button>\n\n<p id=\"demo\"></p>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async_abort_2"
+    },
+    {
+      "type": "h2",
+      "text": "Create a New Controller for Each Request"
+    },
+    {
+      "type": "p",
+      "text": "Once an AbortController has been aborted, it cannot be reused."
+    },
+    {
+      "type": "p",
+      "text": "Create a new controller for each new request."
+    },
+    {
+      "type": "h2",
+      "text": "Cancel the Previous Request"
+    },
+    {
+      "type": "p",
+      "text": "Search applications often cancel an earlier request before starting a new one."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let controller;\n\nasync function search(text) {\n\n  if (controller) {\n\n    controller.abort();\n\n  }\n\n  controller = new AbortController();\n\n  try {\n\n    const response = await fetch(\n\n    \"/search?q=\" + text,\n\n    {signal: controller.signal}\n\n  );\n\n    console.log(await response.text());\n\n  }\n\n  catch(err) {\n\n    if (err.name != \"AbortError\") {\n\n      console.log(err);\n\n    }\n\n  }\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "User types:\n\nc\nca\ncat\ncats\n\n↓\n\nOnly the last request finishes.",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "User types:\n\nc\nca\ncat\ncats\n\n↓\n\nOnly the last request finishes.",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Cancel After a Timeout"
+    },
+    {
+      "type": "p",
+      "text": "You can combine timers with AbortController)=."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const controller = new AbortController();\n\nsetTimeout(function(){\n\n  controller.abort();\n\n},5000);\n\nawait fetch(url,{\n\n  signal: controller.signal\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Common Mistakes"
+    },
+    {
+      "type": "p",
+      "text": "Forgetting to pass the signal."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(url);",
+      "caption": "Wrong:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(url);",
+      "caption": "Right:"
+    },
+    {
+      "type": "h2",
+      "text": "Reusing a canceled controller."
+    },
+    {
+      "type": "p",
+      "text": "Remember to create a new controller."
+    },
+    {
+      "type": "h2",
+      "text": "Treating AbortError as a Failure"
+    },
+    {
+      "type": "p",
+      "text": "An aborted request is often expected."
+    },
+    {
+      "type": "p",
+      "text": "Handle it separately."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "if (err.name == \"AbortError\") {\n\n  return;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "AbortController is supported by all modern browsers."
+    },
+    {
+      "type": "p",
+      "text": "It is widely used together with the Fetch API."
+    },
+    {
+      "type": "h2",
+      "text": "AbortController Checklist"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Create a new controller for each new request",
+        "Create it with new AbortController()",
+        "Pass controller.signal to fetch()",
+        "Call abort() to cancel the request",
+        "Handle AbortError in a catch block"
+      ]
+    }
+  ]
 }

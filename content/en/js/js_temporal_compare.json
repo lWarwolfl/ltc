@@ -1,305 +1,305 @@
 {
- "slug": "js_temporal_compare",
- "course": "js",
- "order": 195,
- "url": "/js/js_temporal_compare.asp",
- "title": "JS Temporal Compare",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JS Temporal Compare"
-  },
-  {
-   "type": "h2",
-   "text": "Date Comparison"
-  },
-  {
-   "type": "p",
-   "text": "In JavaScript, objects cannot be compared using operators like <, >, ==, or ===."
-  },
-  {
-   "type": "p",
-   "text": "Always use the equals() or compare() methods rather than standard equality operators."
-  },
-  {
-   "type": "p",
-   "text": "All temporal objects have their own compare() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Temporal.Instant.compare(instant1, instant2)",
-    "Temporal.PlainDate.compare(plaindate1, plaindate2)",
-    "Temporal.PlainTime.compare(plaintime1, plaintime2)",
-    "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
-    "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
-    "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
-    "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
-    "Temporal.Duration.compare(duration1, duration2)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The compare() Method"
-  },
-  {
-   "type": "p",
-   "text": "The compare() method returns:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "-1 if the first date is earlier",
-    "1 if the first day is later",
-    "0 if they are equal:"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst date2 = Temporal.PlainDate.from(\"2024-12-25\");\n\n// Compare the dates\n\nresult = Temporal.PlainDate.compare(date1, date2);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare_1"
-  },
-  {
-   "type": "h2",
-   "text": "Why < and > Do Not Work"
-  },
-  {
-   "type": "p",
-   "text": "Temporal objects are objects, not primitive numbers."
-  },
-  {
-   "type": "p",
-   "text": "When you write (a < b), JavaScript tries to convert both objects to primitives."
-  },
-  {
-   "type": "p",
-   "text": "For Temporal objects, this does not produce a numeric timestamp like Dates."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create two Temporal objects\n\nconst a = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst b = Temporal.PlainDate.from(\"2026-03-01\");\n\n// Compare the dates\n\nconsole.log(a < b);  // ❌ Error",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.Duration.compare()"
-  },
-  {
-   "type": "p",
-   "text": "The Temporal.Duration object does not have an equals() method due to the\ncomplexity of handling different representations of the same duration."
-  },
-  {
-   "type": "p",
-   "text": "Temporal.Duration.compare()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ minutes:90 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ hours:1, minutes:30 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_compare"
-  },
-  {
-   "type": "p",
-   "text": "Note that the two examples above both return 0 for equal."
-  },
-  {
-   "type": "p",
-   "text": "90 minutes is the same duration as 1 hour and 30 minutes."
-  },
-  {
-   "type": "h2",
-   "text": "Range Errors"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ days:30 });\n\nconst d2 = Temporal.Duration.from({ months: 1 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The code above fails and throws a RangeError because d2 contains a calendar unit (months),\nwhich has an uneven and variable length."
-  },
-  {
-   "type": "p",
-   "text": "Without a specific starting point on the calendar, the JavaScript runtime cannot determine\nexactly how many days are in \"1 month\" to perform the comparison."
-  },
-  {
-   "type": "p",
-   "text": "For example, 1 month starting in February could be 28 or 29 days, while 1 month starting in\nJanuary is 31 days."
-  },
-  {
-   "type": "p",
-   "text": "To fix this, you must pass a relativeTo option as the third argument to Temporal.Duration.compare().\nThis provides a concrete date context to calculate the exact lengths."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.Duration.from({ days: 30 });\n\nconst d2 = Temporal.Duration.from({ months: 1 });\n\n// Provide a start date (e.g., January 1st, 2026)\n\nconst startPoint = Temporal.PlainDate.from(\"2026-01-01\");\n\n// Compare the Durations using the reference date\n\nlet result = Temporal.Duration.compare(d1, d2, { relativeTo: startPoint });\n\n// Returns -1 (January has 31 days. 30 days is SHORTER than 1 month.)",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "By altering the relativeTo reference point, the execution context dictates different evaluation results:"
-  },
-  {
-   "type": "p",
-   "text": "February 1st Start: d1 (30 days) is longer than d2 (1 month / 28 days), returning 1."
-  },
-  {
-   "type": "p",
-   "text": "April 1st Start: d1 (30 days) is exactly equal to d2 (1 month / 30 days), returning 0."
-  },
-  {
-   "type": "p",
-   "text": "January 1st Start: d1 (30 days) is shorter than d2 (1 month / 31 days), returning -1."
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.Instant.compare()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// compare()\n\nlet x1 = Temporal.Instant.compare(i1, i2));\n\nlet x2 = Temporal.Instant.compare(i1, i3));\n\nlet x3 = Temporal.Instant.compare(i3, i1));",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_compare"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.PlainDate.compare()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst date2 = Temporal.PlainDate.from(\"2024-12-25\");\n\n// Compare the dates\n\nresult = Temporal.PlainDate.compare(date1, date2);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare_1"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal Sort"
-  },
-  {
-   "type": "p",
-   "text": "The compare() method is designed to be passed directly into the JavaScript Array.sort() method:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Array of dates\n\nconst dates = [\n\n  Temporal.PlainDate.from(\"2026-05-17\"),\n\n  Temporal.PlainDate.from(\"2022-01-01\"),\n\n  Temporal.PlainDate.from(\"2024-12-25\")\n\n];\n\n// Sort chronologically\n\ndates.sort(Temporal.PlainDate.compare);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare"
-  },
-  {
-   "type": "h2",
-   "text": "Date Comparison"
-  },
-  {
-   "type": "p",
-   "text": "Always use the compare() or equals() methods rather than standard equality operators."
-  },
-  {
-   "type": "h2",
-   "text": "The Temporal equals() Method"
-  },
-  {
-   "type": "p",
-   "text": "Most (*) temporal objects have their own equals() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "instant.equals(instant)",
-    "plaindate.equals(plaindate)",
-    "plaintime.equals(plaintime)",
-    "plainyearmonth.equals(plainyearmonth)",
-    "plainmonthday.equals(plainmonthday)",
-    "plaindateTime.equals(plaindatetime)",
-    "zoneddateTime.equals(zoneddtatime)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "(*) Duration has not."
-  },
-  {
-   "type": "p",
-   "text": "The equals() method returns\ntrue if both dates are equal."
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.Instant equals()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// equals()\n\nlet x1 = i1.equals(i2); // true\n\nlet x2 = i1.equals(i3); // false",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_equals"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.PlainDate equals()"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from('2026-05-17');\n\nconst date2 = Temporal.PlainDate.from('2026-05-17');\n\nlet result = date1.equals(date2);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_equals"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.PlainDateTime equals()"
-  },
-  {
-   "type": "p",
-   "text": "You can compare PlaneDateTime values using the equals() method."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nlet result = d1.equals(d2)",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_5"
-  }
- ]
+  "slug": "js_temporal_compare",
+  "course": "js",
+  "order": 195,
+  "url": "/js/js_temporal_compare.asp",
+  "title": "JS Temporal Compare",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JS Temporal Compare"
+    },
+    {
+      "type": "h2",
+      "text": "Date Comparison"
+    },
+    {
+      "type": "p",
+      "text": "In JavaScript, objects cannot be compared using operators like <, >, ==, or ===."
+    },
+    {
+      "type": "p",
+      "text": "Always use the equals() or compare() methods rather than standard equality operators."
+    },
+    {
+      "type": "p",
+      "text": "All temporal objects have their own compare() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Temporal.Instant.compare(instant1, instant2)",
+        "Temporal.PlainDate.compare(plaindate1, plaindate2)",
+        "Temporal.PlainTime.compare(plaintime1, plaintime2)",
+        "Temporal.PlainYearMonth.compare(plainyearmonth1, plainyearmonth2)",
+        "Temporal.PlainMonthDay.compare(plainmonthday1 plainmonthday2)",
+        "Temporal.PlainDateTime.compare(plaindatetime1,plaindatetime2)",
+        "Temporal.ZonedDateTime.compare(zoneddtatime1, zoneddtatime2)",
+        "Temporal.Duration.compare(duration1, duration2)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The compare() Method"
+    },
+    {
+      "type": "p",
+      "text": "The compare() method returns:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "-1 if the first date is earlier",
+        "1 if the first day is later",
+        "0 if they are equal:"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst date2 = Temporal.PlainDate.from(\"2024-12-25\");\n\n// Compare the dates\n\nresult = Temporal.PlainDate.compare(date1, date2);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare_1"
+    },
+    {
+      "type": "h2",
+      "text": "Why < and > Do Not Work"
+    },
+    {
+      "type": "p",
+      "text": "Temporal objects are objects, not primitive numbers."
+    },
+    {
+      "type": "p",
+      "text": "When you write (a < b), JavaScript tries to convert both objects to primitives."
+    },
+    {
+      "type": "p",
+      "text": "For Temporal objects, this does not produce a numeric timestamp like Dates."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create two Temporal objects\n\nconst a = Temporal.PlainDate.from(\"2026-02-17\");\n\nconst b = Temporal.PlainDate.from(\"2026-03-01\");\n\n// Compare the dates\n\nconsole.log(a < b);  // ❌ Error",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.Duration.compare()"
+    },
+    {
+      "type": "p",
+      "text": "The Temporal.Duration object does not have an equals() method due to the\ncomplexity of handling different representations of the same duration."
+    },
+    {
+      "type": "p",
+      "text": "Temporal.Duration.compare()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ minutes:90 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ hours:1, minutes:30 });\n\nconst d2 = Temporal.Duration.from({ hours:1, minutes:30 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_compare"
+    },
+    {
+      "type": "p",
+      "text": "Note that the two examples above both return 0 for equal."
+    },
+    {
+      "type": "p",
+      "text": "90 minutes is the same duration as 1 hour and 30 minutes."
+    },
+    {
+      "type": "h2",
+      "text": "Range Errors"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create two Durations\n\nconst d1 = Temporal.Duration.from({ days:30 });\n\nconst d2 = Temporal.Duration.from({ months: 1 });\n\n// Compare the Durations\n\nlet result = Temporal.Duration.compare(d1, d2);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The code above fails and throws a RangeError because d2 contains a calendar unit (months),\nwhich has an uneven and variable length."
+    },
+    {
+      "type": "p",
+      "text": "Without a specific starting point on the calendar, the JavaScript runtime cannot determine\nexactly how many days are in \"1 month\" to perform the comparison."
+    },
+    {
+      "type": "p",
+      "text": "For example, 1 month starting in February could be 28 or 29 days, while 1 month starting in\nJanuary is 31 days."
+    },
+    {
+      "type": "p",
+      "text": "To fix this, you must pass a relativeTo option as the third argument to Temporal.Duration.compare().\nThis provides a concrete date context to calculate the exact lengths."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.Duration.from({ days: 30 });\n\nconst d2 = Temporal.Duration.from({ months: 1 });\n\n// Provide a start date (e.g., January 1st, 2026)\n\nconst startPoint = Temporal.PlainDate.from(\"2026-01-01\");\n\n// Compare the Durations using the reference date\n\nlet result = Temporal.Duration.compare(d1, d2, { relativeTo: startPoint });\n\n// Returns -1 (January has 31 days. 30 days is SHORTER than 1 month.)",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "By altering the relativeTo reference point, the execution context dictates different evaluation results:"
+    },
+    {
+      "type": "p",
+      "text": "February 1st Start: d1 (30 days) is longer than d2 (1 month / 28 days), returning 1."
+    },
+    {
+      "type": "p",
+      "text": "April 1st Start: d1 (30 days) is exactly equal to d2 (1 month / 30 days), returning 0."
+    },
+    {
+      "type": "p",
+      "text": "January 1st Start: d1 (30 days) is shorter than d2 (1 month / 31 days), returning -1."
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.Instant.compare()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// compare()\n\nlet x1 = Temporal.Instant.compare(i1, i2));\n\nlet x2 = Temporal.Instant.compare(i1, i3));\n\nlet x3 = Temporal.Instant.compare(i3, i1));",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_compare"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.PlainDate.compare()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst date2 = Temporal.PlainDate.from(\"2024-12-25\");\n\n// Compare the dates\n\nresult = Temporal.PlainDate.compare(date1, date2);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare_1"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal Sort"
+    },
+    {
+      "type": "p",
+      "text": "The compare() method is designed to be passed directly into the JavaScript Array.sort() method:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Array of dates\n\nconst dates = [\n\n  Temporal.PlainDate.from(\"2026-05-17\"),\n\n  Temporal.PlainDate.from(\"2022-01-01\"),\n\n  Temporal.PlainDate.from(\"2024-12-25\")\n\n];\n\n// Sort chronologically\n\ndates.sort(Temporal.PlainDate.compare);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_compare"
+    },
+    {
+      "type": "h2",
+      "text": "Date Comparison"
+    },
+    {
+      "type": "p",
+      "text": "Always use the compare() or equals() methods rather than standard equality operators."
+    },
+    {
+      "type": "h2",
+      "text": "The Temporal equals() Method"
+    },
+    {
+      "type": "p",
+      "text": "Most (*) temporal objects have their own equals() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "instant.equals(instant)",
+        "plaindate.equals(plaindate)",
+        "plaintime.equals(plaintime)",
+        "plainyearmonth.equals(plainyearmonth)",
+        "plainmonthday.equals(plainmonthday)",
+        "plaindateTime.equals(plaindatetime)",
+        "zoneddateTime.equals(zoneddtatime)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "(*) Duration has not."
+    },
+    {
+      "type": "p",
+      "text": "The equals() method returns\ntrue if both dates are equal."
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.Instant equals()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create Temporal.Instant objects\n\nconst i1 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i2 = Temporal.Instant.from(\"2026-05-17T12:00:00Z\");\n\nconst i3 = Temporal.Instant.from(\"2026-05-17T13:00:00Z\");\n\n// equals()\n\nlet x1 = i1.equals(i2); // true\n\nlet x2 = i1.equals(i3); // false",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_instant_equals"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.PlainDate equals()"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create two Temporal objects\n\nconst date1 = Temporal.PlainDate.from('2026-05-17');\n\nconst date2 = Temporal.PlainDate.from('2026-05-17');\n\nlet result = date1.equals(date2);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_equals"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.PlainDateTime equals()"
+    },
+    {
+      "type": "p",
+      "text": "You can compare PlaneDateTime values using the equals() method."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\nlet result = d1.equals(d2)",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_5"
+    }
+  ]
 }

@@ -1,381 +1,325 @@
 {
- "slug": "js_errors_intro",
- "course": "js",
- "order": 103,
- "url": "/js/js_errors_intro.asp",
- "title": "JavaScript Errors",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Errors"
-  },
-  {
-   "type": "h2",
-   "text": "Errors Will Happen!"
-  },
-  {
-   "type": "p",
-   "text": "When executing JavaScript code, different errors can\noccur."
-  },
-  {
-   "type": "p",
-   "text": "Errors can be coding errors made by the programmer, errors due to wrong\ninput, and other unforeseeable things:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Reference Errors",
-    "Type Errors",
-    "Range Errors",
-    "URI Errors",
-    "Syntax Errors",
-    "Eval Error (deprecated)",
-    "Silent Errors (next chapter)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "How to Handle JavaScript Errors"
-  },
-  {
-   "type": "p",
-   "text": "The try statement allows you to define a block of code to be\ntested for errors while it is being executed."
-  },
-  {
-   "type": "p",
-   "text": "The catch statement allows you to define a block of code to\nbe executed, if an error occurs in the try block."
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript statements try and catch\ncome in pairs:"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "try {\n\n    Block of code to try\n\n} catch(err) {\n\n    Block of code to handle errors\n\n}",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Reference Errors"
-  },
-  {
-   "type": "p",
-   "text": "A ReferenceError occurs if you use (reference) a variable that does not exist."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Error Type",
-    "Example",
-    "Error"
-   ],
-   "rows": [
-    [
-     "ReferenceError",
-     "fname = foo;",
-     "foo is not defined"
-    ],
-    [
-     "ReferenceError",
-     "let x = y;let y = 5;",
-     "Cannot access y before initialization"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 5;\n\ntry {\n\n  x = y + 1;\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "try {\n\n  let x = y;\n\n  let y = 5;\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_referenceerror"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Type Errors"
-  },
-  {
-   "type": "p",
-   "text": "A Type Error occurs when a value is of the wrong type or an operation\nis invalid on that type."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Error",
-     "Example",
-     "Error Message"
-    ],
-    [
-     "TypeError",
-     "anna(5);",
-     "anna is not a function"
-    ],
-    [
-     "Type Error",
-     "let num = 1;num.toUpperCase();",
-     "num.toUpperCase is not a function"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let anna = 5;\n\ntry {\n\n  anna(5);\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 1;\n\ntry {\n\n  num.toUpperCase();\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_typeerror2"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Range Errors"
-  },
-  {
-   "type": "p",
-   "text": "A RangeError occurs when a value is out of its valid range."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Error Type",
-     "Example",
-     "Error Message"
-    ],
-    [
-     "RangeError",
-     "new Array(-1);",
-     "Invalid array length"
-    ],
-    [
-     "RangeError",
-     "num.toPrecision(500);",
-     "toPrecision() argument must be between 1 and 100"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "try {\n\n  new Array(-1);\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let num = 1;\n\ntry {\n\n    num.toPrecision(500);   // A number cannot have 500\n significant digits\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_rangeerror2"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript URI Errors"
-  },
-  {
-   "type": "h2",
-   "text": "(Uniform Resource Identifier Errors)"
-  },
-  {
-   "type": "p",
-   "text": "An URIError occurs if you use illegal characters in a URI function:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Error Type",
-     "Example",
-     "Error Message"
-    ],
-    [
-     "URIError",
-     "decodeURI(\"%%%\");",
-     "URI malformed"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "try {\n\n    decodeURI(\"%%%\");   // You cannot URI decode\n  percent signs\n\n} catch(err) {\n\n  document.getElementById(\"demo\").innerHTML = err.name;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_urierror"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Syntax Errors"
-  },
-  {
-   "type": "p",
-   "text": "A  Syntax Error occurs when the code violates JavaScript's grammar rules."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Error",
-    "Example",
-    "Error"
-   ],
-   "rows": [
-    [
-     "SyntaxError",
-     "fname = \"John);",
-     "Invalid or unexpected token )"
-    ],
-    [
-     "SyntaxError",
-     "Math.round(4.6;",
-     "Missing ) after argument list"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "// This line cannot be parsed by JavaScript\n\nlet fName = \"John);\n\n// Execution stops here",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_parse1"
-  },
-  {
-   "type": "p",
-   "text": "The statement above will generate the error: Invalid or unexpected token"
-  },
-  {
-   "type": "p",
-   "text": "Execution of the program will stop!"
-  },
-  {
-   "type": "h2",
-   "text": "Syntax Errors are Not Catchable"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Syntax errors are not catchable by try...catch",
-    "Syntax errors happen before runtime"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "try {\n\n  let x = Math.round(4.6;)\n\n} catch(err) {\n\n  let text = err.name + \" \" + err.description;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_syntax1"
-  },
-  {
-   "type": "h2",
-   "text": "Syntax Issue"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "Math.round(4.6;)",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "The line above is syntactically invalid JavaScript. There is an extra semicolon inside the parentheses.\nThe correct syntax should be:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "Math.round(4.6);",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Why"
-  },
-  {
-   "type": "p",
-   "text": "The point is how the browser handles syntax errors:"
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript engine throws a SyntaxError before running the script."
-  },
-  {
-   "type": "p",
-   "text": "Syntax errors are caught before the try...catch block executes."
-  },
-  {
-   "type": "p",
-   "text": "This means the try block never starts.\nThe script just fails to run (no let text = update)."
-  },
-  {
-   "type": "p",
-   "text": "The browser console (F12 → Console tab) would show something like:"
-  },
-  {
-   "type": "p",
-   "text": "Uncaught SyntaxError: missing ) after argument list."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Eval Error"
-  },
-  {
-   "type": "p",
-   "text": "An EvalError indicates an error in the eval() function."
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "Newer versions of JavaScript do not throw EvalError.\nUse SyntaxError instead."
-  },
-  {
-   "type": "h2",
-   "text": "See Also:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Silent Errors"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Error Statements"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Error Object"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Debugging"
-  }
- ]
+  "slug": "js_errors_intro",
+  "course": "js",
+  "order": 103,
+  "url": "/js/js_errors_intro.asp",
+  "title": "JavaScript Errors",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Errors"
+    },
+    {
+      "type": "h2",
+      "text": "Errors Will Happen!"
+    },
+    {
+      "type": "p",
+      "text": "When executing JavaScript code, different errors can\noccur."
+    },
+    {
+      "type": "p",
+      "text": "Errors can be coding errors made by the programmer, errors due to wrong\ninput, and other unforeseeable things:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Reference Errors",
+        "Type Errors",
+        "Range Errors",
+        "URI Errors",
+        "Syntax Errors",
+        "Eval Error (deprecated)",
+        "Silent Errors (next chapter)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How to Handle JavaScript Errors"
+    },
+    {
+      "type": "p",
+      "text": "The try statement allows you to define a block of code to be\ntested for errors while it is being executed."
+    },
+    {
+      "type": "p",
+      "text": "The catch statement allows you to define a block of code to\nbe executed, if an error occurs in the try block."
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript statements try and catch\ncome in pairs:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "try {\n\n    Block of code to try\n\n} catch(err) {\n\n    Block of code to handle errors\n\n}",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Reference Errors"
+    },
+    {
+      "type": "p",
+      "text": "A ReferenceError occurs if you use (reference) a variable that does not exist."
+    },
+    {
+      "type": "table",
+      "headers": ["Error Type", "Example", "Error"],
+      "rows": [
+        ["ReferenceError", "fname = foo;", "foo is not defined"],
+        ["ReferenceError", "let x = y;let y = 5;", "Cannot access y before initialization"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 5;\n\ntry {\n\n  x = y + 1;\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "try {\n\n  let x = y;\n\n  let y = 5;\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_referenceerror"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Type Errors"
+    },
+    {
+      "type": "p",
+      "text": "A Type Error occurs when a value is of the wrong type or an operation\nis invalid on that type."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Error", "Example", "Error Message"],
+        ["TypeError", "anna(5);", "anna is not a function"],
+        ["Type Error", "let num = 1;num.toUpperCase();", "num.toUpperCase is not a function"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let anna = 5;\n\ntry {\n\n  anna(5);\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 1;\n\ntry {\n\n  num.toUpperCase();\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_typeerror2"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Range Errors"
+    },
+    {
+      "type": "p",
+      "text": "A RangeError occurs when a value is out of its valid range."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Error Type", "Example", "Error Message"],
+        ["RangeError", "new Array(-1);", "Invalid array length"],
+        ["RangeError", "num.toPrecision(500);", "toPrecision() argument must be between 1 and 100"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "try {\n\n  new Array(-1);\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let num = 1;\n\ntry {\n\n    num.toPrecision(500);   // A number cannot have 500\n significant digits\n\n} catch(err) {\n\n  let text = err.name;\n\n}",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_rangeerror2"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript URI Errors"
+    },
+    {
+      "type": "h2",
+      "text": "(Uniform Resource Identifier Errors)"
+    },
+    {
+      "type": "p",
+      "text": "An URIError occurs if you use illegal characters in a URI function:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Error Type", "Example", "Error Message"],
+        ["URIError", "decodeURI(\"%%%\");", "URI malformed"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "try {\n\n    decodeURI(\"%%%\");   // You cannot URI decode\n  percent signs\n\n} catch(err) {\n\n  document.getElementById(\"demo\").innerHTML = err.name;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_error_urierror"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Syntax Errors"
+    },
+    {
+      "type": "p",
+      "text": "A  Syntax Error occurs when the code violates JavaScript's grammar rules."
+    },
+    {
+      "type": "table",
+      "headers": ["Error", "Example", "Error"],
+      "rows": [
+        ["SyntaxError", "fname = \"John);", "Invalid or unexpected token )"],
+        ["SyntaxError", "Math.round(4.6;", "Missing ) after argument list"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "// This line cannot be parsed by JavaScript\n\nlet fName = \"John);\n\n// Execution stops here",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_parse1"
+    },
+    {
+      "type": "p",
+      "text": "The statement above will generate the error: Invalid or unexpected token"
+    },
+    {
+      "type": "p",
+      "text": "Execution of the program will stop!"
+    },
+    {
+      "type": "h2",
+      "text": "Syntax Errors are Not Catchable"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Syntax errors are not catchable by try...catch",
+        "Syntax errors happen before runtime"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "try {\n\n  let x = Math.round(4.6;)\n\n} catch(err) {\n\n  let text = err.name + \" \" + err.description;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_errors_syntax1"
+    },
+    {
+      "type": "h2",
+      "text": "Syntax Issue"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "Math.round(4.6;)",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "The line above is syntactically invalid JavaScript. There is an extra semicolon inside the parentheses.\nThe correct syntax should be:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "Math.round(4.6);",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Why"
+    },
+    {
+      "type": "p",
+      "text": "The point is how the browser handles syntax errors:"
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript engine throws a SyntaxError before running the script."
+    },
+    {
+      "type": "p",
+      "text": "Syntax errors are caught before the try...catch block executes."
+    },
+    {
+      "type": "p",
+      "text": "This means the try block never starts.\nThe script just fails to run (no let text = update)."
+    },
+    {
+      "type": "p",
+      "text": "The browser console (F12 → Console tab) would show something like:"
+    },
+    {
+      "type": "p",
+      "text": "Uncaught SyntaxError: missing ) after argument list."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Eval Error"
+    },
+    {
+      "type": "p",
+      "text": "An EvalError indicates an error in the eval() function."
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "Newer versions of JavaScript do not throw EvalError.\nUse SyntaxError instead."
+    },
+    {
+      "type": "h2",
+      "text": "See Also:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Silent Errors"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Error Statements"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Error Object"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Debugging"
+    }
+  ]
 }

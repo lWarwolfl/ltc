@@ -1,344 +1,298 @@
 {
- "slug": "js_maps",
- "course": "js",
- "order": 72,
- "url": "/js/js_maps.asp",
- "title": "Map در JavaScript",
- "summary": "Map ساختاری برای نگهداری جفت‌های کلید-مقدار است که برخلاف شیءهای معمولی کلیدهایی از هر نوع می‌پذیرد و ترتیب درج را حفظ می‌کند. در این درس ساختن Map با new Map()، افزودن و خواندن مقدار، و تفاوت آن با شیءهای معمولی را یاد می‌گیرید.",
- "objectives": [
-  "یک Map بسازید و با set() و get() مقدار اضافه کنید و بخوانید",
-  "تفاوت نوع کلید در Map و شیء معمولی را توضیح دهید",
-  "ترتیب درج و خصوصیت size را در مثال‌ها تشخیص دهید",
-  "تفاوت‌های شیء و Map را از جدول درس بیان کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Map در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "شیء Map"
-  },
-  {
-   "type": "p",
-   "text": "Map در JavaScript شیئی است که می‌تواند مجموعه‌هایی از جفت‌های کلید-مقدار را ذخیره کند؛ مانند دیکشنری در زبان‌های برنامه‌نویسی دیگر."
-  },
-  {
-   "type": "p",
-   "text": "تفاوت Map با شیءهای استاندارد این است که کلیدهای آن می‌توانند هر نوع داده‌ای داشته باشند."
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های Map"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "نوع کلید\nکلیدهای Map می‌توانند هر نوعی باشند (رشته، عدد، شیء و غیره).",
-    "ترتیب درج\nMap ترتیب اصلی درج کلیدها را به خاطر می‌سپارد.",
-    "اندازه\nتعداد عضوهای یک Map به‌سادگی با خصوصیت size به دست می‌آید.",
-    "کارایی\nMap برای افزودن و حذف پرتکرار جفت‌های کلید-مقدار بهینه شده است.",
-    "پیمایش\nMap قابل پیمایش است و می‌توانید مستقیم از حلقهٔ for...of یا متدهایی مثل forEach() استفاده کنید.",
-    "ترتیب پیمایش\nترتیب اصلی هنگام پیمایش حفظ می‌شود."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Map هم به شیءها شبیه است (مجموعه‌ای یکتا از کلید/مقدار) و هم به آرایه‌ها (مجموعه‌ای مرتب از مقدارها)."
-  },
-  {
-   "type": "p",
-   "text": "اما اگر دقیق نگاه کنید، Map بیشتر از همه به شیءها شبیه است."
-  },
-  {
-   "type": "h2",
-   "text": "چگونه Map بسازیم"
-  },
-  {
-   "type": "p",
-   "text": "برای ساختن Map در JavaScript دو راه دارید:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک Map تازه بسازید و عنصرها را با Map.set() اضافه کنید",
-    "یک آرایهٔ موجود را به سازندهٔ new Map() بدهید"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an empty Map\n\nconst fruits = new Map();\n\n// Set Map Values\n\nfruits.set(\"apples\", 500);\n\nfruits.set(\"bananas\", 300);\n\nfruits.set(\"oranges\", 200);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Map\n\nconst fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_set_new"
-  },
-  {
-   "type": "h2",
-   "text": "افزودن مقدار به Map"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید با متد set() عنصرهایی به Map اضافه کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fruits.set(\"mangos\", 100);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_add"
-  },
-  {
-   "type": "h2",
-   "text": "تغییر مقدارهای Map"
-  },
-  {
-   "type": "p",
-   "text": "از متد set() می‌توان برای تغییر مقدارهای موجود Map هم استفاده کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fruits.set(\"apples\", 200);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_set"
-  },
-  {
-   "type": "h2",
-   "text": "متد get()"
-  },
-  {
-   "type": "p",
-   "text": "متد get() مقدار یک کلید را از Map می‌خواند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fruits.get(\"apples\");    // Returns 500",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_get"
-  },
-  {
-   "type": "h2",
-   "text": "Map هم شیء است"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Returns object:\n\ntypeof fruits;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_typeof"
-  },
-  {
-   "type": "p",
-   "text": "عبارت instanceof Map مقدار true برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Returns true:\n\nfruits instanceof Map;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_instanceof"
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ شیءهای JavaScript با Map"
-  },
-  {
-   "type": "h2",
-   "text": "تفاوت‌های شیءهای JavaScript و Map:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "شیء",
-    "Map"
-   ],
-   "rows": [
-    [
-     "مستقیماً قابل پیمایش نیست",
-     "مستقیماً قابل پیمایش است"
-    ],
-    [
-     "خصوصیت size ندارد",
-     "خصوصیت size دارد"
-    ],
-    [
-     "کلیدها باید رشته باشند (یا Symbol)",
-     "کلیدها می‌توانند هر نوع داده‌ای باشند"
-    ],
-    [
-     "کلیدها ترتیب مشخصی ندارند",
-     "کلیدها به ترتیب درج مرتب‌اند"
-    ],
-    [
-     "کلیدهای پیش‌فرض دارد",
-     "کلید پیش‌فرض ندارد"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "متدهای Map در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "WeakMap در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع Map در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Set در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "Map یکی از ویژگی‌های ES6 است."
-  },
-  {
-   "type": "p",
-   "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن به‌طور کامل پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome51",
-     "Edge15",
-     "Firefox54",
-     "Safari10",
-     "Opera38"
-    ],
-    [
-     "May 2016",
-     "Apr 2017",
-     "Jun 2017",
-     "Sep 2016",
-     "Jun 2016"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل maps.html بسازید و با new Map() یک Map از نام میوه به تعداد بسازید، سپس با set() یک عضو تازه اضافه کنید.",
-   "hint": "Map را با new Map() بسازید و عضوها را با متد set(\"کلید\", مقدار) اضافه کنید."
-  },
-  {
-   "prompt": "با متد get() مقدار یکی از کلیدها را بخوانید و با document.write یا console.log چاپش کنید.",
-   "hint": "به get() فقط کلید را بدهید: fruits.get(\"apples\")."
-  },
-  {
-   "prompt": "با خصوصیت size تعداد عضوهای Map را چاپ کنید، بعد یک کلید را با delete() حذف کنید و size را دوباره ببینید.",
-   "hint": "size خصوصیت است و پرانتز ندارد؛ delete(\"کلید\") یک عضو را برمی‌دارد."
-  },
-  {
-   "prompt": "یک Map بسازید که کلیدهایش شیء باشند و با fruits.get(\"apples\") با رشته امتحان کنید و نتیجه undefined را ببینید.",
-   "hint": "کلید شیء با رشتهٔ هم‌نامش یکسان نیست، پس get با رشته undefined می‌دهد."
-  },
-  {
-   "prompt": "روی یک شیء معمولی حلقهٔ for...of بزنید و خطای کنسول را ببینید، بعد همین کار را روی یک Map انجام دهید.",
-   "hint": "شیءهای معمولی مستقیماً قابل پیمایش نیستند، اما Map هست."
-  }
- ],
- "quiz": [
-  {
-   "question": "کلیدهای Map در JavaScript چه محدودیتی دارند؟",
-   "options": [
-    "فقط می‌توانند رشته باشند",
-    "فقط می‌توانند عدد باشند",
-    "می‌توانند هر نوع داده‌ای باشند",
-    "همیشه باید Symbol باشند"
-   ],
-   "answer": 2,
-   "explanation": "برخلاف شیءهای معمولی که کلیدهایشان رشته یا Symbol است، کلید Map می‌تواند هر نوعی باشد؛ همین یکی از تفاوت‌های اصلی جدول مقایسه است."
-  },
-  {
-   "question": "کدام خط یک Map درست می‌سازد؟",
-   "options": [
-    "const m = new Map([[\"a\", 1]]);",
-    "const m = Map([\"a\", 1]);",
-    "const m = new Map(\"a\", 1);",
-    "const m = new {};"
-   ],
-   "answer": 0,
-   "explanation": "Map را با کلیدواژهٔ new و آرایه‌ای از جفت‌های [کلید، مقدار] می‌سازید؛ مثلاً new Map([[\"apples\", 500]]). حالت بدون new خطا می‌دهد و بقیهٔ گزینه‌ها نحو درستی ندارند."
-  },
-  {
-   "question": "Map ترتیب کلیدها را چگونه نگه می‌دارد؟",
-   "options": [
-    "به ترتیب الفبا",
-    "به ترتیب درج",
-    "به ترتیب اندازهٔ مقدار",
-    "ترتیبی نگه نمی‌دارد"
-   ],
-   "answer": 1,
-   "explanation": "Map ترتیب اصلی درج کلیدها را به خاطر می‌سپارد و هنگام پیمایش هم همان ترتیب حفظ می‌شود؛ در جدول ویژگی‌ها همین دو مورد «ترتیب درج» و «ترتیب پیمایش» آمده است."
-  },
-  {
-   "question": "عبارت instanceof Map برای یک Map چه برمی‌گرداند؟",
-   "options": [
-    "false",
-    "undefined",
-    "یک خطا",
-    "true"
-   ],
-   "answer": 3,
-   "explanation": "چون Map خودش یک شیء است، instanceof Map مقدار true برمی‌گرداند؛ همین نشان می‌دهد که Map هم شیء است، ولی با رفتار ویژه."
-  },
-  {
-   "question": "تعداد عضوهای یک Map را با چه چیزی می‌خوانید؟",
-   "options": [
-    "m.length",
-    "m.size",
-    "m.count",
-    "m.size()"
-   ],
-   "answer": 1,
-   "explanation": "Map خصوصیت size دارد، در حالی که شیءهای معمولی چنین خصوصیتی ندارند. length مخصوص آرایه‌ها و رشته‌هاست و size متد نیست، پس پرانتز نمی‌گیرد."
-  }
- ]
+  "slug": "js_maps",
+  "course": "js",
+  "order": 72,
+  "url": "/js/js_maps.asp",
+  "title": "Map در JavaScript",
+  "summary": "Map ساختاری برای نگهداری جفت‌های کلید-مقدار است که برخلاف شیءهای معمولی کلیدهایی از هر نوع می‌پذیرد و ترتیب درج را حفظ می‌کند. در این درس ساختن Map با new Map()، افزودن و خواندن مقدار، و تفاوت آن با شیءهای معمولی را یاد می‌گیرید.",
+  "objectives": [
+    "یک Map بسازید و با set() و get() مقدار اضافه کنید و بخوانید",
+    "تفاوت نوع کلید در Map و شیء معمولی را توضیح دهید",
+    "ترتیب درج و خصوصیت size را در مثال‌ها تشخیص دهید",
+    "تفاوت‌های شیء و Map را از جدول درس بیان کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Map در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "شیء Map"
+    },
+    {
+      "type": "p",
+      "text": "Map در JavaScript شیئی است که می‌تواند مجموعه‌هایی از جفت‌های کلید-مقدار را ذخیره کند؛ مانند دیکشنری در زبان‌های برنامه‌نویسی دیگر."
+    },
+    {
+      "type": "p",
+      "text": "تفاوت Map با شیءهای استاندارد این است که کلیدهای آن می‌توانند هر نوع داده‌ای داشته باشند."
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های Map"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "نوع کلید\nکلیدهای Map می‌توانند هر نوعی باشند (رشته، عدد، شیء و غیره).",
+        "ترتیب درج\nMap ترتیب اصلی درج کلیدها را به خاطر می‌سپارد.",
+        "اندازه\nتعداد عضوهای یک Map به‌سادگی با خصوصیت size به دست می‌آید.",
+        "کارایی\nMap برای افزودن و حذف پرتکرار جفت‌های کلید-مقدار بهینه شده است.",
+        "پیمایش\nMap قابل پیمایش است و می‌توانید مستقیم از حلقهٔ for...of یا متدهایی مثل forEach() استفاده کنید.",
+        "ترتیب پیمایش\nترتیب اصلی هنگام پیمایش حفظ می‌شود."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Map هم به شیءها شبیه است (مجموعه‌ای یکتا از کلید/مقدار) و هم به آرایه‌ها (مجموعه‌ای مرتب از مقدارها)."
+    },
+    {
+      "type": "p",
+      "text": "اما اگر دقیق نگاه کنید، Map بیشتر از همه به شیءها شبیه است."
+    },
+    {
+      "type": "h2",
+      "text": "چگونه Map بسازیم"
+    },
+    {
+      "type": "p",
+      "text": "برای ساختن Map در JavaScript دو راه دارید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک Map تازه بسازید و عنصرها را با Map.set() اضافه کنید",
+        "یک آرایهٔ موجود را به سازندهٔ new Map() بدهید"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an empty Map\n\nconst fruits = new Map();\n\n// Set Map Values\n\nfruits.set(\"apples\", 500);\n\nfruits.set(\"bananas\", 300);\n\nfruits.set(\"oranges\", 200);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Map\n\nconst fruits = new Map([\n\n  [\"apples\", 500],\n\n  [\"bananas\", 300],\n\n  [\"oranges\", 200]\n\n]);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_set_new"
+    },
+    {
+      "type": "h2",
+      "text": "افزودن مقدار به Map"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید با متد set() عنصرهایی به Map اضافه کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fruits.set(\"mangos\", 100);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_add"
+    },
+    {
+      "type": "h2",
+      "text": "تغییر مقدارهای Map"
+    },
+    {
+      "type": "p",
+      "text": "از متد set() می‌توان برای تغییر مقدارهای موجود Map هم استفاده کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fruits.set(\"apples\", 200);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_set"
+    },
+    {
+      "type": "h2",
+      "text": "متد get()"
+    },
+    {
+      "type": "p",
+      "text": "متد get() مقدار یک کلید را از Map می‌خواند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fruits.get(\"apples\");    // Returns 500",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_get"
+    },
+    {
+      "type": "h2",
+      "text": "Map هم شیء است"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Returns object:\n\ntypeof fruits;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_typeof"
+    },
+    {
+      "type": "p",
+      "text": "عبارت instanceof Map مقدار true برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Returns true:\n\nfruits instanceof Map;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_map_instanceof"
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ شیءهای JavaScript با Map"
+    },
+    {
+      "type": "h2",
+      "text": "تفاوت‌های شیءهای JavaScript و Map:"
+    },
+    {
+      "type": "table",
+      "headers": ["شیء", "Map"],
+      "rows": [
+        ["مستقیماً قابل پیمایش نیست", "مستقیماً قابل پیمایش است"],
+        ["خصوصیت size ندارد", "خصوصیت size دارد"],
+        ["کلیدها باید رشته باشند (یا Symbol)", "کلیدها می‌توانند هر نوع داده‌ای باشند"],
+        ["کلیدها ترتیب مشخصی ندارند", "کلیدها به ترتیب درج مرتب‌اند"],
+        ["کلیدهای پیش‌فرض دارد", "کلید پیش‌فرض ندارد"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "متدهای Map در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "WeakMap در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع Map در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Set در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "Map یکی از ویژگی‌های ES6 است."
+    },
+    {
+      "type": "p",
+      "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن به‌طور کامل پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome51", "Edge15", "Firefox54", "Safari10", "Opera38"],
+        ["May 2016", "Apr 2017", "Jun 2017", "Sep 2016", "Jun 2016"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل maps.html بسازید و با new Map() یک Map از نام میوه به تعداد بسازید، سپس با set() یک عضو تازه اضافه کنید.",
+      "hint": "Map را با new Map() بسازید و عضوها را با متد set(\"کلید\", مقدار) اضافه کنید."
+    },
+    {
+      "prompt": "با متد get() مقدار یکی از کلیدها را بخوانید و با document.write یا console.log چاپش کنید.",
+      "hint": "به get() فقط کلید را بدهید: fruits.get(\"apples\")."
+    },
+    {
+      "prompt": "با خصوصیت size تعداد عضوهای Map را چاپ کنید، بعد یک کلید را با delete() حذف کنید و size را دوباره ببینید.",
+      "hint": "size خصوصیت است و پرانتز ندارد؛ delete(\"کلید\") یک عضو را برمی‌دارد."
+    },
+    {
+      "prompt": "یک Map بسازید که کلیدهایش شیء باشند و با fruits.get(\"apples\") با رشته امتحان کنید و نتیجه undefined را ببینید.",
+      "hint": "کلید شیء با رشتهٔ هم‌نامش یکسان نیست، پس get با رشته undefined می‌دهد."
+    },
+    {
+      "prompt": "روی یک شیء معمولی حلقهٔ for...of بزنید و خطای کنسول را ببینید، بعد همین کار را روی یک Map انجام دهید.",
+      "hint": "شیءهای معمولی مستقیماً قابل پیمایش نیستند، اما Map هست."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کلیدهای Map در JavaScript چه محدودیتی دارند؟",
+      "options": [
+        "فقط می‌توانند رشته باشند",
+        "فقط می‌توانند عدد باشند",
+        "می‌توانند هر نوع داده‌ای باشند",
+        "همیشه باید Symbol باشند"
+      ],
+      "answer": 2,
+      "explanation": "برخلاف شیءهای معمولی که کلیدهایشان رشته یا Symbol است، کلید Map می‌تواند هر نوعی باشد؛ همین یکی از تفاوت‌های اصلی جدول مقایسه است."
+    },
+    {
+      "question": "کدام خط یک Map درست می‌سازد؟",
+      "options": [
+        "const m = new Map([[\"a\", 1]]);",
+        "const m = Map([\"a\", 1]);",
+        "const m = new Map(\"a\", 1);",
+        "const m = new {};"
+      ],
+      "answer": 0,
+      "explanation": "Map را با کلیدواژهٔ new و آرایه‌ای از جفت‌های [کلید، مقدار] می‌سازید؛ مثلاً new Map([[\"apples\", 500]]). حالت بدون new خطا می‌دهد و بقیهٔ گزینه‌ها نحو درستی ندارند."
+    },
+    {
+      "question": "Map ترتیب کلیدها را چگونه نگه می‌دارد؟",
+      "options": [
+        "به ترتیب الفبا",
+        "به ترتیب درج",
+        "به ترتیب اندازهٔ مقدار",
+        "ترتیبی نگه نمی‌دارد"
+      ],
+      "answer": 1,
+      "explanation": "Map ترتیب اصلی درج کلیدها را به خاطر می‌سپارد و هنگام پیمایش هم همان ترتیب حفظ می‌شود؛ در جدول ویژگی‌ها همین دو مورد «ترتیب درج» و «ترتیب پیمایش» آمده است."
+    },
+    {
+      "question": "عبارت instanceof Map برای یک Map چه برمی‌گرداند؟",
+      "options": ["false", "undefined", "یک خطا", "true"],
+      "answer": 3,
+      "explanation": "چون Map خودش یک شیء است، instanceof Map مقدار true برمی‌گرداند؛ همین نشان می‌دهد که Map هم شیء است، ولی با رفتار ویژه."
+    },
+    {
+      "question": "تعداد عضوهای یک Map را با چه چیزی می‌خوانید؟",
+      "options": ["m.length", "m.size", "m.count", "m.size()"],
+      "answer": 1,
+      "explanation": "Map خصوصیت size دارد، در حالی که شیءهای معمولی چنین خصوصیتی ندارند. length مخصوص آرایه‌ها و رشته‌هاست و size متد نیست، پس پرانتز نمی‌گیرد."
+    }
+  ]
 }

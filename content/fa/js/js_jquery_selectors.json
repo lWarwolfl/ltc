@@ -1,223 +1,213 @@
 {
- "slug": "js_jquery_selectors",
- "course": "js",
- "order": 265,
- "url": "/js/js_jquery_selectors.asp",
- "title": "انتخابگرهای DOM در jQuery",
- "summary": "jQuery انتخاب عنصرها را کوتاه می‌کند: با یک علامت و یک شناسه یا کلاس، عنصر مورد نظر را می‌گیرید. در این درس انتخاب با شناسه، نام تگ، کلاس و انتخابگر CSS را یاد می‌گیرید و معادل استاندارد JavaScript هر کدام را می‌بینید.",
- "objectives": [
-  "با jQuery عنصر را با شناسه انتخاب کنید",
-  "عنصرها را با نام تگ و نام کلاس انتخاب کنید",
-  "انتخابگر CSS در jQuery بنویسید",
-  "معادل هر انتخابگر jQuery را در JavaScript استاندارد بنویسید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "انتخابگرهای DOM در jQuery"
-  },
-  {
-   "type": "h2",
-   "text": "jQuery در برابر JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "jQuery در سال ۲۰۰۶ توسط John Resig ساخته شد.\nهدفش رسیدگی به ناسازگاری مرورگرها و ساده کردن دستکاری HTML DOM، مدیریت رویداد، انیمیشن و Ajax بود."
-  },
-  {
-   "type": "p",
-   "text": "اما بعد از نسخهٔ ۵ JavaScript (سال ۲۰۰۹)، بیشتر کارهایی که jQuery انجام می‌داد با چند خط JavaScript استاندارد حل می‌شود:"
-  },
-  {
-   "type": "h2",
-   "text": "پیدا کردن عنصر HTML با شناسه"
-  },
-  {
-   "type": "p",
-   "text": "عنصری با id=\"id01\" را برگردانید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myElement = $(\"#id01\");",
-   "caption": "jQuery"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_getelementbyid"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myElement = document.getElementById(\"id01\");",
-   "caption": "JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_getelementbyid"
-  },
-  {
-   "type": "h2",
-   "text": "پیدا کردن عنصرهای HTML با نام تگ"
-  },
-  {
-   "type": "p",
-   "text": "همهٔ عنصرهای <p> را برگردانید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myElements = $(\"p\");",
-   "caption": "jQuery"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_getelementsbytagname"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myElements = document.getElementsByTagName(\"p\");",
-   "caption": "JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_getelementsbytagname"
-  },
-  {
-   "type": "h2",
-   "text": "پیدا کردن عنصرهای HTML با نام کلاس"
-  },
-  {
-   "type": "p",
-   "text": "همهٔ عنصرهایی با class=\"intro\" را برگردانید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myElements = $(\".intro\");",
-   "caption": "jQuery"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_getelementsbyclassname"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myElements = document.getElementsByClassName(\"intro\");",
-   "caption": "JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_getelementsbyclassname"
-  },
-  {
-   "type": "h2",
-   "text": "پیدا کردن عنصرهای HTML با انتخابگرهای CSS"
-  },
-  {
-   "type": "p",
-   "text": "فهرستی از همهٔ عنصرهای <p> با class=\"intro\" را برگردانید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myElements = $(\"p.intro\");",
-   "caption": "jQuery"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_queryselectorall"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myElements = document.querySelectorAll(\"p.intro\");",
-   "caption": "JavaScript"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_queryselectorall"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک صفحه با یک عنصر id=\"id01\" و چند پاراگراف بسازید و همان عنصر را یک بار با $(\"#id01\") و یک بار با getElementById بگیرید.",
-   "hint": "هر دو یک عنصر می‌دهند؛ تفاوت در کوتاهی نوشتار jQuery است."
-  },
-  {
-   "prompt": "با $(\"p\") همهٔ پاراگراف‌ها را بگیرید و تعدادشان را چاپ کنید.",
-   "hint": "خروجی یک مجموعهٔ jQuery است؛ با length تعداد اعضا را می‌بینید."
-  },
-  {
-   "prompt": "با $(\".intro\") همهٔ عنصرهای با کلاس intro را انتخاب کنید و سپس همین کار را با $(\"p.intro\") محدودتر کنید.",
-   "hint": "نوشتن نام تگ پیش از کلاس، انتخاب را به همان تگ محدود می‌کند."
-  },
-  {
-   "prompt": "معادل استاندارد JavaScript هر چهار انتخابگر درس را بنویسید و اجرا کنید.",
-   "hint": "getElementById، getElementsByTagName، getElementsByClassName و querySelectorAll."
-  },
-  {
-   "prompt": "بررسی کنید که با $(\"p\") می‌توانید متدهای jQuery را صدا بزنید ولی خروجی getElementsByTagName این متدها را ندارد.",
-   "hint": "مجموعهٔ jQuery متدهایی مثل css و text دارد؛ HTMLCollection ندارد."
-  }
- ],
- "quiz": [
-  {
-   "question": "معادل jQuery برای document.getElementById(\"id01\") کدام است؟",
-   "options": [
-    "$(\"#id01\")",
-    "$(\".id01\")",
-    "$(\"id01\")",
-    "$(\"id=id01\")"
-   ],
-   "answer": 0,
-   "explanation": "علامت # در انتخابگر یعنی شناسه؛ نقطه برای کلاس و نام بدون علامت برای تگ به کار می‌رود."
-  },
-  {
-   "question": "برای انتخاب همهٔ عنصرهای با کلاس intro از چه چیزی استفاده می‌کنیم؟",
-   "options": [
-    "$(\"#intro\")",
-    "$(\".intro\")",
-    "$(\"intro\")",
-    "$(\"p#intro\")"
-   ],
-   "answer": 1,
-   "explanation": "نقطه انتخابگر کلاس است؛ معادلش در JavaScript استاندارد getElementsByClassName(\"intro\") است."
-  },
-  {
-   "question": "انتخابگر $( \"p.intro\" ) چه چیزی برمی‌گرداند؟",
-   "options": [
-    "همهٔ پاراگراف‌ها",
-    "همهٔ عنصرهای با کلاس intro",
-    "فقط پاراگراف‌هایی که کلاس intro دارند",
-    "فقط نخستین پاراگراف"
-   ],
-   "answer": 2,
-   "explanation": "در انتخابگرهای CSS نوشتن تگ و کلاس پشت سر هم یعنی هر دو شرط باید برقرار باشد."
-  },
-  {
-   "question": "معادل استاندارد JavaScript برای $(\"p.intro\") کدام است؟",
-   "options": [
-    "document.querySelectorAll(\"p.intro\")",
-    "document.getElementsByTagName(\"p\")",
-    "document.getElementById(\"p.intro\")",
-    "document.className(\"intro\")"
-   ],
-   "answer": 0,
-   "explanation": "querySelectorAll همان انتخابگر CSS را می‌پذیرد و فهرستی از عنصرهای منطبق را می‌دهد."
-  },
-  {
-   "question": "درس دربارهٔ jQuery چه می‌گوید؟",
-   "options": [
-    "هنوز برای همهٔ کارها لازم است",
-    "بعد از نسخهٔ ۵ JavaScript بیشتر کارهایش با چند خط JavaScript استاندارد حل می‌شود",
-    "فقط برای انیمیشن ساخته شده است",
-    "جای HTML را گرفته است"
-   ],
-   "answer": 1,
-   "explanation": "درس توضیح می‌دهد jQuery در ۲۰۰۶ برای ناسازگاری مرورگرها ساخته شد، اما امروز بیشتر کارهایش با JavaScript استاندارد انجام می‌شود."
-  }
- ]
+  "slug": "js_jquery_selectors",
+  "course": "js",
+  "order": 265,
+  "url": "/js/js_jquery_selectors.asp",
+  "title": "انتخابگرهای DOM در jQuery",
+  "summary": "jQuery انتخاب عنصرها را کوتاه می‌کند: با یک علامت و یک شناسه یا کلاس، عنصر مورد نظر را می‌گیرید. در این درس انتخاب با شناسه، نام تگ، کلاس و انتخابگر CSS را یاد می‌گیرید و معادل استاندارد JavaScript هر کدام را می‌بینید.",
+  "objectives": [
+    "با jQuery عنصر را با شناسه انتخاب کنید",
+    "عنصرها را با نام تگ و نام کلاس انتخاب کنید",
+    "انتخابگر CSS در jQuery بنویسید",
+    "معادل هر انتخابگر jQuery را در JavaScript استاندارد بنویسید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "انتخابگرهای DOM در jQuery"
+    },
+    {
+      "type": "h2",
+      "text": "jQuery در برابر JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "jQuery در سال ۲۰۰۶ توسط John Resig ساخته شد.\nهدفش رسیدگی به ناسازگاری مرورگرها و ساده کردن دستکاری HTML DOM، مدیریت رویداد، انیمیشن و Ajax بود."
+    },
+    {
+      "type": "p",
+      "text": "اما بعد از نسخهٔ ۵ JavaScript (سال ۲۰۰۹)، بیشتر کارهایی که jQuery انجام می‌داد با چند خط JavaScript استاندارد حل می‌شود:"
+    },
+    {
+      "type": "h2",
+      "text": "پیدا کردن عنصر HTML با شناسه"
+    },
+    {
+      "type": "p",
+      "text": "عنصری با id=\"id01\" را برگردانید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myElement = $(\"#id01\");",
+      "caption": "jQuery"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_getelementbyid"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myElement = document.getElementById(\"id01\");",
+      "caption": "JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_getelementbyid"
+    },
+    {
+      "type": "h2",
+      "text": "پیدا کردن عنصرهای HTML با نام تگ"
+    },
+    {
+      "type": "p",
+      "text": "همهٔ عنصرهای <p> را برگردانید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myElements = $(\"p\");",
+      "caption": "jQuery"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_getelementsbytagname"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myElements = document.getElementsByTagName(\"p\");",
+      "caption": "JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_getelementsbytagname"
+    },
+    {
+      "type": "h2",
+      "text": "پیدا کردن عنصرهای HTML با نام کلاس"
+    },
+    {
+      "type": "p",
+      "text": "همهٔ عنصرهایی با class=\"intro\" را برگردانید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myElements = $(\".intro\");",
+      "caption": "jQuery"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_getelementsbyclassname"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myElements = document.getElementsByClassName(\"intro\");",
+      "caption": "JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_getelementsbyclassname"
+    },
+    {
+      "type": "h2",
+      "text": "پیدا کردن عنصرهای HTML با انتخابگرهای CSS"
+    },
+    {
+      "type": "p",
+      "text": "فهرستی از همهٔ عنصرهای <p> با class=\"intro\" را برگردانید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myElements = $(\"p.intro\");",
+      "caption": "jQuery"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_queryselectorall"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myElements = document.querySelectorAll(\"p.intro\");",
+      "caption": "JavaScript"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_jquery_dom_queryselectorall"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک صفحه با یک عنصر id=\"id01\" و چند پاراگراف بسازید و همان عنصر را یک بار با $(\"#id01\") و یک بار با getElementById بگیرید.",
+      "hint": "هر دو یک عنصر می‌دهند؛ تفاوت در کوتاهی نوشتار jQuery است."
+    },
+    {
+      "prompt": "با $(\"p\") همهٔ پاراگراف‌ها را بگیرید و تعدادشان را چاپ کنید.",
+      "hint": "خروجی یک مجموعهٔ jQuery است؛ با length تعداد اعضا را می‌بینید."
+    },
+    {
+      "prompt": "با $(\".intro\") همهٔ عنصرهای با کلاس intro را انتخاب کنید و سپس همین کار را با $(\"p.intro\") محدودتر کنید.",
+      "hint": "نوشتن نام تگ پیش از کلاس، انتخاب را به همان تگ محدود می‌کند."
+    },
+    {
+      "prompt": "معادل استاندارد JavaScript هر چهار انتخابگر درس را بنویسید و اجرا کنید.",
+      "hint": "getElementById، getElementsByTagName، getElementsByClassName و querySelectorAll."
+    },
+    {
+      "prompt": "بررسی کنید که با $(\"p\") می‌توانید متدهای jQuery را صدا بزنید ولی خروجی getElementsByTagName این متدها را ندارد.",
+      "hint": "مجموعهٔ jQuery متدهایی مثل css و text دارد؛ HTMLCollection ندارد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "معادل jQuery برای document.getElementById(\"id01\") کدام است؟",
+      "options": ["$(\"#id01\")", "$(\".id01\")", "$(\"id01\")", "$(\"id=id01\")"],
+      "answer": 0,
+      "explanation": "علامت # در انتخابگر یعنی شناسه؛ نقطه برای کلاس و نام بدون علامت برای تگ به کار می‌رود."
+    },
+    {
+      "question": "برای انتخاب همهٔ عنصرهای با کلاس intro از چه چیزی استفاده می‌کنیم؟",
+      "options": ["$(\"#intro\")", "$(\".intro\")", "$(\"intro\")", "$(\"p#intro\")"],
+      "answer": 1,
+      "explanation": "نقطه انتخابگر کلاس است؛ معادلش در JavaScript استاندارد getElementsByClassName(\"intro\") است."
+    },
+    {
+      "question": "انتخابگر $( \"p.intro\" ) چه چیزی برمی‌گرداند؟",
+      "options": [
+        "همهٔ پاراگراف‌ها",
+        "همهٔ عنصرهای با کلاس intro",
+        "فقط پاراگراف‌هایی که کلاس intro دارند",
+        "فقط نخستین پاراگراف"
+      ],
+      "answer": 2,
+      "explanation": "در انتخابگرهای CSS نوشتن تگ و کلاس پشت سر هم یعنی هر دو شرط باید برقرار باشد."
+    },
+    {
+      "question": "معادل استاندارد JavaScript برای $(\"p.intro\") کدام است؟",
+      "options": [
+        "document.querySelectorAll(\"p.intro\")",
+        "document.getElementsByTagName(\"p\")",
+        "document.getElementById(\"p.intro\")",
+        "document.className(\"intro\")"
+      ],
+      "answer": 0,
+      "explanation": "querySelectorAll همان انتخابگر CSS را می‌پذیرد و فهرستی از عنصرهای منطبق را می‌دهد."
+    },
+    {
+      "question": "درس دربارهٔ jQuery چه می‌گوید؟",
+      "options": [
+        "هنوز برای همهٔ کارها لازم است",
+        "بعد از نسخهٔ ۵ JavaScript بیشتر کارهایش با چند خط JavaScript استاندارد حل می‌شود",
+        "فقط برای انیمیشن ساخته شده است",
+        "جای HTML را گرفته است"
+      ],
+      "answer": 1,
+      "explanation": "درس توضیح می‌دهد jQuery در ۲۰۰۶ برای ناسازگاری مرورگرها ساخته شد، اما امروز بیشتر کارهایش با JavaScript استاندارد انجام می‌شود."
+    }
+  ]
 }

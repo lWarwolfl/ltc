@@ -1,236 +1,226 @@
 {
- "slug": "js_htmldom_nodelist",
- "course": "js",
- "order": 249,
- "url": "/js/js_htmldom_nodelist.asp",
- "title": "فهرست گره‌های HTML DOM در JavaScript",
- "summary": "پاسخ برخی متدهای DOM یک NodeList است، فهرستی شبیه آرایه از گره‌ها. در این درس می‌بینید کدام متدها NodeList می‌دهند، با length و اندیس روی آن حلقه می‌زنید و تفاوت NodeList با HTMLCollection و تفاوت مجموعهٔ زنده و ایستا را یاد می‌گیرید.",
- "objectives": [
-  "با querySelectorAll و childNodes یک NodeList بگیرید",
-  "روی گره‌های NodeList با حلقه و length حرکت کنید",
-  "تفاوت NodeList و HTMLCollection را توضیح دهید",
-  "تشخیص دهید کدام مجموعه زنده و کدام ایستا است"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "فهرست گره‌های HTML DOM در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "شیء NodeList در HTML DOM"
-  },
-  {
-   "type": "p",
-   "text": "شیء NodeList فهرستی (مجموعه‌ای) از گره‌های استخراج‌شده از یک سند است."
-  },
-  {
-   "type": "p",
-   "text": "شیء NodeList تقریباً همانند شیء HTMLCollection است."
-  },
-  {
-   "type": "p",
-   "text": "بعضی مرورگرهای قدیمی برای متدهایی مثل getElementsByClassName() به‌جای HTMLCollection یک شیء NodeList برمی‌گردانند."
-  },
-  {
-   "type": "p",
-   "text": "همهٔ مرورگرها برای خصوصیت childNodes یک شیء NodeList برمی‌گردانند."
-  },
-  {
-   "type": "p",
-   "text": "بیشتر مرورگرها برای متد querySelectorAll() یک شیء NodeList برمی‌گردانند."
-  },
-  {
-   "type": "p",
-   "text": "کد زیر همهٔ گره‌های <p> یک سند را انتخاب می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myNodeList = document.querySelectorAll(\"p\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myNodeList[1]",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/js/tryit.asp?filename=tryjs_dom_nodelist"
-  },
-  {
-   "type": "p",
-   "text": "توجه: اندیس از ۰ شروع می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "طول فهرست گره‌ها در HTML DOM"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت length تعداد گره‌های یک فهرست گره را مشخص می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myNodelist.length",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/js/tryit.asp?filename=tryjs_dom_nodelist_length"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت length وقتی می‌خواهید روی گره‌های یک فهرست حلقه بزنید به کار می‌آید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myNodelist = document.querySelectorAll(\"p\");\n\nfor (let i = 0; i < myNodelist.length; i++) {\n\n  myNodelist[i].style.color = \"red\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nodelist_loop"
-  },
-  {
-   "type": "h2",
-   "text": "تفاوت HTMLCollection و NodeList"
-  },
-  {
-   "type": "p",
-   "text": "NodeList و HTMLCollection تقریباً یک چیز هستند."
-  },
-  {
-   "type": "p",
-   "text": "هر دو مجموعه‌هایی (فهرست‌هایی) شبیه آرایه از گره‌ها (عنصرها) هستند که از یک سند استخراج می‌شوند. به گره‌ها با شمارهٔ اندیس دسترسی دارید و اندیس از ۰ شروع می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "هر دو خصوصیت length دارند که تعداد عنصرهای فهرست (مجموعه) را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "HTMLCollection مجموعه‌ای از عنصرهای سند است."
-  },
-  {
-   "type": "p",
-   "text": "NodeList مجموعه‌ای از گره‌های سند است (گرهٔ عنصر، گرهٔ ویژگی و گرهٔ متن)."
-  },
-  {
-   "type": "p",
-   "text": "به عضوهای HTMLCollection می‌توان با نام، شناسه (id) یا شمارهٔ اندیس دسترسی داشت."
-  },
-  {
-   "type": "p",
-   "text": "به عضوهای NodeList فقط با شمارهٔ اندیس می‌توان دسترسی داشت."
-  },
-  {
-   "type": "p",
-   "text": "HTMLCollection همیشه یک مجموعهٔ زنده (live) است. مثال: اگر عنصر <li>ی به یک فهرست در DOM اضافه کنید، فهرست داخل HTMLCollection هم تغییر می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "NodeList بیشتر وقت‌ها یک مجموعهٔ ایستا (static) است. مثال: اگر عنصر <li>ی به یک فهرست در DOM اضافه کنید، فهرست داخل NodeList تغییری نمی‌کند."
-  },
-  {
-   "type": "p",
-   "text": "متدهای getElementsByClassName() و getElementsByTagName() یک HTMLCollection زنده برمی‌گردانند."
-  },
-  {
-   "type": "p",
-   "text": "متد querySelectorAll() یک NodeList ایستا برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت childNodes یک NodeList زنده برمی‌گرداند."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "آرایه نیست! NodeList ممکن است شبیه آرایه به نظر برسد، اما آرایه نیست. می‌توانید روی NodeList حلقه بزنید و با اندیس به گره‌هایش دسترسی داشته باشید. ولی نمی‌توانید متدهای آرایه مثل push()، pop() یا join() را روی NodeList به کار ببرید."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک صفحه با سه پاراگراف بسازید و با querySelectorAll(\"p\") آن‌ها را بگیرید و length را چاپ کنید.",
-   "hint": "querySelectorAll یک NodeList ایستا می‌دهد؛ با اندیس از ۰ به اعضا دسترسی دارید."
-  },
-  {
-   "prompt": "با childNodes فرزندهای یک div را بگیرید و nodeName هر کدام را چاپ کنید.",
-   "hint": "childNodes یک NodeList زنده است و فاصله‌های سفید بین تگ‌ها هم گرهٔ متن می‌شوند."
-  },
-  {
-   "prompt": "یک NodeList با querySelectorAll بگیرید، بعد یک عنصر جدید به صفحه اضافه کنید و length آن را دوباره چاپ کنید.",
-   "hint": "NodeList حاصل از querySelectorAll ایستا است و به‌روز نمی‌شود."
-  },
-  {
-   "prompt": "همین کار را با getElementsByTagName انجام دهید و نتیجه را با حالت قبل مقایسه کنید.",
-   "hint": "HTMLCollection زنده است و بلافاصله عنصر جدید را هم می‌شمارد."
-  },
-  {
-   "prompt": "با یک حلقهٔ for روی NodeList حرکت کنید و متن هر گره را با textContent عوض کنید.",
-   "hint": "متدهای آرایه روی NodeList نیستند؛ از حلقهٔ شمارنده استفاده کنید."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام متد یک NodeList ایستا برمی‌گرداند؟",
-   "options": [
-    "getElementsByTagName()",
-    "getElementsByClassName()",
-    "querySelectorAll()",
-    "getElementById()"
-   ],
-   "answer": 2,
-   "explanation": "querySelectorAll() یک NodeList ایستا می‌دهد؛ دو متد getElements... یک HTMLCollection زنده برمی‌گردانند."
-  },
-  {
-   "question": "تفاوت اصلی HTMLCollection و NodeList در چیست؟",
-   "options": [
-    "HTMLCollection مجموعهٔ عنصرها است و NodeList مجموعهٔ گره‌ها",
-    "NodeList همیشه آرایه است",
-    "HTMLCollection اندیس ندارد",
-    "NodeList فقط در کنسول کار می‌کند"
-   ],
-   "answer": 0,
-   "explanation": "HTMLCollection فقط عنصرها را نگه می‌دارد، ولی NodeList می‌تواند گرهٔ ویژگی و گرهٔ متن را هم داشته باشد."
-  },
-  {
-   "question": "اگر پس از گرفتن یک NodeList با querySelectorAll عنصر جدیدی به DOM اضافه شود، length چه می‌شود؟",
-   "options": [
-    "خودکار یک واحد زیاد می‌شود",
-    "تغییری نمی‌کند",
-    "صفر می‌شود",
-    "خطا می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "این NodeList ایستا است و لحظه‌ای که ساخته شده ثابت می‌ماند؛ HTMLCollection برعکس، زنده است."
-  },
-  {
-   "question": "به عضوهای NodeList چگونه دسترسی داریم؟",
-   "options": [
-    "با نام عنصر",
-    "با شناسه (id)",
-    "فقط با شمارهٔ اندیس",
-    "فقط با حلقهٔ forEach"
-   ],
-   "answer": 2,
-   "explanation": "برای NodeList تنها اندیس کار می‌کند؛ در HTMLCollection علاوه بر اندیس می‌توان از نام و شناسه هم استفاده کرد."
-  },
-  {
-   "question": "کدام گزینه دربارهٔ NodeList درست است؟",
-   "options": [
-    "یک آرایهٔ واقعی است",
-    "شبیه آرایه است ولی متدهای آرایه را ندارد",
-    "متدهای push و pop را دارد",
-    "با اندیس از ۱ شروع می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "NodeList شبیه آرایه است و length و اندیس دارد، اما متدهای آرایه مثل push()، pop() و join() روی آن وجود ندارند."
-  }
- ]
+  "slug": "js_htmldom_nodelist",
+  "course": "js",
+  "order": 249,
+  "url": "/js/js_htmldom_nodelist.asp",
+  "title": "فهرست گره‌های HTML DOM در JavaScript",
+  "summary": "پاسخ برخی متدهای DOM یک NodeList است، فهرستی شبیه آرایه از گره‌ها. در این درس می‌بینید کدام متدها NodeList می‌دهند، با length و اندیس روی آن حلقه می‌زنید و تفاوت NodeList با HTMLCollection و تفاوت مجموعهٔ زنده و ایستا را یاد می‌گیرید.",
+  "objectives": [
+    "با querySelectorAll و childNodes یک NodeList بگیرید",
+    "روی گره‌های NodeList با حلقه و length حرکت کنید",
+    "تفاوت NodeList و HTMLCollection را توضیح دهید",
+    "تشخیص دهید کدام مجموعه زنده و کدام ایستا است"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "فهرست گره‌های HTML DOM در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "شیء NodeList در HTML DOM"
+    },
+    {
+      "type": "p",
+      "text": "شیء NodeList فهرستی (مجموعه‌ای) از گره‌های استخراج‌شده از یک سند است."
+    },
+    {
+      "type": "p",
+      "text": "شیء NodeList تقریباً همانند شیء HTMLCollection است."
+    },
+    {
+      "type": "p",
+      "text": "بعضی مرورگرهای قدیمی برای متدهایی مثل getElementsByClassName() به‌جای HTMLCollection یک شیء NodeList برمی‌گردانند."
+    },
+    {
+      "type": "p",
+      "text": "همهٔ مرورگرها برای خصوصیت childNodes یک شیء NodeList برمی‌گردانند."
+    },
+    {
+      "type": "p",
+      "text": "بیشتر مرورگرها برای متد querySelectorAll() یک شیء NodeList برمی‌گردانند."
+    },
+    {
+      "type": "p",
+      "text": "کد زیر همهٔ گره‌های <p> یک سند را انتخاب می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myNodeList = document.querySelectorAll(\"p\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myNodeList[1]",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/js/tryit.asp?filename=tryjs_dom_nodelist"
+    },
+    {
+      "type": "p",
+      "text": "توجه: اندیس از ۰ شروع می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "طول فهرست گره‌ها در HTML DOM"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت length تعداد گره‌های یک فهرست گره را مشخص می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myNodelist.length",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/js/tryit.asp?filename=tryjs_dom_nodelist_length"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت length وقتی می‌خواهید روی گره‌های یک فهرست حلقه بزنید به کار می‌آید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myNodelist = document.querySelectorAll(\"p\");\n\nfor (let i = 0; i < myNodelist.length; i++) {\n\n  myNodelist[i].style.color = \"red\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_dom_nodelist_loop"
+    },
+    {
+      "type": "h2",
+      "text": "تفاوت HTMLCollection و NodeList"
+    },
+    {
+      "type": "p",
+      "text": "NodeList و HTMLCollection تقریباً یک چیز هستند."
+    },
+    {
+      "type": "p",
+      "text": "هر دو مجموعه‌هایی (فهرست‌هایی) شبیه آرایه از گره‌ها (عنصرها) هستند که از یک سند استخراج می‌شوند. به گره‌ها با شمارهٔ اندیس دسترسی دارید و اندیس از ۰ شروع می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "هر دو خصوصیت length دارند که تعداد عنصرهای فهرست (مجموعه) را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "HTMLCollection مجموعه‌ای از عنصرهای سند است."
+    },
+    {
+      "type": "p",
+      "text": "NodeList مجموعه‌ای از گره‌های سند است (گرهٔ عنصر، گرهٔ ویژگی و گرهٔ متن)."
+    },
+    {
+      "type": "p",
+      "text": "به عضوهای HTMLCollection می‌توان با نام، شناسه (id) یا شمارهٔ اندیس دسترسی داشت."
+    },
+    {
+      "type": "p",
+      "text": "به عضوهای NodeList فقط با شمارهٔ اندیس می‌توان دسترسی داشت."
+    },
+    {
+      "type": "p",
+      "text": "HTMLCollection همیشه یک مجموعهٔ زنده (live) است. مثال: اگر عنصر <li>ی به یک فهرست در DOM اضافه کنید، فهرست داخل HTMLCollection هم تغییر می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "NodeList بیشتر وقت‌ها یک مجموعهٔ ایستا (static) است. مثال: اگر عنصر <li>ی به یک فهرست در DOM اضافه کنید، فهرست داخل NodeList تغییری نمی‌کند."
+    },
+    {
+      "type": "p",
+      "text": "متدهای getElementsByClassName() و getElementsByTagName() یک HTMLCollection زنده برمی‌گردانند."
+    },
+    {
+      "type": "p",
+      "text": "متد querySelectorAll() یک NodeList ایستا برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت childNodes یک NodeList زنده برمی‌گرداند."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "آرایه نیست! NodeList ممکن است شبیه آرایه به نظر برسد، اما آرایه نیست. می‌توانید روی NodeList حلقه بزنید و با اندیس به گره‌هایش دسترسی داشته باشید. ولی نمی‌توانید متدهای آرایه مثل push()، pop() یا join() را روی NodeList به کار ببرید."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک صفحه با سه پاراگراف بسازید و با querySelectorAll(\"p\") آن‌ها را بگیرید و length را چاپ کنید.",
+      "hint": "querySelectorAll یک NodeList ایستا می‌دهد؛ با اندیس از ۰ به اعضا دسترسی دارید."
+    },
+    {
+      "prompt": "با childNodes فرزندهای یک div را بگیرید و nodeName هر کدام را چاپ کنید.",
+      "hint": "childNodes یک NodeList زنده است و فاصله‌های سفید بین تگ‌ها هم گرهٔ متن می‌شوند."
+    },
+    {
+      "prompt": "یک NodeList با querySelectorAll بگیرید، بعد یک عنصر جدید به صفحه اضافه کنید و length آن را دوباره چاپ کنید.",
+      "hint": "NodeList حاصل از querySelectorAll ایستا است و به‌روز نمی‌شود."
+    },
+    {
+      "prompt": "همین کار را با getElementsByTagName انجام دهید و نتیجه را با حالت قبل مقایسه کنید.",
+      "hint": "HTMLCollection زنده است و بلافاصله عنصر جدید را هم می‌شمارد."
+    },
+    {
+      "prompt": "با یک حلقهٔ for روی NodeList حرکت کنید و متن هر گره را با textContent عوض کنید.",
+      "hint": "متدهای آرایه روی NodeList نیستند؛ از حلقهٔ شمارنده استفاده کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام متد یک NodeList ایستا برمی‌گرداند؟",
+      "options": [
+        "getElementsByTagName()",
+        "getElementsByClassName()",
+        "querySelectorAll()",
+        "getElementById()"
+      ],
+      "answer": 2,
+      "explanation": "querySelectorAll() یک NodeList ایستا می‌دهد؛ دو متد getElements... یک HTMLCollection زنده برمی‌گردانند."
+    },
+    {
+      "question": "تفاوت اصلی HTMLCollection و NodeList در چیست؟",
+      "options": [
+        "HTMLCollection مجموعهٔ عنصرها است و NodeList مجموعهٔ گره‌ها",
+        "NodeList همیشه آرایه است",
+        "HTMLCollection اندیس ندارد",
+        "NodeList فقط در کنسول کار می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "HTMLCollection فقط عنصرها را نگه می‌دارد، ولی NodeList می‌تواند گرهٔ ویژگی و گرهٔ متن را هم داشته باشد."
+    },
+    {
+      "question": "اگر پس از گرفتن یک NodeList با querySelectorAll عنصر جدیدی به DOM اضافه شود، length چه می‌شود؟",
+      "options": ["خودکار یک واحد زیاد می‌شود", "تغییری نمی‌کند", "صفر می‌شود", "خطا می‌دهد"],
+      "answer": 1,
+      "explanation": "این NodeList ایستا است و لحظه‌ای که ساخته شده ثابت می‌ماند؛ HTMLCollection برعکس، زنده است."
+    },
+    {
+      "question": "به عضوهای NodeList چگونه دسترسی داریم؟",
+      "options": ["با نام عنصر", "با شناسه (id)", "فقط با شمارهٔ اندیس", "فقط با حلقهٔ forEach"],
+      "answer": 2,
+      "explanation": "برای NodeList تنها اندیس کار می‌کند؛ در HTMLCollection علاوه بر اندیس می‌توان از نام و شناسه هم استفاده کرد."
+    },
+    {
+      "question": "کدام گزینه دربارهٔ NodeList درست است؟",
+      "options": [
+        "یک آرایهٔ واقعی است",
+        "شبیه آرایه است ولی متدهای آرایه را ندارد",
+        "متدهای push و pop را دارد",
+        "با اندیس از ۱ شروع می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "NodeList شبیه آرایه است و length و اندیس دارد، اما متدهای آرایه مثل push()، pop() و join() روی آن وجود ندارند."
+    }
+  ]
 }

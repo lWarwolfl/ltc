@@ -1,361 +1,326 @@
 {
- "slug": "js_sets_weak",
- "course": "js",
- "order": 71,
- "url": "/js/js_sets_weak.asp",
- "title": "WeakSet در JavaScript",
- "summary": "در این درس WeakSet را می‌شناسید، مجموعه‌ای که فقط شیء نگه می‌دارد و آن‌ها را به‌صورت ضعیف در خود دارد. می‌بینید جمع‌آوری زباله چطور کار می‌کند، چرا WeakSet پیمایش‌پذیر نیست و چه متدهای محدودی دارد.",
- "objectives": [
-  "توضیح دهید WeakSet چه تفاوتی با Set دارد",
-  "با add()، has() و delete() روی WeakSet کار کنید",
-  "توضیح دهید چرا مقدارهای اولیه نمی‌توانند عضو WeakSet شوند",
-  "بگویید چرا WeakSet پیمایش‌پذیر نیست و size ندارد"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "WeakSet در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "شیء WeakSet"
-  },
-  {
-   "type": "p",
-   "text": "WeakSet در JavaScript مجموعه‌ای (collection) از مقدارها است که مقدارهایش باید شیء باشند."
-  },
-  {
-   "type": "p",
-   "text": "WeakSet ارجاع‌های ضعیف (weak) به مقدارهایش نگه می‌دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Do I have myObj in the mySet?\n\nlet answer = mySet.has(myObj);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Delete the Object\n\nmySet.delete(myObj);\n\n// Do I have myObj in the mySet?\n\nlet answer = mySet.has(myObj);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakset"
-  },
-  {
-   "type": "h2",
-   "text": "جمع‌آوری زباله (Garbage Collection)"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript از سازوکاری برای مدیریت حافظه استفاده می‌کند که جمع‌آوری زباله (Garbage Collection) نام دارد."
-  },
-  {
-   "type": "p",
-   "text": "کارهای اصلی این سازوکار اینهاست:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تضمین استفادهٔ بهینه از منابع حافظه",
-    "آزاد کردن حافظه‌ای که متغیرهای بی‌استفاده اشغال کرده‌اند",
-    "جلوگیری از نشت حافظه (memory leak)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "ارجاع‌های ضعیف"
-  },
-  {
-   "type": "p",
-   "text": "برخلاف Set معمولی، WeakSet جلوی جمع‌آوری مقدارهایش را نمی‌گیرد."
-  },
-  {
-   "type": "p",
-   "text": "اگر یک مقدار (یک شیء) هیچ ارجاعی در برنامه نداشته باشد، واجد شرایط جمع‌آوری زباله می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "وقتی مقدار جمع‌آوری شود، از WeakSet هم حذف می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Remove the Object from memory\n\nmyObj = null;\n\n// Now myObj in mySet will be garbage collected",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "مقدارها باید شیء باشند"
-  },
-  {
-   "type": "p",
-   "text": "مقدارهای اولیه (primitive) نمی‌توانند عضو WeakSet شوند."
-  },
-  {
-   "type": "p",
-   "text": "مقدارها باید شیء باشند."
-  },
-  {
-   "type": "p",
-   "text": "این محدودیت به سازوکار جمع‌آوری زباله مربوط است؛ مقدارهای اولیه مثل شیءها جمع‌آوری نمی‌شوند."
-  },
-  {
-   "type": "h2",
-   "text": "ردگیری شیءها"
-  },
-  {
-   "type": "p",
-   "text": "WeakSet شبیه Set است، اما فقط شیء نگه می‌دارد و آن‌ها را به‌صورت ضعیف نگه می‌دارد. اگر ارجاع دیگری به یک شیء نباشد، خودکار جمع‌آوری می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "همین آن را برای ردگیری شیءها بدون ذخیرهٔ دادهٔ اضافی (مثل تعداد) مناسب می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"\";\n\n// Create a WeakSet to track persons\n\nconst persons = new WeakSet();\n\n// Visitor Objects\n\nconst John = {name:\"John\", age:40};\n\nconst Paul = {name:\"Paul\", age:41};\n\nconst Ringo = {name:\"Ringo\", age:42};\n\nconst George = {name:\"George\", age:43};\n\n// Track visits\n\ntrack(Paul);\n\ntrack(Ringo);\n\ntrack(Paul);\n\n// Function to track visitors\n\nfunction track(visitor) {\n\n  if (persons.has(visitor)) {\n\n    text += visitor.name + \" is visiting again.<br>\";\n\n  } else {\n\n    persons.add(visitor);\n\n    text += visitor.name + \", age\" + visitor.age +\", is visiting for the first time<br>\";\n\n  }\n\n}",
-   "caption": "ردگیری بازدیدکنندگان:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakset_visitors"
-  },
-  {
-   "type": "p",
-   "text": "اگر می‌خواهید تعداد بازدیدها را هم بشمارید:"
-  },
-  {
-   "type": "p",
-   "text": "به‌جای آن از WeakMap استفاده کنید."
-  },
-  {
-   "type": "h2",
-   "text": "پاکسازی خودکار"
-  },
-  {
-   "type": "p",
-   "text": "اگر همهٔ ارجاع‌ها به یک شیء بازدیدکننده را پاک کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "John = null;\n\n// The entry for John is now removed from the WeakMap (persons)",
-   "caption": "ردگیری بازدیدکنندگان:"
-  },
-  {
-   "type": "h2",
-   "text": "پیمایش‌پذیر نیست"
-  },
-  {
-   "type": "p",
-   "text": "WeakSetها قابل شمارش (enumerable) نیستند."
-  },
-  {
-   "type": "p",
-   "text": "نمی‌توانید با حلقه‌های for، متد forEach() یا values() روی مقدارهای آن پیمایش کنید."
-  },
-  {
-   "type": "p",
-   "text": "به size هم دسترسی ندارید؛ WeakSet خصوصیت size ندارد."
-  },
-  {
-   "type": "h2",
-   "text": "متدهای محدود"
-  },
-  {
-   "type": "p",
-   "text": "WeakSet کم‌حجم، ایمن از نظر حافظه و ساخته‌شده برای ردگیری خصوصی و بهینهٔ شیءهاست."
-  },
-  {
-   "type": "p",
-   "text": "WeakSet چند متد محدود در اختیار می‌گذارد:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "new WeakSet()",
-     "یک شیء WeakSet جدید می‌سازد"
-    ],
-    [
-     "add(object)",
-     "یک شیء به WeakSet اضافه می‌کند"
-    ],
-    [
-     "delete(object)",
-     "یک شیء را از WeakSet حذف می‌کند"
-    ],
-    [
-     "has(object)",
-     "اگر شیء در WeakSet وجود داشته باشد true برمی‌گرداند"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "WeakSet اینها را ندارد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "خصوصیت size",
-    "عملگر spread (...)",
-    "متد clear()",
-    "هیچ متد منطقی (union، difference، intersection)",
-    "هیچ متد پیمایشی (forEach، keys، values، entries)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "این محدودیت‌ها عمدی هستند: شیءها ممکن است با جمع‌آوری زباله ناپدید شوند، پس پیمایش یا شمردنشان معنا ندارد."
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید:"
-  },
-  {
-   "type": "p",
-   "text": "مجموعه‌ها (Set) در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متدهای Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "منطق Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع Set در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Map در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "WeakSet از ویژگی‌های ES6 است."
-  },
-  {
-   "type": "p",
-   "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن کاملاً پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome51",
-     "Edge15",
-     "Firefox54",
-     "Safari10",
-     "Opera38"
-    ],
-    [
-     "مهٔ ۲۰۱۶",
-     "آوریل ۲۰۱۷",
-     "ژوئن ۲۰۱۷",
-     "سپتامبر ۲۰۱۶",
-     "ژوئن ۲۰۱۶"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل weakset.html بسازید، دو شیء بسازید و آن‌ها را با add() به یک WeakSet اضافه کنید؛ بعد با has() بررسی کنید هر کدام در آن هستند یا نه.",
-   "hint": "فقط شیء می‌تواند عضو WeakSet شود؛ مقدار اولیه مثل رشته یا عدد خطا می‌دهد."
-  },
-  {
-   "prompt": "تلاش کنید یک رشته را با add() به WeakSet اضافه کنید و خطای کنسول را بخوانید.",
-   "hint": "WeakSet فقط ارجاع ضعیف به شیءها نگه می‌دارد، پس مقدار اولیه (primitive) نمی‌پذیرد."
-  },
-  {
-   "prompt": "روی یک WeakSet به size دسترسی بگیرید و ببینید چه می‌شود؛ بعد با یک حلقهٔ for..of هم سعی کنید روی آن پیمایش کنید.",
-   "hint": "WeakSet خصوصیت size ندارد و پیمایش‌پذیر هم نیست."
-  },
-  {
-   "prompt": "شیئی را به WeakSet اضافه کنید، بعد با delete() حذفش کنید و با has() بررسی کنید که دیگر عضو نیست.",
-   "hint": "WeakSet فقط سه متد add()، delete() و has() دارد."
-  },
-  {
-   "prompt": "شیئی را بسازید که فقط در WeakSet ارجاع دارد، بعد با null کردن متغیر ارجاع اصلی آن را رها کنید و دربارهٔ جمع‌آوری خودکار شیء توضیح دهید.",
-   "hint": "WeakSet جلوی جمع‌آوری زباله را نمی‌گیرد؛ وقتی هیچ ارجاع دیگری به شیء نباشد، از WeakSet هم حذف می‌شود."
-  }
- ],
- "quiz": [
-  {
-   "question": "چه نوع مقدارهایی می‌توانند عضو یک WeakSet شوند؟",
-   "options": [
-    "هر نوع مقداری، مثل Set",
-    "فقط رشته‌ها",
-    "فقط شیءها",
-    "فقط عددهای صحیح"
-   ],
-   "answer": 2,
-   "explanation": "WeakSet فقط شیء می‌پذیرد؛ مقدارهای اولیه (primitive) نمی‌توانند عضو WeakSet شوند، چون جمع‌آوری زباله برایشان معنا ندارد."
-  },
-  {
-   "question": "چرا نمی‌توان روی عضوهای یک WeakSet پیمایش کرد؟",
-   "options": [
-    "چون شیءها ممکن است با جمع‌آوری زباله ناپدید شوند",
-    "چون WeakSet هیچ عضوی ندارد",
-    "چون پیمایش فقط برای آرایه‌ها ممکن است",
-    "چون WeakSet شمارش‌پذیر است"
-   ],
-   "answer": 0,
-   "explanation": "در WeakSet فقط ارجاع ضعیف نگه داشته می‌شود؛ شیءها هر لحظه ممکن است جمع‌آوری شوند، پس پیمایش یا شمردنشان بی‌معناست."
-  },
-  {
-   "question": "کدام مجموعه از متدها روی WeakSet وجود دارد؟",
-   "options": [
-    "add()، delete() و has()",
-    "add()، size و clear()",
-    "union() و intersection()",
-    "forEach() و values()"
-   ],
-   "answer": 0,
-   "explanation": "WeakSet متدهای محدودی دارد: add()، delete() و has(). نه size دارد، نه clear()، نه متد منطقی و نه متد پیمایشی."
-  },
-  {
-   "question": "تفاوت اصلی WeakSet با Set معمولی چیست؟",
-   "options": [
-    "WeakSet فقط مقدارهای تکراری را نگه می‌دارد",
-    "WeakSet ارجاع ضعیف نگه می‌دارد و جلوی جمع‌آوری زباله را نمی‌گیرد",
-    "WeakSet سریع‌تر است و همهٔ متدهای Set را دارد",
-    "WeakSet فقط برای رشته‌ها به کار می‌رود"
-   ],
-   "answer": 1,
-   "explanation": "گفتهٔ کلیدی «weak» همین است: WeakSet مانع جمع‌آوری زباله نمی‌شود. در عوض محدودتر است و پیمایش، size و متدهای منطقی ندارد."
-  },
-  {
-   "question": "اگر به شیئی که در WeakSet است هیچ ارجاع دیگری در برنامه نباشد، چه می‌شود؟",
-   "options": [
-    "WeakSet خطا می‌دهد",
-    "شیء برای همیشه در WeakSet می‌ماند",
-    "شیء جمع‌آوری می‌شود و از WeakSet هم حذف می‌شود",
-    "WeakSet خودش یک ارجاع قوی می‌سازد"
-   ],
-   "answer": 2,
-   "explanation": "WeakSet ارجاع ضعیف نگه می‌دارد؛ پس وقتی ارجاع دیگری به شیء نماند، جمع‌آوری زباله آن را پاک می‌کند و از WeakSet هم بیرون می‌آید."
-  }
- ]
+  "slug": "js_sets_weak",
+  "course": "js",
+  "order": 71,
+  "url": "/js/js_sets_weak.asp",
+  "title": "WeakSet در JavaScript",
+  "summary": "در این درس WeakSet را می‌شناسید، مجموعه‌ای که فقط شیء نگه می‌دارد و آن‌ها را به‌صورت ضعیف در خود دارد. می‌بینید جمع‌آوری زباله چطور کار می‌کند، چرا WeakSet پیمایش‌پذیر نیست و چه متدهای محدودی دارد.",
+  "objectives": [
+    "توضیح دهید WeakSet چه تفاوتی با Set دارد",
+    "با add()، has() و delete() روی WeakSet کار کنید",
+    "توضیح دهید چرا مقدارهای اولیه نمی‌توانند عضو WeakSet شوند",
+    "بگویید چرا WeakSet پیمایش‌پذیر نیست و size ندارد"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "WeakSet در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "شیء WeakSet"
+    },
+    {
+      "type": "p",
+      "text": "WeakSet در JavaScript مجموعه‌ای (collection) از مقدارها است که مقدارهایش باید شیء باشند."
+    },
+    {
+      "type": "p",
+      "text": "WeakSet ارجاع‌های ضعیف (weak) به مقدارهایش نگه می‌دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Do I have myObj in the mySet?\n\nlet answer = mySet.has(myObj);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Delete the Object\n\nmySet.delete(myObj);\n\n// Do I have myObj in the mySet?\n\nlet answer = mySet.has(myObj);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakset"
+    },
+    {
+      "type": "h2",
+      "text": "جمع‌آوری زباله (Garbage Collection)"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript از سازوکاری برای مدیریت حافظه استفاده می‌کند که جمع‌آوری زباله (Garbage Collection) نام دارد."
+    },
+    {
+      "type": "p",
+      "text": "کارهای اصلی این سازوکار اینهاست:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "تضمین استفادهٔ بهینه از منابع حافظه",
+        "آزاد کردن حافظه‌ای که متغیرهای بی‌استفاده اشغال کرده‌اند",
+        "جلوگیری از نشت حافظه (memory leak)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ارجاع‌های ضعیف"
+    },
+    {
+      "type": "p",
+      "text": "برخلاف Set معمولی، WeakSet جلوی جمع‌آوری مقدارهایش را نمی‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "اگر یک مقدار (یک شیء) هیچ ارجاعی در برنامه نداشته باشد، واجد شرایط جمع‌آوری زباله می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "وقتی مقدار جمع‌آوری شود، از WeakSet هم حذف می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a WeakSet\n\nlet mySet = new WeakSet();\n\n// Create an Object\n\nlet myObj = {fname:\"John\", lname:\"Doe\"};\n\n// Add the Object\n\nmySet.add(myObj);\n\n// Remove the Object from memory\n\nmyObj = null;\n\n// Now myObj in mySet will be garbage collected",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "مقدارها باید شیء باشند"
+    },
+    {
+      "type": "p",
+      "text": "مقدارهای اولیه (primitive) نمی‌توانند عضو WeakSet شوند."
+    },
+    {
+      "type": "p",
+      "text": "مقدارها باید شیء باشند."
+    },
+    {
+      "type": "p",
+      "text": "این محدودیت به سازوکار جمع‌آوری زباله مربوط است؛ مقدارهای اولیه مثل شیءها جمع‌آوری نمی‌شوند."
+    },
+    {
+      "type": "h2",
+      "text": "ردگیری شیءها"
+    },
+    {
+      "type": "p",
+      "text": "WeakSet شبیه Set است، اما فقط شیء نگه می‌دارد و آن‌ها را به‌صورت ضعیف نگه می‌دارد. اگر ارجاع دیگری به یک شیء نباشد، خودکار جمع‌آوری می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "همین آن را برای ردگیری شیءها بدون ذخیرهٔ دادهٔ اضافی (مثل تعداد) مناسب می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"\";\n\n// Create a WeakSet to track persons\n\nconst persons = new WeakSet();\n\n// Visitor Objects\n\nconst John = {name:\"John\", age:40};\n\nconst Paul = {name:\"Paul\", age:41};\n\nconst Ringo = {name:\"Ringo\", age:42};\n\nconst George = {name:\"George\", age:43};\n\n// Track visits\n\ntrack(Paul);\n\ntrack(Ringo);\n\ntrack(Paul);\n\n// Function to track visitors\n\nfunction track(visitor) {\n\n  if (persons.has(visitor)) {\n\n    text += visitor.name + \" is visiting again.<br>\";\n\n  } else {\n\n    persons.add(visitor);\n\n    text += visitor.name + \", age\" + visitor.age +\", is visiting for the first time<br>\";\n\n  }\n\n}",
+      "caption": "ردگیری بازدیدکنندگان:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_weakset_visitors"
+    },
+    {
+      "type": "p",
+      "text": "اگر می‌خواهید تعداد بازدیدها را هم بشمارید:"
+    },
+    {
+      "type": "p",
+      "text": "به‌جای آن از WeakMap استفاده کنید."
+    },
+    {
+      "type": "h2",
+      "text": "پاکسازی خودکار"
+    },
+    {
+      "type": "p",
+      "text": "اگر همهٔ ارجاع‌ها به یک شیء بازدیدکننده را پاک کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "John = null;\n\n// The entry for John is now removed from the WeakMap (persons)",
+      "caption": "ردگیری بازدیدکنندگان:"
+    },
+    {
+      "type": "h2",
+      "text": "پیمایش‌پذیر نیست"
+    },
+    {
+      "type": "p",
+      "text": "WeakSetها قابل شمارش (enumerable) نیستند."
+    },
+    {
+      "type": "p",
+      "text": "نمی‌توانید با حلقه‌های for، متد forEach() یا values() روی مقدارهای آن پیمایش کنید."
+    },
+    {
+      "type": "p",
+      "text": "به size هم دسترسی ندارید؛ WeakSet خصوصیت size ندارد."
+    },
+    {
+      "type": "h2",
+      "text": "متدهای محدود"
+    },
+    {
+      "type": "p",
+      "text": "WeakSet کم‌حجم، ایمن از نظر حافظه و ساخته‌شده برای ردگیری خصوصی و بهینهٔ شیءهاست."
+    },
+    {
+      "type": "p",
+      "text": "WeakSet چند متد محدود در اختیار می‌گذارد:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["new WeakSet()", "یک شیء WeakSet جدید می‌سازد"],
+        ["add(object)", "یک شیء به WeakSet اضافه می‌کند"],
+        ["delete(object)", "یک شیء را از WeakSet حذف می‌کند"],
+        ["has(object)", "اگر شیء در WeakSet وجود داشته باشد true برمی‌گرداند"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "WeakSet اینها را ندارد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "خصوصیت size",
+        "عملگر spread (...)",
+        "متد clear()",
+        "هیچ متد منطقی (union، difference، intersection)",
+        "هیچ متد پیمایشی (forEach، keys، values، entries)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "این محدودیت‌ها عمدی هستند: شیءها ممکن است با جمع‌آوری زباله ناپدید شوند، پس پیمایش یا شمردنشان معنا ندارد."
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید:"
+    },
+    {
+      "type": "p",
+      "text": "مجموعه‌ها (Set) در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متدهای Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "منطق Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع Set در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Map در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "WeakSet از ویژگی‌های ES6 است."
+    },
+    {
+      "type": "p",
+      "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن کاملاً پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome51", "Edge15", "Firefox54", "Safari10", "Opera38"],
+        ["مهٔ ۲۰۱۶", "آوریل ۲۰۱۷", "ژوئن ۲۰۱۷", "سپتامبر ۲۰۱۶", "ژوئن ۲۰۱۶"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل weakset.html بسازید، دو شیء بسازید و آن‌ها را با add() به یک WeakSet اضافه کنید؛ بعد با has() بررسی کنید هر کدام در آن هستند یا نه.",
+      "hint": "فقط شیء می‌تواند عضو WeakSet شود؛ مقدار اولیه مثل رشته یا عدد خطا می‌دهد."
+    },
+    {
+      "prompt": "تلاش کنید یک رشته را با add() به WeakSet اضافه کنید و خطای کنسول را بخوانید.",
+      "hint": "WeakSet فقط ارجاع ضعیف به شیءها نگه می‌دارد، پس مقدار اولیه (primitive) نمی‌پذیرد."
+    },
+    {
+      "prompt": "روی یک WeakSet به size دسترسی بگیرید و ببینید چه می‌شود؛ بعد با یک حلقهٔ for..of هم سعی کنید روی آن پیمایش کنید.",
+      "hint": "WeakSet خصوصیت size ندارد و پیمایش‌پذیر هم نیست."
+    },
+    {
+      "prompt": "شیئی را به WeakSet اضافه کنید، بعد با delete() حذفش کنید و با has() بررسی کنید که دیگر عضو نیست.",
+      "hint": "WeakSet فقط سه متد add()، delete() و has() دارد."
+    },
+    {
+      "prompt": "شیئی را بسازید که فقط در WeakSet ارجاع دارد، بعد با null کردن متغیر ارجاع اصلی آن را رها کنید و دربارهٔ جمع‌آوری خودکار شیء توضیح دهید.",
+      "hint": "WeakSet جلوی جمع‌آوری زباله را نمی‌گیرد؛ وقتی هیچ ارجاع دیگری به شیء نباشد، از WeakSet هم حذف می‌شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "چه نوع مقدارهایی می‌توانند عضو یک WeakSet شوند؟",
+      "options": ["هر نوع مقداری، مثل Set", "فقط رشته‌ها", "فقط شیءها", "فقط عددهای صحیح"],
+      "answer": 2,
+      "explanation": "WeakSet فقط شیء می‌پذیرد؛ مقدارهای اولیه (primitive) نمی‌توانند عضو WeakSet شوند، چون جمع‌آوری زباله برایشان معنا ندارد."
+    },
+    {
+      "question": "چرا نمی‌توان روی عضوهای یک WeakSet پیمایش کرد؟",
+      "options": [
+        "چون شیءها ممکن است با جمع‌آوری زباله ناپدید شوند",
+        "چون WeakSet هیچ عضوی ندارد",
+        "چون پیمایش فقط برای آرایه‌ها ممکن است",
+        "چون WeakSet شمارش‌پذیر است"
+      ],
+      "answer": 0,
+      "explanation": "در WeakSet فقط ارجاع ضعیف نگه داشته می‌شود؛ شیءها هر لحظه ممکن است جمع‌آوری شوند، پس پیمایش یا شمردنشان بی‌معناست."
+    },
+    {
+      "question": "کدام مجموعه از متدها روی WeakSet وجود دارد؟",
+      "options": [
+        "add()، delete() و has()",
+        "add()، size و clear()",
+        "union() و intersection()",
+        "forEach() و values()"
+      ],
+      "answer": 0,
+      "explanation": "WeakSet متدهای محدودی دارد: add()، delete() و has(). نه size دارد، نه clear()، نه متد منطقی و نه متد پیمایشی."
+    },
+    {
+      "question": "تفاوت اصلی WeakSet با Set معمولی چیست؟",
+      "options": [
+        "WeakSet فقط مقدارهای تکراری را نگه می‌دارد",
+        "WeakSet ارجاع ضعیف نگه می‌دارد و جلوی جمع‌آوری زباله را نمی‌گیرد",
+        "WeakSet سریع‌تر است و همهٔ متدهای Set را دارد",
+        "WeakSet فقط برای رشته‌ها به کار می‌رود"
+      ],
+      "answer": 1,
+      "explanation": "گفتهٔ کلیدی «weak» همین است: WeakSet مانع جمع‌آوری زباله نمی‌شود. در عوض محدودتر است و پیمایش، size و متدهای منطقی ندارد."
+    },
+    {
+      "question": "اگر به شیئی که در WeakSet است هیچ ارجاع دیگری در برنامه نباشد، چه می‌شود؟",
+      "options": [
+        "WeakSet خطا می‌دهد",
+        "شیء برای همیشه در WeakSet می‌ماند",
+        "شیء جمع‌آوری می‌شود و از WeakSet هم حذف می‌شود",
+        "WeakSet خودش یک ارجاع قوی می‌سازد"
+      ],
+      "answer": 2,
+      "explanation": "WeakSet ارجاع ضعیف نگه می‌دارد؛ پس وقتی ارجاع دیگری به شیء نماند، جمع‌آوری زباله آن را پاک می‌کند و از WeakSet هم بیرون می‌آید."
+    }
+  ]
 }

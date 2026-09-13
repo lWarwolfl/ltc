@@ -1,361 +1,358 @@
 {
- "slug": "js_function_closures",
- "course": "js",
- "order": 209,
- "url": "/js/js_function_closures.asp",
- "title": "JavaScript Closures",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Closures"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript variables can belong to:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "The local scope",
-    "The global scope"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Global variables can be made local (private) with closures."
-  },
-  {
-   "type": "p",
-   "text": "Closures make it possible for a function to have \"private\" variables."
-  },
-  {
-   "type": "p",
-   "text": "A closure is created when a function remembers the variables from its outer scope,\neven after the outer function has finished executing."
-  },
-  {
-   "type": "p",
-   "text": "Closures are an advanced topic."
-  },
-  {
-   "type": "p",
-   "text": "Make sure you understand JavaScript functions and scope first."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Functions"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Scope"
-  },
-  {
-   "type": "h2",
-   "text": "Local Variables"
-  },
-  {
-   "type": "p",
-   "text": "A local variable is a \"private\" variable defined inside a function."
-  },
-  {
-   "type": "p",
-   "text": "A function can access all variables in the local scope."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction() {\n\n    let a = 4;\n\n    return a * a;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_scope2"
-  },
-  {
-   "type": "h2",
-   "text": "Global Variables"
-  },
-  {
-   "type": "p",
-   "text": "A global variable is a \"public\" variable defined outside a function."
-  },
-  {
-   "type": "p",
-   "text": "A function can access all variables in the global scope:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let a = 4;\nfunction myFunction() {\n\n    return a * a;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_scope1"
-  },
-  {
-   "type": "p",
-   "text": "In a web page, global variables belong to the page."
-  },
-  {
-   "type": "p",
-   "text": "Global variables can be used (or changed) by all scripts in the page."
-  },
-  {
-   "type": "p",
-   "text": "A local variable can only be used inside the function where it is defined. It\nis private and hidden from other functions and other scripting code."
-  },
-  {
-   "type": "p",
-   "text": "Global\nand local variables with the same name are\ndifferent variables. Modifying one, does not modify the other."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Undeclared variables (created without a keyword var,\nlet, const),\nare always global, even if they are created inside a function."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction() {\n\n  a = 4;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_scope4"
-  },
-  {
-   "type": "h2",
-   "text": "Variable Lifetime"
-  },
-  {
-   "type": "p",
-   "text": "Global variables live until the page is discarded, like when you navigate\nto another page or close the window."
-  },
-  {
-   "type": "p",
-   "text": "Local\nvariables have short lives. They are created when the function is\ninvoked, and deleted when the function is finished."
-  },
-  {
-   "type": "h2",
-   "text": "A Counter Dilemma"
-  },
-  {
-   "type": "p",
-   "text": "Suppose you want to use a variable for counting something, and you want this\ncounter to be available to everyone (all functions)."
-  },
-  {
-   "type": "p",
-   "text": "You could use a global variable, and a function to increase the counter:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Initiate counter\nlet counter = 0;\n\n// Function to increment\n  counter\nfunction add() {\n\n  counter += 1;\n\n}\n\n// Call add() 3 times\n\nadd();\n\nadd();\n\nadd();\n\n// The counter should now be 3",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures1"
-  },
-  {
-   "type": "h2",
-   "text": "Warning !"
-  },
-  {
-   "type": "p",
-   "text": "There is a problem with the solution above: Any code on the page can change the counter, without calling add()."
-  },
-  {
-   "type": "p",
-   "text": "The counter should be local to the add() function, to prevent other code from changing\nit:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Initiate counter\nlet counter = 0;\n\n// Function to increment\n  counter\nfunction add() {\n  let counter = 0;\n\n  counter += 1;\n}\n\n//\n  Call add() 3 times\nadd();\nadd();\nadd();\n\n// The counter should\n  now be 3. But it is 0",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures2"
-  },
-  {
-   "type": "p",
-   "text": "It did not work because we display the global counter instead of the local\ncounter."
-  },
-  {
-   "type": "p",
-   "text": "We can remove the global counter and access the local counter by letting the\nfunction return it:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function to increment counter\n\nfunction add() {\n\n  let counter = 0;\n\n  counter += 1;\n\n  return counter;\n\n}\n\nlet x= 0;\n\n// Call add() 3 times\n\nx = add();\n\nx = add();\n\nx = add();\n\n// The counter should now be 3. But it is 1.",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures3"
-  },
-  {
-   "type": "p",
-   "text": "It did not work because we reset the local counter every time we call the\nfunction."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Solution\n A JavaScript inner function can solve this."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Nested Functions"
-  },
-  {
-   "type": "p",
-   "text": "All functions have access to the global scope."
-  },
-  {
-   "type": "p",
-   "text": "In fact, in JavaScript, all functions have access to the scope \"above\" them."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript supports nested functions. Nested functions have access to the\nscope \"above\" them."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function add() {\n\n    let counter = 0;\n\n    function plus() {counter += 1;}\n  plus();\n\n  return counter;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures4"
-  },
-  {
-   "type": "p",
-   "text": "This could have solved the counter dilemma, if we could reach the plus()\nfunction from the outside."
-  },
-  {
-   "type": "p",
-   "text": "We also need to find a way to execute counter = 0 only once."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Solution\nWe need a closure."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Closures"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myCounter() {\n\n  let counter = 0;\n\n  return function() {\n\n    counter++;\n\n    return counter;\n\n  };\n\n}\n\nconst add = myCounter();\n\nadd();\n\nadd();\n\nadd();\n\n// the counter is now 3",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures5"
-  },
-  {
-   "type": "h2",
-   "text": "Example Explained"
-  },
-  {
-   "type": "p",
-   "text": "The variable add is assigned to the return value of a function."
-  },
-  {
-   "type": "p",
-   "text": "The function only runs once. It sets the counter to zero (0), and returns a function expression."
-  },
-  {
-   "type": "p",
-   "text": "This way add becomes a function. The \"wonderful\" part is that it can access the counter in its parent scope."
-  },
-  {
-   "type": "p",
-   "text": "This is called a closure. It makes it possible\nfor a function to have \"private\" variables."
-  },
-  {
-   "type": "p",
-   "text": "The counter is protected by the scope of the myCounter function,\nand can only be changed using the add function."
-  },
-  {
-   "type": "h2",
-   "text": "Conclusion"
-  },
-  {
-   "type": "p",
-   "text": "A closure is a function that has access to the parent scope, after the parent function has closed."
-  },
-  {
-   "type": "p",
-   "text": "Closures has historically been used to:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Create private variables",
-    "Preserve state between function calls",
-    "Simulate block-scoping before let and const existed",
-    "Implement certain design patterns like currying and memoization"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Old JavaScript code often contains closures, but modern JavaScript will not use closures as frequently."
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2015 and subsequent JavaScript versions have introduced new language features that provide\nalternatives to closures."
-  },
-  {
-   "type": "h2",
-   "text": "Modern Alternative: Private Class Fields"
-  },
-  {
-   "type": "p",
-   "text": "Since ECMAScript 2022, JavaScript supports real private class fields using the #\nsyntax."
-  },
-  {
-   "type": "p",
-   "text": "Private fields are enforced by the language and cannot be accessed outside the class."
-  },
-  {
-   "type": "p",
-   "text": "All modern browsers support private class fields."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Counter {\n\n  #count = 0;\n\n  increment() {\n\n    this.#count++;\n\n    return this.#count;\n\n  }\n\n}\n\nconst myCounter = new Counter();\n\nmyCounter.increment();",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "Private class fields are usually preferred when working with classes."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "They provide true privacy.",
-    "They are simpler than closure-based patterns inside classes.",
-    "They are part of the official ECMAScript standard."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Closures are still important and useful outside of classes."
-  },
-  {
-   "type": "p",
-   "text": "Closures are also widely used in older codebases and functional programming patterns."
-  }
- ]
+  "slug": "js_function_closures",
+  "course": "js",
+  "order": 209,
+  "url": "/js/js_function_closures.asp",
+  "title": "JavaScript Closures",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Closures"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript variables can belong to:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["The local scope", "The global scope"]
+    },
+    {
+      "type": "p",
+      "text": "Global variables can be made local (private) with closures."
+    },
+    {
+      "type": "p",
+      "text": "Closures make it possible for a function to have \"private\" variables."
+    },
+    {
+      "type": "p",
+      "text": "A closure is created when a function remembers the variables from its outer scope,\neven after the outer function has finished executing."
+    },
+    {
+      "type": "p",
+      "text": "Closures are an advanced topic."
+    },
+    {
+      "type": "p",
+      "text": "Make sure you understand JavaScript functions and scope first."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Functions"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Scope"
+    },
+    {
+      "type": "h2",
+      "text": "Local Variables"
+    },
+    {
+      "type": "p",
+      "text": "A local variable is a \"private\" variable defined inside a function."
+    },
+    {
+      "type": "p",
+      "text": "A function can access all variables in the local scope."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction() {\n\n    let a = 4;\n\n    return a * a;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_scope2"
+    },
+    {
+      "type": "h2",
+      "text": "Global Variables"
+    },
+    {
+      "type": "p",
+      "text": "A global variable is a \"public\" variable defined outside a function."
+    },
+    {
+      "type": "p",
+      "text": "A function can access all variables in the global scope:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let a = 4;\nfunction myFunction() {\n\n    return a * a;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_scope1"
+    },
+    {
+      "type": "p",
+      "text": "In a web page, global variables belong to the page."
+    },
+    {
+      "type": "p",
+      "text": "Global variables can be used (or changed) by all scripts in the page."
+    },
+    {
+      "type": "p",
+      "text": "A local variable can only be used inside the function where it is defined. It\nis private and hidden from other functions and other scripting code."
+    },
+    {
+      "type": "p",
+      "text": "Global\nand local variables with the same name are\ndifferent variables. Modifying one, does not modify the other."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Undeclared variables (created without a keyword var,\nlet, const),\nare always global, even if they are created inside a function."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction() {\n\n  a = 4;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_scope4"
+    },
+    {
+      "type": "h2",
+      "text": "Variable Lifetime"
+    },
+    {
+      "type": "p",
+      "text": "Global variables live until the page is discarded, like when you navigate\nto another page or close the window."
+    },
+    {
+      "type": "p",
+      "text": "Local\nvariables have short lives. They are created when the function is\ninvoked, and deleted when the function is finished."
+    },
+    {
+      "type": "h2",
+      "text": "A Counter Dilemma"
+    },
+    {
+      "type": "p",
+      "text": "Suppose you want to use a variable for counting something, and you want this\ncounter to be available to everyone (all functions)."
+    },
+    {
+      "type": "p",
+      "text": "You could use a global variable, and a function to increase the counter:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Initiate counter\nlet counter = 0;\n\n// Function to increment\n  counter\nfunction add() {\n\n  counter += 1;\n\n}\n\n// Call add() 3 times\n\nadd();\n\nadd();\n\nadd();\n\n// The counter should now be 3",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures1"
+    },
+    {
+      "type": "h2",
+      "text": "Warning !"
+    },
+    {
+      "type": "p",
+      "text": "There is a problem with the solution above: Any code on the page can change the counter, without calling add()."
+    },
+    {
+      "type": "p",
+      "text": "The counter should be local to the add() function, to prevent other code from changing\nit:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Initiate counter\nlet counter = 0;\n\n// Function to increment\n  counter\nfunction add() {\n  let counter = 0;\n\n  counter += 1;\n}\n\n//\n  Call add() 3 times\nadd();\nadd();\nadd();\n\n// The counter should\n  now be 3. But it is 0",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures2"
+    },
+    {
+      "type": "p",
+      "text": "It did not work because we display the global counter instead of the local\ncounter."
+    },
+    {
+      "type": "p",
+      "text": "We can remove the global counter and access the local counter by letting the\nfunction return it:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function to increment counter\n\nfunction add() {\n\n  let counter = 0;\n\n  counter += 1;\n\n  return counter;\n\n}\n\nlet x= 0;\n\n// Call add() 3 times\n\nx = add();\n\nx = add();\n\nx = add();\n\n// The counter should now be 3. But it is 1.",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures3"
+    },
+    {
+      "type": "p",
+      "text": "It did not work because we reset the local counter every time we call the\nfunction."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Solution\n A JavaScript inner function can solve this."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Nested Functions"
+    },
+    {
+      "type": "p",
+      "text": "All functions have access to the global scope."
+    },
+    {
+      "type": "p",
+      "text": "In fact, in JavaScript, all functions have access to the scope \"above\" them."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript supports nested functions. Nested functions have access to the\nscope \"above\" them."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function add() {\n\n    let counter = 0;\n\n    function plus() {counter += 1;}\n  plus();\n\n  return counter;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures4"
+    },
+    {
+      "type": "p",
+      "text": "This could have solved the counter dilemma, if we could reach the plus()\nfunction from the outside."
+    },
+    {
+      "type": "p",
+      "text": "We also need to find a way to execute counter = 0 only once."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Solution\nWe need a closure."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Closures"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myCounter() {\n\n  let counter = 0;\n\n  return function() {\n\n    counter++;\n\n    return counter;\n\n  };\n\n}\n\nconst add = myCounter();\n\nadd();\n\nadd();\n\nadd();\n\n// the counter is now 3",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_closures5"
+    },
+    {
+      "type": "h2",
+      "text": "Example Explained"
+    },
+    {
+      "type": "p",
+      "text": "The variable add is assigned to the return value of a function."
+    },
+    {
+      "type": "p",
+      "text": "The function only runs once. It sets the counter to zero (0), and returns a function expression."
+    },
+    {
+      "type": "p",
+      "text": "This way add becomes a function. The \"wonderful\" part is that it can access the counter in its parent scope."
+    },
+    {
+      "type": "p",
+      "text": "This is called a closure. It makes it possible\nfor a function to have \"private\" variables."
+    },
+    {
+      "type": "p",
+      "text": "The counter is protected by the scope of the myCounter function,\nand can only be changed using the add function."
+    },
+    {
+      "type": "h2",
+      "text": "Conclusion"
+    },
+    {
+      "type": "p",
+      "text": "A closure is a function that has access to the parent scope, after the parent function has closed."
+    },
+    {
+      "type": "p",
+      "text": "Closures has historically been used to:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Create private variables",
+        "Preserve state between function calls",
+        "Simulate block-scoping before let and const existed",
+        "Implement certain design patterns like currying and memoization"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Old JavaScript code often contains closures, but modern JavaScript will not use closures as frequently."
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2015 and subsequent JavaScript versions have introduced new language features that provide\nalternatives to closures."
+    },
+    {
+      "type": "h2",
+      "text": "Modern Alternative: Private Class Fields"
+    },
+    {
+      "type": "p",
+      "text": "Since ECMAScript 2022, JavaScript supports real private class fields using the #\nsyntax."
+    },
+    {
+      "type": "p",
+      "text": "Private fields are enforced by the language and cannot be accessed outside the class."
+    },
+    {
+      "type": "p",
+      "text": "All modern browsers support private class fields."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Counter {\n\n  #count = 0;\n\n  increment() {\n\n    this.#count++;\n\n    return this.#count;\n\n  }\n\n}\n\nconst myCounter = new Counter();\n\nmyCounter.increment();",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "Private class fields are usually preferred when working with classes."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "They provide true privacy.",
+        "They are simpler than closure-based patterns inside classes.",
+        "They are part of the official ECMAScript standard."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Closures are still important and useful outside of classes."
+    },
+    {
+      "type": "p",
+      "text": "Closures are also widely used in older codebases and functional programming patterns."
+    }
+  ]
 }

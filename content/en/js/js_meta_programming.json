@@ -1,226 +1,205 @@
 {
- "slug": "js_meta_programming",
- "course": "js",
- "order": 238,
- "url": "/js/js_meta_programming.asp",
- "title": "JavaScript Meta Programming",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Meta Programming"
-  },
-  {
-   "type": "h2",
-   "text": "Metaprogramming"
-  },
-  {
-   "type": "p",
-   "text": "Metaprogramming refers to a number of ways a program can manipulate itself:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Modify objects at runtime",
-    "Inspect objects at runtime",
-    "Control objects at runtime",
-    "Intercept running operations",
-    "Modify functions, and classes",
-    "Generate dynamic code"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The Easy Explanation"
-  },
-  {
-   "type": "p",
-   "text": "Normally, code handles data."
-  },
-  {
-   "type": "p",
-   "text": "With metaprogramming, code handles code."
-  },
-  {
-   "type": "h2",
-   "text": "Inspecting Objects"
-  },
-  {
-   "type": "p",
-   "text": "With the method Object.keys() you can inspect object properties."
-  },
-  {
-   "type": "p",
-   "text": "Using Object.keys() is a simple example of metaprogramming."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Fill Array with Object keys\n\nconst myArr = Object.keys(user);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_meta_object_keys"
-  },
-  {
-   "type": "h2",
-   "text": "Modify Objects"
-  },
-  {
-   "type": "p",
-   "text": "I typical metaprogramming task is to modify object behaviour:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {name: \"John\", age: 41};\n\n// Define \"name\" to return \"secret\"\n\nObject.defineProperty(person, \"name\", {\n\n  get() { return \"secret\"; }\n\n});\n\nlet name = person.name;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_behave"
-  },
-  {
-   "type": "h2",
-   "text": "Generate Dynamic Code"
-  },
-  {
-   "type": "p",
-   "text": "Metaprogramming involves dynamic code generation."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript can generate functions at runtime:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fn = new Function(\"a\", \"b\", \"return a + b\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_dynamic"
-  },
-  {
-   "type": "h2",
-   "text": "Metaprogramming Examples"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Consept",
-     "Description"
-    ],
-    [
-     "Validation",
-     "Restrict the values that can be set to a property"
-    ],
-    [
-     "Logging",
-     "Display property changes using a Proxy"
-    ],
-    [
-     "Debugging",
-     "Intercept an operation using a Proxy"
-    ],
-    [
-     "Frameworks",
-     "Vue, MobX, and Svelte use metaprogramming to detect state changes"
-    ],
-    [
-     "ORM / database mapping",
-     "Wrap objects and creates fields based on database schema"
-    ],
-    [
-     "Dynamic APIs",
-     "Create functions or object structures at runtime"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Proxy Metaprogramming"
-  },
-  {
-   "type": "p",
-   "text": "The two objects Proxy and Reflect allow for programming at the meta level in JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "Proxy can be used to intercept property operations like reading or writing."
-  },
-  {
-   "type": "p",
-   "text": "In the example below:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "A user object is wrapped in a Proxy",
-    "The Proxy uses a set() trap to log whenever a property is set"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Wrap the Object in a Proxy\n\nconst proxy = new Proxy(user, {\n\n  // Use a set trap\n\n  set(target, property, value) {\n\n    // Log changes\n\n    log(property + \"; \" + value);\n\n    return target[property];\n\n  }\n\n});\n\n// Change Properties\n\nproxy.name = \"John\";\n\nproxy.age = 45;\n\nproxy.name = \"Paul\";",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_set"
-  },
-  {
-   "type": "h2",
-   "text": "Proxy with Reflect"
-  },
-  {
-   "type": "p",
-   "text": "Reflect makes Proxy behavior match normal object behavior"
-  },
-  {
-   "type": "p",
-   "text": "In the example below:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "A user object is wrapped in a Proxy",
-    "The Proxy uses a set() trap to log when a property is set",
-    "The set trap uses Reflect.set() for safe forwarding"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Wrap the Object in a Proxy\n\nconst proxy = new Proxy(user, {\n\n  // Use a set trap\n\n  set(target, property, value) {\n\n    // Log changes\n\n    log(property + \": \" + value);\n\n    // Safe forwarding with Reflect\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_proxy"
-  },
-  {
-   "type": "h2",
-   "text": "Learn More"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Reflect Tutorial"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Proxy Tutorial"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Meta Reference"
-  }
- ]
+  "slug": "js_meta_programming",
+  "course": "js",
+  "order": 238,
+  "url": "/js/js_meta_programming.asp",
+  "title": "JavaScript Meta Programming",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Meta Programming"
+    },
+    {
+      "type": "h2",
+      "text": "Metaprogramming"
+    },
+    {
+      "type": "p",
+      "text": "Metaprogramming refers to a number of ways a program can manipulate itself:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Modify objects at runtime",
+        "Inspect objects at runtime",
+        "Control objects at runtime",
+        "Intercept running operations",
+        "Modify functions, and classes",
+        "Generate dynamic code"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The Easy Explanation"
+    },
+    {
+      "type": "p",
+      "text": "Normally, code handles data."
+    },
+    {
+      "type": "p",
+      "text": "With metaprogramming, code handles code."
+    },
+    {
+      "type": "h2",
+      "text": "Inspecting Objects"
+    },
+    {
+      "type": "p",
+      "text": "With the method Object.keys() you can inspect object properties."
+    },
+    {
+      "type": "p",
+      "text": "Using Object.keys() is a simple example of metaprogramming."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Fill Array with Object keys\n\nconst myArr = Object.keys(user);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_meta_object_keys"
+    },
+    {
+      "type": "h2",
+      "text": "Modify Objects"
+    },
+    {
+      "type": "p",
+      "text": "I typical metaprogramming task is to modify object behaviour:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {name: \"John\", age: 41};\n\n// Define \"name\" to return \"secret\"\n\nObject.defineProperty(person, \"name\", {\n\n  get() { return \"secret\"; }\n\n});\n\nlet name = person.name;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_behave"
+    },
+    {
+      "type": "h2",
+      "text": "Generate Dynamic Code"
+    },
+    {
+      "type": "p",
+      "text": "Metaprogramming involves dynamic code generation."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript can generate functions at runtime:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fn = new Function(\"a\", \"b\", \"return a + b\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_dynamic"
+    },
+    {
+      "type": "h2",
+      "text": "Metaprogramming Examples"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Consept", "Description"],
+        ["Validation", "Restrict the values that can be set to a property"],
+        ["Logging", "Display property changes using a Proxy"],
+        ["Debugging", "Intercept an operation using a Proxy"],
+        ["Frameworks", "Vue, MobX, and Svelte use metaprogramming to detect state changes"],
+        ["ORM / database mapping", "Wrap objects and creates fields based on database schema"],
+        ["Dynamic APIs", "Create functions or object structures at runtime"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Proxy Metaprogramming"
+    },
+    {
+      "type": "p",
+      "text": "The two objects Proxy and Reflect allow for programming at the meta level in JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "Proxy can be used to intercept property operations like reading or writing."
+    },
+    {
+      "type": "p",
+      "text": "In the example below:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A user object is wrapped in a Proxy",
+        "The Proxy uses a set() trap to log whenever a property is set"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Wrap the Object in a Proxy\n\nconst proxy = new Proxy(user, {\n\n  // Use a set trap\n\n  set(target, property, value) {\n\n    // Log changes\n\n    log(property + \"; \" + value);\n\n    return target[property];\n\n  }\n\n});\n\n// Change Properties\n\nproxy.name = \"John\";\n\nproxy.age = 45;\n\nproxy.name = \"Paul\";",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_set"
+    },
+    {
+      "type": "h2",
+      "text": "Proxy with Reflect"
+    },
+    {
+      "type": "p",
+      "text": "Reflect makes Proxy behavior match normal object behavior"
+    },
+    {
+      "type": "p",
+      "text": "In the example below:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "A user object is wrapped in a Proxy",
+        "The Proxy uses a set() trap to log when a property is set",
+        "The set trap uses Reflect.set() for safe forwarding"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Wrap the Object in a Proxy\n\nconst proxy = new Proxy(user, {\n\n  // Use a set trap\n\n  set(target, property, value) {\n\n    // Log changes\n\n    log(property + \": \" + value);\n\n    // Safe forwarding with Reflect\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_proxy"
+    },
+    {
+      "type": "h2",
+      "text": "Learn More"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Reflect Tutorial"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Proxy Tutorial"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Meta Reference"
+    }
+  ]
 }

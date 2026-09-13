@@ -1,420 +1,401 @@
 {
- "slug": "js_json_html",
- "course": "js",
- "order": 173,
- "url": "/js/js_json_html.asp",
- "title": "نمایش JSON در JavaScript",
- "summary": "بعد از پارس شدن JSON، مقدارهای JavaScript را می‌توان در صفحه نشان داد. در این درس یک خصوصیت، کل شیء، آرایه، آرایه‌ای از شیءها و دادهٔ تودرتو را در HTML نمایش می‌دهید و یاد می‌گیرید چرا textContent از innerHTML ایمن‌تر است.",
- "objectives": [
-  "یک خصوصیت و چند خصوصیت را در صفحه نمایش دهید",
-  "کل شیء را با JSON.stringify() و تودرتویی نمایش دهید",
-  "مقدارهای آرایه را با حلقه به عنصرها و جدول HTML تبدیل کنید",
-  "دادهٔ تودرتو را با نام خصوصیت‌ها دنبال کنید",
-  "تفاوت textContent و innerHTML را برای دادهٔ نامعتبر توضیح دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "نمایش JSON در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "بعد از پارس شدن JSON، مقدارهای JavaScript حاصل را می‌توان در HTML نمایش داد."
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید مقدارهای تکی، شیءها، آرایه‌ها، فهرست‌ها و جدول‌ها را نشان دهید."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش یک خصوصیت"
-  },
-  {
-   "type": "p",
-   "text": "شیء JSON پارس‌شده به یک شیء JavaScript تبدیل می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت‌های شیء با نحو معمول JavaScript قابل نمایش‌اند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent = person.name;",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "این مثال مقدار خصوصیت name را نشان می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش چند خصوصیت"
-  },
-  {
-   "type": "p",
-   "text": "می‌توان چند خصوصیت را در یک مقدار متنی ترکیب کرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.name + \", \" + person.age + \", \" + person.city;",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "نمایش یک شیء"
-  },
-  {
-   "type": "p",
-   "text": "نمایش مستقیم یک شیء همهٔ خصوصیت‌هایش را نشان نمی‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name: \"John\", age: 30};\n\nmyDisplayer(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "[object Object]",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_html_display"
-  },
-  {
-   "type": "p",
-   "text": "برای نمایش کامل شیء به‌صورت متن JSON از JSON.stringify() استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name: \"John\", age: 30};\n\nlet text = JSON.stringify(person)\n\nmyDisplayer(text);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_html_display_2"
-  },
-  {
-   "type": "h2",
-   "text": "قالب‌بندی متن JSON"
-  },
-  {
-   "type": "p",
-   "text": "پارامتر سوم JSON.stringify() می‌تواند JSON را با تودرتویی قالب‌بندی کند."
-  },
-  {
-   "type": "p",
-   "text": "از عنصر <pre> در HTML استفاده کنید تا فاصله‌ها و شکست خط‌ها حفظ شوند."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<pre id=\"demo\"></pre>\n\n<script>\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\ndocument.getElementById(\"demo\").textContent =\n\nJSON.stringify(person, null, 2);\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "عدد 2 برای هر سطح دو فاصلهٔ تودرتویی اضافه می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش یک آرایهٔ JSON"
-  },
-  {
-   "type": "p",
-   "text": "آرایهٔ JSON پارس‌شده به یک آرایهٔ JavaScript تبدیل می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "به مقدارهای آرایه با شمارهٔ اندیسشان دسترسی پیدا می‌کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent = cars[0];",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "اندیس آرایه از صفر شروع می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش همهٔ مقدارهای آرایه"
-  },
-  {
-   "type": "p",
-   "text": "حلقهٔ for...of می‌تواند هر مقدار آرایه را بخواند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nlet output = \"\";\n\nfor (const car of cars) {\n\n  output += car + \"\\n\";\n\n}\n\ndocument.getElementById(\"demo\").textContent = output;",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "برای نمایش شکست خط‌ها از عنصر <pre> استفاده کنید."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش آرایه به‌صورت فهرست"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript می‌تواند برای مقدارهای یک آرایهٔ JSON عنصرهای HTML بسازد."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<ul id=\"demo\"></ul>\n\n<script>\n\nconst text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nconst list = document.getElementById(\"demo\");\n\nfor (const car of cars) {\n\n  const item = document.createElement(\"li\");\n\n  item.textContent = car;\n\n  list.appendChild(item);\n\n}\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "این مثال برای هر مقدار آرایه یک عنصر <li> می‌سازد."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش آرایه‌ای از شیءها"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON اغلب آرایه‌ای از شیءها دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]",
-   "caption": "products.json"
-  },
-  {
-   "type": "p",
-   "text": "با یک حلقه، یک خصوصیت از هر شیء را نمایش دهید."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<ul id=\"demo\"></ul>\n\n<script>\n\nconst text = `[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]`;\n\nconst products = JSON.parse(text);\n\nconst list = document.getElementById(\"demo\");\n\nfor (const product of products) {\n\n  const item = document.createElement(\"li\");\n\n  item.textContent = product.name + \": $\" + product.price;\n\n  list.appendChild(item);\n\n}\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "نمایش JSON در جدول"
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌ای از شیءها را می‌توان به‌صورت جدول HTML نمایش داد."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<table id=\"demo\" class=\"ws-table-all\">\n\n  <tr>\n\n    <th>Product</th>\n\n    <th>Price</th>\n\n  </tr>\n\n</table>\n\n<script>\n\nconst products = [\n\n  {name: \"Laptop\", price: 899},\n\n  {name: \"Mouse\", price: 29},\n\n  {name: \"Keyboard\", price: 79}\n\n];\n\nconst table = document.getElementById(\"demo\");\n\nfor (const product of products) {\n\n  const row = table.insertRow();\n\n  const nameCell = row.insertCell();\n\n  const priceCell = row.insertCell();\n\n  nameCell.textContent = product.name;\n\n  priceCell.textContent = \"$\" + product.price;\n\n}\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "این مثال برای هر محصول یک سطر جدول می‌سازد."
-  },
-  {
-   "type": "h2",
-   "text": "نمایش JSON تودرتو"
-  },
-  {
-   "type": "p",
-   "text": "شیءها و آرایه‌های JSON می‌توانند مقدارهای تودرتو داشته باشند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = `{\n\n  \"name\": \"John\",\n\n  \"address\": {\n\n    \"city\": \"New York\",\n\n    \"country\": \"USA\"\n\n  }\n\n}`;\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.address.city;",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "با هر نام خصوصیت در شیء تودرتو جلو بروید."
-  },
-  {
-   "type": "h2",
-   "text": "بارگذاری و نمایش JSON"
-  },
-  {
-   "type": "p",
-   "text": "متد fetch() می‌تواند JSON را از یک فایل یا سرور بارگذاری کند."
-  },
-  {
-   "type": "p",
-   "text": "بعد دادهٔ پارس‌شده را می‌توان در HTML نمایش داد."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\nasync function loadCustomer() {\n\n  try {\n\n    const response = await fetch(\"customer.json\");\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const customer = await response.json();\n\n    document.getElementById(\"demo\").textContent =\n\n    customer.name + \", \" + customer.city;\n\n  }\n\n  catch(err) {\n\n    document.getElementById(\"demo\").textContent = err.message;\n\n  }\n\n}\n\nloadCustomer();\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "متد response.json() خودش JSON را پارس می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "نتیجهٔ آن را به JSON.parse() ندهید."
-  },
-  {
-   "type": "h2",
-   "text": "‏textContent یا innerHTML؟"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت textContent مقدارها را به‌صورت متن ساده نمایش می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت innerHTML مقدارش را به‌عنوان HTML تفسیر می‌کند."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "خصوصیت",
-     "کاربرد"
-    ],
-    [
-     "textContent",
-     "نمایش متن و دادهٔ نامعتبر (untrusted)"
-    ],
-    [
-     "innerHTML",
-     "افزودن HTMLی که برنامهٔ خودتان کنترل می‌کند"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "مقدارهای نامعتبر JSON را مستقیم داخل innerHTML نگذارید."
-  },
-  {
-   "type": "p",
-   "text": "این مقدارها ممکن است HTML ناخواسته یا خطرناک داشته باشند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "element.textContent = customer.name;",
-   "caption": "ایمن‌تر"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "element.innerHTML = customer.name;",
-   "caption": "ایمن‌تر"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت‌های غایب"
-  },
-  {
-   "type": "p",
-   "text": "ممکن است یک شیء JSON همهٔ خصوصیت‌های مورد انتظار را نداشته باشد."
-  },
-  {
-   "type": "p",
-   "text": "عملگر nullish coalescing می‌تواند یک مقدار پیش‌فرض بدهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name: \"John\"};\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.city ?? \"Unknown city\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "وقتی خصوصیت null یا undefined باشد، مقدار پیش‌فرض unknown city به کار می‌رود."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک شیء JSON با خصوصیت name بسازید، پارسش کنید و مقدار نام را در یک عنصر صفحه بنویسید.",
-   "hint": "با document.getElementById عنصر را بگیرید و با textContent مقدار را بگذارید."
-  },
-  {
-   "prompt": "همان شیء را با JSON.stringify(obj, null, 2) داخل یک عنصر <pre> نمایش دهید.",
-   "hint": "پارامتر سوم 2 هر سطح را دو فاصله تودرتو می‌کند و <pre> فاصله‌ها را حفظ می‌کند."
-  },
-  {
-   "prompt": "یک آرایهٔ JSON از سه رنگ بسازید و با حلقهٔ for...of برای هر رنگ یک عنصر <li> در یک <ul> بسازید.",
-   "hint": "برای هر مقدار یک عنصر بسازید و با appendChild به فهرست اضافه کنید."
-  },
-  {
-   "prompt": "آرایه‌ای از شیءها بسازید و هر محصول را در یک سطر جدول HTML نمایش دهید.",
-   "hint": "برای هر شیء یک <tr> و برای هر خصوصیت یک <td> بسازید."
-  },
-  {
-   "prompt": "یک مقدار متنی را یک بار با textContent و یک بار با innerHTML نمایش دهید و تفاوت را توضیح دهید.",
-   "hint": "‏innerHTML مقدار را به‌عنوان HTML تفسیر می‌کند، پس برای دادهٔ نامعتبر خطرناک است."
-  }
- ],
- "quiz": [
-  {
-   "question": "چرا نمایش مستقیم یک شیء همهٔ خصوصیت‌هایش را نشان نمی‌دهد؟",
-   "options": [
-    "چون شیءها قابل نمایش نیستند",
-    "چون برای دیدن کامل باید از JSON.stringify() استفاده کرد",
-    "چون خصوصیت‌ها با کوتیشن نوشته شده‌اند",
-    "چون باید اول مقدار را پارس کرد"
-   ],
-   "answer": 1,
-   "explanation": "نمایش مستقیم یک شیء متن مفیدی نمی‌دهد؛ برای دیدن کل خصوصیت‌ها باید آن را با JSON.stringify() به متن JSON تبدیل کرد."
-  },
-  {
-   "question": "برای نمایش متن خوانا با تودرتویی از چه چیزی استفاده می‌کنید؟",
-   "options": [
-    "JSON.stringify(obj, null, 2) داخل عنصر <pre>",
-    "JSON.parse(obj)",
-    "‏obj.textContent",
-    "‏document.write(obj)"
-   ],
-   "answer": 0,
-   "explanation": "پارامتر سوم JSON.stringify() تودرتویی را تعیین می‌کند و عنصر <pre> فاصله‌ها و شکست خط‌ها را حفظ می‌کند، پس متن خوانا می‌ماند."
-  },
-  {
-   "question": "برای مقدار پیش‌فرض وقتی خصوصیتی در شیء JSON وجود ندارد از چه استفاده می‌کنید؟",
-   "options": [
-    "JSON.parse()",
-    "JSON.stringify()",
-    "عملگر nullish coalescing",
-    "حلقهٔ for...of"
-   ],
-   "answer": 2,
-   "explanation": "عملگر nullish coalescing وقتی مقدار خصوصیت null یا undefined باشد مقدار پیش‌فرض را به کار می‌برد؛ همین راه‌حل برای خصوصیت‌های غایب مناسب است."
-  },
-  {
-   "question": "برای نمایش دادهٔ نامعتبر (untrusted) کدام خصوصیت ایمن‌تر است؟",
-   "options": [
-    "innerHTML",
-    "textContent",
-    "outerHTML",
-    "‏document.write"
-   ],
-   "answer": 1,
-   "explanation": "‏textContent مقدار را به‌صورت متن ساده می‌گذارد و HTML را تفسیر نمی‌کند؛ innerHTML آن را به‌عنوان HTML اجرا می‌کند و برای دادهٔ نامعتبر خطرناک است."
-  },
-  {
-   "question": "وقتی از fetch و response.json() استفاده می‌کنید چه نکته‌ای را باید رعایت کنید؟",
-   "options": [
-    "باید نتیجه را دوباره به JSON.parse() بدهید",
-    "نتیجه از قبل پارس شده و نباید دوباره پارس شود",
-    "باید نتیجه را به JSON.stringify() بدهید",
-    "باید نتیجه را دستی به رشته تبدیل کنید"
-   ],
-   "answer": 1,
-   "explanation": "response.json() خودش متن را پارس می‌کند و یک مقدار JavaScript می‌دهد؛ دادن این مقدار به JSON.parse() اشتباه رایجی است."
-  }
- ]
+  "slug": "js_json_html",
+  "course": "js",
+  "order": 173,
+  "url": "/js/js_json_html.asp",
+  "title": "نمایش JSON در JavaScript",
+  "summary": "بعد از پارس شدن JSON، مقدارهای JavaScript را می‌توان در صفحه نشان داد. در این درس یک خصوصیت، کل شیء، آرایه، آرایه‌ای از شیءها و دادهٔ تودرتو را در HTML نمایش می‌دهید و یاد می‌گیرید چرا textContent از innerHTML ایمن‌تر است.",
+  "objectives": [
+    "یک خصوصیت و چند خصوصیت را در صفحه نمایش دهید",
+    "کل شیء را با JSON.stringify() و تودرتویی نمایش دهید",
+    "مقدارهای آرایه را با حلقه به عنصرها و جدول HTML تبدیل کنید",
+    "دادهٔ تودرتو را با نام خصوصیت‌ها دنبال کنید",
+    "تفاوت textContent و innerHTML را برای دادهٔ نامعتبر توضیح دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "نمایش JSON در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "بعد از پارس شدن JSON، مقدارهای JavaScript حاصل را می‌توان در HTML نمایش داد."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید مقدارهای تکی، شیءها، آرایه‌ها، فهرست‌ها و جدول‌ها را نشان دهید."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش یک خصوصیت"
+    },
+    {
+      "type": "p",
+      "text": "شیء JSON پارس‌شده به یک شیء JavaScript تبدیل می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت‌های شیء با نحو معمول JavaScript قابل نمایش‌اند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent = person.name;",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "این مثال مقدار خصوصیت name را نشان می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش چند خصوصیت"
+    },
+    {
+      "type": "p",
+      "text": "می‌توان چند خصوصیت را در یک مقدار متنی ترکیب کرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.name + \", \" + person.age + \", \" + person.city;",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "نمایش یک شیء"
+    },
+    {
+      "type": "p",
+      "text": "نمایش مستقیم یک شیء همهٔ خصوصیت‌هایش را نشان نمی‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name: \"John\", age: 30};\n\nmyDisplayer(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "[object Object]",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_html_display"
+    },
+    {
+      "type": "p",
+      "text": "برای نمایش کامل شیء به‌صورت متن JSON از JSON.stringify() استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name: \"John\", age: 30};\n\nlet text = JSON.stringify(person)\n\nmyDisplayer(text);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_html_display_2"
+    },
+    {
+      "type": "h2",
+      "text": "قالب‌بندی متن JSON"
+    },
+    {
+      "type": "p",
+      "text": "پارامتر سوم JSON.stringify() می‌تواند JSON را با تودرتویی قالب‌بندی کند."
+    },
+    {
+      "type": "p",
+      "text": "از عنصر <pre> در HTML استفاده کنید تا فاصله‌ها و شکست خط‌ها حفظ شوند."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<pre id=\"demo\"></pre>\n\n<script>\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\ndocument.getElementById(\"demo\").textContent =\n\nJSON.stringify(person, null, 2);\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "عدد 2 برای هر سطح دو فاصلهٔ تودرتویی اضافه می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش یک آرایهٔ JSON"
+    },
+    {
+      "type": "p",
+      "text": "آرایهٔ JSON پارس‌شده به یک آرایهٔ JavaScript تبدیل می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "به مقدارهای آرایه با شمارهٔ اندیسشان دسترسی پیدا می‌کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent = cars[0];",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "اندیس آرایه از صفر شروع می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش همهٔ مقدارهای آرایه"
+    },
+    {
+      "type": "p",
+      "text": "حلقهٔ for...of می‌تواند هر مقدار آرایه را بخواند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nlet output = \"\";\n\nfor (const car of cars) {\n\n  output += car + \"\\n\";\n\n}\n\ndocument.getElementById(\"demo\").textContent = output;",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "برای نمایش شکست خط‌ها از عنصر <pre> استفاده کنید."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش آرایه به‌صورت فهرست"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript می‌تواند برای مقدارهای یک آرایهٔ JSON عنصرهای HTML بسازد."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<ul id=\"demo\"></ul>\n\n<script>\n\nconst text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nconst list = document.getElementById(\"demo\");\n\nfor (const car of cars) {\n\n  const item = document.createElement(\"li\");\n\n  item.textContent = car;\n\n  list.appendChild(item);\n\n}\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "این مثال برای هر مقدار آرایه یک عنصر <li> می‌سازد."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش آرایه‌ای از شیءها"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON اغلب آرایه‌ای از شیءها دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]",
+      "caption": "products.json"
+    },
+    {
+      "type": "p",
+      "text": "با یک حلقه، یک خصوصیت از هر شیء را نمایش دهید."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<ul id=\"demo\"></ul>\n\n<script>\n\nconst text = `[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]`;\n\nconst products = JSON.parse(text);\n\nconst list = document.getElementById(\"demo\");\n\nfor (const product of products) {\n\n  const item = document.createElement(\"li\");\n\n  item.textContent = product.name + \": $\" + product.price;\n\n  list.appendChild(item);\n\n}\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "نمایش JSON در جدول"
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌ای از شیءها را می‌توان به‌صورت جدول HTML نمایش داد."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<table id=\"demo\" class=\"ws-table-all\">\n\n  <tr>\n\n    <th>Product</th>\n\n    <th>Price</th>\n\n  </tr>\n\n</table>\n\n<script>\n\nconst products = [\n\n  {name: \"Laptop\", price: 899},\n\n  {name: \"Mouse\", price: 29},\n\n  {name: \"Keyboard\", price: 79}\n\n];\n\nconst table = document.getElementById(\"demo\");\n\nfor (const product of products) {\n\n  const row = table.insertRow();\n\n  const nameCell = row.insertCell();\n\n  const priceCell = row.insertCell();\n\n  nameCell.textContent = product.name;\n\n  priceCell.textContent = \"$\" + product.price;\n\n}\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "این مثال برای هر محصول یک سطر جدول می‌سازد."
+    },
+    {
+      "type": "h2",
+      "text": "نمایش JSON تودرتو"
+    },
+    {
+      "type": "p",
+      "text": "شیءها و آرایه‌های JSON می‌توانند مقدارهای تودرتو داشته باشند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = `{\n\n  \"name\": \"John\",\n\n  \"address\": {\n\n    \"city\": \"New York\",\n\n    \"country\": \"USA\"\n\n  }\n\n}`;\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.address.city;",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "با هر نام خصوصیت در شیء تودرتو جلو بروید."
+    },
+    {
+      "type": "h2",
+      "text": "بارگذاری و نمایش JSON"
+    },
+    {
+      "type": "p",
+      "text": "متد fetch() می‌تواند JSON را از یک فایل یا سرور بارگذاری کند."
+    },
+    {
+      "type": "p",
+      "text": "بعد دادهٔ پارس‌شده را می‌توان در HTML نمایش داد."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\nasync function loadCustomer() {\n\n  try {\n\n    const response = await fetch(\"customer.json\");\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const customer = await response.json();\n\n    document.getElementById(\"demo\").textContent =\n\n    customer.name + \", \" + customer.city;\n\n  }\n\n  catch(err) {\n\n    document.getElementById(\"demo\").textContent = err.message;\n\n  }\n\n}\n\nloadCustomer();\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "متد response.json() خودش JSON را پارس می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "نتیجهٔ آن را به JSON.parse() ندهید."
+    },
+    {
+      "type": "h2",
+      "text": "‏textContent یا innerHTML؟"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت textContent مقدارها را به‌صورت متن ساده نمایش می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت innerHTML مقدارش را به‌عنوان HTML تفسیر می‌کند."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["خصوصیت", "کاربرد"],
+        ["textContent", "نمایش متن و دادهٔ نامعتبر (untrusted)"],
+        ["innerHTML", "افزودن HTMLی که برنامهٔ خودتان کنترل می‌کند"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "مقدارهای نامعتبر JSON را مستقیم داخل innerHTML نگذارید."
+    },
+    {
+      "type": "p",
+      "text": "این مقدارها ممکن است HTML ناخواسته یا خطرناک داشته باشند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "element.textContent = customer.name;",
+      "caption": "ایمن‌تر"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "element.innerHTML = customer.name;",
+      "caption": "ایمن‌تر"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت‌های غایب"
+    },
+    {
+      "type": "p",
+      "text": "ممکن است یک شیء JSON همهٔ خصوصیت‌های مورد انتظار را نداشته باشد."
+    },
+    {
+      "type": "p",
+      "text": "عملگر nullish coalescing می‌تواند یک مقدار پیش‌فرض بدهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name: \"John\"};\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.city ?? \"Unknown city\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "وقتی خصوصیت null یا undefined باشد، مقدار پیش‌فرض unknown city به کار می‌رود."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک شیء JSON با خصوصیت name بسازید، پارسش کنید و مقدار نام را در یک عنصر صفحه بنویسید.",
+      "hint": "با document.getElementById عنصر را بگیرید و با textContent مقدار را بگذارید."
+    },
+    {
+      "prompt": "همان شیء را با JSON.stringify(obj, null, 2) داخل یک عنصر <pre> نمایش دهید.",
+      "hint": "پارامتر سوم 2 هر سطح را دو فاصله تودرتو می‌کند و <pre> فاصله‌ها را حفظ می‌کند."
+    },
+    {
+      "prompt": "یک آرایهٔ JSON از سه رنگ بسازید و با حلقهٔ for...of برای هر رنگ یک عنصر <li> در یک <ul> بسازید.",
+      "hint": "برای هر مقدار یک عنصر بسازید و با appendChild به فهرست اضافه کنید."
+    },
+    {
+      "prompt": "آرایه‌ای از شیءها بسازید و هر محصول را در یک سطر جدول HTML نمایش دهید.",
+      "hint": "برای هر شیء یک <tr> و برای هر خصوصیت یک <td> بسازید."
+    },
+    {
+      "prompt": "یک مقدار متنی را یک بار با textContent و یک بار با innerHTML نمایش دهید و تفاوت را توضیح دهید.",
+      "hint": "‏innerHTML مقدار را به‌عنوان HTML تفسیر می‌کند، پس برای دادهٔ نامعتبر خطرناک است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "چرا نمایش مستقیم یک شیء همهٔ خصوصیت‌هایش را نشان نمی‌دهد؟",
+      "options": [
+        "چون شیءها قابل نمایش نیستند",
+        "چون برای دیدن کامل باید از JSON.stringify() استفاده کرد",
+        "چون خصوصیت‌ها با کوتیشن نوشته شده‌اند",
+        "چون باید اول مقدار را پارس کرد"
+      ],
+      "answer": 1,
+      "explanation": "نمایش مستقیم یک شیء متن مفیدی نمی‌دهد؛ برای دیدن کل خصوصیت‌ها باید آن را با JSON.stringify() به متن JSON تبدیل کرد."
+    },
+    {
+      "question": "برای نمایش متن خوانا با تودرتویی از چه چیزی استفاده می‌کنید؟",
+      "options": [
+        "JSON.stringify(obj, null, 2) داخل عنصر <pre>",
+        "JSON.parse(obj)",
+        "‏obj.textContent",
+        "‏document.write(obj)"
+      ],
+      "answer": 0,
+      "explanation": "پارامتر سوم JSON.stringify() تودرتویی را تعیین می‌کند و عنصر <pre> فاصله‌ها و شکست خط‌ها را حفظ می‌کند، پس متن خوانا می‌ماند."
+    },
+    {
+      "question": "برای مقدار پیش‌فرض وقتی خصوصیتی در شیء JSON وجود ندارد از چه استفاده می‌کنید؟",
+      "options": ["JSON.parse()", "JSON.stringify()", "عملگر nullish coalescing", "حلقهٔ for...of"],
+      "answer": 2,
+      "explanation": "عملگر nullish coalescing وقتی مقدار خصوصیت null یا undefined باشد مقدار پیش‌فرض را به کار می‌برد؛ همین راه‌حل برای خصوصیت‌های غایب مناسب است."
+    },
+    {
+      "question": "برای نمایش دادهٔ نامعتبر (untrusted) کدام خصوصیت ایمن‌تر است؟",
+      "options": ["innerHTML", "textContent", "outerHTML", "‏document.write"],
+      "answer": 1,
+      "explanation": "‏textContent مقدار را به‌صورت متن ساده می‌گذارد و HTML را تفسیر نمی‌کند؛ innerHTML آن را به‌عنوان HTML اجرا می‌کند و برای دادهٔ نامعتبر خطرناک است."
+    },
+    {
+      "question": "وقتی از fetch و response.json() استفاده می‌کنید چه نکته‌ای را باید رعایت کنید؟",
+      "options": [
+        "باید نتیجه را دوباره به JSON.parse() بدهید",
+        "نتیجه از قبل پارس شده و نباید دوباره پارس شود",
+        "باید نتیجه را به JSON.stringify() بدهید",
+        "باید نتیجه را دستی به رشته تبدیل کنید"
+      ],
+      "answer": 1,
+      "explanation": "response.json() خودش متن را پارس می‌کند و یک مقدار JavaScript می‌دهد؛ دادن این مقدار به JSON.parse() اشتباه رایجی است."
+    }
+  ]
 }

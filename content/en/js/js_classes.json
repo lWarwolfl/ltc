@@ -1,182 +1,182 @@
 {
- "slug": "js_classes",
- "course": "js",
- "order": 218,
- "url": "/js/js_classes.asp",
- "title": "JavaScript Classes",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Classes"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2015, also known as ES6, introduced JavaScript Classes."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Classes are templates for JavaScript Objects."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Class Syntax"
-  },
-  {
-   "type": "p",
-   "text": "Use the keyword class to create a class."
-  },
-  {
-   "type": "p",
-   "text": "Always add a method named constructor():"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class ClassName {\n\n   constructor() { ... }\n\n}",
-   "caption": "Syntax"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n\n   constructor(name, year) {\n\n    this.name = name;\n\n    this.year = year;\n\n  }\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The example above creates a class named \"Car\"."
-  },
-  {
-   "type": "p",
-   "text": "The class has two initial properties: \"name\" and \"year\"."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "A JavaScript class is not an object.\nIt is a template for JavaScript objects."
-  },
-  {
-   "type": "h2",
-   "text": "Using a Class"
-  },
-  {
-   "type": "p",
-   "text": "When you have a class, you can use the class to create objects:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myCar1 = new Car(\"Ford\", 2014);\n\nconst myCar2 = new Car(\"Audi\", 2019);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_init"
-  },
-  {
-   "type": "p",
-   "text": "The example above uses the Car class to create two Car objects."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "The constructor method is called automatically when a new object is created."
-  },
-  {
-   "type": "h2",
-   "text": "The Constructor Method"
-  },
-  {
-   "type": "p",
-   "text": "The constructor method is a special method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "It has to have the exact name \"constructor\"",
-    "It is executed automatically when a new object is created",
-    "It is used to initialize object properties"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "If you do not define a constructor method, JavaScript\nwill add an empty constructor method."
-  },
-  {
-   "type": "h2",
-   "text": "Class Methods"
-  },
-  {
-   "type": "p",
-   "text": "Class methods are created with the same syntax as object methods."
-  },
-  {
-   "type": "p",
-   "text": "Use the keyword class to create a class."
-  },
-  {
-   "type": "p",
-   "text": "Always add a constructor() method."
-  },
-  {
-   "type": "p",
-   "text": "Then add any number of methods."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class ClassName {\n\n   constructor() { ... }\n\n  method_1() { ... }\n\n  method_2() { ... }\n\n  method_3() { ... }\n\n}",
-   "caption": "Syntax"
-  },
-  {
-   "type": "p",
-   "text": "Create a Class method named \"age\", that returns the Car age:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n\n   constructor(name, year) {\n\n    this.name = name;\n\n    this.year = year;\n\n   }\n  age() {\n\n    const date = new Date();\n\n    return date.getFullYear() - this.year;\n\n   }\n}\n\nconst myCar = new Car(\"Ford\", 2014);\n\ndocument.getElementById(\"demo\").innerHTML =\n\n\"My car is \" + myCar.age() + \" years old.\";",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_method"
-  },
-  {
-   "type": "p",
-   "text": "You can send parameters to Class methods:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n  constructor(name, year) {\n\n  this.name = name;\n    this.year = year;\n  }\n\n  age(x) {\n    return x - this.year;\n  }\n}\n\n  const date = new Date();\n\n  let year = date.getFullYear();\n\nconst myCar = new\n  Car(\"Ford\", 2014);\ndocument.getElementById(\"demo\").innerHTML=\n\"My car is\n  \" + myCar.age(year) + \" years old.\";",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_method2"
-  },
-  {
-   "type": "h2",
-   "text": "\"use strict\""
-  },
-  {
-   "type": "p",
-   "text": "Classes syntax must be written following The \"use strict\" Directive."
-  },
-  {
-   "type": "p",
-   "text": "You will get an\nerror if you do not follow the \"strict mode\" rules."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class Car {\n\n   constructor(name, year) {\n\n    this.name = name;\n\n    this.year = year;\n\n   }\n  age() {\n\n    // date = new Date();   // This will not work\n\n    const date = new Date();  // This will work\n\n    return date.getFullYear() - this.year;\n\n   }\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_strict_mode"
-  }
- ]
+  "slug": "js_classes",
+  "course": "js",
+  "order": 218,
+  "url": "/js/js_classes.asp",
+  "title": "JavaScript Classes",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Classes"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2015, also known as ES6, introduced JavaScript Classes."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Classes are templates for JavaScript Objects."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Class Syntax"
+    },
+    {
+      "type": "p",
+      "text": "Use the keyword class to create a class."
+    },
+    {
+      "type": "p",
+      "text": "Always add a method named constructor():"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class ClassName {\n\n   constructor() { ... }\n\n}",
+      "caption": "Syntax"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n\n   constructor(name, year) {\n\n    this.name = name;\n\n    this.year = year;\n\n  }\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The example above creates a class named \"Car\"."
+    },
+    {
+      "type": "p",
+      "text": "The class has two initial properties: \"name\" and \"year\"."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "A JavaScript class is not an object.\nIt is a template for JavaScript objects."
+    },
+    {
+      "type": "h2",
+      "text": "Using a Class"
+    },
+    {
+      "type": "p",
+      "text": "When you have a class, you can use the class to create objects:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myCar1 = new Car(\"Ford\", 2014);\n\nconst myCar2 = new Car(\"Audi\", 2019);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_init"
+    },
+    {
+      "type": "p",
+      "text": "The example above uses the Car class to create two Car objects."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "The constructor method is called automatically when a new object is created."
+    },
+    {
+      "type": "h2",
+      "text": "The Constructor Method"
+    },
+    {
+      "type": "p",
+      "text": "The constructor method is a special method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "It has to have the exact name \"constructor\"",
+        "It is executed automatically when a new object is created",
+        "It is used to initialize object properties"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "If you do not define a constructor method, JavaScript\nwill add an empty constructor method."
+    },
+    {
+      "type": "h2",
+      "text": "Class Methods"
+    },
+    {
+      "type": "p",
+      "text": "Class methods are created with the same syntax as object methods."
+    },
+    {
+      "type": "p",
+      "text": "Use the keyword class to create a class."
+    },
+    {
+      "type": "p",
+      "text": "Always add a constructor() method."
+    },
+    {
+      "type": "p",
+      "text": "Then add any number of methods."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class ClassName {\n\n   constructor() { ... }\n\n  method_1() { ... }\n\n  method_2() { ... }\n\n  method_3() { ... }\n\n}",
+      "caption": "Syntax"
+    },
+    {
+      "type": "p",
+      "text": "Create a Class method named \"age\", that returns the Car age:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n\n   constructor(name, year) {\n\n    this.name = name;\n\n    this.year = year;\n\n   }\n  age() {\n\n    const date = new Date();\n\n    return date.getFullYear() - this.year;\n\n   }\n}\n\nconst myCar = new Car(\"Ford\", 2014);\n\ndocument.getElementById(\"demo\").innerHTML =\n\n\"My car is \" + myCar.age() + \" years old.\";",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_method"
+    },
+    {
+      "type": "p",
+      "text": "You can send parameters to Class methods:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n  constructor(name, year) {\n\n  this.name = name;\n    this.year = year;\n  }\n\n  age(x) {\n    return x - this.year;\n  }\n}\n\n  const date = new Date();\n\n  let year = date.getFullYear();\n\nconst myCar = new\n  Car(\"Ford\", 2014);\ndocument.getElementById(\"demo\").innerHTML=\n\"My car is\n  \" + myCar.age(year) + \" years old.\";",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_method2"
+    },
+    {
+      "type": "h2",
+      "text": "\"use strict\""
+    },
+    {
+      "type": "p",
+      "text": "Classes syntax must be written following The \"use strict\" Directive."
+    },
+    {
+      "type": "p",
+      "text": "You will get an\nerror if you do not follow the \"strict mode\" rules."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class Car {\n\n   constructor(name, year) {\n\n    this.name = name;\n\n    this.year = year;\n\n   }\n  age() {\n\n    // date = new Date();   // This will not work\n\n    const date = new Date();  // This will work\n\n    return date.getFullYear() - this.year;\n\n   }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_class_strict_mode"
+    }
+  ]
 }

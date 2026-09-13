@@ -1,297 +1,266 @@
 {
- "slug": "html5_draganddrop",
- "course": "html",
- "order": 72,
- "url": "/html/html5_draganddrop.asp",
- "title": "API کشیدن و رها کردن در HTML",
- "summary": "API Drag and Drop به عنصرها اجازه می‌دهد کشیده و در جای دیگری رها شوند. این درس گام‌به‌گام نشان می‌دهد با draggable، رویدادهای ondragstart، ondragover و ondrop و متدهای setData و getData یک عملیات کشیدن و رها کردن کامل بسازید.",
- "objectives": [
-  "یک عنصر را با ویژگی draggable قابل کشیدن کنید",
-  "دادهٔ کشیده‌شده را با setData() و getData() جابه‌جا کنید",
-  "نقش preventDefault() در ondragover و ondrop را توضیح دهید",
-  "یک مقصد رها کردن بسازید و عنصر را داخلش قرار دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "API کشیدن و رها کردن در HTML"
-  },
-  {
-   "type": "p",
-   "text": "API Drag and Drop در HTML اجازه می‌دهد یک عنصر کشیده و رها شود."
-  },
-  {
-   "type": "h2",
-   "text": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "تصویر W3Schools را داخل مستطیل دوم بکشید."
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/img_w3slogo.gif",
-   "alt": ""
-  },
-  {
-   "type": "h2",
-   "text": "کشیدن و رها کردن"
-  },
-  {
-   "type": "p",
-   "text": "کشیدن و رها کردن قابلیتی بسیار رایج است: شیئی را «می‌گیرید» و به جای دیگری می‌کشید."
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "عددهای جدول، اولین نسخهٔ مرورگری را نشان می‌دهند که به‌طور کامل از Drag and Drop پشتیبانی می‌کند."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "API",
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "کشیدن و رها کردن",
-     "4.0",
-     "9.0",
-     "3.5",
-     "6.0",
-     "12.0"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مثال API Drag and Drop در HTML"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر یک نمونهٔ سادهٔ کشیدن و رها کردن است:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<!DOCTYPE HTML>\n\n <html>\n\n <head>\n\n  <script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n\n  ev.preventDefault();\n}\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n\n  const data = ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<img id=\"img1\" src=\"img_logo.gif\"\n  draggable=\"true\" ondragstart=\"dragstartHandler(event)\" width=\"336\"\n  height=\"69\">\n\n </body>\n\n </html>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop"
-  },
-  {
-   "type": "p",
-   "text": "شاید پیچیده به نظر برسد، اما بیایید همهٔ بخش‌های یک رویداد کشیدن و رها کردن را مرور کنیم."
-  },
-  {
-   "type": "h2",
-   "text": "یک عنصر را قابل کشیدن کنید"
-  },
-  {
-   "type": "p",
-   "text": "اول از همه: برای اینکه عنصری قابل کشیدن شود، ویژگی draggable را روی true بگذارید:"
-  },
-  {
-   "type": "p",
-   "text": "<img id=\"img1\" draggable=\"true\">"
-  },
-  {
-   "type": "p",
-   "text": "یا:"
-  },
-  {
-   "type": "p",
-   "text": "<p id=\"p1\" draggable=\"true\">متن قابل کشیدن</p>"
-  },
-  {
-   "type": "h2",
-   "text": "چه چیزی کشیده شود: ondragstart و setData()"
-  },
-  {
-   "type": "p",
-   "text": "بعد تعیین کنید وقتی عنصر کشیده می‌شود چه اتفاقی بیفتد."
-  },
-  {
-   "type": "p",
-   "text": "در مثال بالا، ویژگی ondragstart عنصر <img> تابعی را صدا می‌زند (dragstartHandler(ev)) که تعیین می‌کند چه داده‌ای کشیده شود."
-  },
-  {
-   "type": "p",
-   "text": "متد dataTransfer.setData() نوع و مقدار دادهٔ کشیده‌شده را تعیین می‌کند:"
-  },
-  {
-   "type": "p",
-   "text": "function dragstartHandler(ev) {  ev.dataTransfer.setData(\"text\",\n  ev.target.id);}"
-  },
-  {
-   "type": "p",
-   "text": "در این حالت نوع داده \\\"text\\\" است و مقدارش شناسهٔ عنصر قابل کشیدن (\\\"img1\\\") است."
-  },
-  {
-   "type": "h2",
-   "text": "کجا رها شود: ondragover"
-  },
-  {
-   "type": "p",
-   "text": "ویژگی ondragover عنصر <div> تابعی را صدا می‌زند (dragoverHandler(ev)) که تعیین می‌کند دادهٔ کشیده‌شده کجا می‌تواند رها شود."
-  },
-  {
-   "type": "p",
-   "text": "به‌طور پیش‌فرض داده‌ها و عنصرها نمی‌توانند داخل عنصرهای دیگر رها شوند. برای اجازه دادن به رها کردن باید رفتار پیش‌فرض عنصر را لغو کنیم."
-  },
-  {
-   "type": "p",
-   "text": "این کار با صدا زدن متد preventDefault() برای رویداد ondragover انجام می‌شود:"
-  },
-  {
-   "type": "p",
-   "text": "function dragoverHandler(ev) {  ev.preventDefault();}"
-  },
-  {
-   "type": "h2",
-   "text": "رها کردن را انجام دهید: ondrop"
-  },
-  {
-   "type": "p",
-   "text": "وقتی دادهٔ کشیده‌شده رها شود، رویداد drop رخ می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "در مثال بالا، ویژگی ondrop عنصر <div> تابعی به نام dropHandler(event) را صدا می‌زند:"
-  },
-  {
-   "type": "p",
-   "text": "function dropHandler(ev) {  ev.preventDefault();  const\n   data = ev.dataTransfer.getData(\"text\");  ev.target.appendChild(document.getElementById(data));\n   }"
-  },
-  {
-   "type": "p",
-   "text": "توضیح کد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "متد preventDefault() را صدا بزنید تا رفتار پیش‌فرض مرورگر با داده لغو شود (پیش‌فرض این است که داده روی رها شدن به شکل پیوند باز شود)",
-    "دادهٔ کشیده‌شده را با متد dataTransfer.getData() بگیرید. این متد هر داده‌ای را برمی‌گرداند که در متد setData() با همان نوع تنظیم شده باشد",
-    "دادهٔ کشیده‌شده همان شناسهٔ عنصر کشیده‌شده است (\\\"img1\\\")",
-    "عنصر کشیده‌شده را به عنصر مقصدِ رها کردن اضافه کنید"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مثال‌های بیشتر"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n  ev.preventDefault();\n\n  }\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n  const data =\n  ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<h1 id=\"h1\"\n  draggable=\"true\" ondragstart=\"dragstartHandler(event)\">W3Schools.com</h1>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop_h1"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n  ev.preventDefault();\n\n  }\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n  const data =\n  ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<a\n  id=\"link1\" href=\"https://w3schools.com\" draggable=\"true\" ondragstart=\"dragstartHandler(event)\">W3Schools.com</a>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop_link"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop2"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل drag.html بسازید و یک عنصر <img> با ویژگی draggable=\"true\" در صفحه بگذارید.",
-   "hint": "بدون این ویژگی هیچ کشیدنی رخ نمی‌دهد."
-  },
-  {
-   "prompt": "تابع dragstartHandler را بنویسید و با ev.dataTransfer.setData(\"text\", ev.target.id) شناسهٔ عنصر را ذخیره کنید.",
-   "hint": "نوع داده در این مثال \"text\" است."
-  },
-  {
-   "prompt": "یک عنصر <div> به‌عنوان مقصد بسازید و در رویداد ondragover متد preventDefault() را صدا بزنید.",
-   "hint": "بدون preventDefault مرورگر اجازهٔ رها کردن نمی‌دهد."
-  },
-  {
-   "prompt": "در رویداد ondrop داده را با dataTransfer.getData(\"text\") بگیرید و عنصر کشیده‌شده را با appendChild به مقصد اضافه کنید.",
-   "hint": "getData نوع داده را می‌گیرد و شناسهٔ عنصر را برمی‌گرداند."
-  },
-  {
-   "prompt": "مثال را باز کنید و توضیح دهید اگر preventDefault() را از ondrop بردارید چه اتفاقی می‌افتد.",
-   "hint": "پیش‌فرض مرورگر باز کردن داده به شکل پیوند است."
-  }
- ],
- "quiz": [
-  {
-   "question": "برای اینکه عنصری قابل کشیدن شود کدام ویژگی را روی true می‌گذاریم؟",
-   "options": [
-    "draggable",
-    "dragstart",
-    "ondrag",
-    "movable"
-   ],
-   "answer": 0,
-   "explanation": "درس می‌گوید ویژگی draggable با مقدار true عنصر را قابل کشیدن می‌کند؛ ondragstart و ondragover رویدادها هستند نه ویژگی فعال‌کنندهٔ کشیدن."
-  },
-  {
-   "question": "کدام متد، دادهٔ کشیده‌شده را ذخیره می‌کند؟",
-   "options": [
-    "dataTransfer.getData()",
-    "preventDefault()",
-    "dataTransfer.setData()",
-    "appendChild()"
-   ],
-   "answer": 2,
-   "explanation": "setData نوع و مقدار دادهٔ کشیده‌شده را تعیین می‌کند و getData همان داده را در مقصد برمی‌گرداند."
-  },
-  {
-   "question": "چرا در رویداد ondragover باید preventDefault() را صدا بزنیم؟",
-   "options": [
-    "برای پاک کردن داده‌ها",
-    "برای شروع پخش ویدیو",
-    "برای تعیین اندازهٔ عنصر",
-    "چون به‌طور پیش‌فرض عنصرها داده را نمی‌پذیرند و باید رفتار پیش‌فرض لغو شود"
-   ],
-   "answer": 3,
-   "explanation": "پیش‌فرض مرورگر اجازهٔ رها شدن داده در عنصر دیگر را نمی‌دهد؛ با preventDefault رفتار پیش‌فرض لغو می‌شود."
-  },
-  {
-   "question": "در پایان عملیات، با کدام متد عنصر کشیده‌شده را داخل مقصد می‌گذاریم؟",
-   "options": [
-    "setData()",
-    "getData()",
-    "appendChild()",
-    "preventDefault()"
-   ],
-   "answer": 2,
-   "explanation": "توضیح کد می‌گوید در آخر با appendChild عنصر کشیده‌شده را به عنصر مقصد اضافه می‌کنیم."
-  },
-  {
-   "question": "اگر در ondrop متد preventDefault() را صدا نزنید، پیش‌فرض مرورگر چیست؟",
-   "options": [
-    "باز کردن داده به شکل پیوند",
-    "حذف کردن عنصر",
-    "تغییر رنگ عنصر",
-    "بستن صفحه"
-   ],
-   "answer": 0,
-   "explanation": "درس می‌گوید پیش‌فرض مرورگر باز کردن داده به شکل پیوند است، برای همین preventDefault() لازم است."
-  }
- ]
+  "slug": "html5_draganddrop",
+  "course": "html",
+  "order": 72,
+  "url": "/html/html5_draganddrop.asp",
+  "title": "API کشیدن و رها کردن در HTML",
+  "summary": "API Drag and Drop به عنصرها اجازه می‌دهد کشیده و در جای دیگری رها شوند. این درس گام‌به‌گام نشان می‌دهد با draggable، رویدادهای ondragstart، ondragover و ondrop و متدهای setData و getData یک عملیات کشیدن و رها کردن کامل بسازید.",
+  "objectives": [
+    "یک عنصر را با ویژگی draggable قابل کشیدن کنید",
+    "دادهٔ کشیده‌شده را با setData() و getData() جابه‌جا کنید",
+    "نقش preventDefault() در ondragover و ondrop را توضیح دهید",
+    "یک مقصد رها کردن بسازید و عنصر را داخلش قرار دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "API کشیدن و رها کردن در HTML"
+    },
+    {
+      "type": "p",
+      "text": "API Drag and Drop در HTML اجازه می‌دهد یک عنصر کشیده و رها شود."
+    },
+    {
+      "type": "h2",
+      "text": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "تصویر W3Schools را داخل مستطیل دوم بکشید."
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_w3slogo.gif",
+      "alt": ""
+    },
+    {
+      "type": "h2",
+      "text": "کشیدن و رها کردن"
+    },
+    {
+      "type": "p",
+      "text": "کشیدن و رها کردن قابلیتی بسیار رایج است: شیئی را «می‌گیرید» و به جای دیگری می‌کشید."
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "عددهای جدول، اولین نسخهٔ مرورگری را نشان می‌دهند که به‌طور کامل از Drag and Drop پشتیبانی می‌کند."
+    },
+    {
+      "type": "table",
+      "headers": ["API", "", "", "", "", ""],
+      "rows": [["کشیدن و رها کردن", "4.0", "9.0", "3.5", "6.0", "12.0"]]
+    },
+    {
+      "type": "h2",
+      "text": "مثال API Drag and Drop در HTML"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر یک نمونهٔ سادهٔ کشیدن و رها کردن است:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<!DOCTYPE HTML>\n\n <html>\n\n <head>\n\n  <script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n\n  ev.preventDefault();\n}\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n\n  const data = ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<img id=\"img1\" src=\"img_logo.gif\"\n  draggable=\"true\" ondragstart=\"dragstartHandler(event)\" width=\"336\"\n  height=\"69\">\n\n </body>\n\n </html>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop"
+    },
+    {
+      "type": "p",
+      "text": "شاید پیچیده به نظر برسد، اما بیایید همهٔ بخش‌های یک رویداد کشیدن و رها کردن را مرور کنیم."
+    },
+    {
+      "type": "h2",
+      "text": "یک عنصر را قابل کشیدن کنید"
+    },
+    {
+      "type": "p",
+      "text": "اول از همه: برای اینکه عنصری قابل کشیدن شود، ویژگی draggable را روی true بگذارید:"
+    },
+    {
+      "type": "p",
+      "text": "<img id=\"img1\" draggable=\"true\">"
+    },
+    {
+      "type": "p",
+      "text": "یا:"
+    },
+    {
+      "type": "p",
+      "text": "<p id=\"p1\" draggable=\"true\">متن قابل کشیدن</p>"
+    },
+    {
+      "type": "h2",
+      "text": "چه چیزی کشیده شود: ondragstart و setData()"
+    },
+    {
+      "type": "p",
+      "text": "بعد تعیین کنید وقتی عنصر کشیده می‌شود چه اتفاقی بیفتد."
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا، ویژگی ondragstart عنصر <img> تابعی را صدا می‌زند (dragstartHandler(ev)) که تعیین می‌کند چه داده‌ای کشیده شود."
+    },
+    {
+      "type": "p",
+      "text": "متد dataTransfer.setData() نوع و مقدار دادهٔ کشیده‌شده را تعیین می‌کند:"
+    },
+    {
+      "type": "p",
+      "text": "function dragstartHandler(ev) {  ev.dataTransfer.setData(\"text\",\n  ev.target.id);}"
+    },
+    {
+      "type": "p",
+      "text": "در این حالت نوع داده \\\"text\\\" است و مقدارش شناسهٔ عنصر قابل کشیدن (\\\"img1\\\") است."
+    },
+    {
+      "type": "h2",
+      "text": "کجا رها شود: ondragover"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی ondragover عنصر <div> تابعی را صدا می‌زند (dragoverHandler(ev)) که تعیین می‌کند دادهٔ کشیده‌شده کجا می‌تواند رها شود."
+    },
+    {
+      "type": "p",
+      "text": "به‌طور پیش‌فرض داده‌ها و عنصرها نمی‌توانند داخل عنصرهای دیگر رها شوند. برای اجازه دادن به رها کردن باید رفتار پیش‌فرض عنصر را لغو کنیم."
+    },
+    {
+      "type": "p",
+      "text": "این کار با صدا زدن متد preventDefault() برای رویداد ondragover انجام می‌شود:"
+    },
+    {
+      "type": "p",
+      "text": "function dragoverHandler(ev) {  ev.preventDefault();}"
+    },
+    {
+      "type": "h2",
+      "text": "رها کردن را انجام دهید: ondrop"
+    },
+    {
+      "type": "p",
+      "text": "وقتی دادهٔ کشیده‌شده رها شود، رویداد drop رخ می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا، ویژگی ondrop عنصر <div> تابعی به نام dropHandler(event) را صدا می‌زند:"
+    },
+    {
+      "type": "p",
+      "text": "function dropHandler(ev) {  ev.preventDefault();  const\n   data = ev.dataTransfer.getData(\"text\");  ev.target.appendChild(document.getElementById(data));\n   }"
+    },
+    {
+      "type": "p",
+      "text": "توضیح کد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "متد preventDefault() را صدا بزنید تا رفتار پیش‌فرض مرورگر با داده لغو شود (پیش‌فرض این است که داده روی رها شدن به شکل پیوند باز شود)",
+        "دادهٔ کشیده‌شده را با متد dataTransfer.getData() بگیرید. این متد هر داده‌ای را برمی‌گرداند که در متد setData() با همان نوع تنظیم شده باشد",
+        "دادهٔ کشیده‌شده همان شناسهٔ عنصر کشیده‌شده است (\\\"img1\\\")",
+        "عنصر کشیده‌شده را به عنصر مقصدِ رها کردن اضافه کنید"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مثال‌های بیشتر"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n  ev.preventDefault();\n\n  }\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n  const data =\n  ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<h1 id=\"h1\"\n  draggable=\"true\" ondragstart=\"dragstartHandler(event)\">W3Schools.com</h1>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop_h1"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script>\nfunction dragstartHandler(ev) {\n  ev.dataTransfer.setData(\"text\",\n  ev.target.id);\n}\n\nfunction dragoverHandler(ev) {\n  ev.preventDefault();\n\n  }\n\nfunction dropHandler(ev) {\n  ev.preventDefault();\n  const data =\n  ev.dataTransfer.getData(\"text\");\n  ev.target.appendChild(document.getElementById(data));\n\n  }\n</script>\n</head>\n<body>\n\n<div id=\"div1\" ondrop=\"dropHandler(event)\"\n  ondragover=\"dragoverHandler(event)\"></div>\n\n<a\n  id=\"link1\" href=\"https://w3schools.com\" draggable=\"true\" ondragstart=\"dragstartHandler(event)\">W3Schools.com</a>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop_link"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_draganddrop2"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل drag.html بسازید و یک عنصر <img> با ویژگی draggable=\"true\" در صفحه بگذارید.",
+      "hint": "بدون این ویژگی هیچ کشیدنی رخ نمی‌دهد."
+    },
+    {
+      "prompt": "تابع dragstartHandler را بنویسید و با ev.dataTransfer.setData(\"text\", ev.target.id) شناسهٔ عنصر را ذخیره کنید.",
+      "hint": "نوع داده در این مثال \"text\" است."
+    },
+    {
+      "prompt": "یک عنصر <div> به‌عنوان مقصد بسازید و در رویداد ondragover متد preventDefault() را صدا بزنید.",
+      "hint": "بدون preventDefault مرورگر اجازهٔ رها کردن نمی‌دهد."
+    },
+    {
+      "prompt": "در رویداد ondrop داده را با dataTransfer.getData(\"text\") بگیرید و عنصر کشیده‌شده را با appendChild به مقصد اضافه کنید.",
+      "hint": "getData نوع داده را می‌گیرد و شناسهٔ عنصر را برمی‌گرداند."
+    },
+    {
+      "prompt": "مثال را باز کنید و توضیح دهید اگر preventDefault() را از ondrop بردارید چه اتفاقی می‌افتد.",
+      "hint": "پیش‌فرض مرورگر باز کردن داده به شکل پیوند است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای اینکه عنصری قابل کشیدن شود کدام ویژگی را روی true می‌گذاریم؟",
+      "options": ["draggable", "dragstart", "ondrag", "movable"],
+      "answer": 0,
+      "explanation": "درس می‌گوید ویژگی draggable با مقدار true عنصر را قابل کشیدن می‌کند؛ ondragstart و ondragover رویدادها هستند نه ویژگی فعال‌کنندهٔ کشیدن."
+    },
+    {
+      "question": "کدام متد، دادهٔ کشیده‌شده را ذخیره می‌کند؟",
+      "options": [
+        "dataTransfer.getData()",
+        "preventDefault()",
+        "dataTransfer.setData()",
+        "appendChild()"
+      ],
+      "answer": 2,
+      "explanation": "setData نوع و مقدار دادهٔ کشیده‌شده را تعیین می‌کند و getData همان داده را در مقصد برمی‌گرداند."
+    },
+    {
+      "question": "چرا در رویداد ondragover باید preventDefault() را صدا بزنیم؟",
+      "options": [
+        "برای پاک کردن داده‌ها",
+        "برای شروع پخش ویدیو",
+        "برای تعیین اندازهٔ عنصر",
+        "چون به‌طور پیش‌فرض عنصرها داده را نمی‌پذیرند و باید رفتار پیش‌فرض لغو شود"
+      ],
+      "answer": 3,
+      "explanation": "پیش‌فرض مرورگر اجازهٔ رها شدن داده در عنصر دیگر را نمی‌دهد؛ با preventDefault رفتار پیش‌فرض لغو می‌شود."
+    },
+    {
+      "question": "در پایان عملیات، با کدام متد عنصر کشیده‌شده را داخل مقصد می‌گذاریم؟",
+      "options": ["setData()", "getData()", "appendChild()", "preventDefault()"],
+      "answer": 2,
+      "explanation": "توضیح کد می‌گوید در آخر با appendChild عنصر کشیده‌شده را به عنصر مقصد اضافه می‌کنیم."
+    },
+    {
+      "question": "اگر در ondrop متد preventDefault() را صدا نزنید، پیش‌فرض مرورگر چیست؟",
+      "options": ["باز کردن داده به شکل پیوند", "حذف کردن عنصر", "تغییر رنگ عنصر", "بستن صفحه"],
+      "answer": 0,
+      "explanation": "درس می‌گوید پیش‌فرض مرورگر باز کردن داده به شکل پیوند است، برای همین preventDefault() لازم است."
+    }
+  ]
 }

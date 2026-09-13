@@ -1,296 +1,296 @@
 {
- "slug": "js_async_mistakes",
- "course": "js",
- "order": 229,
- "url": "/js/js_async_mistakes.asp",
- "title": "Common Asynchronous Mistakes",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Common Asynchronous Mistakes"
-  },
-  {
-   "type": "p",
-   "text": "Asynchronous programming introduces new concepts:"
-  },
-  {
-   "type": "p",
-   "text": "Many beginner mistakes happen because asynchronous code does not always execute in the order you expect."
-  },
-  {
-   "type": "p",
-   "text": "This chapter describes some of the most common mistakes and how to avoid them."
-  },
-  {
-   "type": "h2",
-   "text": "Mistake 1: Forgetting await"
-  },
-  {
-   "type": "p",
-   "text": "The fetch() method returns a Promise."
-  },
-  {
-   "type": "p",
-   "text": "If you forget await, you get the Promise instead of the downloaded data."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const response = fetch(\"demo.txt\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const response = await fetch(\"demo.txt\");",
-   "caption": "Correct"
-  },
-  {
-   "type": "h2",
-   "text": "2: Using await Outside an Async Function"
-  },
-  {
-   "type": "p",
-   "text": "The await keyword can only be used inside an async function or at the top level of a JavaScript module."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function load() {\n\n  let response = await fetch(\"demo.txt\");\n\n}",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function load() {\n\n  let response = await fetch(\"demo.txt\");\n\n}",
-   "caption": "Correct"
-  },
-  {
-   "type": "h2",
-   "text": "3: Assuming fetch() Fails on HTTP Errors"
-  },
-  {
-   "type": "p",
-   "text": "The Promise returned by fetch() is fulfilled when the server responds."
-  },
-  {
-   "type": "p",
-   "text": "An HTTP error such as 404 Not Found does not reject the Promise."
-  },
-  {
-   "type": "p",
-   "text": "Always check response.ok."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const response = await fetch(\"demo.txt\");\n\nif (!response.ok) {\n\n  throw new Error(response.status);\n\n}",
-   "caption": "Correct"
-  },
-  {
-   "type": "h2",
-   "text": "4: Thinking Callbacks Are Asynchronous"
-  },
-  {
-   "type": "p",
-   "text": "A callback is simply a function passed to another function."
-  },
-  {
-   "type": "p",
-   "text": "A callback may be called immediately or later."
-  },
-  {
-   "type": "p",
-   "text": "The callback itself does not make code asynchronous."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "numbers.forEach(show);",
-   "caption": "Synchronous"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "setTimeout(show,1000);",
-   "caption": "Asynchronous"
-  },
-  {
-   "type": "p",
-   "text": "The asynchronous behavior comes from setTimeout(), not from the callback."
-  },
-  {
-   "type": "h2",
-   "text": "5: Blocking the Event Loop"
-  },
-  {
-   "type": "p",
-   "text": "Long-running JavaScript blocks timers, user events, and screen updates."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function wait() {\n\n  let i = 4e9;\n\n  while(--i > 0);\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "6: Expecting Screen Updates Immediately"
-  },
-  {
-   "type": "p",
-   "text": "Changing the DOM does not always update the screen immediately."
-  },
-  {
-   "type": "p",
-   "text": "The browser usually waits until the current JavaScript task has finished before repainting the page."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
-   "caption": "Example"
-  },
-  {
-   "type": "h3",
-   "text": "Did you know?"
-  },
-  {
-   "type": "p",
-   "text": "Changing an element with innerHTML updates the DOM immediately, but the browser normally waits until the current JavaScript task has finished before repainting the screen."
-  },
-  {
-   "type": "p",
-   "text": "This is why long-running JavaScript can make a page appear frozen even though the DOM has already changed."
-  },
-  {
-   "type": "h2",
-   "text": "7: Running Independent Tasks One After Another"
-  },
-  {
-   "type": "p",
-   "text": "If operations are independent, start them together."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "await fetch(\"a.json\");\n\nawait fetch(\"b.json\");\n\nawait fetch(\"c.json\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "await Promise.all([\n\n  fetch(\"a.json\"),\n\n  fetch(\"b.json\"),\n\n  fetch(\"c.json\")\n\n]);",
-   "caption": "Correct"
-  },
-  {
-   "type": "h2",
-   "text": "8: Using await Inside forEach()"
-  },
-  {
-   "type": "p",
-   "text": "The forEach() method does not wait for asynchronous callbacks."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "files.forEach(async function(file){\n\n  await upload(file);\n\n});",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "for (const file of files) {\n\n  await upload(file);\n\n}",
-   "caption": "Correct"
-  },
-  {
-   "type": "h2",
-   "text": "9: Forgetting Error Handling"
-  },
-  {
-   "type": "p",
-   "text": "Promises can be rejected."
-  },
-  {
-   "type": "p",
-   "text": "Always handle possible errors."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "try {\n\n  const response = await fetch(url);\n\n}\n\ncatch(err) {\n\n  console.log(err);\n\n}",
-   "caption": "Correct"
-  },
-  {
-   "type": "h2",
-   "text": "10: Thinking setTimeout(..., 0) Runs Immediately"
-  },
-  {
-   "type": "p",
-   "text": "A zero-millisecond timeout means \"run as soon as possible.\""
-  },
-  {
-   "type": "p",
-   "text": "The callback still waits until the current JavaScript task has finished."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "console.log(\"A\");\n\nsetTimeout(() => console.log(\"B\"),0);\n\nconsole.log(\"C\");",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Checklist"
-  },
-  {
-   "type": "p",
-   "text": "Before writing asynchronous code, ask yourself:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Did I forget await?",
-    "Did I check response.ok?",
-    "Can these tasks run in parallel?",
-    "Could this block the Event Loop?",
-    "Am I handling rejected Promises?",
-    "Do I really need a callback?"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Summary"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Understand what your asynchronous API returns.",
-    "Remember that fetch() returns a Promise.",
-    "Use await correctly.",
-    "Check for HTTP errors.",
-    "Do not block the Event Loop.",
-    "Run independent tasks in parallel.",
-    "Always handle errors."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Next Chapter"
-  },
-  {
-   "type": "p",
-   "text": "The next page shows how to debug async code like a professional."
-  },
-  {
-   "type": "p",
-   "text": "You will learn breakpoints, logging patterns, and why async errors feel invisible."
-  },
-  {
-   "type": "p",
-   "text": "Debugging Asynchronous JavaScript"
-  }
- ]
+  "slug": "js_async_mistakes",
+  "course": "js",
+  "order": 229,
+  "url": "/js/js_async_mistakes.asp",
+  "title": "Common Asynchronous Mistakes",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Common Asynchronous Mistakes"
+    },
+    {
+      "type": "p",
+      "text": "Asynchronous programming introduces new concepts:"
+    },
+    {
+      "type": "p",
+      "text": "Many beginner mistakes happen because asynchronous code does not always execute in the order you expect."
+    },
+    {
+      "type": "p",
+      "text": "This chapter describes some of the most common mistakes and how to avoid them."
+    },
+    {
+      "type": "h2",
+      "text": "Mistake 1: Forgetting await"
+    },
+    {
+      "type": "p",
+      "text": "The fetch() method returns a Promise."
+    },
+    {
+      "type": "p",
+      "text": "If you forget await, you get the Promise instead of the downloaded data."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const response = fetch(\"demo.txt\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const response = await fetch(\"demo.txt\");",
+      "caption": "Correct"
+    },
+    {
+      "type": "h2",
+      "text": "2: Using await Outside an Async Function"
+    },
+    {
+      "type": "p",
+      "text": "The await keyword can only be used inside an async function or at the top level of a JavaScript module."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function load() {\n\n  let response = await fetch(\"demo.txt\");\n\n}",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function load() {\n\n  let response = await fetch(\"demo.txt\");\n\n}",
+      "caption": "Correct"
+    },
+    {
+      "type": "h2",
+      "text": "3: Assuming fetch() Fails on HTTP Errors"
+    },
+    {
+      "type": "p",
+      "text": "The Promise returned by fetch() is fulfilled when the server responds."
+    },
+    {
+      "type": "p",
+      "text": "An HTTP error such as 404 Not Found does not reject the Promise."
+    },
+    {
+      "type": "p",
+      "text": "Always check response.ok."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const response = await fetch(\"demo.txt\");\n\nif (!response.ok) {\n\n  throw new Error(response.status);\n\n}",
+      "caption": "Correct"
+    },
+    {
+      "type": "h2",
+      "text": "4: Thinking Callbacks Are Asynchronous"
+    },
+    {
+      "type": "p",
+      "text": "A callback is simply a function passed to another function."
+    },
+    {
+      "type": "p",
+      "text": "A callback may be called immediately or later."
+    },
+    {
+      "type": "p",
+      "text": "The callback itself does not make code asynchronous."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "numbers.forEach(show);",
+      "caption": "Synchronous"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "setTimeout(show,1000);",
+      "caption": "Asynchronous"
+    },
+    {
+      "type": "p",
+      "text": "The asynchronous behavior comes from setTimeout(), not from the callback."
+    },
+    {
+      "type": "h2",
+      "text": "5: Blocking the Event Loop"
+    },
+    {
+      "type": "p",
+      "text": "Long-running JavaScript blocks timers, user events, and screen updates."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function wait() {\n\n  let i = 4e9;\n\n  while(--i > 0);\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "6: Expecting Screen Updates Immediately"
+    },
+    {
+      "type": "p",
+      "text": "Changing the DOM does not always update the screen immediately."
+    },
+    {
+      "type": "p",
+      "text": "The browser usually waits until the current JavaScript task has finished before repainting the page."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
+      "caption": "Example"
+    },
+    {
+      "type": "h3",
+      "text": "Did you know?"
+    },
+    {
+      "type": "p",
+      "text": "Changing an element with innerHTML updates the DOM immediately, but the browser normally waits until the current JavaScript task has finished before repainting the screen."
+    },
+    {
+      "type": "p",
+      "text": "This is why long-running JavaScript can make a page appear frozen even though the DOM has already changed."
+    },
+    {
+      "type": "h2",
+      "text": "7: Running Independent Tasks One After Another"
+    },
+    {
+      "type": "p",
+      "text": "If operations are independent, start them together."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "await fetch(\"a.json\");\n\nawait fetch(\"b.json\");\n\nawait fetch(\"c.json\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "await Promise.all([\n\n  fetch(\"a.json\"),\n\n  fetch(\"b.json\"),\n\n  fetch(\"c.json\")\n\n]);",
+      "caption": "Correct"
+    },
+    {
+      "type": "h2",
+      "text": "8: Using await Inside forEach()"
+    },
+    {
+      "type": "p",
+      "text": "The forEach() method does not wait for asynchronous callbacks."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "files.forEach(async function(file){\n\n  await upload(file);\n\n});",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "for (const file of files) {\n\n  await upload(file);\n\n}",
+      "caption": "Correct"
+    },
+    {
+      "type": "h2",
+      "text": "9: Forgetting Error Handling"
+    },
+    {
+      "type": "p",
+      "text": "Promises can be rejected."
+    },
+    {
+      "type": "p",
+      "text": "Always handle possible errors."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "try {\n\n  const response = await fetch(url);\n\n}\n\ncatch(err) {\n\n  console.log(err);\n\n}",
+      "caption": "Correct"
+    },
+    {
+      "type": "h2",
+      "text": "10: Thinking setTimeout(..., 0) Runs Immediately"
+    },
+    {
+      "type": "p",
+      "text": "A zero-millisecond timeout means \"run as soon as possible.\""
+    },
+    {
+      "type": "p",
+      "text": "The callback still waits until the current JavaScript task has finished."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "console.log(\"A\");\n\nsetTimeout(() => console.log(\"B\"),0);\n\nconsole.log(\"C\");",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Checklist"
+    },
+    {
+      "type": "p",
+      "text": "Before writing asynchronous code, ask yourself:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Did I forget await?",
+        "Did I check response.ok?",
+        "Can these tasks run in parallel?",
+        "Could this block the Event Loop?",
+        "Am I handling rejected Promises?",
+        "Do I really need a callback?"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Summary"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Understand what your asynchronous API returns.",
+        "Remember that fetch() returns a Promise.",
+        "Use await correctly.",
+        "Check for HTTP errors.",
+        "Do not block the Event Loop.",
+        "Run independent tasks in parallel.",
+        "Always handle errors."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Next Chapter"
+    },
+    {
+      "type": "p",
+      "text": "The next page shows how to debug async code like a professional."
+    },
+    {
+      "type": "p",
+      "text": "You will learn breakpoints, logging patterns, and why async errors feel invisible."
+    },
+    {
+      "type": "p",
+      "text": "Debugging Asynchronous JavaScript"
+    }
+  ]
 }

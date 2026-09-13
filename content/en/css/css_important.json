@@ -1,153 +1,153 @@
 {
- "slug": "css_important",
- "course": "css",
- "order": 109,
- "url": "/css/css_important.asp",
- "title": "CSS The !important Rule",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "CSS The !important Rule"
-  },
-  {
-   "type": "h2",
-   "text": "CSS !important Rule"
-  },
-  {
-   "type": "p",
-   "text": "The !important rule is used to give the\nvalue of a specific property the highest priority."
-  },
-  {
-   "type": "p",
-   "text": "The !important rule will override ALL previous styling rules for that\nspecific property on that element!"
-  },
-  {
-   "type": "p",
-   "text": "The !important keyword is added to the end\nof a CSS declaration, before the semicolon."
-  },
-  {
-   "type": "h3",
-   "text": "Syntax"
-  },
-  {
-   "type": "p",
-   "text": "selector {  property: value !important;}"
-  },
-  {
-   "type": "h2",
-   "text": "CSS !important Rule Example"
-  },
-  {
-   "type": "p",
-   "text": "In the following example, all three paragraphs will get a yellow background\ncolor, even though the inline style, id selector, and the class selector have a higher\nspecificity. The !important rule overrides\nALL styling rules for that specific property on that element!"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<html>\n<head>\n<style>\np {\n  background-color: yellow\n  !important;\n}\n\n#myid {\n  background-color: blue;\n}\n\n  .myclass {\n  background-color: gray;\n}\n\n</style>\n</head>\n\n  <body>\n\n<p style=\"background-color:orange;\">This is a paragraph.</p>\n\n  <p class=\"myclass\">This is a paragraph.</p>\n<p id=\"myid\">This is a\n  paragraph.</p>\n\n</body>\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important"
-  },
-  {
-   "type": "h2",
-   "text": "Use !important Sparingly"
-  },
-  {
-   "type": "p",
-   "text": "The only way to override an !important\nrule is to include another !important\nrule on a declaration with the same (or higher) specificity in the source code - and here the problem starts!"
-  },
-  {
-   "type": "p",
-   "text": "The CSS code will be confusing and the debugging will be hard! Especially if\nyou have a large style sheet!"
-  },
-  {
-   "type": "p",
-   "text": "In the following example, it is not very clear which color is considered most important:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "p {\n  background-color: red !important;\n}\n\n#myid {\n  background-color: blue !important;\n}\n\n.myclass {\n\n  background-color: gray !important;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important2"
-  },
-  {
-   "type": "h2",
-   "text": "A Few Fair Uses of !important"
-  },
-  {
-   "type": "p",
-   "text": "The !important rule can be useful in some\ncases, like:"
-  },
-  {
-   "type": "p",
-   "text": "1. To override\na style that cannot be overridden in any other way. This could be if you are\nworking in a Content Management System (CMS) and cannot edit the CSS code.\nThen you can set some custom styles to override some of the CMS styles."
-  },
-  {
-   "type": "p",
-   "text": "2. To respect user preferences. Some users have motion\nsensitivity and prefer websites with less animation. CSS has a\n@media feature called prefers-reduced-motion\nthat lets you check if\n   a user has asked to reduce motion, such as animations or transitions.\n  You can use !important to turn off, or tone\ndown animations and transitions for the users who has activated this setting on\ntheir computer:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@media (prefers-reduced-motion: reduce) {\n\n  * {\n\n    animation: none !important;\n\n    transition: none !important;\n\n  }\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_reduced_motion"
-  },
-  {
-   "type": "p",
-   "text": "You will learn more about media queries in a later chapter."
-  },
-  {
-   "type": "p",
-   "text": "3. To create a highly specific, unchangeable style for a specific\nelement. Assume we want a special look for all link buttons on a page:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "a.button {\n  background-color: #8c8c8c;\n  color: white;\n\n  padding: 5px;\n  border: 1px solid black;\n  text-decoration:\n  none;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important3"
-  },
-  {
-   "type": "p",
-   "text": "Now, if we put a link button inside another element with\nhigher specificity, the properties might get in conflict. Here is an example of this:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "a.button {\n  background-color: #8c8c8c;\n  color: white;\n\n  padding: 5px;\n  border: 1px solid black;\n  text-decoration:\n  none;\n}\n\n#myDiv a {\n\n  color: red;\n  background-color: yellow;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important4"
-  },
-  {
-   "type": "p",
-   "text": "To \"force\" all buttons to have the same look, no matter what, we can add the !important\nrule to the properties of the button, like this:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "a.button {\n  background-color: #8c8c8c !important;\n  color: white\n  !important;\n\n  padding: 5px !important;\n  border: 1px solid black !important;\n\n  text-decoration: none !important;\n}\n\n#myDiv a {\n\n  color: red;\n  background-color: yellow;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important5"
-  }
- ]
+  "slug": "css_important",
+  "course": "css",
+  "order": 109,
+  "url": "/css/css_important.asp",
+  "title": "CSS The !important Rule",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "CSS The !important Rule"
+    },
+    {
+      "type": "h2",
+      "text": "CSS !important Rule"
+    },
+    {
+      "type": "p",
+      "text": "The !important rule is used to give the\nvalue of a specific property the highest priority."
+    },
+    {
+      "type": "p",
+      "text": "The !important rule will override ALL previous styling rules for that\nspecific property on that element!"
+    },
+    {
+      "type": "p",
+      "text": "The !important keyword is added to the end\nof a CSS declaration, before the semicolon."
+    },
+    {
+      "type": "h3",
+      "text": "Syntax"
+    },
+    {
+      "type": "p",
+      "text": "selector {  property: value !important;}"
+    },
+    {
+      "type": "h2",
+      "text": "CSS !important Rule Example"
+    },
+    {
+      "type": "p",
+      "text": "In the following example, all three paragraphs will get a yellow background\ncolor, even though the inline style, id selector, and the class selector have a higher\nspecificity. The !important rule overrides\nALL styling rules for that specific property on that element!"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<html>\n<head>\n<style>\np {\n  background-color: yellow\n  !important;\n}\n\n#myid {\n  background-color: blue;\n}\n\n  .myclass {\n  background-color: gray;\n}\n\n</style>\n</head>\n\n  <body>\n\n<p style=\"background-color:orange;\">This is a paragraph.</p>\n\n  <p class=\"myclass\">This is a paragraph.</p>\n<p id=\"myid\">This is a\n  paragraph.</p>\n\n</body>\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important"
+    },
+    {
+      "type": "h2",
+      "text": "Use !important Sparingly"
+    },
+    {
+      "type": "p",
+      "text": "The only way to override an !important\nrule is to include another !important\nrule on a declaration with the same (or higher) specificity in the source code - and here the problem starts!"
+    },
+    {
+      "type": "p",
+      "text": "The CSS code will be confusing and the debugging will be hard! Especially if\nyou have a large style sheet!"
+    },
+    {
+      "type": "p",
+      "text": "In the following example, it is not very clear which color is considered most important:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "p {\n  background-color: red !important;\n}\n\n#myid {\n  background-color: blue !important;\n}\n\n.myclass {\n\n  background-color: gray !important;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important2"
+    },
+    {
+      "type": "h2",
+      "text": "A Few Fair Uses of !important"
+    },
+    {
+      "type": "p",
+      "text": "The !important rule can be useful in some\ncases, like:"
+    },
+    {
+      "type": "p",
+      "text": "1. To override\na style that cannot be overridden in any other way. This could be if you are\nworking in a Content Management System (CMS) and cannot edit the CSS code.\nThen you can set some custom styles to override some of the CMS styles."
+    },
+    {
+      "type": "p",
+      "text": "2. To respect user preferences. Some users have motion\nsensitivity and prefer websites with less animation. CSS has a\n@media feature called prefers-reduced-motion\nthat lets you check if\n   a user has asked to reduce motion, such as animations or transitions.\n  You can use !important to turn off, or tone\ndown animations and transitions for the users who has activated this setting on\ntheir computer:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@media (prefers-reduced-motion: reduce) {\n\n  * {\n\n    animation: none !important;\n\n    transition: none !important;\n\n  }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_reduced_motion"
+    },
+    {
+      "type": "p",
+      "text": "You will learn more about media queries in a later chapter."
+    },
+    {
+      "type": "p",
+      "text": "3. To create a highly specific, unchangeable style for a specific\nelement. Assume we want a special look for all link buttons on a page:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "a.button {\n  background-color: #8c8c8c;\n  color: white;\n\n  padding: 5px;\n  border: 1px solid black;\n  text-decoration:\n  none;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important3"
+    },
+    {
+      "type": "p",
+      "text": "Now, if we put a link button inside another element with\nhigher specificity, the properties might get in conflict. Here is an example of this:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "a.button {\n  background-color: #8c8c8c;\n  color: white;\n\n  padding: 5px;\n  border: 1px solid black;\n  text-decoration:\n  none;\n}\n\n#myDiv a {\n\n  color: red;\n  background-color: yellow;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important4"
+    },
+    {
+      "type": "p",
+      "text": "To \"force\" all buttons to have the same look, no matter what, we can add the !important\nrule to the properties of the button, like this:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "a.button {\n  background-color: #8c8c8c !important;\n  color: white\n  !important;\n\n  padding: 5px !important;\n  border: 1px solid black !important;\n\n  text-decoration: none !important;\n}\n\n#myDiv a {\n\n  color: red;\n  background-color: yellow;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_important5"
+    }
+  ]
 }

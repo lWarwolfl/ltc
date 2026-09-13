@@ -1,326 +1,316 @@
 {
- "slug": "js_callback",
- "course": "js",
- "order": 203,
- "url": "/js/js_callback.asp",
- "title": "کالبک‌ها در JavaScript",
- "summary": "کالبک تابعی است که به تابع دیگری پاس داده می‌شود تا بعداً اجرا شود و پایهٔ مدل رویدادمحور و غیرهمزمان JavaScript است. در این درس انواع کالبک، مدیریت رویداد، setTimeout، متد‌های آرایه و الگوی کنترل ترتیب اجرا را با مثال می‌بینید.",
- "objectives": [
-  "توضیح دهید کالبک چیست و چرا این نام را دارد",
-  "کالبک همزمان و غیرهمزمان را از هم تشخیص دهید",
-  "تابع را بدون پرانتز به رویدادگردان و setTimeout بدهید",
-  "برای کنترل ترتیب اجرا از کالبک استفاده کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "کالبک‌ها در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "«بعداً صدایت می‌زنم!»"
-  },
-  {
-   "type": "p",
-   "text": "کالبک در JavaScript تابعی است که به عنوان آرگومان به تابع دیگری داده می‌شود و بعداً، برای انجام کاری مشخص، اجرا می‌شود؛ به همین کار «دوباره صدا زدن» می‌گویند."
-  },
-  {
-   "type": "p",
-   "text": "این سازوکار پایهٔ مدل برنامه‌نویسی رویدادمحور و غیرهمزمان (asynchronous) در JavaScript است."
-  },
-  {
-   "type": "h2",
-   "text": "تابع کالبک چیست؟"
-  },
-  {
-   "type": "p",
-   "text": "تابع کالبک تابعی است که به عنوان آرگومان وارد تابع دیگری می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "تابع کالبک قرار است بعداً اجرا شود."
-  },
-  {
-   "type": "p",
-   "text": "منظور از بعداً معمولاً وقتی است که رویدادی رخ دهد یا کاری غیرهمزمان تمام شود."
-  },
-  {
-   "type": "p",
-   "text": "نام «کالبک» از این ایده می‌آید که تابع بیرونی بعد از تمام شدن کارش «دوباره شما را صدا می‌زند»."
-  },
-  {
-   "type": "h2",
-   "text": "انواع کالبک"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "کالبک غیرهمزمان\nکالبک غیرهمزمان بعداً اجرا می‌شود و برنامهٔ اصلی بدون منتظر ماندن به کارش ادامه می‌دهد. این ویژگی برای جلوگیری از هنگ کردن برنامه در کار‌های طولانی، مثل درخواست شبکه، ضروری است.",
-    "کالبک همزمان\nکالبک همزمان بلافاصله داخل تابع بیرونی اجرا می‌شود و تا تمام نشدن آن، کار‌های بعدی را متوقف می‌کند. متد‌های آرایه مثل map()، filter() و forEach() از کالبک همزمان استفاده می‌کنند."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مدیریت رویداد"
-  },
-  {
-   "type": "p",
-   "text": "کالبک‌ها در JavaScript زیاد به کار می‌آیند، به‌ویژه در مدیریت رویداد."
-  },
-  {
-   "type": "p",
-   "text": "تعامل‌های کاربر، مثل کلیک روی دکمه یا فشردن کلید، با دادن یک تابع کالبک به گوش‌دهندهٔ رویداد (event listener) مدیریت می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.getElementById(\"myButton\").addEventListener(\"click\", displayDate);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_handler"
-  },
-  {
-   "type": "p",
-   "text": "در مثال بالا، displayDate یک تابع کالبک است که به عنوان آرگومان به متد addEventListener() داده شده است."
-  },
-  {
-   "type": "p",
-   "text": "تابع displayDate وقتی صدا زده می‌شود که کاربر روی دکمه با id=\"myButton\" کلیک کند."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "وقتی تابعی را به عنوان آرگومان می‌دهید، یادتان باشد پرانتز نگذارید.\nدرست: displayDate\nنادرست: displayDate()"
-  },
-  {
-   "type": "h2",
-   "text": "کار‌های غیرهمزمان"
-  },
-  {
-   "type": "p",
-   "text": "توابعی مثل setTimeout() از کالبک استفاده می‌کنند تا کد را بعد از یک تأخیر مشخص اجرا کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "setTimeout(myFunction, 3000);\n\nfunction myFunction() {\n\n  document.getElementById(\"demo\").innerHTML = \"I love You !!\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback5"
-  },
-  {
-   "type": "p",
-   "text": "در مثال بالا، myFunction یک تابع کالبک است که به عنوان آرگومان به setTimeout() داده شده است."
-  },
-  {
-   "type": "p",
-   "text": "عدد 3000 تعداد میلی‌ثانیه‌هایی است که تا صدا زدن myFunction فاصله می‌اندازد."
-  },
-  {
-   "type": "h2",
-   "text": "متد‌های آرایه"
-  },
-  {
-   "type": "p",
-   "text": "بسیاری از متد‌های آمادهٔ آرایه مثل map()، filter() و forEach() یک تابع کالبک می‌گیرند تا کاری که روی هر عنصر انجام می‌شود را تعیین کنند."
-  },
-  {
-   "type": "p",
-   "text": "متد forEach() یک تابع (همان تابع کالبک) را برای هر عنصر آرایه یک بار صدا می‌زند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet txt = \"\";\n\nnumbers.forEach(myFunction);\n\nfunction myFunction(value) {\n\ntxt += value + \"<br>\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach_2"
-  },
-  {
-   "type": "p",
-   "text": "متد map() با اجرای یک تابع روی هر عنصر، آرایهٔ تازه‌ای می‌سازد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value) {\n\n    return value * 2;\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map_2"
-  },
-  {
-   "type": "h2",
-   "text": "کنترل ترتیب اجرا"
-  },
-  {
-   "type": "p",
-   "text": "گاهی می‌خواهید کنترل بهتری روی زمان اجرای یک تابع داشته باشید."
-  },
-  {
-   "type": "p",
-   "text": "فرض کنید می‌خواهید یک محاسبه انجام دهید و بعد نتیجه را نمایش دهید."
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید اول تابع حسابگر myCalculator را صدا بزنید و بعد تابع نمایش myDisplayer را:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n\n  document.getElementById(\"demo\").innerHTML = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  return sum;\n\n}\n\n// Call the calculator\n\nlet result = myCalculator(5, 5);\n\n// Call the displayer\n\nmyDisplayer(result);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback3"
-  },
-  {
-   "type": "p",
-   "text": "یا می‌توانید تابع حسابگر myCalculator را صدا بزنید و بگذارید خودش تابع نمایش myDisplayer را صدا بزند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  myDisplayer(sum);\n}\n\n// Call the calculator\n\nmyCalculator(5, 5);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback8"
-  },
-  {
-   "type": "p",
-   "text": "مشکل مثال اول این است که برای دیدن نتیجه باید دو تابع را صدا بزنید."
-  },
-  {
-   "type": "p",
-   "text": "مشکل مثال دوم این است که نمی‌توانید جلوی نمایش نتیجه توسط تابع حسابگر را بگیرید."
-  },
-  {
-   "type": "p",
-   "text": "حالا وقت آن است که کالبک را وارد کنیم."
-  },
-  {
-   "type": "p",
-   "text": "با کالبک می‌توانید تابع حسابگر (myCalculator) را همراه با یک کالبک (myCallback) صدا بزنید و بگذارید بعد از تمام شدن محاسبه، خودش کالبک را اجرا کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\nfunction myCalculator(num1, num2, myCallback) {\n\n  let sum = num1 + num2;\n\n  myCallback(sum);\n}\n\nmyCalculator(5, 5, myDisplayer);",
-   "caption": "مثال (با کالبک)"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback4"
-  },
-  {
-   "type": "p",
-   "text": "در مثال بالا، myDisplayer به عنوان تابع کالبک به کار رفته است."
-  },
-  {
-   "type": "p",
-   "text": "این تابع به عنوان آرگومان به myCalculator() داده می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "مفاهیم کلیدی کالبک"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تابع به عنوان آرگومان\nچون تابع در JavaScript مثل هر متغیر یا شیء دیگری رفتار می‌کند، می‌توانید آن را به عنوان آرگومان به تابع‌های دیگر بدهید.",
-    "اجرای به تأخیر افتاده\nمهم‌ترین فایدهٔ کالبک همین تعویق اجراست؛ یعنی تابع کالبک بلافاصله اجرا نمی‌شود. در عوض بعداً اجرا می‌شود: وقتی شرطی برقرار شود، رویدادی رخ دهد یا کاری غیرهمزمان تمام شود. این سازوکار باعث می‌شود برنامه در مدت انتظار برای کار‌های طولانی، مثل گرفتن داده از سرور، خواندن فایل یا منتظر ماندن برای کلیک کاربر، بقیهٔ کد‌ها را هم اجرا کند."
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل callback1.html بسازید، یک دکمه با id=\"myButton\" بگذارید و با addEventListener یک تابع کالبک به رویداد click وصل کنید که متن دکمه را عوض کند.",
-   "hint": "نام تابع را بدون پرانتز بدهید؛ یعنی displayDate و نه displayDate()."
-  },
-  {
-   "prompt": "یک کالبک غیرهمزمان بسازید: با setTimeout یک تابع را بعد از ۳ ثانیه اجرا کنید و در کنسول چاپ کنید.",
-   "hint": "به setTimeout دو چیز می‌دهید: نام تابع بدون پرانتز و عدد میلی‌ثانیه."
-  },
-  {
-   "prompt": "با متد forEach روی آرایهٔ [45, 4, 9, 16, 25] یک کالبک بگذارید و هر عنصر را در کنسول چاپ کنید. بعد همین کار را با map انجام دهید و آرایهٔ تازه را ببینید.",
-   "hint": "forEach مقدار برنمی‌گرداند، ولی map آرایهٔ تازه می‌سازد."
-  },
-  {
-   "prompt": "دو تابع بسازید: یکی جمع دو عدد، یکی نمایش نتیجه. اول هر دو را جدا صدا بزنید و بعد نمایش را به عنوان کالبک به تابع جمع بدهید.",
-   "hint": "در حالت کالبک، تابع جمع باید پارامتر سومی به نام myCallback بگیرد."
-  },
-  {
-   "prompt": "کدی بنویسید که نشان دهد تفاوت کالبک همزمان و غیرهمزمان چیست: یک console.log قبل و بعد از setTimeout بگذارید و ترتیب چاپ را ببینید.",
-   "hint": "خط بعد از setTimeout قبل از خود کالبک اجرا می‌شود."
-  }
- ],
- "quiz": [
-  {
-   "question": "کالبک در JavaScript چیست؟",
-   "options": [
-    "تابعی که به عنوان آرگومان به تابع دیگری داده می‌شود و بعداً اجرا می‌شود",
-    "متغیری که مقدارش عوض نمی‌شود",
-    "حلقه‌ای که روی آرایه می‌گردد",
-    "نام دیگری برای رویداد کلیک"
-   ],
-   "answer": 0,
-   "explanation": "کالبک تابعی است که به تابع دیگر پاس داده می‌شود تا وقتی لازم شد اجرا شود. مابقی گزینه‌ها مفاهیم دیگری هستند."
-  },
-  {
-   "question": "وقتی تابعی را به addEventListener می‌دهیم، کدام شکل نوشتن درست است؟",
-   "options": [
-    "displayDate()",
-    "displayDate",
-    "displayDate;()",
-    "\"displayDate()\""
-   ],
-   "answer": 1,
-   "explanation": "باید خود تابع را بدهیم تا بعداً صدا زده شود؛ اگر پرانتز بگذاریم تابع همین حالا اجرا می‌شود و نتیجهٔ آن پاس داده می‌شود."
-  },
-  {
-   "question": "کدام متد آرایه کالبک می‌گیرد و آرایهٔ تازه می‌سازد؟",
-   "options": [
-    "forEach()",
-    "map()",
-    "setTimeout()",
-    "addEventListener()"
-   ],
-   "answer": 1,
-   "explanation": "map() با اجرای تابع روی هر عنصر آرایهٔ تازه برمی‌گرداند. forEach() هم کالبک می‌گیرد ولی مقداری برنمی‌گرداند و دو گزینهٔ دیگر اصلاً متد آرایه نیستند."
-  },
-  {
-   "question": "فایدهٔ اصلی کالبک چیست؟",
-   "options": [
-    "کد را کوتاه‌تر می‌کند",
-    "اجرای تابع را به بعد موکول می‌کند، مثلاً وقتی رویدادی رخ دهد یا کار غیرهمزمانی تمام شود",
-    "سرعت مرورگر را بالا می‌برد",
-    "از خطای نحوی جلوگیری می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "کالبک اجازه می‌دهد تابع بعداً اجرا شود؛ به همین دلیل برنامه می‌تواند هنگام انتظار برای کار‌های طولانی به کارش ادامه دهد."
-  },
-  {
-   "question": "در setTimeout(myFunction, 3000) عدد 3000 چه چیزی است؟",
-   "options": [
-    "تعداد میلی‌ثانیه‌های تأخیر",
-    "تعداد بار‌های اجرا",
-    "شناسهٔ تابع",
-    "تعداد آرگومان‌ها"
-   ],
-   "answer": 0,
-   "explanation": "۳۰۰۰ میلی‌ثانیه یعنی ۳ ثانیه، و بعد از آن myFunction صدا زده می‌شود؛ این عدد ربطی به تعداد اجرا یا شناسه ندارد."
-  }
- ]
+  "slug": "js_callback",
+  "course": "js",
+  "order": 203,
+  "url": "/js/js_callback.asp",
+  "title": "کالبک‌ها در JavaScript",
+  "summary": "کالبک تابعی است که به تابع دیگری پاس داده می‌شود تا بعداً اجرا شود و پایهٔ مدل رویدادمحور و غیرهمزمان JavaScript است. در این درس انواع کالبک، مدیریت رویداد، setTimeout، متد‌های آرایه و الگوی کنترل ترتیب اجرا را با مثال می‌بینید.",
+  "objectives": [
+    "توضیح دهید کالبک چیست و چرا این نام را دارد",
+    "کالبک همزمان و غیرهمزمان را از هم تشخیص دهید",
+    "تابع را بدون پرانتز به رویدادگردان و setTimeout بدهید",
+    "برای کنترل ترتیب اجرا از کالبک استفاده کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "کالبک‌ها در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "«بعداً صدایت می‌زنم!»"
+    },
+    {
+      "type": "p",
+      "text": "کالبک در JavaScript تابعی است که به عنوان آرگومان به تابع دیگری داده می‌شود و بعداً، برای انجام کاری مشخص، اجرا می‌شود؛ به همین کار «دوباره صدا زدن» می‌گویند."
+    },
+    {
+      "type": "p",
+      "text": "این سازوکار پایهٔ مدل برنامه‌نویسی رویدادمحور و غیرهمزمان (asynchronous) در JavaScript است."
+    },
+    {
+      "type": "h2",
+      "text": "تابع کالبک چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "تابع کالبک تابعی است که به عنوان آرگومان وارد تابع دیگری می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "تابع کالبک قرار است بعداً اجرا شود."
+    },
+    {
+      "type": "p",
+      "text": "منظور از بعداً معمولاً وقتی است که رویدادی رخ دهد یا کاری غیرهمزمان تمام شود."
+    },
+    {
+      "type": "p",
+      "text": "نام «کالبک» از این ایده می‌آید که تابع بیرونی بعد از تمام شدن کارش «دوباره شما را صدا می‌زند»."
+    },
+    {
+      "type": "h2",
+      "text": "انواع کالبک"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "کالبک غیرهمزمان\nکالبک غیرهمزمان بعداً اجرا می‌شود و برنامهٔ اصلی بدون منتظر ماندن به کارش ادامه می‌دهد. این ویژگی برای جلوگیری از هنگ کردن برنامه در کار‌های طولانی، مثل درخواست شبکه، ضروری است.",
+        "کالبک همزمان\nکالبک همزمان بلافاصله داخل تابع بیرونی اجرا می‌شود و تا تمام نشدن آن، کار‌های بعدی را متوقف می‌کند. متد‌های آرایه مثل map()، filter() و forEach() از کالبک همزمان استفاده می‌کنند."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مدیریت رویداد"
+    },
+    {
+      "type": "p",
+      "text": "کالبک‌ها در JavaScript زیاد به کار می‌آیند، به‌ویژه در مدیریت رویداد."
+    },
+    {
+      "type": "p",
+      "text": "تعامل‌های کاربر، مثل کلیک روی دکمه یا فشردن کلید، با دادن یک تابع کالبک به گوش‌دهندهٔ رویداد (event listener) مدیریت می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.getElementById(\"myButton\").addEventListener(\"click\", displayDate);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_handler"
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا، displayDate یک تابع کالبک است که به عنوان آرگومان به متد addEventListener() داده شده است."
+    },
+    {
+      "type": "p",
+      "text": "تابع displayDate وقتی صدا زده می‌شود که کاربر روی دکمه با id=\"myButton\" کلیک کند."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "وقتی تابعی را به عنوان آرگومان می‌دهید، یادتان باشد پرانتز نگذارید.\nدرست: displayDate\nنادرست: displayDate()"
+    },
+    {
+      "type": "h2",
+      "text": "کار‌های غیرهمزمان"
+    },
+    {
+      "type": "p",
+      "text": "توابعی مثل setTimeout() از کالبک استفاده می‌کنند تا کد را بعد از یک تأخیر مشخص اجرا کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "setTimeout(myFunction, 3000);\n\nfunction myFunction() {\n\n  document.getElementById(\"demo\").innerHTML = \"I love You !!\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback5"
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا، myFunction یک تابع کالبک است که به عنوان آرگومان به setTimeout() داده شده است."
+    },
+    {
+      "type": "p",
+      "text": "عدد 3000 تعداد میلی‌ثانیه‌هایی است که تا صدا زدن myFunction فاصله می‌اندازد."
+    },
+    {
+      "type": "h2",
+      "text": "متد‌های آرایه"
+    },
+    {
+      "type": "p",
+      "text": "بسیاری از متد‌های آمادهٔ آرایه مثل map()، filter() و forEach() یک تابع کالبک می‌گیرند تا کاری که روی هر عنصر انجام می‌شود را تعیین کنند."
+    },
+    {
+      "type": "p",
+      "text": "متد forEach() یک تابع (همان تابع کالبک) را برای هر عنصر آرایه یک بار صدا می‌زند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet txt = \"\";\n\nnumbers.forEach(myFunction);\n\nfunction myFunction(value) {\n\ntxt += value + \"<br>\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach_2"
+    },
+    {
+      "type": "p",
+      "text": "متد map() با اجرای یک تابع روی هر عنصر، آرایهٔ تازه‌ای می‌سازد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value) {\n\n    return value * 2;\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map_2"
+    },
+    {
+      "type": "h2",
+      "text": "کنترل ترتیب اجرا"
+    },
+    {
+      "type": "p",
+      "text": "گاهی می‌خواهید کنترل بهتری روی زمان اجرای یک تابع داشته باشید."
+    },
+    {
+      "type": "p",
+      "text": "فرض کنید می‌خواهید یک محاسبه انجام دهید و بعد نتیجه را نمایش دهید."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید اول تابع حسابگر myCalculator را صدا بزنید و بعد تابع نمایش myDisplayer را:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n\n  document.getElementById(\"demo\").innerHTML = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  return sum;\n\n}\n\n// Call the calculator\n\nlet result = myCalculator(5, 5);\n\n// Call the displayer\n\nmyDisplayer(result);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback3"
+    },
+    {
+      "type": "p",
+      "text": "یا می‌توانید تابع حسابگر myCalculator را صدا بزنید و بگذارید خودش تابع نمایش myDisplayer را صدا بزند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  myDisplayer(sum);\n}\n\n// Call the calculator\n\nmyCalculator(5, 5);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback8"
+    },
+    {
+      "type": "p",
+      "text": "مشکل مثال اول این است که برای دیدن نتیجه باید دو تابع را صدا بزنید."
+    },
+    {
+      "type": "p",
+      "text": "مشکل مثال دوم این است که نمی‌توانید جلوی نمایش نتیجه توسط تابع حسابگر را بگیرید."
+    },
+    {
+      "type": "p",
+      "text": "حالا وقت آن است که کالبک را وارد کنیم."
+    },
+    {
+      "type": "p",
+      "text": "با کالبک می‌توانید تابع حسابگر (myCalculator) را همراه با یک کالبک (myCallback) صدا بزنید و بگذارید بعد از تمام شدن محاسبه، خودش کالبک را اجرا کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\nfunction myCalculator(num1, num2, myCallback) {\n\n  let sum = num1 + num2;\n\n  myCallback(sum);\n}\n\nmyCalculator(5, 5, myDisplayer);",
+      "caption": "مثال (با کالبک)"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback4"
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا، myDisplayer به عنوان تابع کالبک به کار رفته است."
+    },
+    {
+      "type": "p",
+      "text": "این تابع به عنوان آرگومان به myCalculator() داده می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "مفاهیم کلیدی کالبک"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "تابع به عنوان آرگومان\nچون تابع در JavaScript مثل هر متغیر یا شیء دیگری رفتار می‌کند، می‌توانید آن را به عنوان آرگومان به تابع‌های دیگر بدهید.",
+        "اجرای به تأخیر افتاده\nمهم‌ترین فایدهٔ کالبک همین تعویق اجراست؛ یعنی تابع کالبک بلافاصله اجرا نمی‌شود. در عوض بعداً اجرا می‌شود: وقتی شرطی برقرار شود، رویدادی رخ دهد یا کاری غیرهمزمان تمام شود. این سازوکار باعث می‌شود برنامه در مدت انتظار برای کار‌های طولانی، مثل گرفتن داده از سرور، خواندن فایل یا منتظر ماندن برای کلیک کاربر، بقیهٔ کد‌ها را هم اجرا کند."
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل callback1.html بسازید، یک دکمه با id=\"myButton\" بگذارید و با addEventListener یک تابع کالبک به رویداد click وصل کنید که متن دکمه را عوض کند.",
+      "hint": "نام تابع را بدون پرانتز بدهید؛ یعنی displayDate و نه displayDate()."
+    },
+    {
+      "prompt": "یک کالبک غیرهمزمان بسازید: با setTimeout یک تابع را بعد از ۳ ثانیه اجرا کنید و در کنسول چاپ کنید.",
+      "hint": "به setTimeout دو چیز می‌دهید: نام تابع بدون پرانتز و عدد میلی‌ثانیه."
+    },
+    {
+      "prompt": "با متد forEach روی آرایهٔ [45, 4, 9, 16, 25] یک کالبک بگذارید و هر عنصر را در کنسول چاپ کنید. بعد همین کار را با map انجام دهید و آرایهٔ تازه را ببینید.",
+      "hint": "forEach مقدار برنمی‌گرداند، ولی map آرایهٔ تازه می‌سازد."
+    },
+    {
+      "prompt": "دو تابع بسازید: یکی جمع دو عدد، یکی نمایش نتیجه. اول هر دو را جدا صدا بزنید و بعد نمایش را به عنوان کالبک به تابع جمع بدهید.",
+      "hint": "در حالت کالبک، تابع جمع باید پارامتر سومی به نام myCallback بگیرد."
+    },
+    {
+      "prompt": "کدی بنویسید که نشان دهد تفاوت کالبک همزمان و غیرهمزمان چیست: یک console.log قبل و بعد از setTimeout بگذارید و ترتیب چاپ را ببینید.",
+      "hint": "خط بعد از setTimeout قبل از خود کالبک اجرا می‌شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کالبک در JavaScript چیست؟",
+      "options": [
+        "تابعی که به عنوان آرگومان به تابع دیگری داده می‌شود و بعداً اجرا می‌شود",
+        "متغیری که مقدارش عوض نمی‌شود",
+        "حلقه‌ای که روی آرایه می‌گردد",
+        "نام دیگری برای رویداد کلیک"
+      ],
+      "answer": 0,
+      "explanation": "کالبک تابعی است که به تابع دیگر پاس داده می‌شود تا وقتی لازم شد اجرا شود. مابقی گزینه‌ها مفاهیم دیگری هستند."
+    },
+    {
+      "question": "وقتی تابعی را به addEventListener می‌دهیم، کدام شکل نوشتن درست است؟",
+      "options": ["displayDate()", "displayDate", "displayDate;()", "\"displayDate()\""],
+      "answer": 1,
+      "explanation": "باید خود تابع را بدهیم تا بعداً صدا زده شود؛ اگر پرانتز بگذاریم تابع همین حالا اجرا می‌شود و نتیجهٔ آن پاس داده می‌شود."
+    },
+    {
+      "question": "کدام متد آرایه کالبک می‌گیرد و آرایهٔ تازه می‌سازد؟",
+      "options": ["forEach()", "map()", "setTimeout()", "addEventListener()"],
+      "answer": 1,
+      "explanation": "map() با اجرای تابع روی هر عنصر آرایهٔ تازه برمی‌گرداند. forEach() هم کالبک می‌گیرد ولی مقداری برنمی‌گرداند و دو گزینهٔ دیگر اصلاً متد آرایه نیستند."
+    },
+    {
+      "question": "فایدهٔ اصلی کالبک چیست؟",
+      "options": [
+        "کد را کوتاه‌تر می‌کند",
+        "اجرای تابع را به بعد موکول می‌کند، مثلاً وقتی رویدادی رخ دهد یا کار غیرهمزمانی تمام شود",
+        "سرعت مرورگر را بالا می‌برد",
+        "از خطای نحوی جلوگیری می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "کالبک اجازه می‌دهد تابع بعداً اجرا شود؛ به همین دلیل برنامه می‌تواند هنگام انتظار برای کار‌های طولانی به کارش ادامه دهد."
+    },
+    {
+      "question": "در setTimeout(myFunction, 3000) عدد 3000 چه چیزی است؟",
+      "options": [
+        "تعداد میلی‌ثانیه‌های تأخیر",
+        "تعداد بار‌های اجرا",
+        "شناسهٔ تابع",
+        "تعداد آرگومان‌ها"
+      ],
+      "answer": 0,
+      "explanation": "۳۰۰۰ میلی‌ثانیه یعنی ۳ ثانیه، و بعد از آن myFunction صدا زده می‌شود؛ این عدد ربطی به تعداد اجرا یا شناسه ندارد."
+    }
+  ]
 }

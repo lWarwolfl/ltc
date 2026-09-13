@@ -1,437 +1,402 @@
 {
- "slug": "js_json_parse",
- "course": "js",
- "order": 170,
- "url": "/js/js_json_parse.asp",
- "title": "پارس JSON در JavaScript",
- "summary": "متد JSON.parse() متن JSON را به مقدار JavaScript تبدیل می‌کند. در این درس یک شیء و یک آرایهٔ JSON را پارس می‌کنید، با reviver مقدارها را هنگام پارس تغییر می‌دهید و خطاهای JSON نامعتبر را با try...catch مدیریت می‌کنید.",
- "objectives": [
-  "با JSON.parse() متن JSON را به مقدار JavaScript تبدیل کنید",
-  "بعد از پارس با شیء و آرایه مثل مقداری معمولی JavaScript کار کنید",
-  "با پارامتر reviver مقدارهای پارس‌شده را تغییر دهید",
-  "خطای SyntaxError متن نامعتبر را با try...catch بگیرید",
-  "اشتباه‌های رایج پارس مثل پارس دوباره را تشخیص دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "پارس JSON در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "متد JSON.parse()"
-  },
-  {
-   "type": "p",
-   "text": "متد JSON.parse() متن JSON را به یک مقدار JavaScript تبدیل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "بعد از پارس، این مقدار مثل هر مقدار JavaScript دیگری قابل استفاده است."
-  },
-  {
-   "type": "h2",
-   "text": "‏JSON متن است"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON.parse() متن JSON را به مقدار JavaScript تبدیل می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "JSON.parse(text, reviver)",
-   "caption": "نحو"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "پارامتر",
-     "توضیحات"
-    ],
-    [
-     "text",
-     "متن JSONی که باید پارس شود."
-    ],
-    [
-     "reviver",
-     "تابعی اختیاری که مقدارهای پارس‌شده را تغییر می‌دهد."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پارس کردن یک شیء JSON"
-  },
-  {
-   "type": "p",
-   "text": "یک متن JSON را به شیء JavaScript تبدیل کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\nlet name= person.name;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_object"
-  },
-  {
-   "type": "p",
-   "text": "بعد از پارس، خصوصیت‌های شیء با نحو معمول JavaScript قابل دسترسی‌اند."
-  },
-  {
-   "type": "h2",
-   "text": "پارس کردن یک آرایهٔ JSON"
-  },
-  {
-   "type": "p",
-   "text": "یک متن JSON را به آرایهٔ JavaScript تبدیل کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nlet name= cars[0];",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_array"
-  },
-  {
-   "type": "p",
-   "text": "بعد از پارس می‌توانید از متدهای معمول آرایه در JavaScript استفاده کنید."
-  },
-  {
-   "type": "h2",
-   "text": "پارس کردن دیگر مقدارهای JSON"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON.parse() می‌تواند هر مقدار معتبر JSON را پارس کند."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "متن JSON",
-     "مقدار JavaScript"
-    ],
-    [
-     "\"John\"",
-     "رشته"
-    ],
-    [
-     "42",
-     "عدد"
-    ],
-    [
-     "true",
-     "بولی"
-    ],
-    [
-     "null",
-     "null"
-    ],
-    [
-     "[1,2,3]",
-     "آرایه"
-    ],
-    [
-     "{\"x\":1}",
-     "شیء"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let value;\n\nvalue = JSON.parse('\"John\"');\n\nvalue = JSON.parse('42');\n\nvalue = JSON.parse('true');\n\nvalue = JSON.parse('null');",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_all"
-  },
-  {
-   "type": "h2",
-   "text": "کاربرد رایج JSON"
-  },
-  {
-   "type": "p",
-   "text": "یکی از کاربردهای رایج JSON رد و بدل کردن داده با وب‌سرور است."
-  },
-  {
-   "type": "p",
-   "text": "وقتی داده را از وب‌سرور می‌گیرید، آن داده یک رشته است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "'{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}'",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "برای تبدیل رشتهٔ متنی به شیء JavaScript از JSON.parse() استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}';\n\nconst person = JSON.parse(text);",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "از داده‌های همین شیء در صفحهٔ خودتان استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\n// Display it in your HTML page\n\ndocument.getElementById(\"demo\").innerHTML = person.name;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parser"
-  },
-  {
-   "type": "h2",
-   "text": "تابع reviver"
-  },
-  {
-   "type": "p",
-   "text": "آرگومان اختیاری reviver یک تابع کالبک است که برای تغییر دادهٔ پارس‌شده به کار می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "این تابع دو آرگومان می‌گیرد: کلید خصوصیت و مقدار آن."
-  },
-  {
-   "type": "p",
-   "text": "مقدار برگشتی جای مقدار اصلی را می‌گیرد:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تغییر یک مقدار: مقدار تغییر‌یافته را برگردانید.",
-    "بدون تغییر گذاشتن: مقدار اصلی را برگردانید.",
-    "حذف یک مقدار: مقدار undefined را برگردانید."
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '{\"name\":\"John\",\"age\":\"30\"}';\n\nconst person = JSON.parse(text, function(key, value) {\n\n// Convert the age to a number\n\n  if (key == \"age\") {\n\n    return Number(value);\n\n  }\n\n// Return other keys/values unchanged\n\n  return value;\n\n});\n\ntypeof person.age; // number",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_reviver"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON از شیءهای Date پشتیبانی نمی‌کند، پس آن‌ها به‌صورت رشته سریالایز می‌شوند. با reviver می‌توان هنگام پارس، رشته‌های تاریخ را دوباره به نمونه‌های واقعی Date در JavaScript تبدیل کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = '{\"event\": \"Conference\", \"date\": \"2026-07-22T11:28:00.000Z\"}';\n\nconst myObject = JSON.parse(text, (key, value) => {\n\n// Convert date string to a Date object\n\n  if (key === \"date\") {\n\n    return new Date(value); // Converts the string back to a Date object\n\n  }\n\n// Return other keys/values unchanged\n\n  return value;\n\n});\n\ntypeof myObject.date; // object",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_reviver_2"
-  },
-  {
-   "type": "h2",
-   "text": "‏JSON نامعتبر"
-  },
-  {
-   "type": "p",
-   "text": "اگر متن JSON معتبر نباشد، JSON.parse() یک SyntaxError پرتاب می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = \"{name:'John'}\";\n\nJSON.parse(text);",
-   "caption": "‏JSON نامعتبر"
-  },
-  {
-   "type": "p",
-   "text": "مثال بالا به دو دلیل نامعتبر است:"
-  },
-  {
-   "type": "p",
-   "text": "نام خصوصیت‌ها داخل کوتیشن دوتایی نیستند."
-  },
-  {
-   "type": "p",
-   "text": "رشته‌ها نمی‌توانند از کوتیشن تک استفاده کنند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "{\"name\":\"John\"}",
-   "caption": "معتبر"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "{'name':\"John\"}\n\n{\"name\":'John'}\n\n{name:\"John\"}\n\n{\"name\":John}",
-   "caption": "معتبر"
-  },
-  {
-   "type": "h2",
-   "text": "مدیریت خطاهای پارس"
-  },
-  {
-   "type": "p",
-   "text": "برای مدیریت JSON نامعتبر از try...catch استفاده کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = \"{name:'John'}\";\n\ntry {\n\n  const person = JSON.parse(text);\n\n}\n\ncatch(err) {\n\n  myDisplayer(err);\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_try_catch"
-  },
-  {
-   "type": "h2",
-   "text": "اشتباه‌های رایج در پارس"
-  },
-  {
-   "type": "h3",
-   "text": "پارس کردن یک شیء JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON.parse() منتظر متن JSON است، نه شیء JavaScript."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name: \"John\"};\n\nconst result = JSON.parse(person);",
-   "caption": "نادرست"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '{\"name\":\"John\"}';\n\nconst person = JSON.parse(text);",
-   "caption": "نادرست"
-  },
-  {
-   "type": "h3",
-   "text": "پارس کردن دوبارهٔ JSON"
-  },
-  {
-   "type": "p",
-   "text": "بعد از پارس شدن JSON، نتیجه از قبل یک مقدار JavaScript است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = JSON.parse('{\"name\":\"John\"}');\n\nconst result = JSON.parse(person);",
-   "caption": "نادرست"
-  },
-  {
-   "type": "h3",
-   "text": "توجه"
-  },
-  {
-   "type": "p",
-   "text": "‏JSON.parse() را فقط وقتی صدا بزنید که مقدار، متن JSON باشد."
-  },
-  {
-   "type": "p",
-   "text": "مطمئن شوید متن در قالب JSON است، وگرنه خطای نحو می‌گیرید."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک رشتهٔ JSON با سه خصوصیت بسازید و با JSON.parse() آن را به شیء تبدیل کنید، بعد یکی از خصوصیت‌ها را در کنسول چاپ کنید.",
-   "hint": "پیش از پارس، دسترسی به name یک رشته است؛ بعد از پارس یک شیء واقعی دارید."
-  },
-  {
-   "prompt": "یک متن JSON آرایه‌ای بسازید، پارسش کنید و بعد از پارس با متدهای آرایه مثل length و push روی آن کار کنید.",
-   "hint": "نتیجهٔ پارس یک آرایهٔ واقعی JavaScript است، نه رشته؛ پس متدهای آرایه کار می‌کنند."
-  },
-  {
-   "prompt": "یک متن JSON نامعتبر به JSON.parse() بدهید، خطا را با try...catch بگیرید و پیام آن را در کنسول چاپ کنید.",
-   "hint": "بدون try...catch خطای SyntaxError باعث متوقف شدن اجرای کد می‌شود."
-  },
-  {
-   "prompt": "با پارامتر دوم JSON.parse() یک تابع reviver بنویسید که همهٔ مقدارهای رشته‌ای را به حروف بزرگ تبدیل کند.",
-   "hint": "reviver کلید و مقدار می‌گیرد و آنچه برمی‌گرداند جای مقدار اصلی را می‌گیرد."
-  },
-  {
-   "prompt": "یک تاریخ را به‌صورت رشته در JSON ذخیره کنید و با reviver هنگام پارس دوباره آن را به شیء Date تبدیل کنید.",
-   "hint": "بدون reviver مقدار همان رشته می‌ماند و متدهای Date را ندارد."
-  }
- ],
- "quiz": [
-  {
-   "question": "اگر متن JSON نامعتبر باشد، JSON.parse() چه می‌کند؟",
-   "options": [
-    "null برمی‌گرداند",
-    "undefined برمی‌گرداند",
-    "یک SyntaxError پرتاب می‌کند",
-    "متن را دست‌نخورده برمی‌گرداند"
-   ],
-   "answer": 2,
-   "explanation": "‏JSON.parse() روی متن نامعتبر خطای نحو پرتاب می‌کند، نه اینکه مقدار خالی برگرداند؛ به همین دلیل برای دادهٔ مشکوک باید از try...catch استفاده کرد."
-  },
-  {
-   "question": "پارامتر دوم JSON.parse() چیست؟",
-   "options": [
-    "آرایه‌ای از نام خصوصیت‌ها",
-    "یک تابع کالبک به نام reviver",
-    "تعداد فاصله‌های تودرتویی",
-    "مقدار پیش‌فرض برای خصوصیت‌های غایب"
-   ],
-   "answer": 1,
-   "explanation": "پارامتر دوم reviver است، تابعی اختیاری که کلید و مقدار هر خصوصیت را می‌گیرد و مقدار برگشتی‌اش جای مقدار اصلی را می‌گیرد."
-  },
-  {
-   "question": "اگر reviver برای یک مقدار undefined برگرداند چه اتفاقی می‌افتد؟",
-   "options": [
-    "آن خصوصیت حذف می‌شود",
-    "مقدار آن null می‌شود",
-    "خطا می‌گیریم",
-    "مقدار بدون تغییر می‌ماند"
-   ],
-   "answer": 0,
-   "explanation": "برگرداندن undefined از reviver یعنی آن خصوصیت حذف شود. برای نگه‌داشتن مقدار بدون تغییر باید همان مقدار اصلی برگردانده شود."
-  },
-  {
-   "question": "نتیجهٔ JSON.parse(\"[1,2,3]\") چه نوعی دارد؟",
-   "options": [
-    "رشته",
-    "شیء",
-    "آرایه",
-    "بولی"
-   ],
-   "answer": 2,
-   "explanation": "‏JSON.parse() همان مقداری را برمی‌گرداند که متن JSON نشان می‌دهد؛ اینجا متن یک آرایهٔ JSON است، پس نتیجه یک آرایهٔ JavaScript است و متدهای آرایه روی آن کار می‌کنند."
-  },
-  {
-   "question": "چرا نباید نتیجهٔ JSON.parse() را دوباره به JSON.parse() بدهید؟",
-   "options": [
-    "چون کند است",
-    "چون نتیجه دیگر متن نیست و یک مقدار JavaScript است",
-    "چون همیشه null برمی‌گرداند",
-    "چون فقط آرایه‌ها را دوباره پارس می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "بعد از پارس، مقدار دیگر متن JSON نیست بلکه یک مقدار JavaScript است؛ پس دوباره پارس کردن اشتباه است (و اگر رشته‌ای هم بماند، باید قالب JSON داشته باشد)."
-  }
- ]
+  "slug": "js_json_parse",
+  "course": "js",
+  "order": 170,
+  "url": "/js/js_json_parse.asp",
+  "title": "پارس JSON در JavaScript",
+  "summary": "متد JSON.parse() متن JSON را به مقدار JavaScript تبدیل می‌کند. در این درس یک شیء و یک آرایهٔ JSON را پارس می‌کنید، با reviver مقدارها را هنگام پارس تغییر می‌دهید و خطاهای JSON نامعتبر را با try...catch مدیریت می‌کنید.",
+  "objectives": [
+    "با JSON.parse() متن JSON را به مقدار JavaScript تبدیل کنید",
+    "بعد از پارس با شیء و آرایه مثل مقداری معمولی JavaScript کار کنید",
+    "با پارامتر reviver مقدارهای پارس‌شده را تغییر دهید",
+    "خطای SyntaxError متن نامعتبر را با try...catch بگیرید",
+    "اشتباه‌های رایج پارس مثل پارس دوباره را تشخیص دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "پارس JSON در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "متد JSON.parse()"
+    },
+    {
+      "type": "p",
+      "text": "متد JSON.parse() متن JSON را به یک مقدار JavaScript تبدیل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "بعد از پارس، این مقدار مثل هر مقدار JavaScript دیگری قابل استفاده است."
+    },
+    {
+      "type": "h2",
+      "text": "‏JSON متن است"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON.parse() متن JSON را به مقدار JavaScript تبدیل می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "JSON.parse(text, reviver)",
+      "caption": "نحو"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["پارامتر", "توضیحات"],
+        ["text", "متن JSONی که باید پارس شود."],
+        ["reviver", "تابعی اختیاری که مقدارهای پارس‌شده را تغییر می‌دهد."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پارس کردن یک شیء JSON"
+    },
+    {
+      "type": "p",
+      "text": "یک متن JSON را به شیء JavaScript تبدیل کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\nlet name= person.name;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_object"
+    },
+    {
+      "type": "p",
+      "text": "بعد از پارس، خصوصیت‌های شیء با نحو معمول JavaScript قابل دسترسی‌اند."
+    },
+    {
+      "type": "h2",
+      "text": "پارس کردن یک آرایهٔ JSON"
+    },
+    {
+      "type": "p",
+      "text": "یک متن JSON را به آرایهٔ JavaScript تبدیل کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nlet name= cars[0];",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_array"
+    },
+    {
+      "type": "p",
+      "text": "بعد از پارس می‌توانید از متدهای معمول آرایه در JavaScript استفاده کنید."
+    },
+    {
+      "type": "h2",
+      "text": "پارس کردن دیگر مقدارهای JSON"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON.parse() می‌تواند هر مقدار معتبر JSON را پارس کند."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["متن JSON", "مقدار JavaScript"],
+        ["\"John\"", "رشته"],
+        ["42", "عدد"],
+        ["true", "بولی"],
+        ["null", "null"],
+        ["[1,2,3]", "آرایه"],
+        ["{\"x\":1}", "شیء"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let value;\n\nvalue = JSON.parse('\"John\"');\n\nvalue = JSON.parse('42');\n\nvalue = JSON.parse('true');\n\nvalue = JSON.parse('null');",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_all"
+    },
+    {
+      "type": "h2",
+      "text": "کاربرد رایج JSON"
+    },
+    {
+      "type": "p",
+      "text": "یکی از کاربردهای رایج JSON رد و بدل کردن داده با وب‌سرور است."
+    },
+    {
+      "type": "p",
+      "text": "وقتی داده را از وب‌سرور می‌گیرید، آن داده یک رشته است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "'{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}'",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "برای تبدیل رشتهٔ متنی به شیء JavaScript از JSON.parse() استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '{\"name\":\"John\", \"age\":30, \"city\":\"New York\"}';\n\nconst person = JSON.parse(text);",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "از داده‌های همین شیء در صفحهٔ خودتان استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\n// Display it in your HTML page\n\ndocument.getElementById(\"demo\").innerHTML = person.name;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parser"
+    },
+    {
+      "type": "h2",
+      "text": "تابع reviver"
+    },
+    {
+      "type": "p",
+      "text": "آرگومان اختیاری reviver یک تابع کالبک است که برای تغییر دادهٔ پارس‌شده به کار می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "این تابع دو آرگومان می‌گیرد: کلید خصوصیت و مقدار آن."
+    },
+    {
+      "type": "p",
+      "text": "مقدار برگشتی جای مقدار اصلی را می‌گیرد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "تغییر یک مقدار: مقدار تغییر‌یافته را برگردانید.",
+        "بدون تغییر گذاشتن: مقدار اصلی را برگردانید.",
+        "حذف یک مقدار: مقدار undefined را برگردانید."
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '{\"name\":\"John\",\"age\":\"30\"}';\n\nconst person = JSON.parse(text, function(key, value) {\n\n// Convert the age to a number\n\n  if (key == \"age\") {\n\n    return Number(value);\n\n  }\n\n// Return other keys/values unchanged\n\n  return value;\n\n});\n\ntypeof person.age; // number",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_reviver"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON از شیءهای Date پشتیبانی نمی‌کند، پس آن‌ها به‌صورت رشته سریالایز می‌شوند. با reviver می‌توان هنگام پارس، رشته‌های تاریخ را دوباره به نمونه‌های واقعی Date در JavaScript تبدیل کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = '{\"event\": \"Conference\", \"date\": \"2026-07-22T11:28:00.000Z\"}';\n\nconst myObject = JSON.parse(text, (key, value) => {\n\n// Convert date string to a Date object\n\n  if (key === \"date\") {\n\n    return new Date(value); // Converts the string back to a Date object\n\n  }\n\n// Return other keys/values unchanged\n\n  return value;\n\n});\n\ntypeof myObject.date; // object",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_reviver_2"
+    },
+    {
+      "type": "h2",
+      "text": "‏JSON نامعتبر"
+    },
+    {
+      "type": "p",
+      "text": "اگر متن JSON معتبر نباشد، JSON.parse() یک SyntaxError پرتاب می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = \"{name:'John'}\";\n\nJSON.parse(text);",
+      "caption": "‏JSON نامعتبر"
+    },
+    {
+      "type": "p",
+      "text": "مثال بالا به دو دلیل نامعتبر است:"
+    },
+    {
+      "type": "p",
+      "text": "نام خصوصیت‌ها داخل کوتیشن دوتایی نیستند."
+    },
+    {
+      "type": "p",
+      "text": "رشته‌ها نمی‌توانند از کوتیشن تک استفاده کنند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "{\"name\":\"John\"}",
+      "caption": "معتبر"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "{'name':\"John\"}\n\n{\"name\":'John'}\n\n{name:\"John\"}\n\n{\"name\":John}",
+      "caption": "معتبر"
+    },
+    {
+      "type": "h2",
+      "text": "مدیریت خطاهای پارس"
+    },
+    {
+      "type": "p",
+      "text": "برای مدیریت JSON نامعتبر از try...catch استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = \"{name:'John'}\";\n\ntry {\n\n  const person = JSON.parse(text);\n\n}\n\ncatch(err) {\n\n  myDisplayer(err);\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_parse_try_catch"
+    },
+    {
+      "type": "h2",
+      "text": "اشتباه‌های رایج در پارس"
+    },
+    {
+      "type": "h3",
+      "text": "پارس کردن یک شیء JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON.parse() منتظر متن JSON است، نه شیء JavaScript."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name: \"John\"};\n\nconst result = JSON.parse(person);",
+      "caption": "نادرست"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '{\"name\":\"John\"}';\n\nconst person = JSON.parse(text);",
+      "caption": "نادرست"
+    },
+    {
+      "type": "h3",
+      "text": "پارس کردن دوبارهٔ JSON"
+    },
+    {
+      "type": "p",
+      "text": "بعد از پارس شدن JSON، نتیجه از قبل یک مقدار JavaScript است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = JSON.parse('{\"name\":\"John\"}');\n\nconst result = JSON.parse(person);",
+      "caption": "نادرست"
+    },
+    {
+      "type": "h3",
+      "text": "توجه"
+    },
+    {
+      "type": "p",
+      "text": "‏JSON.parse() را فقط وقتی صدا بزنید که مقدار، متن JSON باشد."
+    },
+    {
+      "type": "p",
+      "text": "مطمئن شوید متن در قالب JSON است، وگرنه خطای نحو می‌گیرید."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک رشتهٔ JSON با سه خصوصیت بسازید و با JSON.parse() آن را به شیء تبدیل کنید، بعد یکی از خصوصیت‌ها را در کنسول چاپ کنید.",
+      "hint": "پیش از پارس، دسترسی به name یک رشته است؛ بعد از پارس یک شیء واقعی دارید."
+    },
+    {
+      "prompt": "یک متن JSON آرایه‌ای بسازید، پارسش کنید و بعد از پارس با متدهای آرایه مثل length و push روی آن کار کنید.",
+      "hint": "نتیجهٔ پارس یک آرایهٔ واقعی JavaScript است، نه رشته؛ پس متدهای آرایه کار می‌کنند."
+    },
+    {
+      "prompt": "یک متن JSON نامعتبر به JSON.parse() بدهید، خطا را با try...catch بگیرید و پیام آن را در کنسول چاپ کنید.",
+      "hint": "بدون try...catch خطای SyntaxError باعث متوقف شدن اجرای کد می‌شود."
+    },
+    {
+      "prompt": "با پارامتر دوم JSON.parse() یک تابع reviver بنویسید که همهٔ مقدارهای رشته‌ای را به حروف بزرگ تبدیل کند.",
+      "hint": "reviver کلید و مقدار می‌گیرد و آنچه برمی‌گرداند جای مقدار اصلی را می‌گیرد."
+    },
+    {
+      "prompt": "یک تاریخ را به‌صورت رشته در JSON ذخیره کنید و با reviver هنگام پارس دوباره آن را به شیء Date تبدیل کنید.",
+      "hint": "بدون reviver مقدار همان رشته می‌ماند و متدهای Date را ندارد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "اگر متن JSON نامعتبر باشد، JSON.parse() چه می‌کند؟",
+      "options": [
+        "null برمی‌گرداند",
+        "undefined برمی‌گرداند",
+        "یک SyntaxError پرتاب می‌کند",
+        "متن را دست‌نخورده برمی‌گرداند"
+      ],
+      "answer": 2,
+      "explanation": "‏JSON.parse() روی متن نامعتبر خطای نحو پرتاب می‌کند، نه اینکه مقدار خالی برگرداند؛ به همین دلیل برای دادهٔ مشکوک باید از try...catch استفاده کرد."
+    },
+    {
+      "question": "پارامتر دوم JSON.parse() چیست؟",
+      "options": [
+        "آرایه‌ای از نام خصوصیت‌ها",
+        "یک تابع کالبک به نام reviver",
+        "تعداد فاصله‌های تودرتویی",
+        "مقدار پیش‌فرض برای خصوصیت‌های غایب"
+      ],
+      "answer": 1,
+      "explanation": "پارامتر دوم reviver است، تابعی اختیاری که کلید و مقدار هر خصوصیت را می‌گیرد و مقدار برگشتی‌اش جای مقدار اصلی را می‌گیرد."
+    },
+    {
+      "question": "اگر reviver برای یک مقدار undefined برگرداند چه اتفاقی می‌افتد؟",
+      "options": [
+        "آن خصوصیت حذف می‌شود",
+        "مقدار آن null می‌شود",
+        "خطا می‌گیریم",
+        "مقدار بدون تغییر می‌ماند"
+      ],
+      "answer": 0,
+      "explanation": "برگرداندن undefined از reviver یعنی آن خصوصیت حذف شود. برای نگه‌داشتن مقدار بدون تغییر باید همان مقدار اصلی برگردانده شود."
+    },
+    {
+      "question": "نتیجهٔ JSON.parse(\"[1,2,3]\") چه نوعی دارد؟",
+      "options": ["رشته", "شیء", "آرایه", "بولی"],
+      "answer": 2,
+      "explanation": "‏JSON.parse() همان مقداری را برمی‌گرداند که متن JSON نشان می‌دهد؛ اینجا متن یک آرایهٔ JSON است، پس نتیجه یک آرایهٔ JavaScript است و متدهای آرایه روی آن کار می‌کنند."
+    },
+    {
+      "question": "چرا نباید نتیجهٔ JSON.parse() را دوباره به JSON.parse() بدهید؟",
+      "options": [
+        "چون کند است",
+        "چون نتیجه دیگر متن نیست و یک مقدار JavaScript است",
+        "چون همیشه null برمی‌گرداند",
+        "چون فقط آرایه‌ها را دوباره پارس می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "بعد از پارس، مقدار دیگر متن JSON نیست بلکه یک مقدار JavaScript است؛ پس دوباره پارس کردن اشتباه است (و اگر رشته‌ای هم بماند، باید قالب JSON داشته باشد)."
+    }
+  ]
 }

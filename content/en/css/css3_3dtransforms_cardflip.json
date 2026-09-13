@@ -1,119 +1,119 @@
 {
- "slug": "css3_3dtransforms_cardflip",
- "course": "css",
- "order": 133,
- "url": "/css/css3_3dtransforms_cardflip.asp",
- "title": "CSS 3D Transforms - Card Flip",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "CSS 3D Transforms - Card Flip"
-  },
-  {
-   "type": "h2",
-   "text": "CSS Card Flip"
-  },
-  {
-   "type": "p",
-   "text": "Here we demonstrate how to make a classic 3D object: Flipping a card."
-  },
-  {
-   "type": "h2",
-   "text": "Front"
-  },
-  {
-   "type": "h2",
-   "text": "Back"
-  },
-  {
-   "type": "h2",
-   "text": "The HTML Structure"
-  },
-  {
-   "type": "p",
-   "text": "Let's start with the basic HTML:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div class=\"container\">\n  <div class=\"card\">\n\n  <div class=\"face front\"><h2>Front</h2></div>\n    <div\n  class=\"face back\"><h2>Back</h2></div>\n  </div>\n</div>",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "The container element will house the 3D\nspace. The card element acts as the 3D object.\nTwo separate face elements are used for the\nfront and back faces of the card."
-  },
-  {
-   "type": "h2",
-   "text": "The CSS Styling"
-  },
-  {
-   "type": "p",
-   "text": "First, we define the 3D container box: Apply perspective, along with height and\nwidth:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n  width: 200px;\n  height: 250px;\n\n  perspective: 600px;\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Now the card element can be transformed in its\ncontainer's 3D space. We\nadd width: 100%; and height: 100%;. The position: relative is used to position card faces absolutely.\nThe transform-style: preserve-3d is essential here. It forces child elements\ninto 3D space. Without this, the faces flatten into a 2D sheet. We also add a CSS transition, so users can see the transform take effect:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".card {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transition: transform 1s;\n  transform-style:\n  preserve-3d;\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Then, we add some base styling for the two card faces. To position the faces in 3D space, we will need to reset their positions in 2D with\nposition: absolute. To hide the back-side of the faces when they are faced away\nfrom the viewer, we use backface-visibility: hidden:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".face {\n  position: absolute;\n  height: 100%;\n  width:\n  100%;\n  backface-visibility: hidden;\n  text-align: center;\n\n  }",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Next, style the front and backside, we add a basic 3D transform of rotateY(180deg)\nto the backside:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".front {\n  background: green;\n}\n\n.back {\n\n  background: red;\n  transform: rotateY(180deg);\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "With the front and back faces in place, the .card requires a style for when it is flipped.\nHere we do a horizontal flip when moving the mouse over the container:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container:hover .card {\n  transform: rotateY(180deg);\n}",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Full Example of Card Flip"
-  },
-  {
-   "type": "p",
-   "text": "Here is the full example of the card flip:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n  width: 200px;\n  height: 250px;\n\n  perspective: 600px;\n}\n\n.card {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transition: transform 1s;\n  transform-style:\n  preserve-3d;\n}\n\n.face {\n  position: absolute;\n\n  height: 100%;\n  width: 100%;\n  backface-visibility: hidden;\n\n  text-align: center;\n}\n\n.front {\n  background: green;\n}\n\n.back {\n  background: red;\n  transform: rotateY(180deg);\n\n  }\n\n.container:hover .card {\n  transform: rotateY(180deg);\n\n  }",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_cardflip"
-  }
- ]
+  "slug": "css3_3dtransforms_cardflip",
+  "course": "css",
+  "order": 133,
+  "url": "/css/css3_3dtransforms_cardflip.asp",
+  "title": "CSS 3D Transforms - Card Flip",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "CSS 3D Transforms - Card Flip"
+    },
+    {
+      "type": "h2",
+      "text": "CSS Card Flip"
+    },
+    {
+      "type": "p",
+      "text": "Here we demonstrate how to make a classic 3D object: Flipping a card."
+    },
+    {
+      "type": "h2",
+      "text": "Front"
+    },
+    {
+      "type": "h2",
+      "text": "Back"
+    },
+    {
+      "type": "h2",
+      "text": "The HTML Structure"
+    },
+    {
+      "type": "p",
+      "text": "Let's start with the basic HTML:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div class=\"container\">\n  <div class=\"card\">\n\n  <div class=\"face front\"><h2>Front</h2></div>\n    <div\n  class=\"face back\"><h2>Back</h2></div>\n  </div>\n</div>",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "The container element will house the 3D\nspace. The card element acts as the 3D object.\nTwo separate face elements are used for the\nfront and back faces of the card."
+    },
+    {
+      "type": "h2",
+      "text": "The CSS Styling"
+    },
+    {
+      "type": "p",
+      "text": "First, we define the 3D container box: Apply perspective, along with height and\nwidth:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n  width: 200px;\n  height: 250px;\n\n  perspective: 600px;\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Now the card element can be transformed in its\ncontainer's 3D space. We\nadd width: 100%; and height: 100%;. The position: relative is used to position card faces absolutely.\nThe transform-style: preserve-3d is essential here. It forces child elements\ninto 3D space. Without this, the faces flatten into a 2D sheet. We also add a CSS transition, so users can see the transform take effect:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".card {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transition: transform 1s;\n  transform-style:\n  preserve-3d;\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Then, we add some base styling for the two card faces. To position the faces in 3D space, we will need to reset their positions in 2D with\nposition: absolute. To hide the back-side of the faces when they are faced away\nfrom the viewer, we use backface-visibility: hidden:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".face {\n  position: absolute;\n  height: 100%;\n  width:\n  100%;\n  backface-visibility: hidden;\n  text-align: center;\n\n  }",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Next, style the front and backside, we add a basic 3D transform of rotateY(180deg)\nto the backside:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".front {\n  background: green;\n}\n\n.back {\n\n  background: red;\n  transform: rotateY(180deg);\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "With the front and back faces in place, the .card requires a style for when it is flipped.\nHere we do a horizontal flip when moving the mouse over the container:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container:hover .card {\n  transform: rotateY(180deg);\n}",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Full Example of Card Flip"
+    },
+    {
+      "type": "p",
+      "text": "Here is the full example of the card flip:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n  width: 200px;\n  height: 250px;\n\n  perspective: 600px;\n}\n\n.card {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transition: transform 1s;\n  transform-style:\n  preserve-3d;\n}\n\n.face {\n  position: absolute;\n\n  height: 100%;\n  width: 100%;\n  backface-visibility: hidden;\n\n  text-align: center;\n}\n\n.front {\n  background: green;\n}\n\n.back {\n  background: red;\n  transform: rotateY(180deg);\n\n  }\n\n.container:hover .card {\n  transform: rotateY(180deg);\n\n  }",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_cardflip"
+    }
+  ]
 }

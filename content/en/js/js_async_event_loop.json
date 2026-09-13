@@ -1,441 +1,400 @@
 {
- "slug": "js_async_event_loop",
- "course": "js",
- "order": 227,
- "url": "/js/js_async_event_loop.asp",
- "title": "Asynchronous Event Loop",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Asynchronous Event Loop"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript can only execute one piece of code at a time."
-  },
-  {
-   "type": "p",
-   "text": "While JavaScript is busy, other JavaScript code must wait."
-  },
-  {
-   "type": "p",
-   "text": "How do JavaScript handle timers, user clicks, downloads, and asynchronous operations?"
-  },
-  {
-   "type": "p",
-   "text": "The answer is the Event Loop."
-  },
-  {
-   "type": "h2",
-   "text": "Understanding the Event Loop"
-  },
-  {
-   "type": "p",
-   "text": "Understanding the Event Loop explains many common JavaScript behaviors."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Why setTimeout(..., 0) does not execute immediately.",
-    "Why long loops freeze a page.",
-    "Why Promises execute before timers.",
-    "Why await does not block the browser.",
-    "Why click events wait until current code has finished."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Executes One Task at a Time"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript executes code in sequence."
-  },
-  {
-   "type": "p",
-   "text": "Only one function can execute at any given moment."
-  },
-  {
-   "type": "p",
-   "text": "Functions execute in the order they are called."
-  },
-  {
-   "type": "p",
-   "text": "Each function must finish before the next one can begin."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function step1() {\n\n  myDisplayer(\"Step 1\");\n\n}\n\nfunction step2() {\n\n  myDisplayer(\"Step 2\");\n\n}\n\nstep1();\n\nstep2();",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Step 1\n\nStep 2",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function step1() {\n\n  myDisplayer(\"Step 1\");\n\n}\n\nfunction step2() {\n\n  myDisplayer(\"Step 2\");\n\n}\n\nstep2();\n\nstep1();",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Step 2\n\nStep 1",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_sync"
-  },
-  {
-   "type": "h2",
-   "text": "The Browser Performs Asynchronous Work"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript itself does not wait for timers or download web pages."
-  },
-  {
-   "type": "p",
-   "text": "Instead, the browser performs these operations while JavaScript continues running."
-  },
-  {
-   "type": "p",
-   "text": "Examples include:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Timers",
-    "Network requests",
-    "User events",
-    "File loading"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "When an operation finishes, JavaScript is notified that the result is ready."
-  },
-  {
-   "type": "h2",
-   "text": "The Event Loop"
-  },
-  {
-   "type": "p",
-   "text": "The Event Loop continuously checks whether JavaScript is busy."
-  },
-  {
-   "type": "p",
-   "text": "When JavaScript finishes its current task, the Event Loop starts the next waiting task."
-  },
-  {
-   "type": "p",
-   "text": "This process repeats for as long as the page is open."
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "JavaScript starts\n\n↓\n\nRun code\n\n↓\n\nStart timer\n\n↓\n\nContinue running\n\n↓\n\nTimer finishes\n\n↓\n\nEvent Loop\n\n↓\n\nRun callback",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "The Event Loop coordinates asynchronous operations and decides when JavaScript should execute the next task."
-  },
-  {
-   "type": "h2",
-   "text": "Example: setTimeout()"
-  },
-  {
-   "type": "p",
-   "text": "The callback is not executed immediately."
-  },
-  {
-   "type": "p",
-   "text": "Instead, it waits until JavaScript finishes its current work."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"A\");\n\nsetTimeout(function() {\n\n  myDisplayer(\"B\");\n\n}, 2000);\n\nmyDisplayer(\"C\");",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "A\n\nC\n\nB",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_timeout"
-  },
-  {
-   "type": "p",
-   "text": "The timer finishes almost immediately."
-  },
-  {
-   "type": "p",
-   "text": "However, the callback cannot run until JavaScript finishes executing the current code."
-  },
-  {
-   "type": "p",
-   "text": "The Event Loop starts the callback after the current task has completed."
-  },
-  {
-   "type": "h2",
-   "text": "Example: Promise"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"A\");\n\nPromise.resolve().then(function() {\n\n  myDisplayer(\"B\");\n\n});\n\nmyDisplayer(\"C\");",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "A\n\nC\n\nB",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_promise"
-  },
-  {
-   "type": "p",
-   "text": "Why did the Promise callback run before the timer?"
-  },
-  {
-   "type": "p",
-   "text": "The answer is that Promise callbacks are placed in a special queue with higher priority."
-  },
-  {
-   "type": "h2",
-   "text": "Task Queue and Microtask Queue"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript uses two main queues for asynchronous work."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Queue",
-     "Contains"
-    ],
-    [
-     "Task Queue",
-     "Timers, events, messages"
-    ],
-    [
-     "Microtask Queue",
-     "Promise handlers and awai"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "After each task finishes, JavaScript processes all waiting microtasks before starting the next task."
-  },
-  {
-   "type": "h2",
-   "text": "Comparing Timers and Promises"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Operation",
-     "Queue"
-    ],
-    [
-     "setTimeout()",
-     "Task Queue"
-    ],
-    [
-     "setInterval()",
-     "Task Queue"
-    ],
-    [
-     "Click event",
-     "Task Queue"
-    ],
-    [
-     "Promise.then()",
-     "Microtask Queue"
-    ],
-    [
-     "catch()",
-     "Microtask Queue"
-    ],
-    [
-     "finally()",
-     "Microtask Queue"
-    ],
-    [
-     "await continuation",
-     "Microtask Queue"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Long Tasks Block JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "If JavaScript executes a long-running task, everything else must wait."
-  },
-  {
-   "type": "p",
-   "text": "During this time, the browser cannot execute other JavaScript code."
-  },
-  {
-   "type": "p",
-   "text": "User clicks, timers, and completed downloads must wait until the current task finishes."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function wait() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n}\n\nmyDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_wait"
-  },
-  {
-   "type": "h2",
-   "text": "Example Explained"
-  },
-  {
-   "type": "p",
-   "text": "Why did the example take a long time?"
-  },
-  {
-   "type": "p",
-   "text": "Why was \"Start\" and \"Done\" diplayed at the same time?"
-  },
-  {
-   "type": "p",
-   "text": "The questions lead directly to how browsers update the page."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Start\");",
-   "caption": "Step 1"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\">Start</p>",
-   "caption": "Step 1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "wait();",
-   "caption": "Step 2"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myDisplayer(\"Done\");",
-   "caption": "Step 3"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\">Start Done</p>",
-   "caption": "Step 3"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "Start Done",
-   "caption": "Step 4"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "JavaScript starts\n\n↓\n\nmyDisplayer(\"Start\")\n\n(DOM changes)\n\n↓\n\nwait()\n\n(JavaScript busy)\n\n↓\n\nmyDisplayer(\"Done\")\n\n(DOM changes again)\n\n↓\n\nJavaScript finishes\n\n↓\n\nBrowser repaints\n\n↓\n\nScreen shows:\n\nStart Done",
-   "caption": "The Timeline"
-  },
-  {
-   "type": "p",
-   "text": "The example above is a good Event Loop example."
-  },
-  {
-   "type": "p",
-   "text": "It demonstrates that there are two separate things:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Updating the DOM",
-    "Updating the screen (rendering)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "The DOM is updated immediately, but the browser must wait until the current JavaScript task has\nfinished before repainting."
-  },
-  {
-   "type": "h2",
-   "text": "Want to show \"Start\" first?"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function wait() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n}\n\nmyDisplayer(\"Start\");\n\nsetTimeout(function () {\n\n  wait();\n\n  myDisplayer(\"Done\");\n\n}, 0);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_wait_2"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "JavaScript starts\n\n↓\n\nDisplay \"Start\"\n\n↓\n\nCurrent task finishes\n\n↓\n\nBrowser repaints\n\n(Start becomes visible)\n\n↓\n\nEvent Loop\n\n↓\n\nRun wait()\n\n↓\n\nDisplay \"Done\"\n\n↓\n\nBrowser repaints",
-   "caption": "The Timeline"
-  },
-  {
-   "type": "h2",
-   "text": "Summary"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "JavaScript executes one task at a time.",
-    "The browser performs asynchronous operations such as timers, downloads, and user events.",
-    "Completed operations wait until JavaScript is ready.",
-    "The Event Loop starts waiting tasks when the current task has finished.",
-    "Promise handlers and await continuations run before timers because they use the Microtask Queue."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Visualizer »"
-  }
- ]
+  "slug": "js_async_event_loop",
+  "course": "js",
+  "order": 227,
+  "url": "/js/js_async_event_loop.asp",
+  "title": "Asynchronous Event Loop",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Asynchronous Event Loop"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript can only execute one piece of code at a time."
+    },
+    {
+      "type": "p",
+      "text": "While JavaScript is busy, other JavaScript code must wait."
+    },
+    {
+      "type": "p",
+      "text": "How do JavaScript handle timers, user clicks, downloads, and asynchronous operations?"
+    },
+    {
+      "type": "p",
+      "text": "The answer is the Event Loop."
+    },
+    {
+      "type": "h2",
+      "text": "Understanding the Event Loop"
+    },
+    {
+      "type": "p",
+      "text": "Understanding the Event Loop explains many common JavaScript behaviors."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Why setTimeout(..., 0) does not execute immediately.",
+        "Why long loops freeze a page.",
+        "Why Promises execute before timers.",
+        "Why await does not block the browser.",
+        "Why click events wait until current code has finished."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Executes One Task at a Time"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript executes code in sequence."
+    },
+    {
+      "type": "p",
+      "text": "Only one function can execute at any given moment."
+    },
+    {
+      "type": "p",
+      "text": "Functions execute in the order they are called."
+    },
+    {
+      "type": "p",
+      "text": "Each function must finish before the next one can begin."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function step1() {\n\n  myDisplayer(\"Step 1\");\n\n}\n\nfunction step2() {\n\n  myDisplayer(\"Step 2\");\n\n}\n\nstep1();\n\nstep2();",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Step 1\n\nStep 2",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function step1() {\n\n  myDisplayer(\"Step 1\");\n\n}\n\nfunction step2() {\n\n  myDisplayer(\"Step 2\");\n\n}\n\nstep2();\n\nstep1();",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Step 2\n\nStep 1",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_sync"
+    },
+    {
+      "type": "h2",
+      "text": "The Browser Performs Asynchronous Work"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript itself does not wait for timers or download web pages."
+    },
+    {
+      "type": "p",
+      "text": "Instead, the browser performs these operations while JavaScript continues running."
+    },
+    {
+      "type": "p",
+      "text": "Examples include:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Timers", "Network requests", "User events", "File loading"]
+    },
+    {
+      "type": "p",
+      "text": "When an operation finishes, JavaScript is notified that the result is ready."
+    },
+    {
+      "type": "h2",
+      "text": "The Event Loop"
+    },
+    {
+      "type": "p",
+      "text": "The Event Loop continuously checks whether JavaScript is busy."
+    },
+    {
+      "type": "p",
+      "text": "When JavaScript finishes its current task, the Event Loop starts the next waiting task."
+    },
+    {
+      "type": "p",
+      "text": "This process repeats for as long as the page is open."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "JavaScript starts\n\n↓\n\nRun code\n\n↓\n\nStart timer\n\n↓\n\nContinue running\n\n↓\n\nTimer finishes\n\n↓\n\nEvent Loop\n\n↓\n\nRun callback",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "The Event Loop coordinates asynchronous operations and decides when JavaScript should execute the next task."
+    },
+    {
+      "type": "h2",
+      "text": "Example: setTimeout()"
+    },
+    {
+      "type": "p",
+      "text": "The callback is not executed immediately."
+    },
+    {
+      "type": "p",
+      "text": "Instead, it waits until JavaScript finishes its current work."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"A\");\n\nsetTimeout(function() {\n\n  myDisplayer(\"B\");\n\n}, 2000);\n\nmyDisplayer(\"C\");",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "A\n\nC\n\nB",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_timeout"
+    },
+    {
+      "type": "p",
+      "text": "The timer finishes almost immediately."
+    },
+    {
+      "type": "p",
+      "text": "However, the callback cannot run until JavaScript finishes executing the current code."
+    },
+    {
+      "type": "p",
+      "text": "The Event Loop starts the callback after the current task has completed."
+    },
+    {
+      "type": "h2",
+      "text": "Example: Promise"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"A\");\n\nPromise.resolve().then(function() {\n\n  myDisplayer(\"B\");\n\n});\n\nmyDisplayer(\"C\");",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "A\n\nC\n\nB",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_promise"
+    },
+    {
+      "type": "p",
+      "text": "Why did the Promise callback run before the timer?"
+    },
+    {
+      "type": "p",
+      "text": "The answer is that Promise callbacks are placed in a special queue with higher priority."
+    },
+    {
+      "type": "h2",
+      "text": "Task Queue and Microtask Queue"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript uses two main queues for asynchronous work."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Queue", "Contains"],
+        ["Task Queue", "Timers, events, messages"],
+        ["Microtask Queue", "Promise handlers and awai"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "After each task finishes, JavaScript processes all waiting microtasks before starting the next task."
+    },
+    {
+      "type": "h2",
+      "text": "Comparing Timers and Promises"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Operation", "Queue"],
+        ["setTimeout()", "Task Queue"],
+        ["setInterval()", "Task Queue"],
+        ["Click event", "Task Queue"],
+        ["Promise.then()", "Microtask Queue"],
+        ["catch()", "Microtask Queue"],
+        ["finally()", "Microtask Queue"],
+        ["await continuation", "Microtask Queue"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Long Tasks Block JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "If JavaScript executes a long-running task, everything else must wait."
+    },
+    {
+      "type": "p",
+      "text": "During this time, the browser cannot execute other JavaScript code."
+    },
+    {
+      "type": "p",
+      "text": "User clicks, timers, and completed downloads must wait until the current task finishes."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function wait() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n}\n\nmyDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_wait"
+    },
+    {
+      "type": "h2",
+      "text": "Example Explained"
+    },
+    {
+      "type": "p",
+      "text": "Why did the example take a long time?"
+    },
+    {
+      "type": "p",
+      "text": "Why was \"Start\" and \"Done\" diplayed at the same time?"
+    },
+    {
+      "type": "p",
+      "text": "The questions lead directly to how browsers update the page."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");\n\nwait();\n\nmyDisplayer(\"Done\");",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Start\");",
+      "caption": "Step 1"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\">Start</p>",
+      "caption": "Step 1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "wait();",
+      "caption": "Step 2"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myDisplayer(\"Done\");",
+      "caption": "Step 3"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\">Start Done</p>",
+      "caption": "Step 3"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "Start Done",
+      "caption": "Step 4"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "JavaScript starts\n\n↓\n\nmyDisplayer(\"Start\")\n\n(DOM changes)\n\n↓\n\nwait()\n\n(JavaScript busy)\n\n↓\n\nmyDisplayer(\"Done\")\n\n(DOM changes again)\n\n↓\n\nJavaScript finishes\n\n↓\n\nBrowser repaints\n\n↓\n\nScreen shows:\n\nStart Done",
+      "caption": "The Timeline"
+    },
+    {
+      "type": "p",
+      "text": "The example above is a good Event Loop example."
+    },
+    {
+      "type": "p",
+      "text": "It demonstrates that there are two separate things:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Updating the DOM", "Updating the screen (rendering)"]
+    },
+    {
+      "type": "p",
+      "text": "The DOM is updated immediately, but the browser must wait until the current JavaScript task has\nfinished before repainting."
+    },
+    {
+      "type": "h2",
+      "text": "Want to show \"Start\" first?"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function wait() {\n\n  let i = 4e9;\n\n  while (--i > 0);\n\n}\n\nmyDisplayer(\"Start\");\n\nsetTimeout(function () {\n\n  wait();\n\n  myDisplayer(\"Done\");\n\n}, 0);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_eventloop_wait_2"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "JavaScript starts\n\n↓\n\nDisplay \"Start\"\n\n↓\n\nCurrent task finishes\n\n↓\n\nBrowser repaints\n\n(Start becomes visible)\n\n↓\n\nEvent Loop\n\n↓\n\nRun wait()\n\n↓\n\nDisplay \"Done\"\n\n↓\n\nBrowser repaints",
+      "caption": "The Timeline"
+    },
+    {
+      "type": "h2",
+      "text": "Summary"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "JavaScript executes one task at a time.",
+        "The browser performs asynchronous operations such as timers, downloads, and user events.",
+        "Completed operations wait until JavaScript is ready.",
+        "The Event Loop starts waiting tasks when the current task has finished.",
+        "Promise handlers and await continuations run before timers because they use the Microtask Queue."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Visualizer »"
+    }
+  ]
 }

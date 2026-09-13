@@ -1,219 +1,199 @@
 {
- "slug": "js_tostring",
- "course": "js",
- "order": 98,
- "url": "/js/js_tostring.asp",
- "title": "متد toString() در JavaScript",
- "summary": "متد toString() یک مقدار را به رشته تبدیل می‌کند و برای انواع زیادی از داده‌ها توکار است. در این درس می‌بینید این متد روی آرایه، تاریخ، عدد، تابع و شیء چه خروجی‌ای می‌دهد و چطور آن را بازنویسی کنید.",
- "objectives": [
-  "خروجی toString() برای آرایه و تاریخ را توضیح دهید",
-  "عدد را با مبنای دلخواه به رشته تبدیل کنید",
-  "دلیل خروجی \"[object Object]\" را بگویید",
-  "متد toString() را برای یک شیء بازنویسی کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "متد toString() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متد toString() در JavaScript یک متغیر (یا مقدار) را به رشته تبدیل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "این یک متد توکار برای بسیاری از انواع داده است، از جمله عددها، آرایه‌ها، تاریخ‌ها و شیءها."
-  },
-  {
-   "type": "p",
-   "text": "این متد برای این کارها مفید است:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تبدیل داده به قالبی خوانا برای نمایش",
-    "تأمین سازگاری نوع وقتی رشته لازم است",
-    "سفارشی‌سازی شیءها برای رابط‌های کاربری",
-    "سفارشی‌سازی شیءها برای اشکال‌زدایی"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد toString() برای آرایه"
-  },
-  {
-   "type": "p",
-   "text": "وقتی روی آرایه به کار رود، toString() عضوهای آرایه را به‌شکل رشته‌ای جدا شده با کاما برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet myList = fruits.toString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_tostring"
-  },
-  {
-   "type": "h2",
-   "text": "متد toString() برای تاریخ"
-  },
-  {
-   "type": "p",
-   "text": "وقتی روی تاریخ به کار رود، toString() رشته‌ای خوانا از تاریخ و زمان برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date();\n\nlet text = d.toString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_tostring"
-  },
-  {
-   "type": "h2",
-   "text": "متد toString() برای عدد"
-  },
-  {
-   "type": "p",
-   "text": "وقتی روی عدد به کار رود، toString() عدد را به‌شکل رشته برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 123;\n\nlet text = x.toString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_tostring2"
-  },
-  {
-   "type": "p",
-   "text": "تبدیل عدد به رشته با مبنای ۲ (دودویی):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 123;\n\nlet text = x.toString(2);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_tostring"
-  },
-  {
-   "type": "h2",
-   "text": "متد toString() برای تابع"
-  },
-  {
-   "type": "p",
-   "text": "وقتی روی تابع به کار رود، toString() کد منبع تابع را به‌شکل رشته برمی‌گرداند."
-  },
-  {
-   "type": "h2",
-   "text": "متد toString() برای شیء"
-  },
-  {
-   "type": "p",
-   "text": "وقتی روی شیء به کار رود، toString() رشتهٔ \"[object Object]\" را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "برای دادن نمایش رشته‌ای معنادار، می‌توان آن را در تعریف شیء بازنویسی کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let person = {\n\n  firstname: \"John\",\n\n  lastname: \"Doe\",\n\n}\n\nlet text = person.toString();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_tostring"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل tostring.html بسازید و روی یک آرایه متد toString() را صدا بزنید و خروجی را ببینید.",
-   "hint": "خروجی رشته‌ای است که عضوهای آرایه را با کاما از هم جدا کرده."
-  },
-  {
-   "prompt": "روی یک تاریخ متد toString() را اجرا کنید و خروجی خوانای آن را ببینید.",
-   "hint": "تاریخ به رشته‌ای خوانا از تاریخ و زمان تبدیل می‌شود."
-  },
-  {
-   "prompt": "یک عدد را با toString(2) به مبنای دودویی تبدیل کنید.",
-   "hint": "متد toString می‌تواند مبنای تبدیل را به‌عنوان آرگومان بگیرد؛ مبنای ۲ همان دودویی است."
-  },
-  {
-   "prompt": "روی یک شیء خالی toString() را صدا بزنید و خروجی را ببینید.",
-   "hint": "خروجی پیش‌فرض برای شیء معمولی \"[object Object]\" است."
-  },
-  {
-   "prompt": "متد toString() را در تعریف یک شیء بازنویسی کنید تا رشتهٔ معناداری برگرداند.",
-   "hint": "برای بازنویسی، خصوصیتی به نام toString در خود شیء تعریف می‌کنید."
-  }
- ],
- "quiz": [
-  {
-   "question": "متد toString() روی آرایه چه برمی‌گرداند؟",
-   "options": [
-    "خودِ آرایه",
-    "رشته‌ای از عضوها که با کاما جدا شده‌اند",
-    "یک عدد",
-    "undefined"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید toString() روی آرایه، عضوها را به‌شکل رشته‌ای جدا شده با کاما برمی‌گرداند."
-  },
-  {
-   "question": "خروجی toString() برای یک شیء معمولی چیست؟",
-   "options": [
-    "\"[object Object]\"",
-    "نام متغیر شیء",
-    "رشتهٔ خالی",
-    "null"
-   ],
-   "answer": 0,
-   "explanation": "پیش‌فرض toString برای شیء رشتهٔ \"[object Object]\" است؛ برای نمایش معنادار باید آن را در تعریف شیء بازنویسی کرد."
-  },
-  {
-   "question": "چگونه یک عدد را با مبنای ۲ به رشته تبدیل کنیم؟",
-   "options": [
-    "toString()",
-    "toString(2)",
-    "String(2)",
-    "toBinary()"
-   ],
-   "answer": 1,
-   "explanation": "متد toString می‌تواند مبنای تبدیل را به‌عنوان آرگومان بگیرد؛ پس toString(2) عدد را به مبنای دودویی می‌برد."
-  },
-  {
-   "question": "toString() روی تابع چه برمی‌گرداند؟",
-   "options": [
-    "نام تابع",
-    "کد منبع تابع به‌شکل رشته",
-    "آرگومان‌های تابع",
-    "true"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید toString() روی تابع، کد منبع آن را به‌شکل رشته برمی‌گرداند."
-  },
-  {
-   "question": "کدام جمله دربارهٔ toString() درست است؟",
-   "options": [
-    "فقط برای عددها کار می‌کند",
-    "برای بسیاری از انواع داده یک متد توکار است",
-    "مقدار را به عدد تبدیل می‌کند",
-    "فقط روی تاریخ کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "این متد برای انواع زیادی از جمله عددها، آرایه‌ها، تاریخ‌ها، تابع‌ها و شیءها توکار است؛ کارش تبدیل به رشته است، نه عدد."
-  }
- ]
+  "slug": "js_tostring",
+  "course": "js",
+  "order": 98,
+  "url": "/js/js_tostring.asp",
+  "title": "متد toString() در JavaScript",
+  "summary": "متد toString() یک مقدار را به رشته تبدیل می‌کند و برای انواع زیادی از داده‌ها توکار است. در این درس می‌بینید این متد روی آرایه، تاریخ، عدد، تابع و شیء چه خروجی‌ای می‌دهد و چطور آن را بازنویسی کنید.",
+  "objectives": [
+    "خروجی toString() برای آرایه و تاریخ را توضیح دهید",
+    "عدد را با مبنای دلخواه به رشته تبدیل کنید",
+    "دلیل خروجی \"[object Object]\" را بگویید",
+    "متد toString() را برای یک شیء بازنویسی کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "متد toString() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متد toString() در JavaScript یک متغیر (یا مقدار) را به رشته تبدیل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "این یک متد توکار برای بسیاری از انواع داده است، از جمله عددها، آرایه‌ها، تاریخ‌ها و شیءها."
+    },
+    {
+      "type": "p",
+      "text": "این متد برای این کارها مفید است:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "تبدیل داده به قالبی خوانا برای نمایش",
+        "تأمین سازگاری نوع وقتی رشته لازم است",
+        "سفارشی‌سازی شیءها برای رابط‌های کاربری",
+        "سفارشی‌سازی شیءها برای اشکال‌زدایی"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد toString() برای آرایه"
+    },
+    {
+      "type": "p",
+      "text": "وقتی روی آرایه به کار رود، toString() عضوهای آرایه را به‌شکل رشته‌ای جدا شده با کاما برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\n\nlet myList = fruits.toString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_tostring"
+    },
+    {
+      "type": "h2",
+      "text": "متد toString() برای تاریخ"
+    },
+    {
+      "type": "p",
+      "text": "وقتی روی تاریخ به کار رود، toString() رشته‌ای خوانا از تاریخ و زمان برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date();\n\nlet text = d.toString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_tostring"
+    },
+    {
+      "type": "h2",
+      "text": "متد toString() برای عدد"
+    },
+    {
+      "type": "p",
+      "text": "وقتی روی عدد به کار رود، toString() عدد را به‌شکل رشته برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 123;\n\nlet text = x.toString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_number_tostring2"
+    },
+    {
+      "type": "p",
+      "text": "تبدیل عدد به رشته با مبنای ۲ (دودویی):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 123;\n\nlet text = x.toString(2);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_numbers_tostring"
+    },
+    {
+      "type": "h2",
+      "text": "متد toString() برای تابع"
+    },
+    {
+      "type": "p",
+      "text": "وقتی روی تابع به کار رود، toString() کد منبع تابع را به‌شکل رشته برمی‌گرداند."
+    },
+    {
+      "type": "h2",
+      "text": "متد toString() برای شیء"
+    },
+    {
+      "type": "p",
+      "text": "وقتی روی شیء به کار رود، toString() رشتهٔ \"[object Object]\" را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "برای دادن نمایش رشته‌ای معنادار، می‌توان آن را در تعریف شیء بازنویسی کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let person = {\n\n  firstname: \"John\",\n\n  lastname: \"Doe\",\n\n}\n\nlet text = person.toString();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_tostring"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل tostring.html بسازید و روی یک آرایه متد toString() را صدا بزنید و خروجی را ببینید.",
+      "hint": "خروجی رشته‌ای است که عضوهای آرایه را با کاما از هم جدا کرده."
+    },
+    {
+      "prompt": "روی یک تاریخ متد toString() را اجرا کنید و خروجی خوانای آن را ببینید.",
+      "hint": "تاریخ به رشته‌ای خوانا از تاریخ و زمان تبدیل می‌شود."
+    },
+    {
+      "prompt": "یک عدد را با toString(2) به مبنای دودویی تبدیل کنید.",
+      "hint": "متد toString می‌تواند مبنای تبدیل را به‌عنوان آرگومان بگیرد؛ مبنای ۲ همان دودویی است."
+    },
+    {
+      "prompt": "روی یک شیء خالی toString() را صدا بزنید و خروجی را ببینید.",
+      "hint": "خروجی پیش‌فرض برای شیء معمولی \"[object Object]\" است."
+    },
+    {
+      "prompt": "متد toString() را در تعریف یک شیء بازنویسی کنید تا رشتهٔ معناداری برگرداند.",
+      "hint": "برای بازنویسی، خصوصیتی به نام toString در خود شیء تعریف می‌کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "متد toString() روی آرایه چه برمی‌گرداند؟",
+      "options": ["خودِ آرایه", "رشته‌ای از عضوها که با کاما جدا شده‌اند", "یک عدد", "undefined"],
+      "answer": 1,
+      "explanation": "درس می‌گوید toString() روی آرایه، عضوها را به‌شکل رشته‌ای جدا شده با کاما برمی‌گرداند."
+    },
+    {
+      "question": "خروجی toString() برای یک شیء معمولی چیست؟",
+      "options": ["\"[object Object]\"", "نام متغیر شیء", "رشتهٔ خالی", "null"],
+      "answer": 0,
+      "explanation": "پیش‌فرض toString برای شیء رشتهٔ \"[object Object]\" است؛ برای نمایش معنادار باید آن را در تعریف شیء بازنویسی کرد."
+    },
+    {
+      "question": "چگونه یک عدد را با مبنای ۲ به رشته تبدیل کنیم؟",
+      "options": ["toString()", "toString(2)", "String(2)", "toBinary()"],
+      "answer": 1,
+      "explanation": "متد toString می‌تواند مبنای تبدیل را به‌عنوان آرگومان بگیرد؛ پس toString(2) عدد را به مبنای دودویی می‌برد."
+    },
+    {
+      "question": "toString() روی تابع چه برمی‌گرداند؟",
+      "options": ["نام تابع", "کد منبع تابع به‌شکل رشته", "آرگومان‌های تابع", "true"],
+      "answer": 1,
+      "explanation": "درس می‌گوید toString() روی تابع، کد منبع آن را به‌شکل رشته برمی‌گرداند."
+    },
+    {
+      "question": "کدام جمله دربارهٔ toString() درست است؟",
+      "options": [
+        "فقط برای عددها کار می‌کند",
+        "برای بسیاری از انواع داده یک متد توکار است",
+        "مقدار را به عدد تبدیل می‌کند",
+        "فقط روی تاریخ کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "این متد برای انواع زیادی از جمله عددها، آرایه‌ها، تاریخ‌ها، تابع‌ها و شیءها توکار است؛ کارش تبدیل به رشته است، نه عدد."
+    }
+  ]
 }

@@ -1,176 +1,140 @@
 {
- "slug": "js_2027",
- "course": "js",
- "order": 123,
- "url": "/js/js_2027.asp",
- "title": "ECMAScript 2027",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2027"
-  },
-  {
-   "type": "h2",
-   "text": "Anticipated Features to ES2027"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Temporal API\nThe long-time-overdue successor to the buggy, 30-year-old Date object.\nUnlike Date, Temporal objects are immutable and provide first-class support for time zones\nand non-Gregorian calendars.",
-    "Explicit Resource Management (using keyword)\nC#-style block-scoped disposal variables that auto-clean up database connections\nand streams when leaving context, avoiding try...finally boilerplate."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Resource Management with using"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript 2026 added two keywords to automatically manage and dispose resources\n(like file handles or database connections) when they go out of scope,\nreducing the need for explicit try...finally blocks."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "using provides synchronous cleanup of block-scoped variables.",
-    "await using provides asynchronous cleanup for resources like network streams."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Explicit Resource Management"
-  },
-  {
-   "type": "h2",
-   "text": "The using Keyword"
-  },
-  {
-   "type": "p",
-   "text": "The using keyword is an addition to JavaScript 2026.\nIt provides a mechanism for managing resources that require explicit disposal."
-  },
-  {
-   "type": "p",
-   "text": "It declares a block-scoped variable, similar to const, but with the difference that\nit guarantees synchronous disposal of the used resource when the variable goes out of scope."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "class MyResource {\n\n  constructor(name) {\n\n    this.name = name;\n\n    myDisplay(`Resource ${this.name} acquired.`);\n\n  }\n\n  [Symbol.dispose]() {\n\n    myDisplay(`Resource ${this.name} disposed.`);\n\n  }\n\n}\n\nfunction manageResource() {\n\n  using resource = new MyResource(\"Database Connection\");\n\n  // Use the resource here\n\n  myDisplay(`Using resource: ${resource.name}`);\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_using"
-  },
-  {
-   "type": "p",
-   "text": "The using keyword simplifies resource management by automatically\nhandling the cleanup process, reducing the risk of resource leaks and improving code readability\ncompared to manual try...finally blocks for disposal."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Resource Management\nusing is designed for objects that implement the\nSymbol.dispose method, which defines the cleanup logic for the resource.",
-    "Synchronous Disposal\nWhen a variable declared with using exits its scope\n(at the end of a block or function), its Symbol.dispose method is automatically called.",
-    "Asynchronous Disposal\nFor resources requiring asynchronous cleanup,\nthe await using declaration can be employed.\nThis ensures that the disposal process is awaited before the variable fully goes out of scope.",
-    "Block-Scoped\nLike const, variables declared with using\nare local to the block in which they are declared, and must be initialized at the time of declaration.",
-    "Immutable\nLike to const, variables declared with using\ncannot be reassigned after initialization."
-   ]
-  },
-  {
-   "type": "h3",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "using is already supported in many browsers:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome134",
-     "Edge134",
-     "Firefox141",
-     "Safari❌",
-     "Opera119"
-    ],
-    [
-     "Mar 2025",
-     "Mar 2025",
-     "Jul 2025",
-     "❌",
-     "May 2025"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Explicit Resource Management"
-  },
-  {
-   "type": "h2",
-   "text": "await using"
-  },
-  {
-   "type": "p",
-   "text": "Inspired by other languages, JavaScript 2026 introduces using blocks for automatic cleanup\nof resources like file handles, database connections, or network streams."
-  },
-  {
-   "type": "p",
-   "text": "This is especially beneficial for asynchronous operations:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function processFile() {\n\n  using fileHandle = await openFile('data.txt');\n\n// Work with fileHandle here\n\n} // fileHandle is automatically closed here",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_await_using"
-  },
-  {
-   "type": "h3",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "await using is already supported in many browsers:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome134",
-     "Edge134",
-     "Firefox141",
-     "Safari❌",
-     "Opera119"
-    ],
-    [
-     "Mar 2025",
-     "Mar 2025",
-     "Jul 2025",
-     "❌",
-     "May 2025"
-    ]
-   ]
-  }
- ]
+  "slug": "js_2027",
+  "course": "js",
+  "order": 123,
+  "url": "/js/js_2027.asp",
+  "title": "ECMAScript 2027",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2027"
+    },
+    {
+      "type": "h2",
+      "text": "Anticipated Features to ES2027"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Temporal API\nThe long-time-overdue successor to the buggy, 30-year-old Date object.\nUnlike Date, Temporal objects are immutable and provide first-class support for time zones\nand non-Gregorian calendars.",
+        "Explicit Resource Management (using keyword)\nC#-style block-scoped disposal variables that auto-clean up database connections\nand streams when leaving context, avoiding try...finally boilerplate."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Resource Management with using"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript 2026 added two keywords to automatically manage and dispose resources\n(like file handles or database connections) when they go out of scope,\nreducing the need for explicit try...finally blocks."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "using provides synchronous cleanup of block-scoped variables.",
+        "await using provides asynchronous cleanup for resources like network streams."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Explicit Resource Management"
+    },
+    {
+      "type": "h2",
+      "text": "The using Keyword"
+    },
+    {
+      "type": "p",
+      "text": "The using keyword is an addition to JavaScript 2026.\nIt provides a mechanism for managing resources that require explicit disposal."
+    },
+    {
+      "type": "p",
+      "text": "It declares a block-scoped variable, similar to const, but with the difference that\nit guarantees synchronous disposal of the used resource when the variable goes out of scope."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "class MyResource {\n\n  constructor(name) {\n\n    this.name = name;\n\n    myDisplay(`Resource ${this.name} acquired.`);\n\n  }\n\n  [Symbol.dispose]() {\n\n    myDisplay(`Resource ${this.name} disposed.`);\n\n  }\n\n}\n\nfunction manageResource() {\n\n  using resource = new MyResource(\"Database Connection\");\n\n  // Use the resource here\n\n  myDisplay(`Using resource: ${resource.name}`);\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_using"
+    },
+    {
+      "type": "p",
+      "text": "The using keyword simplifies resource management by automatically\nhandling the cleanup process, reducing the risk of resource leaks and improving code readability\ncompared to manual try...finally blocks for disposal."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Resource Management\nusing is designed for objects that implement the\nSymbol.dispose method, which defines the cleanup logic for the resource.",
+        "Synchronous Disposal\nWhen a variable declared with using exits its scope\n(at the end of a block or function), its Symbol.dispose method is automatically called.",
+        "Asynchronous Disposal\nFor resources requiring asynchronous cleanup,\nthe await using declaration can be employed.\nThis ensures that the disposal process is awaited before the variable fully goes out of scope.",
+        "Block-Scoped\nLike const, variables declared with using\nare local to the block in which they are declared, and must be initialized at the time of declaration.",
+        "Immutable\nLike to const, variables declared with using\ncannot be reassigned after initialization."
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "using is already supported in many browsers:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome134", "Edge134", "Firefox141", "Safari❌", "Opera119"],
+        ["Mar 2025", "Mar 2025", "Jul 2025", "❌", "May 2025"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Explicit Resource Management"
+    },
+    {
+      "type": "h2",
+      "text": "await using"
+    },
+    {
+      "type": "p",
+      "text": "Inspired by other languages, JavaScript 2026 introduces using blocks for automatic cleanup\nof resources like file handles, database connections, or network streams."
+    },
+    {
+      "type": "p",
+      "text": "This is especially beneficial for asynchronous operations:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function processFile() {\n\n  using fileHandle = await openFile('data.txt');\n\n// Work with fileHandle here\n\n} // fileHandle is automatically closed here",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_await_using"
+    },
+    {
+      "type": "h3",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "await using is already supported in many browsers:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome134", "Edge134", "Firefox141", "Safari❌", "Opera119"],
+        ["Mar 2025", "Mar 2025", "Jul 2025", "❌", "May 2025"]
+      ]
+    }
+  ]
 }

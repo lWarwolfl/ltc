@@ -1,312 +1,287 @@
 {
- "slug": "js_meta_programming",
- "course": "js",
- "order": 238,
- "url": "/js/js_meta_programming.asp",
- "title": "فرابرنامه‌نویسی در JavaScript",
- "summary": "فرابرنامه‌نویسی یعنی کدی که با کد کار می‌کند؛ بررسی و تغییر شیءها در زمان اجرا و حتی تولید تابع در همان لحظه. در این درس با Object.keys() شیءها را بررسی می‌کنید، با Proxy تنظیم و خواندن خصوصیت‌ها را رهگیری می‌کنید و با Reflect رفتار شیء را عادی نگه می‌دارید.",
- "objectives": [
-  "توضیح دهید فرابرنامه‌نویسی چیست و چه کارهایی را ممکن می‌کند",
-  "با Object.keys() خصوصیت‌های یک شیء را در زمان اجرا بررسی کنید",
-  "با new Function یک تابع را در زمان اجرا بسازید",
-  "با Proxy یک عملیات خصوصیت را رهگیری کنید و آن را با Reflect.set() هدایت کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "فرابرنامه‌نویسی (Meta Programming) در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "فرابرنامه‌نویسی"
-  },
-  {
-   "type": "p",
-   "text": "فرابرنامه‌نویسی به شماری از روش‌ها اشاره دارد که یک برنامه با آن‌ها خودش را دستکاری می‌کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "تغییر شیءها در زمان اجرا",
-    "بررسی شیءها در زمان اجرا",
-    "کنترل شیءها در زمان اجرا",
-    "رهگیری عملیات‌های در حال اجرا",
-    "تغییر تابع‌ها و کلاس‌ها",
-    "تولید کد پویا"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "توضیح ساده"
-  },
-  {
-   "type": "p",
-   "text": "معمولاً کد با داده کار می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "با فرابرنامه‌نویسی، کد با کد کار می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "بررسی شیءها"
-  },
-  {
-   "type": "p",
-   "text": "با متد Object.keys() می‌توانید خصوصیت‌های یک شیء را بررسی کنید."
-  },
-  {
-   "type": "p",
-   "text": "استفاده از Object.keys() یک مثال ساده از فرابرنامه‌نویسی است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Fill Array with Object keys\n\nconst myArr = Object.keys(user);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_meta_object_keys"
-  },
-  {
-   "type": "h2",
-   "text": "تغییر شیءها"
-  },
-  {
-   "type": "p",
-   "text": "یک کار رایج فرابرنامه‌نویسی تغییر رفتار یک شیء است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst person = {name: \"John\", age: 41};\n\n// Define \"name\" to return \"secret\"\n\nObject.defineProperty(person, \"name\", {\n\n  get() { return \"secret\"; }\n\n});\n\nlet name = person.name;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_behave"
-  },
-  {
-   "type": "h2",
-   "text": "تولید کد پویا"
-  },
-  {
-   "type": "p",
-   "text": "فرابرنامه‌نویسی شامل تولید کد پویا است."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript می‌تواند در زمان اجرا تابع بسازد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fn = new Function(\"a\", \"b\", \"return a + b\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_dynamic"
-  },
-  {
-   "type": "h2",
-   "text": "مثال‌های فرابرنامه‌نویسی"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "مفهوم",
-     "توضیح"
-    ],
-    [
-     "اعتبارسنجی",
-     "محدود کردن مقدارهایی که می‌توان به یک خصوصیت داد"
-    ],
-    [
-     "لاگ‌گیری",
-     "نمایش تغییرهای خصوصیت با استفاده از Proxy"
-    ],
-    [
-     "اشکال‌زدایی",
-     "رهگیری یک عملیات با استفاده از Proxy"
-    ],
-    [
-     "فریمورک‌ها",
-     "Vue، MobX و Svelte از فرابرنامه‌نویسی برای تشخیص تغییر وضعیت استفاده می‌کنند"
-    ],
-    [
-     "ORM و نگاشت پایگاه داده",
-     "شیءها را می‌پیچد و بر اساس طرح‌وارهٔ پایگاه داده فیلد می‌سازد"
-    ],
-    [
-     "APIهای پویا",
-     "ساخت تابع‌ها یا ساختارهای شیء در زمان اجرا"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "فرابرنامه‌نویسی با Proxy"
-  },
-  {
-   "type": "p",
-   "text": "دو شیء Proxy و Reflect امکان برنامه‌نویسی در سطح فراداده را در JavaScript فراهم می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "Proxy را می‌توان برای رهگیری عملیات‌های خصوصیت، مثل خواندن یا نوشتن، به کار برد."
-  },
-  {
-   "type": "p",
-   "text": "در مثال زیر:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء user داخل Proxy پیچیده می‌شود",
-    "Proxy از یک trap به نام set() استفاده می‌کند تا هر بار خصوصیتی تنظیم شود لاگ بگیرد"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Wrap the Object in a Proxy\n\nconst proxy = new Proxy(user, {\n\n  // Use a set trap\n\n  set(target, property, value) {\n\n    // Log changes\n\n    log(property + \"; \" + value);\n\n    return target[property];\n\n  }\n\n});\n\n// Change Properties\n\nproxy.name = \"John\";\n\nproxy.age = 45;\n\nproxy.name = \"Paul\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_set"
-  },
-  {
-   "type": "h2",
-   "text": "Proxy همراه با Reflect"
-  },
-  {
-   "type": "p",
-   "text": "Reflect کاری می‌کند که رفتار Proxy با رفتار شیء معمولی هم‌خوان شود"
-  },
-  {
-   "type": "p",
-   "text": "در مثال زیر:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "یک شیء user داخل Proxy پیچیده می‌شود",
-    "Proxy از یک trap به نام set() استفاده می‌کند تا هنگام تنظیم یک خصوصیت لاگ بگیرد",
-    "trap مربوط به set از Reflect.set() برای هدایت امن استفاده می‌کند"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Wrap the Object in a Proxy\n\nconst proxy = new Proxy(user, {\n\n  // Use a set trap\n\n  set(target, property, value) {\n\n    // Log changes\n\n    log(property + \": \" + value);\n\n    // Safe forwarding with Reflect\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_proxy"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید"
-  },
-  {
-   "type": "p",
-   "text": "آموزش Reflect در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "آموزش Proxy در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع Meta در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک شیء ساده بسازید و با Object.keys() نام خصوصیت‌هایش را در کنسول چاپ کنید؛ بعد بگویید چرا این کار فرابرنامه‌نویسی حساب می‌شود.",
-   "hint": "کد شما در زمان اجرا ساختار دادهٔ خودش را بررسی می‌کند، یعنی کد با کد کار می‌کند."
-  },
-  {
-   "prompt": "یک Proxy روی شیء user بسازید که هر بار خصوصیتی تنظیم می‌شود، مقدار قدیمی و جدید را در کنسول چاپ کند.",
-   "hint": "trap مربوط به set آرگومان‌های target، property و value را می‌گیرد."
-  },
-  {
-   "prompt": "همان Proxy را طوری بنویسید که تنظیم مقدار را به شیء اصلی هم بفرستد، این بار با Reflect.set().",
-   "hint": "با Reflect.set الگو با رفتار عادی شیء هم‌خوان می‌شود و لازم نیست خودتان مقدار را دستی بنویسید."
-  },
-  {
-   "prompt": "با new Function یک تابع بسازید که دو عدد را جمع کند و آن را صدا بزنید؛ ببینید کد در زمان اجرا ساخته می‌شود.",
-   "hint": "تولید تابع در زمان اجرا یکی از شکل‌های تولید کد پویا است."
-  },
-  {
-   "prompt": "روی همان Proxy یک trap برای خواندن هم بگذارید که نام خصوصیت خوانده‌شده را لاگ کند و بعد در کنسول مقدار آن را بخوانید.",
-   "hint": "trap مربوط به get آرگومان‌های target و property را می‌گیرد."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام جمله معنای فرابرنامه‌نویسی را درست می‌گوید؟",
-   "options": [
-    "کدی که فقط داده را پردازش می‌کند",
-    "کدی که با کد کار می‌کند",
-    "کدی که همیشه سریع‌تر اجرا می‌شود",
-    "کدی که فقط در مرورگر می‌دود"
-   ],
-   "answer": 1,
-   "explanation": "در حالت عادی کد با داده کار می‌کند؛ در فرابرنامه‌نویسی برنامه خودش را بررسی یا تغییر می‌دهد، پس کد با کد کار می‌کند."
-  },
-  {
-   "question": "کدام دو شیء JavaScript را برای برنامه‌نویسی در سطح فرا ممکن می‌کنند؟",
-   "options": [
-    "Proxy و Reflect",
-    "Map و Set",
-    "Array و Object",
-    "Promise و Worker"
-   ],
-   "answer": 0,
-   "explanation": "درس این دو را ابزار فرابرنامه‌نویسی معرفی می‌کند: Proxy عملیات‌ها را رهگیری می‌کند و Reflect رفتار عادی شیء را حفظ می‌کند."
-  },
-  {
-   "question": "trap مربوط به set در Proxy چه کاری می‌کند؟",
-   "options": [
-    "عملیات خواندن خصوصیت را می‌گیرد",
-    "عملیات نوشتن یا تنظیم خصوصیت را می‌گیرد",
-    "شیء را حذف می‌کند",
-    "تابع می‌سازد"
-   ],
-   "answer": 1,
-   "explanation": "set هنگام تنظیم یک خصوصیت صدا زده می‌شود و همین‌جاست که می‌توان لاگ گرفت یا مقدار را محدود کرد؛ خواندن کار trap مربوط به get است."
-  },
-  {
-   "question": "چرا در مثال دوم، داخل trap مربوط به set از Reflect.set استفاده می‌شود؟",
-   "options": [
-    "چون Reflect سریع‌تر است",
-    "چون رفتار Proxy را با رفتار عادی شیء هم‌خوان و مقدار‌دهی را امن می‌کند",
-    "چون بدون آن Proxy کار نمی‌کند",
-    "چون Reflect خطاها را پاک می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "Reflect.set مقدار‌دهی را به شکل استاندارد شیء انجام می‌دهد تا لازم نباشد خودتان مقدار را دستی بگذارید و رفتار استاندارد حفظ شود."
-  },
-  {
-   "question": "بر اساس جدول مثال‌های فرابرنامه‌نویسی، فریمورک‌هایی مانند Vue و MobX از آن برای چه کاری استفاده می‌کنند؟",
-   "options": [
-    "تشخیص تغییر وضعیت",
-    "فشرده کردن کد",
-    "ساختن پایگاه داده",
-    "پردازش تصویر"
-   ],
-   "answer": 0,
-   "explanation": "در جدول درس، کاربرد فریمورک‌ها تشخیص تغییر وضعیت ذکر شده است؛ همین چیزی است که باعث واکنش‌گرا شدن واسط کاربری می‌شود."
-  }
- ]
+  "slug": "js_meta_programming",
+  "course": "js",
+  "order": 238,
+  "url": "/js/js_meta_programming.asp",
+  "title": "فرابرنامه‌نویسی در JavaScript",
+  "summary": "فرابرنامه‌نویسی یعنی کدی که با کد کار می‌کند؛ بررسی و تغییر شیءها در زمان اجرا و حتی تولید تابع در همان لحظه. در این درس با Object.keys() شیءها را بررسی می‌کنید، با Proxy تنظیم و خواندن خصوصیت‌ها را رهگیری می‌کنید و با Reflect رفتار شیء را عادی نگه می‌دارید.",
+  "objectives": [
+    "توضیح دهید فرابرنامه‌نویسی چیست و چه کارهایی را ممکن می‌کند",
+    "با Object.keys() خصوصیت‌های یک شیء را در زمان اجرا بررسی کنید",
+    "با new Function یک تابع را در زمان اجرا بسازید",
+    "با Proxy یک عملیات خصوصیت را رهگیری کنید و آن را با Reflect.set() هدایت کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "فرابرنامه‌نویسی (Meta Programming) در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "فرابرنامه‌نویسی"
+    },
+    {
+      "type": "p",
+      "text": "فرابرنامه‌نویسی به شماری از روش‌ها اشاره دارد که یک برنامه با آن‌ها خودش را دستکاری می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "تغییر شیءها در زمان اجرا",
+        "بررسی شیءها در زمان اجرا",
+        "کنترل شیءها در زمان اجرا",
+        "رهگیری عملیات‌های در حال اجرا",
+        "تغییر تابع‌ها و کلاس‌ها",
+        "تولید کد پویا"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "توضیح ساده"
+    },
+    {
+      "type": "p",
+      "text": "معمولاً کد با داده کار می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "با فرابرنامه‌نویسی، کد با کد کار می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "بررسی شیءها"
+    },
+    {
+      "type": "p",
+      "text": "با متد Object.keys() می‌توانید خصوصیت‌های یک شیء را بررسی کنید."
+    },
+    {
+      "type": "p",
+      "text": "استفاده از Object.keys() یک مثال ساده از فرابرنامه‌نویسی است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Fill Array with Object keys\n\nconst myArr = Object.keys(user);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_meta_object_keys"
+    },
+    {
+      "type": "h2",
+      "text": "تغییر شیءها"
+    },
+    {
+      "type": "p",
+      "text": "یک کار رایج فرابرنامه‌نویسی تغییر رفتار یک شیء است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst person = {name: \"John\", age: 41};\n\n// Define \"name\" to return \"secret\"\n\nObject.defineProperty(person, \"name\", {\n\n  get() { return \"secret\"; }\n\n});\n\nlet name = person.name;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_behave"
+    },
+    {
+      "type": "h2",
+      "text": "تولید کد پویا"
+    },
+    {
+      "type": "p",
+      "text": "فرابرنامه‌نویسی شامل تولید کد پویا است."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript می‌تواند در زمان اجرا تابع بسازد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fn = new Function(\"a\", \"b\", \"return a + b\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_dynamic"
+    },
+    {
+      "type": "h2",
+      "text": "مثال‌های فرابرنامه‌نویسی"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["مفهوم", "توضیح"],
+        ["اعتبارسنجی", "محدود کردن مقدارهایی که می‌توان به یک خصوصیت داد"],
+        ["لاگ‌گیری", "نمایش تغییرهای خصوصیت با استفاده از Proxy"],
+        ["اشکال‌زدایی", "رهگیری یک عملیات با استفاده از Proxy"],
+        [
+          "فریمورک‌ها",
+          "Vue، MobX و Svelte از فرابرنامه‌نویسی برای تشخیص تغییر وضعیت استفاده می‌کنند"
+        ],
+        [
+          "ORM و نگاشت پایگاه داده",
+          "شیءها را می‌پیچد و بر اساس طرح‌وارهٔ پایگاه داده فیلد می‌سازد"
+        ],
+        ["APIهای پویا", "ساخت تابع‌ها یا ساختارهای شیء در زمان اجرا"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "فرابرنامه‌نویسی با Proxy"
+    },
+    {
+      "type": "p",
+      "text": "دو شیء Proxy و Reflect امکان برنامه‌نویسی در سطح فراداده را در JavaScript فراهم می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "Proxy را می‌توان برای رهگیری عملیات‌های خصوصیت، مثل خواندن یا نوشتن، به کار برد."
+    },
+    {
+      "type": "p",
+      "text": "در مثال زیر:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک شیء user داخل Proxy پیچیده می‌شود",
+        "Proxy از یک trap به نام set() استفاده می‌کند تا هر بار خصوصیتی تنظیم شود لاگ بگیرد"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Wrap the Object in a Proxy\n\nconst proxy = new Proxy(user, {\n\n  // Use a set trap\n\n  set(target, property, value) {\n\n    // Log changes\n\n    log(property + \"; \" + value);\n\n    return target[property];\n\n  }\n\n});\n\n// Change Properties\n\nproxy.name = \"John\";\n\nproxy.age = 45;\n\nproxy.name = \"Paul\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_proxy_set"
+    },
+    {
+      "type": "h2",
+      "text": "Proxy همراه با Reflect"
+    },
+    {
+      "type": "p",
+      "text": "Reflect کاری می‌کند که رفتار Proxy با رفتار شیء معمولی هم‌خوان شود"
+    },
+    {
+      "type": "p",
+      "text": "در مثال زیر:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک شیء user داخل Proxy پیچیده می‌شود",
+        "Proxy از یک trap به نام set() استفاده می‌کند تا هنگام تنظیم یک خصوصیت لاگ بگیرد",
+        "trap مربوط به set از Reflect.set() برای هدایت امن استفاده می‌کند"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an Object\n\nconst user = {name: \"Jan\", age: 40};\n\n// Wrap the Object in a Proxy\n\nconst proxy = new Proxy(user, {\n\n  // Use a set trap\n\n  set(target, property, value) {\n\n    // Log changes\n\n    log(property + \": \" + value);\n\n    // Safe forwarding with Reflect\n\n    return Reflect.set(target, property, value);\n\n  }\n\n});",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_reflect_proxy"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید"
+    },
+    {
+      "type": "p",
+      "text": "آموزش Reflect در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "آموزش Proxy در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع Meta در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک شیء ساده بسازید و با Object.keys() نام خصوصیت‌هایش را در کنسول چاپ کنید؛ بعد بگویید چرا این کار فرابرنامه‌نویسی حساب می‌شود.",
+      "hint": "کد شما در زمان اجرا ساختار دادهٔ خودش را بررسی می‌کند، یعنی کد با کد کار می‌کند."
+    },
+    {
+      "prompt": "یک Proxy روی شیء user بسازید که هر بار خصوصیتی تنظیم می‌شود، مقدار قدیمی و جدید را در کنسول چاپ کند.",
+      "hint": "trap مربوط به set آرگومان‌های target، property و value را می‌گیرد."
+    },
+    {
+      "prompt": "همان Proxy را طوری بنویسید که تنظیم مقدار را به شیء اصلی هم بفرستد، این بار با Reflect.set().",
+      "hint": "با Reflect.set الگو با رفتار عادی شیء هم‌خوان می‌شود و لازم نیست خودتان مقدار را دستی بنویسید."
+    },
+    {
+      "prompt": "با new Function یک تابع بسازید که دو عدد را جمع کند و آن را صدا بزنید؛ ببینید کد در زمان اجرا ساخته می‌شود.",
+      "hint": "تولید تابع در زمان اجرا یکی از شکل‌های تولید کد پویا است."
+    },
+    {
+      "prompt": "روی همان Proxy یک trap برای خواندن هم بگذارید که نام خصوصیت خوانده‌شده را لاگ کند و بعد در کنسول مقدار آن را بخوانید.",
+      "hint": "trap مربوط به get آرگومان‌های target و property را می‌گیرد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام جمله معنای فرابرنامه‌نویسی را درست می‌گوید؟",
+      "options": [
+        "کدی که فقط داده را پردازش می‌کند",
+        "کدی که با کد کار می‌کند",
+        "کدی که همیشه سریع‌تر اجرا می‌شود",
+        "کدی که فقط در مرورگر می‌دود"
+      ],
+      "answer": 1,
+      "explanation": "در حالت عادی کد با داده کار می‌کند؛ در فرابرنامه‌نویسی برنامه خودش را بررسی یا تغییر می‌دهد، پس کد با کد کار می‌کند."
+    },
+    {
+      "question": "کدام دو شیء JavaScript را برای برنامه‌نویسی در سطح فرا ممکن می‌کنند؟",
+      "options": ["Proxy و Reflect", "Map و Set", "Array و Object", "Promise و Worker"],
+      "answer": 0,
+      "explanation": "درس این دو را ابزار فرابرنامه‌نویسی معرفی می‌کند: Proxy عملیات‌ها را رهگیری می‌کند و Reflect رفتار عادی شیء را حفظ می‌کند."
+    },
+    {
+      "question": "trap مربوط به set در Proxy چه کاری می‌کند؟",
+      "options": [
+        "عملیات خواندن خصوصیت را می‌گیرد",
+        "عملیات نوشتن یا تنظیم خصوصیت را می‌گیرد",
+        "شیء را حذف می‌کند",
+        "تابع می‌سازد"
+      ],
+      "answer": 1,
+      "explanation": "set هنگام تنظیم یک خصوصیت صدا زده می‌شود و همین‌جاست که می‌توان لاگ گرفت یا مقدار را محدود کرد؛ خواندن کار trap مربوط به get است."
+    },
+    {
+      "question": "چرا در مثال دوم، داخل trap مربوط به set از Reflect.set استفاده می‌شود؟",
+      "options": [
+        "چون Reflect سریع‌تر است",
+        "چون رفتار Proxy را با رفتار عادی شیء هم‌خوان و مقدار‌دهی را امن می‌کند",
+        "چون بدون آن Proxy کار نمی‌کند",
+        "چون Reflect خطاها را پاک می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "Reflect.set مقدار‌دهی را به شکل استاندارد شیء انجام می‌دهد تا لازم نباشد خودتان مقدار را دستی بگذارید و رفتار استاندارد حفظ شود."
+    },
+    {
+      "question": "بر اساس جدول مثال‌های فرابرنامه‌نویسی، فریمورک‌هایی مانند Vue و MobX از آن برای چه کاری استفاده می‌کنند؟",
+      "options": ["تشخیص تغییر وضعیت", "فشرده کردن کد", "ساختن پایگاه داده", "پردازش تصویر"],
+      "answer": 0,
+      "explanation": "در جدول درس، کاربرد فریمورک‌ها تشخیص تغییر وضعیت ذکر شده است؛ همین چیزی است که باعث واکنش‌گرا شدن واسط کاربری می‌شود."
+    }
+  ]
 }

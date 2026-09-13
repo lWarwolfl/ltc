@@ -1,418 +1,413 @@
 {
- "slug": "js_cookies",
- "course": "js",
- "order": 165,
- "url": "/js/js_cookies.asp",
- "title": "کوکی‌ها در JavaScript",
- "summary": "کوکی‌ها داده‌هایی کوچک روی رایانهٔ کاربر هستند که سایت‌ها با آن‌ها کاربر را به یاد می‌آورند. در این درس با document.cookie کوکی می‌سازید، می‌خوانید، تغییر می‌دهید و حذف می‌کنید و یک مثال کامل نام بازدیدکننده را پیاده می‌کنید.",
- "objectives": [
-  "کوکی را تعریف کنید و تفاوتش با متغیر JavaScript را بگویید",
-  "با document.cookie کوکی بسازید، بخوانید و حذف کنید",
-  "نقش پارامترهای expires و path را توضیح دهید",
-  "تابعی بنویسید که مقدار یک کوکی مشخص را از رشتهٔ کوکی پیدا کند",
-  "تشخیص دهید چرا کوکی جدید کوکی‌های قبلی را بازنویسی نمی‌کند"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "کوکی‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کوکی‌ها به شما امکان می‌دهند اطلاعات کاربر را در صفحات وب ذخیره کنید."
-  },
-  {
-   "type": "h2",
-   "text": "کوکی‌ها چیستند؟"
-  },
-  {
-   "type": "p",
-   "text": "کوکی‌ها داده‌هایی هستند که در فایل‌های متنی کوچکی روی رایانهٔ شما ذخیره می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "وقتی وب‌سرور صفحه‌ای را به مرورگر می‌فرستد، ارتباط قطع می‌شود و سرور همه‌چیز دربارهٔ کاربر را فراموش می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "کوکی‌ها برای حل این مسئله ساخته شدند: «چطور اطلاعات کاربر را به یاد بسپاریم»:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "وقتی کاربری از صفحه‌ای بازدید می‌کند، نامش می‌تواند در یک کوکی ذخیره شود.",
-    "دفعهٔ بعد که کاربر همان صفحه را بازدید کند، کوکی نامش را «به یاد می‌آورد»."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "کوکی‌ها به‌صورت جفت‌های نام-مقدار ذخیره می‌شوند، مثل:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "username = John Doe",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "وقتی مرورگر صفحه‌ای را از سرور درخواست می‌کند، کوکی‌های مربوط به آن صفحه به درخواست اضافه می‌شوند. این‌طور سرور داده‌های لازم را برای «به یاد آوردن» اطلاعات کاربران به دست می‌آورد."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "اگر پشتیبانی کوکی محلی در مرورگر شما خاموش باشد، هیچ‌کدام از مثال‌های زیر کار نمی‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "ساختن کوکی با JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript با خصوصیت document.cookie می‌تواند کوکی بسازد، بخواند و حذف کند."
-  },
-  {
-   "type": "p",
-   "text": "با JavaScript می‌توان کوکی را این‌طور ساخت:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=John Doe\";",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید تاریخ انقضا هم اضافه کنید (به وقت UTC). به‌طور پیش‌فرض، کوکی با بستن مرورگر حذف می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC\";",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "با پارامتر path به مرورگر می‌گویید کوکی به کدام مسیر تعلق دارد. به‌طور پیش‌فرض، کوکی به صفحهٔ جاری تعلق دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\";",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "خواندن کوکی با JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "با JavaScript می‌توان کوکی‌ها را این‌طور خواند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = document.cookie;",
-   "caption": null
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "خصوصیت document.cookie همهٔ کوکی‌ها را در یک رشته برمی‌گرداند، چیزی شبیه: cookie1=value; cookie2=value; cookie3=value;"
-  },
-  {
-   "type": "h2",
-   "text": "تغییر کوکی با JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "با JavaScript می‌توانید کوکی را همان‌طور که می‌سازید تغییر دهید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\";",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "کوکی قبلی بازنویسی می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "حذف کوکی با JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "حذف کوکی خیلی ساده است."
-  },
-  {
-   "type": "p",
-   "text": "هنگام حذف کوکی لازم نیست مقداری برای آن مشخص کنید."
-  },
-  {
-   "type": "p",
-   "text": "فقط پارامتر expires را روی تاریخی در گذشته بگذارید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.cookie = \"username=; expires=Thu, 01\nJan 1970 00:00:00 UTC; path=/;\";",
-   "caption": null
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "برای اینکه مطمئن شوید کوکی درست را حذف می‌کنید، مسیر کوکی (path) را مشخص کنید. بعضی مرورگرها اگر path را ندهید اجازهٔ حذف کوکی را نمی‌دهند."
-  },
-  {
-   "type": "h2",
-   "text": "رشتهٔ کوکی"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت document.cookie شبیه یک رشتهٔ متنی معمولی است، اما نیست."
-  },
-  {
-   "type": "p",
-   "text": "حتی اگر یک رشتهٔ کامل کوکی را در document.cookie بنویسید، وقتی دوباره آن را بخوانید فقط جفت نام-مقدار آن را می‌بینید."
-  },
-  {
-   "type": "p",
-   "text": "اگر کوکی جدیدی بگذارید، کوکی‌های قدیمی بازنویسی نمی‌شوند. کوکی جدید به document.cookie اضافه می‌شود؛ پس اگر دوباره document.cookie را بخوانید چیزی شبیه این می‌گیرید:"
-  },
-  {
-   "type": "p",
-   "text": "cookie1 = value; cookie2 = value;"
-  },
-  {
-   "type": "p",
-   "text": "نمایش همهٔ کوکی‌ها\nساخت کوکی ۱\nساخت کوکی ۲\nحذف کوکی ۱\nحذف کوکی ۲"
-  },
-  {
-   "type": "p",
-   "text": "اگر می‌خواهید مقدار یک کوکی مشخص را پیدا کنید، باید یک تابع JavaScript بنویسید که مقدار آن کوکی را در رشتهٔ کوکی جست‌وجو کند."
-  },
-  {
-   "type": "h2",
-   "text": "مثال کوکی در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "در مثال پیش‌رو کوکی‌ای می‌سازیم که نام بازدیدکننده را ذخیره کند."
-  },
-  {
-   "type": "p",
-   "text": "بار اول که بازدیدکننده به صفحه می‌آید، از او خواسته می‌شود نامش را وارد کند. بعد نام در یک کوکی ذخیره می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "دفعهٔ بعد که بازدیدکننده به همان صفحه بیاید، پیام خوش‌آمد می‌بیند."
-  },
-  {
-   "type": "p",
-   "text": "برای این مثال سه تابع JavaScript می‌سازیم:"
-  },
-  {
-   "type": "list",
-   "ordered": true,
-   "items": [
-    "تابعی برای گذاشتن مقدار کوکی",
-    "تابعی برای خواندن مقدار کوکی",
-    "تابعی برای بررسی مقدار کوکی"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تابعی برای گذاشتن کوکی"
-  },
-  {
-   "type": "p",
-   "text": "اول تابعی می‌سازیم که نام بازدیدکننده را در یک متغیر کوکی ذخیره کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function setCookie(cname, cvalue, exdays) {\n\n   const d = new Date();\n  d.setTime(d.getTime() + (exdays*24*60*60*1000));\n  let expires = \"expires=\"+ d.toUTCString();\n  document.cookie = cname + \"=\" + cvalue + \";\" + expires + \";path=/\";\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "توضیح مثال:"
-  },
-  {
-   "type": "p",
-   "text": "پارامترهای تابع بالا نام کوکی (cname)، مقدار کوکی (cvalue) و تعداد روزهای باقی‌مانده تا انقضای کوکی (exdays) هستند."
-  },
-  {
-   "type": "p",
-   "text": "تابع با کنار هم گذاشتن نام کوکی، مقدار کوکی و رشتهٔ expires یک کوکی می‌سازد."
-  },
-  {
-   "type": "h2",
-   "text": "تابعی برای خواندن کوکی"
-  },
-  {
-   "type": "p",
-   "text": "بعد تابعی می‌سازیم که مقدار یک کوکی مشخص را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function getCookie(cname) {\n\nlet name = cname + \"=\";\n\nlet decodedCookie = decodeURIComponent(document.cookie);\n\n  let ca = decodedCookie.split(';');\n\n  for(let i = 0; i <ca.length; i++) {\n\n      let c = ca[i];\n    while (c.charAt(0) == ' ') {\n      c = c.substring(1);\n\n }\n\n      if (c.indexOf(name) == 0) {\n      return c.substring(name.length, c.length);\n\n      }\n\n    }\n\n    return \"\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "توضیح تابع:"
-  },
-  {
-   "type": "p",
-   "text": "نام کوکی را به‌عنوان پارامتر می‌گیرد (cname)."
-  },
-  {
-   "type": "p",
-   "text": "متغیری (name) با متنی که باید جست‌وجو شود می‌سازد (cname + \"=\")."
-  },
-  {
-   "type": "p",
-   "text": "رشتهٔ کوکی را رمزگشایی می‌کند تا کوکی‌هایی با نویسه‌های خاص مثل '$' هم درست کار کنند"
-  },
-  {
-   "type": "p",
-   "text": "مقدار document.cookie را روی نقطه‌ویرگول‌ها به آرایه‌ای به نام ca می‌شکند (ca = decodedCookie.split(';'))."
-  },
-  {
-   "type": "p",
-   "text": "روی آرایهٔ ca حلقه می‌زند (i = 0; i < ca.length; i++) و هر مقدار را می‌خواند (c = ca[i])."
-  },
-  {
-   "type": "p",
-   "text": "اگر کوکی پیدا شد (c.indexOf(name) == 0)، مقدار آن کوکی را برمی‌گرداند (c.substring(name.length, c.length))."
-  },
-  {
-   "type": "p",
-   "text": "اگر کوکی پیدا نشد، رشتهٔ خالی \"\" را برمی‌گرداند."
-  },
-  {
-   "type": "h2",
-   "text": "تابعی برای بررسی کوکی"
-  },
-  {
-   "type": "p",
-   "text": "در آخر تابعی می‌سازیم که بررسی می‌کند کوکی ست شده است یا نه."
-  },
-  {
-   "type": "p",
-   "text": "اگر کوکی ست شده باشد، پیام خوش‌آمد نشان می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "اگر کوکی ست نشده باشد، یک جعبهٔ پرسش نشان می‌دهد و نام کاربر را می‌پرسد و با صدا زدن تابع setCookie کوکی username را برای ۳۶۵ روز ذخیره می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function checkCookie() {\n  let\nusername = getCookie(\"username\");\n  if (username != \"\") {\n\n     alert(\"Welcome again \" + username);\n\n  } else {\n\n    username = prompt(\"Please enter your name:\", \"\");\n\n      if (username != \"\"\n&& username != null) {\n\n        setCookie(\"username\", username, 365);\n\n      }\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "همه با هم"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function setCookie(cname, cvalue, exdays) {\n\n  const d = new Date();\n\nd.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));\n  let expires = \"expires=\"+d.toUTCString();\n\n  document.cookie = cname + \"=\" + cvalue +\n\";\" + expires + \";path=/\";\n\n}\n\nfunction getCookie(cname) {\n  let name = cname + \"=\";\n\n    let ca\n= document.cookie.split(';');\n  for(let i = 0; i < ca.length; i++)\n{\n\nlet c = ca[i];\n    while (c.charAt(0) == '\n') {\n      c = c.substring(1);\n    }\n    if (c.indexOf(name)\n == 0) {\n      return c.substring(name.length, c.length);\n\n      }\n  }\n\n    return \"\";\n}\n\nfunction\ncheckCookie() {\n  let user = getCookie(\"username\");\n\n  if (user != \"\")\n{\n    alert(\"Welcome again \" + user);\n\n  } else {\n\n    user = prompt(\"Please enter your name:\", \"\");\n\n      if (user != \"\" &&\nuser != null) {\n\n      setCookie(\"username\", user, 365);\n\n      }\n  }\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_cookie_username"
-  },
-  {
-   "type": "p",
-   "text": "مثال بالا هنگام بارگذاری صفحه تابع checkCookie() را اجرا می‌کند."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل cookie.html بسازید و با document.cookie = \"name=Ali\" یک کوکی بسازید، سپس document.cookie را در کنسول چاپ کنید.",
-   "hint": "کوکی به‌صورت جفت نام-مقدار ذخیره می‌شود؛ در کنسول همهٔ کوکی‌ها را در یک رشته می‌بینید."
-  },
-  {
-   "prompt": "یک کوکی با تاریخ انقضای گذشته بسازید تا حذف شود و بعد document.cookie را دوباره بخوانید.",
-   "hint": "برای حذف کافی است پارامتر expires را روی تاریخی پیش از امروز بگذارید و مسیر کوکی را هم مشخص کنید."
-  },
-  {
-   "prompt": "تابعی بنویسید که نام کوکی را بگیرد و مقدارش را از رشتهٔ document.cookie پیدا و برگرداند.",
-   "hint": "رشته را با split(';') به آرایه بشکنید و با indexOf دنبال نام کوکی بگردید."
-  },
-  {
-   "prompt": "نام بازدیدکننده را در یک کوکی ذخیره کنید و وقتی صفحه دوباره باز شد، به‌جای پرسیدن نام، پیام خوش‌آمد نشان دهید.",
-   "hint": "با تابع getCookie مقدار را بخوانید؛ اگر رشتهٔ خالی بود یعنی کوکی ست نشده است."
-  },
-  {
-   "prompt": "نتیجهٔ document.cookie را بعد از ساختن دو کوکی پشت سر هم ببینید و توضیح دهید چرا کوکی اول پاک نشده است.",
-   "hint": "کوکی جدید به رشتهٔ کوکی اضافه می‌شود و کوکی‌های قبلی را بازنویسی نمی‌کند."
-  }
- ],
- "quiz": [
-  {
-   "question": "کوکی چیست؟",
-   "options": [
-    "یک فایل اجرایی روی سرور",
-    "داده‌ای که در فایل‌های متنی کوچکی روی رایانهٔ کاربر ذخیره می‌شود",
-    "یک نوع متغیر JavaScript",
-    "حافظهٔ موقت مرورگر که با بستن آن پاک می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "کوکی داده‌ای است که در فایل‌های متنی کوچک روی رایانهٔ کاربر ذخیره می‌شود تا سایت‌ها بتوانند کاربر را به یاد بیاورند. متغیر JavaScript با بستن صفحه از بین می‌رود و به همین دلیل کوکی ساخته شد."
-  },
-  {
-   "question": "برای ساختن یا خواندن کوکی از کدام خصوصیت استفاده می‌شود؟",
-   "options": [
-    "window.cookie",
-    "navigator.cookie",
-    "document.cookie",
-    "cookie.set()"
-   ],
-   "answer": 2,
-   "explanation": "همهٔ کارهای کوکی با document.cookie انجام می‌شود: نوشتن در آن کوکی می‌سازد یا تغییر می‌دهد و خواندن آن همهٔ کوکی‌ها را در یک رشته برمی‌گرداند."
-  },
-  {
-   "question": "چگونه یک کوکی را حذف می‌کنید؟",
-   "options": [
-    "با دستور delete document.cookie",
-    "با صدا زدن cookie.remove()",
-    "با گذاشتن پارامتر expires روی تاریخی در گذشته",
-    "با خالی گذاشتن مقدار کوکی"
-   ],
-   "answer": 2,
-   "explanation": "برای حذف، همان کوکی را با تاریخ انقضای گذشته می‌نویسید تا مرورگر آن را منقضی بداند؛ بهتر است path را هم مشخص کنید، چون بعضی مرورگرها بی‌آنکه path بدهید کوکی را حذف نمی‌کنند."
-  },
-  {
-   "question": "اگر کوکی جدیدی بسازید، کوکی‌های قبلی چه می‌شوند؟",
-   "options": [
-    "بازنویسی می‌شوند",
-    "پاک می‌شوند",
-    "باقی می‌مانند و همه در document.cookie هستند",
-    "به سرور فرستاده می‌شوند"
-   ],
-   "answer": 2,
-   "explanation": "کوکی جدید به رشتهٔ document.cookie اضافه می‌شود و کوکی‌های قبلی دست‌نخورده می‌مانند؛ فقط وقتی کوکی‌ای با همان نام بسازید، همان یکی بازنویسی می‌شود."
-  },
-  {
-   "question": "پارامتر path در یک کوکی چه کاری می‌کند؟",
-   "options": [
-    "مسیر فایل کوکی روی دیسک را تعیین می‌کند",
-    "مشخص می‌کند کوکی به کدام مسیر سایت تعلق دارد",
-    "مسیر صفحهٔ جاری را عوض می‌کند",
-    "نام کوکی را تعیین می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "path می‌گوید کوکی به کدام مسیر سایت تعلق دارد؛ به‌طور پیش‌فرض به صفحهٔ جاری تعلق دارد و مرورگر کوکی را فقط به همان مسیر در درخواست‌ها اضافه می‌کند."
-  }
- ]
+  "slug": "js_cookies",
+  "course": "js",
+  "order": 165,
+  "url": "/js/js_cookies.asp",
+  "title": "کوکی‌ها در JavaScript",
+  "summary": "کوکی‌ها داده‌هایی کوچک روی رایانهٔ کاربر هستند که سایت‌ها با آن‌ها کاربر را به یاد می‌آورند. در این درس با document.cookie کوکی می‌سازید، می‌خوانید، تغییر می‌دهید و حذف می‌کنید و یک مثال کامل نام بازدیدکننده را پیاده می‌کنید.",
+  "objectives": [
+    "کوکی را تعریف کنید و تفاوتش با متغیر JavaScript را بگویید",
+    "با document.cookie کوکی بسازید، بخوانید و حذف کنید",
+    "نقش پارامترهای expires و path را توضیح دهید",
+    "تابعی بنویسید که مقدار یک کوکی مشخص را از رشتهٔ کوکی پیدا کند",
+    "تشخیص دهید چرا کوکی جدید کوکی‌های قبلی را بازنویسی نمی‌کند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "کوکی‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کوکی‌ها به شما امکان می‌دهند اطلاعات کاربر را در صفحات وب ذخیره کنید."
+    },
+    {
+      "type": "h2",
+      "text": "کوکی‌ها چیستند؟"
+    },
+    {
+      "type": "p",
+      "text": "کوکی‌ها داده‌هایی هستند که در فایل‌های متنی کوچکی روی رایانهٔ شما ذخیره می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "وقتی وب‌سرور صفحه‌ای را به مرورگر می‌فرستد، ارتباط قطع می‌شود و سرور همه‌چیز دربارهٔ کاربر را فراموش می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "کوکی‌ها برای حل این مسئله ساخته شدند: «چطور اطلاعات کاربر را به یاد بسپاریم»:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "وقتی کاربری از صفحه‌ای بازدید می‌کند، نامش می‌تواند در یک کوکی ذخیره شود.",
+        "دفعهٔ بعد که کاربر همان صفحه را بازدید کند، کوکی نامش را «به یاد می‌آورد»."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "کوکی‌ها به‌صورت جفت‌های نام-مقدار ذخیره می‌شوند، مثل:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "username = John Doe",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "وقتی مرورگر صفحه‌ای را از سرور درخواست می‌کند، کوکی‌های مربوط به آن صفحه به درخواست اضافه می‌شوند. این‌طور سرور داده‌های لازم را برای «به یاد آوردن» اطلاعات کاربران به دست می‌آورد."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "اگر پشتیبانی کوکی محلی در مرورگر شما خاموش باشد، هیچ‌کدام از مثال‌های زیر کار نمی‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "ساختن کوکی با JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript با خصوصیت document.cookie می‌تواند کوکی بسازد، بخواند و حذف کند."
+    },
+    {
+      "type": "p",
+      "text": "با JavaScript می‌توان کوکی را این‌طور ساخت:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=John Doe\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید تاریخ انقضا هم اضافه کنید (به وقت UTC). به‌طور پیش‌فرض، کوکی با بستن مرورگر حذف می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "با پارامتر path به مرورگر می‌گویید کوکی به کدام مسیر تعلق دارد. به‌طور پیش‌فرض، کوکی به صفحهٔ جاری تعلق دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\";",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "خواندن کوکی با JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "با JavaScript می‌توان کوکی‌ها را این‌طور خواند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = document.cookie;",
+      "caption": null
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "خصوصیت document.cookie همهٔ کوکی‌ها را در یک رشته برمی‌گرداند، چیزی شبیه: cookie1=value; cookie2=value; cookie3=value;"
+    },
+    {
+      "type": "h2",
+      "text": "تغییر کوکی با JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "با JavaScript می‌توانید کوکی را همان‌طور که می‌سازید تغییر دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "کوکی قبلی بازنویسی می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "حذف کوکی با JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "حذف کوکی خیلی ساده است."
+    },
+    {
+      "type": "p",
+      "text": "هنگام حذف کوکی لازم نیست مقداری برای آن مشخص کنید."
+    },
+    {
+      "type": "p",
+      "text": "فقط پارامتر expires را روی تاریخی در گذشته بگذارید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.cookie = \"username=; expires=Thu, 01\nJan 1970 00:00:00 UTC; path=/;\";",
+      "caption": null
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برای اینکه مطمئن شوید کوکی درست را حذف می‌کنید، مسیر کوکی (path) را مشخص کنید. بعضی مرورگرها اگر path را ندهید اجازهٔ حذف کوکی را نمی‌دهند."
+    },
+    {
+      "type": "h2",
+      "text": "رشتهٔ کوکی"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت document.cookie شبیه یک رشتهٔ متنی معمولی است، اما نیست."
+    },
+    {
+      "type": "p",
+      "text": "حتی اگر یک رشتهٔ کامل کوکی را در document.cookie بنویسید، وقتی دوباره آن را بخوانید فقط جفت نام-مقدار آن را می‌بینید."
+    },
+    {
+      "type": "p",
+      "text": "اگر کوکی جدیدی بگذارید، کوکی‌های قدیمی بازنویسی نمی‌شوند. کوکی جدید به document.cookie اضافه می‌شود؛ پس اگر دوباره document.cookie را بخوانید چیزی شبیه این می‌گیرید:"
+    },
+    {
+      "type": "p",
+      "text": "cookie1 = value; cookie2 = value;"
+    },
+    {
+      "type": "p",
+      "text": "نمایش همهٔ کوکی‌ها\nساخت کوکی ۱\nساخت کوکی ۲\nحذف کوکی ۱\nحذف کوکی ۲"
+    },
+    {
+      "type": "p",
+      "text": "اگر می‌خواهید مقدار یک کوکی مشخص را پیدا کنید، باید یک تابع JavaScript بنویسید که مقدار آن کوکی را در رشتهٔ کوکی جست‌وجو کند."
+    },
+    {
+      "type": "h2",
+      "text": "مثال کوکی در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "در مثال پیش‌رو کوکی‌ای می‌سازیم که نام بازدیدکننده را ذخیره کند."
+    },
+    {
+      "type": "p",
+      "text": "بار اول که بازدیدکننده به صفحه می‌آید، از او خواسته می‌شود نامش را وارد کند. بعد نام در یک کوکی ذخیره می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "دفعهٔ بعد که بازدیدکننده به همان صفحه بیاید، پیام خوش‌آمد می‌بیند."
+    },
+    {
+      "type": "p",
+      "text": "برای این مثال سه تابع JavaScript می‌سازیم:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "تابعی برای گذاشتن مقدار کوکی",
+        "تابعی برای خواندن مقدار کوکی",
+        "تابعی برای بررسی مقدار کوکی"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "تابعی برای گذاشتن کوکی"
+    },
+    {
+      "type": "p",
+      "text": "اول تابعی می‌سازیم که نام بازدیدکننده را در یک متغیر کوکی ذخیره کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function setCookie(cname, cvalue, exdays) {\n\n   const d = new Date();\n  d.setTime(d.getTime() + (exdays*24*60*60*1000));\n  let expires = \"expires=\"+ d.toUTCString();\n  document.cookie = cname + \"=\" + cvalue + \";\" + expires + \";path=/\";\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "توضیح مثال:"
+    },
+    {
+      "type": "p",
+      "text": "پارامترهای تابع بالا نام کوکی (cname)، مقدار کوکی (cvalue) و تعداد روزهای باقی‌مانده تا انقضای کوکی (exdays) هستند."
+    },
+    {
+      "type": "p",
+      "text": "تابع با کنار هم گذاشتن نام کوکی، مقدار کوکی و رشتهٔ expires یک کوکی می‌سازد."
+    },
+    {
+      "type": "h2",
+      "text": "تابعی برای خواندن کوکی"
+    },
+    {
+      "type": "p",
+      "text": "بعد تابعی می‌سازیم که مقدار یک کوکی مشخص را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function getCookie(cname) {\n\nlet name = cname + \"=\";\n\nlet decodedCookie = decodeURIComponent(document.cookie);\n\n  let ca = decodedCookie.split(';');\n\n  for(let i = 0; i <ca.length; i++) {\n\n      let c = ca[i];\n    while (c.charAt(0) == ' ') {\n      c = c.substring(1);\n\n }\n\n      if (c.indexOf(name) == 0) {\n      return c.substring(name.length, c.length);\n\n      }\n\n    }\n\n    return \"\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "توضیح تابع:"
+    },
+    {
+      "type": "p",
+      "text": "نام کوکی را به‌عنوان پارامتر می‌گیرد (cname)."
+    },
+    {
+      "type": "p",
+      "text": "متغیری (name) با متنی که باید جست‌وجو شود می‌سازد (cname + \"=\")."
+    },
+    {
+      "type": "p",
+      "text": "رشتهٔ کوکی را رمزگشایی می‌کند تا کوکی‌هایی با نویسه‌های خاص مثل '$' هم درست کار کنند"
+    },
+    {
+      "type": "p",
+      "text": "مقدار document.cookie را روی نقطه‌ویرگول‌ها به آرایه‌ای به نام ca می‌شکند (ca = decodedCookie.split(';'))."
+    },
+    {
+      "type": "p",
+      "text": "روی آرایهٔ ca حلقه می‌زند (i = 0; i < ca.length; i++) و هر مقدار را می‌خواند (c = ca[i])."
+    },
+    {
+      "type": "p",
+      "text": "اگر کوکی پیدا شد (c.indexOf(name) == 0)، مقدار آن کوکی را برمی‌گرداند (c.substring(name.length, c.length))."
+    },
+    {
+      "type": "p",
+      "text": "اگر کوکی پیدا نشد، رشتهٔ خالی \"\" را برمی‌گرداند."
+    },
+    {
+      "type": "h2",
+      "text": "تابعی برای بررسی کوکی"
+    },
+    {
+      "type": "p",
+      "text": "در آخر تابعی می‌سازیم که بررسی می‌کند کوکی ست شده است یا نه."
+    },
+    {
+      "type": "p",
+      "text": "اگر کوکی ست شده باشد، پیام خوش‌آمد نشان می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "اگر کوکی ست نشده باشد، یک جعبهٔ پرسش نشان می‌دهد و نام کاربر را می‌پرسد و با صدا زدن تابع setCookie کوکی username را برای ۳۶۵ روز ذخیره می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function checkCookie() {\n  let\nusername = getCookie(\"username\");\n  if (username != \"\") {\n\n     alert(\"Welcome again \" + username);\n\n  } else {\n\n    username = prompt(\"Please enter your name:\", \"\");\n\n      if (username != \"\"\n&& username != null) {\n\n        setCookie(\"username\", username, 365);\n\n      }\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "همه با هم"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function setCookie(cname, cvalue, exdays) {\n\n  const d = new Date();\n\nd.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));\n  let expires = \"expires=\"+d.toUTCString();\n\n  document.cookie = cname + \"=\" + cvalue +\n\";\" + expires + \";path=/\";\n\n}\n\nfunction getCookie(cname) {\n  let name = cname + \"=\";\n\n    let ca\n= document.cookie.split(';');\n  for(let i = 0; i < ca.length; i++)\n{\n\nlet c = ca[i];\n    while (c.charAt(0) == '\n') {\n      c = c.substring(1);\n    }\n    if (c.indexOf(name)\n == 0) {\n      return c.substring(name.length, c.length);\n\n      }\n  }\n\n    return \"\";\n}\n\nfunction\ncheckCookie() {\n  let user = getCookie(\"username\");\n\n  if (user != \"\")\n{\n    alert(\"Welcome again \" + user);\n\n  } else {\n\n    user = prompt(\"Please enter your name:\", \"\");\n\n      if (user != \"\" &&\nuser != null) {\n\n      setCookie(\"username\", user, 365);\n\n      }\n  }\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_cookie_username"
+    },
+    {
+      "type": "p",
+      "text": "مثال بالا هنگام بارگذاری صفحه تابع checkCookie() را اجرا می‌کند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل cookie.html بسازید و با document.cookie = \"name=Ali\" یک کوکی بسازید، سپس document.cookie را در کنسول چاپ کنید.",
+      "hint": "کوکی به‌صورت جفت نام-مقدار ذخیره می‌شود؛ در کنسول همهٔ کوکی‌ها را در یک رشته می‌بینید."
+    },
+    {
+      "prompt": "یک کوکی با تاریخ انقضای گذشته بسازید تا حذف شود و بعد document.cookie را دوباره بخوانید.",
+      "hint": "برای حذف کافی است پارامتر expires را روی تاریخی پیش از امروز بگذارید و مسیر کوکی را هم مشخص کنید."
+    },
+    {
+      "prompt": "تابعی بنویسید که نام کوکی را بگیرد و مقدارش را از رشتهٔ document.cookie پیدا و برگرداند.",
+      "hint": "رشته را با split(';') به آرایه بشکنید و با indexOf دنبال نام کوکی بگردید."
+    },
+    {
+      "prompt": "نام بازدیدکننده را در یک کوکی ذخیره کنید و وقتی صفحه دوباره باز شد، به‌جای پرسیدن نام، پیام خوش‌آمد نشان دهید.",
+      "hint": "با تابع getCookie مقدار را بخوانید؛ اگر رشتهٔ خالی بود یعنی کوکی ست نشده است."
+    },
+    {
+      "prompt": "نتیجهٔ document.cookie را بعد از ساختن دو کوکی پشت سر هم ببینید و توضیح دهید چرا کوکی اول پاک نشده است.",
+      "hint": "کوکی جدید به رشتهٔ کوکی اضافه می‌شود و کوکی‌های قبلی را بازنویسی نمی‌کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کوکی چیست؟",
+      "options": [
+        "یک فایل اجرایی روی سرور",
+        "داده‌ای که در فایل‌های متنی کوچکی روی رایانهٔ کاربر ذخیره می‌شود",
+        "یک نوع متغیر JavaScript",
+        "حافظهٔ موقت مرورگر که با بستن آن پاک می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "کوکی داده‌ای است که در فایل‌های متنی کوچک روی رایانهٔ کاربر ذخیره می‌شود تا سایت‌ها بتوانند کاربر را به یاد بیاورند. متغیر JavaScript با بستن صفحه از بین می‌رود و به همین دلیل کوکی ساخته شد."
+    },
+    {
+      "question": "برای ساختن یا خواندن کوکی از کدام خصوصیت استفاده می‌شود؟",
+      "options": ["window.cookie", "navigator.cookie", "document.cookie", "cookie.set()"],
+      "answer": 2,
+      "explanation": "همهٔ کارهای کوکی با document.cookie انجام می‌شود: نوشتن در آن کوکی می‌سازد یا تغییر می‌دهد و خواندن آن همهٔ کوکی‌ها را در یک رشته برمی‌گرداند."
+    },
+    {
+      "question": "چگونه یک کوکی را حذف می‌کنید؟",
+      "options": [
+        "با دستور delete document.cookie",
+        "با صدا زدن cookie.remove()",
+        "با گذاشتن پارامتر expires روی تاریخی در گذشته",
+        "با خالی گذاشتن مقدار کوکی"
+      ],
+      "answer": 2,
+      "explanation": "برای حذف، همان کوکی را با تاریخ انقضای گذشته می‌نویسید تا مرورگر آن را منقضی بداند؛ بهتر است path را هم مشخص کنید، چون بعضی مرورگرها بی‌آنکه path بدهید کوکی را حذف نمی‌کنند."
+    },
+    {
+      "question": "اگر کوکی جدیدی بسازید، کوکی‌های قبلی چه می‌شوند؟",
+      "options": [
+        "بازنویسی می‌شوند",
+        "پاک می‌شوند",
+        "باقی می‌مانند و همه در document.cookie هستند",
+        "به سرور فرستاده می‌شوند"
+      ],
+      "answer": 2,
+      "explanation": "کوکی جدید به رشتهٔ document.cookie اضافه می‌شود و کوکی‌های قبلی دست‌نخورده می‌مانند؛ فقط وقتی کوکی‌ای با همان نام بسازید، همان یکی بازنویسی می‌شود."
+    },
+    {
+      "question": "پارامتر path در یک کوکی چه کاری می‌کند؟",
+      "options": [
+        "مسیر فایل کوکی روی دیسک را تعیین می‌کند",
+        "مشخص می‌کند کوکی به کدام مسیر سایت تعلق دارد",
+        "مسیر صفحهٔ جاری را عوض می‌کند",
+        "نام کوکی را تعیین می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "path می‌گوید کوکی به کدام مسیر سایت تعلق دارد؛ به‌طور پیش‌فرض به صفحهٔ جاری تعلق دارد و مرورگر کوکی را فقط به همان مسیر در درخواست‌ها اضافه می‌کند."
+    }
+  ]
 }

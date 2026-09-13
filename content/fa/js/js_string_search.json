@@ -1,510 +1,495 @@
 {
- "slug": "js_string_search",
- "course": "js",
- "order": 30,
- "url": "/js/js_string_search.asp",
- "title": "جست‌وجو در رشته در JavaScript",
- "summary": "در این درس با متدهایی آشنا می‌شوید که برای جست‌وجوی متن داخل یک رشته به کار می‌روند: indexOf، lastIndexOf، search، match، matchAll، includes، startsWith و endsWith. بعد از این درس می‌توانید موقعیت یک متن را در رشته پیدا کنید و بگویید رشته‌ای شامل، شروع‌شده یا پایان‌یافته با مقدار خاصی هست یا نه.",
- "objectives": [
-  "توضیح دهید indexOf() و lastIndexOf() چه مقداری برمی‌گردانند و اختلافشان چیست",
-  "با search() و match() روی یک رشته جست‌وجو کنید",
-  "تفاوت search() و indexOf() را بگویید",
-  "با includes()، startsWith() و endsWith() وجود و جای متن را بررسی کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "جست‌وجو در رشته در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای جست‌وجو در رشته"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "رشته: indexOf()\nرشته: lastIndexOf()\nرشته: search()\nرشته: match()",
-     "رشته: matchAll()\nرشته: includes()\nرشته: startsWith()\nرشته: endsWith()"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "همچنین ببینید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش رشته"
-  },
-  {
-   "type": "p",
-   "text": "متدهای رشته"
-  },
-  {
-   "type": "p",
-   "text": "قالب‌های رشته"
-  },
-  {
-   "type": "p",
-   "text": "مرجع رشته"
-  },
-  {
-   "type": "h2",
-   "text": "متد indexOf() روی رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد indexOf() اندیس (موقعیت) نخستین رخداد یک رشته در یک رشته را برمی‌گرداند، و اگر رشته پیدا نشود مقدار -1 را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please locate where 'locate' occurs!\";\n\nlet index = text.indexOf(\"locate\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_indexof"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "JavaScript موقعیت‌ها را از صفر می‌شمارد. 0 نخستین موقعیت در یک رشته است، 1 دومین و 2 سومین، و به همین ترتیب..."
-  },
-  {
-   "type": "h2",
-   "text": "متد lastIndexOf() روی رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد lastIndexOf() اندیس آخرین رخداد یک متن مشخص در یک رشته را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please locate where 'locate' occurs!\";\n\nlet index = text.lastIndexOf(\"locate\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_lastindexof"
-  },
-  {
-   "type": "p",
-   "text": "اگر متن پیدا نشود، هم indexOf() و هم lastIndexOf() مقدار -1 را برمی‌گردانند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please locate where 'locate' occurs!\";\n\nlet index = text.lastIndexOf(\"John\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_indexof_1"
-  },
-  {
-   "type": "p",
-   "text": "هر دو متد یک پارامتر دوم به عنوان موقعیت شروع جست‌وجو می‌پذیرند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please locate where 'locate' occurs!\";\n\nlet index = text.indexOf(\"locate\", 15);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_indexof_2"
-  },
-  {
-   "type": "p",
-   "text": "متد lastIndexOf() رو به عقب جست‌وجو می‌کند (از انتها به ابتدا)؛ یعنی اگر پارامتر دوم 15 باشد، جست‌وجو از موقعیت 15 شروع می‌شود و تا ابتدای رشته پیش می‌رود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please locate where 'locate' occurs!\";\n\ntext.lastIndexOf(\"locate\", 15);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_lastindexof_2"
-  },
-  {
-   "type": "h2",
-   "text": "متد search() روی رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد search() یک رشته (یا یک regular expression) را در رشته جست‌وجو می‌کند و موقعیت تطبیق را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please locate where 'locate' occurs!\";\n\ntext.search(\"locate\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Please locate where 'locate' occurs!\";\n\ntext.search(/locate/);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_search_locate"
-  },
-  {
-   "type": "h2",
-   "text": "آیا توجه کردید؟"
-  },
-  {
-   "type": "p",
-   "text": "آیا این دو متد، indexOf() و search()، برابرند؟"
-  },
-  {
-   "type": "p",
-   "text": "آیا آرگومان‌ها (پارامترهای) یکسانی می‌پذیرند و مقدار یکسانی برمی‌گردانند؟"
-  },
-  {
-   "type": "p",
-   "text": "این دو متد برابر نیستند. تفاوت‌هایشان این‌هاست:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "متد search() نمی‌تواند آرگومان دوم موقعیت شروع بگیرد.",
-    "متد indexOf() نمی‌تواند مقدارهای جست‌وجوی قدرتمند (regular expression) بگیرد."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "در فصلی بعدی دربارهٔ regular expression بیشتر یاد می‌گیرید."
-  },
-  {
-   "type": "h2",
-   "text": "متد match() روی رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد match() آرایه‌ای برمی‌گرداند که نتیجهٔ تطبیق یک رشته با یک رشته (یا یک regular expression) را در خود دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"The rain in SPAIN stays mainly in the plain\";\n\ntext.match(\"ain\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"The rain in SPAIN stays mainly in the plain\";\n\ntext.match(/ain/);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"The rain in SPAIN stays mainly in the plain\";\n\ntext.match(/ain/g);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"The rain in SPAIN stays mainly in the plain\";\n\ntext.match(/ain/gi);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_match"
-  },
-  {
-   "type": "p",
-   "text": "اگر یک regular expression اصلاح‌گر g (جست‌وجوی سراسری) را نداشته باشد، match() فقط نخستین تطبیق در رشته را برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "دربارهٔ regular expression در فصل JS RegExp بیشتر بخوانید."
-  },
-  {
-   "type": "h2",
-   "text": "متد matchAll() روی رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد matchAll() یک iterator برمی‌گرداند که نتیجهٔ تطبیق یک رشته با یک رشته (یا یک regular expression) را در خود دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const iterator = text.matchAll(\"Cats\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall"
-  },
-  {
-   "type": "p",
-   "text": "اگر پارامتر یک regular expression باشد، پرچم سراسری (g) باید تنظیم شده باشد، وگرنه خطای TypeError پرتاب می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const iterator = text.matchAll(/Cats/g);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall2"
-  },
-  {
-   "type": "p",
-   "text": "اگر می‌خواهید جست‌وجو به بزرگی و کوچکی حروف حساس نباشد، پرچم حساس‌نبودن (i) باید تنظیم شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const iterator = text.matchAll(/Cats/gi);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall3"
-  },
-  {
-   "type": "p",
-   "text": "matchAll() یکی از ویژگی‌های ES2020 است."
-  },
-  {
-   "type": "p",
-   "text": "matchAll() در Internet Explorer کار نمی‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "متد includes() روی رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد includes() اگر رشته مقدار مشخصی را در خود داشته باشد true برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "در غیر این صورت false برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.includes(\"world\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.includes(\"world\", 12);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_includes"
-  },
-  {
-   "type": "p",
-   "text": "includes() به بزرگی و کوچکی حروف حساس است."
-  },
-  {
-   "type": "p",
-   "text": "includes() یکی از ویژگی‌های ES6 است."
-  },
-  {
-   "type": "h2",
-   "text": "متد startsWith() روی رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد startsWith() اگر رشته با مقدار مشخصی شروع شود true برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "در غیر این صورت false برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"Hello\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"world\")",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_startswith"
-  },
-  {
-   "type": "p",
-   "text": "می‌توان موقعیت شروع جست‌وجو را هم مشخص کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"world\", 5)",
-   "caption": null
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"world\", 6)",
-   "caption": null
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_startswith3"
-  },
-  {
-   "type": "p",
-   "text": "startsWith() به بزرگی و کوچکی حروف حساس است."
-  },
-  {
-   "type": "p",
-   "text": "startsWith() یکی از ویژگی‌های ES6 است."
-  },
-  {
-   "type": "h2",
-   "text": "متد endsWith() روی رشته"
-  },
-  {
-   "type": "p",
-   "text": "متد endsWith() اگر رشته با مقدار مشخصی پایان یابد true برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "در غیر این صورت false برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"John Doe\";\n\ntext.endsWith(\"Doe\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.endsWith(\"world\", 11);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_endswith"
-  },
-  {
-   "type": "p",
-   "text": "endsWith() به بزرگی و کوچکی حروف حساس است."
-  },
-  {
-   "type": "p",
-   "text": "endsWith() یکی از ویژگی‌های ES6 است."
-  },
-  {
-   "type": "h2",
-   "text": "مرجع کامل JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، همراه با توضیح کامل و مثال‌های فراوان، به اینجا بروید:"
-  },
-  {
-   "type": "p",
-   "text": "مرجع کامل JavaScript در W3Schools."
-  },
-  {
-   "type": "p",
-   "text": "این مرجع همهٔ به‌روزرسانی‌های JavaScript از 1999 تا 2025 را در بر می‌گیرد."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایلی به نام search.html بسازید و در آن let text = \"Please locate where 'locate' occurs!\"; را تعریف کنید. با text.indexOf(\"locate\") و text.lastIndexOf(\"locate\") هر دو اندیس را در کنسول چاپ کنید و با هم مقایسه کنید.",
-   "hint": "indexOf اندیس نخستین رخداد را می‌دهد و lastIndexOf اندیس آخرین رخداد را."
-  },
-  {
-   "prompt": "در همان فایل text.indexOf(\"locate\", 15) را اجرا کنید و توضیح دهید چرا با خروجی حالت بدون پارامتر دوم فرق دارد.",
-   "hint": "پارامتر دوم موقعیت شروع جست‌وجو است، پس رخدادهای قبل از آن نادیده می‌مانند."
-  },
-  {
-   "prompt": "رشتهٔ دیگری مثل let t = \"The rain in SPAIN stays mainly in the plain\"; بسازید و t.match(/ain/g) را با t.match(/ain/gi) مقایسه کنید. طول آرایهٔ هر دو خروجی را چاپ کنید.",
-   "hint": "پرچم g همهٔ تطبیق‌ها را می‌دهد و پرچم i بزرگی و کوچکی حروف را نادیده می‌گیرد."
-  },
-  {
-   "prompt": "روی رشتهٔ \"Hello world, welcome to the universe.\" متدهای includes(\"world\")، startsWith(\"Hello\") و endsWith(\"universe.\") را اجرا کنید و توضیح دهید چرا هر کدام true یا false می‌دهند.",
-   "hint": "این سه متد به بزرگی و کوچکی حروف حساس‌اند، پس \"World\" نتیجهٔ دیگری می‌دهد."
-  },
-  {
-   "prompt": "با indexOf شرطی بنویسید که اگر متن شامل \"locate\" نبود پیام «پیدا نشد» را در کنسول چاپ کند.",
-   "hint": "وقتی متن پیدا نشود indexOf مقدار -1 برمی‌گرداند."
-  }
- ],
- "quiz": [
-  {
-   "question": "اگر متن مورد جست‌وجو در رشته پیدا نشود، indexOf() چه برمی‌گرداند؟",
-   "options": [
-    "0",
-    "undefined",
-    "-1",
-    "null"
-   ],
-   "answer": 2,
-   "explanation": "indexOf() و lastIndexOf() در صورت پیدا نکردن متن مقدار -1 را برمی‌گردانند؛ صفر یعنی متن در ابتدای رشته پیدا شده است."
-  },
-  {
-   "question": "کدام متد می‌تواند یک regular expression به عنوان مقدار جست‌وجو بپذیرد ولی پارامتر موقعیت شروع ندارد؟",
-   "options": [
-    "indexOf()",
-    "search()",
-    "lastIndexOf()",
-    "startsWith()"
-   ],
-   "answer": 1,
-   "explanation": "search() کار با regular expression را می‌پذیرد اما پارامتر دوم موقعیت شروع ندارد؛ indexOf() موقعیت شروع می‌پذیرد ولی regular expression نمی‌گیرد."
-  },
-  {
-   "question": "match(/ain/gi) روی رشتهٔ \"The rain in SPAIN stays mainly in the plain\" چه می‌کند؟",
-   "options": [
-    "فقط نخستین تطبیق حساس به حروف بزرگ و کوچک را می‌دهد",
-    "همهٔ تطبیق‌ها را بدون توجه به بزرگی و کوچکی حروف می‌دهد",
-    "یک اندیس عددی برمی‌گرداند",
-    "خطای TypeError می‌دهد زیرا پرچم g لازم است"
-   ],
-   "answer": 1,
-   "explanation": "پرچم g جست‌وجو را سراسری می‌کند و پرچم i بزرگی و کوچکی حروف را نادیده می‌گیرد، پس هر شش تطبیق ain و AIN برگردانده می‌شود."
-  },
-  {
-   "question": "کدام متد اگر رشته با مقدار مشخصی شروع شود true برمی‌گرداند؟",
-   "options": [
-    "includes()",
-    "endsWith()",
-    "search()",
-    "startsWith()"
-   ],
-   "answer": 3,
-   "explanation": "startsWith() شروع رشته را بررسی می‌کند، endsWith() پایان رشته را و includes() وجود مقدار در هر جای رشته را."
-  },
-  {
-   "question": "استفاده از matchAll() با یک regular expression بدون پرچم g چه نتیجه‌ای دارد؟",
-   "options": [
-    "خطای TypeError پرتاب می‌شود",
-    "همهٔ تطبیق‌ها برگردانده می‌شوند",
-    "خروجی undefined می‌شود",
-    "فقط نخستین تطبیق برگردانده می‌شود"
-   ],
-   "answer": 0,
-   "explanation": "matchAll() برای regular expression الزاماً پرچم g می‌خواهد؛ بدون آن خطای TypeError می‌گیرید. بدون g، match (نه matchAll) فقط نخستین تطبیق را می‌دهد."
-  }
- ]
+  "slug": "js_string_search",
+  "course": "js",
+  "order": 30,
+  "url": "/js/js_string_search.asp",
+  "title": "جست‌وجو در رشته در JavaScript",
+  "summary": "در این درس با متدهایی آشنا می‌شوید که برای جست‌وجوی متن داخل یک رشته به کار می‌روند: indexOf، lastIndexOf، search، match، matchAll، includes، startsWith و endsWith. بعد از این درس می‌توانید موقعیت یک متن را در رشته پیدا کنید و بگویید رشته‌ای شامل، شروع‌شده یا پایان‌یافته با مقدار خاصی هست یا نه.",
+  "objectives": [
+    "توضیح دهید indexOf() و lastIndexOf() چه مقداری برمی‌گردانند و اختلافشان چیست",
+    "با search() و match() روی یک رشته جست‌وجو کنید",
+    "تفاوت search() و indexOf() را بگویید",
+    "با includes()، startsWith() و endsWith() وجود و جای متن را بررسی کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "جست‌وجو در رشته در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای جست‌وجو در رشته"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        [
+          "رشته: indexOf()\nرشته: lastIndexOf()\nرشته: search()\nرشته: match()",
+          "رشته: matchAll()\nرشته: includes()\nرشته: startsWith()\nرشته: endsWith()"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "همچنین ببینید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش رشته"
+    },
+    {
+      "type": "p",
+      "text": "متدهای رشته"
+    },
+    {
+      "type": "p",
+      "text": "قالب‌های رشته"
+    },
+    {
+      "type": "p",
+      "text": "مرجع رشته"
+    },
+    {
+      "type": "h2",
+      "text": "متد indexOf() روی رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد indexOf() اندیس (موقعیت) نخستین رخداد یک رشته در یک رشته را برمی‌گرداند، و اگر رشته پیدا نشود مقدار -1 را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please locate where 'locate' occurs!\";\n\nlet index = text.indexOf(\"locate\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_indexof"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "JavaScript موقعیت‌ها را از صفر می‌شمارد. 0 نخستین موقعیت در یک رشته است، 1 دومین و 2 سومین، و به همین ترتیب..."
+    },
+    {
+      "type": "h2",
+      "text": "متد lastIndexOf() روی رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد lastIndexOf() اندیس آخرین رخداد یک متن مشخص در یک رشته را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please locate where 'locate' occurs!\";\n\nlet index = text.lastIndexOf(\"locate\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_lastindexof"
+    },
+    {
+      "type": "p",
+      "text": "اگر متن پیدا نشود، هم indexOf() و هم lastIndexOf() مقدار -1 را برمی‌گردانند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please locate where 'locate' occurs!\";\n\nlet index = text.lastIndexOf(\"John\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_indexof_1"
+    },
+    {
+      "type": "p",
+      "text": "هر دو متد یک پارامتر دوم به عنوان موقعیت شروع جست‌وجو می‌پذیرند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please locate where 'locate' occurs!\";\n\nlet index = text.indexOf(\"locate\", 15);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_indexof_2"
+    },
+    {
+      "type": "p",
+      "text": "متد lastIndexOf() رو به عقب جست‌وجو می‌کند (از انتها به ابتدا)؛ یعنی اگر پارامتر دوم 15 باشد، جست‌وجو از موقعیت 15 شروع می‌شود و تا ابتدای رشته پیش می‌رود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please locate where 'locate' occurs!\";\n\ntext.lastIndexOf(\"locate\", 15);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_lastindexof_2"
+    },
+    {
+      "type": "h2",
+      "text": "متد search() روی رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد search() یک رشته (یا یک regular expression) را در رشته جست‌وجو می‌کند و موقعیت تطبیق را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please locate where 'locate' occurs!\";\n\ntext.search(\"locate\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Please locate where 'locate' occurs!\";\n\ntext.search(/locate/);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_search_locate"
+    },
+    {
+      "type": "h2",
+      "text": "آیا توجه کردید؟"
+    },
+    {
+      "type": "p",
+      "text": "آیا این دو متد، indexOf() و search()، برابرند؟"
+    },
+    {
+      "type": "p",
+      "text": "آیا آرگومان‌ها (پارامترهای) یکسانی می‌پذیرند و مقدار یکسانی برمی‌گردانند؟"
+    },
+    {
+      "type": "p",
+      "text": "این دو متد برابر نیستند. تفاوت‌هایشان این‌هاست:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "متد search() نمی‌تواند آرگومان دوم موقعیت شروع بگیرد.",
+        "متد indexOf() نمی‌تواند مقدارهای جست‌وجوی قدرتمند (regular expression) بگیرد."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "در فصلی بعدی دربارهٔ regular expression بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "h2",
+      "text": "متد match() روی رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد match() آرایه‌ای برمی‌گرداند که نتیجهٔ تطبیق یک رشته با یک رشته (یا یک regular expression) را در خود دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"The rain in SPAIN stays mainly in the plain\";\n\ntext.match(\"ain\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"The rain in SPAIN stays mainly in the plain\";\n\ntext.match(/ain/);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"The rain in SPAIN stays mainly in the plain\";\n\ntext.match(/ain/g);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"The rain in SPAIN stays mainly in the plain\";\n\ntext.match(/ain/gi);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_match"
+    },
+    {
+      "type": "p",
+      "text": "اگر یک regular expression اصلاح‌گر g (جست‌وجوی سراسری) را نداشته باشد، match() فقط نخستین تطبیق در رشته را برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ regular expression در فصل JS RegExp بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "متد matchAll() روی رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد matchAll() یک iterator برمی‌گرداند که نتیجهٔ تطبیق یک رشته با یک رشته (یا یک regular expression) را در خود دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const iterator = text.matchAll(\"Cats\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall"
+    },
+    {
+      "type": "p",
+      "text": "اگر پارامتر یک regular expression باشد، پرچم سراسری (g) باید تنظیم شده باشد، وگرنه خطای TypeError پرتاب می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const iterator = text.matchAll(/Cats/g);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall2"
+    },
+    {
+      "type": "p",
+      "text": "اگر می‌خواهید جست‌وجو به بزرگی و کوچکی حروف حساس نباشد، پرچم حساس‌نبودن (i) باید تنظیم شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const iterator = text.matchAll(/Cats/gi);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_matchall3"
+    },
+    {
+      "type": "p",
+      "text": "matchAll() یکی از ویژگی‌های ES2020 است."
+    },
+    {
+      "type": "p",
+      "text": "matchAll() در Internet Explorer کار نمی‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "متد includes() روی رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد includes() اگر رشته مقدار مشخصی را در خود داشته باشد true برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "در غیر این صورت false برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.includes(\"world\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.includes(\"world\", 12);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_includes"
+    },
+    {
+      "type": "p",
+      "text": "includes() به بزرگی و کوچکی حروف حساس است."
+    },
+    {
+      "type": "p",
+      "text": "includes() یکی از ویژگی‌های ES6 است."
+    },
+    {
+      "type": "h2",
+      "text": "متد startsWith() روی رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد startsWith() اگر رشته با مقدار مشخصی شروع شود true برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "در غیر این صورت false برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"Hello\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"world\")",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_startswith"
+    },
+    {
+      "type": "p",
+      "text": "می‌توان موقعیت شروع جست‌وجو را هم مشخص کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"world\", 5)",
+      "caption": null
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.startsWith(\"world\", 6)",
+      "caption": null
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_startswith3"
+    },
+    {
+      "type": "p",
+      "text": "startsWith() به بزرگی و کوچکی حروف حساس است."
+    },
+    {
+      "type": "p",
+      "text": "startsWith() یکی از ویژگی‌های ES6 است."
+    },
+    {
+      "type": "h2",
+      "text": "متد endsWith() روی رشته"
+    },
+    {
+      "type": "p",
+      "text": "متد endsWith() اگر رشته با مقدار مشخصی پایان یابد true برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "در غیر این صورت false برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"John Doe\";\n\ntext.endsWith(\"Doe\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"Hello world, welcome to the universe.\";\n\ntext.endsWith(\"world\", 11);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_endswith"
+    },
+    {
+      "type": "p",
+      "text": "endsWith() به بزرگی و کوچکی حروف حساس است."
+    },
+    {
+      "type": "p",
+      "text": "endsWith() یکی از ویژگی‌های ES6 است."
+    },
+    {
+      "type": "h2",
+      "text": "مرجع کامل JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "برای مرجع کامل همهٔ خصوصیت‌ها و متدهای JavaScript، همراه با توضیح کامل و مثال‌های فراوان، به اینجا بروید:"
+    },
+    {
+      "type": "p",
+      "text": "مرجع کامل JavaScript در W3Schools."
+    },
+    {
+      "type": "p",
+      "text": "این مرجع همهٔ به‌روزرسانی‌های JavaScript از 1999 تا 2025 را در بر می‌گیرد."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایلی به نام search.html بسازید و در آن let text = \"Please locate where 'locate' occurs!\"; را تعریف کنید. با text.indexOf(\"locate\") و text.lastIndexOf(\"locate\") هر دو اندیس را در کنسول چاپ کنید و با هم مقایسه کنید.",
+      "hint": "indexOf اندیس نخستین رخداد را می‌دهد و lastIndexOf اندیس آخرین رخداد را."
+    },
+    {
+      "prompt": "در همان فایل text.indexOf(\"locate\", 15) را اجرا کنید و توضیح دهید چرا با خروجی حالت بدون پارامتر دوم فرق دارد.",
+      "hint": "پارامتر دوم موقعیت شروع جست‌وجو است، پس رخدادهای قبل از آن نادیده می‌مانند."
+    },
+    {
+      "prompt": "رشتهٔ دیگری مثل let t = \"The rain in SPAIN stays mainly in the plain\"; بسازید و t.match(/ain/g) را با t.match(/ain/gi) مقایسه کنید. طول آرایهٔ هر دو خروجی را چاپ کنید.",
+      "hint": "پرچم g همهٔ تطبیق‌ها را می‌دهد و پرچم i بزرگی و کوچکی حروف را نادیده می‌گیرد."
+    },
+    {
+      "prompt": "روی رشتهٔ \"Hello world, welcome to the universe.\" متدهای includes(\"world\")، startsWith(\"Hello\") و endsWith(\"universe.\") را اجرا کنید و توضیح دهید چرا هر کدام true یا false می‌دهند.",
+      "hint": "این سه متد به بزرگی و کوچکی حروف حساس‌اند، پس \"World\" نتیجهٔ دیگری می‌دهد."
+    },
+    {
+      "prompt": "با indexOf شرطی بنویسید که اگر متن شامل \"locate\" نبود پیام «پیدا نشد» را در کنسول چاپ کند.",
+      "hint": "وقتی متن پیدا نشود indexOf مقدار -1 برمی‌گرداند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "اگر متن مورد جست‌وجو در رشته پیدا نشود، indexOf() چه برمی‌گرداند؟",
+      "options": ["0", "undefined", "-1", "null"],
+      "answer": 2,
+      "explanation": "indexOf() و lastIndexOf() در صورت پیدا نکردن متن مقدار -1 را برمی‌گردانند؛ صفر یعنی متن در ابتدای رشته پیدا شده است."
+    },
+    {
+      "question": "کدام متد می‌تواند یک regular expression به عنوان مقدار جست‌وجو بپذیرد ولی پارامتر موقعیت شروع ندارد؟",
+      "options": ["indexOf()", "search()", "lastIndexOf()", "startsWith()"],
+      "answer": 1,
+      "explanation": "search() کار با regular expression را می‌پذیرد اما پارامتر دوم موقعیت شروع ندارد؛ indexOf() موقعیت شروع می‌پذیرد ولی regular expression نمی‌گیرد."
+    },
+    {
+      "question": "match(/ain/gi) روی رشتهٔ \"The rain in SPAIN stays mainly in the plain\" چه می‌کند؟",
+      "options": [
+        "فقط نخستین تطبیق حساس به حروف بزرگ و کوچک را می‌دهد",
+        "همهٔ تطبیق‌ها را بدون توجه به بزرگی و کوچکی حروف می‌دهد",
+        "یک اندیس عددی برمی‌گرداند",
+        "خطای TypeError می‌دهد زیرا پرچم g لازم است"
+      ],
+      "answer": 1,
+      "explanation": "پرچم g جست‌وجو را سراسری می‌کند و پرچم i بزرگی و کوچکی حروف را نادیده می‌گیرد، پس هر شش تطبیق ain و AIN برگردانده می‌شود."
+    },
+    {
+      "question": "کدام متد اگر رشته با مقدار مشخصی شروع شود true برمی‌گرداند؟",
+      "options": ["includes()", "endsWith()", "search()", "startsWith()"],
+      "answer": 3,
+      "explanation": "startsWith() شروع رشته را بررسی می‌کند، endsWith() پایان رشته را و includes() وجود مقدار در هر جای رشته را."
+    },
+    {
+      "question": "استفاده از matchAll() با یک regular expression بدون پرچم g چه نتیجه‌ای دارد؟",
+      "options": [
+        "خطای TypeError پرتاب می‌شود",
+        "همهٔ تطبیق‌ها برگردانده می‌شوند",
+        "خروجی undefined می‌شود",
+        "فقط نخستین تطبیق برگردانده می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "matchAll() برای regular expression الزاماً پرچم g می‌خواهد؛ بدون آن خطای TypeError می‌گیرید. بدون g، match (نه matchAll) فقط نخستین تطبیق را می‌دهد."
+    }
+  ]
 }

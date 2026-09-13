@@ -1,399 +1,399 @@
 {
- "slug": "js_function_bind",
- "course": "js",
- "order": 207,
- "url": "/js/js_function_bind.asp",
- "title": "متد bind() در JavaScript",
- "summary": "متد bind() برخلاف call() و apply() تابع را فوری اجرا نمی‌کند، بلکه تابع تازه‌ای می‌سازد که مقدار this انتخاب‌شده را به خاطر می‌سپارد. در این درس تثبیت this، قرض گرفتن متد، حفظ this در کالبک‌ها و اعمال جزئی را می‌بینید.",
- "objectives": [
-  "تفاوت bind() با call() و apply() را بگویید",
-  "با bind() یک تابع با this ثابت بسازید",
-  "مشکل از دست رفتن this در کالبک را حل کنید",
-  "آرگومان ثابت به تابع تازه بدهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "متد bind() در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "قرض گرفتن متد"
-  },
-  {
-   "type": "p",
-   "text": "متد bind() هم مثل call() و apply() می‌تواند متدی را از شیء دیگری قرض بگیرد."
-  },
-  {
-   "type": "p",
-   "text": "برخلاف call() و apply()، متد bind() تابع را همان لحظه اجرا نمی‌کند."
-  },
-  {
-   "type": "p",
-   "text": "در عوض تابع تازه‌ای برمی‌گرداند که بعداً می‌توان صدا زد."
-  },
-  {
-   "type": "p",
-   "text": "تابع تازه مقدار thisی را که انتخاب کرده‌اید به یاد می‌آورد."
-  },
-  {
-   "type": "p",
-   "text": "‏bind() یک مبحث پیشرفته است."
-  },
-  {
-   "type": "p",
-   "text": "اول مطمئن شوید this، call() و apply() را می‌دانید."
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژهٔ this"
-  },
-  {
-   "type": "p",
-   "text": "متد call()"
-  },
-  {
-   "type": "p",
-   "text": "متد apply()"
-  },
-  {
-   "type": "h2",
-   "text": "نحو پایهٔ bind()"
-  },
-  {
-   "type": "p",
-   "text": "متد bind() یک تابع تازه می‌سازد."
-  },
-  {
-   "type": "p",
-   "text": "آرگومان اول مقدار this تابع تازه را تعیین می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "آرگومان‌های بعدی به آرگومان‌های ثابت تابع تازه تبدیل می‌شوند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const newFunction = functionName.bind(this, arg1, arg2, ...);",
-   "caption": "نحو"
-  },
-  {
-   "type": "h2",
-   "text": "تثبیت this با bind()"
-  },
-  {
-   "type": "p",
-   "text": "رایج‌ترین کاربرد bind() این است که مطمئن شوید تابع همیشه از همان مقدار this استفاده می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person1 = { name: \"John\" };\n\nconst person2 = { name: \"Paul\" };\n\nconst person3 = { name: \"Ringo\" };\n\nfunction greet() {\n\n  return \"Hello \" + this.name;\n\n}\n\nconst greetJohn = greet.bind(person1);\n\ngreetJohn();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_greet"
-  },
-  {
-   "type": "p",
-   "text": "تابع greetJohn تابع تازه‌ای است که همیشه person1 را به عنوان this به کار می‌برد."
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر دو شیء می‌سازد: person و member."
-  },
-  {
-   "type": "p",
-   "text": "شیء member متد fullname را از شیء person قرض می‌گیرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create person Object\n\nconst person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    fullName: function () {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\n// Create member Object\n\nconst member = {\n\n  firstName:\"Hege\",\n\n  lastName: \"Nilsen\",\n\n}\n\n// Bind the fullName method to the member Object\n\nlet fullName = person.fullName.bind(member);\n\n// Later call fullname()\n\nfullname()",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_borrow"
-  },
-  {
-   "type": "p",
-   "text": "تابع fullName یک تابع تازه است که همیشه member را به عنوان this به کار می‌برد."
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ bind() با call() و apply()"
-  },
-  {
-   "type": "p",
-   "text": "تفاوت این متد‌ها مهم است:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "‏call() تابع را همان لحظه صدا می‌زند",
-    "‏apply() تابع را همان لحظه صدا می‌زند",
-    "‏bind() تابع تازه‌ای برمی‌گرداند"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Call a function\n\ngreet.call(person);\n\n// Call a function\n\ngreet.apply(person);\n\n// Create a new function\n\nconst greetLater = greet.bind(person);\n\n// Call the new function\n\ngreetLater();",
-   "caption": "مقایسه"
-  },
-  {
-   "type": "h2",
-   "text": "‏bind() برای تابع‌هایی که بعداً صدا زده می‌شوند"
-  },
-  {
-   "type": "p",
-   "text": "بدون bind() ممکن است مقدار this از دست برود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n      name: \"John\",\n\n      sayHello: function() {\n\n        return \"Hello \" + this.name;\n\n      }\n\n    };\n\n    const hello = person.sayHello;\n\n    hello(); // this is not person",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "تابع بالا مقدار this خود را از دست می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const hello = person.sayHello.bind(person);\n\n    hello();",
-   "caption": "مثال با bind()"
-  },
-  {
-   "type": "h2",
-   "text": "حفظ this با bind()"
-  },
-  {
-   "type": "p",
-   "text": "از متد bind() می‌توان برای جلوگیری از از دست رفتن this استفاده کرد."
-  },
-  {
-   "type": "p",
-   "text": "در مثال زیر، شیء person یک متد display دارد."
-  },
-  {
-   "type": "p",
-   "text": "داخل متد display، this به شیء person اشاره می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nperson.display();",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind1"
-  },
-  {
-   "type": "p",
-   "text": "وقتی تابعی به عنوان کالبک به کار می‌رود، مقدار this از دست می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر از person.display به عنوان کالبک در متد setTimeout() استفاده می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nsetTimeout(person.display, 3000);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind"
-  },
-  {
-   "type": "p",
-   "text": "متد bind() این مشکل را حل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "در مثال زیر، متد bind() تابع person.display را به person گره می‌زند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nlet display = person.display.bind(person);\n\nsetTimeout(display, 3000);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind2"
-  },
-  {
-   "type": "h2",
-   "text": "‏bind() با آرگومان‌ها"
-  },
-  {
-   "type": "p",
-   "text": "آرگومان‌هایی که به bind() داده می‌شوند مقدار ثابت می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "به این کار گاهی اعمال جزئی (partial application) می‌گویند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function multiply(a, b) {\n\n      return a * b;\n\n    }\n\n    const double = multiply.bind(null, 2);\n\n    double(5);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_arguments"
-  },
-  {
-   "type": "p",
-   "text": "تابع double همیشه در ۲ ضرب می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "‏bind() تابع اصلی را عوض نمی‌کند"
-  },
-  {
-   "type": "p",
-   "text": "تابع اصلی تغییر نمی‌کند."
-  },
-  {
-   "type": "p",
-   "text": "هر بار صدا زدن bind() یک تابع تازه می‌سازد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const greetJohn = greet.bind({ name: \"John\" });\n\nconst greetAnna = greet.bind({ name: \"Anna\" });",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "h2",
-   "text": "اشتباه‌های رایج"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "انتظار اجرای تابع از bind()\n‏bind() تابع را اجرا نمی‌کند.",
-    "فراموش کردن صدا زدن تابع برگشتی\nباید خودتان تابع تازه را صدا بزنید.",
-    "زیاد استفاده کردن از bind()\nگاهی فراخوانی معمولی تابع ساده‌تر است."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "مبحث‌های مرتبط با this"
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژهٔ this"
-  },
-  {
-   "type": "p",
-   "text": "متد call()"
-  },
-  {
-   "type": "p",
-   "text": "متد apply()"
-  },
-  {
-   "type": "p",
-   "text": "متد bind()"
-  },
-  {
-   "type": "h2",
-   "text": "فصل بعد"
-  },
-  {
-   "type": "p",
-   "text": "تابع‌های خودفراخوان در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل bind1.js بسازید، دو شیء با خصوصیت name بسازید و با bind از تابع greet دو تابع تازه بسازید که هر کدام به یکی از شیء‌ها گره خورده باشد.",
-   "hint": "bind تابع را اجرا نمی‌کند؛ باید تابع برگشتی را خودتان صدا بزنید."
-  },
-  {
-   "prompt": "یک شیء با متد sayHello بسازید، متد را در متغیری جدا بریزید و صدایش بزنید تا ببینید this از دست می‌رود. بعد همان کار را با bind تکرار کنید.",
-   "hint": "‏const hello = person.sayHello در مقدار this تغییر ایجاد می‌کند."
-  },
-  {
-   "prompt": "متدی را به setTimeout بدهید که this را چاپ کند. یک بار بدون bind و یک بار با bind، و تفاوت خروجی را در کنسول ببینید.",
-   "hint": "تابع کالبک بدون bind شیء صاحبش را نمی‌شناسد."
-  },
-  {
-   "prompt": "از bind برای اعمال جزئی استفاده کنید: تابعی بنویسید که دو عدد را ضرب کند و با bind یک تابع تازه بسازید که همیشه در ۲ ضرب کند.",
-   "hint": "multiply.bind(null, 2) آرگومان اول را ثابت می‌کند."
-  },
-  {
-   "prompt": "از یک تابع دو تابع bind شده با شیء‌های مختلف بسازید و نشان دهید تابع اصلی اصلاً عوض نشده است.",
-   "hint": "هر بار bind یک تابع تازه می‌سازد و تابع اصلی دست‌نخورده می‌ماند."
-  }
- ],
- "quiz": [
-  {
-   "question": "فرق اصلی bind() با call() و apply() چیست؟",
-   "options": [
-    "‏bind() تابع را فوری اجرا نمی‌کند و تابع تازه می‌سازد",
-    "‏bind() آرایه نمی‌گیرد",
-    "‏bind() فقط روی رشته‌ها کار می‌کند",
-    "هیچ فرقی ندارند"
-   ],
-   "answer": 0,
-   "explanation": "call() و apply() همان لحظه اجرا می‌شوند، ولی bind() تابع تازه‌ای می‌سازد که مقدار this را به یاد دارد و بعداً صدا زده می‌شود."
-  },
-  {
-   "question": "وقتی متدی را از شیء جدا می‌کنیم و در متغیری می‌گذاریم، چه اتفاقی می‌افتد؟",
-   "options": [
-    "مقدار this حفظ می‌شود",
-    "مقدار this از دست می‌رود",
-    "تابع اجرا می‌شود",
-    "خطای نحوی می‌گیریم"
-   ],
-   "answer": 1,
-   "explanation": "با جدا کردن متد از شیء، دیگر شیء صاحبش را همراه ندارد و this به شیء global (یا undefined در حالت سخت‌گیرانه) اشاره می‌کند؛ bind همین را حل می‌کند."
-  },
-  {
-   "question": "کدام کاربرد bind() در مثال setTimeout نشان داده می‌شود؟",
-   "options": [
-    "تغییر مقدار آرگومان‌ها",
-    "نگه داشتن مقدار this وقتی تابع به عنوان کالبک داده می‌شود",
-    "توقف تایمر",
-    "اجرای فوری تابع"
-   ],
-   "answer": 1,
-   "explanation": "تابع کالبک وقتی جدا صدا زده شود this خود را از دست می‌دهد؛ با person.display.bind(person) مقدار this برای همیشه همان person می‌ماند."
-  },
-  {
-   "question": "دربارهٔ bind() با آرگومان کدام جمله درست است؟",
-   "options": [
-    "آرگومان‌ها نادیده گرفته می‌شوند",
-    "آرگومان‌ها مقدار ثابت تابع تازه می‌شوند",
-    "فقط یک آرگومان پذیرفته می‌شود",
-    "باید آرایه بدهیم"
-   ],
-   "answer": 1,
-   "explanation": "آرگومان‌های bind به مقدار‌های ثابت تابع تازه تبدیل می‌شوند که به آن اعمال جزئی می‌گویند؛ آرایه دادن کار apply است."
-  },
-  {
-   "question": "برای اینکه از bind گرفتن یک تابع تازه استفاده کنیم، بعد از bind باید چه کنیم؟",
-   "options": [
-    "هیچ کاری؛ خودش اجرا می‌شود",
-    "تابع برگشتی را با پرانتز صدا بزنیم",
-    "آن را به call بدهیم",
-    "دوباره bind بگیریم"
-   ],
-   "answer": 1,
-   "explanation": "bind تابع را اجرا نمی‌کند، پس باید تابع تازه را خودمان صدا بزنیم؛ فراموش کردن همین کار یکی از اشتباه‌های رایج این درس است."
-  }
- ]
+  "slug": "js_function_bind",
+  "course": "js",
+  "order": 207,
+  "url": "/js/js_function_bind.asp",
+  "title": "متد bind() در JavaScript",
+  "summary": "متد bind() برخلاف call() و apply() تابع را فوری اجرا نمی‌کند، بلکه تابع تازه‌ای می‌سازد که مقدار this انتخاب‌شده را به خاطر می‌سپارد. در این درس تثبیت this، قرض گرفتن متد، حفظ this در کالبک‌ها و اعمال جزئی را می‌بینید.",
+  "objectives": [
+    "تفاوت bind() با call() و apply() را بگویید",
+    "با bind() یک تابع با this ثابت بسازید",
+    "مشکل از دست رفتن this در کالبک را حل کنید",
+    "آرگومان ثابت به تابع تازه بدهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "متد bind() در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "قرض گرفتن متد"
+    },
+    {
+      "type": "p",
+      "text": "متد bind() هم مثل call() و apply() می‌تواند متدی را از شیء دیگری قرض بگیرد."
+    },
+    {
+      "type": "p",
+      "text": "برخلاف call() و apply()، متد bind() تابع را همان لحظه اجرا نمی‌کند."
+    },
+    {
+      "type": "p",
+      "text": "در عوض تابع تازه‌ای برمی‌گرداند که بعداً می‌توان صدا زد."
+    },
+    {
+      "type": "p",
+      "text": "تابع تازه مقدار thisی را که انتخاب کرده‌اید به یاد می‌آورد."
+    },
+    {
+      "type": "p",
+      "text": "‏bind() یک مبحث پیشرفته است."
+    },
+    {
+      "type": "p",
+      "text": "اول مطمئن شوید this، call() و apply() را می‌دانید."
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژهٔ this"
+    },
+    {
+      "type": "p",
+      "text": "متد call()"
+    },
+    {
+      "type": "p",
+      "text": "متد apply()"
+    },
+    {
+      "type": "h2",
+      "text": "نحو پایهٔ bind()"
+    },
+    {
+      "type": "p",
+      "text": "متد bind() یک تابع تازه می‌سازد."
+    },
+    {
+      "type": "p",
+      "text": "آرگومان اول مقدار this تابع تازه را تعیین می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "آرگومان‌های بعدی به آرگومان‌های ثابت تابع تازه تبدیل می‌شوند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const newFunction = functionName.bind(this, arg1, arg2, ...);",
+      "caption": "نحو"
+    },
+    {
+      "type": "h2",
+      "text": "تثبیت this با bind()"
+    },
+    {
+      "type": "p",
+      "text": "رایج‌ترین کاربرد bind() این است که مطمئن شوید تابع همیشه از همان مقدار this استفاده می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person1 = { name: \"John\" };\n\nconst person2 = { name: \"Paul\" };\n\nconst person3 = { name: \"Ringo\" };\n\nfunction greet() {\n\n  return \"Hello \" + this.name;\n\n}\n\nconst greetJohn = greet.bind(person1);\n\ngreetJohn();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_greet"
+    },
+    {
+      "type": "p",
+      "text": "تابع greetJohn تابع تازه‌ای است که همیشه person1 را به عنوان this به کار می‌برد."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر دو شیء می‌سازد: person و member."
+    },
+    {
+      "type": "p",
+      "text": "شیء member متد fullname را از شیء person قرض می‌گیرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create person Object\n\nconst person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    fullName: function () {\n\n    return this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\n// Create member Object\n\nconst member = {\n\n  firstName:\"Hege\",\n\n  lastName: \"Nilsen\",\n\n}\n\n// Bind the fullName method to the member Object\n\nlet fullName = person.fullName.bind(member);\n\n// Later call fullname()\n\nfullname()",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_borrow"
+    },
+    {
+      "type": "p",
+      "text": "تابع fullName یک تابع تازه است که همیشه member را به عنوان this به کار می‌برد."
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ bind() با call() و apply()"
+    },
+    {
+      "type": "p",
+      "text": "تفاوت این متد‌ها مهم است:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "‏call() تابع را همان لحظه صدا می‌زند",
+        "‏apply() تابع را همان لحظه صدا می‌زند",
+        "‏bind() تابع تازه‌ای برمی‌گرداند"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Call a function\n\ngreet.call(person);\n\n// Call a function\n\ngreet.apply(person);\n\n// Create a new function\n\nconst greetLater = greet.bind(person);\n\n// Call the new function\n\ngreetLater();",
+      "caption": "مقایسه"
+    },
+    {
+      "type": "h2",
+      "text": "‏bind() برای تابع‌هایی که بعداً صدا زده می‌شوند"
+    },
+    {
+      "type": "p",
+      "text": "بدون bind() ممکن است مقدار this از دست برود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n      name: \"John\",\n\n      sayHello: function() {\n\n        return \"Hello \" + this.name;\n\n      }\n\n    };\n\n    const hello = person.sayHello;\n\n    hello(); // this is not person",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "تابع بالا مقدار this خود را از دست می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const hello = person.sayHello.bind(person);\n\n    hello();",
+      "caption": "مثال با bind()"
+    },
+    {
+      "type": "h2",
+      "text": "حفظ this با bind()"
+    },
+    {
+      "type": "p",
+      "text": "از متد bind() می‌توان برای جلوگیری از از دست رفتن this استفاده کرد."
+    },
+    {
+      "type": "p",
+      "text": "در مثال زیر، شیء person یک متد display دارد."
+    },
+    {
+      "type": "p",
+      "text": "داخل متد display، this به شیء person اشاره می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nperson.display();",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind1"
+    },
+    {
+      "type": "p",
+      "text": "وقتی تابعی به عنوان کالبک به کار می‌رود، مقدار this از دست می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر از person.display به عنوان کالبک در متد setTimeout() استفاده می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nsetTimeout(person.display, 3000);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind"
+    },
+    {
+      "type": "p",
+      "text": "متد bind() این مشکل را حل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "در مثال زیر، متد bind() تابع person.display را به person گره می‌زند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName:\"John\",\n\n  lastName: \"Doe\",\n\n    display: function () {\n\n    let x = document.getElementById(\"demo\");\n\n    x.innerHTML = this.firstName + \" \" + this.lastName;\n\n    }\n\n}\n\nlet display = person.display.bind(person);\n\nsetTimeout(display, 3000);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind2"
+    },
+    {
+      "type": "h2",
+      "text": "‏bind() با آرگومان‌ها"
+    },
+    {
+      "type": "p",
+      "text": "آرگومان‌هایی که به bind() داده می‌شوند مقدار ثابت می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "به این کار گاهی اعمال جزئی (partial application) می‌گویند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function multiply(a, b) {\n\n      return a * b;\n\n    }\n\n    const double = multiply.bind(null, 2);\n\n    double(5);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_bind_arguments"
+    },
+    {
+      "type": "p",
+      "text": "تابع double همیشه در ۲ ضرب می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "‏bind() تابع اصلی را عوض نمی‌کند"
+    },
+    {
+      "type": "p",
+      "text": "تابع اصلی تغییر نمی‌کند."
+    },
+    {
+      "type": "p",
+      "text": "هر بار صدا زدن bind() یک تابع تازه می‌سازد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const greetJohn = greet.bind({ name: \"John\" });\n\nconst greetAnna = greet.bind({ name: \"Anna\" });",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "h2",
+      "text": "اشتباه‌های رایج"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "انتظار اجرای تابع از bind()\n‏bind() تابع را اجرا نمی‌کند.",
+        "فراموش کردن صدا زدن تابع برگشتی\nباید خودتان تابع تازه را صدا بزنید.",
+        "زیاد استفاده کردن از bind()\nگاهی فراخوانی معمولی تابع ساده‌تر است."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مبحث‌های مرتبط با this"
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژهٔ this"
+    },
+    {
+      "type": "p",
+      "text": "متد call()"
+    },
+    {
+      "type": "p",
+      "text": "متد apply()"
+    },
+    {
+      "type": "p",
+      "text": "متد bind()"
+    },
+    {
+      "type": "h2",
+      "text": "فصل بعد"
+    },
+    {
+      "type": "p",
+      "text": "تابع‌های خودفراخوان در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل bind1.js بسازید، دو شیء با خصوصیت name بسازید و با bind از تابع greet دو تابع تازه بسازید که هر کدام به یکی از شیء‌ها گره خورده باشد.",
+      "hint": "bind تابع را اجرا نمی‌کند؛ باید تابع برگشتی را خودتان صدا بزنید."
+    },
+    {
+      "prompt": "یک شیء با متد sayHello بسازید، متد را در متغیری جدا بریزید و صدایش بزنید تا ببینید this از دست می‌رود. بعد همان کار را با bind تکرار کنید.",
+      "hint": "‏const hello = person.sayHello در مقدار this تغییر ایجاد می‌کند."
+    },
+    {
+      "prompt": "متدی را به setTimeout بدهید که this را چاپ کند. یک بار بدون bind و یک بار با bind، و تفاوت خروجی را در کنسول ببینید.",
+      "hint": "تابع کالبک بدون bind شیء صاحبش را نمی‌شناسد."
+    },
+    {
+      "prompt": "از bind برای اعمال جزئی استفاده کنید: تابعی بنویسید که دو عدد را ضرب کند و با bind یک تابع تازه بسازید که همیشه در ۲ ضرب کند.",
+      "hint": "multiply.bind(null, 2) آرگومان اول را ثابت می‌کند."
+    },
+    {
+      "prompt": "از یک تابع دو تابع bind شده با شیء‌های مختلف بسازید و نشان دهید تابع اصلی اصلاً عوض نشده است.",
+      "hint": "هر بار bind یک تابع تازه می‌سازد و تابع اصلی دست‌نخورده می‌ماند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "فرق اصلی bind() با call() و apply() چیست؟",
+      "options": [
+        "‏bind() تابع را فوری اجرا نمی‌کند و تابع تازه می‌سازد",
+        "‏bind() آرایه نمی‌گیرد",
+        "‏bind() فقط روی رشته‌ها کار می‌کند",
+        "هیچ فرقی ندارند"
+      ],
+      "answer": 0,
+      "explanation": "call() و apply() همان لحظه اجرا می‌شوند، ولی bind() تابع تازه‌ای می‌سازد که مقدار this را به یاد دارد و بعداً صدا زده می‌شود."
+    },
+    {
+      "question": "وقتی متدی را از شیء جدا می‌کنیم و در متغیری می‌گذاریم، چه اتفاقی می‌افتد؟",
+      "options": [
+        "مقدار this حفظ می‌شود",
+        "مقدار this از دست می‌رود",
+        "تابع اجرا می‌شود",
+        "خطای نحوی می‌گیریم"
+      ],
+      "answer": 1,
+      "explanation": "با جدا کردن متد از شیء، دیگر شیء صاحبش را همراه ندارد و this به شیء global (یا undefined در حالت سخت‌گیرانه) اشاره می‌کند؛ bind همین را حل می‌کند."
+    },
+    {
+      "question": "کدام کاربرد bind() در مثال setTimeout نشان داده می‌شود؟",
+      "options": [
+        "تغییر مقدار آرگومان‌ها",
+        "نگه داشتن مقدار this وقتی تابع به عنوان کالبک داده می‌شود",
+        "توقف تایمر",
+        "اجرای فوری تابع"
+      ],
+      "answer": 1,
+      "explanation": "تابع کالبک وقتی جدا صدا زده شود this خود را از دست می‌دهد؛ با person.display.bind(person) مقدار this برای همیشه همان person می‌ماند."
+    },
+    {
+      "question": "دربارهٔ bind() با آرگومان کدام جمله درست است؟",
+      "options": [
+        "آرگومان‌ها نادیده گرفته می‌شوند",
+        "آرگومان‌ها مقدار ثابت تابع تازه می‌شوند",
+        "فقط یک آرگومان پذیرفته می‌شود",
+        "باید آرایه بدهیم"
+      ],
+      "answer": 1,
+      "explanation": "آرگومان‌های bind به مقدار‌های ثابت تابع تازه تبدیل می‌شوند که به آن اعمال جزئی می‌گویند؛ آرایه دادن کار apply است."
+    },
+    {
+      "question": "برای اینکه از bind گرفتن یک تابع تازه استفاده کنیم، بعد از bind باید چه کنیم؟",
+      "options": [
+        "هیچ کاری؛ خودش اجرا می‌شود",
+        "تابع برگشتی را با پرانتز صدا بزنیم",
+        "آن را به call بدهیم",
+        "دوباره bind بگیریم"
+      ],
+      "answer": 1,
+      "explanation": "bind تابع را اجرا نمی‌کند، پس باید تابع تازه را خودمان صدا بزنیم؛ فراموش کردن همین کار یکی از اشتباه‌های رایج این درس است."
+    }
+  ]
 }

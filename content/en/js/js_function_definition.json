@@ -1,310 +1,303 @@
 {
- "slug": "js_function_definition",
- "course": "js",
- "order": 202,
- "url": "/js/js_function_definition.asp",
- "title": "JavaScript Function Definitions",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Function Definitions"
-  },
-  {
-   "type": "h2",
-   "text": "Function Definitions vs Function Declarations"
-  },
-  {
-   "type": "p",
-   "text": "Function definition is a general term for defining a function."
-  },
-  {
-   "type": "p",
-   "text": "Function declaration is one specific way to define a function."
-  },
-  {
-   "type": "p",
-   "text": "Examples of function definitions include:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Function declarations",
-    "Function expressions",
-    "Arrow functions"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Function Declaration\n\nfunction myFunction(x, y) {\n\n  return x * y;\n\n}\n\n// Function Expression (Named)\n\nconst myFunction = function name(x, y) {\n\n  return x * y;\n\n};\n\n// Function Expression (Anonymous)\n\nconst myFunction = function (x, y) {\n\n  return x * y;\n\n};\n\n// Arrow Function\n\nconst myFunction = (x, y) => x * y;\n\n// Function Constructor\n\nconst myFunction = new Function(\"x\", \"y\", \"return x * y\");\n\n// Object Method\n\nconst obj = {\n\n  myFunction(x, y) {\n\n    return x * y;\n\n  },\n\n};",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Function Declarations"
-  },
-  {
-   "type": "p",
-   "text": "Earlier in this tutorial, you learned that functions are declared with the\nfollowing syntax:"
-  },
-  {
-   "type": "p",
-   "text": "function functionName(parameters) {\n  // code to be executed\n}"
-  },
-  {
-   "type": "p",
-   "text": "A function declaration uses the function keyword and a function name."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction(a, b) {return a * b}",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction(a, b) {\n\n  return a * b;\n\n}",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_return1"
-  },
-  {
-   "type": "p",
-   "text": "Declared functions are not executed immediately. They are \"saved for later use\",\nand will be executed later, when they are invoked (called upon)."
-  },
-  {
-   "type": "p",
-   "text": "You can call a function before or after it is declared in the code."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = myFunction(4, 3);\n\nfunction myFunction(a, b) {\n\n  return a * b;\n\n}",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction(a, b) {\n\n  return a * b;\n\n}\n\nlet x = myFunction(4, 3);",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_return4"
-  },
-  {
-   "type": "h2",
-   "text": "Function Expressions"
-  },
-  {
-   "type": "p",
-   "text": "A function expression stores a function inside a variable."
-  },
-  {
-   "type": "p",
-   "text": "The function can be anonymous (without a name)."
-  },
-  {
-   "type": "p",
-   "text": "Function expressions are executed only when the code reaches them."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const x = function (a, b) {return a * b};",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_expression"
-  },
-  {
-   "type": "p",
-   "text": "After a function expression has been stored in a variable, the variable can\nbe used as a function:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const x = function (a, b) {return a * b};\n\nlet z = x(4, 3);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_expression_variable"
-  },
-  {
-   "type": "h2",
-   "text": "Hoisting"
-  },
-  {
-   "type": "p",
-   "text": "Function declarations are hoisted to the top of their scope."
-  },
-  {
-   "type": "p",
-   "text": "Function expressions are not hoisted in the same way."
-  },
-  {
-   "type": "p",
-   "text": "Function declarations can be called before they are defined."
-  },
-  {
-   "type": "p",
-   "text": "Function expressions can not be called before they are defined."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const sum = add(2, 3); // Will work\n\nfunction add(a, b) {return a + b;}",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const sum = add(2, 3); // ⛔ Will generate error\n\nconst add = function (a, b) {return a + b;};",
-   "caption": "Examples"
-  },
-  {
-   "type": "h2",
-   "text": "Key Differences"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Function Declaration",
-     "Function Expression"
-    ],
-    [
-     "Syntax:\nA statement starting with the function keyword, followed by a required name.",
-     "Syntax:\nA part of an expression or assignment, and can be anonymous (without a name)."
-    ],
-    [
-     "Hoisting:\nThe function is moved to the top of its scope before code execution,\nallowing you to call it from anywhere within that code scope, even before its definition.",
-     "Hoisting:\nThe variable holding the function might be hoisted\n(depending on var, let, or const), but the function assignment itself is not.\nYou can only call it after it has been defined in the code scope."
-    ],
-    [
-     "Flexibility:\nPrimarily used for general-purpose functions that need to be available globally or in a specific scope.",
-     "Flexibility:\nCan be used in various contexts, such as arguments to other\nfunctions (callbacks), immediately invoked function expressions, and assigned to object properties."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Functions Stored in Variables"
-  },
-  {
-   "type": "p",
-   "text": "A function stored in a variable can be used like any other value:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction(a, b) {\n  return a * b;\n}\n\nlet x = myFunction(4, 3);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_value"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript functions can be used in expressions:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunction(a, b) {\n  return a * b;\n}\n\nlet x = myFunction(4, 3) * 2;",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_value2"
-  },
-  {
-   "type": "h2",
-   "text": "The Function() Constructor"
-  },
-  {
-   "type": "p",
-   "text": "Functions can also be defined with the JavaScript Function() constructor, but this is rarely used."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myFunction = new Function(\"a\", \"b\", \"return a * b\");\n\nlet x = myFunction(4, 3);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_constructor"
-  },
-  {
-   "type": "p",
-   "text": "You actually don't have to use the function constructor. The example above is the same as writing:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myFunction = function (a, b) {return a * b};\n\nlet x = myFunction(4, 3);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_constructor2"
-  },
-  {
-   "type": "p",
-   "text": "Most of the time, you can avoid using the new keyword in JavaScript."
-  },
-  {
-   "type": "h2",
-   "text": "Functions are Objects"
-  },
-  {
-   "type": "p",
-   "text": "The typeof operator in JavaScript returns function for\nfunctions."
-  },
-  {
-   "type": "p",
-   "text": "But, JavaScript functions can best be described as objects."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript functions have both properties and\nmethods."
-  },
-  {
-   "type": "p",
-   "text": "The arguments.length property returns the number of arguments received\nby the function:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function multiply(a, b) {\n  return arguments.length;\n\n}\n\n// Returns 0\n\nmultiply();\n\n// Returns 2\n\nmultiply(a, b);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_length"
-  },
-  {
-   "type": "p",
-   "text": "The toString() method returns the function as a string:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function multiply(a, b) {\n  return a * b;\n}\n\nlet text = multiply.toString();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_tostring"
-  }
- ]
+  "slug": "js_function_definition",
+  "course": "js",
+  "order": 202,
+  "url": "/js/js_function_definition.asp",
+  "title": "JavaScript Function Definitions",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Function Definitions"
+    },
+    {
+      "type": "h2",
+      "text": "Function Definitions vs Function Declarations"
+    },
+    {
+      "type": "p",
+      "text": "Function definition is a general term for defining a function."
+    },
+    {
+      "type": "p",
+      "text": "Function declaration is one specific way to define a function."
+    },
+    {
+      "type": "p",
+      "text": "Examples of function definitions include:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["Function declarations", "Function expressions", "Arrow functions"]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Function Declaration\n\nfunction myFunction(x, y) {\n\n  return x * y;\n\n}\n\n// Function Expression (Named)\n\nconst myFunction = function name(x, y) {\n\n  return x * y;\n\n};\n\n// Function Expression (Anonymous)\n\nconst myFunction = function (x, y) {\n\n  return x * y;\n\n};\n\n// Arrow Function\n\nconst myFunction = (x, y) => x * y;\n\n// Function Constructor\n\nconst myFunction = new Function(\"x\", \"y\", \"return x * y\");\n\n// Object Method\n\nconst obj = {\n\n  myFunction(x, y) {\n\n    return x * y;\n\n  },\n\n};",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Function Declarations"
+    },
+    {
+      "type": "p",
+      "text": "Earlier in this tutorial, you learned that functions are declared with the\nfollowing syntax:"
+    },
+    {
+      "type": "p",
+      "text": "function functionName(parameters) {\n  // code to be executed\n}"
+    },
+    {
+      "type": "p",
+      "text": "A function declaration uses the function keyword and a function name."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction(a, b) {return a * b}",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction(a, b) {\n\n  return a * b;\n\n}",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_return1"
+    },
+    {
+      "type": "p",
+      "text": "Declared functions are not executed immediately. They are \"saved for later use\",\nand will be executed later, when they are invoked (called upon)."
+    },
+    {
+      "type": "p",
+      "text": "You can call a function before or after it is declared in the code."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = myFunction(4, 3);\n\nfunction myFunction(a, b) {\n\n  return a * b;\n\n}",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction(a, b) {\n\n  return a * b;\n\n}\n\nlet x = myFunction(4, 3);",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_return4"
+    },
+    {
+      "type": "h2",
+      "text": "Function Expressions"
+    },
+    {
+      "type": "p",
+      "text": "A function expression stores a function inside a variable."
+    },
+    {
+      "type": "p",
+      "text": "The function can be anonymous (without a name)."
+    },
+    {
+      "type": "p",
+      "text": "Function expressions are executed only when the code reaches them."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const x = function (a, b) {return a * b};",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_expression"
+    },
+    {
+      "type": "p",
+      "text": "After a function expression has been stored in a variable, the variable can\nbe used as a function:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const x = function (a, b) {return a * b};\n\nlet z = x(4, 3);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_expression_variable"
+    },
+    {
+      "type": "h2",
+      "text": "Hoisting"
+    },
+    {
+      "type": "p",
+      "text": "Function declarations are hoisted to the top of their scope."
+    },
+    {
+      "type": "p",
+      "text": "Function expressions are not hoisted in the same way."
+    },
+    {
+      "type": "p",
+      "text": "Function declarations can be called before they are defined."
+    },
+    {
+      "type": "p",
+      "text": "Function expressions can not be called before they are defined."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const sum = add(2, 3); // Will work\n\nfunction add(a, b) {return a + b;}",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const sum = add(2, 3); // ⛔ Will generate error\n\nconst add = function (a, b) {return a + b;};",
+      "caption": "Examples"
+    },
+    {
+      "type": "h2",
+      "text": "Key Differences"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Function Declaration", "Function Expression"],
+        [
+          "Syntax:\nA statement starting with the function keyword, followed by a required name.",
+          "Syntax:\nA part of an expression or assignment, and can be anonymous (without a name)."
+        ],
+        [
+          "Hoisting:\nThe function is moved to the top of its scope before code execution,\nallowing you to call it from anywhere within that code scope, even before its definition.",
+          "Hoisting:\nThe variable holding the function might be hoisted\n(depending on var, let, or const), but the function assignment itself is not.\nYou can only call it after it has been defined in the code scope."
+        ],
+        [
+          "Flexibility:\nPrimarily used for general-purpose functions that need to be available globally or in a specific scope.",
+          "Flexibility:\nCan be used in various contexts, such as arguments to other\nfunctions (callbacks), immediately invoked function expressions, and assigned to object properties."
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Functions Stored in Variables"
+    },
+    {
+      "type": "p",
+      "text": "A function stored in a variable can be used like any other value:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction(a, b) {\n  return a * b;\n}\n\nlet x = myFunction(4, 3);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_value"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript functions can be used in expressions:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunction(a, b) {\n  return a * b;\n}\n\nlet x = myFunction(4, 3) * 2;",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_value2"
+    },
+    {
+      "type": "h2",
+      "text": "The Function() Constructor"
+    },
+    {
+      "type": "p",
+      "text": "Functions can also be defined with the JavaScript Function() constructor, but this is rarely used."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myFunction = new Function(\"a\", \"b\", \"return a * b\");\n\nlet x = myFunction(4, 3);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_constructor"
+    },
+    {
+      "type": "p",
+      "text": "You actually don't have to use the function constructor. The example above is the same as writing:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myFunction = function (a, b) {return a * b};\n\nlet x = myFunction(4, 3);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_constructor2"
+    },
+    {
+      "type": "p",
+      "text": "Most of the time, you can avoid using the new keyword in JavaScript."
+    },
+    {
+      "type": "h2",
+      "text": "Functions are Objects"
+    },
+    {
+      "type": "p",
+      "text": "The typeof operator in JavaScript returns function for\nfunctions."
+    },
+    {
+      "type": "p",
+      "text": "But, JavaScript functions can best be described as objects."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript functions have both properties and\nmethods."
+    },
+    {
+      "type": "p",
+      "text": "The arguments.length property returns the number of arguments received\nby the function:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function multiply(a, b) {\n  return arguments.length;\n\n}\n\n// Returns 0\n\nmultiply();\n\n// Returns 2\n\nmultiply(a, b);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_length"
+    },
+    {
+      "type": "p",
+      "text": "The toString() method returns the function as a string:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function multiply(a, b) {\n  return a * b;\n}\n\nlet text = multiply.toString();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_tostring"
+    }
+  ]
 }

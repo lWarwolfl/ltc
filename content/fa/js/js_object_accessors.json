@@ -1,291 +1,286 @@
 {
- "slug": "js_object_accessors",
- "course": "js",
- "order": 214,
- "url": "/js/js_object_accessors.asp",
- "title": "گیرنده‌ها و تنظیم‌کننده‌های شیء در JavaScript",
- "summary": "با کلیدواژه‌های get و set می‌توانید خصوصیت‌های محاسبه‌شده بسازید تا خواندن یا نوشتن یک مقدار پشت‌صحنه کار انجام دهد. در این درس تفاوت متد و گیرنده، بالا بردن کیفیت داده و ساخت گیرنده و تنظیم‌کننده با Object.defineProperty را می‌بینید.",
- "objectives": [
-  "با کلیدواژهٔ get یک گیرنده بسازید",
-  "با کلیدواژهٔ set یک تنظیم‌کننده بسازید",
-  "تفاوت متد و گیرنده را در نحوهٔ صدا زدن توضیح دهید",
-  "با Object.defineProperty گیرنده و تنظیم‌کننده اضافه کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "گیرنده‌ها و تنظیم‌کننده‌های شیء در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "گیرنده‌ها و تنظیم‌کننده‌ها اجازه می‌دهند دسترسیگرهای شیء (خصوصیت‌های محاسبه‌شده) تعریف کنید."
-  },
-  {
-   "type": "h2",
-   "text": "گیرنده در JavaScript (کلیدواژهٔ get)"
-  },
-  {
-   "type": "p",
-   "text": "این مثال از خصوصیت lang استفاده می‌کند تا مقدار خصوصیت language را بگیرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"en\",\n\n  get lang() {\n\n    return this.language;\n\n    }\n};\n\n// Display data from the object using a getter:\n\ndocument.getElementById(\"demo\").innerHTML = person.lang;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_get"
-  },
-  {
-   "type": "h2",
-   "text": "تنظیم‌کننده در JavaScript (کلیدواژهٔ set)"
-  },
-  {
-   "type": "p",
-   "text": "این مثال از خصوصیت lang استفاده می‌کند تا مقدار خصوصیت language را تعیین کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"\",\n\n    set lang(lang) {\n\n    this.language = lang;\n\n    }\n};\n\n// Set an object\nproperty using a setter:\n\nperson.lang = \"en\";\n\n// Display data from the object:\n\ndocument.getElementById(\"demo\").innerHTML = person.language;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set"
-  },
-  {
-   "type": "h2",
-   "text": "تابع یا گیرنده؟"
-  },
-  {
-   "type": "p",
-   "text": "تفاوت این دو مثال چیست؟"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  fullName: function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};\n\n// Display data from the object using a method:\n\n  document.getElementById(\"demo\").innerHTML = person.fullName();",
-   "caption": "مثال ۱"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_method"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  get fullName() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};\n\n// Display data from the object using a getter:\n\n  document.getElementById(\"demo\").innerHTML = person.fullName;",
-   "caption": "مثال ۲"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_method_get"
-  },
-  {
-   "type": "p",
-   "text": "مثال ۱ به fullName مثل تابع دسترسی دارد: person.fullName()."
-  },
-  {
-   "type": "p",
-   "text": "مثال ۲ به fullName مثل خصوصیت دسترسی دارد: person.fullName."
-  },
-  {
-   "type": "p",
-   "text": "مثال دوم نحو ساده‌تری دارد."
-  },
-  {
-   "type": "h2",
-   "text": "کیفیت داده"
-  },
-  {
-   "type": "p",
-   "text": "با استفاده از گیرنده و تنظیم‌کننده، JavaScript می‌تواند کیفیت دادهٔ بهتری تأمین کند."
-  },
-  {
-   "type": "p",
-   "text": "در این مثال، استفاده از خصوصیت lang مقدار خصوصیت language را با حروف بزرگ برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create an object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"en\",\n\n  get lang() {\n\n    return this.language.toUpperCase();\n\n    }\n};\n\n// Display data from the object using a getter:\n\ndocument.getElementById(\"demo\").innerHTML = person.lang;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_get2"
-  },
-  {
-   "type": "p",
-   "text": "در این مثال، استفاده از خصوصیت lang مقدار را با حروف بزرگ در خصوصیت language ذخیره می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"\",\n\n  set lang(lang) {\n\n      this.language = lang.toUpperCase();\n\n    }\n};\n\n// Set an object\nproperty using a setter:\n\nperson.lang = \"en\";\n\n// Display data from the object:\n\ndocument.getElementById(\"demo\").innerHTML = person.language;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set2"
-  },
-  {
-   "type": "h2",
-   "text": "چرا از گیرنده و تنظیم‌کننده استفاده کنیم؟"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "نحو ساده‌تری می‌دهد",
-    "نحو یکسان برای خصوصیت‌ها و متد‌ها فراهم می‌کند",
-    "می‌تواند کیفیت دادهٔ بهتری تأمین کند",
-    "برای کار‌های پشت‌صحنه مفید است"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "اگر فقط مقدار‌های ساده لازم دارید، از گیرنده و تنظیم‌کننده استفاده نکنید تا کار بیجا نشود."
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.defineProperty()"
-  },
-  {
-   "type": "p",
-   "text": "متد Object.defineProperty() هم می‌تواند گیرنده‌ها و تنظیم‌کننده‌ها را اضافه کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Define object\n\nconst obj = {counter : 0};\n\n// Define setters and getters\n\nObject.defineProperty(obj, \"reset\", {\n\n  get : function () {this.counter = 0;}\n});\n\nObject.defineProperty(obj, \"increment\", {\n\n  get : function () {this.counter++;}\n});\n\nObject.defineProperty(obj, \"decrement\", {\n\n  get : function () {this.counter--;}\n});\n\nObject.defineProperty(obj, \"add\", {\n\n  set : function (value) {this.counter += value;}\n});\n\nObject.defineProperty(obj, \"subtract\", {\n\n  set : function (value) {this.counter -= value;}\n});\n\n// Play with the counter:\n\nobj.reset;\n\nobj.add = 5;\n\nobj.subtract = 1;\n\nobj.increment;\n\nobj.decrement;",
-   "caption": "مثال شمارنده"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set4"
-  },
-  {
-   "type": "h2",
-   "text": "فصل‌های پیشرفته:"
-  },
-  {
-   "type": "p",
-   "text": "تعریف شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "‏this پیشرفته در شیء‌های JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پیمایش شیء‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیء‌های JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مدیریت شیء‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "محافظت از شیء‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پروتوتایپ‌های شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع شیء در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل accessors.js بسازید و شیء person را با خصوصیت language و یک گیرندهٔ get lang بنویسید که مقدار language را برگرداند. بعد person.lang را چاپ کنید.",
-   "hint": "گیرنده را مثل خصوصیت می‌خوانید، بدون پرانتز."
-  },
-  {
-   "prompt": "برای همان شیء یک تنظیم‌کنندهٔ set lang بنویسید و با person.lang = \"en\" مقدارش را تعیین کنید.",
-   "hint": "تنظیم‌کننده یک پارامتر می‌گیرد."
-  },
-  {
-   "prompt": "دو نسخه بنویسید: یکی با متد fullName() و یکی با گیرندهٔ get fullName. تفاوت در نحوهٔ صدا زدن را در کنسول ببینید.",
-   "hint": "در نسخهٔ متد پرانتز لازم است، در نسخهٔ گیرنده نه."
-  },
-  {
-   "prompt": "گیرنده را طوری بنویسید که مقدار را با حروف بزرگ برگرداند، و تنظیم‌کننده را طوری که مقدار را با حروف بزرگ ذخیره کند.",
-   "hint": "از toUpperCase() استفاده کنید."
-  },
-  {
-   "prompt": "با Object.defineProperty یک شمارنده بسازید که خصوصیت‌های reset و increment را با get و خصوصیت add را با set تعریف کند.",
-   "hint": "در این روش، حتی خواندن یک خصوصیت هم می‌تواند عمل انجام دهد."
-  }
- ],
- "quiz": [
-  {
-   "question": "گیرنده (getter) چه فرقی با متد دارد؟",
-   "options": [
-    "هیچ فرقی ندارند",
-    "گیرنده مثل خصوصیت صدا زده می‌شود و پرانتز نمی‌خواهد",
-    "گیرنده پارامتر می‌گیرد",
-    "گیرنده فقط داخل کلاس کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "متد با پرانتز صدا زده می‌شود، مثل person.fullName()، اما گیرنده مثل یک خصوصیت خوانده می‌شود: person.fullName."
-  },
-  {
-   "question": "کار تنظیم‌کننده (setter) چیست؟",
-   "options": [
-    "مقدار یک خصوصیت را می‌خواند",
-    "مقدار یک خصوصیت را تعیین می‌کند",
-    "متد را اجرا می‌کند",
-    "شیء را قفل می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "تنظیم‌کننده با کلیدواژهٔ set تعریف می‌شود و وقتی مقداری به آن نسبت می‌دهید اجرا می‌شود؛ خواندن مقدار کار گیرنده است."
-  },
-  {
-   "question": "چرا گیرنده و تنظیم‌کننده کیفیت داده را بهتر می‌کنند؟",
-   "options": [
-    "چون داده را رمزنگاری می‌کنند",
-    "چون می‌توانند هنگام خواندن یا نوشتن مقدار را پردازش کنند، مثلاً با حروف بزرگ ذخیره کنند",
-    "چون داده را در حافظهٔ موقت نگه می‌دارند",
-    "چون دسترسی را می‌بندند"
-   ],
-   "answer": 1,
-   "explanation": "مثال درس نشان می‌دهد گیرنده و تنظیم‌کننده می‌توانند مقدار را با toUpperCase پردازش کنند و همین کنترل روی کیفیت داده اثر می‌گذارد."
-  },
-  {
-   "question": "با Object.defineProperty چه چیزی اضافه می‌شود؟",
-   "options": [
-    "فقط خصوصیت معمولی",
-    "گیرنده و تنظیم‌کننده",
-    "متد آرایه",
-    "کلاس تازه"
-   ],
-   "answer": 1,
-   "explanation": "مثال شمارنده نشان می‌دهد با get و set در Object.defineProperty می‌توان خصوصیت‌هایی ساخت که خواندن یا نوشتنشان کار انجام دهد."
-  },
-  {
-   "question": "درس دربارهٔ استفادهٔ زیاد از گیرنده و تنظیم‌کننده چه می‌گوید؟",
-   "options": [
-    "همیشه توصیه می‌شود",
-    "برای مقدار‌های ساده لزومی ندارد و بهتر است کار بیجا نکنید",
-    "فقط در کلاس لازم است",
-    "برای آرایه‌ها واجب است"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید اگر فقط مقدار‌های ساده می‌خواهید از گیرنده و تنظیم‌کننده استفاده نکنید تا کد بی‌دلیل پیچیده نشود."
-  }
- ]
+  "slug": "js_object_accessors",
+  "course": "js",
+  "order": 214,
+  "url": "/js/js_object_accessors.asp",
+  "title": "گیرنده‌ها و تنظیم‌کننده‌های شیء در JavaScript",
+  "summary": "با کلیدواژه‌های get و set می‌توانید خصوصیت‌های محاسبه‌شده بسازید تا خواندن یا نوشتن یک مقدار پشت‌صحنه کار انجام دهد. در این درس تفاوت متد و گیرنده، بالا بردن کیفیت داده و ساخت گیرنده و تنظیم‌کننده با Object.defineProperty را می‌بینید.",
+  "objectives": [
+    "با کلیدواژهٔ get یک گیرنده بسازید",
+    "با کلیدواژهٔ set یک تنظیم‌کننده بسازید",
+    "تفاوت متد و گیرنده را در نحوهٔ صدا زدن توضیح دهید",
+    "با Object.defineProperty گیرنده و تنظیم‌کننده اضافه کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "گیرنده‌ها و تنظیم‌کننده‌های شیء در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "گیرنده‌ها و تنظیم‌کننده‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "گیرنده‌ها و تنظیم‌کننده‌ها اجازه می‌دهند دسترسیگرهای شیء (خصوصیت‌های محاسبه‌شده) تعریف کنید."
+    },
+    {
+      "type": "h2",
+      "text": "گیرنده در JavaScript (کلیدواژهٔ get)"
+    },
+    {
+      "type": "p",
+      "text": "این مثال از خصوصیت lang استفاده می‌کند تا مقدار خصوصیت language را بگیرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"en\",\n\n  get lang() {\n\n    return this.language;\n\n    }\n};\n\n// Display data from the object using a getter:\n\ndocument.getElementById(\"demo\").innerHTML = person.lang;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_get"
+    },
+    {
+      "type": "h2",
+      "text": "تنظیم‌کننده در JavaScript (کلیدواژهٔ set)"
+    },
+    {
+      "type": "p",
+      "text": "این مثال از خصوصیت lang استفاده می‌کند تا مقدار خصوصیت language را تعیین کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"\",\n\n    set lang(lang) {\n\n    this.language = lang;\n\n    }\n};\n\n// Set an object\nproperty using a setter:\n\nperson.lang = \"en\";\n\n// Display data from the object:\n\ndocument.getElementById(\"demo\").innerHTML = person.language;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set"
+    },
+    {
+      "type": "h2",
+      "text": "تابع یا گیرنده؟"
+    },
+    {
+      "type": "p",
+      "text": "تفاوت این دو مثال چیست؟"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  fullName: function() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};\n\n// Display data from the object using a method:\n\n  document.getElementById(\"demo\").innerHTML = person.fullName();",
+      "caption": "مثال ۱"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_method"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  get fullName() {\n\n    return this.firstName + \" \" +\nthis.lastName;\n  }\n\n};\n\n// Display data from the object using a getter:\n\n  document.getElementById(\"demo\").innerHTML = person.fullName;",
+      "caption": "مثال ۲"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_method_get"
+    },
+    {
+      "type": "p",
+      "text": "مثال ۱ به fullName مثل تابع دسترسی دارد: person.fullName()."
+    },
+    {
+      "type": "p",
+      "text": "مثال ۲ به fullName مثل خصوصیت دسترسی دارد: person.fullName."
+    },
+    {
+      "type": "p",
+      "text": "مثال دوم نحو ساده‌تری دارد."
+    },
+    {
+      "type": "h2",
+      "text": "کیفیت داده"
+    },
+    {
+      "type": "p",
+      "text": "با استفاده از گیرنده و تنظیم‌کننده، JavaScript می‌تواند کیفیت دادهٔ بهتری تأمین کند."
+    },
+    {
+      "type": "p",
+      "text": "در این مثال، استفاده از خصوصیت lang مقدار خصوصیت language را با حروف بزرگ برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create an object:\n\nconst person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"en\",\n\n  get lang() {\n\n    return this.language.toUpperCase();\n\n    }\n};\n\n// Display data from the object using a getter:\n\ndocument.getElementById(\"demo\").innerHTML = person.lang;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_get2"
+    },
+    {
+      "type": "p",
+      "text": "در این مثال، استفاده از خصوصیت lang مقدار را با حروف بزرگ در خصوصیت language ذخیره می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName: \"John\",\n\n  lastName: \"Doe\",\n\n  language: \"\",\n\n  set lang(lang) {\n\n      this.language = lang.toUpperCase();\n\n    }\n};\n\n// Set an object\nproperty using a setter:\n\nperson.lang = \"en\";\n\n// Display data from the object:\n\ndocument.getElementById(\"demo\").innerHTML = person.language;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set2"
+    },
+    {
+      "type": "h2",
+      "text": "چرا از گیرنده و تنظیم‌کننده استفاده کنیم؟"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "نحو ساده‌تری می‌دهد",
+        "نحو یکسان برای خصوصیت‌ها و متد‌ها فراهم می‌کند",
+        "می‌تواند کیفیت دادهٔ بهتری تأمین کند",
+        "برای کار‌های پشت‌صحنه مفید است"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "اگر فقط مقدار‌های ساده لازم دارید، از گیرنده و تنظیم‌کننده استفاده نکنید تا کار بیجا نشود."
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.defineProperty()"
+    },
+    {
+      "type": "p",
+      "text": "متد Object.defineProperty() هم می‌تواند گیرنده‌ها و تنظیم‌کننده‌ها را اضافه کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Define object\n\nconst obj = {counter : 0};\n\n// Define setters and getters\n\nObject.defineProperty(obj, \"reset\", {\n\n  get : function () {this.counter = 0;}\n});\n\nObject.defineProperty(obj, \"increment\", {\n\n  get : function () {this.counter++;}\n});\n\nObject.defineProperty(obj, \"decrement\", {\n\n  get : function () {this.counter--;}\n});\n\nObject.defineProperty(obj, \"add\", {\n\n  set : function (value) {this.counter += value;}\n});\n\nObject.defineProperty(obj, \"subtract\", {\n\n  set : function (value) {this.counter -= value;}\n});\n\n// Play with the counter:\n\nobj.reset;\n\nobj.add = 5;\n\nobj.subtract = 1;\n\nobj.increment;\n\nobj.decrement;",
+      "caption": "مثال شمارنده"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_accessors_set4"
+    },
+    {
+      "type": "h2",
+      "text": "فصل‌های پیشرفته:"
+    },
+    {
+      "type": "p",
+      "text": "تعریف شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "‏this پیشرفته در شیء‌های JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پیمایش شیء‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیء‌های JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مدیریت شیء‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "محافظت از شیء‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پروتوتایپ‌های شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع شیء در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل accessors.js بسازید و شیء person را با خصوصیت language و یک گیرندهٔ get lang بنویسید که مقدار language را برگرداند. بعد person.lang را چاپ کنید.",
+      "hint": "گیرنده را مثل خصوصیت می‌خوانید، بدون پرانتز."
+    },
+    {
+      "prompt": "برای همان شیء یک تنظیم‌کنندهٔ set lang بنویسید و با person.lang = \"en\" مقدارش را تعیین کنید.",
+      "hint": "تنظیم‌کننده یک پارامتر می‌گیرد."
+    },
+    {
+      "prompt": "دو نسخه بنویسید: یکی با متد fullName() و یکی با گیرندهٔ get fullName. تفاوت در نحوهٔ صدا زدن را در کنسول ببینید.",
+      "hint": "در نسخهٔ متد پرانتز لازم است، در نسخهٔ گیرنده نه."
+    },
+    {
+      "prompt": "گیرنده را طوری بنویسید که مقدار را با حروف بزرگ برگرداند، و تنظیم‌کننده را طوری که مقدار را با حروف بزرگ ذخیره کند.",
+      "hint": "از toUpperCase() استفاده کنید."
+    },
+    {
+      "prompt": "با Object.defineProperty یک شمارنده بسازید که خصوصیت‌های reset و increment را با get و خصوصیت add را با set تعریف کند.",
+      "hint": "در این روش، حتی خواندن یک خصوصیت هم می‌تواند عمل انجام دهد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "گیرنده (getter) چه فرقی با متد دارد؟",
+      "options": [
+        "هیچ فرقی ندارند",
+        "گیرنده مثل خصوصیت صدا زده می‌شود و پرانتز نمی‌خواهد",
+        "گیرنده پارامتر می‌گیرد",
+        "گیرنده فقط داخل کلاس کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "متد با پرانتز صدا زده می‌شود، مثل person.fullName()، اما گیرنده مثل یک خصوصیت خوانده می‌شود: person.fullName."
+    },
+    {
+      "question": "کار تنظیم‌کننده (setter) چیست؟",
+      "options": [
+        "مقدار یک خصوصیت را می‌خواند",
+        "مقدار یک خصوصیت را تعیین می‌کند",
+        "متد را اجرا می‌کند",
+        "شیء را قفل می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "تنظیم‌کننده با کلیدواژهٔ set تعریف می‌شود و وقتی مقداری به آن نسبت می‌دهید اجرا می‌شود؛ خواندن مقدار کار گیرنده است."
+    },
+    {
+      "question": "چرا گیرنده و تنظیم‌کننده کیفیت داده را بهتر می‌کنند؟",
+      "options": [
+        "چون داده را رمزنگاری می‌کنند",
+        "چون می‌توانند هنگام خواندن یا نوشتن مقدار را پردازش کنند، مثلاً با حروف بزرگ ذخیره کنند",
+        "چون داده را در حافظهٔ موقت نگه می‌دارند",
+        "چون دسترسی را می‌بندند"
+      ],
+      "answer": 1,
+      "explanation": "مثال درس نشان می‌دهد گیرنده و تنظیم‌کننده می‌توانند مقدار را با toUpperCase پردازش کنند و همین کنترل روی کیفیت داده اثر می‌گذارد."
+    },
+    {
+      "question": "با Object.defineProperty چه چیزی اضافه می‌شود؟",
+      "options": ["فقط خصوصیت معمولی", "گیرنده و تنظیم‌کننده", "متد آرایه", "کلاس تازه"],
+      "answer": 1,
+      "explanation": "مثال شمارنده نشان می‌دهد با get و set در Object.defineProperty می‌توان خصوصیت‌هایی ساخت که خواندن یا نوشتنشان کار انجام دهد."
+    },
+    {
+      "question": "درس دربارهٔ استفادهٔ زیاد از گیرنده و تنظیم‌کننده چه می‌گوید؟",
+      "options": [
+        "همیشه توصیه می‌شود",
+        "برای مقدار‌های ساده لزومی ندارد و بهتر است کار بیجا نکنید",
+        "فقط در کلاس لازم است",
+        "برای آرایه‌ها واجب است"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید اگر فقط مقدار‌های ساده می‌خواهید از گیرنده و تنظیم‌کننده استفاده نکنید تا کد بی‌دلیل پیچیده نشود."
+    }
+  ]
 }

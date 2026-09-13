@@ -1,334 +1,315 @@
 {
- "slug": "html_form_attributes_form",
- "course": "html",
- "order": 62,
- "url": "/html/html_form_attributes_form.asp",
- "title": "ویژگی‌های form* ورودی در HTML",
- "summary": "ویژگی‌های form* به یک ورودی یا دکمه اجازه می‌دهند تنظیمات فرم را بازنویسی کند. در این درس form، formaction، formenctype، formmethod، formtarget، formnovalidate و novalidate را می‌بینید.",
- "objectives": [
-  "با ویژگی form یک ورودی را به فرمی بیرون از خودش وصل کنید",
-  "بگویید کدام ویژگی‌های form* روی ویژگی‌های عنصر <form> اولویت دارند",
-  "تفاوت متد get و post را توضیح دهید",
-  "با novalidate و formnovalidate اعتبارسنجی فرم را خاموش کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ویژگی‌های form* ورودی در HTML"
-  },
-  {
-   "type": "p",
-   "text": "این فصل ویژگی‌های form* مختلف عنصر <input> در HTML را توضیح می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی form"
-  },
-  {
-   "type": "p",
-   "text": "ویژگی form تعیین می‌کند عنصر <input> به کدام فرم تعلق دارد."
-  },
-  {
-   "type": "p",
-   "text": "مقدار این ویژگی باید برابر با ویژگی id عنصر <form> باشد که این ورودی به آن تعلق دارد."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form action=\"/action_page.php\" id=\"form1\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <input type=\"submit\" value=\"Submit\">\n</form>\n\n<label for=\"lname\">Last\n    name:</label>\n<input type=\"text\" id=\"lname\"\n    name=\"lname\" form=\"form1\">",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_form"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی formaction"
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formaction نشانی URL فایلی را تعیین می‌کند که هنگام ارسال فرم ورودی را پردازش می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "نکته: این ویژگی روی ویژگی action عنصر <form> اولویت دارد و آن را بی‌اثر می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formaction با این نوع‌های ورودی کار می‌کند: submit و image."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form action=\"/action_page.php\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <label for=\"lname\">Last name:</label>\n  <input type=\"text\" id=\"lname\"\n    name=\"lname\"><br><br>\n  <input type=\"submit\" value=\"Submit\">\n\n    <input type=\"submit\" formaction=\"/action_page2.php\" value=\"Submit as Admin\">\n\n    </form>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formaction"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی formenctype"
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formenctype تعیین می‌کند داده‌های فرم هنگام ارسال چطور کدگذاری شوند (فقط برای فرم‌هایی با method=\"post\")."
-  },
-  {
-   "type": "p",
-   "text": "نکته: این ویژگی روی ویژگی enctype عنصر <form> اولویت دارد."
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formenctype با این نوع‌های ورودی کار می‌کند: submit و image."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form action=\"/action_page_binary.asp\" method=\"post\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <input type=\"submit\" value=\"Submit\">\n  <input type=\"submit\"\n    formenctype=\"multipart/form-data\"\n  value=\"Submit as\n    Multipart/form-data\">\n</form>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formenctype"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی formmethod"
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formmethod متد HTTP را برای فرستادن داده‌های فرم به نشانی action تعیین می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "نکته: این ویژگی روی ویژگی method عنصر <form> اولویت دارد."
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formmethod با این نوع‌های ورودی کار می‌کند: submit و image."
-  },
-  {
-   "type": "p",
-   "text": "داده‌های فرم می‌توانند به شکل متغیرهای URL (method=\"get\") یا به شکل یک تراکنش HTTP post (method=\"post\") فرستاده شوند."
-  },
-  {
-   "type": "p",
-   "text": "نکته‌هایی دربارهٔ متد «get»:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "این متد داده‌های فرم را به شکل جفت‌های نام/مقدار به URL می‌چسباند",
-    "این متد برای ارسال فرم‌هایی مفید است که کاربر می‌خواهد نتیجه را نشان‌گذاری کند",
-    "میزان داده‌ای که می‌توان در URL گذاشت محدود است (از مرورگری به مرورگر دیگر تفاوت دارد)؛ پس نمی‌توانید مطمئن باشید همهٔ داده‌های فرم درست منتقل شوند",
-    "هرگز از متد «get» برای فرستادن اطلاعات حساس استفاده نکنید! (رمز عبور یا اطلاعات حساس دیگر در نوار نشانی مرورگر دیده می‌شود)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "نکته‌هایی دربارهٔ متد «post»:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "این متد داده‌های فرم را به شکل یک تراکنش HTTP post می‌فرستد",
-    "ارسال‌های فرمی که با متد «post» انجام می‌شوند نشان‌گذاری‌شدنی نیستند",
-    "متد «post» از «get» محکم‌تر و ایمن‌تر است و محدودیت اندازه هم ندارد"
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form action=\"/action_page.php\" method=\"get\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <label for=\"lname\">Last name:</label>\n  <input type=\"text\" id=\"lname\"\n    name=\"lname\"><br><br>\n  <input type=\"submit\" value=\"Submit using\n    GET\">\n  <input type=\"submit\" formmethod=\"post\" value=\"Submit using\n    POST\">\n</form>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formmethod"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی formtarget"
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formtarget نام یا کلیدواژه‌ای را تعیین می‌کند که نشان می‌دهد پاسخ دریافتی بعد از ارسال فرم کجا نمایش داده شود."
-  },
-  {
-   "type": "p",
-   "text": "نکته: این ویژگی روی ویژگی target عنصر <form> اولویت دارد."
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formtarget با این نوع‌های ورودی کار می‌کند: submit و image."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form action=\"/action_page.php\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <label for=\"lname\">Last name:</label>\n  <input type=\"text\" id=\"lname\"\n    name=\"lname\"><br><br>\n  <input type=\"submit\" value=\"Submit\">\n\n    <input type=\"submit\" formtarget=\"_blank\" value=\"Submit to a new window/tab\">\n\n    </form>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formtarget"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی formnovalidate"
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formnovalidate مشخص می‌کند عنصر <input> هنگام ارسال اعتبارسنجی نشود."
-  },
-  {
-   "type": "p",
-   "text": "نکته: این ویژگی روی ویژگی novalidate عنصر <form> اولویت دارد."
-  },
-  {
-   "type": "p",
-   "text": "ویژگی formnovalidate با این نوع ورودی کار می‌کند: submit."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form action=\"/action_page.php\">\n  <label for=\"email\">Enter your\n    email:</label>\n  <input type=\"email\" id=\"email\" name=\"email\"><br><br>\n\n    <input type=\"submit\" value=\"Submit\">\n  <input type=\"submit\"\n    formnovalidate=\"formnovalidate\"\n  value=\"Submit without validation\">\n\n    </form>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formnovalidate"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی novalidate"
-  },
-  {
-   "type": "p",
-   "text": "ویژگی novalidate یک ویژگی مربوط به <form> است."
-  },
-  {
-   "type": "p",
-   "text": "ویژگی novalidate وقتی حاضر باشد، مشخص می‌کند همهٔ داده‌های فرم هنگام ارسال اعتبارسنجی نشوند."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<form action=\"/action_page.php\" novalidate>\n  <label\n    for=\"email\">Enter your email:</label>\n  <input type=\"email\"\n    id=\"email\" name=\"email\"><br><br>\n  <input type=\"submit\"\n    value=\"Submit\">\n</form>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_form_novalidate"
-  },
-  {
-   "type": "h2",
-   "text": "عنصرهای فرم و ورودی HTML"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "تگ",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "<form>",
-     "یک فرم HTML برای ورود داده توسط کاربر تعریف می‌کند"
-    ],
-    [
-     "<input>",
-     "یک کنترل ورودی تعریف می‌کند"
-    ]
-   ]
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "برای فهرست کامل همهٔ تگ‌های موجود HTML، به مرجع تگ‌های HTML ما سر بزنید."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل form-attributes.html بسازید، به <form> یک id بدهید و یک ورودی را بیرون از فرم با ویژگی form به همان فرم وصل کنید.",
-   "hint": "مقدار form باید برابر id همان فرم باشد."
-  },
-  {
-   "prompt": "دو دکمهٔ ارسال بگذارید و روی یکی از آن‌ها ویژگی formaction بگذارید تا داده‌ها به نشانی دیگری برود.",
-   "hint": "formaction روی ویژگی action فرم اولویت دارد."
-  },
-  {
-   "prompt": "روی یک دکمهٔ ارسال formmethod=\"post\" بگذارید، بعد فرم را یک بار با روش get هم بفرستید و تفاوت نوار نشانی مرورگر را ببینید.",
-   "hint": "در متد get داده‌های فرم در URL دیده می‌شوند؛ برای اطلاعات حساس هرگز از آن استفاده نکنید."
-  },
-  {
-   "prompt": "با formtarget=\"_blank\" روی یک دکمه کاری کنید که پاسخ فرم در تب تازه باز شود.",
-   "hint": "این ویژگی روی ویژگی target فرم اولویت دارد."
-  },
-  {
-   "prompt": "یک ورودی email و دو دکمهٔ ارسال بسازید که یکی از آن‌ها formnovalidate داشته باشد و تفاوت رفتارشان را ببینید.",
-   "hint": "نشانه‌گذاری formnovalidate=\"formnovalidate\" هم درست است."
-  }
- ],
- "quiz": [
-  {
-   "question": "ویژگی form در <input> چه چیزی را تعیین می‌کند؟",
-   "options": [
-    "نوع ورودی",
-    "فرمی که این ورودی به آن تعلق دارد",
-    "مقدار پیش‌فرض کادر",
-    "اندازهٔ کادر ورودی"
-   ],
-   "answer": 1,
-   "explanation": "با form می‌توان یک ورودی را که بیرون از <form> نوشته شده به فرمی وصل کرد که id آن در مقدار form آمده است."
-  },
-  {
-   "question": "کدام ویژگی روی ویژگی action فرم اولویت دارد؟",
-   "options": [
-    "formmethod",
-    "formtarget",
-    "formaction",
-    "formenctype"
-   ],
-   "answer": 2,
-   "explanation": "formaction نشانی پردازش فرم را برای همان دکمه تعیین می‌کند و روی action عنصر <form> اولویت دارد؛ بقیه هر کدام ویژگی دیگری از فرم را بازنویسی می‌کنند."
-  },
-  {
-   "question": "چرا متد get برای فرستادن اطلاعات حساس مناسب نیست؟",
-   "options": [
-    "چون داده‌ها در نوار نشانی مرورگر دیده می‌شوند",
-    "چون داده‌ها هرگز فرستاده نمی‌شوند",
-    "چون مرورگر آن را پشتیبانی نمی‌کند",
-    "چون فرم نشان‌گذاری‌شدنی می‌شود"
-   ],
-   "answer": 0,
-   "explanation": "متد get داده‌های فرم را به URL می‌چسباند، پس رمز عبور یا اطلاعات حساس در نوار نشانی دیده می‌شود. حجم داده هم در آن محدود است."
-  },
-  {
-   "question": "ویژگی formnovalidate روی کدام نوع ورودی کار می‌کند؟",
-   "options": [
-    "text",
-    "email",
-    "file",
-    "submit"
-   ],
-   "answer": 3,
-   "explanation": "formnovalidate روی نوع‌های submit کار می‌کند و باعث می‌شود آن دکمه اعتبارسنجی فرم را نادیده بگیرد."
-  },
-  {
-   "question": "ویژگی novalidate چیست و چه می‌کند؟",
-   "options": [
-    "یک ویژگی <input> است و فقط کادر خودش را اعتبارسنجی نمی‌کند",
-    "یک ویژگی <form> است و باعث می‌شود هیچ داده‌ای هنگام ارسال اعتبارسنجی نشود",
-    "یک ویژگی <button> است و دکمه را غیرفعال می‌کند",
-    "یک ویژگی <label> است و برچسب را پنهان می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "novalidate روی خود عنصر <form> می‌آید و اعتبارسنجی همهٔ داده‌های فرم را هنگام ارسال خاموش می‌کند."
-  }
- ]
+  "slug": "html_form_attributes_form",
+  "course": "html",
+  "order": 62,
+  "url": "/html/html_form_attributes_form.asp",
+  "title": "ویژگی‌های form* ورودی در HTML",
+  "summary": "ویژگی‌های form* به یک ورودی یا دکمه اجازه می‌دهند تنظیمات فرم را بازنویسی کند. در این درس form، formaction، formenctype، formmethod، formtarget، formnovalidate و novalidate را می‌بینید.",
+  "objectives": [
+    "با ویژگی form یک ورودی را به فرمی بیرون از خودش وصل کنید",
+    "بگویید کدام ویژگی‌های form* روی ویژگی‌های عنصر <form> اولویت دارند",
+    "تفاوت متد get و post را توضیح دهید",
+    "با novalidate و formnovalidate اعتبارسنجی فرم را خاموش کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ویژگی‌های form* ورودی در HTML"
+    },
+    {
+      "type": "p",
+      "text": "این فصل ویژگی‌های form* مختلف عنصر <input> در HTML را توضیح می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی form"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی form تعیین می‌کند عنصر <input> به کدام فرم تعلق دارد."
+    },
+    {
+      "type": "p",
+      "text": "مقدار این ویژگی باید برابر با ویژگی id عنصر <form> باشد که این ورودی به آن تعلق دارد."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form action=\"/action_page.php\" id=\"form1\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <input type=\"submit\" value=\"Submit\">\n</form>\n\n<label for=\"lname\">Last\n    name:</label>\n<input type=\"text\" id=\"lname\"\n    name=\"lname\" form=\"form1\">",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_form"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی formaction"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formaction نشانی URL فایلی را تعیین می‌کند که هنگام ارسال فرم ورودی را پردازش می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "نکته: این ویژگی روی ویژگی action عنصر <form> اولویت دارد و آن را بی‌اثر می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formaction با این نوع‌های ورودی کار می‌کند: submit و image."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form action=\"/action_page.php\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <label for=\"lname\">Last name:</label>\n  <input type=\"text\" id=\"lname\"\n    name=\"lname\"><br><br>\n  <input type=\"submit\" value=\"Submit\">\n\n    <input type=\"submit\" formaction=\"/action_page2.php\" value=\"Submit as Admin\">\n\n    </form>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formaction"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی formenctype"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formenctype تعیین می‌کند داده‌های فرم هنگام ارسال چطور کدگذاری شوند (فقط برای فرم‌هایی با method=\"post\")."
+    },
+    {
+      "type": "p",
+      "text": "نکته: این ویژگی روی ویژگی enctype عنصر <form> اولویت دارد."
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formenctype با این نوع‌های ورودی کار می‌کند: submit و image."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form action=\"/action_page_binary.asp\" method=\"post\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <input type=\"submit\" value=\"Submit\">\n  <input type=\"submit\"\n    formenctype=\"multipart/form-data\"\n  value=\"Submit as\n    Multipart/form-data\">\n</form>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formenctype"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی formmethod"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formmethod متد HTTP را برای فرستادن داده‌های فرم به نشانی action تعیین می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "نکته: این ویژگی روی ویژگی method عنصر <form> اولویت دارد."
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formmethod با این نوع‌های ورودی کار می‌کند: submit و image."
+    },
+    {
+      "type": "p",
+      "text": "داده‌های فرم می‌توانند به شکل متغیرهای URL (method=\"get\") یا به شکل یک تراکنش HTTP post (method=\"post\") فرستاده شوند."
+    },
+    {
+      "type": "p",
+      "text": "نکته‌هایی دربارهٔ متد «get»:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "این متد داده‌های فرم را به شکل جفت‌های نام/مقدار به URL می‌چسباند",
+        "این متد برای ارسال فرم‌هایی مفید است که کاربر می‌خواهد نتیجه را نشان‌گذاری کند",
+        "میزان داده‌ای که می‌توان در URL گذاشت محدود است (از مرورگری به مرورگر دیگر تفاوت دارد)؛ پس نمی‌توانید مطمئن باشید همهٔ داده‌های فرم درست منتقل شوند",
+        "هرگز از متد «get» برای فرستادن اطلاعات حساس استفاده نکنید! (رمز عبور یا اطلاعات حساس دیگر در نوار نشانی مرورگر دیده می‌شود)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "نکته‌هایی دربارهٔ متد «post»:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "این متد داده‌های فرم را به شکل یک تراکنش HTTP post می‌فرستد",
+        "ارسال‌های فرمی که با متد «post» انجام می‌شوند نشان‌گذاری‌شدنی نیستند",
+        "متد «post» از «get» محکم‌تر و ایمن‌تر است و محدودیت اندازه هم ندارد"
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form action=\"/action_page.php\" method=\"get\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <label for=\"lname\">Last name:</label>\n  <input type=\"text\" id=\"lname\"\n    name=\"lname\"><br><br>\n  <input type=\"submit\" value=\"Submit using\n    GET\">\n  <input type=\"submit\" formmethod=\"post\" value=\"Submit using\n    POST\">\n</form>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formmethod"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی formtarget"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formtarget نام یا کلیدواژه‌ای را تعیین می‌کند که نشان می‌دهد پاسخ دریافتی بعد از ارسال فرم کجا نمایش داده شود."
+    },
+    {
+      "type": "p",
+      "text": "نکته: این ویژگی روی ویژگی target عنصر <form> اولویت دارد."
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formtarget با این نوع‌های ورودی کار می‌کند: submit و image."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form action=\"/action_page.php\">\n  <label for=\"fname\">First\n    name:</label>\n  <input type=\"text\" id=\"fname\" name=\"fname\"><br><br>\n\n    <label for=\"lname\">Last name:</label>\n  <input type=\"text\" id=\"lname\"\n    name=\"lname\"><br><br>\n  <input type=\"submit\" value=\"Submit\">\n\n    <input type=\"submit\" formtarget=\"_blank\" value=\"Submit to a new window/tab\">\n\n    </form>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formtarget"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی formnovalidate"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formnovalidate مشخص می‌کند عنصر <input> هنگام ارسال اعتبارسنجی نشود."
+    },
+    {
+      "type": "p",
+      "text": "نکته: این ویژگی روی ویژگی novalidate عنصر <form> اولویت دارد."
+    },
+    {
+      "type": "p",
+      "text": "ویژگی formnovalidate با این نوع ورودی کار می‌کند: submit."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form action=\"/action_page.php\">\n  <label for=\"email\">Enter your\n    email:</label>\n  <input type=\"email\" id=\"email\" name=\"email\"><br><br>\n\n    <input type=\"submit\" value=\"Submit\">\n  <input type=\"submit\"\n    formnovalidate=\"formnovalidate\"\n  value=\"Submit without validation\">\n\n    </form>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_input_formnovalidate"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی novalidate"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی novalidate یک ویژگی مربوط به <form> است."
+    },
+    {
+      "type": "p",
+      "text": "ویژگی novalidate وقتی حاضر باشد، مشخص می‌کند همهٔ داده‌های فرم هنگام ارسال اعتبارسنجی نشوند."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<form action=\"/action_page.php\" novalidate>\n  <label\n    for=\"email\">Enter your email:</label>\n  <input type=\"email\"\n    id=\"email\" name=\"email\"><br><br>\n  <input type=\"submit\"\n    value=\"Submit\">\n</form>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_form_novalidate"
+    },
+    {
+      "type": "h2",
+      "text": "عنصرهای فرم و ورودی HTML"
+    },
+    {
+      "type": "table",
+      "headers": ["تگ", "توضیح"],
+      "rows": [
+        ["<form>", "یک فرم HTML برای ورود داده توسط کاربر تعریف می‌کند"],
+        ["<input>", "یک کنترل ورودی تعریف می‌کند"]
+      ]
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برای فهرست کامل همهٔ تگ‌های موجود HTML، به مرجع تگ‌های HTML ما سر بزنید."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل form-attributes.html بسازید، به <form> یک id بدهید و یک ورودی را بیرون از فرم با ویژگی form به همان فرم وصل کنید.",
+      "hint": "مقدار form باید برابر id همان فرم باشد."
+    },
+    {
+      "prompt": "دو دکمهٔ ارسال بگذارید و روی یکی از آن‌ها ویژگی formaction بگذارید تا داده‌ها به نشانی دیگری برود.",
+      "hint": "formaction روی ویژگی action فرم اولویت دارد."
+    },
+    {
+      "prompt": "روی یک دکمهٔ ارسال formmethod=\"post\" بگذارید، بعد فرم را یک بار با روش get هم بفرستید و تفاوت نوار نشانی مرورگر را ببینید.",
+      "hint": "در متد get داده‌های فرم در URL دیده می‌شوند؛ برای اطلاعات حساس هرگز از آن استفاده نکنید."
+    },
+    {
+      "prompt": "با formtarget=\"_blank\" روی یک دکمه کاری کنید که پاسخ فرم در تب تازه باز شود.",
+      "hint": "این ویژگی روی ویژگی target فرم اولویت دارد."
+    },
+    {
+      "prompt": "یک ورودی email و دو دکمهٔ ارسال بسازید که یکی از آن‌ها formnovalidate داشته باشد و تفاوت رفتارشان را ببینید.",
+      "hint": "نشانه‌گذاری formnovalidate=\"formnovalidate\" هم درست است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "ویژگی form در <input> چه چیزی را تعیین می‌کند؟",
+      "options": [
+        "نوع ورودی",
+        "فرمی که این ورودی به آن تعلق دارد",
+        "مقدار پیش‌فرض کادر",
+        "اندازهٔ کادر ورودی"
+      ],
+      "answer": 1,
+      "explanation": "با form می‌توان یک ورودی را که بیرون از <form> نوشته شده به فرمی وصل کرد که id آن در مقدار form آمده است."
+    },
+    {
+      "question": "کدام ویژگی روی ویژگی action فرم اولویت دارد؟",
+      "options": ["formmethod", "formtarget", "formaction", "formenctype"],
+      "answer": 2,
+      "explanation": "formaction نشانی پردازش فرم را برای همان دکمه تعیین می‌کند و روی action عنصر <form> اولویت دارد؛ بقیه هر کدام ویژگی دیگری از فرم را بازنویسی می‌کنند."
+    },
+    {
+      "question": "چرا متد get برای فرستادن اطلاعات حساس مناسب نیست؟",
+      "options": [
+        "چون داده‌ها در نوار نشانی مرورگر دیده می‌شوند",
+        "چون داده‌ها هرگز فرستاده نمی‌شوند",
+        "چون مرورگر آن را پشتیبانی نمی‌کند",
+        "چون فرم نشان‌گذاری‌شدنی می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "متد get داده‌های فرم را به URL می‌چسباند، پس رمز عبور یا اطلاعات حساس در نوار نشانی دیده می‌شود. حجم داده هم در آن محدود است."
+    },
+    {
+      "question": "ویژگی formnovalidate روی کدام نوع ورودی کار می‌کند؟",
+      "options": ["text", "email", "file", "submit"],
+      "answer": 3,
+      "explanation": "formnovalidate روی نوع‌های submit کار می‌کند و باعث می‌شود آن دکمه اعتبارسنجی فرم را نادیده بگیرد."
+    },
+    {
+      "question": "ویژگی novalidate چیست و چه می‌کند؟",
+      "options": [
+        "یک ویژگی <input> است و فقط کادر خودش را اعتبارسنجی نمی‌کند",
+        "یک ویژگی <form> است و باعث می‌شود هیچ داده‌ای هنگام ارسال اعتبارسنجی نشود",
+        "یک ویژگی <button> است و دکمه را غیرفعال می‌کند",
+        "یک ویژگی <label> است و برچسب را پنهان می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "novalidate روی خود عنصر <form> می‌آید و اعتبارسنجی همهٔ داده‌های فرم را هنگام ارسال خاموش می‌کند."
+    }
+  ]
 }

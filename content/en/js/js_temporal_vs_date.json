@@ -1,547 +1,461 @@
 {
- "slug": "js_temporal_vs_date",
- "course": "js",
- "order": 183,
- "url": "/js/js_temporal_vs_date.asp",
- "title": "JavaScript Temporal vs Date",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Temporal vs Date"
-  },
-  {
-   "type": "p",
-   "text": "Learn the differences between JavaScript Date and Temporal"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Date months are 0-based, Temporal months are 1-based",
-    "Date arithmetic is manual, Temporal is built-in",
-    "Date mutates values, Temporal does not",
-    "Date mixes UTC and time zones, Temporal separates them",
-    "Date can fail in DST handling, Temporal can not"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Learn why Temporal is the modern alternative to Date."
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript Date Problems"
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript Date object is old and has several design problems."
-  },
-  {
-   "type": "p",
-   "text": "These are the most common mistakes developers make when using Date objects:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Using the wrong month number because months start at 0.",
-    "Accidentally changing a date object by calling a mutating method.",
-    "Parsing unclear strings that behave differently across environments.",
-    "Mixing local time and UTC values in the same program.",
-    "Doing math across DST changes and getting unexpected hours."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "The JavaScript Date object has been used since 1995."
-  },
-  {
-   "type": "p",
-   "text": "Temporal is the modern replacement designed to fix many of Date's problems."
-  },
-  {
-   "type": "h2",
-   "text": "Date Months are 0-Based"
-  },
-  {
-   "type": "p",
-   "text": "In the JavaScript Date object, January is month 0 and December is month 11."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// May 17, 2026:\n\nlet date = new Date(2026, 4, 17)",
-   "caption": "Date Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_date_month"
-  },
-  {
-   "type": "p",
-   "text": "The Date object is confusing because most people expect January to be month 1."
-  },
-  {
-   "type": "h2",
-   "text": "Temporal Months are 1-Based"
-  },
-  {
-   "type": "p",
-   "text": "In the JavaScript Temporal object, January is month 1 and December is month 12."
-  },
-  {
-   "type": "p",
-   "text": "This is much more user-friendly."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// May 17, 2026:\n\nconst date = new Temporal.PlainDate(2026, 5, 17)",
-   "caption": "Temporal Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate"
-  },
-  {
-   "type": "h2",
-   "text": "Date Objects are Mutable"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Date objects can change."
-  },
-  {
-   "type": "p",
-   "text": "Date objects are mutable."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date\n\nconst date = new Date(\"2026-05-17\");\n\n// Add 7 days to date\n\ndate.setDate(date.getDate() + 7);\n\n// Here the original date is lost",
-   "caption": "Date Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date\n\nconst date1 = new Date(\"2026-05-17\");\n\n// Create a copy\n\nconst date2 = date1;\n\n// Add 7 days to date1\n\ndate1.setDate(date1.getDate() + 7);\n\n// Here date2 has changed",
-   "caption": "Date Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects4"
-  },
-  {
-   "type": "p",
-   "text": "In the example above, the variables date1 and date2 point to the same object."
-  },
-  {
-   "type": "p",
-   "text": "Because of thes, date2 changes when date1 changes."
-  },
-  {
-   "type": "p",
-   "text": "This can create unexpected results when date values are copied or reused."
-  },
-  {
-   "type": "h2",
-   "text": "Temporal Objects are Immutable"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Temporal objects cannot change."
-  },
-  {
-   "type": "p",
-   "text": "Temporal objects are immutable."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add 7 days\n\nconst date2 = date1.add({ days: 7 });\n\n// Here original date1 is kept",
-   "caption": "Temporal Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_immutable"
-  },
-  {
-   "type": "h2",
-   "text": "Date Parsing is Inconsistent"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript has been a minefield of different formats, browser quirks and locale surprises."
-  },
-  {
-   "type": "p",
-   "text": "Date strings can be parsed differently across browsers and environments,\nand different formats may be interpreted as local time or UTC."
-  },
-  {
-   "type": "p",
-   "text": "A date string like 2026-05-07 is interpreted as UTC time in JavaScript."
-  },
-  {
-   "type": "p",
-   "text": "A date-time string like 2026-05-07T14:40:00\nis interpreted as local time."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = new Date(\"2026-05-17\");\n\nconst d2 = new Date(\"2026-05-17T00:00:00\");\n\nconst d3 = new Date(\"05/17/2026\");\n\nconst d4 = new Date(\"May 17 2026\");\n\nconst d5 = new Date(\"17 May 2026\");\n\nconst d6 = new Date(2026, 4, 17);",
-   "caption": "Date Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects3"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal PlainDate"
-  },
-  {
-   "type": "p",
-   "text": "Temporal avoids the problems above by defining strict parsing rules for\nISO strings."
-  },
-  {
-   "type": "p",
-   "text": "Temporal.PlainDate is not a timestamp."
-  },
-  {
-   "type": "p",
-   "text": "It is just 2026-05-17 with no time and no time zone."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");",
-   "caption": "Temporal Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_from"
-  },
-  {
-   "type": "p",
-   "text": "It is safer to avoid unclear formats and use explicit formats when possible."
-  },
-  {
-   "type": "h2",
-   "text": "Date and Time Zone"
-  },
-  {
-   "type": "p",
-   "text": "new Date(2026, 4, 1) creates a timestamp of\nyour local time at midnight."
-  },
-  {
-   "type": "p",
-   "text": "This means a day can \"shift\" when you format it to UTC."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date object\n\nconst date = new Date(2026, 4, 1);\n\n// Might be another day in some time zones:\n\ndate.toISOString();",
-   "caption": "Date Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects5"
-  },
-  {
-   "type": "h2",
-   "text": "Date Mixes Local Time and UTC"
-  },
-  {
-   "type": "p",
-   "text": "A Date object always stores a timestamp, but it can display values as local time or UTC."
-  },
-  {
-   "type": "p",
-   "text": "This mix can easily cause confusion when converting and comparing dates."
-  },
-  {
-   "type": "p",
-   "text": "The same moment can look different depending on how it is displayed."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = new Date();\n\nlet time1 = date.toString();\n\nlet time2 = date.toUTCString();",
-   "caption": "Date Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_7"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal Separates Time and UTC"
-  },
-  {
-   "type": "p",
-   "text": "Temporal uses clear types for time zones."
-  },
-  {
-   "type": "p",
-   "text": "Temporal.ZonedDateTime always includes a time zone."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Now.instant();\n\nconst local = Temporal.Now.zonedDateTimeISO();",
-   "caption": "Temporal Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_10"
-  },
-  {
-   "type": "h2",
-   "text": "DST Can Break Date Math"
-  },
-  {
-   "type": "p",
-   "text": "Daylight saving time (DST) can cause a day to be 23 or 25 hours long."
-  },
-  {
-   "type": "p",
-   "text": "This can break calculations that assume every day is exactly 24 hours."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = new Date(\"2026-03-29T00:00:00\");\n\nconst end = new Date(start.getTime() + 24 * 60 * 60 * 1000);",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The result can be off by one hour in time zones with DST changes."
-  },
-  {
-   "type": "h2",
-   "text": "Date Math"
-  },
-  {
-   "type": "p",
-   "text": "Date math often requires manual calculations."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = new Date(\"2026-05-01\");\n\nconst end = new Date(\"2026-05-17\");\n\nconst diff = end - start;",
-   "caption": "Date Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_8"
-  },
-  {
-   "type": "p",
-   "text": "Temporal has built-in date arithmetic."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst diff = start.until(end);",
-   "caption": "Temporal Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_11"
-  },
-  {
-   "type": "h2",
-   "text": "Nanosecond Precision"
-  },
-  {
-   "type": "p",
-   "text": "The Date object uses milliseconds precision."
-  },
-  {
-   "type": "p",
-   "text": "Temporal offers 1 million times higher nanosecond precision."
-  },
-  {
-   "type": "h2",
-   "text": "Date Mixes Everything"
-  },
-  {
-   "type": "p",
-   "text": "Date mixes everything in one object."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = new Date(); // date + time + zone",
-   "caption": "Date (Problem)"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal Uses Clear Types"
-  },
-  {
-   "type": "p",
-   "text": "Temporal objects separate different use cases into different objects."
-  },
-  {
-   "type": "p",
-   "text": "This makes code easier to read and less error-prone."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Object",
-     "Description"
-    ],
-    [
-     "Temporal.Duration",
-     "Object for duration (days, hours, minutes)"
-    ],
-    [
-     "Temporal.Instant",
-     "Object for exact moment in UTC time"
-    ],
-    [
-     "Temporal.PlainDateTime",
-     "Object for Date and Time only (no time zone)"
-    ],
-    [
-     "Temporal.PlainDate",
-     "Object for Date only (year, month, day)"
-    ],
-    [
-     "Temporal.PlainTime",
-     "Object for Time only"
-    ],
-    [
-     "Temporal.PlainYearMonth",
-     "Object for Year and Month only"
-    ],
-    [
-     "Temporal.PlainMonthDay",
-     "Object for Month and Day only"
-    ],
-    [
-     "Temporal.ZonedDateTime",
-     "Object for Date and Time with time zone"
-    ],
-    [
-     "Temporal.Now",
-     "Container for temporal methods"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Differences Between Date and Temporal"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Feature",
-     "Date",
-     "Temporal"
-    ],
-    [
-     "ISO 8601 Date/Time",
-     "Yes",
-     "Yes"
-    ],
-    [
-     "RFC 3339 Date/Time",
-     "Yes",
-     "Yes"
-    ],
-    [
-     "RFC 9557 Date/Time",
-     "No",
-     "Yes"
-    ],
-    [
-     "Time zone support",
-     "Limited",
-     "Built-in"
-    ],
-    [
-     "Immutable",
-     "No",
-     "Yes"
-    ],
-    [
-     "Date-Only Type",
-     "No",
-     "Yes"
-    ],
-    [
-     "Time-Only Type",
-     "No",
-     "Yes"
-    ],
-    [
-     "1-Based Months",
-     "No",
-     "Yes"
-    ],
-    [
-     "DST safe arithmetic",
-     "No",
-     "Yes"
-    ],
-    [
-     "ISO 8601 Duration",
-     "No",
-     "Yes"
-    ],
-    [
-     "RFC 9557 iCalendar",
-     "No",
-     "Yes"
-    ],
-    [
-     "Modern API design",
-     "No",
-     "Yes"
-    ],
-    [
-     "Precision",
-     "Milliseconds",
-     "Nanoseconds"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "You may still use JavaScript Date for simple tasks such as getting a quick timestamp."
-  },
-  {
-   "type": "p",
-   "text": "You may also need it if you support older environments without Temporal."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Temporal is safer, clearer, and designed for modern applications."
-  },
-  {
-   "type": "h2",
-   "text": "When to Use Temporal?"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "You need correct time zone handling.",
-    "You work with international users.",
-    "You want safe date arithmetic.",
-    "You want clear and modern code."
-   ]
-  }
- ]
+  "slug": "js_temporal_vs_date",
+  "course": "js",
+  "order": 183,
+  "url": "/js/js_temporal_vs_date.asp",
+  "title": "JavaScript Temporal vs Date",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Temporal vs Date"
+    },
+    {
+      "type": "p",
+      "text": "Learn the differences between JavaScript Date and Temporal"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Date months are 0-based, Temporal months are 1-based",
+        "Date arithmetic is manual, Temporal is built-in",
+        "Date mutates values, Temporal does not",
+        "Date mixes UTC and time zones, Temporal separates them",
+        "Date can fail in DST handling, Temporal can not"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Learn why Temporal is the modern alternative to Date."
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript Date Problems"
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript Date object is old and has several design problems."
+    },
+    {
+      "type": "p",
+      "text": "These are the most common mistakes developers make when using Date objects:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Using the wrong month number because months start at 0.",
+        "Accidentally changing a date object by calling a mutating method.",
+        "Parsing unclear strings that behave differently across environments.",
+        "Mixing local time and UTC values in the same program.",
+        "Doing math across DST changes and getting unexpected hours."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The JavaScript Date object has been used since 1995."
+    },
+    {
+      "type": "p",
+      "text": "Temporal is the modern replacement designed to fix many of Date's problems."
+    },
+    {
+      "type": "h2",
+      "text": "Date Months are 0-Based"
+    },
+    {
+      "type": "p",
+      "text": "In the JavaScript Date object, January is month 0 and December is month 11."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// May 17, 2026:\n\nlet date = new Date(2026, 4, 17)",
+      "caption": "Date Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_date_month"
+    },
+    {
+      "type": "p",
+      "text": "The Date object is confusing because most people expect January to be month 1."
+    },
+    {
+      "type": "h2",
+      "text": "Temporal Months are 1-Based"
+    },
+    {
+      "type": "p",
+      "text": "In the JavaScript Temporal object, January is month 1 and December is month 12."
+    },
+    {
+      "type": "p",
+      "text": "This is much more user-friendly."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// May 17, 2026:\n\nconst date = new Temporal.PlainDate(2026, 5, 17)",
+      "caption": "Temporal Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate"
+    },
+    {
+      "type": "h2",
+      "text": "Date Objects are Mutable"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Date objects can change."
+    },
+    {
+      "type": "p",
+      "text": "Date objects are mutable."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date\n\nconst date = new Date(\"2026-05-17\");\n\n// Add 7 days to date\n\ndate.setDate(date.getDate() + 7);\n\n// Here the original date is lost",
+      "caption": "Date Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date\n\nconst date1 = new Date(\"2026-05-17\");\n\n// Create a copy\n\nconst date2 = date1;\n\n// Add 7 days to date1\n\ndate1.setDate(date1.getDate() + 7);\n\n// Here date2 has changed",
+      "caption": "Date Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects4"
+    },
+    {
+      "type": "p",
+      "text": "In the example above, the variables date1 and date2 point to the same object."
+    },
+    {
+      "type": "p",
+      "text": "Because of thes, date2 changes when date1 changes."
+    },
+    {
+      "type": "p",
+      "text": "This can create unexpected results when date values are copied or reused."
+    },
+    {
+      "type": "h2",
+      "text": "Temporal Objects are Immutable"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Temporal objects cannot change."
+    },
+    {
+      "type": "p",
+      "text": "Temporal objects are immutable."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add 7 days\n\nconst date2 = date1.add({ days: 7 });\n\n// Here original date1 is kept",
+      "caption": "Temporal Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_immutable"
+    },
+    {
+      "type": "h2",
+      "text": "Date Parsing is Inconsistent"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript has been a minefield of different formats, browser quirks and locale surprises."
+    },
+    {
+      "type": "p",
+      "text": "Date strings can be parsed differently across browsers and environments,\nand different formats may be interpreted as local time or UTC."
+    },
+    {
+      "type": "p",
+      "text": "A date string like 2026-05-07 is interpreted as UTC time in JavaScript."
+    },
+    {
+      "type": "p",
+      "text": "A date-time string like 2026-05-07T14:40:00\nis interpreted as local time."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = new Date(\"2026-05-17\");\n\nconst d2 = new Date(\"2026-05-17T00:00:00\");\n\nconst d3 = new Date(\"05/17/2026\");\n\nconst d4 = new Date(\"May 17 2026\");\n\nconst d5 = new Date(\"17 May 2026\");\n\nconst d6 = new Date(2026, 4, 17);",
+      "caption": "Date Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects3"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal PlainDate"
+    },
+    {
+      "type": "p",
+      "text": "Temporal avoids the problems above by defining strict parsing rules for\nISO strings."
+    },
+    {
+      "type": "p",
+      "text": "Temporal.PlainDate is not a timestamp."
+    },
+    {
+      "type": "p",
+      "text": "It is just 2026-05-17 with no time and no time zone."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");",
+      "caption": "Temporal Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_from"
+    },
+    {
+      "type": "p",
+      "text": "It is safer to avoid unclear formats and use explicit formats when possible."
+    },
+    {
+      "type": "h2",
+      "text": "Date and Time Zone"
+    },
+    {
+      "type": "p",
+      "text": "new Date(2026, 4, 1) creates a timestamp of\nyour local time at midnight."
+    },
+    {
+      "type": "p",
+      "text": "This means a day can \"shift\" when you format it to UTC."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date object\n\nconst date = new Date(2026, 4, 1);\n\n// Might be another day in some time zones:\n\ndate.toISOString();",
+      "caption": "Date Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects5"
+    },
+    {
+      "type": "h2",
+      "text": "Date Mixes Local Time and UTC"
+    },
+    {
+      "type": "p",
+      "text": "A Date object always stores a timestamp, but it can display values as local time or UTC."
+    },
+    {
+      "type": "p",
+      "text": "This mix can easily cause confusion when converting and comparing dates."
+    },
+    {
+      "type": "p",
+      "text": "The same moment can look different depending on how it is displayed."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = new Date();\n\nlet time1 = date.toString();\n\nlet time2 = date.toUTCString();",
+      "caption": "Date Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_7"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal Separates Time and UTC"
+    },
+    {
+      "type": "p",
+      "text": "Temporal uses clear types for time zones."
+    },
+    {
+      "type": "p",
+      "text": "Temporal.ZonedDateTime always includes a time zone."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Now.instant();\n\nconst local = Temporal.Now.zonedDateTimeISO();",
+      "caption": "Temporal Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_10"
+    },
+    {
+      "type": "h2",
+      "text": "DST Can Break Date Math"
+    },
+    {
+      "type": "p",
+      "text": "Daylight saving time (DST) can cause a day to be 23 or 25 hours long."
+    },
+    {
+      "type": "p",
+      "text": "This can break calculations that assume every day is exactly 24 hours."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = new Date(\"2026-03-29T00:00:00\");\n\nconst end = new Date(start.getTime() + 24 * 60 * 60 * 1000);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The result can be off by one hour in time zones with DST changes."
+    },
+    {
+      "type": "h2",
+      "text": "Date Math"
+    },
+    {
+      "type": "p",
+      "text": "Date math often requires manual calculations."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = new Date(\"2026-05-01\");\n\nconst end = new Date(\"2026-05-17\");\n\nconst diff = end - start;",
+      "caption": "Date Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_8"
+    },
+    {
+      "type": "p",
+      "text": "Temporal has built-in date arithmetic."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst diff = start.until(end);",
+      "caption": "Temporal Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_11"
+    },
+    {
+      "type": "h2",
+      "text": "Nanosecond Precision"
+    },
+    {
+      "type": "p",
+      "text": "The Date object uses milliseconds precision."
+    },
+    {
+      "type": "p",
+      "text": "Temporal offers 1 million times higher nanosecond precision."
+    },
+    {
+      "type": "h2",
+      "text": "Date Mixes Everything"
+    },
+    {
+      "type": "p",
+      "text": "Date mixes everything in one object."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = new Date(); // date + time + zone",
+      "caption": "Date (Problem)"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal Uses Clear Types"
+    },
+    {
+      "type": "p",
+      "text": "Temporal objects separate different use cases into different objects."
+    },
+    {
+      "type": "p",
+      "text": "This makes code easier to read and less error-prone."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Object", "Description"],
+        ["Temporal.Duration", "Object for duration (days, hours, minutes)"],
+        ["Temporal.Instant", "Object for exact moment in UTC time"],
+        ["Temporal.PlainDateTime", "Object for Date and Time only (no time zone)"],
+        ["Temporal.PlainDate", "Object for Date only (year, month, day)"],
+        ["Temporal.PlainTime", "Object for Time only"],
+        ["Temporal.PlainYearMonth", "Object for Year and Month only"],
+        ["Temporal.PlainMonthDay", "Object for Month and Day only"],
+        ["Temporal.ZonedDateTime", "Object for Date and Time with time zone"],
+        ["Temporal.Now", "Container for temporal methods"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Differences Between Date and Temporal"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Feature", "Date", "Temporal"],
+        ["ISO 8601 Date/Time", "Yes", "Yes"],
+        ["RFC 3339 Date/Time", "Yes", "Yes"],
+        ["RFC 9557 Date/Time", "No", "Yes"],
+        ["Time zone support", "Limited", "Built-in"],
+        ["Immutable", "No", "Yes"],
+        ["Date-Only Type", "No", "Yes"],
+        ["Time-Only Type", "No", "Yes"],
+        ["1-Based Months", "No", "Yes"],
+        ["DST safe arithmetic", "No", "Yes"],
+        ["ISO 8601 Duration", "No", "Yes"],
+        ["RFC 9557 iCalendar", "No", "Yes"],
+        ["Modern API design", "No", "Yes"],
+        ["Precision", "Milliseconds", "Nanoseconds"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "You may still use JavaScript Date for simple tasks such as getting a quick timestamp."
+    },
+    {
+      "type": "p",
+      "text": "You may also need it if you support older environments without Temporal."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Temporal is safer, clearer, and designed for modern applications."
+    },
+    {
+      "type": "h2",
+      "text": "When to Use Temporal?"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "You need correct time zone handling.",
+        "You work with international users.",
+        "You want safe date arithmetic.",
+        "You want clear and modern code."
+      ]
+    }
+  ]
 }

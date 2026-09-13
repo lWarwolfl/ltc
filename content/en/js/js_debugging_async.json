@@ -1,211 +1,211 @@
 {
- "slug": "js_debugging_async",
- "course": "js",
- "order": 111,
- "url": "/js/js_debugging_async.asp",
- "title": "JavaScript Debugging Async",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Debugging Async"
-  },
-  {
-   "type": "h2",
-   "text": "Debugging Async Code"
-  },
-  {
-   "type": "p",
-   "text": "Async bugs are the hardest bugs for beginners."
-  },
-  {
-   "type": "p",
-   "text": "The code looks correct, but nothing seems to happen."
-  },
-  {
-   "type": "h2",
-   "text": "Why Async Code Is Hard to Debug"
-  },
-  {
-   "type": "p",
-   "text": "Async code runs later."
-  },
-  {
-   "type": "p",
-   "text": "This makes errors feel invisible."
-  },
-  {
-   "type": "p",
-   "text": "Common beginner problems include missing data and silent failures."
-  },
-  {
-   "type": "p",
-   "text": "Async code does not run top to bottom."
-  },
-  {
-   "type": "p",
-   "text": "It runs when something finishes."
-  },
-  {
-   "type": "h2",
-   "text": "Debugging fetch()"
-  },
-  {
-   "type": "p",
-   "text": "The fetch() function is asynchronous."
-  },
-  {
-   "type": "p",
-   "text": "It does not return data immediately."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"data.json\")\n\n.then(response => response.json())\n\n.then(data => console.log(data));",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "If nothing appears, check the console first."
-  },
-  {
-   "type": "p",
-   "text": "Always log the response before using the data."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(\"data.json\")\n\n.then(response => {\n\n  console.log(response);\n\n  return response.json();\n\n})\n\n.then(data => console.log(data));",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "Check the Network Tab"
-  },
-  {
-   "type": "p",
-   "text": "Async bugs are often network problems."
-  },
-  {
-   "type": "p",
-   "text": "The Network tab shows if a request failed."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Check the request status.",
-    "Check the file path.",
-    "Check if the server returned an error."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Debugging async and await"
-  },
-  {
-   "type": "p",
-   "text": "async and await make async code easier to read."
-  },
-  {
-   "type": "p",
-   "text": "They are still asynchronous."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  console.log(data);\n\n}\n\nloadData();",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "You can set breakpoints on await lines."
-  },
-  {
-   "type": "p",
-   "text": "Step through async code the same way as normal code."
-  },
-  {
-   "type": "h2",
-   "text": "Handling Async Errors"
-  },
-  {
-   "type": "p",
-   "text": "Async errors must be handled explicitly."
-  },
-  {
-   "type": "p",
-   "text": "Otherwise they fail silently."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function loadData() {\n\n  try {\n\n    let response = await fetch(\"wrong.json\");\n\n    let data = await response.json();\n\n    console.log(data);\n\n  } catch (error) {\n\n    console.error(error);\n\n  }\n\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "Errors inside async functions must be caught."
-  },
-  {
-   "type": "h2",
-   "text": "Promises That Never Resolve"
-  },
-  {
-   "type": "p",
-   "text": "Sometimes async code never finishes."
-  },
-  {
-   "type": "p",
-   "text": "This usually means a missing return."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function getData() {\n\n  fetch(\"data.json\")\n\n  .then(response => response.json());\n\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "The promise result is never returned."
-  },
-  {
-   "type": "p",
-   "text": "Always return promises when chaining."
-  },
-  {
-   "type": "h2",
-   "text": "Debugging Checklist for Async Code"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Check the console for errors.",
-    "Check the Network tab.",
-    "Log responses before using them.",
-    "Use try...catch with async functions.",
-    "Set breakpoints on await lines."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "You Finished the Debugging Chapters"
-  },
-  {
-   "type": "p",
-   "text": "You now know how to debug JavaScript step by step."
-  },
-  {
-   "type": "p",
-   "text": "This skill separates beginners from real developers."
-  },
-  {
-   "type": "p",
-   "text": "Debugging is not a talent."
-  },
-  {
-   "type": "p",
-   "text": "It is a habit."
-  }
- ]
+  "slug": "js_debugging_async",
+  "course": "js",
+  "order": 111,
+  "url": "/js/js_debugging_async.asp",
+  "title": "JavaScript Debugging Async",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Debugging Async"
+    },
+    {
+      "type": "h2",
+      "text": "Debugging Async Code"
+    },
+    {
+      "type": "p",
+      "text": "Async bugs are the hardest bugs for beginners."
+    },
+    {
+      "type": "p",
+      "text": "The code looks correct, but nothing seems to happen."
+    },
+    {
+      "type": "h2",
+      "text": "Why Async Code Is Hard to Debug"
+    },
+    {
+      "type": "p",
+      "text": "Async code runs later."
+    },
+    {
+      "type": "p",
+      "text": "This makes errors feel invisible."
+    },
+    {
+      "type": "p",
+      "text": "Common beginner problems include missing data and silent failures."
+    },
+    {
+      "type": "p",
+      "text": "Async code does not run top to bottom."
+    },
+    {
+      "type": "p",
+      "text": "It runs when something finishes."
+    },
+    {
+      "type": "h2",
+      "text": "Debugging fetch()"
+    },
+    {
+      "type": "p",
+      "text": "The fetch() function is asynchronous."
+    },
+    {
+      "type": "p",
+      "text": "It does not return data immediately."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"data.json\")\n\n.then(response => response.json())\n\n.then(data => console.log(data));",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "If nothing appears, check the console first."
+    },
+    {
+      "type": "p",
+      "text": "Always log the response before using the data."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(\"data.json\")\n\n.then(response => {\n\n  console.log(response);\n\n  return response.json();\n\n})\n\n.then(data => console.log(data));",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "Check the Network Tab"
+    },
+    {
+      "type": "p",
+      "text": "Async bugs are often network problems."
+    },
+    {
+      "type": "p",
+      "text": "The Network tab shows if a request failed."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Check the request status.",
+        "Check the file path.",
+        "Check if the server returned an error."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Debugging async and await"
+    },
+    {
+      "type": "p",
+      "text": "async and await make async code easier to read."
+    },
+    {
+      "type": "p",
+      "text": "They are still asynchronous."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function loadData() {\n\n  let response = await fetch(\"data.json\");\n\n  let data = await response.json();\n\n  console.log(data);\n\n}\n\nloadData();",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "You can set breakpoints on await lines."
+    },
+    {
+      "type": "p",
+      "text": "Step through async code the same way as normal code."
+    },
+    {
+      "type": "h2",
+      "text": "Handling Async Errors"
+    },
+    {
+      "type": "p",
+      "text": "Async errors must be handled explicitly."
+    },
+    {
+      "type": "p",
+      "text": "Otherwise they fail silently."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function loadData() {\n\n  try {\n\n    let response = await fetch(\"wrong.json\");\n\n    let data = await response.json();\n\n    console.log(data);\n\n  } catch (error) {\n\n    console.error(error);\n\n  }\n\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "Errors inside async functions must be caught."
+    },
+    {
+      "type": "h2",
+      "text": "Promises That Never Resolve"
+    },
+    {
+      "type": "p",
+      "text": "Sometimes async code never finishes."
+    },
+    {
+      "type": "p",
+      "text": "This usually means a missing return."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function getData() {\n\n  fetch(\"data.json\")\n\n  .then(response => response.json());\n\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "The promise result is never returned."
+    },
+    {
+      "type": "p",
+      "text": "Always return promises when chaining."
+    },
+    {
+      "type": "h2",
+      "text": "Debugging Checklist for Async Code"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Check the console for errors.",
+        "Check the Network tab.",
+        "Log responses before using them.",
+        "Use try...catch with async functions.",
+        "Set breakpoints on await lines."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "You Finished the Debugging Chapters"
+    },
+    {
+      "type": "p",
+      "text": "You now know how to debug JavaScript step by step."
+    },
+    {
+      "type": "p",
+      "text": "This skill separates beginners from real developers."
+    },
+    {
+      "type": "p",
+      "text": "Debugging is not a talent."
+    },
+    {
+      "type": "p",
+      "text": "It is a habit."
+    }
+  ]
 }

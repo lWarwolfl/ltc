@@ -1,145 +1,140 @@
 {
- "slug": "js_ajax_xmlfile",
- "course": "js",
- "order": 260,
- "url": "/js/js_ajax_xmlfile.asp",
- "title": "مثال XML با AJAX",
- "summary": "در این درس یک صفحهٔ وب اطلاعات را از فایل XML می‌گیرد و بدون بارگذاری دوباره روی صفحه نشان می‌دهد. می‌بینید تابع loadDoc() چه زمانی اجرا می‌شود، داده از responseXML خوانده می‌شود و از آن یک جدول HTML ساخته می‌شود.",
- "objectives": [
-  "با AJAX یک فایل XML را بخوانید",
-  "داده را از responseXML استخراج کنید",
-  "از دادهٔ XML یک جدول HTML بسازید و در صفحه بگذارید",
-  "اجرای تابع با کلیک روی دکمه را توضیح دهید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "مثال XML با AJAX"
-  },
-  {
-   "type": "p",
-   "text": "AJAX می‌تواند برای ارتباط تعاملی با یک فایل XML به کار برود."
-  },
-  {
-   "type": "h2",
-   "text": "مثال XML با AJAX"
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر نشان می‌دهد یک صفحهٔ وب چگونه با AJAX اطلاعاتی را از یک فایل XML می‌گیرد:"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_xml2"
-  },
-  {
-   "type": "h2",
-   "text": "توضیح مثال"
-  },
-  {
-   "type": "p",
-   "text": "وقتی کاربر روی دکمهٔ \"Get CD info\" بالا کلیک کند، تابع loadDoc() اجرا می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "تابع loadDoc() یک شیء XMLHttpRequest می‌سازد، تابعی را که باید وقتی پاسخ سرور آماده شد اجرا شود اضافه می‌کند و درخواست را به سرور می‌فرستد."
-  },
-  {
-   "type": "p",
-   "text": "وقتی پاسخ سرور آماده شد، یک جدول HTML ساخته می‌شود، گره‌ها (عنصرها) از فایل XML استخراج می‌شوند و در پایان عنصر \"demo\" با جدولی پر از دادهٔ XML به‌روز می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function loadDoc() {\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onload = function() {myFunction(this);}\n\n  xhttp.open(\"GET\", \"cd_catalog.xml\");\n\n  xhttp.send();\n\n}\n\nfunction myFunction(xml) {\n\n  const xmlDoc = xml.responseXML;\n\n  const x = xmlDoc.getElementsByTagName(\"CD\");\n\n  let table=\"<tr><th>Artist</th><th>Title</th></tr>\";\n\n  for (let i = 0; i <x.length;\n i++) {\n    table += \"<tr><td>\" +\n    x[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue\n +\n    \"</td><td>\" +\n    x[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue\n +\n    \"</td></tr>\";\n  }\n\n document.getElementById(\"demo\").innerHTML = table;\n}",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "فایل XML"
-  },
-  {
-   "type": "p",
-   "text": "فایل XMLی که در مثال بالا به کار رفته این‌گونه است: \"cd_catalog.xml\"."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل cd_catalog.xml با چند سطر CD بسازید و با یک درخواست AJAX محتوایش را در کنسول چاپ کنید.",
-   "hint": "برای خواندن محتوای خام از responseText یا responseXML استفاده کنید."
-  },
-  {
-   "prompt": "با responseXML روی رکوردهای CD حلقه بزنید و عنوان هر آلبوم را چاپ کنید.",
-   "hint": "responseXML مثل یک سند XML DOM است؛ با getElementsByTagName به گره‌ها می‌رسید."
-  },
-  {
-   "prompt": "از همین داده یک جدول HTML بسازید و با document.getElementById آن را در عنصر demo بگذارید.",
-   "hint": "نخست رشتهٔ جدول را با <table> و <tr> و <td> بسازید، بعد در innerHTML همان عنصر بگذارید."
-  },
-  {
-   "prompt": "یک دکمه با onclick بگذارید که تابع loadDoc() را صدا بزند و نتیجه را در صفحه ببینید.",
-   "hint": "تابع باید پیش از کلیک تعریف شده باشد."
-  },
-  {
-   "prompt": "اگر فایل XML خطای ساختاری داشته باشد چه اتفاقی می‌افتد؟ امتحان کنید و خطای کنسول را بخوانید.",
-   "hint": "با XML نامعتبر، responseXML مقدار null می‌شود و کد باید این حالت را بررسی کند."
-  }
- ],
- "quiz": [
-  {
-   "question": "در مثال AJAX با XML، تابع loadDoc() چه زمانی اجرا می‌شود؟",
-   "options": [
-    "با بارگذاری صفحه",
-    "با کلیک روی دکمهٔ \"Get CD info\"",
-    "با تغییر اندازهٔ پنجره",
-    "هر ثانیه یک بار"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید با کلیک کاربر روی دکمهٔ \"Get CD info\" تابع loadDoc() اجرا می‌شود."
-  },
-  {
-   "question": "برای ساختن جدول از دادهٔ XML در این مثال از چه چیزی استفاده می‌شود؟",
-   "options": [
-    "responseText و رشته‌سازی",
-    "responseXML و متدهای DOM",
-    "JSON.parse",
-    "localStorage"
-   ],
-   "answer": 1,
-   "explanation": "در توضیح مثال آمده که گره‌ها از فایل XML استخراج و یک جدول HTML ساخته می‌شود؛ این کار با شیء XML DOM ممکن است."
-  },
-  {
-   "question": "پس از آماده شدن پاسخ، عنصر \"demo\" چگونه به‌روز می‌شود؟",
-   "options": [
-    "با جدول HTMLی که از دادهٔ XML پر شده",
-    "با یک تصویر",
-    "با بارگذاری دوبارهٔ کل صفحه",
-    "با یک پیام هشدار"
-   ],
-   "answer": 0,
-   "explanation": "درس می‌گوید عنصر demo با جدول HTML پر شده از دادهٔ XML به‌روز می‌شود، بدون بارگذاری دوبارهٔ صفحه."
-  },
-  {
-   "question": "نام فایل XMLی که در مثال به کار رفته چیست؟",
-   "options": [
-    "cd_list.xml",
-    "cd_catalog.xml",
-    "catalog_cd.xml",
-    "albums.xml"
-   ],
-   "answer": 1,
-   "explanation": "در پایان درس نام فایل \"cd_catalog.xml\" آمده است."
-  },
-  {
-   "question": "علت اجرای تابع loadDoc() در ابتدای کار چیست؟",
-   "options": [
-    "ساختن شیء XMLHttpRequest و تعیین کالبک و فرستادن درخواست",
-    "پاک کردن صفحه",
-    "خواندن فایل CSS",
-    "ساختن دکمه"
-   ],
-   "answer": 0,
-   "explanation": "این تابع شیء درخواست را می‌سازد، تابع اجرایی هنگام آماده شدن پاسخ را اضافه می‌کند و درخواست را می‌فرستد."
-  }
- ]
+  "slug": "js_ajax_xmlfile",
+  "course": "js",
+  "order": 260,
+  "url": "/js/js_ajax_xmlfile.asp",
+  "title": "مثال XML با AJAX",
+  "summary": "در این درس یک صفحهٔ وب اطلاعات را از فایل XML می‌گیرد و بدون بارگذاری دوباره روی صفحه نشان می‌دهد. می‌بینید تابع loadDoc() چه زمانی اجرا می‌شود، داده از responseXML خوانده می‌شود و از آن یک جدول HTML ساخته می‌شود.",
+  "objectives": [
+    "با AJAX یک فایل XML را بخوانید",
+    "داده را از responseXML استخراج کنید",
+    "از دادهٔ XML یک جدول HTML بسازید و در صفحه بگذارید",
+    "اجرای تابع با کلیک روی دکمه را توضیح دهید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "مثال XML با AJAX"
+    },
+    {
+      "type": "p",
+      "text": "AJAX می‌تواند برای ارتباط تعاملی با یک فایل XML به کار برود."
+    },
+    {
+      "type": "h2",
+      "text": "مثال XML با AJAX"
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر نشان می‌دهد یک صفحهٔ وب چگونه با AJAX اطلاعاتی را از یک فایل XML می‌گیرد:"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_xml2"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "وقتی کاربر روی دکمهٔ \"Get CD info\" بالا کلیک کند، تابع loadDoc() اجرا می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "تابع loadDoc() یک شیء XMLHttpRequest می‌سازد، تابعی را که باید وقتی پاسخ سرور آماده شد اجرا شود اضافه می‌کند و درخواست را به سرور می‌فرستد."
+    },
+    {
+      "type": "p",
+      "text": "وقتی پاسخ سرور آماده شد، یک جدول HTML ساخته می‌شود، گره‌ها (عنصرها) از فایل XML استخراج می‌شوند و در پایان عنصر \"demo\" با جدولی پر از دادهٔ XML به‌روز می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function loadDoc() {\n\n  const xhttp = new XMLHttpRequest();\n\n  xhttp.onload = function() {myFunction(this);}\n\n  xhttp.open(\"GET\", \"cd_catalog.xml\");\n\n  xhttp.send();\n\n}\n\nfunction myFunction(xml) {\n\n  const xmlDoc = xml.responseXML;\n\n  const x = xmlDoc.getElementsByTagName(\"CD\");\n\n  let table=\"<tr><th>Artist</th><th>Title</th></tr>\";\n\n  for (let i = 0; i <x.length;\n i++) {\n    table += \"<tr><td>\" +\n    x[i].getElementsByTagName(\"ARTIST\")[0].childNodes[0].nodeValue\n +\n    \"</td><td>\" +\n    x[i].getElementsByTagName(\"TITLE\")[0].childNodes[0].nodeValue\n +\n    \"</td></tr>\";\n  }\n\n document.getElementById(\"demo\").innerHTML = table;\n}",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "فایل XML"
+    },
+    {
+      "type": "p",
+      "text": "فایل XMLی که در مثال بالا به کار رفته این‌گونه است: \"cd_catalog.xml\"."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل cd_catalog.xml با چند سطر CD بسازید و با یک درخواست AJAX محتوایش را در کنسول چاپ کنید.",
+      "hint": "برای خواندن محتوای خام از responseText یا responseXML استفاده کنید."
+    },
+    {
+      "prompt": "با responseXML روی رکوردهای CD حلقه بزنید و عنوان هر آلبوم را چاپ کنید.",
+      "hint": "responseXML مثل یک سند XML DOM است؛ با getElementsByTagName به گره‌ها می‌رسید."
+    },
+    {
+      "prompt": "از همین داده یک جدول HTML بسازید و با document.getElementById آن را در عنصر demo بگذارید.",
+      "hint": "نخست رشتهٔ جدول را با <table> و <tr> و <td> بسازید، بعد در innerHTML همان عنصر بگذارید."
+    },
+    {
+      "prompt": "یک دکمه با onclick بگذارید که تابع loadDoc() را صدا بزند و نتیجه را در صفحه ببینید.",
+      "hint": "تابع باید پیش از کلیک تعریف شده باشد."
+    },
+    {
+      "prompt": "اگر فایل XML خطای ساختاری داشته باشد چه اتفاقی می‌افتد؟ امتحان کنید و خطای کنسول را بخوانید.",
+      "hint": "با XML نامعتبر، responseXML مقدار null می‌شود و کد باید این حالت را بررسی کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در مثال AJAX با XML، تابع loadDoc() چه زمانی اجرا می‌شود؟",
+      "options": [
+        "با بارگذاری صفحه",
+        "با کلیک روی دکمهٔ \"Get CD info\"",
+        "با تغییر اندازهٔ پنجره",
+        "هر ثانیه یک بار"
+      ],
+      "answer": 1,
+      "explanation": "درس می‌گوید با کلیک کاربر روی دکمهٔ \"Get CD info\" تابع loadDoc() اجرا می‌شود."
+    },
+    {
+      "question": "برای ساختن جدول از دادهٔ XML در این مثال از چه چیزی استفاده می‌شود؟",
+      "options": [
+        "responseText و رشته‌سازی",
+        "responseXML و متدهای DOM",
+        "JSON.parse",
+        "localStorage"
+      ],
+      "answer": 1,
+      "explanation": "در توضیح مثال آمده که گره‌ها از فایل XML استخراج و یک جدول HTML ساخته می‌شود؛ این کار با شیء XML DOM ممکن است."
+    },
+    {
+      "question": "پس از آماده شدن پاسخ، عنصر \"demo\" چگونه به‌روز می‌شود؟",
+      "options": [
+        "با جدول HTMLی که از دادهٔ XML پر شده",
+        "با یک تصویر",
+        "با بارگذاری دوبارهٔ کل صفحه",
+        "با یک پیام هشدار"
+      ],
+      "answer": 0,
+      "explanation": "درس می‌گوید عنصر demo با جدول HTML پر شده از دادهٔ XML به‌روز می‌شود، بدون بارگذاری دوبارهٔ صفحه."
+    },
+    {
+      "question": "نام فایل XMLی که در مثال به کار رفته چیست؟",
+      "options": ["cd_list.xml", "cd_catalog.xml", "catalog_cd.xml", "albums.xml"],
+      "answer": 1,
+      "explanation": "در پایان درس نام فایل \"cd_catalog.xml\" آمده است."
+    },
+    {
+      "question": "علت اجرای تابع loadDoc() در ابتدای کار چیست؟",
+      "options": [
+        "ساختن شیء XMLHttpRequest و تعیین کالبک و فرستادن درخواست",
+        "پاک کردن صفحه",
+        "خواندن فایل CSS",
+        "ساختن دکمه"
+      ],
+      "answer": 0,
+      "explanation": "این تابع شیء درخواست را می‌سازد، تابع اجرایی هنگام آماده شدن پاسخ را اضافه می‌کند و درخواست را می‌فرستد."
+    }
+  ]
 }

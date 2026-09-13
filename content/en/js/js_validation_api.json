@@ -1,158 +1,113 @@
 {
- "slug": "js_validation_api",
- "course": "js",
- "order": 179,
- "url": "/js/js_validation_api.asp",
- "title": "JavaScript Validation API",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Validation API"
-  },
-  {
-   "type": "h2",
-   "text": "Constraint Validation DOM Methods"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Property",
-    "Description"
-   ],
-   "rows": [
-    [
-     "checkValidity()",
-     "Returns true if an input element contains valid data."
-    ],
-    [
-     "setCustomValidity()",
-     "Sets the validationMessage property of an input element."
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "If an input field contains invalid data, display a message:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input id=\"id1\" type=\"number\" min=\"100\" max=\"300\"\n    required>\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\n function myFunction() {\n  const inpObj = document.getElementById(\"id1\");\n  if (!inpObj.checkValidity()) {\n    document.getElementById(\"demo\").innerHTML = inpObj.validationMessage;\n\n    }\n}\n</script>",
-   "caption": "The checkValidity() Method"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_check"
-  },
-  {
-   "type": "h2",
-   "text": "Constraint Validation DOM Properties"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Property",
-    "Description"
-   ],
-   "rows": [
-    [
-     "validity",
-     "Contains boolean properties related to the validity of an input element."
-    ],
-    [
-     "validationMessage",
-     "Contains the message a browser will display when the validity is false."
-    ],
-    [
-     "willValidate",
-     "Indicates if an input element will be validated."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Validity Properties"
-  },
-  {
-   "type": "p",
-   "text": "The validity property of an input element contains a number\nof properties related to the validity of data:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Property",
-    "Description"
-   ],
-   "rows": [
-    [
-     "customError",
-     "Set to true, if a custom validity message is set."
-    ],
-    [
-     "patternMismatch",
-     "Set to true, if an element's value does not match its pattern attribute."
-    ],
-    [
-     "rangeOverflow",
-     "Set to true, if an element's value is greater than its max attribute."
-    ],
-    [
-     "rangeUnderflow",
-     "Set to true, if an element's value is less than its min attribute."
-    ],
-    [
-     "stepMismatch",
-     "Set to true, if an element's value is invalid per its step attribute."
-    ],
-    [
-     "tooLong",
-     "Set to true, if an element's value exceeds its maxLength attribute."
-    ],
-    [
-     "typeMismatch",
-     "Set to true, if an element's value is invalid per its type attribute."
-    ],
-    [
-     "valueMissing",
-     "Set to true, if an element (with a required attribute) has no value."
-    ],
-    [
-     "valid",
-     "Set to true, if an element's value is valid."
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Examples"
-  },
-  {
-   "type": "p",
-   "text": "If the number in an input field is greater than 100 (the input's max\nattribute), display a message:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input id=\"id1\" type=\"number\" max=\"100\">\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nfunction myFunction() {\n  let text = \"Value OK\";\n\n    if (document.getElementById(\"id1\").validity.rangeOverflow) {\n\n      text = \"Value too large\";\n\n    }\n\n}\n\n</script>",
-   "caption": "The rangeOverflow Property"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_rangeOverflow"
-  },
-  {
-   "type": "p",
-   "text": "If the number in an input field is less than 100 (the input's min attribute), display a message:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<input id=\"id1\" type=\"number\" min=\"100\">\n\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nfunction myFunction() {\n  let text = \"Value OK\";\n\n    if (document.getElementById(\"id1\").validity.rangeUnderflow) {\n\n      text = \"Value too small\";\n\n    }\n\n}\n</script>",
-   "caption": "The rangeUnderflow Property"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_rangeUnderflow"
-  }
- ]
+  "slug": "js_validation_api",
+  "course": "js",
+  "order": 179,
+  "url": "/js/js_validation_api.asp",
+  "title": "JavaScript Validation API",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Validation API"
+    },
+    {
+      "type": "h2",
+      "text": "Constraint Validation DOM Methods"
+    },
+    {
+      "type": "table",
+      "headers": ["Property", "Description"],
+      "rows": [
+        ["checkValidity()", "Returns true if an input element contains valid data."],
+        ["setCustomValidity()", "Sets the validationMessage property of an input element."]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "If an input field contains invalid data, display a message:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input id=\"id1\" type=\"number\" min=\"100\" max=\"300\"\n    required>\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\n function myFunction() {\n  const inpObj = document.getElementById(\"id1\");\n  if (!inpObj.checkValidity()) {\n    document.getElementById(\"demo\").innerHTML = inpObj.validationMessage;\n\n    }\n}\n</script>",
+      "caption": "The checkValidity() Method"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_check"
+    },
+    {
+      "type": "h2",
+      "text": "Constraint Validation DOM Properties"
+    },
+    {
+      "type": "table",
+      "headers": ["Property", "Description"],
+      "rows": [
+        ["validity", "Contains boolean properties related to the validity of an input element."],
+        [
+          "validationMessage",
+          "Contains the message a browser will display when the validity is false."
+        ],
+        ["willValidate", "Indicates if an input element will be validated."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Validity Properties"
+    },
+    {
+      "type": "p",
+      "text": "The validity property of an input element contains a number\nof properties related to the validity of data:"
+    },
+    {
+      "type": "table",
+      "headers": ["Property", "Description"],
+      "rows": [
+        ["customError", "Set to true, if a custom validity message is set."],
+        [
+          "patternMismatch",
+          "Set to true, if an element's value does not match its pattern attribute."
+        ],
+        ["rangeOverflow", "Set to true, if an element's value is greater than its max attribute."],
+        ["rangeUnderflow", "Set to true, if an element's value is less than its min attribute."],
+        ["stepMismatch", "Set to true, if an element's value is invalid per its step attribute."],
+        ["tooLong", "Set to true, if an element's value exceeds its maxLength attribute."],
+        ["typeMismatch", "Set to true, if an element's value is invalid per its type attribute."],
+        ["valueMissing", "Set to true, if an element (with a required attribute) has no value."],
+        ["valid", "Set to true, if an element's value is valid."]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Examples"
+    },
+    {
+      "type": "p",
+      "text": "If the number in an input field is greater than 100 (the input's max\nattribute), display a message:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input id=\"id1\" type=\"number\" max=\"100\">\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nfunction myFunction() {\n  let text = \"Value OK\";\n\n    if (document.getElementById(\"id1\").validity.rangeOverflow) {\n\n      text = \"Value too large\";\n\n    }\n\n}\n\n</script>",
+      "caption": "The rangeOverflow Property"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_rangeOverflow"
+    },
+    {
+      "type": "p",
+      "text": "If the number in an input field is less than 100 (the input's min attribute), display a message:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<input id=\"id1\" type=\"number\" min=\"100\">\n\n<button onclick=\"myFunction()\">OK</button>\n\n<p id=\"demo\"></p>\n\n<script>\n\nfunction myFunction() {\n  let text = \"Value OK\";\n\n    if (document.getElementById(\"id1\").validity.rangeUnderflow) {\n\n      text = \"Value too small\";\n\n    }\n\n}\n</script>",
+      "caption": "The rangeUnderflow Property"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_validation_rangeUnderflow"
+    }
+  ]
 }

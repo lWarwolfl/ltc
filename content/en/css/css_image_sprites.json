@@ -1,165 +1,162 @@
 {
- "slug": "css_image_sprites",
- "course": "css",
- "order": 94,
- "url": "/css/css_image_sprites.asp",
- "title": "CSS Image Sprites",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "CSS Image Sprites"
-  },
-  {
-   "type": "h2",
-   "text": "CSS Image Sprites"
-  },
-  {
-   "type": "p",
-   "text": "An image sprite is a collection of various small images put into one larger image\nfile, called a \"sprite image\"."
-  },
-  {
-   "type": "p",
-   "text": "A sprite image is typically arranged in a grid-like way, like this:"
-  },
-  {
-   "type": "p",
-   "text": "A web page with multiple images takes a longer time to load, and generates\nmultiple server requests."
-  },
-  {
-   "type": "p",
-   "text": "So, instead of downloading each image separately, the browser downloads the\nsingle sprite image file, which will reduce the number of server requests and\nreduce\nbandwidth usage."
-  },
-  {
-   "type": "h2",
-   "text": "CSS Image Sprites Example"
-  },
-  {
-   "type": "p",
-   "text": "The CSS key properties used for image sprites are:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "background-image",
-    "background-position"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Here, the CSS code specifies which part of the sprite image (\"img_navsprites.gif\") to show for the different navigation items (home, next, and previous):"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<html>\n<head>\n<style>\n#home {\n  width: 46px;\n\n  height: 44px;\n  background-image: url(img_navsprites.gif);\n\n  background-position: 0 0; /* Top-left corner of the sprite */\n}\n\n#prev {\n  width: 43px;\n  height: 44px;\n\n  background-image: url('img_navsprites.gif');\n  background-position:\n  -47px 0; /* 47px to the left of the sprite's top-left */\n}\n\n#next\n  {\n  width: 43px;\n  height: 44px;\n  background-image:\n  url('img_navsprites.gif');\n  background-position: -91px 0; /* 91px to\n  the left of the sprite's top-left */\n}\n</style>\n\n  </head>\n<body>\n\n<img id=\"home\" src=\"img_trans.gif\" width=\"1\"\n  height=\"1\">\n<img id=\"prev\" src=\"img_trans.gif\" width=\"1\" height=\"1\">\n<img id=\"next\"\n  src=\"img_trans.gif\" width=\"1\" height=\"1\">\n\n</body>\n</html>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_img"
-  },
-  {
-   "type": "h2",
-   "text": "Example explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "width, height - Defines the width and height of each image-parts",
-    "background-image: url(img_navsprites.gif); - Defines the url of the image sprite",
-    "background-position - Shifts the background image within\n  each element, to display only   the desired portion of the sprite image",
-    "<img id=\"home\" src=\"img_trans.gif\"> - Each image just start with a small transparent image because the src attribute cannot be empty (the displayed image will be the background image we specify in CSS)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Image Sprites in a Navigation List"
-  },
-  {
-   "type": "p",
-   "text": "Here, we use the sprite image (\"img_navsprites.gif\") inside a navigation list.\nWe will use an HTML list (<ul> and <li>) for the navigation list:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "#navlist {\n  position: relative;\n}\n\n#navlist li {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  position: absolute;\n\n    top: 0;\n}\n\n#navlist li, #navlist a {\n  height: 44px;\n  display: block;\n}\n\n#home {\n  left: 0px;\n  width: 46px;\n  background: url('img_navsprites.gif')\n0 0;\n}\n\n#prev {\n  left: 60px;\n  width: 43px;\n  background: url('img_navsprites.gif') -47px 0;\n}\n\n#next {\n  left: 120px;\n  width: 43px;\n  background: url('img_navsprites.gif')\n-91px 0;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_nav"
-  },
-  {
-   "type": "h2",
-   "text": "Example explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "#navlist {position:relative;} - position is set to relative to allow absolute positioning inside it",
-    "#navlist li - set margin and padding to 0, remove bullets, and all <li> are absolute positioned",
-    "#navlist li, #navlist a - set the height of all images to 44px and display as block"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Now position and style each navigation item:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "#home {left:0px;width:46px;} - Positioned all the way to the left, and\nthe width of the image is 46px",
-    "#home {background:url(img_navsprites.gif) 0 0;} -\nDefines the background image and its position (left 0px, top 0px)",
-    "#prev {left:60px;} - Positioned 60px to the right (#home width\n46px + some extra space between items)",
-    "#prev {background:url('img_navsprites.gif') -47px 0;} - Defines the background\nimage 47px to the right (#home width 46px + 1px line\ndivider)",
-    "#next {left:120px;} - Positioned 120px to\nthe right (start of #prev is 60px + #prev width 43px + extra space)",
-    "#next {background:url('img_navsprites.gif') -91px 0;} -\nDefines the background image 91px to the right (#home width 46px + 1px\nline divider + #prev width 43px + 1px line divider)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Image Sprites - Hover Effect"
-  },
-  {
-   "type": "p",
-   "text": "Now we want to add a hover effect to our navigation list."
-  },
-  {
-   "type": "p",
-   "text": "Our new image (\"img_navsprites_hover.gif\") contains three navigation images and three images to use for hover effects:"
-  },
-  {
-   "type": "p",
-   "text": "Because this is one single image, and not six separate files, there will be no loading delay when a user hovers over the image."
-  },
-  {
-   "type": "p",
-   "text": "We only add three lines of code to add the hover effect:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "#home a:hover {\n  background: url('img_navsprites_hover.gif') 0 -45px;\n}\n\n#prev a:hover {\n  background: url('img_navsprites_hover.gif') -47px\n-45px;\n}\n\n#next a:hover {\n  background: url('img_navsprites_hover.gif') -91px\n-45px;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_hover_nav"
-  },
-  {
-   "type": "h2",
-   "text": "Example explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "#home a:hover {background: url('img_navsprites_hover.gif') 0 -45px;} - For all three hover images we specify the same background position, only 45px further down"
-   ]
-  }
- ]
+  "slug": "css_image_sprites",
+  "course": "css",
+  "order": 94,
+  "url": "/css/css_image_sprites.asp",
+  "title": "CSS Image Sprites",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "CSS Image Sprites"
+    },
+    {
+      "type": "h2",
+      "text": "CSS Image Sprites"
+    },
+    {
+      "type": "p",
+      "text": "An image sprite is a collection of various small images put into one larger image\nfile, called a \"sprite image\"."
+    },
+    {
+      "type": "p",
+      "text": "A sprite image is typically arranged in a grid-like way, like this:"
+    },
+    {
+      "type": "p",
+      "text": "A web page with multiple images takes a longer time to load, and generates\nmultiple server requests."
+    },
+    {
+      "type": "p",
+      "text": "So, instead of downloading each image separately, the browser downloads the\nsingle sprite image file, which will reduce the number of server requests and\nreduce\nbandwidth usage."
+    },
+    {
+      "type": "h2",
+      "text": "CSS Image Sprites Example"
+    },
+    {
+      "type": "p",
+      "text": "The CSS key properties used for image sprites are:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["background-image", "background-position"]
+    },
+    {
+      "type": "p",
+      "text": "Here, the CSS code specifies which part of the sprite image (\"img_navsprites.gif\") to show for the different navigation items (home, next, and previous):"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<html>\n<head>\n<style>\n#home {\n  width: 46px;\n\n  height: 44px;\n  background-image: url(img_navsprites.gif);\n\n  background-position: 0 0; /* Top-left corner of the sprite */\n}\n\n#prev {\n  width: 43px;\n  height: 44px;\n\n  background-image: url('img_navsprites.gif');\n  background-position:\n  -47px 0; /* 47px to the left of the sprite's top-left */\n}\n\n#next\n  {\n  width: 43px;\n  height: 44px;\n  background-image:\n  url('img_navsprites.gif');\n  background-position: -91px 0; /* 91px to\n  the left of the sprite's top-left */\n}\n</style>\n\n  </head>\n<body>\n\n<img id=\"home\" src=\"img_trans.gif\" width=\"1\"\n  height=\"1\">\n<img id=\"prev\" src=\"img_trans.gif\" width=\"1\" height=\"1\">\n<img id=\"next\"\n  src=\"img_trans.gif\" width=\"1\" height=\"1\">\n\n</body>\n</html>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_img"
+    },
+    {
+      "type": "h2",
+      "text": "Example explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "width, height - Defines the width and height of each image-parts",
+        "background-image: url(img_navsprites.gif); - Defines the url of the image sprite",
+        "background-position - Shifts the background image within\n  each element, to display only   the desired portion of the sprite image",
+        "<img id=\"home\" src=\"img_trans.gif\"> - Each image just start with a small transparent image because the src attribute cannot be empty (the displayed image will be the background image we specify in CSS)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Image Sprites in a Navigation List"
+    },
+    {
+      "type": "p",
+      "text": "Here, we use the sprite image (\"img_navsprites.gif\") inside a navigation list.\nWe will use an HTML list (<ul> and <li>) for the navigation list:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "#navlist {\n  position: relative;\n}\n\n#navlist li {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  position: absolute;\n\n    top: 0;\n}\n\n#navlist li, #navlist a {\n  height: 44px;\n  display: block;\n}\n\n#home {\n  left: 0px;\n  width: 46px;\n  background: url('img_navsprites.gif')\n0 0;\n}\n\n#prev {\n  left: 60px;\n  width: 43px;\n  background: url('img_navsprites.gif') -47px 0;\n}\n\n#next {\n  left: 120px;\n  width: 43px;\n  background: url('img_navsprites.gif')\n-91px 0;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_nav"
+    },
+    {
+      "type": "h2",
+      "text": "Example explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "#navlist {position:relative;} - position is set to relative to allow absolute positioning inside it",
+        "#navlist li - set margin and padding to 0, remove bullets, and all <li> are absolute positioned",
+        "#navlist li, #navlist a - set the height of all images to 44px and display as block"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Now position and style each navigation item:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "#home {left:0px;width:46px;} - Positioned all the way to the left, and\nthe width of the image is 46px",
+        "#home {background:url(img_navsprites.gif) 0 0;} -\nDefines the background image and its position (left 0px, top 0px)",
+        "#prev {left:60px;} - Positioned 60px to the right (#home width\n46px + some extra space between items)",
+        "#prev {background:url('img_navsprites.gif') -47px 0;} - Defines the background\nimage 47px to the right (#home width 46px + 1px line\ndivider)",
+        "#next {left:120px;} - Positioned 120px to\nthe right (start of #prev is 60px + #prev width 43px + extra space)",
+        "#next {background:url('img_navsprites.gif') -91px 0;} -\nDefines the background image 91px to the right (#home width 46px + 1px\nline divider + #prev width 43px + 1px line divider)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Image Sprites - Hover Effect"
+    },
+    {
+      "type": "p",
+      "text": "Now we want to add a hover effect to our navigation list."
+    },
+    {
+      "type": "p",
+      "text": "Our new image (\"img_navsprites_hover.gif\") contains three navigation images and three images to use for hover effects:"
+    },
+    {
+      "type": "p",
+      "text": "Because this is one single image, and not six separate files, there will be no loading delay when a user hovers over the image."
+    },
+    {
+      "type": "p",
+      "text": "We only add three lines of code to add the hover effect:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "#home a:hover {\n  background: url('img_navsprites_hover.gif') 0 -45px;\n}\n\n#prev a:hover {\n  background: url('img_navsprites_hover.gif') -47px\n-45px;\n}\n\n#next a:hover {\n  background: url('img_navsprites_hover.gif') -91px\n-45px;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss_sprites_hover_nav"
+    },
+    {
+      "type": "h2",
+      "text": "Example explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "#home a:hover {background: url('img_navsprites_hover.gif') 0 -45px;} - For all three hover images we specify the same background position, only 45px further down"
+      ]
+    }
+  ]
 }

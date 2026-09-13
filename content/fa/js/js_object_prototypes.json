@@ -1,250 +1,245 @@
 {
- "slug": "js_object_prototypes",
- "course": "js",
- "order": 217,
- "url": "/js/js_object_prototypes.asp",
- "title": "پروتوتایپ‌های شیء در JavaScript",
- "summary": "هر شیء در JavaScript از یک پروتوتایپ خصوصیت و متد به ارث می‌برد و زنجیرهٔ وراثت به Object.prototype می‌رسد. در این درس می‌بینید چرا اضافه کردن خصوصیت مستقیم به تابع سازنده به نمونه‌ها نمی‌رسد و چطور با prototype این کار را درست انجام دهید.",
- "objectives": [
-  "زنجیرهٔ وراثت پروتوتایپ و نقش Object.prototype را توضیح دهید",
-  "با خصوصیت prototype به تابع سازنده خصوصیت جدید اضافه کنید",
-  "با prototype به تابع سازنده متد جدید اضافه کنید",
-  "تشخیص دهید چه زمانی امکان تغییر پروتوتایپ وجود دارد و چه زمانی خطرناک است"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "پروتوتایپ‌های شیء در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "وراثت پروتوتایپ"
-  },
-  {
-   "type": "p",
-   "text": "همهٔ شیءهای JavaScript خصوصیت‌ها و متدها را از یک پروتوتایپ به ارث می‌برند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "شیءهای Date از Date.prototype ارث می‌برند",
-    "شیءهای Array از Array.prototype ارث می‌برند"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Object.prototype در بالای زنجیرهٔ وراثت پروتوتایپ قرار دارد."
-  },
-  {
-   "type": "p",
-   "text": "شیءهای Date، شیءهای Array و همهٔ شیءهای دیگر از Object.prototype ارث می‌برند."
-  },
-  {
-   "type": "h2",
-   "text": "افزودن خصوصیت و متد به شیءها"
-  },
-  {
-   "type": "p",
-   "text": "گاهی می‌خواهید خصوصیت‌ها (یا متدهای) جدیدی به همهٔ شیءهای موجود از یک نوع اضافه کنید."
-  },
-  {
-   "type": "p",
-   "text": "گاهی هم می‌خواهید خصوصیت (یا متد) جدیدی به تابع سازندهٔ شیء اضافه کنید."
-  },
-  {
-   "type": "p",
-   "text": "پیش‌تر یاد گرفتید که از تابع سازندهٔ شیء چطور استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function Person(first, last, age, eyecolor) {\n\nthis.firstName = first;\n\n  this.lastName = last;\n\nthis.age = age;\n\nthis.eyeColor = eyecolor;\n\n}\n\nconst myFather = new Person(\"John\", \"Doe\", 50, \"blue\");\n\nconst myMother = new Person(\"Sally\", \"Rally\", 48, \"green\");",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype1"
-  },
-  {
-   "type": "p",
-   "text": "نمی‌توانید به یک تابع سازندهٔ موجود خصوصیت جدید اضافه کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Person.nationality = \"English\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype3"
-  },
-  {
-   "type": "p",
-   "text": "برای افزودن خصوصیت جدید به تابع سازنده باید آن را به خود تابع سازنده اضافه کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function Person(first, last, age, eyecolor) {\n\nthis.firstName = first;\n\nthis.lastName = last;\n\nthis.age = age;\n\nthis.eyeColor = eyecolor;\n  this.nationality = \"English\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype4"
-  },
-  {
-   "type": "h2",
-   "text": "استفاده از خصوصیت prototype"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت prototype در JavaScript به شما اجازه می‌دهد خصوصیت‌های جدید به تابع‌های سازندهٔ شیء اضافه کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function Person(first, last, age, eyecolor) {\n\n    this.firstName = first;\n\n    this.lastName = last;\n\n    this.age = age;\n\n    this.eyeColor = eyecolor;\n\n}\n\n Person.prototype.nationality = \"English\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype5"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت prototype در JavaScript همچنین اجازه می‌دهد متدهای جدید به تابع‌های سازندهٔ شیء اضافه کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function Person(first, last, age, eyecolor) {\n\n    this.firstName = first;\n\n    this.lastName = last;\n\n    this.age = age;\n\n  this.eyeColor = eyecolor;\n\n}\n\n Person.prototype.name = function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n};",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype6"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار: فقط پروتوتایپ‌های خودتان را تغییر دهید. هرگز پروتوتایپ شیءهای استاندارد JavaScript را تغییر ندهید."
-  },
-  {
-   "type": "h2",
-   "text": "فصل‌های پیشرفته:"
-  },
-  {
-   "type": "p",
-   "text": "تعریف شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "this پیشرفته در شیءهای JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پیمایش شیءها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مدیریت شیءها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "محافظت از شیءها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "پروتوتایپ‌های شیء در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع شیء در JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل prototypes.html بسازید، یک تابع سازندهٔ Person بنویسید و با new دو شیء از آن بسازید؛ در کنسول چاپشان کنید.",
-   "hint": "نام تابع سازنده را با حرف بزرگ شروع کنید و خصوصیت‌ها را با this بنویسید."
-  },
-  {
-   "prompt": "با Person.prototype.nationality خصوصیت جدیدی به سازنده اضافه کنید و ببینید هر دو نمونه آن را می‌بینند.",
-   "hint": "برخلاف Person.nationality که فقط روی خود تابع می‌نشیند، نسخهٔ prototype به نمونه‌ها می‌رسد."
-  },
-  {
-   "prompt": "گویا می‌خواهید همان خصوصیت را بدون prototype یعنی با Person.nationality اضافه کنید؛ نتیجه را چاپ کنید و توضیح دهید چرا به نمونه‌ها نمی‌رسد.",
-   "hint": "مقداری که مستقیم روی تابع سازنده گذاشته می‌شود بخشی از زنجیرهٔ پروتوتایپ نمونه نیست."
-  },
-  {
-   "prompt": "یک متد با prototype به سازنده اضافه کنید که نام کامل را برگرداند و روی یک نمونه صدایش بزنید.",
-   "hint": "متد را به شکل Person.prototype.fullName = function() { ... } تعریف کنید."
-  },
-  {
-   "prompt": "با Object.getPrototypeOf روی یک نمونه بررسی کنید که پروتوتایپش چیست و در کنسول چاپ کنید.",
-   "hint": "پروتوتایپ نمونه همان Person.prototype است."
-  }
- ],
- "quiz": [
-  {
-   "question": "همهٔ شیءهای JavaScript خصوصیت‌ها و متدهایشان را از کجا به ارث می‌برند؟",
-   "options": [
-    "از خود شیء سراسری",
-    "از یک پروتوتایپ",
-    "از فایل HTML",
-    "هیچ‌کدام؛ هر شیء مستقل است"
-   ],
-   "answer": 1,
-   "explanation": "هر شیء یک پروتوتایپ دارد و از آن خصوصیت و متد به ارث می‌برد؛ زنجیرهٔ وراثت در نهایت به Object.prototype می‌رسد."
-  },
-  {
-   "question": "کدام گزینه درست است؟",
-   "options": [
-    "شیءهای Array از Object.prototype ارث نمی‌برند",
-    "شیءهای Array از Array.prototype و در نهایت از Object.prototype ارث می‌برند",
-    "Array.prototype بالای زنجیرهٔ وراثت است",
-    "Date.prototype از Array.prototype ارث می‌برد"
-   ],
-   "answer": 1,
-   "explanation": "شیءهای Array از Array.prototype و شیءهای Date از Date.prototype ارث می‌برند و همه در نهایت به Object.prototype، یعنی بالای زنجیره، می‌رسند."
-  },
-  {
-   "question": "برای افزودن خصوصیت جدید به همهٔ نمونه‌های یک تابع سازنده از چه چیزی استفاده می‌کنیم؟",
-   "options": [
-    "Person.nationality = \"...\"",
-    "Person.prototype.nationality = \"...\"",
-    "nationality = \"...\"",
-    "Person = {nationality: \"...\"}"
-   ],
-   "answer": 1,
-   "explanation": "مقداری که مستقیم روی تابع سازنده بگذارید به نمونه‌ها نمی‌رسد؛ باید آن را روی prototype تعریف کنید، چون نمونه‌ها خصوصیت‌های پروتوتایپ را ارث می‌برند."
-  },
-  {
-   "question": "چرا نباید پروتوتایپ شیءهای استاندارد JavaScript را تغییر داد؟",
-   "options": [
-    "چون سرعت اجرای کد را کم می‌کند",
-    "چون روی همهٔ کدهای صفحه و کتابخانه‌های دیگر اثر می‌گذارد و باعث رفتار پیش‌بینی‌نشدنی می‌شود",
-    "چون مرورگر اجازه نمی‌دهد",
-    "چون فقط در حالت strict کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "تغییر پروتوتایپ‌های استاندارد، مثل Array.prototype، همهٔ شیءهای آن نوع را در کل صفحه عوض می‌کند و با کتابخانه‌های دیگر تعارض می‌سازد؛ پس فقط پروتوتایپ‌های خودتان را دست بزنید."
-  },
-  {
-   "question": "اگر شیئی با new Person() بسازیم، پروتوتایپ آن چیست؟",
-   "options": [
-    "Object.prototype",
-    "Person.prototype",
-    "Person",
-    "هیچ پروتوتایپی ندارد"
-   ],
-   "answer": 1,
-   "explanation": "new نمونه را طوری می‌سازد که پروتوتایپش Person.prototype باشد؛ Person هم خودش تابع است و پروتوتایپ آن فرق دارد."
-  }
- ]
+  "slug": "js_object_prototypes",
+  "course": "js",
+  "order": 217,
+  "url": "/js/js_object_prototypes.asp",
+  "title": "پروتوتایپ‌های شیء در JavaScript",
+  "summary": "هر شیء در JavaScript از یک پروتوتایپ خصوصیت و متد به ارث می‌برد و زنجیرهٔ وراثت به Object.prototype می‌رسد. در این درس می‌بینید چرا اضافه کردن خصوصیت مستقیم به تابع سازنده به نمونه‌ها نمی‌رسد و چطور با prototype این کار را درست انجام دهید.",
+  "objectives": [
+    "زنجیرهٔ وراثت پروتوتایپ و نقش Object.prototype را توضیح دهید",
+    "با خصوصیت prototype به تابع سازنده خصوصیت جدید اضافه کنید",
+    "با prototype به تابع سازنده متد جدید اضافه کنید",
+    "تشخیص دهید چه زمانی امکان تغییر پروتوتایپ وجود دارد و چه زمانی خطرناک است"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "پروتوتایپ‌های شیء در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "وراثت پروتوتایپ"
+    },
+    {
+      "type": "p",
+      "text": "همهٔ شیءهای JavaScript خصوصیت‌ها و متدها را از یک پروتوتایپ به ارث می‌برند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "شیءهای Date از Date.prototype ارث می‌برند",
+        "شیءهای Array از Array.prototype ارث می‌برند"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Object.prototype در بالای زنجیرهٔ وراثت پروتوتایپ قرار دارد."
+    },
+    {
+      "type": "p",
+      "text": "شیءهای Date، شیءهای Array و همهٔ شیءهای دیگر از Object.prototype ارث می‌برند."
+    },
+    {
+      "type": "h2",
+      "text": "افزودن خصوصیت و متد به شیءها"
+    },
+    {
+      "type": "p",
+      "text": "گاهی می‌خواهید خصوصیت‌ها (یا متدهای) جدیدی به همهٔ شیءهای موجود از یک نوع اضافه کنید."
+    },
+    {
+      "type": "p",
+      "text": "گاهی هم می‌خواهید خصوصیت (یا متد) جدیدی به تابع سازندهٔ شیء اضافه کنید."
+    },
+    {
+      "type": "p",
+      "text": "پیش‌تر یاد گرفتید که از تابع سازندهٔ شیء چطور استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function Person(first, last, age, eyecolor) {\n\nthis.firstName = first;\n\n  this.lastName = last;\n\nthis.age = age;\n\nthis.eyeColor = eyecolor;\n\n}\n\nconst myFather = new Person(\"John\", \"Doe\", 50, \"blue\");\n\nconst myMother = new Person(\"Sally\", \"Rally\", 48, \"green\");",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype1"
+    },
+    {
+      "type": "p",
+      "text": "نمی‌توانید به یک تابع سازندهٔ موجود خصوصیت جدید اضافه کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Person.nationality = \"English\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype3"
+    },
+    {
+      "type": "p",
+      "text": "برای افزودن خصوصیت جدید به تابع سازنده باید آن را به خود تابع سازنده اضافه کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function Person(first, last, age, eyecolor) {\n\nthis.firstName = first;\n\nthis.lastName = last;\n\nthis.age = age;\n\nthis.eyeColor = eyecolor;\n  this.nationality = \"English\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype4"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از خصوصیت prototype"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت prototype در JavaScript به شما اجازه می‌دهد خصوصیت‌های جدید به تابع‌های سازندهٔ شیء اضافه کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function Person(first, last, age, eyecolor) {\n\n    this.firstName = first;\n\n    this.lastName = last;\n\n    this.age = age;\n\n    this.eyeColor = eyecolor;\n\n}\n\n Person.prototype.nationality = \"English\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype5"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت prototype در JavaScript همچنین اجازه می‌دهد متدهای جدید به تابع‌های سازندهٔ شیء اضافه کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function Person(first, last, age, eyecolor) {\n\n    this.firstName = first;\n\n    this.lastName = last;\n\n    this.age = age;\n\n  this.eyeColor = eyecolor;\n\n}\n\n Person.prototype.name = function() {\n\n    return this.firstName + \" \" + this.lastName;\n\n};",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_prototype6"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار: فقط پروتوتایپ‌های خودتان را تغییر دهید. هرگز پروتوتایپ شیءهای استاندارد JavaScript را تغییر ندهید."
+    },
+    {
+      "type": "h2",
+      "text": "فصل‌های پیشرفته:"
+    },
+    {
+      "type": "p",
+      "text": "تعریف شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "this پیشرفته در شیءهای JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پیمایش شیءها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "گیرنده‌ها و تنظیم‌کننده‌ها در شیءهای JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مدیریت شیءها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "محافظت از شیءها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "پروتوتایپ‌های شیء در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع شیء در JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل prototypes.html بسازید، یک تابع سازندهٔ Person بنویسید و با new دو شیء از آن بسازید؛ در کنسول چاپشان کنید.",
+      "hint": "نام تابع سازنده را با حرف بزرگ شروع کنید و خصوصیت‌ها را با this بنویسید."
+    },
+    {
+      "prompt": "با Person.prototype.nationality خصوصیت جدیدی به سازنده اضافه کنید و ببینید هر دو نمونه آن را می‌بینند.",
+      "hint": "برخلاف Person.nationality که فقط روی خود تابع می‌نشیند، نسخهٔ prototype به نمونه‌ها می‌رسد."
+    },
+    {
+      "prompt": "گویا می‌خواهید همان خصوصیت را بدون prototype یعنی با Person.nationality اضافه کنید؛ نتیجه را چاپ کنید و توضیح دهید چرا به نمونه‌ها نمی‌رسد.",
+      "hint": "مقداری که مستقیم روی تابع سازنده گذاشته می‌شود بخشی از زنجیرهٔ پروتوتایپ نمونه نیست."
+    },
+    {
+      "prompt": "یک متد با prototype به سازنده اضافه کنید که نام کامل را برگرداند و روی یک نمونه صدایش بزنید.",
+      "hint": "متد را به شکل Person.prototype.fullName = function() { ... } تعریف کنید."
+    },
+    {
+      "prompt": "با Object.getPrototypeOf روی یک نمونه بررسی کنید که پروتوتایپش چیست و در کنسول چاپ کنید.",
+      "hint": "پروتوتایپ نمونه همان Person.prototype است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "همهٔ شیءهای JavaScript خصوصیت‌ها و متدهایشان را از کجا به ارث می‌برند؟",
+      "options": [
+        "از خود شیء سراسری",
+        "از یک پروتوتایپ",
+        "از فایل HTML",
+        "هیچ‌کدام؛ هر شیء مستقل است"
+      ],
+      "answer": 1,
+      "explanation": "هر شیء یک پروتوتایپ دارد و از آن خصوصیت و متد به ارث می‌برد؛ زنجیرهٔ وراثت در نهایت به Object.prototype می‌رسد."
+    },
+    {
+      "question": "کدام گزینه درست است؟",
+      "options": [
+        "شیءهای Array از Object.prototype ارث نمی‌برند",
+        "شیءهای Array از Array.prototype و در نهایت از Object.prototype ارث می‌برند",
+        "Array.prototype بالای زنجیرهٔ وراثت است",
+        "Date.prototype از Array.prototype ارث می‌برد"
+      ],
+      "answer": 1,
+      "explanation": "شیءهای Array از Array.prototype و شیءهای Date از Date.prototype ارث می‌برند و همه در نهایت به Object.prototype، یعنی بالای زنجیره، می‌رسند."
+    },
+    {
+      "question": "برای افزودن خصوصیت جدید به همهٔ نمونه‌های یک تابع سازنده از چه چیزی استفاده می‌کنیم؟",
+      "options": [
+        "Person.nationality = \"...\"",
+        "Person.prototype.nationality = \"...\"",
+        "nationality = \"...\"",
+        "Person = {nationality: \"...\"}"
+      ],
+      "answer": 1,
+      "explanation": "مقداری که مستقیم روی تابع سازنده بگذارید به نمونه‌ها نمی‌رسد؛ باید آن را روی prototype تعریف کنید، چون نمونه‌ها خصوصیت‌های پروتوتایپ را ارث می‌برند."
+    },
+    {
+      "question": "چرا نباید پروتوتایپ شیءهای استاندارد JavaScript را تغییر داد؟",
+      "options": [
+        "چون سرعت اجرای کد را کم می‌کند",
+        "چون روی همهٔ کدهای صفحه و کتابخانه‌های دیگر اثر می‌گذارد و باعث رفتار پیش‌بینی‌نشدنی می‌شود",
+        "چون مرورگر اجازه نمی‌دهد",
+        "چون فقط در حالت strict کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "تغییر پروتوتایپ‌های استاندارد، مثل Array.prototype، همهٔ شیءهای آن نوع را در کل صفحه عوض می‌کند و با کتابخانه‌های دیگر تعارض می‌سازد؛ پس فقط پروتوتایپ‌های خودتان را دست بزنید."
+    },
+    {
+      "question": "اگر شیئی با new Person() بسازیم، پروتوتایپ آن چیست؟",
+      "options": ["Object.prototype", "Person.prototype", "Person", "هیچ پروتوتایپی ندارد"],
+      "answer": 1,
+      "explanation": "new نمونه را طوری می‌سازد که پروتوتایپش Person.prototype باشد؛ Person هم خودش تابع است و پروتوتایپ آن فرق دارد."
+    }
+  ]
 }

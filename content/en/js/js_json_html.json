@@ -1,333 +1,324 @@
 {
- "slug": "js_json_html",
- "course": "js",
- "order": 173,
- "url": "/js/js_json_html.asp",
- "title": "JavaScript Displaying JSON",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Displaying JSON"
-  },
-  {
-   "type": "p",
-   "text": "After JSON has been parsed, the resulting JavaScript values can be displayed in HTML."
-  },
-  {
-   "type": "p",
-   "text": "You can display individual values, objects, arrays, lists, and tables."
-  },
-  {
-   "type": "h2",
-   "text": "Displaying a Property"
-  },
-  {
-   "type": "p",
-   "text": "A parsed JSON object becomes a JavaScript object."
-  },
-  {
-   "type": "p",
-   "text": "Object properties can be displayed with normal JavaScript syntax."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent = person.name;",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The example displays the value of the name property."
-  },
-  {
-   "type": "h2",
-   "text": "Displaying Multiple Properties"
-  },
-  {
-   "type": "p",
-   "text": "Multiple properties can be combined into one text value."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.name + \", \" + person.age + \", \" + person.city;",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Displaying an Object"
-  },
-  {
-   "type": "p",
-   "text": "Displaying an object directly does not show all its properties."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name: \"John\", age: 30};\n\nmyDisplayer(person);",
-   "caption": "Example"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "[object Object]",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_html_display"
-  },
-  {
-   "type": "p",
-   "text": "Use JSON.stringify() to display the complete object as JSON text."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name: \"John\", age: 30};\n\nlet text = JSON.stringify(person)\n\nmyDisplayer(text);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_html_display_2"
-  },
-  {
-   "type": "h2",
-   "text": "Formatting JSON Text"
-  },
-  {
-   "type": "p",
-   "text": "The third parameter of JSON.stringify() can format the JSON with indentation."
-  },
-  {
-   "type": "p",
-   "text": "Use an HTML <pre> element to preserve spaces and line breaks."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<pre id=\"demo\"></pre>\n\n<script>\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\ndocument.getElementById(\"demo\").textContent =\n\nJSON.stringify(person, null, 2);\n\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The number 2 adds two spaces of indentation for each level."
-  },
-  {
-   "type": "h2",
-   "text": "Displaying a JSON Array"
-  },
-  {
-   "type": "p",
-   "text": "A parsed JSON array becomes a JavaScript array."
-  },
-  {
-   "type": "p",
-   "text": "Array values can be accessed by their index numbers."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent = cars[0];",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "Array indexes start at zero."
-  },
-  {
-   "type": "h2",
-   "text": "Displaying All Array Values"
-  },
-  {
-   "type": "p",
-   "text": "A for...of loop can read every value in an array."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nlet output = \"\";\n\nfor (const car of cars) {\n\n  output += car + \"\\n\";\n\n}\n\ndocument.getElementById(\"demo\").textContent = output;",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "Use a <pre> element to display the line breaks."
-  },
-  {
-   "type": "h2",
-   "text": "Displaying an Array as a List"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript can create HTML elements for the values in a JSON array."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<ul id=\"demo\"></ul>\n\n<script>\n\nconst text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nconst list = document.getElementById(\"demo\");\n\nfor (const car of cars) {\n\n  const item = document.createElement(\"li\");\n\n  item.textContent = car;\n\n  list.appendChild(item);\n\n}\n\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The example creates one <li> element for each array value."
-  },
-  {
-   "type": "h2",
-   "text": "Displaying an Array of Objects"
-  },
-  {
-   "type": "p",
-   "text": "JSON often contains an array of objects."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]",
-   "caption": "products.json"
-  },
-  {
-   "type": "p",
-   "text": "Use a loop to display a property from each object."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<ul id=\"demo\"></ul>\n\n<script>\n\nconst text = `[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]`;\n\nconst products = JSON.parse(text);\n\nconst list = document.getElementById(\"demo\");\n\nfor (const product of products) {\n\n  const item = document.createElement(\"li\");\n\n  item.textContent = product.name + \": $\" + product.price;\n\n  list.appendChild(item);\n\n}\n\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Displaying JSON in a Table"
-  },
-  {
-   "type": "p",
-   "text": "An array of objects can be displayed as an HTML table."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<table id=\"demo\" class=\"ws-table-all\">\n\n  <tr>\n\n    <th>Product</th>\n\n    <th>Price</th>\n\n  </tr>\n\n</table>\n\n<script>\n\nconst products = [\n\n  {name: \"Laptop\", price: 899},\n\n  {name: \"Mouse\", price: 29},\n\n  {name: \"Keyboard\", price: 79}\n\n];\n\nconst table = document.getElementById(\"demo\");\n\nfor (const product of products) {\n\n  const row = table.insertRow();\n\n  const nameCell = row.insertCell();\n\n  const priceCell = row.insertCell();\n\n  nameCell.textContent = product.name;\n\n  priceCell.textContent = \"$\" + product.price;\n\n}\n\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The example creates one table row for each product."
-  },
-  {
-   "type": "h2",
-   "text": "Displaying Nested JSON"
-  },
-  {
-   "type": "p",
-   "text": "JSON objects and arrays can contain nested values."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const text = `{\n\n  \"name\": \"John\",\n\n  \"address\": {\n\n    \"city\": \"New York\",\n\n    \"country\": \"USA\"\n\n  }\n\n}`;\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.address.city;",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "Use each property name to move through the nested object."
-  },
-  {
-   "type": "h2",
-   "text": "Loading and Displaying JSON"
-  },
-  {
-   "type": "p",
-   "text": "The fetch() method can load JSON from a file or server."
-  },
-  {
-   "type": "p",
-   "text": "The parsed data can then be displayed in HTML."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\nasync function loadCustomer() {\n\n  try {\n\n    const response = await fetch(\"customer.json\");\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const customer = await response.json();\n\n    document.getElementById(\"demo\").textContent =\n\n    customer.name + \", \" + customer.city;\n\n  }\n\n  catch(err) {\n\n    document.getElementById(\"demo\").textContent = err.message;\n\n  }\n\n}\n\nloadCustomer();\n\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The response.json() method already parses the JSON."
-  },
-  {
-   "type": "p",
-   "text": "Do not pass its result to JSON.parse()."
-  },
-  {
-   "type": "h2",
-   "text": "textContent or innerHTML?"
-  },
-  {
-   "type": "p",
-   "text": "The textContent property displays values as plain text."
-  },
-  {
-   "type": "p",
-   "text": "The innerHTML property interprets its value as HTML."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Property",
-     "Use"
-    ],
-    [
-     "textContent",
-     "Displaying text and untrusted data"
-    ],
-    [
-     "innerHTML",
-     "Adding HTML that your application controls"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Do not insert untrusted JSON values directly into innerHTML."
-  },
-  {
-   "type": "p",
-   "text": "The values could contain unwanted or dangerous HTML."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "element.textContent = customer.name;",
-   "caption": "Safer"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "element.innerHTML = customer.name;",
-   "caption": "Safer"
-  },
-  {
-   "type": "h2",
-   "text": "Missing Properties"
-  },
-  {
-   "type": "p",
-   "text": "A JSON object might not contain every expected property."
-  },
-  {
-   "type": "p",
-   "text": "The nullish coalescing operator can provide a default value."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {name: \"John\"};\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.city ?? \"Unknown city\";",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The default value unknown city is used when the property is null or undefined."
-  }
- ]
+  "slug": "js_json_html",
+  "course": "js",
+  "order": 173,
+  "url": "/js/js_json_html.asp",
+  "title": "JavaScript Displaying JSON",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Displaying JSON"
+    },
+    {
+      "type": "p",
+      "text": "After JSON has been parsed, the resulting JavaScript values can be displayed in HTML."
+    },
+    {
+      "type": "p",
+      "text": "You can display individual values, objects, arrays, lists, and tables."
+    },
+    {
+      "type": "h2",
+      "text": "Displaying a Property"
+    },
+    {
+      "type": "p",
+      "text": "A parsed JSON object becomes a JavaScript object."
+    },
+    {
+      "type": "p",
+      "text": "Object properties can be displayed with normal JavaScript syntax."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent = person.name;",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The example displays the value of the name property."
+    },
+    {
+      "type": "h2",
+      "text": "Displaying Multiple Properties"
+    },
+    {
+      "type": "p",
+      "text": "Multiple properties can be combined into one text value."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '{\"name\":\"John\",\"age\":30,\"city\":\"New York\"}';\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.name + \", \" + person.age + \", \" + person.city;",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Displaying an Object"
+    },
+    {
+      "type": "p",
+      "text": "Displaying an object directly does not show all its properties."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name: \"John\", age: 30};\n\nmyDisplayer(person);",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "[object Object]",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_html_display"
+    },
+    {
+      "type": "p",
+      "text": "Use JSON.stringify() to display the complete object as JSON text."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name: \"John\", age: 30};\n\nlet text = JSON.stringify(person)\n\nmyDisplayer(text);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_json_html_display_2"
+    },
+    {
+      "type": "h2",
+      "text": "Formatting JSON Text"
+    },
+    {
+      "type": "p",
+      "text": "The third parameter of JSON.stringify() can format the JSON with indentation."
+    },
+    {
+      "type": "p",
+      "text": "Use an HTML <pre> element to preserve spaces and line breaks."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<pre id=\"demo\"></pre>\n\n<script>\n\nconst person = {\n\n  name: \"John\",\n\n  age: 30,\n\n  city: \"New York\"\n\n};\n\ndocument.getElementById(\"demo\").textContent =\n\nJSON.stringify(person, null, 2);\n\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The number 2 adds two spaces of indentation for each level."
+    },
+    {
+      "type": "h2",
+      "text": "Displaying a JSON Array"
+    },
+    {
+      "type": "p",
+      "text": "A parsed JSON array becomes a JavaScript array."
+    },
+    {
+      "type": "p",
+      "text": "Array values can be accessed by their index numbers."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent = cars[0];",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "Array indexes start at zero."
+    },
+    {
+      "type": "h2",
+      "text": "Displaying All Array Values"
+    },
+    {
+      "type": "p",
+      "text": "A for...of loop can read every value in an array."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nlet output = \"\";\n\nfor (const car of cars) {\n\n  output += car + \"\\n\";\n\n}\n\ndocument.getElementById(\"demo\").textContent = output;",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "Use a <pre> element to display the line breaks."
+    },
+    {
+      "type": "h2",
+      "text": "Displaying an Array as a List"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript can create HTML elements for the values in a JSON array."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<ul id=\"demo\"></ul>\n\n<script>\n\nconst text = '[\"Ford\",\"Volvo\",\"BMW\"]';\n\nconst cars = JSON.parse(text);\n\nconst list = document.getElementById(\"demo\");\n\nfor (const car of cars) {\n\n  const item = document.createElement(\"li\");\n\n  item.textContent = car;\n\n  list.appendChild(item);\n\n}\n\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The example creates one <li> element for each array value."
+    },
+    {
+      "type": "h2",
+      "text": "Displaying an Array of Objects"
+    },
+    {
+      "type": "p",
+      "text": "JSON often contains an array of objects."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]",
+      "caption": "products.json"
+    },
+    {
+      "type": "p",
+      "text": "Use a loop to display a property from each object."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<ul id=\"demo\"></ul>\n\n<script>\n\nconst text = `[\n\n  {\"name\":\"Laptop\",\"price\":899},\n\n  {\"name\":\"Mouse\",\"price\":29},\n\n  {\"name\":\"Keyboard\",\"price\":79}\n\n]`;\n\nconst products = JSON.parse(text);\n\nconst list = document.getElementById(\"demo\");\n\nfor (const product of products) {\n\n  const item = document.createElement(\"li\");\n\n  item.textContent = product.name + \": $\" + product.price;\n\n  list.appendChild(item);\n\n}\n\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Displaying JSON in a Table"
+    },
+    {
+      "type": "p",
+      "text": "An array of objects can be displayed as an HTML table."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<table id=\"demo\" class=\"ws-table-all\">\n\n  <tr>\n\n    <th>Product</th>\n\n    <th>Price</th>\n\n  </tr>\n\n</table>\n\n<script>\n\nconst products = [\n\n  {name: \"Laptop\", price: 899},\n\n  {name: \"Mouse\", price: 29},\n\n  {name: \"Keyboard\", price: 79}\n\n];\n\nconst table = document.getElementById(\"demo\");\n\nfor (const product of products) {\n\n  const row = table.insertRow();\n\n  const nameCell = row.insertCell();\n\n  const priceCell = row.insertCell();\n\n  nameCell.textContent = product.name;\n\n  priceCell.textContent = \"$\" + product.price;\n\n}\n\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The example creates one table row for each product."
+    },
+    {
+      "type": "h2",
+      "text": "Displaying Nested JSON"
+    },
+    {
+      "type": "p",
+      "text": "JSON objects and arrays can contain nested values."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const text = `{\n\n  \"name\": \"John\",\n\n  \"address\": {\n\n    \"city\": \"New York\",\n\n    \"country\": \"USA\"\n\n  }\n\n}`;\n\nconst person = JSON.parse(text);\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.address.city;",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "Use each property name to move through the nested object."
+    },
+    {
+      "type": "h2",
+      "text": "Loading and Displaying JSON"
+    },
+    {
+      "type": "p",
+      "text": "The fetch() method can load JSON from a file or server."
+    },
+    {
+      "type": "p",
+      "text": "The parsed data can then be displayed in HTML."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\nasync function loadCustomer() {\n\n  try {\n\n    const response = await fetch(\"customer.json\");\n\n    if (!response.ok) {\n\n      throw new Error(\"HTTP error \" + response.status);\n\n    }\n\n    const customer = await response.json();\n\n    document.getElementById(\"demo\").textContent =\n\n    customer.name + \", \" + customer.city;\n\n  }\n\n  catch(err) {\n\n    document.getElementById(\"demo\").textContent = err.message;\n\n  }\n\n}\n\nloadCustomer();\n\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The response.json() method already parses the JSON."
+    },
+    {
+      "type": "p",
+      "text": "Do not pass its result to JSON.parse()."
+    },
+    {
+      "type": "h2",
+      "text": "textContent or innerHTML?"
+    },
+    {
+      "type": "p",
+      "text": "The textContent property displays values as plain text."
+    },
+    {
+      "type": "p",
+      "text": "The innerHTML property interprets its value as HTML."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Property", "Use"],
+        ["textContent", "Displaying text and untrusted data"],
+        ["innerHTML", "Adding HTML that your application controls"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Do not insert untrusted JSON values directly into innerHTML."
+    },
+    {
+      "type": "p",
+      "text": "The values could contain unwanted or dangerous HTML."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "element.textContent = customer.name;",
+      "caption": "Safer"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "element.innerHTML = customer.name;",
+      "caption": "Safer"
+    },
+    {
+      "type": "h2",
+      "text": "Missing Properties"
+    },
+    {
+      "type": "p",
+      "text": "A JSON object might not contain every expected property."
+    },
+    {
+      "type": "p",
+      "text": "The nullish coalescing operator can provide a default value."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {name: \"John\"};\n\ndocument.getElementById(\"demo\").textContent =\n\nperson.city ?? \"Unknown city\";",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The default value unknown city is used when the property is null or undefined."
+    }
+  ]
 }

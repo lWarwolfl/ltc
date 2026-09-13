@@ -16,11 +16,18 @@ export type SectionListProps = {
   scrollable?: boolean
 }
 
-export function SectionList({ course, sections, currentSlug, scrollable = false }: SectionListProps) {
+export function SectionList({
+  course,
+  sections,
+  currentSlug,
+  scrollable = false,
+}: SectionListProps) {
   const t = useTranslations('lesson')
   const lessons = useProgressStore((state) => state.lessons)
 
-  const completed = sections.filter((section) => lessons[lessonKey(course, section.slug)]?.completed)
+  const completed = sections.filter(
+    (section) => lessons[lessonKey(course, section.slug)]?.completed
+  )
   const percent = sections.length ? Math.round((completed.length / sections.length) * 100) : 0
 
   const list = (

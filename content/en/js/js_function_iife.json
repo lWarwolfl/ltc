@@ -1,328 +1,321 @@
 {
- "slug": "js_function_iife",
- "course": "js",
- "order": 208,
- "url": "/js/js_function_iife.asp",
- "title": "Self-Invoking Functions",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Self-Invoking Functions"
-  },
-  {
-   "type": "h2",
-   "text": "Immediately Invoked Function Expressions"
-  },
-  {
-   "type": "p",
-   "text": "An IIFE is short for an Immediately Invoked Function Expression."
-  },
-  {
-   "type": "p",
-   "text": "An IIFE is a function that invokes itself when defined."
-  },
-  {
-   "type": "h2",
-   "text": "What Is an IIFE?"
-  },
-  {
-   "type": "p",
-   "text": "Normally, a function runs only when it is called."
-  },
-  {
-   "type": "p",
-   "text": "An IIFE runs automatically when the JavaScript engine reads it (compiles it)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n  // Code to run immediately\n\n})();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife1"
-  },
-  {
-   "type": "p",
-   "text": "An IIFE function is defined and executed at the same time."
-  },
-  {
-   "type": "h2",
-   "text": "When is IIFE Used?"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "To create a private scope",
-    "To run setup code once",
-    "In older JavaScript code"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Avoid Polluting the Global Scope"
-  },
-  {
-   "type": "p",
-   "text": "Everything inside an IIFE is private to that function."
-  },
-  {
-   "type": "p",
-   "text": "Variables inside an IIFE cannot be accessed from outside."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n  let x = 10;\n\n})();\n\n// x is not accessible here",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n  let hidden = 42;\n\n})();\n\nlet result = hidden; // ⛔ Error: hidden is not defined",
-   "caption": "Examples"
-  },
-  {
-   "type": "h2",
-   "text": "Simple IIFE"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n  let text = \"Hello! I called myself.\";\n\n})();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife1"
-  },
-  {
-   "type": "p",
-   "text": "The function above is also called an anonymous self-invoking function (function\nwithout name)."
-  },
-  {
-   "type": "h2",
-   "text": "How an IIFE Works"
-  },
-  {
-   "type": "p",
-   "text": "Function expressions can be made self-invoking."
-  },
-  {
-   "type": "p",
-   "text": "A self-invoking function expression is invoked (started) automatically, without being called."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function () {\n\n   // Code to run\n\n};",
-   "caption": "Function"
-  },
-  {
-   "type": "p",
-   "text": "Parentheses around the function tell JavaScript to treat the function as an expression."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n   // Code to run\n\n});",
-   "caption": "Expression"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function () {\n\n   // Code to run\n\n})();",
-   "caption": "Final Syntax"
-  },
-  {
-   "type": "p",
-   "text": "You can only self-invoke a function expression."
-  },
-  {
-   "type": "p",
-   "text": "You can not self-invoke a function declaration."
-  },
-  {
-   "type": "h2",
-   "text": "IIFE with Parameters"
-  },
-  {
-   "type": "p",
-   "text": "You can pass arguments into an IIFE."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function (name) {\n\n  let text = \"Hello \" + name;\n\n})(\"John Doe\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife2"
-  },
-  {
-   "type": "h2",
-   "text": "IIFE with Return Value"
-  },
-  {
-   "type": "p",
-   "text": "An IIFE can return a value, which can be stored in a variable."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let result = (function () {\n\n      return 5 + 5;\n\n    })();",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "Arrow Function IIFE"
-  },
-  {
-   "type": "p",
-   "text": "Arrow functions can also be used as IIFEs."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(() => {\n\n  let text = \"Hello! I called myself.\";\n\n})();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife3"
-  },
-  {
-   "type": "h2",
-   "text": "Arrow Function IIFE with Parameter"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "((name) => {\n\n  let text = \"Hello \" + name;\n\n})(\"John Doe\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife5"
-  },
-  {
-   "type": "h2",
-   "text": "IIFE in Modern JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Today, JavaScript modules often replace the need for IIFEs.\nModules have their own scope by default."
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<script type=\"module\">\n\n    let x = 10;\n\n    </script>",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "The variable x is scoped to the module and not global."
-  },
-  {
-   "type": "h2",
-   "text": "Named Function Expression IIFE"
-  },
-  {
-   "type": "p",
-   "text": "You can give an IIFE a name:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function greet() {\n\n  let text = \"Hello! I called myself.\";\n\n})();\n\ngreet(); // ⛔ ReferenceError",
-   "caption": "Example"
-  },
-  {
-   "type": "p",
-   "text": "But, the name greet exists only inside the function itself, not in the outer/global scope."
-  },
-  {
-   "type": "p",
-   "text": "Why use a named IIFE?"
-  },
-  {
-   "type": "p",
-   "text": "For self-recursion functions (calling itself repeatedly):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "(function factorial(n) {\n\n  if (n <= 1) return 1;\n\n  return n * factorial(n - 1); // recursive call\n\n})(5);",
-   "caption": "Example"
-  },
-  {
-   "type": "h2",
-   "text": "IIFE as a Module (Private Variables)"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const counter = (function () {\n\n  let value = 0;\n\n  return {\n\n    increment() { value++; },\n\n    get() { return value; }\n\n  };\n\n})();\n\ncounter.increment();\n\nlet x = counter.get();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife4"
-  },
-  {
-   "type": "p",
-   "text": "Self Invocing Functions were heavily used before ECMAScript 6"
-  },
-  {
-   "type": "p",
-   "text": "Today, JavaScript let, const,\nand modules have reduced the need for them."
-  },
-  {
-   "type": "p",
-   "text": "But they can still be useful for:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Running setup code that should immediately",
-    "Creating private variables and private scope",
-    "Avoiding global scope pollution",
-    "Working with older JavaScript code that rely on them"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "When Not to Use IIFE"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "When using modern JavaScript modules",
-    "When simpler code is sufficient"
-   ]
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "Quiz\nWhy were IIFEs commonly used before JavaScript modules existed?"
-  },
-  {
-   "type": "h2",
-   "text": "Common Mistakes"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Forgetting the Final Parentheses\nWithout (), the function will not run.",
-    "Confusing IIFE with Normal Functions\nIIFEs cannot be called again.",
-    "Overusing IIFEs\nModern JavaScript often does not need them."
-   ]
-  }
- ]
+  "slug": "js_function_iife",
+  "course": "js",
+  "order": 208,
+  "url": "/js/js_function_iife.asp",
+  "title": "Self-Invoking Functions",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Self-Invoking Functions"
+    },
+    {
+      "type": "h2",
+      "text": "Immediately Invoked Function Expressions"
+    },
+    {
+      "type": "p",
+      "text": "An IIFE is short for an Immediately Invoked Function Expression."
+    },
+    {
+      "type": "p",
+      "text": "An IIFE is a function that invokes itself when defined."
+    },
+    {
+      "type": "h2",
+      "text": "What Is an IIFE?"
+    },
+    {
+      "type": "p",
+      "text": "Normally, a function runs only when it is called."
+    },
+    {
+      "type": "p",
+      "text": "An IIFE runs automatically when the JavaScript engine reads it (compiles it)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n  // Code to run immediately\n\n})();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife1"
+    },
+    {
+      "type": "p",
+      "text": "An IIFE function is defined and executed at the same time."
+    },
+    {
+      "type": "h2",
+      "text": "When is IIFE Used?"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["To create a private scope", "To run setup code once", "In older JavaScript code"]
+    },
+    {
+      "type": "h2",
+      "text": "Avoid Polluting the Global Scope"
+    },
+    {
+      "type": "p",
+      "text": "Everything inside an IIFE is private to that function."
+    },
+    {
+      "type": "p",
+      "text": "Variables inside an IIFE cannot be accessed from outside."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n  let x = 10;\n\n})();\n\n// x is not accessible here",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n  let hidden = 42;\n\n})();\n\nlet result = hidden; // ⛔ Error: hidden is not defined",
+      "caption": "Examples"
+    },
+    {
+      "type": "h2",
+      "text": "Simple IIFE"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n  let text = \"Hello! I called myself.\";\n\n})();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife1"
+    },
+    {
+      "type": "p",
+      "text": "The function above is also called an anonymous self-invoking function (function\nwithout name)."
+    },
+    {
+      "type": "h2",
+      "text": "How an IIFE Works"
+    },
+    {
+      "type": "p",
+      "text": "Function expressions can be made self-invoking."
+    },
+    {
+      "type": "p",
+      "text": "A self-invoking function expression is invoked (started) automatically, without being called."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function () {\n\n   // Code to run\n\n};",
+      "caption": "Function"
+    },
+    {
+      "type": "p",
+      "text": "Parentheses around the function tell JavaScript to treat the function as an expression."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n   // Code to run\n\n});",
+      "caption": "Expression"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function () {\n\n   // Code to run\n\n})();",
+      "caption": "Final Syntax"
+    },
+    {
+      "type": "p",
+      "text": "You can only self-invoke a function expression."
+    },
+    {
+      "type": "p",
+      "text": "You can not self-invoke a function declaration."
+    },
+    {
+      "type": "h2",
+      "text": "IIFE with Parameters"
+    },
+    {
+      "type": "p",
+      "text": "You can pass arguments into an IIFE."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function (name) {\n\n  let text = \"Hello \" + name;\n\n})(\"John Doe\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife2"
+    },
+    {
+      "type": "h2",
+      "text": "IIFE with Return Value"
+    },
+    {
+      "type": "p",
+      "text": "An IIFE can return a value, which can be stored in a variable."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let result = (function () {\n\n      return 5 + 5;\n\n    })();",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Arrow Function IIFE"
+    },
+    {
+      "type": "p",
+      "text": "Arrow functions can also be used as IIFEs."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(() => {\n\n  let text = \"Hello! I called myself.\";\n\n})();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife3"
+    },
+    {
+      "type": "h2",
+      "text": "Arrow Function IIFE with Parameter"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "((name) => {\n\n  let text = \"Hello \" + name;\n\n})(\"John Doe\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife5"
+    },
+    {
+      "type": "h2",
+      "text": "IIFE in Modern JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Today, JavaScript modules often replace the need for IIFEs.\nModules have their own scope by default."
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<script type=\"module\">\n\n    let x = 10;\n\n    </script>",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "The variable x is scoped to the module and not global."
+    },
+    {
+      "type": "h2",
+      "text": "Named Function Expression IIFE"
+    },
+    {
+      "type": "p",
+      "text": "You can give an IIFE a name:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function greet() {\n\n  let text = \"Hello! I called myself.\";\n\n})();\n\ngreet(); // ⛔ ReferenceError",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "But, the name greet exists only inside the function itself, not in the outer/global scope."
+    },
+    {
+      "type": "p",
+      "text": "Why use a named IIFE?"
+    },
+    {
+      "type": "p",
+      "text": "For self-recursion functions (calling itself repeatedly):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "(function factorial(n) {\n\n  if (n <= 1) return 1;\n\n  return n * factorial(n - 1); // recursive call\n\n})(5);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "IIFE as a Module (Private Variables)"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const counter = (function () {\n\n  let value = 0;\n\n  return {\n\n    increment() { value++; },\n\n    get() { return value; }\n\n  };\n\n})();\n\ncounter.increment();\n\nlet x = counter.get();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_function_iife4"
+    },
+    {
+      "type": "p",
+      "text": "Self Invocing Functions were heavily used before ECMAScript 6"
+    },
+    {
+      "type": "p",
+      "text": "Today, JavaScript let, const,\nand modules have reduced the need for them."
+    },
+    {
+      "type": "p",
+      "text": "But they can still be useful for:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Running setup code that should immediately",
+        "Creating private variables and private scope",
+        "Avoiding global scope pollution",
+        "Working with older JavaScript code that rely on them"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "When Not to Use IIFE"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": ["When using modern JavaScript modules", "When simpler code is sufficient"]
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "Quiz\nWhy were IIFEs commonly used before JavaScript modules existed?"
+    },
+    {
+      "type": "h2",
+      "text": "Common Mistakes"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Forgetting the Final Parentheses\nWithout (), the function will not run.",
+        "Confusing IIFE with Normal Functions\nIIFEs cannot be called again.",
+        "Overusing IIFEs\nModern JavaScript often does not need them."
+      ]
+    }
+  ]
 }

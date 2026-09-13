@@ -23,7 +23,9 @@ export function CodeBlock({ code, caption, className }: CodeBlockProps) {
   }
 
   return (
-    <figure className={cn('bg-muted/40 group relative overflow-hidden rounded-lg border', className)}>
+    <figure
+      className={cn('bg-muted/40 group relative overflow-hidden rounded-lg border', className)}
+    >
       {caption ? (
         <figcaption className="bg-muted/60 text-muted-foreground border-b px-3 py-1.5 text-xs font-medium">
           {caption}

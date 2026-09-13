@@ -1,409 +1,341 @@
 {
- "slug": "js_typed_methods",
- "course": "js",
- "order": 242,
- "url": "/js/js_typed_methods.asp",
- "title": "متدهای آرایهٔ نوع‌دار",
- "summary": "آرایه‌های نوع‌دار (Typed Arrays) متدهای زیادی را با آرایه‌های معمولی مشترک دارند، اما طولشان ثابت است. در این درس متدهای from()، of()، fill()، find() و some() و خصوصیت‌های constructor.name و BYTES_PER_ELEMENT را یاد می‌گیرید و می‌بینید کدام متدهای آرایه برای این آرایه‌ها وجود ندارند.",
- "objectives": [
-  "با from() و of() آرایهٔ نوع‌دار بسازید",
-  "نام نوع و تعداد بایت هر عنصر را با constructor.name و BYTES_PER_ELEMENT بخوانید",
-  "متدهای مشترک آرایه و آرایهٔ نوع‌دار را فهرست کنید",
-  "تشخیص دهید چه متدهایی برای آرایهٔ نوع‌دار در دسترس نیستند و چرا"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "متدهای آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "h2",
-   "text": "متد from()"
-  },
-  {
-   "type": "p",
-   "text": "متد from() یک آرایهٔ نوع‌دار جدید از هر شیء قابل پیمایش (iterable) می‌سازد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = Int16Array.from(\"1234567890\");",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = Int16Array.from([1,2,3,4,5,6,7,8,9,0]);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_from_string"
-  },
-  {
-   "type": "h2",
-   "text": "متد of()"
-  },
-  {
-   "type": "p",
-   "text": "متد of() یک آرایهٔ نوع‌دار جدید از تعدادی آرگومان می‌سازد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myArr = Int16Array.of(1,2,3,4,5,6,7,8,9,0);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_of"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت constructor.name"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت constructor.name نام (نوع) آرایهٔ نوع‌دار را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myArr.constructor.name",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_name"
-  },
-  {
-   "type": "h2",
-   "text": "خصوصیت BYTES_PER_ELEMENT"
-  },
-  {
-   "type": "p",
-   "text": "BYTES_PER_ELEMENT تعداد بایت‌هایی را که برای ذخیرهٔ هر عنصر آرایه به کار می‌رود برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myArr.BYTES_PER_ELEMENT",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_bytes"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای مشترک با آرایه‌ها"
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار بسیاری از متدها را با آرایه‌های استاندارد مشترک دارند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "پیمایش: forEach()، map()، filter()، reduce()، reduceRight()، every()، some()، find()، findIndex()، findLast()، findLastIndex().",
-    "جست‌وجو: includes()، indexOf()، lastIndexOf().",
-    "دستکاری: at()، copyWithin()، fill()، reverse()، set()، slice()، sort()، subarray().",
-    "تبدیل: join()، toLocaleString()، toString().",
-    "متدهای بدون تغییر در آرایه (non-mutating): toReversed()، toSorted()، with()."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد fill()"
-  },
-  {
-   "type": "p",
-   "text": "متد fill() همهٔ عنصرهای یک آرایهٔ نوع‌دار را به یک مقدار تغییر می‌دهد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myArr.fill(200);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_fill"
-  },
-  {
-   "type": "p",
-   "text": "متد fill() دو آرگومان اختیاری می‌گیرد: اندیس شروع و اندیس پایان:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myArr.fill(200, 0, 3);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_fill_some"
-  },
-  {
-   "type": "h2",
-   "text": "متد find()"
-  },
-  {
-   "type": "p",
-   "text": "متد find() اولین عنصری را برمی‌گرداند که شرط آزمایش را برآورده کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myArr.find((x) => x > 18)",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_find"
-  },
-  {
-   "type": "h2",
-   "text": "متد some()"
-  },
-  {
-   "type": "p",
-   "text": "متد some() اگر عنصری وجود داشته باشد که تابع داده‌شده برایش true برگرداند، true برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "myArr.some((x) => x > 18)",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_some"
-  },
-  {
-   "type": "h2",
-   "text": "متدهایی که برای آرایهٔ نوع‌دار وجود ندارند"
-  },
-  {
-   "type": "p",
-   "text": "بعضی از متدهای آرایه برای آرایهٔ نوع‌دار در دسترس نیستند."
-  },
-  {
-   "type": "p",
-   "text": "دلیلش طول ثابت این آرایه‌ها و نداشتن ساختار ثابت است."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "متد",
-    "آرایه",
-    "آرایهٔ نوع‌دار"
-   ],
-   "rows": [
-    [
-     "pop()",
-     "بله",
-     "خیر"
-    ],
-    [
-     "push()",
-     "بله",
-     "خیر"
-    ],
-    [
-     "shift()",
-     "بله",
-     "خیر"
-    ],
-    [
-     "unshift()",
-     "بله",
-     "خیر"
-    ],
-    [
-     "splice()",
-     "بله",
-     "خیر"
-    ],
-    [
-     "flat()",
-     "بله",
-     "خیر"
-    ],
-    [
-     "flatMap()",
-     "بله",
-     "خیر"
-    ],
-    [
-     "concat()",
-     "بله",
-     "خیر"
-    ],
-    [
-     "toSpliced()",
-     "بله",
-     "خیر"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "APIهای مرورگر که از آرایه‌های نوع‌دار پشتیبانی می‌کنند"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "fetch(url)\n\n.then(request => request.arrayBuffer())\n\n.then(arrayBuffer =>...);",
-   "caption": "مثال با Fetch API"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const canvas = document.getElementById('my_canvas');\n\nconst context = canvas.getContext('2d');\n\nconst imageData = context.getImageData(0, 0, canvas.width, canvas.height);\n\nconst uint8ClampedArray = imageData.data;",
-   "caption": "مثال با Canvas"
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بیاموزید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "مرجع آرایهٔ نوع‌دار"
-  },
-  {
-   "type": "p",
-   "text": "ArrayBuffer"
-  },
-  {
-   "type": "p",
-   "text": "DataView"
-  },
-  {
-   "type": "p",
-   "text": "شیء Atomics"
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "آرایه‌های نوع‌دار یک ویژگی مربوط به ES6 هستند."
-  },
-  {
-   "type": "p",
-   "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن به‌طور کامل پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome51",
-     "Edge15",
-     "Firefox54",
-     "Safari10",
-     "Opera38"
-    ],
-    [
-     "May 2016",
-     "Apr 2017",
-     "Jun 2017",
-     "Sep 2016",
-     "Jun 2016"
-    ]
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل typed.html بسازید و با Uint8Array.from یک آرایهٔ نوع‌دار از رشتهٔ \"123456\" بسازید و در کنسول چاپ کنید.",
-   "hint": "رشته هم قابل پیمایش است؛ هر رقم یک عنصر عددی می‌شود."
-  },
-  {
-   "prompt": "با متد of() یک Int8Array با مقدارهای ۱، ۲ و ۳ بسازید و طول آن را با length چاپ کنید.",
-   "hint": "of() آرگومان‌ها را به عنصر تبدیل می‌کند؛ برخلاف سازندهٔ new Int8Array(3) که سه خانهٔ خالی می‌سازد."
-  },
-  {
-   "prompt": "نام نوع یک آرایهٔ Float32Array را با constructor.name چاپ کنید و با یک Uint8Array مقایسه کنید.",
-   "hint": "خروجی رشته است؛ برای همین Uint8Array نه Uint8Array Object چاپ می‌شود."
-  },
-  {
-   "prompt": "مقدار BYTES_PER_ELEMENT را برای Int16Array و Float64Array چاپ کنید و توضیح دهید چرا با هم فرق دارند.",
-   "hint": "۱۶ بیت یعنی ۲ بایت و ۶۴ بیت یعنی ۸ بایت."
-  },
-  {
-   "prompt": "روی یک Int32Array متد push() را صدا بزنید و خطای کنسول را بخوانید؛ بعد متدهای جایگزین مثل at() یا slice() را امتحان کنید.",
-   "hint": "طول آرایه‌های نوع‌دار ثابت است؛ متدهایی که طول را عوض می‌کنند وجود ندارند."
-  }
- ],
- "quiz": [
-  {
-   "question": "چرا متد push() روی آرایهٔ نوع‌دار وجود ندارد؟",
-   "options": [
-    "چون طول آرایهٔ نوع‌دار ثابت است و نمی‌توان عنصر جدید به آن افزود",
-    "چون push() فقط روی رشته‌ها کار می‌کند",
-    "چون هنوز در مرورگرها پیاده‌سازی نشده است",
-    "چون آرایهٔ نوع‌دار فقط عدد نگه می‌دارد"
-   ],
-   "answer": 0,
-   "explanation": "آرایهٔ نوع‌دار یک بلوک حافظه با طول ثابت است؛ متدهای تغییردهندهٔ طول مثل push()، pop()، shift() و splice() برایش در دسترس نیستند."
-  },
-  {
-   "question": "تفاوت Int8Array.from(...) با new Int8Array(3) چیست؟",
-   "options": [
-    "هیچ تفاوتی ندارند",
-    "from() از یک شیء قابل پیمایش آرایه می‌سازد، ولی new Int8Array(3) سه خانهٔ خالی می‌سازد",
-    "from() فقط روی رشته کار می‌کند",
-    "new Int8Array(3) خطا می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "آرگومان عددی در سازنده یعنی طول آرایه (سه خانهٔ صفر)، ولی from() محتوای شیء قابل پیمایش را کپی می‌کند."
-  },
-  {
-   "question": "BYTES_PER_ELEMENT برای Float64Array چه عددی است؟",
-   "options": [
-    "۲",
-    "۴",
-    "۸",
-    "۱۶"
-   ],
-   "answer": 2,
-   "explanation": "Float64 هر عنصر را در ۶۴ بیت یعنی ۸ بایت ذخیره می‌کند؛ Int16Array برابر ۲ و Float32Array برابر ۴ است."
-  },
-  {
-   "question": "متد of() چه می‌کند؟",
-   "options": [
-    "یک آرایهٔ جدید از تعدادی آرگومان می‌سازد",
-    "بزرگ‌ترین عنصر را برمی‌گرداند",
-    "طول آرایه را تغییر می‌دهد",
-    "نوع آرایه را برمی‌گرداند"
-   ],
-   "answer": 0,
-   "explanation": "of() آرگومان‌هایش را به‌عنوان عنصرهای آرایهٔ نوع‌دار جدید می‌گیرد؛ Int8Array.of(1, 2, 3) سه عنصر می‌سازد."
-  },
-  {
-   "question": "کدام متد آرایهٔ نوع‌دار را تغییر نمی‌دهد و نسخهٔ مرتب‌شدهٔ جدید برمی‌گرداند؟",
-   "options": [
-    "sort()",
-    "toSorted()",
-    "reverse()",
-    "fill()"
-   ],
-   "answer": 1,
-   "explanation": "toSorted() از گروه متدهای non-mutating است و آرایهٔ اصلی را دست نمی‌زند؛ sort() و reverse() و fill() همان آرایه را تغییر می‌دهند."
-  }
- ]
+  "slug": "js_typed_methods",
+  "course": "js",
+  "order": 242,
+  "url": "/js/js_typed_methods.asp",
+  "title": "متدهای آرایهٔ نوع‌دار",
+  "summary": "آرایه‌های نوع‌دار (Typed Arrays) متدهای زیادی را با آرایه‌های معمولی مشترک دارند، اما طولشان ثابت است. در این درس متدهای from()، of()، fill()، find() و some() و خصوصیت‌های constructor.name و BYTES_PER_ELEMENT را یاد می‌گیرید و می‌بینید کدام متدهای آرایه برای این آرایه‌ها وجود ندارند.",
+  "objectives": [
+    "با from() و of() آرایهٔ نوع‌دار بسازید",
+    "نام نوع و تعداد بایت هر عنصر را با constructor.name و BYTES_PER_ELEMENT بخوانید",
+    "متدهای مشترک آرایه و آرایهٔ نوع‌دار را فهرست کنید",
+    "تشخیص دهید چه متدهایی برای آرایهٔ نوع‌دار در دسترس نیستند و چرا"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "متدهای آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "h2",
+      "text": "متد from()"
+    },
+    {
+      "type": "p",
+      "text": "متد from() یک آرایهٔ نوع‌دار جدید از هر شیء قابل پیمایش (iterable) می‌سازد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = Int16Array.from(\"1234567890\");",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = Int16Array.from([1,2,3,4,5,6,7,8,9,0]);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_from_string"
+    },
+    {
+      "type": "h2",
+      "text": "متد of()"
+    },
+    {
+      "type": "p",
+      "text": "متد of() یک آرایهٔ نوع‌دار جدید از تعدادی آرگومان می‌سازد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myArr = Int16Array.of(1,2,3,4,5,6,7,8,9,0);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_of"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت constructor.name"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت constructor.name نام (نوع) آرایهٔ نوع‌دار را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myArr.constructor.name",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_name"
+    },
+    {
+      "type": "h2",
+      "text": "خصوصیت BYTES_PER_ELEMENT"
+    },
+    {
+      "type": "p",
+      "text": "BYTES_PER_ELEMENT تعداد بایت‌هایی را که برای ذخیرهٔ هر عنصر آرایه به کار می‌رود برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myArr.BYTES_PER_ELEMENT",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_bytes"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای مشترک با آرایه‌ها"
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار بسیاری از متدها را با آرایه‌های استاندارد مشترک دارند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "پیمایش: forEach()، map()، filter()، reduce()، reduceRight()، every()، some()، find()، findIndex()، findLast()، findLastIndex().",
+        "جست‌وجو: includes()، indexOf()، lastIndexOf().",
+        "دستکاری: at()، copyWithin()، fill()، reverse()، set()، slice()، sort()، subarray().",
+        "تبدیل: join()، toLocaleString()، toString().",
+        "متدهای بدون تغییر در آرایه (non-mutating): toReversed()، toSorted()، with()."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد fill()"
+    },
+    {
+      "type": "p",
+      "text": "متد fill() همهٔ عنصرهای یک آرایهٔ نوع‌دار را به یک مقدار تغییر می‌دهد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myArr.fill(200);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_fill"
+    },
+    {
+      "type": "p",
+      "text": "متد fill() دو آرگومان اختیاری می‌گیرد: اندیس شروع و اندیس پایان:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myArr.fill(200, 0, 3);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_fill_some"
+    },
+    {
+      "type": "h2",
+      "text": "متد find()"
+    },
+    {
+      "type": "p",
+      "text": "متد find() اولین عنصری را برمی‌گرداند که شرط آزمایش را برآورده کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myArr.find((x) => x > 18)",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_find"
+    },
+    {
+      "type": "h2",
+      "text": "متد some()"
+    },
+    {
+      "type": "p",
+      "text": "متد some() اگر عنصری وجود داشته باشد که تابع داده‌شده برایش true برگرداند، true برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "myArr.some((x) => x > 18)",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_typed_some"
+    },
+    {
+      "type": "h2",
+      "text": "متدهایی که برای آرایهٔ نوع‌دار وجود ندارند"
+    },
+    {
+      "type": "p",
+      "text": "بعضی از متدهای آرایه برای آرایهٔ نوع‌دار در دسترس نیستند."
+    },
+    {
+      "type": "p",
+      "text": "دلیلش طول ثابت این آرایه‌ها و نداشتن ساختار ثابت است."
+    },
+    {
+      "type": "table",
+      "headers": ["متد", "آرایه", "آرایهٔ نوع‌دار"],
+      "rows": [
+        ["pop()", "بله", "خیر"],
+        ["push()", "بله", "خیر"],
+        ["shift()", "بله", "خیر"],
+        ["unshift()", "بله", "خیر"],
+        ["splice()", "بله", "خیر"],
+        ["flat()", "بله", "خیر"],
+        ["flatMap()", "بله", "خیر"],
+        ["concat()", "بله", "خیر"],
+        ["toSpliced()", "بله", "خیر"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "APIهای مرورگر که از آرایه‌های نوع‌دار پشتیبانی می‌کنند"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "fetch(url)\n\n.then(request => request.arrayBuffer())\n\n.then(arrayBuffer =>...);",
+      "caption": "مثال با Fetch API"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const canvas = document.getElementById('my_canvas');\n\nconst context = canvas.getContext('2d');\n\nconst imageData = context.getImageData(0, 0, canvas.width, canvas.height);\n\nconst uint8ClampedArray = imageData.data;",
+      "caption": "مثال با Canvas"
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بیاموزید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "مرجع آرایهٔ نوع‌دار"
+    },
+    {
+      "type": "p",
+      "text": "ArrayBuffer"
+    },
+    {
+      "type": "p",
+      "text": "DataView"
+    },
+    {
+      "type": "p",
+      "text": "شیء Atomics"
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "آرایه‌های نوع‌دار یک ویژگی مربوط به ES6 هستند."
+    },
+    {
+      "type": "p",
+      "text": "ES6 از ژوئن ۲۰۱۷ در همهٔ مرورگرهای مدرن به‌طور کامل پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome51", "Edge15", "Firefox54", "Safari10", "Opera38"],
+        ["May 2016", "Apr 2017", "Jun 2017", "Sep 2016", "Jun 2016"]
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل typed.html بسازید و با Uint8Array.from یک آرایهٔ نوع‌دار از رشتهٔ \"123456\" بسازید و در کنسول چاپ کنید.",
+      "hint": "رشته هم قابل پیمایش است؛ هر رقم یک عنصر عددی می‌شود."
+    },
+    {
+      "prompt": "با متد of() یک Int8Array با مقدارهای ۱، ۲ و ۳ بسازید و طول آن را با length چاپ کنید.",
+      "hint": "of() آرگومان‌ها را به عنصر تبدیل می‌کند؛ برخلاف سازندهٔ new Int8Array(3) که سه خانهٔ خالی می‌سازد."
+    },
+    {
+      "prompt": "نام نوع یک آرایهٔ Float32Array را با constructor.name چاپ کنید و با یک Uint8Array مقایسه کنید.",
+      "hint": "خروجی رشته است؛ برای همین Uint8Array نه Uint8Array Object چاپ می‌شود."
+    },
+    {
+      "prompt": "مقدار BYTES_PER_ELEMENT را برای Int16Array و Float64Array چاپ کنید و توضیح دهید چرا با هم فرق دارند.",
+      "hint": "۱۶ بیت یعنی ۲ بایت و ۶۴ بیت یعنی ۸ بایت."
+    },
+    {
+      "prompt": "روی یک Int32Array متد push() را صدا بزنید و خطای کنسول را بخوانید؛ بعد متدهای جایگزین مثل at() یا slice() را امتحان کنید.",
+      "hint": "طول آرایه‌های نوع‌دار ثابت است؛ متدهایی که طول را عوض می‌کنند وجود ندارند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "چرا متد push() روی آرایهٔ نوع‌دار وجود ندارد؟",
+      "options": [
+        "چون طول آرایهٔ نوع‌دار ثابت است و نمی‌توان عنصر جدید به آن افزود",
+        "چون push() فقط روی رشته‌ها کار می‌کند",
+        "چون هنوز در مرورگرها پیاده‌سازی نشده است",
+        "چون آرایهٔ نوع‌دار فقط عدد نگه می‌دارد"
+      ],
+      "answer": 0,
+      "explanation": "آرایهٔ نوع‌دار یک بلوک حافظه با طول ثابت است؛ متدهای تغییردهندهٔ طول مثل push()، pop()، shift() و splice() برایش در دسترس نیستند."
+    },
+    {
+      "question": "تفاوت Int8Array.from(...) با new Int8Array(3) چیست؟",
+      "options": [
+        "هیچ تفاوتی ندارند",
+        "from() از یک شیء قابل پیمایش آرایه می‌سازد، ولی new Int8Array(3) سه خانهٔ خالی می‌سازد",
+        "from() فقط روی رشته کار می‌کند",
+        "new Int8Array(3) خطا می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "آرگومان عددی در سازنده یعنی طول آرایه (سه خانهٔ صفر)، ولی from() محتوای شیء قابل پیمایش را کپی می‌کند."
+    },
+    {
+      "question": "BYTES_PER_ELEMENT برای Float64Array چه عددی است؟",
+      "options": ["۲", "۴", "۸", "۱۶"],
+      "answer": 2,
+      "explanation": "Float64 هر عنصر را در ۶۴ بیت یعنی ۸ بایت ذخیره می‌کند؛ Int16Array برابر ۲ و Float32Array برابر ۴ است."
+    },
+    {
+      "question": "متد of() چه می‌کند؟",
+      "options": [
+        "یک آرایهٔ جدید از تعدادی آرگومان می‌سازد",
+        "بزرگ‌ترین عنصر را برمی‌گرداند",
+        "طول آرایه را تغییر می‌دهد",
+        "نوع آرایه را برمی‌گرداند"
+      ],
+      "answer": 0,
+      "explanation": "of() آرگومان‌هایش را به‌عنوان عنصرهای آرایهٔ نوع‌دار جدید می‌گیرد؛ Int8Array.of(1, 2, 3) سه عنصر می‌سازد."
+    },
+    {
+      "question": "کدام متد آرایهٔ نوع‌دار را تغییر نمی‌دهد و نسخهٔ مرتب‌شدهٔ جدید برمی‌گرداند؟",
+      "options": ["sort()", "toSorted()", "reverse()", "fill()"],
+      "answer": 1,
+      "explanation": "toSorted() از گروه متدهای non-mutating است و آرایهٔ اصلی را دست نمی‌زند؛ sort() و reverse() و fill() همان آرایه را تغییر می‌دهند."
+    }
+  ]
 }

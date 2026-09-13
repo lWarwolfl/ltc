@@ -1,320 +1,299 @@
 {
- "slug": "js_temporal_mistakes",
- "course": "js",
- "order": 198,
- "url": "/js/js_temporal_mistakes.asp",
- "title": "JavaScript Temporal Mistakes",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Temporal Mistakes"
-  },
-  {
-   "type": "p",
-   "text": "Temporal is a powerful API, but it can be confusing at first."
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Remember to use the correct Temporal type",
-    "Avoid implicit conversions",
-    "Always handle time zones correctly",
-    "Use compare() instead of < and >",
-    "Remember that Temporal Objects are immutable"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "Here are some common mistakes and how to avoid them."
-  },
-  {
-   "type": "h2",
-   "text": "Missing UTC (Z) for Instant"
-  },
-  {
-   "type": "p",
-   "text": "An Instant must always include UTC."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_instant"
-  },
-  {
-   "type": "h2",
-   "text": "Using PlainDateTime with Time Zone"
-  },
-  {
-   "type": "p",
-   "text": "PlainDateTime does not support time zones."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00Z\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_plaindatetime"
-  },
-  {
-   "type": "h2",
-   "text": "Comparing Different Types"
-  },
-  {
-   "type": "p",
-   "text": "Temporals can go wrong when comparing different types."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.Instant.from(\"2026-05-17T14:30Z\");\n\nTemporal.PlainDate.compare(d1, d2);",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_compare"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nTemporal.PlainDate.compare(d1, d2);",
-   "caption": "Correct"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_compare_ok"
-  },
-  {
-   "type": "h2",
-   "text": "Using equals() with Different Types"
-  },
-  {
-   "type": "p",
-   "text": "Temporals can go wrong when comparing different types."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.Instant.from(\"2026-05-17T14:30Z\");\n\nd1.equals(d2);",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_equals"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nd1.equals(d2.toPlainDate());",
-   "caption": "Correct"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_equals_ok"
-  },
-  {
-   "type": "h2",
-   "text": "Using ==, < or > for Comparison"
-  },
-  {
-   "type": "p",
-   "text": "Temporal objects cannot be compared with ==, ===, < or >."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDate.from(\"2026-05-17\");\n\nd1 === d2; // False\n\nd1 == d2;  // False\n\nd1 < d2;   // TypeError\n\nd1 > d2;   // TypeError",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDate.from(\"2026-05-17\");\n\nTemporal.PlainDate.compare(d1, d2);",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_less_than"
-  },
-  {
-   "type": "h2",
-   "text": "Expecting Mutation"
-  },
-  {
-   "type": "p",
-   "text": "Temporal objects are immutable."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\ndate.add({ months: 1 });",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst next = d.add({ months: 1 });",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_mutation"
-  },
-  {
-   "type": "h2",
-   "text": "Using valueOf()"
-  },
-  {
-   "type": "p",
-   "text": "Temporal objects do not convert to numbers."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\ntry {\n\n  text = date.valueOf();\n\n} catch (err) {\n\n  text = err.name;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_valueof"
-  },
-  {
-   "type": "h2",
-   "text": "Using Instant for Local Time"
-  },
-  {
-   "type": "p",
-   "text": "Instant is always UTC (not local time)."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Temporal.Now.instant(); // not local time",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Temporal.Now.zonedDateTimeISO();",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_local"
-  },
-  {
-   "type": "h2",
-   "text": "Using PlainDate for Time"
-  },
-  {
-   "type": "p",
-   "text": "PlainDate has no time."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Temporal.PlainDate.from(\"2026-05-17T14:30\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Temporal.PlainDateTime.from(\"2026-05-17T14:30\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_plaindate"
-  },
-  {
-   "type": "h2",
-   "text": "Forgetting Time Zone in ZonedDateTime"
-  },
-  {
-   "type": "p",
-   "text": "ZonedDateTime requires a time zone."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00\");",
-   "caption": "Wrong"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_zoned"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");",
-   "caption": "Correct"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_zoned_ok"
-  },
-  {
-   "type": "h2",
-   "text": "Not Choosing the Right Type"
-  },
-  {
-   "type": "p",
-   "text": "Each Temporal type has a specific purpose."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Type",
-     "Use"
-    ],
-    [
-     "Instant",
-     "Exact moment (UTC)"
-    ],
-    [
-     "PlainDate",
-     "Date only"
-    ],
-    [
-     "PlainTime",
-     "Time only"
-    ],
-    [
-     "PlainDateTime",
-     "Date + time only"
-    ],
-    [
-     "ZonedDateTime",
-     "Date + time + time zone"
-    ],
-    [
-     "Duration",
-     "Length of time only"
-    ]
-   ]
-  }
- ]
+  "slug": "js_temporal_mistakes",
+  "course": "js",
+  "order": 198,
+  "url": "/js/js_temporal_mistakes.asp",
+  "title": "JavaScript Temporal Mistakes",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Temporal Mistakes"
+    },
+    {
+      "type": "p",
+      "text": "Temporal is a powerful API, but it can be confusing at first."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Remember to use the correct Temporal type",
+        "Avoid implicit conversions",
+        "Always handle time zones correctly",
+        "Use compare() instead of < and >",
+        "Remember that Temporal Objects are immutable"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Here are some common mistakes and how to avoid them."
+    },
+    {
+      "type": "h2",
+      "text": "Missing UTC (Z) for Instant"
+    },
+    {
+      "type": "p",
+      "text": "An Instant must always include UTC."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Instant.from(\"2026-05-17T14:30:00Z\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_instant"
+    },
+    {
+      "type": "h2",
+      "text": "Using PlainDateTime with Time Zone"
+    },
+    {
+      "type": "p",
+      "text": "PlainDateTime does not support time zones."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00Z\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_plaindatetime"
+    },
+    {
+      "type": "h2",
+      "text": "Comparing Different Types"
+    },
+    {
+      "type": "p",
+      "text": "Temporals can go wrong when comparing different types."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.Instant.from(\"2026-05-17T14:30Z\");\n\nTemporal.PlainDate.compare(d1, d2);",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_compare"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nTemporal.PlainDate.compare(d1, d2);",
+      "caption": "Correct"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_compare_ok"
+    },
+    {
+      "type": "h2",
+      "text": "Using equals() with Different Types"
+    },
+    {
+      "type": "p",
+      "text": "Temporals can go wrong when comparing different types."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.Instant.from(\"2026-05-17T14:30Z\");\n\nd1.equals(d2);",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_equals"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDateTime.from(\"2026-05-17T14:30\");\n\nd1.equals(d2.toPlainDate());",
+      "caption": "Correct"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_equals_ok"
+    },
+    {
+      "type": "h2",
+      "text": "Using ==, < or > for Comparison"
+    },
+    {
+      "type": "p",
+      "text": "Temporal objects cannot be compared with ==, ===, < or >."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDate.from(\"2026-05-17\");\n\nd1 === d2; // False\n\nd1 == d2;  // False\n\nd1 < d2;   // TypeError\n\nd1 > d2;   // TypeError",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst d2 = Temporal.PlainDate.from(\"2026-05-17\");\n\nTemporal.PlainDate.compare(d1, d2);",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_less_than"
+    },
+    {
+      "type": "h2",
+      "text": "Expecting Mutation"
+    },
+    {
+      "type": "p",
+      "text": "Temporal objects are immutable."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\ndate.add({ months: 1 });",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst next = d.add({ months: 1 });",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_mutation"
+    },
+    {
+      "type": "h2",
+      "text": "Using valueOf()"
+    },
+    {
+      "type": "p",
+      "text": "Temporal objects do not convert to numbers."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = Temporal.PlainDate.from(\"2026-05-17\");\n\ntry {\n\n  text = date.valueOf();\n\n} catch (err) {\n\n  text = err.name;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_valueof"
+    },
+    {
+      "type": "h2",
+      "text": "Using Instant for Local Time"
+    },
+    {
+      "type": "p",
+      "text": "Instant is always UTC (not local time)."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Temporal.Now.instant(); // not local time",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Temporal.Now.zonedDateTimeISO();",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_local"
+    },
+    {
+      "type": "h2",
+      "text": "Using PlainDate for Time"
+    },
+    {
+      "type": "p",
+      "text": "PlainDate has no time."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Temporal.PlainDate.from(\"2026-05-17T14:30\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Temporal.PlainDateTime.from(\"2026-05-17T14:30\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_plaindate"
+    },
+    {
+      "type": "h2",
+      "text": "Forgetting Time Zone in ZonedDateTime"
+    },
+    {
+      "type": "p",
+      "text": "ZonedDateTime requires a time zone."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00\");",
+      "caption": "Wrong"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_zoned"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00+02:00[Europe/Oslo]\");",
+      "caption": "Correct"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_error_zoned_ok"
+    },
+    {
+      "type": "h2",
+      "text": "Not Choosing the Right Type"
+    },
+    {
+      "type": "p",
+      "text": "Each Temporal type has a specific purpose."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Type", "Use"],
+        ["Instant", "Exact moment (UTC)"],
+        ["PlainDate", "Date only"],
+        ["PlainTime", "Time only"],
+        ["PlainDateTime", "Date + time only"],
+        ["ZonedDateTime", "Date + time + time zone"],
+        ["Duration", "Length of time only"]
+      ]
+    }
+  ]
 }

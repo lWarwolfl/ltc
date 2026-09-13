@@ -1,205 +1,205 @@
 {
- "slug": "css3_3dtransforms_cardflip",
- "course": "css",
- "order": 133,
- "url": "/css/css3_3dtransforms_cardflip.asp",
- "title": "تبدیل‌های سه‌بعدی CSS: چرخاندن کارت",
- "summary": "در این درس یک کارت سه‌بعدی می‌سازید که با بردن ماوس روی آن می‌چرخد و پشتش را نشان می‌دهد. با perspective، transform-style: preserve-3d و backface-visibility با سه خصوصیت کلیدی سه‌بعدی آشنا می‌شوید.",
- "objectives": [
-  "ساختار HTML دو وجهی کارت را بسازید",
-  "با preserve-3d فضای سه‌بعدی بسازید",
-  "با backface-visibility وجه پشتی را پنهان کنید",
-  "چرخش کارت را با :hover فعال کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "تبدیل‌های سه‌بعدی CSS: چرخاندن کارت"
-  },
-  {
-   "type": "h2",
-   "text": "چرخاندن کارت در CSS"
-  },
-  {
-   "type": "p",
-   "text": "اینجا نشان می‌دهیم چطور یک شیء سه‌بعدی کلاسیک بسازیم: چرخاندن یک کارت."
-  },
-  {
-   "type": "h2",
-   "text": "روی کارت"
-  },
-  {
-   "type": "h2",
-   "text": "پشت کارت"
-  },
-  {
-   "type": "h2",
-   "text": "ساختار HTML"
-  },
-  {
-   "type": "p",
-   "text": "با HTML پایه شروع می‌کنیم:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<div class=\"container\">\n  <div class=\"card\">\n\n  <div class=\"face front\"><h2>Front</h2></div>\n    <div\n  class=\"face back\"><h2>Back</h2></div>\n  </div>\n</div>",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "عنصر نگه‌دارنده میزبان فضای سه‌بعدی است. عنصر card نقش شیء سه‌بعدی را دارد. دو عنصر وجه جداگانه برای روی و پشت کارت به کار می‌رود."
-  },
-  {
-   "type": "h2",
-   "text": "استایل‌دهی با CSS"
-  },
-  {
-   "type": "p",
-   "text": "اول جعبهٔ نگه‌دارندهٔ سه‌بعدی را تعریف می‌کنیم: پرسپکتیو را همراه با ارتفاع و پهنا اعمال کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n  width: 200px;\n  height: 250px;\n\n  perspective: 600px;\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "حالا عنصر card می‌تواند در فضای سه‌بعدی نگه‌دارنده‌اش تبدیل شود. width: 100%; و height: 100%; را اضافه می‌کنیم. از position: relative برای موقعیت‌دهی مطلق وجه‌های کارت استفاده می‌شود. خصوصیت transform-style: preserve-3d اینجا حیاتی است، چون عنصرهای فرزند را به فضای سه‌بعدی می‌کشاند. بدون آن، وجه‌ها به یک ورقهٔ دوبعدی تخت تبدیل می‌شوند. یک انتقال CSS هم اضافه می‌کنیم تا کاربر اثر تبدیل را ببیند:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".card {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transition: transform 1s;\n  transform-style:\n  preserve-3d;\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "بعد کمی استایل پایه برای دو وجه کارت اضافه می‌کنیم. برای موقعیت‌دهی وجه‌ها در فضای سه‌بعدی باید موقعیت دوبعدی آن‌ها را با position: absolute صفر کنیم. برای پنهان کردن پشت وجه‌ها وقتی رو از بیننده برمی‌گردانند، از backface-visibility: hidden استفاده می‌کنیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".face {\n  position: absolute;\n  height: 100%;\n  width:\n  100%;\n  backface-visibility: hidden;\n  text-align: center;\n\n  }",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "سپس روی و پشت را استایل می‌دهیم و یک تبدیل سه‌بعدی پایهٔ rotateY(180deg) روی پشت کارت می‌گذاریم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".front {\n  background: green;\n}\n\n.back {\n\n  background: red;\n  transform: rotateY(180deg);\n}",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "با آماده بودن وجه‌های روی و پشت، کلاس .card به سبکی برای حالت چرخیده نیاز دارد. اینجا وقتی ماوس روی نگه‌دارنده می‌رود یک چرخش افقی انجام می‌دهیم:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container:hover .card {\n  transform: rotateY(180deg);\n}",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "مثال کامل چرخاندن کارت"
-  },
-  {
-   "type": "p",
-   "text": "این هم مثال کامل چرخاندن کارت:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": ".container {\n  width: 200px;\n  height: 250px;\n\n  perspective: 600px;\n}\n\n.card {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transition: transform 1s;\n  transform-style:\n  preserve-3d;\n}\n\n.face {\n  position: absolute;\n\n  height: 100%;\n  width: 100%;\n  backface-visibility: hidden;\n\n  text-align: center;\n}\n\n.front {\n  background: green;\n}\n\n.back {\n  background: red;\n  transform: rotateY(180deg);\n\n  }\n\n.container:hover .card {\n  transform: rotateY(180deg);\n\n  }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_cardflip"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایل cardflip.html بسازید و ساختار HTML را بنویسید: یک .container، یک .card و دو وجه .face.front و .face.back.",
-   "hint": "هر وجه یک <h2> با متن «روی کارت» یا «پشت کارت» داشته باشد تا هنگام چرخش تشخیصشان بدهید."
-  },
-  {
-   "prompt": "به نگه‌دارنده perspective: 600px; بدهید و به کارت width: 100%;، height: 100%;، position: relative;، transition: transform 1s; و transform-style: preserve-3d;.",
-   "hint": "بدون transform-style: preserve-3d وجه‌ها در صفحهٔ دوبعدی تخت می‌شوند و چرخش دیده نمی‌شود."
-  },
-  {
-   "prompt": "به وجه‌ها position: absolute;، backface-visibility: hidden; و text-align: center; بدهید و به پشت کارت transform: rotateY(180deg); اضافه کنید.",
-   "hint": "backface-visibility: hidden باعث می‌شود پشت وجه هنگام برگشتن از بیننده پنهان بماند."
-  },
-  {
-   "prompt": "با .container:hover .card { transform: rotateY(180deg); } کارت را با بردن ماوس روی آن بچرخانید.",
-   "hint": "transition روی .card باعث می‌شود چرخش به‌جای پرش ناگهانی، در یک ثانیه انجام شود."
-  },
-  {
-   "prompt": "backface-visibility را حذف کنید و ببینید هنگام چرخش چه چیزی عوض می‌شود.",
-   "hint": "بدون آن، پشت وجه‌ها هم دیده می‌شود و متن روی/پشت کارت روی هم می‌افتد."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام خصوصیت عنصرهای فرزند را به فضای سه‌بعدی می‌کشاند؟",
-   "options": [
-    "perspective: 600px;",
-    "transform-style: preserve-3d;",
-    "backface-visibility: hidden;",
-    "transition: transform 1s;"
-   ],
-   "answer": 1,
-   "explanation": "بدون transform-style: preserve-3d فرزندها در صفحهٔ دوبعدی تخت می‌شوند و اعوجاج سه‌بعدی از بین می‌رود."
-  },
-  {
-   "question": "چرا به وجه‌های کارت backface-visibility: hidden; می‌دهیم؟",
-   "options": [
-    "تا پشت هر وجه وقتی رو برگردانده شده دیده نشود",
-    "تا وجه‌ها سریع‌تر لود شوند",
-    "تا رنگ وجه‌ها عوض شود",
-    "تا وجه‌ها وسط‌چین شوند"
-   ],
-   "answer": 0,
-   "explanation": "با چرخش کارت، وجه پشتی رو به بیننده می‌آید؛ با hidden بودن پشت هر وجه، فقط وجه درست دیده می‌شود."
-  },
-  {
-   "question": "کدام خصوصیت روی عنصر نگه‌دارنده می‌آید؟",
-   "options": [
-    "perspective",
-    "transform-style",
-    "backface-visibility",
-    "transform: rotateY(180deg)"
-   ],
-   "answer": 0,
-   "explanation": "پرسپکتیو روی والد می‌آید تا فضای سه‌بعدی برای فرزندها ساخته شود؛ transform-style و چرخش روی خود کارت است."
-  },
-  {
-   "question": "چرا به پشت کارت transform: rotateY(180deg); می‌دهیم؟",
-   "options": [
-    "تا اولیه پشت به بیننده باشد و با چرخش کارت رو به جلو بیاید",
-    "تا کارت کوچک شود",
-    "تا کارت وسط‌چین شود",
-    "تا رنگ پشت عوض شود"
-   ],
-   "answer": 0,
-   "explanation": "پشت کارت از ابتدا ۱۸۰ درجه چرخیده است، پس وقتی کارت روی محور Y می‌چرخد، آن وجه رو به بیننده می‌آید."
-  },
-  {
-   "question": "نقش transition: transform 1s; روی کارت چیست؟",
-   "options": [
-    "چرخش را در یک ثانیه و به‌نرمی انجام می‌دهد",
-    "چرخش را غیرفعال می‌کند",
-    "perspective را حذف می‌کند",
-    "وجه‌ها را پنهان می‌کند"
-   ],
-   "answer": 0,
-   "explanation": "transition تغییر transform را در مدت مشخص پخش می‌کند، پس چرخش کارت به‌جای یک‌باره، نرم دیده می‌شود."
-  }
- ]
+  "slug": "css3_3dtransforms_cardflip",
+  "course": "css",
+  "order": 133,
+  "url": "/css/css3_3dtransforms_cardflip.asp",
+  "title": "تبدیل‌های سه‌بعدی CSS: چرخاندن کارت",
+  "summary": "در این درس یک کارت سه‌بعدی می‌سازید که با بردن ماوس روی آن می‌چرخد و پشتش را نشان می‌دهد. با perspective، transform-style: preserve-3d و backface-visibility با سه خصوصیت کلیدی سه‌بعدی آشنا می‌شوید.",
+  "objectives": [
+    "ساختار HTML دو وجهی کارت را بسازید",
+    "با preserve-3d فضای سه‌بعدی بسازید",
+    "با backface-visibility وجه پشتی را پنهان کنید",
+    "چرخش کارت را با :hover فعال کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "تبدیل‌های سه‌بعدی CSS: چرخاندن کارت"
+    },
+    {
+      "type": "h2",
+      "text": "چرخاندن کارت در CSS"
+    },
+    {
+      "type": "p",
+      "text": "اینجا نشان می‌دهیم چطور یک شیء سه‌بعدی کلاسیک بسازیم: چرخاندن یک کارت."
+    },
+    {
+      "type": "h2",
+      "text": "روی کارت"
+    },
+    {
+      "type": "h2",
+      "text": "پشت کارت"
+    },
+    {
+      "type": "h2",
+      "text": "ساختار HTML"
+    },
+    {
+      "type": "p",
+      "text": "با HTML پایه شروع می‌کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<div class=\"container\">\n  <div class=\"card\">\n\n  <div class=\"face front\"><h2>Front</h2></div>\n    <div\n  class=\"face back\"><h2>Back</h2></div>\n  </div>\n</div>",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "عنصر نگه‌دارنده میزبان فضای سه‌بعدی است. عنصر card نقش شیء سه‌بعدی را دارد. دو عنصر وجه جداگانه برای روی و پشت کارت به کار می‌رود."
+    },
+    {
+      "type": "h2",
+      "text": "استایل‌دهی با CSS"
+    },
+    {
+      "type": "p",
+      "text": "اول جعبهٔ نگه‌دارندهٔ سه‌بعدی را تعریف می‌کنیم: پرسپکتیو را همراه با ارتفاع و پهنا اعمال کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n  width: 200px;\n  height: 250px;\n\n  perspective: 600px;\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "حالا عنصر card می‌تواند در فضای سه‌بعدی نگه‌دارنده‌اش تبدیل شود. width: 100%; و height: 100%; را اضافه می‌کنیم. از position: relative برای موقعیت‌دهی مطلق وجه‌های کارت استفاده می‌شود. خصوصیت transform-style: preserve-3d اینجا حیاتی است، چون عنصرهای فرزند را به فضای سه‌بعدی می‌کشاند. بدون آن، وجه‌ها به یک ورقهٔ دوبعدی تخت تبدیل می‌شوند. یک انتقال CSS هم اضافه می‌کنیم تا کاربر اثر تبدیل را ببیند:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".card {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transition: transform 1s;\n  transform-style:\n  preserve-3d;\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "بعد کمی استایل پایه برای دو وجه کارت اضافه می‌کنیم. برای موقعیت‌دهی وجه‌ها در فضای سه‌بعدی باید موقعیت دوبعدی آن‌ها را با position: absolute صفر کنیم. برای پنهان کردن پشت وجه‌ها وقتی رو از بیننده برمی‌گردانند، از backface-visibility: hidden استفاده می‌کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".face {\n  position: absolute;\n  height: 100%;\n  width:\n  100%;\n  backface-visibility: hidden;\n  text-align: center;\n\n  }",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "سپس روی و پشت را استایل می‌دهیم و یک تبدیل سه‌بعدی پایهٔ rotateY(180deg) روی پشت کارت می‌گذاریم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".front {\n  background: green;\n}\n\n.back {\n\n  background: red;\n  transform: rotateY(180deg);\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "با آماده بودن وجه‌های روی و پشت، کلاس .card به سبکی برای حالت چرخیده نیاز دارد. اینجا وقتی ماوس روی نگه‌دارنده می‌رود یک چرخش افقی انجام می‌دهیم:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container:hover .card {\n  transform: rotateY(180deg);\n}",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "مثال کامل چرخاندن کارت"
+    },
+    {
+      "type": "p",
+      "text": "این هم مثال کامل چرخاندن کارت:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": ".container {\n  width: 200px;\n  height: 250px;\n\n  perspective: 600px;\n}\n\n.card {\n  width: 100%;\n  height: 100%;\n  position:\n  relative;\n  transition: transform 1s;\n  transform-style:\n  preserve-3d;\n}\n\n.face {\n  position: absolute;\n\n  height: 100%;\n  width: 100%;\n  backface-visibility: hidden;\n\n  text-align: center;\n}\n\n.front {\n  background: green;\n}\n\n.back {\n  background: red;\n  transform: rotateY(180deg);\n\n  }\n\n.container:hover .card {\n  transform: rotateY(180deg);\n\n  }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_transform_cardflip"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایل cardflip.html بسازید و ساختار HTML را بنویسید: یک .container، یک .card و دو وجه .face.front و .face.back.",
+      "hint": "هر وجه یک <h2> با متن «روی کارت» یا «پشت کارت» داشته باشد تا هنگام چرخش تشخیصشان بدهید."
+    },
+    {
+      "prompt": "به نگه‌دارنده perspective: 600px; بدهید و به کارت width: 100%;، height: 100%;، position: relative;، transition: transform 1s; و transform-style: preserve-3d;.",
+      "hint": "بدون transform-style: preserve-3d وجه‌ها در صفحهٔ دوبعدی تخت می‌شوند و چرخش دیده نمی‌شود."
+    },
+    {
+      "prompt": "به وجه‌ها position: absolute;، backface-visibility: hidden; و text-align: center; بدهید و به پشت کارت transform: rotateY(180deg); اضافه کنید.",
+      "hint": "backface-visibility: hidden باعث می‌شود پشت وجه هنگام برگشتن از بیننده پنهان بماند."
+    },
+    {
+      "prompt": "با .container:hover .card { transform: rotateY(180deg); } کارت را با بردن ماوس روی آن بچرخانید.",
+      "hint": "transition روی .card باعث می‌شود چرخش به‌جای پرش ناگهانی، در یک ثانیه انجام شود."
+    },
+    {
+      "prompt": "backface-visibility را حذف کنید و ببینید هنگام چرخش چه چیزی عوض می‌شود.",
+      "hint": "بدون آن، پشت وجه‌ها هم دیده می‌شود و متن روی/پشت کارت روی هم می‌افتد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام خصوصیت عنصرهای فرزند را به فضای سه‌بعدی می‌کشاند؟",
+      "options": [
+        "perspective: 600px;",
+        "transform-style: preserve-3d;",
+        "backface-visibility: hidden;",
+        "transition: transform 1s;"
+      ],
+      "answer": 1,
+      "explanation": "بدون transform-style: preserve-3d فرزندها در صفحهٔ دوبعدی تخت می‌شوند و اعوجاج سه‌بعدی از بین می‌رود."
+    },
+    {
+      "question": "چرا به وجه‌های کارت backface-visibility: hidden; می‌دهیم؟",
+      "options": [
+        "تا پشت هر وجه وقتی رو برگردانده شده دیده نشود",
+        "تا وجه‌ها سریع‌تر لود شوند",
+        "تا رنگ وجه‌ها عوض شود",
+        "تا وجه‌ها وسط‌چین شوند"
+      ],
+      "answer": 0,
+      "explanation": "با چرخش کارت، وجه پشتی رو به بیننده می‌آید؛ با hidden بودن پشت هر وجه، فقط وجه درست دیده می‌شود."
+    },
+    {
+      "question": "کدام خصوصیت روی عنصر نگه‌دارنده می‌آید؟",
+      "options": [
+        "perspective",
+        "transform-style",
+        "backface-visibility",
+        "transform: rotateY(180deg)"
+      ],
+      "answer": 0,
+      "explanation": "پرسپکتیو روی والد می‌آید تا فضای سه‌بعدی برای فرزندها ساخته شود؛ transform-style و چرخش روی خود کارت است."
+    },
+    {
+      "question": "چرا به پشت کارت transform: rotateY(180deg); می‌دهیم؟",
+      "options": [
+        "تا اولیه پشت به بیننده باشد و با چرخش کارت رو به جلو بیاید",
+        "تا کارت کوچک شود",
+        "تا کارت وسط‌چین شود",
+        "تا رنگ پشت عوض شود"
+      ],
+      "answer": 0,
+      "explanation": "پشت کارت از ابتدا ۱۸۰ درجه چرخیده است، پس وقتی کارت روی محور Y می‌چرخد، آن وجه رو به بیننده می‌آید."
+    },
+    {
+      "question": "نقش transition: transform 1s; روی کارت چیست؟",
+      "options": [
+        "چرخش را در یک ثانیه و به‌نرمی انجام می‌دهد",
+        "چرخش را غیرفعال می‌کند",
+        "perspective را حذف می‌کند",
+        "وجه‌ها را پنهان می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "transition تغییر transform را در مدت مشخص پخش می‌کند، پس چرخش کارت به‌جای یک‌باره، نرم دیده می‌شود."
+    }
+  ]
 }

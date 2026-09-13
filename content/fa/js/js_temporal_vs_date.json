@@ -1,633 +1,537 @@
 {
- "slug": "js_temporal_vs_date",
- "course": "js",
- "order": 183,
- "url": "/js/js_temporal_vs_date.asp",
- "title": "Temporal در JavaScript در برابر Date",
- "summary": "شیء Date در JavaScript چند مشکل قدیمی دارد: ماه‌ها از صفر شمرده می‌شوند، متدهایش شیء را جهش می‌دهند، تجزیهٔ رشته‌هایش یکدست نیست و محاسباتش روی ساعت تابستانی می‌شکند. در این درس این مشکل‌ها را با مثال می‌بینید و یاد می‌گیرید Temporal هرکدام را چطور حل می‌کند.",
- "objectives": [
-  "پنج مشکل رایج شیء Date را نام ببرید و توضیح دهید",
-  "تفاوت رفتار جهش‌پذیر Date و تغییرناپذیر Temporal را با مثال نشان دهید",
-  "توضیح دهید چرا تجزیهٔ رشته‌های تاریخ در Date یکدست نیست",
-  "برای هر کاربرد تشخیص دهید Temporal بهتر است یا Date کافی است"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Temporal در JavaScript در برابر Date"
-  },
-  {
-   "type": "p",
-   "text": "تفاوت‌های Date و Temporal در JavaScript را یاد بگیرید"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "در Date ماه‌ها از صفر شمرده می‌شوند، در Temporal از یک",
-    "حساب تاریخ در Date دستی است، در Temporal درونی",
-    "Date مقدارها را تغییر می‌دهد، Temporal نه",
-    "Date مبدأ UTC و منطقهٔ زمانی را قاطی می‌کند، Temporal آن‌ها را جدا می‌کند",
-    "حساب Date در برخورد با ساعت تابستانی می‌تواند خطا بدهد، Temporal نمی‌دهد"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "یاد بگیرید چرا Temporal جایگزین مدرن Date است."
-  },
-  {
-   "type": "h2",
-   "text": "مشکل‌های Date در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "شیء Date در JavaScript قدیمی است و چند مشکل طراحی دارد."
-  },
-  {
-   "type": "p",
-   "text": "این‌ها رایج‌ترین اشتباه‌هایی هستند که برنامه‌نویس‌ها با شیء Date می‌کنند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "استفاده از شمارهٔ اشتباه ماه، چون ماه‌ها از صفر شروع می‌شوند.",
-    "تغییر ناخواستهٔ یک شیء تاریخ با صدا زدن یک متد جهش‌دهنده.",
-    "تجزیهٔ رشته‌های نامشخص که در محیط‌های مختلف رفتار متفاوتی دارند.",
-    "قاطی کردن زمان محلی و مقدارهای UTC در یک برنامه.",
-    "حساب کردن روی گذر ساعت تابستانی و گرفتن ساعت‌های غیرمنتظره."
-   ]
-  },
-  {
-   "type": "p",
-   "text": "شیء Date در JavaScript از سال ۱۹۹۵ به کار می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "Temporal جایگزین مدرن است و برای رفع بسیاری از مشکل‌های Date طراحی شده است."
-  },
-  {
-   "type": "h2",
-   "text": "ماه‌های Date از صفر شمرده می‌شوند"
-  },
-  {
-   "type": "p",
-   "text": "در شیء Date در JavaScript، ژانویه ماه ۰ است و دسامبر ماه ۱۱."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// May 17, 2026:\n\nlet date = new Date(2026, 4, 17)",
-   "caption": "مثال Date"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_date_month"
-  },
-  {
-   "type": "p",
-   "text": "شیء Date گیج‌کننده است، چون بیشتر مردم انتظار دارند ژانویه ماه ۱ باشد."
-  },
-  {
-   "type": "h2",
-   "text": "ماه‌های Temporal از یک شمرده می‌شوند"
-  },
-  {
-   "type": "p",
-   "text": "در شیء Temporal در JavaScript، ژانویه ماه ۱ است و دسامبر ماه ۱۲."
-  },
-  {
-   "type": "p",
-   "text": "این خیلی کاربرپسندتر است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// May 17, 2026:\n\nconst date = new Temporal.PlainDate(2026, 5, 17)",
-   "caption": "مثال Temporal"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate"
-  },
-  {
-   "type": "h2",
-   "text": "شیءهای Date جهش‌پذیرند"
-  },
-  {
-   "type": "p",
-   "text": "شیءهای Date در JavaScript می‌توانند تغییر کنند."
-  },
-  {
-   "type": "p",
-   "text": "شیءهای Date جهش‌پذیرند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date\n\nconst date = new Date(\"2026-05-17\");\n\n// Add 7 days to date\n\ndate.setDate(date.getDate() + 7);\n\n// Here the original date is lost",
-   "caption": "مثال Date"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date\n\nconst date1 = new Date(\"2026-05-17\");\n\n// Create a copy\n\nconst date2 = date1;\n\n// Add 7 days to date1\n\ndate1.setDate(date1.getDate() + 7);\n\n// Here date2 has changed",
-   "caption": "مثال Date"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects4"
-  },
-  {
-   "type": "p",
-   "text": "در مثال بالا، متغیرهای date1 و date2 به یک شیء اشاره می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "به همین دلیل وقتی date1 عوض می‌شود، date2 هم عوض می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "این موضوع وقتی مقدارهای تاریخ کپی یا دوباره استفاده می‌شوند می‌تواند نتیجهٔ غیرمنتظره بسازد."
-  },
-  {
-   "type": "h2",
-   "text": "شیءهای Temporal تغییرناپذیرند"
-  },
-  {
-   "type": "p",
-   "text": "شیءهای Temporal در JavaScript تغییر نمی‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "شیءهای Temporal تغییرناپذیرند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add 7 days\n\nconst date2 = date1.add({ days: 7 });\n\n// Here original date1 is kept",
-   "caption": "مثال Temporal"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_immutable"
-  },
-  {
-   "type": "h2",
-   "text": "تجزیهٔ Date یکدست نیست"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript پر از قالب‌های مختلف، رفتارهای عجیب مرورگرها و شگفتی‌های زبان و منطقهٔ کاربر بوده است."
-  },
-  {
-   "type": "p",
-   "text": "رشته‌های تاریخ ممکن است در مرورگرها و محیط‌های مختلف متفاوت تجزیه شوند و قالب‌های مختلف گاهی زمان محلی و گاهی UTC فهمیده شوند."
-  },
-  {
-   "type": "p",
-   "text": "رشتهٔ تاریخی مثل 2026-05-07 در JavaScript به‌عنوان زمان UTC فهمیده می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "رشتهٔ تاریخ و زمانی مثل 2026-05-07T14:40:00 به‌عنوان زمان محلی فهمیده می‌شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d1 = new Date(\"2026-05-17\");\n\nconst d2 = new Date(\"2026-05-17T00:00:00\");\n\nconst d3 = new Date(\"05/17/2026\");\n\nconst d4 = new Date(\"May 17 2026\");\n\nconst d5 = new Date(\"17 May 2026\");\n\nconst d6 = new Date(2026, 4, 17);",
-   "caption": "مثال Date"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects3"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.PlainDate"
-  },
-  {
-   "type": "p",
-   "text": "Temporal با تعریف قواعد سخت‌گیرانه برای تجزیهٔ رشته‌های ISO از مشکلات بالا دور می‌ماند."
-  },
-  {
-   "type": "p",
-   "text": "Temporal.PlainDate یک timestamp نیست."
-  },
-  {
-   "type": "p",
-   "text": "فقط همان 2026-05-17 است، بدون زمان و بدون منطقهٔ زمانی."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");",
-   "caption": "مثال Temporal"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_from"
-  },
-  {
-   "type": "p",
-   "text": "ایمن‌تر است که از قالب‌های نامشخص دور بمانید و تا جای ممکن از قالب‌های صریح استفاده کنید."
-  },
-  {
-   "type": "h2",
-   "text": "Date و منطقهٔ زمانی"
-  },
-  {
-   "type": "p",
-   "text": "عبارت new Date(2026, 4, 1) یک timestamp از زمان محلی شما در نیمه‌شب می‌سازد."
-  },
-  {
-   "type": "p",
-   "text": "یعنی وقتی آن را به UTC تبدیل می‌کنید، روز می‌تواند «جابه‌جا» شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date object\n\nconst date = new Date(2026, 4, 1);\n\n// Might be another day in some time zones:\n\ndate.toISOString();",
-   "caption": "مثال Date"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects5"
-  },
-  {
-   "type": "h2",
-   "text": "Date زمان محلی و UTC را قاطی می‌کند"
-  },
-  {
-   "type": "p",
-   "text": "شیء Date همیشه یک timestamp نگه می‌دارد، اما می‌تواند مقدارها را به شکل زمان محلی یا UTC نشان دهد."
-  },
-  {
-   "type": "p",
-   "text": "این قاطی شدن هنگام تبدیل و مقایسهٔ تاریخ‌ها به‌راحتی گیج‌کننده می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "یک لحظهٔ یکسان بسته به شیوهٔ نمایش می‌تواند متفاوت دیده شود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = new Date();\n\nlet time1 = date.toString();\n\nlet time2 = date.toUTCString();",
-   "caption": "مثال Date"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_7"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal زمان محلی و UTC را جدا می‌کند"
-  },
-  {
-   "type": "p",
-   "text": "Temporal برای منطقه‌های زمانی نوع‌های روشن دارد."
-  },
-  {
-   "type": "p",
-   "text": "Temporal.ZonedDateTime همیشه منطقهٔ زمانی را همراه دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Now.instant();\n\nconst local = Temporal.Now.zonedDateTimeISO();",
-   "caption": "مثال Temporal"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_10"
-  },
-  {
-   "type": "h2",
-   "text": "ساعت تابستانی می‌تواند حساب Date را خراب کند"
-  },
-  {
-   "type": "p",
-   "text": "ساعت تابستانی (DST) می‌تواند باعث شود یک روز ۲۳ یا ۲۵ ساعت شود."
-  },
-  {
-   "type": "p",
-   "text": "این موضوع محاسباتی را که فرض می‌کنند هر روز دقیقاً ۲۴ ساعت است خراب می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = new Date(\"2026-03-29T00:00:00\");\n\nconst end = new Date(start.getTime() + 24 * 60 * 60 * 1000);",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "در منطقه‌های زمانی که تغییر ساعت تابستانی دارند، نتیجه می‌تواند یک ساعت خطا داشته باشد."
-  },
-  {
-   "type": "h2",
-   "text": "حساب با Date"
-  },
-  {
-   "type": "p",
-   "text": "حساب با Date اغلب به محاسبات دستی نیاز دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = new Date(\"2026-05-01\");\n\nconst end = new Date(\"2026-05-17\");\n\nconst diff = end - start;",
-   "caption": "مثال Date"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_8"
-  },
-  {
-   "type": "p",
-   "text": "Temporal حساب تاریخ درونی دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst diff = start.until(end);",
-   "caption": "مثال Temporal"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_11"
-  },
-  {
-   "type": "h2",
-   "text": "دقت نانوثانیه"
-  },
-  {
-   "type": "p",
-   "text": "شیء Date فقط دقت میلی‌ثانیه دارد."
-  },
-  {
-   "type": "p",
-   "text": "Temporal دقتی یک میلیون برابر بیشتر، یعنی نانوثانیه، عرضه می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "Date همه‌چیز را با هم قاطی می‌کند"
-  },
-  {
-   "type": "p",
-   "text": "Date همه‌چیز را در یک شیء قاطی می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = new Date(); // date + time + zone",
-   "caption": "Date (مشکل)"
-  },
-  {
-   "type": "h2",
-   "text": "Temporal نوع‌های روشن به کار می‌برد"
-  },
-  {
-   "type": "p",
-   "text": "شیءهای Temporal کاربردهای مختلف را در شیءهای جداگانه تقسیم می‌کنند."
-  },
-  {
-   "type": "p",
-   "text": "این کار کد را خواناتر و کم‌خطاتر می‌کند."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "شیء",
-     "توضیح"
-    ],
-    [
-     "Temporal.Duration",
-     "شیء بازهٔ زمانی (روز، ساعت، دقیقه)"
-    ],
-    [
-     "Temporal.Instant",
-     "شیء لحظهٔ دقیق در زمان UTC"
-    ],
-    [
-     "Temporal.PlainDateTime",
-     "شیء فقط تاریخ و زمان (بدون منطقهٔ زمانی)"
-    ],
-    [
-     "Temporal.PlainDate",
-     "شیء فقط تاریخ (سال، ماه، روز)"
-    ],
-    [
-     "Temporal.PlainTime",
-     "شیء فقط زمان"
-    ],
-    [
-     "Temporal.PlainYearMonth",
-     "شیء فقط سال و ماه"
-    ],
-    [
-     "Temporal.PlainMonthDay",
-     "شیء فقط ماه و روز"
-    ],
-    [
-     "Temporal.ZonedDateTime",
-     "شیء تاریخ و زمان همراه با منطقهٔ زمانی"
-    ],
-    [
-     "Temporal.Now",
-     "ظرف متدهای Temporal"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "تفاوت‌های Date و Temporal"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "Date",
-     "Temporal"
-    ],
-    [
-     "ISO 8601 Date/Time",
-     "بله",
-     "بله"
-    ],
-    [
-     "RFC 3339 Date/Time",
-     "بله",
-     "بله"
-    ],
-    [
-     "RFC 9557 Date/Time",
-     "خیر",
-     "بله"
-    ],
-    [
-     "پشتیبانی از منطقهٔ زمانی",
-     "محدود",
-     "درونی"
-    ],
-    [
-     "تغییرناپذیر",
-     "خیر",
-     "بله"
-    ],
-    [
-     "نوع فقط تاریخ",
-     "خیر",
-     "بله"
-    ],
-    [
-     "نوع فقط زمان",
-     "خیر",
-     "بله"
-    ],
-    [
-     "ماه‌های از یک شمرده",
-     "خیر",
-     "بله"
-    ],
-    [
-     "حساب ایمن در برابر DST",
-     "خیر",
-     "بله"
-    ],
-    [
-     "ISO 8601 Duration",
-     "خیر",
-     "بله"
-    ],
-    [
-     "RFC 9557 iCalendar",
-     "خیر",
-     "بله"
-    ],
-    [
-     "طراحی مدرن API",
-     "خیر",
-     "بله"
-    ],
-    [
-     "دقت",
-     "میلی‌ثانیه",
-     "نانوثانیه"
-    ]
-   ]
-  },
-  {
-   "type": "p",
-   "text": "ممکن است برای کارهای ساده مثل گرفتن سریع یک timestamp باز هم از Date استفاده کنید."
-  },
-  {
-   "type": "p",
-   "text": "اگر محیط‌های قدیمی که Temporal ندارند را پشتیبانی می‌کنید، به آن نیاز پیدا می‌کنید."
-  },
-  {
-   "type": "p",
-   "text": "Temporal در JavaScript ایمن‌تر و روشن‌تر است و برای برنامه‌های مدرن طراحی شده است."
-  },
-  {
-   "type": "h2",
-   "text": "چه زمانی از Temporal استفاده کنیم؟"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "به مدیریت درست منطقهٔ زمانی نیاز دارید.",
-    "با کاربران بین‌المللی کار می‌کنید.",
-    "حساب ایمن تاریخ می‌خواهید.",
-    "کد روشن و مدرن می‌خواهید."
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "در کنسول new Date(2026, 4, 17) را بسازید و بگویید چه تاریخی می‌دهد؛ بعد همان تاریخ را با new Temporal.PlainDate(2026, 5, 17) بسازید و مقایسه کنید.",
-   "hint": "در Date ماه از صفر است پس ۴ ماه مه می‌شود؛ در Temporal ماه از یک شمرده می‌شود پس ۵ همان مه است."
-  },
-  {
-   "prompt": "یک Date بسازید، آن را در متغیر دیگری کپی کنید، سپس روی اولی setDate صدا بزنید و ببینید دومی هم عوض می‌شود.",
-   "hint": "هر دو متغیر به یک شیء اشاره می‌کنند؛ همین جهش‌پذیری منبع باگ است."
-  },
-  {
-   "prompt": "همین آزمایش را با Temporal.PlainDate.from(\"2026-05-17\") و متد add({days: 7}) انجام دهید و نشان دهید مقدار اصلی دست‌نخورده مانده است.",
-   "hint": "add یک شیء تازه برمی‌گرداند و شیء اولیه تغییرناپذیر است."
-  },
-  {
-   "prompt": "چهار رشتهٔ تاریخ مختلف مثل 2026-05-17 و 05/17/2026 و May 17 2026 را با new Date بسازید و نتیجه را در چند مرورگر یا کنسول مقایسه کنید.",
-   "hint": "قالبهای نامشخص گاهی UTC و گاهی زمان محلی فهمیده می‌شوند؛ همین دلیل نایکدستی است."
-  },
-  {
-   "prompt": "روی یک تاریخ دو بار، یک‌بار روز قبل و یک‌بار روز بعد از تغییر ساعت تابستانی، ۲۴ ساعت اضافه کنید و بگویید ساعت نتیجه با انتظار شما می‌خواند یا نه.",
-   "hint": "در روزهای تغییر ساعت، روز میتواند ۲۳ یا ۲۵ ساعت باشد؛ همین باعث خطای یکساعته می‌شود."
-  }
- ],
- "quiz": [
-  {
-   "question": "در شیء Date، ژانویه چه شماره‌ای دارد؟",
-   "options": [
-    "۱",
-    "۰",
-    "۱۱",
-    "۱۲"
-   ],
-   "answer": 1,
-   "explanation": "در Date ماه‌ها از صفر شروع می‌شوند: ژانویه ۰ و دسامبر ۱۱ است؛ همین موضوع گیج‌کننده است و Temporal آن را به شمردن از یک تغییر داده."
-  },
-  {
-   "question": "چرا تغییر یک متغیر تاریخ روی متغیر دیگر هم اثر می‌گذارد؟",
-   "options": [
-    "چون هر دو به یک شیء اشاره می‌کنند و شیء Date جهش‌پذیر است",
-    "چون JavaScript تاریخ‌ها را رشته‌ای نگه می‌دارد",
-    "چون Date تغییرناپذیر است",
-    "چون متغیرها با const ساخته شده‌اند"
-   ],
-   "answer": 0,
-   "explanation": "در مثال درس date1 و date2 به یک شیء اشاره می‌کنند؛ چون Date جهش‌پذیر است، تغییر یکی روی دیگری هم دیده می‌شود."
-  },
-  {
-   "question": "رشتهٔ تاریخ 2026-05-07 در JavaScript چطور فهمیده می‌شود؟",
-   "options": [
-    "به‌عنوان زمان محلی",
-    "به‌عنوان زمان UTC",
-    "خطا می‌دهد",
-    "به‌عنوان عدد"
-   ],
-   "answer": 1,
-   "explanation": "درس می‌گوید رشتهٔ فقط تاریخ مثل 2026-05-07 به‌عنوان UTC فهمیده می‌شود، در حالی که رشتهٔ تاریخ و زمان مثل 2026-05-07T14:40:00 زمان محلی است؛ همین نایکدستی منبع اشتباه است."
-  },
-  {
-   "question": "Temporal.PlainDate چه چیزی را نگه می‌دارد؟",
-   "options": [
-    "یک timestamp با منطقهٔ زمانی",
-    "فقط یک تاریخ مثل 2026-05-17 بدون زمان و بدون منطقهٔ زمانی",
-    "فقط ساعت روز",
-    "یک بازهٔ زمانی"
-   ],
-   "answer": 1,
-   "explanation": "درس تأکید می‌کند PlainDate یک timestamp نیست و فقط تاریخ است؛ همین سادگی باعث می‌شود تجزیه‌اش سخت‌گیرانه و قابل پیش‌بینی باشد."
-  },
-  {
-   "question": "مشکل حساب ساعت تابستانی (DST) چیست؟",
-   "options": [
-    "روز می‌تواند ۲۳ یا ۲۵ ساعت باشد و محاسبهٔ ۲۴ ساعته خطا بدهد",
-    "تاریخ‌ها یک روز جابه‌جا می‌شوند و همیشه یک روز کم می‌شود",
-    "Date اصلاً با DST کار نمی‌کند و خطا می‌دهد",
-    "فقط در ایران اتفاق می‌افتد"
-   ],
-   "answer": 0,
-   "explanation": "درس می‌گوید در تغییر ساعت تابستانی طول روز ۲۳ یا ۲۵ ساعت می‌شود، پس محاسباتی که هر روز را دقیقاً ۲۴ ساعت فرض می‌کنند می‌توانند یک ساعت خطا بدهند."
-  }
- ]
+  "slug": "js_temporal_vs_date",
+  "course": "js",
+  "order": 183,
+  "url": "/js/js_temporal_vs_date.asp",
+  "title": "Temporal در JavaScript در برابر Date",
+  "summary": "شیء Date در JavaScript چند مشکل قدیمی دارد: ماه‌ها از صفر شمرده می‌شوند، متدهایش شیء را جهش می‌دهند، تجزیهٔ رشته‌هایش یکدست نیست و محاسباتش روی ساعت تابستانی می‌شکند. در این درس این مشکل‌ها را با مثال می‌بینید و یاد می‌گیرید Temporal هرکدام را چطور حل می‌کند.",
+  "objectives": [
+    "پنج مشکل رایج شیء Date را نام ببرید و توضیح دهید",
+    "تفاوت رفتار جهش‌پذیر Date و تغییرناپذیر Temporal را با مثال نشان دهید",
+    "توضیح دهید چرا تجزیهٔ رشته‌های تاریخ در Date یکدست نیست",
+    "برای هر کاربرد تشخیص دهید Temporal بهتر است یا Date کافی است"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Temporal در JavaScript در برابر Date"
+    },
+    {
+      "type": "p",
+      "text": "تفاوت‌های Date و Temporal در JavaScript را یاد بگیرید"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "در Date ماه‌ها از صفر شمرده می‌شوند، در Temporal از یک",
+        "حساب تاریخ در Date دستی است، در Temporal درونی",
+        "Date مقدارها را تغییر می‌دهد، Temporal نه",
+        "Date مبدأ UTC و منطقهٔ زمانی را قاطی می‌کند، Temporal آن‌ها را جدا می‌کند",
+        "حساب Date در برخورد با ساعت تابستانی می‌تواند خطا بدهد، Temporal نمی‌دهد"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "یاد بگیرید چرا Temporal جایگزین مدرن Date است."
+    },
+    {
+      "type": "h2",
+      "text": "مشکل‌های Date در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "شیء Date در JavaScript قدیمی است و چند مشکل طراحی دارد."
+    },
+    {
+      "type": "p",
+      "text": "این‌ها رایج‌ترین اشتباه‌هایی هستند که برنامه‌نویس‌ها با شیء Date می‌کنند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "استفاده از شمارهٔ اشتباه ماه، چون ماه‌ها از صفر شروع می‌شوند.",
+        "تغییر ناخواستهٔ یک شیء تاریخ با صدا زدن یک متد جهش‌دهنده.",
+        "تجزیهٔ رشته‌های نامشخص که در محیط‌های مختلف رفتار متفاوتی دارند.",
+        "قاطی کردن زمان محلی و مقدارهای UTC در یک برنامه.",
+        "حساب کردن روی گذر ساعت تابستانی و گرفتن ساعت‌های غیرمنتظره."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "شیء Date در JavaScript از سال ۱۹۹۵ به کار می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "Temporal جایگزین مدرن است و برای رفع بسیاری از مشکل‌های Date طراحی شده است."
+    },
+    {
+      "type": "h2",
+      "text": "ماه‌های Date از صفر شمرده می‌شوند"
+    },
+    {
+      "type": "p",
+      "text": "در شیء Date در JavaScript، ژانویه ماه ۰ است و دسامبر ماه ۱۱."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// May 17, 2026:\n\nlet date = new Date(2026, 4, 17)",
+      "caption": "مثال Date"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_date_month"
+    },
+    {
+      "type": "p",
+      "text": "شیء Date گیج‌کننده است، چون بیشتر مردم انتظار دارند ژانویه ماه ۱ باشد."
+    },
+    {
+      "type": "h2",
+      "text": "ماه‌های Temporal از یک شمرده می‌شوند"
+    },
+    {
+      "type": "p",
+      "text": "در شیء Temporal در JavaScript، ژانویه ماه ۱ است و دسامبر ماه ۱۲."
+    },
+    {
+      "type": "p",
+      "text": "این خیلی کاربرپسندتر است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// May 17, 2026:\n\nconst date = new Temporal.PlainDate(2026, 5, 17)",
+      "caption": "مثال Temporal"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate"
+    },
+    {
+      "type": "h2",
+      "text": "شیءهای Date جهش‌پذیرند"
+    },
+    {
+      "type": "p",
+      "text": "شیءهای Date در JavaScript می‌توانند تغییر کنند."
+    },
+    {
+      "type": "p",
+      "text": "شیءهای Date جهش‌پذیرند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date\n\nconst date = new Date(\"2026-05-17\");\n\n// Add 7 days to date\n\ndate.setDate(date.getDate() + 7);\n\n// Here the original date is lost",
+      "caption": "مثال Date"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date\n\nconst date1 = new Date(\"2026-05-17\");\n\n// Create a copy\n\nconst date2 = date1;\n\n// Add 7 days to date1\n\ndate1.setDate(date1.getDate() + 7);\n\n// Here date2 has changed",
+      "caption": "مثال Date"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects4"
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا، متغیرهای date1 و date2 به یک شیء اشاره می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "به همین دلیل وقتی date1 عوض می‌شود، date2 هم عوض می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "این موضوع وقتی مقدارهای تاریخ کپی یا دوباره استفاده می‌شوند می‌تواند نتیجهٔ غیرمنتظره بسازد."
+    },
+    {
+      "type": "h2",
+      "text": "شیءهای Temporal تغییرناپذیرند"
+    },
+    {
+      "type": "p",
+      "text": "شیءهای Temporal در JavaScript تغییر نمی‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "شیءهای Temporal تغییرناپذیرند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date\n\nconst date1 = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add 7 days\n\nconst date2 = date1.add({ days: 7 });\n\n// Here original date1 is kept",
+      "caption": "مثال Temporal"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_immutable"
+    },
+    {
+      "type": "h2",
+      "text": "تجزیهٔ Date یکدست نیست"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript پر از قالب‌های مختلف، رفتارهای عجیب مرورگرها و شگفتی‌های زبان و منطقهٔ کاربر بوده است."
+    },
+    {
+      "type": "p",
+      "text": "رشته‌های تاریخ ممکن است در مرورگرها و محیط‌های مختلف متفاوت تجزیه شوند و قالب‌های مختلف گاهی زمان محلی و گاهی UTC فهمیده شوند."
+    },
+    {
+      "type": "p",
+      "text": "رشتهٔ تاریخی مثل 2026-05-07 در JavaScript به‌عنوان زمان UTC فهمیده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "رشتهٔ تاریخ و زمانی مثل 2026-05-07T14:40:00 به‌عنوان زمان محلی فهمیده می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d1 = new Date(\"2026-05-17\");\n\nconst d2 = new Date(\"2026-05-17T00:00:00\");\n\nconst d3 = new Date(\"05/17/2026\");\n\nconst d4 = new Date(\"May 17 2026\");\n\nconst d5 = new Date(\"17 May 2026\");\n\nconst d6 = new Date(2026, 4, 17);",
+      "caption": "مثال Date"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects3"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.PlainDate"
+    },
+    {
+      "type": "p",
+      "text": "Temporal با تعریف قواعد سخت‌گیرانه برای تجزیهٔ رشته‌های ISO از مشکلات بالا دور می‌ماند."
+    },
+    {
+      "type": "p",
+      "text": "Temporal.PlainDate یک timestamp نیست."
+    },
+    {
+      "type": "p",
+      "text": "فقط همان 2026-05-17 است، بدون زمان و بدون منطقهٔ زمانی."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");",
+      "caption": "مثال Temporal"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_from"
+    },
+    {
+      "type": "p",
+      "text": "ایمن‌تر است که از قالب‌های نامشخص دور بمانید و تا جای ممکن از قالب‌های صریح استفاده کنید."
+    },
+    {
+      "type": "h2",
+      "text": "Date و منطقهٔ زمانی"
+    },
+    {
+      "type": "p",
+      "text": "عبارت new Date(2026, 4, 1) یک timestamp از زمان محلی شما در نیمه‌شب می‌سازد."
+    },
+    {
+      "type": "p",
+      "text": "یعنی وقتی آن را به UTC تبدیل می‌کنید، روز می‌تواند «جابه‌جا» شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date object\n\nconst date = new Date(2026, 4, 1);\n\n// Might be another day in some time zones:\n\ndate.toISOString();",
+      "caption": "مثال Date"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sideffects5"
+    },
+    {
+      "type": "h2",
+      "text": "Date زمان محلی و UTC را قاطی می‌کند"
+    },
+    {
+      "type": "p",
+      "text": "شیء Date همیشه یک timestamp نگه می‌دارد، اما می‌تواند مقدارها را به شکل زمان محلی یا UTC نشان دهد."
+    },
+    {
+      "type": "p",
+      "text": "این قاطی شدن هنگام تبدیل و مقایسهٔ تاریخ‌ها به‌راحتی گیج‌کننده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "یک لحظهٔ یکسان بسته به شیوهٔ نمایش می‌تواند متفاوت دیده شود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = new Date();\n\nlet time1 = date.toString();\n\nlet time2 = date.toUTCString();",
+      "caption": "مثال Date"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_7"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal زمان محلی و UTC را جدا می‌کند"
+    },
+    {
+      "type": "p",
+      "text": "Temporal برای منطقه‌های زمانی نوع‌های روشن دارد."
+    },
+    {
+      "type": "p",
+      "text": "Temporal.ZonedDateTime همیشه منطقهٔ زمانی را همراه دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Now.instant();\n\nconst local = Temporal.Now.zonedDateTimeISO();",
+      "caption": "مثال Temporal"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_10"
+    },
+    {
+      "type": "h2",
+      "text": "ساعت تابستانی می‌تواند حساب Date را خراب کند"
+    },
+    {
+      "type": "p",
+      "text": "ساعت تابستانی (DST) می‌تواند باعث شود یک روز ۲۳ یا ۲۵ ساعت شود."
+    },
+    {
+      "type": "p",
+      "text": "این موضوع محاسباتی را که فرض می‌کنند هر روز دقیقاً ۲۴ ساعت است خراب می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = new Date(\"2026-03-29T00:00:00\");\n\nconst end = new Date(start.getTime() + 24 * 60 * 60 * 1000);",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "در منطقه‌های زمانی که تغییر ساعت تابستانی دارند، نتیجه می‌تواند یک ساعت خطا داشته باشد."
+    },
+    {
+      "type": "h2",
+      "text": "حساب با Date"
+    },
+    {
+      "type": "p",
+      "text": "حساب با Date اغلب به محاسبات دستی نیاز دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = new Date(\"2026-05-01\");\n\nconst end = new Date(\"2026-05-17\");\n\nconst diff = end - start;",
+      "caption": "مثال Date"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_8"
+    },
+    {
+      "type": "p",
+      "text": "Temporal حساب تاریخ درونی دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.PlainDate.from(\"2026-05-01\");\n\nconst end = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst diff = start.until(end);",
+      "caption": "مثال Temporal"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_11"
+    },
+    {
+      "type": "h2",
+      "text": "دقت نانوثانیه"
+    },
+    {
+      "type": "p",
+      "text": "شیء Date فقط دقت میلی‌ثانیه دارد."
+    },
+    {
+      "type": "p",
+      "text": "Temporal دقتی یک میلیون برابر بیشتر، یعنی نانوثانیه، عرضه می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "Date همه‌چیز را با هم قاطی می‌کند"
+    },
+    {
+      "type": "p",
+      "text": "Date همه‌چیز را در یک شیء قاطی می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = new Date(); // date + time + zone",
+      "caption": "Date (مشکل)"
+    },
+    {
+      "type": "h2",
+      "text": "Temporal نوع‌های روشن به کار می‌برد"
+    },
+    {
+      "type": "p",
+      "text": "شیءهای Temporal کاربردهای مختلف را در شیءهای جداگانه تقسیم می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "این کار کد را خواناتر و کم‌خطاتر می‌کند."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["شیء", "توضیح"],
+        ["Temporal.Duration", "شیء بازهٔ زمانی (روز، ساعت، دقیقه)"],
+        ["Temporal.Instant", "شیء لحظهٔ دقیق در زمان UTC"],
+        ["Temporal.PlainDateTime", "شیء فقط تاریخ و زمان (بدون منطقهٔ زمانی)"],
+        ["Temporal.PlainDate", "شیء فقط تاریخ (سال، ماه، روز)"],
+        ["Temporal.PlainTime", "شیء فقط زمان"],
+        ["Temporal.PlainYearMonth", "شیء فقط سال و ماه"],
+        ["Temporal.PlainMonthDay", "شیء فقط ماه و روز"],
+        ["Temporal.ZonedDateTime", "شیء تاریخ و زمان همراه با منطقهٔ زمانی"],
+        ["Temporal.Now", "ظرف متدهای Temporal"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "تفاوت‌های Date و Temporal"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "Date", "Temporal"],
+        ["ISO 8601 Date/Time", "بله", "بله"],
+        ["RFC 3339 Date/Time", "بله", "بله"],
+        ["RFC 9557 Date/Time", "خیر", "بله"],
+        ["پشتیبانی از منطقهٔ زمانی", "محدود", "درونی"],
+        ["تغییرناپذیر", "خیر", "بله"],
+        ["نوع فقط تاریخ", "خیر", "بله"],
+        ["نوع فقط زمان", "خیر", "بله"],
+        ["ماه‌های از یک شمرده", "خیر", "بله"],
+        ["حساب ایمن در برابر DST", "خیر", "بله"],
+        ["ISO 8601 Duration", "خیر", "بله"],
+        ["RFC 9557 iCalendar", "خیر", "بله"],
+        ["طراحی مدرن API", "خیر", "بله"],
+        ["دقت", "میلی‌ثانیه", "نانوثانیه"]
+      ]
+    },
+    {
+      "type": "p",
+      "text": "ممکن است برای کارهای ساده مثل گرفتن سریع یک timestamp باز هم از Date استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "اگر محیط‌های قدیمی که Temporal ندارند را پشتیبانی می‌کنید، به آن نیاز پیدا می‌کنید."
+    },
+    {
+      "type": "p",
+      "text": "Temporal در JavaScript ایمن‌تر و روشن‌تر است و برای برنامه‌های مدرن طراحی شده است."
+    },
+    {
+      "type": "h2",
+      "text": "چه زمانی از Temporal استفاده کنیم؟"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "به مدیریت درست منطقهٔ زمانی نیاز دارید.",
+        "با کاربران بین‌المللی کار می‌کنید.",
+        "حساب ایمن تاریخ می‌خواهید.",
+        "کد روشن و مدرن می‌خواهید."
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در کنسول new Date(2026, 4, 17) را بسازید و بگویید چه تاریخی می‌دهد؛ بعد همان تاریخ را با new Temporal.PlainDate(2026, 5, 17) بسازید و مقایسه کنید.",
+      "hint": "در Date ماه از صفر است پس ۴ ماه مه می‌شود؛ در Temporal ماه از یک شمرده می‌شود پس ۵ همان مه است."
+    },
+    {
+      "prompt": "یک Date بسازید، آن را در متغیر دیگری کپی کنید، سپس روی اولی setDate صدا بزنید و ببینید دومی هم عوض می‌شود.",
+      "hint": "هر دو متغیر به یک شیء اشاره می‌کنند؛ همین جهش‌پذیری منبع باگ است."
+    },
+    {
+      "prompt": "همین آزمایش را با Temporal.PlainDate.from(\"2026-05-17\") و متد add({days: 7}) انجام دهید و نشان دهید مقدار اصلی دست‌نخورده مانده است.",
+      "hint": "add یک شیء تازه برمی‌گرداند و شیء اولیه تغییرناپذیر است."
+    },
+    {
+      "prompt": "چهار رشتهٔ تاریخ مختلف مثل 2026-05-17 و 05/17/2026 و May 17 2026 را با new Date بسازید و نتیجه را در چند مرورگر یا کنسول مقایسه کنید.",
+      "hint": "قالبهای نامشخص گاهی UTC و گاهی زمان محلی فهمیده می‌شوند؛ همین دلیل نایکدستی است."
+    },
+    {
+      "prompt": "روی یک تاریخ دو بار، یک‌بار روز قبل و یک‌بار روز بعد از تغییر ساعت تابستانی، ۲۴ ساعت اضافه کنید و بگویید ساعت نتیجه با انتظار شما می‌خواند یا نه.",
+      "hint": "در روزهای تغییر ساعت، روز میتواند ۲۳ یا ۲۵ ساعت باشد؛ همین باعث خطای یکساعته می‌شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در شیء Date، ژانویه چه شماره‌ای دارد؟",
+      "options": ["۱", "۰", "۱۱", "۱۲"],
+      "answer": 1,
+      "explanation": "در Date ماه‌ها از صفر شروع می‌شوند: ژانویه ۰ و دسامبر ۱۱ است؛ همین موضوع گیج‌کننده است و Temporal آن را به شمردن از یک تغییر داده."
+    },
+    {
+      "question": "چرا تغییر یک متغیر تاریخ روی متغیر دیگر هم اثر می‌گذارد؟",
+      "options": [
+        "چون هر دو به یک شیء اشاره می‌کنند و شیء Date جهش‌پذیر است",
+        "چون JavaScript تاریخ‌ها را رشته‌ای نگه می‌دارد",
+        "چون Date تغییرناپذیر است",
+        "چون متغیرها با const ساخته شده‌اند"
+      ],
+      "answer": 0,
+      "explanation": "در مثال درس date1 و date2 به یک شیء اشاره می‌کنند؛ چون Date جهش‌پذیر است، تغییر یکی روی دیگری هم دیده می‌شود."
+    },
+    {
+      "question": "رشتهٔ تاریخ 2026-05-07 در JavaScript چطور فهمیده می‌شود؟",
+      "options": ["به‌عنوان زمان محلی", "به‌عنوان زمان UTC", "خطا می‌دهد", "به‌عنوان عدد"],
+      "answer": 1,
+      "explanation": "درس می‌گوید رشتهٔ فقط تاریخ مثل 2026-05-07 به‌عنوان UTC فهمیده می‌شود، در حالی که رشتهٔ تاریخ و زمان مثل 2026-05-07T14:40:00 زمان محلی است؛ همین نایکدستی منبع اشتباه است."
+    },
+    {
+      "question": "Temporal.PlainDate چه چیزی را نگه می‌دارد؟",
+      "options": [
+        "یک timestamp با منطقهٔ زمانی",
+        "فقط یک تاریخ مثل 2026-05-17 بدون زمان و بدون منطقهٔ زمانی",
+        "فقط ساعت روز",
+        "یک بازهٔ زمانی"
+      ],
+      "answer": 1,
+      "explanation": "درس تأکید می‌کند PlainDate یک timestamp نیست و فقط تاریخ است؛ همین سادگی باعث می‌شود تجزیه‌اش سخت‌گیرانه و قابل پیش‌بینی باشد."
+    },
+    {
+      "question": "مشکل حساب ساعت تابستانی (DST) چیست؟",
+      "options": [
+        "روز می‌تواند ۲۳ یا ۲۵ ساعت باشد و محاسبهٔ ۲۴ ساعته خطا بدهد",
+        "تاریخ‌ها یک روز جابه‌جا می‌شوند و همیشه یک روز کم می‌شود",
+        "Date اصلاً با DST کار نمی‌کند و خطا می‌دهد",
+        "فقط در ایران اتفاق می‌افتد"
+      ],
+      "answer": 0,
+      "explanation": "درس می‌گوید در تغییر ساعت تابستانی طول روز ۲۳ یا ۲۵ ساعت می‌شود، پس محاسباتی که هر روز را دقیقاً ۲۴ ساعت فرض می‌کنند می‌توانند یک ساعت خطا بدهند."
+    }
+  ]
 }

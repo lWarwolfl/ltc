@@ -1,86 +1,86 @@
 {
- "slug": "js_ajax_php",
- "course": "js",
- "order": 261,
- "url": "/js/js_ajax_php.asp",
- "title": "AJAX PHP Example",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "AJAX PHP Example"
-  },
-  {
-   "type": "p",
-   "text": "AJAX is used to create more interactive applications."
-  },
-  {
-   "type": "h2",
-   "text": "AJAX PHP Example"
-  },
-  {
-   "type": "p",
-   "text": "The following example demonstrates how a web page can communicate with a\nweb server while a user types characters in an input field:"
-  },
-  {
-   "type": "h2",
-   "text": "Example Explained"
-  },
-  {
-   "type": "p",
-   "text": "In the example above, when a user types a character in the input field, a function\ncalled showHint() is executed."
-  },
-  {
-   "type": "p",
-   "text": "The function is triggered by the onkeyup event."
-  },
-  {
-   "type": "p",
-   "text": "Here is the code:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p>Start typing a name in the input field below:</p>\n\n<p>Suggestions: <span id=\"txtHint\"></span></p>\n\n<form>\n\nFirst name: <input type=\"text\" onkeyup=\"showHint(this.value)\">\n</form>\n\n<script>\n\nfunction showHint(str) {\n\n  if (str.length == 0) {\n\n    document.getElementById(\"txtHint\").innerHTML = \"\";\n\n    return;\n\n  } else {\n\n    const xmlhttp = new XMLHttpRequest();\n\n    xmlhttp.onload = function() {\n\n      document.getElementById(\"txtHint\").innerHTML = this.responseText;\n\n    }\n\n  xmlhttp.open(\"GET\", \"gethint.php?q=\" + str);\n\n  xmlhttp.send();\n\n  }\n\n}\n\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_suggest_php"
-  },
-  {
-   "type": "p",
-   "text": "Code explanation:"
-  },
-  {
-   "type": "p",
-   "text": "First, check if the input field is empty (str.length == 0). If it is, clear the\ncontent of the txtHint placeholder and exit the function."
-  },
-  {
-   "type": "p",
-   "text": "However, if the input field is not empty, do the following:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Create an XMLHttpRequest object",
-    "Create the function to be executed when the server response is ready",
-    "Send the request off to a PHP file (gethint.php) on the server",
-    "Notice that q parameter is added gethint.php?q=\"+str",
-    "The str variable holds the content of the input field"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The PHP File - \"gethint.php\""
-  },
-  {
-   "type": "p",
-   "text": "The PHP file checks an array of names, and returns the corresponding name(s) to the\nbrowser:"
-  },
-  {
-   "type": "p",
-   "text": "<?php\n// Array with names\n$a[] = \"Anna\";\n$a[] = \"Brittany\";\n$a[] = \"Cinderella\";\n$a[] = \"Diana\";\n$a[] = \"Eva\";\n$a[] = \"Fiona\";\n$a[] = \"Gunda\";\n$a[] = \"Hege\";\n$a[] = \"Inga\";\n$a[] = \"Johanna\";\n$a[] = \"Kitty\";\n$a[] = \"Linda\";\n$a[] = \"Nina\";\n$a[] = \"Ophelia\";\n$a[] = \"Petunia\";\n$a[] = \"Amanda\";\n$a[] = \"Raquel\";\n$a[] = \"Cindy\";\n$a[] = \"Doris\";\n$a[] = \"Eve\";\n$a[] = \"Evita\";\n$a[] = \"Sunniva\";\n$a[] = \"Tove\";\n$a[] = \"Unni\";\n$a[] = \"Violet\";\n$a[] = \"Liza\";\n$a[] = \"Elizabeth\";\n$a[] = \"Ellen\";\n$a[] = \"Wenche\";\n$a[] = \"Vicky\";\n // get the q parameter from URL$q = $_REQUEST[\"q\"];$hint = \"\";// lookup all hints from array if $q is different from \"\" if ($q !== \"\") {  $q = strtolower($q);\n    $len=strlen($q);  foreach($a as $name) {    if (stristr($q, substr($name, 0, $len))) {      if ($hint === \"\") {        $hint = $name;      } else {\n          $hint .= \", $name\";      }\n      }  }}// Output \"no suggestion\" if no hint was found or output correct values\n echo $hint === \"\" ? \"no suggestion\" : $hint;?>"
-  }
- ]
+  "slug": "js_ajax_php",
+  "course": "js",
+  "order": 261,
+  "url": "/js/js_ajax_php.asp",
+  "title": "AJAX PHP Example",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "AJAX PHP Example"
+    },
+    {
+      "type": "p",
+      "text": "AJAX is used to create more interactive applications."
+    },
+    {
+      "type": "h2",
+      "text": "AJAX PHP Example"
+    },
+    {
+      "type": "p",
+      "text": "The following example demonstrates how a web page can communicate with a\nweb server while a user types characters in an input field:"
+    },
+    {
+      "type": "h2",
+      "text": "Example Explained"
+    },
+    {
+      "type": "p",
+      "text": "In the example above, when a user types a character in the input field, a function\ncalled showHint() is executed."
+    },
+    {
+      "type": "p",
+      "text": "The function is triggered by the onkeyup event."
+    },
+    {
+      "type": "p",
+      "text": "Here is the code:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p>Start typing a name in the input field below:</p>\n\n<p>Suggestions: <span id=\"txtHint\"></span></p>\n\n<form>\n\nFirst name: <input type=\"text\" onkeyup=\"showHint(this.value)\">\n</form>\n\n<script>\n\nfunction showHint(str) {\n\n  if (str.length == 0) {\n\n    document.getElementById(\"txtHint\").innerHTML = \"\";\n\n    return;\n\n  } else {\n\n    const xmlhttp = new XMLHttpRequest();\n\n    xmlhttp.onload = function() {\n\n      document.getElementById(\"txtHint\").innerHTML = this.responseText;\n\n    }\n\n  xmlhttp.open(\"GET\", \"gethint.php?q=\" + str);\n\n  xmlhttp.send();\n\n  }\n\n}\n\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_ajax_suggest_php"
+    },
+    {
+      "type": "p",
+      "text": "Code explanation:"
+    },
+    {
+      "type": "p",
+      "text": "First, check if the input field is empty (str.length == 0). If it is, clear the\ncontent of the txtHint placeholder and exit the function."
+    },
+    {
+      "type": "p",
+      "text": "However, if the input field is not empty, do the following:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Create an XMLHttpRequest object",
+        "Create the function to be executed when the server response is ready",
+        "Send the request off to a PHP file (gethint.php) on the server",
+        "Notice that q parameter is added gethint.php?q=\"+str",
+        "The str variable holds the content of the input field"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The PHP File - \"gethint.php\""
+    },
+    {
+      "type": "p",
+      "text": "The PHP file checks an array of names, and returns the corresponding name(s) to the\nbrowser:"
+    },
+    {
+      "type": "p",
+      "text": "<?php\n// Array with names\n$a[] = \"Anna\";\n$a[] = \"Brittany\";\n$a[] = \"Cinderella\";\n$a[] = \"Diana\";\n$a[] = \"Eva\";\n$a[] = \"Fiona\";\n$a[] = \"Gunda\";\n$a[] = \"Hege\";\n$a[] = \"Inga\";\n$a[] = \"Johanna\";\n$a[] = \"Kitty\";\n$a[] = \"Linda\";\n$a[] = \"Nina\";\n$a[] = \"Ophelia\";\n$a[] = \"Petunia\";\n$a[] = \"Amanda\";\n$a[] = \"Raquel\";\n$a[] = \"Cindy\";\n$a[] = \"Doris\";\n$a[] = \"Eve\";\n$a[] = \"Evita\";\n$a[] = \"Sunniva\";\n$a[] = \"Tove\";\n$a[] = \"Unni\";\n$a[] = \"Violet\";\n$a[] = \"Liza\";\n$a[] = \"Elizabeth\";\n$a[] = \"Ellen\";\n$a[] = \"Wenche\";\n$a[] = \"Vicky\";\n // get the q parameter from URL$q = $_REQUEST[\"q\"];$hint = \"\";// lookup all hints from array if $q is different from \"\" if ($q !== \"\") {  $q = strtolower($q);\n    $len=strlen($q);  foreach($a as $name) {    if (stristr($q, substr($name, 0, $len))) {      if ($hint === \"\") {        $hint = $name;      } else {\n          $hint .= \", $name\";      }\n      }  }}// Output \"no suggestion\" if no hint was found or output correct values\n echo $hint === \"\" ? \"no suggestion\" : $hint;?>"
+    }
+  ]
 }

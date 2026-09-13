@@ -1,289 +1,284 @@
 {
- "slug": "js_switch",
- "course": "js",
- "order": 19,
- "url": "/js/js_switch.asp",
- "title": "دستور switch در JavaScript",
- "summary": "switch جانشین خواناتر زنجیرهٔ طولانی if...else if...else است؛ یک عبارت را یک بار ارزیابی می‌کند و بلوکی را اجرا می‌کند که با یکی از caseها مطابقت داشته باشد. در این درس نقش break و default، بلوک‌های کد مشترک و نکتهٔ مقایسهٔ سختگیرانه را یاد می‌گیرید.",
- "objectives": [
-  "نحو switch و case و default را درست بنویسید",
-  "توضیح دهید چرا break در switch حیاتی است",
-  "برای چند case یک بلوک کد مشترک بسازید",
-  "تشخیص دهید چرا switch مقدار عدد و رشته را یکسان نمی‌بیند"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "دستور switch در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "جریان کنترل با switch"
-  },
-  {
-   "type": "p",
-   "text": "switch بر اساس یک شرط، یک یا چند بلوک کد را برای اجرا انتخاب می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "switch بلوکی از کد را اجرا می‌کند که با یک عبارت مطابقت داشته باشد."
-  },
-  {
-   "type": "p",
-   "text": "switch غالباً جانشین خواناتر زنجیرهٔ طولانی if...else if...else است، خصوصاً وقتی با چند مقدار ممکن سر و کار داریم."
-  },
-  {
-   "type": "h3",
-   "text": "نحو"
-  },
-  {
-   "type": "p",
-   "text": "switch(expression) {\n  case x:\n    // بلوک کد\n    break;\n  case y:\n    // بلوک کد\n    break;\n  default:\n    // بلوک کد\n}"
-  },
-  {
-   "type": "p",
-   "text": "روش کار آن این است:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "عبارت switch فقط یک بار ارزیابی می‌شود.",
-    "مقدار این عبارت با مقدار هر case مقایسه می‌شود.",
-    "اگر مطابقتی پیدا شود، بلوک کد مربوط به آن اجرا می‌شود.",
-    "اگر هیچ مطابقتی نباشد، هیچ کدی اجرا نمی‌شود."
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "switch (new Date().getDay()) {\n\n  case 0:\n\n    day = \"Sunday\";\n\n    break;\n\n  case 1:\n\n      day = \"Monday\";\n\n     break;\n\n  case 2:\n\n       day = \"Tuesday\";\n\n      break;\n\n  case 3:\n\n    day = \"Wednesday\";\n\n      break;\n\n  case 4:\n\n      day = \"Thursday\";\n\n     break;\n\n  case 5:\n\n      day = \"Friday\";\n\n      break;\n\n  case 6:\n\n    day = \"Saturday\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch"
-  },
-  {
-   "type": "p",
-   "text": "متد getDay() روز هفته را به شکل عددی بین 0 و 6 برمی‌گرداند."
-  },
-  {
-   "type": "p",
-   "text": "(یکشنبه=0، دوشنبه=1، سه‌شنبه=2 ..)"
-  },
-  {
-   "type": "h2",
-   "text": "کلمهٔ کلیدی break"
-  },
-  {
-   "type": "p",
-   "text": "وقتی JavaScript به کلمهٔ کلیدی break برسد، از بلوک switch بیرون می‌زند."
-  },
-  {
-   "type": "p",
-   "text": "این کار اجرا را داخل بلوک switch متوقف می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "دیگر هیچ دستوری در بلوک switch اجرا نمی‌شود."
-  },
-  {
-   "type": "p",
-   "text": "نوشتن break برای آخرین case لازم نیست؛ چون switch در هر حال همان‌جا تمام می‌شود."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "کلمهٔ کلیدی break برای جلوگیری از «افتادن روی case بعدی» (fall-through) حیاتی است. بدون break، کد اجرای caseهای بعدی (و بلوک default در صورت وجود) را ادامه می‌دهد، حتی اگر مقدارشان با عبارت مطابقت نداشته باشد."
-  },
-  {
-   "type": "h2",
-   "text": "کلمهٔ کلیدی default"
-  },
-  {
-   "type": "p",
-   "text": "کلمهٔ کلیدی default بلوکی از کد را مشخص می‌کند که اگر هیچ caseی مطابقت نداشت اجرا شود."
-  },
-  {
-   "type": "p",
-   "text": "کلمهٔ کلیدی default اختیاری است."
-  },
-  {
-   "type": "p",
-   "text": "default می‌تواند نقش حالت پشتیبان را بازی کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "switch (new Date().getDay()) {\n\ncase 6:\n\n      text = \"Today is Saturday\";\n\n    break;\n\n  case 0:\n\n      text = \"Today is Sunday\";\n\n      break;\n\ndefault:\n\n      text = \"Looking forward to the Weekend\";\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch2"
-  },
-  {
-   "type": "p",
-   "text": "case مربوط به default لازم نیست آخرین case در بلوک switch باشد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "switch (new Date().getDay()) {\n\n  default:\n\n        text = \"Looking forward to the Weekend\";\n\n  break;\n  case 6:\n\n        text = \"Today is Saturday\";\n\n        break;\n\n  case 0:\n\n        text = \"Today is Sunday\";\n\n  }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch4"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "اگر default آخرین case در بلوک switch نیست، یادتان باشد case مربوط به default را با break تمام کنید."
-  },
-  {
-   "type": "h2",
-   "text": "بلوک‌های کد مشترک"
-  },
-  {
-   "type": "p",
-   "text": "گاهی می‌خواهید چند case مختلف switch از یک کد مشترک استفاده کنند."
-  },
-  {
-   "type": "p",
-   "text": "در این مثال caseهای 4 و 5 یک بلوک کد مشترک دارند و 0 و 6 بلوک کد مشترک دیگری:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "switch (new Date().getDay()) {\n\n  case 4:\n  case 5:\n\n    text = \"Soon it is Weekend\";\n\n      break;\n\n  case 0:\n\n  case 6:\n\n      text = \"It is Weekend\";\n    break;\n  default:\n\n    text = \"Looking forward to the Weekend\";\n\n  }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch3"
-  },
-  {
-   "type": "h2",
-   "text": "جزئیات کار switch"
-  },
-  {
-   "type": "p",
-   "text": "اگر چند case با مقدار مورد نظر مطابقت داشته باشند، اولین case انتخاب می‌شود."
-  },
-  {
-   "type": "p",
-   "text": "اگر هیچ case مطابقی پیدا نشود، برنامه به برچسب default می‌رود."
-  },
-  {
-   "type": "p",
-   "text": "اگر برچسب default وجود نداشته باشد، برنامه به دستورهای پس از switch ادامه می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ سخت‌گیرانه"
-  },
-  {
-   "type": "p",
-   "text": "switch از مقایسهٔ سخت‌گیرانه (===) استفاده می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "برای مطابقت، مقدارها باید از یک نوع باشند."
-  },
-  {
-   "type": "p",
-   "text": "مقایسهٔ سخت‌گیرانه فقط وقتی true می‌شود که هر دو عملوند از یک نوع باشند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"0\";\nswitch (x) {\n  case 0:\n    text = \"Off\";\n\n      break;\n  case 1:\n    text = \"On\";\n    break;\n\n    default:\n\n  text = \"No value found\";\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch5"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل switch.html بسازید و متغیر let day = new Date().getDay(); را تعریف کنید. با switch و caseهای 0 تا 6 نام روز هفته را در کنسول چاپ کنید.",
-   "hint": "getDay() عددی بین 0 و 6 برمی‌گرداند؛ یکشنبه 0 است."
-  },
-  {
-   "prompt": "هر case را با break تمام کنید. بعد break یکی از caseها را حذف کنید و ببینید خروجی کنسول چند پیام می‌شود.",
-   "hint": "بدون break اجرا به caseهای بعدی می‌افتد (fall-through) و همهٔ آن‌ها هم اجرا می‌شوند."
-  },
-  {
-   "prompt": "یک default اضافه کنید که برای روزهای بدون case پیام «روز ناشناخته» چاپ کند و مقدار day را عمداً به 9 تغییر دهید تا default اجرا شود.",
-   "hint": "default وقتی اجرا می‌شود که هیچ caseی مطابقت نداشته باشد."
-  },
-  {
-   "prompt": "دو case را طوری بنویسید که از یک بلوک کد مشترک استفاده کنند؛ مثلاً 4 و 5 هر دو پیام «آخر هفته» بدهند.",
-   "hint": "case اول را بدون break بنویسید و بلوک مشترک را زیر case دوم قرار دهید."
-  },
-  {
-   "prompt": "یک switch بنویسید که مقدار متغیر را با case \"5\" (رشته) مقایسه کند، در حالی که متغیر عدد 5 است، و نتیجه را توضیح دهید.",
-   "hint": "switch از مقایسهٔ سختگیرانه (===) استفاده می‌کند، پس عدد با رشتهٔ متنی مطابقت نمی‌کند و به default می‌رود."
-  }
- ],
- "quiz": [
-  {
-   "question": "کلمهٔ کلیدی break در switch چه کاری می‌کند؟",
-   "options": [
-    "برنامه را کامل متوقف می‌کند",
-    "از بلوک switch بیرون می‌زند",
-    "case بعدی را اجرا می‌کند",
-    "مقدار expression را عوض می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "break از بلوک switch بیرون می‌زند و جلوی اجرای caseهای بعدی را می‌گیرد. بدون آن، اجرا روی caseهای بعدی می‌افتد و آن‌ها هم اجرا می‌شوند."
-  },
-  {
-   "question": "اگر هیچ caseی با عبارت مطابقت نداشته باشد و default هم ننوشته باشیم چه می‌شود؟",
-   "options": [
-    "برنامه خطا می‌دهد",
-    "اولین case اجرا می‌شود",
-    "هیچ بلوکی اجرا نمی‌شود و اجرا از بعد از switch ادامه می‌یابد",
-    "switch دوباره از اول بررسی می‌شود"
-   ],
-   "answer": 2,
-   "explanation": "default اختیاری است. اگر مطابقتی پیدا نشود و default هم نباشد، هیچ بلوکی اجرا نمی‌شود و برنامه به دستورهای پس از switch می‌رود."
-  },
-  {
-   "question": "switch برای مقایسهٔ مقدارها از کدام عملگر استفاده می‌کند؟",
-   "options": [
-    "== مقایسهٔ معمولی",
-    "=== مقایسهٔ سختگیرانه",
-    "=",
-    "!="
-   ],
-   "answer": 1,
-   "explanation": "switch از === استفاده می‌کند، پس نوع مقدارها هم باید یکی باشد. به همین دلیل عدد 5 با رشتهٔ \"5\" مطابقت نمی‌کند."
-  },
-  {
-   "question": "اگر default آخرین case در بلوک switch نباشد چه نکته‌ای را باید رعایت کنیم؟",
-   "options": [
-    "باید آن را با break تمام کنیم",
-    "باید آن را اول بنویسیم",
-    "باید دو بار بنویسیم",
-    "هیچ نکته‌ای ندارد"
-   ],
-   "answer": 0,
-   "explanation": "default هم مثل بقیهٔ caseها بدون break به caseهای بعد از خودش می‌افتد؛ پس اگر آخرین case نیست، باید با break بسته شود."
-  },
-  {
-   "question": "برای اینکه caseهای 4 و 5 یک بلوک کد مشترک داشته باشند چه می‌کنیم؟",
-   "options": [
-    "case اول را با break تمام می‌کنیم",
-    "case اول را بدون break می‌نویسیم و بلوک را زیر case دوم می‌گذاریم",
-    "دو بلوک کد یکسان را دو بار می‌نویسیم",
-    "switch را دو بار می‌نویسیم"
-   ],
-   "answer": 1,
-   "explanation": "با ننوشتن break بعد از case اول، اجرا به case دوم می‌افتد و بلوک مشترک یک بار از زیر case دوم اجرا می‌شود؛ این همان تکنیک بلوک کد مشترک است."
-  }
- ]
+  "slug": "js_switch",
+  "course": "js",
+  "order": 19,
+  "url": "/js/js_switch.asp",
+  "title": "دستور switch در JavaScript",
+  "summary": "switch جانشین خواناتر زنجیرهٔ طولانی if...else if...else است؛ یک عبارت را یک بار ارزیابی می‌کند و بلوکی را اجرا می‌کند که با یکی از caseها مطابقت داشته باشد. در این درس نقش break و default، بلوک‌های کد مشترک و نکتهٔ مقایسهٔ سختگیرانه را یاد می‌گیرید.",
+  "objectives": [
+    "نحو switch و case و default را درست بنویسید",
+    "توضیح دهید چرا break در switch حیاتی است",
+    "برای چند case یک بلوک کد مشترک بسازید",
+    "تشخیص دهید چرا switch مقدار عدد و رشته را یکسان نمی‌بیند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "دستور switch در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "جریان کنترل با switch"
+    },
+    {
+      "type": "p",
+      "text": "switch بر اساس یک شرط، یک یا چند بلوک کد را برای اجرا انتخاب می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "switch بلوکی از کد را اجرا می‌کند که با یک عبارت مطابقت داشته باشد."
+    },
+    {
+      "type": "p",
+      "text": "switch غالباً جانشین خواناتر زنجیرهٔ طولانی if...else if...else است، خصوصاً وقتی با چند مقدار ممکن سر و کار داریم."
+    },
+    {
+      "type": "h3",
+      "text": "نحو"
+    },
+    {
+      "type": "p",
+      "text": "switch(expression) {\n  case x:\n    // بلوک کد\n    break;\n  case y:\n    // بلوک کد\n    break;\n  default:\n    // بلوک کد\n}"
+    },
+    {
+      "type": "p",
+      "text": "روش کار آن این است:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "عبارت switch فقط یک بار ارزیابی می‌شود.",
+        "مقدار این عبارت با مقدار هر case مقایسه می‌شود.",
+        "اگر مطابقتی پیدا شود، بلوک کد مربوط به آن اجرا می‌شود.",
+        "اگر هیچ مطابقتی نباشد، هیچ کدی اجرا نمی‌شود."
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "switch (new Date().getDay()) {\n\n  case 0:\n\n    day = \"Sunday\";\n\n    break;\n\n  case 1:\n\n      day = \"Monday\";\n\n     break;\n\n  case 2:\n\n       day = \"Tuesday\";\n\n      break;\n\n  case 3:\n\n    day = \"Wednesday\";\n\n      break;\n\n  case 4:\n\n      day = \"Thursday\";\n\n     break;\n\n  case 5:\n\n      day = \"Friday\";\n\n      break;\n\n  case 6:\n\n    day = \"Saturday\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch"
+    },
+    {
+      "type": "p",
+      "text": "متد getDay() روز هفته را به شکل عددی بین 0 و 6 برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "(یکشنبه=0، دوشنبه=1، سه‌شنبه=2 ..)"
+    },
+    {
+      "type": "h2",
+      "text": "کلمهٔ کلیدی break"
+    },
+    {
+      "type": "p",
+      "text": "وقتی JavaScript به کلمهٔ کلیدی break برسد، از بلوک switch بیرون می‌زند."
+    },
+    {
+      "type": "p",
+      "text": "این کار اجرا را داخل بلوک switch متوقف می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "دیگر هیچ دستوری در بلوک switch اجرا نمی‌شود."
+    },
+    {
+      "type": "p",
+      "text": "نوشتن break برای آخرین case لازم نیست؛ چون switch در هر حال همان‌جا تمام می‌شود."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "کلمهٔ کلیدی break برای جلوگیری از «افتادن روی case بعدی» (fall-through) حیاتی است. بدون break، کد اجرای caseهای بعدی (و بلوک default در صورت وجود) را ادامه می‌دهد، حتی اگر مقدارشان با عبارت مطابقت نداشته باشد."
+    },
+    {
+      "type": "h2",
+      "text": "کلمهٔ کلیدی default"
+    },
+    {
+      "type": "p",
+      "text": "کلمهٔ کلیدی default بلوکی از کد را مشخص می‌کند که اگر هیچ caseی مطابقت نداشت اجرا شود."
+    },
+    {
+      "type": "p",
+      "text": "کلمهٔ کلیدی default اختیاری است."
+    },
+    {
+      "type": "p",
+      "text": "default می‌تواند نقش حالت پشتیبان را بازی کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "switch (new Date().getDay()) {\n\ncase 6:\n\n      text = \"Today is Saturday\";\n\n    break;\n\n  case 0:\n\n      text = \"Today is Sunday\";\n\n      break;\n\ndefault:\n\n      text = \"Looking forward to the Weekend\";\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch2"
+    },
+    {
+      "type": "p",
+      "text": "case مربوط به default لازم نیست آخرین case در بلوک switch باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "switch (new Date().getDay()) {\n\n  default:\n\n        text = \"Looking forward to the Weekend\";\n\n  break;\n  case 6:\n\n        text = \"Today is Saturday\";\n\n        break;\n\n  case 0:\n\n        text = \"Today is Sunday\";\n\n  }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch4"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "اگر default آخرین case در بلوک switch نیست، یادتان باشد case مربوط به default را با break تمام کنید."
+    },
+    {
+      "type": "h2",
+      "text": "بلوک‌های کد مشترک"
+    },
+    {
+      "type": "p",
+      "text": "گاهی می‌خواهید چند case مختلف switch از یک کد مشترک استفاده کنند."
+    },
+    {
+      "type": "p",
+      "text": "در این مثال caseهای 4 و 5 یک بلوک کد مشترک دارند و 0 و 6 بلوک کد مشترک دیگری:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "switch (new Date().getDay()) {\n\n  case 4:\n  case 5:\n\n    text = \"Soon it is Weekend\";\n\n      break;\n\n  case 0:\n\n  case 6:\n\n      text = \"It is Weekend\";\n    break;\n  default:\n\n    text = \"Looking forward to the Weekend\";\n\n  }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch3"
+    },
+    {
+      "type": "h2",
+      "text": "جزئیات کار switch"
+    },
+    {
+      "type": "p",
+      "text": "اگر چند case با مقدار مورد نظر مطابقت داشته باشند، اولین case انتخاب می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "اگر هیچ case مطابقی پیدا نشود، برنامه به برچسب default می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "اگر برچسب default وجود نداشته باشد، برنامه به دستورهای پس از switch ادامه می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ سخت‌گیرانه"
+    },
+    {
+      "type": "p",
+      "text": "switch از مقایسهٔ سخت‌گیرانه (===) استفاده می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "برای مطابقت، مقدارها باید از یک نوع باشند."
+    },
+    {
+      "type": "p",
+      "text": "مقایسهٔ سخت‌گیرانه فقط وقتی true می‌شود که هر دو عملوند از یک نوع باشند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"0\";\nswitch (x) {\n  case 0:\n    text = \"Off\";\n\n      break;\n  case 1:\n    text = \"On\";\n    break;\n\n    default:\n\n  text = \"No value found\";\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_switch5"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل switch.html بسازید و متغیر let day = new Date().getDay(); را تعریف کنید. با switch و caseهای 0 تا 6 نام روز هفته را در کنسول چاپ کنید.",
+      "hint": "getDay() عددی بین 0 و 6 برمی‌گرداند؛ یکشنبه 0 است."
+    },
+    {
+      "prompt": "هر case را با break تمام کنید. بعد break یکی از caseها را حذف کنید و ببینید خروجی کنسول چند پیام می‌شود.",
+      "hint": "بدون break اجرا به caseهای بعدی می‌افتد (fall-through) و همهٔ آن‌ها هم اجرا می‌شوند."
+    },
+    {
+      "prompt": "یک default اضافه کنید که برای روزهای بدون case پیام «روز ناشناخته» چاپ کند و مقدار day را عمداً به 9 تغییر دهید تا default اجرا شود.",
+      "hint": "default وقتی اجرا می‌شود که هیچ caseی مطابقت نداشته باشد."
+    },
+    {
+      "prompt": "دو case را طوری بنویسید که از یک بلوک کد مشترک استفاده کنند؛ مثلاً 4 و 5 هر دو پیام «آخر هفته» بدهند.",
+      "hint": "case اول را بدون break بنویسید و بلوک مشترک را زیر case دوم قرار دهید."
+    },
+    {
+      "prompt": "یک switch بنویسید که مقدار متغیر را با case \"5\" (رشته) مقایسه کند، در حالی که متغیر عدد 5 است، و نتیجه را توضیح دهید.",
+      "hint": "switch از مقایسهٔ سختگیرانه (===) استفاده می‌کند، پس عدد با رشتهٔ متنی مطابقت نمی‌کند و به default می‌رود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کلمهٔ کلیدی break در switch چه کاری می‌کند؟",
+      "options": [
+        "برنامه را کامل متوقف می‌کند",
+        "از بلوک switch بیرون می‌زند",
+        "case بعدی را اجرا می‌کند",
+        "مقدار expression را عوض می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "break از بلوک switch بیرون می‌زند و جلوی اجرای caseهای بعدی را می‌گیرد. بدون آن، اجرا روی caseهای بعدی می‌افتد و آن‌ها هم اجرا می‌شوند."
+    },
+    {
+      "question": "اگر هیچ caseی با عبارت مطابقت نداشته باشد و default هم ننوشته باشیم چه می‌شود؟",
+      "options": [
+        "برنامه خطا می‌دهد",
+        "اولین case اجرا می‌شود",
+        "هیچ بلوکی اجرا نمی‌شود و اجرا از بعد از switch ادامه می‌یابد",
+        "switch دوباره از اول بررسی می‌شود"
+      ],
+      "answer": 2,
+      "explanation": "default اختیاری است. اگر مطابقتی پیدا نشود و default هم نباشد، هیچ بلوکی اجرا نمی‌شود و برنامه به دستورهای پس از switch می‌رود."
+    },
+    {
+      "question": "switch برای مقایسهٔ مقدارها از کدام عملگر استفاده می‌کند؟",
+      "options": ["== مقایسهٔ معمولی", "=== مقایسهٔ سختگیرانه", "=", "!="],
+      "answer": 1,
+      "explanation": "switch از === استفاده می‌کند، پس نوع مقدارها هم باید یکی باشد. به همین دلیل عدد 5 با رشتهٔ \"5\" مطابقت نمی‌کند."
+    },
+    {
+      "question": "اگر default آخرین case در بلوک switch نباشد چه نکته‌ای را باید رعایت کنیم؟",
+      "options": [
+        "باید آن را با break تمام کنیم",
+        "باید آن را اول بنویسیم",
+        "باید دو بار بنویسیم",
+        "هیچ نکته‌ای ندارد"
+      ],
+      "answer": 0,
+      "explanation": "default هم مثل بقیهٔ caseها بدون break به caseهای بعد از خودش می‌افتد؛ پس اگر آخرین case نیست، باید با break بسته شود."
+    },
+    {
+      "question": "برای اینکه caseهای 4 و 5 یک بلوک کد مشترک داشته باشند چه می‌کنیم؟",
+      "options": [
+        "case اول را با break تمام می‌کنیم",
+        "case اول را بدون break می‌نویسیم و بلوک را زیر case دوم می‌گذاریم",
+        "دو بلوک کد یکسان را دو بار می‌نویسیم",
+        "switch را دو بار می‌نویسیم"
+      ],
+      "answer": 1,
+      "explanation": "با ننوشتن break بعد از case اول، اجرا به case دوم می‌افتد و بلوک مشترک یک بار از زیر case دوم اجرا می‌شود؛ این همان تکنیک بلوک کد مشترک است."
+    }
+  ]
 }

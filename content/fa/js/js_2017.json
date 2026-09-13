@@ -1,369 +1,312 @@
 {
- "slug": "js_2017",
- "course": "js",
- "order": 133,
- "url": "/js/js_2017.asp",
- "title": "ECMAScript 2017",
- "summary": "در این درس ویژگی‌های ES 2017 را می‌بینید: پر کردن رشته با padStart() و padEnd()، متدهای Object.entries() و Object.values()، تابع‌های async و await، کامای انتهایی و Object.getOwnPropertyDescriptors(). در پایان می‌توانید شیءها را ساده‌تر در حلقه بگردانید و کد ناهمگام خواناتری بنویسید.",
- "objectives": [
-  "رشته را با padStart() و padEnd() پر کنید",
-  "با Object.entries() و Object.values() روی شیءها پیمایش کنید",
-  "شیء را با Object.getOwnPropertyDescriptors() کلون کنید",
-  "بگویید کامای انتهایی کجا مجاز است و کجا نه"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "ECMAScript 2017"
-  },
-  {
-   "type": "h2",
-   "text": "ویژگی‌های جدید در JavaScript 2017"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "توضیح",
-     ""
-    ],
-    [
-     "متد padStart() رشته",
-     "ابتدای یک رشته را پر می‌کند",
-     ""
-    ],
-    [
-     "متد padEnd() رشته",
-     "انتهای یک رشته را پر می‌کند",
-     ""
-    ],
-    [
-     "متد entries() شیء",
-     "آرایه‌ای از جفت‌های کلید/مقدار یک شیء برمی‌گرداند",
-     ""
-    ],
-    [
-     "متد values() شیء",
-     "آرایه‌ای از مقدارهای یک شیء برمی‌گرداند",
-     ""
-    ],
-    [
-     "async و await",
-     "کار با پرامیس‌ها را ساده‌تر می‌کند",
-     ""
-    ],
-    [
-     "کامای انتهایی",
-     "هر جایی که فهرست مقدارها با کاما جدا می‌شود، کامای انتهایی را مجاز می‌کند",
-     ""
-    ],
-    [
-     "getOwnPropertyDescriptors",
-     "شیئی برمی‌گرداند که همهٔ توصیف‌گرهای خصوصیت‌های خودِ یک شیء را در خود دارد",
-     ""
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پشتیبانی مرورگرها"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript 2017 از سپتامبر ۲۰۱۷ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "Chrome58",
-     "Edge15",
-     "Firefox52",
-     "Safari11",
-     "Opera45"
-    ],
-    [
-     "آوریل ۲۰۱۷",
-     "آوریل ۲۰۱۷",
-     "مارس ۲۰۱۷",
-     "سپتامبر ۲۰۱۷",
-     "می ۲۰۱۷"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "پر کردن رشته در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2017 دو متد رشته‌ای به JavaScript اضافه کرد: padStart() و padEnd() برای پر کردن ابتدا و انتهای یک رشته."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"5\";\n\ntext = text.padStart(4,0);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"5\";\n\ntext = text.padEnd(4,0);",
-   "caption": "مثال‌ها"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding1"
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.entries() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "ECMAScript 2017 متد Object.entries() را به شیءها اضافه کرد."
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() آرایه‌ای از جفت‌های کلید/مقدار یک شیء برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.entries(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries"
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() استفاده از شیءها در حلقه‌ها را ساده می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nlet text = \"\";\n\nfor (let [fruit, value] of Object.entries(fruits)) {\n\n  text += fruit + \": \" + value + \"<br>\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_loop"
-  },
-  {
-   "type": "p",
-   "text": "Object.entries() تبدیل شیءها به Map را هم ساده می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nconst myMap = new Map(Object.entries(fruits));",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_map"
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.values() در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Object.values() شبیه Object.entries() است، اما آرایه‌ای یک‌بعدی از مقدارهای شیء برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.values(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_values"
-  },
-  {
-   "type": "h2",
-   "text": "تابع‌های async در JavaScript"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "async function myDisplay() {\n\n  let myPromise = new Promise(function(myResolve,  myReject) {\n\n    setTimeout(function() { myResolve(\"I love You !!\"); }, 3000);\n\n  });\n\n  document.getElementById(\"demo\").innerHTML = await myPromise;\n}\n\n myDisplay();",
-   "caption": "انتظار برای تایم‌اوت"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async4"
-  },
-  {
-   "type": "h2",
-   "text": "کامای انتهایی در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript هر جایی که فهرست مقدارها با کاما جدا می‌شود، کامای انتهایی را مجاز می‌داند."
-  },
-  {
-   "type": "p",
-   "text": "در آرایه‌ها و شیءهای نوشتاری، فراخوانی تابع، پارامترها، importها و exportها."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myFunc(x,,,) {};\n\nconst myArr = [1,2,3,4,,,];\n\nconst myObj = {fname: John, age:50,,,};",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "متد Object.getOwnPropertyDescriptor()"
-  },
-  {
-   "type": "p",
-   "text": "Object.getOwnPropertyDescriptors() همهٔ توصیف‌گرهای خصوصیت‌های خودِ شیء داده‌شده را برمی‌گرداند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myProp = Object.getOwnPropertyNames(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const myProp = Object.getOwnPropertyDescriptors(person);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes2"
-  },
-  {
-   "type": "p",
-   "text": "توصیف‌گر خصوصیت شیئی است که همهٔ ویژگی‌های یک خصوصیت را توصیف می‌کند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "value: مقدار خصوصیت",
-    "writable: اگر مقدار خصوصیت قابل تغییر باشد، true",
-    "enumerable: اگر خصوصیت در حلقه‌ها دیده شود (for...in، Object.keys())، true",
-    "configurable: اگر توصیف‌گر خصوصیت قابل تغییر یا حذف باشد، true",
-    "get: تابعی برای خواندن مقدار خصوصیت (برای خصوصیت‌های accessor)",
-    "set: تابعی برای نوشتن مقدار خصوصیت (برای خصوصیت‌های accessor)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "کلون کردن شیء"
-  },
-  {
-   "type": "p",
-   "text": "از Object.getOwnPropertyDescriptors() زیاد برای کلون کردن شیءها استفاده می‌شود، به‌گونه‌ای که getterها، setterها و ویژگی‌های خصوصیت‌ها حفظ شوند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(person));",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes3"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "فایلی به نام pad.html بسازید و رشتهٔ \"5\" را با padStart(4, 0) پر کنید و نتیجه را در کنسول ببینید.",
-   "hint": "padStart رشته را تا طول داده‌شده با کاراکتر دوم پر می‌کند؛ نتیجه 0005 می‌شود."
-  },
-  {
-   "prompt": "همان کار را با padEnd(4, 0) انجام دهید و تفاوت خروجی دو متد را یادداشت کنید.",
-   "hint": "padStart از ابتدا و padEnd از انتها پر می‌کند؛ خروجی این‌بار 5000 است."
-  },
-  {
-   "prompt": "شیئی با چند خصوصیت بسازید و با Object.entries جفت‌های کلید/مقدار را در یک حلقهٔ for...of چاپ کنید.",
-   "hint": "هر عضو خروجی یک آرایهٔ دوعنصری [کلید, مقدار] است، پس می‌نویسید for (let [key, value] of ...)."
-  },
-  {
-   "prompt": "همان شیء را با Object.values ساده کنید و فقط مقدارها را در کنسول ببینید.",
-   "hint": "Object.values آرایه‌ای یک‌بعدی از مقدارها می‌دهد، بدون کلیدها."
-  },
-  {
-   "prompt": "آرایه و شیئی با کامای انتهایی بنویسید و ببینید کد بدون خطا اجرا می‌شود.",
-   "hint": "دقت کنید همین کامای انتهایی در فایل JSON مجاز نیست و JSON.parse خطا می‌دهد."
-  }
- ],
- "quiz": [
-  {
-   "question": "خروجی \"5\".padStart(4, 0) چیست؟",
-   "options": [
-    "\"5000\"",
-    "\"0005\"",
-    "\"5\"",
-    "\"00005\""
-   ],
-   "answer": 1,
-   "explanation": "padStart رشته را از ابتدا تا طول ۴ با کاراکتر 0 پر می‌کند، پس نتیجه 0005 است. 5000 خروجی padEnd همان ورودی است."
-  },
-  {
-   "question": "Object.entries() چه چیزی برمی‌گرداند؟",
-   "options": [
-    "آرایه‌ای از جفت‌های کلید/مقدار",
-    "آرایه‌ای از مقدارها",
-    "آرایه‌ای از کلیدها",
-    "یک رشتهٔ JSON"
-   ],
-   "answer": 0,
-   "explanation": "entries جفت‌های کلید/مقدار را به‌صورت آرایه می‌دهد؛ فقط مقدارها کار Object.values و فقط کلیدها کار Object.keys است."
-  },
-  {
-   "question": "کدام ویژگی ES 2017 کار با پرامیس‌ها را ساده‌تر کرد؟",
-   "options": [
-    "Object.entries",
-    "async و await",
-    "padStart",
-    "کامای انتهایی"
-   ],
-   "answer": 1,
-   "explanation": "async و await در ES 2017 آمدند و خواندن و نوشتن کد پرامیس‌محور را ساده‌تر کردند. بقیهٔ گزینه‌ها به پرامیس مربوط نیستند."
-  },
-  {
-   "question": "کدام گزینه جزء مواردی است که در آن کامای انتهایی مجاز است؟",
-   "options": [
-    "فایل JSON",
-    "درخواست فچ",
-    "آرایه‌ها و شیءهای نوشتاری",
-    "نام متغیرها"
-   ],
-   "answer": 2,
-   "explanation": "کامای انتهایی در آرایه و شیء نوشتاری، فراخوانی تابع، پارامترها و import و export مجاز است، اما JSON کامای انتهایی را نمی‌پذیرد."
-  },
-  {
-   "question": "توصیف‌گر خصوصیت writable: true یعنی چه؟",
-   "options": [
-    "خصوصیت در حلقه‌ها دیده می‌شود",
-    "مقدار خصوصیت قابل تغییر است",
-    "توصیف‌گر قابل حذف است",
-    "خصوصیت فقط خواندنی است"
-   ],
-   "answer": 1,
-   "explanation": "writable تعیین می‌کند مقدار خصوصیت قابل تغییر است یا نه. دیده‌شدن در حلقه‌ها کار enumerable و تغییر یا حذف توصیف‌گر کار configurable است."
-  }
- ]
+  "slug": "js_2017",
+  "course": "js",
+  "order": 133,
+  "url": "/js/js_2017.asp",
+  "title": "ECMAScript 2017",
+  "summary": "در این درس ویژگی‌های ES 2017 را می‌بینید: پر کردن رشته با padStart() و padEnd()، متدهای Object.entries() و Object.values()، تابع‌های async و await، کامای انتهایی و Object.getOwnPropertyDescriptors(). در پایان می‌توانید شیءها را ساده‌تر در حلقه بگردانید و کد ناهمگام خواناتری بنویسید.",
+  "objectives": [
+    "رشته را با padStart() و padEnd() پر کنید",
+    "با Object.entries() و Object.values() روی شیءها پیمایش کنید",
+    "شیء را با Object.getOwnPropertyDescriptors() کلون کنید",
+    "بگویید کامای انتهایی کجا مجاز است و کجا نه"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ECMAScript 2017"
+    },
+    {
+      "type": "h2",
+      "text": "ویژگی‌های جدید در JavaScript 2017"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "توضیح", ""],
+        ["متد padStart() رشته", "ابتدای یک رشته را پر می‌کند", ""],
+        ["متد padEnd() رشته", "انتهای یک رشته را پر می‌کند", ""],
+        ["متد entries() شیء", "آرایه‌ای از جفت‌های کلید/مقدار یک شیء برمی‌گرداند", ""],
+        ["متد values() شیء", "آرایه‌ای از مقدارهای یک شیء برمی‌گرداند", ""],
+        ["async و await", "کار با پرامیس‌ها را ساده‌تر می‌کند", ""],
+        [
+          "کامای انتهایی",
+          "هر جایی که فهرست مقدارها با کاما جدا می‌شود، کامای انتهایی را مجاز می‌کند",
+          ""
+        ],
+        [
+          "getOwnPropertyDescriptors",
+          "شیئی برمی‌گرداند که همهٔ توصیف‌گرهای خصوصیت‌های خودِ یک شیء را در خود دارد",
+          ""
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پشتیبانی مرورگرها"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript 2017 از سپتامبر ۲۰۱۷ در همهٔ مرورگرهای مدرن پشتیبانی می‌شود:"
+    },
+    {
+      "type": "table",
+      "headers": ["", "", "", "", ""],
+      "rows": [
+        ["Chrome58", "Edge15", "Firefox52", "Safari11", "Opera45"],
+        ["آوریل ۲۰۱۷", "آوریل ۲۰۱۷", "مارس ۲۰۱۷", "سپتامبر ۲۰۱۷", "می ۲۰۱۷"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "پر کردن رشته در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2017 دو متد رشته‌ای به JavaScript اضافه کرد: padStart() و padEnd() برای پر کردن ابتدا و انتهای یک رشته."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"5\";\n\ntext = text.padStart(4,0);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"5\";\n\ntext = text.padEnd(4,0);",
+      "caption": "مثال‌ها"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_string_padding1"
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.entries() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "ECMAScript 2017 متد Object.entries() را به شیءها اضافه کرد."
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() آرایه‌ای از جفت‌های کلید/مقدار یک شیء برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.entries(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries"
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() استفاده از شیءها در حلقه‌ها را ساده می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nlet text = \"\";\n\nfor (let [fruit, value] of Object.entries(fruits)) {\n\n  text += fruit + \": \" + value + \"<br>\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_loop"
+    },
+    {
+      "type": "p",
+      "text": "Object.entries() تبدیل شیءها به Map را هم ساده می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const fruits = {Bananas:300, Oranges:200, Apples:500};\n\nconst myMap = new Map(Object.entries(fruits));",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_entries_map"
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.values() در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Object.values() شبیه Object.entries() است، اما آرایه‌ای یک‌بعدی از مقدارهای شیء برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const person = {\n\n  firstName : \"John\",\n\n  lastName : \"Doe\",\n\n  age : 50,\n\n  eyeColor : \"blue\"\n\n};\n\nlet text = Object.values(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_object_values"
+    },
+    {
+      "type": "h2",
+      "text": "تابع‌های async در JavaScript"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "async function myDisplay() {\n\n  let myPromise = new Promise(function(myResolve,  myReject) {\n\n    setTimeout(function() { myResolve(\"I love You !!\"); }, 3000);\n\n  });\n\n  document.getElementById(\"demo\").innerHTML = await myPromise;\n}\n\n myDisplay();",
+      "caption": "انتظار برای تایم‌اوت"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_async4"
+    },
+    {
+      "type": "h2",
+      "text": "کامای انتهایی در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript هر جایی که فهرست مقدارها با کاما جدا می‌شود، کامای انتهایی را مجاز می‌داند."
+    },
+    {
+      "type": "p",
+      "text": "در آرایه‌ها و شیءهای نوشتاری، فراخوانی تابع، پارامترها، importها و exportها."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myFunc(x,,,) {};\n\nconst myArr = [1,2,3,4,,,];\n\nconst myObj = {fname: John, age:50,,,};",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "متد Object.getOwnPropertyDescriptor()"
+    },
+    {
+      "type": "p",
+      "text": "Object.getOwnPropertyDescriptors() همهٔ توصیف‌گرهای خصوصیت‌های خودِ شیء داده‌شده را برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myProp = Object.getOwnPropertyNames(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const myProp = Object.getOwnPropertyDescriptors(person);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes2"
+    },
+    {
+      "type": "p",
+      "text": "توصیف‌گر خصوصیت شیئی است که همهٔ ویژگی‌های یک خصوصیت را توصیف می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "value: مقدار خصوصیت",
+        "writable: اگر مقدار خصوصیت قابل تغییر باشد، true",
+        "enumerable: اگر خصوصیت در حلقه‌ها دیده شود (for...in، Object.keys())، true",
+        "configurable: اگر توصیف‌گر خصوصیت قابل تغییر یا حذف باشد، true",
+        "get: تابعی برای خواندن مقدار خصوصیت (برای خصوصیت‌های accessor)",
+        "set: تابعی برای نوشتن مقدار خصوصیت (برای خصوصیت‌های accessor)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "کلون کردن شیء"
+    },
+    {
+      "type": "p",
+      "text": "از Object.getOwnPropertyDescriptors() زیاد برای کلون کردن شیءها استفاده می‌شود، به‌گونه‌ای که getterها، setterها و ویژگی‌های خصوصیت‌ها حفظ شوند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(person));",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_getownpropdes3"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "فایلی به نام pad.html بسازید و رشتهٔ \"5\" را با padStart(4, 0) پر کنید و نتیجه را در کنسول ببینید.",
+      "hint": "padStart رشته را تا طول داده‌شده با کاراکتر دوم پر می‌کند؛ نتیجه 0005 می‌شود."
+    },
+    {
+      "prompt": "همان کار را با padEnd(4, 0) انجام دهید و تفاوت خروجی دو متد را یادداشت کنید.",
+      "hint": "padStart از ابتدا و padEnd از انتها پر می‌کند؛ خروجی این‌بار 5000 است."
+    },
+    {
+      "prompt": "شیئی با چند خصوصیت بسازید و با Object.entries جفت‌های کلید/مقدار را در یک حلقهٔ for...of چاپ کنید.",
+      "hint": "هر عضو خروجی یک آرایهٔ دوعنصری [کلید, مقدار] است، پس می‌نویسید for (let [key, value] of ...)."
+    },
+    {
+      "prompt": "همان شیء را با Object.values ساده کنید و فقط مقدارها را در کنسول ببینید.",
+      "hint": "Object.values آرایه‌ای یک‌بعدی از مقدارها می‌دهد، بدون کلیدها."
+    },
+    {
+      "prompt": "آرایه و شیئی با کامای انتهایی بنویسید و ببینید کد بدون خطا اجرا می‌شود.",
+      "hint": "دقت کنید همین کامای انتهایی در فایل JSON مجاز نیست و JSON.parse خطا می‌دهد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "خروجی \"5\".padStart(4, 0) چیست؟",
+      "options": ["\"5000\"", "\"0005\"", "\"5\"", "\"00005\""],
+      "answer": 1,
+      "explanation": "padStart رشته را از ابتدا تا طول ۴ با کاراکتر 0 پر می‌کند، پس نتیجه 0005 است. 5000 خروجی padEnd همان ورودی است."
+    },
+    {
+      "question": "Object.entries() چه چیزی برمی‌گرداند؟",
+      "options": [
+        "آرایه‌ای از جفت‌های کلید/مقدار",
+        "آرایه‌ای از مقدارها",
+        "آرایه‌ای از کلیدها",
+        "یک رشتهٔ JSON"
+      ],
+      "answer": 0,
+      "explanation": "entries جفت‌های کلید/مقدار را به‌صورت آرایه می‌دهد؛ فقط مقدارها کار Object.values و فقط کلیدها کار Object.keys است."
+    },
+    {
+      "question": "کدام ویژگی ES 2017 کار با پرامیس‌ها را ساده‌تر کرد؟",
+      "options": ["Object.entries", "async و await", "padStart", "کامای انتهایی"],
+      "answer": 1,
+      "explanation": "async و await در ES 2017 آمدند و خواندن و نوشتن کد پرامیس‌محور را ساده‌تر کردند. بقیهٔ گزینه‌ها به پرامیس مربوط نیستند."
+    },
+    {
+      "question": "کدام گزینه جزء مواردی است که در آن کامای انتهایی مجاز است؟",
+      "options": ["فایل JSON", "درخواست فچ", "آرایه‌ها و شیءهای نوشتاری", "نام متغیرها"],
+      "answer": 2,
+      "explanation": "کامای انتهایی در آرایه و شیء نوشتاری، فراخوانی تابع، پارامترها و import و export مجاز است، اما JSON کامای انتهایی را نمی‌پذیرد."
+    },
+    {
+      "question": "توصیف‌گر خصوصیت writable: true یعنی چه؟",
+      "options": [
+        "خصوصیت در حلقه‌ها دیده می‌شود",
+        "مقدار خصوصیت قابل تغییر است",
+        "توصیف‌گر قابل حذف است",
+        "خصوصیت فقط خواندنی است"
+      ],
+      "answer": 1,
+      "explanation": "writable تعیین می‌کند مقدار خصوصیت قابل تغییر است یا نه. دیده‌شدن در حلقه‌ها کار enumerable و تغییر یا حذف توصیف‌گر کار configurable است."
+    }
+  ]
 }

@@ -1,240 +1,240 @@
 {
- "slug": "js_callback",
- "course": "js",
- "order": 203,
- "url": "/js/js_callback.asp",
- "title": "JavaScript Callbacks",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript Callbacks"
-  },
-  {
-   "type": "h2",
-   "text": "\"I will call back later!\""
-  },
-  {
-   "type": "p",
-   "text": "A JavaScript callback is a function passed as an argument to another function,\nwhich is then executed (or \"called back\") at a later point in time to complete a specific task."
-  },
-  {
-   "type": "p",
-   "text": "This mechanism is fundamental to JavaScript's event-driven and asynchronous programming model."
-  },
-  {
-   "type": "h2",
-   "text": "What is a Callback Function?"
-  },
-  {
-   "type": "p",
-   "text": "A callback function is a function passed as an argument into another function."
-  },
-  {
-   "type": "p",
-   "text": "A callback function is intended to be executed later."
-  },
-  {
-   "type": "p",
-   "text": "Later is typically when a specific event occurs or an asynchronous operation completes."
-  },
-  {
-   "type": "p",
-   "text": "The name \"callback\" stems from the idea that the outer function will \"call you back\"\nlater when it has finished its task"
-  },
-  {
-   "type": "h2",
-   "text": "Types of Callbacks"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Asynchronous Callbacks\nAsynchronous callbacks are executed at a later time, allowing the main program to continue running without waiting.\nThis is essential for preventing the application from freezing during long-running tasks like network requests.",
-    "Synchronous Callbacks\nSynchronous Callbacks are executed immediately within the outer function, blocking further operations\nuntil completion.\nArray methods like map(), filter(), and forEach() use synchronous callbacks."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Event Handling"
-  },
-  {
-   "type": "p",
-   "text": "Callbacks are often used in JavaScript, especially in event handling."
-  },
-  {
-   "type": "p",
-   "text": "User interactions, such as button clicks or key presses, can be handled by providing a callback function\nto an event listener:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "document.getElementById(\"myButton\").addEventListener(\"click\", displayDate);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_handler"
-  },
-  {
-   "type": "p",
-   "text": "In the example above, displayDate is a callback function passed\nas an argument to the addEventListener() method."
-  },
-  {
-   "type": "p",
-   "text": "displayDate will be called when a user clicks the button with id=\"myButton\"."
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "When you pass a function as an argument, remember not to use parenthesis.\nRight: displayDate\nWrong: displayDate()"
-  },
-  {
-   "type": "h2",
-   "text": "Asynchronous Operations"
-  },
-  {
-   "type": "p",
-   "text": "Windows functions like setTimeout() use callbacks to execute code after a specified delay."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "setTimeout(myFunction, 3000);\n\nfunction myFunction() {\n\n  document.getElementById(\"demo\").innerHTML = \"I love You !!\";\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback5"
-  },
-  {
-   "type": "p",
-   "text": "In the example above, myFunction is a callback function passed\nas an argument to setTimeout()."
-  },
-  {
-   "type": "p",
-   "text": "3000 is the number of milliseconds before\nmyFunction will be called."
-  },
-  {
-   "type": "h2",
-   "text": "Array Methods"
-  },
-  {
-   "type": "p",
-   "text": "Many built-in array methods like map(), filter(), and forEach() accept callback functions to define\nthe action performed on each element."
-  },
-  {
-   "type": "p",
-   "text": "The forEach() method calls a function (a callback function) once for each array element."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet txt = \"\";\n\nnumbers.forEach(myFunction);\n\nfunction myFunction(value) {\n\ntxt += value + \"<br>\";\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach_2"
-  },
-  {
-   "type": "p",
-   "text": "The map() method creates a new array by performing a function on each array element."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value) {\n\n    return value * 2;\n\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map_2"
-  },
-  {
-   "type": "h2",
-   "text": "Sequence Control"
-  },
-  {
-   "type": "p",
-   "text": "Sometimes you would like to have better control over when to execute a function."
-  },
-  {
-   "type": "p",
-   "text": "Suppose you want to do a calculation, and then display the result."
-  },
-  {
-   "type": "p",
-   "text": "You could first call the calculator function myCalculator,\nand then call the display function myDisplayer:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n\n  document.getElementById(\"demo\").innerHTML = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  return sum;\n\n}\n\n// Call the calculator\n\nlet result = myCalculator(5, 5);\n\n// Call the displayer\n\nmyDisplayer(result);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback3"
-  },
-  {
-   "type": "p",
-   "text": "Or, you could call the calculator function myCalculator,\nand let the calculator function call the display function myDisplayer:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  myDisplayer(sum);\n}\n\n// Call the calculator\n\nmyCalculator(5, 5);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback8"
-  },
-  {
-   "type": "p",
-   "text": "The problem with the first example above, is that you have to call two functions to display the result."
-  },
-  {
-   "type": "p",
-   "text": "The problem with the second example, is that you cannot prevent the calculator function from\ndisplaying the result."
-  },
-  {
-   "type": "p",
-   "text": "Now it is time to bring in a callback."
-  },
-  {
-   "type": "p",
-   "text": "Using a callback, you could call the calculator function (myCalculator)\nwith a callback (myCallback), and let the calculator function run the callback after the calculation is finished:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\nfunction myCalculator(num1, num2, myCallback) {\n\n  let sum = num1 + num2;\n\n  myCallback(sum);\n}\n\nmyCalculator(5, 5, myDisplayer);",
-   "caption": "Example (Callbacks)"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback4"
-  },
-  {
-   "type": "p",
-   "text": "In the example above, myDisplayer is used as a callback function."
-  },
-  {
-   "type": "p",
-   "text": "It is passed to myCalculator() as an argument."
-  },
-  {
-   "type": "h2",
-   "text": "Callback Key Concepts"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Function as an Argument\nBecause functions in JavaScript can be treated like any other\nvariable or object, you can pass them as arguments to other functions.",
-    "Deferred Execution\nThe key benefit of a callback is that it allows for deferred execution,\nmeaning the callback function does not run immediately.\nInstead, it runs later, after a specific condition is met, an event occurs, or an asynchronous operation completes.\nThis mechanism ensures that the program can continue to execute other code while waiting for\nlong-running tasks (like fetching data from a server, reading a file, or waiting for a user click) to complete."
-   ]
-  }
- ]
+  "slug": "js_callback",
+  "course": "js",
+  "order": 203,
+  "url": "/js/js_callback.asp",
+  "title": "JavaScript Callbacks",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript Callbacks"
+    },
+    {
+      "type": "h2",
+      "text": "\"I will call back later!\""
+    },
+    {
+      "type": "p",
+      "text": "A JavaScript callback is a function passed as an argument to another function,\nwhich is then executed (or \"called back\") at a later point in time to complete a specific task."
+    },
+    {
+      "type": "p",
+      "text": "This mechanism is fundamental to JavaScript's event-driven and asynchronous programming model."
+    },
+    {
+      "type": "h2",
+      "text": "What is a Callback Function?"
+    },
+    {
+      "type": "p",
+      "text": "A callback function is a function passed as an argument into another function."
+    },
+    {
+      "type": "p",
+      "text": "A callback function is intended to be executed later."
+    },
+    {
+      "type": "p",
+      "text": "Later is typically when a specific event occurs or an asynchronous operation completes."
+    },
+    {
+      "type": "p",
+      "text": "The name \"callback\" stems from the idea that the outer function will \"call you back\"\nlater when it has finished its task"
+    },
+    {
+      "type": "h2",
+      "text": "Types of Callbacks"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Asynchronous Callbacks\nAsynchronous callbacks are executed at a later time, allowing the main program to continue running without waiting.\nThis is essential for preventing the application from freezing during long-running tasks like network requests.",
+        "Synchronous Callbacks\nSynchronous Callbacks are executed immediately within the outer function, blocking further operations\nuntil completion.\nArray methods like map(), filter(), and forEach() use synchronous callbacks."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Event Handling"
+    },
+    {
+      "type": "p",
+      "text": "Callbacks are often used in JavaScript, especially in event handling."
+    },
+    {
+      "type": "p",
+      "text": "User interactions, such as button clicks or key presses, can be handled by providing a callback function\nto an event listener:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "document.getElementById(\"myButton\").addEventListener(\"click\", displayDate);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_event_handler"
+    },
+    {
+      "type": "p",
+      "text": "In the example above, displayDate is a callback function passed\nas an argument to the addEventListener() method."
+    },
+    {
+      "type": "p",
+      "text": "displayDate will be called when a user clicks the button with id=\"myButton\"."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "When you pass a function as an argument, remember not to use parenthesis.\nRight: displayDate\nWrong: displayDate()"
+    },
+    {
+      "type": "h2",
+      "text": "Asynchronous Operations"
+    },
+    {
+      "type": "p",
+      "text": "Windows functions like setTimeout() use callbacks to execute code after a specified delay."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "setTimeout(myFunction, 3000);\n\nfunction myFunction() {\n\n  document.getElementById(\"demo\").innerHTML = \"I love You !!\";\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback5"
+    },
+    {
+      "type": "p",
+      "text": "In the example above, myFunction is a callback function passed\nas an argument to setTimeout()."
+    },
+    {
+      "type": "p",
+      "text": "3000 is the number of milliseconds before\nmyFunction will be called."
+    },
+    {
+      "type": "h2",
+      "text": "Array Methods"
+    },
+    {
+      "type": "p",
+      "text": "Many built-in array methods like map(), filter(), and forEach() accept callback functions to define\nthe action performed on each element."
+    },
+    {
+      "type": "p",
+      "text": "The forEach() method calls a function (a callback function) once for each array element."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const numbers = [45, 4, 9, 16, 25];\n\nlet txt = \"\";\n\nnumbers.forEach(myFunction);\n\nfunction myFunction(value) {\n\ntxt += value + \"<br>\";\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_foreach_2"
+    },
+    {
+      "type": "p",
+      "text": "The map() method creates a new array by performing a function on each array element."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const numbers1 = [45, 4, 9, 16, 25];\n\nconst numbers2 = numbers1.map(myFunction);\n\nfunction myFunction(value) {\n\n    return value * 2;\n\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_array_map_2"
+    },
+    {
+      "type": "h2",
+      "text": "Sequence Control"
+    },
+    {
+      "type": "p",
+      "text": "Sometimes you would like to have better control over when to execute a function."
+    },
+    {
+      "type": "p",
+      "text": "Suppose you want to do a calculation, and then display the result."
+    },
+    {
+      "type": "p",
+      "text": "You could first call the calculator function myCalculator,\nand then call the display function myDisplayer:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n\n  document.getElementById(\"demo\").innerHTML = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  return sum;\n\n}\n\n// Call the calculator\n\nlet result = myCalculator(5, 5);\n\n// Call the displayer\n\nmyDisplayer(result);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback3"
+    },
+    {
+      "type": "p",
+      "text": "Or, you could call the calculator function myCalculator,\nand let the calculator function call the display function myDisplayer:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Funtion to display something\n\nfunction myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\n// Function to calculate a sum\n\nfunction myCalculator(num1, num2) {\n\n  let sum = num1 + num2;\n\n  myDisplayer(sum);\n}\n\n// Call the calculator\n\nmyCalculator(5, 5);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback8"
+    },
+    {
+      "type": "p",
+      "text": "The problem with the first example above, is that you have to call two functions to display the result."
+    },
+    {
+      "type": "p",
+      "text": "The problem with the second example, is that you cannot prevent the calculator function from\ndisplaying the result."
+    },
+    {
+      "type": "p",
+      "text": "Now it is time to bring in a callback."
+    },
+    {
+      "type": "p",
+      "text": "Using a callback, you could call the calculator function (myCalculator)\nwith a callback (myCallback), and let the calculator function run the callback after the calculation is finished:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myDisplayer(some) {\n  document.getElementById(\"demo\").innerHTML\n  = some;\n}\n\nfunction myCalculator(num1, num2, myCallback) {\n\n  let sum = num1 + num2;\n\n  myCallback(sum);\n}\n\nmyCalculator(5, 5, myDisplayer);",
+      "caption": "Example (Callbacks)"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_callback4"
+    },
+    {
+      "type": "p",
+      "text": "In the example above, myDisplayer is used as a callback function."
+    },
+    {
+      "type": "p",
+      "text": "It is passed to myCalculator() as an argument."
+    },
+    {
+      "type": "h2",
+      "text": "Callback Key Concepts"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Function as an Argument\nBecause functions in JavaScript can be treated like any other\nvariable or object, you can pass them as arguments to other functions.",
+        "Deferred Execution\nThe key benefit of a callback is that it allows for deferred execution,\nmeaning the callback function does not run immediately.\nInstead, it runs later, after a specific condition is met, an event occurs, or an asynchronous operation completes.\nThis mechanism ensures that the program can continue to execute other code while waiting for\nlong-running tasks (like fetching data from a server, reading a file, or waiting for a user click) to complete."
+      ]
+    }
+  ]
 }

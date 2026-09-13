@@ -1,376 +1,274 @@
 {
- "slug": "js_temporal_plainyearmonth",
- "course": "js",
- "order": 188,
- "url": "/js/js_temporal_plainyearmonth.asp",
- "title": "JavaScript PlainYearMonth",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript PlainYearMonth"
-  },
-  {
-   "type": "h2",
-   "text": "The Temporal.PlainYearMonth Object"
-  },
-  {
-   "type": "p",
-   "text": "The Temporal.PlainYearMonth object is a year and month object."
-  },
-  {
-   "type": "p",
-   "text": "It represents the year and month of an ISO 8601 calendar without day or time."
-  },
-  {
-   "type": "p",
-   "text": "Example: 2026-05."
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/js/img_temporal.svg",
-   "alt": "Temporal Map"
-  },
-  {
-   "type": "h2",
-   "text": "How to Create a PlainYearMonth Object"
-  },
-  {
-   "type": "p",
-   "text": "An PlainYearMonth object can be created in different ways:"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "From",
-     "Code"
-    ],
-    [
-     "Parameters",
-     "new Temporal.PlainYearMonth(param)"
-    ],
-    [
-     "Object",
-     "Temporal.PlainYearMonth.from(object)"
-    ],
-    [
-     "ISO / RFC 9557",
-     "Temporal.PlainYearMonth.from(RFC 9557)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Create a PlainYearMonth with new"
-  },
-  {
-   "type": "p",
-   "text": "The new PlainYearMonth() constructor creates a new PlainYearMonth object\nwith integers as input parameters."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainYearMonth object\n\nconst date = new Temporal.PlainYearMonth(2026, 5);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth"
-  },
-  {
-   "type": "h2",
-   "text": "PlainYearMonth from(object)"
-  },
-  {
-   "type": "p",
-   "text": "The from() method creates a new PlainYearMonth object with an\nobject as input parameter."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainYearMonth object\n\nconst date = new Temporal.PlainYearMonth({year:2026, month:5});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_from"
-  },
-  {
-   "type": "h2",
-   "text": "PlainYearMonth from(RFC 9557)"
-  },
-  {
-   "type": "p",
-   "text": "The from() method creates a new PlainYearMonth object with an\nISO / RFC 9557 string as input parameter."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2025-05\");",
-   "caption": "Examples"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2025-05-17\");",
-   "caption": "Examples"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_from_iso"
-  },
-  {
-   "type": "p",
-   "text": "Note that the day input is ignored in the last example."
-  },
-  {
-   "type": "h2",
-   "text": "Temporal.PlainYearMonth Properties"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const date = new Temporal.PlainYearMonth(2026, 5);",
-   "caption": "Display All PlainYearMonth Properties"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_prop"
-  },
-  {
-   "type": "h2",
-   "text": "Convert to PlainTime"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const yearMonth = new Temporal.PlainYearMonth(2026, 5);\n\nconst date = yearMonth.toPlainDate({ day: 17 });",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_to_plaindate"
-  },
-  {
-   "type": "h2",
-   "text": "PlainYearMonth add() and subtract()"
-  },
-  {
-   "type": "p",
-   "text": "The add() method accept a duration object as input."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a new PlainYearMonth object\n\nconst d1 = Temporal.PlainYearMonth.from(\"2026-05\");\n\n// Add a duration\n\nconst d2 = d1.add({years:2, months:2})",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_add"
-  },
-  {
-   "type": "p",
-   "text": "All temporal objects have their own add() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "duration.add(duration)",
-    "instant.add(duration)",
-    "plaindate.add(duration)",
-    "plaintime.add(duration)",
-    "plainyearmonth.add(duration)",
-    "plainmonthday.add(duration)",
-    "plaindatetime.add(duration)",
-    "zoneddatetime.add(duration)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "All temporal objects have their own subtract() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "duration.subtract(duration)",
-    "instant.subtract(duration)",
-    "plaindate.subtract(duration)",
-    "plaintime.subtract(duration)",
-    "plainyearmonth.subtract(duration)",
-    "plainmonthday.subtract(duration)",
-    "plaindatetime.subtract(duration)",
-    "zoneddatetime.subtract(duration)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Learn More:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Temporal Arithmetic"
-  },
-  {
-   "type": "h2",
-   "text": "The with() Method"
-  },
-  {
-   "type": "p",
-   "text": "The with() method returns a new PlainYearMonth object with specified field(s) replaced."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2026-05\");\n\n// Replace month\n\nconst newDate = date.with({ month:12 });",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_with"
-  },
-  {
-   "type": "h2",
-   "text": "All PlainYearMonth Methods"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Constructing",
-     "Description"
-    ],
-    [
-     "from()",
-     "Creates a PlainYearMonth object from an object or a string"
-    ],
-    [
-     "new (constructor)",
-     "Creates a PlainYearMonth object from integer parameters"
-    ],
-    [
-     "Arithmetic",
-     ""
-    ],
-    [
-     "add()",
-     "Returns a new PlainYearMonth with a duration added"
-    ],
-    [
-     "subtract()",
-     "Returns a new PlainYearMonth with a duration subtracted"
-    ],
-    [
-     "Comparing",
-     ""
-    ],
-    [
-     "compare()",
-     "Returns -1, 0, or 1 from comparing two dates"
-    ],
-    [
-     "equals()",
-     "Returns true if two dates are identical"
-    ],
-    [
-     "since()",
-     "Returns the difference since another date"
-    ],
-    [
-     "until()",
-     "Returns the difference until another date"
-    ],
-    [
-     "Converting",
-     ""
-    ],
-    [
-     "toPlainDate()",
-     "Returns a new PlainDate object"
-    ],
-    [
-     "with()",
-     "Returns a new PlainYearMonth with fields modified"
-    ],
-    [
-     "Formatting",
-     ""
-    ],
-    [
-     "toJSON()",
-     "Returns an RFC 9557 format string for JSON serialization"
-    ],
-    [
-     "toLocaleString()",
-     "Returns a language-sensitive representation of the date"
-    ],
-    [
-     "toString()",
-     "Returns an RFC 9557 format string representation"
-    ],
-    [
-     "valueOf()",
-     "TypeError (temporals cannot be converted to primitives)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "All PlainYearMonth Properties"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Property",
-     "Description"
-    ],
-    [
-     "calendarID",
-     "Calendar system identifier (\"iso8601\")"
-    ],
-    [
-     "daysInMonth",
-     "The total number of days in that month"
-    ],
-    [
-     "daysInYear",
-     "The total number of days in that year"
-    ],
-    [
-     "era",
-     "The era name of the calendar, if applicable (\"gregory\")"
-    ],
-    [
-     "eraYear",
-     "The year within the era, if applicable"
-    ],
-    [
-     "inLeapYear",
-     "A boolean indicating if the date falls in a leap year"
-    ],
-    [
-     "month",
-     "The month as an integer (1-12)"
-    ],
-    [
-     "monthCode",
-     "A calendar-specific string code for the month (\"M01\")"
-    ],
-    [
-     "monthsInYear",
-     "The total number of months in that year"
-    ],
-    [
-     "year",
-     "The year as an integer"
-    ]
-   ]
-  }
- ]
+  "slug": "js_temporal_plainyearmonth",
+  "course": "js",
+  "order": 188,
+  "url": "/js/js_temporal_plainyearmonth.asp",
+  "title": "JavaScript PlainYearMonth",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript PlainYearMonth"
+    },
+    {
+      "type": "h2",
+      "text": "The Temporal.PlainYearMonth Object"
+    },
+    {
+      "type": "p",
+      "text": "The Temporal.PlainYearMonth object is a year and month object."
+    },
+    {
+      "type": "p",
+      "text": "It represents the year and month of an ISO 8601 calendar without day or time."
+    },
+    {
+      "type": "p",
+      "text": "Example: 2026-05."
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/js/img_temporal.svg",
+      "alt": "Temporal Map"
+    },
+    {
+      "type": "h2",
+      "text": "How to Create a PlainYearMonth Object"
+    },
+    {
+      "type": "p",
+      "text": "An PlainYearMonth object can be created in different ways:"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["From", "Code"],
+        ["Parameters", "new Temporal.PlainYearMonth(param)"],
+        ["Object", "Temporal.PlainYearMonth.from(object)"],
+        ["ISO / RFC 9557", "Temporal.PlainYearMonth.from(RFC 9557)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Create a PlainYearMonth with new"
+    },
+    {
+      "type": "p",
+      "text": "The new PlainYearMonth() constructor creates a new PlainYearMonth object\nwith integers as input parameters."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainYearMonth object\n\nconst date = new Temporal.PlainYearMonth(2026, 5);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth"
+    },
+    {
+      "type": "h2",
+      "text": "PlainYearMonth from(object)"
+    },
+    {
+      "type": "p",
+      "text": "The from() method creates a new PlainYearMonth object with an\nobject as input parameter."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainYearMonth object\n\nconst date = new Temporal.PlainYearMonth({year:2026, month:5});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_from"
+    },
+    {
+      "type": "h2",
+      "text": "PlainYearMonth from(RFC 9557)"
+    },
+    {
+      "type": "p",
+      "text": "The from() method creates a new PlainYearMonth object with an\nISO / RFC 9557 string as input parameter."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2025-05\");",
+      "caption": "Examples"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2025-05-17\");",
+      "caption": "Examples"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_from_iso"
+    },
+    {
+      "type": "p",
+      "text": "Note that the day input is ignored in the last example."
+    },
+    {
+      "type": "h2",
+      "text": "Temporal.PlainYearMonth Properties"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const date = new Temporal.PlainYearMonth(2026, 5);",
+      "caption": "Display All PlainYearMonth Properties"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_prop"
+    },
+    {
+      "type": "h2",
+      "text": "Convert to PlainTime"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const yearMonth = new Temporal.PlainYearMonth(2026, 5);\n\nconst date = yearMonth.toPlainDate({ day: 17 });",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_to_plaindate"
+    },
+    {
+      "type": "h2",
+      "text": "PlainYearMonth add() and subtract()"
+    },
+    {
+      "type": "p",
+      "text": "The add() method accept a duration object as input."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a new PlainYearMonth object\n\nconst d1 = Temporal.PlainYearMonth.from(\"2026-05\");\n\n// Add a duration\n\nconst d2 = d1.add({years:2, months:2})",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_add"
+    },
+    {
+      "type": "p",
+      "text": "All temporal objects have their own add() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "duration.add(duration)",
+        "instant.add(duration)",
+        "plaindate.add(duration)",
+        "plaintime.add(duration)",
+        "plainyearmonth.add(duration)",
+        "plainmonthday.add(duration)",
+        "plaindatetime.add(duration)",
+        "zoneddatetime.add(duration)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "All temporal objects have their own subtract() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "duration.subtract(duration)",
+        "instant.subtract(duration)",
+        "plaindate.subtract(duration)",
+        "plaintime.subtract(duration)",
+        "plainyearmonth.subtract(duration)",
+        "plainmonthday.subtract(duration)",
+        "plaindatetime.subtract(duration)",
+        "zoneddatetime.subtract(duration)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Learn More:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Temporal Arithmetic"
+    },
+    {
+      "type": "h2",
+      "text": "The with() Method"
+    },
+    {
+      "type": "p",
+      "text": "The with() method returns a new PlainYearMonth object with specified field(s) replaced."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainYearMonth object\n\nconst date = Temporal.PlainYearMonth.from(\"2026-05\");\n\n// Replace month\n\nconst newDate = date.with({ month:12 });",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plainyearmonth_with"
+    },
+    {
+      "type": "h2",
+      "text": "All PlainYearMonth Methods"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Constructing", "Description"],
+        ["from()", "Creates a PlainYearMonth object from an object or a string"],
+        ["new (constructor)", "Creates a PlainYearMonth object from integer parameters"],
+        ["Arithmetic", ""],
+        ["add()", "Returns a new PlainYearMonth with a duration added"],
+        ["subtract()", "Returns a new PlainYearMonth with a duration subtracted"],
+        ["Comparing", ""],
+        ["compare()", "Returns -1, 0, or 1 from comparing two dates"],
+        ["equals()", "Returns true if two dates are identical"],
+        ["since()", "Returns the difference since another date"],
+        ["until()", "Returns the difference until another date"],
+        ["Converting", ""],
+        ["toPlainDate()", "Returns a new PlainDate object"],
+        ["with()", "Returns a new PlainYearMonth with fields modified"],
+        ["Formatting", ""],
+        ["toJSON()", "Returns an RFC 9557 format string for JSON serialization"],
+        ["toLocaleString()", "Returns a language-sensitive representation of the date"],
+        ["toString()", "Returns an RFC 9557 format string representation"],
+        ["valueOf()", "TypeError (temporals cannot be converted to primitives)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "All PlainYearMonth Properties"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Property", "Description"],
+        ["calendarID", "Calendar system identifier (\"iso8601\")"],
+        ["daysInMonth", "The total number of days in that month"],
+        ["daysInYear", "The total number of days in that year"],
+        ["era", "The era name of the calendar, if applicable (\"gregory\")"],
+        ["eraYear", "The year within the era, if applicable"],
+        ["inLeapYear", "A boolean indicating if the date falls in a leap year"],
+        ["month", "The month as an integer (1-12)"],
+        ["monthCode", "A calendar-specific string code for the month (\"M01\")"],
+        ["monthsInYear", "The total number of months in that year"],
+        ["year", "The year as an integer"]
+      ]
+    }
+  ]
 }

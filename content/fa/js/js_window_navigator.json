@@ -1,348 +1,343 @@
 {
- "slug": "js_window_navigator",
- "course": "js",
- "order": 163,
- "url": "/js/js_window_navigator.asp",
- "title": "Window Navigator در JavaScript",
- "summary": "شیء navigator اطلاعاتی دربارهٔ مرورگر بازدیدکننده می‌دهد: زبان، وضعیت کوکی‌ها، آنلاین بودن، رشتهٔ user agent و چند خصوصیت منسوخ. بعد از این درس می‌دانید کدام خصوصیت‌ها قابل اعتمادند و چرا نمی‌توان با navigator نسخهٔ مرورگر را تشخیص داد.",
- "objectives": [
-  "خصوصیت‌های اصلی شیء navigator را نام ببرید",
-  "با cookieEnabled و onLine وضعیت مرورگر را بررسی کنید",
-  "رشتهٔ userAgent را بخوانید و کاربردش را توضیح دهید",
-  "دلیل منسوخ بودن appName، product و javaEnabled() را بگویید",
-  "تشخیص دهید چرا نباید برای تشخیص مرورگر به navigator تکیه کرد"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "Window Navigator در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "شیء Navigator"
-  },
-  {
-   "type": "p",
-   "text": "شیء navigator اطلاعاتی دربارهٔ مرورگر بازدیدکننده نگه می‌دارد."
-  },
-  {
-   "type": "p",
-   "text": "می‌توان آن را با پیشوند window یا بدون آن نوشت:"
-  },
-  {
-   "type": "p",
-   "text": "windows.navigator یا فقط navigator"
-  },
-  {
-   "type": "h2",
-   "text": "کوکی‌های مرورگر"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت cookieEnabled اگر کوکی‌ها فعال باشند true و در غیر این صورت false برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\n\"cookiesEnabled is \" + navigator.cookieEnabled;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_cookieenabled"
-  },
-  {
-   "type": "h2",
-   "text": "زبان مرورگر"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت language زبان مرورگر را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.language;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_language"
-  },
-  {
-   "type": "h2",
-   "text": "آیا مرورگر آنلاین است؟"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت onLine اگر مرورگر آنلاین باشد true برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.onLine;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_online"
-  },
-  {
-   "type": "h2",
-   "text": "نام برنامهٔ مرورگر"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت appName نام برنامهٔ مرورگر را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\n\"navigator.appName is \" + navigator.appName;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_appname"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). بیشتر مرورگرها (Chrome، Edge، Firefox و Safari) برای appName مقدار Netscape را برمی‌گردانند."
-  },
-  {
-   "type": "h2",
-   "text": "نام کد برنامهٔ مرورگر"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت appCodeName نام کد برنامهٔ مرورگر را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\n\n \"navigator.appCodeName is \" + navigator.appCodeName;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_appcodename"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). بیشتر مرورگرها (Chrome، Edge، Firefox و Safari) برای appCodeName مقدار Mozilla را برمی‌گردانند."
-  },
-  {
-   "type": "h2",
-   "text": "موتور مرورگر"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت product نام محصول موتور مرورگر را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\n\n \"navigator.product is \" + navigator.product;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_product"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). بیشتر مرورگرها برای product مقدار Gecko را برمی‌گردانند."
-  },
-  {
-   "type": "h2",
-   "text": "نسخهٔ مرورگر"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت appVersion اطلاعات نسخهٔ مرورگر را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.appVersion;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_appversion"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). به appVersion تکیه نکنید که نسخهٔ درست مرورگر را برگرداند."
-  },
-  {
-   "type": "h2",
-   "text": "عامل مرورگر (user agent)"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت userAgent سرآیند user-agent را که مرورگر به سرور می‌فرستد برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.userAgent;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_userAgent"
-  },
-  {
-   "type": "h2",
-   "text": "هشدار"
-  },
-  {
-   "type": "p",
-   "text": "اطلاعات شیء navigator اغلب گمراه‌کننده است."
-  },
-  {
-   "type": "p",
-   "text": "نباید از شیء navigator برای تشخیص نسخهٔ مرورگر استفاده کرد، چون:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "مرورگرهای مختلف می‌توانند نام یکسانی داشته باشند",
-    "صاحب مرورگر می‌تواند داده‌های navigator را تغییر دهد",
-    "بعضی مرورگرها برای دور زدن آزمون‌های سایت‌ها خودشان را اشتباه معرفی می‌کنند",
-    "مرورگرها نمی‌توانند سیستم‌عامل‌های جدیدی را که بعد از خودشان منتشر شده‌اند گزارش کنند"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "سکوی مرورگر"
-  },
-  {
-   "type": "p",
-   "text": "خصوصیت platform سکوی مرورگر (سیستم‌عامل) را برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.platform;\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_platform"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). به platform تکیه نکنید که در همهٔ مرورگرها سکوی درست را برگرداند."
-  },
-  {
-   "type": "h2",
-   "text": "آیا Java فعال است؟"
-  },
-  {
-   "type": "p",
-   "text": "متد javaEnabled() اگر Java فعال باشد true برمی‌گرداند:"
-  },
-  {
-   "type": "code",
-   "lang": "html",
-   "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.javaEnabled();\n\n</script>",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_javaenabled"
-  },
-  {
-   "type": "note",
-   "variant": "warning",
-   "text": "هشدار: این متد در آخرین استاندارد وب حذف شده است (منسوخ). متد javaEnabled() همیشه false برمی‌گرداند."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل nav.html بسازید و در کنسول navigator.userAgent را چاپ کنید و ببینید مرورگر خودتان را چطور معرفی می‌کند.",
-   "hint": "userAgent سرآیند user-agent را که مرورگر به سرور می‌فرستد برمی‌گرداند."
-  },
-  {
-   "prompt": "با navigator.cookieEnabled بررسی کنید کوکی‌های مرورگر فعال است یا نه و نتیجه را داخل یک پاراگراف در صفحه بنویسید.",
-   "hint": "این خصوصیت یک مقدار بولی true یا false برمی‌گرداند."
-  },
-  {
-   "prompt": "مقدار navigator.language را در صفحه نمایش دهید و ببینید کد زبان مرورگر خودتان چیست.",
-   "hint": "language زبان مرورگر را برمی‌گرداند، مثل fa یا en-US."
-  },
-  {
-   "prompt": "مقدار navigator.appName و navigator.product را چاپ کنید و ببینید مرورگر شما چه چیزی برمی‌گرداند.",
-   "hint": "این خصوصیت‌ها منسوخ شده‌اند و بیشتر مرورگرها مقدار ثابت و بی‌معنی برمی‌گردانند."
-  },
-  {
-   "prompt": "اتصال شبکه را قطع کنید و مقدار navigator.onLine را در کنسول ببینید، بعد دوباره وصل کنید و همان دستور را اجرا کنید.",
-   "hint": "onLine وضعیت را در همان لحظهٔ خواندن گزارش می‌کند، پس باید بعد از تغییر شبکه دوباره خوانده شود."
-  }
- ],
- "quiz": [
-  {
-   "question": "شیء navigator چه اطلاعاتی نگه می‌دارد؟",
-   "options": [
-    "اطلاعات صفحهٔ جاری",
-    "اطلاعات مرورگر بازدیدکننده",
-    "اطلاعات سرور",
-    "فهرست کوکی‌های ذخیره‌شده"
-   ],
-   "answer": 1,
-   "explanation": "navigator اطلاعاتی دربارهٔ مرورگر بازدیدکننده می‌دهد: زبان، وضعیت کوکی، آنلاین بودن و رشتهٔ user agent. محتوای صفحه و سرور موضوع این شیء نیستند."
-  },
-  {
-   "question": "برای بررسی فعال بودن کوکی‌ها کدام خصوصیت به کار می‌رود؟",
-   "options": [
-    "navigator.language",
-    "navigator.cookieEnabled",
-    "navigator.onLine",
-    "navigator.platform"
-   ],
-   "answer": 1,
-   "explanation": "cookieEnabled اگر کوکی‌ها فعال باشند true و در غیر این صورت false برمی‌گرداند. language زبان را می‌دهد، onLine وضعیت اتصال را و platform سیستم‌عامل را."
-  },
-  {
-   "question": "چرا نباید از navigator برای تشخیص نسخهٔ مرورگر استفاده کرد؟",
-   "options": [
-    "چون هیچ مرورگری آن را پشتیبانی نمی‌کند",
-    "چون این داده‌ها می‌توانند گمراه‌کننده و قابل تغییر باشند",
-    "چون خواندنش کند است",
-    "چون فقط در Chrome کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "مرورگرهای مختلف می‌توانند نام یکسان داشته باشند، صاحب مرورگر می‌تواند داده‌ها را عوض کند، بعضی مرورگرها خودشان را اشتباه معرفی می‌کنند و مرورگرها سیستم‌عامل‌های جدیدتر از خودشان را نمی‌شناسند."
-  },
-  {
-   "question": "javaEnabled() در مرورگرهای امروزی چه برمی‌گرداند؟",
-   "options": [
-    "همیشه true",
-    "همیشه false",
-    "null",
-    "نسخهٔ Java نصب‌شده"
-   ],
-   "answer": 1,
-   "explanation": "این متد در استاندارد وب جدید حذف شده و همیشه false برمی‌گرداند، پس نتیجهٔ آن ارزش بررسی ندارد."
-  },
-  {
-   "question": "چرا appName در بیشتر مرورگرها مقدار Netscape برمی‌گرداند؟",
-   "options": [
-    "چون همهٔ مرورگرها بر پایهٔ Netscape ساخته شده‌اند",
-    "چون این خصوصیت منسوخ شده و مقدار واقعی به دست نمی‌دهد",
-    "چون Netscape نام عمومی همهٔ مرورگرها است",
-    "چون مقدار آن از سرور خوانده می‌شود"
-   ],
-   "answer": 1,
-   "explanation": "appName در آخرین استاندارد وب حذف شده است و مرورگرهای Chrome، Edge، Firefox و Safari برای سازگاری مقدار ثابت Netscape را برمی‌گردانند؛ پس برای تشخیص مرورگر بی‌فایده است."
-  }
- ]
+  "slug": "js_window_navigator",
+  "course": "js",
+  "order": 163,
+  "url": "/js/js_window_navigator.asp",
+  "title": "Window Navigator در JavaScript",
+  "summary": "شیء navigator اطلاعاتی دربارهٔ مرورگر بازدیدکننده می‌دهد: زبان، وضعیت کوکی‌ها، آنلاین بودن، رشتهٔ user agent و چند خصوصیت منسوخ. بعد از این درس می‌دانید کدام خصوصیت‌ها قابل اعتمادند و چرا نمی‌توان با navigator نسخهٔ مرورگر را تشخیص داد.",
+  "objectives": [
+    "خصوصیت‌های اصلی شیء navigator را نام ببرید",
+    "با cookieEnabled و onLine وضعیت مرورگر را بررسی کنید",
+    "رشتهٔ userAgent را بخوانید و کاربردش را توضیح دهید",
+    "دلیل منسوخ بودن appName، product و javaEnabled() را بگویید",
+    "تشخیص دهید چرا نباید برای تشخیص مرورگر به navigator تکیه کرد"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Window Navigator در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "شیء Navigator"
+    },
+    {
+      "type": "p",
+      "text": "شیء navigator اطلاعاتی دربارهٔ مرورگر بازدیدکننده نگه می‌دارد."
+    },
+    {
+      "type": "p",
+      "text": "می‌توان آن را با پیشوند window یا بدون آن نوشت:"
+    },
+    {
+      "type": "p",
+      "text": "windows.navigator یا فقط navigator"
+    },
+    {
+      "type": "h2",
+      "text": "کوکی‌های مرورگر"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت cookieEnabled اگر کوکی‌ها فعال باشند true و در غیر این صورت false برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\n\"cookiesEnabled is \" + navigator.cookieEnabled;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_cookieenabled"
+    },
+    {
+      "type": "h2",
+      "text": "زبان مرورگر"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت language زبان مرورگر را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.language;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_language"
+    },
+    {
+      "type": "h2",
+      "text": "آیا مرورگر آنلاین است؟"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت onLine اگر مرورگر آنلاین باشد true برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.onLine;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_online"
+    },
+    {
+      "type": "h2",
+      "text": "نام برنامهٔ مرورگر"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت appName نام برنامهٔ مرورگر را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\n\"navigator.appName is \" + navigator.appName;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_appname"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). بیشتر مرورگرها (Chrome، Edge، Firefox و Safari) برای appName مقدار Netscape را برمی‌گردانند."
+    },
+    {
+      "type": "h2",
+      "text": "نام کد برنامهٔ مرورگر"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت appCodeName نام کد برنامهٔ مرورگر را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\n\n \"navigator.appCodeName is \" + navigator.appCodeName;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_appcodename"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). بیشتر مرورگرها (Chrome، Edge، Firefox و Safari) برای appCodeName مقدار Mozilla را برمی‌گردانند."
+    },
+    {
+      "type": "h2",
+      "text": "موتور مرورگر"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت product نام محصول موتور مرورگر را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML =\n\n \"navigator.product is \" + navigator.product;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_product"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). بیشتر مرورگرها برای product مقدار Gecko را برمی‌گردانند."
+    },
+    {
+      "type": "h2",
+      "text": "نسخهٔ مرورگر"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت appVersion اطلاعات نسخهٔ مرورگر را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.appVersion;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_appversion"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). به appVersion تکیه نکنید که نسخهٔ درست مرورگر را برگرداند."
+    },
+    {
+      "type": "h2",
+      "text": "عامل مرورگر (user agent)"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت userAgent سرآیند user-agent را که مرورگر به سرور می‌فرستد برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.userAgent;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_userAgent"
+    },
+    {
+      "type": "h2",
+      "text": "هشدار"
+    },
+    {
+      "type": "p",
+      "text": "اطلاعات شیء navigator اغلب گمراه‌کننده است."
+    },
+    {
+      "type": "p",
+      "text": "نباید از شیء navigator برای تشخیص نسخهٔ مرورگر استفاده کرد، چون:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "مرورگرهای مختلف می‌توانند نام یکسانی داشته باشند",
+        "صاحب مرورگر می‌تواند داده‌های navigator را تغییر دهد",
+        "بعضی مرورگرها برای دور زدن آزمون‌های سایت‌ها خودشان را اشتباه معرفی می‌کنند",
+        "مرورگرها نمی‌توانند سیستم‌عامل‌های جدیدی را که بعد از خودشان منتشر شده‌اند گزارش کنند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "سکوی مرورگر"
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت platform سکوی مرورگر (سیستم‌عامل) را برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.platform;\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_platform"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار: این خصوصیت در آخرین استاندارد وب حذف شده است (منسوخ). به platform تکیه نکنید که در همهٔ مرورگرها سکوی درست را برگرداند."
+    },
+    {
+      "type": "h2",
+      "text": "آیا Java فعال است؟"
+    },
+    {
+      "type": "p",
+      "text": "متد javaEnabled() اگر Java فعال باشد true برمی‌گرداند:"
+    },
+    {
+      "type": "code",
+      "lang": "html",
+      "text": "<p id=\"demo\"></p>\n\n<script>\n\ndocument.getElementById(\"demo\").innerHTML = navigator.javaEnabled();\n\n</script>",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_nav_javaenabled"
+    },
+    {
+      "type": "note",
+      "variant": "warning",
+      "text": "هشدار: این متد در آخرین استاندارد وب حذف شده است (منسوخ). متد javaEnabled() همیشه false برمی‌گرداند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل nav.html بسازید و در کنسول navigator.userAgent را چاپ کنید و ببینید مرورگر خودتان را چطور معرفی می‌کند.",
+      "hint": "userAgent سرآیند user-agent را که مرورگر به سرور می‌فرستد برمی‌گرداند."
+    },
+    {
+      "prompt": "با navigator.cookieEnabled بررسی کنید کوکی‌های مرورگر فعال است یا نه و نتیجه را داخل یک پاراگراف در صفحه بنویسید.",
+      "hint": "این خصوصیت یک مقدار بولی true یا false برمی‌گرداند."
+    },
+    {
+      "prompt": "مقدار navigator.language را در صفحه نمایش دهید و ببینید کد زبان مرورگر خودتان چیست.",
+      "hint": "language زبان مرورگر را برمی‌گرداند، مثل fa یا en-US."
+    },
+    {
+      "prompt": "مقدار navigator.appName و navigator.product را چاپ کنید و ببینید مرورگر شما چه چیزی برمی‌گرداند.",
+      "hint": "این خصوصیت‌ها منسوخ شده‌اند و بیشتر مرورگرها مقدار ثابت و بی‌معنی برمی‌گردانند."
+    },
+    {
+      "prompt": "اتصال شبکه را قطع کنید و مقدار navigator.onLine را در کنسول ببینید، بعد دوباره وصل کنید و همان دستور را اجرا کنید.",
+      "hint": "onLine وضعیت را در همان لحظهٔ خواندن گزارش می‌کند، پس باید بعد از تغییر شبکه دوباره خوانده شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "شیء navigator چه اطلاعاتی نگه می‌دارد؟",
+      "options": [
+        "اطلاعات صفحهٔ جاری",
+        "اطلاعات مرورگر بازدیدکننده",
+        "اطلاعات سرور",
+        "فهرست کوکی‌های ذخیره‌شده"
+      ],
+      "answer": 1,
+      "explanation": "navigator اطلاعاتی دربارهٔ مرورگر بازدیدکننده می‌دهد: زبان، وضعیت کوکی، آنلاین بودن و رشتهٔ user agent. محتوای صفحه و سرور موضوع این شیء نیستند."
+    },
+    {
+      "question": "برای بررسی فعال بودن کوکی‌ها کدام خصوصیت به کار می‌رود؟",
+      "options": [
+        "navigator.language",
+        "navigator.cookieEnabled",
+        "navigator.onLine",
+        "navigator.platform"
+      ],
+      "answer": 1,
+      "explanation": "cookieEnabled اگر کوکی‌ها فعال باشند true و در غیر این صورت false برمی‌گرداند. language زبان را می‌دهد، onLine وضعیت اتصال را و platform سیستم‌عامل را."
+    },
+    {
+      "question": "چرا نباید از navigator برای تشخیص نسخهٔ مرورگر استفاده کرد؟",
+      "options": [
+        "چون هیچ مرورگری آن را پشتیبانی نمی‌کند",
+        "چون این داده‌ها می‌توانند گمراه‌کننده و قابل تغییر باشند",
+        "چون خواندنش کند است",
+        "چون فقط در Chrome کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "مرورگرهای مختلف می‌توانند نام یکسان داشته باشند، صاحب مرورگر می‌تواند داده‌ها را عوض کند، بعضی مرورگرها خودشان را اشتباه معرفی می‌کنند و مرورگرها سیستم‌عامل‌های جدیدتر از خودشان را نمی‌شناسند."
+    },
+    {
+      "question": "javaEnabled() در مرورگرهای امروزی چه برمی‌گرداند؟",
+      "options": ["همیشه true", "همیشه false", "null", "نسخهٔ Java نصب‌شده"],
+      "answer": 1,
+      "explanation": "این متد در استاندارد وب جدید حذف شده و همیشه false برمی‌گرداند، پس نتیجهٔ آن ارزش بررسی ندارد."
+    },
+    {
+      "question": "چرا appName در بیشتر مرورگرها مقدار Netscape برمی‌گرداند؟",
+      "options": [
+        "چون همهٔ مرورگرها بر پایهٔ Netscape ساخته شده‌اند",
+        "چون این خصوصیت منسوخ شده و مقدار واقعی به دست نمی‌دهد",
+        "چون Netscape نام عمومی همهٔ مرورگرها است",
+        "چون مقدار آن از سرور خوانده می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "appName در آخرین استاندارد وب حذف شده است و مرورگرهای Chrome، Edge، Firefox و Safari برای سازگاری مقدار ثابت Netscape را برمی‌گردانند؛ پس برای تشخیص مرورگر بی‌فایده است."
+    }
+  ]
 }

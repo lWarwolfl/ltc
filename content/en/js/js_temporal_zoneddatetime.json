@@ -1,596 +1,413 @@
 {
- "slug": "js_temporal_zoneddatetime",
- "course": "js",
- "order": 191,
- "url": "/js/js_temporal_zoneddatetime.asp",
- "title": "JavaScript ZonedDateTime",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "JavaScript ZonedDateTime"
-  },
-  {
-   "type": "h2",
-   "text": "Handle Time Zones Correctly"
-  },
-  {
-   "type": "p",
-   "text": "The Temporal.ZonedDateTime object represents a date and time with a time zone."
-  },
-  {
-   "type": "p",
-   "text": "It is the safest way to handle international date and time calculations."
-  },
-  {
-   "type": "p",
-   "text": "It prevents common DST bugs and makes time zone conversions clear and predictable."
-  },
-  {
-   "type": "h2",
-   "text": "What You Will Learn:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "How to use JavaScript Temporal.ZonedDateTime",
-    "How to handle time zones correctly",
-    "How to add and subtract date",
-    "How to avoid DST (Daylight Saving Time) bugs",
-    "How to convert between time zones safely"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Why ZonedDateTime Is Important"
-  },
-  {
-   "type": "p",
-   "text": "Time zones and daylight saving time (DST) can cause serious bugs when using JavaScript Date."
-  },
-  {
-   "type": "p",
-   "text": "ZonedDateTime solves this by always storing the time zone together with the date and time."
-  },
-  {
-   "type": "p",
-   "text": "A Temporal.ZonedDateTime is a timezone and calendar-aware\ndate/time object that represents a real time event from the perspective of a particular\nregion on Earth."
-  },
-  {
-   "type": "p",
-   "text": "The Temporal.ZonedDateTime object is optimized for cases that\nrequire a time zone, DST-safe arithmetic and interoperability with an RFC 5545 calendar."
-  },
-  {
-   "type": "p",
-   "text": "Example: December 7th, 1995 at 3:24 AM in US Pacific time (in Gregorian calendar)."
-  },
-  {
-   "type": "h2",
-   "text": "Create a ZonedDateTime"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const zonedDate = Temporal.ZonedDateTime.from({\n\n  timeZone: 'Europe/Oslo',\n\n  year: 2026,\n\n  month: 5,\n\n  day: 17,\n\n  hour: 14,\n\n  minute: 30,\n\n  second: 0,\n\n  millisecond: 0,\n\n  microsecond: 0,\n\n  nanosecond: 500\n\n});",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned"
-  },
-  {
-   "type": "p",
-   "text": "You can also create a ZonedDateTime from a string that includes a time zone."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const zdt = Temporal.ZonedDateTime.from\n\n(\"2026-02-17T14:30:00[Europe/Oslo]\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_2"
-  },
-  {
-   "type": "p",
-   "text": "The time zone name is written inside square brackets."
-  },
-  {
-   "type": "h2",
-   "text": "Get Current Date and Time with Time Zone"
-  },
-  {
-   "type": "p",
-   "text": "The Temporal.Now.zonedDateTimeISO() method returns your system's current date, time,\nand time zone as a Temporal.ZonedDateTime object."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const now = Temporal.Now.zonedDateTimeISO();",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_system_time"
-  },
-  {
-   "type": "p",
-   "text": "The current time is returned in ISO 8601 format."
-  },
-  {
-   "type": "h2",
-   "text": "The ISO 8601 Format"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "2026-03-02: The calendar date (Year-Month-Day).",
-    "T10:36:00: The time of day (T-Hour:Minute:Second).",
-    "+01:00: The offset from UTC (Coordinated Universal Time).",
-    "[Europe/Oslo]: The IANA time zone name, which is the system's local time zone in this case."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Convert Between Time Zones"
-  },
-  {
-   "type": "p",
-   "text": "You can convert a ZonedDateTime to another time zone."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const oslo = Temporal.ZonedDateTime.from\n\n(\"2026-05-17T14:30:00+01:00[Europe/Oslo]\");\n\nconst newYork = oslo.withTimeZone(\"America/New_York\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_now"
-  },
-  {
-   "type": "p",
-   "text": "The exact moment stays the same, but the local clock time changes."
-  },
-  {
-   "type": "h2",
-   "text": "Add Time Safely (DST Safe)"
-  },
-  {
-   "type": "p",
-   "text": "Adding days across a daylight saving change can break with Javascript Date."
-  },
-  {
-   "type": "p",
-   "text": "Temporal.ZonedDateTime handles this correctly."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.ZonedDateTime.from\n\n(\"2026-03-29T00:00:00+01:00[Europe/Oslo]\");\n\nconst nextDay = start.add({ days: 1 });",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_add"
-  },
-  {
-   "type": "p",
-   "text": "Temporal adjusts automatically if a DST change happens."
-  },
-  {
-   "type": "h2",
-   "text": "ZonedDateTime since()"
-  },
-  {
-   "type": "p",
-   "text": "The since() method calculates the duration between two temporal dates."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T09:00:00+01:00[Europe/Oslo]\");\n\nconst end = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T17:30:00+01:00[Europe/Oslo]\");\n\nconst duration = end.since(start);",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since2"
-  },
-  {
-   "type": "h2",
-   "text": "JavaScript since() and until()"
-  },
-  {
-   "type": "p",
-   "text": "All temporal date objects have their own since() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "plaindate.since(plaindate)",
-    "plaintime.since(plaintime)",
-    "plainyearmonth.since(plainyearmonth)",
-    "plainmonthday.since(plainmonthday)",
-    "plaindatetime.since(plaindatetime)",
-    "zoneddatetime.since(zoneddatetime)",
-    "instant.since(instant)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "All temporal objects have their own until() method:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "plaindate.until(plaindate)",
-    "plaintime.until(plaintime)",
-    "plainyearmonth.until(plainyearmonth)",
-    "plainmonthday.until(plainmonthday)",
-    "plaindatetime.until(plaindatetime)",
-    "zoneddatetime.until(zoneddatetime)",
-    "instant.until(instant)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "LearnMore:"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Temporal Since and Until"
-  },
-  {
-   "type": "h2",
-   "text": "The with() Method"
-  },
-  {
-   "type": "p",
-   "text": "The with() method creates a new zoned date-time with specified field(s) replaced."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a ZonedDateTime\n\nconst date = Temporal.ZonedDateTimr.from(\"2026-05-17T14:30:00[Europe/Oslo]\");\n\n// Replace month and day\n\nconst customDate = date.with({ month:12, day:25 });",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_width"
-  },
-  {
-   "type": "h2",
-   "text": "Convert from Instant"
-  },
-  {
-   "type": "p",
-   "text": "An Instant represents a UTC moment."
-  },
-  {
-   "type": "p",
-   "text": "You can convert it to a ZonedDateTime in a specific time zone."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const instant = Temporal.Now.instant();\n\nconst zoned = instant.toZonedDateTimeISO(\"Europe/Oslo\");",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_from_instant"
-  },
-  {
-   "type": "h2",
-   "text": "ZonedDateTime vs PlainDateTime"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Type",
-     "Meaning"
-    ],
-    [
-     "Instant",
-     "Exact Moment in UTC time"
-    ],
-    [
-     "PlainDateTime",
-     "Plain Date and Time (No Timezone)"
-    ],
-    [
-     "ZonedDateTime",
-     "Local Date and Time (+ Time Zone)"
-    ]
-   ]
-  },
-  {
-   "type": "image",
-   "src": "https://www.w3schools.com/js/img_temporal.svg",
-   "alt": "Temporal Map"
-  },
-  {
-   "type": "h2",
-   "text": "When to Use ZonedDateTime"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "International applications.",
-    "Booking systems.",
-    "Flight or travel systems.",
-    "Applications that must handle DST correctly.",
-    "Any system where time zones matter."
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Temporal ZonedDateTime Methods"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Constructing",
-     "Description"
-    ],
-    [
-     "new",
-     "Creates a ZonedDateTime object"
-    ],
-    [
-     "from()",
-     "Creates a ZonedDateTime object from an object or a string"
-    ],
-    [
-     "Converting",
-     ""
-    ],
-    [
-     "getTimeZoneTransition()",
-     "Returns a ZonedDateTime object representing the closest\ninstant after or before this instant"
-    ],
-    [
-     "toInstant()",
-     "Returns a Instant object representing this date-time"
-    ],
-    [
-     "toPlainDate()",
-     "Returns a PlainDate object representing this date-time"
-    ],
-    [
-     "toPlainDateTime()",
-     "Returns a PlainDateTime object representing this date-time"
-    ],
-    [
-     "toPlainTime()",
-     "Returns a PlainTime object representing this date-time"
-    ],
-    [
-     "startOfDay()",
-     "Returns a ZonedDateTime representing the first instant of this date"
-    ],
-    [
-     "Updating",
-     ""
-    ],
-    [
-     "with()",
-     "Returns a ZonedDateTime with specified fields modified"
-    ],
-    [
-     "withCalendar()",
-     "Returns a ZonedDateTime with a different calendar system"
-    ],
-    [
-     "withPlainTime()",
-     "Returns a ZonedDateTime the time part replaced by a new time"
-    ],
-    [
-     "withTimeZone()",
-     "Returns a ZonedDateTime representing this date in a new time zone"
-    ],
-    [
-     "Arithmetic",
-     ""
-    ],
-    [
-     "add()",
-     "Returns a ZonedDateTime with a duration added"
-    ],
-    [
-     "subtract()",
-     "Returns a ZonedDateTime with a duration subtracted"
-    ],
-    [
-     "round()",
-     "Returns a ZonedDateTime rounded to a given unit"
-    ],
-    [
-     "Comparing",
-     ""
-    ],
-    [
-     "compare()",
-     "Returns -1, 0, or 1 from comparing two dates"
-    ],
-    [
-     "equals()",
-     "Returns true if two ZonedDateTime objects are identical"
-    ],
-    [
-     "since()",
-     "Returns the difference from another date"
-    ],
-    [
-     "until()",
-     "Returns the difference until another date"
-    ],
-    [
-     "Formatting",
-     ""
-    ],
-    [
-     "toJSON()",
-     "Returns an ISO 8601 string for JSON serialization"
-    ],
-    [
-     "toLocaleString()",
-     "Returns a language-sensitive representation of the date"
-    ],
-    [
-     "toString()",
-     "Returns an ISO 8601 string representation"
-    ],
-    [
-     "valueOf()",
-     "Throws a TypeError (prevents temporals from being converted to primitives)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Temporal ZonedDateTime Properties"
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "Property",
-     "Description"
-    ],
-    [
-     "calendarID",
-     "Calendar system identifier (\"iso8601\")"
-    ],
-    [
-     "day",
-     "The day as an integer (1-31)"
-    ],
-    [
-     "dayOfWeek",
-     "The day of the week as an integer (1 = Monday)"
-    ],
-    [
-     "dayOfYear",
-     "The ordinal day of the year"
-    ],
-    [
-     "daysInMonth",
-     "The total number of days in that month"
-    ],
-    [
-     "daysInWeek",
-     "The total number of days in that week"
-    ],
-    [
-     "daysInYear",
-     "The total number of days in that year"
-    ],
-    [
-     "epochMilliseconds",
-     "Number of milliseconds since Unix epoch"
-    ],
-    [
-     "epochNanoseconds",
-     "Number of nanoseconds since Unix epoch"
-    ],
-    [
-     "era",
-     "The era name of the calendar, if applicable (\"gregory\")"
-    ],
-    [
-     "eraYear",
-     "The year within the era, if applicable"
-    ],
-    [
-     "hour",
-     "The hour as an integer (0-23)"
-    ],
-    [
-     "hoursInDay",
-     "Hours in this day in this time zone(0-25)"
-    ],
-    [
-     "inLeapYear",
-     "A boolean indicating if the date falls in a leap year"
-    ],
-    [
-     "microsecond",
-     "The microsecond as an integer (0-999)"
-    ],
-    [
-     "millisecond",
-     "The millisecond as an integer (0-999)"
-    ],
-    [
-     "minute",
-     "The minute as an integer (0-59)"
-    ],
-    [
-     "month",
-     "The month as an integer (1-12)"
-    ],
-    [
-     "monthCode",
-     "A calendar-specific string code for the month (\"M01\")"
-    ],
-    [
-     "monthsInYear",
-     "The total number of months in that year"
-    ],
-    [
-     "nanosecond",
-     "The nanosecond as an integer (0-999)"
-    ],
-    [
-     "offset",
-     "Offset used to interpret this instant (+HH:mm:ss.sssssssss)"
-    ],
-    [
-     "offsetNanoseconds",
-     "Offset used to interpret this instant in nanoseconds"
-    ],
-    [
-     "second",
-     "The second as an integer (0-59)"
-    ],
-    [
-     "timeZoneId",
-     "Time zone identifier used to interpret this instant"
-    ],
-    [
-     "weekOfYear",
-     "The week number within the year"
-    ],
-    [
-     "year",
-     "The year as an integer"
-    ],
-    [
-     "yearOfWeek",
-     "The year that the week belongs to"
-    ]
-   ]
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00[Europe/Oslo]\");",
-   "caption": "Display All Properties"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_prop"
-  }
- ]
+  "slug": "js_temporal_zoneddatetime",
+  "course": "js",
+  "order": 191,
+  "url": "/js/js_temporal_zoneddatetime.asp",
+  "title": "JavaScript ZonedDateTime",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "JavaScript ZonedDateTime"
+    },
+    {
+      "type": "h2",
+      "text": "Handle Time Zones Correctly"
+    },
+    {
+      "type": "p",
+      "text": "The Temporal.ZonedDateTime object represents a date and time with a time zone."
+    },
+    {
+      "type": "p",
+      "text": "It is the safest way to handle international date and time calculations."
+    },
+    {
+      "type": "p",
+      "text": "It prevents common DST bugs and makes time zone conversions clear and predictable."
+    },
+    {
+      "type": "h2",
+      "text": "What You Will Learn:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "How to use JavaScript Temporal.ZonedDateTime",
+        "How to handle time zones correctly",
+        "How to add and subtract date",
+        "How to avoid DST (Daylight Saving Time) bugs",
+        "How to convert between time zones safely"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Why ZonedDateTime Is Important"
+    },
+    {
+      "type": "p",
+      "text": "Time zones and daylight saving time (DST) can cause serious bugs when using JavaScript Date."
+    },
+    {
+      "type": "p",
+      "text": "ZonedDateTime solves this by always storing the time zone together with the date and time."
+    },
+    {
+      "type": "p",
+      "text": "A Temporal.ZonedDateTime is a timezone and calendar-aware\ndate/time object that represents a real time event from the perspective of a particular\nregion on Earth."
+    },
+    {
+      "type": "p",
+      "text": "The Temporal.ZonedDateTime object is optimized for cases that\nrequire a time zone, DST-safe arithmetic and interoperability with an RFC 5545 calendar."
+    },
+    {
+      "type": "p",
+      "text": "Example: December 7th, 1995 at 3:24 AM in US Pacific time (in Gregorian calendar)."
+    },
+    {
+      "type": "h2",
+      "text": "Create a ZonedDateTime"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const zonedDate = Temporal.ZonedDateTime.from({\n\n  timeZone: 'Europe/Oslo',\n\n  year: 2026,\n\n  month: 5,\n\n  day: 17,\n\n  hour: 14,\n\n  minute: 30,\n\n  second: 0,\n\n  millisecond: 0,\n\n  microsecond: 0,\n\n  nanosecond: 500\n\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned"
+    },
+    {
+      "type": "p",
+      "text": "You can also create a ZonedDateTime from a string that includes a time zone."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const zdt = Temporal.ZonedDateTime.from\n\n(\"2026-02-17T14:30:00[Europe/Oslo]\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_2"
+    },
+    {
+      "type": "p",
+      "text": "The time zone name is written inside square brackets."
+    },
+    {
+      "type": "h2",
+      "text": "Get Current Date and Time with Time Zone"
+    },
+    {
+      "type": "p",
+      "text": "The Temporal.Now.zonedDateTimeISO() method returns your system's current date, time,\nand time zone as a Temporal.ZonedDateTime object."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const now = Temporal.Now.zonedDateTimeISO();",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_system_time"
+    },
+    {
+      "type": "p",
+      "text": "The current time is returned in ISO 8601 format."
+    },
+    {
+      "type": "h2",
+      "text": "The ISO 8601 Format"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "2026-03-02: The calendar date (Year-Month-Day).",
+        "T10:36:00: The time of day (T-Hour:Minute:Second).",
+        "+01:00: The offset from UTC (Coordinated Universal Time).",
+        "[Europe/Oslo]: The IANA time zone name, which is the system's local time zone in this case."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Convert Between Time Zones"
+    },
+    {
+      "type": "p",
+      "text": "You can convert a ZonedDateTime to another time zone."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const oslo = Temporal.ZonedDateTime.from\n\n(\"2026-05-17T14:30:00+01:00[Europe/Oslo]\");\n\nconst newYork = oslo.withTimeZone(\"America/New_York\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_now"
+    },
+    {
+      "type": "p",
+      "text": "The exact moment stays the same, but the local clock time changes."
+    },
+    {
+      "type": "h2",
+      "text": "Add Time Safely (DST Safe)"
+    },
+    {
+      "type": "p",
+      "text": "Adding days across a daylight saving change can break with Javascript Date."
+    },
+    {
+      "type": "p",
+      "text": "Temporal.ZonedDateTime handles this correctly."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.ZonedDateTime.from\n\n(\"2026-03-29T00:00:00+01:00[Europe/Oslo]\");\n\nconst nextDay = start.add({ days: 1 });",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_add"
+    },
+    {
+      "type": "p",
+      "text": "Temporal adjusts automatically if a DST change happens."
+    },
+    {
+      "type": "h2",
+      "text": "ZonedDateTime since()"
+    },
+    {
+      "type": "p",
+      "text": "The since() method calculates the duration between two temporal dates."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T09:00:00+01:00[Europe/Oslo]\");\n\nconst end = Temporal.ZonedDateTime.from(\n\n\"2026-02-17T17:30:00+01:00[Europe/Oslo]\");\n\nconst duration = end.since(start);",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_duration_since2"
+    },
+    {
+      "type": "h2",
+      "text": "JavaScript since() and until()"
+    },
+    {
+      "type": "p",
+      "text": "All temporal date objects have their own since() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "plaindate.since(plaindate)",
+        "plaintime.since(plaintime)",
+        "plainyearmonth.since(plainyearmonth)",
+        "plainmonthday.since(plainmonthday)",
+        "plaindatetime.since(plaindatetime)",
+        "zoneddatetime.since(zoneddatetime)",
+        "instant.since(instant)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "All temporal objects have their own until() method:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "plaindate.until(plaindate)",
+        "plaintime.until(plaintime)",
+        "plainyearmonth.until(plainyearmonth)",
+        "plainmonthday.until(plainmonthday)",
+        "plaindatetime.until(plaindatetime)",
+        "zoneddatetime.until(zoneddatetime)",
+        "instant.until(instant)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "LearnMore:"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Temporal Since and Until"
+    },
+    {
+      "type": "h2",
+      "text": "The with() Method"
+    },
+    {
+      "type": "p",
+      "text": "The with() method creates a new zoned date-time with specified field(s) replaced."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a ZonedDateTime\n\nconst date = Temporal.ZonedDateTimr.from(\"2026-05-17T14:30:00[Europe/Oslo]\");\n\n// Replace month and day\n\nconst customDate = date.with({ month:12, day:25 });",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_width"
+    },
+    {
+      "type": "h2",
+      "text": "Convert from Instant"
+    },
+    {
+      "type": "p",
+      "text": "An Instant represents a UTC moment."
+    },
+    {
+      "type": "p",
+      "text": "You can convert it to a ZonedDateTime in a specific time zone."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const instant = Temporal.Now.instant();\n\nconst zoned = instant.toZonedDateTimeISO(\"Europe/Oslo\");",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_from_instant"
+    },
+    {
+      "type": "h2",
+      "text": "ZonedDateTime vs PlainDateTime"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Type", "Meaning"],
+        ["Instant", "Exact Moment in UTC time"],
+        ["PlainDateTime", "Plain Date and Time (No Timezone)"],
+        ["ZonedDateTime", "Local Date and Time (+ Time Zone)"]
+      ]
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/js/img_temporal.svg",
+      "alt": "Temporal Map"
+    },
+    {
+      "type": "h2",
+      "text": "When to Use ZonedDateTime"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "International applications.",
+        "Booking systems.",
+        "Flight or travel systems.",
+        "Applications that must handle DST correctly.",
+        "Any system where time zones matter."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Temporal ZonedDateTime Methods"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Constructing", "Description"],
+        ["new", "Creates a ZonedDateTime object"],
+        ["from()", "Creates a ZonedDateTime object from an object or a string"],
+        ["Converting", ""],
+        [
+          "getTimeZoneTransition()",
+          "Returns a ZonedDateTime object representing the closest\ninstant after or before this instant"
+        ],
+        ["toInstant()", "Returns a Instant object representing this date-time"],
+        ["toPlainDate()", "Returns a PlainDate object representing this date-time"],
+        ["toPlainDateTime()", "Returns a PlainDateTime object representing this date-time"],
+        ["toPlainTime()", "Returns a PlainTime object representing this date-time"],
+        ["startOfDay()", "Returns a ZonedDateTime representing the first instant of this date"],
+        ["Updating", ""],
+        ["with()", "Returns a ZonedDateTime with specified fields modified"],
+        ["withCalendar()", "Returns a ZonedDateTime with a different calendar system"],
+        ["withPlainTime()", "Returns a ZonedDateTime the time part replaced by a new time"],
+        ["withTimeZone()", "Returns a ZonedDateTime representing this date in a new time zone"],
+        ["Arithmetic", ""],
+        ["add()", "Returns a ZonedDateTime with a duration added"],
+        ["subtract()", "Returns a ZonedDateTime with a duration subtracted"],
+        ["round()", "Returns a ZonedDateTime rounded to a given unit"],
+        ["Comparing", ""],
+        ["compare()", "Returns -1, 0, or 1 from comparing two dates"],
+        ["equals()", "Returns true if two ZonedDateTime objects are identical"],
+        ["since()", "Returns the difference from another date"],
+        ["until()", "Returns the difference until another date"],
+        ["Formatting", ""],
+        ["toJSON()", "Returns an ISO 8601 string for JSON serialization"],
+        ["toLocaleString()", "Returns a language-sensitive representation of the date"],
+        ["toString()", "Returns an ISO 8601 string representation"],
+        ["valueOf()", "Throws a TypeError (prevents temporals from being converted to primitives)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Temporal ZonedDateTime Properties"
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["Property", "Description"],
+        ["calendarID", "Calendar system identifier (\"iso8601\")"],
+        ["day", "The day as an integer (1-31)"],
+        ["dayOfWeek", "The day of the week as an integer (1 = Monday)"],
+        ["dayOfYear", "The ordinal day of the year"],
+        ["daysInMonth", "The total number of days in that month"],
+        ["daysInWeek", "The total number of days in that week"],
+        ["daysInYear", "The total number of days in that year"],
+        ["epochMilliseconds", "Number of milliseconds since Unix epoch"],
+        ["epochNanoseconds", "Number of nanoseconds since Unix epoch"],
+        ["era", "The era name of the calendar, if applicable (\"gregory\")"],
+        ["eraYear", "The year within the era, if applicable"],
+        ["hour", "The hour as an integer (0-23)"],
+        ["hoursInDay", "Hours in this day in this time zone(0-25)"],
+        ["inLeapYear", "A boolean indicating if the date falls in a leap year"],
+        ["microsecond", "The microsecond as an integer (0-999)"],
+        ["millisecond", "The millisecond as an integer (0-999)"],
+        ["minute", "The minute as an integer (0-59)"],
+        ["month", "The month as an integer (1-12)"],
+        ["monthCode", "A calendar-specific string code for the month (\"M01\")"],
+        ["monthsInYear", "The total number of months in that year"],
+        ["nanosecond", "The nanosecond as an integer (0-999)"],
+        ["offset", "Offset used to interpret this instant (+HH:mm:ss.sssssssss)"],
+        ["offsetNanoseconds", "Offset used to interpret this instant in nanoseconds"],
+        ["second", "The second as an integer (0-59)"],
+        ["timeZoneId", "Time zone identifier used to interpret this instant"],
+        ["weekOfYear", "The week number within the year"],
+        ["year", "The year as an integer"],
+        ["yearOfWeek", "The year that the week belongs to"]
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const zoned = Temporal.ZonedDateTime.from(\"2026-05-17T14:30:00[Europe/Oslo]\");",
+      "caption": "Display All Properties"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_zoned_prop"
+    }
+  ]
 }

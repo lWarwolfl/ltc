@@ -1,191 +1,188 @@
 {
- "slug": "css3_property",
- "course": "css",
- "order": 167,
- "url": "/css/css3_property.asp",
- "title": "CSS @property Rule",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "CSS @property Rule"
-  },
-  {
-   "type": "h2",
-   "text": "The CSS @property Rule"
-  },
-  {
-   "type": "p",
-   "text": "The @property rule is used to define custom\nCSS properties (CSS variables) directly in the stylesheet without having to run any\nJavaScript."
-  },
-  {
-   "type": "p",
-   "text": "The @property rule has data type checking\nand constraining, sets a default value, and specifies the inherit behaviour."
-  },
-  {
-   "type": "p",
-   "text": "The definition below creates a custom property named --myColor, defines it as a color property,\nspecifies that it will inherit values from its parent elements, and its default value is lightgray."
-  },
-  {
-   "type": "h3",
-   "text": "Syntax of @property"
-  },
-  {
-   "type": "p",
-   "text": "@property --myColor {  syntax: \"<color>\";  inherits: true;\n  initial-value: lightgray;}"
-  },
-  {
-   "type": "h3",
-   "text": "Using the Custom Property"
-  },
-  {
-   "type": "p",
-   "text": "The CSS\nvar()\nfunction is used to insert the custom property in CSS:"
-  },
-  {
-   "type": "p",
-   "text": "body {  background-color: var(--myColor);}"
-  },
-  {
-   "type": "h2",
-   "text": "Benefits of Using @property"
-  },
-  {
-   "type": "p",
-   "text": "The benefits of using\n@property is:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Data type checking: You must specify the data type of the\n  custom property, such as <number>, <color>, <length>, etc. This prevents\n  errors and ensures that custom properties are used correctly",
-    "Set default value: You must set a default value for the custom property.\n  This ensures that if an invalid value is assigned later, the browser uses the\n  default value as a fallback",
-    "Set inheritance behavior: You must specify whether the\n  custom property will inherit values from its parent elements or not. This\n  ensures that you will have full control over inheritance"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "CSS @property Example"
-  },
-  {
-   "type": "p",
-   "text": "The following example defines two custom properties: my-bg-color and\nmy-txt-color."
-  },
-  {
-   "type": "p",
-   "text": "The div, then uses the custom properties in the\nbackground-color and\n\ncolor properties:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\n@property --my-txt-color {\n\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: darkblue;\n\n  }\n\ndiv {\n  width: 300px;\n  height: 150px;\n\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  color: var(--my-txt-color);\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property"
-  },
-  {
-   "type": "h2",
-   "text": "Another @property Example"
-  },
-  {
-   "type": "p",
-   "text": "In the following example we use the default custom property on the <div>\nelement. Then we override the custom property in class .fresh and class .nature\n(by setting some other colors), and it works perfectly fine:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\ndiv {\n  width: 300px;\n\n  height: 150px;\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  }\n\n.fresh {\n  --my-bg-color: #ff6347;\n}\n\n.nature {\n  --my-bg-color: rgb(120,\n  180, 30);\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property2"
-  },
-  {
-   "type": "h2",
-   "text": "Avoid Error with Type Checking and Fallback Value"
-  },
-  {
-   "type": "p",
-   "text": "In the following example we set the custom property in class .nature\nto an integer. This is not valid, and the browser will use the fallback color,\nwhich is defined in the initial-value property (lightgray):"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\ndiv {\n  width: 300px;\n\n  height: 150px;\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  }\n\n.fresh {\n  --my-bg-color: #ff6347;\n}\n\n.nature {\n  --my-bg-color:\n  2;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property3"
-  },
-  {
-   "type": "h2",
-   "text": "Use of the inherits Value"
-  },
-  {
-   "type": "p",
-   "text": "In the following example we will set the inherits value to false. This means\nthat the custom property\n  WILL NOT inherit values from its parent elements. Look at the result:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  false;\n  initial-value: lightgray;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property4"
-  },
-  {
-   "type": "p",
-   "text": "The next example sets the inherits value to true. This means\nthat the custom property\n  WILL inherit values from its parent elements. Look at the result:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property5"
-  },
-  {
-   "type": "h2",
-   "text": "Create Smooth Animation with @property"
-  },
-  {
-   "type": "p",
-   "text": "A complete new opportunity you can achieve with the\n@property\nrule, is to animate something that could not be animated before: Gradients. Look at the\nfollowing example:"
-  },
-  {
-   "type": "code",
-   "lang": "css",
-   "text": "@property --startColor {\n  syntax: \"<color>\";\n\n    initial-value: #EADEDB;\n  inherits: false;\n}\n\n@property --endColor {\n  syntax:\n    \"<color>\";\n  initial-value: #BC70A4;\n  inherits: false;\n}",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property6"
-  },
-  {
-   "type": "h2",
-   "text": "CSS @property Rule"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Property",
-    "Description"
-   ],
-   "rows": [
-    [
-     "@property",
-     "Define custom CSS properties directly in the stylesheet without having to run any JavaScript"
-    ]
-   ]
-  }
- ]
+  "slug": "css3_property",
+  "course": "css",
+  "order": 167,
+  "url": "/css/css3_property.asp",
+  "title": "CSS @property Rule",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "CSS @property Rule"
+    },
+    {
+      "type": "h2",
+      "text": "The CSS @property Rule"
+    },
+    {
+      "type": "p",
+      "text": "The @property rule is used to define custom\nCSS properties (CSS variables) directly in the stylesheet without having to run any\nJavaScript."
+    },
+    {
+      "type": "p",
+      "text": "The @property rule has data type checking\nand constraining, sets a default value, and specifies the inherit behaviour."
+    },
+    {
+      "type": "p",
+      "text": "The definition below creates a custom property named --myColor, defines it as a color property,\nspecifies that it will inherit values from its parent elements, and its default value is lightgray."
+    },
+    {
+      "type": "h3",
+      "text": "Syntax of @property"
+    },
+    {
+      "type": "p",
+      "text": "@property --myColor {  syntax: \"<color>\";  inherits: true;\n  initial-value: lightgray;}"
+    },
+    {
+      "type": "h3",
+      "text": "Using the Custom Property"
+    },
+    {
+      "type": "p",
+      "text": "The CSS\nvar()\nfunction is used to insert the custom property in CSS:"
+    },
+    {
+      "type": "p",
+      "text": "body {  background-color: var(--myColor);}"
+    },
+    {
+      "type": "h2",
+      "text": "Benefits of Using @property"
+    },
+    {
+      "type": "p",
+      "text": "The benefits of using\n@property is:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Data type checking: You must specify the data type of the\n  custom property, such as <number>, <color>, <length>, etc. This prevents\n  errors and ensures that custom properties are used correctly",
+        "Set default value: You must set a default value for the custom property.\n  This ensures that if an invalid value is assigned later, the browser uses the\n  default value as a fallback",
+        "Set inheritance behavior: You must specify whether the\n  custom property will inherit values from its parent elements or not. This\n  ensures that you will have full control over inheritance"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "CSS @property Example"
+    },
+    {
+      "type": "p",
+      "text": "The following example defines two custom properties: my-bg-color and\nmy-txt-color."
+    },
+    {
+      "type": "p",
+      "text": "The div, then uses the custom properties in the\nbackground-color and\n\ncolor properties:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\n@property --my-txt-color {\n\n  syntax: \"<color>\";\n  inherits: true;\n  initial-value: darkblue;\n\n  }\n\ndiv {\n  width: 300px;\n  height: 150px;\n\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  color: var(--my-txt-color);\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property"
+    },
+    {
+      "type": "h2",
+      "text": "Another @property Example"
+    },
+    {
+      "type": "p",
+      "text": "In the following example we use the default custom property on the <div>\nelement. Then we override the custom property in class .fresh and class .nature\n(by setting some other colors), and it works perfectly fine:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\ndiv {\n  width: 300px;\n\n  height: 150px;\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  }\n\n.fresh {\n  --my-bg-color: #ff6347;\n}\n\n.nature {\n  --my-bg-color: rgb(120,\n  180, 30);\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property2"
+    },
+    {
+      "type": "h2",
+      "text": "Avoid Error with Type Checking and Fallback Value"
+    },
+    {
+      "type": "p",
+      "text": "In the following example we set the custom property in class .nature\nto an integer. This is not valid, and the browser will use the fallback color,\nwhich is defined in the initial-value property (lightgray):"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}\n\ndiv {\n  width: 300px;\n\n  height: 150px;\n  padding: 15px;\n  background-color: var(--my-bg-color);\n\n  }\n\n.fresh {\n  --my-bg-color: #ff6347;\n}\n\n.nature {\n  --my-bg-color:\n  2;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property3"
+    },
+    {
+      "type": "h2",
+      "text": "Use of the inherits Value"
+    },
+    {
+      "type": "p",
+      "text": "In the following example we will set the inherits value to false. This means\nthat the custom property\n  WILL NOT inherit values from its parent elements. Look at the result:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  false;\n  initial-value: lightgray;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property4"
+    },
+    {
+      "type": "p",
+      "text": "The next example sets the inherits value to true. This means\nthat the custom property\n  WILL inherit values from its parent elements. Look at the result:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --my-bg-color {\n  syntax: \"<color>\";\n  inherits:\n  true;\n  initial-value: lightgray;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property5"
+    },
+    {
+      "type": "h2",
+      "text": "Create Smooth Animation with @property"
+    },
+    {
+      "type": "p",
+      "text": "A complete new opportunity you can achieve with the\n@property\nrule, is to animate something that could not be animated before: Gradients. Look at the\nfollowing example:"
+    },
+    {
+      "type": "code",
+      "lang": "css",
+      "text": "@property --startColor {\n  syntax: \"<color>\";\n\n    initial-value: #EADEDB;\n  inherits: false;\n}\n\n@property --endColor {\n  syntax:\n    \"<color>\";\n  initial-value: #BC70A4;\n  inherits: false;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=trycss3_property6"
+    },
+    {
+      "type": "h2",
+      "text": "CSS @property Rule"
+    },
+    {
+      "type": "table",
+      "headers": ["Property", "Description"],
+      "rows": [
+        [
+          "@property",
+          "Define custom CSS properties directly in the stylesheet without having to run any JavaScript"
+        ]
+      ]
+    }
+  ]
 }

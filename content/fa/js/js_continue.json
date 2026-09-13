@@ -1,175 +1,170 @@
 {
- "slug": "js_continue",
- "course": "js",
- "order": 26,
- "url": "/js/js_continue.asp",
- "title": "دستور continue در JavaScript",
- "summary": "دستور continue از دور جاری حلقه می‌گذرد و اجرا را به دور بعدی می‌برد، بی‌آن‌که حلقه تمام شود. در این درس تفاوت آن با break را می‌بینید، با برچسب‌ها آشنا می‌شوید و یاد می‌گیرید در حلقه‌های تودرتو چطور دور حلقهٔ بیرونی را رد کنید.",
- "objectives": [
-  "توضیح دهید continue چه بخشی از حلقه را رد می‌کند",
-  "continue را با برچسب برای حلقه‌های تودرتو به کار ببرید",
-  "تفاوت continue و break را تشخیص دهید",
-  "در یک حلقه شرطی بنویسید که بعضی دورها را رد کند"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "دستور continue در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "دستور continue"
-  },
-  {
-   "type": "p",
-   "text": "دستور continue از دور جاری حلقه می‌گذرد."
-  },
-  {
-   "type": "p",
-   "text": "بقیهٔ کد آن دور نادیده گرفته می‌شود و اجرا به دور بعدی می‌رود."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "for (let i = 1; i < 10; i++) {\n\n    if (i === 3) { continue; }\n\n    text += \"The number is \" + i + \"<br>\";\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_continue"
-  },
-  {
-   "type": "h2",
-   "text": "برچسب‌ها در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "برچسب به یک دستور یا بلوکی از دستورها نام می‌دهد تا بتوان در کنترل جریان برنامه، خصوصاً در حلقه‌ها، به آن دستورها ارجاع داد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "labelname: statement;",
-   "caption": "نحو"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "labelname: {\n\n  statements\n\n}",
-   "caption": "نحو"
-  },
-  {
-   "type": "h2",
-   "text": "continue با برچسب"
-  },
-  {
-   "type": "code",
-   "lang": "text",
-   "text": "continue labelname;",
-   "caption": "نحو"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"\";\n\nloop1: for (let j = 1; j < 5; j++) {\n\n  loop2: for (let i = 1; i < 5; i++) {\n\n    if (i === 3) { continue loop1; }\n\n    text += i;\n\n    }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_continue_label1"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"\";\n\nloop1: for (let j = 1; j < 5; j++) {\n\n  loop2: for (let i = 1; i < 5; i++) {\n\n    if (i === 3) { continue loop2; }\n\n    text += i;\n\n    }\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_continue_label2"
-  },
-  {
-   "type": "p",
-   "text": "break و continue تنها دستورهای JavaScript هستند که می‌توانند از یک بلوک کد بیرون بزنند."
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل continue.html بسازید و حلقه‌ای بنویسید که اعداد ۰ تا ۹ را چاپ کند، ولی عدد 3 را با continue رد کند.",
-   "hint": "شرط را داخل حلقه بگذارید: if (i === 3) { continue; }"
-  },
-  {
-   "prompt": "یک خط console.log بعد از continue بگذارید و ببینید برای همان دور اجرا نمی‌شود.",
-   "hint": "continue بقیهٔ بدنهٔ همان دور را رد می‌کند و سراغ دور بعدی می‌رود."
-  },
-  {
-   "prompt": "برنامه‌ای بنویسید که از ۱ تا ۱۰ را بپیماید و فقط عددهای زوج را چاپ کند.",
-   "hint": "برای عددهای فرد از continue استفاده کنید: if (i % 2 !== 0) continue;"
-  },
-  {
-   "prompt": "در دو حلقهٔ تودرتو با continue و برچسب، فقط از دور حلقهٔ بیرونی بگذرید.",
-   "hint": "شکل کار: outer: for (...) { for (...) { continue outer; } }"
-  },
-  {
-   "prompt": "تفاوت خروجی continue و break را روی یک حلقهٔ یکسان آزمایش کنید و در یک جمله بنویسید.",
-   "hint": "continue فقط از یک دور می‌گذرد، ولی break کل حلقه را تمام می‌کند."
-  }
- ],
- "quiz": [
-  {
-   "question": "دستور continue چه کاری می‌کند؟",
-   "options": [
-    "حلقه را کامل تمام می‌کند",
-    "از دور جاری می‌گذرد و به دور بعدی می‌رود",
-    "کل برنامه را می‌بندد",
-    "شرط حلقه را به false تغییر می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "continue بقیهٔ بدنهٔ همین دور را رد می‌کند و اجرا را به دور بعدی حلقه می‌برد؛ حلقه و برنامه سر جای خودشان می‌مانند."
-  },
-  {
-   "question": "در حلقه‌ای که به عدد ۳ رسیده‌ایم، دستور continue چه اثری دارد؟",
-   "options": [
-    "حلقه را تمام می‌کند",
-    "بقیهٔ کد این دور را رد می‌کند و به دور بعد می‌رود",
-    "عدد ۳ را چاپ می‌کند",
-    "شمارنده را صفر می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "continue بعد از شرط فقط این یک دور را نیمه‌کاره رها می‌کند؛ خطوط بعدی همان دور اجرا نمی‌شوند ولی حلقه ادامه پیدا می‌کند."
-  },
-  {
-   "question": "کدام دو دستور می‌توانند از یک بلوک کد بیرون بزنند؟",
-   "options": [
-    "if و else",
-    "break و continue",
-    "for و while",
-    "case و default"
-   ],
-   "answer": 1,
-   "explanation": "تنها break و continue این توانایی را دارند. بقیه یا ساختار شرطی‌اند یا خودشان حلقه."
-  },
-  {
-   "question": "برای گذشتن از دور حلقهٔ بیرونی در دو حلقهٔ تودرتو از چه چیزی استفاده می‌کنیم؟",
-   "options": [
-    "دو continue پشت سر هم",
-    "continue همراه با برچسب حلقهٔ بیرونی",
-    "break",
-    "return"
-   ],
-   "answer": 1,
-   "explanation": "continue بدون برچسب فقط روی نزدیک‌ترین حلقه اثر می‌گذارد؛ با گذاشتن برچسب روی حلقهٔ بیرونی و آوردن آن در continue، دور همان حلقهٔ بیرونی رد می‌شود."
-  },
-  {
-   "question": "تفاوت اصلی break و continue چیست؟",
-   "options": [
-    "هیچ تفاوتی ندارند",
-    "break کل حلقه را تمام می‌کند ولی continue فقط یک دور را رد می‌کند",
-    "continue کل حلقه را تمام می‌کند ولی break یک دور را رد می‌کند",
-    "continue فقط در switch کار می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "break از حلقه بیرون می‌زند و اجرای حلقه را پایان می‌دهد، در حالی که continue فقط از دور جاری می‌گذرد و حلقه با دور بعدی ادامه می‌یابد."
-  }
- ]
+  "slug": "js_continue",
+  "course": "js",
+  "order": 26,
+  "url": "/js/js_continue.asp",
+  "title": "دستور continue در JavaScript",
+  "summary": "دستور continue از دور جاری حلقه می‌گذرد و اجرا را به دور بعدی می‌برد، بی‌آن‌که حلقه تمام شود. در این درس تفاوت آن با break را می‌بینید، با برچسب‌ها آشنا می‌شوید و یاد می‌گیرید در حلقه‌های تودرتو چطور دور حلقهٔ بیرونی را رد کنید.",
+  "objectives": [
+    "توضیح دهید continue چه بخشی از حلقه را رد می‌کند",
+    "continue را با برچسب برای حلقه‌های تودرتو به کار ببرید",
+    "تفاوت continue و break را تشخیص دهید",
+    "در یک حلقه شرطی بنویسید که بعضی دورها را رد کند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "دستور continue در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "دستور continue"
+    },
+    {
+      "type": "p",
+      "text": "دستور continue از دور جاری حلقه می‌گذرد."
+    },
+    {
+      "type": "p",
+      "text": "بقیهٔ کد آن دور نادیده گرفته می‌شود و اجرا به دور بعدی می‌رود."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "for (let i = 1; i < 10; i++) {\n\n    if (i === 3) { continue; }\n\n    text += \"The number is \" + i + \"<br>\";\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_continue"
+    },
+    {
+      "type": "h2",
+      "text": "برچسب‌ها در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "برچسب به یک دستور یا بلوکی از دستورها نام می‌دهد تا بتوان در کنترل جریان برنامه، خصوصاً در حلقه‌ها، به آن دستورها ارجاع داد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "labelname: statement;",
+      "caption": "نحو"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "labelname: {\n\n  statements\n\n}",
+      "caption": "نحو"
+    },
+    {
+      "type": "h2",
+      "text": "continue با برچسب"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "continue labelname;",
+      "caption": "نحو"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"\";\n\nloop1: for (let j = 1; j < 5; j++) {\n\n  loop2: for (let i = 1; i < 5; i++) {\n\n    if (i === 3) { continue loop1; }\n\n    text += i;\n\n    }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_continue_label1"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"\";\n\nloop1: for (let j = 1; j < 5; j++) {\n\n  loop2: for (let i = 1; i < 5; i++) {\n\n    if (i === 3) { continue loop2; }\n\n    text += i;\n\n    }\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_continue_label2"
+    },
+    {
+      "type": "p",
+      "text": "break و continue تنها دستورهای JavaScript هستند که می‌توانند از یک بلوک کد بیرون بزنند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل continue.html بسازید و حلقه‌ای بنویسید که اعداد ۰ تا ۹ را چاپ کند، ولی عدد 3 را با continue رد کند.",
+      "hint": "شرط را داخل حلقه بگذارید: if (i === 3) { continue; }"
+    },
+    {
+      "prompt": "یک خط console.log بعد از continue بگذارید و ببینید برای همان دور اجرا نمی‌شود.",
+      "hint": "continue بقیهٔ بدنهٔ همان دور را رد می‌کند و سراغ دور بعدی می‌رود."
+    },
+    {
+      "prompt": "برنامه‌ای بنویسید که از ۱ تا ۱۰ را بپیماید و فقط عددهای زوج را چاپ کند.",
+      "hint": "برای عددهای فرد از continue استفاده کنید: if (i % 2 !== 0) continue;"
+    },
+    {
+      "prompt": "در دو حلقهٔ تودرتو با continue و برچسب، فقط از دور حلقهٔ بیرونی بگذرید.",
+      "hint": "شکل کار: outer: for (...) { for (...) { continue outer; } }"
+    },
+    {
+      "prompt": "تفاوت خروجی continue و break را روی یک حلقهٔ یکسان آزمایش کنید و در یک جمله بنویسید.",
+      "hint": "continue فقط از یک دور می‌گذرد، ولی break کل حلقه را تمام می‌کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "دستور continue چه کاری می‌کند؟",
+      "options": [
+        "حلقه را کامل تمام می‌کند",
+        "از دور جاری می‌گذرد و به دور بعدی می‌رود",
+        "کل برنامه را می‌بندد",
+        "شرط حلقه را به false تغییر می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "continue بقیهٔ بدنهٔ همین دور را رد می‌کند و اجرا را به دور بعدی حلقه می‌برد؛ حلقه و برنامه سر جای خودشان می‌مانند."
+    },
+    {
+      "question": "در حلقه‌ای که به عدد ۳ رسیده‌ایم، دستور continue چه اثری دارد؟",
+      "options": [
+        "حلقه را تمام می‌کند",
+        "بقیهٔ کد این دور را رد می‌کند و به دور بعد می‌رود",
+        "عدد ۳ را چاپ می‌کند",
+        "شمارنده را صفر می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "continue بعد از شرط فقط این یک دور را نیمه‌کاره رها می‌کند؛ خطوط بعدی همان دور اجرا نمی‌شوند ولی حلقه ادامه پیدا می‌کند."
+    },
+    {
+      "question": "کدام دو دستور می‌توانند از یک بلوک کد بیرون بزنند؟",
+      "options": ["if و else", "break و continue", "for و while", "case و default"],
+      "answer": 1,
+      "explanation": "تنها break و continue این توانایی را دارند. بقیه یا ساختار شرطی‌اند یا خودشان حلقه."
+    },
+    {
+      "question": "برای گذشتن از دور حلقهٔ بیرونی در دو حلقهٔ تودرتو از چه چیزی استفاده می‌کنیم؟",
+      "options": [
+        "دو continue پشت سر هم",
+        "continue همراه با برچسب حلقهٔ بیرونی",
+        "break",
+        "return"
+      ],
+      "answer": 1,
+      "explanation": "continue بدون برچسب فقط روی نزدیک‌ترین حلقه اثر می‌گذارد؛ با گذاشتن برچسب روی حلقهٔ بیرونی و آوردن آن در continue، دور همان حلقهٔ بیرونی رد می‌شود."
+    },
+    {
+      "question": "تفاوت اصلی break و continue چیست؟",
+      "options": [
+        "هیچ تفاوتی ندارند",
+        "break کل حلقه را تمام می‌کند ولی continue فقط یک دور را رد می‌کند",
+        "continue کل حلقه را تمام می‌کند ولی break یک دور را رد می‌کند",
+        "continue فقط در switch کار می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "break از حلقه بیرون می‌زند و اجرای حلقه را پایان می‌دهد، در حالی که continue فقط از دور جاری می‌گذرد و حلقه با دور بعدی ادامه می‌یابد."
+    }
+  ]
 }

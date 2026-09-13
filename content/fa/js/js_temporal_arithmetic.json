@@ -1,553 +1,548 @@
 {
- "slug": "js_temporal_arithmetic",
- "course": "js",
- "order": 193,
- "url": "/js/js_temporal_arithmetic.asp",
- "title": "محاسبات Temporal در JavaScript",
- "summary": "Temporal با متدهای add() و subtract() محاسبهٔ تاریخ و ساعت را ساده و ایمن می‌کند. در این درس می‌آموزید duration بسازید، مرزهای تاریخ و سال کبیسه را مدیریت کنید و رفتار overflow را خودتان انتخاب کنید.",
- "objectives": [
-  "با add و subtract روز، ماه، سال و ساعت را جابه‌جا کنید",
-  "توضیح دهید چرا شیءهای Temporal تغییرناپذیرند",
-  "رفتار مرزهای تاریخ و سال کبیسه را در Temporal و Date مقایسه کنید",
-  "با گزینهٔ overflow بین constrain و reject انتخاب کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "محاسبات Temporal در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "جمع و تفریق ایمن تاریخ‌ها"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript Temporal متدهایی برای محاسبهٔ آسان و قابل‌اعتماد تاریخ و ساعت دارد."
-  },
-  {
-   "type": "p",
-   "text": "روز، ماه، سال و ساعت را جمع و کم کنید، بدون اینکه مقدار اصلی تغییر کند."
-  },
-  {
-   "type": "p",
-   "text": "محاسبهٔ تاریخ را بدون مشکل ساعت تابستانی (DST) یا منطقهٔ زمانی انجام دهید."
-  },
-  {
-   "type": "h2",
-   "text": "متدهای add() و subtract() در Temporal"
-  },
-  {
-   "type": "p",
-   "text": "همهٔ شیءهای Temporal متد add() خودشان را دارند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "duration.add(duration)",
-    "instant.add(duration)",
-    "plaindate.add(duration)",
-    "plaintime.add(duration)",
-    "plainyearmonth.add(duration)",
-    "plainmonthday.add(duration)",
-    "plaindatetime.add(duration)",
-    "zoneddatetime.add(duration)"
-   ]
-  },
-  {
-   "type": "p",
-   "text": "همهٔ شیءهای Temporal متد subtract() خودشان را دارند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "duration.subtract(duration)",
-    "instant.subtract(duration)",
-    "plaindate.subtract(duration)",
-    "plaintime.subtract(duration)",
-    "plainyearmonth.subtract(duration)",
-    "plainmonthday.subtract(duration)",
-    "plaindatetime.subtract(duration)",
-    "zoneddatetime.subtract(duration)"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد add در Temporal جاوااسکریپت"
-  },
-  {
-   "type": "p",
-   "text": "متد add() یک شیء duration را به‌عنوان ورودی می‌پذیرد."
-  },
-  {
-   "type": "p",
-   "text": "مثال: { days: 10 }."
-  },
-  {
-   "type": "p",
-   "text": "یک شیء تاریخ Temporal تازه برمی‌گرداند که به اندازهٔ آن مدت جلو رفته است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "temporal.add(duration)",
-   "caption": "نحو"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Temporal object\n\nconst myDate = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add a duration\n\nconst newDate = myDate.add({ days: 10 });",
-   "caption": "نحو"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add"
-  },
-  {
-   "type": "h2",
-   "text": "متد subtract در Temporal جاوااسکریپت"
-  },
-  {
-   "type": "p",
-   "text": "متد subtract() یک شیء duration را به‌عنوان ورودی می‌پذیرد."
-  },
-  {
-   "type": "p",
-   "text": "مثال: { days: 10 }."
-  },
-  {
-   "type": "p",
-   "text": "یک شیء تاریخ Temporal تازه برمی‌گرداند که به اندازهٔ آن مدت عقب رفته است."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "temporal.subtract(duration)",
-   "caption": "نحو"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Temporal object\n\nconst myDate = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Subtract a duration\n\nconst newDate = myDate.subtract({ days: 10 });",
-   "caption": "نحو"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_subtract"
-  },
-  {
-   "type": "p",
-   "text": "هر دو متد add و subtract تغییرناپذیرند: هر دو یک شیء Temporal تازه برمی‌گردانند."
-  },
-  {
-   "type": "h2",
-   "text": "مرزهای تاریخ"
-  },
-  {
-   "type": "p",
-   "text": "هر دو متد add و subtract مرزهای تاریخ را درست مدیریت می‌کنند:"
-  },
-  {
-   "type": "p",
-   "text": "افزودن یک روز به ۳۱ مارس، یکم آوریل می‌شود."
-  },
-  {
-   "type": "h2",
-   "text": "افزودن ماه"
-  },
-  {
-   "type": "p",
-   "text": "Temporal طول متفاوت ماه‌ها را خودش مدیریت می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Temporal object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst result = date.add({ months: 1 });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_month"
-  },
-  {
-   "type": "p",
-   "text": "اگر ماه بعد روزهای کمتری داشته باشد، Temporal خودش تنظیم می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "افزودن سال"
-  },
-  {
-   "type": "p",
-   "text": "افزودن سال حتی برای سال‌های کبیسه هم درست کار می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Temporal object\n\nconst date = Temporal.PlainDate.from(\"2024-02-29\");\n\nconst result = date.add({ years: 1 });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_year"
-  },
-  {
-   "type": "p",
-   "text": "Temporal تنظیم‌های سال کبیسه را خودش انجام می‌دهد."
-  },
-  {
-   "type": "h2",
-   "text": "واحدهای پشتیبانی‌شدهٔ duration"
-  },
-  {
-   "type": "p",
-   "text": "متدهای add() و subtract() یک شیء duration را به‌عنوان ورودی می‌پذیرند."
-  },
-  {
-   "type": "p",
-   "text": "مثال: { months: 2, days: 7, hours: 1 }."
-  },
-  {
-   "type": "p",
-   "text": "واحدهای duration زیر پشتیبانی می‌شوند:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "years",
-    "months",
-    "weeks",
-    "days",
-    "hours",
-    "minutes",
-    "seconds",
-    "milliseconds",
-    "microseconds",
-    "nanoseconds"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "افزودن چند واحد"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create any Temporal object\n\nconst myDate = Temporal.PlainDate.from('2026-05-17');\n\n// Add multiple units\n\nconst newDate = myDate.add({ years: 1, months: 2, days: 15 });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_multiple"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای add() و subtract() در PlainDateTime"
-  },
-  {
-   "type": "p",
-   "text": "می‌توانید با خیال راحت زمان جمع یا کم کنید."
-  },
-  {
-   "type": "p",
-   "text": "مقدار اصلی تغییر نمی‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDateTime object\n\nconst date = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\n// Add and subtract time\n\nconst earlier = dateTime.subtract({ minutes: 30 });\n\nconst later = dateTime.add({ hours: 2 });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_4"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای add() و subtract() در PlainDate"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add and subtract time\n\nconst earlier = date.subtract({ months: 3 });\n\nconst later = date.add({ days: 10 });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_add_subtract"
-  },
-  {
-   "type": "h2",
-   "text": "متدهای add() و subtract() در Instant"
-  },
-  {
-   "type": "p",
-   "text": "روی یک Temporal.Instant فقط می‌توانید مدت‌های زمانی (ساعت، دقیقه، ثانیه) را جمع یا کم کنید، نه مدت‌های تقویمی مثل ماه و سال، چون طول آن‌ها به منطقهٔ زمانی و تقویم بستگی دارد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Temporal.Instant object\n\nconst now = Temporal.Instant.fromEpochMilliseconds(Date.now());\n\n// Subtract 5 hours and 30 minutes\n\nconst fiveHalfHoursAgo = now.subtract({ hours: 5, minutes: 30 });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_subtract_instant"
-  },
-  {
-   "type": "h2",
-   "text": "افزودن duration به زمان اکنون"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Temporal object\n\nconst today = Temporal.Now.plainDateISO();\n\n// Add a duration\n\nconst nextWeek = today.add({ days: 7 });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_now"
-  },
-  {
-   "type": "h2",
-   "text": "تغییرناپذیر"
-  },
-  {
-   "type": "p",
-   "text": "برخلاف شیء قدیمی Date، شیءهای Temporal تغییرناپذیرند."
-  },
-  {
-   "type": "p",
-   "text": "همهٔ متدها یک نمونهٔ تازه برمی‌گردانند و نمونهٔ موجود را تغییر نمی‌دهند."
-  },
-  {
-   "type": "h2",
-   "text": "محاسبهٔ تاریخ با ZonedDateTime"
-  },
-  {
-   "type": "p",
-   "text": "ZonedDateTime ساعت تابستانی (DST) را به‌شکل ایمن مدیریت می‌کند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const start = Temporal.ZonedDateTime.from\n\n(\"2026-03-29T00:00:00+01:00[Europe/Oslo]\");\n\nconst nextDay = start.add({ days: 1 });",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_zoned"
-  },
-  {
-   "type": "p",
-   "text": "اگر تغییر DST رخ دهد، Temporal خودش تنظیم می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "مقایسه با محاسبهٔ تاریخ در Date"
-  },
-  {
-   "type": "p",
-   "text": "شیء Date در JavaScript قواعد سال کبیسه را درست پیاده کرده است، اما محاسبه‌های تقویمی مربوط به سال کبیسه می‌توانند نتیجهٔ غافلگیرکننده بدهند، چون تاریخ‌های نامعتبر خودکار اصلاح می‌شوند و به‌جای آنکه خطا گزارش شوند."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date object\n\nlet d = new Date(\"2024-02-29\");\n\n// Add one year\n\nd.setFullYear(d.getFullYear() + 1);",
-   "caption": "افزودن یک سال به روز کبیسه"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_12"
-  },
-  {
-   "type": "p",
-   "text": "بسیاری انتظار ۲۸ فوریه را دارند، اما Date بی‌صدا تاریخ را به یکم مارس می‌برد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date object\n\nlet d = new Date(\"2024-02-29\");\n\n// Add one year\n\nd.setDate(d.getDate() + 365);",
-   "caption": "افزودن ۳۶۵ روز همان نتیجه را نمی‌دهد"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_13"
-  },
-  {
-   "type": "p",
-   "text": "حالا نتیجه ۲۸ فوریه است که با setFullYear() فرق دارد."
-  },
-  {
-   "type": "p",
-   "text": "این نشان می‌دهد Date محاسبهٔ تقویمی و شمارش روز را طوری با هم قاطی می‌کند که می‌تواند غافلگیرکننده باشد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a Date object\n\nlet d = new Date(2025, 1, 29);",
-   "caption": "تاریخ‌های نامعتبر بی‌صدا اصلاح می‌شوند"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_14"
-  },
-  {
-   "type": "p",
-   "text": "JavaScript به‌جای گزارش تاریخ نامعتبر، بی‌صدا آن را به تاریخ معتبر دیگری تبدیل می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "رفتار Overflow در Temporal"
-  },
-  {
-   "type": "p",
-   "text": "Temporal می‌گذارد خودتان انتخاب کنید وقتی تاریخی نامعتبر می‌شود چه اتفاقی بیفتد."
-  },
-  {
-   "type": "p",
-   "text": "برای نمونه: ۲۹ فوریهٔ ۲۰۲۴ به‌علاوهٔ یک سال نامعتبر می‌شود، چون سال ۲۰۲۵ روز ۲۹ فوریه را ندارد."
-  },
-  {
-   "type": "p",
-   "text": "گزینهٔ overflow تعیین می‌کند وقتی محاسبه‌ای تاریخ نامعتبر تولید کند چه اتفاقی می‌افتد."
-  },
-  {
-   "type": "p",
-   "text": "با overflow: \"constrain\"، Temporal نتیجه را به نزدیک‌ترین تاریخ معتبر تغییر می‌دهد."
-  },
-  {
-   "type": "p",
-   "text": "با overflow: \"reject\"، Temporal به‌جای تغییر تاریخ خطا می‌دهد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\nconst nextYear = d.add({ years: 1 });",
-   "caption": "مقدار پیش‌فرض overflow"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_15"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\nconst nextYear = d.add(\n\n  { years: 1 },\n\n  { overflow: \"constrain\" }\n\n);",
-   "caption": "overflow: \"constrain\""
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_16"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\ntry {\n\n  const nextYear = d.add(\n\n    { years: 1 },\n\n    { overflow: \"reject\" }\n\n  );\n\n  text = nextYear.toString();\n\n} catch (err) {\n\n  text = err.name;\n\n}",
-   "caption": "overflow: \"reject\""
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_17"
-  },
-  {
-   "type": "p",
-   "text": "با Temporal می‌توانید رفتار overflow را صریح انتخاب کنید."
-  },
-  {
-   "type": "h2",
-   "text": "بهترین روش‌ها"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "برای محاسبهٔ فقط‌تاریخ از PlainDate استفاده کنید.",
-    "برای محاسبه‌هایی که منطقهٔ زمانی در آن‌ها مهم است از ZonedDateTime استفاده کنید.",
-    "از محاسبهٔ دستی میلی‌ثانیه بپرهیزید.",
-    "Temporal را ترجیح دهید، چون تغییرناپذیر است."
-   ]
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل arithmetic.html بسازید، یک PlainDate بسازید و با add({ days: 7 }) و subtract({ days: 7 }) دو تاریخ بگیرید و هر سه را چاپ کنید.",
-   "hint": "مقدار اصلی تغییر نمی‌کند؛ add و subtract شیء تازه می‌سازند."
-  },
-  {
-   "prompt": "به تاریخ ۳۱ مارس یک ماه اضافه کنید و ببینید Temporal چه کاری با ماه بعد می‌کند.",
-   "hint": "اگر ماه بعد روزهای کمتری داشته باشد، Temporal خودکار تنظیم می‌کند."
-  },
-  {
-   "prompt": "روی یک PlainDate سال کبیسه عمل add({ years: 1 }) انجام دهید و نتیجه را با setFullYear() روی Date مقایسه کنید.",
-   "hint": "Date تاریخ نامعتبر را بی‌صدا اصلاح می‌کند؛ Temporal رفتار را قابل انتخاب کرده است."
-  },
-  {
-   "prompt": "همان محاسبه را دو بار انجام دهید، یک‌بار با overflow: \"constrain\" و یک‌بار با overflow: \"reject\"، و تفاوت را ببینید.",
-   "hint": "constrain نتیجه را به نزدیک‌ترین تاریخ معتبر می‌برد و reject خطا می‌دهد."
-  },
-  {
-   "prompt": "یک duration با چند واحد بسازید، مثل { months: 2, days: 7, hours: 1 }، و آن را با add به یک PlainDateTime اضافه کنید.",
-   "hint": "شیء duration می‌تواند هم‌زمان چند واحد داشته باشد."
-  }
- ],
- "quiz": [
-  {
-   "question": "متد add() چه چیزی به‌عنوان ورودی می‌گیرد؟",
-   "options": [
-    "یک رشته",
-    "یک شیء duration",
-    "یک عدد صحیح",
-    "یک شیء Date"
-   ],
-   "answer": 1,
-   "explanation": "add و subtract یک شیء duration می‌گیرند که می‌تواند چند واحد داشته باشد، مثل { days: 7 }."
-  },
-  {
-   "question": "وقتی به ۳۱ مارس یک ماه اضافه می‌کنیم، Temporal چه می‌کند؟",
-   "options": [
-    "خطا می‌دهد",
-    "نتیجه را به یکم آوریل می‌برد",
-    "۳۱ آوریل تولید می‌کند",
-    "مقدار را تغییر نمی‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "Temporal طول متفاوت ماه‌ها را خودش مدیریت می‌کند و اگر ماه بعد روز کمتری داشته باشد، تاریخ را تنظیم می‌کند؛ پس نتیجه یکم آوریل است."
-  },
-  {
-   "question": "تفاوت مهم شیءهای Temporal با Date در تغییرناپذیری چیست؟",
-   "options": [
-    "Temporal سریع‌تر است",
-    "متدهای Temporal نمونهٔ تازه برمی‌گردانند و مقدار اصلی را تغییر نمی‌دهند",
-    "Temporal نمی‌تواند تاریخ بسازد",
-    "Temporal مقدار را در محل تغییر می‌دهد"
-   ],
-   "answer": 1,
-   "explanation": "شیءهای Temporal تغییرناپذیرند؛ add و subtract همیشه یک نمونهٔ تازه می‌سازند و نمونهٔ موجود دست‌نخورده می‌ماند."
-  },
-  {
-   "question": "گزینهٔ overflow با مقدار \"reject\" چه رفتاری دارد؟",
-   "options": [
-    "نتیجه را به نزدیک‌ترین تاریخ معتبر می‌برد",
-    "تاریخ را بی‌صدا اصلاح می‌کند",
-    "به‌جای تغییر تاریخ خطا می‌دهد",
-    "محاسبه را نادیده می‌گیرد"
-   ],
-   "answer": 2,
-   "explanation": "reject خطا می‌دهد و تاریخ را تغییر نمی‌دهد؛ رفتار نزدیک‌ترین تاریخ معتبر مربوط به constrain است."
-  },
-  {
-   "question": "چرا روی یک Instant نمی‌توان مدت تقویمی مثل ماه یا سال اضافه کرد؟",
-   "options": [
-    "چون Instant فقط برای ساعت ساخته شده است",
-    "چون طول ماه و سال ثابت نیست و به منطقهٔ زمانی و تقویم بستگی دارد",
-    "چون Instant تغییرناپذیر است",
-    "چون add روی Instant وجود ندارد"
-   ],
-   "answer": 1,
-   "explanation": "Instant یک لحظهٔ دقیق در UTC است و مدت‌های تقویمی طول ثابتی ندارند؛ پس فقط مدت‌های زمانی مثل ساعت و دقیقه و ثانیه را می‌پذیرد."
-  }
- ]
+  "slug": "js_temporal_arithmetic",
+  "course": "js",
+  "order": 193,
+  "url": "/js/js_temporal_arithmetic.asp",
+  "title": "محاسبات Temporal در JavaScript",
+  "summary": "Temporal با متدهای add() و subtract() محاسبهٔ تاریخ و ساعت را ساده و ایمن می‌کند. در این درس می‌آموزید duration بسازید، مرزهای تاریخ و سال کبیسه را مدیریت کنید و رفتار overflow را خودتان انتخاب کنید.",
+  "objectives": [
+    "با add و subtract روز، ماه، سال و ساعت را جابه‌جا کنید",
+    "توضیح دهید چرا شیءهای Temporal تغییرناپذیرند",
+    "رفتار مرزهای تاریخ و سال کبیسه را در Temporal و Date مقایسه کنید",
+    "با گزینهٔ overflow بین constrain و reject انتخاب کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "محاسبات Temporal در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "جمع و تفریق ایمن تاریخ‌ها"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript Temporal متدهایی برای محاسبهٔ آسان و قابل‌اعتماد تاریخ و ساعت دارد."
+    },
+    {
+      "type": "p",
+      "text": "روز، ماه، سال و ساعت را جمع و کم کنید، بدون اینکه مقدار اصلی تغییر کند."
+    },
+    {
+      "type": "p",
+      "text": "محاسبهٔ تاریخ را بدون مشکل ساعت تابستانی (DST) یا منطقهٔ زمانی انجام دهید."
+    },
+    {
+      "type": "h2",
+      "text": "متدهای add() و subtract() در Temporal"
+    },
+    {
+      "type": "p",
+      "text": "همهٔ شیءهای Temporal متد add() خودشان را دارند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "duration.add(duration)",
+        "instant.add(duration)",
+        "plaindate.add(duration)",
+        "plaintime.add(duration)",
+        "plainyearmonth.add(duration)",
+        "plainmonthday.add(duration)",
+        "plaindatetime.add(duration)",
+        "zoneddatetime.add(duration)"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "همهٔ شیءهای Temporal متد subtract() خودشان را دارند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "duration.subtract(duration)",
+        "instant.subtract(duration)",
+        "plaindate.subtract(duration)",
+        "plaintime.subtract(duration)",
+        "plainyearmonth.subtract(duration)",
+        "plainmonthday.subtract(duration)",
+        "plaindatetime.subtract(duration)",
+        "zoneddatetime.subtract(duration)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد add در Temporal جاوااسکریپت"
+    },
+    {
+      "type": "p",
+      "text": "متد add() یک شیء duration را به‌عنوان ورودی می‌پذیرد."
+    },
+    {
+      "type": "p",
+      "text": "مثال: { days: 10 }."
+    },
+    {
+      "type": "p",
+      "text": "یک شیء تاریخ Temporal تازه برمی‌گرداند که به اندازهٔ آن مدت جلو رفته است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "temporal.add(duration)",
+      "caption": "نحو"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Temporal object\n\nconst myDate = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add a duration\n\nconst newDate = myDate.add({ days: 10 });",
+      "caption": "نحو"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add"
+    },
+    {
+      "type": "h2",
+      "text": "متد subtract در Temporal جاوااسکریپت"
+    },
+    {
+      "type": "p",
+      "text": "متد subtract() یک شیء duration را به‌عنوان ورودی می‌پذیرد."
+    },
+    {
+      "type": "p",
+      "text": "مثال: { days: 10 }."
+    },
+    {
+      "type": "p",
+      "text": "یک شیء تاریخ Temporal تازه برمی‌گرداند که به اندازهٔ آن مدت عقب رفته است."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "temporal.subtract(duration)",
+      "caption": "نحو"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Temporal object\n\nconst myDate = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Subtract a duration\n\nconst newDate = myDate.subtract({ days: 10 });",
+      "caption": "نحو"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_subtract"
+    },
+    {
+      "type": "p",
+      "text": "هر دو متد add و subtract تغییرناپذیرند: هر دو یک شیء Temporal تازه برمی‌گردانند."
+    },
+    {
+      "type": "h2",
+      "text": "مرزهای تاریخ"
+    },
+    {
+      "type": "p",
+      "text": "هر دو متد add و subtract مرزهای تاریخ را درست مدیریت می‌کنند:"
+    },
+    {
+      "type": "p",
+      "text": "افزودن یک روز به ۳۱ مارس، یکم آوریل می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "افزودن ماه"
+    },
+    {
+      "type": "p",
+      "text": "Temporal طول متفاوت ماه‌ها را خودش مدیریت می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Temporal object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\nconst result = date.add({ months: 1 });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_month"
+    },
+    {
+      "type": "p",
+      "text": "اگر ماه بعد روزهای کمتری داشته باشد، Temporal خودش تنظیم می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "افزودن سال"
+    },
+    {
+      "type": "p",
+      "text": "افزودن سال حتی برای سال‌های کبیسه هم درست کار می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Temporal object\n\nconst date = Temporal.PlainDate.from(\"2024-02-29\");\n\nconst result = date.add({ years: 1 });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_year"
+    },
+    {
+      "type": "p",
+      "text": "Temporal تنظیم‌های سال کبیسه را خودش انجام می‌دهد."
+    },
+    {
+      "type": "h2",
+      "text": "واحدهای پشتیبانی‌شدهٔ duration"
+    },
+    {
+      "type": "p",
+      "text": "متدهای add() و subtract() یک شیء duration را به‌عنوان ورودی می‌پذیرند."
+    },
+    {
+      "type": "p",
+      "text": "مثال: { months: 2, days: 7, hours: 1 }."
+    },
+    {
+      "type": "p",
+      "text": "واحدهای duration زیر پشتیبانی می‌شوند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "years",
+        "months",
+        "weeks",
+        "days",
+        "hours",
+        "minutes",
+        "seconds",
+        "milliseconds",
+        "microseconds",
+        "nanoseconds"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "افزودن چند واحد"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create any Temporal object\n\nconst myDate = Temporal.PlainDate.from('2026-05-17');\n\n// Add multiple units\n\nconst newDate = myDate.add({ years: 1, months: 2, days: 15 });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_multiple"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای add() و subtract() در PlainDateTime"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید با خیال راحت زمان جمع یا کم کنید."
+    },
+    {
+      "type": "p",
+      "text": "مقدار اصلی تغییر نمی‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDateTime object\n\nconst date = Temporal.PlainDateTime.from(\"2026-05-17T14:30:00\");\n\n// Add and subtract time\n\nconst earlier = dateTime.subtract({ minutes: 30 });\n\nconst later = dateTime.add({ hours: 2 });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindatetime_4"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای add() و subtract() در PlainDate"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDate object\n\nconst date = Temporal.PlainDate.from(\"2026-05-17\");\n\n// Add and subtract time\n\nconst earlier = date.subtract({ months: 3 });\n\nconst later = date.add({ days: 10 });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_plaindate_add_subtract"
+    },
+    {
+      "type": "h2",
+      "text": "متدهای add() و subtract() در Instant"
+    },
+    {
+      "type": "p",
+      "text": "روی یک Temporal.Instant فقط می‌توانید مدت‌های زمانی (ساعت، دقیقه، ثانیه) را جمع یا کم کنید، نه مدت‌های تقویمی مثل ماه و سال، چون طول آن‌ها به منطقهٔ زمانی و تقویم بستگی دارد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Temporal.Instant object\n\nconst now = Temporal.Instant.fromEpochMilliseconds(Date.now());\n\n// Subtract 5 hours and 30 minutes\n\nconst fiveHalfHoursAgo = now.subtract({ hours: 5, minutes: 30 });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_subtract_instant"
+    },
+    {
+      "type": "h2",
+      "text": "افزودن duration به زمان اکنون"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Temporal object\n\nconst today = Temporal.Now.plainDateISO();\n\n// Add a duration\n\nconst nextWeek = today.add({ days: 7 });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_now"
+    },
+    {
+      "type": "h2",
+      "text": "تغییرناپذیر"
+    },
+    {
+      "type": "p",
+      "text": "برخلاف شیء قدیمی Date، شیءهای Temporal تغییرناپذیرند."
+    },
+    {
+      "type": "p",
+      "text": "همهٔ متدها یک نمونهٔ تازه برمی‌گردانند و نمونهٔ موجود را تغییر نمی‌دهند."
+    },
+    {
+      "type": "h2",
+      "text": "محاسبهٔ تاریخ با ZonedDateTime"
+    },
+    {
+      "type": "p",
+      "text": "ZonedDateTime ساعت تابستانی (DST) را به‌شکل ایمن مدیریت می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const start = Temporal.ZonedDateTime.from\n\n(\"2026-03-29T00:00:00+01:00[Europe/Oslo]\");\n\nconst nextDay = start.add({ days: 1 });",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_add_zoned"
+    },
+    {
+      "type": "p",
+      "text": "اگر تغییر DST رخ دهد، Temporal خودش تنظیم می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "مقایسه با محاسبهٔ تاریخ در Date"
+    },
+    {
+      "type": "p",
+      "text": "شیء Date در JavaScript قواعد سال کبیسه را درست پیاده کرده است، اما محاسبه‌های تقویمی مربوط به سال کبیسه می‌توانند نتیجهٔ غافلگیرکننده بدهند، چون تاریخ‌های نامعتبر خودکار اصلاح می‌شوند و به‌جای آنکه خطا گزارش شوند."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date object\n\nlet d = new Date(\"2024-02-29\");\n\n// Add one year\n\nd.setFullYear(d.getFullYear() + 1);",
+      "caption": "افزودن یک سال به روز کبیسه"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_12"
+    },
+    {
+      "type": "p",
+      "text": "بسیاری انتظار ۲۸ فوریه را دارند، اما Date بی‌صدا تاریخ را به یکم مارس می‌برد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date object\n\nlet d = new Date(\"2024-02-29\");\n\n// Add one year\n\nd.setDate(d.getDate() + 365);",
+      "caption": "افزودن ۳۶۵ روز همان نتیجه را نمی‌دهد"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_13"
+    },
+    {
+      "type": "p",
+      "text": "حالا نتیجه ۲۸ فوریه است که با setFullYear() فرق دارد."
+    },
+    {
+      "type": "p",
+      "text": "این نشان می‌دهد Date محاسبهٔ تقویمی و شمارش روز را طوری با هم قاطی می‌کند که می‌تواند غافلگیرکننده باشد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a Date object\n\nlet d = new Date(2025, 1, 29);",
+      "caption": "تاریخ‌های نامعتبر بی‌صدا اصلاح می‌شوند"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_14"
+    },
+    {
+      "type": "p",
+      "text": "JavaScript به‌جای گزارش تاریخ نامعتبر، بی‌صدا آن را به تاریخ معتبر دیگری تبدیل می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "رفتار Overflow در Temporal"
+    },
+    {
+      "type": "p",
+      "text": "Temporal می‌گذارد خودتان انتخاب کنید وقتی تاریخی نامعتبر می‌شود چه اتفاقی بیفتد."
+    },
+    {
+      "type": "p",
+      "text": "برای نمونه: ۲۹ فوریهٔ ۲۰۲۴ به‌علاوهٔ یک سال نامعتبر می‌شود، چون سال ۲۰۲۵ روز ۲۹ فوریه را ندارد."
+    },
+    {
+      "type": "p",
+      "text": "گزینهٔ overflow تعیین می‌کند وقتی محاسبه‌ای تاریخ نامعتبر تولید کند چه اتفاقی می‌افتد."
+    },
+    {
+      "type": "p",
+      "text": "با overflow: \"constrain\"، Temporal نتیجه را به نزدیک‌ترین تاریخ معتبر تغییر می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "با overflow: \"reject\"، Temporal به‌جای تغییر تاریخ خطا می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\nconst nextYear = d.add({ years: 1 });",
+      "caption": "مقدار پیش‌فرض overflow"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_15"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\nconst nextYear = d.add(\n\n  { years: 1 },\n\n  { overflow: \"constrain\" }\n\n);",
+      "caption": "overflow: \"constrain\""
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_16"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "// Create a PlainDate object\n\nconst d = Temporal.PlainDate.from(\"2024-02-29\");\n\n// Add one year\n\ntry {\n\n  const nextYear = d.add(\n\n    { years: 1 },\n\n    { overflow: \"reject\" }\n\n  );\n\n  text = nextYear.toString();\n\n} catch (err) {\n\n  text = err.name;\n\n}",
+      "caption": "overflow: \"reject\""
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_temporal_vs_date_17"
+    },
+    {
+      "type": "p",
+      "text": "با Temporal می‌توانید رفتار overflow را صریح انتخاب کنید."
+    },
+    {
+      "type": "h2",
+      "text": "بهترین روش‌ها"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "برای محاسبهٔ فقط‌تاریخ از PlainDate استفاده کنید.",
+        "برای محاسبه‌هایی که منطقهٔ زمانی در آن‌ها مهم است از ZonedDateTime استفاده کنید.",
+        "از محاسبهٔ دستی میلی‌ثانیه بپرهیزید.",
+        "Temporal را ترجیح دهید، چون تغییرناپذیر است."
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل arithmetic.html بسازید، یک PlainDate بسازید و با add({ days: 7 }) و subtract({ days: 7 }) دو تاریخ بگیرید و هر سه را چاپ کنید.",
+      "hint": "مقدار اصلی تغییر نمی‌کند؛ add و subtract شیء تازه می‌سازند."
+    },
+    {
+      "prompt": "به تاریخ ۳۱ مارس یک ماه اضافه کنید و ببینید Temporal چه کاری با ماه بعد می‌کند.",
+      "hint": "اگر ماه بعد روزهای کمتری داشته باشد، Temporal خودکار تنظیم می‌کند."
+    },
+    {
+      "prompt": "روی یک PlainDate سال کبیسه عمل add({ years: 1 }) انجام دهید و نتیجه را با setFullYear() روی Date مقایسه کنید.",
+      "hint": "Date تاریخ نامعتبر را بی‌صدا اصلاح می‌کند؛ Temporal رفتار را قابل انتخاب کرده است."
+    },
+    {
+      "prompt": "همان محاسبه را دو بار انجام دهید، یک‌بار با overflow: \"constrain\" و یک‌بار با overflow: \"reject\"، و تفاوت را ببینید.",
+      "hint": "constrain نتیجه را به نزدیک‌ترین تاریخ معتبر می‌برد و reject خطا می‌دهد."
+    },
+    {
+      "prompt": "یک duration با چند واحد بسازید، مثل { months: 2, days: 7, hours: 1 }، و آن را با add به یک PlainDateTime اضافه کنید.",
+      "hint": "شیء duration می‌تواند هم‌زمان چند واحد داشته باشد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "متد add() چه چیزی به‌عنوان ورودی می‌گیرد؟",
+      "options": ["یک رشته", "یک شیء duration", "یک عدد صحیح", "یک شیء Date"],
+      "answer": 1,
+      "explanation": "add و subtract یک شیء duration می‌گیرند که می‌تواند چند واحد داشته باشد، مثل { days: 7 }."
+    },
+    {
+      "question": "وقتی به ۳۱ مارس یک ماه اضافه می‌کنیم، Temporal چه می‌کند؟",
+      "options": [
+        "خطا می‌دهد",
+        "نتیجه را به یکم آوریل می‌برد",
+        "۳۱ آوریل تولید می‌کند",
+        "مقدار را تغییر نمی‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "Temporal طول متفاوت ماه‌ها را خودش مدیریت می‌کند و اگر ماه بعد روز کمتری داشته باشد، تاریخ را تنظیم می‌کند؛ پس نتیجه یکم آوریل است."
+    },
+    {
+      "question": "تفاوت مهم شیءهای Temporal با Date در تغییرناپذیری چیست؟",
+      "options": [
+        "Temporal سریع‌تر است",
+        "متدهای Temporal نمونهٔ تازه برمی‌گردانند و مقدار اصلی را تغییر نمی‌دهند",
+        "Temporal نمی‌تواند تاریخ بسازد",
+        "Temporal مقدار را در محل تغییر می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "شیءهای Temporal تغییرناپذیرند؛ add و subtract همیشه یک نمونهٔ تازه می‌سازند و نمونهٔ موجود دست‌نخورده می‌ماند."
+    },
+    {
+      "question": "گزینهٔ overflow با مقدار \"reject\" چه رفتاری دارد؟",
+      "options": [
+        "نتیجه را به نزدیک‌ترین تاریخ معتبر می‌برد",
+        "تاریخ را بی‌صدا اصلاح می‌کند",
+        "به‌جای تغییر تاریخ خطا می‌دهد",
+        "محاسبه را نادیده می‌گیرد"
+      ],
+      "answer": 2,
+      "explanation": "reject خطا می‌دهد و تاریخ را تغییر نمی‌دهد؛ رفتار نزدیک‌ترین تاریخ معتبر مربوط به constrain است."
+    },
+    {
+      "question": "چرا روی یک Instant نمی‌توان مدت تقویمی مثل ماه یا سال اضافه کرد؟",
+      "options": [
+        "چون Instant فقط برای ساعت ساخته شده است",
+        "چون طول ماه و سال ثابت نیست و به منطقهٔ زمانی و تقویم بستگی دارد",
+        "چون Instant تغییرناپذیر است",
+        "چون add روی Instant وجود ندارد"
+      ],
+      "answer": 1,
+      "explanation": "Instant یک لحظهٔ دقیق در UTC است و مدت‌های تقویمی طول ثابتی ندارند؛ پس فقط مدت‌های زمانی مثل ساعت و دقیقه و ثانیه را می‌پذیرد."
+    }
+  ]
 }

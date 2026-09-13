@@ -1,391 +1,366 @@
 {
- "slug": "js_let",
- "course": "js",
- "order": 8,
- "url": "/js/js_let.asp",
- "title": "کلیدواژهٔ let در JavaScript",
- "summary": "کلیدواژهٔ let در ES6 (سال ۲۰۱۵) به JavaScript آمد و دامنهٔ بلوکی را با خود آورد. در این درس می‌بینید let چه تفاوتی با var دارد، چرا متغیر let را نمی‌توان دوباره تعریف کرد و hoisting در let چه خطایی می‌سازد.",
- "objectives": [
-  "دامنهٔ بلوکی و دامنهٔ تابع را از هم تشخیص دهید",
-  "تفاوت تعریف مجدد با var و let را توضیح دهید",
-  "توضیح دهید چرا استفاده از متغیر let پیش از تعریفش خطا می‌دهد",
-  "جدول تفاوت var، let و const را بخوانید و تفسیر کنید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "کلیدواژهٔ let در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "کلیدواژهٔ let در ES6 (سال ۲۰۱۵) معرفی شد"
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با let تعریف می‌شوند دامنهٔ بلوکی (Block Scope) دارند"
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با let تعریف می‌شوند باید پیش از استفاده تعریف شوند"
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با let تعریف می‌شوند در همان دامنه دوباره قابل تعریف نیستند"
-  },
-  {
-   "type": "h2",
-   "text": "دامنهٔ بلوکی"
-  },
-  {
-   "type": "p",
-   "text": "پیش از ES6 (سال ۲۰۱۵)، JavaScript دامنهٔ بلوکی نداشت."
-  },
-  {
-   "type": "p",
-   "text": "JavaScript دامنهٔ سراسری (Global Scope) و دامنهٔ تابع (Function Scope) داشت."
-  },
-  {
-   "type": "p",
-   "text": "ES6 دو کلیدواژهٔ جدید را به JavaScript اضافه کرد: let و const."
-  },
-  {
-   "type": "p",
-   "text": "این دو کلیدواژه دامنهٔ بلوکی را به JavaScript آوردند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "{\n\n  let x = 2;\n\n  }\n\n// x can NOT be used here",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "دامنهٔ تابع"
-  },
-  {
-   "type": "p",
-   "text": "داخل یک تابع، همهٔ متغیرهای تعریف‌شده با var، let یا const دامنهٔ تابع دارند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "function myfunction() {\n\n  var x = 1;\n\n  let y = 2;\n\n  const z = 3;\n\n}\n\n//x can NOT be used here\n\n//y can NOT be used here\n\n//z can NOT be used here",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "دامنهٔ سراسری"
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با var تعریف می‌شوند همیشه دامنهٔ سراسری دارند."
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با کلیدواژهٔ var تعریف می‌شوند نمی‌توانند دامنهٔ بلوکی داشته باشند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "{\n\n  var x = 2;\n\n  }\n\n// x CAN be used here",
-   "caption": "مثال"
-  },
-  {
-   "type": "h2",
-   "text": "دوباره تعریف نمی‌شوند"
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با let تعریف می‌شوند را نمی‌توان دوباره تعریف کرد."
-  },
-  {
-   "type": "p",
-   "text": "نمی‌توانید به‌طور تصادفی متغیری که با let تعریف شده را دوباره تعریف کنید."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = \"John Doe\";\n\nlet x = 0;",
-   "caption": null
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با var تعریف می‌شوند را می‌توان دوباره تعریف کرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var x = \"John Doe\";\n\nvar x = 0;",
-   "caption": null
-  },
-  {
-   "type": "h2",
-   "text": "تعریف مجدد متغیرها"
-  },
-  {
-   "type": "p",
-   "text": "تعریف مجدد یک متغیر با کلیدواژهٔ var می‌تواند مشکل بسازد."
-  },
-  {
-   "type": "p",
-   "text": "تعریف مجدد یک متغیر داخل بلوک، متغیر بیرون بلوک را هم دوباره تعریف می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var x = 10;\n\n// Here x is 10\n\n{\n\nvar x = 2;\n\n// Here x is 2\n}\n\n// Here x is 2",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_var"
-  },
-  {
-   "type": "p",
-   "text": "تعریف مجدد متغیر با کلیدواژهٔ let این مشکل را حل می‌کند."
-  },
-  {
-   "type": "p",
-   "text": "تعریف مجدد یک متغیر داخل بلوک، متغیر بیرون بلوک را دوباره تعریف نمی‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 10;\n\n// Here x is 10\n\n{\n\nlet x = 2;\n\n// Here x is 2\n}\n\n// Here x is 10",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_let"
-  },
-  {
-   "type": "h2",
-   "text": "تفاوت var، let و const"
-  },
-  {
-   "type": "p",
-   "text": "تفاوت var، let و const در سازوکار دامنه، قواعد تخصیص مجدد و hoisting در JavaScript است."
-  },
-  {
-   "type": "p",
-   "text": "استانداردهای مدرن JavaScript توصیه می‌کنند برای کم کردن باگ‌های ناخواسته از var پرهیز کنید."
-  },
-  {
-   "type": "table",
-   "headers": [],
-   "rows": [
-    [
-     "ویژگی",
-     "var",
-     "let",
-     "const"
-    ],
-    [
-     "دامنه",
-     "تابع یا سراسری",
-     "دامنهٔ بلوکی { }",
-     "دامنهٔ بلوکی { }"
-    ],
-    [
-     "تخصیص مجدد",
-     "قابل به‌روزرسانی",
-     "قابل به‌روزرسانی",
-     "قابل به‌روزرسانی نیست"
-    ],
-    [
-     "تعریف مجدد",
-     "قابل تعریف مجدد",
-     "قابل تعریف مجدد نیست",
-     "قابل تعریف مجدد نیست"
-    ],
-    [
-     "Hoisting",
-     "با مقدار undefined راه‌اندازی می‌شود",
-     "hoist می‌شود، ولی راه‌اندازی اولیه نمی‌شود",
-     "hoist می‌شود، ولی راه‌اندازی اولیه نمی‌شود"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بدانید:"
-  },
-  {
-   "type": "p",
-   "text": "دامنه در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "Hoisting در JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "var/let/const در JavaScript"
-  },
-  {
-   "type": "h2",
-   "text": "تعریف مجدد"
-  },
-  {
-   "type": "p",
-   "text": "تعریف مجدد یک متغیر JavaScript با var در هر جای برنامه مجاز است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var x = 2;\n\n// Now x is 2\n\nvar x = 3;\n\n// Now x is 3",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_redeclare_var"
-  },
-  {
-   "type": "p",
-   "text": "با let، تعریف مجدد متغیر در همان بلوک مجاز نیست:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "var x = 2;   // Allowed\n\nlet x = 3;   // Not allowed\n\n{\n\nlet x = 2;   // Allowed\n\nlet x = 3;   // Not allowed\n\n}\n\n{\n\nlet x = 2;   // Allowed\n\nvar x = 3;   // Not allowed\n\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "p",
-   "text": "تعریف مجدد متغیر با let در بلوکی دیگر مجاز است:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let x = 2;   // Allowed\n\n{\n\nlet x = 3;   // Allowed\n\n  }\n\n  {\n\nlet x = 4;    // Allowed\n\n  }",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_redeclare"
-  },
-  {
-   "type": "h2",
-   "text": "Hoisting در let"
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با var تعریف می‌شوند به بالای کد hoist می‌شوند و هر زمان بتوان راه‌اندازی می‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "یعنی: می‌توانید متغیر را پیش از تعریفش استفاده کنید:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "carName = \"Volvo\";\n\n  var carName;",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_hoisting_var"
-  },
-  {
-   "type": "p",
-   "text": "اگر می‌خواهید دربارهٔ hoisting بیشتر بدانید، فصل Hoisting در JavaScript را بخوانید."
-  },
-  {
-   "type": "p",
-   "text": "متغیرهایی که با let تعریف می‌شوند هم به بالای بلوک hoist می‌شوند، اما راه‌اندازی اولیه نمی‌شوند."
-  },
-  {
-   "type": "p",
-   "text": "یعنی: استفاده از متغیر let پیش از تعریفش به ReferenceError منجر می‌شود:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "carName = \"Saab\";\n\nlet carName = \"Volvo\";",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_hoisting_let"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل let.html بسازید و داخل یک بلوک { } متغیری با let تعریف کنید، بعد بیرون بلوک همان متغیر را در کنسول چاپ کنید.",
-   "hint": "متغیر let فقط داخل همان بلوک زنده است؛ بیرون بلوک به ReferenceError می‌خورید."
-  },
-  {
-   "prompt": "همان کار را با var تکرار کنید و ببینید بیرون بلوک هم مقدار دارد.",
-   "hint": "متغیر var دامنهٔ بلوکی ندارد و به بالای دامنهٔ تابع یا سراسری hoist می‌شود."
-  },
-  {
-   "prompt": "یک متغیر let را دو بار در یک دامنه تعریف کنید و خطای کنسول را بخوانید.",
-   "hint": "تعریف مجدد متغیر let در همان دامنه ممنوع است."
-  },
-  {
-   "prompt": "با var یک متغیر بیرون بلوک و همان نام را داخل بلوک تعریف کنید و ببینید مقدار بیرونی عوض می‌شود.",
-   "hint": "var داخل بلوک، متغیر بیرون بلوک را دوباره تعریف می‌کند."
-  },
-  {
-   "prompt": "متغیری را پیش از تعریفش با let استفاده کنید و متن خطا را در کنسول بخوانید.",
-   "hint": "let هم hoist می‌شود اما راه‌اندازی اولیه نمی‌شود، پس ReferenceError می‌گیرید."
-  }
- ],
- "quiz": [
-  {
-   "question": "دامنهٔ متغیری که با let تعریف می‌شود چیست؟",
-   "options": [
-    "دامنهٔ سراسری",
-    "دامنهٔ تابع",
-    "دامنهٔ بلوکی",
-    "بدون دامنه"
-   ],
-   "answer": 2,
-   "explanation": "let دامنهٔ بلوکی دارد؛ یعنی فقط داخل همان بلوک {} که تعریف شده معتبر است. var دامنهٔ تابع یا سراسری دارد."
-  },
-  {
-   "question": "اگر متغیری را در یک دامنه دو بار با let تعریف کنید چه اتفاقی می‌افتد؟",
-   "options": [
-    "مقدار دوم جای اول را می‌گیرد",
-    "خطا می‌گیرید چون تعریف مجدد ممنوع است",
-    "هر دو متغیر جدا ساخته می‌شوند",
-    "JavaScript خودش یکی را حذف می‌کند"
-   ],
-   "answer": 1,
-   "explanation": "متغیر let در همان دامنه دوباره قابل تعریف نیست. با var این کار مجاز است و همین باعث باگ‌های ناخواسته می‌شود."
-  },
-  {
-   "question": "کدام جمله دربارهٔ hoisting متغیر let درست است؟",
-   "options": [
-    "hoist نمی‌شود",
-    "hoist می‌شود اما راه‌اندازی اولیه نمی‌شود",
-    "hoist می‌شود و مقدار undefined می‌گیرد",
-    "hoist می‌شود و مقدار null می‌گیرد"
-   ],
-   "answer": 1,
-   "explanation": "متغیر let به بالای بلوک hoist می‌شود اما مقداردهی اولیه نمی‌شود؛ پس استفاده پیش از تعریف، ReferenceError می‌دهد. var برخلاف آن با undefined راه‌اندازی می‌شود."
-  },
-  {
-   "question": "تفاوت var با let در جدول درس کدام است؟",
-   "options": [
-    "هر دو دامنهٔ بلوکی دارند",
-    "var قابل تعریف مجدد است ولی let نیست",
-    "let قابل تعریف مجدد است ولی var نیست",
-    "هیچ تفاوتی ندارند"
-   ],
-   "answer": 1,
-   "explanation": "در جدول، var قابل تعریف مجدد و قابل به‌روزرسانی است؛ let قابل به‌روزرسانی است اما دوباره تعریف نمی‌شود."
-  },
-  {
-   "question": "پیش از ES6 (سال ۲۰۱۵) JavaScript چه دامنه‌هایی داشت؟",
-   "options": [
-    "فقط دامنهٔ بلوکی",
-    "دامنهٔ سراسری و دامنهٔ تابع",
-    "فقط دامنهٔ ماژول",
-    "دامنهٔ بلوکی و ماژول"
-   ],
-   "answer": 1,
-   "explanation": "پیش از ES6 فقط دامنهٔ سراسری و دامنهٔ تابع وجود داشت؛ let و const دامنهٔ بلوکی را اضافه کردند."
-  }
- ]
+  "slug": "js_let",
+  "course": "js",
+  "order": 8,
+  "url": "/js/js_let.asp",
+  "title": "کلیدواژهٔ let در JavaScript",
+  "summary": "کلیدواژهٔ let در ES6 (سال ۲۰۱۵) به JavaScript آمد و دامنهٔ بلوکی را با خود آورد. در این درس می‌بینید let چه تفاوتی با var دارد، چرا متغیر let را نمی‌توان دوباره تعریف کرد و hoisting در let چه خطایی می‌سازد.",
+  "objectives": [
+    "دامنهٔ بلوکی و دامنهٔ تابع را از هم تشخیص دهید",
+    "تفاوت تعریف مجدد با var و let را توضیح دهید",
+    "توضیح دهید چرا استفاده از متغیر let پیش از تعریفش خطا می‌دهد",
+    "جدول تفاوت var، let و const را بخوانید و تفسیر کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "کلیدواژهٔ let در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "کلیدواژهٔ let در ES6 (سال ۲۰۱۵) معرفی شد"
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با let تعریف می‌شوند دامنهٔ بلوکی (Block Scope) دارند"
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با let تعریف می‌شوند باید پیش از استفاده تعریف شوند"
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با let تعریف می‌شوند در همان دامنه دوباره قابل تعریف نیستند"
+    },
+    {
+      "type": "h2",
+      "text": "دامنهٔ بلوکی"
+    },
+    {
+      "type": "p",
+      "text": "پیش از ES6 (سال ۲۰۱۵)، JavaScript دامنهٔ بلوکی نداشت."
+    },
+    {
+      "type": "p",
+      "text": "JavaScript دامنهٔ سراسری (Global Scope) و دامنهٔ تابع (Function Scope) داشت."
+    },
+    {
+      "type": "p",
+      "text": "ES6 دو کلیدواژهٔ جدید را به JavaScript اضافه کرد: let و const."
+    },
+    {
+      "type": "p",
+      "text": "این دو کلیدواژه دامنهٔ بلوکی را به JavaScript آوردند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "{\n\n  let x = 2;\n\n  }\n\n// x can NOT be used here",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "دامنهٔ تابع"
+    },
+    {
+      "type": "p",
+      "text": "داخل یک تابع، همهٔ متغیرهای تعریف‌شده با var، let یا const دامنهٔ تابع دارند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "function myfunction() {\n\n  var x = 1;\n\n  let y = 2;\n\n  const z = 3;\n\n}\n\n//x can NOT be used here\n\n//y can NOT be used here\n\n//z can NOT be used here",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "دامنهٔ سراسری"
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با var تعریف می‌شوند همیشه دامنهٔ سراسری دارند."
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با کلیدواژهٔ var تعریف می‌شوند نمی‌توانند دامنهٔ بلوکی داشته باشند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "{\n\n  var x = 2;\n\n  }\n\n// x CAN be used here",
+      "caption": "مثال"
+    },
+    {
+      "type": "h2",
+      "text": "دوباره تعریف نمی‌شوند"
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با let تعریف می‌شوند را نمی‌توان دوباره تعریف کرد."
+    },
+    {
+      "type": "p",
+      "text": "نمی‌توانید به‌طور تصادفی متغیری که با let تعریف شده را دوباره تعریف کنید."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = \"John Doe\";\n\nlet x = 0;",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با var تعریف می‌شوند را می‌توان دوباره تعریف کرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var x = \"John Doe\";\n\nvar x = 0;",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "تعریف مجدد متغیرها"
+    },
+    {
+      "type": "p",
+      "text": "تعریف مجدد یک متغیر با کلیدواژهٔ var می‌تواند مشکل بسازد."
+    },
+    {
+      "type": "p",
+      "text": "تعریف مجدد یک متغیر داخل بلوک، متغیر بیرون بلوک را هم دوباره تعریف می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var x = 10;\n\n// Here x is 10\n\n{\n\nvar x = 2;\n\n// Here x is 2\n}\n\n// Here x is 2",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_var"
+    },
+    {
+      "type": "p",
+      "text": "تعریف مجدد متغیر با کلیدواژهٔ let این مشکل را حل می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "تعریف مجدد یک متغیر داخل بلوک، متغیر بیرون بلوک را دوباره تعریف نمی‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 10;\n\n// Here x is 10\n\n{\n\nlet x = 2;\n\n// Here x is 2\n}\n\n// Here x is 10",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_es6_let"
+    },
+    {
+      "type": "h2",
+      "text": "تفاوت var، let و const"
+    },
+    {
+      "type": "p",
+      "text": "تفاوت var، let و const در سازوکار دامنه، قواعد تخصیص مجدد و hoisting در JavaScript است."
+    },
+    {
+      "type": "p",
+      "text": "استانداردهای مدرن JavaScript توصیه می‌کنند برای کم کردن باگ‌های ناخواسته از var پرهیز کنید."
+    },
+    {
+      "type": "table",
+      "headers": [],
+      "rows": [
+        ["ویژگی", "var", "let", "const"],
+        ["دامنه", "تابع یا سراسری", "دامنهٔ بلوکی { }", "دامنهٔ بلوکی { }"],
+        ["تخصیص مجدد", "قابل به‌روزرسانی", "قابل به‌روزرسانی", "قابل به‌روزرسانی نیست"],
+        ["تعریف مجدد", "قابل تعریف مجدد", "قابل تعریف مجدد نیست", "قابل تعریف مجدد نیست"],
+        [
+          "Hoisting",
+          "با مقدار undefined راه‌اندازی می‌شود",
+          "hoist می‌شود، ولی راه‌اندازی اولیه نمی‌شود",
+          "hoist می‌شود، ولی راه‌اندازی اولیه نمی‌شود"
+        ]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بدانید:"
+    },
+    {
+      "type": "p",
+      "text": "دامنه در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "Hoisting در JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "var/let/const در JavaScript"
+    },
+    {
+      "type": "h2",
+      "text": "تعریف مجدد"
+    },
+    {
+      "type": "p",
+      "text": "تعریف مجدد یک متغیر JavaScript با var در هر جای برنامه مجاز است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var x = 2;\n\n// Now x is 2\n\nvar x = 3;\n\n// Now x is 3",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_redeclare_var"
+    },
+    {
+      "type": "p",
+      "text": "با let، تعریف مجدد متغیر در همان بلوک مجاز نیست:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "var x = 2;   // Allowed\n\nlet x = 3;   // Not allowed\n\n{\n\nlet x = 2;   // Allowed\n\nlet x = 3;   // Not allowed\n\n}\n\n{\n\nlet x = 2;   // Allowed\n\nvar x = 3;   // Not allowed\n\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "p",
+      "text": "تعریف مجدد متغیر با let در بلوکی دیگر مجاز است:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let x = 2;   // Allowed\n\n{\n\nlet x = 3;   // Allowed\n\n  }\n\n  {\n\nlet x = 4;    // Allowed\n\n  }",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_redeclare"
+    },
+    {
+      "type": "h2",
+      "text": "Hoisting در let"
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با var تعریف می‌شوند به بالای کد hoist می‌شوند و هر زمان بتوان راه‌اندازی می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "یعنی: می‌توانید متغیر را پیش از تعریفش استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "carName = \"Volvo\";\n\n  var carName;",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_hoisting_var"
+    },
+    {
+      "type": "p",
+      "text": "اگر می‌خواهید دربارهٔ hoisting بیشتر بدانید، فصل Hoisting در JavaScript را بخوانید."
+    },
+    {
+      "type": "p",
+      "text": "متغیرهایی که با let تعریف می‌شوند هم به بالای بلوک hoist می‌شوند، اما راه‌اندازی اولیه نمی‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "یعنی: استفاده از متغیر let پیش از تعریفش به ReferenceError منجر می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "carName = \"Saab\";\n\nlet carName = \"Volvo\";",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_let_hoisting_let"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل let.html بسازید و داخل یک بلوک { } متغیری با let تعریف کنید، بعد بیرون بلوک همان متغیر را در کنسول چاپ کنید.",
+      "hint": "متغیر let فقط داخل همان بلوک زنده است؛ بیرون بلوک به ReferenceError می‌خورید."
+    },
+    {
+      "prompt": "همان کار را با var تکرار کنید و ببینید بیرون بلوک هم مقدار دارد.",
+      "hint": "متغیر var دامنهٔ بلوکی ندارد و به بالای دامنهٔ تابع یا سراسری hoist می‌شود."
+    },
+    {
+      "prompt": "یک متغیر let را دو بار در یک دامنه تعریف کنید و خطای کنسول را بخوانید.",
+      "hint": "تعریف مجدد متغیر let در همان دامنه ممنوع است."
+    },
+    {
+      "prompt": "با var یک متغیر بیرون بلوک و همان نام را داخل بلوک تعریف کنید و ببینید مقدار بیرونی عوض می‌شود.",
+      "hint": "var داخل بلوک، متغیر بیرون بلوک را دوباره تعریف می‌کند."
+    },
+    {
+      "prompt": "متغیری را پیش از تعریفش با let استفاده کنید و متن خطا را در کنسول بخوانید.",
+      "hint": "let هم hoist می‌شود اما راه‌اندازی اولیه نمی‌شود، پس ReferenceError می‌گیرید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "دامنهٔ متغیری که با let تعریف می‌شود چیست؟",
+      "options": ["دامنهٔ سراسری", "دامنهٔ تابع", "دامنهٔ بلوکی", "بدون دامنه"],
+      "answer": 2,
+      "explanation": "let دامنهٔ بلوکی دارد؛ یعنی فقط داخل همان بلوک {} که تعریف شده معتبر است. var دامنهٔ تابع یا سراسری دارد."
+    },
+    {
+      "question": "اگر متغیری را در یک دامنه دو بار با let تعریف کنید چه اتفاقی می‌افتد؟",
+      "options": [
+        "مقدار دوم جای اول را می‌گیرد",
+        "خطا می‌گیرید چون تعریف مجدد ممنوع است",
+        "هر دو متغیر جدا ساخته می‌شوند",
+        "JavaScript خودش یکی را حذف می‌کند"
+      ],
+      "answer": 1,
+      "explanation": "متغیر let در همان دامنه دوباره قابل تعریف نیست. با var این کار مجاز است و همین باعث باگ‌های ناخواسته می‌شود."
+    },
+    {
+      "question": "کدام جمله دربارهٔ hoisting متغیر let درست است؟",
+      "options": [
+        "hoist نمی‌شود",
+        "hoist می‌شود اما راه‌اندازی اولیه نمی‌شود",
+        "hoist می‌شود و مقدار undefined می‌گیرد",
+        "hoist می‌شود و مقدار null می‌گیرد"
+      ],
+      "answer": 1,
+      "explanation": "متغیر let به بالای بلوک hoist می‌شود اما مقداردهی اولیه نمی‌شود؛ پس استفاده پیش از تعریف، ReferenceError می‌دهد. var برخلاف آن با undefined راه‌اندازی می‌شود."
+    },
+    {
+      "question": "تفاوت var با let در جدول درس کدام است؟",
+      "options": [
+        "هر دو دامنهٔ بلوکی دارند",
+        "var قابل تعریف مجدد است ولی let نیست",
+        "let قابل تعریف مجدد است ولی var نیست",
+        "هیچ تفاوتی ندارند"
+      ],
+      "answer": 1,
+      "explanation": "در جدول، var قابل تعریف مجدد و قابل به‌روزرسانی است؛ let قابل به‌روزرسانی است اما دوباره تعریف نمی‌شود."
+    },
+    {
+      "question": "پیش از ES6 (سال ۲۰۱۵) JavaScript چه دامنه‌هایی داشت؟",
+      "options": [
+        "فقط دامنهٔ بلوکی",
+        "دامنهٔ سراسری و دامنهٔ تابع",
+        "فقط دامنهٔ ماژول",
+        "دامنهٔ بلوکی و ماژول"
+      ],
+      "answer": 1,
+      "explanation": "پیش از ES6 فقط دامنهٔ سراسری و دامنهٔ تابع وجود داشت؛ let و const دامنهٔ بلوکی را اضافه کردند."
+    }
+  ]
 }

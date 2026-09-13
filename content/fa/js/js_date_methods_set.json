@@ -1,354 +1,312 @@
 {
- "slug": "js_date_methods_set",
- "course": "js",
- "order": 60,
- "url": "/js/js_date_methods_set.asp",
- "title": "متدهای set در تاریخ JavaScript",
- "summary": "متدهای set روی شیء Date مقدارهای سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیه را عوض می‌کنند. در این درس تنظیم چند بخش تاریخ با یک دستور، اضافه کردن روز به تاریخ و مقایسهٔ دو تاریخ را یاد می‌گیرید.",
- "objectives": [
-  "با setFullYear و setMonth و setDate بخش‌های تاریخ را تنظیم کنید",
-  "با setDate چند روز به یک تاریخ اضافه کنید",
-  "بگویید کدام متدهای set پارامتر اختیاری دارند",
-  "دو شیء تاریخ را با عملگرهای مقایسه بسنجید"
- ],
- "blocks": [
-  {
-   "type": "h1",
-   "text": "متدهای set در تاریخ JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متدهای set تاریخ اجازه می‌دهند مقدارهای تاریخ (سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیه) را برای یک شیء Date تنظیم کنید."
-  },
-  {
-   "type": "h2",
-   "text": "متدهای set تاریخ"
-  },
-  {
-   "type": "p",
-   "text": "متدهای set تاریخ برای تنظیم بخشی از یک تاریخ به کار می‌روند:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "متد",
-    "توضیح"
-   ],
-   "rows": [
-    [
-     "setDate()",
-     "روز ماه را به‌صورت عدد تنظیم می‌کند (۱ تا ۳۱)"
-    ],
-    [
-     "setFullYear()",
-     "سال را تنظیم می‌کند (yyyy)"
-    ],
-    [
-     "setHours()",
-     "ساعت را تنظیم می‌کند (۰ تا ۲۳)"
-    ],
-    [
-     "setMilliseconds()",
-     "میلی‌ثانیه را تنظیم می‌کند (۰ تا ۹۹۹)"
-    ],
-    [
-     "setMinutes()",
-     "دقیقه را تنظیم می‌کند (۰ تا ۵۹)"
-    ],
-    [
-     "setMonth()",
-     "ماه را تنظیم می‌کند (۰ تا ۱۱)"
-    ],
-    [
-     "setSeconds()",
-     "ثانیه را تنظیم می‌کند (۰ تا ۵۹)"
-    ],
-    [
-     "setTime()",
-     "زمان را تنظیم می‌کند (میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰)"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "متد setFullYear()"
-  },
-  {
-   "type": "p",
-   "text": "متد setFullYear() سال یک شیء تاریخ را تنظیم می‌کند؛ در این مثال روی ۲۰۲۰:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setFullYear(2020);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setfullyear"
-  },
-  {
-   "type": "p",
-   "text": "متد setFullYear() می‌تواند به‌اختیار ماه و روز را هم تنظیم کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setFullYear(2020, 11, 3);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setfullyear_options"
-  },
-  {
-   "type": "h2",
-   "text": "متد setMonth()"
-  },
-  {
-   "type": "p",
-   "text": "متد setMonth() ماه یک شیء تاریخ را تنظیم می‌کند (۰ تا ۱۱):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setMonth(11);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setmonth"
-  },
-  {
-   "type": "h2",
-   "text": "متد setDate()"
-  },
-  {
-   "type": "p",
-   "text": "متد setDate() روز ماه یک شیء تاریخ را تنظیم می‌کند (۱ تا ۳۱):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setDate(15);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setdate"
-  },
-  {
-   "type": "p",
-   "text": "از متد setDate() می‌توان برای اضافه کردن روز به یک تاریخ هم استفاده کرد:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setDate(d.getDate() + 50);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_ahead"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "اگر اضافه کردن روز ماه یا سال را جابه‌جا کند، شیء Date خودش این تغییرها را مدیریت می‌کند."
-  },
-  {
-   "type": "h2",
-   "text": "متد setHours()"
-  },
-  {
-   "type": "p",
-   "text": "متد setHours() ساعت یک شیء تاریخ را تنظیم می‌کند (۰ تا ۲۳):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setHours(22);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sethours"
-  },
-  {
-   "type": "p",
-   "text": "از متد setHours() می‌توان برای تنظیم دقیقه و ثانیه هم استفاده کرد."
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setHours(22, 10, 20);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sethours2"
-  },
-  {
-   "type": "h2",
-   "text": "متد setMinutes()"
-  },
-  {
-   "type": "p",
-   "text": "متد setMinutes() دقیقهٔ یک شیء تاریخ را تنظیم می‌کند (۰ تا ۵۹):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setMinutes(30);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setminutes"
-  },
-  {
-   "type": "h2",
-   "text": "متد setSeconds()"
-  },
-  {
-   "type": "p",
-   "text": "متد setSeconds() ثانیهٔ یک شیء تاریخ را تنظیم می‌کند (۰ تا ۵۹):"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "const d = new Date(\"January 01, 2025\");\n\nd.setSeconds(30);",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setseconds"
-  },
-  {
-   "type": "h2",
-   "text": "مقایسهٔ تاریخ‌ها"
-  },
-  {
-   "type": "p",
-   "text": "مقایسهٔ تاریخ‌ها کار ساده‌ای است."
-  },
-  {
-   "type": "p",
-   "text": "مثال زیر تاریخ امروز را با ۱۴ ژانویهٔ ۲۱۰۰ مقایسه می‌کند:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "let text = \"\";\n\nconst today = new Date();\n\nconst someday = new Date();\n\n someday.setFullYear(2100, 0, 14);\n\nif (someday > today) {\n  text = \"Today is before January 14, 2100.\";\n} else {\n\n    text = \"Today is after January 14, 2100.\";\n}",
-   "caption": "مثال"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_compare"
-  },
-  {
-   "type": "note",
-   "variant": "note",
-   "text": "JavaScript ماه‌ها را از ۰ تا ۱۱ می‌شمارد؛ ژانویه ۰ و دسامبر ۱۱ است."
-  },
-  {
-   "type": "h2",
-   "text": "بیشتر بخوانید:"
-  },
-  {
-   "type": "p",
-   "text": "آموزش تاریخ JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "قالب‌های تاریخ JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "متدهای get در تاریخ JavaScript"
-  },
-  {
-   "type": "p",
-   "text": "مرجع تاریخ JavaScript"
-  }
- ],
- "tasks": [
-  {
-   "prompt": "یک فایل setdate.html بسازید و از new Date(\"January 01, 2025\") شروع کنید؛ بعد با setFullYear سال را به 2020 تغییر دهید و چاپ کنید.",
-   "hint": "setFullYear فقط سال را عوض می‌کند و بقیهٔ بخش‌های تاریخ سر جای خودشان می‌مانند."
-  },
-  {
-   "prompt": "با setFullYear(2020, 11, 3) هم‌زمان سال، ماه و روز را تنظیم کنید و نتیجه را ببینید.",
-   "hint": "ماه از صفر شمرده می‌شود، پس ۱۱ یعنی دسامبر."
-  },
-  {
-   "prompt": "با setDate(d.getDate() + 50) پنجاه روز به تاریخ اضافه کنید و ببینید ماه و سال خودکار جلو می‌روند.",
-   "hint": "شیء Date سرریز روز را خودش مدیریت می‌کند."
-  },
-  {
-   "prompt": "دو شیء تاریخ بسازید، یکی را به سال ۲۱۰۰ ببرید و با عملگر بزرگ‌تر آن‌ها را مقایسه کنید.",
-   "hint": "شیءهای تاریخ را می‌توان مثل دو عدد با هم مقایسه کرد."
-  },
-  {
-   "prompt": "با setHours(22, 10, 20) ساعت و دقیقه و ثانیهٔ یک تاریخ را با یک دستور تنظیم کنید.",
-   "hint": "setHours می‌تواند دقیقه و ثانیه را هم به‌عنوان پارامتر دوم و سوم بگیرد."
-  }
- ],
- "quiz": [
-  {
-   "question": "کدام متد روز ماه را در شیء Date تنظیم می‌کند؟",
-   "options": [
-    "setMonth()",
-    "setDate()",
-    "setDay()",
-    "setFullYear()"
-   ],
-   "answer": 1,
-   "explanation": "setDate روز ماه را بین ۱ تا ۳۱ تنظیم می‌کند؛ متد setDay وجود ندارد و روز هفته با setDate قابل تغییر نیست."
-  },
-  {
-   "question": "setDate(d.getDate() + 50) چه کاری انجام می‌دهد؟",
-   "options": [
-    "۵۰ روز به تاریخ اضافه می‌کند و سرریز ماه و سال خودکار مدیریت می‌شود",
-    "تاریخ را ۵۰ ماه جلو می‌برد",
-    "خطا می‌دهد چون مقدار بیشتر از ۳۱ است",
-    "فقط روز را ۵۰ می‌کند و ماه را دست نمی‌زند"
-   ],
-   "answer": 0,
-   "explanation": "setDate مقدار را روی روز ماه می‌گذارد و شیء Date سرریز را خودکار به ماه و سال بعد منتقل می‌کند."
-  },
-  {
-   "question": "setFullYear(2020, 11, 3) کدام بخش‌های تاریخ را تنظیم می‌کند؟",
-   "options": [
-    "فقط سال",
-    "سال و ماه",
-    "سال، ماه و روز",
-    "سال، ماه، روز و ساعت"
-   ],
-   "answer": 2,
-   "explanation": "پارامترهای اختیاری setFullYear به‌ترتیب ماه و روز را تنظیم می‌کنند؛ برای ساعت باید از setHours استفاده کرد."
-  },
-  {
-   "question": "دو شیء Date را چگونه می‌توان مقایسه کرد؟",
-   "options": [
-    "فقط با متد equals",
-    "با عملگرهای مقایسه مثل > و <",
-    "فقط با toString",
-    "مقایسهٔ تاریخ‌ها ممکن نیست"
-   ],
-   "answer": 1,
-   "explanation": "تاریخ‌ها را می‌توان مستقیماً با عملگرهای مقایسه سنجید؛ در مثال درس، someday با today مقایسه می‌شود."
-  },
-  {
-   "question": "setHours(22, 10, 20) چه چیزی را تنظیم می‌کند؟",
-   "options": [
-    "ساعت، دقیقه و ثانیه",
-    "سال، ماه و روز",
-    "میلی‌ثانیه",
-    "روز هفته"
-   ],
-   "answer": 0,
-   "explanation": "setHours با پارامترهای اختیاری می‌تواند دقیقه و ثانیه را هم تنظیم کند؛ در مثال درس ساعت ۲۲، دقیقه ۱۰ و ثانیه ۲۰ می‌شود."
-  }
- ]
+  "slug": "js_date_methods_set",
+  "course": "js",
+  "order": 60,
+  "url": "/js/js_date_methods_set.asp",
+  "title": "متدهای set در تاریخ JavaScript",
+  "summary": "متدهای set روی شیء Date مقدارهای سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیه را عوض می‌کنند. در این درس تنظیم چند بخش تاریخ با یک دستور، اضافه کردن روز به تاریخ و مقایسهٔ دو تاریخ را یاد می‌گیرید.",
+  "objectives": [
+    "با setFullYear و setMonth و setDate بخش‌های تاریخ را تنظیم کنید",
+    "با setDate چند روز به یک تاریخ اضافه کنید",
+    "بگویید کدام متدهای set پارامتر اختیاری دارند",
+    "دو شیء تاریخ را با عملگرهای مقایسه بسنجید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "متدهای set در تاریخ JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متدهای set تاریخ اجازه می‌دهند مقدارهای تاریخ (سال، ماه، روز، ساعت، دقیقه، ثانیه و میلی‌ثانیه) را برای یک شیء Date تنظیم کنید."
+    },
+    {
+      "type": "h2",
+      "text": "متدهای set تاریخ"
+    },
+    {
+      "type": "p",
+      "text": "متدهای set تاریخ برای تنظیم بخشی از یک تاریخ به کار می‌روند:"
+    },
+    {
+      "type": "table",
+      "headers": ["متد", "توضیح"],
+      "rows": [
+        ["setDate()", "روز ماه را به‌صورت عدد تنظیم می‌کند (۱ تا ۳۱)"],
+        ["setFullYear()", "سال را تنظیم می‌کند (yyyy)"],
+        ["setHours()", "ساعت را تنظیم می‌کند (۰ تا ۲۳)"],
+        ["setMilliseconds()", "میلی‌ثانیه را تنظیم می‌کند (۰ تا ۹۹۹)"],
+        ["setMinutes()", "دقیقه را تنظیم می‌کند (۰ تا ۵۹)"],
+        ["setMonth()", "ماه را تنظیم می‌کند (۰ تا ۱۱)"],
+        ["setSeconds()", "ثانیه را تنظیم می‌کند (۰ تا ۵۹)"],
+        ["setTime()", "زمان را تنظیم می‌کند (میلی‌ثانیه از ۱ ژانویهٔ ۱۹۷۰)"]
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "متد setFullYear()"
+    },
+    {
+      "type": "p",
+      "text": "متد setFullYear() سال یک شیء تاریخ را تنظیم می‌کند؛ در این مثال روی ۲۰۲۰:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setFullYear(2020);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setfullyear"
+    },
+    {
+      "type": "p",
+      "text": "متد setFullYear() می‌تواند به‌اختیار ماه و روز را هم تنظیم کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setFullYear(2020, 11, 3);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setfullyear_options"
+    },
+    {
+      "type": "h2",
+      "text": "متد setMonth()"
+    },
+    {
+      "type": "p",
+      "text": "متد setMonth() ماه یک شیء تاریخ را تنظیم می‌کند (۰ تا ۱۱):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setMonth(11);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setmonth"
+    },
+    {
+      "type": "h2",
+      "text": "متد setDate()"
+    },
+    {
+      "type": "p",
+      "text": "متد setDate() روز ماه یک شیء تاریخ را تنظیم می‌کند (۱ تا ۳۱):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setDate(15);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setdate"
+    },
+    {
+      "type": "p",
+      "text": "از متد setDate() می‌توان برای اضافه کردن روز به یک تاریخ هم استفاده کرد:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setDate(d.getDate() + 50);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_ahead"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "اگر اضافه کردن روز ماه یا سال را جابه‌جا کند، شیء Date خودش این تغییرها را مدیریت می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "متد setHours()"
+    },
+    {
+      "type": "p",
+      "text": "متد setHours() ساعت یک شیء تاریخ را تنظیم می‌کند (۰ تا ۲۳):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setHours(22);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sethours"
+    },
+    {
+      "type": "p",
+      "text": "از متد setHours() می‌توان برای تنظیم دقیقه و ثانیه هم استفاده کرد."
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setHours(22, 10, 20);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_sethours2"
+    },
+    {
+      "type": "h2",
+      "text": "متد setMinutes()"
+    },
+    {
+      "type": "p",
+      "text": "متد setMinutes() دقیقهٔ یک شیء تاریخ را تنظیم می‌کند (۰ تا ۵۹):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setMinutes(30);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setminutes"
+    },
+    {
+      "type": "h2",
+      "text": "متد setSeconds()"
+    },
+    {
+      "type": "p",
+      "text": "متد setSeconds() ثانیهٔ یک شیء تاریخ را تنظیم می‌کند (۰ تا ۵۹):"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "const d = new Date(\"January 01, 2025\");\n\nd.setSeconds(30);",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_setseconds"
+    },
+    {
+      "type": "h2",
+      "text": "مقایسهٔ تاریخ‌ها"
+    },
+    {
+      "type": "p",
+      "text": "مقایسهٔ تاریخ‌ها کار ساده‌ای است."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر تاریخ امروز را با ۱۴ ژانویهٔ ۲۱۰۰ مقایسه می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "let text = \"\";\n\nconst today = new Date();\n\nconst someday = new Date();\n\n someday.setFullYear(2100, 0, 14);\n\nif (someday > today) {\n  text = \"Today is before January 14, 2100.\";\n} else {\n\n    text = \"Today is after January 14, 2100.\";\n}",
+      "caption": "مثال"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryjs_date_compare"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "JavaScript ماه‌ها را از ۰ تا ۱۱ می‌شمارد؛ ژانویه ۰ و دسامبر ۱۱ است."
+    },
+    {
+      "type": "h2",
+      "text": "بیشتر بخوانید:"
+    },
+    {
+      "type": "p",
+      "text": "آموزش تاریخ JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "قالب‌های تاریخ JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "متدهای get در تاریخ JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "مرجع تاریخ JavaScript"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "یک فایل setdate.html بسازید و از new Date(\"January 01, 2025\") شروع کنید؛ بعد با setFullYear سال را به 2020 تغییر دهید و چاپ کنید.",
+      "hint": "setFullYear فقط سال را عوض می‌کند و بقیهٔ بخش‌های تاریخ سر جای خودشان می‌مانند."
+    },
+    {
+      "prompt": "با setFullYear(2020, 11, 3) هم‌زمان سال، ماه و روز را تنظیم کنید و نتیجه را ببینید.",
+      "hint": "ماه از صفر شمرده می‌شود، پس ۱۱ یعنی دسامبر."
+    },
+    {
+      "prompt": "با setDate(d.getDate() + 50) پنجاه روز به تاریخ اضافه کنید و ببینید ماه و سال خودکار جلو می‌روند.",
+      "hint": "شیء Date سرریز روز را خودش مدیریت می‌کند."
+    },
+    {
+      "prompt": "دو شیء تاریخ بسازید، یکی را به سال ۲۱۰۰ ببرید و با عملگر بزرگ‌تر آن‌ها را مقایسه کنید.",
+      "hint": "شیءهای تاریخ را می‌توان مثل دو عدد با هم مقایسه کرد."
+    },
+    {
+      "prompt": "با setHours(22, 10, 20) ساعت و دقیقه و ثانیهٔ یک تاریخ را با یک دستور تنظیم کنید.",
+      "hint": "setHours می‌تواند دقیقه و ثانیه را هم به‌عنوان پارامتر دوم و سوم بگیرد."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام متد روز ماه را در شیء Date تنظیم می‌کند؟",
+      "options": ["setMonth()", "setDate()", "setDay()", "setFullYear()"],
+      "answer": 1,
+      "explanation": "setDate روز ماه را بین ۱ تا ۳۱ تنظیم می‌کند؛ متد setDay وجود ندارد و روز هفته با setDate قابل تغییر نیست."
+    },
+    {
+      "question": "setDate(d.getDate() + 50) چه کاری انجام می‌دهد؟",
+      "options": [
+        "۵۰ روز به تاریخ اضافه می‌کند و سرریز ماه و سال خودکار مدیریت می‌شود",
+        "تاریخ را ۵۰ ماه جلو می‌برد",
+        "خطا می‌دهد چون مقدار بیشتر از ۳۱ است",
+        "فقط روز را ۵۰ می‌کند و ماه را دست نمی‌زند"
+      ],
+      "answer": 0,
+      "explanation": "setDate مقدار را روی روز ماه می‌گذارد و شیء Date سرریز را خودکار به ماه و سال بعد منتقل می‌کند."
+    },
+    {
+      "question": "setFullYear(2020, 11, 3) کدام بخش‌های تاریخ را تنظیم می‌کند؟",
+      "options": ["فقط سال", "سال و ماه", "سال، ماه و روز", "سال، ماه، روز و ساعت"],
+      "answer": 2,
+      "explanation": "پارامترهای اختیاری setFullYear به‌ترتیب ماه و روز را تنظیم می‌کنند؛ برای ساعت باید از setHours استفاده کرد."
+    },
+    {
+      "question": "دو شیء Date را چگونه می‌توان مقایسه کرد؟",
+      "options": [
+        "فقط با متد equals",
+        "با عملگرهای مقایسه مثل > و <",
+        "فقط با toString",
+        "مقایسهٔ تاریخ‌ها ممکن نیست"
+      ],
+      "answer": 1,
+      "explanation": "تاریخ‌ها را می‌توان مستقیماً با عملگرهای مقایسه سنجید؛ در مثال درس، someday با today مقایسه می‌شود."
+    },
+    {
+      "question": "setHours(22, 10, 20) چه چیزی را تنظیم می‌کند؟",
+      "options": ["ساعت، دقیقه و ثانیه", "سال، ماه و روز", "میلی‌ثانیه", "روز هفته"],
+      "answer": 0,
+      "explanation": "setHours با پارامترهای اختیاری می‌تواند دقیقه و ثانیه را هم تنظیم کند؛ در مثال درس ساعت ۲۲، دقیقه ۱۰ و ثانیه ۲۰ می‌شود."
+    }
+  ]
 }

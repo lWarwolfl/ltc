@@ -1,176 +1,148 @@
 {
- "slug": "html5_serversentevents",
- "course": "html",
- "order": 75,
- "url": "/html/html5_serversentevents.asp",
- "title": "HTML Server-Sent Events API",
- "blocks": [
-  {
-   "type": "h1",
-   "text": "HTML Server-Sent Events API"
-  },
-  {
-   "type": "p",
-   "text": "The Server-Sent Events (SSE) API enables pushing\nmessages/updates from a server to the web page via HTTP connection."
-  },
-  {
-   "type": "h2",
-   "text": "Server-Sent Events - One Way Messaging"
-  },
-  {
-   "type": "p",
-   "text": "A server-sent event is when a web page automatically gets messages/updates from a server."
-  },
-  {
-   "type": "p",
-   "text": "Normally, a web page has to request data from the server, but with server-sent events, the updates\nare pushed automatically."
-  },
-  {
-   "type": "p",
-   "text": "Examples: Facebook/Twitter updates, stock market updates, news feeds, sport results, etc."
-  },
-  {
-   "type": "h2",
-   "text": "Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "The numbers in the table specify the first browser version that fully support\nthe Server-Sent Events API."
-  },
-  {
-   "type": "table",
-   "headers": [
-    "API",
-    "",
-    "",
-    "",
-    "",
-    ""
-   ],
-   "rows": [
-    [
-     "SSE",
-     "6.0",
-     "79.0",
-     "6.0",
-     "5.0",
-     "11.5"
-    ]
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Receive Server-Sent Event Notifications"
-  },
-  {
-   "type": "p",
-   "text": "The EventSource object is used to receive server-sent event notifications:"
-  },
-  {
-   "type": "code",
-   "lang": "js",
-   "text": "<script>\nconst x = document.getElementById(\"result\");\n\n  // Check browser support for SSE\nif(typeof(EventSource)\n  !== \"undefined\") {\n  var source = new EventSource(\"demo_sse.php\");\n\n  source.onmessage = function(event) {\n    x.innerHTML +=\n  event.data + \"<br>\";\n  };\n} else {\n  x.innerHTML = \"Sorry,\n  no support for server-sent events.\";\n}\n</script>",
-   "caption": "Example"
-  },
-  {
-   "type": "tryit",
-   "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_sse"
-  },
-  {
-   "type": "p",
-   "text": "Example explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Create a new EventSource object, and specify the URL of the page sending the updates (in this example \"demo_sse.php\")",
-    "Each time an update is received, the onmessage event occurs",
-    "When an onmessage event occurs, put the received data into the element with id=\"result\""
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "Check Browser Support"
-  },
-  {
-   "type": "p",
-   "text": "In the tryit example above there were some extra lines of code to check browser support for server-sent events:"
-  },
-  {
-   "type": "p",
-   "text": "if(typeof(EventSource) !== \"undefined\") {\n    // Yes! Server-sent events support!\n    // Some code.....\n }\n else {\n    // Sorry! No server-sent events support..\n }"
-  },
-  {
-   "type": "h2",
-   "text": "Server-Side Code Example"
-  },
-  {
-   "type": "p",
-   "text": "For the example above to work, you need a server capable of sending data updates (like PHP or ASP)."
-  },
-  {
-   "type": "p",
-   "text": "The server-side event stream syntax is simple. Set the \"Content-Type\" header to\n\"text/event-stream\". Now you can start sending event streams."
-  },
-  {
-   "type": "p",
-   "text": "Code in PHP (demo_sse.php):"
-  },
-  {
-   "type": "p",
-   "text": "<?phpheader('Content-Type: text/event-stream');\n header('Cache-Control: no-cache');$time = date('r');echo \"data: The server time is: {$time}\\n\\n\";flush();?>"
-  },
-  {
-   "type": "p",
-   "text": "Code in ASP (VB) (demo_sse.asp):"
-  },
-  {
-   "type": "p",
-   "text": "<%Response.ContentType = \"text/event-stream\"Response.Expires = -1\n Response.Write(\"data: The server time is: \" & now())Response.Flush()%>"
-  },
-  {
-   "type": "p",
-   "text": "Code explained:"
-  },
-  {
-   "type": "list",
-   "ordered": false,
-   "items": [
-    "Set the \"Content-Type\" header to\n\"text/event-stream\"",
-    "Specify that the page should not cache",
-    "Output the data to send (Always start with \"data: \")",
-    "Flush the output data back to the web page"
-   ]
-  },
-  {
-   "type": "h2",
-   "text": "The EventSource Object"
-  },
-  {
-   "type": "p",
-   "text": "In the examples above we used the onmessage event to get messages. But other events are also available:"
-  },
-  {
-   "type": "table",
-   "headers": [
-    "Events",
-    "Description"
-   ],
-   "rows": [
-    [
-     "onopen",
-     "When a connection to the server is opened"
-    ],
-    [
-     "onmessage",
-     "When a message is received"
-    ],
-    [
-     "onerror",
-     "When an error occurs"
-    ]
-   ]
-  }
- ]
+  "slug": "html5_serversentevents",
+  "course": "html",
+  "order": 75,
+  "url": "/html/html5_serversentevents.asp",
+  "title": "HTML Server-Sent Events API",
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "HTML Server-Sent Events API"
+    },
+    {
+      "type": "p",
+      "text": "The Server-Sent Events (SSE) API enables pushing\nmessages/updates from a server to the web page via HTTP connection."
+    },
+    {
+      "type": "h2",
+      "text": "Server-Sent Events - One Way Messaging"
+    },
+    {
+      "type": "p",
+      "text": "A server-sent event is when a web page automatically gets messages/updates from a server."
+    },
+    {
+      "type": "p",
+      "text": "Normally, a web page has to request data from the server, but with server-sent events, the updates\nare pushed automatically."
+    },
+    {
+      "type": "p",
+      "text": "Examples: Facebook/Twitter updates, stock market updates, news feeds, sport results, etc."
+    },
+    {
+      "type": "h2",
+      "text": "Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "The numbers in the table specify the first browser version that fully support\nthe Server-Sent Events API."
+    },
+    {
+      "type": "table",
+      "headers": ["API", "", "", "", "", ""],
+      "rows": [["SSE", "6.0", "79.0", "6.0", "5.0", "11.5"]]
+    },
+    {
+      "type": "h2",
+      "text": "Receive Server-Sent Event Notifications"
+    },
+    {
+      "type": "p",
+      "text": "The EventSource object is used to receive server-sent event notifications:"
+    },
+    {
+      "type": "code",
+      "lang": "js",
+      "text": "<script>\nconst x = document.getElementById(\"result\");\n\n  // Check browser support for SSE\nif(typeof(EventSource)\n  !== \"undefined\") {\n  var source = new EventSource(\"demo_sse.php\");\n\n  source.onmessage = function(event) {\n    x.innerHTML +=\n  event.data + \"<br>\";\n  };\n} else {\n  x.innerHTML = \"Sorry,\n  no support for server-sent events.\";\n}\n</script>",
+      "caption": "Example"
+    },
+    {
+      "type": "tryit",
+      "url": "https://www.w3schools.com/tryit.asp?filename=tryhtml5_sse"
+    },
+    {
+      "type": "p",
+      "text": "Example explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Create a new EventSource object, and specify the URL of the page sending the updates (in this example \"demo_sse.php\")",
+        "Each time an update is received, the onmessage event occurs",
+        "When an onmessage event occurs, put the received data into the element with id=\"result\""
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Check Browser Support"
+    },
+    {
+      "type": "p",
+      "text": "In the tryit example above there were some extra lines of code to check browser support for server-sent events:"
+    },
+    {
+      "type": "p",
+      "text": "if(typeof(EventSource) !== \"undefined\") {\n    // Yes! Server-sent events support!\n    // Some code.....\n }\n else {\n    // Sorry! No server-sent events support..\n }"
+    },
+    {
+      "type": "h2",
+      "text": "Server-Side Code Example"
+    },
+    {
+      "type": "p",
+      "text": "For the example above to work, you need a server capable of sending data updates (like PHP or ASP)."
+    },
+    {
+      "type": "p",
+      "text": "The server-side event stream syntax is simple. Set the \"Content-Type\" header to\n\"text/event-stream\". Now you can start sending event streams."
+    },
+    {
+      "type": "p",
+      "text": "Code in PHP (demo_sse.php):"
+    },
+    {
+      "type": "p",
+      "text": "<?phpheader('Content-Type: text/event-stream');\n header('Cache-Control: no-cache');$time = date('r');echo \"data: The server time is: {$time}\\n\\n\";flush();?>"
+    },
+    {
+      "type": "p",
+      "text": "Code in ASP (VB) (demo_sse.asp):"
+    },
+    {
+      "type": "p",
+      "text": "<%Response.ContentType = \"text/event-stream\"Response.Expires = -1\n Response.Write(\"data: The server time is: \" & now())Response.Flush()%>"
+    },
+    {
+      "type": "p",
+      "text": "Code explained:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Set the \"Content-Type\" header to\n\"text/event-stream\"",
+        "Specify that the page should not cache",
+        "Output the data to send (Always start with \"data: \")",
+        "Flush the output data back to the web page"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The EventSource Object"
+    },
+    {
+      "type": "p",
+      "text": "In the examples above we used the onmessage event to get messages. But other events are also available:"
+    },
+    {
+      "type": "table",
+      "headers": ["Events", "Description"],
+      "rows": [
+        ["onopen", "When a connection to the server is opened"],
+        ["onmessage", "When a message is received"],
+        ["onerror", "When an error occurs"]
+      ]
+    }
+  ]
 }

@@ -32,7 +32,12 @@ const JUNK = [
   '.w3-round',
 ]
 
-const clean = (s) => s.replace(/\u00a0/g, ' ').replace(/[ \t]+$/gm, '').replace(/\n{3,}/g, '\n\n').trim()
+const clean = (s) =>
+  s
+    .replace(/\u00a0/g, ' ')
+    .replace(/[ \t]+$/gm, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -88,7 +93,9 @@ function extract(html, url) {
   // strip script/style/ads/nav from the whole tree before walking: inline share-bar
   // scripts live inside plain divs and would otherwise leak in as paragraph text
   $('script, style, noscript, iframe, link, meta, hr').remove()
-  $('#mainLeaderboard, #mainLeaderboard2, .nextprev, .ws-share, .w3-clear, .sn-ad, #w3_cert_cta').remove()
+  $(
+    '#mainLeaderboard, #mainLeaderboard2, .nextprev, .ws-share, .w3-clear, .sn-ad, #w3_cert_cta'
+  ).remove()
   $('[id^="div-gpt-ad"], [class*="adsbygoogle"]').remove()
   const $main = $('#main')
   const blocks = []
@@ -114,7 +121,10 @@ function extract(html, url) {
         if (isJunk(el)) return
         const $el = $(el)
 
-        if (tag === 'div' && ($el.hasClass('w3-example') || $el.hasClass('w3-example2') || $el.hasClass('ws-example'))) {
+        if (
+          tag === 'div' &&
+          ($el.hasClass('w3-example') || $el.hasClass('w3-example2') || $el.hasClass('ws-example'))
+        ) {
           const caption = clean($el.find('h3').first().text()) || null
           $el.find('.w3-code, .ws-code, pre').each((__, c) => {
             const text = codeText(c, $)
@@ -204,7 +214,8 @@ function extract(html, url) {
 
   walk($main.length ? $main : $('body'))
 
-  const title = clean($('#main h1').first().text()).replace(/\s*▶\s*$/, '') || clean($('title').text())
+  const title =
+    clean($('#main h1').first().text()).replace(/\s*▶\s*$/, '') || clean($('title').text())
 
   return { slug: '', course: '', order: 0, url, title, blocks }
 }
@@ -215,7 +226,13 @@ function sectionsFromSidebar(html) {
   const items = []
   $('#leftmenuinnerinner a').each((_, a) => {
     const href = $(a).attr('href')
-    if (!href || !href.endsWith('.asp') || href.includes('?') || href.includes('#') || href.includes('/'))
+    if (
+      !href ||
+      !href.endsWith('.asp') ||
+      href.includes('?') ||
+      href.includes('#') ||
+      href.includes('/')
+    )
       return
     if (seen.has(href) || SKIP_HREF.test(href)) return
     seen.add(href)
@@ -265,7 +282,13 @@ async function buildCourse(course) {
   const written = sections.filter((section) => existsSync(join(dir, `${section.slug}.json`))).length
   console.log(`\n[${course.id}] done, ${written}/${sections.length} ok`)
 
-  return { id: course.id, name: course.name, order: course.order, sections: written, failed: failures }
+  return {
+    id: course.id,
+    name: course.name,
+    order: course.order,
+    sections: written,
+    failed: failures,
+  }
 }
 
 async function main() {
@@ -274,8 +297,13 @@ async function main() {
   await mkdir(OUT, { recursive: true })
   const results = []
   for (const course of targets) results.push(await buildCourse(course))
-  await writeFile(join(process.cwd(), 'content', 'crawl-report.json'), JSON.stringify(results, null, 1), 'utf8')
-  for (const r of results) console.log(`  ${r.id}: ${r.sections} sections, ${r.failed.length} failed`)
+  await writeFile(
+    join(process.cwd(), 'content', 'crawl-report.json'),
+    JSON.stringify(results, null, 1),
+    'utf8'
+  )
+  for (const r of results)
+    console.log(`  ${r.id}: ${r.sections} sections, ${r.failed.length} failed`)
 }
 
 main()

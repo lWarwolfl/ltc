@@ -32,7 +32,11 @@ export default async function LessonNav({ course, previous, next }: LessonNavPro
       )}
 
       {next ? (
-        <Button variant="outline" asChild className={cn('h-auto justify-end py-2', !previous && 'ms-auto')}>
+        <Button
+          variant="outline"
+          asChild
+          className={cn('h-auto justify-end py-2', !previous && 'ms-auto')}
+        >
           <Link href={`/courses/${course}/${next.slug}`}>
             <span className="flex flex-col items-end text-end">
               <span className="text-muted-foreground text-[11px]">{t('next')}</span>
