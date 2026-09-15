@@ -1,0 +1,154 @@
+{
+  "slug": "react_usememo",
+  "course": "react",
+  "order": 51,
+  "url": "/react/react_usememo.asp",
+  "title": "هوک useMemo در React",
+  "summary": "هوک useMemo یک مقدار memoizeشده (کش‌شده) برمی‌گرداند تا محاسبه‌های سنگین بیهوده در هر رندر تکرار نشوند. در این درس تفاوت اجرای بدون useMemo و با useMemo را روی یک محاسبهٔ سنگین می‌بینید.",
+  "objectives": [
+    "بگویید memoization چیست و چه مشکلی را حل می‌کند",
+    "مثال محاسبهٔ سنگین بدون useMemo را اجرا کنید و مکث آن را ببینید",
+    "همان مثال را با useMemo بازنویسی کنید تا فقط با تغییر وابستگی اجرا شود",
+    "فرق useMemo و useCallback را بگویید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "هوک useMemo در React"
+    },
+    {
+      "type": "p",
+      "text": "هوک useMemo در React یک مقدار memoizeشده برمی‌گرداند."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "memoization را مثل کش کردن یک مقدار در نظر بگیرید تا لازم نباشد دوباره محاسبه شود."
+    },
+    {
+      "type": "p",
+      "text": "هوک useMemo فقط وقتی اجرا می‌شود که یکی از وابستگی‌هایش (dependencies) عوض شده باشد."
+    },
+    {
+      "type": "p",
+      "text": "این کار می‌تواند عملکرد برنامه را بهتر کند."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "هوک‌های useMemo و useCallback شبیه هم‌اند:\nuseMemo یک مقدار memoizeشده برمی‌گرداند.\nuseCallback یک تابع memoizeشده برمی‌گرداند.\nدربارهٔ useCallback در فصل useCallback بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "بدون useMemo"
+    },
+    {
+      "type": "p",
+      "text": "از هوک useMemo می‌توان استفاده کرد تا تابع‌های سنگین و پرمصرف بیهوده اجرا نشوند."
+    },
+    {
+      "type": "p",
+      "text": "در این مثال یک تابع سنگین داریم که در هر رندر اجرا می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "وقتی count را عوض می‌کنید یا todo اضافه می‌کنید، یک مکث در اجرا حس می‌کنید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst App = () => {\n  const [count, setCount] = useState(0);\n  const [todos, setTodos] = useState([]);\n  const calculation = expensiveCalculation(count);\n\n  const increment = () => {\n    setCount((c) => c + 1);\n  };\n  const addTodo = () => {\n    setTodos((t) => [...t, \"New Todo\"]);\n  };\n\n  return (\n    <div>\n      <div>\n        <h2>My Todos</h2>\n        {todos.map((todo, index) => {\n          return <p key={index}>{todo}</p>;\n        })}\n        <button onClick={addTodo}>Add Todo</button>\n      </div>\n      <hr />\n      <div>\n        Count: {count}\n        <button onClick={increment}>+</button>\n        <h2>Expensive Calculation</h2>\n        {calculation}\n        <p>Note that this example executes the expensive function also when you click on the Add Todo button.</p>\n      </div>\n    </div>\n  );\n};\n\nconst expensiveCalculation = (num) => {\n  console.log(\"Calculating...\");\n  for (let i = 0; i < 1000000000; i++) {\n    num += 1;\n  }\n  return num;\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از useMemo"
+    },
+    {
+      "type": "p",
+      "text": "برای حل این مشکل عملکردی، می‌توانیم تابع expensiveCalculation را با هوک useMemo memoize کنیم تا فقط وقتی لازم است اجرا شود."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانیم فراخوانی تابع سنگین را داخل useMemo بپیچیم."
+    },
+    {
+      "type": "p",
+      "text": "هوک useMemo یک پارامتر دوم می‌گیرد برای اعلام وابستگی‌ها. تابع سنگین فقط وقتی اجرا می‌شود که وابستگی‌هایش عوض شده باشند."
+    },
+    {
+      "type": "p",
+      "text": "در مثال بعدی، تابع سنگین فقط وقتی count عوض شود اجرا می‌شود و وقتی todo اضافه می‌شود اجرا نمی‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useMemo } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst App = () => {\n  const [count, setCount] = useState(0);\n  const [todos, setTodos] = useState([]);\n  const calculation = useMemo(() => expensiveCalculation(count), [count]);\n\n  const increment = () => {\n    setCount((c) => c + 1);\n  };\n  const addTodo = () => {\n    setTodos((t) => [...t, \"New Todo\"]);\n  };\n\n  return (\n    <div>\n      <div>\n        <h2>My Todos</h2>\n        {todos.map((todo, index) => {\n          return <p key={index}>{todo}</p>;\n        })}\n        <button onClick={addTodo}>Add Todo</button>\n      </div>\n      <hr />\n      <div>\n        Count: {count}\n        <button onClick={increment}>+</button>\n        <h2>Expensive Calculation</h2>\n        {calculation}\n      </div>\n    </div>\n  );\n};\n\nconst expensiveCalculation = (num) => {\n  console.log(\"Calculating...\");\n  for (let i = 0; i < 1000000000; i++) {\n    num += 1;\n  }\n  return num;\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example:"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال «بدون useMemo» را در ویرایشگر Try-it اجرا کنید: یک todo اضافه کنید و مکث اجرا را ببینید.",
+      "hint": "دکمهٔ افزودن todo را بزنید؛ محاسبهٔ سنگین حتی برای todo هم دوباره اجرا می‌شود."
+    },
+    {
+      "prompt": "همان مثال را به نسخهٔ useMemo تغییر دهید و دوباره todo اضافه کنید تا ببینید مکث از بین رفته است.",
+      "hint": "فراخوانی تابع سنگین را داخل useMemo بپیچید و count را در آرایهٔ وابستگی بگذارید."
+    },
+    {
+      "prompt": "در نسخهٔ useMemo روی دکمهٔ افزایش count بزنید و ببینید محاسبهٔ سنگین این بار اجرا می‌شود.",
+      "hint": "چون count وابستگی است، تغییرش باعث اجرای دوبارهٔ محاسبه می‌شود."
+    },
+    {
+      "prompt": "آرایهٔ وابستگی useMemo را خالی کنید و ببینید با تغییر count چه اتفاقی برای نتیجه می‌افتد.",
+      "hint": "نتیجهٔ قدیمی نمایش داده می‌شود، چون محاسبه دیگر به count وابسته نیست."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "هوک useMemo چه چیزی برمی‌گرداند؟",
+      "options": [
+        "یک مقدار memoizeشده",
+        "یک تابع memoizeشده",
+        "یک ref به عنصر DOM",
+        "یک کامپوننت lazy"
+      ],
+      "answer": 0,
+      "explanation": "useMemo مقدار محاسبه‌شده را کش می‌کند و همان مقدار را برمی‌گرداند. برگرداندن تابع memoizeشده کار useCallback است."
+    },
+    {
+      "question": "تابع داخل useMemo چه زمانی دوباره اجرا می‌شود؟",
+      "options": [
+        "فقط وقتی یکی از وابستگی‌هایش عوض شود",
+        "در هر رندر، بدون استثنا",
+        "فقط در اولین رندر",
+        "وقتی کاربر صفحه را رفرش کند"
+      ],
+      "answer": 0,
+      "explanation": "useMemo محاسبه را فقط وقتی تکرار می‌کند که یکی از وابستگی‌های آرایهٔ دوم تغییر کرده باشد."
+    },
+    {
+      "question": "فرق useMemo و useCallback چیست؟",
+      "options": [
+        "useMemo مقدار و useCallback تابع memoizeشده برمی‌گرداند",
+        "هیچ فرقی ندارند و جای هم به کار می‌روند",
+        "useMemo فقط برای رشته‌هاست",
+        "useCallback سریع‌تر است چون کش ندارد"
+      ],
+      "answer": 0,
+      "explanation": "طبق نکتهٔ درس، useMemo یک مقدار memoizeشده و useCallback یک تابع memoizeشده برمی‌گرداند."
+    },
+    {
+      "question": "در مثال درس، بعد از اضافه کردن useMemo محاسبهٔ سنگین چه زمانی اجرا می‌شود؟",
+      "options": [
+        "فقط وقتی count عوض شود، نه با اضافه شدن todo",
+        "با هر اضافه شدن todo",
+        "با هر کلیک روی هر دکمه‌ای",
+        "هیچ‌وقت اجرا نمی‌شود"
+      ],
+      "answer": 0,
+      "explanation": "چون فقط count در آرایهٔ وابستگی است، اضافه کردن todo دیگر باعث اجرای دوبارهٔ محاسبهٔ سنگین نمی‌شود."
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+ "slug": "react_es6_array_map",
+ "course": "react",
+ "order": 9,
+ "url": "/react/react_es6_array_map.asp",
+ "title": "JavaScript Array map()",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JavaScript Array map()"
+  },
+  {
+   "type": "h2",
+   "text": "The map() Method"
+  },
+  {
+   "type": "p",
+   "text": "The map() method creates a new array with the results of calling a function for every array element."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(x => x * 2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_map1"
+  },
+  {
+   "type": "h2",
+   "text": "map() in React"
+  },
+  {
+   "type": "p",
+   "text": "The map() method is commonly used in React to render lists of elements:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const fruitlist = ['apple', 'banana', 'cherry'];\n\nfunction MyList() {\n  return (\n    <ul>\n      {fruitlist.map(fruit =>\n        <li key={fruit}>{fruit}</li>\n      )}\n    </ul>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "When using map() in React to create list items, each item needs a unique key prop."
+  },
+  {
+   "type": "h2",
+   "text": "map() with Objects"
+  },
+  {
+   "type": "p",
+   "text": "You can also use map() with arrays of objects:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const users = [\n  { id: 1, name: 'John', age: 30 },\n  { id: 2, name: 'Jane', age: 25 },\n  { id: 3, name: 'Bob', age: 35 }\n];\n\nfunction UserList() {\n  return (\n    <ul>\n      {users.map(user =>\n        <li key={user.id}>\n          {user.name} is {user.age} years old\n        </li>\n      )}\n    </ul>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "map() Parameters"
+  },
+  {
+   "type": "p",
+   "text": "The map() method takes three parameters:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "currentValue - The current element being processed",
+    "index - The index of the current element (optional)",
+    "array - The array that map was called upon (optional)"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const fruitlist = ['apple', 'banana', 'cherry'];\n\nfunction App() {\n  return (\n    <ul>\n      {fruitlist.map((fruit, index, array) => {\n        return (\n          <li key={fruit}>\n            Name: {fruit}, Index: {index}, Array: {array}\n          </li>\n        );\n      })}\n    </ul>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The map() method always returns a new array. It does not modify the original array."
+  }
+ ]
+}

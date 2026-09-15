@@ -1,0 +1,287 @@
+{
+ "slug": "react_jsx",
+ "course": "react",
+ "order": 15,
+ "url": "/react/react_jsx.asp",
+ "title": "JSX در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "JSX در ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "JSX چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "JSX مخفف JavaScript XML است."
+  },
+  {
+   "type": "p",
+   "text": "JSX می‌گذارد در ری‌اکت HTML بنویسیم."
+  },
+  {
+   "type": "p",
+   "text": "JSX نوشتن و اضافه کردن HTML در ری‌اکت را راحت‌تر می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "کدنویسی JSX"
+  },
+  {
+   "type": "p",
+   "text": "JSX می‌گذارد عناصر HTML را در جاوااسکریپت بنویسیم و بدون متدهای createElement و appendChild در DOM بگذاریم."
+  },
+  {
+   "type": "p",
+   "text": "JSX تگ‌های HTML را به عناصر ری‌اکت تبدیل می‌کند."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "مجبور نیستید از JSX استفاده کنید، ولی JSX نوشتن اپ ری‌اکت را راحت‌تر می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "دو مثال ببینید: اولی با JSX و دومی بدون آن:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <h1>I Love JSX!</h1>;\n\ncreateRoot(document.getElementById('root')).render(\n  myElement\n);",
+   "caption": "Example 1"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = React.createElement('h1', {}, 'I do not use JSX!');\n\ncreateRoot(document.getElementById('root')).render(\n  myElement\n);",
+   "caption": "Example 2"
+  },
+  {
+   "type": "p",
+   "text": "همان‌طور که در مثال اول می‌بینید، JSX می‌گذارد HTML را مستقیم داخل کد جاوااسکریپت بنویسیم."
+  },
+  {
+   "type": "p",
+   "text": "JSX گسترشی از زبان جاوااسکریپت بر پایهٔ ES6 است و هنگام اجرا به جاوااسکریپت معمولی ترجمه می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "عبارت‌ها در JSX"
+  },
+  {
+   "type": "p",
+   "text": "با JSX می‌توانید عبارت را داخل آکولاد { } بنویسید."
+  },
+  {
+   "type": "p",
+   "text": "عبارت می‌تواند متغیر ری‌اکت، ویژگی یا هر عبارت معتبر جاوااسکریپت باشد. JSX عبارت را اجرا می‌کند و نتیجه را برمی‌گرداند:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <h1>React is {5 + 5} times better with JSX</h1>;",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "گذاشتن بلاک بزرگ HTML"
+  },
+  {
+   "type": "p",
+   "text": "برای نوشتن HTML چندخطی، آن را داخل پرانتز بگذارید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = (\n  <ul>\n    <li>Apples</li>\n    <li>Bananas</li>\n    <li>Cherries</li>\n  </ul>\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "یک عنصر ریشه"
+  },
+  {
+   "type": "p",
+   "text": "کد HTML باید در ONE عنصر سطح بالا پیچیده شود."
+  },
+  {
+   "type": "p",
+   "text": "پس اگر دو پاراگراف می‌خواهید، باید آن‌ها را در یک عنصر والد مثل div بگذارید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = (\n  <div>\n    <p>I am a paragraph.</p>\n    <p>I am a paragraph too.</p>\n  </div>\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اگر HTML درست نباشد یا عنصر والد نداشته باشد، JSX خطا می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "راه دیگر استفاده از «fragment» برای پیچیدن چند خط است. این کار از اضافه شدن گرهٔ اضافی به DOM جلوگیری می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "fragment شبیه تگ خالی HTML است: <></>."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = (\n  <>\n    <p>I am a paragraph.</p>\n    <p>I am a paragraph too.</p>\n  </>\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "عناصر باید بسته شوند"
+  },
+  {
+   "type": "p",
+   "text": "JSX از قوانین XML پیروی می‌کند، پس عناصر HTML باید درست بسته شوند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <input type=\"text\" />;",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اگر HTML درست بسته نشده باشد، JSX خطا می‌دهد."
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی class می‌شود className"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی class در HTML خیلی پرکاربرد است، ولی چون JSX به جاوااسکریپت تبدیل می‌شود و class در جاوااسکریپت کلمهٔ رزرو است، نمی‌توانید در JSX از آن استفاده کنید."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "به‌جاش از ویژگی className استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "راه‌حل JSX این بود که className را بگذارد. وقتی JSX رندر می‌شود، ویژگی‌های className به class ترجمه می‌شوند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <h1 className=\"myclass\">Hello World</h1>;",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "کامنت در JSX"
+  },
+  {
+   "type": "p",
+   "text": "کامنت در JSX به شکل {/* */} نوشته می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <h1>Hello {/* Wonderful */} World </h1>;",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "JSX در کامپوننت‌های ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "ری‌اکت با کامپوننت رابط کاربری می‌سازد. کامپوننت‌ها تکه‌کدهای مستقل و قابل استفادهٔ دوباره‌اند."
+  },
+  {
+   "type": "p",
+   "text": "کامپوننت‌های ری‌اکت مثل تابع‌های جاوااسکریپت‌اند و HTML برمی‌گردانند."
+  },
+  {
+   "type": "p",
+   "text": "JSX داخل کامپوننت‌های ری‌اکت عالی کار می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  return (\n    <>\n      <h2>My Car</h2>\n      <p>It is a Ford Mustang.</p>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "داخل کامپوننت‌ها می‌توانید قبل از برگرداندن HTML کارهای دیگری هم بکنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  const brand = \"Ford\";\n  const model = \"Mustang\";\n  return (\n    <>\n      <h2>My Car</h2>\n      <p>It is a {brand} {model}.</p>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n)",
+   "caption": "Example"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "هر دو مثال (با JSX و createElement) را مقایسه کنید؛ کدام خواناتر است؟"
+  },
+  {
+   "prompt": "مثال {5 + 5} را اجرا کنید و بعد عبارت را به {10 * 2} تغییر دهید."
+  },
+  {
+   "prompt": "دو پاراگراف را بدون div و بدون fragment بنویسید و خطا را ببینید؛ بعد با fragment درستش کنید."
+  },
+  {
+   "prompt": "به مثال Car یک کامنت JSX اضافه کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "JSX مخفف چیست؟",
+   "options": [
+    "JavaScript XML",
+    "Java Syntax Extension",
+    "JavaScript Xerox",
+    "Jason XML"
+   ],
+   "answer": 0,
+   "explanation": "سینتکسی شبیه XML داخل جاوااسکریپت."
+  },
+  {
+   "question": "تفاوت مثال اول و دوم چیست؟",
+   "options": [
+    "اولی HTML مستقیم در کد دارد، دومی createElement",
+    "هیچ تفاوتی",
+    "دومی سریع‌تر است",
+    "اولی بدون ری‌اکت است"
+   ],
+   "answer": 0,
+   "explanation": "هر دو یکی‌اند ولی JSX خواناتر است."
+  },
+  {
+   "question": "چرا کل HTML باید در یک عنصر ریشه باشد؟",
+   "options": [
+    "قانون JSX است وگرنه خطا می‌دهد",
+    "برای سرعت",
+    "برای استایل",
+    "دلیلی ندارد"
+   ],
+   "answer": 0,
+   "explanation": "یا div بگذارید یا fragment خالی <></>."
+  },
+  {
+   "question": "به‌جای class در JSX چه می‌نویسیم؟",
+   "options": [
+    "className",
+    "className فقط در CSS",
+    "cssClass",
+    "همان class"
+   ],
+   "answer": 0,
+   "explanation": "چون class در جاوااسکریپت کلمهٔ رزرو است."
+  }
+ ]
+}

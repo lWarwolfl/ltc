@@ -1,0 +1,49 @@
+{
+ "slug": "react_forms_checkbox",
+ "course": "react",
+ "order": 32,
+ "url": "/react/react_forms_checkbox.asp",
+ "title": "React Forms - Checkbox",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Forms - Checkbox"
+  },
+  {
+   "type": "h2",
+   "text": "Checkbox"
+  },
+  {
+   "type": "p",
+   "text": "For checkboxes, use the checked attribute\n  instead of value to control its state."
+  },
+  {
+   "type": "p",
+   "text": "We'll use the useState Hook to manage the value of the textarea:"
+  },
+  {
+   "type": "p",
+   "text": "In the handleChange function,\n  use the e.target.type property check if the current input is a checkbox or not."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [inputs, setInputs] = useState({});\n\n  const handleChange = (e) => {\n    const target = e.target;\n    const value = target.type === 'checkbox' ? target.checked : target.value;\n    const name = target.name;\n    setInputs(values => ({...values, [name]: value}))\n  }\n\n  const handleSubmit = (event) => {\n    let fillings = '';\n    if (inputs.tomato) fillings += 'tomato';\n    if (inputs.onion) {\n      if (inputs.tomato) fillings += ' and ';\n      fillings += 'onion';\n    }\n    if (fillings == '') fillings = 'no fillings';\n    alert(`${inputs.firstname} wants a burger with ${fillings}`);\n    event.preventDefault();\n  };\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <label>My name is:\n      <input\n        type=\"text\"\n        name=\"firstname\"\n        value={inputs.firstname}\n        onChange={handleChange}\n      />\n      </label>\n\n      <p>I want a burger with:</p>\n      <label>Tomato:\n      <input\n        type=\"checkbox\"\n        name=\"tomato\"\n        checked={inputs.tomato}\n        onChange={handleChange}\n      />\n      </label>\n      <label>Onion:\n        <input\n          type=\"checkbox\"\n          name=\"onion\"\n          checked={inputs.onion}\n          onChange={handleChange}\n        />\n      </label>\n      <button type=\"submit\">Submit</button>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "Initial Values"
+  },
+  {
+   "type": "p",
+   "text": "To add initial values to the input fields in the example above,\n  add the proper keys and values to the useState object:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  const [inputs, setInputs] = useState({\n    firstname: 'John',\n    tomato: true,\n    onion: false\n  });\n\n  ...",
+   "caption": "Example:"
+  }
+ ]
+}

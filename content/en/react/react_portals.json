@@ -1,0 +1,175 @@
+{
+ "slug": "react_portals",
+ "course": "react",
+ "order": 34,
+ "url": "/react/react_portals.asp",
+ "title": "React Portals",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Portals"
+  },
+  {
+   "type": "p",
+   "text": "React Portals provide a way to render HTML outside the parent component's DOM hierarchy."
+  },
+  {
+   "type": "p",
+   "text": "This is particularly useful for components like modals, tooltips, and dialogs that need to break out of their container's layout."
+  },
+  {
+   "type": "h2",
+   "text": "What are React Portals?"
+  },
+  {
+   "type": "p",
+   "text": "A Portal is a React method that is included in the react-dom package."
+  },
+  {
+   "type": "p",
+   "text": "It is used to render HTML outside the parent component's DOM hierarchy."
+  },
+  {
+   "type": "p",
+   "text": "Normally the returned HTML element is a child of the parent component, and returned like this:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function myChild() {\n  return (\n    <div>\n      Welcome\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "But by using the createPortal method, the HTML is not a child of the parent component, and is rendered outside the parent component's DOM hierarchy:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createPortal } from 'react-dom';\n\nfunction myChild() {\n  return createPortal(\n    <div>\n      Welcome\n    </div>,\n    document.body\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Syntax"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createPortal } from 'react-dom';\n\ncreatePortal(children, domNode)",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "The first argument (children) is any renderable React content, like elements, strings, or fragments."
+  },
+  {
+   "type": "p",
+   "text": "The second argument (domNode) is a DOM element where the portal should be inserted instead."
+  },
+  {
+   "type": "h2",
+   "text": "Creating a Modal with Portal"
+  },
+  {
+   "type": "p",
+   "text": "React Portals are particularly useful for components like modals, tooltips, and dialogs that need to break out of their container's layout."
+  },
+  {
+   "type": "p",
+   "text": "Here is an example of a modal component where the modal is rendered outside the parent component's DOM hierarchy:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport { useState } from 'react';\nimport { createPortal } from 'react-dom';\n\nfunction Modal({ isOpen, onClose, children }) {\n  if (!isOpen) return null;\n\n  return createPortal(\n    <div style={{\n      position: 'fixed',\n      top: 0,\n      left: 0,\n      right: 0,\n      bottom: 0,\n      backgroundColor: 'rgba(0, 0, 0, 0.5)',\n      display: 'flex',\n      alignItems: 'center',\n      justifyContent: 'center'\n    }}>\n      <div style={{\n        background: 'white',\n        padding: '20px',\n        borderRadius: '8px'\n      }}>\n        {children}\n        <button onClick={onClose}>Close</button>\n      </div>\n    </div>,\n    document.body\n  );\n}\n\nfunction MyApp() {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <div>\n      <h1>My App</h1>\n      <button onClick={() => setIsOpen(true)}>\n        Open Modal\n      </button>\n\n      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>\n        <h2>Modal Content</h2>\n        <p>This content is rendered outside the App component!</p>\n      </Modal>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyApp />\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "h3",
+   "text": "Example Explained"
+  },
+  {
+   "type": "p",
+   "text": "First, we import the necessary functions:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "createPortal from react-dom - for creating the portal",
+    "useState from react - for managing the modal's open/close state"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "The Modal component uses createPortal\nto render its content directly into the document.body element."
+  },
+  {
+   "type": "h2",
+   "text": "Why Use Portals"
+  },
+  {
+   "type": "p",
+   "text": "Portals are particularly useful for:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Modals and dialogs",
+    "Tooltips",
+    "Floating menus",
+    "Notifications"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Any UI element that needs to \"break out\" of its container's layout, especially when the parent component has:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "overflow: hidden",
+    "z-index conflicts",
+    "Complex positioning requirements"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Event Bubbling in Portals"
+  },
+  {
+   "type": "p",
+   "text": "Even though a portal renders content in a different part of the DOM tree, events from the portal content still bubble up through the React component tree as if the portal wasn't there."
+  },
+  {
+   "type": "p",
+   "text": "For example, if a button inside a portal is clicked, the event will still bubble up to the parent component, and the parent component's event handler will be triggered."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport { useState } from 'react';\nimport { createPortal } from 'react-dom';\n\nfunction PortalButton({ onClick, children }) {\n  return createPortal(\n    <button\n      onClick={onClick}\n      style={{\n        position: 'fixed',\n        bottom: '20px',\n        right: '20px',\n        padding: '10px',\n        background: 'blue',\n        color: 'white'\n      }}>\n      {children}\n    </button>,\n    document.body\n  );\n}\n\nfunction App() {\n  const [count1, setCount1] = useState(0);\n  const [count2, setCount2] = useState(0);\n\n  return (\n    <div\n      style={{\n        padding: '20px',\n        border: '2px solid black',\n        margin: '20px'\n      }}\n      onClick={() => {\n        setCount1(c => c + 1);\n      }}>\n      <h2>Div Clicked: {count1}</h2>\n      <h2>Button Clicked: {count2}</h2>\n      <p>The floating button is rendered outside this box using a portal,\n          but its clicks still bubble up to this parent div!</p>\n      <p>Try to click the div element as well, to see the count increase</p>\n\n      <PortalButton\n        onClick={(e) => {\n          // This runs first\n          setCount2(c => c + 1);\n        }}>\n        Floating Button\n      </PortalButton>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h3",
+   "text": "Example Explained"
+  },
+  {
+   "type": "p",
+   "text": "In this example:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The PortalButton component is rendered as a floating button fixed to the bottom-right corner of the screen using a portal",
+    "Even though the button exists outside the parent <div> in the DOM, clicking it will:",
+    "This demonstrates that event bubbling works through React's component hierarchy, not the DOM hierarchy"
+   ]
+  }
+ ]
+}

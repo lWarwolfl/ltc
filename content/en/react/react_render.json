@@ -1,0 +1,188 @@
+{
+ "slug": "react_render",
+ "course": "react",
+ "order": 3,
+ "url": "/react/react_render.asp",
+ "title": "React Render HTML",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Render HTML"
+  },
+  {
+   "type": "p",
+   "text": "React's goal is in many ways to render HTML in a web page."
+  },
+  {
+   "type": "p",
+   "text": "React renders HTML to the web page via a container, and a function called\ncreateRoot()."
+  },
+  {
+   "type": "h2",
+   "text": "The Container"
+  },
+  {
+   "type": "p",
+   "text": "React uses a container to render HTML in a web page."
+  },
+  {
+   "type": "p",
+   "text": "Typically, this container is a <div id=\"root\"></div> element in the index.html file."
+  },
+  {
+   "type": "p",
+   "text": "If you have followed the steps in the previous chapter, you should have a file called index.html in the root directory of your project:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>my-react-app</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "To better understand the content of the index.html file, let's remove all the code we don't need."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<!doctype html>\n<html lang=\"en\">\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The file is now stripped from unnecessary code, and we can concentrate on learning React without any disturbing elements."
+  },
+  {
+   "type": "h2",
+   "text": "The createRoot Function"
+  },
+  {
+   "type": "p",
+   "text": "The createRoot function is located in the main.jsx\nfile in the src folder, and is a built-in function that is used to create a root node for a React application."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { StrictMode } from 'react'\nimport { createRoot } from 'react-dom/client'\nimport './index.css'\nimport App from './App.jsx'\n\ncreateRoot(document.getElementById('root')).render(\n  <StrictMode>\n      <App />\n    </StrictMode>\n  )",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The createRoot() function takes one argument, an HTML element."
+  },
+  {
+   "type": "p",
+   "text": "The purpose of the function is to define the HTML element where a React component should be displayed."
+  },
+  {
+   "type": "p",
+   "text": "To better understand the createRoot function, let's remove unnecessary code and write our own \"Hello React!\" example:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\ncreateRoot(document.getElementById('root')).render(\n  <h1>Hello React!</h1>\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "If you save the file, the result in the browser will look like this:"
+  },
+  {
+   "type": "h2",
+   "text": "The render Method"
+  },
+  {
+   "type": "p",
+   "text": "Did you notice the render method?"
+  },
+  {
+   "type": "p",
+   "text": "The render method defines what to render in the HTML container."
+  },
+  {
+   "type": "p",
+   "text": "The result is displayed in the <div id=\"root\"> element."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\ncreateRoot(document.getElementById('root')).render(\n  <p>Welcome!</p>\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The result will look like this:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "the element id does not have to be \"root\", but this is the standard convention."
+  },
+  {
+   "type": "h2",
+   "text": "Show React"
+  },
+  {
+   "type": "p",
+   "text": "W3Schools has its own \"Show React\" tool where we will show the result of the code we explain in the tutorial."
+  },
+  {
+   "type": "p",
+   "text": "Click the \"Run Example\" button to see the result:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\ncreateRoot(document.getElementById('root')).render(\n  <p>Welcome!</p>\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "The HTML Code"
+  },
+  {
+   "type": "p",
+   "text": "The HTML code in this tutorial uses JSX which allows you to write HTML tags\ninside the JavaScript code:"
+  },
+  {
+   "type": "p",
+   "text": "Don't worry if the syntax is unfamiliar, you will learn more about JSX later in this tutorial."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\nconst myelement = (\n  <table>\n    <tr>\n      <th>Name</th>\n    </tr>\n    <tr>\n      <td>John</td>\n    </tr>\n    <tr>\n      <td>Elsa</td>\n    </tr>\n  </table>\n);\n\ncreateRoot(document.getElementById('root')).render(\n  myelement\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "The Root Node"
+  },
+  {
+   "type": "p",
+   "text": "The root node is the HTML element where you want to display the result."
+  },
+  {
+   "type": "p",
+   "text": "It is like a container for content, managed by React."
+  },
+  {
+   "type": "p",
+   "text": "It does NOT have to be a <div> element and it does\nNOT have to\nhave the id='root':"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<!doctype html>\n<html lang=\"en\">\n  <body>\n    <header id=\"sandy\"></header>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\ncreateRoot(document.getElementById('sandy')).render(\n  <p>Welcome!</p>\n)",
+   "caption": "Example"
+  }
+ ]
+}

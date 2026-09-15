@@ -1,0 +1,129 @@
+{
+  "slug": "react_upgrade",
+  "course": "react",
+  "order": 4,
+  "url": "/react/react_upgrade.asp",
+  "title": "ارتقای React",
+  "summary": "در این درس یاد می‌گیرید برنامهٔ React موجود را در دو مرحله به نسخهٔ ۱۹ ارتقا دهید: نصب آخرین نسخه با npm و استفاده از root API جدید با createRoot.",
+  "objectives": [
+    "آخرین نسخهٔ React و ReactDOM را با npm نصب کنید",
+    "تفاوت ReactDOM.render قدیمی و createRoot جدید را بگویید",
+    "رندر ریشهٔ برنامه را با createRoot بازنویسی کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ارتقای React"
+    },
+    {
+      "type": "h2",
+      "text": "ارتقا به React 19"
+    },
+    {
+      "type": "p",
+      "text": "ارتقای یک برنامهٔ React موجود به نسخهٔ ۱۹ فقط دو مرحله لازم دارد."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "اگر همین حالا از آخرین نسخهٔ React استفاده می‌کنید، می‌توانید این بخش را رد کنید."
+    },
+    {
+      "type": "h2",
+      "text": "مرحلهٔ ۱: نصب React 19"
+    },
+    {
+      "type": "p",
+      "text": "برای نصب آخرین نسخه، از داخل پوشهٔ پروژه در ترمینال دستور زیر را اجرا کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "npm i react@latest react-dom@latest",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "مرحلهٔ ۲: استفاده از root API جدید"
+    },
+    {
+      "type": "p",
+      "text": "برای اینکه از قابلیت‌های هم‌زمان (concurrent) در React 19 استفاده کنید، برای رندر سمت کاربر (client) باید از root API جدید استفاده کنید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "// Before\nimport ReactDOM from 'react-dom';\n\nReactDOM.render(\n  <h1>Hello React!</h1>,\n  document.getElementById('root')\n);\n\n// After\nimport { createRoot } from 'react-dom/client';\n\ncreateRoot(document.getElementById('root')).render(\n  <h1>Hello React!</h1>\n);",
+      "caption": null
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برنامهٔ شما بدون استفاده از root API جدید هم کار می‌کند. اگر همچنان از ReactDOM.render استفاده کنید، برنامه مثل React 17 رفتار خواهد کرد."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در ترمینال پوشهٔ پروژه، دستور نصب آخرین نسخهٔ react و react-dom را اجرا کنید و شمارهٔ نسخهٔ نصب‌شده را روی صفحه ببینید.",
+      "hint": "دستور مرحلهٔ ۱ را اجرا کنید: npm i react@latest react-dom@latest."
+    },
+    {
+      "prompt": "در ویرایشگر Try-it مثال مرحلهٔ ۲، فراخوانی قدیمی ReactDOM.render را پیدا کنید و معادل آن با createRoot را بنویسید.",
+      "hint": "ریشه را با createRoot بسازید و بعد متد render را روی آن صدا بزنید."
+    },
+    {
+      "prompt": "همان مثال را طوری تغییر دهید که به‌جای «Hello React!» نام خودتان نمایش داده شود و نتیجه را روی صفحه ببینید.",
+      "hint": "فقط متن داخل تگ h1 را عوض کنید؛ بقیهٔ کد دست نخورده بماند."
+    },
+    {
+      "prompt": "یک بار مثال را با ReactDOM.render قدیمی و یک بار با createRoot اجرا کنید و تفاوت خروجی را روی صفحه مقایسه کنید.",
+      "hint": "خروجی هر دو یکی است؛ تفاوت در قابلیت‌های هم‌زمان نسخهٔ ۱۹ است."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "برای نصب آخرین نسخهٔ React کدام دستور درست است؟",
+      "options": [
+        "npm i react@latest react-dom@latest",
+        "npm install react@19 --save-dev",
+        "npx create-react-app --upgrade",
+        "npm update react --legacy"
+      ],
+      "answer": 0,
+      "explanation": "دستور npm i react@latest react-dom@latest آخرین نسخهٔ هر دو بسته را نصب می‌کند. گزینه‌های دیگر یا دستور ساخت پروژه‌اند یا نسخهٔ مشخصی را قفل نمی‌کنند."
+    },
+    {
+      "question": "برای استفاده از قابلیت‌های هم‌زمان React 19 چه باید کرد؟",
+      "options": [
+        "از root API جدید با createRoot استفاده کرد",
+        "فقط کافی است React را import کرد",
+        "باید ReactDOM.render را نگه داشت",
+        "باید نسخهٔ Node را پایین آورد"
+      ],
+      "answer": 0,
+      "explanation": "قابلیت‌های هم‌زمان React 19 فقط با root API جدید (createRoot) فعال می‌شوند. نگه داشتن ReactDOM.render رفتار برنامه را مثل React 17 نگه می‌دارد."
+    },
+    {
+      "question": "اگر برنامه‌ای را به React 19 ارتقا دهید ولی ReactDOM.render را نگه دارید چه می‌شود؟",
+      "options": [
+        "برنامه خراب می‌شود و بالا نمی‌آید",
+        "برنامه کار می‌کند ولی مثل React 17 رفتار می‌کند",
+        "نصب بسته‌ها برگردانده می‌شود",
+        "ترمینال خطای نحوی می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "طبق متن درس، برنامه بدون root API جدید هم کار می‌کند، فقط رفتار هم‌زمان نسخهٔ ۱۹ را نمی‌گیرید و مثل React 17 عمل می‌کند."
+    },
+    {
+      "question": "ارتقای یک برنامهٔ موجود به React 19 چند مرحله دارد؟",
+      "options": [
+        "دو مرحله: نصب نسخهٔ جدید و استفاده از root API جدید",
+        "یک مرحله: فقط نصب",
+        "پنج مرحله با مهاجرت دستی همهٔ فایل‌ها",
+        "نیازی به هیچ کاری نیست"
+      ],
+      "answer": 0,
+      "explanation": "متن درس می‌گوید ارتقا فقط دو مرحله لازم دارد: نصب React 19 و استفاده از root API جدید."
+    }
+  ]
+}

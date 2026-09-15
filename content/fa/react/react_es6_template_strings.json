@@ -1,0 +1,263 @@
+{
+ "slug": "react_es6_template_strings",
+ "course": "react",
+ "order": 14,
+ "url": "/react/react_es6_template_strings.asp",
+ "title": "تمپلیت استرینگ در ES6 ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "تمپلیت استرینگ در ES6 ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "تمپلیت استرینگ"
+  },
+  {
+   "type": "p",
+   "text": "تمپلیت استرینگ اجازه می‌دهد رشته‌های چندخطی بنویسید و عبارت داخلشان بگذارید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const name = \"John\";\nconst age = 30;\nconst message = \"Hello, \" + name + \"!\\n\" +\n\"You are \" + age + \" years old.\";",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template1"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const name = \"John\";\nconst age = 30;\nconst message = `Hello, ${name}!\nYou are ${age} years old.`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template2"
+  },
+  {
+   "type": "p",
+   "text": "تمپلیت استرینگ به‌جای کوتیشن از بک‌تیک (`) استفاده می‌کند و می‌تواند داشته باشد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "چند خط بدون \\n",
+    "عبارت داخل ${}",
+    "کوتیشن بدون escape"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const html = `\n  <div>\n    <h1>Title</h1>\n    <p>Paragraph</p>\n  </div>\n`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template3"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "تورفتگی در رشته‌های چندخطی جزئی از رشته می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const x = `\n  John:\n    Hello, how are you?\n  Jane:\n    I'm fine, thanks!\n`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template3_1"
+  },
+  {
+   "type": "h2",
+   "text": "درون‌یابی عبارت"
+  },
+  {
+   "type": "p",
+   "text": "هر عبارت معتبر جاوااسکریپت را می‌شود داخل ${} در تمپلیت استرینگ گذاشت:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "let firstName = \"John\";\nlet lastName = \"Doe\";\n\nlet text = `Welcome ${firstName}, ${lastName}!`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_variables"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "let price = 10;\nlet quantity = 5;\n\nlet total = `Total: ${price * quantity}`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_expressions"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const items = [\"apple\", \"banana\", \"orange\"];\nconst list = `You have ${items.length} items:\n${items.map(item => `- ${item}`).join('\\n')}`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_map"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const isAdmin = true;\nconst message = `Status: ${isAdmin ? 'Admin' : 'User'}`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_ternary"
+  },
+  {
+   "type": "h2",
+   "text": "تمپلیت تگ‌دار"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید تمپلیت استرینگ را با یک تابع (به نام tag) استفاده کنید تا خروجی را تغییر دهید."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "تمپلیت تگ‌دار قابلیت پیشرفته است و در بیشتر موارد لازمش ندارید."
+  },
+  {
+   "type": "p",
+   "text": "تابع، متن و عبارت‌ها را به‌عنوان آرگومان می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "به مثال زیر نگاه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function highlight(strings, fname) {\n  let x = fname.toUpperCase();\n  return strings[0] + x + strings[1];\n}\n\nlet name = \"John\";\n\nlet text = highlight`Hello ${name}, how are you?`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_tagged"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال"
+  },
+  {
+   "type": "p",
+   "text": "اسم تابع highlight است؛ هر اسمی می‌توانید بگذارید."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان اول متن‌های بین عبارت‌ها را به‌صورت آرایه نگه می‌دارد. آیتم‌های آرایه با عبارت از هم جدا می‌شوند. در این مثال strings[0] مقدار «Hello » و strings[1] مقدار « how are you?» را دارد."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان دوم عبارت‌ها را نگه می‌دارد. در این مثال fname مقدار «John» را دارد."
+  },
+  {
+   "type": "p",
+   "text": "داخل تابع می‌توانید با آرگومان‌ها رشتهٔ نهایی را بسازید و برگردانید."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اگر تمپلیت چند عبارت داشته باشد، متن باز هم در آرگومان اول است، ولی عبارت‌ها یا در چند آرگومان جدا یا به‌صورت آرایه در آرگومان دوم می‌آیند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function highlight(strings, fname1, fname2) {\n  let x = fname1.toUpperCase();\n  let y = fname2.toUpperCase();\n  return strings[0] + x + strings[1] + y + strings[2];\n}\n\nlet name1 = \"John\";\nlet name2 = \"Jane\";\n\nlet text = highlight`Hello ${name1} and ${name2}, how are you?`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_tagged2"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function highlight(strings, ...fname) {\n  let x = fname[0].toUpperCase();\n  let y = fname[1].toUpperCase();\n  return strings[0] + x + strings[1] + y + strings[2];\n}\n\nlet name1 = \"John\";\nlet name2 = \"Jane\";\n\nlet text = highlight`Hello ${name1} and ${name2}, how are you?`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_tagged3"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال جمع با + و مثال بک‌تیک را مقایسه کنید؛ کدام خواناتر است؟"
+  },
+  {
+   "prompt": "با نام و سن خودتان یک پیام چندخطی با بک‌تیک بسازید."
+  },
+  {
+   "prompt": "داخل ${} یک محاسبه (مثل قیمت × تعداد) بگذارید و نتیجه را ببینید."
+  },
+  {
+   "prompt": "تابع highlight را طوری عوض کنید که به‌جای بزرگ کردن، دور اسم ستاره بگذارد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تمپلیت استرینگ با چه کاراکتری نوشته می‌شود؟",
+   "options": [
+    "بک‌تیک (`)",
+    "دابل کوتیشن",
+    "سینگل کوتیشن",
+    "آکولاد"
+   ],
+   "answer": 0,
+   "explanation": "بک‌تیک اجازهٔ چندخط و ${} می‌دهد."
+  },
+  {
+   "question": "داخل ${} چه چیزی می‌شود گذاشت؟",
+   "options": [
+    "هر عبارت معتبر جاوااسکریپت",
+    "فقط نام متغیر",
+    "فقط عدد",
+    "فقط رشته"
+   ],
+   "answer": 0,
+   "explanation": "حتی محاسبه و سه‌تایی و صدای تابع هم می‌شود."
+  },
+  {
+   "question": "تورفتگی در رشتهٔ چندخطی چه می‌شود؟",
+   "options": [
+    "جزئی از رشته می‌شود",
+    "حذف می‌شود",
+    "خطا می‌دهد",
+    "به \\n تبدیل می‌شود"
+   ],
+   "answer": 0,
+   "explanation": "هر فاصله‌ای که در کد می‌گذارید در خروجی هم هست."
+  },
+  {
+   "question": "در تمپلیت تگ‌دار، آرگومان اول تابع چیست؟",
+   "options": [
+    "آرایهٔ متن‌های بین عبارت‌ها",
+    "اولین عبارت",
+    "کل رشته",
+    "هیچی"
+   ],
+   "answer": 0,
+   "explanation": "متن‌ها در strings و عبارت‌ها در آرگومان‌های بعدی می‌آیند."
+  }
+ ]
+}

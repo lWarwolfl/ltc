@@ -1,0 +1,125 @@
+{
+  "slug": "react_usereducer",
+  "course": "react",
+  "order": 49,
+  "url": "/react/react_usereducer.asp",
+  "title": "هوک useReducer در React",
+  "summary": "هوک useReducer مثل useState است ولی برای منطق state پیچیده و چندتکه به کار می‌رود. در این درس ساختار useReducer با reducer و dispatch را یاد می‌گیرید و امتیاز دو بازیکن را با آن مدیریت می‌کنید.",
+  "objectives": [
+    "بگویید useReducer چه فرقی با useState دارد و کی به کار می‌آید",
+    "ساختار useReducer با reducer و state اولیه را بنویسید",
+    "با state برگشتی و تابع dispatch یک شمارنده یا امتیاز را مدیریت کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "هوک useReducer در React"
+    },
+    {
+      "type": "p",
+      "text": "هوک useReducer شبیه هوک useState است."
+    },
+    {
+      "type": "p",
+      "text": "این هوک امکان تعریف منطق state سفارشی را می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "اگر چند تکه state را دنبال می‌کنید که با منطق پیچیده به هم وابسته‌اند، useReducer می‌تواند مفید باشد."
+    },
+    {
+      "type": "h2",
+      "text": "ساختار (Syntax)"
+    },
+    {
+      "type": "p",
+      "text": "هوک useReducer سه آرگومان می‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "useReducer(reducer, initialState, init)"
+    },
+    {
+      "type": "p",
+      "text": "تابع reducer منطق state سفارشی شما را در خود دارد و initialState می‌تواند یک مقدار ساده باشد، ولی معمولاً یک شیء است. آرگومان init اختیاری است و برای مقداردهی اولیهٔ state به کار می‌رود."
+    },
+    {
+      "type": "p",
+      "text": "هوک useReducer مقدار state فعلی و یک متد dispatch برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "در این مثال با useReducer امتیاز دو بازیکن را دنبال می‌کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useReducer } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst initialScore = [\n  {\n    id: 1,\n    score: 0,\n    name: \"John\",\n  },\n  {\n    id: 2,\n    score: 0,\n    name: \"Sally\",\n  },\n];\n\nconst reducer = (state, action) => {\n  switch (action.type) {\n    case \"INCREASE\":\n      return state.map((player) => {\n        if (player.id === action.id) {\n          return { ...player, score: player.score + 1 };\n        } else {\n          return player;\n        }\n      });\n    default:\n      return state;\n  }\n};\n\nfunction Score() {\n  const [score, dispatch] = useReducer(reducer, initialScore);\n\n  const handleIncrease = (player) => {\n    dispatch({ type: \"INCREASE\", id: player.id });\n  };\n\n  return (\n    <>\n      {score.map((player) => (\n        <div key={player.id}>\n          <label>\n            <input\n              type=\"button\"\n              onClick={() => handleIncrease(player)}\n              value={player.name}\n            />\n            {player.score}\n          </label>\n        </div>\n      ))}\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Score />\n);",
+      "caption": "Example:"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال امتیاز دو بازیکن را در ویرایشگر Try-it اجرا کنید و با دکمه‌ها امتیاز هر بازیکن را کم و زیاد کنید.",
+      "hint": "هر دکمه یک action با type مشخص به dispatch می‌فرستد."
+    },
+    {
+      "prompt": "یک دکمهٔ «ریست» به مثال اضافه کنید که امتیاز هر دو بازیکن را صفر کند و نتیجه را روی صفحه ببینید.",
+      "hint": "یک action جدید برای برگرداندن state به مقدار اولیه تعریف کنید."
+    },
+    {
+      "prompt": "مقدار اولیهٔ امتیازها را از صفر به ۱۰ تغییر دهید و صفحه را اجرا کنید.",
+      "hint": "initialState را عوض کنید؛ reducer لازم نیست دست بخورد."
+    },
+    {
+      "prompt": "یک بازیکن سوم به state اضافه کنید و دکمه‌های کم و زیاد مخصوص خودش را بسازید.",
+      "hint": "به شیء state اولیه یک کلید جدید اضافه کنید و برایش action جدا تعریف کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "هوک useReducer چه چیزی برمی‌گرداند؟",
+      "options": [
+        "state فعلی و یک تابع dispatch",
+        "فقط یک مقدار memoizeشده",
+        "یک ref به عنصر DOM",
+        "یک Promise از سرور"
+      ],
+      "answer": 0,
+      "explanation": "useReducer آرایه‌ای از state فعلی و تابع dispatch برمی‌گرداند. با dispatch یک action می‌فرستید و reducer state بعدی را می‌سازد."
+    },
+    {
+      "question": "نقش تابع reducer در useReducer چیست؟",
+      "options": [
+        "منطق سفارشی به‌روزرسانی state را نگه می‌دارد",
+        "عنصر DOM را مستقیم دست‌کاری می‌کند",
+        "کامپوننت را lazy بارگذاری می‌کند",
+        "رابطهٔ اینترنت را بررسی می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "reducer تابعی است که state فعلی و action را می‌گیرد و state بعدی را برمی‌گرداند؛ یعنی همان منطق سفارشی state."
+    },
+    {
+      "question": "آرگومان سوم useReducer یعنی init چه کاربردی دارد؟",
+      "options": [
+        "اختیاری است و برای مقداردهی اولیهٔ state به کار می‌رود",
+        "اجباری است و همیشه باید تابع باشد",
+        "سرعت رندر را اندازه می‌گیرد",
+        "آدرس سرور را مشخص می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "طبق متن درس، init اختیاری است و برای مقداردهی اولیهٔ state استفاده می‌شود."
+    },
+    {
+      "question": "useReducer بیشتر در چه حالتی به‌جای useState پیشنهاد می‌شود؟",
+      "options": [
+        "وقتی چند تکه state با منطق پیچیده به هم وابسته‌اند",
+        "وقتی فقط یک رشتهٔ ساده نگه می‌داریم",
+        "وقتی می‌خواهیم فایل Sass وارد کنیم",
+        "وقتی می‌خواهیم صفحه را روی سرور میزبانی کنیم"
+      ],
+      "answer": 0,
+      "explanation": "متن درس می‌گوید اگر چند تکه state دارید که با منطق پیچیده به هم وابسته‌اند، useReducer مفید است؛ برای یک مقدار ساده همان useState کافی است."
+    }
+  ]
+}

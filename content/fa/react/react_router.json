@@ -1,0 +1,314 @@
+{
+ "slug": "react_router",
+ "course": "react",
+ "order": 39,
+ "url": "/react/react_router.asp",
+ "title": "روتر در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "روتر در ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "ری‌اکت روتر چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "ری‌اکت روتر کتابخانه‌ای است که قابلیت مسیریابی به اپ‌های ری‌اکت می‌دهد."
+  },
+  {
+   "type": "p",
+   "text": "مسیریابی یعنی مدیریت جابه‌جایی بین نماهای مختلف."
+  },
+  {
+   "type": "p",
+   "text": "ری‌اکت روتر کتابخانهٔ استاندارد مسیریابی برای اپ‌های ری‌اکت است و می‌گذارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "در تک‌صفحه‌ای خود چند صفحه بسازید",
+    "پارامترهای URL و query string را مدیریت کنید",
+    "تاریخچهٔ مرورگر و ناوبری را مدیریت کنید",
+    "مسیرهای تودرتو و چیدمان بسازید",
+    "مسیرهای محافظت‌شده برای احراز هویت پیاده کنید"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "بدون روتر، اپ ری‌اکت شما به یک صفحه محدود می‌ماند و راهی برای جابه‌جایی بین نماها نیست."
+  },
+  {
+   "type": "h2",
+   "text": "نصب ری‌اکت روتر"
+  },
+  {
+   "type": "p",
+   "text": "در خط فرمان به پوشهٔ پروژه بروید و این دستور را برای نصب پکیج اجرا کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "npm install react-router-dom",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "پیچیدن اپ در BrowserRouter"
+  },
+  {
+   "type": "p",
+   "text": "اپ شما باید در کامپوننت BrowserRouter پیچیده شود تا مسیریابی فعال شود:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function App() {\n  return (\n    <BrowserRouter>\n      {/* Your app content */}\n    </BrowserRouter>\n  );\n}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "ساخت نماها"
+  },
+  {
+   "type": "p",
+   "text": "برای نمایش مسیریابی، سه صفحه (یا نما) در اپ می‌سازیم: خانه، درباره و تماس:"
+  },
+  {
+   "type": "p",
+   "text": "هر سه نما را برای سادگی در یک فایل می‌سازیم؛ ولی می‌توانید در فایل‌های جدا بگذارید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Home() {\n  return <h1>Home Page</h1>;\n}\n\nfunction About() {\n  return <h1>About Page</h1>;\n}\n\nfunction Contact() {\n  return <h1>Contact Page</h1>;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "مسیریابی پایه"
+  },
+  {
+   "type": "p",
+   "text": "ری‌اکت روتر برای مسیریابی پایه سه کامپوننت اصلی دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Link: لینک ناوبری می‌سازد که URL را عوض می‌کند",
+    "Routes: ظرف همهٔ تعریف‌های مسیر است",
+    "Route: نگاشت بین مسیر URL و کامپوننت را تعریف می‌کند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "برای هر لینک، لینک ناوبری و مسیر اضافه می‌کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';\n\nfunction Home() {\n  return <h1>Home Page</h1>;\n}\n\nfunction About() {\n  return <h1>About Page</h1>;\n}\n\nfunction Contact() {\n  return <h1>Contact Page</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      {/* Navigation */}\n      <nav>\n        <Link to=\"/\">Home</Link> |{\" \"}\n        <Link to=\"/about\">About</Link> |{\" \"}\n        <Link to=\"/contact\">Contact</Link>\n      </nav>\n\n      {/* Routes */}\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/about\" element={<About />} />\n        <Route path=\"/contact\" element={<Contact />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "در این مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "BrowserRouter دور اپ است و مسیریابی را فعال می‌کند",
+    "کامپوننت‌های Link لینک ناوبری می‌سازند",
+    "Routes و Route تنظیمات مسیریابی را تعریف می‌کنند"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مسیرهای تودرتو"
+  },
+  {
+   "type": "p",
+   "text": "می‌شود Route را داخل Route دیگر گذاشت؛ به این می‌گویند مسیرهای تودرتو."
+  },
+  {
+   "type": "p",
+   "text": "مسیرهای تودرتو می‌گذارند با رفتن به URL جدید فقط بخشی از صفحه عوض شود و بقیه دست نخورده بماند؛ مثل صفحه‌ای داخل صفحه."
+  },
+  {
+   "type": "p",
+   "text": "از مثال بالا استفاده می‌کنیم و دو کامپوننت جدید اضافه می‌کنیم که داخل کامپوننت Products رندر می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "یکی CarProducts و یکی BikeProducts:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';\n\nfunction Home() {\n  return <h1>Home Page</h1>;\n}\n\nfunction Products() {\n  return (\n    <div>\n      <h1>Products Page</h1>\n      <nav style={{ marginBottom: '20px' }}>\n        <Link to=\"/products/car\">Cars</Link> |{\" \"}\n        <Link to=\"/products/bike\">Bikes</Link>\n      </nav>\n      <Outlet />\n    </div>\n  );\n}\n\nfunction CarProducts() {\n  return (\n    <div>\n      <h2>Cars</h2>\n      <ul>\n        <li>Audi</li>\n        <li>BMW</li>\n        <li>Volvo</li>\n      </ul>\n    </div>\n  );\n}\n\nfunction BikeProducts() {\n  return (\n    <div>\n      <h2>Bikes</h2>\n      <ul>\n        <li>Yamaha</li>\n        <li>Suzuki</li>\n        <li>Honda</li>\n      </ul>\n    </div>\n  );\n}\n\nfunction Contact() {\n  return <h1>Contact Page</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      {/* Navigation */}\n      <nav>\n        <Link to=\"/\">Home</Link> |{\" \"}\n        <Link to=\"/products\">Products</Link> |{\" \"}\n        <Link to=\"/contact\">Contact</Link>\n      </nav>\n\n      {/* Routes */}\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/products\" element={<Products />}>\n          <Route path=\"car\" element={<CarProducts />} />\n          <Route path=\"bike\" element={<BikeProducts />} />\n        </Route>\n        <Route path=\"/contact\" element={<Contact />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "نکته‌های مهم مثال بالا:"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "Outlet:\n    عنصر <Outlet /> در کامپوننت Products مشخص می‌کند محتوای مسیر فرزند کجا رندر شود.",
+    "Routes:\n    عنصر Routes مسیرهای CarProducts\n    و BikeProducts\n    را به‌صورت فرزند مسیر والد Products دارد.",
+    "URL Structure:\n    ساختار URL نسبت به مسیر والد است. مثلاً:\n\n      وقتی به '/products/car' می‌روید،\n      کامپوننت CarProducts رندر می‌شود.\n      وقتی به '/products/bike' می‌روید،\n      کامپوننت BikeProducts رندر می‌شود."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "استایل لینک‌های فعال"
+  },
+  {
+   "type": "p",
+   "text": "یک نسخهٔ خاص از کامپوننت Link به نام NavLink هست که می‌فهمد URL لینک «فعال» است یا نه."
+  },
+  {
+   "type": "p",
+   "text": "NavLink مخصوصاً برای این‌ها مفید است:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "منوهای ناوبری",
+    "بردکرامب",
+    "تب‌ها"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "NavLink وقتی فعال حساب می‌شود که URL جاری با prop به نام to مطابقت کند."
+  },
+  {
+   "type": "p",
+   "text": "کامپوننت NavLink استایل دادن به لینک‌های فعال را راحت‌تر می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "مثال پایهٔ بالا را بردارید و با NavLink به لینک‌های فعال استایل بدهید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';\n\n// Style function for active links\nconst navLinkStyles = ({ isActive }) => ({\n  color: isActive ? '#007bff' : '#333',\n  textDecoration: isActive ? 'none' : 'underline',\n  fontWeight: isActive ? 'bold' : 'normal',\n  padding: '5px 10px'\n});\n\nfunction Home() {\n  return <h1>Home Page</h1>;\n}\n\nfunction About() {\n  return <h1>About Page</h1>;\n}\n\nfunction Contact() {\n  return <h1>Contact Page</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      {/* Navigation with NavLink for active styling */}\n      <nav style={{ marginBottom: '20px' }}>\n        <NavLink to=\"/\" style={navLinkStyles}>Home</NavLink> |{\" \"}\n        <NavLink to=\"/about\" style={navLinkStyles}>About</NavLink> |{\" \"}\n        <NavLink to=\"/contact\" style={navLinkStyles}>Contact</NavLink>\n      </nav>\n\n      {/* Routes */}\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/about\" element={<About />} />\n        <Route path=\"/contact\" element={<Contact />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "پارامترهای URL"
+  },
+  {
+   "type": "p",
+   "text": "پارامترهای URL متغیرهایی‌اند که می‌توانید به مسیرها اضافه کنید و معمولاً برای فرستادن داده بین کامپوننت‌ها استفاده می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "در مسیر http://localhost:5173/customer/Tobias پارامتر URL همان Tobias است."
+  },
+  {
+   "type": "p",
+   "text": "پارامترهای URL می‌گذارند مسیرهای پویا بسازید که بخشی از URL عوض می‌شود. مثل متغیر در URL بهشان فکر کنید."
+  },
+  {
+   "type": "p",
+   "text": "ری‌اکت روتر هوک useParams را می‌دهد تا در کامپوننت‌ها به این پارامترها دسترسی داشته باشید."
+  },
+  {
+   "type": "p",
+   "text": "یک مثال ساده با صفحهٔ خوش‌آمد که به مشتری‌های مختلف سلام می‌کند:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom';\n\nfunction Info() {\n  const { firstname } = useParams();\n  return <h1>Hello, {firstname}!</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      <nav>\n        <Link to=\"/customer/Emil\">Emil</Link> |\n        <Link to=\"/customer/Tobias\">Tobias</Link> |\n        <Link to=\"/customer/Linus\">Linus</Link>\n      </nav>\n\n      <Routes>\n        <Route path=\"/customer/:firstname\" element={<Info />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "در این مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    ":firstname در مسیر، همان پارامتر URL است",
+    "اگر به /customer/Emil بروید «!Hello, Emil» می‌بینید",
+    "اگر به /customer/Tobias بروید «!Hello, Tobias» می‌بینید",
+    "اگر به /customer/Linus بروید «!Hello, Linus» می‌بینید",
+    "هر اسمی در URL بگذارید سلام کار می‌کند! این را امتحان کنید http://localhost:5173/customer/John"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "پکیج react-router-dom را در پروژهٔ خودتان نصب کنید.",
+   "hint": "npm install react-router-dom"
+  },
+  {
+   "prompt": "سه نمای Home و About و Contact را بسازید و با Link و Route به هم وصل کنید."
+  },
+  {
+   "prompt": "یک مسیر تودرتو Products با دو فرزند Car و Bike بسازید و Outlet را امتحان کنید."
+  },
+  {
+   "prompt": "لینک‌ها را به NavLink تبدیل کنید و ببینید لینک فعال استایل متفاوت می‌گیرد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "ری‌اکت روتر چه می‌کند؟",
+   "options": [
+    "مسیریابی بین نماهای مختلف اپ",
+    "استایل دادن",
+    "مدیریت state",
+    "تست نوشتن"
+   ],
+   "answer": 0,
+   "explanation": "بدون آن تک‌صفحه‌ای فقط یک نما دارد."
+  },
+  {
+   "question": "سه کامپوننت اصلی مسیریابی پایه کدام‌اند؟",
+   "options": [
+    "Link و Routes و Route",
+    "Div و Span و P",
+    "useState و useEffect و useRef",
+    "Table و Tr و Td"
+   ],
+   "answer": 0,
+   "explanation": "Link لینک می‌سازد، Route مسیر را به کامپوننت وصل می‌کند و Routes ظرف آن‌هاست."
+  },
+  {
+   "question": "<Outlet /> چه کار می‌کند؟",
+   "options": [
+    "جای رندر محتوای مسیر فرزند را مشخص می‌کند",
+    "اپ را می‌بندد",
+    "لینک می‌سازد",
+    "پارامتر می‌خواند"
+   ],
+   "answer": 0,
+   "explanation": "بدون Outlet، مسیرهای تودرتو جایی برای نمایش ندارند."
+  },
+  {
+   "question": "در مسیر /customer/:firstname، firstname چیست و چگونه خوانده می‌شود؟",
+   "options": [
+    "پارامتر URL که با هوک useParams خوانده می‌شود",
+    "یک state",
+    "یک prop ثابت",
+    "نام فایل"
+   ],
+   "answer": 0,
+   "explanation": "هر مقداری به‌جای firstname بیاید، در Info با useParams در دسترس است."
+  }
+ ]
+}

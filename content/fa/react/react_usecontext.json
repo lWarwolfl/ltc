@@ -1,0 +1,204 @@
+{
+  "slug": "react_usecontext",
+  "course": "react",
+  "order": 47,
+  "url": "/react/react_usecontext.asp",
+  "title": "هوک useContext در React",
+  "summary": "کانتکست (Context) راهی برای مدیریت سراسری state است تا لازم نباشد state را تک‌تک از کامپوننت‌ها رد کنید (prop drilling). در این درس با createContext و Context Provider و هوک useContext نام کاربر را بین کامپوننت‌های تودرتو به اشتراک می‌گذارید.",
+  "objectives": [
+    "بگویید prop drilling چیست و چه مشکلی دارد",
+    "با createContext یک کانتکست بسازید",
+    "درخت کامپوننت را داخل Context Provider بپیچید و مقدار state را بدهید",
+    "در کامپوننت فرزند با هوک useContext مقدار کانتکست را بخوانید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "هوک useContext در React"
+    },
+    {
+      "type": "h2",
+      "text": "کانتکست در React"
+    },
+    {
+      "type": "p",
+      "text": "کانتکست در React راهی برای مدیریت state به‌صورت سراسری است."
+    },
+    {
+      "type": "p",
+      "text": "می‌توان آن را همراه هوک useState استفاده کرد تا state را بین کامپوننت‌های عمیقاً تودرتو راحت‌تر از useState تنها به اشتراک گذاشت."
+    },
+    {
+      "type": "h2",
+      "text": "مسئله"
+    },
+    {
+      "type": "p",
+      "text": "state باید در بالاترین کامپوننت والدی نگه داشته شود که به آن state نیاز دارد."
+    },
+    {
+      "type": "p",
+      "text": "برای نشان دادن موضوع، چند کامپوننت تودرتو داریم. کامپوننت بالا و پایینِ این پشته هر دو به state نیاز دارند."
+    },
+    {
+      "type": "p",
+      "text": "برای این کار بدون کانتکست، باید state را به‌صورت «props» از تک‌تک کامپوننت‌های تودرتو رد کنیم. به این کار «prop drilling» می‌گویند."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction Component1() {\n  const [user, setUser] = useState(\"Linus\");\n\n  return (\n    <>\n      <h1>{`Hello ${user}!`}</h1>\n      <Component2 user={user} />\n    </>\n  );\n}\n\nfunction Component2({ user }) {\n  return (\n    <>\n      <h1>Component 2</h1>\n      <Component3 user={user} />\n    </>\n  );\n}\n\nfunction Component3({ user }) {\n  return (\n    <>\n      <h1>Component 3</h1>\n      <h2>{`Hello ${user} again!`}</h2>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Component1 />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "با اینکه کامپوننت ۲ به state نیازی نداشت، مجبور بود آن را رد کند تا به کامپوننت ۳ برسد."
+    },
+    {
+      "type": "h2",
+      "text": "راه‌حل"
+    },
+    {
+      "type": "p",
+      "text": "راه‌حل ساخت کانتکست (context) است."
+    },
+    {
+      "type": "h3",
+      "text": "ساخت کانتکست"
+    },
+    {
+      "type": "p",
+      "text": "برای ساخت کانتکست باید createContext را import و مقداردهی اولیه کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, createContext, useContext } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst UserContext = createContext();",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "بعد از Context Provider استفاده می‌کنیم تا درخت کامپوننت‌هایی را که به state کانتکست نیاز دارند داخلش بپیچیم."
+    },
+    {
+      "type": "h3",
+      "text": "ارائه‌دهندهٔ کانتکست (Context Provider)"
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت‌های فرزند را داخل Context Provider بپیچید و مقدار state را بدهید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Component1() {\n  const [user, setUser] = useState(\"Linus\");\n\n  return (\n    <UserContext.Provider value={user}>\n      <h1>{`Hello ${user}!`}</h1>\n      <Component2 />\n    </UserContext.Provider>\n  );\n}",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "حالا همهٔ کامپوننت‌های این درخت به کانتکست user دسترسی دارند."
+    },
+    {
+      "type": "h3",
+      "text": "استفاده از هوک useContext"
+    },
+    {
+      "type": "p",
+      "text": "برای استفاده از کانتکست در کامپوننت فرزند، باید با هوک useContext به آن دسترسی بگیریم."
+    },
+    {
+      "type": "p",
+      "text": "اول useContext را در دستور import\nبیاورید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, createContext, useContext } from \"react\";",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "بعد می‌توانید در همهٔ کامپوننت‌ها به کانتکست user دسترسی داشته باشید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Component3() {\n  const user = useContext(UserContext);\n\n  return (\n    <>\n      <h1>Component 3</h1>\n      <h2>{`Hello ${user} again!`}</h2>\n    </>\n  );\n}",
+      "caption": null
+    },
+    {
+      "type": "h2",
+      "text": "مثال کامل"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, createContext, useContext } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst UserContext = createContext();\n\nfunction Component1() {\n  const [user, setUser] = useState(\"Linus\");\n\n  return (\n    <UserContext.Provider value={user}>\n      <h1>{`Hello ${user}!`}</h1>\n      <Component2 />\n    </UserContext.Provider>\n  );\n}\n\nfunction Component2() {\n  return (\n    <>\n      <h1>Component 2</h1>\n      <Component3 />\n    </>\n  );\n}\n\nfunction Component3() {\n  const user = useContext(UserContext);\n\n  return (\n    <>\n      <h1>Component 3</h1>\n      <h2>{`Hello ${user} again!`}</h2>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Component1 />\n);",
+      "caption": "Example:"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال «بدون کانتکست» را در ویرایشگر Try-it اجرا کنید و ببینید state چطور از کامپوننت ۱ و ۲ رد می‌شود تا به ۳ برسد.",
+      "hint": "به propهایی که کامپوننت ۲ فقط رد می‌کند ولی خودش استفاده نمی‌کند نگاه کنید."
+    },
+    {
+      "prompt": "همان مثال را با کانتکست بازنویسی کنید: UserContext بسازید و درخت را داخل Provider بپیچید.",
+      "hint": "مقدار user را با خصوصیت value به Provider بدهید."
+    },
+    {
+      "prompt": "در کامپوننت ۳ با هوک useContext مقدار user را بخوانید و روی صفحه نمایش دهید.",
+      "hint": "const user = useContext(UserContext) را داخل کامپوننت بنویسید."
+    },
+    {
+      "prompt": "مقدار اولیهٔ user را عوض کنید و ببینید بدون دست زدن به کامپوننت‌های میانی، خروجی کامپوننت ۳ عوض می‌شود.",
+      "hint": "فقط useState بالایی را عوض کنید؛ prop drilling دیگر لازم نیست."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "prop drilling یعنی چه؟",
+      "options": [
+        "رد کردن state به‌صورت props از تک‌تک کامپوننت‌های میانی",
+        "سوراخ کردن صفحه با دریل",
+        "حذف همهٔ کامپوننت‌ها",
+        "اتصال مستقیم به دیتابیس"
+      ],
+      "answer": 0,
+      "explanation": "بدون کانتکست، state باید به‌صورت props از همهٔ کامپوننت‌های تودرتو رد شود، حتی آن‌هایی که خودشان به آن نیازی ندارند."
+    },
+    {
+      "question": "برای ساخت کانتکست از چه تابعی استفاده می‌شود؟",
+      "options": [
+        "createContext",
+        "useState",
+        "createRoot",
+        "useMemo"
+      ],
+      "answer": 0,
+      "explanation": "کانتکست با createContext ساخته می‌شود؛ بعد Provider آن را در اختیار درخت کامپوننت می‌گذارد و useContext آن را می‌خواند."
+    },
+    {
+      "question": "نقش Context Provider چیست؟",
+      "options": [
+        "درخت کامپوننت‌ها را می‌پیچد و مقدار state را در اختیارشان می‌گذارد",
+        "صفحه را رفرش می‌کند",
+        "فایل Sass را کامپایل می‌کند",
+        "تایمر را پاک می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "کامپوننت‌های فرزند داخل Provider قرار می‌گیرند و مقدار state با خصوصیت value به همه‌شان داده می‌شود."
+    },
+    {
+      "question": "در کامپوننت فرزند چطور مقدار کانتکست را می‌خوانیم؟",
+      "options": [
+        "با هوک useContext",
+        "با ReactDOM.render",
+        "با npm install",
+        "با تگ <script>"
+      ],
+      "answer": 0,
+      "explanation": "با useContext(UserContext) مقدار کانتکست در هر کامپوننت فرزند خوانده می‌شود."
+    }
+  ]
+}

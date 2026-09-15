@@ -1,0 +1,188 @@
+{
+ "slug": "react_jsx_attributes",
+ "course": "react",
+ "order": 17,
+ "url": "/react/react_jsx_attributes.asp",
+ "title": "ویژگی‌ها در JSX ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ویژگی‌ها در JSX ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "JSX اجازه می‌دهد به عناصر HTML ویژگی بدهید، ولی چند تفاوت مهم هست."
+  },
+  {
+   "type": "h2",
+   "text": "class می‌شود className"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی class در HTML خیلی پرکاربرد است، ولی چون JSX به جاوااسکریپت تبدیل می‌شود و class در جاوااسکریپت کلمهٔ رزرو است، نمی‌توانید در JSX از آن استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "راه‌حل JSX این بود که className را بگذارد. وقتی JSX رندر می‌شود، ویژگی‌های className به class ترجمه می‌شوند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  return (\n    <h1 className=\"myclass\">Hello World</h1>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "عبارت به‌عنوان ویژگی"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید عبارت جاوااسکریپت را مقدار ویژگی کنید. این برای ویژگی‌های پویا خیلی مفید است."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  const x = \"myclass\";\n  return (\n    <h1 className={x}>Hello World</h1>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "دقت کنید مقدار ویژگی داخل کوتیشن نیست؛ وقتی از عبارت (متغیر جاوااسکریپت) به‌عنوان مقدار ویژگی استفاده می‌کنید این مهم است. اگر کوتیشن بگذارید، JSX آن را رشتهٔ خام حساب می‌کند نه عبارت جاوااسکریپت."
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های رویداد با camelCase"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌های رویداد در JSX با camelCase نوشته می‌شوند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  const myfunc = () => {\n    alert('Hello World');\n  };\n  return (\n    <button onClick={myfunc}>Click me</button>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی‌های بولی"
+  },
+  {
+   "type": "p",
+   "text": "اگر برای ویژگی مقداری نگذارید، JSX آن را true حساب می‌کند. برای false باید حتماً به‌صورت عبارت بنویسید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onClick={myfunc} disabled>Click me</button>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onClick={myfunc} disabled={true}>Click me</button>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onClick={myfunc} disabled={false}>Click me</button>",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "ویژگی style"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی style در JSX فقط یک شیء جاوااسکریپت با نام ویژگی‌های camelCase قبول می‌کند، نه رشتهٔ CSS مثل HTML."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  const mystyles = {\n    color: \"red\",\n    fontSize: \"20px\",\n    backgroundColor: \"lightyellow\",\n  };\n\n  return (\n    <>\n      <h1 style={mystyles}>My car</h1>\n    </>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "به دو نکته در مثال بالا دقت کنید."
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "استایل‌ها در یک شیء ذخیره شده‌اند.",
+    "ویژگی‌های استایل با camelCase نوشته می‌شوند، مثلاً fontSize به‌جای font-size."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "این تفاوت مهم HTML و JSX است."
+  },
+  {
+   "type": "p",
+   "text": "دربارهٔ CSS و استایل در فصل React CSS Styling بیشتر یاد می‌گیرید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال className را اجرا کنید و بعد className را به class تغییر دهید؛ خطا را ببینید."
+  },
+  {
+   "prompt": "به‌جای رشتهٔ مستقیم، نام کلاس را در یک متغیر بگذارید و با عبارت به className بدهید."
+  },
+  {
+   "prompt": "به دکمهٔ مثال یک disabled اضافه کنید و ببینید غیرفعال می‌شود؛ بعد آن را با state و expression کنترل کنید."
+  },
+  {
+   "prompt": "به استایل‌ها یک border اضافه کنید و نتیجه را ببینید.",
+   "hint": "مثلاً border: \"1px solid black\""
+  }
+ ],
+ "quiz": [
+  {
+   "question": "چرا در JSX به‌جای class از className استفاده می‌کنیم؟",
+   "options": [
+    "چون class در جاوااسکریپت کلمهٔ رزرو است",
+    "چون کوتاه‌تر است",
+    "چون سریع‌تر است",
+    "دلیلی ندارد"
+   ],
+   "answer": 0,
+   "explanation": "JSX به جاوااسکریپت تبدیل می‌شود و class معنای دیگری دارد."
+  },
+  {
+   "question": "اگر مقدار ویژگی را داخل کوتیشن بگذارید چه می‌شود؟",
+   "options": [
+    "رشتهٔ خام حساب می‌شود نه عبارت",
+    "خطا می‌دهد",
+    "نادیده گرفته می‌شود",
+    "خودکار به عبارت تبدیل می‌شود"
+   ],
+   "answer": 0,
+   "explanation": "برای عبارت باید از آکولاد استفاده کرد: className={x}."
+  },
+  {
+   "question": "ویژگی‌های رویداد در JSX چگونه نوشته می‌شوند؟",
+   "options": [
+    "camelCase مثل onClick",
+    "حروف کوچک مثل onclick",
+    "با خط تیره",
+    "با آندرلاین"
+   ],
+   "answer": 0,
+   "explanation": "در HTML با حروف کوچک بود؛ در JSX کمل‌کیس است."
+  },
+  {
+   "question": "ویژگی style در JSX چه می‌گیرد؟",
+   "options": [
+    "شیء جاوااسکریپت با کلیدهای camelCase",
+    "رشتهٔ CSS مثل HTML",
+    "فایل جدا",
+    "فقط یک ویژگی"
+   ],
+   "answer": 0,
+   "explanation": "مثلاً {color: \"red\", fontSize: \"20px\"}."
+  }
+ ]
+}

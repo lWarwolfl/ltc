@@ -1,0 +1,191 @@
+{
+  "slug": "react_useeffect",
+  "course": "react",
+  "order": 46,
+  "url": "/react/react_useeffect.asp",
+  "title": "هوک‌های useEffect در React",
+  "summary": "هوک useEffect برای اثرهای جانبی مثل تایمر، دریافت داده و دست‌کاری DOM به کار می‌رود. در این درس با مثال تایمر می‌بینید چرا آرایهٔ وابستگی لازم است و چطور با تابع cleanup جلوی نشت حافظه را بگیرید.",
+  "objectives": [
+    "بگویید اثر جانبی (side effect) چیست و چند مثال بزنید",
+    "مثال تایمر بدون آرایهٔ وابستگی را اجرا کنید و مشکل اجرای هر رندر را ببینید",
+    "با آرایهٔ وابستگی خالی effect را فقط به اولین رندر محدود کنید",
+    "برای تایمر تابع cleanup بنویسید تا با unmount نشت حافظه ندهد"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "هوک‌های useEffect در React"
+    },
+    {
+      "type": "p",
+      "text": "هوک useEffect امکان می‌دهد در کامپوننت‌هایتان اثرهای جانبی (side effect) انجام دهید."
+    },
+    {
+      "type": "p",
+      "text": "چند نمونه از اثرهای جانبی: گرفتن داده از سرور، دست‌کاری مستقیم DOM و تایمرها."
+    },
+    {
+      "type": "p",
+      "text": "useEffect دو آرگومان می‌گیرد. آرگومان دوم اختیاری است."
+    },
+    {
+      "type": "p",
+      "text": "useEffect(<function>, <dependency>)"
+    },
+    {
+      "type": "p",
+      "text": "به‌عنوان مثال از یک تایمر استفاده کنیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useEffect } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction Timer() {\n  const [count, setCount] = useState(0);\n\n  useEffect(() => {\n    setTimeout(() => {\n      setCount((count) => count + 1);\n    }, 1000);\n  });\n\n  return <h1>I've rendered {count} times!</h1>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Timer />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "اما صبر کنید! تایمر مدام می‌شمارد در حالی که باید فقط یک بار بشمارد!"
+    },
+    {
+      "type": "p",
+      "text": "useEffect در هر رندر اجرا می‌شود. یعنی وقتی count عوض می‌شود، یک رندر اتفاق می‌افتد و آن رندر دوباره effect را اجرا می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "این چیزی نیست که ما می‌خواهیم. چند راه برای کنترل زمان اجرای اثرهای جانبی هست."
+    },
+    {
+      "type": "p",
+      "text": "همیشه باید پارامتر دوم را بگذاریم که یک آرایه می‌گیرد.\nمی‌توانیم وابستگی‌ها را به‌صورت اختیاری در همین آرایه به useEffect بدهیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "useEffect(() => {\n  //Runs on every render\n});",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "useEffect(() => {\n  //Runs only on the first render\n}, []);",
+      "caption": "Example"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "useEffect(() => {\n  //Runs on the first render\n  //And any time any dependency value changes\n}, [prop, state]);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "پس برای حل این مشکل، effect را فقط در رندر اول اجرا می‌کنیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useEffect } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction Timer() {\n  const [count, setCount] = useState(0);\n\n  useEffect(() => {\n    setTimeout(() => {\n      setCount((count) => count + 1);\n    }, 1000);\n  }, []); // <- add empty brackets here\n\n  return <h1>I've rendered {count} times!</h1>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Timer />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useEffect } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  const [calculation, setCalculation] = useState(0);\n\n  useEffect(() => {\n    setCalculation(() => count * 2);\n  }, [count]); // <- add the count variable here\n\n  return (\n    <>\n      <p>Count: {count}</p>\n      <button onClick={() => setCount((c) => c + 1)}>+</button>\n      <p>Calculation: {calculation}</p>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Counter />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "اگر چند وابستگی داشته باشیم، باید همه در آرایهٔ وابستگی useEffect باشند."
+    },
+    {
+      "type": "h2",
+      "text": "پاک‌سازی effect"
+    },
+    {
+      "type": "p",
+      "text": "بعضی effectها برای کم کردن نشت حافظه به پاک‌سازی (cleanup) نیاز دارند."
+    },
+    {
+      "type": "p",
+      "text": "تایمرها، اشتراک‌ها (subscription)، شنونده‌های رویداد و بقیهٔ effectهایی که دیگر لازم نیستند باید آزاد شوند."
+    },
+    {
+      "type": "p",
+      "text": "این کار را با گذاشتن یک تابع return در انتهای هوک useEffect انجام می‌دهیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useEffect } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction Timer() {\n  const [count, setCount] = useState(0);\n\n  useEffect(() => {\n    let timer = setTimeout(() => {\n      setCount((count) => count + 1);\n    }, 1000);\n\n    return () => clearTimeout(timer)\n  }, []);\n\n  return <h1>I've rendered {count} times!</h1>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Timer />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برای پاک کردن تایمر مجبور شدیم برایش یک نام بگذاریم."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال تایمر اول را در ویرایشگر Try-it اجرا کنید و ببینید شمارش متوقف نمی‌شود.",
+      "hint": "چون آرایهٔ وابستگی نیست، هر رندر یک effect جدید می‌سازد."
+    },
+    {
+      "prompt": "همان مثال را با آرایهٔ وابستگی خالی اصلاح کنید تا تایمر فقط یک بار در رندر اول ساخته شود.",
+      "hint": "[] به‌عنوان آرگومان دوم بدهید و نتیجه را روی صفحه ببینید."
+    },
+    {
+      "prompt": "وابستگی count را به آرایه اضافه کنید و ببینید با هر تغییر count تایمر دوباره ساخته می‌شود.",
+      "hint": "آرایه را [count] بگذارید و رفتار صفحه را مقایسه کنید."
+    },
+    {
+      "prompt": "مثال cleanup را اجرا کنید: تایمر را نام‌گذاری کنید و در تابع return آن را با clearTimeout پاک کنید.",
+      "hint": "تابع return داخل useEffect وقتی کامپوننت unmount می‌شود اجرا می‌شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کدام گزینه نمونهٔ اثر جانبی (side effect) است؟",
+      "options": [
+        "گرفتن داده از سرور",
+        "تعریف یک متغیر محلی ساده",
+        "نوشتن یک کامنت در کد",
+        "نام‌گذاری یک فایل"
+      ],
+      "answer": 0,
+      "explanation": "گرفتن داده، دست‌کاری DOM و تایمر اثر جانبی‌اند؛ تعریف متغیر محلی یا کامنت اثر جانبی نیست."
+    },
+    {
+      "question": "چرا تایمر مثال اول بی‌وقفه می‌شمارد؟",
+      "options": [
+        "چون useEffect در هر رندر اجرا می‌شود و هر رندر effect جدید می‌سازد",
+        "چون کامپیوتر خراب است",
+        "چون Sass نصب نشده",
+        "چون اینترنت قطع است"
+      ],
+      "answer": 0,
+      "explanation": "بدون آرایهٔ وابستگی، هر تغییر count رندر می‌سازد و هر رندر دوباره effect را اجرا می‌کند."
+    },
+    {
+      "question": "آرایهٔ وابستگی خالی [] چه معنایی دارد؟",
+      "options": [
+        "فقط در رندر اول اجرا شود",
+        "در هر رندر اجرا شود",
+        "هیچ‌وقت اجرا نشود",
+        "فقط وقتی کاربر کلیک کند اجرا شود"
+      ],
+      "answer": 0,
+      "explanation": "آرایهٔ خالی یعنی هیچ وابستگی‌ای نیست، پس effect فقط یک بار در رندر اول اجرا می‌شود."
+    },
+    {
+      "question": "تابع cleanup در useEffect چه کاربردی دارد؟",
+      "options": [
+        "آزاد کردن تایمر و اشتراک‌ها برای جلوگیری از نشت حافظه",
+        "سریع‌تر کردن اینترنت",
+        "پاک کردن کل صفحه",
+        "ذخیرهٔ خودکار فایل‌ها"
+      ],
+      "answer": 0,
+      "explanation": "با تابع return در انتهای useEffect، تایمرها و اشتراک‌های اضافی را آزاد می‌کنیم تا حافظه نشت نکند."
+    }
+  ]
+}

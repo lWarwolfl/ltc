@@ -1,0 +1,158 @@
+{
+ "slug": "react_forms_multiple_inputs",
+ "course": "react",
+ "order": 31,
+ "url": "/react/react_forms_multiple_inputs.asp",
+ "title": "فرم‌های ری‌اکت - چند ورودی",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "فرم‌های ری‌اکت - چند ورودی"
+  },
+  {
+   "type": "h2",
+   "text": "مدیریت چند ورودی"
+  },
+  {
+   "type": "p",
+   "text": "وقتی چند ورودی کنترل‌شده در فرم دارید، state آن‌ها را می‌توانید به دو روش مدیریت کنید:"
+  },
+  {
+   "type": "p",
+   "text": "1. با یک useState جدا برای هر ورودی."
+  },
+  {
+   "type": "p",
+   "text": "2. با یک useState که یک شیء نگه می‌دارد برای همهٔ مقدارهای فرم."
+  },
+  {
+   "type": "p",
+   "text": "ما از روش دوم استفاده می‌کنیم چون برای فرم‌ها رایج‌تر است."
+  },
+  {
+   "type": "p",
+   "text": "مطمئن شوید هر ورودی ویژگی name یکتا دارد."
+  },
+  {
+   "type": "p",
+   "text": "همچنین هنگام مقدار اولیه، به‌جای رشته از شیء استفاده کنید. اگر ورودی‌ها مقدار اولیه ندارند، از شیء خالی استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [inputs, setInputs] = useState({});\n\n  const handleChange = (e) => {\n    const name = e.target.name;\n    const value = e.target.value;\n    setInputs(values => ({...values, [name]: value}))\n  }\n\n  return (\n    <form>\n      <label>First name:\n      <input\n        type=\"text\"\n        name=\"firstname\"\n        value={inputs.firstname}\n        onChange={handleChange}\n      />\n      </label>\n      <label>Last name:\n        <input\n          type=\"text\"\n          name=\"lastname\"\n          value={inputs.lastname}\n          onChange={handleChange}\n        />\n      </label>\n      <p>Current values: {inputs.firstname} {inputs.lastname}</p>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "p",
+   "text": "اولین نکته این است که وقتی از یک useState استفاده می‌کنیم، مقدارهای اولیه را در یک شیء می‌گذاریم. در اینجا که مقدار اولیه‌ای نیست، از شیء خالی استفاده می‌کنیم:"
+  },
+  {
+   "type": "p",
+   "text": "const [inputs, setInputs] = useState({});"
+  },
+  {
+   "type": "p",
+   "text": "بعد تابع handleChange را برای چند ورودی به‌روز می‌کنیم."
+  },
+  {
+   "type": "p",
+   "text": "در تابع، با e.target.name و e.target.value به ورودی‌ها دسترسی پیدا می‌کنیم."
+  },
+  {
+   "type": "p",
+   "text": "برای به‌روزرسانی state، دور نام ویژگی از براکت [] استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "function handleChange(e) {\n  const name = e.target.name;\n  const value = e.target.value;\n  setInputs(values => ({...values, [name]: value}))\n}"
+  },
+  {
+   "type": "p",
+   "text": "وقتی به مقدار ورودی‌ها اشاره می‌کنیم، هم نام شیء state یعنی inputs و هم نام ورودی را می‌آوریم:"
+  },
+  {
+   "type": "p",
+   "text": "<input\n  type=\"text\"\n  name=\"firstname\"\n  value={inputs.firstname}\n  onChange={handleChange}\n/>\n<input\n  type=\"text\"\n  name=\"lastname\"\n  value={inputs.lastname}\n  onChange={handleChange}\n/>\n<p>Current values: {inputs.firstname} {inputs.lastname}</p>"
+  },
+  {
+   "type": "h2",
+   "text": "مقادیر اولیه"
+  },
+  {
+   "type": "p",
+   "text": "برای دادن مقدار اولیه به ورودی‌های مثال بالا، کلید و مقدار مناسب را به شیء useState اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  const [inputs, setInputs] = useState({\n    firstname: 'John',\n    lastname: 'Doe'\n  });\n\n  ...",
+   "caption": "Example:"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال را اجرا کنید، نام و نام خانوادگی بنویسید و ببینید زیر فرم نمایش داده می‌شوند."
+  },
+  {
+   "prompt": "یک ورودی سوم (email) با name یکتا اضافه کنید."
+  },
+  {
+   "prompt": "مقادیر اولیهٔ John و Doe را امتحان کنید و ببینید از اول پر هستند."
+  },
+  {
+   "prompt": "دو name یکسان به دو ورودی بدهید و ببینید چه مشکلی پیش می‌آید.",
+   "hint": "هر دو به یک کلید state می‌نویسند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "برای فرم با چند ورودی کدام روش رایج‌تر است؟",
+   "options": [
+    "یک useState با یک شیء برای همهٔ مقدارها",
+    "یک useState جدا برای هر ورودی همیشه",
+    "بدون state",
+    "با متغیر سراسری"
+   ],
+   "answer": 0,
+   "explanation": "یک شیء با کلیدهای هم‌نام name ورودی‌ها، فرم را تمیز نگه می‌دارد."
+  },
+  {
+   "question": "چرا هر ورودی باید name یکتا داشته باشد؟",
+   "options": [
+    "چون name کلید state می‌شود",
+    "چون مرورگر مجبور می‌کند",
+    "دلیلی ندارد",
+    "فقط برای استایل"
+   ],
+   "answer": 0,
+   "explanation": "handleChange با [name] مقدار درست را در خانهٔ درست می‌گذارد."
+  },
+  {
+   "question": "[name] در setInputs چه کار می‌کند؟",
+   "options": [
+    "نام ویژگی را از روی مقدار name می‌سازد",
+    "آرایه می‌سازد",
+    "مقدار را حذف می‌کند",
+    "خطا می‌دهد"
+   ],
+   "answer": 0,
+   "explanation": "به این کار computed property name می‌گویند."
+  },
+  {
+   "question": "اگر ورودی‌ها مقدار اولیه نداشته باشند از چه چیزی شروع می‌کنیم؟",
+   "options": [
+    "شیء خالی {}",
+    "رشتهٔ خالی",
+    "null",
+    "آرایهٔ خالی"
+   ],
+   "answer": 0,
+   "explanation": "چون قرار است کلید-مقدار نگه داریم، شیء خالی شروع درست است."
+  }
+ ]
+}

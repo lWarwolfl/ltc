@@ -1,0 +1,283 @@
+{
+  "slug": "react_usestate",
+  "course": "react",
+  "order": 45,
+  "url": "/react/react_usestate.asp",
+  "title": "هوک useState در React",
+  "summary": "هوک useState امکان می‌دهد در کامپوننت تابعی state را دنبال کنید. در این درس import و مقداردهی اولیهٔ useState، خواندن و به‌روزرسانی state و نگه داشتن رشته، شیء و آرایه در state را با مثال رنگ و ماشین یاد می‌گیرید.",
+  "objectives": [
+    "بگویید state چیست و useState چه می‌کند",
+    "useState را import و با مقدار اولیه مقداردهی کنید و دو مقدار برگشتی‌اش را بشکافید",
+    "state را در کامپوننت بخوانید و با تابع به‌روزرسان عوض کنید",
+    "شیء و آرایه را در state نگه دارید و با عملگر spread فقط یک کلید را به‌روز کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "هوک useState در React"
+    },
+    {
+      "type": "p",
+      "text": "هوک useState در React امکان می‌دهد state را در یک کامپوننت تابعی دنبال کنیم."
+    },
+    {
+      "type": "p",
+      "text": "state معمولاً یعنی داده‌ها یا ویژگی‌هایی که باید در برنامه دنبال شوند."
+    },
+    {
+      "type": "h2",
+      "text": "import کردن useState"
+    },
+    {
+      "type": "p",
+      "text": "برای استفاده از هوک useState اول باید آن را وارد کامپوننتمان کنیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState } from \"react\";",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "دقت کنید که useState را از react می‌شکافیم (destructure) چون یک export نام‌دار است."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برای یادگیری بیشتر دربارهٔ شکافتن (destructuring)، بخش ES6 Destructuring را ببینید."
+    },
+    {
+      "type": "h2",
+      "text": "مقداردهی اولیهٔ useState"
+    },
+    {
+      "type": "p",
+      "text": "state را با صدا زدن useState در کامپوننت تابعی‌مان مقداردهی اولیه می‌کنیم."
+    },
+    {
+      "type": "p",
+      "text": "useState یک state اولیه می‌گیرد و دو مقدار برمی‌گرداند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "state فعلی.",
+        "تابعی که state را به‌روز می‌کند."
+      ]
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState } from \"react\";\n\nfunction FavoriteColor() {\n  const [color, setColor] = useState(\"red\");\n}",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "دقت کنید که دوباره داریم مقدارهای برگشتی از useState را می‌شکافیم."
+    },
+    {
+      "type": "p",
+      "text": "مقدار اول، یعنی color، همان state فعلی ماست."
+    },
+    {
+      "type": "p",
+      "text": "مقدار دوم، یعنی setColor، تابعی است که برای به‌روزرسانی state ما به کار می‌رود."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "این نام‌ها متغیرند و می‌توانید هر اسمی که دوست دارید بگذارید."
+    },
+    {
+      "type": "p",
+      "text": "در آخر، state اولیه را «red» می‌گذاریم: useState(\"red\")"
+    },
+    {
+      "type": "h2",
+      "text": "خواندن state"
+    },
+    {
+      "type": "p",
+      "text": "حالا می‌توانیم state را هر جای کامپوننتمان بگذاریم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction FavoriteColor() {\n  const [color, setColor] = useState(\"red\");\n\n  return <h1>My favorite color is {color}!</h1>\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <FavoriteColor />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "به‌روزرسانی state"
+    },
+    {
+      "type": "p",
+      "text": "برای به‌روزرسانی state از تابع به‌روزرسان state استفاده می‌کنیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "<button\n  type=\"button\"\n  onClick={() => setColor(\"blue\")}\n>Blue</button>",
+      "caption": "Example:"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "هیچ‌وقت نباید state را مستقیم به‌روز کنیم. مثلاً color = \"blue\" مجاز نیست."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction FavoriteColor() {\n  const [color, setColor] = useState(\"red\");\n\n  return (\n    <>\n      <h1>My favorite color is {color}!</h1>\n      <button\n        type=\"button\"\n        onClick={() => setColor(\"blue\")}\n      >Blue</button>\n    </>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <FavoriteColor />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "state چه چیزی می‌تواند نگه دارد؟"
+    },
+    {
+      "type": "p",
+      "text": "از هوک useState می‌توان برای نگه داشتن رشته، عدد، boolean، آرایه، شیء و هر ترکیبی از این‌ها استفاده کرد!"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانیم چند هوک state جدا بسازیم تا هر مقدار را جدا دنبال کنیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyCar() {\n  const [brand, setBrand] = useState(\"Ford\");\n  const [model, setModel] = useState(\"Mustang\");\n  const [year, setYear] = useState(\"1964\");\n  const [color, setColor] = useState(\"red\");\n\n  return (\n    <>\n      <h1>My {brand}</h1>\n      <p>\n        It is a {color} {model} from {year}.\n      </p>\n    </>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyCar />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "یا می‌توانیم فقط از یک state استفاده کنیم و به‌جایش یک شیء بگذاریم!"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyCar() {\n  const [car, setCar] = useState({\n    brand: \"Ford\",\n    model: \"Mustang\",\n    year: \"1964\",\n    color: \"red\"\n  });\n\n  return (\n    <>\n      <h1>My {car.brand}</h1>\n      <p>\n        It is a {car.color} {car.model} from {car.year}.\n      </p>\n    </>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyCar />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "چون حالا داریم یک شیء واحد یعنی car را دنبال می‌کنیم،\nهنگام رندر کامپوننت باید به همان شیء ارجاع دهیم.\n(مثلاً car.brand)"
+    },
+    {
+      "type": "h2",
+      "text": "به‌روزرسانی شیءها و آرایه‌ها در state"
+    },
+    {
+      "type": "p",
+      "text": "وقتی state به‌روز می‌شود، کل state بازنویسی می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "اگر فقط بخواهیم رنگ ماشینمان را عوض کنیم چه؟"
+    },
+    {
+      "type": "p",
+      "text": "اگر فقط setCar({color: \"blue\"}) را صدا بزنیم، brand و model و year از state ما حذف می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "برای کمک گرفتن می‌توانیم از عملگر spread در JavaScript استفاده کنیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "const updateColor = () => {\n  setCar(previousState => {\n    return { ...previousState, color: \"blue\" }\n  });\n}",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "چون به مقدار فعلی state نیاز داریم، یک تابع به تابع setCar می‌دهیم.\nاین تابع مقدار قبلی را می‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "بعد یک شیء برمی‌گردانیم: previousState را spread می‌کنیم و فقط color را بازنویسی می‌کنیم."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال FavoriteColor را در ویرایشگر Try-it اجرا کنید و رنگ فعلی را روی صفحه ببینید.",
+      "hint": "مقدار color با {color} داخل تگ h1 نمایش داده می‌شود."
+    },
+    {
+      "prompt": "روی دکمهٔ آبی کلیک کنید و ببینید رنگ بدون رفرش صفحه عوض می‌شود.",
+      "hint": "onClick تابع setColor را با مقدار «blue» صدا می‌زند."
+    },
+    {
+      "prompt": "مقدار اولیهٔ useState را از «red» به رنگ دلخواه خودتان عوض کنید و خروجی را ببینید.",
+      "hint": "فقط آرگومان useState را عوض کنید."
+    },
+    {
+      "prompt": "در مثال ماشین (MyCar)، فقط رنگ را با عملگر spread به‌روز کنید و ببینید بقیهٔ مشخصات حذف نمی‌شوند.",
+      "hint": "setCar را با تابع و ...previousState بنویسید و فقط color را عوض کنید."
+    },
+    {
+      "prompt": "یک دکمهٔ دوم اضافه کنید که رنگ را به «red» برگرداند و هر دو دکمه را امتحان کنید.",
+      "hint": "از همان الگوی دکمهٔ آبی کپی بگیرید و مقدار دیگری بدهید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "هوک useState چند مقدار برمی‌گرداند و آن‌ها چیست؟",
+      "options": [
+        "دو مقدار: state فعلی و تابع به‌روزرسان آن",
+        "یک مقدار: فقط state فعلی",
+        "سه مقدار: state و dispatch و init",
+        "هیچ مقداری برنمی‌گرداند"
+      ],
+      "answer": 0,
+      "explanation": "useState آرایه‌ای از دو عضو برمی‌گرداند: مقدار فعلی state و تابعی که آن را به‌روز می‌کند."
+    },
+    {
+      "question": "کدام روش به‌روزرسانی state درست است؟",
+      "options": [
+        "setColor(\"blue\")",
+        "color = \"blue\"",
+        "color.set(\"blue\")",
+        "update color to blue"
+      ],
+      "answer": 0,
+      "explanation": "state را هیچ‌وقت مستقیم عوض نمی‌کنیم؛ فقط با تابع به‌روزرسان مثل setColor به‌روزرسانی مجاز است."
+    },
+    {
+      "question": "اگر state یک شیء باشد و فقط setCar({color: \"blue\"}) را صدا بزنیم چه می‌شود؟",
+      "options": [
+        "کل state بازنویسی می‌شود و بقیهٔ کلیدها حذف می‌شوند",
+        "فقط رنگ عوض می‌شود و بقیه می‌مانند",
+        "هیچ اتفاقی نمی‌افتد",
+        "برنامه کرش می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "به‌روزرسانی state کل آن را بازنویسی می‌کند؛ پس باید با عملگر spread بقیهٔ کلیدها را نگه داریم."
+    },
+    {
+      "question": "چرا previousState را به‌صورت تابع به setCar می‌دهیم؟",
+      "options": [
+        "چون به مقدار فعلی state نیاز داریم و تابع مقدار قبلی را می‌گیرد",
+        "چون syntax قشنگ‌تری دارد",
+        "چون بدون تابع کد اجرا نمی‌شود",
+        "چون سرعت اینترنت بیشتر می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "وقتی به‌روزرسانی به مقدار قبلی وابسته است، تابع را پاس می‌دهیم تا مقدار قبلی را بگیرد و روی آن spread کنیم."
+    },
+    {
+      "question": "useState را چطور وارد کامپوننت می‌کنیم؟",
+      "options": [
+        "import { useState } from \"react\";",
+        "import useState from \"react-dom\";",
+        "require(\"usestate\")",
+        "<script src=\"usestate\">"
+      ],
+      "answer": 0,
+      "explanation": "useState یک export نام‌دار از react است و با destructuring وارد می‌شود."
+    }
+  ]
+}

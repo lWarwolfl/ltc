@@ -1,0 +1,253 @@
+{
+ "slug": "react_router",
+ "course": "react",
+ "order": 39,
+ "url": "/react/react_router.asp",
+ "title": "React Router",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Router"
+  },
+  {
+   "type": "h2",
+   "text": "What is React Router?"
+  },
+  {
+   "type": "p",
+   "text": "React Router is a library that provides routing capabilities for React applications."
+  },
+  {
+   "type": "p",
+   "text": "Routing means handling navigation between different views."
+  },
+  {
+   "type": "p",
+   "text": "React Router is the standard routing library for React applications. It enables you to:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Create multiple pages in your single-page application",
+    "Handle URL parameters and query strings",
+    "Manage browser history and navigation",
+    "Create nested routes and layouts",
+    "Implement protected routes for authentication"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Without a router, your React application would be limited to a single page with no way to navigate between different views."
+  },
+  {
+   "type": "h2",
+   "text": "Install React Router"
+  },
+  {
+   "type": "p",
+   "text": "In the command line, navigate to your project directory and run the following command to install the package:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "npm install react-router-dom",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Wrap Your App with BrowserRouter"
+  },
+  {
+   "type": "p",
+   "text": "Your application must be wrapped with the BrowserRouter component to enable routing:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function App() {\n  return (\n    <BrowserRouter>\n      {/* Your app content */}\n    </BrowserRouter>\n  );\n}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Create Views"
+  },
+  {
+   "type": "p",
+   "text": "To demonstrate routing, we'll create three pages (or views) in our application: Home, About, and Contact:"
+  },
+  {
+   "type": "p",
+   "text": "We will create all three views in the same file for simplicity, but you can of course split them into separate files."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Home() {\n  return <h1>Home Page</h1>;\n}\n\nfunction About() {\n  return <h1>About Page</h1>;\n}\n\nfunction Contact() {\n  return <h1>Contact Page</h1>;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Basic Routing"
+  },
+  {
+   "type": "p",
+   "text": "React Router uses three main components for basic routing:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Link: Creates navigation links that update the URL",
+    "Routes: A container for all your route definitions",
+    "Route: Defines a mapping between a URL path and a component"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Let's add navigation links and routes for each link:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';\n\nfunction Home() {\n  return <h1>Home Page</h1>;\n}\n\nfunction About() {\n  return <h1>About Page</h1>;\n}\n\nfunction Contact() {\n  return <h1>Contact Page</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      {/* Navigation */}\n      <nav>\n        <Link to=\"/\">Home</Link> |{\" \"}\n        <Link to=\"/about\">About</Link> |{\" \"}\n        <Link to=\"/contact\">Contact</Link>\n      </nav>\n\n      {/* Routes */}\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/about\" element={<About />} />\n        <Route path=\"/contact\" element={<Contact />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "In this example:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "BrowserRouter wraps your app and enables routing functionality",
+    "Link components create navigation links",
+    "Routes and Route define your routing configuration"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Nested Routes"
+  },
+  {
+   "type": "p",
+   "text": "You can have a Route inside another Route, this is called nested routes."
+  },
+  {
+   "type": "p",
+   "text": "Nested routes allow you change parts of the page when you navigate to a new URL, while other parts is not changed or reloaded, almost like having a page within a page."
+  },
+  {
+   "type": "p",
+   "text": "Let's use the example above, and add two new components that will be rendered inside the Products component."
+  },
+  {
+   "type": "p",
+   "text": "One called CarProducts and one called BikeProducts:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';\n\nfunction Home() {\n  return <h1>Home Page</h1>;\n}\n\nfunction Products() {\n  return (\n    <div>\n      <h1>Products Page</h1>\n      <nav style={{ marginBottom: '20px' }}>\n        <Link to=\"/products/car\">Cars</Link> |{\" \"}\n        <Link to=\"/products/bike\">Bikes</Link>\n      </nav>\n      <Outlet />\n    </div>\n  );\n}\n\nfunction CarProducts() {\n  return (\n    <div>\n      <h2>Cars</h2>\n      <ul>\n        <li>Audi</li>\n        <li>BMW</li>\n        <li>Volvo</li>\n      </ul>\n    </div>\n  );\n}\n\nfunction BikeProducts() {\n  return (\n    <div>\n      <h2>Bikes</h2>\n      <ul>\n        <li>Yamaha</li>\n        <li>Suzuki</li>\n        <li>Honda</li>\n      </ul>\n    </div>\n  );\n}\n\nfunction Contact() {\n  return <h1>Contact Page</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      {/* Navigation */}\n      <nav>\n        <Link to=\"/\">Home</Link> |{\" \"}\n        <Link to=\"/products\">Products</Link> |{\" \"}\n        <Link to=\"/contact\">Contact</Link>\n      </nav>\n\n      {/* Routes */}\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/products\" element={<Products />}>\n          <Route path=\"car\" element={<CarProducts />} />\n          <Route path=\"bike\" element={<BikeProducts />} />\n        </Route>\n        <Route path=\"/contact\" element={<Contact />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Important notes about the example above:"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "Outlet:\n    The <Outlet /> element in the Products\n    component specifies where to render the child route's content.",
+    "Routes:\n    The Routes element contains the routes\n    to CarProducts\n    and BikeProducts\n    as child routes of the Products parent route.",
+    "URL Structure:\n    The URL structure is relative to the parent route's path. For example:\n\n      When you navigate to '/products/car',\n      the CarProducts component is rendered.\n      When you navigate to '/products/bike',\n      the BikeProducts component is rendered."
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Style Active Links"
+  },
+  {
+   "type": "p",
+   "text": "There is a special version of the Link component\n  called NavLink that knows whether the link's URL is \"active\" or not."
+  },
+  {
+   "type": "p",
+   "text": "The NavLink is especially useful for:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Navigation menus",
+    "Breadcrumbs",
+    "Tabs"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "A NavLink is considered active if the current URL matches its to prop."
+  },
+  {
+   "type": "p",
+   "text": "The NavLink component makes it easier to style active links."
+  },
+  {
+   "type": "p",
+   "text": "Take the basic example from above, and add styles for active links using NavLink:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';\n\n// Style function for active links\nconst navLinkStyles = ({ isActive }) => ({\n  color: isActive ? '#007bff' : '#333',\n  textDecoration: isActive ? 'none' : 'underline',\n  fontWeight: isActive ? 'bold' : 'normal',\n  padding: '5px 10px'\n});\n\nfunction Home() {\n  return <h1>Home Page</h1>;\n}\n\nfunction About() {\n  return <h1>About Page</h1>;\n}\n\nfunction Contact() {\n  return <h1>Contact Page</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      {/* Navigation with NavLink for active styling */}\n      <nav style={{ marginBottom: '20px' }}>\n        <NavLink to=\"/\" style={navLinkStyles}>Home</NavLink> |{\" \"}\n        <NavLink to=\"/about\" style={navLinkStyles}>About</NavLink> |{\" \"}\n        <NavLink to=\"/contact\" style={navLinkStyles}>Contact</NavLink>\n      </nav>\n\n      {/* Routes */}\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/about\" element={<About />} />\n        <Route path=\"/contact\" element={<Contact />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "URL Parameters"
+  },
+  {
+   "type": "p",
+   "text": "URL parameters are variables that you can add to your route paths. They are often used to pass data between components."
+  },
+  {
+   "type": "p",
+   "text": "In the path http://localhost:5173/customer/Tobias, the URL parameter is Tobias."
+  },
+  {
+   "type": "p",
+   "text": "URL parameters let you create dynamic routes where part of the URL can change. Think of them as variables in your URL."
+  },
+  {
+   "type": "p",
+   "text": "React Router provides the useParams hook to access these parameters in your components."
+  },
+  {
+   "type": "p",
+   "text": "Here's a simple example with a greeting page that can say hello to different customers:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom';\n\nfunction Info() {\n  const { firstname } = useParams();\n  return <h1>Hello, {firstname}!</h1>;\n}\n\nfunction App() {\n  return (\n    <BrowserRouter>\n      <nav>\n        <Link to=\"/customer/Emil\">Emil</Link> |\n        <Link to=\"/customer/Tobias\">Tobias</Link> |\n        <Link to=\"/customer/Linus\">Linus</Link>\n      </nav>\n\n      <Routes>\n        <Route path=\"/customer/:firstname\" element={<Info />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "In this example:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    ":firstname in the route path is the URL parameter",
+    "If you visit /customer/Emil, you'll see \"Hello, Emil\"",
+    "If you visit /customer/Tobias, you'll see \"Hello, Tobias\"",
+    "If you visit /customer/Linus, you'll see \"Hello, Linus\"",
+    "You can use any name in the URL, and the greeting will work!, try this http://localhost:5173/customer/John"
+   ]
+  }
+ ]
+}

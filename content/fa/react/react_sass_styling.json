@@ -1,0 +1,198 @@
+{
+  "slug": "react_sass_styling",
+  "course": "react",
+  "order": 43,
+  "url": "/react/react_sass_styling.asp",
+  "title": "استایل‌دهی Sass در React",
+  "summary": "با Sass می‌توانید در استایل‌های React از متغیر، تو در تویی (nesting) و میکسین استفاده کنید. در این درس بستهٔ sass را نصب می‌کنید، فایل scss. می‌سازید، آن را import می‌کنید و با ماژول sass:color کار می‌کنید.",
+  "objectives": [
+    "بگویید Sass چیست و چه امکاناتی به CSS اضافه می‌کند",
+    "بستهٔ sass را با npm نصب کنید",
+    "یک فایل scss. با متغیر بسازید و در کامپوننت import کنید",
+    "از ماژول داخلی sass:color برای تیره و روشن کردن رنگ استفاده کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "استایل‌دهی Sass در React"
+    },
+    {
+      "type": "h2",
+      "text": "Sass چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "Sass یک پیش‌پردازندهٔ CSS است."
+    },
+    {
+      "type": "p",
+      "text": "فایل‌های Sass روی سرور اجرا می‌شوند و CSS را به مرورگر می‌فرستند."
+    },
+    {
+      "type": "p",
+      "text": "Sass امکانات اضافه‌ای مثل متغیر، تو در تویی (nesting)، میکسین و بیشتر به CSS اضافه می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ Sass می‌توانید در آموزش Sass ما بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "اضافه کردن Sass به React"
+    },
+    {
+      "type": "p",
+      "text": "برای اضافه کردن Sass به یک پروژهٔ React باید بستهٔ Sass را نصب کنید:"
+    },
+    {
+      "type": "p",
+      "text": "بسته را با npm نصب کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "npm install sass",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "حالا آماده‌اید فایل‌های Sass را وارد پروژه‌تان کنید!"
+    },
+    {
+      "type": "h2",
+      "text": "ساخت یک فایل Sass"
+    },
+    {
+      "type": "p",
+      "text": "فایل Sass را درست مثل فایل CSS بسازید،\n  ولی فایل‌های Sass پسوند scss. دارند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "$myColor: red;\n\nh1 {\n  color: $myColor;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "وارد کردن فایل Sass"
+    },
+    {
+      "type": "p",
+      "text": "فایل Sass را در کامپوننت React خود import کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport './MyStyle.scss';\n\nfunction MyHeader() {\n  return (\n    <h1>My Header</h1>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyHeader />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ Sass می‌توانید در آموزش Sass ما بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "ماژول‌های Sass"
+    },
+    {
+      "type": "p",
+      "text": "Sass ماژول‌های داخلی زیادی دارد که می‌توانید برای کار با رنگ‌ها، ریاضیات، رشته‌ها و بقیه استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "یک نمونه ماژول sass:color است."
+    },
+    {
+      "type": "p",
+      "text": "این ماژول تابعی دارد که فقط با دادن یک درصد، رنگ را تیره‌تر یا روشن‌تر می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "@use 'sass:color';\n$myColor: red;\n\nh1 {\n  color: $myColor;\n}\n\nh2 {\n  color: color.adjust($myColor, $lightness: -20%);\n}\n\nh3 {\n  color: color.adjust($myColor, $lightness: 20%);\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "حالا سربرگ‌ها را به کامپوننتمان اضافه کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport './MyStyle.scss';\n\nfunction MyHeader() {\n  return (\n    <div>\n      <h1>My Header 1</h1>\n      <h2>My Header 2</h2>\n      <h3>My Header 3</h3>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyHeader />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ Sass می‌توانید در آموزش Sass ما بیشتر بخوانید."
+    },
+    {
+      "type": "p",
+      "text": "نکته: فایل‌های Sass هنگام build به CSS کامپایل می‌شوند."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "بستهٔ sass را با npm نصب کنید و پیام موفقیت نصب را در ترمینال ببینید.",
+      "hint": "دستور npm install sass را در پوشهٔ پروژه اجرا کنید."
+    },
+    {
+      "prompt": "یک فایل MyStyle.scss بسازید، متغیر myColor$ را قرمز بگذارید و به h1 بدهید.",
+      "hint": "ساختار مثال «ساخت فایل Sass» را کپی کنید."
+    },
+    {
+      "prompt": "همان فایل را در کامپوننت import کنید و اجرا کنید تا سربرگ قرمز را روی صفحه ببینید.",
+      "hint": "خط import './MyStyle.scss' را بالای کامپوننت اضافه کنید."
+    },
+    {
+      "prompt": "با ماژول sass:color رنگ h2 را ۲۰ درصد روشن‌تر از h1 کنید و تفاوت را روی صفحه ببینید.",
+      "hint": "از color.scale با پارامتر lightness استفاده کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Sass چیست؟",
+      "options": [
+        "یک پیش‌پردازندهٔ CSS",
+        "یک دیتابیس",
+        "یک مرورگر وب",
+        "یک سیستم‌عامل"
+      ],
+      "answer": 0,
+      "explanation": "Sass فایل‌هایش روی سرور اجرا می‌شوند و CSS تحویل مرورگر می‌دهند، با امکاناتی مثل متغیر و nesting."
+    },
+    {
+      "question": "فایل‌های Sass چه پسوندی دارند؟",
+      "options": [
+        "scss.",
+        "css.",
+        "html.",
+        "js."
+      ],
+      "answer": 0,
+      "explanation": "فایل Sass مثل فایل CSS ساخته می‌شود ولی پسوندش scss. است."
+    },
+    {
+      "question": "برای اضافه کردن Sass به پروژهٔ React چه باید کرد؟",
+      "options": [
+        "بستهٔ sass را با npm نصب کرد",
+        "فقط کافی است فایل را rename کرد",
+        "باید Node را پاک کرد",
+        "هیچ کاری لازم نیست"
+      ],
+      "answer": 0,
+      "explanation": "اول باید بستهٔ Sass را با دستور npm install sass نصب کرد، بعد فایل‌های scss. را import کرد."
+    },
+    {
+      "question": "ماژول sass:color به چه دردی می‌خورد؟",
+      "options": [
+        "تیره یا روشن کردن رنگ فقط با دادن یک درصد",
+        "ساخت دیتابیس",
+        "میزبانی سایت روی سرور",
+        "شمارش رندرهای برنامه"
+      ],
+      "answer": 0,
+      "explanation": "این ماژول داخلی تابعی دارد که با گرفتن درصد، رنگ را تیره‌تر یا روشن‌تر می‌کند."
+    }
+  ]
+}

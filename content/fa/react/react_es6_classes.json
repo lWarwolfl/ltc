@@ -1,0 +1,172 @@
+{
+ "slug": "react_es6_classes",
+ "course": "react",
+ "order": 6,
+ "url": "/react/react_es6_classes.asp",
+ "title": "کلاس‌ها در ES6 ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "کلاس‌ها در ES6 ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "کلاس‌ها"
+  },
+  {
+   "type": "p",
+   "text": "ES6 کلاس‌ها را معرفی کرد."
+  },
+  {
+   "type": "p",
+   "text": "کلاس نوعی تابع است، ولی به‌جای کلمهٔ function با کلمهٔ class شروع می‌شود و ویژگی‌ها داخل متد constructor() مقدار می‌گیرند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "class Car {\n  constructor(name) {\n    this.brand = name;\n  }\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "به بزرگی حرف اول نام کلاس دقت کنید. نام Car را با حرف بزرگ شروع کرده‌ایم؛ این قرارداد استاندارد نام‌گذاری کلاس‌هاست."
+  },
+  {
+   "type": "p",
+   "text": "حالا می‌توانید با کلاس Car شیء بسازید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "class Car {\n  constructor(name) {\n    this.brand = name;\n  }\n}\n\nconst mycar = new Car(\"Ford\");",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_class"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "تابع constructor هنگام ساخته شدن شیء خودکار صدا زده می‌شود."
+  },
+  {
+   "type": "h2",
+   "text": "متد در کلاس‌ها"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید متدهای خودتان را به کلاس اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "class Car {\n  constructor(name) {\n    this.brand = name;\n  }\n\n  present() {\n    return 'I have a ' + this.brand;\n  }\n}\n\nconst mycar = new Car(\"Ford\");\nmycar.present();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_class_method"
+  },
+  {
+   "type": "p",
+   "text": "همان‌طور که در مثال می‌بینید، متد را با نامش و پرانتز صدا می‌زنید (پارامترها داخل پرانتز می‌آیند)."
+  },
+  {
+   "type": "h2",
+   "text": "ارث‌بری کلاس"
+  },
+  {
+   "type": "p",
+   "text": "برای ارث‌بری از کلمهٔ extends استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "کلاسی که با ارث‌بری ساخته می‌شود همهٔ متدهای کلاس دیگر را به ارث می‌برد:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "class Car {\n  constructor(name) {\n    this.brand = name;\n  }\n\n  present() {\n    return 'I have a ' + this.brand;\n  }\n}\n\nclass Model extends Car {\n  constructor(name, mod) {\n    super(name);\n    this.model = mod;\n  }\n  show() {\n      return this.present() + ', it is a ' + this.model\n  }\n}\nconst mycar = new Model(\"Ford\", \"Mustang\");\nmycar.show();",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_class_inherit"
+  },
+  {
+   "type": "p",
+   "text": "متد super() به کلاس والد اشاره می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "با صدا زدن super() در constructor، سازندهٔ والد اجرا می‌شود و به ویژگی‌ها و متدهای والد دسترسی پیدا می‌کنید."
+  },
+  {
+   "type": "p",
+   "text": "برای یادگیری بیشتر، بخش کلاس‌های جاوااسکریپت را ببینید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال کلاس Car را در Try-it اجرا کنید و یک شیء دوم با نام دیگری بسازید."
+  },
+  {
+   "prompt": "به کلاس Car یک متد دوم به نام year اضافه کنید که سال ساخت را برگرداند."
+  },
+  {
+   "prompt": "کلاس Model را طوری عوض کنید که به‌جای Mustang مدل دیگری بگیرد و show را صدا بزنید."
+  },
+  {
+   "prompt": "خط super(name) را حذف کنید و ببینید چه خطایی می‌گیرید.",
+   "hint": "فرزندی که constructor دارد باید قبل از this حتماً super را صدا بزند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "ویژگی‌های کلاس کجا مقدار می‌گیرند؟",
+   "options": [
+    "داخل متد constructor",
+    "داخل هر متدی",
+    "بیرون کلاس",
+    "در extends"
+   ],
+   "answer": 0,
+   "explanation": "constructor هنگام ساخته شدن شیء اجرا می‌شود و ویژگی‌ها را با this مقدار می‌دهد."
+  },
+  {
+   "question": "نام کلاس معمولاً با چه حرفی شروع می‌شود؟",
+   "options": [
+    "حرف بزرگ",
+    "حرف کوچک",
+    "عدد",
+    "فرقی ندارد ولی بهتر است کوچک باشد"
+   ],
+   "answer": 0,
+   "explanation": "قرارداد استاندارد این است که نام کلاس با حرف بزرگ شروع شود."
+  },
+  {
+   "question": "super() چه کار می‌کند؟",
+   "options": [
+    "سازندهٔ کلاس والد را صدا می‌زند",
+    "شیء جدید می‌سازد",
+    "متد را حذف می‌کند",
+    "کلاس را کپی می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "با super به ویژگی‌ها و متدهای والد دسترسی پیدا می‌کنید."
+  },
+  {
+   "question": "متد present در مثال چگونه صدا زده می‌شود؟",
+   "options": [
+    "mycar.present()",
+    "present(mycar)",
+    "Car.present()",
+    "new present()"
+   ],
+   "answer": 0,
+   "explanation": "متد را با نام شیء، نقطه و نام متد صدا می‌زنیم."
+  }
+ ]
+}

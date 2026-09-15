@@ -10,6 +10,7 @@ const COURSES = [
   { id: 'html', name: 'HTML', order: 1 },
   { id: 'css', name: 'CSS', order: 2 },
   { id: 'js', name: 'JavaScript', order: 3 },
+  { id: 'react', name: 'React', order: 4 },
 ]
 
 const SKIP_HREF =

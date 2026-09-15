@@ -1,0 +1,55 @@
+{
+ "slug": "react_usereducer",
+ "course": "react",
+ "order": 49,
+ "url": "/react/react_usereducer.asp",
+ "title": "React useReducer Hook",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React useReducer Hook"
+  },
+  {
+   "type": "p",
+   "text": "The useReducer Hook is similar to the useState Hook."
+  },
+  {
+   "type": "p",
+   "text": "It allows for custom state logic."
+  },
+  {
+   "type": "p",
+   "text": "If you find yourself keeping track of multiple pieces of state that rely on complex logic, useReducer may be useful."
+  },
+  {
+   "type": "h2",
+   "text": "Syntax"
+  },
+  {
+   "type": "p",
+   "text": "The useReducer Hook accepts three arguments."
+  },
+  {
+   "type": "p",
+   "text": "useReducer(reducer, initialState, init)"
+  },
+  {
+   "type": "p",
+   "text": "The reducer function contains your custom state logic and the initialStatecan be a simple value,\n   but generally will contain an object. The init argument is optional and is used to initialize the state."
+  },
+  {
+   "type": "p",
+   "text": "The useReducer Hook returns the current stateand a dispatchmethod."
+  },
+  {
+   "type": "p",
+   "text": "Here is an example where we use useReducer to keep track of the score of two players:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useReducer } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst initialScore = [\n  {\n    id: 1,\n    score: 0,\n    name: \"John\",\n  },\n  {\n    id: 2,\n    score: 0,\n    name: \"Sally\",\n  },\n];\n\nconst reducer = (state, action) => {\n  switch (action.type) {\n    case \"INCREASE\":\n      return state.map((player) => {\n        if (player.id === action.id) {\n          return { ...player, score: player.score + 1 };\n        } else {\n          return player;\n        }\n      });\n    default:\n      return state;\n  }\n};\n\nfunction Score() {\n  const [score, dispatch] = useReducer(reducer, initialScore);\n\n  const handleIncrease = (player) => {\n    dispatch({ type: \"INCREASE\", id: player.id });\n  };\n\n  return (\n    <>\n      {score.map((player) => (\n        <div key={player.id}>\n          <label>\n            <input\n              type=\"button\"\n              onClick={() => handleIncrease(player)}\n              value={player.name}\n            />\n            {player.score}\n          </label>\n        </div>\n      ))}\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Score />\n);",
+   "caption": "Example:"
+  }
+ ]
+}

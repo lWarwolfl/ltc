@@ -1,0 +1,97 @@
+{
+ "slug": "react_forms_multiple_inputs",
+ "course": "react",
+ "order": 31,
+ "url": "/react/react_forms_multiple_inputs.asp",
+ "title": "React Forms - Multiple Input Fields",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Forms - Multiple Input Fields"
+  },
+  {
+   "type": "h2",
+   "text": "Handling Multiple Inputs"
+  },
+  {
+   "type": "p",
+   "text": "When you have multiple controlled input fields in a form, you can manage their state either by:"
+  },
+  {
+   "type": "p",
+   "text": "1. Using a separate useState call for each input."
+  },
+  {
+   "type": "p",
+   "text": "2. Using a single useState call with an object to hold all form field values."
+  },
+  {
+   "type": "p",
+   "text": "We will use the second approach, as it is more common for forms."
+  },
+  {
+   "type": "p",
+   "text": "Make sure each input field has a unique name attribute."
+  },
+  {
+   "type": "p",
+   "text": "Also, when initializing the state, use an object instead of a string. If the input fields have no initial value, use an empty object."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [inputs, setInputs] = useState({});\n\n  const handleChange = (e) => {\n    const name = e.target.name;\n    const value = e.target.value;\n    setInputs(values => ({...values, [name]: value}))\n  }\n\n  return (\n    <form>\n      <label>First name:\n      <input\n        type=\"text\"\n        name=\"firstname\"\n        value={inputs.firstname}\n        onChange={handleChange}\n      />\n      </label>\n      <label>Last name:\n        <input\n          type=\"text\"\n          name=\"lastname\"\n          value={inputs.lastname}\n          onChange={handleChange}\n        />\n      </label>\n      <p>Current values: {inputs.firstname} {inputs.lastname}</p>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h3",
+   "text": "Example Explained:"
+  },
+  {
+   "type": "p",
+   "text": "The first thing to notice is that when using a single useState call, we use an object to hold any initial values.\n  In this case, with no initial values, we use an empty object:"
+  },
+  {
+   "type": "p",
+   "text": "const [inputs, setInputs] = useState({});"
+  },
+  {
+   "type": "p",
+   "text": "Next, the handleChange function is updated to handle multiple input fields."
+  },
+  {
+   "type": "p",
+   "text": "In the function, we access the input fields in the event handler using the\n  e.target.name and\n  e.target.value syntax."
+  },
+  {
+   "type": "p",
+   "text": "To update the state, use square brackets [bracket notation] around the property name."
+  },
+  {
+   "type": "p",
+   "text": "function handleChange(e) {\n  const name = e.target.name;\n  const value = e.target.value;\n  setInputs(values => ({...values, [name]: value}))\n}"
+  },
+  {
+   "type": "p",
+   "text": "When refering to input values,\n  we add the name of the state object, inputs, as well as the name of the input field:"
+  },
+  {
+   "type": "p",
+   "text": "<input\n  type=\"text\"\n  name=\"firstname\"\n  value={inputs.firstname}\n  onChange={handleChange}\n/>\n<input\n  type=\"text\"\n  name=\"lastname\"\n  value={inputs.lastname}\n  onChange={handleChange}\n/>\n<p>Current values: {inputs.firstname} {inputs.lastname}</p>"
+  },
+  {
+   "type": "h2",
+   "text": "Initial Values"
+  },
+  {
+   "type": "p",
+   "text": "To add initial values to the input fields in the example above,\n  add the proper keys and values to the useState object:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  const [inputs, setInputs] = useState({\n    firstname: 'John',\n    lastname: 'Doe'\n  });\n\n  ...",
+   "caption": "Example:"
+  }
+ ]
+}

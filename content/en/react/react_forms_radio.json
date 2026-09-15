@@ -1,0 +1,35 @@
+{
+ "slug": "react_forms_radio",
+ "course": "react",
+ "order": 33,
+ "url": "/react/react_forms_radio.asp",
+ "title": "React Forms - Radio",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Forms - Radio"
+  },
+  {
+   "type": "h2",
+   "text": "Radio"
+  },
+  {
+   "type": "p",
+   "text": "Radio buttons are typically used in groups where only one option can be selected."
+  },
+  {
+   "type": "p",
+   "text": "All radio buttons in a group should share the same name attribute."
+  },
+  {
+   "type": "p",
+   "text": "You control radio buttons based on whether the radio button's value matches the selected value in your state."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [selectedFruit, setSelectedFruit] = useState('banana');\n\n  const handleChange = (event) => {\n    setSelectedFruit(event.target.value);\n  };\n\n  const handleSubmit = (event) => {\n    alert(`Your favorite fruit is: ${selectedFruit}`);\n    event.preventDefault();\n  };\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <p>Select your favorite fruit:</p>\n      <label>\n        <input\n          type=\"radio\"\n          name=\"fruit\"\n          value=\"apple\"\n          checked={selectedFruit === 'apple'}\n          onChange={handleChange}\n        /> Apple\n      </label>\n      <br />\n      <label>\n        <input\n          type=\"radio\"\n          name=\"fruit\"\n          value=\"banana\"\n          checked={selectedFruit === 'banana'}\n          onChange={handleChange}\n        /> Banana\n      </label>\n      <br />\n      <label>\n        <input\n          type=\"radio\"\n          name=\"fruit\"\n          value=\"cherry\"\n          checked={selectedFruit === 'cherry'}\n          onChange={handleChange}\n        /> Cherry\n      </label>\n      <br />\n      <button type=\"submit\">Submit</button>\n    </form>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  }
+ ]
+}

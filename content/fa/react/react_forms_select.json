@@ -1,0 +1,107 @@
+{
+ "slug": "react_forms_select",
+ "course": "react",
+ "order": 30,
+ "url": "/react/react_forms_select.asp",
+ "title": "فرم‌های ری‌اکت - منوی کشویی",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "فرم‌های ری‌اکت - منوی کشویی"
+  },
+  {
+   "type": "h2",
+   "text": "منوی کشویی"
+  },
+  {
+   "type": "p",
+   "text": "لیست کشویی یا جعبهٔ select در ری‌اکت کمی با HTML فرق دارد."
+  },
+  {
+   "type": "p",
+   "text": "در HTML مقدار انتخاب‌شدهٔ لیست کشویی با ویژگی selected مشخص می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<select>\n  <option value=\"Ford\">Ford</option>\n  <option value=\"Volvo\" selected>Volvo</option>\n  <option value=\"Fiat\">Fiat</option>\n</select>",
+   "caption": "HTML:"
+  },
+  {
+   "type": "p",
+   "text": "در ری‌اکت مقدار انتخاب‌شده با ویژگی value روی تگ select مشخص می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  const [myCar, setMyCar] = useState(\"Volvo\");\n\n  const handleChange = (event) => {\n    setMyCar(event.target.value)\n  }\n\n  return (\n    <form>\n      <select value={myCar} onChange={handleChange}>\n        <option value=\"Ford\">Ford</option>\n        <option value=\"Volvo\">Volvo</option>\n        <option value=\"Fiat\">Fiat</option>\n      </select>\n    </form>\n  )\n}",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "با این تغییر، ری‌اکت با عنصر <select> مثل هر ورودی دیگری رفتار می‌کند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک گزینهٔ چهارم (Audi) به لیست اضافه کنید."
+  },
+  {
+   "prompt": "مقدار پیش‌فرض myCar را به Fiat تغییر دهید و نتیجه را ببینید."
+  },
+  {
+   "prompt": "مقدار انتخاب‌شده را در یک پاراگراف زیر select نمایش دهید.",
+   "hint": "از {myCar} داخل یک تگ <p> استفاده کنید."
+  },
+  {
+   "prompt": "onChange را حذف کنید و گزینه‌ای را عوض کنید. چه می‌شود؟",
+   "hint": "لیست قفل می‌شود چون state دیگر به‌روز نمی‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در ری‌اکت مقدار انتخاب‌شدهٔ select کجا تعیین می‌شود؟",
+   "options": [
+    "در ویژگی value روی تگ select",
+    "در ویژگی selected روی option",
+    "در state مرورگر",
+    "در props فرم"
+   ],
+   "answer": 0,
+   "explanation": "ری‌اکت مثل بقیهٔ ورودی‌ها مقدار را با value روی خود select کنترل می‌کند."
+  },
+  {
+   "question": "در HTML معمولی مقدار انتخاب‌شده با چه چیزی مشخص می‌شود؟",
+   "options": [
+    "ویژگی selected روی option",
+    "ویژگی value روی select",
+    "ویژگی checked",
+    "تگ جدا"
+   ],
+   "answer": 0,
+   "explanation": "در HTML به option موردنظر ویژگی selected می‌دهند."
+  },
+  {
+   "question": "handleChange در مثال چه می‌کند؟",
+   "options": [
+    "myCar را با مقدار انتخاب‌شده به‌روز می‌کند",
+    "گزینه اضافه می‌کند",
+    "فرم را ثبت می‌کند",
+    "لیست را مرتب می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "با setMyCar مقدار جدید را در state می‌گذارد و select دوباره رندر می‌شود."
+  },
+  {
+   "question": "مقدار اولیهٔ myCar چیست؟",
+   "options": [
+    "Volvo",
+    "Ford",
+    "Fiat",
+    "رشتهٔ خالی"
+   ],
+   "answer": 0,
+   "explanation": "useState با Volvo شروع می‌شود."
+  }
+ ]
+}

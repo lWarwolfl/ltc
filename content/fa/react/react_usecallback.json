@@ -1,0 +1,157 @@
+{
+  "slug": "react_usecallback",
+  "course": "react",
+  "order": 50,
+  "url": "/react/react_usecallback.asp",
+  "title": "هوک useCallback در React",
+  "summary": "هوک useCallback یک تابع callback را memoize می‌کند تا فقط وقتی وابستگی‌هایش عوض شوند از نو ساخته شود. در این درس می‌بینید چطور رندرهای اضافهٔ دکمه‌ها را با useCallback کم کنید.",
+  "objectives": [
+    "بگویید memoize کردن تابع یعنی چه",
+    "مثال بدون useCallback را اجرا کنید و رندر اضافهٔ هر سه کامپوننت را ببینید",
+    "همان مثال را با useCallback اصلاح کنید تا هر دکمه جدا رندر شود",
+    "فرق useCallback و useMemo را بگویید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "هوک useCallback در React"
+    },
+    {
+      "type": "p",
+      "text": "از هوک useCallback برای memoize کردن یک تابع callback استفاده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "memoize کردن تابع یعنی نتیجهٔ تابع را کش کنیم تا لازم نباشد دوباره محاسبه شود."
+    },
+    {
+      "type": "p",
+      "text": "تابع useCallback فقط وقتی دوباره اجرا می‌شود که یکی از وابستگی‌هایش عوض شده باشد."
+    },
+    {
+      "type": "p",
+      "text": "این کار امکان می‌دهد تابع‌های سنگین را جدا کنیم تا در هر رندر خودکار اجرا نشوند."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "هوک‌های useCallback و useMemo شبیه هم‌اند:\nuseMemo یک مقدار memoizeشده برمی‌گرداند.\nuseCallback یک تابع memoizeشده برمی‌گرداند.\nدربارهٔ useMemo در فصل useMemo بیشتر بخوانید."
+    },
+    {
+      "type": "h2",
+      "text": "ساختار (Syntax)"
+    },
+    {
+      "type": "p",
+      "text": "هوک useCallback دو آرگومان می‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "useCallback(callback, dependencies)"
+    },
+    {
+      "type": "p",
+      "text": "callback: تابعی که می‌خواهید memoize کنید."
+    },
+    {
+      "type": "p",
+      "text": "dependencies: آرایه‌ای از وابستگی‌های تابع callback. تابع memoizeشده فقط وقتی عوض می‌شود که یکی از این وابستگی‌ها تغییر کرده باشد."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "//Without useCallback:\nimport React, { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\n// Child component that receives a function prop\nconst Button = React.memo(({ onClick, text }) => {\n  alert(`Child ${text} button rendered`);\n  return <button onClick={onClick}>{text}</button>;\n});\n\n// Parent component without useCallback\nfunction WithoutCallbackExample() {\n  const [count1, setCount1] = useState(0);\n  const [count2, setCount2] = useState(0);\n\n  // This function is recreated on every render\n  const handleClick1 = () => {\n    setCount1(count1 + 1);\n  };\n\n  const handleClick2 = () => {\n    setCount2(count2 + 1);\n  };\n\n  alert(\"Parent rendered\");\n  return (\n    <div>\n      <h2>Without useCallback:</h2>\n      <p>Count 1: {count1}</p>\n      <p>Count 2: {count2}</p>\n      <Button onClick={handleClick1} text=\"Button 1\" />\n      <Button onClick={handleClick2} text=\"Button 2\" />\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <WithoutCallbackExample />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "مثال بالا را اجرا کنید و روی دکمه‌ها کلیک کنید."
+    },
+    {
+      "type": "p",
+      "text": "می‌بینید که با هر کلیک، هر سه کامپوننت (والد، دکمهٔ ۱ و دکمهٔ ۲) دوباره رندر می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "با هوک useCallback می‌توان از این کار جلوگیری کرد."
+    },
+    {
+      "type": "p",
+      "text": "با هوک useCallback\nمی‌توانیم تابع‌ها را memoize کنیم و فقط وقتی وابستگی‌هایشان عوض شد از نو بسازیم."
+    },
+    {
+      "type": "p",
+      "text": "با کلیک روی دکمهٔ ۱ فقط والد و دکمهٔ ۱ باید رندر شوند، و با کلیک روی دکمهٔ ۲\n  فقط والد و دکمهٔ ۲ باید رندر شوند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "//With useCallback:\nimport React, { useState, useCallback } from 'react';\nimport { createRoot } from 'react-dom/client';\n\n// Child component that receives a function prop\nconst Button = React.memo(({ onClick, text }) => {\n  console.log(`${text} button rendered`);\n  return <button onClick={onClick}>{text}</button>;\n});\n\n// Parent component with useCallback\nfunction WithCallbackExample() {\n  const [count1, setCount1] = useState(0);\n  const [count2, setCount2] = useState(0);\n\n  // These functions are memoized and only recreated when dependencies change\n  const handleClick1 = useCallback(() => {\n    setCount1(count1 + 1);\n  }, [count1]);\n\n  const handleClick2 = useCallback(() => {\n    setCount2(count2 + 1);\n  }, [count2]);\n\n  console.log(\"Parent rendered\");\n  return (\n    <div>\n      <h2>With useCallback:</h2>\n      <p>Count 1: {count1}</p>\n      <p>Count 2: {count2}</p>\n      <Button onClick={handleClick1} text=\"Button 1\" />\n      <Button onClick={handleClick2} text=\"Button 2\" />\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <WithCallbackExample />\n);",
+      "caption": "Example:"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال «بدون useCallback» را در ویرایشگر Try-it اجرا کنید و با کلیک روی هر دکمه ببینید هر سه کامپوننت رندر می‌شوند.",
+      "hint": "به خروجی کنسول یا شمارندهٔ رندر هر کامپوننت نگاه کنید."
+    },
+    {
+      "prompt": "همان مثال را به نسخهٔ useCallback تغییر دهید و ببینید با کلیک روی دکمهٔ ۱، دکمهٔ ۲ رندر نمی‌شود.",
+      "hint": "تابع‌های addTodo هر دکمه را داخل useCallback با وابستگی درست بپیچید."
+    },
+    {
+      "prompt": "آرایهٔ وابستگی یکی از useCallbackها را خالی کنید و ببینید دکمه هنوز درست کار می‌کند یا نه.",
+      "hint": "اگر وابستگی واقعی جا بیفتد، تابع نسخهٔ قدیمی state را می‌بیند."
+    },
+    {
+      "prompt": "یک دکمهٔ سوم با شمارندهٔ خودش به مثال اضافه کنید و برایش useCallback جدا بنویسید.",
+      "hint": "از همان الگوی دکمه‌های ۱ و ۲ کپی بگیرید و state جدا بدهید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "هوک useCallback چه چیزی برمی‌گرداند؟",
+      "options": [
+        "یک تابع memoizeشده",
+        "یک مقدار memoizeشده",
+        "یک شیء current",
+        "یک state و dispatch"
+      ],
+      "answer": 0,
+      "explanation": "useCallback خود تابع را memoize می‌کند و همان تابع را برمی‌گرداند. برگرداندن مقدار memoizeشده کار useMemo است."
+    },
+    {
+      "question": "تابع memoizeشده با useCallback چه زمانی از نو ساخته می‌شود؟",
+      "options": [
+        "فقط وقتی یکی از وابستگی‌هایش عوض شود",
+        "در هر رندر",
+        "هیچ‌وقت",
+        "فقط وقتی صفحه رفرش شود"
+      ],
+      "answer": 0,
+      "explanation": "useCallback تابع را کش می‌کند و فقط وقتی یکی از وابستگی‌های آرایهٔ دوم تغییر کند نسخهٔ جدید می‌سازد."
+    },
+    {
+      "question": "در مثال بدون useCallback چرا هر سه کامپوننت رندر می‌شوند؟",
+      "options": [
+        "چون تابع‌ها در هر رندر از نو ساخته می‌شوند و به فرزندها پاس داده می‌شوند",
+        "چون سرور قطع است",
+        "چون Sass نصب نیست",
+        "چون مرورگر قدیمی است"
+      ],
+      "answer": 0,
+      "explanation": "بدون memoize، هر رندرِ والد تابع‌های جدید می‌سازد و همین باعث رندر دوبارهٔ دکمه‌های فرزند می‌شود."
+    },
+    {
+      "question": "useCallback چند آرگومان می‌گیرد؟",
+      "options": [
+        "دو آرگومان: تابع callback و آرایهٔ وابستگی‌ها",
+        "سه آرگومان: reducer و state اولیه و init",
+        "یک آرگومان: فقط تابع",
+        "هیچ آرگومانی نمی‌گیرد"
+      ],
+      "answer": 0,
+      "explanation": "ساختار useCallback دو آرگومان دارد: useCallback(callback, dependencies). سه آرگومان مال useReducer است."
+    }
+  ]
+}

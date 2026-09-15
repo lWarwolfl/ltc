@@ -1,0 +1,202 @@
+{
+ "slug": "react_css_modules",
+ "course": "react",
+ "order": 37,
+ "url": "/react/react_css_modules.asp",
+ "title": "React CSS Modules",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React CSS Modules"
+  },
+  {
+   "type": "p",
+   "text": "CSS Modules let you write CSS that is scoped locally to a specific component."
+  },
+  {
+   "type": "p",
+   "text": "This prevents CSS class name conflicts and makes your styles more maintainable."
+  },
+  {
+   "type": "h2",
+   "text": "What are CSS Modules?"
+  },
+  {
+   "type": "p",
+   "text": "In React, CSS Modules are CSS files where class names are scoped locally by default."
+  },
+  {
+   "type": "p",
+   "text": "Note: CSS Modules are not a part of the React core library, but are supported by many React build tools."
+  },
+  {
+   "type": "p",
+   "text": "The CSS file have to have the .module.css extension and can be used by importing it into your React file(s)."
+  },
+  {
+   "type": "h2",
+   "text": "Creating a CSS Module"
+  },
+  {
+   "type": "p",
+   "text": "Let's create a CSS module called Button.module.css, where we style some buttons."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": ".mybutton {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Using a CSS Module"
+  },
+  {
+   "type": "p",
+   "text": "Import and use the CSS Module in your component:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import styles from './Button.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <button className={styles.mybutton}>\n        My Button\n      </button>\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h3",
+   "text": "Example Explained"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "We import the styles object from the CSS Module",
+    "We use styles.mybutton to access the mybutton class",
+    "The actual class name of the button will be unique (e.g., _mybutton_q1obu_1)"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Multiple Classes"
+  },
+  {
+   "type": "p",
+   "text": "In the example above, we only used one class, but let's add more classes:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": ".mybutton {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.primary {\n  background-color: #007bff;\n  color: white;\n}\n\n.secondary {\n  background-color: #6c757d;\n  color: white;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "To demostrate the changes, we need to have two buttons, with two classes each:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import styles from './Button.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <button className={`${styles.mybutton} ${styles.primary}`}>\n        My Primary Button\n      </button>\n      <button className={`${styles.mybutton} ${styles.secondary}`}>\n        My Secondary Button\n      </button>\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Composing Classes"
+  },
+  {
+   "type": "p",
+   "text": "CSS Modules allow you to combine classes using the composes keyword:"
+  },
+  {
+   "type": "p",
+   "text": "Which means that one class can inherit the styles of another class."
+  },
+  {
+   "type": "p",
+   "text": "For the previous example, both the primary\n  and the secondary classes\n  are depending on the styles of the mybutton class."
+  },
+  {
+   "type": "p",
+   "text": "This can be done by adding composes: mybutton to the primary and secondary classes:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": ".mybutton {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.primary {\n  composes: mybutton;\n  background-color: #007bff;\n  color: white;\n}\n\n.secondary {\n  composes: mybutton;\n  background-color: #6c757d;\n  color: white;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Now it is enough to use the primary\n  and secondary classes in the component:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import styles from './Button.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <button className={styles.primary}>\n        Primary Button\n      </button>\n      <button className={styles.secondary}>\n        Secondary Button\n      </button>\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Global Classes"
+  },
+  {
+   "type": "p",
+   "text": "When using CSS Modules, the classes in the .module.css file can only be used in the component that imports them.\n  This is done by prefixing the class name with a hash of the file name and a unique identifier.\n  It is safe to use the same class name in different files, as the names will be unique."
+  },
+  {
+   "type": "p",
+   "text": "However, sometimes you want your classes to be available globally, and use them in other components."
+  },
+  {
+   "type": "p",
+   "text": "You can do this with the :global syntax:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": ":global(.myheader) {\n  padding: 10px 20px;\n  font-size: 50px;\n  color: white;\n  background-color: dodgerblue;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The :global wrapper makes the class available for everyone."
+  },
+  {
+   "type": "p",
+   "text": "It is simply called .myheader and not prefixed and added a unique identifier like _myheader_q1obu_1"
+  },
+  {
+   "type": "p",
+   "text": "You can use it in your components like this:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import styles from './BlueHeader.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <h1 className=\"myheader\">\n        My Header\n      </h1>\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Combine Global and Local Classes"
+  },
+  {
+   "type": "p",
+   "text": "You can combine global and local classes in the same CSS Module:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": ":global(.myheader) {\n  padding: 10px 20px;\n  font-size: 50px;\n  color: white;\n  background-color: dodgerblue;\n}\n\n.myparagraph {\n  font-size: 20px;\n  color: white;\n  background-color: purple;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Use it in your components like this:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import styles from './MyStyles.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <h1 className=\"myheader\">\n        My Header\n      </h1>\n      <p className={styles.myparagraph}>\n        My Paragraph\n      </p>\n    </div>\n  );\n}",
+   "caption": "Example"
+  }
+ ]
+}

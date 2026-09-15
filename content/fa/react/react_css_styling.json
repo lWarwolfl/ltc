@@ -1,0 +1,222 @@
+{
+  "slug": "react_css_styling",
+  "course": "react",
+  "order": 36,
+  "url": "/react/react_css_styling.asp",
+  "title": "استایل دادن به React با CSS",
+  "summary": "برای استایل دادن به React سه راه رایج هست: استایل inline، فایل CSS جدا و CSS Modules. این درس هر سه را با مثال Header نشان می‌دهد.",
+  "objectives": [
+    "با استایل inline و شیء JavaScript به عنصر استایل بدهید",
+    "استایل را در فایل ‎.css جدا بنویسید و import کنید",
+    "از CSS Modules با پسوند ‎.module.css استفاده کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "استایل دادن به React با CSS"
+    },
+    {
+      "type": "p",
+      "text": "راه‌های زیادی برای استایل دادن به React با CSS هست؛ این آموزش سه راه رایج را دقیق‌تر بررسی می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "استایل inline",
+        "فایل‌های استایل CSS",
+        "CSS Modules"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "استایل inline"
+    },
+    {
+      "type": "p",
+      "text": "برای استایل دادن به یک عنصر با ویژگی style، مقدار باید یک شیء JavaScript باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "const Header = () => {\n  return (\n    <>\n      <h1 style={{color: \"red\"}}>Hello Style!</h1>\n      <p>Add a little style!</p>\n    </>\n  );\n}",
+      "caption": "Example:"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "در JSX، عبارت‌های JavaScript داخل آکولاد نوشته می‌شوند،\nو چون شیءهای JavaScript هم از آکولاد استفاده می‌کنند،\nاستایل مثال بالا داخل دو دسته آکولاد {{}} نوشته شده است."
+    },
+    {
+      "type": "h3",
+      "text": "نام خصوصیت‌ها به‌شکل camelCase"
+    },
+    {
+      "type": "p",
+      "text": "چون CSS داخل‌خطی در قالب یک شیء JavaScript نوشته می‌شود، خصوصیت‌هایی که خط تیره دارند، مثل background-color،\nباید با سینتکس camelCase نوشته شوند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "const Header = () => {\n  return (\n    <>\n      <h1 style={{backgroundColor: \"lightblue\"}}>Hello Style!</h1>\n      <p>Add a little style!</p>\n    </>\n  );\n}",
+      "caption": "Example:"
+    },
+    {
+      "type": "h3",
+      "text": "شیء JavaScript"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید یک شیء با اطلاعات استایل بسازید و در ویژگی style به آن ارجاع بدهید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "const Header = () => {\n  const myStyle = {\n    color: \"white\",\n    backgroundColor: \"DodgerBlue\",\n    padding: \"10px\",\n    fontFamily: \"Sans-Serif\"\n  };\n  return (\n    <>\n      <h1 style={myStyle}>Hello Style!</h1>\n      <p>Add a little style!</p>\n    </>\n  );\n}",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "فایل استایل CSS"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید استایل CSS را در یک فایل جدا بنویسید؛ کافی است فایل را با پسوند ‎.css ذخیره کنید و در برنامه import کنید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "body {\n  background-color: #282c34;\n  color: white;\n  padding: 40px;\n  font-family: Sans-Serif;\n  text-align: center;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "نام فایل هرچه باشد مهم نیست، فقط پسوند درست را رعایت کنید."
+    },
+    {
+      "type": "p",
+      "text": "استایل‌شیت را در برنامه import کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport './MyStylesheet.css';\n\nconst Header = () => {\n  return (\n    <>\n      <h1>Hello Style!</h1>\n      <p>Add a little style!.</p>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "React می‌فهمد فایل‌هایی که با پسوند ‎.css وارد شده‌اند باید به‌عنوان فایل استایل CSS در نظر گرفته شوند."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "استایل‌ها فقط برای کامپوننتی در دسترس‌اند که آن‌ها را import کرده است."
+    },
+    {
+      "type": "h2",
+      "text": "CSS Modules"
+    },
+    {
+      "type": "p",
+      "text": "راه دیگر اضافه کردن استایل به برنامه، استفاده از CSS Modules است."
+    },
+    {
+      "type": "p",
+      "text": "CSS Modules برای کامپوننت‌هایی که در فایل‌های جدا هستند، راه‌حل راحتی است."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "CSS داخل یک ماژول فقط برای کامپوننتی در دسترس است که آن را import کرده،\nو لازم نیست نگران تداخل نام‌ها باشید."
+    },
+    {
+      "type": "p",
+      "text": "ماژول CSS را با پسوند ‎.module.css بسازید، مثلاً: my-style.module.css."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": ".bigred {\n  color: Tomato;\n  padding: 40px;\n  font-family: Sans-Serif;\n  text-align: center;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "استایل‌شیت را در کامپوننت import کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport styles from './my-style.module.css';\n\nconst Car = () => {\n  return <h1 className={styles.bigred}>Hello Car!</h1>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "در فصل بعد دربارهٔ CSS Modules بیشتر یاد می‌گیرید."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در ویرایشگر امتحانی، به یک تگ <h1> استایل inline بدهید (رنگ قرمز) و نتیجه را روی صفحه ببینید.",
+      "hint": "مقدار style باید یک شیء JavaScript داخل دو آکولاد باشد: style={{color: \"red\"}}"
+    },
+    {
+      "prompt": "همان استایل را به‌شکل camelCase برای backgroundColor بازنویسی کنید و رنگ پس‌زمینه را عوض کنید.",
+      "hint": "به‌جای background-color بنویسید backgroundColor."
+    },
+    {
+      "prompt": "یک شیء myStyle با چند خصوصیت (رنگ، پس‌زمینه، padding) بسازید و در ویژگی style از آن استفاده کنید.",
+      "hint": "شیء را بیرون از return تعریف کنید و با style={myStyle} ارجاع بدهید."
+    },
+    {
+      "prompt": "یک فایل my-style.module.css با کلاس bigred بسازید، آن را import کنید و با styles.bigred به تگ بدهید.",
+      "hint": "فایل باید پسوند ‎.module.css داشته باشد و کلاس با styles.bigred خوانده شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "مقدار ویژگی style در JSX باید چه نوعی باشد؟",
+      "options": [
+        "یک شیء JavaScript",
+        "یک رشتهٔ CSS معمولی",
+        "یک عدد",
+        "یک آرایه"
+      ],
+      "answer": 0,
+      "explanation": "مقدار style باید یک شیء JavaScript باشد؛ برای همین داخل دو دسته آکولاد {{}} نوشته می‌شود."
+    },
+    {
+      "question": "چرا استایل inline داخل دو آکولاد نوشته می‌شود؟",
+      "options": [
+        "چون هم عبارت JSX و هم شیء JavaScript از آکولاد استفاده می‌کنند",
+        "چون React دو بار استایل را اعمال می‌کند",
+        "چون CSS همیشه دو آکولاد می‌خواهد",
+        "دلیلی ندارد، سلیقه‌ای است"
+      ],
+      "answer": 0,
+      "explanation": "آکولاد اول برای عبارت JavaScript داخل JSX است و آکولاد دوم برای خود شیء استایل."
+    },
+    {
+      "question": "خصوصیت background-color در استایل inline چطور نوشته می‌شود؟",
+      "options": [
+        "backgroundColor",
+        "background-color",
+        "background_color",
+        "BackgroundColor"
+      ],
+      "answer": 0,
+      "explanation": "چون استایل یک شیء JavaScript است، نام‌ها باید camelCase باشند: backgroundColor."
+    },
+    {
+      "question": "تفاوت CSS Modules با فایل CSS معمولی چیست؟",
+      "options": [
+        "استایل ماژول فقط برای کامپوننت واردکننده است و تداخل نام پیش نمی‌آید",
+        "هیچ تفاوتی ندارند",
+        "ماژول‌ها فقط رنگ قبول می‌کنند",
+        "فایل معمولی سریع‌تر است"
+      ],
+      "answer": 0,
+      "explanation": "CSS داخل ماژول فقط برای کامپوننت importکننده در دسترس است و نگرانی از تداخل نام‌ها نیست."
+    }
+  ]
+}

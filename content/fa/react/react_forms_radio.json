@@ -1,0 +1,97 @@
+{
+ "slug": "react_forms_radio",
+ "course": "react",
+ "order": 33,
+ "url": "/react/react_forms_radio.asp",
+ "title": "فرم‌های ری‌اکت - دکمه رادیویی",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "فرم‌های ری‌اکت - دکمه رادیویی"
+  },
+  {
+   "type": "h2",
+   "text": "دکمه رادیویی"
+  },
+  {
+   "type": "p",
+   "text": "دکمه‌های رادیویی معمولاً گروهی استفاده می‌شوند که فقط یک گزینه قابل انتخاب است."
+  },
+  {
+   "type": "p",
+   "text": "همهٔ دکمه‌های رادیویی یک گروه باید ویژگی name یکسان داشته باشند."
+  },
+  {
+   "type": "p",
+   "text": "دکمه‌های رادیویی را با مقایسهٔ value هر دکمه با مقدار انتخاب‌شده در state کنترل می‌کنید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [selectedFruit, setSelectedFruit] = useState('banana');\n\n  const handleChange = (event) => {\n    setSelectedFruit(event.target.value);\n  };\n\n  const handleSubmit = (event) => {\n    alert(`Your favorite fruit is: ${selectedFruit}`);\n    event.preventDefault();\n  };\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <p>Select your favorite fruit:</p>\n      <label>\n        <input\n          type=\"radio\"\n          name=\"fruit\"\n          value=\"apple\"\n          checked={selectedFruit === 'apple'}\n          onChange={handleChange}\n        /> Apple\n      </label>\n      <br />\n      <label>\n        <input\n          type=\"radio\"\n          name=\"fruit\"\n          value=\"banana\"\n          checked={selectedFruit === 'banana'}\n          onChange={handleChange}\n        /> Banana\n      </label>\n      <br />\n      <label>\n        <input\n          type=\"radio\"\n          name=\"fruit\"\n          value=\"cherry\"\n          checked={selectedFruit === 'cherry'}\n          onChange={handleChange}\n        /> Cherry\n      </label>\n      <br />\n      <button type=\"submit\">Submit</button>\n    </form>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک گزینهٔ چهارم (orange) به گروه میوه‌ها اضافه کنید.",
+   "hint": "یک label و input جدید مثل گزینه‌های قبلی کپی کنید."
+  },
+  {
+   "prompt": "مقدار پیش‌فرض state را از banana به apple تغییر دهید و نتیجه را ببینید."
+  },
+  {
+   "prompt": "متن alert را فارسی کنید: «میوهٔ موردعلاقهٔ شما: ...»."
+  },
+  {
+   "prompt": "ویژگی name یکی از دکمه‌ها را عوض کنید و ببینید چه می‌شود.",
+   "hint": "از گروه جدا می‌شود و می‌توان هم‌زمان دو گزینه انتخاب کرد."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "چرا همهٔ دکمه‌های رادیویی name یکسان دارند؟",
+   "options": [
+    "تا یک گروه باشند و فقط یکی انتخاب شود",
+    "چون ری‌اکت مجبور می‌کند",
+    "برای اینکه state مشترک شود",
+    "دلیلی ندارد"
+   ],
+   "answer": 0,
+   "explanation": "مرورگر دکمه‌هایی با name یکسان را یک گروه می‌داند و فقط یکی را انتخاب‌شده نگه می‌دارد."
+  },
+  {
+   "question": "ویژگی checked در مثال با چه شرطی تعیین می‌شود؟",
+   "options": [
+    "selectedFruit === value همان دکمه",
+    "همیشه true",
+    "مقدار name",
+    "e.target.checked"
+   ],
+   "answer": 0,
+   "explanation": "دکمه‌ای تیک می‌خورد که value آن با مقدار انتخاب‌شده در state برابر باشد."
+  },
+  {
+   "question": "مقدار اولیهٔ state در مثال چیست؟",
+   "options": [
+    "banana",
+    "apple",
+    "cherry",
+    "رشتهٔ خالی"
+   ],
+   "answer": 0,
+   "explanation": "useState با banana شروع می‌شود، پس موز از اول انتخاب‌شده است."
+  },
+  {
+   "question": "handleSubmit چه می‌کند؟",
+   "options": [
+    "میوه را alert می‌کند و جلوی بارگذاری دوباره را می‌گیرد",
+    "فرم را پاک می‌کند",
+    "گزینهٔ جدید اضافه می‌کند",
+    "state را صفر می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "مثل درس ثبت فرم: نمایش alert و e.preventDefault()."
+  }
+ ]
+}

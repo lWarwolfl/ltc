@@ -1,0 +1,188 @@
+{
+  "slug": "react_suspense",
+  "course": "react",
+  "order": 35,
+  "url": "/react/react_suspense.asp",
+  "title": "Suspense در React",
+  "summary": "با Suspense در React می‌توانید تا وقتی کد یا داده بارگذاری می‌شود یک HTML جایگزین (fallback) نشان دهید. در این درس Suspense را با lazy loading ترکیب می‌کنید و چند کامپوننت lazy را داخل یک Suspense می‌پیچید.",
+  "objectives": [
+    "بگویید Suspense چیست و fallback چه نقشی دارد",
+    "یک کامپوننت کند را داخل Suspense بپیچید و پیام بارگذاری را ببینید",
+    "با lazy و import پویا یک کامپوننت را lazy بارگذاری کنید",
+    "چند کامپوننت lazy را داخل یک Suspense مشترک بگذارید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "Suspense در React"
+    },
+    {
+      "type": "p",
+      "text": "با Suspense در React می‌توانید تا وقتی کد یا داده بارگذاری می‌شود، یک HTML جایگزین نمایش دهید."
+    },
+    {
+      "type": "p",
+      "text": "HTML جایگزین می‌تواند یک کامپوننت، یک متن یا هر محتوای معتبر دیگری باشد."
+    },
+    {
+      "type": "h2",
+      "text": "Suspense چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "Suspense یک قابلیت React است که می‌گذارد کامپوننت‌هایتان تا وقتی کد یا داده بارگذاری می‌شود، یک HTML جایگزین نمایش دهند."
+    },
+    {
+      "type": "p",
+      "text": "رایج‌ترین کاربردها:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "گرفتن داده با فریم‌ورک‌های سازگار با suspense",
+        "بارگذاری پویای کامپوننت‌ها با lazy() در React"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از Suspense"
+    },
+    {
+      "type": "p",
+      "text": "اگر بارگذاری یک کامپوننت طول بکشد، می‌توانید از کامپوننت Suspense استفاده کنید\nو تا وقتی کامپوننت در حال بارگذاری است، محتوای fallback را نمایش می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport { Suspense } from 'react';\nimport Fruits from './Fruits';\n\nfunction App() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <Fruits />\n      </Suspense>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از Suspense با بارگذاری تنبل (lazy)"
+    },
+    {
+      "type": "p",
+      "text": "یک کاربرد رایج دیگر کامپوننت Suspense وقتی است که کامپوننت‌ها را با lazy loading وارد می‌کنید:"
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا مجبور شدیم دو ثانیه تأخیر مصنوعی بگذاریم تا پیام بارگذاری دیده شود. کاری مثل نمایش سه میوه از یک آرایه\n  آن‌قدر سریع است که پیام بارگذاری اصلاً دیده نمی‌شود."
+    },
+    {
+      "type": "p",
+      "text": "ولی با lazy loading می‌توانیم کامپوننت را پویا import کنیم و تا وقتی بارگذاری می‌شود پیام بارگذاری نمایش داده می‌شود،\n  حتی اگر کار خیلی سریع باشد."
+    },
+    {
+      "type": "p",
+      "text": "اول یک مثال بسازیم که از lazy loading استفاده نمی‌کند و تأخیر مصنوعی دو ثانیه‌ای هم ندارد:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport { Suspense } from 'react';\nimport Cars from './Cars';\n\nfunction App() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <Cars />\n      </Suspense>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "حالا یک مثال بسازیم که از lazy loading استفاده می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport { Suspense, lazy } from 'react';\n\nconst Cars = lazy(() => import('./Cars'));\n\nfunction App() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <Cars />\n      </Suspense>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h3",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "lazy امکان می‌دهد کامپوننت را پویا بارگذاری کنید",
+        "Suspense تا وقتی کامپوننت بارگذاری می‌شود fallback را نشان می‌دهد"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "چند کامپوننت"
+    },
+    {
+      "type": "p",
+      "text": "یک کامپوننت Suspense می‌تواند چند کامپوننت lazy را بپیچد:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport { Suspense, lazy } from 'react';\n\nconst Header = lazy(() => import('./Header'));\nconst Content = lazy(() => import('./Content'));\nconst Sidebar = lazy(() => import('./Sidebar'));\n\nfunction App() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <Header />\n        <div style={{ display: 'flex' }}>\n          <Sidebar />\n          <Content />\n        </div>\n      </Suspense>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال اول Suspense را در ویرایشگر Try-it اجرا کنید و پیام fallback را قبل از نمایش میوه‌ها ببینید.",
+      "hint": "متن fallback داخل خصوصیت fallback تگ Suspense نوشته می‌شود."
+    },
+    {
+      "prompt": "متن fallback را به جملهٔ دلخواه خودتان عوض کنید و دوباره اجرا کنید.",
+      "hint": "فقط مقدار خصوصیت fallback را عوض کنید."
+    },
+    {
+      "prompt": "مثال lazy loading را اجرا کنید و ببینید بدون تأخیر مصنوعی هم پیام بارگذاری نمایش داده می‌شود.",
+      "hint": "کامپوننت با lazy و import پویا بارگذاری می‌شود."
+    },
+    {
+      "prompt": "دو کامپوننت lazy را داخل یک Suspense مشترک بپیچید و ببینید یک fallback برای هر دو نشان داده می‌شود.",
+      "hint": "هر دو کامپوننت lazy را بین تگ باز و بستهٔ یک Suspense بگذارید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کار Suspense در React چیست؟",
+      "options": [
+        "نمایش HTML جایگزین تا وقتی کد یا داده بارگذاری می‌شود",
+        "نصب بسته‌ها با npm",
+        "کامپایل Sass به CSS",
+        "میزبانی سایت روی سرور"
+      ],
+      "answer": 0,
+      "explanation": "Suspense تا وقتی کامپوننت در حال بارگذاری است، محتوای fallback را نشان می‌دهد."
+    },
+    {
+      "question": "محتوای fallback چه چیزی می‌تواند باشد؟",
+      "options": [
+        "کامپوننت، متن یا هر محتوای معتبر",
+        "فقط عدد صحیح",
+        "فقط فایل Sass",
+        "هیچ‌چیز نمی‌تواند باشد"
+      ],
+      "answer": 0,
+      "explanation": "طبق متن درس، HTML جایگزین می‌تواند کامپوننت، متن یا هر محتوای معتبر دیگری باشد."
+    },
+    {
+      "question": "lazy چه کاری می‌کند؟",
+      "options": [
+        "کامپوننت را پویا و فقط هنگام نیاز بارگذاری می‌کند",
+        "صفحه را رفرش می‌کند",
+        "state را حذف می‌کند",
+        "سرور می‌سازد"
+      ],
+      "answer": 0,
+      "explanation": "lazy امکان می‌دهد کامپوننت را با import پویا فقط وقتی لازم شد بارگذاری کنید."
+    },
+    {
+      "question": "آیا یک Suspense می‌تواند چند کامپوننت lazy را بپیچد؟",
+      "options": [
+        "بله، یک Suspense می‌تواند چند کامپوننت lazy را پوشش دهد",
+        "نه، برای هر کامپوننت حتماً باید Suspense جدا با fallback جدا باشد",
+        "فقط در React 17 ممکن است",
+        "فقط برای متن ممکن است، نه کامپوننت"
+      ],
+      "answer": 0,
+      "explanation": "طبق بخش آخر درس، یک کامپوننت Suspense می‌تواند چند کامپوننت lazy را داخل خودش بگیرد."
+    }
+  ]
+}

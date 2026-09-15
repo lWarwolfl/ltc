@@ -1,0 +1,133 @@
+{
+ "slug": "react_usecontext",
+ "course": "react",
+ "order": 47,
+ "url": "/react/react_usecontext.asp",
+ "title": "React useContext Hook",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React useContext Hook"
+  },
+  {
+   "type": "h2",
+   "text": "React Context"
+  },
+  {
+   "type": "p",
+   "text": "React Context is a way to manage state globally."
+  },
+  {
+   "type": "p",
+   "text": "It can be used together with the useState Hook to share state between\ndeeply nested components more easily than with useState alone."
+  },
+  {
+   "type": "h2",
+   "text": "The Problem"
+  },
+  {
+   "type": "p",
+   "text": "State should be held by the highest parent component in the stack that requires access to the state."
+  },
+  {
+   "type": "p",
+   "text": "To illustrate, we have many nested components. The component at the top and bottom of the stack need access to the state."
+  },
+  {
+   "type": "p",
+   "text": "To do this without Context, we will need to pass the state as \"props\" through each nested component. This is called \"prop drilling\"."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction Component1() {\n  const [user, setUser] = useState(\"Linus\");\n\n  return (\n    <>\n      <h1>{`Hello ${user}!`}</h1>\n      <Component2 user={user} />\n    </>\n  );\n}\n\nfunction Component2({ user }) {\n  return (\n    <>\n      <h1>Component 2</h1>\n      <Component3 user={user} />\n    </>\n  );\n}\n\nfunction Component3({ user }) {\n  return (\n    <>\n      <h1>Component 3</h1>\n      <h2>{`Hello ${user} again!`}</h2>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Component1 />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "Even though component 2 did not need the state, it had to pass the state along so that it could reach component 3."
+  },
+  {
+   "type": "h2",
+   "text": "The Solution"
+  },
+  {
+   "type": "p",
+   "text": "The solution is to create context."
+  },
+  {
+   "type": "h3",
+   "text": "Create Context"
+  },
+  {
+   "type": "p",
+   "text": "To create context, you must Import createContext and initialize\nit:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState, createContext, useContext } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst UserContext = createContext();",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Next we'll use the Context Provider to wrap the tree of components that need the state Context."
+  },
+  {
+   "type": "h3",
+   "text": "Context Provider"
+  },
+  {
+   "type": "p",
+   "text": "Wrap child components in the Context Provider and supply the state value."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Component1() {\n  const [user, setUser] = useState(\"Linus\");\n\n  return (\n    <UserContext.Provider value={user}>\n      <h1>{`Hello ${user}!`}</h1>\n      <Component2 />\n    </UserContext.Provider>\n  );\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Now, all components in this tree will have access to the user Context."
+  },
+  {
+   "type": "h3",
+   "text": "Use the useContext Hook"
+  },
+  {
+   "type": "p",
+   "text": "In order to use the Context in a child component, we need to access it using the useContext Hook."
+  },
+  {
+   "type": "p",
+   "text": "First, include the useContext in the import\nstatement:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState, createContext, useContext } from \"react\";",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Then you can access the user Context in all components:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Component3() {\n  const user = useContext(UserContext);\n\n  return (\n    <>\n      <h1>Component 3</h1>\n      <h2>{`Hello ${user} again!`}</h2>\n    </>\n  );\n}",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Full Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState, createContext, useContext } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst UserContext = createContext();\n\nfunction Component1() {\n  const [user, setUser] = useState(\"Linus\");\n\n  return (\n    <UserContext.Provider value={user}>\n      <h1>{`Hello ${user}!`}</h1>\n      <Component2 />\n    </UserContext.Provider>\n  );\n}\n\nfunction Component2() {\n  return (\n    <>\n      <h1>Component 2</h1>\n      <Component3 />\n    </>\n  );\n}\n\nfunction Component3() {\n  const user = useContext(UserContext);\n\n  return (\n    <>\n      <h1>Component 3</h1>\n      <h2>{`Hello ${user} again!`}</h2>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Component1 />\n);",
+   "caption": "Example:"
+  }
+ ]
+}

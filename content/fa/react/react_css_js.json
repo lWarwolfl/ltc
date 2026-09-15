@@ -1,0 +1,247 @@
+{
+  "slug": "react_css_js",
+  "course": "react",
+  "order": 38,
+  "url": "/react/react_css_js.asp",
+  "title": "CSS در JavaScript در React",
+  "summary": "تکنیک CSS-in-JS اجازه می‌دهد CSS را مستقیم داخل کد JavaScript بنویسید؛ با استایل‌های محدود به کامپوننت و مقادیر پویا بر اساس props. این درس با کتابخانهٔ styled-components پیش می‌رود.",
+  "objectives": [
+    "با styled-components استایل را داخل فایل ‎.jsx بنویسید",
+    "با props استایل‌های پویا بسازید",
+    "از گسترش استایل‌ها و استایل‌های سراسری استفاده کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "CSS در JavaScript در React"
+    },
+    {
+      "type": "h2",
+      "text": "CSS-in-JS چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "CSS-in-JS تکنیک استایلی است که با آن می‌توانید CSS را مستقیم داخل کد JavaScript بنویسید."
+    },
+    {
+      "type": "p",
+      "text": "این روش به شما اجازه می‌دهد:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "CSS را با JavaScript بنویسید",
+        "استایل‌های محدود به کامپوننت بسازید",
+        "بر اساس props استایل پویا داشته باشید",
+        "از تداخل نام کلاس‌های CSS جلوگیری کنید"
+      ]
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "در این آموزش از کتابخانهٔ پرطرفدار styled-components استفاده می‌کنیم."
+    },
+    {
+      "type": "h2",
+      "text": "شروع کار"
+    },
+    {
+      "type": "p",
+      "text": "CSS-in-JS بخشی از کتابخانهٔ اصلی React نیست، اما با خیلی از ابزارهای ساخت React مثل Vite ،Webpack یا Create React App قابل‌نصب است."
+    },
+    {
+      "type": "p",
+      "text": "برای نصب styled-components دستور زیر را اجرا کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "npm install styled-components",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "حالا می‌توانید مستقیم در فایل‌های ‎.jsx خود CSS بنویسید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import styled from 'styled-components';\n\nconst MyHeader = styled.h1`\n  padding: 10px 20px;\n  background-color: #007bff;\n  color: white;\n`;\n\nfunction App() {\n  return (\n    <>\n      <MyHeader>Welcome!</MyHeader>\n    </>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "بدون CSS-in-JS، باید یکی از این دو کار را می‌کردید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "CSS را در یک فایل ‎.css جدا بنویسید و در کامپوننت‌های React وارد کنید",
+        "از استایل‌های inline استفاده کنید"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "دقت کنید که:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "از شیء styled برای ساخت کامپوننت‌ها استفاده می‌کنیم",
+        "استایل‌ها داخل تمپلیت لیترال (بک‌تیک) نوشته می‌شوند",
+        "می‌توانید از سینتکس معمولی CSS استفاده کنید"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Props در Styled Components"
+    },
+    {
+      "type": "p",
+      "text": "یکی دیگر از قابلیت‌های قدرتمند CSS-in-JS این است که می‌توانید با props استایل‌ها را پویا کنید."
+    },
+    {
+      "type": "p",
+      "text": "یک مثال می‌سازیم که در آن دو دکمه داریم، یکی اصلی (primary) و یکی فرعی (secondary)."
+    },
+    {
+      "type": "p",
+      "text": "می‌خواهیم رنگ پس‌زمینهٔ آن‌ها را بر اساس مقدار prop به نام btntype تعیین کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import styled from 'styled-components';\n\nconst Button = styled.button`\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  background-color: ${props => props.btntype === 'primary' ? '#007bff' : '#6c757d'};\n  color: white;\n  cursor: pointer;\n`;\n\nfunction App() {\n  return (\n    <div>\n      <Button btntype=\"primary\">Primary Button</Button>\n      <br />\n      <br />\n      <Button>Secondary Button</Button>\n    </div>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "گسترش استایل‌ها"
+    },
+    {
+      "type": "p",
+      "text": "راه دیگر برای این‌که چند عنصر استایل یکسان داشته باشند، گسترش (extend) کامپوننت‌های استایل‌شدهٔ موجود است."
+    },
+    {
+      "type": "p",
+      "text": "مثلاً می‌توانیم PrimaryButton\n و SuccessButton\n بسازیم که هر دو همان استایل‌های کامپوننت Button را دارند،\n اما رنگ پس‌زمینهٔ جداگانهٔ خودشان را هم دارند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import styled from 'styled-components';\n\nconst Button = styled.button`\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  color: white;\n  cursor: pointer;\n`;\n\nconst PrimaryButton = styled(Button)`\n  background-color: #007bff;\n`;\n\nconst SuccessButton = styled(Button)`\n  background-color: #28a745;\n`;\n\nfunction App() {\n  return (\n    <div>\n      <PrimaryButton>Primary</PrimaryButton>\n      <SuccessButton>Success</SuccessButton>\n    </div>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "استایل‌های محدود به کامپوننت"
+    },
+    {
+      "type": "p",
+      "text": "درست مثل CSS Modules، استایل‌های ساخته‌شده در CSS-in-JS هم محدود به کامپوننت‌اند."
+    },
+    {
+      "type": "p",
+      "text": "به آن‌ها نام‌های یکتا داده می‌شود و فقط در کامپوننتی قابل‌استفاده‌اند که آن‌ها را import کرده است."
+    },
+    {
+      "type": "p",
+      "text": "اگر سورس صفحه را در مثال بالا ببینیم، دکمه‌ها نام‌های کلاس یکتایی\n مثل bSOFjJ\n و pkxvl دارند\n و به CSS با همان نام‌های کلاس یکتا در بخش style ارجاع می‌دهند."
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_css_in_js2.png",
+      "alt": "React CSS in JS"
+    },
+    {
+      "type": "h2",
+      "text": "استایل‌های سراسری"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید استایل‌های سراسری هم بسازید که نام کلاس معمولی می‌گیرند و برای همهٔ کامپوننت‌ها در دسترس‌اند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createGlobalStyle } from 'styled-components';\n\nconst GlobalStyle = createGlobalStyle`\n  h1 {\n    color: white;\n    background-color: purple;\n    font-family: Arial, sans-serif;\n  }\n\n  .myparagraph {\n    font-family: courier, monospace;\n    color: blue;\n  }\n`;\n\nfunction App() {\n  return (\n    <>\n      <GlobalStyle />\n      <h1>Welcome!</h1>\n      <p className=\"myparagraph\">This paragraph is styled with global styles.</p>\n    </>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "اگر سورس نتیجه را در مثال بالا ببینیم، CSS نام‌های معمولی دارد و برای همهٔ کامپوننت‌ها در دسترس است."
+    },
+    {
+      "type": "image",
+      "src": "https://www.w3schools.com/img_css_in_js_global2.png",
+      "alt": "React CSS in JS"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در ویرایشگر امتحانی، کتابخانهٔ styled-components را import کنید و یک تیتر استایل‌شده (MyHeader) با پس‌زمینهٔ آبی بسازید.",
+      "hint": "قالب const MyHeader = styled.h1` ... ` است؛ استایل داخل بک‌تیک نوشته می‌شود."
+    },
+    {
+      "prompt": "یک دکمهٔ Button بسازید که رنگ پس‌زمینه‌اش بر اساس prop به نام btntype عوض شود (primary و secondary).",
+      "hint": "داخل بک‌تیک با ${props => ...} به props دسترسی دارید."
+    },
+    {
+      "prompt": "از همان Button دو دکمهٔ PrimaryButton و SuccessButton با گسترش (extend) بسازید که فقط رنگ پس‌زمینه‌شان فرق کند.",
+      "hint": "از styled(Button)` ... ` برای ارث بردن استایل استفاده کنید."
+    },
+    {
+      "prompt": "با createGlobalStyle یک استایل سراسری برای تگ h1 بسازید و بررسی کنید روی همهٔ تیترهای صفحه اعمال می‌شود.",
+      "hint": "کامپوننت GlobalStyle را بسازید و یک‌بار در بالای درخت رندر کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "CSS-in-JS چیست؟",
+      "options": [
+        "نوشتن CSS مستقیم داخل کد JavaScript",
+        "یک فایل CSS جدا",
+        "استایل inline با رشته",
+        "یک تگ HTML جدید"
+      ],
+      "answer": 0,
+      "explanation": "در CSS-in-JS استایل‌ها را مستقیم داخل کد JavaScript می‌نویسید، مثلاً با styled-components."
+    },
+    {
+      "question": "استایل‌ها در styled-components داخل چه چیزی نوشته می‌شوند؟",
+      "options": [
+        "تمپلیت لیترال (بک‌تیک)",
+        "کوتیشن تکی",
+        "پرانتز",
+        "آکولاد تنها"
+      ],
+      "answer": 0,
+      "explanation": "استایل‌ها داخل تمپلیت لیترال یعنی بک‌تیک نوشته می‌شوند و سینتکس معمولی CSS دارند."
+    },
+    {
+      "question": "چطور با styled-components استایل پویا می‌سازیم؟",
+      "options": [
+        "با خواندن props داخل استایل",
+        "با فایل CSS جدا",
+        "با تگ style در HTML",
+        "نمی‌توان پویا کرد"
+      ],
+      "answer": 0,
+      "explanation": "قدرت CSS-in-JS این است که می‌توانید با props مقادیر استایل را پویا تعیین کنید."
+    },
+    {
+      "question": "نام کلاس دکمه‌های ساخته‌شده با styled-components چه ویژگی دارد؟",
+      "options": [
+        "یکتا و محدود به کامپوننت‌اند",
+        "همیشه myheader است",
+        "تصادفی و خراب‌اند",
+        "وجود ندارند"
+      ],
+      "answer": 0,
+      "explanation": "مثل CSS Modules، به استایل‌ها نام یکتا داده می‌شود و فقط در همان کامپوننت قابل‌استفاده‌اند."
+    }
+  ]
+}

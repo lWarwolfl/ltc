@@ -1,0 +1,163 @@
+{
+ "slug": "react_components",
+ "course": "react",
+ "order": 19,
+ "url": "/react/react_components.asp",
+ "title": "React Components",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Components"
+  },
+  {
+   "type": "p",
+   "text": "Components are like functions that return HTML elements."
+  },
+  {
+   "type": "h2",
+   "text": "React Components"
+  },
+  {
+   "type": "p",
+   "text": "Components are independent and reusable bits of code.\nThey serve the same purpose as JavaScript functions,\nbut work in isolation and return HTML."
+  },
+  {
+   "type": "p",
+   "text": "Components come in two types, Class components and Function components, in\nthis tutorial we will concentrate on Function components."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "In older React code bases, you may find Class components primarily used.\nIt is now suggested to use Function components along with Hooks, instead of Class components.\nClass components are still supported, check the Class components section for more information."
+  },
+  {
+   "type": "h2",
+   "text": "Create Your First Component"
+  },
+  {
+   "type": "p",
+   "text": "When creating a React component, the component's name MUST start with an\nupper case letter."
+  },
+  {
+   "type": "p",
+   "text": "React components returns HTML code."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  return (\n    <h2>Hi, I am a Car!</h2>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Rendering a Component"
+  },
+  {
+   "type": "p",
+   "text": "Now your React application has a component called Car, which returns an\n<h2> element."
+  },
+  {
+   "type": "p",
+   "text": "To use this component in your application, refer to it like this:\n<Car />"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "createRoot(document.getElementById('root')).render(\n  <Car />\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Props"
+  },
+  {
+   "type": "p",
+   "text": "Arguments can be passed into a component as props, which stands for properties."
+  },
+  {
+   "type": "p",
+   "text": "You send the arguments into the component as HTML attributes."
+  },
+  {
+   "type": "p",
+   "text": "You will learn more about props in our React Props chapter."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  return (\n    <h2>I am a {props.color} Car!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car color=\"red\"/>\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Components in Components"
+  },
+  {
+   "type": "p",
+   "text": "We can refer to components inside other components:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  return (\n    <h2>I am a Car!</h2>\n  );\n}\n\nfunction Garage() {\n  return (\n    <>\n      <h1>Who lives in my Garage?</h1>\n      <Car />\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Garage />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Rendering a Component Twice"
+  },
+  {
+   "type": "p",
+   "text": "We can render a component multiple times:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  return (\n    <h2>I am a Car!</h2>\n  );\n}\n\nfunction Garage() {\n  return (\n    <>\n      <h1>Who lives in my Garage?</h1>\n      <Car />\n      <Car />\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Garage />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "The example above might be a bit useless, but if we change the content of the Car component, by using arguments, it makes more sense:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  return (\n    <h2>I am a {props.brand}!</h2>\n  );\n}\n\nfunction Garage() {\n  return (\n    <>\n      <h1>Who lives in my Garage?</h1>\n      <Car brand=\"Ford\" />\n      <Car brand=\"BMW\" />\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Garage />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Components in Files"
+  },
+  {
+   "type": "p",
+   "text": "React is all about re-using code, and it can be a good idea to split your components into separate files."
+  },
+  {
+   "type": "p",
+   "text": "To do that, create a new file in the src folder with a .jsx\nfile extension and put the code inside it:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Note that the filename must start with an uppercase character."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  return (\n    <h2>Hi, I am a Car!</h2>\n  );\n}\n\nexport default Car;",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "To be able to use the Car component, you have to import the Vehicle.jsx file in your\napplication."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\nimport Car from './Vehicle.jsx';\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n);",
+   "caption": "Example"
+  }
+ ]
+}

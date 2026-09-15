@@ -1,0 +1,248 @@
+{
+ "slug": "react_render",
+ "course": "react",
+ "order": 3,
+ "url": "/react/react_render.asp",
+ "title": "رندر HTML در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "رندر HTML در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "هدف ری‌اکت از خیلی جهات رندر HTML در صفحهٔ وب است."
+  },
+  {
+   "type": "p",
+   "text": "ری‌اکت HTML را با یک کانتینر و تابعی به نام createRoot در صفحه رندر می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "کانتینر"
+  },
+  {
+   "type": "p",
+   "text": "ری‌اکت برای رندر HTML در صفحه از یک کانتینر استفاده می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "معمولاً این کانتینر یک عنصر <div id=\"root\"></div> در فایل index.html است."
+  },
+  {
+   "type": "p",
+   "text": "اگر قدم‌های فصل قبل را رفته باشید، باید فایلی به نام index.html در ریشهٔ پروژه داشته باشید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>my-react-app</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "برای فهم بهتر محتوای index.html، کدهای اضافی را حذف می‌کنیم."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<!doctype html>\n<html lang=\"en\">\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "حالا فایل از کد اضافی خالی شده و می‌توانیم بدون عناصر مزاحم روی یادگیری ری‌اکت تمرکز کنیم."
+  },
+  {
+   "type": "h2",
+   "text": "تابع createRoot"
+  },
+  {
+   "type": "p",
+   "text": "تابع createRoot در فایل main.jsx داخل پوشهٔ src است؛ تابعی داخلی که گرهٔ ریشهٔ اپ ری‌اکت را می‌سازد."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { StrictMode } from 'react'\nimport { createRoot } from 'react-dom/client'\nimport './index.css'\nimport App from './App.jsx'\n\ncreateRoot(document.getElementById('root')).render(\n  <StrictMode>\n      <App />\n    </StrictMode>\n  )",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "تابع ()createRoot یک آرگومان می‌گیرد: یک عنصر HTML."
+  },
+  {
+   "type": "p",
+   "text": "کار تابع این است که مشخص کند کامپوننت ری‌اکت در کدام عنصر HTML نمایش داده شود."
+  },
+  {
+   "type": "p",
+   "text": "برای فهم بهتر createRoot، کد اضافی را حذف می‌کنیم و مثال «!Hello React» خودمان را می‌نویسیم:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\ncreateRoot(document.getElementById('root')).render(\n  <h1>Hello React!</h1>\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "اگر فایل را ذخیره کنید، نتیجه در مرورگر این‌طور می‌شود:"
+  },
+  {
+   "type": "h2",
+   "text": "متد render"
+  },
+  {
+   "type": "p",
+   "text": "متد render را دیدید؟"
+  },
+  {
+   "type": "p",
+   "text": "متد render مشخص می‌کند در کانتینر HTML چه چیزی رندر شود."
+  },
+  {
+   "type": "p",
+   "text": "نتیجه در عنصر <div id=\"root\"> نمایش داده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\ncreateRoot(document.getElementById('root')).render(\n  <p>Welcome!</p>\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "نتیجه این‌طور می‌شود:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "لازم نیست شناسهٔ عنصر «root» باشد، ولی این قرارداد استاندارد است."
+  },
+  {
+   "type": "h2",
+   "text": "نمایش ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "برای دیدن نتیجهٔ کدهای این آموزش، دکمهٔ «خودتان امتحان کنید» همین صفحه را بزنید:"
+  },
+  {
+   "type": "p",
+   "text": "روی دکمهٔ «اجرا» بزنید تا نتیجه را ببینید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\ncreateRoot(document.getElementById('root')).render(\n  <p>Welcome!</p>\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "کد HTML"
+  },
+  {
+   "type": "p",
+   "text": "کد HTML این آموزش از JSX استفاده می‌کند که می‌گذارد تگ HTML داخل کد جاوااسکریپت بنویسید:"
+  },
+  {
+   "type": "p",
+   "text": "اگر سینتکس ناآشناست نگران نباشید؛ جلوتر در همین آموزش دربارهٔ JSX بیشتر یاد می‌گیرید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\nconst myelement = (\n  <table>\n    <tr>\n      <th>Name</th>\n    </tr>\n    <tr>\n      <td>John</td>\n    </tr>\n    <tr>\n      <td>Elsa</td>\n    </tr>\n  </table>\n);\n\ncreateRoot(document.getElementById('root')).render(\n  myelement\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "گرهٔ ریشه"
+  },
+  {
+   "type": "p",
+   "text": "گرهٔ ریشه همان عنصر HTML است که می‌خواهید نتیجه را در آن نشان دهید."
+  },
+  {
+   "type": "p",
+   "text": "مثل ظرفی برای محتواست که ری‌اکت مدیریتش می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "لازم نیست عنصر <div> باشد و لازم نیست شناسه‌اش root باشد:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<!doctype html>\n<html lang=\"en\">\n  <body>\n    <header id=\"sandy\"></header>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\ncreateRoot(document.getElementById('sandy')).render(\n  <p>Welcome!</p>\n)",
+   "caption": "Example"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "فایل index.html پروژهٔ خودتان را باز کنید و div با شناسهٔ root را پیدا کنید."
+  },
+  {
+   "prompt": "مثال Hello React را در فایل main.jsx خودتان بنویسید و نتیجه را ببینید."
+  },
+  {
+   "prompt": "به‌جای h1 یک تگ p با متن دلخواه رندر کنید."
+  },
+  {
+   "prompt": "شناسهٔ root را در index.html و main.jsx هم‌زمان به app2 تغییر دهید و ببینید باز هم کار می‌کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "ری‌اکت HTML را چگونه رندر می‌کند؟",
+   "options": [
+    "با کانتینر و تابع createRoot",
+    "با document.write",
+    "با innerHTML دستی",
+    "با jQuery"
+   ],
+   "answer": 0,
+   "explanation": "کانتینر مقصد است و createRoot گرهٔ ریشه را می‌سازد."
+  },
+  {
+   "question": "کانتینر معمولاً چیست؟",
+   "options": [
+    "یک div با شناسهٔ root در index.html",
+    "تگ body",
+    "یک فایل CSS",
+    "سرور"
+   ],
+   "answer": 0,
+   "explanation": "قرارداد استاندارد همین است ولی اجباری نیست."
+  },
+  {
+   "question": "متد render چه چیزی را مشخص می‌کند؟",
+   "options": [
+    "چه چیزی در کانتینر رندر شود",
+    "نام فایل",
+    "سرعت رندر",
+    "رنگ صفحه"
+   ],
+   "answer": 0,
+   "explanation": "هر چه به render بدهید در عنصر ریشه نمایش داده می‌شود."
+  },
+  {
+   "question": "آیا شناسه حتماً باید root باشد؟",
+   "options": [
+    "نه، ولی قرارداد استاندارد است",
+    "بله، وگرنه خطا می‌دهد",
+    "بله، وگرنه کند است",
+    "فقط در Vite"
+   ],
+   "answer": 0,
+   "explanation": "هر شناسه‌ای می‌شود؛ مهم این است که در هر دو فایل یکی باشد."
+  }
+ ]
+}

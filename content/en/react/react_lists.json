@@ -1,0 +1,82 @@
+{
+ "slug": "react_lists",
+ "course": "react",
+ "order": 26,
+ "url": "/react/react_lists.asp",
+ "title": "React Lists",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Lists"
+  },
+  {
+   "type": "p",
+   "text": "In React, you will render lists with some type of loop."
+  },
+  {
+   "type": "p",
+   "text": "The JavaScript map() array method is generally the preferred method."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "If you need a refresher on the map() method, check out the\nES6 Array map() section."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyCars() {\n  const cars = ['Ford', 'BMW', 'Audi'];\n  return (\n    <>\n      <h1>My Cars:</h1>\n      <ul>\n        {cars.map((car) => <li>I am a { car }</li>)}\n      </ul>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyCars />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "When you run this code in your React environment,\n  it will work but you will receive a warning that there is no \"key\" provided for the list items."
+  },
+  {
+   "type": "h2",
+   "text": "Keys in React Lists"
+  },
+  {
+   "type": "p",
+   "text": "Keys allow React to keep track of elements. This way, if an item is updated or removed, only that item will be re-rendered instead of the entire list."
+  },
+  {
+   "type": "p",
+   "text": "Keys must be unique among siblings, but they don't have to be unique across the entire application."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Generally, the key should be a unique ID assigned to each item. As a last resort, you can use the array index as a key."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyCars() {\n  const cars = [\n    {id: 1001, brand: 'Ford'},\n    {id: 1002, brand: 'BMW'},\n    {id: 1003, brand: 'Audi'}\n  ];\n  return (\n    <>\n      <h1>My Cars:</h1>\n      <ul>\n        {cars.map((car) => <li key={car.id}>I am a { car.brand }</li>)}\n      </ul>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyCars />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "Using Array Index as Keys"
+  },
+  {
+   "type": "p",
+   "text": "While it's possible to use the array index as a key, it's not recommended unless:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "The list is static (won't change)",
+    "The list will never be reordered or filtered",
+    "The items in the list have no IDs"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyCars() {\n  const cars = ['Ford', 'BMW', 'Audi'];\n  return (\n    <>\n      <h1>My Cars:</h1>\n      <ul>\n        {cars.map((car, index) => <li key={index}>I am a { car }</li>)}\n      </ul>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyCars />\n);",
+   "caption": "Example:"
+  }
+ ]
+}

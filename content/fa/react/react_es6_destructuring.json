@@ -1,0 +1,282 @@
+{
+ "slug": "react_es6_destructuring",
+ "course": "react",
+ "order": 10,
+ "url": "/react/react_es6_destructuring.asp",
+ "title": "دیستراکچرینگ در ES6 ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "دیستراکچرینگ در ES6 ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "دیستراکچرینگ در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "دیستراکچرینگ قابلیتی در جاوااسکریپت است که مقدارها را از شیء یا آرایه بیرون می‌کشد و در متغیرهای جدا می‌گذارد. در ری‌اکت معمولاً با props، هوک‌ها و مدیریت state استفاده می‌شود."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "دیستراکچرینگ با کم کردن دسترسی‌های تکراری به شیء و آرایه، کد ری‌اکت را تمیزتر و خواناتر می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "دیستراکچرینگ آرایه‌ها"
+  },
+  {
+   "type": "p",
+   "text": "روش قدیمی انتساب اعضای آرایه به متغیر:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const vehicles = ['mustang', 'f-150', 'expedition'];\n\n// old way\nconst car = vehicles[0];\nconst truck = vehicles[1];\nconst suv = vehicles[2];\n\n//You can now access each variable separately:\ndocument.getElementById('demo').innerHTML = truck;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_oldway"
+  },
+  {
+   "type": "p",
+   "text": "روش جدید انتساب اعضای آرایه به متغیر:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const vehicles = ['mustang', 'f-150', 'expedition'];\n\nconst [car, truck, suv] = vehicles;\n\n//You can now access each variable separately:\ndocument.getElementById('demo').innerHTML = truck;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_newway"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "در دیستراکچرینگ آرایه‌ها ترتیب اعلام متغیرها مهم است."
+  },
+  {
+   "type": "p",
+   "text": "اگر فقط car و suv را بخواهیم، می‌توانیم truck را جا بیندازیم ولی ویرگول را نگه داریم:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const vehicles = ['mustang', 'f-150', 'expedition'];\n\nconst [car,, suv] = vehicles;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "دیستراکچرینگ وقتی تابع آرایه برمی‌گرداند به کار می‌آید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function dateInfo(dat) {\n  const d = dat.getDate();\n  const m = dat.getMonth() + 1;\n  const y = dat.getFullYear();\n\n  return [d, m, y];\n}\n\nconst [date, month, year] = dateInfo(new Date());",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_array"
+  },
+  {
+   "type": "h2",
+   "text": "دیستراکچرینگ شیءها"
+  },
+  {
+   "type": "p",
+   "text": "با دیستراکچرینگ می‌توانید مقدارها را از شیء بیرون بکشید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50\n};\n\n// Destructuring\nlet {firstName, lastName, age} = person;\n\n//You can now access each variable separately:\ndocument.getElementById(\"demo\").innerHTML = firstName;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object1"
+  },
+  {
+   "type": "p",
+   "text": "در شیءها ترتیب ویژگی‌ها مهم نیست:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50\n};\n\n// Destructuring\nlet {lastName, age, firstName} = person;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object1_2"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید فقط مقدارهای موردنظرتان را بیرون بکشید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50\n};\n\n// Destructuring\nlet {firstName} = person;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object2"
+  },
+  {
+   "type": "p",
+   "text": "برای ویژگی‌هایی که ممکن است نباشند می‌توان مقدار پیش‌فرض گذاشت:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50\n};\n\n// Destructuring\nlet {firstName, lastName, age, country = \"Norway\"} = person;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object3"
+  },
+  {
+   "type": "p",
+   "text": "شیءهای تودرتو را هم می‌توان باز کرد: به شیء تودرتو اشاره کنید، بعد با دو‌نقطه و آکولاد دوباره موارد لازم را بیرون بکشید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50,\n  car: {\n    brand: 'Ford',\n    model: 'Mustang',\n  }\n};\n\n// Destructuring\nlet {firstName, car: { brand, model }} = person;\n\nlet message = `My name is ${firstName}, and I drive a ${brand} ${model}.`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object4"
+  },
+  {
+   "type": "p",
+   "text": "دربارهٔ دیستراکچرینگ در آموزش جاوااسکریپت بیشتر بخوانید."
+  },
+  {
+   "type": "h2",
+   "text": "دیستراکچرینگ در کامپوننت‌های ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "دیستراکچرینگ در ری‌اکت برای کار با props، هوک‌ها و پاسخ API خیلی مفید است و کد را خلاصه‌تر و خواناتر می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "دیستراکچرینگ props"
+  },
+  {
+   "type": "p",
+   "text": "وقتی کامپوننت props می‌گیرد، با دیستراکچرینگ می‌توانید مقدارهای لازم را بیرون بکشید."
+  },
+  {
+   "type": "p",
+   "text": "تفاوت استفاده کردن و نکردن از دیستراکچرینگ را ببینید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "//Using destructuring:\nfunction Greeting({ name, age }) {\n  return <h1>Hello, {name}! You are {age} years old.</h1>;\n}",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "//NOT using destructuring:\nfunction Greeting(props) {\n  return <h1>Hello, {props.name}! You are {props.age} years old.</h1>;\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "یک مثال واقعی ببینیم:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\nfunction Greeting({ name, age }) {\n  return <h1>Hello, {name}! You are {age} years old.</h1>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Greeting name=\"John\" age={25} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "دیستراکچرینگ هوک useState"
+  },
+  {
+   "type": "p",
+   "text": "وقتی کامپوننت از هوک useState استفاده می‌کند، با دیستراکچرینگ مقدارهای آن را بیرون می‌کشیم."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot, useState } from 'react-dom/client'\n\nfunction Counter() {\n  // Destructuring the array returned by useState\n  const [count, setCount] = useState(0);\n\n  return (\n    <button onClick={() => setCount(count + 1)}>\n      Count: {count}\n    </button>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Counter />\n);",
+   "caption": "Example"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "هر دو مثال آرایه (قدیمی و جدید) را اجرا کنید و ببینید خروجی یکی است."
+  },
+  {
+   "prompt": "فقط suv را از آرایهٔ vehicles بیرون بکشید.",
+   "hint": "از const [,, suv] استفاده کنید."
+  },
+  {
+   "prompt": "مثال شمارندهٔ useState را اجرا کنید و چند بار روی دکمه بزنید."
+  },
+  {
+   "prompt": "به Greeting یک پراپ city اضافه کنید و با دیستراکچرینگ نمایشش دهید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "دیستراکچرینگ چه می‌کند؟",
+   "options": [
+    "مقدارها را از آرایه یا شیء بیرون می‌کشد و در متغیر می‌گذارد",
+    "آرایه را مرتب می‌کند",
+    "شیء را به JSON تبدیل می‌کند",
+    "متغیرها را حذف می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "با یک خط، چند متغیر را از روی آرایه یا شیء مقداردهی می‌کنید."
+  },
+  {
+   "question": "در دیستراکچرینگ آرایه‌ها چه چیزی مهم است؟",
+   "options": [
+    "ترتیب متغیرها",
+    "نام متغیرها",
+    "نوع متغیرها",
+    "هیچ‌کدام"
+   ],
+   "answer": 0,
+   "explanation": "عضو اول به متغیر اول می‌رسد، پس ترتیب تعیین‌کننده است."
+  },
+  {
+   "question": "در دیستراکچرینگ شیءها ترتیب مهم است؟",
+   "options": [
+    "نه، نام ویژگی تعیین می‌کند",
+    "بله، مثل آرایه",
+    "فقط برای سه ویژگی اول",
+    "فقط با let"
+   ],
+   "answer": 0,
+   "explanation": "در شیء، تطبیق با نام ویژگی انجام می‌شود نه جایگاه."
+  },
+  {
+   "question": "هوک useState چه چیزی برمی‌گرداند؟",
+   "options": [
+    "یک آرایهٔ دو عضوی: مقدار و تابع به‌روزرسان",
+    "یک شیء",
+    "فقط مقدار",
+    "یک promise"
+   ],
+   "answer": 0,
+   "explanation": "به همین خاطر همیشه آن را با const [x, setX] = useState() باز می‌کنیم."
+  }
+ ]
+}

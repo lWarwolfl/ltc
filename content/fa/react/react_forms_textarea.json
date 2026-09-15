@@ -1,0 +1,112 @@
+{
+ "slug": "react_forms_textarea",
+ "course": "react",
+ "order": 29,
+ "url": "/react/react_forms_textarea.asp",
+ "title": "فرم‌های ری‌اکت - ناحیه متنی",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "فرم‌های ری‌اکت - ناحیه متنی"
+  },
+  {
+   "type": "h2",
+   "text": "ناحیه متنی"
+  },
+  {
+   "type": "p",
+   "text": "عنصر textarea در ری‌اکت کمی با HTML معمولی فرق دارد."
+  },
+  {
+   "type": "p",
+   "text": "در HTML مقدار textarea متنی است که بین تگ باز <textarea> و تگ بستهٔ </textarea> قرار می‌گیرد."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<textarea>\n  Content of the textarea.\n</textarea>",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "در ری‌اکت مقدار textarea مثل عنصر input در ویژگی value قرار می‌گیرد."
+  },
+  {
+   "type": "p",
+   "text": "از هوک useState برای مدیریت مقدار textarea استفاده می‌کنیم:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\nimport { useState } from 'react'\n\nfunction MyForm() {\n  const [mytxt, setMytxt] = useState(\"\");\n\n  function handleChange(e) {\n    setMytxt(e.target.value);\n  }\n\n  return (\n    <form>\n      <label>Write here:\n        <textarea\n          value={mytxt}\n          onChange={handleChange}\n        />\n      </label>\n      <p>Current value: {mytxt}</p>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "با این تغییر، ری‌اکت با عنصر <textarea> مثل هر ورودی دیگری رفتار می‌کند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "تعداد کاراکترهای متن را زیر آن نمایش دهید.",
+   "hint": "از {mytxt.length} داخل یک تگ <p> استفاده کنید."
+  },
+  {
+   "prompt": "به textarea مقدار اولیهٔ «سلام» بدهید.",
+   "hint": "useState را با رشتهٔ «سلام» شروع کنید."
+  },
+  {
+   "prompt": "دکمه‌ای اضافه کنید که با کلیک، متن را پاک کند.",
+   "hint": "در onClick دکمه setMytxt(\"\") را صدا بزنید."
+  },
+  {
+   "prompt": "متن نمایشی «Current value» را فارسی کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "در ری‌اکت مقدار textarea کجا قرار می‌گیرد؟",
+   "options": [
+    "در ویژگی value",
+    "بین تگ باز و بسته",
+    "در state مرورگر",
+    "در props"
+   ],
+   "answer": 0,
+   "explanation": "ری‌اکت مقدار را با value کنترل می‌کند، درست مثل input."
+  },
+  {
+   "question": "در HTML معمولی مقدار textarea کجاست؟",
+   "options": [
+    "بین تگ باز و بسته",
+    "در ویژگی value",
+    "در ویژگی text",
+    "در کامنت"
+   ],
+   "answer": 0,
+   "explanation": "در HTML متن داخل خود تگ‌ها مقدار است."
+  },
+  {
+   "question": "handleChange در مثال چه می‌کند؟",
+   "options": [
+    "mytxt را با متن تایپ‌شده به‌روز می‌کند",
+    "فرم را ثبت می‌کند",
+    "متن را پاک می‌کند",
+    "هشدار نمایش می‌دهد"
+   ],
+   "answer": 0,
+   "explanation": "با setMytxt مقدار جدید را در state می‌گذارد."
+  },
+  {
+   "question": "خط «Current value» در مثال چه چیزی نشان می‌دهد؟",
+   "options": [
+    "مقدار جاری state",
+    "مقدار اولیه",
+    "تعداد کاراکتر",
+    "نام فرم"
+   ],
+   "answer": 0,
+   "explanation": "{mytxt} همیشه مقدار فعلی state را نشان می‌دهد."
+  }
+ ]
+}

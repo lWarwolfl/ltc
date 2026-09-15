@@ -1,0 +1,142 @@
+{
+ "slug": "react_hooks",
+ "course": "react",
+ "order": 44,
+ "url": "/react/react_hooks.asp",
+ "title": "هوک‌ها در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "هوک‌ها در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "هوک‌ها اجازه می‌دهند تابع‌ها بدون کلاس به state و بقیهٔ قابلیت‌های ری‌اکت دسترسی داشته باشند."
+  },
+  {
+   "type": "p",
+   "text": "آن‌ها API مستقیم‌تری به مفاهیم ری‌اکت مثل props و state و context و ref و چرخهٔ حیات می‌دهند."
+  },
+  {
+   "type": "h2",
+   "text": "هوک چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "هوک‌ها تابع‌هایی هستند که می‌گذارند از کامپوننت تابعی به state و چرخهٔ حیات ری‌اکت «قلاب» شوید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction FavoriteColor() {\n  const [color, setColor] = useState(\"red\");\n\n  return (\n    <>\n      <h1>My favorite color is {color}!</h1>\n      <button\n        type=\"button\"\n        onClick={() => setColor(\"blue\")}\n      >Blue</button>\n      <button\n        type=\"button\"\n        onClick={() => setColor(\"red\")}\n      >Red</button>\n      <button\n        type=\"button\"\n        onClick={() => setColor(\"pink\")}\n      >Pink</button>\n      <button\n        type=\"button\"\n        onClick={() => setColor(\"green\")}\n      >Green</button>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <FavoriteColor />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "هوک‌ها را باید از react ایمپورت کنید."
+  },
+  {
+   "type": "p",
+   "text": "اینجا از هوک useState برای دنبال کردن state اپ استفاده می‌کنیم."
+  },
+  {
+   "type": "p",
+   "text": "state معمولاً یعنی داده یا ویژگی‌های اپ که باید دنبال شوند."
+  },
+  {
+   "type": "h2",
+   "text": "قوانین هوک"
+  },
+  {
+   "type": "p",
+   "text": "سه قانون برای هوک‌ها هست:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "هوک‌ها فقط داخل کامپوننت‌های تابعی ری‌اکت صدا زده می‌شوند.",
+    "هوک‌ها فقط در سطح بالای کامپوننت صدا زده می‌شوند.",
+    "هوک‌ها نمی‌توانند شرطی باشند"
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "هوک‌ها در کامپوننت‌های کلاسی ری‌اکت کار نمی‌کنند."
+  },
+  {
+   "type": "h2",
+   "text": "هوک‌های سفارشی"
+  },
+  {
+   "type": "p",
+   "text": "اگر منطق stateداری دارید که باید در چند کامپوننت استفاده شود، می‌توانید هوک خودتان را بسازید."
+  },
+  {
+   "type": "p",
+   "text": "در بخش Custom Hooks با جزئیات بیشتر جلو می‌رویم."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال FavoriteColor را اجرا کنید و روی دکمه‌های رنگ بزنید."
+  },
+  {
+   "prompt": "یک دکمهٔ پنجم برای رنگ دلخواه خودتان اضافه کنید."
+  },
+  {
+   "prompt": "خط import هوک را حذف کنید و خطا را ببینید."
+  },
+  {
+   "prompt": "useState را داخل یک if بگذارید و ببینید ری‌اکت چه خطایی می‌دهد.",
+   "hint": "نقض قانون سطح بالا: هوک باید همیشه به یک ترتیب صدا زده شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "هوک‌ها چه امکانی می‌دهند؟",
+   "options": [
+    "دسترسی تابع‌ها به state بدون کلاس",
+    "حذف state",
+    "جایگزینی JSX",
+    "کامپایل سریع‌تر"
+   ],
+   "answer": 0,
+   "explanation": "با هوک، کامپوننت تابعی همهٔ قابلیت‌های لازم را دارد."
+  },
+  {
+   "question": "کدام قانون هوک درست است؟",
+   "options": [
+    "فقط در سطح بالای کامپوننت تابعی، بدون شرط",
+    "هر جای کد حتی بیرون کامپوننت",
+    "داخل if اشکالی ندارد",
+    "در کامپوننت کلاسی هم کار می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "هر سه قانون همین را می‌گویند: تابعی، سطح بالا، بدون شرط."
+  },
+  {
+   "question": "چرا هوک نباید شرطی باشد؟",
+   "options": [
+    "چون ری‌اکت روی ترتیب صدا زدن هوک‌ها حساب می‌کند",
+    "چون کند است",
+    "چون خطای نحوی است",
+    "دلیلی ندارد"
+   ],
+   "answer": 0,
+   "explanation": "اگر ترتیبی عوض شود، stateها به هوک اشتباه می‌رسند."
+  },
+  {
+   "question": "هوک سفارشی کی به درد می‌خورد؟",
+   "options": [
+    "وقتی منطق stateدار در چند کامپوننت تکرار می‌شود",
+    "وقتی state نداریم",
+    "به‌جای props",
+    "به‌جای CSS"
+   ],
+   "answer": 0,
+   "explanation": "منطق مشترک را در هوک خودتان می‌گذارید و همه‌جا استفاده می‌کنید."
+  }
+ ]
+}

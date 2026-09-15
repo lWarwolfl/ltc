@@ -1,0 +1,83 @@
+{
+ "slug": "react_usememo",
+ "course": "react",
+ "order": 51,
+ "url": "/react/react_usememo.asp",
+ "title": "React useMemo Hook",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React useMemo Hook"
+  },
+  {
+   "type": "p",
+   "text": "The React useMemo Hook returns a memoized value."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Think of memoization as caching a value so that it does not need to be recalculated."
+  },
+  {
+   "type": "p",
+   "text": "The useMemo Hook only runs when one of its dependencies update."
+  },
+  {
+   "type": "p",
+   "text": "This can improve performance."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The useMemo and useCallback Hooks are similar:\nuseMemo returns a memoized value.\nuseCallback returns a memoized function.\nLearn more about useCallback in the useCallback chapter."
+  },
+  {
+   "type": "h2",
+   "text": "Without useMemo"
+  },
+  {
+   "type": "p",
+   "text": "The useMemo Hook can be used to keep expensive, resource intensive functions from needlessly running."
+  },
+  {
+   "type": "p",
+   "text": "In this example, we have an expensive function that runs on every render."
+  },
+  {
+   "type": "p",
+   "text": "When changing the count or adding a todo, you will notice a delay in execution."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst App = () => {\n  const [count, setCount] = useState(0);\n  const [todos, setTodos] = useState([]);\n  const calculation = expensiveCalculation(count);\n\n  const increment = () => {\n    setCount((c) => c + 1);\n  };\n  const addTodo = () => {\n    setTodos((t) => [...t, \"New Todo\"]);\n  };\n\n  return (\n    <div>\n      <div>\n        <h2>My Todos</h2>\n        {todos.map((todo, index) => {\n          return <p key={index}>{todo}</p>;\n        })}\n        <button onClick={addTodo}>Add Todo</button>\n      </div>\n      <hr />\n      <div>\n        Count: {count}\n        <button onClick={increment}>+</button>\n        <h2>Expensive Calculation</h2>\n        {calculation}\n        <p>Note that this example executes the expensive function also when you click on the Add Todo button.</p>\n      </div>\n    </div>\n  );\n};\n\nconst expensiveCalculation = (num) => {\n  console.log(\"Calculating...\");\n  for (let i = 0; i < 1000000000; i++) {\n    num += 1;\n  }\n  return num;\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "Use useMemo"
+  },
+  {
+   "type": "p",
+   "text": "To fix this performance issue, we can use the useMemo Hook to memoize the expensiveCalculation function. This will cause the function to only run when needed."
+  },
+  {
+   "type": "p",
+   "text": "We can wrap the expensive function call with useMemo."
+  },
+  {
+   "type": "p",
+   "text": "The useMemoHook accepts a second parameter to declare\ndependencies. The expensive function will only run when its dependencies have changed."
+  },
+  {
+   "type": "p",
+   "text": "In the following example, the expensive function will only run when count\nis changed and not when todo's are added."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState, useMemo } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst App = () => {\n  const [count, setCount] = useState(0);\n  const [todos, setTodos] = useState([]);\n  const calculation = useMemo(() => expensiveCalculation(count), [count]);\n\n  const increment = () => {\n    setCount((c) => c + 1);\n  };\n  const addTodo = () => {\n    setTodos((t) => [...t, \"New Todo\"]);\n  };\n\n  return (\n    <div>\n      <div>\n        <h2>My Todos</h2>\n        {todos.map((todo, index) => {\n          return <p key={index}>{todo}</p>;\n        })}\n        <button onClick={addTodo}>Add Todo</button>\n      </div>\n      <hr />\n      <div>\n        Count: {count}\n        <button onClick={increment}>+</button>\n        <h2>Expensive Calculation</h2>\n        {calculation}\n      </div>\n    </div>\n  );\n};\n\nconst expensiveCalculation = (num) => {\n  console.log(\"Calculating...\");\n  for (let i = 0; i < 1000000000; i++) {\n    num += 1;\n  }\n  return num;\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+   "caption": "Example:"
+  }
+ ]
+}

@@ -1,0 +1,229 @@
+{
+ "slug": "react_props",
+ "course": "react",
+ "order": 21,
+ "url": "/react/react_props.asp",
+ "title": "پراپ‌ها در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پراپ‌ها در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "پراپ‌ها آرگومان‌هایی‌اند که به کامپوننت‌های ری‌اکت پاس داده می‌شوند."
+  },
+  {
+   "type": "p",
+   "text": "پراپ‌ها با سینتکس ویژگی‌های HTML به کامپوننت فرستاده می‌شوند."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "props مخفف properties است."
+  },
+  {
+   "type": "h2",
+   "text": "پراپ‌های ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "پراپ‌های ری‌اکت مثل آرگومان تابع در جاوااسکریپت و ویژگی در HTML هستند."
+  },
+  {
+   "type": "p",
+   "text": "برای فرستادن پراپ به کامپوننت، از همان سینتکس ویژگی‌های HTML استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "createRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "کامپوننت آرگومان را به‌صورت یک شیء props می‌گیرد:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  return (\n    <h2>I am a {props.brand}!</h2>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "اسم شیء props است، ولی هر اسم دیگری هم می‌توانید بگذارید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(myobj) {\n  return (\n    <h2>I am a {myobj.brand}!</h2>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن چند ویژگی"
+  },
+  {
+   "type": "p",
+   "text": "هر چند ویژگی که بخواهید می‌توانید بفرستید."
+  },
+  {
+   "type": "p",
+   "text": "هر ویژگی به‌صورت ویژگی شیء به کامپوننت Car فرستاده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "createRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" model=\"Mustang\" color=\"red\" />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "همهٔ ویژگی‌ها داخل شیء props به کامپوننت Car می‌رسند:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  return (\n    <h2>I am a {props.color} {props.brand} {props.model}!</h2>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "نوع‌های دادهٔ مختلف"
+  },
+  {
+   "type": "p",
+   "text": "پراپ‌های ری‌اکت می‌توانند هر نوع داده‌ای باشند: متغیر، عدد، رشته، شیء، آرایه و بیشتر."
+  },
+  {
+   "type": "p",
+   "text": "رشته‌ها را مثل مثال‌های بالا داخل کوتیشن می‌شود فرستاد، ولی عدد و متغیر و شیء باید داخل آکولاد باشند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "createRoot(document.getElementById('root')).render(\n  <Car year={1969} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "let x = \"Ford\";\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand={x} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "let x = [1964, 1965, 1966];\nlet y = {name: \"Ford\", model: \"Mustang\"};\n\ncreateRoot(document.getElementById('root')).render(\n  <Car years={x} carinfo={y} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "پراپ شیئی"
+  },
+  {
+   "type": "p",
+   "text": "کامپوننت با شیء مثل شیء رفتار می‌کند و با دات‌نتیشن به ویژگی‌ها دسترسی دارید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  return (\n    <>\n      <h2>My {props.carinfo.name} {props.carinfo.model}!</h2>\n      <p>It is {props.carinfo.color} and it is from {props.carinfo.year}!</p>\n    </>\n  );\n}\n\nconst carInfo = {\n  name: \"Ford\",\n  model: \"Mustang\",\n  color: \"red\",\n  year: 1969\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <Car carinfo={carInfo} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "پراپ آرایه‌ای"
+  },
+  {
+   "type": "p",
+   "text": "به پراپ آرایه‌ای با ایندکس دسترسی پیدا می‌کنید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  return (\n    <h2>My car is a {props.carinfo[0]} {props.carinfo[1]}!</h2>\n  );\n}\n\nconst carInfo = [\"Ford\", \"Mustang\"];\n\ncreateRoot(document.getElementById('root')).render(\n  <Car carinfo={carInfo} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "فرستادن پراپ از کامپوننت به کامپوننت"
+  },
+  {
+   "type": "p",
+   "text": "ویژگی‌ها همان راهی‌اند که داده را مثل پارامتر از کامپونتی به کامپونت دیگر می‌فرستید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  return (\n    <h2>I am a {props.brand}!</h2>\n  );\n}\n\nfunction Garage() {\n  return (\n    <>\n      <h1>Who lives in my garage?</h1>\n      <Car brand=\"Ford\" />\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Garage />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "پراپ‌های ری‌اکت فقط‌خواندنی‌اند! اگر سعی کنید مقدارشان را عوض کنید خطا می‌گیرید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال brand=\"Ford\" را اجرا کنید و بعد برند دیگری بفرستید."
+  },
+  {
+   "prompt": "به Car سه ویژگی brand و model و color بدهید و هر سه را نمایش دهید."
+  },
+  {
+   "prompt": "یک پراپ عددی (year) با آکولاد بفرستید و نمایشش دهید."
+  },
+  {
+   "prompt": "داخل کامپوننت سعی کنید props.brand را عوض کنید و خطا/رفتار را ببینید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "پراپ‌ها چه هستند؟",
+   "options": [
+    "آرگومان‌های ورودی کامپوننت",
+    "state داخلی",
+    "تابع‌های کمکی",
+    "فایل‌های CSS"
+   ],
+   "answer": 0,
+   "explanation": "با سینتکس ویژگی HTML فرستاده و به‌صورت شیء props گرفته می‌شوند."
+  },
+  {
+   "question": "عدد و متغیر را چگونه به‌عنوان پراپ می‌فرستیم؟",
+   "options": [
+    "داخل آکولاد",
+    "داخل کوتیشن",
+    "بدون هیچ علامت",
+    "با پرانتز"
+   ],
+   "answer": 0,
+   "explanation": "فقط رشتهٔ ثابت را می‌شود داخل کوتیشن گذاشت."
+  },
+  {
+   "question": "به ویژگی‌های پراپ شیئی چگونه دسترسی داریم؟",
+   "options": [
+    "با دات‌نتیشن",
+    "با ایندکس",
+    "با map",
+    "نمی‌شود"
+   ],
+   "answer": 0,
+   "explanation": "مثل هر شیء جاوااسکریپت: props.carinfo.name."
+  },
+  {
+   "question": "پراپ‌ها قابل تغییرند؟",
+   "options": [
+    "نه، فقط‌خواندنی‌اند",
+    "بله، هر وقت بخواهیم",
+    "فقط در والد",
+    "فقط عددها"
+   ],
+   "answer": 0,
+   "explanation": "داده یک‌طرفه از والد به فرزند می‌آید؛ تغییر state مال خود کامپوننت است."
+  }
+ ]
+}

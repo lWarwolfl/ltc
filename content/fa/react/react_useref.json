@@ -1,0 +1,183 @@
+{
+  "slug": "react_useref",
+  "course": "react",
+  "order": 48,
+  "url": "/react/react_useref.asp",
+  "title": "هوک useRef در React",
+  "summary": "هوک useRef مقداری ماندگار بین رندرها نگه می‌دارد بدون اینکه رندر جدید بسازد، و برای دسترسی مستقیم به عنصرهای DOM هم به کار می‌رود. در این درس شمارش رندرها، فوکوس روی input و نگه داشتن مقدار قبلی state را با useRef می‌بینید.",
+  "objectives": [
+    "بگویید useRef چه فرقی با useState دارد",
+    "با useRef تعداد رندرها را بدون رندر اضافه بشمارید",
+    "با useRef و خصوصیت current به یک عنصر DOM دسترسی مستقیم بگیرید",
+    "مقدار قبلی یک state را با ترکیب useState و useEffect و useRef نگه دارید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "هوک useRef در React"
+    },
+    {
+      "type": "p",
+      "text": "هوک useRef امکان می‌دهد مقدارها را بین رندرها ماندگار نگه دارید."
+    },
+    {
+      "type": "p",
+      "text": "می‌توان از آن برای نگه داشتن یک مقدار تغییرپذیر (mutable) استفاده کرد که با عوض شدنش رندر جدید ساخته نمی‌شود."
+    },
+    {
+      "type": "p",
+      "text": "می‌توان از آن برای دسترسی مستقیم به یک عنصر DOM استفاده کرد."
+    },
+    {
+      "type": "h2",
+      "text": "باعث رندر اضافه نمی‌شود"
+    },
+    {
+      "type": "p",
+      "text": "اگر بخواهیم با هوک useState بشماریم برنامه چند بار رندر شده، در حلقهٔ بی‌نهایت گیر می‌کنیم چون خود این هوک باعث رندر می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "برای جلوگیری از این مشکل می‌توانیم از هوک useRef استفاده کنیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useRef, useEffect } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction App() {\n  const [inputValue, setInputValue] = useState(\"\");\n  const count = useRef(0);\n\n  useEffect(() => {\n    count.current = count.current + 1;\n  });\n\n  return (\n    <>\n      <p>Type in the input field:</p>\n      <input\n        type=\"text\"\n        value={inputValue}\n        onChange={(e) => setInputValue(e.target.value)}\n      />\n      <h1>Render Count: {count.current}</h1>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "useRef فقط یک عضو برمی‌گرداند: یک شیء به نام current."
+    },
+    {
+      "type": "p",
+      "text": "وقتی useRef را مقداردهی اولیه می‌کنیم، مقدار اول را می‌دهیم: useRef(0)."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "مثل این است که بنویسیم const count = {current: 0}. با count.current به شمارش دسترسی داریم."
+    },
+    {
+      "type": "h2",
+      "text": "دسترسی به عنصرهای DOM"
+    },
+    {
+      "type": "p",
+      "text": "از هوک useRef معمولاً برای دسترسی مستقیم به عنصرهای DOM استفاده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "اول با هوک useRef یک ref می‌سازیم: const inputElement = useRef()."
+    },
+    {
+      "type": "p",
+      "text": "بعد ref را با ویژگی ref در JSX به عنصر DOM وصل می‌کنیم: <input type=\"text\" ref={inputElement} />."
+    },
+    {
+      "type": "p",
+      "text": "در آخر با خصوصیت current به عنصر DOM دسترسی داریم: inputElement.current."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useRef } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction App() {\n  const inputElement = useRef();\n\n  const focusInput = () => {\n    inputElement.current.focus();\n  };\n\n  return (\n    <>\n      <input type=\"text\" ref={inputElement} />\n      <button onClick={focusInput}>Focus Input</button>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "در مثال، وقتی دکمه کلیک می‌شود فیلد ورودی فوکوس می‌گیرد، چون تابع onClick عبارت inputElement.current.focus() را صدا می‌زند."
+    },
+    {
+      "type": "h2",
+      "text": "دنبال کردن تغییرهای state"
+    },
+    {
+      "type": "p",
+      "text": "از هوک useRef می‌توان برای نگه داشتن مقدارهای قبلی state هم استفاده کرد."
+    },
+    {
+      "type": "p",
+      "text": "چون می‌توانیم مقدارهای useRef را بین رندرها ماندگار نگه داریم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useRef, useState, useEffect } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction App() {\n  const [inputValue, setInputValue] = useState(\"\");\n  const previousInputValue = useRef(\"\");\n\n  useEffect(() => {\n    previousInputValue.current = inputValue;\n  }, [inputValue]);\n\n  return (\n    <>\n      <input\n        type=\"text\"\n        value={inputValue}\n        onChange={(e) => setInputValue(e.target.value)}\n      />\n      <h2>Current Value: {inputValue}</h2>\n      <h2>Previous Value: {previousInputValue.current}</h2>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "این بار با ترکیب useState و useEffect و useRef مقدار قبلی state را نگه می‌داریم."
+    },
+    {
+      "type": "p",
+      "text": "در useEffect هر بار که inputValue با تایپ در فیلد ورودی عوض می‌شود، مقدار current در useRef را به‌روز می‌کنیم."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال شمارش رندر را در ویرایشگر Try-it اجرا کنید و چند بار حرف تایپ کنید تا شمارنده بالا برود.",
+      "hint": "شمارش در useEffect انجام می‌شود و چون useRef است، خودش رندر جدید نمی‌سازد."
+    },
+    {
+      "prompt": "مثال فوکوس را اجرا کنید: روی دکمه کلیک کنید و ببینید فیلد ورودی فوکوس می‌گیرد.",
+      "hint": "onClick تابع inputElement.current.focus() را صدا می‌زند."
+    },
+    {
+      "prompt": "مثال مقدار قبلی را اجرا کنید، متنی تایپ کنید و مقدار فعلی و قبلی را روی صفحه مقایسه کنید.",
+      "hint": "مقدار قبلی در useRef نگه داشته می‌شود و بعد از هر رندر به‌روز می‌شود."
+    },
+    {
+      "prompt": "در مثال شمارش رندر، useRef را با useState جایگزین کنید و ببینید چرا برنامه در حلقه می‌افتد.",
+      "hint": "به‌روزرسانی state در useEffect رندر جدید می‌سازد و آن رندر دوباره effect را اجرا می‌کند."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "هوک useRef چه چیزی برمی‌گرداند؟",
+      "options": [
+        "یک شیء با خصوصیت current",
+        "دو مقدار: state و تابع به‌روزرسان",
+        "یک تابع dispatch",
+        "یک مقدار memoizeشده"
+      ],
+      "answer": 0,
+      "explanation": "useRef فقط یک عضو برمی‌گرداند: شیئی که مقدار در خصوصیت current آن نگه داشته می‌شود."
+    },
+    {
+      "question": "چرا برای شمارش تعداد رندر از useState استفاده نمی‌کنیم؟",
+      "options": [
+        "چون خودش باعث رندر می‌شود و حلقهٔ بی‌نهایت می‌سازد",
+        "چون عددها را نگه نمی‌دارد",
+        "چون فقط در کلاس‌ها کار می‌کند",
+        "چون به اینترنت نیاز دارد"
+      ],
+      "answer": 0,
+      "explanation": "به‌روزرسانی useState رندر جدید می‌سازد و آن رندر دوباره effect شمارش را اجرا می‌کند؛ useRef این مشکل را ندارد چون رندر نمی‌سازد."
+    },
+    {
+      "question": "برای دسترسی مستقیم به یک عنصر DOM با useRef چه مراحلی لازم است؟",
+      "options": [
+        "ساخت ref، وصل کردن با ویژگی ref، دسترسی با current",
+        "فقط import کردن useRef کافی است",
+        "باید id عنصر را حدس زد",
+        "باید صفحه را رفرش کرد"
+      ],
+      "answer": 0,
+      "explanation": "اول ref را با useRef می‌سازیم، بعد با ویژگی ref در JSX به عنصر وصل می‌کنیم و در آخر با خصوصیت current به عنصر دسترسی داریم."
+    },
+    {
+      "question": "چرا useRef برای نگه داشتن مقدار قبلی state مناسب است؟",
+      "options": [
+        "چون مقدارش بین رندرها ماندگار می‌ماند بدون اینکه رندر بسازد",
+        "چون مقدار قبلی را خودش حدس می‌زند",
+        "چون state را رمزنگاری می‌کند",
+        "چون به سرور وصل می‌شود"
+      ],
+      "answer": 0,
+      "explanation": "مقدار useRef بین رندرها حفظ می‌شود و تغییرش رندر جدید نمی‌سازد، پس برای نگه داشتن مقدار قبلی state ایده‌آل است."
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+ "slug": "react_es6_array_map",
+ "course": "react",
+ "order": 9,
+ "url": "/react/react_es6_array_map.asp",
+ "title": "متد map آرایه در جاوااسکریپت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "متد map آرایه در جاوااسکریپت"
+  },
+  {
+   "type": "h2",
+   "text": "متد map"
+  },
+  {
+   "type": "p",
+   "text": "متد map یک آرایهٔ جدید می‌سازد از نتیجهٔ اجرای یک تابع روی تک‌تک اعضای آرایه."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(x => x * 2);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_map1"
+  },
+  {
+   "type": "h2",
+   "text": "map در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "متد map معمولاً در ری‌اکت برای رندر لیست عناصر استفاده می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const fruitlist = ['apple', 'banana', 'cherry'];\n\nfunction MyList() {\n  return (\n    <ul>\n      {fruitlist.map(fruit =>\n        <li key={fruit}>{fruit}</li>\n      )}\n    </ul>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "وقتی در ری‌اکت با map آیتم لیست می‌سازید، هر آیتم به key یکتا نیاز دارد."
+  },
+  {
+   "type": "h2",
+   "text": "map با شیءها"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید از map با آرایه‌ای از شیءها هم استفاده کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const users = [\n  { id: 1, name: 'John', age: 30 },\n  { id: 2, name: 'Jane', age: 25 },\n  { id: 3, name: 'Bob', age: 35 }\n];\n\nfunction UserList() {\n  return (\n    <ul>\n      {users.map(user =>\n        <li key={user.id}>\n          {user.name} is {user.age} years old\n        </li>\n      )}\n    </ul>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "پارامترهای map"
+  },
+  {
+   "type": "p",
+   "text": "متد map سه پارامتر می‌گیرد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "currentValue - عضو جاری که پردازش می‌شود",
+    "index - ایندکس عضو جاری (اختیاری)",
+    "array - آرایه‌ای که map روی آن صدا زده شده (اختیاری)"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const fruitlist = ['apple', 'banana', 'cherry'];\n\nfunction App() {\n  return (\n    <ul>\n      {fruitlist.map((fruit, index, array) => {\n        return (\n          <li key={fruit}>\n            Name: {fruit}, Index: {index}, Array: {array}\n          </li>\n        );\n      })}\n    </ul>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "متد map همیشه یک آرایهٔ جدید برمی‌گرداند و آرایهٔ اصلی را تغییر نمی‌دهد."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال اول را اجرا کنید و ببینید [2, 4, 6, 8] ساخته می‌شود."
+  },
+  {
+   "prompt": "مثال لیست میوه‌ها را با میوه‌های دلخواه خودتان عوض کنید."
+  },
+  {
+   "prompt": "key را از مثال حذف کنید و هشدار کنسول را ببینید."
+  },
+  {
+   "prompt": "مثال آخر را اجرا کنید و ببینید index و array برای هر آیتم چه مقادیری دارند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "متد map چه چیزی برمی‌گرداند؟",
+   "options": [
+    "یک آرایهٔ جدید",
+    "همان آرایهٔ تغییرکرده",
+    "یک عدد",
+    "یک رشته"
+   ],
+   "answer": 0,
+   "explanation": "map آرایهٔ اصلی را دست نمی‌زند؛ نتیجه تابع روی هر عضو را در آرایه‌ای نو می‌گذارد."
+  },
+  {
+   "question": "چرا در ری‌اکت به آیتم‌های map، key می‌دهیم؟",
+   "options": [
+    "تا ری‌اکت آیتم‌ها را دنبال کند",
+    "برای مرتب‌سازی",
+    "برای استایل",
+    "اجباری نیست"
+   ],
+   "answer": 0,
+   "explanation": "بدون key هشدار می‌گیرید و رندر لیست بهینه نیست."
+  },
+  {
+   "question": "کدام پارامتر map اختیاری نیست؟",
+   "options": [
+    "currentValue",
+    "index",
+    "array",
+    "همه اختیاری‌اند"
+   ],
+   "answer": 0,
+   "explanation": "عضو جاری همیشه پاس داده می‌شود؛ index و array اختیاری‌اند."
+  },
+  {
+   "question": "آیا map آرایهٔ اصلی را عوض می‌کند؟",
+   "options": [
+    "نه، همیشه آرایهٔ جدید می‌سازد",
+    "بله، درجا تغییر می‌دهد",
+    "فقط اگر key بدهیم",
+    "فقط برای اعداد"
+   ],
+   "answer": 0,
+   "explanation": "تغییرناپذیری آرایهٔ اصلی یکی از نکته‌های مهم map است."
+  }
+ ]
+}

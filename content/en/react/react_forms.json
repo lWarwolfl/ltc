@@ -1,0 +1,156 @@
+{
+ "slug": "react_forms",
+ "course": "react",
+ "order": 27,
+ "url": "/react/react_forms.asp",
+ "title": "React Forms",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Forms"
+  },
+  {
+   "type": "p",
+   "text": "Just like in HTML, React uses forms to allow users to interact with the web page."
+  },
+  {
+   "type": "h2",
+   "text": "Adding Forms in React"
+  },
+  {
+   "type": "p",
+   "text": "You add a form with React like any other element:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  return (\n    <form>\n      <label>Enter your name:\n        <input type=\"text\" />\n      </label>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "This will work as normal, the form will submit and the page will refresh."
+  },
+  {
+   "type": "p",
+   "text": "But this is generally not what we want to happen in React."
+  },
+  {
+   "type": "p",
+   "text": "We want to prevent this default behavior and let React control the form."
+  },
+  {
+   "type": "h2",
+   "text": "HTML Forms vs. React Forms"
+  },
+  {
+   "type": "p",
+   "text": "In React, form elements like <input>,\n  <textarea>,\n  and <select>\n  work a bit differently from traditional HTML."
+  },
+  {
+   "type": "p",
+   "text": "In standard HTML,\n  form elements maintain their own value based on user input."
+  },
+  {
+   "type": "p",
+   "text": "For example, an <input type=\"text\"> field keeps track of its own value\n   in the HTML DOM."
+  },
+  {
+   "type": "p",
+   "text": "In React, the value of the form element is kept in the component's state\n  property and updated only with the setState() function."
+  },
+  {
+   "type": "p",
+   "text": "In other words; React provides a way to manage form data through component state,\n  leading to what are known as \"controlled components.\""
+  },
+  {
+   "type": "h2",
+   "text": "Controlled Components"
+  },
+  {
+   "type": "p",
+   "text": "In a controlled component, form data is handled by the React component."
+  },
+  {
+   "type": "p",
+   "text": "The value of the input element is driven by the React state,\n  and any changes to that value are managed through event handlers that update the state."
+  },
+  {
+   "type": "p",
+   "text": "When the data is handled by the components, all the data is stored in the component\nstate."
+  },
+  {
+   "type": "p",
+   "text": "We can use the useState Hook to keep track of each\n  input value and provide a \"single source of truth\" for the entire application."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "See the React Hooks section for more information on Hooks."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [name, setName] = useState(\"\");\n\n  function handleChange(e) {\n    setName(e.target.value);\n  }\n\n  return (\n    <form>\n      <label>Enter your name:\n        <input\n          type=\"text\"\n          value={name}\n          onChange={handleChange}\n        />\n      </label>\n      <p>Current value: {name}</p>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h3",
+   "text": "Example Explained:"
+  },
+  {
+   "type": "p",
+   "text": "1. Import the useState Hook from React:"
+  },
+  {
+   "type": "p",
+   "text": "import { useState } from 'react';"
+  },
+  {
+   "type": "p",
+   "text": "2. Declare a state variable to hold the input's value and a function to update it:"
+  },
+  {
+   "type": "p",
+   "text": "const [name, setName] = useState(\"\");"
+  },
+  {
+   "type": "p",
+   "text": "3. Create a function to handle the change event:"
+  },
+  {
+   "type": "p",
+   "text": "function handleChange(e) {\n  setName(e.target.value);\n}"
+  },
+  {
+   "type": "p",
+   "text": "4. Set the value of the input field to the state variable and the onChange attribute to handle the change event:"
+  },
+  {
+   "type": "p",
+   "text": "<input\n  type=\"text\"\n  value={name}\n  onChange={handleChange}\n/>"
+  },
+  {
+   "type": "p",
+   "text": "5. Display the current value to show that the value is being updated:"
+  },
+  {
+   "type": "p",
+   "text": "<p>Current value: {name}</p>"
+  },
+  {
+   "type": "h2",
+   "text": "Initial Values"
+  },
+  {
+   "type": "p",
+   "text": "To add an initial value to the input field in the example above,\n  add a value to the useState object:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  const [name, setName] = useState(\"John\");\n\n  ...",
+   "caption": "Example:"
+  }
+ ]
+}

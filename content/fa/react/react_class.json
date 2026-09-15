@@ -1,0 +1,621 @@
+{
+  "slug": "react_class",
+  "course": "react",
+  "order": 20,
+  "url": "/react/react_class.asp",
+  "title": "کامپوننت‌های کلاسی React",
+  "summary": "کامپوننت‌های کلاسی راه قدیمی ساخت کامپوننت در React با state و چرخهٔ حیات‌اند. در این درس ساخت کامپوننت کلاسی، constructor، شیء state و فازهای Mounting و Updating را یاد می‌گیرید.",
+  "objectives": [
+    "یک کامپوننت کلاسی با render بسازید",
+    "در constructor شیء state را مقداردهی کنید",
+    "با setState کامپوننت را به‌روز و دوباره رندر کنید",
+    "فازهای چرخهٔ حیات و متدهای مهم آن را نام ببرید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "کامپوننت‌های کلاسی React"
+    },
+    {
+      "type": "p",
+      "text": "قبل از React 16.8، کامپوننت‌های کلاسی تنها راه دنبال کردن state و چرخهٔ حیات (lifecycle) یک کامپوننت React بودند.\nکامپوننت‌های تابعی «بدون state» در نظر گرفته می‌شدند."
+    },
+    {
+      "type": "p",
+      "text": "با اضافه شدن هوک‌ها، کامپوننت‌های تابعی حالا تقریباً معادل کامپوننت‌های کلاسی‌اند.\nتفاوت‌ها آن‌قدر جزئی است که احتمالاً هیچ‌وقت در React به کامپوننت کلاسی نیاز پیدا نمی‌کنید."
+    },
+    {
+      "type": "p",
+      "text": "با این‌که کامپوننت‌های تابعی ترجیح داده می‌شوند، فعلاً هیچ برنامه‌ای برای حذف کامپوننت‌های کلاسی از React نیست."
+    },
+    {
+      "type": "p",
+      "text": "این بخش یک نمای کلی از استفادهٔ کامپوننت‌های کلاسی در React به شما می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "اگر خواستید می‌توانید این بخش را رد کنید و به‌جایش از کامپوننت‌های تابعی استفاده کنید."
+    },
+    {
+      "type": "h2",
+      "text": "کامپوننت‌های React"
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت‌ها قطعه‌های مستقل و قابل‌استفادهٔ دوبارهٔ کد هستند.\nکارشان مثل توابع JavaScript است،\nبا این تفاوت که ایزوله کار می‌کنند و با یک تابع render خروجی HTML می‌دهند."
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت‌ها دو نوع‌اند، کامپوننت کلاسی و کامپوننت تابعی؛ در این فصل با کامپوننت‌های کلاسی آشنا می‌شوید."
+    },
+    {
+      "type": "h2",
+      "text": "ساخت یک کامپوننت کلاسی"
+    },
+    {
+      "type": "p",
+      "text": "وقتی یک کامپوننت React می‌سازید، نام کامپوننت باید با حرف بزرگ شروع شود."
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت باید عبارت extends React.Component را داشته باشد؛ این عبارت یک ارث‌بری از\nReact.Component می‌سازد و به کامپوننت شما دسترسی به تابع‌های React.Component می‌دهد."
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت به یک متد render() هم نیاز دارد؛\nاین متد HTML برمی‌گرداند."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  render() {\n    return <h2>Hi, I am a Car!</h2>;\n  }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "حالا برنامهٔ React شما یک کامپوننت به نام Car دارد که یک عنصر\n<h2> برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "برای استفاده از این کامپوننت در برنامه، از سینتکسی شبیه HTML معمولی استفاده کنید:\n<Car />"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "createRoot(document.getElementById('root')).render(\n  <Car />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "سازندهٔ کامپوننت (Constructor)"
+    },
+    {
+      "type": "p",
+      "text": "اگر در کامپوننت شما یک تابع constructor() باشد، این تابع وقتی صدا زده می‌شود که\nکامپوننت راه‌اندازی (initiate) می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "تابع سازنده جایی است که خصوصیت‌های کامپوننت را مقداردهی اولیه می‌کنید."
+    },
+    {
+      "type": "p",
+      "text": "در React، خصوصیت‌های کامپوننت باید در شیئی به نام\nstate نگه داشته شوند."
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ state در ادامهٔ\nهمین آموزش بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "p",
+      "text": "تابع سازنده جایی است که ارث‌بری از\nکامپوننت والد را با عبارت super()\nادا می‌کنید؛ این عبارت تابع سازندهٔ کامپوننت والد را اجرا می‌کند و کامپوننت شما به همهٔ تابع‌های\nکامپوننت والد (React.Component) دسترسی پیدا می‌کند."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  constructor() {\n    super();\n    this.state = {color: \"red\"};\n  }\n  render() {\n    return <h2>I am a Car!</h2>;\n  }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "از خصوصیت color در تابع render استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  constructor() {\n    super();\n    this.state = {color: \"red\"};\n  }\n  render() {\n    return <h2>I am a {this.state.color} Car!</h2>;\n  }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Props"
+    },
+    {
+      "type": "p",
+      "text": "راه دیگر مدیریت خصوصیت‌های کامپوننت، استفاده از props است."
+    },
+    {
+      "type": "p",
+      "text": "props مثل آرگومان‌های تابع‌اند و آن‌ها را مثل ویژگی (attribute) به کامپوننت می‌فرستید."
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ props در فصل بعد بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  render() {\n    return <h2>I am a {this.props.color} Car!</h2>;\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car color=\"red\"/>\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Props در سازنده"
+    },
+    {
+      "type": "p",
+      "text": "اگر کامپوننت شما تابع سازنده دارد،\nprops همیشه باید به سازنده پاس داده شود و همچنین با متد super() به React.Component برسد."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  constructor(props) {\n    super(props);\n  }\n  render() {\n    return <h2>I am a {this.props.model}!</h2>;\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car model=\"Mustang\"/>\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "کامپوننت داخل کامپوننت"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانیم داخل کامپوننت‌های دیگر به کامپوننت‌ها ارجاع بدهیم:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  render() {\n    return <h2>I am a Car!</h2>;\n  }\n}\n\nclass Garage extends React.Component {\n  render() {\n    return (\n      <div>\n      <h1>Who lives in my Garage?</h1>\n      <Car />\n      </div>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Garage />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "کامپوننت‌ها در فایل‌ها"
+    },
+    {
+      "type": "p",
+      "text": "فلسفهٔ React استفادهٔ دوباره از کد است و می‌تواند هوشمندانه باشد که بعضی از\nکامپوننت‌هایتان را در فایل‌های جدا بگذارید."
+    },
+    {
+      "type": "p",
+      "text": "برای این کار، یک فایل جدید با پسوند ‎.jsx\nبسازید و کد را داخل آن بگذارید:"
+    },
+    {
+      "type": "p",
+      "text": "دقت کنید که فایل باید با import کردن React شروع شود (مثل قبل) و باید\nبا عبارت export default Car; تمام شود."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import React from 'react';\n\nclass Car extends React.Component {\n  render() {\n    return <h2>Hi, I am a Car!</h2>;\n  }\n}\n\nexport default Car;",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "برای این‌که بتوانید از کامپوننت Car استفاده کنید، باید فایل Vehicle.jsx را در برنامه\nimport کنید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client'\nimport Car from './Vehicle.jsx';\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "state در کامپوننت کلاسی React"
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت‌های کلاسی React یک شیء state داخلی (built-in) دارند."
+    },
+    {
+      "type": "p",
+      "text": "شاید دیده باشید که قبلاً در بخش سازندهٔ کامپوننت از state استفاده کردیم."
+    },
+    {
+      "type": "p",
+      "text": "شیء state جایی است که مقادیر خصوصیت‌های متعلق به کامپوننت را ذخیره می‌کنید."
+    },
+    {
+      "type": "p",
+      "text": "وقتی شیء state تغییر کند، کامپوننت دوباره رندر می‌شود."
+    },
+    {
+      "type": "h2",
+      "text": "ساخت شیء state"
+    },
+    {
+      "type": "p",
+      "text": "شیء state در سازنده مقداردهی اولیه می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  constructor(props) {\n    super(props);\n  this.state = {brand: \"Ford\"};\n  }\n  render() {\n    return (\n      <div>\n        <h1>My Car</h1>\n      </div>\n    );\n  }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "شیء state می‌تواند هر تعداد خصوصیت که بخواهید داشته باشد:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      brand: \"Ford\",\n      model: \"Mustang\",\n      color: \"red\",\n      year: 1964\n    };\n  }\n  render() {\n    return (\n      <div>\n        <h1>My Car</h1>\n      </div>\n    );\n  }\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از شیء state"
+    },
+    {
+      "type": "p",
+      "text": "در هر جای کامپوننت با سینتکس\nthis.state.propertyname به شیء state ارجاع بدهید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      brand: \"Ford\",\n      model: \"Mustang\",\n      color: \"red\",\n      year: 1964\n    };\n  }\n  render() {\n    return (\n      <div>\n        <h1>My {this.state.brand}</h1>\n        <p>\n          It is a {this.state.color}\n          {this.state.model}\n          from {this.state.year}.\n        </p>\n      </div>\n    );\n  }\n}",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "تغییر شیء state"
+    },
+    {
+      "type": "p",
+      "text": "برای تغییر یک مقدار در شیء state، از متد this.setState() استفاده کنید."
+    },
+    {
+      "type": "p",
+      "text": "وقتی مقداری در شیء state تغییر کند،\nکامپوننت دوباره رندر می‌شود؛ یعنی خروجی بر اساس\nمقدار(های) جدید عوض می‌شود."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Car extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      brand: \"Ford\",\n      model: \"Mustang\",\n      color: \"red\",\n      year: 1964\n    };\n  }\n  changeColor = () => {\n    this.setState({color: \"blue\"});\n  }\n  render() {\n    return (\n      <div>\n        <h1>My {this.state.brand}</h1>\n        <p>\n          It is a {this.state.color}\n          {this.state.model}\n          from {this.state.year}.\n        </p>\n        <button\n          type=\"button\"\n          onClick={this.changeColor}\n        >Change color</button>\n      </div>\n    );\n  }\n}",
+      "caption": "Example:"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "برای تغییر شیء state همیشه از متد setState() استفاده کنید؛\nاین کار مطمئن می‌شود که کامپوننت می‌فهمد به‌روز شده و متد render() را صدا می‌زند\n(و همهٔ متدهای چرخهٔ حیات دیگر را)."
+    },
+    {
+      "type": "h2",
+      "text": "چرخهٔ حیات کامپوننت‌ها"
+    },
+    {
+      "type": "p",
+      "text": "هر کامپوننت در React یک چرخهٔ حیات دارد که می‌توانید در\nسه فاز اصلی آن را زیر نظر بگیرید و کنترل کنید."
+    },
+    {
+      "type": "p",
+      "text": "این سه فاز عبارت‌اند از: سوار شدن (Mounting)، به‌روزرسانی (Updating) و\nپیاده شدن (Unmounting)."
+    },
+    {
+      "type": "h2",
+      "text": "سوار شدن (Mounting)"
+    },
+    {
+      "type": "p",
+      "text": "سوار شدن یعنی قرار دادن عنصرها در DOM."
+    },
+    {
+      "type": "p",
+      "text": "React چهار متد داخلی دارد که به این ترتیب، وقتی\nکامپوننت سوار می‌شود صدا زده می‌شوند:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "constructor()",
+        "getDerivedStateFromProps()",
+        "render()",
+        "componentDidMount()"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "متد render() الزامی است و\nهمیشه صدا زده می‌شود؛ بقیه اختیاری‌اند و اگر تعریفشان کنید صدا زده می‌شوند."
+    },
+    {
+      "type": "h3",
+      "text": "constructor"
+    },
+    {
+      "type": "p",
+      "text": "متد constructor() قبل از هر چیز دیگری صدا زده می‌شود،\nوقتی کامپوننت راه‌اندازی می‌شود، و جای طبیعی برای تنظیم state اولیه و بقیهٔ\nمقادیر اولیه است."
+    },
+    {
+      "type": "p",
+      "text": "متد constructor() با\nprops به‌عنوان آرگومان صدا زده می‌شود و همیشه باید\nاول با super(props) شروع کنید؛\nاین کار متد سازندهٔ والد را راه می‌اندازد و اجازه می‌دهد\nکامپوننت متدها را از والدش (React.Component) به ارث ببرد."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {favoritecolor: \"red\"};\n  }\n  render() {\n    return (\n      <h1>My Favorite Color is {this.state.favoritecolor}</h1>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h3",
+      "text": "getDerivedStateFromProps"
+    },
+    {
+      "type": "p",
+      "text": "متد getDerivedStateFromProps()\nدرست قبل از رندر عنصر(ها) در DOM صدا زده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "این‌جا جای طبیعی برای تنظیم شیء state بر اساس props\nاولیه است."
+    },
+    {
+      "type": "p",
+      "text": "این متد\nstate را به‌عنوان آرگومان می‌گیرد و شیئی با تغییرات\nstate برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر با رنگ موردعلاقهٔ\n«red» شروع می‌شود، اما\nمتد getDerivedStateFromProps() رنگ موردعلاقه را بر اساس\nویژگی favcol به‌روز می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {favoritecolor: \"red\"};\n  }\n  static getDerivedStateFromProps(props, state) {\n    return {favoritecolor: props.favcol };\n  }\n  render() {\n    return (\n      <h1>My Favorite Color is {this.state.favoritecolor}</h1>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header favcol=\"yellow\"/>\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h3",
+      "text": "render"
+    },
+    {
+      "type": "p",
+      "text": "متد render() الزامی است و همان\nمتدی است که واقعاً HTML را در DOM خروجی می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  render() {\n    return (\n      <h1>This is the content of the Header component</h1>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h3",
+      "text": "componentDidMount"
+    },
+    {
+      "type": "p",
+      "text": "متد componentDidMount() بعد از\nرندر شدن کامپوننت صدا زده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "این‌جا جایی است که دستورهایی را اجرا می‌کنید که لازم دارند کامپوننت از قبل در DOM قرار گرفته باشد."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {favoritecolor: \"red\"};\n  }\n  componentDidMount() {\n    setTimeout(() => {\n      this.setState({favoritecolor: \"yellow\"})\n    }, 1000)\n  }\n  render() {\n    return (\n      <h1>My Favorite Color is {this.state.favoritecolor}</h1>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "به‌روزرسانی (Updating)"
+    },
+    {
+      "type": "p",
+      "text": "فاز بعدی چرخهٔ حیات، وقتی است که کامپوننت به‌روز می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت هر وقت تغییری در\nstate یا props آن باشد به‌روز می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "React پنج متد داخلی دارد که وقتی کامپوننت\nبه‌روز می‌شود، به این ترتیب صدا زده می‌شوند:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "getDerivedStateFromProps()",
+        "shouldComponentUpdate()",
+        "render()",
+        "getSnapshotBeforeUpdate()",
+        "componentDidUpdate()"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "متد render() الزامی است و\nهمیشه صدا زده می‌شود؛ بقیه اختیاری‌اند و اگر تعریفشان کنید صدا زده می‌شوند."
+    },
+    {
+      "type": "h3",
+      "text": "getDerivedStateFromProps"
+    },
+    {
+      "type": "p",
+      "text": "در به‌روزرسانی‌ها هم متد getDerivedStateFromProps\nصدا زده می‌شود. این اولین متدی است که وقتی کامپوننت به‌روز می‌شود صدا زده می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "این‌جا هنوز جای طبیعی برای تنظیم شیء state بر اساس props اولیه است."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر دکمه‌ای دارد که رنگ موردعلاقه را به آبی عوض می‌کند، اما\nچون متد getDerivedStateFromProps() صدا زده می‌شود\nکه state را با رنگ ویژگی favcol به‌روز می‌کند، رنگ موردعلاقه\nهنوز\nزرد رندر می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {favoritecolor: \"red\"};\n  }\n  static getDerivedStateFromProps(props, state) {\n    return {favoritecolor: props.favcol };\n  }\n  changeColor = () => {\n    this.setState({favoritecolor: \"blue\"});\n  }\n  render() {\n    return (\n      <div>\n      <h1>My Favorite Color is {this.state.favoritecolor}</h1>\n      <button type=\"button\" onClick={this.changeColor}>Change color</button>\n      </div>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header favcol=\"yellow\" />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h3",
+      "text": "shouldComponentUpdate"
+    },
+    {
+      "type": "p",
+      "text": "در متد shouldComponentUpdate()\nمی‌توانید یک مقدار بولی برگردانید که مشخص می‌کند React باید رندر را ادامه بدهد یا نه."
+    },
+    {
+      "type": "p",
+      "text": "مقدار پیش‌فرض true است."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر نشان می‌دهد وقتی\nمتد shouldComponentUpdate() مقدار false برگرداند چه اتفاقی می‌افتد:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {favoritecolor: \"red\"};\n  }\n  shouldComponentUpdate() {\n    return false;\n  }\n  changeColor = () => {\n    this.setState({favoritecolor: \"blue\"});\n  }\n  render() {\n    return (\n      <div>\n      <h1>My Favorite Color is {this.state.favoritecolor}</h1>\n      <button type=\"button\" onClick={this.changeColor}>Change color</button>\n      </div>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {favoritecolor: \"red\"};\n  }\n  shouldComponentUpdate() {\n    return true;\n  }\n  changeColor = () => {\n    this.setState({favoritecolor: \"blue\"});\n  }\n  render() {\n    return (\n      <div>\n      <h1>My Favorite Color is {this.state.favoritecolor}</h1>\n      <button type=\"button\" onClick={this.changeColor}>Change color</button>\n      </div>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h3",
+      "text": "render"
+    },
+    {
+      "type": "p",
+      "text": "متد render() البته وقتی کامپوننت به‌روز می‌شود صدا زده می‌شود؛\nباید HTML را با تغییرات جدید دوباره در DOM رندر کند."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر دکمه‌ای دارد که رنگ موردعلاقه را به آبی عوض می‌کند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {favoritecolor: \"red\"};\n  }\n  changeColor = () => {\n    this.setState({favoritecolor: \"blue\"});\n  }\n  render() {\n    return (\n      <div>\n      <h1>My Favorite Color is {this.state.favoritecolor}</h1>\n      <button type=\"button\" onClick={this.changeColor}>Change color</button>\n      </div>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h3",
+      "text": "getSnapshotBeforeUpdate"
+    },
+    {
+      "type": "p",
+      "text": "در متد getSnapshotBeforeUpdate()\nبه props و\nstate قبل از به‌روزرسانی دسترسی دارید؛ یعنی\nحتی بعد از به‌روزرسانی هم می‌توانید ببینید مقادیر قبلاً چه بودند."
+    },
+    {
+      "type": "p",
+      "text": "اگر متد getSnapshotBeforeUpdate()\nوجود داشته باشد، باید متد\ncomponentDidUpdate() را هم بگذارید، وگرنه خطا می‌گیرید."
+    },
+    {
+      "type": "p",
+      "text": "مثال زیر شاید پیچیده به نظر برسد، اما همهٔ کاری که می‌کند این است:"
+    },
+    {
+      "type": "p",
+      "text": "وقتی کامپوننت در حال سوار شدن است، با رنگ\nموردعلاقهٔ «red» رندر می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "وقتی کامپوننت سوار شد، یک تایمر state را عوض می‌کند و\nبعد از یک ثانیه رنگ موردعلاقه «yellow» می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "این عمل فاز به‌روزرسانی را شروع می‌کند و چون این کامپوننت\nمتد getSnapshotBeforeUpdate() دارد، این متد اجرا می‌شود و پیامی\nدر عنصر خالی DIV1 می‌نویسد."
+    },
+    {
+      "type": "p",
+      "text": "بعد متد componentDidUpdate()\nاجرا می‌شود و پیامی در عنصر خالی DIV2 می‌نویسد:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "class Header extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = {favoritecolor: \"red\"};\n  }\n  componentDidMount() {\n    setTimeout(() => {\n      this.setState({favoritecolor: \"yellow\"})\n    }, 1000)\n  }\n  getSnapshotBeforeUpdate(prevProps, prevState) {\n    document.getElementById(\"div1\").innerHTML =\n    \"Before the update, the favorite was \" + prevState.favoritecolor;\n  }\n  componentDidUpdate() {\n    document.getElementById(\"div2\").innerHTML =\n    \"The updated favorite is \" + this.state.favoritecolor;\n  }\n  render() {\n    return (\n      <div>\n        <h1>My Favorite Color is {this.state.favoritecolor}</h1>\n        <div id=\"div1\"></div>\n        <div id=\"div2\"></div>\n      </div>\n    );\n  }\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+      "caption": "Example:"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در ویرایشگر امتحانی، یک کامپوننت کلاسی Car بسازید که extends React.Component داشته باشد و با render یک تیتر برگرداند.",
+      "hint": "ساختار class Car extends React.Component { render() { ... } } است."
+    },
+    {
+      "prompt": "به همان کامپوننت یک constructor با super(props) اضافه کنید و داخل state یک رنگ (مثلاً red) بگذارید و آن را رندر کنید.",
+      "hint": "قالب this.state = { color: \"red\" } داخل سازنده است."
+    },
+    {
+      "prompt": "یک دکمه به کامپوننت اضافه کنید که با this.setState رنگ را به blue عوض کند و تغییر را روی صفحه ببینید.",
+      "hint": "مستقیم به this.state مقدار ندهید؛ از this.setState() استفاده کنید."
+    },
+    {
+      "prompt": "متد componentDidMount را به کامپوننت اضافه کنید که بعد از سوار شدن، پیامی در کنسول ویرایشگر چاپ کند.",
+      "hint": "این متد بعد از رندر شدن کامپوننت صدا زده می‌شود."
+    },
+    {
+      "prompt": "متد shouldComponentUpdate را طوری بنویسید که یک‌بار false برگرداند و بررسی کنید با زدن دکمه، خروجی عوض نمی‌شود.",
+      "hint": "مقدار پیش‌فرض true است؛ با false رندر متوقف می‌شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "کامپوننت کلاسی حتماً باید چه چیزی داشته باشد؟",
+      "options": [
+        "عبارت extends React.Component و متد render()",
+        "فقط یک فایل CSS",
+        "یک تابع پیکانی",
+        "یک تگ form"
+      ],
+      "answer": 0,
+      "explanation": "کامپوننت کلاسی با extends React.Component ارث‌بری می‌کند و متد render() آن HTML را برمی‌گرداند."
+    },
+    {
+      "question": "state معمولاً کجا مقداردهی اولیه می‌شود؟",
+      "options": [
+        "داخل constructor",
+        "داخل فایل CSS",
+        "داخل تگ HTML",
+        "خارج از کامپوننت"
+      ],
+      "answer": 0,
+      "explanation": "شیء state در تابع سازنده (constructor) مقداردهی اولیه می‌شود."
+    },
+    {
+      "question": "برای تغییر state از چه روشی باید استفاده کرد؟",
+      "options": [
+        "this.setState()",
+        "مقداردهی مستقیم به this.state",
+        "تغییر DOM با دست",
+        "حذف کامپوننت"
+      ],
+      "answer": 0,
+      "explanation": "همیشه باید از setState() استفاده کرد تا کامپوننت بفهمد به‌روز شده و دوباره رندر شود."
+    },
+    {
+      "question": "سه فاز چرخهٔ حیات کامپوننت کدام‌اند؟",
+      "options": [
+        "Mounting ،Updating ،Unmounting",
+        "شروع، وسط، پایان",
+        "خواندن، نوشتن، حذف",
+        "import ،export ،render"
+      ],
+      "answer": 0,
+      "explanation": "سه فاز اصلی چرخهٔ حیات: سوار شدن، به‌روزرسانی و پیاده شدن‌اند."
+    },
+    {
+      "question": "متد componentDidMount کی صدا زده می‌شود؟",
+      "options": [
+        "بعد از رندر شدن کامپوننت",
+        "قبل از ساخته شدن کامپوننت",
+        "به‌جای render",
+        "فقط هنگام خطا"
+      ],
+      "answer": 0,
+      "explanation": "componentDidMount بعد از این‌که کامپوننت رندر و در DOM قرار گرفت صدا زده می‌شود."
+    }
+  ]
+}

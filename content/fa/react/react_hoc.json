@@ -1,0 +1,118 @@
+{
+ "slug": "react_hoc",
+ "course": "react",
+ "order": 42,
+ "url": "/react/react_hoc.asp",
+ "title": "کامپوننت‌های مرتبه‌بالا در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "کامپوننت‌های مرتبه‌بالا در ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "کامپوننت مرتبه‌بالا چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "کامپوننت مرتبه‌بالا (HOC) مثل پوششی است که قابلیت اضافه به کامپوننت‌های ری‌اکت شما می‌دهد. مثل قاب گوشی فکر کنید: قاب قابلیت جدید (مثل ضدآب بودن) اضافه می‌کند بدون اینکه خود گوشی عوض شود."
+  },
+  {
+   "type": "p",
+   "text": "نکته: HOCها تابع‌هایی هستند که یک کامپوننت می‌گیرند و نسخهٔ بهبودیافتهٔ همان کامپوننت را برمی‌گردانند."
+  },
+  {
+   "type": "h2",
+   "text": "مثال: اضافه کردن حاشیه"
+  },
+  {
+   "type": "p",
+   "text": "برای نشان دادن کار HOC یک مثال ساده می‌زنیم: اضافه کردن حاشیه به هر کامپوننت:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "// This is our HOC - it adds a border to any component\nfunction withBorder(WrappedComponent) {\n  return function NewComponent(props) {\n    return (\n      <div style={{ border: '2px solid blue', padding: '10px' }}>\n        <WrappedComponent {...props} />\n      </div>\n    );\n  };\n}\n\n// Simple component without border\nfunction Greeting({ name }) {\n  return <h1>Hello, {name}!</h1>;\n}\n\n// Create a new component with border\nconst GreetingWithBorder = withBorder(Greeting);\n\nfunction App() {\n  return (\n    <div>\n      <Greeting name=\"John\" />\n      <GreetingWithBorder name=\"Jane\" />\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "در این مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "withBorder همان HOC ماست: تابعی که کامپوننت می‌گیرد",
+    "یک کامپوننت جدید برمی‌گرداند که اصلی را در div حاشیه‌دار می‌پیچد",
+    "کامپوننت اصلی (Greeting) دست نخورده می‌ماند",
+    "هم نسخهٔ اصلی و هم نسخهٔ بهبودیافته قابل استفاده‌اند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "نکته: معمولاً HOCها را می‌شود با هوک‌های ری‌اکت جایگزین کرد، ولی HOCها هنوز برای دغدغه‌های مشترک مثل احراز هویت یا الگوهای گرفتن داده مفیدند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال را بخوانید و بگویید GreetingWithBorder از چه چیزی ساخته شده است.",
+   "hint": "از withBorder(Greeting)."
+  },
+  {
+   "prompt": "یک HOC جدید به نام withTitle بنویسید که بالای کامپوننت یک h2 اضافه کند."
+  },
+  {
+   "prompt": "Greeting اصلی و نسخهٔ حاشیه‌دار را کنار هم رندر کنید و تفاوت را ببینید."
+  },
+  {
+   "prompt": "به withBorder یک prop جدید بدهید که رنگ حاشیه را تعیین کند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "HOC چیست؟",
+   "options": [
+    "تابعی که کامپوننت می‌گیرد و نسخهٔ بهبودیافته برمی‌گرداند",
+    "یک هوک جدید",
+    "یک متد کلاس",
+    "یک تگ HTML"
+   ],
+   "answer": 0,
+   "explanation": "الگوی HOC یعنی پیچیدن کامپوننت برای افزودن رفتار، بدون تغییر خودش."
+  },
+  {
+   "question": "در مثال، withBorder چه اضافه می‌کند؟",
+   "options": [
+    "یک div با حاشیهٔ آبی دور کامپوننت",
+    "state جدید",
+    "رویداد کلیک",
+    "استایل به h1"
+   ],
+   "answer": 0,
+   "explanation": "کامپوننت اصلی با {...props} همان‌طور که هست داخل div قرار می‌گیرد."
+  },
+  {
+   "question": "کامپوننت اصلی (Greeting) چه می‌شود؟",
+   "options": [
+    "دست نخورده می‌ماند",
+    "حذف می‌شود",
+    "به کلاس تبدیل می‌شود",
+    "خطا می‌دهد"
+   ],
+   "answer": 0,
+   "explanation": "می‌شود هم‌زمان هم نسخهٔ اصلی و هم نسخهٔ بهبودیافته را استفاده کرد."
+  },
+  {
+   "question": "امروزه HOCها معمولاً با چه چیزی جایگزین می‌شوند؟",
+   "options": [
+    "هوک‌های ری‌اکت",
+    "کلاس‌ها",
+    "jQuery",
+    "CSS"
+   ],
+   "answer": 0,
+   "explanation": "ولی برای مواردی مثل احراز هویت هنوز کاربرد دارند."
+  }
+ ]
+}

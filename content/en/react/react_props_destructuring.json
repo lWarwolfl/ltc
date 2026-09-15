@@ -1,0 +1,82 @@
+{
+ "slug": "react_props_destructuring",
+ "course": "react",
+ "order": 22,
+ "url": "/react/react_props_destructuring.asp",
+ "title": "React Destructuring Props",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Destructuring Props"
+  },
+  {
+   "type": "h2",
+   "text": "Destructuring Props"
+  },
+  {
+   "type": "p",
+   "text": "You can limit the properties a component receives by using destructuring."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car({color}) {\n  return (\n    <h2>My car is {color}!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" model=\"Mustang\" color=\"red\" year={1969} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "React uses curly brackets to destructure props:\n  {color}."
+  },
+  {
+   "type": "p",
+   "text": "You can also destruct the properties you need inside the component."
+  },
+  {
+   "type": "p",
+   "text": "This way, the component receives all the properties, but the destructuring makes sure it only uses the ones it needs."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  const {brand, model} = props;\n  return (\n    <h2>I love my {brand} {model}!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" model=\"Mustang\" color=\"red\" year={1969} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Destructuring ...rest"
+  },
+  {
+   "type": "p",
+   "text": "When you don't know how many properties you will receive, you can use the ...rest operator."
+  },
+  {
+   "type": "p",
+   "text": "Meaning: you can specify the properties you need, and the rest will be stored in an object."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car({color, brand, ...rest}) {\n  return (\n    <h2>My {brand} {rest.model} is {color}!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" model=\"Mustang\" color=\"red\" year={1969} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Default Values"
+  },
+  {
+   "type": "p",
+   "text": "With Destructuring, you can set default values for props."
+  },
+  {
+   "type": "p",
+   "text": "If a property has no value, the default value will be used."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car({color = \"blue\", brand}) {\n  return (\n    <h2>My {color} {brand}!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" />\n);",
+   "caption": "Example"
+  }
+ ]
+}

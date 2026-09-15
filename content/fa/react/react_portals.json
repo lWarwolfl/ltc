@@ -1,0 +1,236 @@
+{
+ "slug": "react_portals",
+ "course": "react",
+ "order": 34,
+ "url": "/react/react_portals.asp",
+ "title": "پورتال‌ها در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پورتال‌ها در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "پورتال‌های ری‌اکت راهی می‌دهند که HTML را بیرون از سلسله‌مراتب DOM کامپوننت والد رندر کنید."
+  },
+  {
+   "type": "p",
+   "text": "این برای کامپوننت‌هایی مثل مودال، تول‌تیپ و دیالوگ که باید از چیدمان کانتینرشان بیرون بزنند خیلی مفید است."
+  },
+  {
+   "type": "h2",
+   "text": "پورتال‌های ری‌اکت چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "پورتال یک متد ری‌اکت است که در پکیج react-dom هست."
+  },
+  {
+   "type": "p",
+   "text": "برای رندر HTML بیرون از سلسله‌مراتب DOM کامپوننت والد استفاده می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "معمولاً عنصر HTML برگردانده‌شده فرزند کامپوننت والد است و این‌طور برمی‌گردد:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function myChild() {\n  return (\n    <div>\n      Welcome\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "ولی با متد createPortal، کد HTML فرزند کامپوننت والد نیست و بیرون از سلسله‌مراتب DOM آن رندر می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createPortal } from 'react-dom';\n\nfunction myChild() {\n  return createPortal(\n    <div>\n      Welcome\n    </div>,\n    document.body\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "سینتکس"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createPortal } from 'react-dom';\n\ncreatePortal(children, domNode)",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "آرگومان اول (children) هر محتوای ری‌اکتی قابل رندر است: عنصر، رشته یا fragment."
+  },
+  {
+   "type": "p",
+   "text": "آرگومان دوم (domNode) همان عنصر DOM است که پورتال باید به‌جاش آنجا گذاشته شود."
+  },
+  {
+   "type": "h2",
+   "text": "ساخت مودال با پورتال"
+  },
+  {
+   "type": "p",
+   "text": "پورتال‌های ری‌اکت برای کامپوننت‌هایی مثل مودال، تول‌تیپ و دیالوگ که باید از چیدمان کانتینرشان بیرون بزنند خیلی مفیدند."
+  },
+  {
+   "type": "p",
+   "text": "مثالی از کامپوننت مودال که بیرون از سلسله‌مراتب DOM والد رندر می‌شود:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport { useState } from 'react';\nimport { createPortal } from 'react-dom';\n\nfunction Modal({ isOpen, onClose, children }) {\n  if (!isOpen) return null;\n\n  return createPortal(\n    <div style={{\n      position: 'fixed',\n      top: 0,\n      left: 0,\n      right: 0,\n      bottom: 0,\n      backgroundColor: 'rgba(0, 0, 0, 0.5)',\n      display: 'flex',\n      alignItems: 'center',\n      justifyContent: 'center'\n    }}>\n      <div style={{\n        background: 'white',\n        padding: '20px',\n        borderRadius: '8px'\n      }}>\n        {children}\n        <button onClick={onClose}>Close</button>\n      </div>\n    </div>,\n    document.body\n  );\n}\n\nfunction MyApp() {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <div>\n      <h1>My App</h1>\n      <button onClick={() => setIsOpen(true)}>\n        Open Modal\n      </button>\n\n      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>\n        <h2>Modal Content</h2>\n        <p>This content is rendered outside the App component!</p>\n      </Modal>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyApp />\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال"
+  },
+  {
+   "type": "p",
+   "text": "اول تابع‌های لازم را ایمپورت می‌کنیم:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "createPortal از react-dom - برای ساختن پورتال",
+    "useState از react - برای مدیریت باز و بسته بودن مودال"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "کامپوننت Modal با createPortal محتوایش را مستقیم در عنصر document.body رندر می‌کند."
+  },
+  {
+   "type": "h2",
+   "text": "چرا از پورتال استفاده کنیم"
+  },
+  {
+   "type": "p",
+   "text": "پورتال‌ها برای این‌ها خیلی مفیدند:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "مودال‌ها و دیالوگ‌ها",
+    "تول‌تیپ‌ها",
+    "منوهای شناور",
+    "اعلان‌ها"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "هر عنصر رابط کاربری که باید از چیدمان کانتینرش «بیرون بزند»، مخصوصاً وقتی والد این‌ها را دارد:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "overflow: hidden",
+    "تداخل z-index",
+    "نیازهای پیچیدهٔ جایگاه"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "حباب رویداد در پورتال‌ها"
+  },
+  {
+   "type": "p",
+   "text": "با اینکه پورتال محتوا را در جای دیگری از درخت DOM رندر می‌کند، رویدادهای محتوای پورتال باز هم در درخت کامپوننت ری‌اکت بالا می‌روند، انگار پورتالی در کار نیست."
+  },
+  {
+   "type": "p",
+   "text": "مثلاً اگر دکمهٔ داخل پورتال کلیک شود، رویداد باز هم به کامپوننت والد می‌رسد و هندلر والد فعال می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport { useState } from 'react';\nimport { createPortal } from 'react-dom';\n\nfunction PortalButton({ onClick, children }) {\n  return createPortal(\n    <button\n      onClick={onClick}\n      style={{\n        position: 'fixed',\n        bottom: '20px',\n        right: '20px',\n        padding: '10px',\n        background: 'blue',\n        color: 'white'\n      }}>\n      {children}\n    </button>,\n    document.body\n  );\n}\n\nfunction App() {\n  const [count1, setCount1] = useState(0);\n  const [count2, setCount2] = useState(0);\n\n  return (\n    <div\n      style={{\n        padding: '20px',\n        border: '2px solid black',\n        margin: '20px'\n      }}\n      onClick={() => {\n        setCount1(c => c + 1);\n      }}>\n      <h2>Div Clicked: {count1}</h2>\n      <h2>Button Clicked: {count2}</h2>\n      <p>The floating button is rendered outside this box using a portal,\n          but its clicks still bubble up to this parent div!</p>\n      <p>Try to click the div element as well, to see the count increase</p>\n\n      <PortalButton\n        onClick={(e) => {\n          // This runs first\n          setCount2(c => c + 1);\n        }}>\n        Floating Button\n      </PortalButton>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال"
+  },
+  {
+   "type": "p",
+   "text": "در این مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کامپوننت PortalButton به‌صورت دکمه‌ای شناور در گوشهٔ پایین-راست صفحه با پورتال رندر می‌شود",
+    "با اینکه دکمه در DOM بیرون از div والد است، کلیک روی آن باعث می‌شود:",
+    "این نشان می‌دهد حباب رویداد از سلسله‌مراتب کامپوننت ری‌اکت می‌گذرد، نه سلسله‌مراتب DOM"
+   ]
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال مودال را بخوانید و بگویید اگر isOpen نادرست باشد چه برمی‌گردد.",
+   "hint": "null، یعنی هیچی رندر نمی‌شود."
+  },
+  {
+   "prompt": "متن داخل مودال را عوض کنید و دکمهٔ باز و بسته را امتحان کنید."
+  },
+  {
+   "prompt": "مقصد پورتال را از document.body به یک div دیگر در صفحه عوض کنید."
+  },
+  {
+   "prompt": "در مثال دوم هم روی div و هم روی دکمهٔ شناور بزنید و هر دو شمارنده را ببینید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "پورتال چه می‌کند؟",
+   "options": [
+    "HTML را بیرون از سلسله‌مراتب DOM والد رندر می‌کند",
+    "کامپوننت را حذف می‌کند",
+    "سرعت را زیاد می‌کند",
+    "state می‌سازد"
+   ],
+   "answer": 0,
+   "explanation": "خروجی در DOM جای دیگری می‌نشیند ولی در درخت ری‌اکت همان‌جا می‌ماند."
+  },
+  {
+   "question": "createPortal چند آرگومان می‌گیرد و چه هستند؟",
+   "options": [
+    "دو تا: محتوا و گرهٔ DOM مقصد",
+    "یکی: فقط محتوا",
+    "سه تا",
+    "هیچکدام"
+   ],
+   "answer": 0,
+   "explanation": "سینتکس: createPortal(children, domNode)."
+  },
+  {
+   "question": "پورتال بیشتر به درد چه کامپوننت‌هایی می‌خورد؟",
+   "options": [
+    "مودال و تول‌تیپ و اعلان",
+    "فرم ورود",
+    "جدول",
+    "تیتر صفحه"
+   ],
+   "answer": 0,
+   "explanation": "هر چیزی که باید از overflow و z-index والد بیرون بزند."
+  },
+  {
+   "question": "رویداد دکمهٔ داخل پورتال به کجا می‌رسد؟",
+   "options": [
+    "به والد در درخت کامپوننت ری‌اکت هم می‌رسد",
+    "هیچ‌جا نمی‌رسد",
+    "فقط در همان DOM می‌ماند",
+    "به window نمی‌رسد"
+   ],
+   "answer": 0,
+   "explanation": "حباب رویداد از سلسله‌مراتب ری‌اکت می‌گذرد نه DOM."
+  }
+ ]
+}

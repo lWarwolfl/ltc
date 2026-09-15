@@ -1,0 +1,272 @@
+{
+  "slug": "react_css_modules",
+  "course": "react",
+  "order": 37,
+  "url": "/react/react_css_modules.asp",
+  "title": "ماژول‌های CSS در React",
+  "summary": "با CSS Modules استایل هر کامپوننت محلی (scoped) می‌ماند و نام کلاس‌ها با هم تداخل نمی‌کنند. این درس ساخت ماژول، کلاس‌های چندتایی، composes و کلاس‌های سراسری را نشان می‌دهد.",
+  "objectives": [
+    "یک فایل ‎.module.css بسازید و در کامپوننت استفاده کنید",
+    "چند کلاس را ترکیب کنید و با composes از هم ارث ببرید",
+    "با سینتکس :global کلاس سراسری تعریف کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ماژول‌های CSS در React"
+    },
+    {
+      "type": "p",
+      "text": "ماژول‌های CSS اجازه می‌دهند CSS بنویسید که به‌صورت محلی فقط برای یک کامپوننت خاص اعمال شود."
+    },
+    {
+      "type": "p",
+      "text": "این کار جلوی تداخل نام کلاس‌های CSS را می‌گیرد و استایل‌ها را قابل‌نگهداری‌تر می‌کند."
+    },
+    {
+      "type": "h2",
+      "text": "ماژول‌های CSS چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "در React، ماژول‌های CSS فایل‌های CSS هستند که نام کلاس‌هایشان به‌صورت پیش‌فرض محلی (scoped) است."
+    },
+    {
+      "type": "p",
+      "text": "نکته: ماژول‌های CSS بخشی از کتابخانهٔ اصلی React نیستند، اما خیلی از ابزارهای ساخت React از آن‌ها پشتیبانی می‌کنند."
+    },
+    {
+      "type": "p",
+      "text": "فایل CSS باید پسوند ‎.module.css داشته باشد و می‌توان آن را در فایل(های) React وارد (import) کرد."
+    },
+    {
+      "type": "h2",
+      "text": "ساخت یک ماژول CSS"
+    },
+    {
+      "type": "p",
+      "text": "یک ماژول CSS به نام Button.module.css می‌سازیم که چند دکمه را استایل می‌دهد."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": ".mybutton {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "استفاده از ماژول CSS"
+    },
+    {
+      "type": "p",
+      "text": "ماژول CSS را در کامپوننت import و استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import styles from './Button.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <button className={styles.mybutton}>\n        My Button\n      </button>\n    </div>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h3",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "شیء styles را از ماژول CSS وارد می‌کنیم",
+        "با styles.mybutton به کلاس mybutton دسترسی پیدا می‌کنیم",
+        "نام واقعی کلاس دکمه یکتا خواهد بود (مثلاً mybutton_q1obu_1_)"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "چند کلاس"
+    },
+    {
+      "type": "p",
+      "text": "در مثال بالا فقط از یک کلاس استفاده کردیم، اما حالا چند کلاس اضافه می‌کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": ".mybutton {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.primary {\n  background-color: #007bff;\n  color: white;\n}\n\n.secondary {\n  background-color: #6c757d;\n  color: white;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "برای نشان دادن تغییرها، به دو دکمه نیاز داریم که هر کدام دو کلاس دارند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import styles from './Button.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <button className={`${styles.mybutton} ${styles.primary}`}>\n        My Primary Button\n      </button>\n      <button className={`${styles.mybutton} ${styles.secondary}`}>\n        My Secondary Button\n      </button>\n    </div>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "ترکیب کلاس‌ها"
+    },
+    {
+      "type": "p",
+      "text": "ماژول‌های CSS اجازه می‌دهند کلاس‌ها را با کلیدواژهٔ composes ترکیب کنید:"
+    },
+    {
+      "type": "p",
+      "text": "یعنی یک کلاس می‌تواند استایل‌های کلاس دیگر را به ارث ببرد."
+    },
+    {
+      "type": "p",
+      "text": "در مثال قبل، هم کلاس primary\n و هم کلاس secondary\n به استایل‌های کلاس mybutton وابسته‌اند."
+    },
+    {
+      "type": "p",
+      "text": "این کار با اضافه کردن composes: mybutton به کلاس‌های primary و secondary انجام می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": ".mybutton {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.primary {\n  composes: mybutton;\n  background-color: #007bff;\n  color: white;\n}\n\n.secondary {\n  composes: mybutton;\n  background-color: #6c757d;\n  color: white;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "حالا کافی است در کامپوننت فقط از کلاس‌های primary\n و secondary استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import styles from './Button.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <button className={styles.primary}>\n        Primary Button\n      </button>\n      <button className={styles.secondary}>\n        Secondary Button\n      </button>\n    </div>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "کلاس‌های سراسری"
+    },
+    {
+      "type": "p",
+      "text": "وقتی از ماژول‌های CSS استفاده می‌کنید، کلاس‌های داخل فایل ‎.module.css فقط در کامپوننتی قابل‌استفاده‌اند که آن‌ها را import کرده است.\n این کار با اضافه کردن هش نام فایل و یک شناسهٔ یکتا به ابتدای نام کلاس انجام می‌شود.\n استفاده از یک نام کلاس در فایل‌های مختلف امن است، چون نام‌ها یکتا می‌شوند."
+    },
+    {
+      "type": "p",
+      "text": "اما گاهی می‌خواهید کلاس‌هایتان سراسری باشند و در کامپوننت‌های دیگر هم استفاده شوند."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید این کار را با سینتکس :global انجام دهید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": ":global(.myheader) {\n  padding: 10px 20px;\n  font-size: 50px;\n  color: white;\n  background-color: dodgerblue;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "پوشش :global کلاس را برای همه در دسترس می‌کند."
+    },
+    {
+      "type": "p",
+      "text": "آن به‌سادگی myheader. نامیده می‌شود و مثل myheader_q1obu_1_ پیشوند و شناسهٔ یکتا نمی‌گیرد."
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید در کامپوننت‌ها این‌طور از آن استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import styles from './BlueHeader.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <h1 className=\"myheader\">\n        My Header\n      </h1>\n    </div>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "ترکیب کلاس‌های سراسری و محلی"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانید کلاس‌های سراسری و محلی را در یک ماژول CSS ترکیب کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": ":global(.myheader) {\n  padding: 10px 20px;\n  font-size: 50px;\n  color: white;\n  background-color: dodgerblue;\n}\n\n.myparagraph {\n  font-size: 20px;\n  color: white;\n  background-color: purple;\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "در کامپوننت‌ها این‌طور از آن استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import styles from './MyStyles.module.css';\n\nfunction App() {\n  return (\n    <div>\n      <h1 className=\"myheader\">\n        My Header\n      </h1>\n      <p className={styles.myparagraph}>\n        My Paragraph\n      </p>\n    </div>\n  );\n}",
+      "caption": "Example"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در ویرایشگر امتحانی، فایل Button.module.css با کلاس mybutton بسازید و با styles.mybutton به یک دکمه بدهید.",
+      "hint": "فایل باید پسوند ‎.module.css داشته باشد و با import styles خوانده شود."
+    },
+    {
+      "prompt": "دو کلاس primary و secondary به همان فایل اضافه کنید و روی دو دکمهٔ جدا اعمال کنید.",
+      "hint": "هر دکمه دو کلاس می‌گیرد؛ مثلاً `${styles.mybutton} ${styles.primary}`."
+    },
+    {
+      "prompt": "با composes: mybutton استایل مشترک دکمه را به کلاس primary منتقل کنید تا فقط یک کلاس روی دکمه بگذارید.",
+      "hint": "داخل کلاس primary بنویسید composes: mybutton;"
+    },
+    {
+      "prompt": "با سینتکس :global یک کلاس myheader بسازید و آن را بدون پیشوند styles در دو کامپوننت استفاده کنید.",
+      "hint": "قالب :global(.myheader) { ... } است و در JSX با نام سادهٔ myheader صدا زده می‌شود."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "پسوند فایل ماژول CSS چیست؟",
+      "options": [
+        "‎.module.css",
+        "‎.css.global",
+        "‎.module.js",
+        "‎.react.css"
+      ],
+      "answer": 0,
+      "explanation": "فایل CSS باید پسوند ‎.module.css داشته باشد تا به‌عنوان ماژول شناخته شود."
+    },
+    {
+      "question": "کلیدواژهٔ composes چه کار می‌کند؟",
+      "options": [
+        "یک کلاس استایل کلاس دیگر را به ارث می‌برد",
+        "فایل CSS را حذف می‌کند",
+        "کلاس را سراسری می‌کند",
+        "استایل را غیرفعال می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "با composes: mybutton یک کلاس می‌تواند استایل‌های کلاس دیگر را به ارث ببرد."
+    },
+    {
+      "question": "سینتکس :global چه اثری دارد؟",
+      "options": [
+        "کلاس را بدون پیشوند یکتا، برای همهٔ کامپوننت‌ها در دسترس می‌کند",
+        "کلاس را حذف می‌کند",
+        "کلاس را فقط برای یک دکمه نگه می‌دارد",
+        "نام فایل را عوض می‌کند"
+      ],
+      "answer": 0,
+      "explanation": "پوشش :global کلاس را با همان نام ساده برای همه در دسترس می‌کند."
+    },
+    {
+      "question": "چرا استفاده از یک نام کلاس در فایل‌های ماژول مختلف امن است؟",
+      "options": [
+        "چون هر کلاس یک نام یکتای پیشونددار می‌گیرد",
+        "چون مرورگر نام‌ها را نادیده می‌گیرد",
+        "چون فقط یک فایل می‌تواند استایل داشته باشد",
+        "چون React خطا می‌دهد"
+      ],
+      "answer": 0,
+      "explanation": "به هر کلاس هش نام فایل و شناسهٔ یکتا اضافه می‌شود، پس نام‌ها با هم تداخل نمی‌کنند."
+    }
+  ]
+}

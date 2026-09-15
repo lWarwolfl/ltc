@@ -1,0 +1,27 @@
+{
+ "slug": "react_forms_submit",
+ "course": "react",
+ "order": 28,
+ "url": "/react/react_forms_submit.asp",
+ "title": "React Submit Forms",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Submit Forms"
+  },
+  {
+   "type": "h2",
+   "text": "Submitting Forms"
+  },
+  {
+   "type": "p",
+   "text": "You can control the submit action by adding an event handler in the onSubmit attribute for the <form>:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [name, setName] = useState(\"\");\n\n  function handleChange(e) {\n    setName(e.target.value);\n  }\n\n  function handleSubmit(e) {\n    e.preventDefault();\n    alert(name);\n  }\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <label>Enter your name:\n        <input\n          type=\"text\"\n          value={name}\n          onChange={handleChange}\n        />\n      </label>\n      <input type=\"submit\" />\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  }
+ ]
+}

@@ -1,0 +1,233 @@
+{
+  "slug": "react_components",
+  "course": "react",
+  "order": 19,
+  "url": "/react/react_components.asp",
+  "title": "کامپوننت‌های React",
+  "summary": "کامپوننت‌ها قطعه‌های مستقل و قابل‌استفادهٔ دوبارهٔ کد هستند که HTML برمی‌گردانند. در این درس ساخت، رندر، props و گذاشتن کامپوننت‌ها در فایل جدا را یاد می‌گیرید.",
+  "objectives": [
+    "کامپوننت تابعی بسازید و آن را با تگ <Car /> رندر کنید",
+    "با props به کامپوننت آرگومان پاس بدهید",
+    "کامپوننت‌ها را داخل هم و داخل فایل‌های جدا استفاده کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "کامپوننت‌های React"
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت‌ها مثل توابعی هستند که عنصرهای HTML برمی‌گردانند."
+    },
+    {
+      "type": "h2",
+      "text": "کامپوننت‌های React"
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت‌ها قطعه‌های مستقل و قابل‌استفادهٔ دوبارهٔ کد هستند.\nکارشان مثل توابع JavaScript است،\nبا این تفاوت که ایزوله کار می‌کنند و HTML برمی‌گردانند."
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت‌ها دو نوع‌اند: کامپوننت کلاسی و کامپوننت تابعی؛ در این آموزش روی کامپوننت‌های تابعی تمرکز می‌کنیم."
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "در کدبیس‌های قدیمی React ممکن است بیشتر با کامپوننت‌های کلاسی روبه‌رو شوید.\nالان پیشنهاد می‌شود از کامپوننت‌های تابعی همراه با هوک‌ها استفاده کنید، نه کامپوننت کلاسی.\nکامپوننت‌های کلاسی هنوز پشتیبانی می‌شوند؛ برای اطلاعات بیشتر بخش کامپوننت‌های کلاسی را ببینید."
+    },
+    {
+      "type": "h2",
+      "text": "ساخت اولین کامپوننت"
+    },
+    {
+      "type": "p",
+      "text": "وقتی یک کامپوننت React می‌سازید، نام کامپوننت حتماً باید با حرف بزرگ شروع شود."
+    },
+    {
+      "type": "p",
+      "text": "کامپوننت‌های React کد HTML برمی‌گردانند."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Car() {\n  return (\n    <h2>Hi, I am a Car!</h2>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "رندر کردن یک کامپوننت"
+    },
+    {
+      "type": "p",
+      "text": "حالا برنامهٔ React شما یک کامپوننت به نام Car دارد که یک عنصر <h2> برمی‌گرداند."
+    },
+    {
+      "type": "p",
+      "text": "برای استفاده از این کامپوننت در برنامه، مثل این به آن ارجاع بدهید:\n<Car />"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "createRoot(document.getElementById('root')).render(\n  <Car />\n)",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "Props"
+    },
+    {
+      "type": "p",
+      "text": "می‌توان آرگومان‌ها را به‌صورت props (مخفف properties) وارد کامپوننت کرد."
+    },
+    {
+      "type": "p",
+      "text": "آرگومان‌ها را مثل ویژگی‌های HTML به کامپوننت می‌فرستید."
+    },
+    {
+      "type": "p",
+      "text": "دربارهٔ props در فصل React Props بیشتر یاد می‌گیرید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Car(props) {\n  return (\n    <h2>I am a {props.color} Car!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car color=\"red\"/>\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "کامپوننت داخل کامپوننت"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانیم داخل کامپوننت‌های دیگر به کامپوننت‌ها ارجاع بدهیم:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Car() {\n  return (\n    <h2>I am a Car!</h2>\n  );\n}\n\nfunction Garage() {\n  return (\n    <>\n      <h1>Who lives in my Garage?</h1>\n      <Car />\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Garage />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "رندر کردن یک کامپوننت دو بار"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانیم یک کامپوننت را چند بار رندر کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Car() {\n  return (\n    <h2>I am a Car!</h2>\n  );\n}\n\nfunction Garage() {\n  return (\n    <>\n      <h1>Who lives in my Garage?</h1>\n      <Car />\n      <Car />\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Garage />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "مثال بالا شاید کمی بی‌فایده به نظر برسد، اما اگر محتوای کامپوننت Car را با آرگومان عوض کنیم، معنادارتر می‌شود:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Car(props) {\n  return (\n    <h2>I am a {props.brand}!</h2>\n  );\n}\n\nfunction Garage() {\n  return (\n    <>\n      <h1>Who lives in my Garage?</h1>\n      <Car brand=\"Ford\" />\n      <Car brand=\"BMW\" />\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Garage />\n);",
+      "caption": "Example"
+    },
+    {
+      "type": "h2",
+      "text": "کامپوننت‌ها در فایل‌ها"
+    },
+    {
+      "type": "p",
+      "text": "فلسفهٔ React استفادهٔ دوباره از کد است و ایدهٔ خوبی است که کامپوننت‌ها را در فایل‌های جدا بگذارید."
+    },
+    {
+      "type": "p",
+      "text": "برای این کار، در پوشهٔ src یک فایل جدید با پسوند ‎.jsx بسازید و کد را داخل آن بگذارید:"
+    },
+    {
+      "type": "note",
+      "variant": "note",
+      "text": "دقت کنید که نام فایل باید با حرف بزرگ شروع شود."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Car() {\n  return (\n    <h2>Hi, I am a Car!</h2>\n  );\n}\n\nexport default Car;",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "برای این‌که بتوانید از کامپوننت Car استفاده کنید، باید فایل Vehicle.jsx را در برنامه import کنید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client'\nimport Car from './Vehicle.jsx';\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n);",
+      "caption": "Example"
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در ویرایشگر امتحانی یک کامپوننت تابعی Car بسازید که «!Hi, I am a Car» را برگرداند و آن را با <Car /> رندر کنید.",
+      "hint": "نام کامپوننت با حرف بزرگ شروع شود و خروجی JSX برگرداند."
+    },
+    {
+      "prompt": "به کامپوننت Car یک props به نام color بدهید (مثلاً red) و رنگ را داخل جمله نمایش دهید.",
+      "hint": "آرگومان را مثل ویژگی HTML بفرستید: <Car color=\"red\" /> و با props.color بخوانید."
+    },
+    {
+      "prompt": "یک کامپوننت Garage بسازید که داخلش دو بار کامپوننت Car را با brandهای متفاوت رندر کند.",
+      "hint": "کامپوننت‌ها را می‌توان داخل کامپوننت دیگر صدا زد."
+    },
+    {
+      "prompt": "کامپوننت Car را به یک فایل جدا به نام Vehicle.jsx منتقل کنید، آن را export و در فایل اصلی import کنید.",
+      "hint": "نام فایل با حرف بزرگ شروع شود و در پایان export default Car; را بگذارید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "نام کامپوننت React باید با چه چیزی شروع شود؟",
+      "options": [
+        "حرف بزرگ",
+        "حرف کوچک",
+        "عدد",
+        "آندرلاین"
+      ],
+      "answer": 0,
+      "explanation": "نام کامپوننت حتماً باید با حرف بزرگ شروع شود تا React آن را از تگ‌های معمولی HTML تشخیص بدهد."
+    },
+    {
+      "question": "props چیست؟",
+      "options": [
+        "آرگومان‌هایی که مثل ویژگی HTML به کامپوننت پاس داده می‌شوند",
+        "یک متد داخلی مرورگر",
+        "نوعی فایل CSS",
+        "خطای کامپایل"
+      ],
+      "answer": 0,
+      "explanation": "props مخفف properties است؛ آرگومان‌ها را مثل ویژگی‌های HTML به کامپوننت می‌فرستید."
+    },
+    {
+      "question": "برای استفاده از کامپوننت Car در برنامه چه می‌نویسیم؟",
+      "options": [
+        "<Car />",
+        "Car()",
+        "<car>",
+        "import Car"
+      ],
+      "answer": 0,
+      "explanation": "کامپوننت را مثل یک تگ HTML با نام خودش صدا می‌زنیم: <Car />."
+    },
+    {
+      "question": "برای استفادهٔ دوباره از کامپوننت در فایل جدا چه باید کرد؟",
+      "options": [
+        "کد را در فایل ‎.jsx با نام با حرف بزرگ گذاشت و export/import کرد",
+        "کد را فقط می‌توان در یک فایل نگه داشت",
+        "باید نام فایل حتماً کوچک باشد",
+        "کامپوننت را نمی‌توان از فایل دیگری صدا زد"
+      ],
+      "answer": 0,
+      "explanation": "کامپوننت را در فایل جدا با پسوند ‎.jsx می‌گذاریم، export می‌کنیم و هرجا لازم بود import می‌کنیم."
+    }
+  ]
+}

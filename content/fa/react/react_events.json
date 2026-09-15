@@ -1,0 +1,156 @@
+{
+ "slug": "react_events",
+ "course": "react",
+ "order": 24,
+ "url": "/react/react_events.asp",
+ "title": "رویدادها در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "رویدادها در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "مثل رویدادهای DOM در HTML، ری‌اکت هم می‌تواند بر اساس رویدادهای کاربر کاری انجام دهد."
+  },
+  {
+   "type": "p",
+   "text": "ری‌اکت همان رویدادهای HTML را دارد: click و change و mouseover و غیره."
+  },
+  {
+   "type": "h2",
+   "text": "افزودن رویداد"
+  },
+  {
+   "type": "p",
+   "text": "رویدادهای ری‌اکت با سینتکس camelCase نوشته می‌شوند:"
+  },
+  {
+   "type": "p",
+   "text": "onClick به‌جای onclick."
+  },
+  {
+   "type": "p",
+   "text": "هندلرهای رویداد ری‌اکت داخل آکولاد نوشته می‌شوند:"
+  },
+  {
+   "type": "p",
+   "text": "onClick={shoot} به‌جای onclick=\"shoot()\"."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onClick={shoot}>Take the Shot!</button>",
+   "caption": "React:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onclick=\"shoot()\">Take the Shot!</button>",
+   "caption": "HTML:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Football() {\n  const shoot = () => {\n    alert(\"Great Shot!\");\n  }\n\n  return (\n    <button onClick={shoot}>Take the shot!</button>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Football />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "ارسال آرگومان"
+  },
+  {
+   "type": "p",
+   "text": "برای فرستادن آرگومان به هندلر رویداد، از تابع arrow استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Football() {\n  const shoot = (a) => {\n    alert(a);\n  }\n\n  return (\n    <button onClick={() => shoot(\"Goal!\")}>Take the shot!</button>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Football />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "شیء رویداد ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "هندلرهای رویداد به رویداد ری‌اکتی که تابع را فعال کرده دسترسی دارند."
+  },
+  {
+   "type": "p",
+   "text": "در مثال ما رویداد، رویداد «click» است."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Football() {\n  const shoot = (a, b) => {\n    alert(b.type);\n    /*\n    'b' represents the React event that triggered the function,\n    in this case the 'click' event\n    */\n  }\n\n  return (\n    <button onClick={(event) => shoot(\"Goal!\", event)}>Take the shot!</button>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Football />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "این وقتی به فصل فرم برسیم به کار می‌آید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال Football را اجرا کنید و روی دکمه بزنید تا alert را ببینید."
+  },
+  {
+   "prompt": "متن alert را عوض کنید و دوباره امتحان کنید."
+  },
+  {
+   "prompt": "یک دکمهٔ دوم اضافه کنید که با کلیک، آرگومان متفاوتی («Miss!») بفرستد.",
+   "hint": "از onClick={() => shoot(\"Miss!\")} استفاده کنید."
+  },
+  {
+   "prompt": "در مثال سوم، b.type را در alert ببینید و بعد یک onChange روی input امتحان کنید تا type دیگری ببینید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "رویداد کلیک در ری‌اکت چگونه نوشته می‌شود؟",
+   "options": [
+    "onClick={shoot}",
+    "onclick=\"shoot()\"",
+    "click={shoot}",
+    "on-click={shoot}"
+   ],
+   "answer": 0,
+   "explanation": "کمل‌کیس و آکولاد: این دو تفاوت اصلی با HTML است."
+  },
+  {
+   "question": "برای فرستادن آرگومان به هندلر چه می‌کنیم؟",
+   "options": [
+    "از تابع arrow استفاده می‌کنیم",
+    "مستقیم صدایش می‌زنیم: onClick={shoot(\"x\")}",
+    "آرگومان نمی‌شود فرستاد",
+    "از props استفاده می‌کنیم"
+   ],
+   "answer": 0,
+   "explanation": "اگر مستقیم صدا بزنیم هنگام رندر اجرا می‌شود؛ arrow اجرا را به زمان کلیک می‌اندازد."
+  },
+  {
+   "question": "در مثال سوم، b چیست؟",
+   "options": [
+    "شیء رویداد ری‌اکت که تابع را فعال کرد",
+    "متن دکمه",
+    "state کامپوننت",
+    "یک prop"
+   ],
+   "answer": 0,
+   "explanation": "b همان event است و b.type در اینجا click می‌شود."
+  },
+  {
+   "question": "کدام رویدادها در ری‌اکت هست؟",
+   "options": [
+    "همان رویدادهای HTML مثل click و change",
+    "فقط click",
+    "رویدادهای کاملاً متفاوت",
+    "هیچ رویدادی"
+   ],
+   "answer": 0,
+   "explanation": "ری‌اکت همان رویدادها را با نام کمل‌کیس ارائه می‌دهد."
+  }
+ ]
+}

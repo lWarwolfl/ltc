@@ -1,0 +1,227 @@
+{
+ "slug": "react_jsx",
+ "course": "react",
+ "order": 15,
+ "url": "/react/react_jsx.asp",
+ "title": "React JSX",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React JSX"
+  },
+  {
+   "type": "h2",
+   "text": "What is JSX?"
+  },
+  {
+   "type": "p",
+   "text": "JSX stands for JavaScript XML."
+  },
+  {
+   "type": "p",
+   "text": "JSX allows us to write HTML in React."
+  },
+  {
+   "type": "p",
+   "text": "JSX makes it easier to write and add HTML in React."
+  },
+  {
+   "type": "h2",
+   "text": "Coding JSX"
+  },
+  {
+   "type": "p",
+   "text": "JSX allows us to write HTML elements in JavaScript and place them in the DOM\nwithout any createElement()  and/or\nappendChild() methods."
+  },
+  {
+   "type": "p",
+   "text": "JSX converts HTML tags into react elements."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "You are not required to use JSX, but JSX makes it easier to write React applications."
+  },
+  {
+   "type": "p",
+   "text": "Here are two examples. The first uses JSX and the second does\nnot:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <h1>I Love JSX!</h1>;\n\ncreateRoot(document.getElementById('root')).render(\n  myElement\n);",
+   "caption": "Example 1"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = React.createElement('h1', {}, 'I do not use JSX!');\n\ncreateRoot(document.getElementById('root')).render(\n  myElement\n);",
+   "caption": "Example 2"
+  },
+  {
+   "type": "p",
+   "text": "As you can see in the first example, JSX allows us to write HTML directly within the JavaScript code."
+  },
+  {
+   "type": "p",
+   "text": "JSX is an extension of the JavaScript language based on ES6, and is translated into regular JavaScript at runtime."
+  },
+  {
+   "type": "h2",
+   "text": "Expressions in JSX"
+  },
+  {
+   "type": "p",
+   "text": "With JSX you can write expressions inside curly braces { }."
+  },
+  {
+   "type": "p",
+   "text": "The expression can be a React variable, or property, or any other valid JavaScript expression. JSX will execute the expression and return the result:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <h1>React is {5 + 5} times better with JSX</h1>;",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Inserting a Large Block of HTML"
+  },
+  {
+   "type": "p",
+   "text": "To write HTML on multiple lines, put the HTML inside parentheses:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = (\n  <ul>\n    <li>Apples</li>\n    <li>Bananas</li>\n    <li>Cherries</li>\n  </ul>\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "One Top Level Element"
+  },
+  {
+   "type": "p",
+   "text": "The HTML code must be wrapped in ONE top level element."
+  },
+  {
+   "type": "p",
+   "text": "So if you like to write two paragraphs, you must put them inside a\nparent element, like a div element."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = (\n  <div>\n    <p>I am a paragraph.</p>\n    <p>I am a paragraph too.</p>\n  </div>\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JSX will throw an error if the HTML is not correct, or if the HTML misses a\nparent element."
+  },
+  {
+   "type": "p",
+   "text": "Alternatively, you can use a \"fragment\" to wrap multiple lines.\nThis will prevent unnecessarily adding extra nodes to the DOM."
+  },
+  {
+   "type": "p",
+   "text": "A fragment looks like an empty HTML tag: <></>."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = (\n  <>\n    <p>I am a paragraph.</p>\n    <p>I am a paragraph too.</p>\n  </>\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Elements Must be Closed"
+  },
+  {
+   "type": "p",
+   "text": "JSX follows XML rules, and therefore HTML elements must be properly closed."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <input type=\"text\" />;",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "JSX will throw an error if the HTML is not properly closed."
+  },
+  {
+   "type": "h2",
+   "text": "Attribute class = className"
+  },
+  {
+   "type": "p",
+   "text": "The class attribute is a much used attribute\nin HTML, but since JSX is rendered as JavaScript, and the\nclass keyword is a reserved word in JavaScript,\nyou are not allowed to use it in JSX."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Use attribute className instead."
+  },
+  {
+   "type": "p",
+   "text": "JSX solved this by using className instead.\nWhen JSX is rendered, it translates className\nattributes into class attributes."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <h1 className=\"myclass\">Hello World</h1>;",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Comments in JSX"
+  },
+  {
+   "type": "p",
+   "text": "Comments in JSX are written with {/* */}"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const myElement = <h1>Hello {/* Wonderful */} World </h1>;",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "JSX in React Components"
+  },
+  {
+   "type": "p",
+   "text": "React uses components to build UIs. Components are independent and reusable bits of code."
+  },
+  {
+   "type": "p",
+   "text": "React components are like JavaScript functions, and return HTML."
+  },
+  {
+   "type": "p",
+   "text": "JSX works perfect inside React components"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  return (\n    <>\n      <h2>My Car</h2>\n      <p>It is a Ford Mustang.</p>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n)",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Inside the components, you can do some other operations before returning the HTML:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  const brand = \"Ford\";\n  const model = \"Mustang\";\n  return (\n    <>\n      <h2>My Car</h2>\n      <p>It is a {brand} {model}.</p>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n)",
+   "caption": "Example"
+  }
+ ]
+}

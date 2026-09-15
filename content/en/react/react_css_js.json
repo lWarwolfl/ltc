@@ -1,0 +1,177 @@
+{
+ "slug": "react_css_js",
+ "course": "react",
+ "order": 38,
+ "url": "/react/react_css_js.asp",
+ "title": "React CSS-in-JS",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React CSS-in-JS"
+  },
+  {
+   "type": "h2",
+   "text": "What is CSS-in-JS?"
+  },
+  {
+   "type": "p",
+   "text": "CSS-in-JS is a styling technique where you can write CSS directly in your JavaScript code."
+  },
+  {
+   "type": "p",
+   "text": "This approach allows you to:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Write CSS using JavaScript",
+    "Create component-scoped styles",
+    "Use dynamic styles based on props",
+    "Avoid CSS class name conflicts"
+   ]
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "In this tutorial, we'll use the popular styled-components library."
+  },
+  {
+   "type": "h2",
+   "text": "Getting Started"
+  },
+  {
+   "type": "p",
+   "text": "CSS-in-JS is not a part of the React core library, but can be installed using many React build tools, like Vite, Webpack, or Create React App."
+  },
+  {
+   "type": "p",
+   "text": "To install styled-components, run the following command:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "npm install styled-components",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Now you can start writing CSS directly in your .jsx files:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import styled from 'styled-components';\n\nconst MyHeader = styled.h1`\n  padding: 10px 20px;\n  background-color: #007bff;\n  color: white;\n`;\n\nfunction App() {\n  return (\n    <>\n      <MyHeader>Welcome!</MyHeader>\n    </>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Without CSS-in-JS, you would have to either:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Write CSS in a separate .css file and import it into your React components",
+    "Use inline styles"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Notice that:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "We use the styled object to create components",
+    "Styles are written inside template literals (backticks)",
+    "You can use regular CSS syntax"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Props in Styled Components"
+  },
+  {
+   "type": "p",
+   "text": "Another powerful feature of CSS-in-JS is the ability to use props to make styles dynamic."
+  },
+  {
+   "type": "p",
+   "text": "Let's create an example where we have two buttons, one primary and one secondary."
+  },
+  {
+   "type": "p",
+   "text": "We want to base their background color on the value of the btntype prop:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import styled from 'styled-components';\n\nconst Button = styled.button`\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  background-color: ${props => props.btntype === 'primary' ? '#007bff' : '#6c757d'};\n  color: white;\n  cursor: pointer;\n`;\n\nfunction App() {\n  return (\n    <div>\n      <Button btntype=\"primary\">Primary Button</Button>\n      <br />\n      <br />\n      <Button>Secondary Button</Button>\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Extending Styles"
+  },
+  {
+   "type": "p",
+   "text": "Another way of letting multiple elements have the same styles is to extend existing styled components."
+  },
+  {
+   "type": "p",
+   "text": "For example, we can create a PrimaryButton\n  and SuccessButton\n  that both have the same styles as the Button component,\n  but they also have separate background colors:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import styled from 'styled-components';\n\nconst Button = styled.button`\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n  color: white;\n  cursor: pointer;\n`;\n\nconst PrimaryButton = styled(Button)`\n  background-color: #007bff;\n`;\n\nconst SuccessButton = styled(Button)`\n  background-color: #28a745;\n`;\n\nfunction App() {\n  return (\n    <div>\n      <PrimaryButton>Primary</PrimaryButton>\n      <SuccessButton>Success</SuccessButton>\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Component-Scoped Styles"
+  },
+  {
+   "type": "p",
+   "text": "Just like with CSS Modules, styles created in CSS-in-JS are scoped to the component."
+  },
+  {
+   "type": "p",
+   "text": "They are given unique names and can only be used in the component that imports them."
+  },
+  {
+   "type": "p",
+   "text": "If we view the source of the page in the example above, the buttons will have unique class names\n  like bSOFjJ\n  and pkxvl,\n  and will be refering to the CSS with the same unique class names in the style section."
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_css_in_js2.png",
+   "alt": "React CSS in JS"
+  },
+  {
+   "type": "h2",
+   "text": "Global Styles"
+  },
+  {
+   "type": "p",
+   "text": "You can also create global styles, which will be given normal class name and will be available for all components:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createGlobalStyle } from 'styled-components';\n\nconst GlobalStyle = createGlobalStyle`\n  h1 {\n    color: white;\n    background-color: purple;\n    font-family: Arial, sans-serif;\n  }\n\n  .myparagraph {\n    font-family: courier, monospace;\n    color: blue;\n  }\n`;\n\nfunction App() {\n  return (\n    <>\n      <GlobalStyle />\n      <h1>Welcome!</h1>\n      <p className=\"myparagraph\">This paragraph is styled with global styles.</p>\n    </>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "If we view the source of the result in the example above, the CSS will have normal names and will be available for all components."
+  },
+  {
+   "type": "image",
+   "src": "https://www.w3schools.com/img_css_in_js_global2.png",
+   "alt": "React CSS in JS"
+  }
+ ]
+}

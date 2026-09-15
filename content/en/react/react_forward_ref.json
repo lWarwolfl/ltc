@@ -1,0 +1,66 @@
+{
+ "slug": "react_forward_ref",
+ "course": "react",
+ "order": 41,
+ "url": "/react/react_forward_ref.asp",
+ "title": "React forwardRef",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React forwardRef"
+  },
+  {
+   "type": "h2",
+   "text": "What is forwardRef?"
+  },
+  {
+   "type": "p",
+   "text": "forwardRef lets your component pass a reference to one of its children. It's like giving a direct reference to a DOM element inside your component."
+  },
+  {
+   "type": "p",
+   "text": "Common uses for forwardRef:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Focusing input elements",
+    "Triggering animations",
+    "Measuring DOM elements",
+    "Integrating with third-party libraries"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Basic Example"
+  },
+  {
+   "type": "p",
+   "text": "Here's a simple example of forwarding a ref to an input element:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { forwardRef, useRef } from 'react';\n\nconst MyInput = forwardRef((props, ref) => (\n  <input ref={ref} {...props} />\n));\n\nfunction App() {\n  const inputRef = useRef();\n\n  const focusInput = () => {\n    inputRef.current.focus();\n  };\n\n  return (\n    <div>\n      <MyInput ref={inputRef} placeholder=\"Type here...\" />\n      <button onClick={focusInput}>Focus Input</button>\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "In this example:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "We wrap our input component with forwardRef",
+    "The component receives a ref as its second parameter",
+    "The parent can now control the input element directly"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Note: Only use forwardRef when you need direct access to a DOM element. For most cases, you can use props and state instead."
+  }
+ ]
+}

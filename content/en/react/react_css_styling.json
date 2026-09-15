@@ -1,0 +1,152 @@
+{
+ "slug": "react_css_styling",
+ "course": "react",
+ "order": 36,
+ "url": "/react/react_css_styling.asp",
+ "title": "Styling React Using CSS",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Styling React Using CSS"
+  },
+  {
+   "type": "p",
+   "text": "There are many ways to style React with CSS, this tutorial will\ntake a closer look at three common ways:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Inline styling",
+    "CSS stylesheets",
+    "CSS Modules"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Inline Styling"
+  },
+  {
+   "type": "p",
+   "text": "To style an element with the inline style attribute, the value must be a\nJavaScript object:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const Header = () => {\n  return (\n    <>\n      <h1 style={{color: \"red\"}}>Hello Style!</h1>\n      <p>Add a little style!</p>\n    </>\n  );\n}",
+   "caption": "Example:"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "In JSX, JavaScript expressions are written inside curly braces,\nand since JavaScript objects also use curly braces,\nthe styling in the example above is written inside two sets of curly braces {{}}."
+  },
+  {
+   "type": "h3",
+   "text": "camelCased Property Names"
+  },
+  {
+   "type": "p",
+   "text": "Since the inline CSS is written in a JavaScript object, properties with\nhyphen separators, like background-color,\nmust be written with camel case syntax:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const Header = () => {\n  return (\n    <>\n      <h1 style={{backgroundColor: \"lightblue\"}}>Hello Style!</h1>\n      <p>Add a little style!</p>\n    </>\n  );\n}",
+   "caption": "Example:"
+  },
+  {
+   "type": "h3",
+   "text": "JavaScript Object"
+  },
+  {
+   "type": "p",
+   "text": "You can also create an object with styling information, and refer to it in the style attribute:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const Header = () => {\n  const myStyle = {\n    color: \"white\",\n    backgroundColor: \"DodgerBlue\",\n    padding: \"10px\",\n    fontFamily: \"Sans-Serif\"\n  };\n  return (\n    <>\n      <h1 style={myStyle}>Hello Style!</h1>\n      <p>Add a little style!</p>\n    </>\n  );\n}",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "CSS Stylesheet"
+  },
+  {
+   "type": "p",
+   "text": "You can write your CSS styling in a separate file, just save the file with the\n.css file extension, and import it in your\napplication."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "body {\n  background-color: #282c34;\n  color: white;\n  padding: 40px;\n  font-family: Sans-Serif;\n  text-align: center;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "You can call the file whatever you like, just remember the correct file extension."
+  },
+  {
+   "type": "p",
+   "text": "Import the stylesheet in your application:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport './MyStylesheet.css';\n\nconst Header = () => {\n  return (\n    <>\n      <h1>Hello Style!</h1>\n      <p>Add a little style!.</p>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Header />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "React knows that files imported with the .css extension, should be treated as a CSS Stylesheet."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The styles will only be available for the component that imported it."
+  },
+  {
+   "type": "h2",
+   "text": "CSS Modules"
+  },
+  {
+   "type": "p",
+   "text": "Another way of adding styles to your application is to use CSS Modules."
+  },
+  {
+   "type": "p",
+   "text": "CSS Modules are convenient for components that are placed in separate files."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The CSS inside a module is available only for the component that imported it,\nand you do not have to worry about name conflicts."
+  },
+  {
+   "type": "p",
+   "text": "Create the CSS module with the .module.css\nextension, example: my-style.module.css."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": ".bigred {\n  color: Tomato;\n  padding: 40px;\n  font-family: Sans-Serif;\n  text-align: center;\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Import the stylesheet in your component:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport styles from './my-style.module.css';\n\nconst Car = () => {\n  return <h1 className={styles.bigred}>Hello Car!</h1>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "You will learn more about CSS Modules in the next chapter."
+  }
+ ]
+}

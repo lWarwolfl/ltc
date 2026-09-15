@@ -1,0 +1,59 @@
+{
+ "slug": "react_upgrade",
+ "course": "react",
+ "order": 4,
+ "url": "/react/react_upgrade.asp",
+ "title": "Upgrade React",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "Upgrade React"
+  },
+  {
+   "type": "h2",
+   "text": "Upgrade to React 19"
+  },
+  {
+   "type": "p",
+   "text": "Upgrading an existing React application to version 19 only requires two steps."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "If you are already using the latest version of React, you can skip this section."
+  },
+  {
+   "type": "h2",
+   "text": "Step 1: Install React 19"
+  },
+  {
+   "type": "p",
+   "text": "To install the latest version, from your project folder run the following from the terminal:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "npm i react@latest react-dom@latest",
+   "caption": null
+  },
+  {
+   "type": "h2",
+   "text": "Step 2: Use the new root API"
+  },
+  {
+   "type": "p",
+   "text": "In order to take advantage of React 19's concurrent features you'll need to use the new root API for client rendering."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "// Before\nimport ReactDOM from 'react-dom';\n\nReactDOM.render(\n  <h1>Hello React!</h1>,\n  document.getElementById('root')\n);\n\n// After\nimport { createRoot } from 'react-dom/client';\n\ncreateRoot(document.getElementById('root')).render(\n  <h1>Hello React!</h1>\n);",
+   "caption": null
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Your application will work without using the new root API. If you continue to use\nReactDOM.render your application will behave like React 17."
+  }
+ ]
+}

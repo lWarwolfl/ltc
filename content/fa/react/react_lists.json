@@ -1,0 +1,142 @@
+{
+ "slug": "react_lists",
+ "course": "react",
+ "order": 26,
+ "url": "/react/react_lists.asp",
+ "title": "لیست‌ها در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "لیست‌ها در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "در ری‌اکت لیست‌ها را با نوعی حلقه رندر می‌کنید."
+  },
+  {
+   "type": "p",
+   "text": "متد map آرایه در جاوااسکریپت معمولاً روش ترجیحی است."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "اگر نیاز به یادآوری متد map دارید، بخش ES6 Array map را ببینید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyCars() {\n  const cars = ['Ford', 'BMW', 'Audi'];\n  return (\n    <>\n      <h1>My Cars:</h1>\n      <ul>\n        {cars.map((car) => <li>I am a { car }</li>)}\n      </ul>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyCars />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "وقتی این کد را در محیط ری‌اکت اجرا کنید کار می‌کند، ولی هشداری می‌گیرید که برای آیتم‌های لیست «key» داده نشده است."
+  },
+  {
+   "type": "h2",
+   "text": "کلیدها در لیست‌های ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "کلیدها کمک می‌کنند ری‌اکت عناصر را دنبال کند. این‌طوری اگر آیتمی عوض یا حذف شود، فقط همان آیتم دوباره رندر می‌شود نه کل لیست."
+  },
+  {
+   "type": "p",
+   "text": "کلیدها باید بین خواهرها یکتا باشند، ولی لازم نیست در کل اپ یکتا باشند."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "معمولاً کلید باید یک شناسهٔ یکتای هر آیتم باشد. در آخرین راه‌حل می‌توانید از ایندکس آرایه به‌عنوان کلید استفاده کنید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyCars() {\n  const cars = [\n    {id: 1001, brand: 'Ford'},\n    {id: 1002, brand: 'BMW'},\n    {id: 1003, brand: 'Audi'}\n  ];\n  return (\n    <>\n      <h1>My Cars:</h1>\n      <ul>\n        {cars.map((car) => <li key={car.id}>I am a { car.brand }</li>)}\n      </ul>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyCars />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "استفاده از ایندکس آرایه به‌عنوان کلید"
+  },
+  {
+   "type": "p",
+   "text": "استفاده از ایندکس آرایه به‌عنوان کلید ممکن است، ولی توصیه نمی‌شود مگر وقتی که:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "لیست ثابت است (تغییر نمی‌کند)",
+    "لیست هیچ‌وقت مرتب یا فیلتر نمی‌شود",
+    "آیتم‌های لیست شناسه ندارند"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyCars() {\n  const cars = ['Ford', 'BMW', 'Audi'];\n  return (\n    <>\n      <h1>My Cars:</h1>\n      <ul>\n        {cars.map((car, index) => <li key={index}>I am a { car }</li>)}\n      </ul>\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyCars />\n);",
+   "caption": "Example:"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال اول را اجرا کنید و هشدار key را در کنسول مرورگر ببینید."
+  },
+  {
+   "prompt": "مثال دوم (با key) را اجرا کنید و ببینید هشدار رفع شده است."
+  },
+  {
+   "prompt": "یک ماشین چهارم به آرایه اضافه کنید و ببینید فقط همان رندر می‌شود."
+  },
+  {
+   "prompt": "به‌جای car.id از index به‌عنوان key استفاده کنید و نتیجه را مقایسه کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "لیست‌ها در ری‌اکت معمولاً با چه روشی رندر می‌شوند؟",
+   "options": [
+    "متد map آرایه",
+    "حلقهٔ for بیرون JSX",
+    "while",
+    "کپی دستی"
+   ],
+   "answer": 0,
+   "explanation": "map برای هر عضو یک عنصر برمی‌گرداند و مستقیم داخل JSX می‌آید."
+  },
+  {
+   "question": "key چه فایده‌ای دارد؟",
+   "options": [
+    "ری‌اکت آیتم‌ها را دنبال می‌کند و فقط تغییرکرده را رندر می‌کند",
+    "لیست را مرتب می‌کند",
+    "استایل می‌دهد",
+    "هیچ فایده‌ای ندارد"
+   ],
+   "answer": 0,
+   "explanation": "بدون key، با هر تغییر کل لیست از نو رندر می‌شود."
+  },
+  {
+   "question": "key باید چگونه باشد؟",
+   "options": [
+    "بین خواهرها یکتا",
+    "در کل اپ یکتا",
+    "حتماً عدد",
+    "حتماً رشته"
+   ],
+   "answer": 0,
+   "explanation": "یکتایی فقط بین هم‌سطح‌ها لازم است."
+  },
+  {
+   "question": "استفاده از ایندکس به‌عنوان key کی قابل قبول است؟",
+   "options": [
+    "وقتی لیست ثابت است و آیتم‌ها شناسه ندارند",
+    "همیشه بهترین راه است",
+    "هیچ‌وقت",
+    "فقط برای لیست اعداد"
+   ],
+   "answer": 0,
+   "explanation": "اگر لیست مرتب یا فیلتر شود، ایندکس باعث باگ رندر می‌شود."
+  }
+ ]
+}

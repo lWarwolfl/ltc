@@ -1,0 +1,217 @@
+{
+ "slug": "react_forms",
+ "course": "react",
+ "order": 27,
+ "url": "/react/react_forms.asp",
+ "title": "فرم‌ها در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "فرم‌ها در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "مثل HTML، ری‌اکت هم از فرم استفاده می‌کند تا کاربر با صفحه تعامل کند."
+  },
+  {
+   "type": "h2",
+   "text": "افزودن فرم در ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "فرم را در ری‌اکت مثل هر عنصر دیگری اضافه می‌کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  return (\n    <form>\n      <label>Enter your name:\n        <input type=\"text\" />\n      </label>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "این مثل حالت عادی کار می‌کند: فرم ثبت می‌شود و صفحه رفرش می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "ولی معمولاً در ری‌اکت همین را نمی‌خواهیم."
+  },
+  {
+   "type": "p",
+   "text": "می‌خواهیم جلوی این رفتار پیش‌فرض را بگیریم و کنترل فرم را به ری‌اکت بدهیم."
+  },
+  {
+   "type": "h2",
+   "text": "فرم HTML در برابر فرم ری‌اکت"
+  },
+  {
+   "type": "p",
+   "text": "در ری‌اکت، عناصر فرمی مثل <input> و <textarea> و <select> کمی با HTML سنتی فرق دارند."
+  },
+  {
+   "type": "p",
+   "text": "در HTML استاندارد، عناصر فرم مقدارشان را خودشان بر اساس ورودی کاربر نگه می‌دارند."
+  },
+  {
+   "type": "p",
+   "text": "مثلاً یک فیلد <input type=\"text\"> مقدارش را خودش در DOM نگه می‌دارد."
+  },
+  {
+   "type": "p",
+   "text": "در ری‌اکت، مقدار عنصر فرم در state کامپوننت نگه داشته می‌شود و فقط با تابع setState به‌روز می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "به عبارت دیگر؛ ری‌اکت راهی می‌دهد که دادهٔ فرم را از طریق state کامپوننت مدیریت کنید، و به همین‌ها می‌گویند «کامپوننت‌های کنترل‌شده»."
+  },
+  {
+   "type": "h2",
+   "text": "کامپوننت‌های کنترل‌شده"
+  },
+  {
+   "type": "p",
+   "text": "در کامپوننت کنترل‌شده، دادهٔ فرم دست کامپوننت ری‌اکت است."
+  },
+  {
+   "type": "p",
+   "text": "مقدار عنصر ورودی را state ری‌اکت تعیین می‌کند و هر تغییری با هندلرهای رویداد که state را به‌روز می‌کنند مدیریت می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "وقتی داده دست کامپوننت‌هاست، همهٔ داده در state کامپوننت ذخیره می‌شود."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانیم با هوک useState مقدار هر ورودی را دنبال کنیم و یک «منبع حقیقت واحد» برای کل اپ داشته باشیم."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "برای اطلاعات بیشتر دربارهٔ هوک‌ها بخش React Hooks را ببینید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [name, setName] = useState(\"\");\n\n  function handleChange(e) {\n    setName(e.target.value);\n  }\n\n  return (\n    <form>\n      <label>Enter your name:\n        <input\n          type=\"text\"\n          value={name}\n          onChange={handleChange}\n        />\n      </label>\n      <p>Current value: {name}</p>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h3",
+   "text": "توضیح مثال:"
+  },
+  {
+   "type": "p",
+   "text": "1. هوک useState را از React ایمپورت کنید:"
+  },
+  {
+   "type": "p",
+   "text": "import { useState } from 'react';"
+  },
+  {
+   "type": "p",
+   "text": "2. متغیر state برای نگه‌داشتن مقدار ورودی و تابعی برای به‌روزرسانی آن اعلام کنید:"
+  },
+  {
+   "type": "p",
+   "text": "const [name, setName] = useState(\"\");"
+  },
+  {
+   "type": "p",
+   "text": "3. تابعی برای مدیریت رویداد change بسازید:"
+  },
+  {
+   "type": "p",
+   "text": "function handleChange(e) {\n  setName(e.target.value);\n}"
+  },
+  {
+   "type": "p",
+   "text": "4. مقدار فیلد ورودی را متغیر state بگذارید و ویژگی onChange را هندلر تغییر بگذارید:"
+  },
+  {
+   "type": "p",
+   "text": "<input\n  type=\"text\"\n  value={name}\n  onChange={handleChange}\n/>"
+  },
+  {
+   "type": "p",
+   "text": "5. مقدار جاری را نمایش دهید تا معلوم شود مقدار به‌روز می‌شود:"
+  },
+  {
+   "type": "p",
+   "text": "<p>Current value: {name}</p>"
+  },
+  {
+   "type": "h2",
+   "text": "مقادیر اولیه"
+  },
+  {
+   "type": "p",
+   "text": "برای دادن مقدار اولیه به فیلد ورودی مثال بالا، به شیء useState مقدار بدهید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  const [name, setName] = useState(\"John\");\n\n  ...",
+   "caption": "Example:"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال کنترل‌شده را اجرا کنید، چیزی تایپ کنید و ببینید زیر ورودی نمایش داده می‌شود."
+  },
+  {
+   "prompt": "value را از input حذف کنید و ببینید «Current value» دیگر به‌روز نمی‌شود.",
+   "hint": "بدون value، ورودی کنترل‌نشده می‌شود."
+  },
+  {
+   "prompt": "مقدار اولیهٔ John را امتحان کنید."
+  },
+  {
+   "prompt": "مراحل 1 تا 5 توضیح مثال را قدم‌به‌قدم خودتان از صفر بنویسید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "تفاوت اصلی فرم ری‌اکت با HTML چیست؟",
+   "options": [
+    "مقدار در state کامپوننت است نه در DOM",
+    "هیچ تفاوتی ندارد",
+    "فرم ندارد",
+    "فقط با کلاس کار می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "به همین‌ها می‌گویند کامپوننت کنترل‌شده."
+  },
+  {
+   "question": "کامپوننت کنترل‌شده یعنی چه؟",
+   "options": [
+    "دادهٔ فرم دست کامپوننت ری‌اکت است",
+    "فرم قفل است",
+    "ورودی readonly است",
+    "فرم ثبت نمی‌شود"
+   ],
+   "answer": 0,
+   "explanation": "مقدار از state می‌آید و تغییر با هندلر به state برمی‌گردد."
+  },
+  {
+   "question": "handleChange چه می‌کند؟",
+   "options": [
+    "مقدار تایپ‌شده را در state می‌گذارد",
+    "فرم را ثبت می‌کند",
+    "ورودی را پاک می‌کند",
+    "صفحه را رفرش می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "با setName(e.target.value) هر کلید به state می‌رسد."
+  },
+  {
+   "question": "«منبع حقیقت واحد» یعنی چه؟",
+   "options": [
+    "همهٔ داده در state کامپوننت است",
+    "یک فایل برای کل اپ",
+    "یک state برای کل اینترنت",
+    "دیتابیس"
+   ],
+   "answer": 0,
+   "explanation": "به‌جای پراکندگی مقدار در DOM، همه‌چیز در state است."
+  }
+ ]
+}

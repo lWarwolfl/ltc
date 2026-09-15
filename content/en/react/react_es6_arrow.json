@@ -1,0 +1,148 @@
+{
+ "slug": "react_es6_arrow",
+ "course": "react",
+ "order": 7,
+ "url": "/react/react_es6_arrow.asp",
+ "title": "React ES6 Arrow Functions",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React ES6 Arrow Functions"
+  },
+  {
+   "type": "h2",
+   "text": "Arrow Functions"
+  },
+  {
+   "type": "p",
+   "text": "Arrow functions allow us to write shorter function syntax:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = function() {\n  return \"Hello World!\";\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_function"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = () => {\n  return \"Hello World!\";\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow1"
+  },
+  {
+   "type": "p",
+   "text": "It gets shorter! If the function has only one statement, and the statement\nreturns a value, you can remove the brackets and the\nreturn keyword:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = () => \"Hello World!\";",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow2"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "This works only if the function has only one\nstatement."
+  },
+  {
+   "type": "p",
+   "text": "If you have parameters, you pass them inside the parentheses:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = (val) => \"Hello \" + val;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow3"
+  },
+  {
+   "type": "p",
+   "text": "In fact, if you have only one parameter, you can skip the parentheses as well:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = val => \"Hello \" + val;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow4"
+  },
+  {
+   "type": "h2",
+   "text": "What About this?"
+  },
+  {
+   "type": "p",
+   "text": "The handling of this is also different in arrow functions compared to regular\nfunctions."
+  },
+  {
+   "type": "p",
+   "text": "In short, with arrow functions there is no binding of\nthis."
+  },
+  {
+   "type": "p",
+   "text": "In regular functions the this keyword represented the object that called the\nfunction, which could be the window, the document, a button or whatever."
+  },
+  {
+   "type": "p",
+   "text": "With arrow functions, the this keyword always represents the\nobject that\ndefined the arrow function."
+  },
+  {
+   "type": "p",
+   "text": "Let us take a look at two examples to understand the difference."
+  },
+  {
+   "type": "p",
+   "text": "Both examples call a method twice, first when the page loads, and once again\nwhen the user clicks a button."
+  },
+  {
+   "type": "p",
+   "text": "The first example uses a regular function, and the second example uses an\narrow function."
+  },
+  {
+   "type": "p",
+   "text": "The result shows that the first example returns two different objects (window and button),\nand the\nsecond example returns the Header object twice."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "class Header {\n  constructor() {\n    this.color = \"Red\";\n  }\n\n//Regular function:\n  changeColor = function() {\n    document.getElementById(\"demo\").innerHTML += this;\n  }\n}\n\nconst myheader = new Header();\n\n//The window object calls the function:\nwindow.addEventListener(\"load\", myheader.changeColor);\n\n//A button object calls the function:\ndocument.getElementById(\"btn\").addEventListener(\"click\", myheader.changeColor);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow_this_regular"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "class Header {\n  constructor() {\n    this.color = \"Red\";\n  }\n\n//Arrow function:\n  changeColor = () => {\n    document.getElementById(\"demo\").innerHTML += this;\n  }\n}\n\nconst myheader = new Header();\n\n//The window object calls the function:\nwindow.addEventListener(\"load\", myheader.changeColor);\n\n//A button object calls the function:\ndocument.getElementById(\"btn\").addEventListener(\"click\", myheader.changeColor);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow_this"
+  },
+  {
+   "type": "p",
+   "text": "Remember these differences when you are working with functions. Sometimes the\nbehavior of regular functions is what you want, if not, use arrow functions."
+  }
+ ]
+}

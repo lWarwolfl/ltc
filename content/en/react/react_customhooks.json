@@ -1,0 +1,107 @@
+{
+ "slug": "react_customhooks",
+ "course": "react",
+ "order": 52,
+ "url": "/react/react_customhooks.asp",
+ "title": "React Custom Hooks",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Custom Hooks"
+  },
+  {
+   "type": "p",
+   "text": "You can make your own Hooks!"
+  },
+  {
+   "type": "p",
+   "text": "When you have components that can be used by multiple components,\n  we can extract that component into a custom Hook."
+  },
+  {
+   "type": "p",
+   "text": "Custom Hooks start with \"use\". Example: useFetch."
+  },
+  {
+   "type": "h2",
+   "text": "Build a Hook"
+  },
+  {
+   "type": "p",
+   "text": "First, let us make an example without a custom Hook."
+  },
+  {
+   "type": "p",
+   "text": "In the following code, we are fetching data from a URL and displaying it."
+  },
+  {
+   "type": "p",
+   "text": "We will use the JSONPlaceholder service to fetch some fake data."
+  },
+  {
+   "type": "p",
+   "text": "To learn more about fetching data, check out the JavaScript Fetch API section."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState, useEffect } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst Home = () => {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"https://jsonplaceholder.typicode.com/todos\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n }, []);\n\n  return (\n    <>\n      {data &&\n        data.map((item) => {\n          return <p key={item.id}>{item.title}</p>;\n        })}\n    </>\n  );\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <Home />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "The logic behind the fetch may be needed in other components as well, so we will turn that into a custom Hook."
+  },
+  {
+   "type": "p",
+   "text": "Move the fetch logic to a new file to be used as a custom Hook."
+  },
+  {
+   "type": "p",
+   "text": "The file name must start with use,\n  and end with .js, and be placed in the same directory as the component."
+  },
+  {
+   "type": "p",
+   "text": "We will name the file useFetch.js."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState, useEffect } from \"react\";\n\nconst useFetch = (url) => {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(url)\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, [url]);\n\n  return [data];\n};\n\nexport default useFetch;",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "Now we can import this Hook, and use it in any other component:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport useFetch from \"./useFetch\";\n\nconst Home = () => {\n  const [data] = useFetch(\"https://jsonplaceholder.typicode.com/todos\");\n\n  return (\n    <>\n      {data &&\n        data.map((item) => {\n          return <p key={item.id}>{item.title}</p>;\n        })}\n    </>\n  );\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <Home />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "Example Explained"
+  },
+  {
+   "type": "p",
+   "text": "We have created a new file called useFetch.js containing a function called useFetch which contains all of the logic needed to fetch our data."
+  },
+  {
+   "type": "p",
+   "text": "We removed the hard-coded URL and replaced it with a url variable that can be passed to the custom Hook."
+  },
+  {
+   "type": "p",
+   "text": "Lastly, we are returning our data from our Hook."
+  },
+  {
+   "type": "p",
+   "text": "In main.jsx, we are importing our useFetch Hook and utilizing it like any other Hook. This is where we pass in the URL to fetch data from."
+  },
+  {
+   "type": "p",
+   "text": "Now we can reuse this custom Hook in any component to fetch data from any URL."
+  }
+ ]
+}

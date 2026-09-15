@@ -1,0 +1,203 @@
+{
+ "slug": "react_es6_template_strings",
+ "course": "react",
+ "order": 14,
+ "url": "/react/react_es6_template_strings.asp",
+ "title": "React ES6 Template Strings",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React ES6 Template Strings"
+  },
+  {
+   "type": "h2",
+   "text": "Template Strings"
+  },
+  {
+   "type": "p",
+   "text": "Template strings allow you to write strings that span multiple lines and include embedded expressions:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const name = \"John\";\nconst age = 30;\nconst message = \"Hello, \" + name + \"!\\n\" +\n\"You are \" + age + \" years old.\";",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template1"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const name = \"John\";\nconst age = 30;\nconst message = `Hello, ${name}!\nYou are ${age} years old.`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template2"
+  },
+  {
+   "type": "p",
+   "text": "Template strings use backticks (`) instead of quotes and can include:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Multiple lines without \\n",
+    "Expressions inside ${}",
+    "Quotes without escaping"
+   ]
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const html = `\n  <div>\n    <h1>Title</h1>\n    <p>Paragraph</p>\n  </div>\n`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template3"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The indentation in multi-line strings becomes part of the string."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const x = `\n  John:\n    Hello, how are you?\n  Jane:\n    I'm fine, thanks!\n`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template3_1"
+  },
+  {
+   "type": "h2",
+   "text": "Expression Interpolation"
+  },
+  {
+   "type": "p",
+   "text": "You can include any valid JavaScript expression inside ${} in a template string:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "let firstName = \"John\";\nlet lastName = \"Doe\";\n\nlet text = `Welcome ${firstName}, ${lastName}!`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_variables"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "let price = 10;\nlet quantity = 5;\n\nlet total = `Total: ${price * quantity}`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_expressions"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const items = [\"apple\", \"banana\", \"orange\"];\nconst list = `You have ${items.length} items:\n${items.map(item => `- ${item}`).join('\\n')}`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_map"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const isAdmin = true;\nconst message = `Status: ${isAdmin ? 'Admin' : 'User'}`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_ternary"
+  },
+  {
+   "type": "h2",
+   "text": "Tagged Templates"
+  },
+  {
+   "type": "p",
+   "text": "You can also use template strings with a function (called a tag) to modify the output."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Tagged templates are an advanced feature. You might not need them in most cases."
+  },
+  {
+   "type": "p",
+   "text": "The function takes the text and the expression(s) as arguments."
+  },
+  {
+   "type": "p",
+   "text": "Look at the example below:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function highlight(strings, fname) {\n  let x = fname.toUpperCase();\n  return strings[0] + x + strings[1];\n}\n\nlet name = \"John\";\n\nlet text = highlight`Hello ${name}, how are you?`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_tagged"
+  },
+  {
+   "type": "h3",
+   "text": "Example Explained"
+  },
+  {
+   "type": "p",
+   "text": "The function name is highlight, you can name it whatever you want."
+  },
+  {
+   "type": "p",
+   "text": "The first argument holds the text between the expressions, as an array.The array items are splitted by the expression.\n  In this example strings[0] holds \"Hello \" and strings[1] holds \" how are you?\"."
+  },
+  {
+   "type": "p",
+   "text": "The second argument holds the expressions. In this example fname holds \"John\"."
+  },
+  {
+   "type": "p",
+   "text": "Inside the function you can use the arguments to create the final string, and return it."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "If the template string contains multiple expressions, the text will still be held in the first argument,\nbut the expressions will either be held in multiple arguments, or as an array in the second argument."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function highlight(strings, fname1, fname2) {\n  let x = fname1.toUpperCase();\n  let y = fname2.toUpperCase();\n  return strings[0] + x + strings[1] + y + strings[2];\n}\n\nlet name1 = \"John\";\nlet name2 = \"Jane\";\n\nlet text = highlight`Hello ${name1} and ${name2}, how are you?`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_tagged2"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function highlight(strings, ...fname) {\n  let x = fname[0].toUpperCase();\n  let y = fname[1].toUpperCase();\n  return strings[0] + x + strings[1] + y + strings[2];\n}\n\nlet name1 = \"John\";\nlet name2 = \"Jane\";\n\nlet text = highlight`Hello ${name1} and ${name2}, how are you?`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_template_tagged3"
+  }
+ ]
+}

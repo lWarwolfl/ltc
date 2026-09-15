@@ -1,0 +1,181 @@
+{
+  "slug": "react_conditional_rendering",
+  "course": "react",
+  "order": 25,
+  "url": "/react/react_conditional_rendering.asp",
+  "title": "رندر شرطی در React",
+  "summary": "در React می‌توانید با if، عملگر && و عملگر سه‌تایی تصمیم بگیرید چه چیزی رندر شود. این درس هر سه روش را با مثال goal نشان می‌دهد.",
+  "objectives": [
+    "با دستور if انتخاب کنید کدام کامپوننت رندر شود",
+    "با عملگر && رندر را به درست بودن یک مقدار مشروط کنید",
+    "با عملگر سه‌تایی بین دو خروجی یکی را انتخاب کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "رندر شرطی در React"
+    },
+    {
+      "type": "p",
+      "text": "در React می‌توانید کامپوننت‌ها را به‌صورت شرطی رندر کنید."
+    },
+    {
+      "type": "p",
+      "text": "برای این کار چند راه وجود دارد."
+    },
+    {
+      "type": "h2",
+      "text": "if Statement"
+    },
+    {
+      "type": "p",
+      "text": "می‌توانیم از عملگر if در JavaScript استفاده کنیم تا تصمیم بگیریم کدام کامپوننت رندر شود."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function MissedGoal() {\n  return <h1>MISSED!</h1>;\n}\n\nfunction MadeGoal() {\n  return <h1>Goal!</h1>;\n}",
+      "caption": "Example:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Goal(props) {\n  const isGoal = props.isGoal;\n  if (isGoal) {\n    return <MadeGoal/>;\n  }\n  return <MissedGoal/>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Goal isGoal={false} />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "ویژگی isGoal را به true تغییر دهید و امتحان کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "createRoot(document.getElementById('root')).render(\n  <Goal isGoal={true} />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "عملگر منطقی &&"
+    },
+    {
+      "type": "p",
+      "text": "راه دیگر برای رندر شرطی یک کامپوننت React، استفاده از عملگر && است."
+    },
+    {
+      "type": "p",
+      "text": "در مثال زیر، تیتر فقط وقتی رندر می‌شود که خصوصیت brand داخل props خالی نباشد:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Car(props) {\n  return (\n    <>\n      {props.brand && <h1>My car is a {props.brand}!</h1>}\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "اگر مقدار props.brand برابر true ارزیابی شود، عبارت بعد از && رندر می‌شود."
+    },
+    {
+      "type": "p",
+      "text": "خصوصیت brand را خالی کنید و نتیجه را امتحان کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "createRoot(document.getElementById('root')).render(\n  <Car />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "عملگر سه‌تایی"
+    },
+    {
+      "type": "p",
+      "text": "راه دیگر برای رندر شرطی عنصرها، استفاده از عملگر سه‌تایی (ternary) است."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "condition ? true : false",
+      "caption": null
+    },
+    {
+      "type": "p",
+      "text": "به مثال goal برمی‌گردیم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "function Goal(props) {\n  const isGoal = props.isGoal;\n  return (\n    <>\n      { isGoal ? <MadeGoal/> : <MissedGoal/> }\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Goal isGoal={false} />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "برای یادگیری بیشتر، بخش عملگر سه‌تایی را ببینید."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در ویرایشگر امتحانی، کامپوننت Goal را طوری تغییر دهید که isGoal همیشه true باشد و خروجی «Goal!» را روی صفحه ببینید.",
+      "hint": "مقدار isGoal را هنگام رندر <Goal> برابر true بگذارید."
+    },
+    {
+      "prompt": "در مثال && مقدار brand را خالی کنید و بررسی کنید که تیتر ناپدید می‌شود؛ بعد دوباره یک مقدار بدهید تا برگردد.",
+      "hint": "وقتی props.brand خالی باشد، عبارت بعد از && رندر نمی‌شود."
+    },
+    {
+      "prompt": "مثال goal را با عملگر سه‌تایی بازنویسی کنید و هر دو حالت true و false را امتحان کنید.",
+      "hint": "قالب condition ? true : false را داخل آکولاد JSX بگذارید."
+    },
+    {
+      "prompt": "یک کامپوننت Warning بسازید که فقط وقتی props.show برابر true است یک پیام هشدار نشان دهد (با &&).",
+      "hint": "از الگوی {props.show && <p>...</p>} استفاده کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "در مثال goal، اگر isGoal برابر true باشد چه رندر می‌شود؟",
+      "options": [
+        "کامپوننت MadeGoal",
+        "کامپوننت MissedGoal",
+        "هیچ‌چیز",
+        "هر دو کامپوننت"
+      ],
+      "answer": 0,
+      "explanation": "دستور if بررسی می‌کند؛ وقتی isGoal درست باشد MadeGoal برمی‌گردد و در غیر این صورت MissedGoal."
+    },
+    {
+      "question": "عبارت {props.brand && <h1>...} وقتی رندر می‌شود که props.brand...",
+      "options": [
+        "خالی یا false باشد",
+        "مقداری درست (truthy) داشته باشد",
+        "حتماً عدد باشد",
+        "همیشه رندر می‌شود"
+      ],
+      "answer": 1,
+      "explanation": "عملگر && فقط وقتی سمت راست را رندر می‌کند که سمت چپ truthy ارزیابی شود."
+    },
+    {
+      "question": "شکل درست عملگر سه‌تایی کدام است؟",
+      "options": [
+        "condition ? true : false",
+        "condition : true ? false",
+        "if condition then true else false",
+        "condition && true || false"
+      ],
+      "answer": 0,
+      "explanation": "قالب عملگر سه‌تایی condition ? مقدار-درست : مقدار-غلط است."
+    },
+    {
+      "question": "کدام روش برای رندر شرطی در این درس معرفی نشد؟",
+      "options": [
+        "دستور if",
+        "عملگر &&",
+        "عملگر سه‌تایی",
+        "حلقه while"
+      ],
+      "answer": 3,
+      "explanation": "این درس سه روش if، عملگر && و عملگر سه‌تایی را معرفی کرد؛ حلقه while روشی برای رندر شرطی نیست."
+    }
+  ]
+}

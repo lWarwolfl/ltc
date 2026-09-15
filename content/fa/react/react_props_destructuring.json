@@ -1,0 +1,142 @@
+{
+ "slug": "react_props_destructuring",
+ "course": "react",
+ "order": 22,
+ "url": "/react/react_props_destructuring.asp",
+ "title": "دیستراکچر کردن پراپ‌ها در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "دیستراکچر کردن پراپ‌ها در ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "دیستراکچر کردن پراپ‌ها"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با دیستراکچرینگ، ویژگی‌هایی که کامپوننت می‌گیرد را محدود کنید."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car({color}) {\n  return (\n    <h2>My car is {color}!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" model=\"Mustang\" color=\"red\" year={1969} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "ری‌اکت برای دیستراکچر پراپ از آکولاد استفاده می‌کند: {color}."
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید ویژگی‌های لازم را داخل خود کامپوننت هم دیستراکچر کنید."
+  },
+  {
+   "type": "p",
+   "text": "این‌طوری کامپوننت همهٔ ویژگی‌ها را می‌گیرد، ولی دیستراکچرینگ مطمئن می‌شود فقط از لازم‌ها استفاده می‌کند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  const {brand, model} = props;\n  return (\n    <h2>I love my {brand} {model}!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" model=\"Mustang\" color=\"red\" year={1969} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "دیستراکچر ...rest"
+  },
+  {
+   "type": "p",
+   "text": "وقتی نمی‌دانید چند ویژگی می‌گیرید، می‌توانید از عملگر ...rest استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "یعنی: ویژگی‌های لازم را مشخص می‌کنید و بقیه در یک شیء ذخیره می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car({color, brand, ...rest}) {\n  return (\n    <h2>My {brand} {rest.model} is {color}!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" model=\"Mustang\" color=\"red\" year={1969} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "مقادیر پیش‌فرض"
+  },
+  {
+   "type": "p",
+   "text": "با دیستراکچرینگ می‌توانید برای پراپ‌ها مقدار پیش‌فرض بگذارید."
+  },
+  {
+   "type": "p",
+   "text": "اگر ویژگی مقداری نداشته باشد، مقدار پیش‌فرض استفاده می‌شود."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car({color = \"blue\", brand}) {\n  return (\n    <h2>My {color} {brand}!</h2>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" />\n);",
+   "caption": "Example"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال اول را اجرا کنید و ببینید با اینکه چهار پراپ فرستاده شده فقط color استفاده می‌شود."
+  },
+  {
+   "prompt": "به‌جای {color} همهٔ پراپ‌ها را دیستراکچر کنید و نمایش دهید."
+  },
+  {
+   "prompt": "مثال rest را اجرا کنید و ببینید rest.model از کجا آمده است."
+  },
+  {
+   "prompt": "پراپ color را نفرستید و ببینید مقدار پیش‌فرض blue استفاده می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "دیستراکچر پراپ در پارامتر تابع چه شکلی است؟",
+   "options": [
+    "function Car({color})",
+    "function Car(color)",
+    "function Car([color])",
+    "function Car(<color>)"
+   ],
+   "answer": 0,
+   "explanation": "آکولاد یعنی فقط ویژگی color از شیء props بیرون کشیده شود."
+  },
+  {
+   "question": "...rest چه می‌کند؟",
+   "options": [
+    "بقیهٔ ویژگی‌ها را در یک شیء جمع می‌کند",
+    "کامپوننت را کپی می‌کند",
+    "پراپ‌ها را حذف می‌کند",
+    "خطا می‌دهد"
+   ],
+   "answer": 0,
+   "explanation": "لازم‌ها را نام می‌برید و بقیه در rest می‌ماند."
+  },
+  {
+   "question": "مقدار پیش‌فرض پراپ کی استفاده می‌شود؟",
+   "options": [
+    "وقتی آن پراپ فرستاده نشده باشد",
+    "همیشه",
+    "هیچ‌وقت",
+    "فقط برای رشته"
+   ],
+   "answer": 0,
+   "explanation": "مثل {color = \"blue\"} که اگر color نیاید آبی می‌شود."
+  },
+  {
+   "question": "تفاوت دو مثال اول چیست؟",
+   "options": [
+    "یکی در پارامتر و دیگری داخل بدنه دیستراکچر می‌کند",
+    "هیچ تفاوتی",
+    "یکی state است",
+    "یکی کلاس است"
+   ],
+   "answer": 0,
+   "explanation": "هر دو یک کار می‌کنند؛ انتخاب سبک با شماست."
+  }
+ ]
+}

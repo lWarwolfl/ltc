@@ -1,0 +1,111 @@
+{
+ "slug": "react_conditional_rendering",
+ "course": "react",
+ "order": 25,
+ "url": "/react/react_conditional_rendering.asp",
+ "title": "React Conditional Rendering",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Conditional Rendering"
+  },
+  {
+   "type": "p",
+   "text": "In React, you can conditionally render components."
+  },
+  {
+   "type": "p",
+   "text": "There are several ways to do this."
+  },
+  {
+   "type": "h2",
+   "text": "if Statement"
+  },
+  {
+   "type": "p",
+   "text": "We can use the if JavaScript operator to decide which component to render."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MissedGoal() {\n  return <h1>MISSED!</h1>;\n}\n\nfunction MadeGoal() {\n  return <h1>Goal!</h1>;\n}",
+   "caption": "Example:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Goal(props) {\n  const isGoal = props.isGoal;\n  if (isGoal) {\n    return <MadeGoal/>;\n  }\n  return <MissedGoal/>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Goal isGoal={false} />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "Try changing the isGoal attribute to true:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "createRoot(document.getElementById('root')).render(\n  <Goal isGoal={true} />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "Logical && Operator"
+  },
+  {
+   "type": "p",
+   "text": "Another way to conditionally render a React component is by using the && operator."
+  },
+  {
+   "type": "p",
+   "text": "In the example below, the heading will only be\n  rendered if the props.brand property is not empty:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car(props) {\n  return (\n    <>\n      {props.brand && <h1>My car is a {props.brand}!</h1>}\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Car brand=\"Ford\" />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "If props.brand evaluates to true,\nthe expression after && will render."
+  },
+  {
+   "type": "p",
+   "text": "Try emptying the brand property:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "createRoot(document.getElementById('root')).render(\n  <Car />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "Ternary Operator"
+  },
+  {
+   "type": "p",
+   "text": "Another way to conditionally render elements is by using a ternary operator."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "condition ? true : false",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "We will go back to the goal example."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Goal(props) {\n  const isGoal = props.isGoal;\n  return (\n    <>\n      { isGoal ? <MadeGoal/> : <MissedGoal/> }\n    </>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Goal isGoal={false} />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "To learn more, see the ternary operator section."
+  }
+ ]
+}

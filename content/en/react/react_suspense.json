@@ -1,0 +1,117 @@
+{
+ "slug": "react_suspense",
+ "course": "react",
+ "order": 35,
+ "url": "/react/react_suspense.asp",
+ "title": "React Suspense",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Suspense"
+  },
+  {
+   "type": "p",
+   "text": "React Suspense lets you display an alternative HTML while waiting for code or data to load."
+  },
+  {
+   "type": "p",
+   "text": "The alternative HTML can be a component, text, or any valid content."
+  },
+  {
+   "type": "h2",
+   "text": "What is Suspense?"
+  },
+  {
+   "type": "p",
+   "text": "Suspense is a React feature that lets your components display an alternative HTML while waiting for code or data to load."
+  },
+  {
+   "type": "p",
+   "text": "The most common use cases are:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "Data fetching with suspense-enabled frameworks",
+    "Loading components dynamically with React.lazy()"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Using Suspense"
+  },
+  {
+   "type": "p",
+   "text": "If a component takes time to load, you can use a Suspense component,\nand it will display the fallback content while the component is loading."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport { Suspense } from 'react';\nimport Fruits from './Fruits';\n\nfunction App() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <Fruits />\n      </Suspense>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Using Suspense with lazy Loading"
+  },
+  {
+   "type": "p",
+   "text": "Another common use of the Suspense component is when importing components with lazy loading:"
+  },
+  {
+   "type": "p",
+   "text": "In the example above we had to fake a delay of two seconds to see the loading message. A task like displaying three fruits from an array\n  would be too fast to see the loading message at all."
+  },
+  {
+   "type": "p",
+   "text": "But with lazy loading, we can import a component dynamically, and it will display a loading message while it is loading,\n  even if the task is very fast."
+  },
+  {
+   "type": "p",
+   "text": "Lets first create an example WITHOUT using lazy loading, where we do not fake a two seconds delay:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport { Suspense } from 'react';\nimport Cars from './Cars';\n\nfunction App() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <Cars />\n      </Suspense>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Now let us create an example WITH using lazy loading:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport { Suspense, lazy } from 'react';\n\nconst Cars = lazy(() => import('./Cars'));\n\nfunction App() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <Cars />\n      </Suspense>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h3",
+   "text": "Example Explained"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "lazy() lets you load a component dynamically",
+    "Suspense shows a fallback while the component loads"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "Multiple Components"
+  },
+  {
+   "type": "p",
+   "text": "One Suspense component can wrap multiple lazy components:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client';\nimport { Suspense, lazy } from 'react';\n\nconst Header = lazy(() => import('./Header'));\nconst Content = lazy(() => import('./Content'));\nconst Sidebar = lazy(() => import('./Sidebar'));\n\nfunction App() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <Header />\n        <div style={{ display: 'flex' }}>\n          <Sidebar />\n          <Content />\n        </div>\n      </Suspense>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <App />\n);",
+   "caption": "Example"
+  }
+ ]
+}

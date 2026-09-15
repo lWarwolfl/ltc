@@ -1,0 +1,177 @@
+{
+  "slug": "react_customhooks",
+  "course": "react",
+  "order": 52,
+  "url": "/react/react_customhooks.asp",
+  "title": "هوک‌های سفارشی React",
+  "summary": "هوک سفارشی راهی برای بیرون کشیدن منطق مشترک از کامپوننت‌ها و استفادهٔ دوبارهٔ آن است. در این درس با ساختن useFetch یاد می‌گیرید هوک خودتان را بسازید.",
+  "objectives": [
+    "بگویید هوک سفارشی چیست و نام آن با چه چیزی شروع می‌شود",
+    "منطق fetch داده را به یک فایل useFetch.js منتقل کنید",
+    "هوک سفارشی را در چند کامپوننت import و استفاده کنید"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "هوک‌های سفارشی React"
+    },
+    {
+      "type": "p",
+      "text": "شما هم می‌توانید هوک‌های خودتان را بسازید!"
+    },
+    {
+      "type": "p",
+      "text": "وقتی منطقی دارید که در چند کامپوننت لازم می‌شود، می‌توانید آن را از کامپوننت بیرون بکشید و به یک هوک سفارشی تبدیل کنید."
+    },
+    {
+      "type": "p",
+      "text": "هوک‌های سفارشی با «use» شروع می‌شوند. مثال: useFetch."
+    },
+    {
+      "type": "h2",
+      "text": "ساخت یک هوک"
+    },
+    {
+      "type": "p",
+      "text": "اول یک مثال بدون هوک سفارشی می‌سازیم."
+    },
+    {
+      "type": "p",
+      "text": "در کد زیر، از یک URL داده می‌گیریم (fetch) و آن را نمایش می‌دهیم."
+    },
+    {
+      "type": "p",
+      "text": "برای گرفتن دادهٔ تمرینی از سرویس JSONPlaceholder استفاده می‌کنیم."
+    },
+    {
+      "type": "p",
+      "text": "برای یادگیری بیشتر دربارهٔ گرفتن داده، بخش Fetch API در JavaScript را ببینید."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useEffect } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nconst Home = () => {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"https://jsonplaceholder.typicode.com/todos\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n }, []);\n\n  return (\n    <>\n      {data &&\n        data.map((item) => {\n          return <p key={item.id}>{item.title}</p>;\n        })}\n    </>\n  );\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <Home />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "ممکن است منطق fetch در کامپوننت‌های دیگر هم لازم شود، پس آن را به یک هوک سفارشی تبدیل می‌کنیم."
+    },
+    {
+      "type": "p",
+      "text": "منطق fetch را به یک فایل جدید منتقل کنید تا به‌عنوان هوک سفارشی استفاده شود."
+    },
+    {
+      "type": "p",
+      "text": "نام فایل باید با use شروع شود، با ‎.js تمام شود و در همان پوشهٔ کامپوننت باشد."
+    },
+    {
+      "type": "p",
+      "text": "نام فایل را useFetch.js می‌گذاریم."
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useEffect } from \"react\";\n\nconst useFetch = (url) => {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(url)\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, [url]);\n\n  return [data];\n};\n\nexport default useFetch;",
+      "caption": "Example:"
+    },
+    {
+      "type": "p",
+      "text": "حالا می‌توانیم این هوک را import کنیم و در هر کامپوننت دیگری استفاده کنیم:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { createRoot } from 'react-dom/client';\nimport useFetch from \"./useFetch\";\n\nconst Home = () => {\n  const [data] = useFetch(\"https://jsonplaceholder.typicode.com/todos\");\n\n  return (\n    <>\n      {data &&\n        data.map((item) => {\n          return <p key={item.id}>{item.title}</p>;\n        })}\n    </>\n  );\n};\n\ncreateRoot(document.getElementById('root')).render(\n  <Home />\n);",
+      "caption": "Example:"
+    },
+    {
+      "type": "h2",
+      "text": "توضیح مثال"
+    },
+    {
+      "type": "p",
+      "text": "یک فایل جدید به نام useFetch.js ساختیم که تابعی به نام useFetch دارد و همهٔ منطق لازم برای گرفتن داده داخل آن است."
+    },
+    {
+      "type": "p",
+      "text": "آدرس ثابت (hard-coded) را حذف کردیم و به‌جای آن یک متغیر url گذاشتیم که می‌توان به هوک سفارشی پاس داد."
+    },
+    {
+      "type": "p",
+      "text": "در پایان، داده را از هوک برمی‌گردانیم (return می‌کنیم)."
+    },
+    {
+      "type": "p",
+      "text": "در فایل main.jsx هوک useFetch را import می‌کنیم و مثل هر هوک دیگری از آن استفاده می‌کنیم؛ این‌جا همان‌جایی است که URL را برای گرفتن داده پاس می‌دهیم."
+    },
+    {
+      "type": "p",
+      "text": "حالا می‌توانیم از این هوک سفارشی در هر کامپوننتی برای گرفتن داده از هر URL استفاده کنیم."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "در ویرایشگر امتحانی سایت، فایل useFetch.js را بسازید و منطق fetch را از کامپوننت Home به داخل آن منتقل کنید.",
+      "hint": "ساختار const useFetch = (url) => { ... } را در فایل جدید بگذارید."
+    },
+    {
+      "prompt": "هوک useFetch را در دو کامپوننت مختلف import کنید و از دو URL متفاوت داده بگیرید و هر دو را روی صفحه نشان دهید.",
+      "hint": "هوک را مثل هر هوک دیگری صدا بزنید: const [data] = useFetch(\"...\")"
+    },
+    {
+      "prompt": "آدرس ثابت داخل هوک را به یک پارامتر url تبدیل کنید تا هر کامپوننت آدرس خودش را پاس بدهد.",
+      "hint": "url را به‌عنوان ورودی تابع useFetch بگیرید و در fetch(url) استفاده کنید."
+    },
+    {
+      "prompt": "مقدار برگشتی هوک را طوری تغییر دهید که هم داده و هم وضعیت loading را برگرداند و در کامپوننت نمایش دهید.",
+      "hint": "می‌توانید یک آرایه مثل [data, loading] را return کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "نام هوک سفارشی باید با چه چیزی شروع شود؟",
+      "options": [
+        "use",
+        "my",
+        "custom",
+        "hook"
+      ],
+      "answer": 0,
+      "explanation": "طبق قرارداد React، نام هوک‌های سفارشی با «use» شروع می‌شود، مثل useFetch."
+    },
+    {
+      "question": "چرا منطق fetch را به هوک سفارشی تبدیل می‌کنیم؟",
+      "options": [
+        "چون فقط یک‌بار می‌توان fetch کرد",
+        "چون همان منطق ممکن است در کامپوننت‌های دیگر هم لازم شود",
+        "چون useEffect به‌تنهایی کار نمی‌کند",
+        "چون fetch بدون هوک خطا می‌دهد"
+      ],
+      "answer": 1,
+      "explanation": "وقتی منطقی در چند کامپوننت لازم است، بیرون کشیدن آن به هوک سفارشی جلوی تکرار کد را می‌گیرد."
+    },
+    {
+      "question": "هوک useFetch در مثال، URL را از کجا می‌گیرد؟",
+      "options": [
+        "به‌صورت ثابت داخل خودش دارد",
+        "به‌عنوان پارامتر از کامپوننت صداکننده می‌گیرد",
+        "از فایل HTML می‌خواند",
+        "از کاربر با prompt می‌گیرد"
+      ],
+      "answer": 1,
+      "explanation": "آدرس hard-coded حذف شد و به‌جای آن متغیر url به هوک پاس داده می‌شود."
+    },
+    {
+      "question": "هوک سفارشی در پایان چه چیزی برمی‌گرداند؟",
+      "options": [
+        "هیچ‌چیز",
+        "دادهٔ گرفته‌شده را return می‌کند",
+        "فقط خطا را برمی‌گرداند",
+        "یک کامپوننت JSX"
+      ],
+      "answer": 1,
+      "explanation": "هوک useFetch دادهٔ گرفته‌شده را return می‌کند تا کامپوننت از آن استفاده کند."
+    }
+  ]
+}

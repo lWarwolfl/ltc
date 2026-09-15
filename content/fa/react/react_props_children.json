@@ -1,0 +1,92 @@
+{
+ "slug": "react_props_children",
+ "course": "react",
+ "order": 23,
+ "url": "/react/react_props_children.asp",
+ "title": "پراپ children در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "پراپ children در ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "children در پراپ‌ها"
+  },
+  {
+   "type": "p",
+   "text": "در ری‌اکت می‌توانید محتوای بین تگ باز و بستهٔ یک کامپوننت را به کامپوننتی دیگر بفرستید."
+  },
+  {
+   "type": "p",
+   "text": "کامپوننت دیگر با ویژگی props.children به آن دسترسی دارد."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Son(props) {\n  return (\n    <div style={{background: 'lightgreen'}}>\n      <h2>Son</h2>\n      <div>{props.children}</div>\n    </div>\n  );\n}\n\nfunction Daughter(props) {\n  const {brand, model} = props;\n  return (\n    <div style={{background: 'lightblue'}}>\n      <h2>Daughter</h2>\n      <div>{props.children}</div>\n    </div>\n  );\n}\n\nfunction Parent() {\n  return (\n    <div>\n      <h1>My two Children</h1>\n      <Son>\n        <p>\n          This was written in the Parent component,\n          but displayed as a part of the Son component\n        </p>\n      </Son>\n      <Daughter>\n        <p>\n          This was written in the Parent component,\n          but displayed as a part of the Daughter component\n        </p>\n      </Daughter>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Parent />\n);",
+   "caption": "Example"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال را در Try-it اجرا کنید و ببینید متنی که در Parent نوشته شده داخل Son و Daughter نمایش داده می‌شود."
+  },
+  {
+   "prompt": "کامپوننت Son را بدون هیچ فرزندی رندر کنید. چه چیزی نمایش داده می‌شود؟",
+   "hint": "تگ <Son></Son> را خالی بگذارید؛ جای children خالی می‌ماند."
+  },
+  {
+   "prompt": "رنگ پس‌زمینهٔ Son را از lightgreen به lightcoral تغییر دهید."
+  },
+  {
+   "prompt": "یک پاراگراف دوم داخل Son بفرستید و ببینید هر دو نمایش داده می‌شوند."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "props.children چیست؟",
+   "options": [
+    "محتوای بین تگ باز و بستهٔ کامپوننت",
+    "پراپی که حتماً باید پاس داده شود",
+    "state داخلی کامپوننت",
+    "نام کامپوننت والد"
+   ],
+   "answer": 0,
+   "explanation": "هر چیزی بین تگ‌های کامپوننت گذاشته شود، در props.children به آن دسترسی داریم."
+  },
+  {
+   "question": "در مثال، متن داخل <Son> کجا نوشته شده است؟",
+   "options": [
+    "در کامپوننت Parent",
+    "در کامپوننت Son",
+    "در فایل جدا",
+    "در props پیش‌فرض"
+   ],
+   "answer": 0,
+   "explanation": "متن در Parent نوشته شده ولی به‌عنوان بخشی از Son نمایش داده می‌شود."
+  },
+  {
+   "question": "اگر کامپوننتی هیچ فرزندی نگیرد، props.children چه می‌شود؟",
+   "options": [
+    "undefined",
+    "رشتهٔ خالی",
+    "خطا می‌دهد",
+    "null حتماً"
+   ],
+   "answer": 0,
+   "explanation": "وقتی فرزندی نیست، props.children برابر undefined است."
+  },
+  {
+   "question": "در Daughter فرزند با کدام ویژگی نمایش داده شده است؟",
+   "options": [
+    "props.children",
+    "props.content",
+    "state",
+    "context"
+   ],
+   "answer": 0,
+   "explanation": "هر دو کامپوننت با {props.children} فرزند را رندر می‌کنند."
+  }
+ ]
+}

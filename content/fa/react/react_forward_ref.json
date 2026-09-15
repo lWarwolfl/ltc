@@ -1,0 +1,128 @@
+{
+ "slug": "react_forward_ref",
+ "course": "react",
+ "order": 41,
+ "url": "/react/react_forward_ref.asp",
+ "title": "forwardRef در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "forwardRef در ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "forwardRef چیست؟"
+  },
+  {
+   "type": "p",
+   "text": "forwardRef می‌گذارد کامپوننت شما یک رفرنس را به یکی از فرزندانش بدهد. مثل این است که ارجاع مستقیم به یک عنصر DOM داخل کامپوننت بدهید."
+  },
+  {
+   "type": "p",
+   "text": "کاربردهای رایج forwardRef:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "فوکوس کردن روی inputها",
+    "راه انداختن انیمیشن‌ها",
+    "اندازه گرفتن عناصر DOM",
+    "یکپارچه شدن با کتابخانه‌های third-party"
+   ]
+  },
+  {
+   "type": "h2",
+   "text": "مثال پایه"
+  },
+  {
+   "type": "p",
+   "text": "یک مثال ساده از فرستادن ref به عنصر input:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { forwardRef, useRef } from 'react';\n\nconst MyInput = forwardRef((props, ref) => (\n  <input ref={ref} {...props} />\n));\n\nfunction App() {\n  const inputRef = useRef();\n\n  const focusInput = () => {\n    inputRef.current.focus();\n  };\n\n  return (\n    <div>\n      <MyInput ref={inputRef} placeholder=\"Type here...\" />\n      <button onClick={focusInput}>Focus Input</button>\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "در این مثال:"
+  },
+  {
+   "type": "list",
+   "ordered": false,
+   "items": [
+    "کامپوننت input را با forwardRef می‌پیچیم",
+    "کامپوننت ref را به‌عنوان پارامتر دوم می‌گیرد",
+    "والد حالا می‌تواند مستقیم عنصر input را کنترل کند"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "نکته: فقط وقتی از forwardRef استفاده کنید که دسترسی مستقیم به DOM لازم دارید. در بیشتر موارد props و state کافی‌اند."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال را بخوانید و بگویید inputRef دقیقاً به چه چیزی اشاره می‌کند.",
+   "hint": "به عنصر input داخل MyInput."
+  },
+  {
+   "prompt": "روی دکمه بزنید و ببینید فوکوس به input می‌رود."
+  },
+  {
+   "prompt": "یک input دوم بدون forwardRef اضافه کنید و ببینید ref مستقیم روی آن جواب نمی‌دهد.",
+   "hint": "ref روی کامپوننت معمولی به DOM نمی‌رسد."
+  },
+  {
+   "prompt": "متن placeholder را عوض کنید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "forwardRef چه می‌کند؟",
+   "options": [
+    "ref را از کامپوننت به فرزندش می‌رساند",
+    "state می‌سازد",
+    "کامپوننت را کپی می‌کند",
+    "رویداد اضافه می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "بدون آن، ref روی کامپوننت به DOM داخلش نمی‌رسد."
+  },
+  {
+   "question": "کامپوننت پیچیده‌شده ref را چگونه می‌گیرد؟",
+   "options": [
+    "به‌عنوان پارامتر دوم",
+    "به‌عنوان prop معمولی",
+    "از context",
+    "از state"
+   ],
+   "answer": 0,
+   "explanation": "سینتکس: forwardRef((props, ref) => ...)."
+  },
+  {
+   "question": "در مثال با دکمه چه اتفاقی می‌افتد؟",
+   "options": [
+    "input فوکوس می‌شود",
+    "متن پاک می‌شود",
+    "صفحه رفرش می‌شود",
+    "هیچی"
+   ],
+   "answer": 0,
+   "explanation": "inputRef.current همان عنصر input است و focus صدا زده می‌شود."
+  },
+  {
+   "question": "کی نباید از forwardRef استفاده کرد؟",
+   "options": [
+    "وقتی با props و state کار راه می‌افتد",
+    "هیچ‌وقت",
+    "فقط برای input",
+    "فقط برای انیمیشن"
+   ],
+   "answer": 0,
+   "explanation": "دسترسی مستقیم به DOM آخرین راه‌حل است، نه اولین."
+  }
+ ]
+}

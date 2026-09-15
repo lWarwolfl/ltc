@@ -1,0 +1,188 @@
+{
+  "slug": "react_transitions",
+  "course": "react",
+  "order": 40,
+  "url": "/react/react_transitions.asp",
+  "title": "ترنزیشن‌ها (Transitions) در React",
+  "summary": "هوک useTransition می‌گذارد بعضی به‌روزرسانی‌های state را «غیرفوری» علامت بزنید تا برنامه هنگام به‌روزرسانی‌های سنگین پاسخ‌گو بماند. در این درس با مثال جست‌وجو از isPending و startTransition استفاده می‌کنید.",
+  "objectives": [
+    "بگویید ترنزیشن چیست و چه زمانی به کار می‌آید",
+    "در مثال جست‌وجو ورودی را فوری و نتایج را ترنزیشن کنید",
+    "با isPending هنگام ترنزیشن فعال پیام بارگذاری نشان دهید",
+    "بگویید useTransition چه چیزهایی برمی‌گرداند"
+  ],
+  "blocks": [
+    {
+      "type": "h1",
+      "text": "ترنزیشن‌ها در React"
+    },
+    {
+      "type": "h2",
+      "text": "useTransition چیست؟"
+    },
+    {
+      "type": "p",
+      "text": "هوک useTransition کمک می‌کند برنامهٔ React شما هنگام به‌روزرسانی‌های سنگین پاسخ‌گو بماند."
+    },
+    {
+      "type": "p",
+      "text": "این هوک می‌گذارد بعضی به‌روزرسانی‌های state را «غیرفوری» علامت بزنید تا به‌روزرسانی‌های فوری‌تر اول انجام شوند."
+    },
+    {
+      "type": "h2",
+      "text": "کی از ترنزیشن استفاده کنیم؟"
+    },
+    {
+      "type": "p",
+      "text": "وقتی این‌ها را دارید از ترنزیشن استفاده کنید:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "یک عملیات کند که ممکن است رابط کاربری را فریز کند",
+        "به‌روزرسانی‌هایی که فوراً حیاتی نیستند",
+        "نتایج جست‌وجویی که نمایششان طول می‌کشد"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مثال پایه"
+    },
+    {
+      "type": "p",
+      "text": "یک مثال ساده که نشان می‌دهد چطور در یک قابلیت جست‌وجو از ترنزیشن استفاده کنید:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useTransition } from 'react';\n\nfunction SearchBar() {\n  const [text, setText] = useState('');\n  const [results, setResults] = useState('');\n  const [isPending, startTransition] = useTransition();\n\n  const handleChange = (e) => {\n    // Urgent: Update input right away\n    setText(e.target.value);\n\n    // Non-urgent: Update search results\n    startTransition(() => {\n      setResults(e.target.value);\n    });\n  };\n\n  return (\n    <div>\n      <input value={text} onChange={handleChange} />\n      {isPending ? (\n        <p>Loading...</p>\n      ) : (\n        <p>Search results for: {results}</p>\n      )}\n    </div>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "در این مثال:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "فیلد ورودی فوراً به‌روز می‌شود (به‌روزرسانی فوری)",
+        "به‌روزرسانی نتایج جست‌وجو ترنزیشن علامت‌گذاری می‌شود (غیرفوری)",
+        "پیام بارگذاری تا وقتی ترنزیشن در جریان است نمایش داده می‌شود"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "مثال واقعی"
+    },
+    {
+      "type": "p",
+      "text": "یک مثال کاربردی‌تر با یک جست‌وجوی کند:"
+    },
+    {
+      "type": "code",
+      "lang": "text",
+      "text": "import { useState, useTransition } from 'react';\n\nfunction SearchResults({ query }) {\n  // Simulate slow search results\n  const items = [];\n  if (query) {\n    for (let i = 0; i < 1000; i++) {\n      items.push(<li key={i}>Result for {query} - {i}</li>);\n    }\n  }\n  return <ul>{items}</ul>;\n}\n\nfunction App() {\n  const [input, setInput] = useState('');\n  const [query, setQuery] = useState('');\n  const [isPending, startTransition] = useTransition();\n\n  const handleChange = (e) => {\n    // Urgent: Update input field\n    setInput(e.target.value);\n\n    // Non-urgent: Update search results\n    startTransition(() => {\n      setQuery(e.target.value);\n    });\n  };\n\n  return (\n    <div>\n      <input\n        type=\"text\"\n        value={input}\n        onChange={handleChange}\n        placeholder=\"Type to search...\"\n      />\n      {isPending && <p>Loading results...</p>}\n      <SearchResults query={query} />\n    </div>\n  );\n}",
+      "caption": "Example"
+    },
+    {
+      "type": "p",
+      "text": "این مثال چطور کار می‌کند:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "وقتی در فیلد ورودی تایپ می‌کنید، فوراً به‌روز می‌شود",
+        "به‌روزرسانی نتایج جست‌وجو داخل startTransition پیچیده می‌شود",
+        "تا وقتی نتایج در حال به‌روزرسانی‌اند، isPending برابر true است",
+        "رابط کاربری حتی با نتایج زیاد پاسخ‌گو می‌ماند"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "هوک useTransition"
+    },
+    {
+      "type": "p",
+      "text": "هوک useTransition دو عضو برمی‌گرداند:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "isPending: می‌گوید آیا ترنزیشنی فعال است",
+        "startTransition: تابعی که به‌روزرسانی‌ها را ترنزیشن علامت می‌زند"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "نکته: فقط برای به‌روزرسانی‌های غیرفوری از ترنزیشن استفاده کنید. مثلاً تایپ در فیلد ورودی باید فوری باشد، ولی فیلتر کردن یک لیست بزرگ می‌تواند ترنزیشن باشد."
+    }
+  ],
+  "tasks": [
+    {
+      "prompt": "مثال پایهٔ جست‌وجو را در ویرایشگر Try-it اجرا کنید و با تایپ در ورودی، پیام بارگذاری را ببینید.",
+      "hint": "وقتی isPending برابر true است پیام بارگذاری نمایش داده می‌شود."
+    },
+    {
+      "prompt": "به‌روزرسانی نتایج را از داخل startTransition بیرون بیاورید و ببینید ورودی هنگام تایپ کند می‌شود.",
+      "hint": "تفاوت پاسخ‌گویی ورودی را در دو حالت مقایسه کنید."
+    },
+    {
+      "prompt": "مثال واقعی با لیست بزرگ را اجرا کنید و هنگام تایپ سریع، روان ماندن ورودی را ببینید.",
+      "hint": "ورودی فوری است و فقط نتایج ترنزیشن‌اند."
+    },
+    {
+      "prompt": "به‌جای پیام متنی، یک اسپینر بارگذاری با isPending نشان دهید.",
+      "hint": "به‌جای متن، یک عنصر دلخواه را شرطی با isPending رندر کنید."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "هوک useTransition چه مشکلی را حل می‌کند؟",
+      "options": [
+        "پاسخ‌گو نگه داشتن برنامه هنگام به‌روزرسانی‌های سنگین",
+        "نصب بسته‌ها",
+        "کامپایل Sass",
+        "ساخت سرور Node"
+      ],
+      "answer": 0,
+      "explanation": "با علامت زدن به‌روزرسانی‌های غیرفوری به‌صورت ترنزیشن، به‌روزرسانی‌های فوری اول انجام می‌شوند و رابط کاربری فریز نمی‌شود."
+    },
+    {
+      "question": "هوک useTransition چه چیزهایی برمی‌گرداند؟",
+      "options": [
+        "isPending و startTransition",
+        "state و dispatch",
+        "current",
+        "reducer و init"
+      ],
+      "answer": 0,
+      "explanation": "useTransition دو عضو برمی‌گرداند: isPending که فعال بودن ترنزیشن را می‌گوید و startTransition که به‌روزرسانی را ترنزیشن علامت می‌زند."
+    },
+    {
+      "question": "در مثال جست‌وجو کدام به‌روزرسانی فوری است؟",
+      "options": [
+        "تایپ در فیلد ورودی",
+        "فیلتر کردن لیست بزرگ نتایج",
+        "گرفتن داده از سرور",
+        "کامپایل Sass"
+      ],
+      "answer": 0,
+      "explanation": "تایپ کاربر باید فوری باشد؛ فیلتر کردن لیست بزرگ غیرفوری است و ترنزیشن می‌شود."
+    },
+    {
+      "question": "isPending چه زمانی true است؟",
+      "options": [
+        "تا وقتی نتایج در حال به‌روزرسانی‌اند",
+        "همیشه true است",
+        "فقط وقتی اینترنت قطع است",
+        "هیچ‌وقت true نمی‌شود"
+      ],
+      "answer": 0,
+      "explanation": "هنگام فعال بودن ترنزیشن، isPending برابر true است و می‌توان با آن پیام بارگذاری نشان داد."
+    }
+  ]
+}

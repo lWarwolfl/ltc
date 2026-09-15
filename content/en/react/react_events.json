@@ -1,0 +1,95 @@
+{
+ "slug": "react_events",
+ "course": "react",
+ "order": 24,
+ "url": "/react/react_events.asp",
+ "title": "React Events",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Events"
+  },
+  {
+   "type": "p",
+   "text": "Just like HTML DOM events, React can perform actions based on user events."
+  },
+  {
+   "type": "p",
+   "text": "React has the same events as HTML: click, change, mouseover etc."
+  },
+  {
+   "type": "h2",
+   "text": "Adding Events"
+  },
+  {
+   "type": "p",
+   "text": "React events are written in camelCase syntax:"
+  },
+  {
+   "type": "p",
+   "text": "onClick\ninstead of onclick."
+  },
+  {
+   "type": "p",
+   "text": "React event handlers are written inside curly\nbraces:"
+  },
+  {
+   "type": "p",
+   "text": "onClick={shoot}  instead of\nonclick=\"shoot()\"."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onClick={shoot}>Take the Shot!</button>",
+   "caption": "React:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onclick=\"shoot()\">Take the Shot!</button>",
+   "caption": "HTML:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Football() {\n  const shoot = () => {\n    alert(\"Great Shot!\");\n  }\n\n  return (\n    <button onClick={shoot}>Take the shot!</button>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Football />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "Passing Arguments"
+  },
+  {
+   "type": "p",
+   "text": "To pass an argument to an event handler, use an arrow function."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Football() {\n  const shoot = (a) => {\n    alert(a);\n  }\n\n  return (\n    <button onClick={() => shoot(\"Goal!\")}>Take the shot!</button>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Football />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "React Event Object"
+  },
+  {
+   "type": "p",
+   "text": "Event handlers have access to the React event that triggered the function."
+  },
+  {
+   "type": "p",
+   "text": "In our example the event is the \"click\" event."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Football() {\n  const shoot = (a, b) => {\n    alert(b.type);\n    /*\n    'b' represents the React event that triggered the function,\n    in this case the 'click' event\n    */\n  }\n\n  return (\n    <button onClick={(event) => shoot(\"Goal!\", event)}>Take the shot!</button>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Football />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "This will come in handy when we look at Form in\na later chapter."
+  }
+ ]
+}

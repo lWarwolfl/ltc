@@ -1,0 +1,57 @@
+{
+ "slug": "react_hoc",
+ "course": "react",
+ "order": 42,
+ "url": "/react/react_hoc.asp",
+ "title": "React Higher Order Components",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Higher Order Components"
+  },
+  {
+   "type": "h2",
+   "text": "What is a Higher Order Component?"
+  },
+  {
+   "type": "p",
+   "text": "A Higher Order Component (HOC) is like a wrapper that adds extra features to your React components. Think of it like putting a case on your phone - the case adds new features (like water protection) without changing the phone itself."
+  },
+  {
+   "type": "p",
+   "text": "Note: HOCs are functions that take a component and return an enhanced version of that component."
+  },
+  {
+   "type": "h2",
+   "text": "Example: Adding a Border"
+  },
+  {
+   "type": "p",
+   "text": "To demonstrate how HOCs work, let's create a simple example - adding a border to any component:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "// This is our HOC - it adds a border to any component\nfunction withBorder(WrappedComponent) {\n  return function NewComponent(props) {\n    return (\n      <div style={{ border: '2px solid blue', padding: '10px' }}>\n        <WrappedComponent {...props} />\n      </div>\n    );\n  };\n}\n\n// Simple component without border\nfunction Greeting({ name }) {\n  return <h1>Hello, {name}!</h1>;\n}\n\n// Create a new component with border\nconst GreetingWithBorder = withBorder(Greeting);\n\nfunction App() {\n  return (\n    <div>\n      <Greeting name=\"John\" />\n      <GreetingWithBorder name=\"Jane\" />\n    </div>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "In this example:"
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "withBorder is our HOC - it's a function that takes a component",
+    "It returns a new component that wraps the original in a div with a border",
+    "The original component (Greeting) remains unchanged",
+    "We can still use both the original and enhanced versions"
+   ]
+  },
+  {
+   "type": "p",
+   "text": "Note: Often, HOC's can be replaced with React Hooks,\n  but HOC's are still useful for certain cross-cutting concerns like authentication or data fetching patterns."
+  }
+ ]
+}

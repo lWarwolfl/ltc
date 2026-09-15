@@ -1,0 +1,127 @@
+{
+ "slug": "react_jsx_attributes",
+ "course": "react",
+ "order": 17,
+ "url": "/react/react_jsx_attributes.asp",
+ "title": "React JSX Attributes",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React JSX Attributes"
+  },
+  {
+   "type": "p",
+   "text": "JSX allows you to insert attributes into HTML elements, but there are a few important differences."
+  },
+  {
+   "type": "h2",
+   "text": "class = className"
+  },
+  {
+   "type": "p",
+   "text": "The class attribute is a much used attribute\nin HTML, but since JSX is rendered as JavaScript, and the\nclass keyword is a reserved word in JavaScript,\nyou are not allowed to use it in JSX."
+  },
+  {
+   "type": "p",
+   "text": "JSX solved this by using className instead.\nWhen JSX is rendered, it translates className\nattributes into class attributes."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  return (\n    <h1 className=\"myclass\">Hello World</h1>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Expressions as Attributes"
+  },
+  {
+   "type": "p",
+   "text": "You can also use JavaScript expressions as attribute values.\nThis is very useful for dynamic attributes."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  const x = \"myclass\";\n  return (\n    <h1 className={x}>Hello World</h1>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Note that the attribute value is not wrapped in quotes, this is important when using expressions (JavaScript variables)\nas attribute values. If you use quotes, JSX will treat it as a string literals and not a JavaScript expression."
+  },
+  {
+   "type": "h2",
+   "text": "camelCase Event Attributes"
+  },
+  {
+   "type": "p",
+   "text": "Event attributes in JSX are written in camelCase."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  const myfunc = () => {\n    alert('Hello World');\n  };\n  return (\n    <button onClick={myfunc}>Click me</button>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "Boolean Attributes"
+  },
+  {
+   "type": "p",
+   "text": "If you pass no value for an attribute, JSX treats it as true. To pass false, you must specify it as an expression."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onClick={myfunc} disabled>Click me</button>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onClick={myfunc} disabled={true}>Click me</button>",
+   "caption": "Example"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "<button onClick={myfunc} disabled={false}>Click me</button>",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "The style Attribute"
+  },
+  {
+   "type": "p",
+   "text": "The style attribute in JSX only accepts a JavaScript object with camelCased CSS property names, rather than a CSS string (as in HTML)."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Car() {\n  const mystyles = {\n    color: \"red\",\n    fontSize: \"20px\",\n    backgroundColor: \"lightyellow\",\n  };\n\n  return (\n    <>\n      <h1 style={mystyles}>My car</h1>\n    </>\n  );\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "p",
+   "text": "Notice two things about the example above."
+  },
+  {
+   "type": "list",
+   "ordered": true,
+   "items": [
+    "The styles are stored in an object.",
+    "Style properties are written in camelCase, e.g. fontSize, instead of font-size."
+   ]
+  },
+  {
+   "type": "p",
+   "text": "This is an important difference between HTML and JSX."
+  },
+  {
+   "type": "p",
+   "text": "You will learn more about CSS and styling in the React CSS Styling chapter."
+  }
+ ]
+}

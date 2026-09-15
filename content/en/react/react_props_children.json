@@ -1,0 +1,31 @@
+{
+ "slug": "react_props_children",
+ "course": "react",
+ "order": 23,
+ "url": "/react/react_props_children.asp",
+ "title": "React Props Children",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React Props Children"
+  },
+  {
+   "type": "h2",
+   "text": "Props Children"
+  },
+  {
+   "type": "p",
+   "text": "In React, you can send the content between the opening and closing tags of a component, to another component."
+  },
+  {
+   "type": "p",
+   "text": "This can be accessed in the other component using the props.children property."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function Son(props) {\n  return (\n    <div style={{background: 'lightgreen'}}>\n      <h2>Son</h2>\n      <div>{props.children}</div>\n    </div>\n  );\n}\n\nfunction Daughter(props) {\n  const {brand, model} = props;\n  return (\n    <div style={{background: 'lightblue'}}>\n      <h2>Daughter</h2>\n      <div>{props.children}</div>\n    </div>\n  );\n}\n\nfunction Parent() {\n  return (\n    <div>\n      <h1>My two Children</h1>\n      <Son>\n        <p>\n          This was written in the Parent component,\n          but displayed as a part of the Son component\n        </p>\n      </Son>\n      <Daughter>\n        <p>\n          This was written in the Parent component,\n          but displayed as a part of the Daughter component\n        </p>\n      </Daughter>\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Parent />\n);",
+   "caption": "Example"
+  }
+ ]
+}

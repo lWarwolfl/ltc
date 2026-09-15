@@ -1,0 +1,209 @@
+{
+ "slug": "react_es6_arrow",
+ "course": "react",
+ "order": 7,
+ "url": "/react/react_es6_arrow.asp",
+ "title": "توابع arrow در ES6 ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "توابع arrow در ES6 ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "توابع arrow"
+  },
+  {
+   "type": "p",
+   "text": "توابع arrow اجازه می‌دهند سینتکس کوتاه‌تری برای تابع بنویسیم:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = function() {\n  return \"Hello World!\";\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_function"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = () => {\n  return \"Hello World!\";\n}",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow1"
+  },
+  {
+   "type": "p",
+   "text": "کوتاه‌تر هم می‌شود! اگر تابع فقط یک دستور داشته باشد و آن دستور مقداری برگرداند، می‌توانید آکولاد و کلمهٔ return را حذف کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = () => \"Hello World!\";",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow2"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "این فقط وقتی کار می‌کند که تابع فقط یک دستور داشته باشد."
+  },
+  {
+   "type": "p",
+   "text": "اگر پارامتر داشته باشید، آن‌ها را داخل پرانتز می‌گذارید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = (val) => \"Hello \" + val;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow3"
+  },
+  {
+   "type": "p",
+   "text": "حتی اگر فقط یک پارامتر داشته باشید، می‌توانید پرانتز را هم حذف کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "hello = val => \"Hello \" + val;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow4"
+  },
+  {
+   "type": "h2",
+   "text": "this چه می‌شود؟"
+  },
+  {
+   "type": "p",
+   "text": "رفتار this در توابع arrow با توابع معمولی فرق دارد."
+  },
+  {
+   "type": "p",
+   "text": "خلاصه اینکه در توابع arrow خبری از bind شدن this نیست."
+  },
+  {
+   "type": "p",
+   "text": "در توابع معمولی کلمهٔ this همان شیئی است که تابع را صدا زده؛ ممکن است window، document، یک دکمه یا هر چیز دیگری باشد."
+  },
+  {
+   "type": "p",
+   "text": "در توابع arrow کلمهٔ this همیشه همان شیئی است که تابع arrow را تعریف کرده است."
+  },
+  {
+   "type": "p",
+   "text": "برای فهم تفاوت به دو مثال نگاه کنیم."
+  },
+  {
+   "type": "p",
+   "text": "هر دو مثال یک متد را دو بار صدا می‌زنند: یک بار هنگام بارگذاری صفحه و یک بار با کلیک کاربر روی دکمه."
+  },
+  {
+   "type": "p",
+   "text": "مثال اول از تابع معمولی و مثال دوم از تابع arrow استفاده می‌کند."
+  },
+  {
+   "type": "p",
+   "text": "نتیجه نشان می‌دهد مثال اول دو شیء متفاوت برمی‌گرداند (window و button) و مثال دوم هر دو بار شیء Header را برمی‌گرداند."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "class Header {\n  constructor() {\n    this.color = \"Red\";\n  }\n\n//Regular function:\n  changeColor = function() {\n    document.getElementById(\"demo\").innerHTML += this;\n  }\n}\n\nconst myheader = new Header();\n\n//The window object calls the function:\nwindow.addEventListener(\"load\", myheader.changeColor);\n\n//A button object calls the function:\ndocument.getElementById(\"btn\").addEventListener(\"click\", myheader.changeColor);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow_this_regular"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "class Header {\n  constructor() {\n    this.color = \"Red\";\n  }\n\n//Arrow function:\n  changeColor = () => {\n    document.getElementById(\"demo\").innerHTML += this;\n  }\n}\n\nconst myheader = new Header();\n\n//The window object calls the function:\nwindow.addEventListener(\"load\", myheader.changeColor);\n\n//A button object calls the function:\ndocument.getElementById(\"btn\").addEventListener(\"click\", myheader.changeColor);",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_arrow_this"
+  },
+  {
+   "type": "p",
+   "text": "این تفاوت‌ها را هنگام کار با تابع‌ها یادتان باشد. گاهی رفتار توابع معمولی همان چیزی است که می‌خواهید؛ اگر نه، از توابع arrow استفاده کنید."
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "هر سه فرم تابع hello را در Try-it اجرا کنید و ببینید هر سه یک خروجی می‌دهند."
+  },
+  {
+   "prompt": "یک تابع arrow بنویسید که دو عدد بگیرد و جمعشان را برگرداند.",
+   "hint": "از فرم کوتاه استفاده کنید: (a, b) => a + b"
+  },
+  {
+   "prompt": "تابع hello را طوری عوض کنید که نامی را به‌عنوان پارامتر بگیرد و «Hello» به‌علاوهٔ آن نام را برگرداند."
+  },
+  {
+   "prompt": "در مثال this، تابع معمولی را به arrow تبدیل کنید و ببینید نتیجه مثل مثال دوم می‌شود."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "کوتاه‌ترین فرم تابع تک‌دستوری که مقداری برمی‌گرداند کدام است؟",
+   "options": [
+    "hello = () => \"Hello World!\";",
+    "hello = function() { return \"Hello World!\"; }",
+    "hello = () => { \"Hello World!\"; }",
+    "hello => return \"Hello World!\""
+   ],
+   "answer": 0,
+   "explanation": "وقتی یک دستورِ برگرداننده است، هم آکولاد و هم return حذف می‌شود."
+  },
+  {
+   "question": "اگر تابع فقط یک پارامتر داشته باشد چه می‌شود کرد؟",
+   "options": [
+    "پرانتز را هم می‌توان حذف کرد",
+    "حتماً باید پرانتز گذاشت",
+    "باید از function استفاده کرد",
+    "پارامتر را نمی‌توان نام برد"
+   ],
+   "answer": 0,
+   "explanation": "با یک پارامتر، هم می‌شود پرانتز گذاشت و هم می‌شود حذفش کرد."
+  },
+  {
+   "question": "this در توابع arrow به چه چیزی اشاره می‌کند؟",
+   "options": [
+    "به شیئی که تابع را تعریف کرده است",
+    "به شیئی که تابع را صدا زده است",
+    "همیشه به window",
+    "همیشه undefined است"
+   ],
+   "answer": 0,
+   "explanation": "در توابع arrow خبری از bind شدن this نیست؛ this همان شیء تعریف‌کننده است."
+  },
+  {
+   "question": "در مثال اول (تابع معمولی) this چه چیزی بود؟",
+   "options": [
+    "window و button",
+    "هر دو بار Header",
+    "هر دو بار undefined",
+    "هر دو بار document"
+   ],
+   "answer": 0,
+   "explanation": "چون تابع معمولی را window و بعد دکمه صدا زد، this هر بار فرق کرد."
+  }
+ ]
+}

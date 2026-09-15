@@ -1,0 +1,86 @@
+{
+ "slug": "react_usecallback",
+ "course": "react",
+ "order": 50,
+ "url": "/react/react_usecallback.asp",
+ "title": "React useCallback Hook",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React useCallback Hook"
+  },
+  {
+   "type": "p",
+   "text": "The useCallback Hook is used to memoize a callback function."
+  },
+  {
+   "type": "p",
+   "text": "Memoizing a function means caching the result of a function so that it does not need to be recalculated."
+  },
+  {
+   "type": "p",
+   "text": "The useCallback function only re-executes when one of its dependencies changes value."
+  },
+  {
+   "type": "p",
+   "text": "This allows us to isolate resource intensive functions so that they will not automatically run on every render."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "The useCallback and useMemo Hooks are similar:\nuseMemo returns a memoized value.\nuseCallback returns a memoized function.\nLearn more about useMemo in the useMemo chapter."
+  },
+  {
+   "type": "h2",
+   "text": "Syntax"
+  },
+  {
+   "type": "p",
+   "text": "The useCallback Hook accepts two arguments."
+  },
+  {
+   "type": "p",
+   "text": "useCallback(callback, dependencies)"
+  },
+  {
+   "type": "p",
+   "text": "callback: The function that you want to memoize."
+  },
+  {
+   "type": "p",
+   "text": "dependencies: An array of dependencies for the callback function. The memoized callback will only change if one of these dependencies has changed."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "//Without useCallback:\nimport React, { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\n// Child component that receives a function prop\nconst Button = React.memo(({ onClick, text }) => {\n  alert(`Child ${text} button rendered`);\n  return <button onClick={onClick}>{text}</button>;\n});\n\n// Parent component without useCallback\nfunction WithoutCallbackExample() {\n  const [count1, setCount1] = useState(0);\n  const [count2, setCount2] = useState(0);\n\n  // This function is recreated on every render\n  const handleClick1 = () => {\n    setCount1(count1 + 1);\n  };\n\n  const handleClick2 = () => {\n    setCount2(count2 + 1);\n  };\n\n  alert(\"Parent rendered\");\n  return (\n    <div>\n      <h2>Without useCallback:</h2>\n      <p>Count 1: {count1}</p>\n      <p>Count 2: {count2}</p>\n      <Button onClick={handleClick1} text=\"Button 1\" />\n      <Button onClick={handleClick2} text=\"Button 2\" />\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <WithoutCallbackExample />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "p",
+   "text": "Try running the example above and click the buttons."
+  },
+  {
+   "type": "p",
+   "text": "You will notice that all three components (Parent, Button 1 and Button 2) re-render each time you click the buttons."
+  },
+  {
+   "type": "p",
+   "text": "This can be avoided by using the useCallback hook."
+  },
+  {
+   "type": "p",
+   "text": "By using the useCallback hook,\nwe can memoize the functions and only recreate them when their dependencies change."
+  },
+  {
+   "type": "p",
+   "text": "When clicking Button 1, only Parent and Button 1 should re-render, and when clicking Button 2,\n  only Parent and Button 2 should re-render:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "//With useCallback:\nimport React, { useState, useCallback } from 'react';\nimport { createRoot } from 'react-dom/client';\n\n// Child component that receives a function prop\nconst Button = React.memo(({ onClick, text }) => {\n  console.log(`${text} button rendered`);\n  return <button onClick={onClick}>{text}</button>;\n});\n\n// Parent component with useCallback\nfunction WithCallbackExample() {\n  const [count1, setCount1] = useState(0);\n  const [count2, setCount2] = useState(0);\n\n  // These functions are memoized and only recreated when dependencies change\n  const handleClick1 = useCallback(() => {\n    setCount1(count1 + 1);\n  }, [count1]);\n\n  const handleClick2 = useCallback(() => {\n    setCount2(count2 + 1);\n  }, [count2]);\n\n  console.log(\"Parent rendered\");\n  return (\n    <div>\n      <h2>With useCallback:</h2>\n      <p>Count 1: {count1}</p>\n      <p>Count 2: {count2}</p>\n      <Button onClick={handleClick1} text=\"Button 1\" />\n      <Button onClick={handleClick2} text=\"Button 2\" />\n    </div>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <WithCallbackExample />\n);",
+   "caption": "Example:"
+  }
+ ]
+}

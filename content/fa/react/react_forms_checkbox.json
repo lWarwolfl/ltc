@@ -1,0 +1,111 @@
+{
+ "slug": "react_forms_checkbox",
+ "course": "react",
+ "order": 32,
+ "url": "/react/react_forms_checkbox.asp",
+ "title": "فرم‌های ری‌اکت - چک‌باکس",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "فرم‌های ری‌اکت - چک‌باکس"
+  },
+  {
+   "type": "h2",
+   "text": "چک‌باکس"
+  },
+  {
+   "type": "p",
+   "text": "برای چک‌باکس‌ها به‌جای value از ویژگی checked برای کنترل وضعیت استفاده کنید."
+  },
+  {
+   "type": "p",
+   "text": "از هوک useState برای مدیریت مقدار ورودی‌ها استفاده می‌کنیم:"
+  },
+  {
+   "type": "p",
+   "text": "در تابع handleChange با ویژگی e.target.type بررسی کنید ورودی جاری چک‌باکس است یا نه."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [inputs, setInputs] = useState({});\n\n  const handleChange = (e) => {\n    const target = e.target;\n    const value = target.type === 'checkbox' ? target.checked : target.value;\n    const name = target.name;\n    setInputs(values => ({...values, [name]: value}))\n  }\n\n  const handleSubmit = (event) => {\n    let fillings = '';\n    if (inputs.tomato) fillings += 'tomato';\n    if (inputs.onion) {\n      if (inputs.tomato) fillings += ' and ';\n      fillings += 'onion';\n    }\n    if (fillings == '') fillings = 'no fillings';\n    alert(`${inputs.firstname} wants a burger with ${fillings}`);\n    event.preventDefault();\n  };\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <label>My name is:\n      <input\n        type=\"text\"\n        name=\"firstname\"\n        value={inputs.firstname}\n        onChange={handleChange}\n      />\n      </label>\n\n      <p>I want a burger with:</p>\n      <label>Tomato:\n      <input\n        type=\"checkbox\"\n        name=\"tomato\"\n        checked={inputs.tomato}\n        onChange={handleChange}\n      />\n      </label>\n      <label>Onion:\n        <input\n          type=\"checkbox\"\n          name=\"onion\"\n          checked={inputs.onion}\n          onChange={handleChange}\n        />\n      </label>\n      <button type=\"submit\">Submit</button>\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  },
+  {
+   "type": "h2",
+   "text": "مقادیر اولیه"
+  },
+  {
+   "type": "p",
+   "text": "برای دادن مقدار اولیه به ورودی‌های مثال بالا، کلید و مقدار مناسب را به شیء useState اضافه کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function MyForm() {\n  const [inputs, setInputs] = useState({\n    firstname: 'John',\n    tomato: true,\n    onion: false\n  });\n\n  ...",
+   "caption": "Example:"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "یک چک‌باکس سوم (cheese) اضافه کنید و در متن alert حسابش کنید.",
+   "hint": "مثل tomato عمل کنید و در handleSubmit یک if برای inputs.cheese بگذارید."
+  },
+  {
+   "prompt": "مقادیر اولیهٔ مثال دوم را امتحان کنید و firstname را به نام خودتان تغییر دهید."
+  },
+  {
+   "prompt": "تیک گوجه را بردارید و فرم را ثبت کنید. متن alert چه می‌شود؟"
+  },
+  {
+   "prompt": "یک ورودی متنی دوم (lastname) به فرم اضافه کنید.",
+   "hint": "مثل firstname با name برابر lastname."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "وضعیت چک‌باکس با کدام ویژگی کنترل می‌شود؟",
+   "options": [
+    "checked",
+    "value",
+    "selected",
+    "on"
+   ],
+   "answer": 0,
+   "explanation": "چک‌باکس به‌جای value با checked کنترل می‌شود."
+  },
+  {
+   "question": "e.target.type در handleChange چه کاربردی دارد؟",
+   "options": [
+    "تشخیص چک‌باکس از ورودی متنی",
+    "اعتبارسنجی فرم",
+    "ثبت فرم",
+    "تغییر نام ورودی"
+   ],
+   "answer": 0,
+   "explanation": "اگر type برابر checkbox بود target.checked خوانده می‌شود، وگرنه target.value."
+  },
+  {
+   "question": "وقتی چک‌باکس تیک می‌خورد چه مقداری خوانده می‌شود؟",
+   "options": [
+    "target.checked",
+    "target.value",
+    "رشتهٔ on",
+    "true همیشه"
+   ],
+   "answer": 0,
+   "explanation": "برای چک‌باکس وضعیت تیک با target.checked به دست می‌آید."
+  },
+  {
+   "question": "در مثال دوم چه مقادیر اولیه‌ای داده شده است؟",
+   "options": [
+    "firstname: John و غیره",
+    "همه خالی",
+    "فقط tomato",
+    "فقط onion"
+   ],
+   "answer": 0,
+   "explanation": "شیء useState با firstname و وضعیت هر چک‌باکس مقداردهی اولیه شده است."
+  }
+ ]
+}

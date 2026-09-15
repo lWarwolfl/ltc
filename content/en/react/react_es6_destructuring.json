@@ -1,0 +1,221 @@
+{
+ "slug": "react_es6_destructuring",
+ "course": "react",
+ "order": 10,
+ "url": "/react/react_es6_destructuring.asp",
+ "title": "React ES6 Destructuring",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "React ES6 Destructuring"
+  },
+  {
+   "type": "h2",
+   "text": "Destructuring in React"
+  },
+  {
+   "type": "p",
+   "text": "Destructuring is a JavaScript feature that allows you to extract values from objects or arrays into distinct variables. In React, it's commonly used with props, hooks, and state management."
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "Destructuring makes React code cleaner and more readable by reducing repetitive object and array access."
+  },
+  {
+   "type": "h2",
+   "text": "Destructuring Arrays"
+  },
+  {
+   "type": "p",
+   "text": "Here is the old way of assigning array items to a variable:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const vehicles = ['mustang', 'f-150', 'expedition'];\n\n// old way\nconst car = vehicles[0];\nconst truck = vehicles[1];\nconst suv = vehicles[2];\n\n//You can now access each variable separately:\ndocument.getElementById('demo').innerHTML = truck;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_oldway"
+  },
+  {
+   "type": "p",
+   "text": "Here is the new way of assigning array items to a variable:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const vehicles = ['mustang', 'f-150', 'expedition'];\n\nconst [car, truck, suv] = vehicles;\n\n//You can now access each variable separately:\ndocument.getElementById('demo').innerHTML = truck;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_newway"
+  },
+  {
+   "type": "note",
+   "variant": "note",
+   "text": "When destructuring arrays, the order that variables are declared is important."
+  },
+  {
+   "type": "p",
+   "text": "If we only want the car and suv we can simply leave out the truck but keep the comma:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const vehicles = ['mustang', 'f-150', 'expedition'];\n\nconst [car,, suv] = vehicles;",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Destructuring comes in handy when a function returns an array:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "function dateInfo(dat) {\n  const d = dat.getDate();\n  const m = dat.getMonth() + 1;\n  const y = dat.getFullYear();\n\n  return [d, m, y];\n}\n\nconst [date, month, year] = dateInfo(new Date());",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_array"
+  },
+  {
+   "type": "h2",
+   "text": "Destructuring Objects"
+  },
+  {
+   "type": "p",
+   "text": "You can use destructuring to extract the values from an object:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50\n};\n\n// Destructuring\nlet {firstName, lastName, age} = person;\n\n//You can now access each variable separately:\ndocument.getElementById(\"demo\").innerHTML = firstName;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object1"
+  },
+  {
+   "type": "p",
+   "text": "For objects, the order of the properties does not matter:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50\n};\n\n// Destructuring\nlet {lastName, age, firstName} = person;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object1_2"
+  },
+  {
+   "type": "p",
+   "text": "You can extract only the value(s) you want:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50\n};\n\n// Destructuring\nlet {firstName} = person;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object2"
+  },
+  {
+   "type": "p",
+   "text": "For potentially missing properties we can set default values:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50\n};\n\n// Destructuring\nlet {firstName, lastName, age, country = \"Norway\"} = person;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object3"
+  },
+  {
+   "type": "p",
+   "text": "We can also destructure deeply nested objects by referencing the nested object then using a colon and curly braces to again destructure the items needed from the nested object:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "const person = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  age: 50,\n  car: {\n    brand: 'Ford',\n    model: 'Mustang',\n  }\n};\n\n// Destructuring\nlet {firstName, car: { brand, model }} = person;\n\nlet message = `My name is ${firstName}, and I drive a ${brand} ${model}.`;",
+   "caption": "Example"
+  },
+  {
+   "type": "tryit",
+   "url": "https://www.w3schools.com/tryit.asp?filename=tryreact_es6_destructuring_object4"
+  },
+  {
+   "type": "p",
+   "text": "Read more about Destructuring in our JavaScript Tutorial."
+  },
+  {
+   "type": "h2",
+   "text": "Destructuring in React Components"
+  },
+  {
+   "type": "p",
+   "text": "Destructuring is particularly useful in React for working with props, hooks, and API responses. It helps make your code more concise and easier to read."
+  },
+  {
+   "type": "h2",
+   "text": "Props Destructuring"
+  },
+  {
+   "type": "p",
+   "text": "When a component receives props, you can use destructuring to extract the values you need."
+  },
+  {
+   "type": "p",
+   "text": "Check out the difference between using and not using destructuring:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "//Using destructuring:\nfunction Greeting({ name, age }) {\n  return <h1>Hello, {name}! You are {age} years old.</h1>;\n}",
+   "caption": null
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "//NOT using destructuring:\nfunction Greeting(props) {\n  return <h1>Hello, {props.name}! You are {props.age} years old.</h1>;\n}",
+   "caption": null
+  },
+  {
+   "type": "p",
+   "text": "Let's see a working example:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot } from 'react-dom/client'\n\nfunction Greeting({ name, age }) {\n  return <h1>Hello, {name}! You are {age} years old.</h1>;\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Greeting name=\"John\" age={25} />\n);",
+   "caption": "Example"
+  },
+  {
+   "type": "h2",
+   "text": "useState Hook Destructuring"
+  },
+  {
+   "type": "p",
+   "text": "When a component uses the useState hook, we use destructuring to extract the values from it."
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { createRoot, useState } from 'react-dom/client'\n\nfunction Counter() {\n  // Destructuring the array returned by useState\n  const [count, setCount] = useState(0);\n\n  return (\n    <button onClick={() => setCount(count + 1)}>\n      Count: {count}\n    </button>\n  );\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <Counter />\n);",
+   "caption": "Example"
+  }
+ ]
+}

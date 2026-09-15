@@ -1,0 +1,90 @@
+{
+ "slug": "react_forms_submit",
+ "course": "react",
+ "order": 28,
+ "url": "/react/react_forms_submit.asp",
+ "title": "ارسال فرم در ری‌اکت",
+ "blocks": [
+  {
+   "type": "h1",
+   "text": "ارسال فرم در ری‌اکت"
+  },
+  {
+   "type": "h2",
+   "text": "ثبت فرم"
+  },
+  {
+   "type": "p",
+   "text": "می‌توانید با افزودن یک هندلر رویداد به ویژگی onSubmit تگ <form>، عملیات ثبت را کنترل کنید:"
+  },
+  {
+   "type": "code",
+   "lang": "text",
+   "text": "import { useState } from 'react';\nimport { createRoot } from 'react-dom/client';\n\nfunction MyForm() {\n  const [name, setName] = useState(\"\");\n\n  function handleChange(e) {\n    setName(e.target.value);\n  }\n\n  function handleSubmit(e) {\n    e.preventDefault();\n    alert(name);\n  }\n\n  return (\n    <form onSubmit={handleSubmit}>\n      <label>Enter your name:\n        <input\n          type=\"text\"\n          value={name}\n          onChange={handleChange}\n        />\n      </label>\n      <input type=\"submit\" />\n    </form>\n  )\n}\n\ncreateRoot(document.getElementById('root')).render(\n  <MyForm />\n);",
+   "caption": "Example:"
+  }
+ ],
+ "tasks": [
+  {
+   "prompt": "مثال این درس را در Try-it باز کنید، نام خود را بنویسید و فرم را ثبت کنید تا نام در alert نمایش داده شود.",
+   "hint": "روی دکمه ثبت کلیک کنید."
+  },
+  {
+   "prompt": "خط e.preventDefault(); را حذف کنید و دوباره ثبت کنید. چه اتفاقی می‌افتد؟",
+   "hint": "بدون preventDefault صفحه دوباره بارگذاری می‌شود و مقدار از دست می‌رود."
+  },
+  {
+   "prompt": "یک ورودی دوم برای نام خانوادگی اضافه کنید و آن را هم در alert نشان دهید.",
+   "hint": "یک state دیگر با useState بسازید و در handleSubmit به alert اضافه کنید."
+  },
+  {
+   "prompt": "متن دکمه ثبت را به «بفرست» تغییر دهید."
+  }
+ ],
+ "quiz": [
+  {
+   "question": "هندلر ثبت فرم به کدام ویژگی <form> داده می‌شود؟",
+   "options": [
+    "onSubmit",
+    "onClick",
+    "onChange",
+    "onSend"
+   ],
+   "answer": 0,
+   "explanation": "رویداد ثبت فرم onSubmit است و هندلر را به همین ویژگی می‌دهیم."
+  },
+  {
+   "question": "e.preventDefault() در handleSubmit چه می‌کند؟",
+   "options": [
+    "جلوی بارگذاری دوبارهٔ صفحه را می‌گیرد",
+    "فرم را پاک می‌کند",
+    "مقدار ورودی را برمی‌گرداند",
+    "هندلر را حذف می‌کند"
+   ],
+   "answer": 0,
+   "explanation": "رفتار پیش‌فرض مرورگر هنگام ثبت، بارگذاری دوبارهٔ صفحه است و preventDefault جلوی آن را می‌گیرد."
+  },
+  {
+   "question": "مقدار ورودی متنی در این مثال کجا ذخیره می‌شود؟",
+   "options": [
+    "در state کامپوننت با useState",
+    "در DOM",
+    "در props",
+    "در متغیر سراسری"
+   ],
+   "answer": 0,
+   "explanation": "ورودی کنترل‌شده است: مقدارش در state به نام name نگه داشته می‌شود."
+  },
+  {
+   "question": "ورودی متنی چگونه «کنترل‌شده» می‌شود؟",
+   "options": [
+    "با دادن value از state و onChange",
+    "با readonly کردن ورودی",
+    "با defaultValue",
+    "با ref"
+   ],
+   "answer": 0,
+   "explanation": "ترکیب value از state و onChange که state را به‌روز می‌کند، ورودی را کنترل‌شده می‌کند."
+  }
+ ]
+}
