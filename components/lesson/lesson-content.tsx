@@ -1,12 +1,11 @@
 import { CodeBlock } from '@/components/lesson/code-block'
+import { TryItRunner } from '@/components/lesson/try-it-runner'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { bidiText } from '@/lib/content/bidi'
-import type { Block } from '@/lib/content/types'
-import { ExternalLink, Info, Lightbulb, TriangleAlert } from 'lucide-react'
+import type { Block, CodeBlock as CodeContentBlock } from '@/lib/content/types'
+import { Info, Lightbulb, TriangleAlert } from 'lucide-react'
 import Image from 'next/image'
-import { getTranslations } from 'next-intl/server'
 
 const NOTE_STYLES = {
   note: { icon: Info, className: 'border-border' },
@@ -18,9 +17,19 @@ export type LessonContentProps = {
   blocks: Block[]
 }
 
-export default async function LessonContent({ blocks }: LessonContentProps) {
-  const t = await getTranslations('lesson')
+function nearestCode(blocks: Block[], index: number): CodeContentBlock | undefined {
+  for (let j = index - 1; j >= 0; j--) {
+    const candidate = blocks[j]
+    if (candidate && candidate.type === 'code') return candidate
+  }
+  for (let j = index + 1; j < blocks.length; j++) {
+    const candidate = blocks[j]
+    if (candidate && candidate.type === 'code') return candidate
+  }
+  return undefined
+}
 
+export default async function LessonContent({ blocks }: LessonContentProps) {
   return (
     <div className="flex flex-col gap-5">
       {blocks.map((block, index) => {
@@ -65,17 +74,11 @@ export default async function LessonContent({ blocks }: LessonContentProps) {
           }
           case 'code':
             return <CodeBlock key={key} code={block.text} caption={block.caption} />
-          case 'tryit':
-            return (
-              <div key={key}>
-                <Button variant="outline" size="sm" asChild>
-                  <a href={block.url} target="_blank" rel="noreferrer">
-                    {t('try-it')}
-                    <ExternalLink className="size-4" />
-                  </a>
-                </Button>
-              </div>
-            )
+          case 'tryit': {
+            const sample = nearestCode(blocks, index)
+            if (!sample) return null
+            return <TryItRunner key={key} code={sample.text} lang={sample.lang} />
+          }
           case 'note': {
             const style = NOTE_STYLES[block.variant]
             const Icon = style.icon
